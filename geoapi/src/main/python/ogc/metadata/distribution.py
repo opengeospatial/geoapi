@@ -7,6 +7,7 @@
 #
 
 from abc import ABC, abstractproperty
+from typing import Sequence
 from enum import Enum
 
 class MediumFormatCode(Enum):
@@ -34,7 +35,7 @@ class Medium(ABC):
     @property
     def densityUnits(self):
         """Units of measure for the recording density."""
-        pass
+        return None
 
     @property
     def volumes(self) -> int:
@@ -42,7 +43,7 @@ class Medium(ABC):
         return None
 
     @property
-    def mediumFormat(self) -> MediumFormatCode:
+    def mediumFormat(self) -> Sequence[MediumFormatCode]:
         """Method used to write to the medium."""
         return None
 
@@ -74,18 +75,18 @@ class Format(ABC):
         return None
 
     @property
-    def medium(self) -> Medium:
+    def medium(self) -> Sequence[Medium]:
         """Medium used by the format."""
         return None
 
     @property
-    def formatDistributor(self) -> Distributor:
+    def formatDistributor(self) -> Sequence[Distributor]:
         return None
 
 class DataFile(ABC):
 
     @property
-    def featureType(self) -> LocalName:
+    def featureType(self) -> Sequence[LocalName]:
         return None
 
 class DigitalTransferOptions(ABC):
@@ -102,12 +103,12 @@ class DigitalTransferOptions(ABC):
         return None
 
     @property
-    def onLine(self) -> OnlineResource:
+    def onLine(self) -> Sequence[OnlineResource]:
         """Information about online sources from which the resource can be obtained."""
         return None
 
     @property
-    def offLine(self) -> Medium:
+    def offLine(self) -> Sequence[Medium]:
         """Information about offline media on which the resource can be obtained."""
         return None
 
@@ -117,7 +118,7 @@ class DigitalTransferOptions(ABC):
         return None
 
     @property
-    def distributionFormat(self) -> Format:
+    def distributionFormat(self) -> Sequence[Format]:
         """Format of distribution."""
         return None
 
@@ -163,15 +164,15 @@ class Distributor(ABC):
         pass
 
     @property
-    def distributionOrderProcess(self) -> StandardOrderProcess:
+    def distributionOrderProcess(self) -> Sequence[StandardOrderProcess]:
         return None
 
     @property
-    def distributorFormat(self) -> Format:
+    def distributorFormat(self) -> Sequence[Format]:
         return None
 
     @property
-    def distributorTransferOptions(self) -> DigitalTransferOptions:
+    def distributorTransferOptions(self) -> Sequence[DigitalTransferOptions]:
         return None
 
 class Distribution(ABC):
@@ -182,13 +183,13 @@ class Distribution(ABC):
         return None
 
     @property
-    def distributionFormat(self) -> Format:
+    def distributionFormat(self) -> Sequence[Format]:
         return None
 
     @property
-    def distributor(self) -> Distributor:
+    def distributor(self) -> Sequence[Distributor]:
         return None
 
     @property
-    def transferOptions(self) -> DigitalTransferOptions:
+    def transferOptions(self) -> Sequence[DigitalTransferOptions]:
         return None

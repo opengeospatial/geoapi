@@ -7,6 +7,7 @@
 #
 
 from abc import ABC, abstractproperty
+from typing import Sequence
 from enum import Enum
 
 class DateTypeCode(Enum):
@@ -112,7 +113,7 @@ class Address(ABC):
     """Location of the responsible individual or organisation."""
 
     @property
-    def deliveryPoint(self) -> str:
+    def deliveryPoint(self) -> Sequence[str]:
         """Address line for the location (as described in ISO 11180, Annex A)."""
         return None
 
@@ -137,7 +138,7 @@ class Address(ABC):
         return None
 
     @property
-    def electronicMailAddress(self) -> str:
+    def electronicMailAddress(self) -> Sequence[str]:
         """Address of the electronic mailbox of the responsible organisation or individual."""
         return None
 
@@ -196,22 +197,22 @@ class Contact(ABC):
     """Information required to enable contact with the responsible person and/or organisation."""
 
     @property
-    def phone(self) -> Telephone:
+    def phone(self) -> Sequence[Telephone]:
         """Telephone numbers at which the organisation or individual may be contacted."""
         return None
 
     @property
-    def address(self) -> Address:
+    def address(self) -> Sequence[Address]:
         """Physical and email address at which the organisation or individual may be contacted."""
         return None
 
     @property
-    def onlineResource(self) -> OnlineResource:
+    def onlineResource(self) -> Sequence[OnlineResource]:
         """On-line information that can be used to contact the individual or organisation."""
         return None
 
     @property
-    def hoursOfService(self) -> str:
+    def hoursOfService(self) -> Sequence[str]:
         """Time period (including time zone) when individuals can contact the organisation or individual."""
         return None
 
@@ -233,7 +234,7 @@ class Party(ABC):
         return None
 
     @property
-    def contactInfo(self) -> Contact:
+    def contactInfo(self) -> Sequence[Contact]:
         """Contact information for the party."""
         return None
 
@@ -246,12 +247,12 @@ class Responsibility(ABC):
         pass
 
     @property
-    def extent(self) -> Extent:
+    def extent(self) -> Sequence[Extent]:
         """Spatial or temporal extent of the role."""
         return None
 
     @abstractproperty
-    def party(self) -> Party:
+    def party(self) -> Sequence[Party]:
         pass
 
 class Individual(Party):
@@ -266,12 +267,12 @@ class Organisation(Party):
     """Information about the party if the party is an organisation."""
 
     @property
-    def logo(self) -> BrowseGraphic:
+    def logo(self) -> Sequence[BrowseGraphic]:
         """Graphic identifying organization."""
         return None
 
     @property
-    def individual(self) -> Individual:
+    def individual(self) -> Sequence[Individual]:
         return None
 
 class Date(ABC):
@@ -296,12 +297,12 @@ class Citation(ABC):
         pass
 
     @property
-    def alternateTitle(self) -> str:
+    def alternateTitle(self) -> Sequence[str]:
         """Short name or other language name by which the cited information is known. Example: DCW as an alternative title for Digital Chart of the World."""
         return None
 
     @property
-    def date(self) -> Date:
+    def date(self) -> Sequence[Date]:
         """Reference date for the cited resource."""
         return None
 
@@ -316,17 +317,17 @@ class Citation(ABC):
         return None
 
     @property
-    def identifier(self) -> Identifier:
+    def identifier(self) -> Sequence[Identifier]:
         """Value uniquely identifying an object within a namespace."""
         return None
 
     @property
-    def citedResponsibleParty(self) -> Responsibility:
+    def citedResponsibleParty(self) -> Sequence[Responsibility]:
         """Name and position information for an individual or organisation that is responsible for the resource."""
         return None
 
     @property
-    def presentationForm(self) -> PresentationFormCode:
+    def presentationForm(self) -> Sequence[PresentationFormCode]:
         """Mode in which the resource is represented."""
         return None
 
@@ -336,7 +337,7 @@ class Citation(ABC):
         return None
 
     @property
-    def otherCitationDetails(self) -> str:
+    def otherCitationDetails(self) -> Sequence[str]:
         """Other information required to complete the citation that is not recorded elsewhere."""
         return None
 
@@ -351,11 +352,11 @@ class Citation(ABC):
         return None
 
     @property
-    def onlineResource(self) -> OnlineResource:
+    def onlineResource(self) -> Sequence[OnlineResource]:
         """Online reference to the cited resource."""
         return None
 
     @property
-    def graphic(self) -> BrowseGraphic:
+    def graphic(self) -> Sequence[BrowseGraphic]:
         """Citation graphic or logo for cited party."""
         return None

@@ -12,13 +12,14 @@ A `Sequence` is similar to a `Bag` except that elements are ordered.
 [options="header"]
 |===================================================
 |ISO 19103 type |Java type              |Python type
-|`Collection`   |`java.util.Collection` |
+|`Collection`   |`java.util.Collection` |`Sequence`
 |`Bag`          |`java.util.Collection` |
 |`Set`          |`java.util.Set`        |
-|`Sequence`     |`java.util.List`       |
+|`Sequence`     |`java.util.List`       |`Sequence`
 |`Dictionary`   |`java.util.Map`        |
 |===================================================
 
 Unless otherwise required by the semantic of a property, GeoAPI preferably uses the `Collection` type in method signatures.
+This allows implementors to choose their preferred subtypes, usually `Set` or `Sequence`.
 The `Set` type is not the default type because enforcing element uniqueness may constraint implementations to use hash tables
 or similar algorithms, which is not always practical.

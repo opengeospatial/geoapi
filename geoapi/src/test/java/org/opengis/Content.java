@@ -442,7 +442,7 @@ public enum Content {
      * the upper bound. Otherwise this method returns the type directly.
      *
      * @param  method  the method for which to obtain the (eventually parameterized) return type.
-     * @return the return element type.
+     * @return the return element type (may be {@link Void#TYPE}).
      */
     public static Class<?> typeOf(final Method method) {
         Class<?> c = getActualTypeArgument(method.getGenericReturnType());

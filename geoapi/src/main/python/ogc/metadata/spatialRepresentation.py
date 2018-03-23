@@ -7,6 +7,7 @@
 #
 
 from abc import ABC, abstractproperty
+from typing import Sequence
 from enum import Enum
 
 class CellGeometryCode(Enum):
@@ -120,7 +121,7 @@ class Dimension(ABC):
 class GeolocationInformation(ABC):
 
     @property
-    def qualityInfo(self) -> DataQuality:
+    def qualityInfo(self) -> Sequence[DataQuality]:
         return None
 
 class GCP(ABC):
@@ -130,13 +131,13 @@ class GCP(ABC):
         pass
 
     @property
-    def accuracyReport(self) -> Element:
+    def accuracyReport(self) -> Sequence[Element]:
         return None
 
 class GCPCollection(GeolocationInformation):
 
     @abstractproperty
-    def gcp(self) -> GCP:
+    def gcp(self) -> Sequence[GCP]:
         pass
 
     @abstractproperty
@@ -176,7 +177,7 @@ class GridSpatialRepresentation(SpatialRepresentation):
         pass
 
     @property
-    def axisDimensionProperties(self) -> Dimension:
+    def axisDimensionProperties(self) -> Sequence[Dimension]:
         """Information about spatial-temporal axis properties."""
         return None
 
@@ -199,7 +200,7 @@ class VectorSpatialRepresentation(SpatialRepresentation):
         return None
 
     @property
-    def geometricObjects(self) -> GeometricObjects:
+    def geometricObjects(self) -> Sequence[GeometricObjects]:
         """Information about the geometric objects used in the resource."""
         return None
 
@@ -217,7 +218,7 @@ class Georectified(GridSpatialRepresentation):
         return None
 
     @abstractproperty
-    def cornerPoints(self) -> Point:
+    def cornerPoints(self) -> Sequence[Point]:
         """Earth location in the coordinate system defined by the Spatial Reference System and the grid coordinate of the cells at opposite ends of grid coverage along two diagonals in the grid spatial dimensions. There are four corner points in a georectified grid; at least two corner points along one diagonal are required. The first corner point corresponds to the origin of the grid."""
         pass
 
@@ -237,12 +238,12 @@ class Georectified(GridSpatialRepresentation):
         return None
 
     @property
-    def transformationDimensionMapping(self) -> str:
+    def transformationDimensionMapping(self) -> Sequence[str]:
         """Information about which grid axes are the spatial (map) axes."""
         return None
 
     @property
-    def checkPoint(self) -> GCP:
+    def checkPoint(self) -> Sequence[GCP]:
         return None
 
 class Georeferenceable(GridSpatialRepresentation):
@@ -269,10 +270,10 @@ class Georeferenceable(GridSpatialRepresentation):
         pass
 
     @property
-    def parameterCitation(self) -> Citation:
+    def parameterCitation(self) -> Sequence[Citation]:
         """Reference providing description of the parameters."""
         return None
 
     @abstractproperty
-    def geolocationInformation(self) -> GeolocationInformation:
+    def geolocationInformation(self) -> Sequence[GeolocationInformation]:
         pass

@@ -7,6 +7,7 @@
 #
 
 from abc import ABC, abstractproperty
+from typing import Sequence
 from enum import Enum
 
 class CouplingType(Enum):
@@ -40,7 +41,7 @@ class OperationMetadata(ABC):
         pass
 
     @abstractproperty
-    def distributedComputingPlatform(self) -> DCPList:
+    def distributedComputingPlatform(self) -> Sequence[DCPList]:
         """Distributed computing platforms on which the operation has been implemented."""
         pass
 
@@ -55,16 +56,16 @@ class OperationMetadata(ABC):
         return None
 
     @abstractproperty
-    def connectPoint(self) -> OnlineResource:
+    def connectPoint(self) -> Sequence[OnlineResource]:
         """Handle for accessing the service interface."""
         pass
 
     @property
-    def parameter(self) -> OperationParameter:
+    def parameter(self) -> Sequence[OperationParameter]:
         return None
 
     @property
-    def dependsOn(self) -> OperationMetadata:
+    def dependsOn(self) -> Sequence[OperationMetadata]:
         return None
 
 class OperationChainMetadata(ABC):
@@ -81,7 +82,7 @@ class OperationChainMetadata(ABC):
         return None
 
     @abstractproperty
-    def operation(self) -> OperationMetadata:
+    def operation(self) -> Sequence[OperationMetadata]:
         pass
 
 class CoupledResource(ABC):
@@ -93,7 +94,7 @@ class CoupledResource(ABC):
         return None
 
     @property
-    def resourceReference(self) -> Citation:
+    def resourceReference(self) -> Sequence[Citation]:
         """Reference to the dataset on which the service operates."""
         return None
 
@@ -102,7 +103,7 @@ class CoupledResource(ABC):
         return None
 
     @property
-    def resource(self) -> DataIdentification:
+    def resource(self) -> Sequence[DataIdentification]:
         return None
 
 class ServiceIdentification(Identification):
@@ -114,7 +115,7 @@ class ServiceIdentification(Identification):
         pass
 
     @property
-    def serviceTypeVersion(self) -> str:
+    def serviceTypeVersion(self) -> Sequence[str]:
         """Provide for searching based on the version of serviceType. For example, we may only be interested in OGC Catalogue V1.1 services. If version is maintained as a separate attribute, users can easily search for all services of a type regardless of the version."""
         return None
 
@@ -129,31 +130,31 @@ class ServiceIdentification(Identification):
         return None
 
     @property
-    def coupledResource(self) -> CoupledResource:
+    def coupledResource(self) -> Sequence[CoupledResource]:
         """Further description of the data coupling in the case of tightly coupled services."""
         return None
 
     @property
-    def operatedDataset(self) -> Citation:
+    def operatedDataset(self) -> Sequence[Citation]:
         """Provides a reference to the dataset on which the service operates."""
         return None
 
     @property
-    def profile(self) -> Citation:
+    def profile(self) -> Sequence[Citation]:
         return None
 
     @property
-    def serviceStandard(self) -> Citation:
+    def serviceStandard(self) -> Sequence[Citation]:
         return None
 
     @property
-    def containsOperations(self) -> OperationMetadata:
+    def containsOperations(self) -> Sequence[OperationMetadata]:
         return None
 
     @property
-    def operatesOn(self) -> DataIdentification:
+    def operatesOn(self) -> Sequence[DataIdentification]:
         return None
 
     @property
-    def containsChain(self) -> OperationChainMetadata:
+    def containsChain(self) -> Sequence[OperationChainMetadata]:
         return None

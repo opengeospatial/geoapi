@@ -36,6 +36,7 @@ import java.util.Set;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
 import java.math.BigInteger;
@@ -188,6 +189,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
         primitiveTypes.put(Double              .class, "float");
         primitiveTypes.put(Double              .TYPE,  "float");
         primitiveTypes.put(Date                .class, "datetime");
+        primitiveTypes.put(Void                .TYPE,  "None");
 
         keywords = new HashMap<>(4);
         keywords.put(org.opengis.metadata.acquisition.Objective.class,     singletonMap("pass", "platformPass"));
@@ -202,8 +204,11 @@ public final strictfp class JavaToPython extends SourceGenerator {
      * Returns the Python name of the given Java type, or {@code null} if unknown.
      * First, this method check if the given type can be mapped to a Python primitive.
      * If not, then the UML identifier is returned with the prefix omitted.
+     *
+     * @param  type        the type of elements for which to get the Python name.
+     * @param  collection  if multi-occurrences is allowed, the collection type. Otherwise {@code null}.
      */
-    private String nameOf(final Class<?> type) {
+    private String nameOf(final Class<?> type, final Class<?> collection) {
         String id = primitiveTypes.get(type);
         if (id == null) {
             final UML uml = type.getAnnotation(UML.class);
@@ -211,6 +216,15 @@ public final strictfp class JavaToPython extends SourceGenerator {
                 id = uml.identifier();
                 id = id.substring(id.indexOf('_') + 1);
                 if (id.isEmpty()) id = null;
+            }
+        }
+        if (collection != null) {
+            if (Collection.class.isAssignableFrom(collection)) {
+                if (id != null) {
+                    id = "Sequence[" + id + ']';
+                } else {
+                    // TODO
+                }
             }
         }
         return id;
@@ -301,7 +315,8 @@ public final strictfp class JavaToPython extends SourceGenerator {
                        .append("#    All Rights Reserved. http://www.opengeospatial.org/ogc/legal").append(lineSeparator)
                        .append('#').append(lineSeparator)
                        .append(lineSeparator)
-                       .append("from abc import ABC, abstractproperty").append(lineSeparator);
+                       .append("from abc import ABC, abstractproperty").append(lineSeparator)
+                       .append("from typing import Sequence").append(lineSeparator);
                 if (category.isControlledVocabulary()) {
                     content.append("from enum import Enum").append(lineSeparator);
                 }
@@ -348,7 +363,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
                             continue;                               // TODO
                         }
                         if (property.getParameterTypes().length == 0) {
-                            final Property p = new Property(name, nameOf(Content.typeOf(property)),
+                            final Property p = new Property(name, nameOf(Content.typeOf(property), property.getReturnType()),
                                                             def.obligation() == Obligation.MANDATORY);
                             if (properties.put(name, p) != null) switch (name) {
                                 /*
@@ -393,7 +408,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
                     content.append("class ").append(typeName).append('(');
                     String parent = "ABC";
                     for (final Class<?> p : type.getInterfaces()) {
-                        final String pi = nameOf(p);
+                        final String pi = nameOf(p, null);
                         if (pi != null) {
                             parent = pi;
                             break;              // No multi-inheritence expected. The first type should be the main one.
@@ -414,7 +429,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
                         String implementation = "pass";
                         if (!property.mandatory) {
                             classifier = "";
-                            if (property.type != null) {
+                            if (!"None".equals(property.type)) {
                                 implementation = "return None";
                             }
                         }

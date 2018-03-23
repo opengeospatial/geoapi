@@ -7,6 +7,7 @@
 #
 
 from abc import ABC, abstractproperty
+from typing import Sequence
 from enum import Enum
 
 class EvaluationMethodTypeCode(Enum):
@@ -21,15 +22,15 @@ class Element(ABC):
     """Aspect of quantitative quality information."""
 
     @abstractproperty
-    def result(self) -> Result:
+    def result(self) -> Sequence[Result]:
         pass
 
     @property
-    def dateTime(self) -> datetime:
+    def dateTime(self) -> Sequence[datetime]:
         return None
 
     @property
-    def nameOfMeasure(self) -> str:
+    def nameOfMeasure(self) -> Sequence[str]:
         return None
 
     @property
@@ -152,7 +153,7 @@ class QuantitativeResult(Result):
     """The values or information about the value(s) (or set of values) obtained from applying a data quality measure."""
 
     @abstractproperty
-    def value(self) -> Record:
+    def value(self) -> Sequence[Record]:
         """Quantitative value or values, content determined by the evaluation procedure used, accordingly with the value type and valueStructure defined for the measure."""
         pass
 
@@ -178,7 +179,7 @@ class DataQuality(ABC):
         pass
 
     @property
-    def report(self) -> Element:
+    def report(self) -> Sequence[Element]:
         return None
 
     @property

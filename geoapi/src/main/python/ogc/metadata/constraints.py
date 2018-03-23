@@ -7,6 +7,7 @@
 #
 
 from abc import ABC, abstractproperty
+from typing import Sequence
 from enum import Enum
 
 class ClassificationCode(Enum):
@@ -43,7 +44,7 @@ class Releasability(ABC):
     """State, nation or organization to which resource can be released to e.g. NATO unclassified releasable to PfP."""
 
     @property
-    def addressee(self) -> Responsibility:
+    def addressee(self) -> Sequence[Responsibility]:
         """Party responsible for the Release statement."""
         return None
 
@@ -53,7 +54,7 @@ class Releasability(ABC):
         return None
 
     @property
-    def disseminationConstraints(self) -> RestrictionCode:
+    def disseminationConstraints(self) -> Sequence[RestrictionCode]:
         """Component in determining releasability."""
         return None
 
@@ -61,7 +62,7 @@ class Constraints(ABC):
     """Restrictions on the access and use of a resource or metadata."""
 
     @property
-    def useLimitation(self) -> str:
+    def useLimitation(self) -> Sequence[str]:
         """Limitation affecting the fitness for use of the resource or metadata. Example, "not to be used for navigation"."""
         return None
 
@@ -71,12 +72,12 @@ class Constraints(ABC):
         return None
 
     @property
-    def graphic(self) -> BrowseGraphic:
+    def graphic(self) -> Sequence[BrowseGraphic]:
         """Graphic /symbol indicating the constraint Eg."""
         return None
 
     @property
-    def reference(self) -> Citation:
+    def reference(self) -> Sequence[Citation]:
         """Citation/URL for the limitation or constraint, e.g. copyright statement, license agreement, etc."""
         return None
 
@@ -86,7 +87,7 @@ class Constraints(ABC):
         return None
 
     @property
-    def responsibleParty(self) -> Responsibility:
+    def responsibleParty(self) -> Sequence[Responsibility]:
         """Party responsible for the resource constraints."""
         return None
 
@@ -94,17 +95,17 @@ class LegalConstraints(Constraints):
     """Restrictions and legal prerequisites for accessing and using the resource or metadata."""
 
     @property
-    def accessConstraints(self) -> RestrictionCode:
+    def accessConstraints(self) -> Sequence[RestrictionCode]:
         """Access constraints applied to assure the protection of privacy or intellectual property, and any special restrictions or limitations on obtaining the resource or metadata."""
         return None
 
     @property
-    def useConstraints(self) -> RestrictionCode:
+    def useConstraints(self) -> Sequence[RestrictionCode]:
         """Constraints applied to assure the protection of privacy or intellectual property, and any special restrictions or limitations or warnings on using the resource or metadata."""
         return None
 
     @property
-    def otherConstraints(self) -> str:
+    def otherConstraints(self) -> Sequence[str]:
         """Other restrictions and legal prerequisites for accessing and using the resource or metadata."""
         return None
 

@@ -7,6 +7,7 @@
 #
 
 from abc import ABC, abstractproperty
+from typing import Sequence
 from enum import Enum
 
 class MaintenanceFrequencyCode(Enum):
@@ -58,22 +59,22 @@ class ScopeDescription(ABC):
     """Description of the class of information covered by the information."""
 
     @property
-    def attributes(self) -> str:
+    def attributes(self) -> Sequence[str]:
         """Instances of attribute types to which the information applies."""
         return None
 
     @property
-    def features(self) -> str:
+    def features(self) -> Sequence[str]:
         """Instances of feature types to which the information applies."""
         return None
 
     @property
-    def featureInstances(self) -> str:
+    def featureInstances(self) -> Sequence[str]:
         """Feature instances to which the information applies."""
         return None
 
     @property
-    def attributeInstances(self) -> str:
+    def attributeInstances(self) -> Sequence[str]:
         """Attribute instances to which the information applies."""
         return None
 
@@ -96,11 +97,11 @@ class Scope(ABC):
         pass
 
     @property
-    def extent(self) -> Extent:
+    def extent(self) -> Sequence[Extent]:
         return None
 
     @property
-    def levelDescription(self) -> ScopeDescription:
+    def levelDescription(self) -> Sequence[ScopeDescription]:
         return None
 
 class MaintenanceInformation(ABC):
@@ -112,7 +113,7 @@ class MaintenanceInformation(ABC):
         return None
 
     @property
-    def maintenanceDate(self) -> Date:
+    def maintenanceDate(self) -> Sequence[Date]:
         """Date information associated with maintenance of resource."""
         return None
 
@@ -122,16 +123,16 @@ class MaintenanceInformation(ABC):
         return None
 
     @property
-    def maintenanceScope(self) -> Scope:
+    def maintenanceScope(self) -> Sequence[Scope]:
         """Information about the scope and extent of maintenance."""
         return None
 
     @property
-    def maintenanceNote(self) -> str:
+    def maintenanceNote(self) -> Sequence[str]:
         """Information regarding specific requirements for maintaining the resource."""
         return None
 
     @property
-    def contact(self) -> Responsibility:
+    def contact(self) -> Sequence[Responsibility]:
         """Identification of, and means of communicating with, person(s) and organisation(s) with responsibility for maintaining the metadata."""
         return None

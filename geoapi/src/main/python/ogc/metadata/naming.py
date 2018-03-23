@@ -7,6 +7,7 @@
 #
 
 from abc import ABC, abstractproperty
+from typing import Sequence
 
 class NameSpace(ABC):
 
@@ -29,7 +30,7 @@ class GenericName(ABC):
         pass
 
     @abstractproperty
-    def parsedName(self) -> LocalName:
+    def parsedName(self) -> Sequence[LocalName]:
         pass
 
 class LocalName(GenericName):
@@ -39,7 +40,7 @@ class LocalName(GenericName):
         pass
 
     @abstractproperty
-    def parsedName(self) -> LocalName:
+    def parsedName(self) -> Sequence[LocalName]:
         pass
 
 class ScopedName(GenericName):

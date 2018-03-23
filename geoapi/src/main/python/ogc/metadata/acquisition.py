@@ -7,6 +7,7 @@
 #
 
 from abc import ABC, abstractproperty
+from typing import Sequence
 from enum import Enum
 
 class ContextCode(Enum):
@@ -50,7 +51,7 @@ class Instrument(ABC):
     """Designations for the measuring instruments."""
 
     @property
-    def citation(self) -> Citation:
+    def citation(self) -> Sequence[Citation]:
         """Complete citation of the instrument."""
         return None
 
@@ -92,12 +93,12 @@ class Platform(ABC):
         pass
 
     @property
-    def sponsor(self) -> Responsibility:
+    def sponsor(self) -> Sequence[Responsibility]:
         """Organization responsible for building, launch, or operation of the platform."""
         return None
 
     @abstractproperty
-    def instrument(self) -> Instrument:
+    def instrument(self) -> Sequence[Instrument]:
         pass
 
 class PlatformPass(ABC):
@@ -114,7 +115,7 @@ class PlatformPass(ABC):
         return None
 
     @property
-    def relatedEvent(self) -> Event:
+    def relatedEvent(self) -> Sequence[Event]:
         return None
 
 class Event(ABC):
@@ -150,11 +151,11 @@ class Event(ABC):
         return None
 
     @property
-    def relatedSensor(self) -> Instrument:
+    def relatedSensor(self) -> Sequence[Instrument]:
         return None
 
     @property
-    def expectedObjective(self) -> Objective:
+    def expectedObjective(self) -> Sequence[Objective]:
         return None
 
 class EnvironmentalRecord(ABC):
@@ -179,7 +180,7 @@ class Objective(ABC):
     """Describes the characteristics, spatial and temportal extent of the intended object to be observed."""
 
     @abstractproperty
-    def identifier(self) -> Identifier:
+    def identifier(self) -> Sequence[Identifier]:
         """Registered code used to identify the objective."""
         pass
 
@@ -189,30 +190,30 @@ class Objective(ABC):
         return None
 
     @property
-    def type(self) -> ObjectiveTypeCode:
+    def type(self) -> Sequence[ObjectiveTypeCode]:
         """Collection technique for the objective."""
         return None
 
     @property
-    def function(self) -> str:
+    def function(self) -> Sequence[str]:
         """Function performed by or at the objective."""
         return None
 
     @property
-    def extent(self) -> Extent:
+    def extent(self) -> Sequence[Extent]:
         """Extent information including the bounding box, bounding polygon, vertical and temporal extent of the objective."""
         return None
 
     @property
-    def sensingInstrument(self) -> Instrument:
+    def sensingInstrument(self) -> Sequence[Instrument]:
         return None
 
     @property
-    def platformPass(self) -> PlatformPass:
+    def platformPass(self) -> Sequence[PlatformPass]:
         return None
 
     @abstractproperty
-    def objectiveOccurence(self) -> Event:
+    def objectiveOccurence(self) -> Sequence[Event]:
         pass
 
 class Operation(ABC):
@@ -248,16 +249,16 @@ class Operation(ABC):
         return None
 
     @property
-    def childOperation(self) -> Operation:
+    def childOperation(self) -> Sequence[Operation]:
         return None
 
     @property
-    def platform(self) -> Platform:
+    def platform(self) -> Sequence[Platform]:
         """Platform (or platforms) used in the operation."""
         return None
 
     @property
-    def objective(self) -> Objective:
+    def objective(self) -> Sequence[Objective]:
         return None
 
     @property
@@ -265,7 +266,7 @@ class Operation(ABC):
         return None
 
     @property
-    def significantEvent(self) -> Event:
+    def significantEvent(self) -> Sequence[Event]:
         return None
 
 class RequestedDate(ABC):
@@ -295,12 +296,12 @@ class Requirement(ABC):
         pass
 
     @abstractproperty
-    def requestor(self) -> Responsibility:
+    def requestor(self) -> Sequence[Responsibility]:
         """Origin of requirement."""
         pass
 
     @abstractproperty
-    def recipient(self) -> Responsibility:
+    def recipient(self) -> Sequence[Responsibility]:
         """Person(s), or body(ies), to recieve results of requirement."""
         pass
 
@@ -320,7 +321,7 @@ class Requirement(ABC):
         pass
 
     @property
-    def satisfiedPlan(self) -> Plan:
+    def satisfiedPlan(self) -> Sequence[Plan]:
         return None
 
 class Plan(ABC):
@@ -342,38 +343,38 @@ class Plan(ABC):
         pass
 
     @property
-    def operation(self) -> Operation:
+    def operation(self) -> Sequence[Operation]:
         return None
 
     @property
-    def satisfiedRequirement(self) -> Requirement:
+    def satisfiedRequirement(self) -> Sequence[Requirement]:
         return None
 
 class AcquisitionInformation(ABC):
     """Designations for the measuring instruments and their bands, the platform carrying them, and the mission to which the data contributes."""
 
     @property
-    def instrument(self) -> Instrument:
+    def instrument(self) -> Sequence[Instrument]:
         return None
 
     @property
-    def operation(self) -> Operation:
+    def operation(self) -> Sequence[Operation]:
         return None
 
     @property
-    def platform(self) -> Platform:
+    def platform(self) -> Sequence[Platform]:
         return None
 
     @property
-    def acquisitionPlan(self) -> Plan:
+    def acquisitionPlan(self) -> Sequence[Plan]:
         return None
 
     @property
-    def objective(self) -> Objective:
+    def objective(self) -> Sequence[Objective]:
         return None
 
     @property
-    def acquisitionRequirement(self) -> Requirement:
+    def acquisitionRequirement(self) -> Sequence[Requirement]:
         return None
 
     @property

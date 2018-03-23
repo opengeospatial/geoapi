@@ -7,6 +7,7 @@
 #
 
 from abc import ABC, abstractproperty
+from typing import Sequence
 from enum import Enum
 
 class BandDefinition(Enum):
@@ -66,19 +67,19 @@ class RangeDimension(ABC):
         return None
 
     @property
-    def name(self) -> Identifier:
+    def name(self) -> Sequence[Identifier]:
         """Identifiers for each attribute included in the resource. These identifiers can be used to provide names for the resource's attribute from a standard set of names."""
         return None
 
 class AttributeGroup(ABC):
 
     @abstractproperty
-    def contentType(self) -> CoverageContentTypeCode:
+    def contentType(self) -> Sequence[CoverageContentTypeCode]:
         """Type of information represented by the value."""
         pass
 
     @property
-    def attribute(self) -> RangeDimension:
+    def attribute(self) -> Sequence[RangeDimension]:
         return None
 
 class SampleDimension(RangeDimension):
@@ -97,7 +98,7 @@ class SampleDimension(RangeDimension):
     @property
     def units(self):
         """Units of data in each dimension included in the resource. Note that the type of this is UnitOfMeasure and that it is restricted to UomLength in the MD_Band class."""
-        pass
+        return None
 
     @property
     def scaleFactor(self) -> float:
@@ -160,7 +161,7 @@ class Band(SampleDimension):
 
     @property
     def boundUnits(self):
-        pass
+        return None
 
     @property
     def peakResponse(self) -> float:
@@ -204,7 +205,7 @@ class RangeElementDescription(ABC):
         pass
 
     @abstractproperty
-    def rangeElement(self) -> Record:
+    def rangeElement(self) -> Sequence[Record]:
         """Specific range elements, i.e. range elements associated with a name and definition defining their meaning."""
         pass
 
@@ -222,11 +223,11 @@ class CoverageDescription(ContentInformation):
         return None
 
     @property
-    def attributeGroup(self) -> AttributeGroup:
+    def attributeGroup(self) -> Sequence[AttributeGroup]:
         return None
 
     @property
-    def rangeElementDescription(self) -> RangeElementDescription:
+    def rangeElementDescription(self) -> Sequence[RangeElementDescription]:
         return None
 
 class ImageDescription(CoverageDescription):
@@ -265,27 +266,27 @@ class ImageDescription(CoverageDescription):
     @property
     def triangulationIndicator(self):
         """Indication of whether or not triangulation has been performed upon the image."""
-        pass
+        return None
 
     @property
     def radiometricCalibrationDataAvailability(self):
         """Indication of whether or not the radiometric calibration information for generating the radiometrically calibrated standard data product is available."""
-        pass
+        return None
 
     @property
     def cameraCalibrationInformationAvailability(self):
         """Indication of whether or not constants are available which allow for camera calibration corrections."""
-        pass
+        return None
 
     @property
     def filmDistortionInformationAvailability(self):
         """Indication of whether or not Calibration Reseau information is available."""
-        pass
+        return None
 
     @property
     def lensDistortionInformationAvailability(self):
         """Indication of whether or not lens aberration correction information is available."""
-        pass
+        return None
 
 class FeatureTypeInfo(ABC):
 
@@ -303,24 +304,24 @@ class FeatureCatalogueDescription(ContentInformation):
     @property
     def complianceCode(self):
         """Indication of whether or not the cited feature catalogue complies with ISO 19110."""
-        pass
+        return None
 
     @property
     def locale(self):
         """Language(s) used within the catalogue."""
-        pass
+        return None
 
     @property
     def includedWithDataset(self):
         """Indication of whether or not the feature catalogue is included with the resource."""
-        pass
+        return None
 
     @property
-    def featureTypes(self) -> FeatureTypeInfo:
+    def featureTypes(self) -> Sequence[FeatureTypeInfo]:
         """Subset of feature types from cited feature catalogue occurring in dataset."""
         return None
 
     @property
-    def featureCatalogueCitation(self) -> Citation:
+    def featureCatalogueCitation(self) -> Sequence[Citation]:
         """Complete bibliographic reference to one or more external feature catalogues."""
         return None

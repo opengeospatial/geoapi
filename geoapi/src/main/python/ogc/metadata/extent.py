@@ -7,6 +7,7 @@
 #
 
 from abc import ABC, abstractproperty
+from typing import Sequence
 
 class GeographicExtent(ABC):
     """Spatial area of the resource."""
@@ -14,7 +15,7 @@ class GeographicExtent(ABC):
     @property
     def extentTypeCode(self):
         """Indication of whether the geographic element encompasses an area covered by the data or an area where data is not present."""
-        pass
+        return None
 
 class GeographicBoundingBox(GeographicExtent):
     """Geographic position of the resource. NOTE: This is only an approximate reference so specifying the coordinate reference system is unnecessary and need only be provided with a precision of up to two decimal places."""
@@ -51,7 +52,7 @@ class BoundingPolygon(GeographicExtent):
     """Enclosing geometric object which locates the resource, expressed as a set of (x,y) coordinate (s). NOTE: If a polygon is used it should be closed (last point replicates first point)."""
 
     @abstractproperty
-    def polygon(self) -> Object:
+    def polygon(self) -> Sequence[Object]:
         """Sets of points defining the bounding polygon or any other GM_Object geometry (point, line or polygon)."""
         pass
 
@@ -89,7 +90,7 @@ class SpatialTemporalExtent(TemporalExtent):
         return None
 
     @abstractproperty
-    def spatialExtent(self) -> GeographicExtent:
+    def spatialExtent(self) -> Sequence[GeographicExtent]:
         pass
 
 class Extent(ABC):
@@ -101,13 +102,13 @@ class Extent(ABC):
         return None
 
     @property
-    def geographicElement(self) -> GeographicExtent:
+    def geographicElement(self) -> Sequence[GeographicExtent]:
         return None
 
     @property
-    def temporalElement(self) -> TemporalExtent:
+    def temporalElement(self) -> Sequence[TemporalExtent]:
         return None
 
     @property
-    def verticalElement(self) -> VerticalExtent:
+    def verticalElement(self) -> Sequence[VerticalExtent]:
         return None

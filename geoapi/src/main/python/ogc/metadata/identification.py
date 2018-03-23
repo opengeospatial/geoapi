@@ -7,6 +7,7 @@
 #
 
 from abc import ABC, abstractproperty
+from typing import Sequence
 from enum import Enum
 
 class AssociationTypeCode(Enum):
@@ -144,12 +145,12 @@ class BrowseGraphic(ABC):
         return None
 
     @property
-    def imageConstraints(self) -> Constraints:
+    def imageConstraints(self) -> Sequence[Constraints]:
         """Restriction on access and/or use of browse graphic."""
         return None
 
     @property
-    def linkage(self) -> OnlineResource:
+    def linkage(self) -> Sequence[OnlineResource]:
         """Link to browse graphic."""
         return None
 
@@ -164,7 +165,7 @@ class KeywordClass(ABC):
     @property
     def conceptIdentifier(self):
         """URI of concept in ontology specified by the ontology attribute; this concept is labeled by the className: CharacterString."""
-        pass
+        return None
 
     @abstractproperty
     def ontology(self) -> Citation:
@@ -175,7 +176,7 @@ class Keywords(ABC):
     """Keywords, their type and reference source. NOTE: When the resource described is a service, one instance of MD_Keyword shall refer to the service taxonomy defined in ISO 19119, 8.3)."""
 
     @abstractproperty
-    def keyword(self) -> str:
+    def keyword(self) -> Sequence[str]:
         """Commonly used word(s) or formalised word(s) or phrase(s) used to describe the subject."""
         pass
 
@@ -212,21 +213,21 @@ class Usage(ABC):
         return None
 
     @property
-    def userContactInfo(self) -> Responsibility:
+    def userContactInfo(self) -> Sequence[Responsibility]:
         """Identification of and means of communicating with person(s) and organisation(s) using the resource(s)."""
         return None
 
     @property
-    def response(self) -> str:
+    def response(self) -> Sequence[str]:
         """Response to the user-determined limitationsE.G.. 'this has been fixed in version x'."""
         return None
 
     @property
-    def additionalDocumentation(self) -> Citation:
+    def additionalDocumentation(self) -> Sequence[Citation]:
         return None
 
     @property
-    def identifiedIssues(self) -> Citation:
+    def identifiedIssues(self) -> Sequence[Citation]:
         return None
 
 class RepresentativeFraction(ABC):
@@ -307,47 +308,47 @@ class Identification(ABC):
         return None
 
     @property
-    def credit(self) -> str:
+    def credit(self) -> Sequence[str]:
         """Recognition of those who contributed to the resource(s)."""
         return None
 
     @property
-    def status(self) -> ProgressCode:
+    def status(self) -> Sequence[ProgressCode]:
         """Status of the resource(s)."""
         return None
 
     @property
-    def pointOfContact(self) -> Responsibility:
+    def pointOfContact(self) -> Sequence[Responsibility]:
         """Identification of, and means of communication with, person(s) and organisation(s) associated with the resource(s)."""
         return None
 
     @property
-    def spatialRepresentationType(self) -> SpatialRepresentationTypeCode:
+    def spatialRepresentationType(self) -> Sequence[SpatialRepresentationTypeCode]:
         """Method used to spatially represent geographic information."""
         return None
 
     @property
-    def spatialResolution(self) -> Resolution:
+    def spatialResolution(self) -> Sequence[Resolution]:
         """Factor which provides a general understanding of the density of spatial data in the resource."""
         return None
 
     @property
-    def temporalResolution(self) -> Duration:
+    def temporalResolution(self) -> Sequence[Duration]:
         """Resolution of the resource with respect to time."""
         return None
 
     @property
-    def topicCategory(self) -> TopicCategoryCode:
+    def topicCategory(self) -> Sequence[TopicCategoryCode]:
         """Main theme(s) of the resource."""
         return None
 
     @property
-    def extent(self) -> Extent:
+    def extent(self) -> Sequence[Extent]:
         """Spatial and temporal extent of the resource."""
         return None
 
     @property
-    def additionalDocumentation(self) -> Citation:
+    def additionalDocumentation(self) -> Sequence[Citation]:
         """Other documentation associated with the resource."""
         return None
 
@@ -357,31 +358,31 @@ class Identification(ABC):
         return None
 
     @property
-    def resourceMaintenance(self) -> MaintenanceInformation:
+    def resourceMaintenance(self) -> Sequence[MaintenanceInformation]:
         return None
 
     @property
-    def graphicOverview(self) -> BrowseGraphic:
+    def graphicOverview(self) -> Sequence[BrowseGraphic]:
         return None
 
     @property
-    def resourceFormat(self) -> Format:
+    def resourceFormat(self) -> Sequence[Format]:
         return None
 
     @property
-    def descriptiveKeywords(self) -> Keywords:
+    def descriptiveKeywords(self) -> Sequence[Keywords]:
         return None
 
     @property
-    def resourceSpecificUsage(self) -> Usage:
+    def resourceSpecificUsage(self) -> Sequence[Usage]:
         return None
 
     @property
-    def resourceConstraints(self) -> Constraints:
+    def resourceConstraints(self) -> Sequence[Constraints]:
         return None
 
     @property
-    def associatedResource(self) -> AssociatedResource:
+    def associatedResource(self) -> Sequence[AssociatedResource]:
         return None
 
 class DataIdentification(Identification):
@@ -399,7 +400,7 @@ class DataIdentification(Identification):
 
     @property
     def characterSet(self):
-        pass
+        return None
 
     @abstractproperty
     def language(self):

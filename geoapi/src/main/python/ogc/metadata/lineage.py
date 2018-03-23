@@ -7,6 +7,7 @@
 #
 
 from abc import ABC, abstractproperty
+from typing import Sequence
 
 class NominalResolution(ABC):
     """Distance between adjacent pixels."""
@@ -45,7 +46,7 @@ class Source(ABC):
         return None
 
     @property
-    def sourceMetadata(self) -> Citation:
+    def sourceMetadata(self) -> Sequence[Citation]:
         """Identifier and link to source metadata."""
         return None
 
@@ -55,7 +56,7 @@ class Source(ABC):
         return None
 
     @property
-    def sourceStep(self) -> ProcessStep:
+    def sourceStep(self) -> Sequence[ProcessStep]:
         return None
 
     @property
@@ -85,7 +86,7 @@ class Processing(ABC):
     """Comprehensive information about the procedure(s), process(es) and algorithm(s) applied in the process step."""
 
     @property
-    def algorithm(self) -> Algorithm:
+    def algorithm(self) -> Sequence[Algorithm]:
         return None
 
     @abstractproperty
@@ -94,7 +95,7 @@ class Processing(ABC):
         pass
 
     @property
-    def softwareReference(self) -> Citation:
+    def softwareReference(self) -> Sequence[Citation]:
         """Reference to document describing processing software."""
         return None
 
@@ -104,7 +105,7 @@ class Processing(ABC):
         return None
 
     @property
-    def documentation(self) -> Citation:
+    def documentation(self) -> Sequence[Citation]:
         """Reference to documentation describing the processing."""
         return None
 
@@ -150,12 +151,12 @@ class ProcessStep(ABC):
         return None
 
     @property
-    def processor(self) -> Responsibility:
+    def processor(self) -> Sequence[Responsibility]:
         """Identification of, and means of communication with, person(s) and organisation(s) associated with the process step."""
         return None
 
     @property
-    def reference(self) -> Citation:
+    def reference(self) -> Sequence[Citation]:
         """Process step documentation."""
         return None
 
@@ -165,7 +166,7 @@ class ProcessStep(ABC):
         return None
 
     @property
-    def source(self) -> Source:
+    def source(self) -> Sequence[Source]:
         return None
 
     @property
@@ -173,11 +174,11 @@ class ProcessStep(ABC):
         return None
 
     @property
-    def report(self) -> ProcessStepReport:
+    def report(self) -> Sequence[ProcessStepReport]:
         return None
 
     @property
-    def output(self) -> Source:
+    def output(self) -> Sequence[Source]:
         return None
 
 class Lineage(ABC):
@@ -194,13 +195,13 @@ class Lineage(ABC):
         return None
 
     @property
-    def additionalDocumentation(self) -> Citation:
+    def additionalDocumentation(self) -> Sequence[Citation]:
         return None
 
     @property
-    def source(self) -> Source:
+    def source(self) -> Sequence[Source]:
         return None
 
     @property
-    def processStep(self) -> ProcessStep:
+    def processStep(self) -> Sequence[ProcessStep]:
         return None

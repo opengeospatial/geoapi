@@ -7,6 +7,7 @@
 #
 
 from abc import ABC, abstractproperty
+from typing import Sequence
 from enum import Enum
 
 class DatatypeCode(Enum):
@@ -109,7 +110,7 @@ class ExtendedElementInformation(ABC):
         return None
 
     @abstractproperty
-    def parentEntity(self) -> str:
+    def parentEntity(self) -> Sequence[str]:
         """Name of the metadata entity(s) under which this extended metadata element may appear. The name(s) may be standard metadata element(s) or other extended metadata element(s)."""
         pass
 
@@ -124,7 +125,7 @@ class ExtendedElementInformation(ABC):
         return None
 
     @abstractproperty
-    def source(self) -> Responsibility:
+    def source(self) -> Sequence[Responsibility]:
         """Name of the person or organisation creating the extended element."""
         pass
 
@@ -137,5 +138,5 @@ class MetadataExtensionInformation(ABC):
         return None
 
     @property
-    def extendedElementInformation(self) -> ExtendedElementInformation:
+    def extendedElementInformation(self) -> Sequence[ExtendedElementInformation]:
         return None
