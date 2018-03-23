@@ -93,7 +93,7 @@ public final class NameSpaces {
          * Types defined in "commonClasses.xsd". Types not listed below will go to "metadata/maintenance"
          */
         final Map<Class<?>,String> t = new HashMap<>(8);
-        t.put(org.opengis.metadata.Identifier.class,                        "metadata/identification");
+        t.put(org.opengis.metadata.Identifier.class,                        "metadata/citation");
         t.put(org.opengis.metadata.identification.Progress.class,           "metadata/identification");
         t.put(org.opengis.metadata.identification.BrowseGraphic.class,      "metadata/identification");
         t.put(org.opengis.metadata.spatial.SpatialRepresentationType.class, "metadata/spatialRepresentation");

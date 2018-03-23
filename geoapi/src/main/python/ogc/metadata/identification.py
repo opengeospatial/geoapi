@@ -99,34 +99,6 @@ class TopicCategoryCode(Enum):
     EXTRA_TERRESTRIAL = "extraTerrestrial"
     DISASTER = "disaster"
 
-class Identifier(ABC):
-    """Value uniquely identifying an object within a namespace."""
-
-    @property
-    def authority(self) -> Citation:
-        """Citation for the code namespace and optionally the person or party responsible for maintenance of that namespace."""
-        return None
-
-    @abstractproperty
-    def code(self) -> str:
-        """Alphanumeric value identifying an instance in the namespace e.g. EPSG::4326."""
-        pass
-
-    @property
-    def codeSpace(self) -> str:
-        """Identifier or namespace in which the code is valid."""
-        return None
-
-    @property
-    def version(self) -> str:
-        """Version identifier for the namespace."""
-        return None
-
-    @property
-    def description(self) -> str:
-        """Natural language description of the meaning of the code value E.G for codeSpace = EPSG, code = 4326: description = WGS-84" to "for codeSpace = EPSG, code = EPSG::4326: description = WGS-84."""
-        return None
-
 class BrowseGraphic(ABC):
     """Graphic that provides an illustration of the dataset (should include a legend for the graphic, if applicable)."""
 
