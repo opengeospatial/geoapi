@@ -112,7 +112,8 @@ public final strictfp class ContentTest implements FileVisitor<Path> {
                 org.opengis.util.CodeList.class));
 
         skipDependencies = new HashMap<>(16);
-        assertNull(skipDependencies.put(org.opengis.referencing.ReferenceIdentifier.class,         org.opengis.metadata.citation.Citation.class));
+        assertNull(skipDependencies.put(org.opengis.metadata.citation.Responsibility.class,        org.opengis.metadata.extent.Extent.class));
+        assertNull(skipDependencies.put(org.opengis.metadata.citation.ResponsibleParty.class,      org.opengis.metadata.extent.Extent.class));
         assertNull(skipDependencies.put(org.opengis.metadata.extent.BoundingPolygon.class,         org.opengis.geometry.Geometry.class));
         assertNull(skipDependencies.put(org.opengis.metadata.extent.VerticalExtent.class,          org.opengis.referencing.crs.VerticalCRS.class));
         assertNull(skipDependencies.put(org.opengis.metadata.citation.Organisation.class,          org.opengis.metadata.identification.BrowseGraphic.class));
