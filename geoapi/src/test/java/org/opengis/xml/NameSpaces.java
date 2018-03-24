@@ -100,6 +100,10 @@ public final class NameSpaces {
         t.put(org.opengis.metadata.identification.Progress.class,           "metadata/identification");
         t.put(org.opengis.metadata.identification.BrowseGraphic.class,      "metadata/identification");
         t.put(org.opengis.metadata.spatial.SpatialRepresentationType.class, "metadata/spatialRepresentation");
+        /*
+         * Types having a different name in "dataQuality.xsd" because we have not yet updated that part.
+         */
+        t.put(org.opengis.metadata.quality.TemporalAccuracy.class, "metadata/dataQuality");
         typesToPackages = t;
     }
 

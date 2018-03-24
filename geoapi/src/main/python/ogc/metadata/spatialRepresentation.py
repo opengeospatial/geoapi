@@ -136,12 +136,10 @@ class Dimension(ABC):
 
 
 
-from ogc.metadata.dataQuality import DataQuality, Element
-
 class GeolocationInformation(ABC):
 
     @property
-    def qualityInfo(self) -> Sequence[DataQuality]:
+    def qualityInfo(self) -> Sequence['DataQuality']:
         return None
 
 
@@ -153,7 +151,7 @@ class GCP(ABC):
         pass
 
     @property
-    def accuracyReport(self) -> Sequence[Element]:
+    def accuracyReport(self) -> Sequence['Element']:
         return None
 
 

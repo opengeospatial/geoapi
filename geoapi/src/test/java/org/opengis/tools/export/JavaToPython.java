@@ -293,7 +293,16 @@ public final strictfp class JavaToPython extends SourceGenerator {
                      */
                     String importFrom = null;
                     if (typeName != null) {
-                        final String dependency = declaredTypes.get(elementType);
+                        String dependency = declaredTypes.get(elementType);
+                        if (elementType.getName().startsWith("org.opengis.metadata.quality.")) {
+                            if (type.getName().startsWith("org.opengis.metadata.spatial.")) {
+                                /*
+                                 * Do not allow spatialRepresentation.py to depends directly on dataQuality.py because
+                                 * those two Python files are incomplete when this circular dependency is established.
+                                 */
+                                dependency = null;
+                            }
+                        }
                         if (dependency == null) {
                             if (!primitiveTypes.containsKey(elementType)) {
                                 if (isExcluded(elementType)) {
@@ -520,8 +529,9 @@ public final strictfp class JavaToPython extends SourceGenerator {
                         }
                     }
                     content.append(parent).append("):").append(lineSeparator);
+                    boolean hasBody = (props.length != 0);
                     if (definition != null) {
-                        appendDocumentation(definition.get(null), content, 1, lineSeparator);
+                        hasBody |= appendDocumentation(definition.get(null), content, 1, lineSeparator);
                     }
                     /*
                      * Declare properties with "@abstractproperty" for mandatory properties, and "@property" for optional ones.
@@ -550,6 +560,13 @@ public final strictfp class JavaToPython extends SourceGenerator {
                             appendDocumentation(definition.get(property.name), content, 2, lineSeparator);
                         }
                         indent(content, 2).append(implementation).append(lineSeparator);
+                    }
+                    /*
+                     * Python syntax requires that we have at least one indented like below "class" keyword.
+                     * This may happen for types without properties and no documentation.
+                     */
+                    if (!hasBody) {
+                        indent(content, 1).append("\"\"\"TODO\"\"\"");
                     }
                     break;
                 }
@@ -581,16 +598,19 @@ public final strictfp class JavaToPython extends SourceGenerator {
      * @param  element  the element for which to add documentation, or {@code null}.
      * @param  content  where to add documentation if it exists.
      * @param  level    the indentation level to use (1 or 2).
+     * @return whether a documentation has been written.
      */
-    private static void appendDocumentation(final SchemaInformation.Element element,
+    private static boolean appendDocumentation(final SchemaInformation.Element element,
             final StringBuilder content, final int level, final String lineSeparator)
     {
         if (element != null) {
             final String doc = element.documentation;
             if (doc != null) {
                 indent(content, level).append("\"\"\"").append(doc).append("\"\"\"").append(lineSeparator);
+                return true;
             }
         }
+        return false;
     }
 
     /**

@@ -84,6 +84,10 @@ class RelativeInternalPositionalAccuracy(PositionalAccuracy):
 
 
 
+class TemporalAccuracy(Element):
+    """TODO"""
+
+
 class TemporalConsistency(TemporalAccuracy):
     """Correctness of ordered events or sequences, if reported."""
 
