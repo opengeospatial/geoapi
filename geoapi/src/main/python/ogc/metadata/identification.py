@@ -11,6 +11,7 @@ from typing import Sequence
 from enum import Enum
 from ogc.metadata.constraints import Constraints
 from ogc.metadata.citation import OnlineResource, Citation, Responsibility, Identifier
+from datetime import datetime
 from ogc.metadata.spatialRepresentation import SpatialRepresentationTypeCode
 from ogc.metadata.extent import Extent
 from ogc.metadata.maintenance import MaintenanceInformation

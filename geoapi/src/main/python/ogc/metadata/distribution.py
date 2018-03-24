@@ -11,6 +11,7 @@ from typing import Sequence
 from enum import Enum
 from ogc.metadata.citation import Identifier, Citation, OnlineResource, Responsibility
 from ogc.metadata.naming import LocalName, RecordType, Record
+from datetime import datetime
 
 class MediumFormatCode(Enum):
     CPIO = "cpio"

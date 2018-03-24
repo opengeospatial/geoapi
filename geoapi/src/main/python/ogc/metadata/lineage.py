@@ -11,6 +11,7 @@ from typing import Sequence
 from ogc.metadata.identification import Resolution
 from ogc.metadata.citation import Citation, Identifier, Responsibility
 from ogc.metadata.maintenance import Scope
+from datetime import datetime
 
 class NominalResolution(ABC):
     """Distance between adjacent pixels."""

@@ -201,6 +201,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
         properties     = new HashMap<>(30);
         declaredTypes  = new HashMap<>(400);
         primitiveTypes = new HashMap<>(25);
+        primitiveTypes.put(Void                .TYPE,  "None");
         primitiveTypes.put(CharSequence        .class, "str");
         primitiveTypes.put(String              .class, "str");
         primitiveTypes.put(InternationalString .class, "str");
@@ -218,7 +219,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
         primitiveTypes.put(Double              .class, "float");
         primitiveTypes.put(Double              .TYPE,  "float");
         primitiveTypes.put(Date                .class, "datetime");
-        primitiveTypes.put(Void                .TYPE,  "None");
+        declaredTypes .put(Date                .class, "datetime");     // Module of datetime type.
 
         keywords = new HashMap<>(4);
         keywords.put(org.opengis.metadata.acquisition.Objective.class,     singletonMap("pass", "platformPass"));
@@ -291,7 +292,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
                      * Consequently we have to put the Extent type between quotes, like 'Extent'.
                      */
                     String importFrom = null;
-                    if (typeName != null && !primitiveTypes.containsKey(elementType)) {
+                    if (typeName != null) {
                         final String dependency = declaredTypes.get(elementType);
                         if (dependency == null) {
                             if (!primitiveTypes.containsKey(elementType)) {
@@ -370,7 +371,9 @@ public final strictfp class JavaToPython extends SourceGenerator {
     private void addImport(String module, final Class<?> type,
             final StringBuilder content, int importStart, final String lineSeparator)
     {
-        module = "ogc." + module.replace('/', '.');
+        if (!module.equals(module = module.replace('/', '.'))) {
+            module = "ogc." + module;
+        }
         final String FROM   = "from ";
         final String IMPORT = " import ";
         final String typeName = nameOf(type);

@@ -10,6 +10,7 @@ from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
 from ogc.metadata.citation import Citation, Identifier, Responsibility
+from datetime import datetime
 from ogc.metadata.extent import Extent
 from ogc.metadata.identification import ProgressCode
 

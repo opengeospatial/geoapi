@@ -9,6 +9,7 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
+from datetime import datetime
 from ogc.metadata.citation import Identifier, Citation
 from ogc.metadata.spatialRepresentation import SpatialRepresentationTypeCode
 from ogc.metadata.distribution import DataFile, Format
