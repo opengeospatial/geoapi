@@ -146,17 +146,7 @@ All questions regarding this specification should be directed to the editor or t
 
 <<<
 
-include::introduction.adoc[]
-
-include::scope.adoc[]
-
-include::conformance.adoc[]
-
-include::references.adoc[]
-
-include::terms.adoc[]
-
-include::conventions.adoc[]
+include::doc-info/introduction.adoc[]
 
 <<<
 

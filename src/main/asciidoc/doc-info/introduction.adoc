@@ -27,3 +27,14 @@ the definition of coordinate reference systems and to enable operations on coord
 The work writing interfaces matching other OGC specifications is done in the 'pending' version of the GeoAPI project.
 It is expected that these other interfaces will be proposed for standardization in subsequent revisions of this specification
 but the interfaces must first have been implemented, ideally several times, and then tested extensively by use.
+
+
+include::scope.adoc[]
+
+include::conformance.adoc[]
+
+include::references.adoc[]
+
+include::terms.adoc[]
+
+include::conventions.adoc[]
