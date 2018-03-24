@@ -9,6 +9,8 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 
+
+
 class NameSpace(ABC):
 
     @abstractproperty
@@ -18,6 +20,8 @@ class NameSpace(ABC):
     @abstractproperty
     def name(self) -> 'GenericName':
         pass
+
+
 
 class GenericName(ABC):
 
@@ -33,6 +37,8 @@ class GenericName(ABC):
     def parsedName(self) -> Sequence['LocalName']:
         pass
 
+
+
 class LocalName(GenericName):
 
     @abstractproperty
@@ -42,6 +48,8 @@ class LocalName(GenericName):
     @abstractproperty
     def parsedName(self) -> Sequence['LocalName']:
         pass
+
+
 
 class ScopedName(GenericName):
 
@@ -57,17 +65,23 @@ class ScopedName(GenericName):
     def scopedName(self) -> str:
         pass
 
+
+
 class TypeName(LocalName):
 
     @abstractproperty
     def aName(self) -> str:
         pass
 
+
+
 class Type(ABC):
 
     @abstractproperty
     def typeName(self) -> TypeName:
         pass
+
+
 
 class MemberName(LocalName):
 
@@ -79,6 +93,8 @@ class MemberName(LocalName):
     def aName(self) -> str:
         pass
 
+
+
 class RecordSchema(ABC):
 
     @abstractproperty
@@ -88,6 +104,8 @@ class RecordSchema(ABC):
     @abstractproperty
     def description(self):
         pass
+
+
 
 class RecordType(Type):
 
@@ -102,6 +120,8 @@ class RecordType(Type):
     @abstractproperty
     def memberTypes(self):
         pass
+
+
 
 class Record(ABC):
 

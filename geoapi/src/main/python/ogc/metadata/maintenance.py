@@ -10,6 +10,8 @@ from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
 
+
+
 class MaintenanceFrequencyCode(Enum):
     CONTINUAL = "continual"
     DAILY = "daily"
@@ -26,6 +28,8 @@ class MaintenanceFrequencyCode(Enum):
     PERIODIC = "periodic"
     SEMIMONTHLY = "semimonthly"
     BIENNIALLY = "biennially"
+
+
 
 class ScopeCode(Enum):
     COLLECTION_HARDWARE = "collectionHardware"
@@ -54,6 +58,8 @@ class ScopeCode(Enum):
     COLLECTION = "collection"
     COVERAGE = "coverage"
     APPLICATION = "application"
+
+
 
 class ScopeDescription(ABC):
     """Description of the class of information covered by the information."""
@@ -88,6 +94,8 @@ class ScopeDescription(ABC):
         """Class of information that does not fall into the other categories to which the information applies."""
         return None
 
+
+
 from ogc.metadata.extent import Extent
 
 class Scope(ABC):
@@ -105,6 +113,8 @@ class Scope(ABC):
     @property
     def levelDescription(self) -> Sequence[ScopeDescription]:
         return None
+
+
 
 from ogc.metadata.citation import Date, Responsibility
 

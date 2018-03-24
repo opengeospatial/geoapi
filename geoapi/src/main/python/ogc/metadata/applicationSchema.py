@@ -10,6 +10,8 @@ from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
 
+
+
 class DatatypeCode(Enum):
     CLASS = "class"
     CODE_LIST = "codelist"
@@ -27,11 +29,15 @@ class DatatypeCode(Enum):
     INTEGER = "integer"
     ASSOCIATION = "association"
 
+
+
 class ObligationCode(Enum):
     MANDATORY = "mandatory"
     OPTIONAL = "optional"
     CONDITIONAL = "conditional"
     FORBIDDEN = "null"
+
+
 
 from ogc.metadata.citation import Citation, OnlineResource, Responsibility
 
@@ -72,6 +78,8 @@ class ApplicationSchemaInformation(ABC):
     def softwareDevelopmentFileFormat(self) -> str:
         """Software dependent format used for the application schema software dependent file."""
         return None
+
+
 
 class ExtendedElementInformation(ABC):
     """New metadata element, not found in ISO 19115, which is required to describe geographic data."""
@@ -130,6 +138,8 @@ class ExtendedElementInformation(ABC):
     def source(self) -> Sequence[Responsibility]:
         """Name of the person or organisation creating the extended element."""
         pass
+
+
 
 class MetadataExtensionInformation(ABC):
     """Information describing metadata extensions."""

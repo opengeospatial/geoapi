@@ -10,10 +10,14 @@ from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
 
+
+
 class ContextCode(Enum):
     ACQUISITION = "acquisition"
     PASS = "pass"
     WAY_POINT = "wayPoint"
+
+
 
 class GeometryTypeCode(Enum):
     POINT = "point"
@@ -21,15 +25,21 @@ class GeometryTypeCode(Enum):
     AREAL = "areal"
     STRIP = "strip"
 
+
+
 class ObjectiveTypeCode(Enum):
     INSTANTANEOUS_COLLECTION = "instantaneousCollection"
     PERSISTENT_VIEW = "persistentView"
     SURVEY = "survey"
 
+
+
 class OperationTypeCode(Enum):
     REAL = "real"
     SIMULATED = "simulated"
     SYNTHESIZED = "synthesized"
+
+
 
 class PriorityCode(Enum):
     CRITICAL = "critical"
@@ -37,15 +47,21 @@ class PriorityCode(Enum):
     MEDIUM_IMPORTANCE = "mediumImportance"
     LOW_IMPORTANCE = "lowImportance"
 
+
+
 class SequenceCode(Enum):
     START = "start"
     END = "end"
     INSTANTANEOUS = "instantaneous"
 
+
+
 class TriggerCode(Enum):
     AUTOMATIC = "automatic"
     MANUAL = "manual"
     PRE_PROGRAMMED = "preProgrammed"
+
+
 
 from ogc.metadata.citation import Citation, Identifier, Responsibility
 
@@ -76,6 +92,8 @@ class Instrument(ABC):
     def mountedOn(self) -> 'Platform':
         return None
 
+
+
 class Platform(ABC):
     """Designations for the platform used to acquire the dataset."""
 
@@ -103,6 +121,8 @@ class Platform(ABC):
     def instrument(self) -> Sequence[Instrument]:
         pass
 
+
+
 class PlatformPass(ABC):
     """Identification of collection coverage."""
 
@@ -119,6 +139,8 @@ class PlatformPass(ABC):
     @property
     def relatedEvent(self) -> Sequence['Event']:
         return None
+
+
 
 from datetime import datetime
 
@@ -162,6 +184,8 @@ class Event(ABC):
     def expectedObjective(self) -> Sequence['Objective']:
         return None
 
+
+
 class EnvironmentalRecord(ABC):
 
     @abstractproperty
@@ -179,6 +203,8 @@ class EnvironmentalRecord(ABC):
     @abstractproperty
     def meteorologicalConditions(self) -> str:
         pass
+
+
 
 from ogc.metadata.extent import Extent
 
@@ -221,6 +247,8 @@ class Objective(ABC):
     @abstractproperty
     def objectiveOccurence(self) -> Sequence[Event]:
         pass
+
+
 
 from ogc.metadata.identification import ProgressCode
 
@@ -277,6 +305,8 @@ class Operation(ABC):
     def significantEvent(self) -> Sequence[Event]:
         return None
 
+
+
 class RequestedDate(ABC):
     """Range of date validity."""
 
@@ -289,6 +319,8 @@ class RequestedDate(ABC):
     def latestAcceptableDate(self) -> datetime:
         """Latest date and time collection must be completed."""
         pass
+
+
 
 class Requirement(ABC):
     """Requirement to be satisfied by the planned data acquisition."""
@@ -332,6 +364,8 @@ class Requirement(ABC):
     def satisfiedPlan(self) -> Sequence['Plan']:
         return None
 
+
+
 class Plan(ABC):
     """Designations for the planning information related to meeting requirements."""
 
@@ -357,6 +391,8 @@ class Plan(ABC):
     @property
     def satisfiedRequirement(self) -> Sequence[Requirement]:
         return None
+
+
 
 class AcquisitionInformation(ABC):
     """Designations for the measuring instruments and their bands, the platform carrying them, and the mission to which the data contributes."""

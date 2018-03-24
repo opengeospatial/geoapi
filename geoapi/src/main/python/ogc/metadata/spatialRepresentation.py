@@ -10,11 +10,15 @@ from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
 
+
+
 class CellGeometryCode(Enum):
     POINT = "point"
     AREA = "area"
     VOXEL = "voxel"
     STRATUM = "stratum"
+
+
 
 class DimensionNameTypeCode(Enum):
     ROW = "row"
@@ -26,6 +30,8 @@ class DimensionNameTypeCode(Enum):
     SAMPLE = "sample"
     TIME = "time"
 
+
+
 class GeometricObjectTypeCode(Enum):
     COMPLEX = "complex"
     COMPOSITE = "composite"
@@ -34,6 +40,8 @@ class GeometricObjectTypeCode(Enum):
     SOLID = "solid"
     SURFACE = "surface"
 
+
+
 class SpatialRepresentationTypeCode(Enum):
     VECTOR = "vector"
     GRID = "grid"
@@ -41,6 +49,8 @@ class SpatialRepresentationTypeCode(Enum):
     TIN = "tin"
     STEREO_MODEL = "stereoModel"
     VIDEO = "video"
+
+
 
 class TopologyLevelCode(Enum):
     GEOMETRY_ONLY = "geometryOnly"
@@ -52,6 +62,8 @@ class TopologyLevelCode(Enum):
     TOPOLOGY_3D = "topology3D"
     FULL_TOPOLOGY_3D = "fullTopology3D"
     ABSTRACT = "abstract"
+
+
 
 class ReferenceSystemTypeCode(Enum):
     COMPOUND_ENGINEERING_PARAMETRIC = "compoundEngineeringParametric"
@@ -83,12 +95,16 @@ class ReferenceSystemTypeCode(Enum):
     TEMPORAL = "temporal"
     VERTICAL = "vertical"
 
+
+
 class PixelOrientationCode(Enum):
     CENTER = "center"
     LOWER_LEFT = "lowerLeft"
     LOWER_RIGHT = "lowerRight"
     UPPER_RIGHT = "upperRight"
     UPPER_LEFT = "upperLeft"
+
+
 
 class Dimension(ABC):
     """Axis properties."""
@@ -118,6 +134,8 @@ class Dimension(ABC):
         """Description of the axis."""
         return None
 
+
+
 from ogc.metadata.dataQuality import DataQuality, Element
 
 class GeolocationInformation(ABC):
@@ -125,6 +143,8 @@ class GeolocationInformation(ABC):
     @property
     def qualityInfo(self) -> Sequence[DataQuality]:
         return None
+
+
 
 class GCP(ABC):
 
@@ -135,6 +155,8 @@ class GCP(ABC):
     @property
     def accuracyReport(self) -> Sequence[Element]:
         return None
+
+
 
 class GCPCollection(GeolocationInformation):
 
@@ -154,6 +176,8 @@ class GCPCollection(GeolocationInformation):
     def coordinateReferenceSystem(self):
         pass
 
+
+
 class GeometricObjects(ABC):
     """Number of objects, listed by geometric object type, used in the dataset."""
 
@@ -167,8 +191,12 @@ class GeometricObjects(ABC):
         """Total number of the point or vector object type occurring in the dataset."""
         return None
 
+
+
 class SpatialRepresentation(ABC):
     """Digital mechanism used to represent spatial information."""
+
+
 
 class GridSpatialRepresentation(SpatialRepresentation):
     """Information about grid spatial objects in the resource."""
@@ -193,6 +221,8 @@ class GridSpatialRepresentation(SpatialRepresentation):
         """Indication of whether or not parameters for transformation between image coordinates and geographic or map coordinates exist (are available)."""
         pass
 
+
+
 class VectorSpatialRepresentation(SpatialRepresentation):
     """Information about the vector spatial objects in the resource."""
 
@@ -205,6 +235,8 @@ class VectorSpatialRepresentation(SpatialRepresentation):
     def geometricObjects(self) -> Sequence[GeometricObjects]:
         """Information about the geometric objects used in the resource."""
         return None
+
+
 
 class Georectified(GridSpatialRepresentation):
     """Grid whose cells are regularly spaced in a geographic (i.e., lat / long) or map coordinate system defined in the Spatial Referencing System (SRS) so that any cell in the grid can be geolocated given its grid coordinate and the grid origin, cell spacing, and orientation."""
@@ -247,6 +279,8 @@ class Georectified(GridSpatialRepresentation):
     @property
     def checkPoint(self) -> Sequence[GCP]:
         return None
+
+
 
 from ogc.metadata.naming import Record
 from ogc.metadata.citation import Citation

@@ -9,6 +9,8 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 
+
+
 from ogc.metadata.citation import Citation, Identifier, Responsibility, Date, OnlineResource
 
 class PortrayalCatalogueReference(ABC):
@@ -18,6 +20,8 @@ class PortrayalCatalogueReference(ABC):
     def portrayalCatalogueCitation(self) -> Sequence[Citation]:
         """Bibliographic reference to the portrayal catalogue cited."""
         pass
+
+
 
 from ogc.metadata.maintenance import ScopeCode, MaintenanceInformation
 
@@ -30,6 +34,8 @@ class MetadataScope(ABC):
     @property
     def name(self) -> str:
         return None
+
+
 
 from ogc.metadata.spatialRepresentation import SpatialRepresentation
 from ogc.metadata.applicationSchema import MetadataExtensionInformation, ApplicationSchemaInformation

@@ -9,6 +9,8 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 
+
+
 class NominalResolution(ABC):
     """Distance between adjacent pixels."""
 
@@ -21,6 +23,8 @@ class NominalResolution(ABC):
     def groundResolution(self) -> float:
         """Distance between adjacent pixels in the object space."""
         return None
+
+
 
 from ogc.metadata.identification import Resolution
 from ogc.metadata.citation import Citation, Identifier, Responsibility
@@ -73,6 +77,8 @@ class Source(ABC):
         """Distance between two adjacent pixels."""
         return None
 
+
+
 class Algorithm(ABC):
     """Details of the methodology by which geographic information was derived from the instrument readings."""
 
@@ -85,6 +91,8 @@ class Algorithm(ABC):
     def description(self) -> str:
         """Information describing the algorithm used to generate the data."""
         pass
+
+
 
 class Processing(ABC):
     """Comprehensive information about the procedure(s), process(es) and algorithm(s) applied in the process step."""
@@ -118,6 +126,8 @@ class Processing(ABC):
         """Parameters to control the processing operations, entered at run time."""
         return None
 
+
+
 class ProcessStepReport(ABC):
     """Report of what occured during the process step."""
 
@@ -135,6 +145,8 @@ class ProcessStepReport(ABC):
     def fileType(self) -> str:
         """Type of file that contains that processing report."""
         return None
+
+
 
 from datetime import datetime
 
@@ -186,6 +198,8 @@ class ProcessStep(ABC):
     @property
     def output(self) -> Sequence[Source]:
         return None
+
+
 
 class Lineage(ABC):
     """Information about the events or source data used in constructing the data specified by the scope or lack of knowledge about lineage."""

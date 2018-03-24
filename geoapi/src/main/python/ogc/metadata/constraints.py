@@ -10,6 +10,8 @@ from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
 
+
+
 class ClassificationCode(Enum):
     UNCLASSIFIED = "unclassified"
     RESTRICTED = "restricted"
@@ -20,6 +22,8 @@ class ClassificationCode(Enum):
     FOR_OFFICIAL_USE_ONLY = "forOfficialUseOnly"
     PROTECTED = "protected"
     LIMITED_DISTRIBUTION = "limitedDistribution"
+
+
 
 class RestrictionCode(Enum):
     COPYRIGHT = "copyright"
@@ -40,6 +44,8 @@ class RestrictionCode(Enum):
     SENSITIVE_BUT_UNCLASSIFIED = "sensitiveButUnclassified"
     IN_CONFIDENCE = "in-confidence"
 
+
+
 from ogc.metadata.citation import Responsibility, Citation
 
 class Releasability(ABC):
@@ -59,6 +65,8 @@ class Releasability(ABC):
     def disseminationConstraints(self) -> Sequence[RestrictionCode]:
         """Component in determining releasability."""
         return None
+
+
 
 from ogc.metadata.maintenance import Scope
 
@@ -95,6 +103,8 @@ class Constraints(ABC):
         """Party responsible for the resource constraints."""
         return None
 
+
+
 class LegalConstraints(Constraints):
     """Restrictions and legal prerequisites for accessing and using the resource or metadata."""
 
@@ -112,6 +122,8 @@ class LegalConstraints(Constraints):
     def otherConstraints(self) -> Sequence[str]:
         """Other restrictions and legal prerequisites for accessing and using the resource or metadata."""
         return None
+
+
 
 class SecurityConstraints(Constraints):
     """Handling restrictions imposed on the resource or metadata for national security or similar security concerns."""

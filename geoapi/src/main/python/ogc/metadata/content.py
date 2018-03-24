@@ -10,12 +10,16 @@ from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
 
+
+
 class BandDefinition(Enum):
     THREE_DB = "3dB"
     HALF_MAXIMUM = "halfMaximum"
     FIFTY_PERCENT = "fiftyPercent"
     ONE_OVER_E = "oneOverE"
     EQUIVALENT_WIDTH = "equivalentWidth"
+
+
 
 class CoverageContentTypeCode(Enum):
     IMAGE = "image"
@@ -26,6 +30,8 @@ class CoverageContentTypeCode(Enum):
     REFERENCE_INFORMATION = "referenceInformation"
     MODEL_RESULT = "modelResult"
     COORDINATE = "coordinate"
+
+
 
 class ImagingConditionCode(Enum):
     BLURRED_IMAGE = "blurredImage"
@@ -40,6 +46,8 @@ class ImagingConditionCode(Enum):
     SNOW = "snow"
     TERRAIN_MASKING = "terrainMasking"
 
+
+
 class PolarizationOrientationCode(Enum):
     HORIZONTAL = "horizontal"
     VERTICAL = "vertical"
@@ -48,10 +56,14 @@ class PolarizationOrientationCode(Enum):
     THETA = "theta"
     PHI = "phi"
 
+
+
 class TransferFunctionTypeCode(Enum):
     LINEAR = "linear"
     LOGARITHMIC = "logarithmic"
     EXPONENTIAL = "exponential"
+
+
 
 from ogc.metadata.naming import MemberName, RecordType, Record, GenericName
 from ogc.metadata.citation import Identifier, Citation
@@ -74,6 +86,8 @@ class RangeDimension(ABC):
         """Identifiers for each attribute included in the resource. These identifiers can be used to provide names for the resource's attribute from a standard set of names."""
         return None
 
+
+
 class AttributeGroup(ABC):
 
     @abstractproperty
@@ -84,6 +98,8 @@ class AttributeGroup(ABC):
     @property
     def attribute(self) -> Sequence[RangeDimension]:
         return None
+
+
 
 class SampleDimension(RangeDimension):
     """The characteristics of each dimension (layer) included in the resource."""
@@ -151,6 +167,8 @@ class SampleDimension(RangeDimension):
     def nominalSpatialResolution(self) -> float:
         return None
 
+
+
 class Band(SampleDimension):
     """Range of wavelengths in the electromagnetic spectrum."""
 
@@ -189,10 +207,14 @@ class Band(SampleDimension):
     def transmittedPolarization(self) -> PolarizationOrientationCode:
         return None
 
+
+
 class ContentInformation(ABC):
     """Description of the content of a resource.
 
 Note in 19115-3 implementation, this class is implemented by abstract class _ContentInformation in the Abstract Common Classes package."""
+
+
 
 class RangeElementDescription(ABC):
     """Description of specific range elements."""
@@ -211,6 +233,8 @@ class RangeElementDescription(ABC):
     def rangeElement(self) -> Sequence[Record]:
         """Specific range elements, i.e. range elements associated with a name and definition defining their meaning."""
         pass
+
+
 
 class CoverageDescription(ContentInformation):
     """Details about the content of a resource."""
@@ -232,6 +256,8 @@ class CoverageDescription(ContentInformation):
     @property
     def rangeElementDescription(self) -> Sequence[RangeElementDescription]:
         return None
+
+
 
 class ImageDescription(CoverageDescription):
     """Information about an image's suitability for use."""
@@ -291,6 +317,8 @@ class ImageDescription(CoverageDescription):
         """Indication of whether or not lens aberration correction information is available."""
         return None
 
+
+
 class FeatureTypeInfo(ABC):
 
     @abstractproperty
@@ -300,6 +328,8 @@ class FeatureTypeInfo(ABC):
     @property
     def featureInstanceCount(self) -> int:
         return None
+
+
 
 class FeatureCatalogueDescription(ContentInformation):
     """Information identifying the feature catalogue or the conceptual schema."""

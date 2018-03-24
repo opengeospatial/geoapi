@@ -10,6 +10,8 @@ from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
 
+
+
 class MediumFormatCode(Enum):
     CPIO = "cpio"
     TAR = "tar"
@@ -18,6 +20,8 @@ class MediumFormatCode(Enum):
     ISO_9660_ROCK_RIDGE = "iso9660RockRidge"
     ISO_9660_APPLE_HFS = "iso9660AppleHFS"
     UDF = "udf"
+
+
 
 from ogc.metadata.citation import Identifier, Citation, OnlineResource, Responsibility
 
@@ -58,6 +62,8 @@ class Medium(ABC):
     def identifier(self) -> Identifier:
         return None
 
+
+
 class Format(ABC):
     """Description of the computer language construct that specifies the representation of data objects in a record, file, message, storage device or transmission channel."""
 
@@ -85,6 +91,8 @@ class Format(ABC):
     def formatDistributor(self) -> Sequence['Distributor']:
         return None
 
+
+
 from ogc.metadata.naming import LocalName, RecordType, Record
 
 class DataFile(ABC):
@@ -92,6 +100,8 @@ class DataFile(ABC):
     @property
     def featureType(self) -> Sequence[LocalName]:
         return None
+
+
 
 class DigitalTransferOptions(ABC):
     """Technical means and media by which a resource is obtained from the distributor."""
@@ -125,6 +135,8 @@ class DigitalTransferOptions(ABC):
     def distributionFormat(self) -> Sequence[Format]:
         """Format of distribution."""
         return None
+
+
 
 from datetime import datetime
 
@@ -161,6 +173,8 @@ class StandardOrderProcess(ABC):
         """Request/purchase choices."""
         return None
 
+
+
 class Distributor(ABC):
     """Information about the distributor."""
 
@@ -180,6 +194,8 @@ class Distributor(ABC):
     @property
     def distributorTransferOptions(self) -> Sequence[DigitalTransferOptions]:
         return None
+
+
 
 class Distribution(ABC):
     """Information about the distributor of and options for obtaining the resource."""

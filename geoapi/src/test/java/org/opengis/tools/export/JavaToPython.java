@@ -474,7 +474,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
                 }
                 contents.put(module, content);
             }
-            content.append(lineSeparator);
+            content.append(lineSeparator).append(lineSeparator).append(lineSeparator);
             switch (category) {
                 /*
                  * Creates a Python enumeration.

@@ -10,6 +10,8 @@ from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
 
+
+
 class DateTypeCode(Enum):
     CREATION = "creation"
     PUBLICATION = "publication"
@@ -28,6 +30,8 @@ class DateTypeCode(Enum):
     RELEASED = "released"
     DISTRIBUTION = "distribution"
 
+
+
 class OnLineFunctionCode(Enum):
     DOWNLOAD = "download"
     INFORMATION = "information"
@@ -40,6 +44,8 @@ class OnLineFunctionCode(Enum):
     EMAIL_SERVICE = "emailService"
     BROWSING = "browsing"
     FILE_ACCESS = "fileAccess"
+
+
 
 class PresentationFormCode(Enum):
     DOCUMENT_DIGITAL = "documentDigital"
@@ -64,6 +70,8 @@ class PresentationFormCode(Enum):
     DIAGRAM_DIGITAL = "diagramDigital"
     DIAGRAM_HARDCOPY = "diagramHardcopy"
 
+
+
 class RoleCode(Enum):
     RESOURCE_PROVIDER = "resourceProvider"
     CUSTODIAN = "custodian"
@@ -86,10 +94,14 @@ class RoleCode(Enum):
     FUNDER = "funder"
     STAKEHOLDER = "stakeholder"
 
+
+
 class TelephoneTypeCode(Enum):
     VOICE = "voice"
     FACSIMILE = "facsimile"
     SMS = "sms"
+
+
 
 class Series(ABC):
     """Information about the series, or aggregate resource, to which a resource belongs."""
@@ -108,6 +120,8 @@ class Series(ABC):
     def page(self) -> str:
         """Details on which pages of the publication the article was published."""
         return None
+
+
 
 class Address(ABC):
     """Location of the responsible individual or organisation."""
@@ -142,6 +156,8 @@ class Address(ABC):
         """Address of the electronic mailbox of the responsible organisation or individual."""
         return None
 
+
+
 class Telephone(ABC):
     """Telephone numbers for contacting the responsible individual or organisation."""
 
@@ -154,6 +170,8 @@ class Telephone(ABC):
     def numberType(self) -> TelephoneTypeCode:
         """Type of telephone responsible organisation or individual."""
         return None
+
+
 
 class OnlineResource(ABC):
     """Information about on-line sources from which the resource, specification, or community profile name and extended metadata elements can be obtained."""
@@ -193,6 +211,8 @@ class OnlineResource(ABC):
         """Protocol used by the accessed resource."""
         return None
 
+
+
 class Contact(ABC):
     """Information required to enable contact with the responsible person and/or organisation."""
 
@@ -225,6 +245,8 @@ class Contact(ABC):
     def contactType(self) -> str:
         return None
 
+
+
 class Party(ABC):
     """Information about the individual and/or organisation of the party."""
 
@@ -237,6 +259,8 @@ class Party(ABC):
     def contactInfo(self) -> Sequence[Contact]:
         """Contact information for the party."""
         return None
+
+
 
 class Responsibility(ABC):
     """Information about the party and their role."""
@@ -255,6 +279,8 @@ class Responsibility(ABC):
     def party(self) -> Sequence[Party]:
         pass
 
+
+
 class Individual(Party):
     """Information about the party if the party is an individual."""
 
@@ -262,6 +288,8 @@ class Individual(Party):
     def positionName(self) -> str:
         """Position of the individual in an organisation."""
         return None
+
+
 
 class Organisation(Party):
     """Information about the party if the party is an organisation."""
@@ -274,6 +302,8 @@ class Organisation(Party):
     @property
     def individual(self) -> Sequence[Individual]:
         return None
+
+
 
 from datetime import datetime
 
@@ -289,6 +319,8 @@ class Date(ABC):
     def dateType(self) -> DateTypeCode:
         """Event used for reference date."""
         pass
+
+
 
 class Citation(ABC):
     """Standardized resource reference."""
@@ -362,6 +394,8 @@ class Citation(ABC):
     def graphic(self) -> Sequence['BrowseGraphic']:
         """Citation graphic or logo for cited party."""
         return None
+
+
 
 class Identifier(ABC):
     """Value uniquely identifying an object within a namespace."""

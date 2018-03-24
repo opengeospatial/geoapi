@@ -10,13 +10,19 @@ from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
 
+
+
 class EvaluationMethodTypeCode(Enum):
     DIRECT_INTERNAL = "directInternal"
     DIRECT_EXTERNAL = "directExternal"
     INDIRECT = "indirect"
 
+
+
 class Result(ABC):
     """Generalization of more specific result classes."""
+
+
 
 from datetime import datetime
 from ogc.metadata.citation import Identifier, Citation
@@ -56,59 +62,97 @@ class Element(ABC):
     def measureDescription(self) -> str:
         return None
 
+
+
 class PositionalAccuracy(Element):
     """Accuracy of the position of features."""
+
+
 
 class AbsoluteExternalPositionalAccuracy(PositionalAccuracy):
     """Closeness of reported coordinate values to values accepted as or being true."""
 
+
+
 class GriddedDataPositionalAccuracy(PositionalAccuracy):
     """Closeness of gridded data position values to values accepted as or being true."""
+
+
 
 class RelativeInternalPositionalAccuracy(PositionalAccuracy):
     """Closeness of the relative positions of features in the scope to their respective relative positions accepted as or being true."""
 
+
+
 class TemporalConsistency(TemporalAccuracy):
     """Correctness of ordered events or sequences, if reported."""
+
+
 
 class TemporalValidity(TemporalAccuracy):
     """Validity of data specified by the scope with respect to time."""
 
+
+
 class AccuracyOfATimeMeasurement(TemporalAccuracy):
     """Correctness of the temporal references of an item (reporting of error in time measurement)."""
+
+
 
 class ThematicAccuracy(Element):
     """Accuracy of quantitative attributes and the correctness of non-quantitative attributes and of the classifications of features and their relationships."""
 
+
+
 class ThematicClassificationCorrectness(ThematicAccuracy):
     """Comparison of the classes assigned to features or their attributes to a universe of discourse."""
+
+
 
 class QuantitativeAttributeAccuracy(ThematicAccuracy):
     """Accuracy of quantitative attributes."""
 
+
+
 class LogicalConsistency(Element):
     """Degree of adherence to logical rules of data structure, attribution and relationships (data structure can be conceptual, logical or physical)."""
+
+
 
 class ConceptualConsistency(LogicalConsistency):
     """Adherence to rules of the conceptual schema."""
 
+
+
 class DomainConsistency(LogicalConsistency):
     """Adherence of values to the value domains."""
+
+
 
 class FormatConsistency(LogicalConsistency):
     """Degree to which data is stored in accordance with the physical structure of the dataset, as described by the scope."""
 
+
+
 class TopologicalConsistency(LogicalConsistency):
     """Correctness of the explicitly encoded topological characteristics of the dataset as described by the scope."""
+
+
 
 class Completeness(Element):
     """Presence and absence of features, their attributes and their relationships."""
 
+
+
 class CompletenessCommission(Completeness):
     """Excess data present in the dataset, as described by the scope."""
 
+
+
 class CompletenessOmission(Completeness):
     """Data absent from the dataset, as described by the scope."""
+
+
 
 class ConformanceResult(Result):
     """Information about the outcome of evaluating the obtained value (or set of values) against a specified acceptable conformance quality level."""
@@ -127,6 +171,8 @@ class ConformanceResult(Result):
     def isConform(self):
         """Indication of the conformance result where 0 = fail and 1 = pass."""
         pass
+
+
 
 from ogc.metadata.spatialRepresentation import SpatialRepresentationTypeCode
 from ogc.metadata.distribution import DataFile, Format
@@ -156,6 +202,8 @@ class CoverageResult(Result):
     def resultFormat(self) -> Format:
         pass
 
+
+
 from ogc.metadata.naming import Record, RecordType
 
 class QuantitativeResult(Result):
@@ -178,6 +226,8 @@ class QuantitativeResult(Result):
     @property
     def errorStatistic(self) -> str:
         return None
+
+
 
 from ogc.metadata.maintenance import Scope
 from ogc.metadata.lineage import Lineage

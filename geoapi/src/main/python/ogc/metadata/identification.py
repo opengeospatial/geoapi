@@ -10,6 +10,8 @@ from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
 
+
+
 class AssociationTypeCode(Enum):
     CROSS_REFERENCE = "crossReference"
     LARGER_WORK_CITATION = "largerWorkCitation"
@@ -21,6 +23,8 @@ class AssociationTypeCode(Enum):
     SERIES = "series"
     DEPENDENCY = "dependency"
     REVISION_OF = "revisionOf"
+
+
 
 class InitiativeTypeCode(Enum):
     CAMPAIGN = "campaign"
@@ -39,6 +43,8 @@ class InitiativeTypeCode(Enum):
     TASK = "task"
     TRIAL = "trial"
 
+
+
 class KeywordTypeCode(Enum):
     DISCIPLINE = "discipline"
     PLACE = "place"
@@ -55,6 +61,8 @@ class KeywordTypeCode(Enum):
     PRODUCT = "product"
     SUB_TOPIC_CATEGORY = "subTopicCategory"
     TAXON = "taxon"
+
+
 
 class ProgressCode(Enum):
     COMPLETED = "completed"
@@ -75,6 +83,8 @@ class ProgressCode(Enum):
     WITHDRAWN = "withdrawn"
     PROPOSED = "proposed"
     DEPRECATED = "deprecated"
+
+
 
 class TopicCategoryCode(Enum):
     FARMING = "farming"
@@ -98,6 +108,8 @@ class TopicCategoryCode(Enum):
     UTILITIES_COMMUNICATION = "utilitiesCommunication"
     EXTRA_TERRESTRIAL = "extraTerrestrial"
     DISASTER = "disaster"
+
+
 
 from ogc.metadata.constraints import Constraints
 from ogc.metadata.citation import OnlineResource, Citation, Responsibility, Identifier
@@ -129,6 +141,8 @@ class BrowseGraphic(ABC):
         """Link to browse graphic."""
         return None
 
+
+
 class KeywordClass(ABC):
     """Specification of a class to categorize keywords in a domain-specific vocabulary that has a binding to a formal ontology."""
 
@@ -146,6 +160,8 @@ class KeywordClass(ABC):
     def ontology(self) -> Citation:
         """A reference that binds the keyword class to a formal conceptualization of a knowledge domain for use in semantic processingNOTE: Keywords in the associated MD_Keywords keyword list must be within the scope of this ontology."""
         pass
+
+
 
 class Keywords(ABC):
     """Keywords, their type and reference source. NOTE: When the resource described is a service, one instance of MD_Keyword shall refer to the service taxonomy defined in ISO 19119, 8.3)."""
@@ -168,6 +184,8 @@ class Keywords(ABC):
     @property
     def keywordClass(self) -> KeywordClass:
         return None
+
+
 
 from datetime import datetime
 
@@ -207,6 +225,8 @@ class Usage(ABC):
     def identifiedIssues(self) -> Sequence[Citation]:
         return None
 
+
+
 class RepresentativeFraction(ABC):
     """Derived from ISO 19103 Scale where MD_RepresentativeFraction.denominator = 1 / Scale.measure And Scale.targetUnits = Scale.sourceUnits."""
 
@@ -214,6 +234,8 @@ class RepresentativeFraction(ABC):
     def denominator(self) -> int:
         """The number below the line in a vulgar fraction."""
         pass
+
+
 
 class Resolution(ABC):
     """Level of detail expressed as a scale factor, a distance or an angle."""
@@ -243,6 +265,8 @@ class Resolution(ABC):
         """Brief textual description of the spatial resolution of the resource."""
         return None
 
+
+
 class AssociatedResource(ABC):
     """Associated resource information. NOTE: An associated resource is a dataset composed of a collection of datasets."""
 
@@ -265,6 +289,8 @@ class AssociatedResource(ABC):
     def metadataReference(self) -> Citation:
         """Reference to the metadata of the associated resource."""
         return None
+
+
 
 from ogc.metadata.spatialRepresentation import SpatialRepresentationTypeCode
 from ogc.metadata.extent import Extent
@@ -366,6 +392,8 @@ class Identification(ABC):
     @property
     def associatedResource(self) -> Sequence[AssociatedResource]:
         return None
+
+
 
 class DataIdentification(Identification):
     """Information required to identify a resource."""

@@ -9,6 +9,8 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 
+
+
 class GeographicExtent(ABC):
     """Spatial area of the resource."""
 
@@ -16,6 +18,8 @@ class GeographicExtent(ABC):
     def extentTypeCode(self):
         """Indication of whether the geographic element encompasses an area covered by the data or an area where data is not present."""
         return None
+
+
 
 class GeographicBoundingBox(GeographicExtent):
     """Geographic position of the resource. NOTE: This is only an approximate reference so specifying the coordinate reference system is unnecessary and need only be provided with a precision of up to two decimal places."""
@@ -40,6 +44,8 @@ class GeographicBoundingBox(GeographicExtent):
         """Northern-most, coordinate of the limit of the resource extent expressed in latitude in decimal degrees (positive north)."""
         pass
 
+
+
 from ogc.metadata.citation import Identifier
 
 class GeographicDescription(GeographicExtent):
@@ -50,6 +56,8 @@ class GeographicDescription(GeographicExtent):
         """Identifier used to represent a geographic area e.g. a geographic identifier as described in ISO 19112."""
         pass
 
+
+
 class BoundingPolygon(GeographicExtent):
     """Enclosing geometric object which locates the resource, expressed as a set of (x,y) coordinate (s). NOTE: If a polygon is used it should be closed (last point replicates first point)."""
 
@@ -57,6 +65,8 @@ class BoundingPolygon(GeographicExtent):
     def polygon(self):
         """Sets of points defining the bounding polygon or any other GM_Object geometry (point, line or polygon)."""
         pass
+
+
 
 class VerticalExtent(ABC):
     """Vertical domain of resource."""
@@ -75,6 +85,8 @@ class VerticalExtent(ABC):
     def verticalCRS(self):
         return None
 
+
+
 class TemporalExtent(ABC):
     """Time period covered by the content of the resource."""
 
@@ -82,6 +94,8 @@ class TemporalExtent(ABC):
     def extent(self):
         """Period for the content of the resource."""
         pass
+
+
 
 class SpatialTemporalExtent(TemporalExtent):
     """Extent with respect to date/time and spatial boundaries."""
@@ -94,6 +108,8 @@ class SpatialTemporalExtent(TemporalExtent):
     @abstractproperty
     def spatialExtent(self) -> Sequence[GeographicExtent]:
         pass
+
+
 
 class Extent(ABC):
     """Extent of the resource."""

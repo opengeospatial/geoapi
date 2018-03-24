@@ -10,10 +10,14 @@ from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
 
+
+
 class CouplingType(Enum):
     LOOSE = "loose"
     MIXED = "mixed"
     TIGHT = "tight"
+
+
 
 class DCPList(Enum):
     XML = "XML"
@@ -27,10 +31,14 @@ class DCPList(Enum):
     FTP = "FTP"
     WEB_SERVICES = "WebServices"
 
+
+
 class ParameterDirection(Enum):
     IN = "in"
     OUT = "out"
     IN_OUT = "in/out"
+
+
 
 from ogc.metadata.citation import OnlineResource, Citation
 
@@ -70,6 +78,8 @@ class OperationMetadata(ABC):
     def dependsOn(self) -> Sequence['OperationMetadata']:
         return None
 
+
+
 class OperationChainMetadata(ABC):
     """Operation Chain Information."""
 
@@ -86,6 +96,8 @@ class OperationChainMetadata(ABC):
     @abstractproperty
     def operation(self) -> Sequence[OperationMetadata]:
         pass
+
+
 
 from ogc.metadata.naming import ScopedName, GenericName
 from ogc.metadata.identification import DataIdentification
@@ -110,6 +122,8 @@ class CoupledResource(ABC):
     @property
     def resource(self) -> Sequence[DataIdentification]:
         return None
+
+
 
 from ogc.metadata.distribution import StandardOrderProcess
 
