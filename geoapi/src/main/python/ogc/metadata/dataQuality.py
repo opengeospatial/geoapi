@@ -138,7 +138,7 @@ class CoverageResult(Result):
         pass
 
     @abstractproperty
-    def resultSpatialRepresentation(self) -> SpatialRepresentation:
+    def resultSpatialRepresentation(self) -> 'SpatialRepresentation':
         pass
 
     @abstractproperty

@@ -71,7 +71,7 @@ class Instrument(ABC):
         return None
 
     @property
-    def mountedOn(self) -> Platform:
+    def mountedOn(self) -> 'Platform':
         return None
 
 class Platform(ABC):
@@ -115,7 +115,7 @@ class PlatformPass(ABC):
         return None
 
     @property
-    def relatedEvent(self) -> Sequence[Event]:
+    def relatedEvent(self) -> Sequence['Event']:
         return None
 
 class Event(ABC):
@@ -155,7 +155,7 @@ class Event(ABC):
         return None
 
     @property
-    def expectedObjective(self) -> Sequence[Objective]:
+    def expectedObjective(self) -> Sequence['Objective']:
         return None
 
 class EnvironmentalRecord(ABC):
@@ -245,11 +245,11 @@ class Operation(ABC):
         return None
 
     @property
-    def parentOperation(self) -> Operation:
+    def parentOperation(self) -> 'Operation':
         return None
 
     @property
-    def childOperation(self) -> Sequence[Operation]:
+    def childOperation(self) -> Sequence['Operation']:
         return None
 
     @property
@@ -262,7 +262,7 @@ class Operation(ABC):
         return None
 
     @property
-    def plan(self) -> Plan:
+    def plan(self) -> 'Plan':
         return None
 
     @property
@@ -321,7 +321,7 @@ class Requirement(ABC):
         pass
 
     @property
-    def satisfiedPlan(self) -> Sequence[Plan]:
+    def satisfiedPlan(self) -> Sequence['Plan']:
         return None
 
 class Plan(ABC):

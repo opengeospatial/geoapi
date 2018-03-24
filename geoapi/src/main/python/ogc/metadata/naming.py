@@ -16,7 +16,7 @@ class NameSpace(ABC):
         pass
 
     @abstractproperty
-    def name(self) -> GenericName:
+    def name(self) -> 'GenericName':
         pass
 
 class GenericName(ABC):
@@ -30,7 +30,7 @@ class GenericName(ABC):
         pass
 
     @abstractproperty
-    def parsedName(self) -> Sequence[LocalName]:
+    def parsedName(self) -> Sequence['LocalName']:
         pass
 
 class LocalName(GenericName):
@@ -40,7 +40,7 @@ class LocalName(GenericName):
         pass
 
     @abstractproperty
-    def parsedName(self) -> Sequence[LocalName]:
+    def parsedName(self) -> Sequence['LocalName']:
         pass
 
 class ScopedName(GenericName):

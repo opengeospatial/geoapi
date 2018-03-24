@@ -104,6 +104,13 @@ public final strictfp class JavaToPython extends SourceGenerator {
     private final NameSpaces namespaces;
 
     /**
+     * The types for which we have written the declaration in Python. This map is initially empty and populated during
+     * the {@link #createContent(Content)} process. This is used for detecting forward dependencies. Keys are the Java
+     * interfaces and values are the Python modules where the interfaces have been written.
+     */
+    private final Map<Class<?>, String> declaredTypes;
+
+    /**
      * Python primitive types for given Java types.
      */
     private final Map<Class<?>, String> primitiveTypes;
@@ -129,16 +136,34 @@ public final strictfp class JavaToPython extends SourceGenerator {
      * Information about a Python property to declare in a class.
      */
     private static final class Property implements Comparable<Property> {
-        /** The Python name (can not be null).  */ final String name;
-        /** The python type, or null if none.   */ final String type;
-        /** Whether the property is mandatory.  */ final boolean mandatory;
+        /** The OGC/ISO name (can not be null). */ final String   name;
+        /** The Java type,   or null if none.   */ final Class<?> javaType;
+        /** The python type, or null if none.   */ final String   pythonType;
+        /** Whether the property is mandatory.  */ final boolean  mandatory;
         /** Declaration order, to be set later. */ int position;
 
-        Property(final String name, final String type, final boolean mandatory) {
-            this.name      = name;
-            this.type      = type;
-            this.mandatory = mandatory;
-            this.position  = Integer.MAX_VALUE / 2;
+        Property(final UML def, final String name, final Class<?> javaType, final String pythonType) {
+            this.name       = name;
+            this.javaType   = javaType;
+            this.pythonType = pythonType;
+            this.mandatory  = def.obligation() == Obligation.MANDATORY;
+            this.position   = Integer.MAX_VALUE / 2;
+        }
+
+        /**
+         * Returns {@link #name}, eventually renamed if the given {@code replacements} map is non-null.
+         * For example When writing Python properties, we need to replace the {@code "pass"} property
+         * by something else because {@code "pass"} is a Python keyword.
+         *
+         * @param  replacements  value of <code>{@linkplain JavaToPython#keywords}.remove(type)</code>
+         *                       where {@code type} is the Java interface.
+         */
+        final String name(final Map<String,String> replacements) {
+            if (replacements != null) {
+                final String r = replacements.get(name);
+                if (r != null) return r;
+            }
+            return name;
         }
 
         /** For sorting properties in declaration order. */
@@ -171,6 +196,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
         currentYear    = new GregorianCalendar().get(GregorianCalendar.YEAR);
         contents       = new LinkedHashMap<>(40);
         properties     = new HashMap<>(30);
+        declaredTypes  = new HashMap<>(100);
         primitiveTypes = new HashMap<>(25);
         primitiveTypes.put(CharSequence        .class, "str");
         primitiveTypes.put(String              .class, "str");
@@ -202,32 +228,120 @@ public final strictfp class JavaToPython extends SourceGenerator {
 
     /**
      * Returns the Python name of the given Java type, or {@code null} if unknown.
-     * First, this method check if the given type can be mapped to a Python primitive.
+     * First, this method checks if the given type can be mapped to a Python primitive.
      * If not, then the UML identifier is returned with the prefix omitted.
      *
-     * @param  type        the type of elements for which to get the Python name.
-     * @param  collection  if multi-occurrences is allowed, the collection type. Otherwise {@code null}.
+     * @param  type  the Java interface for which to get the Python name.
      */
-    private String nameOf(final Class<?> type, final Class<?> collection) {
-        String id = primitiveTypes.get(type);
-        if (id == null) {
+    private String nameOf(final Class<?> type) {
+        String name = primitiveTypes.get(type);
+        if (name == null) {
             final UML uml = type.getAnnotation(UML.class);
             if (uml != null) {
-                id = uml.identifier();
-                id = id.substring(id.indexOf('_') + 1);
-                if (id.isEmpty()) id = null;
+                name = uml.identifier();
+                name = name.substring(name.indexOf('_') + 1);
+                if (name.isEmpty()) name = null;
             }
         }
-        if (collection != null) {
-            if (Collection.class.isAssignableFrom(collection)) {
-                if (id != null) {
-                    id = "Sequence[" + id + ']';
-                } else {
-                    // TODO
+        return name;
+    }
+
+    /**
+     * Builds the list of properties found in the given Java interface. Only non-synthetic and non-deprecated properties
+     * having a {@link UML} annotation are taken in account. The properties are sorted in the order declared in XSD file.
+     *
+     * @param  type        the Java interface for which to list properties.
+     * @param  module      the module in which is defined the given type.
+     * @param  definition  the value of {@code schema.getTypeDefinition(type)} (may be {@code null}).
+     * @return the properties found in the specified interface.
+     */
+    private Property[] listProperties(final Class<?> type, final String module,
+            final Map<String, SchemaInformation.Element> definition)
+    {
+        for (final Method property : type.getDeclaredMethods()) {
+            if (!property.isSynthetic() && !property.isAnnotationPresent(Deprecated.class)) {
+                final UML def = property.getAnnotation(UML.class);
+                if (def != null) {
+                    final String name = def.identifier();
+                    if (name.indexOf('.') >= 0) {
+                        continue;                                   // TODO: property taken from another OGC/ISO class
+                    }
+                    if (property.getParameterTypes().length != 0) {
+                        continue;                                   // TODO: methods with parameters will need to be supported.
+                    }
+                    final Class<?> elementType = Content.typeOf(property);
+                    String typeName = nameOf(elementType);
+                    /*
+                     * If the property type is a type not yet declared, we can not reference that type directly.
+                     * This situation happen with circular dependencies. For example Responsibility.extent is of
+                     * type Extent. But the later can not be defined at the time Responsibility type is defined.
+                     * Consequently we have to put the Extent type between quotes, like 'Extent'.
+                     */
+                    if (typeName != null) {
+                        final String dependency = declaredTypes.get(elementType);
+                        if (dependency == null) {
+                            if (!primitiveTypes.containsKey(elementType)) {
+                                typeName = '\'' + typeName + '\'';
+                            }
+                        } else if (!dependency.equals(module)) {
+                            // TODO: add an import statement
+                        }
+                    }
+                    /*
+                     * If the property accepts multi-occurrences, we have to declare it as a sequence.
+                     * Note that it may be a sequence of type between quotes if the above check found
+                     * that the element type has not yet been defined.
+                     */
+                    final Class<?> javaType = property.getReturnType();
+                    if (Collection.class.isAssignableFrom(javaType)) {
+                        String collection = "Sequence";
+                        if (Set.class.isAssignableFrom(javaType)) {
+//                          collection = "Set";                     // TODO: needs to manage imports
+                        }
+                        if (typeName != null) {
+                            typeName = collection + '[' + typeName + ']';
+                        } else {
+                            // TODO
+                        }
+                    }
+                    final Property p = new Property(def, name, elementType, typeName);
+                    if (properties.put(name, p) != null) switch (name) {
+                        /*
+                         * If the same property appears twice, this is theoretically an error.
+                         * But we make an exception for properties that have been splitted in
+                         * two Java methods because Java can return only one value.
+                         */
+                        case "cardinality":                         // [minOccurs … maxOccurs]
+                        case "signature": {                         // [parameters : result]
+                            properties.remove(name);                // TODO
+                            break;
+                        }
+                        default: {
+                            throw new CanNotExportException("The same " + p +
+                                    " property is defined twice in " + type);
+                        }
+                    }
                 }
             }
         }
-        return id;
+        /*
+         * At this point we got the list of properties to write in Python interfaces.
+         * But Java methods are listed in no particular order. Before to write them,
+         * we should sort them in the same order than in the XSD file.
+         */
+        if (definition != null) {
+            int position = 0;
+            for (final String name : definition.keySet()) {
+                final Property p = properties.get(name);
+                if (p != null) {
+                    p.position = position++;
+                }
+            }
+        }
+        final Property[] props = properties.values().toArray(new Property[properties.size()]);
+        properties.clear();
+        Arrays.sort(props);
+        return props;
     }
 
     /**
@@ -350,67 +464,13 @@ public final strictfp class JavaToPython extends SourceGenerator {
                  * (e.g. "satisifiedPlan" instead of "satisfiedPlan") or extra properties not in abstract specification.
                  */
                 case INTERFACES: {
-                    for (final Method property : type.getDeclaredMethods()) {
-                        if (property.isSynthetic() || property.isAnnotationPresent(Deprecated.class)) {
-                            continue;
-                        }
-                        final UML def = property.getAnnotation(UML.class);
-                        if (def == null) {
-                            continue;
-                        }
-                        final String name = def.identifier();
-                        if (name.indexOf('.') >= 0) {
-                            continue;                               // TODO
-                        }
-                        if (property.getParameterTypes().length == 0) {
-                            final Property p = new Property(name, nameOf(Content.typeOf(property), property.getReturnType()),
-                                                            def.obligation() == Obligation.MANDATORY);
-                            if (properties.put(name, p) != null) switch (name) {
-                                /*
-                                 * If the same property appears twice, this is theoretically an error.
-                                 * But we make an exception for properties that have been splitted in
-                                 * two Java methods because Java can return only one value.
-                                 */
-                                case "cardinality":     // [minOccurs … maxOccurs]
-                                case "signature":       // [parameters : result]
-                                {
-                                    properties.remove(name);        // TODO
-                                    break;
-                                }
-                                default: {
-                                    throw new CanNotExportException("The same " + p +
-                                            " property is defined twice in " + type);
-                                }
-                            }
-                        }
-                    }
-                    /*
-                     * At this point we got the list of properties to write in Python interfaces.
-                     * But Java methods are listed in no particular order. Before to write them,
-                     * we should sort them in the same order than in the XSD file.
-                     */
-                    if (definition != null) {
-                        int position = 0;
-                        for (final String name : definition.keySet()) {
-                            final Property p = properties.get(name);
-                            if (p != null) {
-                                p.position = position++;
-                            }
-                        }
-                    }
-                    final Property[] props = properties.values().toArray(new Property[properties.size()]);
-                    properties.clear();
-                    Arrays.sort(props);
-                    /*
-                     * At this point we have all properties in XSD declaration order.
-                     * We can now write the Python class.
-                     */
+                    final Property[] props = listProperties(type, module, definition);
                     content.append("class ").append(typeName).append('(');
                     String parent = "ABC";
-                    for (final Class<?> p : type.getInterfaces()) {
-                        final String pi = nameOf(p, null);
-                        if (pi != null) {
-                            parent = pi;
+                    for (final Class<?> javaType : type.getInterfaces()) {
+                        final String pythonType = nameOf(javaType);
+                        if (pythonType != null) {
+                            parent = pythonType;
                             break;              // No multi-inheritence expected. The first type should be the main one.
                         }
                     }
@@ -418,26 +478,27 @@ public final strictfp class JavaToPython extends SourceGenerator {
                     if (definition != null) {
                         appendDocumentation(definition.get(null), content, 1, lineSeparator);
                     }
+                    /*
+                     * Declare properties with "@abstractproperty" for mandatory properties, and "@property" for optional ones.
+                     * Optional properties are implemented with {@code "return None"}. Special care is needed for properties of
+                     * type not yet declared; we have to declare those types as strings instead.
+                     */
                     final Map<String,String> replacements = keywords.remove(type);
                     for (final Property property : props) {
-                        String name = property.name;
-                        if (replacements != null) {
-                            final String r = replacements.get(name);
-                            if (r != null) name = r;
-                        }
+                        final String name = property.name(replacements);
                         String classifier = "abstract";
                         String implementation = "pass";
                         if (!property.mandatory) {
                             classifier = "";
-                            if (!"None".equals(property.type)) {
+                            if (!Void.TYPE.equals(property.javaType)) {
                                 implementation = "return None";
                             }
                         }
                         content.append(lineSeparator);
                         indent(content, 1).append('@').append(classifier).append("property").append(lineSeparator);
                         indent(content, 1).append("def ").append(name).append("(self)");
-                        if (property.type != null) {
-                            content.append(" -> ").append(property.type);
+                        if (property.pythonType != null) {
+                            content.append(" -> ").append(property.pythonType);
                         }
                         content.append(':').append(lineSeparator);
                         if (definition != null) {
@@ -447,6 +508,14 @@ public final strictfp class JavaToPython extends SourceGenerator {
                     }
                     break;
                 }
+            }
+            /*
+             * After we wrote the definition of a type, either an enumeration, code list or interface,
+             * we need to keep trace that we did. This information will be needed later for managing
+             * forward declarations (because of circular dependencies).
+             */
+            if (declaredTypes.put(type, module) != null) {
+                throw new CanNotExportException(type + " is declared twice.");
             }
         }
     }

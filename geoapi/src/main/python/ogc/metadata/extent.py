@@ -52,7 +52,7 @@ class BoundingPolygon(GeographicExtent):
     """Enclosing geometric object which locates the resource, expressed as a set of (x,y) coordinate (s). NOTE: If a polygon is used it should be closed (last point replicates first point)."""
 
     @abstractproperty
-    def polygon(self) -> Sequence[Object]:
+    def polygon(self) -> Sequence['Object']:
         """Sets of points defining the bounding polygon or any other GM_Object geometry (point, line or polygon)."""
         pass
 
@@ -70,7 +70,7 @@ class VerticalExtent(ABC):
         pass
 
     @property
-    def verticalCRS(self) -> VerticalCRS:
+    def verticalCRS(self) -> 'VerticalCRS':
         return None
 
 class TemporalExtent(ABC):

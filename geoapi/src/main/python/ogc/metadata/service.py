@@ -65,7 +65,7 @@ class OperationMetadata(ABC):
         return None
 
     @property
-    def dependsOn(self) -> Sequence[OperationMetadata]:
+    def dependsOn(self) -> Sequence['OperationMetadata']:
         return None
 
 class OperationChainMetadata(ABC):

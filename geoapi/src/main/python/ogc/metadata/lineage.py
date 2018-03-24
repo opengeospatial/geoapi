@@ -56,7 +56,7 @@ class Source(ABC):
         return None
 
     @property
-    def sourceStep(self) -> Sequence[ProcessStep]:
+    def sourceStep(self) -> Sequence['ProcessStep']:
         return None
 
     @property

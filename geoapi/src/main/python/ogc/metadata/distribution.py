@@ -23,7 +23,7 @@ class Medium(ABC):
     """Information about the media on which the resource can be distributed."""
 
     @property
-    def name(self) -> MediumNameCode:
+    def name(self) -> 'MediumNameCode':
         """Name of the medium on which the resource can be received."""
         return None
 
@@ -80,7 +80,7 @@ class Format(ABC):
         return None
 
     @property
-    def formatDistributor(self) -> Sequence[Distributor]:
+    def formatDistributor(self) -> Sequence['Distributor']:
         return None
 
 class DataFile(ABC):

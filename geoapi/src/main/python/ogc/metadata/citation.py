@@ -247,7 +247,7 @@ class Responsibility(ABC):
         pass
 
     @property
-    def extent(self) -> Sequence[Extent]:
+    def extent(self) -> Sequence['Extent']:
         """Spatial or temporal extent of the role."""
         return None
 
@@ -267,7 +267,7 @@ class Organisation(Party):
     """Information about the party if the party is an organisation."""
 
     @property
-    def logo(self) -> Sequence[BrowseGraphic]:
+    def logo(self) -> Sequence['BrowseGraphic']:
         """Graphic identifying organization."""
         return None
 
@@ -317,7 +317,7 @@ class Citation(ABC):
         return None
 
     @property
-    def identifier(self) -> Sequence[Identifier]:
+    def identifier(self) -> Sequence['Identifier']:
         """Value uniquely identifying an object within a namespace."""
         return None
 
@@ -357,7 +357,7 @@ class Citation(ABC):
         return None
 
     @property
-    def graphic(self) -> Sequence[BrowseGraphic]:
+    def graphic(self) -> Sequence['BrowseGraphic']:
         """Citation graphic or logo for cited party."""
         return None
 

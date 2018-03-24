@@ -72,7 +72,7 @@ class Constraints(ABC):
         return None
 
     @property
-    def graphic(self) -> Sequence[BrowseGraphic]:
+    def graphic(self) -> Sequence['BrowseGraphic']:
         """Graphic /symbol indicating the constraint Eg."""
         return None
 
