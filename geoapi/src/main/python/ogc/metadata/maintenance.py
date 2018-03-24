@@ -9,8 +9,6 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
-from ogc.metadata.extent import Extent
-from ogc.metadata.citation import Date, Responsibility
 
 class MaintenanceFrequencyCode(Enum):
     CONTINUAL = "continual"
@@ -90,6 +88,8 @@ class ScopeDescription(ABC):
         """Class of information that does not fall into the other categories to which the information applies."""
         return None
 
+from ogc.metadata.extent import Extent
+
 class Scope(ABC):
     """New: information about the scope of the resource."""
 
@@ -105,6 +105,8 @@ class Scope(ABC):
     @property
     def levelDescription(self) -> Sequence[ScopeDescription]:
         return None
+
+from ogc.metadata.citation import Date, Responsibility
 
 class MaintenanceInformation(ABC):
     """Information about the scope and frequency of updating."""

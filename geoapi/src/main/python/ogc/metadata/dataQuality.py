@@ -9,14 +9,6 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
-from datetime import datetime
-from ogc.metadata.citation import Identifier, Citation
-from ogc.metadata.spatialRepresentation import SpatialRepresentationTypeCode
-from ogc.metadata.distribution import DataFile, Format
-from ogc.metadata.content import CoverageDescription
-from ogc.metadata.naming import Record, RecordType
-from ogc.metadata.maintenance import Scope
-from ogc.metadata.lineage import Lineage
 
 class EvaluationMethodTypeCode(Enum):
     DIRECT_INTERNAL = "directInternal"
@@ -25,6 +17,9 @@ class EvaluationMethodTypeCode(Enum):
 
 class Result(ABC):
     """Generalization of more specific result classes."""
+
+from datetime import datetime
+from ogc.metadata.citation import Identifier, Citation
 
 class Element(ABC):
     """Aspect of quantitative quality information."""
@@ -133,6 +128,10 @@ class ConformanceResult(Result):
         """Indication of the conformance result where 0 = fail and 1 = pass."""
         pass
 
+from ogc.metadata.spatialRepresentation import SpatialRepresentationTypeCode
+from ogc.metadata.distribution import DataFile, Format
+from ogc.metadata.content import CoverageDescription
+
 class CoverageResult(Result):
     """Result of a data quality measure organising the measured values as a coverage."""
 
@@ -157,6 +156,8 @@ class CoverageResult(Result):
     def resultFormat(self) -> Format:
         pass
 
+from ogc.metadata.naming import Record, RecordType
+
 class QuantitativeResult(Result):
     """The values or information about the value(s) (or set of values) obtained from applying a data quality measure."""
 
@@ -177,6 +178,9 @@ class QuantitativeResult(Result):
     @property
     def errorStatistic(self) -> str:
         return None
+
+from ogc.metadata.maintenance import Scope
+from ogc.metadata.lineage import Lineage
 
 class DataQuality(ABC):
     """Quality information for the data specified by a data quality scope."""

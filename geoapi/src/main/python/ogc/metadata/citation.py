@@ -9,7 +9,6 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
-from datetime import datetime
 
 class DateTypeCode(Enum):
     CREATION = "creation"
@@ -275,6 +274,8 @@ class Organisation(Party):
     @property
     def individual(self) -> Sequence[Individual]:
         return None
+
+from datetime import datetime
 
 class Date(ABC):
     """Reference date and event used to describe it."""

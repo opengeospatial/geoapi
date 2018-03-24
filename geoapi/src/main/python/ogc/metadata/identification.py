@@ -9,13 +9,6 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
-from ogc.metadata.constraints import Constraints
-from ogc.metadata.citation import OnlineResource, Citation, Responsibility, Identifier
-from datetime import datetime
-from ogc.metadata.spatialRepresentation import SpatialRepresentationTypeCode
-from ogc.metadata.extent import Extent
-from ogc.metadata.maintenance import MaintenanceInformation
-from ogc.metadata.distribution import Format
 
 class AssociationTypeCode(Enum):
     CROSS_REFERENCE = "crossReference"
@@ -106,6 +99,9 @@ class TopicCategoryCode(Enum):
     EXTRA_TERRESTRIAL = "extraTerrestrial"
     DISASTER = "disaster"
 
+from ogc.metadata.constraints import Constraints
+from ogc.metadata.citation import OnlineResource, Citation, Responsibility, Identifier
+
 class BrowseGraphic(ABC):
     """Graphic that provides an illustration of the dataset (should include a legend for the graphic, if applicable)."""
 
@@ -172,6 +168,8 @@ class Keywords(ABC):
     @property
     def keywordClass(self) -> KeywordClass:
         return None
+
+from datetime import datetime
 
 class Usage(ABC):
     """Brief description of ways in which the resource(s) is/are currently or has been used."""
@@ -267,6 +265,11 @@ class AssociatedResource(ABC):
     def metadataReference(self) -> Citation:
         """Reference to the metadata of the associated resource."""
         return None
+
+from ogc.metadata.spatialRepresentation import SpatialRepresentationTypeCode
+from ogc.metadata.extent import Extent
+from ogc.metadata.maintenance import MaintenanceInformation
+from ogc.metadata.distribution import Format
 
 class Identification(ABC):
     """Basic information required to uniquely identify a resource or resources."""

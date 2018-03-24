@@ -8,7 +8,6 @@
 
 from abc import ABC, abstractproperty
 from typing import Sequence
-from ogc.metadata.citation import Identifier
 
 class GeographicExtent(ABC):
     """Spatial area of the resource."""
@@ -40,6 +39,8 @@ class GeographicBoundingBox(GeographicExtent):
     def northBoundLatitude(self) -> float:
         """Northern-most, coordinate of the limit of the resource extent expressed in latitude in decimal degrees (positive north)."""
         pass
+
+from ogc.metadata.citation import Identifier
 
 class GeographicDescription(GeographicExtent):
     """Description of the geographic area using identifiers."""

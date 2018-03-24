@@ -9,10 +9,6 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
-from ogc.metadata.citation import OnlineResource, Citation
-from ogc.metadata.naming import ScopedName, GenericName
-from ogc.metadata.identification import DataIdentification
-from ogc.metadata.distribution import StandardOrderProcess
 
 class CouplingType(Enum):
     LOOSE = "loose"
@@ -35,6 +31,8 @@ class ParameterDirection(Enum):
     IN = "in"
     OUT = "out"
     IN_OUT = "in/out"
+
+from ogc.metadata.citation import OnlineResource, Citation
 
 class OperationMetadata(ABC):
     """Describes the signature of one and only one method provided by the service."""
@@ -89,6 +87,9 @@ class OperationChainMetadata(ABC):
     def operation(self) -> Sequence[OperationMetadata]:
         pass
 
+from ogc.metadata.naming import ScopedName, GenericName
+from ogc.metadata.identification import DataIdentification
+
 class CoupledResource(ABC):
     """Links a given operationName (mandatory attribute of SV_OperationMetadata) with a data set identified by an 'identifier'."""
 
@@ -109,6 +110,8 @@ class CoupledResource(ABC):
     @property
     def resource(self) -> Sequence[DataIdentification]:
         return None
+
+from ogc.metadata.distribution import StandardOrderProcess
 
 class ServiceIdentification(Identification):
     """Identification of capabilities which a service provider makes available to a service user through a set of interfaces that define a behaviour - See ISO 19119 for further information."""

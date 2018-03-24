@@ -8,10 +8,6 @@
 
 from abc import ABC, abstractproperty
 from typing import Sequence
-from ogc.metadata.identification import Resolution
-from ogc.metadata.citation import Citation, Identifier, Responsibility
-from ogc.metadata.maintenance import Scope
-from datetime import datetime
 
 class NominalResolution(ABC):
     """Distance between adjacent pixels."""
@@ -25,6 +21,10 @@ class NominalResolution(ABC):
     def groundResolution(self) -> float:
         """Distance between adjacent pixels in the object space."""
         return None
+
+from ogc.metadata.identification import Resolution
+from ogc.metadata.citation import Citation, Identifier, Responsibility
+from ogc.metadata.maintenance import Scope
 
 class Source(ABC):
     """Information about the source resource used in creating the data specified by the scope."""
@@ -135,6 +135,8 @@ class ProcessStepReport(ABC):
     def fileType(self) -> str:
         """Type of file that contains that processing report."""
         return None
+
+from datetime import datetime
 
 class ProcessStep(ABC):
     """Information about an event or transformation in the life of a resource including the process used to maintain the resource."""

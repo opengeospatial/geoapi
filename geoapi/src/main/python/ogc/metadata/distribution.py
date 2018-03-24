@@ -9,9 +9,6 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
-from ogc.metadata.citation import Identifier, Citation, OnlineResource, Responsibility
-from ogc.metadata.naming import LocalName, RecordType, Record
-from datetime import datetime
 
 class MediumFormatCode(Enum):
     CPIO = "cpio"
@@ -21,6 +18,8 @@ class MediumFormatCode(Enum):
     ISO_9660_ROCK_RIDGE = "iso9660RockRidge"
     ISO_9660_APPLE_HFS = "iso9660AppleHFS"
     UDF = "udf"
+
+from ogc.metadata.citation import Identifier, Citation, OnlineResource, Responsibility
 
 class Medium(ABC):
     """Information about the media on which the resource can be distributed."""
@@ -86,6 +85,8 @@ class Format(ABC):
     def formatDistributor(self) -> Sequence['Distributor']:
         return None
 
+from ogc.metadata.naming import LocalName, RecordType, Record
+
 class DataFile(ABC):
 
     @property
@@ -124,6 +125,8 @@ class DigitalTransferOptions(ABC):
     def distributionFormat(self) -> Sequence[Format]:
         """Format of distribution."""
         return None
+
+from datetime import datetime
 
 class StandardOrderProcess(ABC):
     """Common ways in which the resource may be obtained or received, and related instructions and fee information."""

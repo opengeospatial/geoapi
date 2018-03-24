@@ -9,10 +9,6 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
-from ogc.metadata.citation import Citation, Identifier, Responsibility
-from datetime import datetime
-from ogc.metadata.extent import Extent
-from ogc.metadata.identification import ProgressCode
 
 class ContextCode(Enum):
     ACQUISITION = "acquisition"
@@ -50,6 +46,8 @@ class TriggerCode(Enum):
     AUTOMATIC = "automatic"
     MANUAL = "manual"
     PRE_PROGRAMMED = "preProgrammed"
+
+from ogc.metadata.citation import Citation, Identifier, Responsibility
 
 class Instrument(ABC):
     """Designations for the measuring instruments."""
@@ -122,6 +120,8 @@ class PlatformPass(ABC):
     def relatedEvent(self) -> Sequence['Event']:
         return None
 
+from datetime import datetime
+
 class Event(ABC):
     """Identification of a significant collection point within an operation."""
 
@@ -180,6 +180,8 @@ class EnvironmentalRecord(ABC):
     def meteorologicalConditions(self) -> str:
         pass
 
+from ogc.metadata.extent import Extent
+
 class Objective(ABC):
     """Describes the characteristics, spatial and temportal extent of the intended object to be observed."""
 
@@ -219,6 +221,8 @@ class Objective(ABC):
     @abstractproperty
     def objectiveOccurence(self) -> Sequence[Event]:
         pass
+
+from ogc.metadata.identification import ProgressCode
 
 class Operation(ABC):
     """Designations for the operation used to acquire the dataset."""

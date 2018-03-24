@@ -9,7 +9,6 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
-from ogc.metadata.citation import Citation, OnlineResource, Responsibility
 
 class DatatypeCode(Enum):
     CLASS = "class"
@@ -33,6 +32,8 @@ class ObligationCode(Enum):
     OPTIONAL = "optional"
     CONDITIONAL = "conditional"
     FORBIDDEN = "null"
+
+from ogc.metadata.citation import Citation, OnlineResource, Responsibility
 
 class ApplicationSchemaInformation(ABC):
     """Information about the application schema used to build the dataset."""

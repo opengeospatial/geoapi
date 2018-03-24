@@ -9,9 +9,6 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
-from ogc.metadata.dataQuality import DataQuality, Element
-from ogc.metadata.naming import Record
-from ogc.metadata.citation import Citation
 
 class CellGeometryCode(Enum):
     POINT = "point"
@@ -120,6 +117,8 @@ class Dimension(ABC):
     def dimensionDescription(self) -> str:
         """Description of the axis."""
         return None
+
+from ogc.metadata.dataQuality import DataQuality, Element
 
 class GeolocationInformation(ABC):
 
@@ -248,6 +247,9 @@ class Georectified(GridSpatialRepresentation):
     @property
     def checkPoint(self) -> Sequence[GCP]:
         return None
+
+from ogc.metadata.naming import Record
+from ogc.metadata.citation import Citation
 
 class Georeferenceable(GridSpatialRepresentation):
     """Grid with cells irregularly spaced in any given geographic/map projection coordinate system, whose individual cells can be geolocated using geolocation information supplied with the data but cannot be geolocated from the grid properties alone."""

@@ -365,42 +365,45 @@ public final strictfp class JavaToPython extends SourceGenerator {
 
     /**
      * Adds a {@code "from module import Type"} statement in the given {@code StringBuilder}, if not already present.
-     * This method assumes that the given content uses only the given {@code lineSeparator} and that import statements
-     * are grouped together.
+     * This method assumes that the given {@code content} buffer uses only the given {@code lineSeparator} and that
+     * import statements appear at the beginning of a new line. Import statements may occur on any line in the file,
+     * not necessarily at the beginning, because the imported file may have a circular dependency to the types already
+     * defined in the importing file.
+     *
+     * @return {@code true} if an import statement has been added. If an existing import statement has been modified,
+     *         or if there is no change at all, then this method returns {@code false}.
      */
-    private void addImport(String module, final Class<?> type,
-            final StringBuilder content, int importStart, final String lineSeparator)
-    {
+    private boolean addImport(String module, final Class<?> type, final StringBuilder content, final String lineSeparator) {
         if (!module.equals(module = module.replace('/', '.'))) {
             module = "ogc." + module;
         }
-        final String FROM   = "from ";
-        final String IMPORT = " import ";
         final String typeName = nameOf(type);
-        int lineEnd;
-        while ((lineEnd = content.indexOf(lineSeparator, importStart)) >= 0) {
-            final String line = content.substring(importStart, lineEnd);
-            if (!line.startsWith(FROM)) break;
-            int p;
-            if (line.regionMatches(p = FROM.length(), module, 0, module.length()) &&
-                line.regionMatches(p += module.length(), IMPORT, 0, IMPORT.length()))
-            {
-                p += IMPORT.length();
-                while ((p = line.indexOf(typeName, p)) >= 0) {
-                    final int s = p;
-                    p += typeName.length();
-                    if (!Character.isUnicodeIdentifierPart(line.codePointBefore(s))) {
-                        if (p >= line.length() || !Character.isUnicodeIdentifierPart(line.codePointAt(p))) {
-                            return;                     // Class already imported.
-                        }
+        final String statement = lineSeparator + "from " + module + " import ";
+        int p = content.indexOf(statement);
+        if (p >= 0) {
+            final int end = content.indexOf(lineSeparator, p += statement.length());
+            final String line = content.substring(p, end);
+            p = 0;
+            while ((p = line.indexOf(typeName, p)) >= 0) {
+                final int s = p;
+                p += typeName.length();
+                if (s == 0 || !Character.isUnicodeIdentifierPart(line.codePointBefore(s))) {
+                    if (p >= line.length() || !Character.isUnicodeIdentifierPart(line.codePointAt(p))) {
+                        return false;                       // Class already imported.
                     }
                 }
-                content.insert(lineEnd, ", " + typeName);
-                return;
             }
-            importStart = lineEnd + lineSeparator.length();
+            /*
+             * If we find a "from module import" statement, add the type to that line instead than adding a new import statement.
+             * We do that way because Python reads the whole file on the first "import module" statement, so deferring the other
+             * types from the same imported module will not help the circular dependencies issue.
+             */
+            content.insert(end, ", " + typeName);
+            return false;
+        } else {
+            content.append(statement, lineSeparator.length(), statement.length()).append(typeName).append(lineSeparator);
+            return true;
         }
-        content.insert(importStart, FROM + module + IMPORT + typeName + lineSeparator);
     }
 
     /**
@@ -472,7 +475,6 @@ public final strictfp class JavaToPython extends SourceGenerator {
                 contents.put(module, content);
             }
             content.append(lineSeparator);
-            final int importStart = content.indexOf("from ");
             switch (category) {
                 /*
                  * Creates a Python enumeration.
@@ -501,6 +503,13 @@ public final strictfp class JavaToPython extends SourceGenerator {
                  */
                 case INTERFACES: {
                     final Property[] props = listProperties(type, module, definition);
+                    boolean hasDependencies = false;
+                    for (final Property property : props) {
+                        if (property.importFrom != null) {
+                            hasDependencies |= addImport(property.importFrom, property.javaType, content, lineSeparator);
+                        }
+                    }
+                    if (hasDependencies) content.append(lineSeparator);
                     content.append("class ").append(typeName).append('(');
                     String parent = "ABC";
                     for (final Class<?> javaType : type.getInterfaces()) {
@@ -534,9 +543,6 @@ public final strictfp class JavaToPython extends SourceGenerator {
                         indent(content, 1).append('@').append(classifier).append("property").append(lineSeparator);
                         indent(content, 1).append("def ").append(name).append("(self)");
                         if (property.pythonType != null) {
-                            if (property.importFrom != null) {
-                                addImport(property.importFrom, property.javaType, content, importStart, lineSeparator);
-                            }
                             content.append(" -> ").append(property.pythonType);
                         }
                         content.append(':').append(lineSeparator);

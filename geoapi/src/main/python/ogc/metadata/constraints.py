@@ -9,8 +9,6 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
-from ogc.metadata.citation import Responsibility, Citation
-from ogc.metadata.maintenance import Scope
 
 class ClassificationCode(Enum):
     UNCLASSIFIED = "unclassified"
@@ -42,6 +40,8 @@ class RestrictionCode(Enum):
     SENSITIVE_BUT_UNCLASSIFIED = "sensitiveButUnclassified"
     IN_CONFIDENCE = "in-confidence"
 
+from ogc.metadata.citation import Responsibility, Citation
+
 class Releasability(ABC):
     """State, nation or organization to which resource can be released to e.g. NATO unclassified releasable to PfP."""
 
@@ -59,6 +59,8 @@ class Releasability(ABC):
     def disseminationConstraints(self) -> Sequence[RestrictionCode]:
         """Component in determining releasability."""
         return None
+
+from ogc.metadata.maintenance import Scope
 
 class Constraints(ABC):
     """Restrictions on the access and use of a resource or metadata."""

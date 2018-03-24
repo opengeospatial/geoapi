@@ -9,8 +9,6 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
-from ogc.metadata.naming import MemberName, RecordType, Record, GenericName
-from ogc.metadata.citation import Identifier, Citation
 
 class BandDefinition(Enum):
     THREE_DB = "3dB"
@@ -54,6 +52,9 @@ class TransferFunctionTypeCode(Enum):
     LINEAR = "linear"
     LOGARITHMIC = "logarithmic"
     EXPONENTIAL = "exponential"
+
+from ogc.metadata.naming import MemberName, RecordType, Record, GenericName
+from ogc.metadata.citation import Identifier, Citation
 
 class RangeDimension(ABC):
     """Information on the range of attribute values."""
