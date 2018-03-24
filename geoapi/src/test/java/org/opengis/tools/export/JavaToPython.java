@@ -169,9 +169,9 @@ public final strictfp class JavaToPython extends SourceGenerator {
             throws ParserConfigurationException, IOException, SAXException, SchemaException
     {
         currentYear    = new GregorianCalendar().get(GregorianCalendar.YEAR);
-        contents       = new LinkedHashMap<>();
-        properties     = new HashMap<>();
-        primitiveTypes = new HashMap<>(20);
+        contents       = new LinkedHashMap<>(40);
+        properties     = new HashMap<>(30);
+        primitiveTypes = new HashMap<>(25);
         primitiveTypes.put(CharSequence        .class, "str");
         primitiveTypes.put(String              .class, "str");
         primitiveTypes.put(InternationalString .class, "str");

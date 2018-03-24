@@ -263,7 +263,7 @@ public class SchemaInformation {
      */
     public void loadDefaultSchemas() throws ParserConfigurationException, IOException, SAXException, SchemaException {
         for (final String p : new String[] {
-                "19115/-3/gco/1.0/gco.xsd",         // Geographic Common
+//              "19115/-3/gco/1.0/gco.xsd",         // Geographic Common — defined in a different way than other modules
                 "19115/-3/lan/1.0/lan.xsd",         // Language localization
                 "19115/-3/mcc/1.0/mcc.xsd",         // Metadata Common Classes
                 "19115/-3/gex/1.0/gex.xsd",         // Geospatial Extent
@@ -286,6 +286,64 @@ public class SchemaInformation {
                 "19115/-3/mdb/1.0/mdb.xsd"})        // Metadata base
         {
             loadSchema(ROOT_NAMESPACE + p);
+        }
+        /*
+         * Hard-coded information from "19115/-3/gco/1.0/gco.xsd". We apply this workaround because current SchemaInformation
+         * implementation can not parse most of gco.xsd file because it does not follow the usual pattern found in other files.
+         */
+        final String namespace = ROOT_NAMESPACE + "19115/-3/gco/1.0";
+        addHardCoded("NameSpace",     namespace,
+                     "isGlobal",      "Boolean",           Boolean.TRUE, Boolean.FALSE,
+                     "name",          "CharacterSequence", Boolean.TRUE, Boolean.FALSE);
+
+        addHardCoded("GenericName",   namespace,
+                     "scope",         "NameSpace",         Boolean.TRUE, Boolean.FALSE,
+                     "depth",         "Integer",           Boolean.TRUE, Boolean.FALSE,
+                     "parsedName",    "LocalName",         Boolean.TRUE, Boolean.TRUE);
+
+        addHardCoded("ScopedName",    namespace,
+                     "head",          "LocalName",         Boolean.TRUE, Boolean.FALSE,
+                     "tail",          "GenericName",       Boolean.TRUE, Boolean.FALSE,
+                     "scopedName",    "CharacterSequence", Boolean.TRUE, Boolean.FALSE);
+
+        addHardCoded("LocalName",     namespace,
+                     "aName",         "CharacterSequence", Boolean.TRUE, Boolean.FALSE);
+
+        addHardCoded("MemberName",    namespace,
+                     "attributeType", "TypeName",          Boolean.TRUE, Boolean.FALSE,
+                     "aName",         "CharacterSequence", Boolean.TRUE, Boolean.FALSE);
+
+        addHardCoded("RecordSchema",  namespace,
+                     "schemaName",    "LocalName",         Boolean.TRUE, Boolean.FALSE,
+                     "description",   null,                Boolean.TRUE, Boolean.FALSE);
+
+        addHardCoded("RecordType",    namespace,
+                     "typeName",      "TypeName",          Boolean.TRUE, Boolean.FALSE,
+                     "schema",        "RecordSchema",      Boolean.TRUE, Boolean.FALSE,
+                     "memberTypes",   null,                Boolean.TRUE, Boolean.FALSE);
+
+        addHardCoded("Record",        namespace,
+                     "recordType",    "RecordType",        Boolean.TRUE, Boolean.FALSE,
+                     "memberValue",   null,                Boolean.TRUE, Boolean.FALSE);
+    }
+
+    /**
+     * Adds a hard coded property. Used only for XSD file that we can not parse.
+     *
+     * @param  type        name of the type.
+     * @param  namespace   namespace of all properties.
+     * @param  properties  (property name, property type, isRequired, isCollection) tuples.
+     */
+    private void addHardCoded(final String type, final String namespace, final Object... properties) throws SchemaException {
+        final Map<String,Element> pm = new LinkedHashMap<>(properties.length);
+        for (int i=0; i<properties.length;) {
+            final String p = (String) properties[i++];
+            if (pm.put(p, new Element((String) properties[i++], namespace, (Boolean) properties[i++], (Boolean) properties[i++], null)) != null) {
+                throw new SchemaException(p);
+            }
+        }
+        if (typeDefinitions.put(type, pm) != null) {
+            throw new SchemaException(type);
         }
     }
 
@@ -325,7 +383,7 @@ public class SchemaInformation {
             throws IOException, ParserConfigurationException, SAXException, SchemaException
     {
         if (XMLConstants.W3C_XML_SCHEMA_NS_URI.equals(node.getNamespaceURI())) {
-            switch (node.getNodeName()) {
+            switch (node.getLocalName()) {
                 case "schema": {
                     targetNamespace = getMandatoryAttribute(node, "targetNamespace").intern();
                     break;
@@ -413,7 +471,7 @@ public class SchemaInformation {
      */
     private void storePropertyDefinition(final Node node) throws SchemaException {
         if (XMLConstants.W3C_XML_SCHEMA_NS_URI.equals(node.getNamespaceURI())) {
-            switch (node.getNodeName()) {
+            switch (node.getLocalName()) {
                 case "sequence": {
                     requiredByDefault = true;
                     break;
@@ -465,10 +523,19 @@ public class SchemaInformation {
      */
     private void verifyPropertyType(final Node node) throws SchemaException {
         if (XMLConstants.W3C_XML_SCHEMA_NS_URI.equals(node.getNamespaceURI())) {
-            if ("element".equals(node.getNodeName())) {
-                verifyNamingConvention(schemaLocations.getLast(),
-                        getMandatoryAttribute(node, "ref"), currentPropertyType, PROPERTY_TYPE_SUFFIX);
-                return;
+            switch (node.getLocalName()) {
+                case "element": {
+                    verifyNamingConvention(schemaLocations.getLast(),
+                            getMandatoryAttribute(node, "ref"), currentPropertyType, PROPERTY_TYPE_SUFFIX);
+                    return;
+                }
+                case "choice": {
+                    /*
+                     * <xs:choice> is used for unions. In those case, many <xs:element> are expected,
+                     * and none of them may have the union name. So we have to stop verification here.
+                     */
+                    return;
+                }
             }
         }
         for (Node child = node.getFirstChild(); child != null; child = child.getNextSibling()) {
@@ -531,7 +598,8 @@ public class SchemaInformation {
         if (documentationStyle != DocumentationStyle.NONE) {
             node = node.getFirstChild();
             while (node != null) {
-                switch (node.getNodeName()) {
+                final String name = node.getLocalName();
+                if (name != null) switch (name) {
                     case "annotation": {
                         node = node.getFirstChild();        // Expect "documentation" as a child of "annotation".
                         continue;

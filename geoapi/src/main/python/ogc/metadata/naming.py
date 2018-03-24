@@ -12,11 +12,11 @@ from typing import Sequence
 class NameSpace(ABC):
 
     @abstractproperty
-    def name(self) -> GenericName:
+    def isGlobal(self):
         pass
 
     @abstractproperty
-    def isGlobal(self):
+    def name(self) -> GenericName:
         pass
 
 class GenericName(ABC):
@@ -82,21 +82,21 @@ class MemberName(LocalName):
 class RecordSchema(ABC):
 
     @abstractproperty
-    def description(self):
+    def schemaName(self) -> LocalName:
         pass
 
     @abstractproperty
-    def schemaName(self) -> LocalName:
+    def description(self):
         pass
 
 class RecordType(Type):
 
     @abstractproperty
-    def schema(self) -> RecordSchema:
+    def typeName(self) -> TypeName:
         pass
 
     @abstractproperty
-    def typeName(self) -> TypeName:
+    def schema(self) -> RecordSchema:
         pass
 
     @abstractproperty
@@ -105,10 +105,10 @@ class RecordType(Type):
 
 class Record(ABC):
 
-    @abstractproperty
-    def memberValue(self):
-        pass
-
     @property
     def recordType(self) -> RecordType:
         return None
+
+    @abstractproperty
+    def memberValue(self):
+        pass
