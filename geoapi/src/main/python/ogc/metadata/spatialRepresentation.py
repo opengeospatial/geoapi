@@ -9,6 +9,9 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
+from ogc.metadata.dataQuality import DataQuality, Element
+from ogc.metadata.naming import Record
+from ogc.metadata.citation import Citation
 
 class CellGeometryCode(Enum):
     POINT = "point"
@@ -127,7 +130,7 @@ class GeolocationInformation(ABC):
 class GCP(ABC):
 
     @abstractproperty
-    def geographicCoordinates(self) -> DirectPosition:
+    def geographicCoordinates(self):
         pass
 
     @property
@@ -149,7 +152,7 @@ class GCPCollection(GeolocationInformation):
         pass
 
     @abstractproperty
-    def coordinateReferenceSystem(self) -> ReferenceSystem:
+    def coordinateReferenceSystem(self):
         pass
 
 class GeometricObjects(ABC):
@@ -218,12 +221,12 @@ class Georectified(GridSpatialRepresentation):
         return None
 
     @abstractproperty
-    def cornerPoints(self) -> Sequence[Point]:
+    def cornerPoints(self):
         """Earth location in the coordinate system defined by the Spatial Reference System and the grid coordinate of the cells at opposite ends of grid coverage along two diagonals in the grid spatial dimensions. There are four corner points in a georectified grid; at least two corner points along one diagonal are required. The first corner point corresponds to the origin of the grid."""
         pass
 
     @property
-    def centrePoint(self) -> Point:
+    def centrePoint(self):
         """Earth location in the coordinate system defined by the Spatial Reference System and the grid coordinate of the cell halfway between opposite ends of the grid in the spatial dimensions."""
         return None
 

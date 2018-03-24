@@ -9,6 +9,13 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
+from ogc.metadata.citation import Identifier, Citation
+from ogc.metadata.spatialRepresentation import SpatialRepresentationTypeCode
+from ogc.metadata.distribution import DataFile, Format
+from ogc.metadata.content import CoverageDescription
+from ogc.metadata.naming import Record, RecordType
+from ogc.metadata.maintenance import Scope
+from ogc.metadata.lineage import Lineage
 
 class EvaluationMethodTypeCode(Enum):
     DIRECT_INTERNAL = "directInternal"

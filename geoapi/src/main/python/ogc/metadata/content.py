@@ -9,6 +9,8 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
+from ogc.metadata.naming import MemberName, RecordType, Record, GenericName
+from ogc.metadata.citation import Identifier, Citation
 
 class BandDefinition(Enum):
     THREE_DB = "3dB"

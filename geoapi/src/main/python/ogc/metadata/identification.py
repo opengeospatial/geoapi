@@ -9,6 +9,12 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
+from ogc.metadata.constraints import Constraints
+from ogc.metadata.citation import OnlineResource, Citation, Responsibility, Identifier
+from ogc.metadata.spatialRepresentation import SpatialRepresentationTypeCode
+from ogc.metadata.extent import Extent
+from ogc.metadata.maintenance import MaintenanceInformation
+from ogc.metadata.distribution import Format
 
 class AssociationTypeCode(Enum):
     CROSS_REFERENCE = "crossReference"
@@ -305,7 +311,7 @@ class Identification(ABC):
         return None
 
     @property
-    def temporalResolution(self) -> Sequence[Duration]:
+    def temporalResolution(self):
         """Resolution of the resource with respect to time."""
         return None
 

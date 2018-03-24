@@ -9,6 +9,10 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
+from ogc.metadata.citation import OnlineResource, Citation
+from ogc.metadata.naming import ScopedName, GenericName
+from ogc.metadata.identification import DataIdentification
+from ogc.metadata.distribution import StandardOrderProcess
 
 class CouplingType(Enum):
     LOOSE = "loose"
@@ -61,7 +65,7 @@ class OperationMetadata(ABC):
         pass
 
     @property
-    def parameter(self) -> Sequence[OperationParameter]:
+    def parameter(self):
         return None
 
     @property

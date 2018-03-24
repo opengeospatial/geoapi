@@ -8,6 +8,9 @@
 
 from abc import ABC, abstractproperty
 from typing import Sequence
+from ogc.metadata.identification import Resolution
+from ogc.metadata.citation import Citation, Identifier, Responsibility
+from ogc.metadata.maintenance import Scope
 
 class NominalResolution(ABC):
     """Distance between adjacent pixels."""
@@ -36,7 +39,7 @@ class Source(ABC):
         return None
 
     @property
-    def sourceReferenceSystem(self) -> ReferenceSystem:
+    def sourceReferenceSystem(self):
         """Spatial reference system used by the source resource."""
         return None
 

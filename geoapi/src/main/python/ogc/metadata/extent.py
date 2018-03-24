@@ -8,6 +8,7 @@
 
 from abc import ABC, abstractproperty
 from typing import Sequence
+from ogc.metadata.citation import Identifier
 
 class GeographicExtent(ABC):
     """Spatial area of the resource."""
@@ -52,7 +53,7 @@ class BoundingPolygon(GeographicExtent):
     """Enclosing geometric object which locates the resource, expressed as a set of (x,y) coordinate (s). NOTE: If a polygon is used it should be closed (last point replicates first point)."""
 
     @abstractproperty
-    def polygon(self) -> Sequence['Object']:
+    def polygon(self):
         """Sets of points defining the bounding polygon or any other GM_Object geometry (point, line or polygon)."""
         pass
 
@@ -70,14 +71,14 @@ class VerticalExtent(ABC):
         pass
 
     @property
-    def verticalCRS(self) -> 'VerticalCRS':
+    def verticalCRS(self):
         return None
 
 class TemporalExtent(ABC):
     """Time period covered by the content of the resource."""
 
     @abstractproperty
-    def extent(self) -> Primitive:
+    def extent(self):
         """Period for the content of the resource."""
         pass
 

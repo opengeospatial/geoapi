@@ -35,6 +35,9 @@ import java.util.Map;
 import java.util.Set;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.Iterator;
+import javax.xml.namespace.QName;
+import org.opengis.annotation.UML;
 
 
 /**
@@ -101,30 +104,98 @@ public final class NameSpaces {
     }
 
     /**
-     * Returns the proposed module or package for the given type.
-     * The {@code prefix} argument is usually a three-letters prefix like {@code "cit"} for citations.
-     * Return values are {@code "module/package"} strings, for example {@code "metadata/citation"}.
+     * Excludes the namespaces identified by the given prefixes. Calls to {@link #name(Class, Map)}
+     * for a type in the namespace identified by one of the given prefixes will return {@code null}.
      *
-     * @param  prefix  prefix of the XML namespace (e.g. {@code "cit"} for citations.
-     * @param  type    GeoAPI interface (e.g. {@link org.opengis.metadata.citation.Citations}).
-     * @return the proposed namespace, or {@code null} if unknown.
+     * @param  prefixes  identifications of the namespaces to exclude.
      */
-    public String toPackage(final String prefix, final Class<?> type) {
-        String pkg = typesToPackages.get(type);
-        if (pkg == null) {
-            pkg = prefixesToPackages.get(prefix);
+    public void exclude(final String... prefixes) {
+        for (final String prefix : prefixes) {
+            final String ns = prefixesToPackages.put(prefix, null);
+            if (ns != null) {
+                for (final Iterator<String> it = typesToPackages.values().iterator(); it.hasNext();) {
+                    if (ns.equals(it.next())) it.remove();
+                }
+            }
         }
-        return pkg;
     }
 
     /**
-     * Returns all values that may be returned by {@link #toPackage(String, Class)}.
-     * This method returns a modifiable set. Modification to the returned set will
+     * Returns the OGC/ISO name of the given type together with its XML prefix and pseudo-namespace, or {@code null}.
+     * Note that while we use the {@link QName} object for convenience, this is <strong>not</strong> the XML name:
+     *
+     * <ul>
+     *   <li>{@link QName#getLocalPart()} will be the OGC/ISO name,
+     *        which is usually the same than the XML local part but not always.</li>
+     *   <li>{@link QName#getPrefix()} will be the XML prefix if known, or the UML prefix otherwise.
+     *       May be empty is no prefix can be inferred.</li>
+     *   <li>{@link QName#getNamespaceURI()} will be the programmatic namespace.
+     *       This may be a fragment of the XML namespace but never the full URI.</li>
+     * </ul>
+     *
+     * @param  type        the type for which to get the namespace, or {@code null}.
+     * @param  definition  value of {@link SchemaInformation#getTypeDefinition(Class)} for the given {@code type},
+     *                     or {@code null} if unknown.
+     * @return the OGC/ISO name, prefix and pseudo-namespace for the given type, or {@code null} if none.
+     */
+    public QName name(final Class<?> type, final Map<String, SchemaInformation.Element> definition) {
+        if (type != null) {
+            final UML uml = type.getAnnotation(UML.class);
+            if (uml != null) {
+                String prefix = null;
+                if (definition != null) {
+                    SchemaInformation.Element def = definition.get(null);
+                    if (def != null) {
+                        prefix = def.prefix();
+                    }
+                }
+                String typeName = uml.identifier();
+                final int splitAt = typeName.indexOf('_');
+                if (prefix == null) {
+                    if (splitAt > 0) {
+                        prefix = typeName.substring(0, splitAt);
+                    } else {
+                        switch (type.getPackage().getName()) {
+                            case "org.opengis.util":    prefix = "gco"; break;
+                            case "org.opengis.feature": prefix = "GF";  break;
+                            default: {
+                                switch (typeName) {
+                                    case "DirectPosition": prefix = "GM"; break;
+                                    default: prefix = ""; break;
+                                }
+                            }
+                        }
+                    }
+                }
+                typeName = typeName.substring(splitAt + 1);
+                if (!typeName.isEmpty()) {                          // Paranoiac check (should never happen).
+                    String pkg = typesToPackages.get(type);
+                    if (pkg == null) {
+                        pkg = prefixesToPackages.get(prefix);
+                        if (pkg == null) {
+                            if (prefixesToPackages.containsKey(prefix)) {
+                                return null;                        // Type explicitely excluded.
+                            }
+                            pkg = prefix;
+                        }
+                    }
+                    return new QName(pkg, typeName, prefix);
+                }
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Returns all namespace values that may be returned by {@link #name(Class, Map)}.
+     * This method returns a modifiable set. Modifications to the returned set will
      * not affect this {@code NameSpaces} instance.
      *
      * @return all package names known to this {@code NameSpaces} instance.
      */
     public Set<String> packages() {
-        return new HashSet<>(prefixesToPackages.values());
+        final Set<String> pkg = new HashSet<>(prefixesToPackages.values());
+        pkg.remove(null);
+        return pkg;
     }
 }

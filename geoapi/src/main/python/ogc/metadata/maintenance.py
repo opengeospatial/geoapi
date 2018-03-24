@@ -9,6 +9,8 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
+from ogc.metadata.extent import Extent
+from ogc.metadata.citation import Date, Responsibility
 
 class MaintenanceFrequencyCode(Enum):
     CONTINUAL = "continual"
@@ -118,7 +120,7 @@ class MaintenanceInformation(ABC):
         return None
 
     @property
-    def userDefinedMaintenanceFrequency(self) -> PeriodDuration:
+    def userDefinedMaintenanceFrequency(self):
         """Maintenance period other than those defined."""
         return None
 

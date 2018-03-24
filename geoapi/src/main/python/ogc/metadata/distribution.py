@@ -9,6 +9,8 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
+from ogc.metadata.citation import Identifier, Citation, OnlineResource, Responsibility
+from ogc.metadata.naming import LocalName, RecordType, Record
 
 class MediumFormatCode(Enum):
     CPIO = "cpio"
@@ -113,7 +115,7 @@ class DigitalTransferOptions(ABC):
         return None
 
     @property
-    def transferFrequency(self) -> PeriodDuration:
+    def transferFrequency(self):
         """Rate of occurrence of distribution."""
         return None
 

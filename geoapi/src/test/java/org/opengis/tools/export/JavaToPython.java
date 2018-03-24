@@ -47,6 +47,7 @@ import java.io.FileOutputStream;
 import java.io.OutputStreamWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import javax.xml.namespace.QName;
 import javax.xml.parsers.ParserConfigurationException;
 import org.opengis.Content;
 import org.opengis.SourceGenerator;
@@ -139,13 +140,15 @@ public final strictfp class JavaToPython extends SourceGenerator {
         /** The OGC/ISO name (can not be null). */ final String   name;
         /** The Java type,   or null if none.   */ final Class<?> javaType;
         /** The python type, or null if none.   */ final String   pythonType;
+        /** Module from which to import type.   */ final String   importFrom;
         /** Whether the property is mandatory.  */ final boolean  mandatory;
         /** Declaration order, to be set later. */ int position;
 
-        Property(final UML def, final String name, final Class<?> javaType, final String pythonType) {
+        Property(final UML def, final String name, final Class<?> javaType, final String pythonType, final String importFrom) {
             this.name       = name;
             this.javaType   = javaType;
             this.pythonType = pythonType;
+            this.importFrom = importFrom;
             this.mandatory  = def.obligation() == Obligation.MANDATORY;
             this.position   = Integer.MAX_VALUE / 2;
         }
@@ -196,7 +199,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
         currentYear    = new GregorianCalendar().get(GregorianCalendar.YEAR);
         contents       = new LinkedHashMap<>(40);
         properties     = new HashMap<>(30);
-        declaredTypes  = new HashMap<>(100);
+        declaredTypes  = new HashMap<>(400);
         primitiveTypes = new HashMap<>(25);
         primitiveTypes.put(CharSequence        .class, "str");
         primitiveTypes.put(String              .class, "str");
@@ -222,8 +225,18 @@ public final strictfp class JavaToPython extends SourceGenerator {
         keywords.put(org.opengis.metadata.quality.ConformanceResult.class, singletonMap("pass", "isConform"));
 
         namespaces = new NameSpaces();
+        namespaces.exclude("lan");          // Because it defines only "FreeText", which is not used here.
+        namespaces.exclude("IO", "CD", "CS", "RS", "SC", "PT", "CT", "CC", "TM", "GM", "DQ", "GF");         // Not yet supported.
         schema = new SchemaInformation(schemaRootDirectory, new Departures(), DocumentationStyle.SENTENCE);
         schema.loadDefaultSchemas();
+    }
+
+    /**
+     * Returns {@code true} if the given type is a member of an excluded namespaces.
+     * The excluded namespaces are those for which {@link NameSpaces#exclude(String...)} has been invoked.
+     */
+    private boolean isExcluded(final Class<?> type) {
+        return namespaces.name(type, schema.getTypeDefinition(type)) == null;
     }
 
     /**
@@ -277,14 +290,19 @@ public final strictfp class JavaToPython extends SourceGenerator {
                      * type Extent. But the later can not be defined at the time Responsibility type is defined.
                      * Consequently we have to put the Extent type between quotes, like 'Extent'.
                      */
-                    if (typeName != null) {
+                    String importFrom = null;
+                    if (typeName != null && !primitiveTypes.containsKey(elementType)) {
                         final String dependency = declaredTypes.get(elementType);
                         if (dependency == null) {
                             if (!primitiveTypes.containsKey(elementType)) {
-                                typeName = '\'' + typeName + '\'';
+                                if (isExcluded(elementType)) {
+                                    typeName = null;
+                                } else {
+                                    typeName = '\'' + typeName + '\'';
+                                }
                             }
                         } else if (!dependency.equals(module)) {
-                            // TODO: add an import statement
+                            importFrom = dependency;
                         }
                     }
                     /*
@@ -304,7 +322,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
                             // TODO
                         }
                     }
-                    final Property p = new Property(def, name, elementType, typeName);
+                    final Property p = new Property(def, name, elementType, typeName, importFrom);
                     if (properties.put(name, p) != null) switch (name) {
                         /*
                          * If the same property appears twice, this is theoretically an error.
@@ -345,6 +363,44 @@ public final strictfp class JavaToPython extends SourceGenerator {
     }
 
     /**
+     * Adds a {@code "from module import Type"} statement in the given {@code StringBuilder}, if not already present.
+     * This method assumes that the given content uses only the given {@code lineSeparator} and that import statements
+     * are grouped together.
+     */
+    private void addImport(String module, final Class<?> type,
+            final StringBuilder content, int importStart, final String lineSeparator)
+    {
+        module = "ogc." + module.replace('/', '.');
+        final String FROM   = "from ";
+        final String IMPORT = " import ";
+        final String typeName = nameOf(type);
+        int lineEnd;
+        while ((lineEnd = content.indexOf(lineSeparator, importStart)) >= 0) {
+            final String line = content.substring(importStart, lineEnd);
+            if (!line.startsWith(FROM)) break;
+            int p;
+            if (line.regionMatches(p = FROM.length(), module, 0, module.length()) &&
+                line.regionMatches(p += module.length(), IMPORT, 0, IMPORT.length()))
+            {
+                p += IMPORT.length();
+                while ((p = line.indexOf(typeName, p)) >= 0) {
+                    final int s = p;
+                    p += typeName.length();
+                    if (!Character.isUnicodeIdentifierPart(line.codePointBefore(s))) {
+                        if (p >= line.length() || !Character.isUnicodeIdentifierPart(line.codePointAt(p))) {
+                            return;                     // Class already imported.
+                        }
+                    }
+                }
+                content.insert(lineEnd, ", " + typeName);
+                return;
+            }
+            importStart = lineEnd + lineSeparator.length();
+        }
+        content.insert(importStart, FROM + module + IMPORT + typeName + lineSeparator);
+    }
+
+    /**
      * Creates Python files for all supported types, in approximative dependency order.
      * The contents are stored in the {@link #contents} map.
      */
@@ -378,37 +434,15 @@ public final strictfp class JavaToPython extends SourceGenerator {
              * (e.g. "…/cit/…"). The Java package may also differ for historical reasons. For Python we use the
              * the XML prefixes because they provide a finer modularisation, at least with ISO 19115-3 schemas.
              */
-            String prefix = null;
             final Map<String, SchemaInformation.Element> definition = schema.getTypeDefinition(type);
-            if (definition != null) {
-                SchemaInformation.Element def = definition.get(null);
-                if (def != null && def.namespace.startsWith(SchemaInformation.ROOT_NAMESPACE)) {
-                    final int end   = def.namespace.lastIndexOf('/', def.namespace.length() - 1);
-                    final int start = def.namespace.lastIndexOf('/', end - 1);
-                    prefix = def.namespace.substring(start + 1, end);
-                }
+            final QName qn = namespaces.name(type, definition);
+            if (qn == null) {
+                continue;
             }
-            String typeName = uml.identifier();
-            final int splitAt = typeName.indexOf('_');
-            if (prefix == null) {
-                if (splitAt >= 0) {
-                    prefix = typeName.substring(0, splitAt);
-                } else {
-                    switch (type.getPackage().getName()) {
-                        case "org.opengis.util":    prefix = "gco"; break;
-                        case "org.opengis.feature": prefix = "GF";  break;
-                        default: {
-                            switch (typeName) {
-                                case "DirectPosition": prefix = "GM"; break;
-                                default: throw new CanNotExportException("Can not choose a module for " + typeName);
-                            }
-                        }
-                    }
-                }
-            }
-            typeName = typeName.substring(splitAt + 1);
-            if (typeName.isEmpty()) {
-                continue;                                       // Paranoiac check (should never happen).
+            final String typeName = qn.getLocalPart();
+            final String module = qn.getNamespaceURI();
+            if (module.isEmpty()) {
+                throw new CanNotExportException("Can not choose a module for " + typeName);
             }
             /*
              * For Python language, we create one file per module. Note that OGC/ISO/Java packages
@@ -416,8 +450,6 @@ public final strictfp class JavaToPython extends SourceGenerator {
              * More than one OGC/ISO packages may map to the same Python module since we may merge
              * some small modules together.
              */
-            String module = namespaces.toPackage(prefix, type);
-            if (module == null) module = prefix;
             StringBuilder content = contents.get(module);
             if (content == null) {
                 content = new StringBuilder(2048)
@@ -437,6 +469,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
                 contents.put(module, content);
             }
             content.append(lineSeparator);
+            final int importStart = content.indexOf("from ");
             switch (category) {
                 /*
                  * Creates a Python enumeration.
@@ -498,6 +531,9 @@ public final strictfp class JavaToPython extends SourceGenerator {
                         indent(content, 1).append('@').append(classifier).append("property").append(lineSeparator);
                         indent(content, 1).append("def ").append(name).append("(self)");
                         if (property.pythonType != null) {
+                            if (property.importFrom != null) {
+                                addImport(property.importFrom, property.javaType, content, importStart, lineSeparator);
+                            }
                             content.append(" -> ").append(property.pythonType);
                         }
                         content.append(':').append(lineSeparator);
@@ -558,7 +594,6 @@ public final strictfp class JavaToPython extends SourceGenerator {
         createContent();
         final Path dir = sourceDirectory("python").resolve("ogc");
         final Set<String> modules = namespaces.packages();
-        assertNotNull(modules.remove("metadata/language"));   // Omitted because it defines only "FreeText", which is not used here.
         for (final String path : modules) {
             final StringBuilder content = contents.remove(path);
             if (content == null) {
@@ -578,7 +613,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
             fail("Expected types not found: " + keywords.keySet());
         }
         if (!contents.isEmpty()) {
-            System.err.printf("WARNING: no Python modules created for %s.%n", contents.keySet());
+            fail("No Python modules created for " + contents.keySet());
         }
     }
 

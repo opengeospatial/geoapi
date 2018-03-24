@@ -156,7 +156,21 @@ public class SchemaInformation {
             this.documentation = documentation;
         }
 
-        /** Tests if this element has the same name than given element. */
+        /**
+         * Returns the prefix if it can be derived from the {@linkplain #namespace}, or {@code null} otherwise.
+         */
+        String prefix() {
+            if (namespace.startsWith(ROOT_NAMESPACE)) {
+                final int end   = namespace.lastIndexOf('/', namespace.length() - 1);
+                final int start = namespace.lastIndexOf('/', end - 1);
+                return namespace.substring(start + 1, end);
+            }
+            return null;
+        }
+
+        /**
+         * Tests if this element has the same type name (including namespace) than given element.
+         */
         boolean nameEqual(final Element other) {
             return Objects.equals(typeName,  other.typeName)
                 && Objects.equals(namespace, other.namespace);

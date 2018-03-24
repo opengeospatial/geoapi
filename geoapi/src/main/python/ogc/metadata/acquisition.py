@@ -9,6 +9,9 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
+from ogc.metadata.citation import Citation, Identifier, Responsibility
+from ogc.metadata.extent import Extent
+from ogc.metadata.identification import ProgressCode
 
 class ContextCode(Enum):
     ACQUISITION = "acquisition"
@@ -110,7 +113,7 @@ class PlatformPass(ABC):
         pass
 
     @property
-    def extent(self) -> Object:
+    def extent(self):
         """Area covered by the pass."""
         return None
 

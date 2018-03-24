@@ -9,6 +9,8 @@
 from abc import ABC, abstractproperty
 from typing import Sequence
 from enum import Enum
+from ogc.metadata.citation import Responsibility, Citation
+from ogc.metadata.maintenance import Scope
 
 class ClassificationCode(Enum):
     UNCLASSIFIED = "unclassified"
