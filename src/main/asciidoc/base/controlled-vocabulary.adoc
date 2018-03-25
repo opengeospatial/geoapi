@@ -1,6 +1,6 @@
 [[controlled-vocabulary]]
 === Controlled vocabulary
-[.reference]_From ISO 19103:2015 §6.5_
+[.reference]_From ISO 19103:2015 §6.5_
 
 GeoAPI distinguishes between two enumerated types depending on whether the complete set of literal types is known
 when the code is originally created, or if the list may be extended at run time.

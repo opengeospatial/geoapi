@@ -1,12 +1,12 @@
 [[internationalization]]
 === Internationalization
-[.reference]_From ISO 19103:2015 §C.2_
+[.reference]_From ISO 19103:2015 §C.2_
 
 The `InternationalString` type is defined by GeoAPI to handle textual sequences
 which may potentially need to be translated for users of different locales.
 Conceptually this act as a `CharacterString` but may, depending on the implementation,
 provide access to locale specific representations of that string.
-GeoAPI `InternationalString` is closely related, but not identical, to ISO 19103 `LanguageString`.
+GeoAPI `InternationalString` is closely related, but not identical, to ISO 19103 `LanguageString`.
 The main difference is that the later is a character string in one specific language,
 while `InternationalString` can be a collection of character strings in different locales.
 This is useful, for example, when an implementation is operating on a server that serves multiple languages simultaneously,

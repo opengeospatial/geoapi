@@ -17,7 +17,7 @@ Class<?>      type          = Citation.class;
 Method        method        = type.getMethod("getTitle");
 UML           annotation    = method.getAnnotation(UML.class);
 String        identifier    = annotation.identifier();          // = "title"
-Specification specification = annotation.specification();       // = ISO 19115-1
+Specification specification = annotation.specification();       // = ISO 19115-1
 Obligation    obligation    = annotation.obligation();          // = mandatory
 ----
 

@@ -1,8 +1,8 @@
 [[primitives]]
 === Primitive types
-[.reference]_From ISO 19103:2015 §7.2.1_
+[.reference]_From ISO 19103:2015 §7.2.1_
 
-Each primitive type of the ISO/OGC specifications maps to zero, one or two object structures in GeoAPI.
+Each primitive type of the OGC/ISO specifications maps to zero, one or two object structures in GeoAPI.
 Where the mapping can be made directly to a programming language primitive type, such as `int` and `double`,
 the language primitive is preferred. However, when the value must be able to be set to `null`,
 the object wrapper of that primitive may be used in languages where "primitives" and "wrappers" are distinct.

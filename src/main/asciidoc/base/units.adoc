@@ -1,8 +1,8 @@
 [[uom]]
 === Units of measurement
-[.reference]_From ISO 19103:2015 §C.4_
+[.reference]_From ISO 19103:2015 §C.4_
 
-Measurements and their units are represented by two base classes defined in ISO 19103:
+Measurements and their units are represented by two base classes defined in ISO 19103:
 `Measure` for the result from performing the act of ascertaining the value of a characteristic of some entity,
 and `UnitOfMeasure` as a quantity adopted as a standard of measurement for other quantities of the same kind.
 Those two base classes have a parallel set of subtypes:
@@ -12,8 +12,8 @@ Those two base classes have a parallel set of subtypes:
 
 Some languages have a standard library for units of measurement.
 For example Java has standardized a set of quantity types in the JSR-363 standard.
-When such language-specific standard exists and provides equivalent functionality to ISO 19103, that external standard is used.
-Otherwise new types are defined following ISO 19103 definitions of units of measurement.
+When such language-specific standard exists and provides equivalent functionality to ISO 19103, that external standard is used.
+Otherwise new types are defined following ISO 19103 definitions of units of measurement.
 
 .Units of measurement mapping
 [options="header"]
@@ -43,10 +43,10 @@ Otherwise new types are defined following ISO 19103 definitions of units of meas
 
 .Parameterized units in Java
 ****
-The ISO 19103 `Measure` type is represented by the `Quantity` interface in the Java API defined by JSR-363.
-The Java standard defines various quantity subtypes in the same way than ISO 19103 does,
+The ISO 19103 `Measure` type is represented by the `Quantity` interface in the Java API defined by JSR-363.
+The Java standard defines various quantity subtypes in the same way than ISO 19103 does,
 often with the same names (`Angle`, `Length`, `Area`, `Volume` and `Time`).
-But contrarily to ISO 19103, JSR-363 does not define a parallel set of subtypes for units of measurement.
+But contrarily to ISO 19103, JSR-363 does not define a parallel set of subtypes for units of measurement.
 Instead, it defines only one unit type, `javax.measure.Unit<? extends Quantity>`, which is parametrized by the quantity type.
 For example instead of defining a `UomLength` subtype,
 developers use `Unit<Length>` to qualify the type of Unit or Measure being used.

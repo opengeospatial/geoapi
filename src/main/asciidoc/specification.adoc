@@ -4,7 +4,7 @@ Version 4.0, 2018-03-10: draft
 :description: A set of types and methods which can be used for the manipulation of geographic \
 information structured following the specifications adopted by the Technical Committee 211 of the \
 International Organization for Standardization (ISO) and by the Open Geospatial Consortium (OGC).
-:keywords: GeoAPI, programming, interface, geospatial, metadata, referencing, feature
+:keywords: GeoAPI, programming, Java, Python, interface, geospatial, metadata, referencing, feature
 :doctype:             book
 :encoding:            utf-8
 :lang:                en
@@ -77,14 +77,14 @@ and the library code able both to instantiate and operate on these data structur
 according to the rules required by the published API and by the ISO and OGC standards.
 
 This standard complements existing OGC standards by defining language specific layers of normalization.
-This standard does not replace the core standards developing the ISO/OGC abstract model but complements those documents
+This standard does not replace the core standards developing the OGC/ISO abstract model but complements those documents
 for developers by documenting the mapping of types and methods from the abstract model into some programming languages,
-providing standard interfaces in the `org.opengis` namespace and explaining the use of GeoAPI interfaces.
+providing standard interfaces in the `org.opengis` or `ogc` namespaces and explaining the use of GeoAPI interfaces.
 
 
 **Keywords**
 
-GeoAPI, programming, interface, geospatial, metadata, referencing, feature
+GeoAPI, programming, Java, Python, interface, geospatial, metadata, referencing, feature
 
 <<<
 
@@ -112,7 +112,7 @@ The standardization effort of GO-1 took a couple of years during which extensive
 Release 2.0 of GeoAPI was made at the time of the final publication of the GO-1 specification in 2005.
 GO-1 has been retired later, but a new working group has been formed in 2009 for continuing GeoAPI development
 with a more restricted scope: to provide interfaces for existing OGC standards only, without defining new conceptual models.
-GeoAPI 3.0 as been released in 2011 and 3.0.1 in 2017.
+GeoAPI 3.0 has been released in 2011 and 3.0.1 in 2017.
 
 The GeoAPI documentation completed by the
 <<conformance>> (Conformance),
