@@ -100,7 +100,7 @@ class OperationChainMetadata(ABC):
 
 
 from ogc.metadata.naming import ScopedName, GenericName
-from ogc.metadata.identification import DataIdentification
+from ogc.metadata.identification import DataIdentification, Identification
 
 class CoupledResource(ABC):
     """Links a given operationName (mandatory attribute of SV_OperationMetadata) with a data set identified by an 'identifier'."""

@@ -511,24 +511,30 @@ public final strictfp class JavaToPython extends SourceGenerator {
                  * (e.g. "satisifiedPlan" instead of "satisfiedPlan") or extra properties not in abstract specification.
                  */
                 case INTERFACES: {
-                    final Property[] props = listProperties(type, module, definition);
+                    String parent = "ABC";
                     boolean hasDependencies = false;
+                    for (final Class<?> parentType : type.getInterfaces()) {
+                        final String pythonType = nameOf(parentType);
+                        if (pythonType != null) {
+                            parent = pythonType;
+                            final QName parentName = namespaces.name(parentType, schema.getTypeDefinition(parentType));
+                            if (parentName != null) {
+                                final String parentModule = parentName.getNamespaceURI();
+                                if (!module.equals(parentModule)) {
+                                    hasDependencies |= addImport(parentModule, parentType, content, lineSeparator);
+                                }
+                            }
+                            break;              // No multi-inheritence expected. The first type should be the main one.
+                        }
+                    }
+                    final Property[] props = listProperties(type, module, definition);
                     for (final Property property : props) {
                         if (property.importFrom != null) {
                             hasDependencies |= addImport(property.importFrom, property.javaType, content, lineSeparator);
                         }
                     }
                     if (hasDependencies) content.append(lineSeparator);
-                    content.append("class ").append(typeName).append('(');
-                    String parent = "ABC";
-                    for (final Class<?> javaType : type.getInterfaces()) {
-                        final String pythonType = nameOf(javaType);
-                        if (pythonType != null) {
-                            parent = pythonType;
-                            break;              // No multi-inheritence expected. The first type should be the main one.
-                        }
-                    }
-                    content.append(parent).append("):").append(lineSeparator);
+                    content.append("class ").append(typeName).append('(').append(parent).append("):").append(lineSeparator);
                     boolean hasBody = (props.length != 0);
                     if (definition != null) {
                         hasBody |= appendDocumentation(definition.get(null), content, 1, lineSeparator);
