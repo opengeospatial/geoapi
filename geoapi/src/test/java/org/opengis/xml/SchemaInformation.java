@@ -41,6 +41,8 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.ArrayDeque;
 import java.util.Objects;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -74,6 +76,11 @@ import org.opengis.annotation.Stereotype;
  * @version 3.1
  */
 public class SchemaInformation {
+    /**
+     * The logger to use for reporting download operations.
+     */
+    private static final Logger LOGGER = Logger.getLogger("org.opengis.xml");
+
     /**
      * The root of ISO schemas and namespaces, which is {@value}.
      */
@@ -111,7 +118,7 @@ public class SchemaInformation {
 
     /**
      * If the computer contains a local copy of ISO schemas, path to that directory. Otherwise {@code null}.
-     * If non-null, the {@code "http://standards.iso.org/iso/"} prefix in URL will be replaced by that path.
+     * If non-null, the {@value #ROOT_NAMESPACE} prefix in URL will be replaced by that path.
      * This field is usually {@code null}, but can be set to a non-null value for making tests faster.
      */
     private final Path schemaRootDirectory;
@@ -246,7 +253,7 @@ public class SchemaInformation {
      * Creates a new verifier. If the computer contains a local copy of ISO schemas, then the {@code schemaRootDirectory}
      * argument can be set to that directory for faster schema loadings. If non-null, that directory should contain the
      * same files than <a href="http://standards.iso.org/iso/">http://standards.iso.org/iso/</a> (not necessarily with all
-     * sub-directories). In particular, than directory should contain a {@code 19115} sub-directory.
+     * sub-directories). In particular, that directory should contain an {@code 19115} sub-directory.
      *
      * <p>The {@link Departures#mergedTypes} entries will be {@linkplain Map#remove removed} as they are found.
      * This allows the caller to verify if the map contains any unnecessary departure declarations.</p>
@@ -379,6 +386,9 @@ public class SchemaInformation {
             location = schemaRootDirectory.resolve(location.substring(ROOT_NAMESPACE.length())).toUri().toString();
         }
         if (!schemaLocations.contains(location)) {
+            if (location.startsWith("http")) {
+                LOGGER.log(Level.INFO, "Downloading {0}", location);
+            }
             final Document doc;
             try (final InputStream in = new URL(location).openStream()) {
                 doc = factory.newDocumentBuilder().parse(in);

@@ -36,6 +36,7 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.logging.Logger;
 
 import static org.junit.Assert.*;
 
@@ -50,6 +51,11 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 public abstract strictfp class SourceGenerator {
+    /**
+     * The logger to use for reporting file creations.
+     */
+    protected static final Logger LOGGER = Logger.getLogger("org.opengis.geoapi");
+
     /**
      * Suffix of compiled class files.
      */

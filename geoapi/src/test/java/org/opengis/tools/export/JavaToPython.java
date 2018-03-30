@@ -39,11 +39,13 @@ import java.util.LinkedHashMap;
 import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.util.logging.Level;
 import java.math.BigInteger;
 import java.lang.reflect.Method;
 import java.io.Writer;
 import java.io.IOException;
-import java.io.FileOutputStream;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 import java.io.OutputStreamWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -61,6 +63,7 @@ import org.opengis.xml.DocumentationStyle;
 import org.opengis.xml.SchemaInformation;
 import org.opengis.xml.SchemaException;
 import org.xml.sax.SAXException;
+import org.junit.Test;
 
 import static java.util.Collections.singletonMap;
 import static org.junit.Assert.*;
@@ -76,7 +79,7 @@ import static org.junit.Assert.*;
  * @since   3.1
  * @version 3.1
  */
-public final strictfp class JavaToPython extends SourceGenerator {
+strictfp class JavaToPython extends SourceGenerator {
     /**
      * Suffix of Python files.
      */
@@ -86,6 +89,11 @@ public final strictfp class JavaToPython extends SourceGenerator {
      * The character encoding to use for reading and writing Python files.
      */
     private static final String ENCODING = "UTF-8";
+
+    /**
+     * The line separator to use for the Python files to create.
+     */
+    private final String lineSeparator;
 
     /**
      * The current year, for formatting the Copyright header.
@@ -181,11 +189,11 @@ public final strictfp class JavaToPython extends SourceGenerator {
     }
 
     /**
-     * Creates a new Python class writer. If the computer contains a local copy of ISO schemas, then
-     * the {@code schemaRootDirectory} argument can be set to that directory for faster schema loadings.
+     * Creates a new Python classes writer or verifier. If the computer contains a local copy of ISO schemas,
+     * then the {@code schemaRootDirectory} argument can be set to that directory for faster schema loadings.
      * If non-null, that directory should contain the same files than
      * <a href="http://standards.iso.org/iso/">http://standards.iso.org/iso/</a> (not necessarily with
-     * all sub-directories). In particular, than directory should contain a {@code 19115} sub-directory.
+     * all sub-directories). In particular, that directory should contain an {@code 19115} sub-directory.
      *
      * @param  schemaRootDirectory  path to local copy of ISO schemas, or {@code null} if none.
      * @throws ParserConfigurationException if the XML parser can not be created.
@@ -193,9 +201,10 @@ public final strictfp class JavaToPython extends SourceGenerator {
      * @throws SAXException    if a file can not be parsed as a XML document.
      * @throws SchemaException if a XML document can not be interpreted as an OGC/ISO schema.
      */
-    public JavaToPython(final Path schemaRootDirectory)
+    JavaToPython(final Path schemaRootDirectory)
             throws ParserConfigurationException, IOException, SAXException, SchemaException
     {
+        lineSeparator  = System.lineSeparator();
         currentYear    = new GregorianCalendar().get(GregorianCalendar.YEAR);
         contents       = new LinkedHashMap<>(40);
         properties     = new HashMap<>(30);
@@ -374,7 +383,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
 
     /**
      * Adds a {@code "from module import Type"} statement in the given {@code StringBuilder}, if not already present.
-     * This method assumes that the given {@code content} buffer uses only the given {@code lineSeparator} and that
+     * This method assumes that the given {@code content} buffer uses only the {@link #lineSeparator} value and that
      * import statements appear at the beginning of a new line. Import statements may occur on any line in the file,
      * not necessarily at the beginning, because the imported file may have a circular dependency to the types already
      * defined in the importing file.
@@ -382,7 +391,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
      * @return {@code true} if an import statement has been added. If an existing import statement has been modified,
      *         or if there is no change at all, then this method returns {@code false}.
      */
-    private boolean addImport(String module, final Class<?> type, final StringBuilder content, final String lineSeparator) {
+    private boolean addImport(String module, final Class<?> type, final StringBuilder content) {
         if (!module.equals(module = module.replace('/', '.'))) {
             module = "ogc." + module;
         }
@@ -429,7 +438,6 @@ public final strictfp class JavaToPython extends SourceGenerator {
      * The contents are stored in the {@link #contents} map.
      */
     private void createContent(final Content category) {
-        final String lineSeparator = System.lineSeparator();
         for (final Class<?> type : category.types()) {
             /*
              * Skip deprecated types (e.g. types from legacy ISO 19115:2003 specification)
@@ -500,8 +508,10 @@ public final strictfp class JavaToPython extends SourceGenerator {
                     content.append("class ").append(typeName).append("(Enum):").append(lineSeparator);
                     for (int i=0; i<values.length; i++) {
                         final ControlledVocabulary item = (ControlledVocabulary) values[i];
-                        indent(content, 1).append(item.name()).append(" = \"")
-                                          .append(item.identifier()).append('"').append(lineSeparator);
+                        final String id = item.identifier();
+                        if (id != null) {
+                            indent(content, 1).append(item.name()).append(" = \"").append(id).append('"').append(lineSeparator);
+                        }
                     }
                     break;
                 }
@@ -521,7 +531,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
                             if (parentName != null) {
                                 final String parentModule = parentName.getNamespaceURI();
                                 if (!module.equals(parentModule)) {
-                                    hasDependencies |= addImport(parentModule, parentType, content, lineSeparator);
+                                    hasDependencies |= addImport(parentModule, parentType, content);
                                 }
                             }
                             break;              // No multi-inheritence expected. The first type should be the main one.
@@ -530,14 +540,14 @@ public final strictfp class JavaToPython extends SourceGenerator {
                     final Property[] props = listProperties(type, module, definition);
                     for (final Property property : props) {
                         if (property.importFrom != null) {
-                            hasDependencies |= addImport(property.importFrom, property.javaType, content, lineSeparator);
+                            hasDependencies |= addImport(property.importFrom, property.javaType, content);
                         }
                     }
                     if (hasDependencies) content.append(lineSeparator);
                     content.append("class ").append(typeName).append('(').append(parent).append("):").append(lineSeparator);
                     boolean hasBody = (props.length != 0);
                     if (definition != null) {
-                        hasBody |= appendDocumentation(definition.get(null), content, 1, lineSeparator);
+                        hasBody |= appendDocumentation(definition.get(null), content, 1);
                     }
                     /*
                      * Declare properties with "@abstractproperty" for mandatory properties, and "@property" for optional ones.
@@ -563,7 +573,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
                         }
                         content.append(':').append(lineSeparator);
                         if (definition != null) {
-                            appendDocumentation(definition.get(property.name), content, 2, lineSeparator);
+                            appendDocumentation(definition.get(property.name), content, 2);
                         }
                         indent(content, 2).append(implementation).append(lineSeparator);
                     }
@@ -606,9 +616,7 @@ public final strictfp class JavaToPython extends SourceGenerator {
      * @param  level    the indentation level to use (1 or 2).
      * @return whether a documentation has been written.
      */
-    private static boolean appendDocumentation(final SchemaInformation.Element element,
-            final StringBuilder content, final int level, final String lineSeparator)
-    {
+    private boolean appendDocumentation(final SchemaInformation.Element element, final StringBuilder content, final int level) {
         if (element != null) {
             final String doc = element.documentation;
             if (doc != null) {
@@ -621,10 +629,12 @@ public final strictfp class JavaToPython extends SourceGenerator {
 
     /**
      * Verifies existing source Python files against expected content, or writes missing source files.
+     * The actual files shall contain at least all expected non-empty lines, but may contain more lines
+     * for example if comments have been manually added.
      *
      * @throws IOException if an error occurred while reading or writing the files.
      */
-    @SuppressWarnings("UseOfSystemOutOrSystemErr")
+    @Test
     public void verifyOrCreateSourceFiles() throws IOException {
         createContent();
         final Path dir = sourceDirectory("python").resolve("ogc");
@@ -632,16 +642,49 @@ public final strictfp class JavaToPython extends SourceGenerator {
         for (final String path : modules) {
             final StringBuilder content = contents.remove(path);
             if (content == null) {
-                fail("No content found for \"" + path + "\" prefix.");
+                fail(String.format("No content found for \"%s\" prefix.", path));
                 continue;
             }
             final Path file = dir.resolve(path + FILE_SUFFIX);
             if (Files.exists(file)) {
-                // TODO: verify file content.
-            }
-            // We do not use Files.newBufferedWriter(Path) because buffering is useless in this case.
-            try (Writer out = new OutputStreamWriter(new FileOutputStream(file.toFile()), ENCODING)) {
-                out.append(content);
+                /*
+                 * Python file exist: compare all expected lines with the actual lines read from the file.
+                 * This block does not write anything; if the comparison does not match, we fail the test.
+                 */
+                try (LineNumberReader in = new LineNumberReader(new InputStreamReader(Files.newInputStream(file), ENCODING))) {
+                    int startExpected = 0, endExpected;
+                    while ((endExpected = content.indexOf(lineSeparator, startExpected)) >= 0) {
+                        if (endExpected > startExpected) {
+                            final String expected = content.substring(startExpected, endExpected);
+                            String firstLine = null;
+                            int lineNumber = 0;
+                            for (String line; !expected.equals(line = in.readLine());) {
+                                if (line == null) {
+                                    fail(String.format("Unexpected content at line %d of file %s%n" +
+                                            "Expected: %s%nActual:   %s%n", lineNumber, file, expected,
+                                            (firstLine != null) ? firstLine : "<end of file>"));
+                                    break;
+                                }
+                                if (!line.isEmpty()) {
+                                    if (firstLine == null) {
+                                        firstLine = line;
+                                        lineNumber = in.getLineNumber();
+                                    }
+                                }
+                            }
+                        }
+                        startExpected = endExpected + lineSeparator.length();
+                    }
+                }
+            } else {
+                /*
+                 * Python file does not exist: write it.
+                 * Note: we do not use Files.newBufferedWriter(Path) because buffering is useless in this case.
+                 */
+                LOGGER.log(Level.INFO, "Writing {0}", file);
+                try (Writer out = new OutputStreamWriter(Files.newOutputStream(file), ENCODING)) {
+                    out.append(content);
+                }
             }
         }
         if (!keywords.isEmpty()) {
@@ -650,13 +693,5 @@ public final strictfp class JavaToPython extends SourceGenerator {
         if (!contents.isEmpty()) {
             fail("No Python modules created for " + contents.keySet());
         }
-    }
-
-    /**
-     * For testing purpose only.
-     */
-    public static void main(String[] args) throws Exception {
-        JavaToPython generator = new JavaToPython(null);
-        generator.verifyOrCreateSourceFiles();
     }
 }
