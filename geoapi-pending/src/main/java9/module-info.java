@@ -35,8 +35,7 @@ module org.opengis.geoapi.pending {
      * Bellow is a copy-and-paste of geoapi module information,
      * with some additional exports at the bottom.
      */
-    requires unit.api;                          // To be replaced by next line when it will become a named module.
-//  requires transitive java.measure;
+    requires transitive java.measure;
     requires transitive static java.desktop;
 
     exports org.opengis.annotation;

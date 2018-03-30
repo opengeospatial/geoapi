@@ -39,7 +39,6 @@ import java.util.LinkedHashMap;
 import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
-import java.util.logging.Level;
 import java.math.BigInteger;
 import java.lang.reflect.Method;
 import java.io.Writer;
@@ -681,7 +680,7 @@ strictfp class JavaToPython extends SourceGenerator {
                  * Python file does not exist: write it.
                  * Note: we do not use Files.newBufferedWriter(Path) because buffering is useless in this case.
                  */
-                LOGGER.log(Level.INFO, "Writing {0}", file);
+                info("Writing " + file);
                 try (Writer out = new OutputStreamWriter(Files.newOutputStream(file), ENCODING)) {
                     out.append(content);
                 }

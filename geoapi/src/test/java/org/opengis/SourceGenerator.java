@@ -36,7 +36,6 @@ import java.net.URISyntaxException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
-import java.util.logging.Logger;
 
 import static org.junit.Assert.*;
 
@@ -51,11 +50,6 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 public abstract strictfp class SourceGenerator {
-    /**
-     * The logger to use for reporting file creations.
-     */
-    protected static final Logger LOGGER = Logger.getLogger("org.opengis.geoapi");
-
     /**
      * Suffix of compiled class files.
      */
@@ -177,5 +171,16 @@ public abstract strictfp class SourceGenerator {
         dir = dir.resolve("src").resolve("main").resolve(language);
         assertTrue("Not a directory.", Files.isDirectory(dir));
         return dir;
+    }
+
+    /**
+     * Prints the given message to standard output stream.
+     * This method is used instead of logging for reporting creation of new files.
+     *
+     * @param  message  the message to print.
+     */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
+    protected static void info(final String message) {
+        System.out.println("[GeoAPI] " + message);
     }
 }

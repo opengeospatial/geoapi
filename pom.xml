@@ -106,6 +106,7 @@
     <skipNativeLibraryTests>true</skipNativeLibraryTests>
     <java.platform>7</java.platform>                            <!-- Same than the version required by JSR-363. -->
     <future.source>module-info.java</future.source>             <!-- To exclude when JDK9 profile is not enabled. -->
+    <unit.api.version>1.0</unit.api.version>                    <!-- To be removed when version 2.0 will be final. -->
   </properties>
   <profiles>
     <profile>
@@ -118,6 +119,7 @@
       <properties>
         <java.platform>9</java.platform>
         <future.source>(none)</future.source>
+        <unit.api.version>2.0-SNAPSHOT</unit.api.version>       <!-- Property to be removed after Unit API 2 release. -->
       </properties>
       <build>
         <plugins>
@@ -198,7 +200,7 @@
       <dependency>
         <groupId>javax.measure</groupId>
         <artifactId>unit-api</artifactId>
-        <version>1.0</version>
+        <version>${unit.api.version}</version>
       </dependency>
       <dependency>
         <groupId>tec.units</groupId>

@@ -41,8 +41,6 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.ArrayDeque;
 import java.util.Objects;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javax.xml.XMLConstants;
 import javax.xml.parsers.DocumentBuilderFactory;
 import javax.xml.parsers.ParserConfigurationException;
@@ -76,11 +74,6 @@ import org.opengis.annotation.Stereotype;
  * @version 3.1
  */
 public class SchemaInformation {
-    /**
-     * The logger to use for reporting download operations.
-     */
-    private static final Logger LOGGER = Logger.getLogger("org.opengis.xml");
-
     /**
      * The root of ISO schemas and namespaces, which is {@value}.
      */
@@ -387,7 +380,7 @@ public class SchemaInformation {
         }
         if (!schemaLocations.contains(location)) {
             if (location.startsWith("http")) {
-                LOGGER.log(Level.INFO, "Downloading {0}", location);
+                info("Downloading " + location);
             }
             final Document doc;
             try (final InputStream in = new URL(location).openStream()) {
@@ -723,5 +716,16 @@ public class SchemaInformation {
             }
         }
         return null;
+    }
+
+    /**
+     * Prints the given message to standard output stream.
+     * This method is used instead of logging for reporting downloading of schemas.
+     *
+     * @param  message  the message to print.
+     */
+    @SuppressWarnings("UseOfSystemOutOrSystemErr")
+    private static void info(final String message) {
+        System.out.println("[GeoAPI] " + message);
     }
 }
