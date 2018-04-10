@@ -291,11 +291,8 @@ void convertAngularOrdinates(PJ *pj, double* data, jint numPts, int dimension, d
     if (pj_is_latlong(pj)) {
         // Convert only the 2 first ordinates and skip all the other dimensions.
         dimToSkip = dimension - 2;
-    } else if (pj_is_geocent(pj)) {
-        // Convert only the 3 first ordinates and skip all the other dimensions.
-        dimToSkip = dimension - 3;
     } else {
-        // Not a geographic or geocentric CRS: nothing to convert.
+        // Not a geographic CRS: nothing to convert.
         return;
     }
     double *stop = data + dimension*numPts;
