@@ -532,13 +532,8 @@
               <report>license</report>
               <report>scm</report>
               <report>cim</report>
-              <report>project-team</report>
               <report>mailing-list</report>
               <report>issue-tracking</report>
-              <report>dependencies</report>
-              <report>dependency-convergence</report>
-              <report>dependency-management</report>
-              <report>plugin-management</report>
             </reports>
           </reportSet>
         </reportSets>
@@ -604,12 +599,12 @@
           <detectJavaApiLink>false</detectJavaApiLink>
           <links>
             <link>http://docs.oracle.com/javase/8/docs/api/</link>
-            <link>http://docs.oracle.com/javaee/7/api/</link> <!-- For InternationalString link. -->
+            <link>http://docs.oracle.com/javaee/7/api/</link>                                       <!-- For InternationalString link. -->
             <link>http://download.java.net/media/java3d/javadoc/1.5.2/</link>
             <link>http://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/</link>
             <link>http://junit.org/javadoc/latest/</link>
-            <link>http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/javadoc/</link> <!-- Used by example code. -->
-            <link>http://www.geoapi.org/snapshot/javadoc/</link> <!-- For modules that depend on GeoAPI. -->
+            <link>http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/javadoc/</link>  <!-- Used by example code. -->
+            <link>http://www.geoapi.org/snapshot/javadoc/</link>                                    <!-- For modules that depend on GeoAPI. -->
           </links>
 
           <!-- Separates packages on the overview page into the groups specified.
