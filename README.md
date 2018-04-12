@@ -1,3 +1,5 @@
+# GeoAPI interfaces for OGC/ISO conceptual models
+
 GeoAPI provides a set of Java and Python language programming interfaces for geospatial applications.
 The interfaces developed by the GeoAPI project include data structures and manipulation methods needed
 for geographic information system applications. The GeoAPI interfaces closely follow the abstract model
@@ -17,7 +19,7 @@ and "master" for GeoAPI 4.0. The main sub-directories are:
 * Other directories are examples, including netCDF and Proj.4 bindings.
 
 
-# How to build
+## How to build
 
 **Python interfaces** are located in the `geoapi/src/main/python` sub-directory
 and do not need to be built.
