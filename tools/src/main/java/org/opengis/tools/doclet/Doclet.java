@@ -276,7 +276,7 @@ public final class Doclet extends StandardDoclet {
     private static void copyResources(final File inputDirectory, final File outputDirectory) throws IOException {
         final File[] inputFiles = inputDirectory.listFiles((final File dir, final String name) ->
                 !name.startsWith(".") &&
-                !name.equals("README.txt") &&
+                !name.equals("README.md") &&
                 !name.equals("overview.html") &&
                 !name.equals(STYLESHEET));
         final byte[] buffer = new byte[4096];

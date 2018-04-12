@@ -7,4 +7,4 @@ required for running them:
   in a single location. To generate the bundle file, just invoke the "pack.sh"
   script from any directory after a successful Maven build.
 
-For more information, see http://www.geoapi.org/tools/.
+For more information, see the http://www.geoapi.org/tools/index.html page.
