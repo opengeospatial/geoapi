@@ -155,7 +155,7 @@ public final strictfp class ClassIndexTest extends SourceGenerator {
         if (in != null) {
             final String actual = load(in);
             assertEquals("The content of the \"" + INDEX_FILENAME + "\" file is different from " +
-                         "the content found be scanning the compiled classes.", index, actual);
+                         "the content found by scanning the compiled classes.", index, actual);
         } else {
             final String reason = save(index);
             if (reason != null) {
