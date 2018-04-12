@@ -25,11 +25,9 @@
   <packaging>jar</packaging>
   <name>GeoAPI normative</name>
   <description>
-<!-- Left alignment because this description will be copied in META-INF/MANIFEST.MF
-     The leading space after the first line is necessary for proper formatting. -->
-The development community in building GIS solutions is sustaining an enormous level
- of effort. The GeoAPI project aims to reduce duplication and increase interoperability
- by providing neutral, interface-only APIs derived from OGC/ISO Standards.
+    The development community in building GIS solutions is sustaining an enormous level
+    of effort. The GeoAPI project aims to reduce duplication and increase interoperability
+    by providing neutral, interface-only APIs derived from OGC/ISO Standards.
   </description>
 
 
@@ -127,7 +125,7 @@ The development community in building GIS solutions is sustaining an enormous le
 
 
   <!-- ====================================================
-           Compilation and Packaging (OSGi bundle)
+           Compilation and Packaging
        ==================================================== -->
   <build>
     <plugins>
@@ -146,19 +144,6 @@ The development community in building GIS solutions is sustaining an enormous le
             </configuration>
           </execution>
         </executions>
-      </plugin>
-
-      <!-- OSGi. -->
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Bundle-Name>GeoAPI</Bundle-Name>
-            <Bundle-DocURL>http://www.geoapi.org</Bundle-DocURL>
-          </instructions>
-        </configuration>
       </plugin>
 
       <!-- Anticipation for Java 9. -->
