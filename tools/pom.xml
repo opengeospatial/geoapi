@@ -22,7 +22,6 @@
        ==================================================== -->
   <groupId>org.opengis</groupId>
   <artifactId>tools</artifactId>
-  <packaging>jar</packaging>
   <name>Processing tools</name>
   <description>
     Javadoc taglets and annotation processing tools for processing GeoAPI

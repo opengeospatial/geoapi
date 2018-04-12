@@ -22,7 +22,6 @@
        ==================================================== -->
   <groupId>org.opengis</groupId>
   <artifactId>geoapi</artifactId>
-  <packaging>jar</packaging>
   <name>GeoAPI normative</name>
   <description>
     The development community in building GIS solutions is sustaining an enormous level
