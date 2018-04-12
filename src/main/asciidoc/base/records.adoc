@@ -1,0 +1,25 @@
+[[records]]
+=== Record types
+[.reference]_From ISO 19103:2015 §7.7_
+
+Records define new data type as an heterogeneous aggregation of component data types.
+Each data component is identified by a `MemberName` and has exactly one value per record.
+
+.Record types mapping
+[options="header"]
+|=============================================================
+|ISO 19103 type |Java type                        |Python type
+|`Schema`       | Unimplemented                   |
+|`Any`          | `java.lang.Object`              |
+|`Type`         | `org.opengis.util.Type`         |
+|`RecordSchema` | `org.opengis.util.RecordSchema` |
+|`Record`       | `org.opengis.util.Record`       |
+|`RecordType`   | `org.opengis.util.RecordType`   |
+|`Field`        |                                 |
+|`FieldType`    |                                 |
+|=============================================================
+
+NOTE: `Record` and `RecordType` have some similarities with `Feature` and `FeatureType` respectively
+      but without multi-occurrence, associations, operations and type inheritance.
+      If we push the comparison with features further,
+      record `Field` and `FieldType` are similar to feature `Attribute` and `AttributeType` respectively.

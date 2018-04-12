@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2005-2017 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2005-2018 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -252,7 +252,7 @@ public enum Specification {
     ISO_19112((short) 2003),
 
     /**
-     * ISO 19115-1, Metadata
+     * ISO 19115-1, Metadata part 1: fundamentals
      * (<a href="http://www.opengeospatial.org/standards/as">OGC Topic 11</a>).
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
      *

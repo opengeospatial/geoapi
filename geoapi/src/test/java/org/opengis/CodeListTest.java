@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2007-2017 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2007-2018 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -42,89 +42,23 @@ import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.EOFException;
 import java.io.IOException;
-
-import org.opengis.metadata.*;
-import org.opengis.metadata.acquisition.*;
-import org.opengis.metadata.citation.*;
-import org.opengis.metadata.constraint.*;
-import org.opengis.metadata.content.*;
-import org.opengis.metadata.distribution.*;
-import org.opengis.metadata.identification.*;
-import org.opengis.metadata.maintenance.*;
-import org.opengis.metadata.quality.*;
-import org.opengis.metadata.spatial.*;
-import org.opengis.referencing.*;
-import org.opengis.referencing.cs.*;
-import org.opengis.referencing.datum.*;
-import org.opengis.parameter.ParameterDirection;
-import org.opengis.annotation.Obligation;
-
-import org.junit.Test;
 import org.opengis.util.CodeList;
 import org.opengis.util.ControlledVocabulary;
+import org.opengis.metadata.constraint.Restriction;
+import org.opengis.metadata.identification.CharacterSet;
+import org.junit.Test;
+
 import static org.junit.Assert.*;
 
 
 /**
- * Tests every {@link CodeList}.
- * This class can also opportunistically tests some enumerations.
+ * Tests every {@link CodeList} types and (opportunistically) some enumerations.
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   2.0
  */
 public final strictfp class CodeListTest {
-    /**
-     * All code lists to be tested.
-     */
-    @SuppressWarnings("deprecation")
-    private static final Class<?>[] CODE_LISTS = {
-        AssociationType          .class,
-        AxisDirection            .class,
-        BandDefinition           .class,
-        CellGeometry             .class,
-        CharacterSet             .class,
-        Classification           .class,
-        Context                  .class,
-        CoverageContentType      .class,
-        Datatype                 .class,
-        DateType                 .class,
-        DimensionNameType        .class,
-        EvaluationMethodType     .class,
-        GeometricObjectType      .class,
-        GeometryType             .class,
-        ImagingCondition         .class,
-        InitiativeType           .class,
-        KeywordType              .class,
-        MaintenanceFrequency     .class,
-        MediumFormat             .class,
-        MediumName               .class,
-        ObjectiveType            .class,
-        Obligation               .class,
-        OnLineFunction           .class,
-        OperationType            .class,
-        ParameterDirection       .class,
-        PixelInCell              .class,
-        PixelOrientation         .class,
-        PolarizationOrientation  .class,
-        PresentationForm         .class,
-        Priority                 .class,
-        Progress                 .class,
-        RangeMeaning             .class,
-        ReferenceSystemType      .class,
-        Restriction              .class,
-        Role                     .class,
-        ScopeCode                .class,
-        Sequence                 .class,
-        SpatialRepresentationType.class,
-        TelephoneType            .class,
-        TopicCategory            .class,
-        TopologyLevel            .class,
-        TransferFunctionType     .class,
-        Trigger                  .class,
-        VerticalDatumType        .class
-    };
-
     /**
      * The root directory of Java source code, or {@code null} if unspecified.
      */
@@ -166,8 +100,8 @@ public final strictfp class CodeListTest {
     }
 
     /**
-     * Tests every code lists. This method ensures that the a {@code values()} and {@code family()}
-     * method is defined for each code list, and verify each declared code lists.
+     * Tests the common methods in every code lists. This method ensures that the a {@code values()} and {@code family()}
+     * methods are defined for each code list, and verifies each declared code lists.
      *
      * @throws NoSuchFieldException      if a {@code CodeList} or an {@code Enum} constant can not be found.
      * @throws NoSuchMethodException     if a {@code values()} or {@code valueOf(String)} method is not found.
@@ -176,12 +110,11 @@ public final strictfp class CodeListTest {
      * @throws IOException               if an error occurred while reading source code.
      */
     @Test
-    @SuppressWarnings("UseOfSystemOutOrSystemErr")
     public void testAll() throws NoSuchFieldException, NoSuchMethodException,
             IllegalAccessException, InvocationTargetException, IOException
     {
         sourceDirectory = System.getProperty("maven.source.directory");
-        for (final Class<?> codeClass : CODE_LISTS) {
+        for (final Class<?> codeClass : Content.CONTROLLED_VOCABULARY.types()) {
             /*
              * Gets the values() method, which should public and static.
              * Then gets every CodeList instances returned by values().

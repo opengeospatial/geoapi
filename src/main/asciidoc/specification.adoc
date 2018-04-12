@@ -1,0 +1,181 @@
+= OGC GeoAPI
+Open_Geospatial_Consortium
+Version 4.0, 2018-03-10: draft
+:description: A set of types and methods which can be used for the manipulation of geographic \
+information structured following the specifications adopted by the Technical Committee 211 of the \
+International Organization for Standardization (ISO) and by the Open Geospatial Consortium (OGC).
+:keywords: GeoAPI, programming, Java, Python, interface, geospatial, metadata, referencing, feature
+:doctype:             book
+:encoding:            utf-8
+:lang:                en
+:toc:                 left
+:toclevels:           3
+:sectids!:
+:sectnums:
+:xrefstyle:           short
+:attribute-missing:   warn
+:source-highlighter:  coderay
+:icons:               font
+:docinfo:             shared-head
+:supported-languages: Java and Python
+
+////
+Comment for editors: AsciiDoctor syntax is described at https://asciidoctor.org/docs/user-manual.
+No blank line shall appear in above header (a blank line marks the end of header).
+Some constructs used in this document are:
+
+    :foo:       Set an attribute value. Can be referenced in the document as {foo}.
+    [foo]       Style to apply on a section (abstract, etc).
+    [[foo]]     Anchor ID, defined manually for stability (automatic IDs are disabled by sectids!).
+    == foo      Title of level 1. Use === for level 2, ==== for level 3, etc. up to level 5.
+    .foo        Title associated to a paragraph, list, table or figure. Must be above the element.
+    foo +       Line break (+ must be at the end of line).
+    <<<         Page break.
+
+Block (must start and end with the same sequence of characters):
+
+    ----        Source code.
+    ****        Aside text and content displayed outside the flow of the document.
+
+Around words:
+
+    *foo*       Format "foo" in bold characters.
+    _foo_       Format "foo" in italic characters.
+    `foo`       Format "foo" with monospaced font.
+////
+
+[.text-right]
+Submission Date:  TBD +
+Approval Date:    TBD +
+Publication Date: TBD +
+Identifier of this OGC^®^ document: TBD +
+URL for this OGC^®^ document: TBD +
+Version: {revnumber} +
+Category: OGC^®^ specification +
+Editor: Martin Desruisseaux +
+Previous Version: 3.0 +
+
+Copyright © 2009-2018 Open Geospatial Consortium. +
+To obtain additional rights of use, visit http://www.opengeospatial.org/legal/[http://www.opengeospatial.org/legal/]
+
+WARNING: This document is not an OGC Standard.
+It is distributed for review and comment.
+It is subject to change without notice and may not be referred to as an OGC Standard.
+
+<<<
+
+**Abstract**
+
+The GeoAPI Implementation Standard defines application programming interfaces (API) in some programming languages
+(currently {supported-languages}) for geospatial applications.
+The API includes a set of types and methods which can be used for the manipulation of geographic information structured
+following the specifications adopted by the Technical Committee 211 of the International Organization for Standardization (ISO)
+and by the Open Geospatial Consortium (OGC).
+Those interfaces standardize the informatics contract between the client code,
+which manipulates normalized data structures of geographic information based on the published API,
+and the library code able both to instantiate and operate on these data structures
+according to the rules required by the published API and by the ISO and OGC standards.
+
+This standard complements existing OGC standards by defining language specific layers of normalization.
+This standard does not replace the core standards developing the OGC/ISO abstract model but complements those documents
+for developers by documenting the mapping of types and methods from the abstract model into some programming languages,
+providing standard interfaces in the `org.opengis` or `ogc` namespaces and explaining the use of GeoAPI interfaces.
+
+
+**Keywords**
+
+GeoAPI, programming, Java, Python, interface, geospatial, metadata, referencing, feature
+
+<<<
+
+[preface]
+[[preface]]
+== Preface
+
+This GeoAPI standard evolved from an effort at the Open Geospatial Consortium (OGC) and in the free software community
+focused on developing a library of interfaces defining a coherent data model for the manipulation of geospatial data
+based on the data model defined in the OGC Abstract Specifications.
+GeoAPI interfaces originates with the publication in January 2001 of the implementation specification
+OGC 01-009 _Coordinate Transformation Services_ Revision 1.00 (Martin Daly, ed.)
+which included a set of interfaces written in different programming languages and in the `org.opengis` namespace.
+The GeoAPI project started in 2003 as an effort from several contributors to develop a set of Java language interfaces
+which could be shared between several projects.
+The GeoAPI project subsequently considered the interfaces of OGC 01-009 as version 0.1 of GeoAPI
+and started working on GeoAPI 1.0 in collaboration with developers writing the OGC specification _Geographic Objects_.
+Subsequently, the Open Geospatial Consortium jettisoned its own Abstract Specifications and adopted,
+as the basis for further work, the standards developed by the Technical Committee 211 of the
+International Organization for Standardization (ISO) in its ISO 19100 series.
+The GeoAPI project therefore realigned its interfaces with those standards.
+In 2003, version 1.0 of GeoAPI interfaces was released to match the release of the first public draft
+of the implementation specification OGC 03-064 _GO-1 Application Objects_ Version 1.0 (Greg Reynolds, ed.).
+The standardization effort of GO-1 took a couple of years during which extensive work was made on GeoAPI interfaces.
+Release 2.0 of GeoAPI was made at the time of the final publication of the GO-1 specification in 2005.
+GO-1 has been retired later, but a new working group has been formed in 2009 for continuing GeoAPI development
+with a more restricted scope: to provide interfaces for existing OGC standards only, without defining new conceptual models.
+GeoAPI 3.0 has been released in 2011 and 3.0.1 in 2017.
+
+The GeoAPI documentation completed by the
+<<conformance>> (Conformance),
+<<java>> (Source Java Archives) and
+<<python>> (Source Python prototypes) are normative, while the
+<<content>> (Types and methods),
+<<examples>> (Examples),
+<<departures>> (Departures from ISO standards) and
+<<legacy>> (Comparison with legacy OGC specifications) are informative.
+
+The interfaces described in this standard follow directly, without introducing any new concepts,
+from the previously published standards of the Open Geospatial Consortium and the International Organization for Standardization.
+Nonetheless, __attention is drawn to the possibility that some of the elements of this document may be the subject of patent rights.
+The Open Geospatial Consortium Inc. shall not be held responsible for identifying any or all such patent rights.__
+
+__Recipients of this document are requested to submit, with their comments, notification of any relevant patent claims
+or other intellectual property rights of which they may be aware that might be infringed by any implementation of the
+standard set forth in this document, and to provide supporting documentation.__
+
+
+**Submitters of this document**
+
+All questions regarding this specification should be directed to the editor or the submitters:
+
+.Document contributors
+[options="header"]
+|===================================
+|Name                   |Affiliation
+|Martin Desruisseaux    |Geomatys
+|===================================
+
+<<<
+
+include::doc-info/introduction.adoc[]
+
+<<<
+
+include::base/overview.adoc[]
+
+<<<
+
+include::appendices/conformance.adoc[]
+
+<<<
+
+include::appendices/java.adoc[]
+
+<<<
+
+include::appendices/python.adoc[]
+
+<<<
+
+include::appendices/content.adoc[]
+
+<<<
+
+include::examples/index.adoc[]
+
+<<<
+
+include::appendices/departures.adoc[]
+
+<<<
+
+include::appendices/legacy.adoc[]

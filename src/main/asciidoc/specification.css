@@ -1,0 +1,52 @@
+/*
+ * This stylesheet is applied in addition to AsciiDoctor build-in CSS;
+ * it does not replace it. We need to declare in this file only the
+ * elements that we want to overwrite.
+ */
+
+/*
+ * Apply to information right below the title
+ * (submission date, approval date, etc.)
+ */
+#preamble > .sectionbody > .paragraph:first-of-type p {
+  font-size: 0.9em;
+}
+
+/*
+ * Add more space before headers.
+ */
+h2 {margin-top: 80px;}
+h3 {margin-top: 80px;}
+
+/*
+ * The "From ISO 19xxx:yyyy §#.#" reference below headers.
+ */
+em.reference {
+  top: -0.4em;
+  position: relative;
+  color: darkgoldenrod;
+}
+
+/*
+ * Main content.
+ */
+div.paragraph:not(.text-right) > p {
+  text-align: justify;
+}
+
+/*
+ * Images and their legends.
+ */
+div.imageblock > div.title,
+div.imageblock > div.content {
+  text-align: center;
+}
+
+/*
+ * Blocks specific to particular programming languages.
+ */
+div.sidebarblock > div.content > div.title {
+  text-align: left;
+  font-size: 1.4em;
+  color: black;
+}

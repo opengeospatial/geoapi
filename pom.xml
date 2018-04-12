@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- ====================================================
+<!-- =================================================================================
          Maven 2 project configuration file
          http://maven.apache.org/maven2/
-     ==================================================== -->
+
+         Build specification only:      mvn pre-site -N
+         Build development snapshot:    mvn clean install
+         Build with Proj.4 tests:       mvn install -DskipNativeLibraryTests=false
+         Publish a release:             mvn clean install deploy -Pgeoapi-release
+     ================================================================================= -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -12,9 +17,10 @@
 
 
 
-  <!-- ====================================================
-           Project description (including license)
-       ==================================================== -->
+  <!-- =================================================================================
+           Project description (license, mailing lists, issues management, etc).
+           Those descriptions appear in the web site published on www.geoapi.org.
+       ================================================================================= -->
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-parent</artifactId>
   <packaging>pom</packaging>
@@ -42,29 +48,115 @@
     </license>
   </licenses>
 
+  <scm>
+    <connection>scm:git:https://github.com/opengeospatial/geoapi</connection>
+    <url>https://github.com/opengeospatial/geoapi</url>
+  </scm>
+
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/opengeospatial/geoapi/issues</url>
+  </issueManagement>
+
+  <mailingLists>
+    <mailingList>
+      <name>GeoAPI Standard Working Group (OGC)</name>
+      <subscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</subscribe>
+      <unsubscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</unsubscribe>
+      <post>geoapi.swg@lists.opengeospatial.org</post>
+      <archive>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</archive>
+    </mailingList>
+  </mailingLists>
+
+  <developers>
+    <developer>
+      <name>GeoAPI contributors</name>
+      <organizationUrl>http://www.geoapi.org/</organizationUrl>
+      <roles>
+        <role>Java developers</role>
+      </roles>
+    </developer>
+    <developer>
+      <name>GeoAPI Standard Working Group</name>
+      <organization>Open Geospatial Consortium</organization>
+      <organizationUrl>http://www.opengeospatial.org/</organizationUrl>
+      <roles>
+        <role>Specification editors</role>
+      </roles>
+    </developer>
+  </developers>
 
 
-  <!-- ====================================================
-           Profiles and properties
 
-           If the Proj.4 native library is installed on the
-           local machine, then GeoAPI can be built as below:
+  <!-- =================================================================================
+           Profiles and properties controlling the build.
 
-           mvn install -DskipNativeLibraryTests=false
-       ==================================================== -->
+           The default configuration is used for building snapshots, in order to test
+           GeoAPI development by implementaters. For final releases by OGC staff, the
+           "geoapi-release" profile shall be activated like below:
+
+               mvn clean install deploy -Pgeoapi-release
+
+           Optionally, if the Proj.4 native library is installed on the local machine,
+           then GeoAPI can be built with the "-DskipNativeLibraryTests=false" option.
+       ================================================================================= -->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <website.encoding>UTF-8</website.encoding>
     <skipNativeLibraryTests>true</skipNativeLibraryTests>
+    <java.platform>7</java.platform>                            <!-- Same than the version required by JSR-363. -->
+    <future.source>module-info.java</future.source>             <!-- To exclude when JDK9 profile is not enabled. -->
+    <unit.api.version>1.0</unit.api.version>                    <!-- To be removed when version 2.0 will be final. -->
   </properties>
-
-  <!--
-    The default configuration is used for snapshot deployments,  in order to test GeoAPI
-    experimental features in an open source implementation. The "sign-artifacts" profile
-    shall be activated for all final releases by OGC staff.
-  -->
   <profiles>
     <profile>
+      <!--
+        Build as Java 9 modules (experimental). We provide the module-info.java file in
+        a separated director for avoiding to confuse IDEs, and for making easier to use
+        a different module-info.java file in geoapi-pending.
+      -->
+      <id>jdk9</id>
+      <properties>
+        <java.platform>9</java.platform>
+        <future.source>(none)</future.source>
+        <unit.api.version>2.0-SNAPSHOT</unit.api.version>       <!-- Property to be removed after Unit API 2 release. -->
+      </properties>
+      <repositories>
+        <repository>
+          <id>geotoolkit.org</id>                               <!-- Temporary repository for Unit API 2.0-SNAPSHOT. -->
+          <name>Geotoolkit.org repository</name>
+          <url>http://maven.geotoolkit.org</url>
+          <releases>
+            <enabled>false</enabled>
+          </releases>
+        </repository>
+      </repositories>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>build-helper-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>sources</id>
+                <goals>
+                  <goal>add-source</goal>
+                </goals>
+                <configuration>
+                  <sources>
+                    <source>src/main/java9</source>
+                  </sources>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <profile>
+      <!--
+        Official release: require signing the JAR files.
+      -->
       <id>geoapi-release</id>
       <build>
         <plugins>
@@ -94,63 +186,31 @@
 
 
 
-  <!-- ====================================================
-           Issue managements and mailing lists
-       ==================================================== -->
-  <scm>
-    <connection>scm:git:https://github.com/opengeospatial/geoapi</connection>
-    <url>https://github.com/opengeospatial/geoapi</url>
-  </scm>
+  <!-- =================================================================================
+           External dependencies used by GeoAPI or to be inherited by external projects
+           using GeoAPI.   The <dependencyManagement> section declares version numbers.
+           It is followed by a <dependencies> section listing the dependencies actually
+           required by the core of GeoAPI library; other dependencies are used only for
+           tests or examples.  External projects can inherit those version numbers with
+           the following fragment in their pom.xml file:
 
-  <issueManagement>
-    <system>GitHub</system>
-    <url>https://github.com/opengeospatial/geoapi/issues</url>
-  </issueManagement>
-
-  <mailingLists>
-    <mailingList>
-      <name>GeoAPI Standard Working Group (OGC)</name>
-      <subscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</subscribe>
-      <unsubscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</unsubscribe>
-      <post>geoapi.swg@lists.opengeospatial.org</post>
-      <archive>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</archive>
-    </mailingList>
-  </mailingLists>
-
-
-
-  <!-- ====================================================
-           Developers and contributors
-       ==================================================== -->
-  <developers>
-    <developer>
-      <name>GeoAPI contributors</name>
-      <organizationUrl>http://www.geoapi.org/</organizationUrl>
-      <roles>
-        <role>Java developers</role>
-      </roles>
-    </developer>
-    <developer>
-      <name>GeoAPI 3.0 Standard Working Group</name>
-      <organization>Open Geospatial Consortium</organization>
-      <organizationUrl>http://www.opengeospatial.org/</organizationUrl>
-      <roles>
-        <role>Specification editors</role>
-      </roles>
-    </developer>
-  </developers>
-
-
-
-  <!-- ====================================================
-           External dependencies
-       ==================================================== -->
+                <dependencyManagement>
+                  <dependencies>
+                    <dependency>
+                      <groupId>org.opengis</groupId>
+                      <artifactId>geoapi-parent</artifactId>
+                      <version>${geoapi.version}</version>
+                      <type>pom</type>
+                      <scope>import</scope>
+                    </dependency>
+                    ...
+       ================================================================================= -->
   <dependencyManagement>
     <dependencies>
       <dependency>
         <groupId>javax.measure</groupId>
         <artifactId>unit-api</artifactId>
-        <version>1.0</version>
+        <version>${unit.api.version}</version>
       </dependency>
       <dependency>
         <groupId>tec.units</groupId>
@@ -169,7 +229,6 @@
         <scope>test</scope>
       </dependency>
       <dependency>
-        <!-- The vecmath dependency is used only by demo modules. -->
         <groupId>javax.vecmath</groupId>
         <artifactId>vecmath</artifactId>
         <version>1.5.2</version>
@@ -177,6 +236,7 @@
     </dependencies>
   </dependencyManagement>
 
+  <!-- All dependencies required by the core of GeoAPI interfaces. -->
   <dependencies>
     <dependency>
       <groupId>javax.measure</groupId>
@@ -191,12 +251,20 @@
 
 
 
-  <!-- ====================================================
-           Build management
-       ==================================================== -->
+  <!-- =================================================================================
+           The plugin management section declares the version numbers of all plugins
+           needed for building GeoAPI and associated documentation,  except web site
+           generation which has its own section (see <reporting>). Configuration for
+           each plugin appear after <pluginManagement> section.
+       ================================================================================= -->
   <build>
     <pluginManagement>
       <plugins>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>3.0.0-M1</version>
+        </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
@@ -205,7 +273,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>3.1.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -247,26 +315,30 @@
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>3.0.0</version>
         </plugin>
+        <plugin>
+          <groupId>org.asciidoctor</groupId>
+          <artifactId>asciidoctor-maven-plugin</artifactId>
+          <version>1.5.6</version>
+        </plugin>
       </plugins>
     </pluginManagement>
 
 
 
     <!-- ====================================================
-             Configuration checks, then build
+             Configuration check before compilation
          ==================================================== -->
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
-        <version>3.0.0-M1</version>
         <executions>
           <execution>
             <id>enforce</id>
             <configuration>
               <rules>
                 <requireJavaVersion>
-                  <version>1.7</version>
+                  <version>9</version>
                 </requireJavaVersion>
                 <dependencyConvergence/>
               </rules>
@@ -301,17 +373,19 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.7</source>          <!-- Same than the version required by JSR-363. -->
-          <target>1.7</target>          <!-- Same than the version required by JSR-363. -->
-          <debug>false</debug>          <!-- Whether to include debugging information.  -->
-          <optimize>true</optimize>     <!-- Use the compiler's optimization methods.   -->
+          <release>${java.platform}</release>
+          <debug>false</debug>                                          <!-- Whether to include debugging information.  -->
+          <optimize>true</optimize>                                     <!-- Use the compiler's optimization methods.   -->
           <encoding>${project.build.sourceEncoding}</encoding>
-          <useIncrementalCompilation>false</useIncrementalCompilation> <!-- https://issues.apache.org/jira/browse/MCOMPILER-209 -->
+          <useIncrementalCompilation>false</useIncrementalCompilation>  <!-- https://issues.apache.org/jira/browse/MCOMPILER-209 -->
           <showWarnings>true</showWarnings>
           <showDeprecation>true</showDeprecation>
           <compilerArgs>
             <arg>-Xlint:all</arg>
           </compilerArgs>
+          <excludes>
+            <exclude>${future.source}</exclude>
+          </excludes>
         </configuration>
       </plugin>
 
@@ -327,6 +401,7 @@
           <systemPropertyVariables>
             <maven.source.directory>${project.build.sourceDirectory}</maven.source.directory>
           </systemPropertyVariables>
+          <printSummary>false</printSummary>
         </configuration>
       </plugin>
 
@@ -359,6 +434,7 @@
               <Implementation-URL>http://www.geoapi.org</Implementation-URL>
             </manifestEntries>
           </archive>
+          <skipIfEmpty>true</skipIfEmpty>
         </configuration>
       </plugin>
 
@@ -393,7 +469,31 @@
               <goal>remove-project-artifact</goal>
             </goals>
             <configuration>
-              <removeAll>false</removeAll> <!-- Remove only snapshots of this project version. -->
+              <removeAll>false</removeAll>      <!-- Remove only snapshots of this project version. -->
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+
+
+      <!-- =======================================================
+               Specification from AsciiDoctor files
+           ======================================================= -->
+      <plugin>
+        <groupId>org.asciidoctor</groupId>
+        <artifactId>asciidoctor-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>specification</id>
+            <phase>pre-site</phase>
+            <goals>
+              <goal>process-asciidoc</goal>
+            </goals>
+            <configuration>
+              <sourceDocumentName>specification.adoc</sourceDocumentName>
+              <outputDirectory>${project.build.directory}/site/snapshot</outputDirectory>
+              <relativeBaseDir>true</relativeBaseDir>
+              <backend>html</backend>
             </configuration>
           </execution>
         </executions>
@@ -442,13 +542,8 @@
               <report>license</report>
               <report>scm</report>
               <report>cim</report>
-              <report>project-team</report>
               <report>mailing-list</report>
               <report>issue-tracking</report>
-              <report>dependencies</report>
-              <report>dependency-convergence</report>
-              <report>dependency-management</report>
-              <report>plugin-management</report>
             </reports>
           </reportSet>
         </reportSets>
@@ -468,7 +563,6 @@
           <charset>${website.encoding}</charset>
           <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
           <version>false</version>        <!-- Includes or not the version text in the generated docs.            -->
-          <source>1.7</source>            <!-- Same than the version number used for compilation.                 -->
           <noqualifier>all</noqualifier>  <!-- Omits qualifying package name from ahead of class names in output. -->
           <quiet>true</quiet>             <!-- Shuts off non-error and non-warning messages.                      -->
           <maxmemory>384M</maxmemory>     <!-- The maximum Java heap size to be used when launching the javadoc.  -->
@@ -515,12 +609,12 @@
           <detectJavaApiLink>false</detectJavaApiLink>
           <links>
             <link>http://docs.oracle.com/javase/8/docs/api/</link>
-            <link>http://docs.oracle.com/javaee/7/api/</link> <!-- For InternationalString link. -->
+            <link>http://docs.oracle.com/javaee/7/api/</link>                                       <!-- For InternationalString link. -->
             <link>http://download.java.net/media/java3d/javadoc/1.5.2/</link>
             <link>http://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/</link>
             <link>http://junit.org/javadoc/latest/</link>
-            <link>http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/javadoc/</link> <!-- Used by example code. -->
-            <link>http://www.geoapi.org/snapshot/javadoc/</link> <!-- For modules that depend on GeoAPI. -->
+            <link>http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/javadoc/</link>  <!-- Used by example code. -->
+            <link>http://www.geoapi.org/snapshot/javadoc/</link>                                    <!-- For modules that depend on GeoAPI. -->
           </links>
 
           <!-- Separates packages on the overview page into the groups specified.
@@ -632,7 +726,7 @@
   <distributionManagement>
     <repository>
       <id>geoapi.snapshots</id>           <!-- For snapshots and milestones only -->
-      <name>${distMgmtSnapshotsName}</name>
+      <name>GeoAPI snapshots</name>
       <url>${distMgmtSnapshotsUrl}</url>
     </repository>
     <site>

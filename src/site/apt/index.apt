@@ -4,7 +4,7 @@
 
 GeoAPI
 
-  GeoAPI provides a set of Java language programming interfaces for geospatial applications.
+  GeoAPI provides a set of Java and Python language programming interfaces for geospatial applications.
 
   The interfaces developed by the GeoAPI project include many of the data structures and
   manipulation methods needed for geographic information system applications. In a series
@@ -22,7 +22,7 @@ GeoAPI
   {{{http://www.opengeospatial.org/}Open Geospatial Consortium}} (OGC) in its abstract
   and implementation specifications.
   GeoAPI provides an interpretation and adaptation of these standards to match
-  the expectations of Java programmers. These standards provide GeoAPI with the
+  the expectations of Java or Python programmers. These standards provide GeoAPI with the
   richness which comes from the expertise of the specification writers. Clients
   benefit from the potential for inter-operability which comes from using a well
   defined, standardized data model. Implementors benefit from having a
@@ -49,7 +49,7 @@ GeoAPI
   and scientists from around the globe motivated by diverse interests. Many
   work on GeoAPI as part of their own efforts writing client applications which
   use the API or working on libraries which implement the API.
-  In addition, a {{{http://portal.opengeospatial.org/?m=projects&a=view&project_id=294}GeoAPI Standard Working Group}}
+  In addition, a {{{https://portal.opengeospatial.org/?m=projects&a=view&project_id=294}GeoAPI Standard Working Group}}
   has formed within the OGC to formalize GeoAPI as a published OGC standard.
 
 

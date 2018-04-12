@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2017 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -41,6 +41,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Information identifying the portrayal catalogue used.
+ * The portrayal catalogue describes how the resource can be rendered for human visualisation.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

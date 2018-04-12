@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2017 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -55,6 +55,11 @@ import static org.opengis.annotation.Specification.*;
 public interface Medium {
     /**
      * Name of the medium on which the resource can be stored or distributed.
+     *
+     * <div class="warning"><b>Upcoming API change — generalization</b><br>
+     * As of ISO 19115:2014, {@code MediumName} is replaced by {@link org.opengis.metadata.citation.Citation}.
+     * This change may be applied in GeoAPI 4.0.
+     * See <a href="https://github.com/opengeospatial/geoapi/issues/14">issue #14</a>.</div>
      *
      * @return name of the medium, or {@code null}.
      */

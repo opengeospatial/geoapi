@@ -19,5 +19,5 @@ ide-project/NetBeans/nbproject/private/
 # MacOS files
 .DS_Store
 
-# Subversion files
-.svn/
+# Python files
+__pycache__/

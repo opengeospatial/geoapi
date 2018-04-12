@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2017 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2018 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -32,9 +32,8 @@
 
 
 /**
- * Doclet that modify the behavior of some standard options.
- *
- * <p><b>Source:</b> this class is a copy of Apache SIS doclet, relicensed to OGC by the Doclet author.</p>
+ * Doclet that modify the behavior of some standard options, together with
+ * Javadoc taglets for processing custom tags in GeoAPI source code comments.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @since   3.1

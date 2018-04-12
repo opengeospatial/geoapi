@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2017 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -43,10 +43,15 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Name of the medium.
  *
+ * @deprecated This code list is not anymore part of ISO 19115:2014, since {@code MediumName} has been
+ * replaced by {@link org.opengis.metadata.citation.Citation}. This change may be applied in GeoAPI 4.0.
+ * See <a href="https://github.com/opengeospatial/geoapi/issues/14">issue #14</a>.
+ *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
+@Deprecated
 @UML(identifier="MD_MediumNameCode", specification=ISO_19115, version=2003)
 public final class MediumName extends CodeList<MediumName> {
     /**

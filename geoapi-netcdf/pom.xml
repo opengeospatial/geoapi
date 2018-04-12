@@ -84,7 +84,7 @@
     <dependency>
       <groupId>edu.ucar</groupId>
       <artifactId>cdm</artifactId>
-      <version>4.6.10</version>
+      <version>4.6.11</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -140,7 +140,22 @@
         </executions>
       </plugin>
 
-      <!-- Skip dependency convergence check for edu.ucar:cdm 4.6.9. -->
+      <!-- Anticipation for Java 9. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Automatic-Module-Name>
+                org.opengis.geoapi.netcdf
+              </Automatic-Module-Name>
+            </manifestEntries>
+          </archive>
+        </configuration>
+      </plugin>
+
+      <!-- Skip dependency convergence check for edu.ucar:cdm 4.6.11. -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>

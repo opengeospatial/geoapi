@@ -22,7 +22,7 @@
        ==================================================== -->
   <groupId>org.opengis</groupId>
   <artifactId>geoapi</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>GeoAPI normative</name>
   <description>
 <!-- Left alignment because this description will be copied in META-INF/MANIFEST.MF
@@ -147,6 +147,8 @@ The development community in building GIS solutions is sustaining an enormous le
           </execution>
         </executions>
       </plugin>
+
+      <!-- OSGi. -->
       <plugin>
         <groupId>org.apache.felix</groupId>
         <artifactId>maven-bundle-plugin</artifactId>
@@ -156,6 +158,21 @@ The development community in building GIS solutions is sustaining an enormous le
             <Bundle-Name>GeoAPI</Bundle-Name>
             <Bundle-DocURL>http://www.geoapi.org</Bundle-DocURL>
           </instructions>
+        </configuration>
+      </plugin>
+
+      <!-- Anticipation for Java 9. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Automatic-Module-Name>
+                org.opengis.geoapi
+              </Automatic-Module-Name>
+            </manifestEntries>
+          </archive>
         </configuration>
       </plugin>
     </plugins>

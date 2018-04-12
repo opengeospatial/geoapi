@@ -15,30 +15,6 @@
     <version>3.1-SNAPSHOT</version>
   </parent>
 
-  <!-- ===========================================================
-           Oracle's tools dependency   (from Maven FAQ)
-       =========================================================== -->
-  <profiles>
-    <profile>
-      <id>default-tools.jar</id>
-      <activation>
-        <property>
-          <name>java.vendor</name>
-          <value>Oracle Corporation</value>
-        </property>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>com.sun</groupId>
-          <artifactId>tools</artifactId>
-          <version>1.7</version>
-          <scope>system</scope>
-          <systemPath>${java.home}/../lib/tools.jar</systemPath>
-        </dependency>
-      </dependencies>
-    </profile>
-  </profiles>
-
 
 
   <!-- ====================================================
@@ -71,5 +47,41 @@
       <timezone>+1</timezone>
     </developer>
   </developers>
+
+
+
+  <!-- ===========================================================
+           Compilation. Force the same configuration than the one
+           declared in parent POM when "jdk9" profile is enabled.
+       =========================================================== -->
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-compiler-plugin</artifactId>
+        <configuration>
+          <release>9</release>
+          <excludes/>                <!-- Cancel the excludes in parent pom.xml -->
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.codehaus.mojo</groupId>
+        <artifactId>build-helper-maven-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>sources</id>
+            <goals>
+              <goal>add-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/main/java9</source>
+              </sources>
+            </configuration>
+          </execution>
+        </executions>
+      </plugin>
+    </plugins>
+  </build>
 
 </project>

@@ -22,7 +22,7 @@
        ==================================================== -->
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-pending</artifactId>
-  <packaging>bundle</packaging>
+  <packaging>jar</packaging>
   <name>GeoAPI pending</name>
   <description>
     Incubator for interfaces under development. Those interfaces will migrate to the
@@ -241,6 +241,7 @@
             </goals>
             <configuration>
               <sources>
+                <source>src/main/java9</source>             <!-- For module-info.java (in "jdk9" profile only) -->
                 <source>../geoapi/src/main/java</source>
               </sources>
             </configuration>
@@ -259,6 +260,21 @@
             </configuration>
           </execution>
         </executions>
+      </plugin>
+
+      <!-- Anticipation for Java 9. -->
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-jar-plugin</artifactId>
+        <configuration>
+          <archive>
+            <manifestEntries>
+              <Automatic-Module-Name>
+                org.opengis.geoapi.pending
+              </Automatic-Module-Name>
+            </manifestEntries>
+          </archive>
+        </configuration>
       </plugin>
     </plugins>
   </build>
