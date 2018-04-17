@@ -39,9 +39,7 @@ import jdk.javadoc.doclet.Reporter;
 import jdk.javadoc.doclet.DocletEnvironment;
 import com.sun.source.doctree.DocTree;
 import com.sun.source.doctree.TextTree;
-import com.sun.source.doctree.DocCommentTree;
 import com.sun.source.doctree.UnknownBlockTagTree;
-import com.sun.source.tree.CompilationUnitTree;
 
 
 /**
@@ -76,7 +74,8 @@ abstract class BlockTaglet implements Taglet {
 
     /**
      * Returns the set of locations in which this taglet may be used.
-     * By default the taglet can be used everywhere except overviews.
+     * By default the taglet can be used everywhere except overviews,
+     * and modules.
      *
      * @return the set of locations in which this taglet may be used.
      */
@@ -84,6 +83,7 @@ abstract class BlockTaglet implements Taglet {
     public Set<Taglet.Location> getAllowedLocations() {
         final EnumSet<Location> locations = EnumSet.allOf(Taglet.Location.class);
         locations.remove(Taglet.Location.OVERVIEW);
+        locations.remove(Taglet.Location.MODULE);
         return locations;
     }
 
@@ -95,14 +95,6 @@ abstract class BlockTaglet implements Taglet {
     @Override
     public final boolean isInlineTag() {
         return false;
-    }
-
-    static DocCommentTree getDocCommentTree(final DocTree tree) {
-        return null;    // TODO
-    }
-
-    static CompilationUnitTree getCompilationUnitTree(final DocTree tree) {
-        return null;    // TODO
     }
 
     /**

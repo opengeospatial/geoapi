@@ -54,7 +54,7 @@ import jdk.javadoc.doclet.StandardDoclet;
 
 /**
  * A doclet which delegates the work to the standard doclet, except for the {@code -stylesheet} option.
- * Rather than overwriting the standard stylesheet with the given one, this keep both the standard and
+ * Rather than overwriting the standard stylesheet with the given one, this doclet keep both the standard and
  * the specified stylesheets as separated files. The standard stylesheet will be renamed {@code standard.css}.
  * The stylesheet provided by the user shall contains an import statement for the standard stylesheet.
  *
@@ -96,6 +96,11 @@ public final class Doclet extends StandardDoclet {
      * Where to report warnings, or {@code null} if unknown.
      */
     Reporter reporter;
+
+    /**
+     * Taglet which needs to write information after the Javadoc generation has been completed.
+     */
+    Departure taglet;
 
     /**
      * Invoked by the Javadoc tools for instantiating the custom doclet.
@@ -182,12 +187,17 @@ public final class Doclet extends StandardDoclet {
     @Override
     @SuppressWarnings("CallToPrintStackTrace")
     public boolean run(final DocletEnvironment environment) {
-        final boolean status = super.run(environment);
-        if (stylesheetFile != null && outputDirectory != null) try {
-            final File input  = new File(stylesheetFile);
-            final File output = new File(outputDirectory);
-            copyStylesheet(input, output);
-            copyResources(input.getParentFile(), output);
+        boolean status = super.run(environment);
+        if (status) try {
+            if (stylesheetFile != null && outputDirectory != null) {
+                final File input  = new File(stylesheetFile);
+                final File output = new File(outputDirectory);
+                copyStylesheet(input, output);
+                copyResources(input.getParentFile(), output);
+            }
+            if (taglet != null) {
+                taglet.summary();
+            }
         } catch (IOException e) {
             if (reporter != null) {
                 final StringWriter buffer = new StringWriter();
@@ -197,7 +207,7 @@ public final class Doclet extends StandardDoclet {
             } else {
                 e.printStackTrace();
             }
-            return false;
+            status = false;
         }
         return status;
     }
