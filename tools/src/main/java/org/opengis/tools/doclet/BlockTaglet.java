@@ -36,7 +36,6 @@ import java.util.EnumSet;
 import javax.tools.Diagnostic;
 import jdk.javadoc.doclet.Taglet;
 import jdk.javadoc.doclet.Reporter;
-import jdk.javadoc.doclet.DocletEnvironment;
 import com.sun.source.doctree.DocTree;
 import com.sun.source.doctree.TextTree;
 import com.sun.source.doctree.UnknownBlockTagTree;
@@ -51,25 +50,9 @@ import com.sun.source.doctree.UnknownBlockTagTree;
  */
 abstract class BlockTaglet implements Taglet {
     /**
-     * Where to report warnings, or {@code null} if unknown.
-     */
-    private Reporter reporter;
-
-    /**
      * For subclasses constructors.
      */
     BlockTaglet() {
-    }
-
-    /**
-     * Initializes this taglet with the given doclet environment and doclet.
-     *
-     * @param env     the environment in which the taglet is running.
-     * @param doclet  the doclet that instantiated this taglet.
-     */
-    @Override
-    public void init(final DocletEnvironment env, final jdk.javadoc.doclet.Doclet doclet) {
-        reporter = ((Doclet) doclet).reporter;
     }
 
     /**
@@ -113,7 +96,8 @@ abstract class BlockTaglet implements Taglet {
      * Prints a warning message.
      */
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
-    final void printWarning(final DocTree tag, final String message) {
+    static void printWarning(final DocTree tag, final String message) {
+        final Reporter reporter = Doclet.reporter;
         if (reporter != null) {
             reporter.print(Diagnostic.Kind.WARNING, message);
         } else {

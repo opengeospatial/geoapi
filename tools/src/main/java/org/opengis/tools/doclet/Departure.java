@@ -113,9 +113,7 @@ public final class Departure extends BlockTaglet {
     @Override
     public void init(final DocletEnvironment env, final jdk.javadoc.doclet.Doclet doclet) {
         super.init(env, doclet);
-        if (doclet instanceof Doclet) {
-            ((Doclet) doclet).taglet = this;
-        }
+        Doclet.taglet = this;
     }
 
     /**
