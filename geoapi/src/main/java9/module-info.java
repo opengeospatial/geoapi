@@ -30,6 +30,33 @@
  *    times remain with copyright holders.
  */
 
+
+/**
+ * Java interfaces derived from specifications of <cite>International Organization for Standardization</cite> (<abbr>ISO</abbr>)
+ * and <cite><a href="http://www.opengeospatial.org">Open Geospatial Consortium</a></cite> (<abbr>OGC</abbr>).
+ * The interfaces were created from UML diagrams found in the <abbr>ISO</abbr> and <abbr>OGC</abbr> specifications.
+ *
+ * <h3>Links</h3>
+ * <ul>
+ *   <li><a href="http://www.geoapi.org/">GeoAPI home page</a></li>
+ *   <li><a href="http://www.opengeospatial.org/standards/geoapi/"><abbr>OGC</abbr> GeoAPI specification</a></li>
+ *   <li><a href="content.html">GeoAPI content (with mapping to <abbr>OGC</abbr>/<abbr>ISO</abbr> <abbr>UML</abbr>)</a></li>
+ *   <li><a href="UML-Java.html">Mapping from <abbr>UML</abbr> diagrams to Java interfaces</a></li>
+ *   <li><a href="departures.html">Departures in Java interfaces compared to <abbr>UML</abbr> diagrams</a></li>
+ *   <li><a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html"><cite>Well-Known Text 2</cite> (<abbr>WKT</abbr> 2) specification</a></li>
+ *   <li><a href="org/opengis/referencing/doc-files/WKT.html"><cite>Well-Known Text 1</cite> (<abbr>WKT</abbr> 1) specification</a></li>
+ *   <li><a href="future-work.html">Future work</a></li>
+ * </ul>
+ *
+ * <h3>Requirements</h3>
+ * <ul>
+ *   <li><a href="http://docs.oracle.com/javase/7/docs/index.html">Java&nbsp;7</a> or later.</li>
+ *   <li><a href="https://jcp.org/en/jsr/detail?id=363"><abbr>JSR</abbr>-363</a> units of measurement API.</li>
+ * </ul>
+ *
+ * @version 4.0
+ * @since 1.0
+ */
 module org.opengis.geoapi {
     requires transitive java.measure;
     /*
