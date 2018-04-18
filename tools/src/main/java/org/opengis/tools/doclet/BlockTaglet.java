@@ -34,6 +34,8 @@ package org.opengis.tools.doclet;
 import java.util.Set;
 import java.util.EnumSet;
 import javax.tools.Diagnostic;
+import javax.lang.model.element.Element;
+import javax.lang.model.element.TypeElement;
 import jdk.javadoc.doclet.Taglet;
 import jdk.javadoc.doclet.Reporter;
 import com.sun.source.doctree.DocTree;
@@ -96,7 +98,13 @@ abstract class BlockTaglet implements Taglet {
      * Prints a warning message.
      */
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
-    static void printWarning(final DocTree tag, final String message) {
+    static void printWarning(final Element element, String message) {
+        final StringBuilder b = new StringBuilder(message.length() + 30);
+        final Element parent = element.getEnclosingElement();
+        if (parent instanceof TypeElement) {
+            b.append(((TypeElement) parent).getQualifiedName()).append('.');
+        }
+        message = b.append(element.getSimpleName()).append(": ").append(message).toString();
         final Reporter reporter = Doclet.reporter;
         if (reporter != null) {
             reporter.print(Diagnostic.Kind.WARNING, message);

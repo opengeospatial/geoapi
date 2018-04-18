@@ -36,7 +36,6 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Collections;
 import java.io.FileWriter;
@@ -78,19 +77,15 @@ public final class Departure extends BlockTaglet {
      * of that departure category. The order of elements is the order of sections to be produced by
      * {@link #summary}.
      */
-    private static final Map<String,String> CATEGORIES;
-    static {
-        final Map<String,String> c = new LinkedHashMap<>();
-        c.put("constraint",     "Departures due to constraints of the Java language");
-        c.put("historic",       "Departures due to historical reasons");
-        c.put("harmonization",  "Departures for harmonization between the different specifications");
-        c.put("integration",    "Departures for closer integration with the Java environment");
-        c.put("rename",         "Changes of name without change in functionality");
-        c.put("generalization", "Generalizations due to relaxation of ISO/OGC restrictions");
-        c.put("extension",      "Addition of elements not in the ISO/OGC specifications");
-        c.put("easeOfUse",      "Extensions for convenience, without introduction of new functionality");
-        CATEGORIES = c;
-    }
+    private static final Map<String,String> CATEGORIES = Map.of(
+            "constraint",     "Departures due to constraints of the Java language",
+            "historic",       "Departures due to historical reasons",
+            "harmonization",  "Departures for harmonization between the different specifications",
+            "integration",    "Departures for closer integration with the Java environment",
+            "rename",         "Changes of name without change in functionality",
+            "generalization", "Generalizations due to relaxation of ISO/OGC restrictions",
+            "extension",      "Addition of elements not in the ISO/OGC specifications",
+            "easeOfUse",      "Extensions for convenience, without introduction of new functionality");
 
     /**
      * All departures declared in javadoc tags. The keys are the category, and the value
@@ -141,7 +136,7 @@ public final class Departure extends BlockTaglet {
         final StringBuilder buffer = new StringBuilder();
         for (final DocTree tag : tags) {
             String text = text(tag).replace("\r\n", "\n").replace('\r', '\n');
-            String category = "<unspecified>";
+            String category = "";
             /*
              * Extracts the first word, which is expected to be the category name.
              */
@@ -153,7 +148,13 @@ public final class Departure extends BlockTaglet {
                 }
             }
             if (!CATEGORIES.containsKey(category)) {
-                printWarning(tag, "Unknown category: " + category);
+                final String message;
+                if (category.isEmpty()) {
+                    message = "No category has been specified for @departure tag.";
+                } else {
+                    message = "Unknown @departure category: ".concat(category);
+                }
+                printWarning(element, message);
             }
             /*
              * Adds the current departure to the collection of departures.

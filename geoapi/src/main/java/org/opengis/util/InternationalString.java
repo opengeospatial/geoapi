@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * lexicographical ordering of strings} in the default locale, as returned by {@link #toString()}.
  * This string also defines the {@linkplain CharSequence character sequence} for this object.</p>
  *
- * @departure renaming
+ * @departure rename
  *   This is called <code>PT_FreeText</code> in ISO 19115 standard, and can be applied to all metadata
  *   elements who's data type is <code>CharacterString</code> and domain is “free text”. GeoAPI uses the
  *   <code>InternationalString</code> name for historical reasons and for consistency with similar object in

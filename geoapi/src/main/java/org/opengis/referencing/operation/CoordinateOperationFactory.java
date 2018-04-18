@@ -195,9 +195,9 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @see CRSFactory#createDerivedCRS(Map, CoordinateReferenceSystem, Conversion, CoordinateSystem)
      *
      * @departure extension
-     *   <cite>Defining conversions</cite> is a concept that appears in ISO 19111 textual
-     *   specification without formalization in UML diagrams. This concept has been formalized
-     *   in GeoAPI in order to allow the creation of <code>ProjectedCRS</code> instances.
+     *   The <cite>defining conversion</cite> concept appears in ISO 19111:2007 textual specification
+     *   without formalization in UML diagrams. This concept has been formalized in GeoAPI
+     *   in order to allow the creation of <code>ProjectedCRS</code> instances.
      *
      * @since 2.1
      */
