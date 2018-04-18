@@ -49,14 +49,11 @@ import org.opengis.filter.expression.Expression;
  */
 @XmlElement("Displacement")
 public interface Displacement {
-
     /**
      * Returns an expression that computes a pixel offset from the geometry
      * point.  This offset point is where the text's anchor point gets
      * located. If this expression is null, the default offset of zero is
      * used.
-     *
-     * @return Expression
      */
     @XmlElement("DisplacementX")
     Expression getDisplacementX();
@@ -66,18 +63,14 @@ public interface Displacement {
      * point.  This offset point is where the text's anchor point gets
      * located. If this expression is null, the default offset of zero is
      * used.
-     *
-     * @return Expression
      */
     @XmlElement("DisplacementY")
     Expression getDisplacementY();
 
     /**
-     * calls the visit method of a StyleVisitor
+     * Calls the visit method of a StyleVisitor
      *
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }
-

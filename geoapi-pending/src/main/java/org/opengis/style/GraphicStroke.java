@@ -34,6 +34,7 @@ package org.opengis.style;
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
 
+
 /**
  * The GraphicStroke element both indicates that a repeated-linear-graphic stroke type will
  * be used.
@@ -45,20 +46,15 @@ import org.opengis.filter.expression.Expression;
  */
 @XmlElement("GraphicStroke")
 public interface GraphicStroke extends Graphic{
-
     /**
      * InitialGap specifies how far away the first graphic will be drawn relative to the start of
      * the rendering line
-     *
-     * @return Expression
      */
     @XmlElement("InitialGap")
     Expression getInitialGap();
 
     /**
      * Gap gives the distance between two graphics.
-     *
-     * @return Expression
      */
     @XmlElement("Gap")
     Expression getGap();
@@ -69,5 +65,4 @@ public interface GraphicStroke extends Graphic{
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

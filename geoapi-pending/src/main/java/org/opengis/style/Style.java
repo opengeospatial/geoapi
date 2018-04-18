@@ -63,7 +63,7 @@ public interface Style {
     /**
      * Style name (machine readable, don't show to users)
      *
-     * @return String, identification name of this style
+     * @return identification name of this style
      */
     @XmlElement("UserStyle")
     String getName();
@@ -71,8 +71,7 @@ public interface Style {
     /**
      * Returns the description of this style.
      *
-     * @return description with usual informations used
-     * for user interfaces.
+     * @return description with usual informations used for user interfaces.
      */
     @XmlElement("Description")
     Description getDescription();
@@ -87,7 +86,6 @@ public interface Style {
 
     /**
      * Returns a collection of feature type style.
-     *
      */
     @UML(identifier="featurePortrayal", obligation=MANDATORY, specification=ISO_19117)
     @XmlElement("FeatureTypeStyle")
@@ -97,8 +95,6 @@ public interface Style {
      * Returns the default specification used if no rule return true.
      * This specification should not use any external functions.
      * This specification should use at least one spatial attribut.
-     *
-     * @return PortrayalSpecification
      */
     @UML(identifier="defaultPortrayalSpec", obligation=MANDATORY, specification=ISO_19117)
     Symbolizer getDefaultSpecification();
@@ -109,5 +105,4 @@ public interface Style {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

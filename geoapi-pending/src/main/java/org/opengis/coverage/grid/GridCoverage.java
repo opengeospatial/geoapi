@@ -355,9 +355,10 @@ public interface GridCoverage extends Coverage {
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
-     * @rename Renamed {@code getValueBlockAsDouble} as {@code getDataBlockAsDouble}
-     *         for consistency with all others {@code getDataBlock...} methods and
-     *         {@code setDataBlockAsDouble}.
+     * @departure rename
+     *   Renamed {@code getValueBlockAsDouble} as {@code getDataBlockAsDouble}
+     *   for consistency with all others {@code getDataBlock...} methods and
+     *   {@code setDataBlockAsDouble}.
      *
      * @todo Which indices vary fastest?
      *

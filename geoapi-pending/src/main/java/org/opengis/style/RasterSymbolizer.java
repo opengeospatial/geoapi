@@ -47,12 +47,10 @@ import org.opengis.filter.expression.Expression;
  */
 @XmlElement("RasterSymbolizer")
 public interface RasterSymbolizer extends Symbolizer {
-
     /**
      * Indicates the level of translucency as a floating point number whose value is between 0.0
      * and 1.0 (inclusive).  A value of zero means completely transparent.  A value of 1.0 means
      * completely opaque.  If null, the default value is 1.0, totally opaque.
-     * @return expression
      */
     @XmlElement("Opacity")
     Expression getOpacity();
@@ -125,7 +123,7 @@ public interface RasterSymbolizer extends Symbolizer {
      * change). If none of Normalize, Histogram, or GammaValue are selected in
      * a ContrastEnhancement, then no enhancement is performed.
      *
-     * @return the ContrastEnhancement
+     * @return the contrast enhancement
      */
     @XmlElement("ContrastEnhancement")
     ContrastEnhancement getContrastEnhancement();
@@ -144,7 +142,7 @@ public interface RasterSymbolizer extends Symbolizer {
      * the ?hills.?  A value of around 55 (times) gives reasonable results for
      * Earth-based DEMs. The default value is system-dependent.
      *
-     * @return the shadedrelief object
+     * @return the shaded relief object
      */
     @XmlElement("ShadedRelief")
     ShadedRelief getShadedRelief();
@@ -159,7 +157,7 @@ public interface RasterSymbolizer extends Symbolizer {
      * PolygonSymbolizer Fill to allow the main-raster data be visible through
      * the fill.
      *
-     * @return the relevent symbolizer
+     * @return the relevant symbolizer
      */
     @XmlElement("ImageOutline")
     Symbolizer getImageOutline();
@@ -170,5 +168,4 @@ public interface RasterSymbolizer extends Symbolizer {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

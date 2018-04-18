@@ -72,7 +72,6 @@ public interface IdCapabilities {
 
     /**
      * Indicates if the capabilities support FID.
-     * @return
      */
     boolean hasFID();
 }

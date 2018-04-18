@@ -43,6 +43,6 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("PropertyIsNotEqualTo")
 public interface PropertyIsNotEqualTo extends BinaryComparisonOperator {
-	/** Operator name used to check FilterCapabilities */
-	public static String NAME = "NotEqualTo";
+    /** Operator name used to check FilterCapabilities */
+    public static String NAME = "NotEqualTo";
 }

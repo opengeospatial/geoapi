@@ -59,7 +59,6 @@ public interface Stroke {
      * the given graphic. Between {@code getGraphicFill()} and {@link #getGraphicStroke()}, only one
      * may return a non-null value since a {@code Stroke} can have a {@code GraphicFill} or a
      * {@code GraphicStroke}, but not both.
-     * @return Graphic
      */
     @XmlElement("GraphicFill")
     GraphicFill getGraphicFill();
@@ -70,7 +69,6 @@ public interface Stroke {
      * Between {@link #getGraphicFill()} and {@code getGraphicStroke}, only one may return a
      * non-null value since a {@code Stroke} can have a {@code GraphicFill} or a {@code GraphicStroke},
      * but not both.
-     * @return Graphic
      */
     @XmlElement("GraphicStroke")
     GraphicStroke getGraphicStroke();
@@ -85,7 +83,6 @@ public interface Stroke {
      * and blue intensity values, respectively, represented as two digit hexadecimal integers.
      * The hexadecimal digits between {@code A} and {@code F} may be in either uppercase or lowercase.
      * If null, the default color is {@code "#000000"}, black.
-     * @return Expression
      */
     @XmlParameter("stroke")
     Expression getColor();
@@ -94,7 +91,6 @@ public interface Stroke {
      * Indicates the level of translucency as a floating point number whose value is between 0.0
      * and 1.0 (inclusive).  A value of zero means completely transparent.  A value of 1.0 means
      * completely opaque.  If null, the default value is 1.0, totally opaque.
-     * @return expression
      */
     @XmlParameter("stroke-opacity")
     Expression getOpacity();
@@ -103,7 +99,6 @@ public interface Stroke {
      * Gives the absolute width in uoms of the line stroke as a floating point number.
      * Fractional numbers are allowed (with system-dependent interpretation), but negative
      * numbers are not.  If null, the default value is 1.0.
-     * @return expression
      */
     @XmlParameter("stroke-width")
     Expression getWidth();
@@ -112,7 +107,6 @@ public interface Stroke {
      * Indicates how the various segments of a (thick) line string should be joined.
      * Valid values are "miter", "round", and "bevel".  If null, the default value is
      * system dependent (probably whichever one is fastest to render).
-     * @return expression
      */
     @XmlParameter("stroke-linejoin")
     Expression getLineJoin();
@@ -121,7 +115,6 @@ public interface Stroke {
      * Indicates how the beginning and ending segments of a line string will be terminated.
      * Valid values are "butt", "round", and "square".  If null, the default value is system
      * dependent.
-     * @return expression
      */
     @XmlParameter("stroke-linecap")
     Expression getLineCap();
@@ -133,7 +126,6 @@ public interface Stroke {
      * repeats.  If the list contains an odd number of values, then before
      * rendering the list is enlarged by repeating the last value.  If this
      * parameter is omitted, lines will be drawn as solid and unbroken.
-     * @return expression
      */
     @XmlParameter("stroke-dasharray")
     float[] getDashArray();
@@ -141,7 +133,6 @@ public interface Stroke {
     /**
      * Indicates the distance offset into the dash array to begin drawing.
      * If null, the default value is zero.
-     * @return expression
      */
     @XmlParameter("stroke-dashoffset")
     Expression getDashOffset();
@@ -152,5 +143,4 @@ public interface Stroke {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

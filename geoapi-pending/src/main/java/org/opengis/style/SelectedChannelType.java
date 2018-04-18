@@ -45,19 +45,14 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("SelectedChannelType")
 public interface SelectedChannelType {
-
     /**
      * Returns the channel's name.
-     *
-     * @return String
      */
     @XmlElement("SourceChannelName")
     public String getChannelName();
 
     /**
      * Contrast enhancement may be applied to each channel in isolation.
-     *
-     * @return ContrastEnhancement
      */
     @XmlElement("SelectedChannelType")
     public ContrastEnhancement getContrastEnhancement();
@@ -68,5 +63,4 @@ public interface SelectedChannelType {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

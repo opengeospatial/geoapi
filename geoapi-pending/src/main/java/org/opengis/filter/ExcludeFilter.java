@@ -38,13 +38,13 @@ import java.io.Serializable;
 /**
  * Indicating "filter all", evaluates to {@code false}.
  * This is a placeholder filter intended to be used in data structuring definition.
- * <p>
+ *
  * <ul>
  *   <li>EXCLUDE or Filter ==&gt; Filter</li>
  *   <li>EXCLUDE and Filter ==&gt; EXCLUDE</li>
  *   <li>EXCLUDE ==&gt; INCLUDE</li>
  * </ul>
- * <p>
+ *
  * The above does imply that the AND opperator can short circuit on encountering ALL.
  *
  * @author Jody Garnett (Refractions Research, Inc.)

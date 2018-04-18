@@ -93,7 +93,7 @@ import org.opengis.geometry.Geometry;
 /**
  * Interface whose methods allow the caller to create instances of the various
  * {@link Filter} and {@link Expression} subclasses.
- * <p>
+ *
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
  * @author Chris Dillard (SYS Technologies)
@@ -101,14 +101,14 @@ import org.opengis.geometry.Geometry;
  * @since GeoAPI 2.0
  */
 public interface FilterFactory {
-        /**
-         * The FilterCapabilities data structure is used to describe the abilities of
-         * this FilterFactory, it includes restrictions on the available spatial operations,
-         * scalar operations, lists the supported functions, and describes what geometry
-         * literals are understood.
-         * @return FilterCapabilities describing the abilities of this FilterFactory
-         */
-        // FilterCapabilities getCapabilities();
+    /**
+     * The FilterCapabilities data structure is used to describe the abilities of
+     * this FilterFactory, it includes restrictions on the available spatial operations,
+     * scalar operations, lists the supported functions, and describes what geometry
+     * literals are understood.
+     * @return FilterCapabilities describing the abilities of this FilterFactory
+     */
+    // FilterCapabilities getCapabilities();
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -224,10 +224,9 @@ public interface FilterFactory {
 
     /**
      * Checks if the bounding box of the feature's geometry overlaps the indicated bounds.
-     * <p>
      * This method is defined in strict accordance with the Filter 1.0 specification, you may
      * find the FilterFactory2.bbox(Expression, Envelope) to be easier to use.
-     * </p>
+     *
      * @param propertyName Name of geometry property (for a PropertyName to access a Feature's Geometry)
      * @param minx Minimum "x" value (for a literal Envelope)
      * @param miny Minimum "y" value (for a literal Envelope)

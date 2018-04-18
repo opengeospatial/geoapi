@@ -31,7 +31,6 @@
  */
 package org.opengis.filter;
 
-// OpenGIS direct dependencies
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
 
@@ -67,15 +66,13 @@ public interface BinaryComparisonOperator extends Filter {
      */
     @XmlElement("matchCase")
     boolean isMatchingCase();
-    
+
     /**
      * The matchAction attribute can be used to specify how the comparison predicate shall be evaluated for a
      * collection of values.
-     * {@link MatchAction}
      *
      * @return MatchAction or null.
      */
     @XmlElement("matchAction")
     MatchAction getMatchAction();
-
 }

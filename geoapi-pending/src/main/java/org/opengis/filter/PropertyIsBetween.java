@@ -31,7 +31,6 @@
  */
 package org.opengis.filter;
 
-// OpenGIS direct dependencies
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
 
@@ -47,9 +46,9 @@ import org.opengis.filter.expression.Expression;
  */
 @XmlElement("PropertyIsBetween")
 public interface PropertyIsBetween extends Filter {
-	/** Operator name used to check FilterCapabilities */
-	public static String NAME = "Between";
-	
+    /** Operator name used to check FilterCapabilities */
+    public static String NAME = "Between";
+
     /**
      * Returns the expression to be compared by this operator.
      */
@@ -67,5 +66,4 @@ public interface PropertyIsBetween extends Filter {
      */
     @XmlElement("UpperBoundary")
     Expression getUpperBoundary();
-
 }

@@ -45,10 +45,8 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("PointSymbolizer")
 public interface PointSymbolizer extends Symbolizer {
-
     /**
      * Returns the graphic that will be drawn at each point of the geometry.
-     * @return Graphic
      */
     @XmlElement("Graphic")
     Graphic getGraphic();
@@ -59,5 +57,4 @@ public interface PointSymbolizer extends Symbolizer {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

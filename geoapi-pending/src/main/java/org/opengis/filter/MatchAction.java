@@ -31,6 +31,7 @@
  */
 package org.opengis.filter;
 
+
 /**
  * The matchAction attribute can be used to specify how the comparison predicate shall be evaluated for a
  * collection of values (e.g. in XML, properties having maxOccurs &gt; 1) and not including some additional context
@@ -40,7 +41,6 @@ package org.opengis.filter;
  * the values in the collection shall satisfy the predicate.
  *
  * <p>Null value should be interpreted as ANY.</p>
- *
  *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
  * @author Johann Sorel (Geomatys)

@@ -48,13 +48,10 @@ import org.opengis.metadata.citation.OnlineResource;
  */
 @XmlElement("ExternalGraphic")
 public interface ExternalGraphic extends GraphicalSymbol {
-
     /**
      * Returns a OnlineResource to a file (perhaps a local file) that contains an image.
      * This can be null if the image is already loaded locally and the
      * {@link #getInlineContent InlineContent} property is set.
-     *
-     * @return OnlineResource
      */
     @XmlElement("OnlineResource")
     OnlineResource getOnlineResource();
@@ -62,8 +59,6 @@ public interface ExternalGraphic extends GraphicalSymbol {
     /**
      * Returns the InlineContent that comprise the image.  This overrides the
      * {@link #getOnlineResource OnlineResource} property, if it is set.
-     *
-     * @return
      */
     @XmlElement("InlineContent")
     Icon getInlineContent();
@@ -90,5 +85,4 @@ public interface ExternalGraphic extends GraphicalSymbol {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

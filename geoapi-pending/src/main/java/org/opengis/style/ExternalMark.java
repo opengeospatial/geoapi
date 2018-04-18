@@ -81,8 +81,6 @@ public interface ExternalMark {
     /**
      * Returns an integer value that can used for accessing a particular
      * Font character in a TTF file or a catalog for example.
-     *
-     * @return integer
      */
     @XmlElement("MarkIndex")
     int getMarkIndex();
