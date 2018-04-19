@@ -38,6 +38,7 @@ import java.util.Set;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.io.UncheckedIOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -75,14 +76,16 @@ public final class Doclet extends StandardDoclet {
      *
      * Have to be static for now because we did not found a better way to transfer this information to the taglet.
      */
-    static Reporter reporter;
+    private static Reporter reporter;
 
     /**
-     * Taglet which needs to write information after the Javadoc generation has been completed.
+     * Process to execute after the Javadoc generation has been completed.
+     * This is used for writing summary tables.
      *
-     * Have to be static for now because we did not found a better way to transfer this information.
+     * <p>Has to be public static for now as a workaround for
+     * <a href="https://bugs.openjdk.java.net/browse/JDK-8201817">JDK-8201817</a>.</p>
      */
-    static Departure taglet;
+    public static Runnable postProcess;
 
     /**
      * Invoked by the Javadoc tools for instantiating the custom doclet.
@@ -110,6 +113,16 @@ public final class Doclet extends StandardDoclet {
     public void init(final Locale locale, final Reporter reporter) {
         super.init(locale, reporter);
         Doclet.reporter = reporter;
+    }
+
+    /**
+     * Returns the object to use for reporting warnings, or {@code null} if unknown. Has to be public static
+     * for now as a workaround for <a href="https://bugs.openjdk.java.net/browse/JDK-8201817">JDK-8201817</a>.
+     *
+     * @return where to report warnings, or {@code null} if unknown.
+     */
+    public static Reporter reporter() {
+        return reporter;
     }
 
     /**
@@ -179,8 +192,10 @@ public final class Doclet extends StandardDoclet {
                     }
                 }
             }
-            if (taglet != null) {
-                taglet.summary();
+            if (postProcess != null) try {
+                postProcess.run();
+            } catch (UncheckedIOException ue) {
+                throw ue.getCause();
             }
         } catch (IOException e) {
             if (reporter != null) {

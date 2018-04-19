@@ -41,10 +41,11 @@ import java.util.Collections;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import java.io.UncheckedIOException;
 import com.sun.source.doctree.DocTree;
 import javax.lang.model.element.Name;
 import javax.lang.model.element.Element;
-import jdk.javadoc.doclet.DocletEnvironment;
+import javax.tools.Diagnostic;
 
 
 /**
@@ -71,7 +72,7 @@ import jdk.javadoc.doclet.DocletEnvironment;
  * @version 3.1
  * @since   2.3
  */
-public final class Departure extends BlockTaglet {
+public final class Departure extends BlockTaglet implements Runnable {
     /**
      * The allowed departure categories. Keys are the departure keyword, and values are descriptions
      * of that departure category. The order of elements is the order of sections to be produced by
@@ -100,15 +101,20 @@ public final class Departure extends BlockTaglet {
     }
 
     /**
-     * Invoked on taglet initialization.
+     * Invoked when the doclet initializes this taglet. This method register this taglet for execution of the
+     * {@link #run()} method after the doclet finished to generate all the javadoc.
      *
-     * @param env     the environment in which the doclet and taglet are running.
-     * @param doclet  the doclet that instantiated this taglet.
+     * @param  doclet  the class of the {@link Doclet} initializing this taglet.
      */
     @Override
-    public void init(final DocletEnvironment env, final jdk.javadoc.doclet.Doclet doclet) {
-        super.init(env, doclet);
-        Doclet.taglet = this;
+    protected void init(final Class<?> doclet) {
+        super.init(doclet);
+        try {
+            // Can not access Doclet.postProcess directly because of different ClassLoaders.
+            doclet.getField("postProcess").set(null, this);
+        } catch (ReflectiveOperationException e) {
+            print(Diagnostic.Kind.ERROR, null, e.toString());
+        }
     }
 
     /**
@@ -154,7 +160,7 @@ public final class Departure extends BlockTaglet {
                 } else {
                     message = "Unknown @departure category: ".concat(category);
                 }
-                printWarning(element, message);
+                print(Diagnostic.Kind.WARNING, element, message);
             }
             /*
              * Adds the current departure to the collection of departures.
@@ -355,6 +361,20 @@ public final class Departure extends BlockTaglet {
             }
             out.write("  </body>"); out.newLine();
             out.write("</html>"); out.newLine();
+        }
+    }
+
+    /**
+     * Invokes the {@link #summary()} method and wraps errors in {@link UncheckedIOException}.
+     * This is a workaround for allowing {@link Doclet} to invoke {@link #summary()} despite
+     * the doclet and the taglet classes being loaded by different class loaders.
+     */
+    @Override
+    public void run() {
+        try {
+            summary();
+        } catch (IOException e) {
+            throw new UncheckedIOException(e);
         }
     }
 }

@@ -38,6 +38,7 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import jdk.javadoc.doclet.Taglet;
 import jdk.javadoc.doclet.Reporter;
+import jdk.javadoc.doclet.DocletEnvironment;
 import com.sun.source.doctree.DocTree;
 import com.sun.source.doctree.TextTree;
 import com.sun.source.doctree.UnknownBlockTagTree;
@@ -52,9 +53,56 @@ import com.sun.source.doctree.UnknownBlockTagTree;
  */
 abstract class BlockTaglet implements Taglet {
     /**
+     * Where to report warnings, or {@code null} if unknown.
+     */
+    private Reporter reporter;
+
+    /**
      * For subclasses constructors.
      */
     BlockTaglet() {
+    }
+
+    /**
+     * Invoked on taglet initialization.
+     * Current implementation delegates to {@link #init(Class)} with the {@link Doclet} class loader.
+     *
+     * <h3>Note:</h3>
+     * <p>the doclet given in argument to this method can not be used
+     * because as of JDK 10, this is a JDK internal doclet rather than {@link Doclet}.
+     * See <a href="https://bugs.openjdk.java.net/browse/JDK-8201817">JDK-8201817</a>.</p>
+     *
+     * <p>We can not access {@link Doclet} static fields directly because {@link Doclet} and {@link Taglet}s
+     * are not loaded by the same class loader. Any static field modified by a taglet will not be seen by the
+     * doclet.</p>
+     *
+     * @param env     the environment in which the doclet and taglet are running.
+     * @param doclet  the doclet that instantiated this taglet.
+     */
+    @Override
+    public void init(final DocletEnvironment env, final jdk.javadoc.doclet.Doclet doclet) {
+        StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).walk(stream ->
+                stream.filter(frame -> frame.getClassName().equals("org.opengis.tools.doclet.Doclet"))
+                      .map(frame -> frame.getDeclaringClass()).findFirst()).ifPresent(c -> init(c));
+    }
+
+    /**
+     * Invoked when the doclet initializes this taglet. The {@code doclet} argument is the {@link Doclet} class
+     * loaded by the doclet class loader. This is <strong>not</strong> the same than {@code Doclet.class} executed
+     * from this taglet, because of different class loaders. It is currently not possible to have a reference to the
+     * doclet instance because of <a href="https://bugs.openjdk.java.net/browse/JDK-8201817">JDK-8201817</a>.
+     * The doclet class is currently the best we can provide.
+     *
+     * @param  doclet  the class of the {@link Doclet} initializing this taglet.
+     */
+    protected void init(final Class<?> doclet) {
+        try {
+            // Can not access Doclet.reporter directly because of different ClassLoaders.
+            reporter = (Reporter) doclet.getMethod("reporter").invoke(this);
+        } catch (ReflectiveOperationException e) {
+            print(Diagnostic.Kind.ERROR, null, e.toString());
+            // Leave the reporter to null.
+        }
     }
 
     /**
@@ -95,19 +143,20 @@ abstract class BlockTaglet implements Taglet {
     }
 
     /**
-     * Prints a warning message.
+     * Prints a warning or error message.
      */
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
-    static void printWarning(final Element element, String message) {
-        final StringBuilder b = new StringBuilder(message.length() + 30);
-        final Element parent = element.getEnclosingElement();
-        if (parent instanceof TypeElement) {
-            b.append(((TypeElement) parent).getQualifiedName()).append('.');
+    final void print(final Diagnostic.Kind level, final Element element, String message) {
+        if (element != null) {
+            final StringBuilder b = new StringBuilder(message.length() + 30);
+            final Element parent = element.getEnclosingElement();
+            if (parent instanceof TypeElement) {
+                b.append(((TypeElement) parent).getQualifiedName()).append('.');
+            }
+            message = b.append(element.getSimpleName()).append(": ").append(message).toString();
         }
-        message = b.append(element.getSimpleName()).append(": ").append(message).toString();
-        final Reporter reporter = Doclet.reporter;
         if (reporter != null) {
-            reporter.print(Diagnostic.Kind.WARNING, message);
+            reporter.print(level, message);
         } else {
             System.err.println(message);
         }
