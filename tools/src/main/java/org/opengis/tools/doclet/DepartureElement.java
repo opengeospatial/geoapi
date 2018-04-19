@@ -123,9 +123,9 @@ final class DepartureElement implements Comparable<DepartureElement> {
         /*
          * Get the path relative to the javadoc root.
          */
-        final StringBuilder filenameHTML = new StringBuilder(typeName.toString().replace('.', '/')).append('/');
+        final StringBuilder filenameHTML = new StringBuilder(typeName.toString().replace('.', '/'));
         if (isPackage) {
-            filenameHTML.append("package-summary");
+            filenameHTML.append("/package-summary");
         }
         pathToHTML = filenameHTML.append(".html").toString();
     }

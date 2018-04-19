@@ -40,6 +40,11 @@ import jdk.javadoc.doclet.Taglet;
 import jdk.javadoc.doclet.Reporter;
 import jdk.javadoc.doclet.DocletEnvironment;
 import com.sun.source.doctree.DocTree;
+import com.sun.source.doctree.EndElementTree;
+import com.sun.source.doctree.EntityTree;
+import com.sun.source.doctree.LinkTree;
+import com.sun.source.doctree.LiteralTree;
+import com.sun.source.doctree.StartElementTree;
 import com.sun.source.doctree.TextTree;
 import com.sun.source.doctree.UnknownBlockTagTree;
 
@@ -133,13 +138,66 @@ abstract class BlockTaglet implements Taglet {
     /**
      * Returns the text contained in the given block tag.
      */
-    static String text(final DocTree tag) {
-        for (final DocTree node : ((UnknownBlockTagTree) tag).getContent()) {
-            if (node.getKind() == DocTree.Kind.TEXT) {
-                return ((TextTree) node).getBody().trim();
+    final String text(final Element parent, final DocTree tag) {
+        final StringBuilder b = new StringBuilder();
+        text(b, parent, ((UnknownBlockTagTree) tag).getContent());
+        for (int i = b.length() - 2; ((i = b.lastIndexOf("\r", i)) >= 0);) {
+            if (b.charAt(i+1) == '\n') {
+                b.deleteCharAt(i);
+            } else {
+                b.setCharAt(i, '\n');
             }
         }
-        return "";
+        return b.toString().trim();
+    }
+
+    /**
+     * Writes in the given buffer the given documentation tree elements.
+     */
+    private int text(final StringBuilder b, final Element parent, final Iterable<? extends DocTree> elements) {
+        int count = 0;
+        for (final DocTree node : elements) {
+            switch (node.getKind()) {
+                case TEXT:          b.append(((TextTree) node).getBody()); break;
+                case START_ELEMENT: b.append('<').append(((StartElementTree) node).getName()).append('>'); break;
+                case END_ELEMENT:   b.append("</").append(((EndElementTree) node).getName()).append('>'); break;
+                case ENTITY:        b.append('&').append(((EntityTree) node).getName()).append(';'); break;
+                case CODE:
+                case LITERAL: {
+                    final boolean isCode = node.getKind() == DocTree.Kind.CODE;
+                    if (isCode) b.append("<code>");
+                    int i = b.length();
+                    b.append(((LiteralTree) node).getBody().getBody());
+                    while (i < b.length()) {                                // Length may change during iteration.
+                        final String r;
+                        switch (b.charAt(i)) {
+                            case '<': r = "&lt;";  break;
+                            case '>': r = "&gt;";  break;
+                            case '&': r = "&amp;"; break;
+                            default: i++; continue;
+                        }
+                        b.replace(i, i+1, r);
+                        i += r.length();
+                    }
+                    if (isCode) b.append("</code>");
+                    break;
+                }
+                case LINK:
+                case LINK_PLAIN: {
+                    int n = text(b, parent, ((LinkTree) node).getLabel());
+                    if (n == 0) {
+                        b.append(((LinkTree) node).getReference().getSignature());
+                    }
+                    count += n;
+                    break;
+                }
+                default: {
+                    print(Diagnostic.Kind.WARNING, parent, "Unsupported " + node.getKind() + " tag in @departure.");
+                    break;
+                }
+            }
+        }
+        return count;
     }
 
     /**

@@ -141,17 +141,19 @@ public final class Departure extends BlockTaglet implements Runnable {
         }
         final StringBuilder buffer = new StringBuilder();
         for (final DocTree tag : tags) {
-            String text = text(tag).replace("\r\n", "\n").replace('\r', '\n');
+            String text = text(element, tag);
             String category = "";
             /*
              * Extracts the first word, which is expected to be the category name.
              */
-            for (int i=0; i<text.length(); i++) {
-                if (Character.isWhitespace(text.charAt(i))) {
+            for (int i=0; i<text.length();) {
+                final int c = text.codePointAt(i);
+                if (Character.isWhitespace(c)) {
                     category = text.substring(0, i);
                     text = text.substring(i).trim();
                     break;
                 }
+                i += Character.charCount(c);
             }
             if (!CATEGORIES.containsKey(category)) {
                 final String message;
@@ -185,10 +187,16 @@ public final class Departure extends BlockTaglet implements Runnable {
 
     /**
      * Generates a summary of all departures.
+     * This method does nothing if there is no reported departures.
      *
      * @throws IOException if an error occurred while writing the summary page.
      */
     final void summary() throws IOException {
+        synchronized (departures) {
+            if (departures.isEmpty()) {
+                return;
+            }
+        }
         try (BufferedWriter out = new BufferedWriter(new FileWriter("departures.html"))) {
             out.write("<!DOCTYPE html>"); out.newLine();
             out.newLine();
