@@ -43,7 +43,7 @@ import java.util.Locale;
  * Despite the "{@code create(…)}" method names, implementations may return cached instances.</div>
  *
  * @departure extension
- *   Added in order to provide constructors for <code>GenericName</code> and related interfaces.
+ *   Added in order to provide constructors for {@code GenericName} and related interfaces.
  *
  * @author  Jesse Crossley (SYS Technologies)
  * @author  Martin Desruisseaux (Geomatys)

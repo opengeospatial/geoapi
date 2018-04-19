@@ -98,8 +98,8 @@ import static org.opengis.annotation.Specification.*;
  * </table>
  *
  * @departure rename
- *   GeoAPI uses a name which contains the "<code>Descriptor</code>" word for consistency with other
- *   libraries in Java (e.g. <code>ParameterListDescriptor</code> in Java Advanced Imaging).
+ *   GeoAPI uses a name which contains the "{@code Descriptor}" word for consistency with other
+ *   libraries in Java (e.g. {@code ParameterListDescriptor} in Java Advanced Imaging).
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)
@@ -198,9 +198,9 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * In other contexts (e.g. parameter group or service metadata) it may vary.
      *
      * @departure generalization
-     *   Moved up (in the interface hierarchy) the <code>maximumOccurs</code> method from
-     *   <code>ParameterDescriptorGroup</code> into this super-interface, for parallelism
-     *   with the <code>minimumOccurs</code> method.
+     *   Moved up (in the interface hierarchy) the {@code maximumOccurs} method from
+     *   {@code ParameterDescriptorGroup} into this super-interface, for parallelism
+     *   with the {@code minimumOccurs} method.
      *
      * @return the maximum occurrence, or {@link Integer#MAX_VALUE} if there is no limit.
      *

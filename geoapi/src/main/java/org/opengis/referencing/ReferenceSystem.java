@@ -103,7 +103,7 @@ public interface ReferenceSystem extends IdentifiedObject {
      *   This method has been kept conformant with the specification published in 2003.
      *   Later revisions changed the multiplicity, so the return type should now be a
      *   collection. The singleton has been preserved in GeoAPI for historical reasons,
-     *   and also because the <code>Extent</code> attributes already allow collections.
+     *   and also because the {@code Extent} attributes already allow collections.
      *
      * @since 2.1
      */

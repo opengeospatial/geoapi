@@ -60,7 +60,7 @@ import static org.opengis.annotation.Specification.*;
 public interface Identifier {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(…)</code>
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(…)}
      * methods. This is used for setting the value to be returned by {@link #getAuthority()}.
      *
      * @see #getAuthority()
@@ -69,7 +69,7 @@ public interface Identifier {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} <code>createFoo(…)</code>
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(…)}
      * methods. This is used for setting the value to be returned by {@link #getCode()}.
      *
      * @see #getCode()

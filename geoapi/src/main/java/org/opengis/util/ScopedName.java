@@ -167,7 +167,7 @@ public interface ScopedName extends GenericName {
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. It has been added in GeoAPI as a
-     *   complement of the ISO <code>tail()</code> method.
+     *   complement of the ISO {@code tail()} method.
      *
      * @since 2.1
      */

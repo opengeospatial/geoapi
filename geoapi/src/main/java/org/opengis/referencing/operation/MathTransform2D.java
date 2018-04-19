@@ -45,7 +45,7 @@ import java.awt.geom.AffineTransform;
  * @departure integration
  *   This interface is not part of OGC specification. It has been added in GeoAPI for
  *   close integration with the <cite>Java2D</cite> library. The API defined in this
- *   interface matches the <code>java.awt.geom.AffineTransform</code> API.
+ *   interface matches the {@code java.awt.geom.AffineTransform} API.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

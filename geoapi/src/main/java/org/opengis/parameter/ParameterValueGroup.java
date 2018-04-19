@@ -74,8 +74,8 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * The abstract definition of this group of parameters.
      *
      * @departure rename
-     *   The ISO name was "<code>group</code>". GeoAPI uses "<code>descriptor</code>" instead in
-     *   order to override the <code>getDescriptor()</code> generic method provided in the parent
+     *   The ISO name was "{@code group}". GeoAPI uses "{@code descriptor}" instead in
+     *   order to override the {@code getDescriptor()} generic method provided in the parent
      *   interface. In addition the "descriptor" name makes more apparent that this method returns
      *   an abstract definition of parameters - not their actual values - and is consistent with
      *   usage in other Java libraries like the <cite>Java Advanced Imaging</cite> library.

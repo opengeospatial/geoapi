@@ -154,18 +154,18 @@ abstract class BlockTaglet implements Taglet {
     /**
      * Writes in the given buffer the given documentation tree elements.
      */
+    @SuppressWarnings("fallthrough")
     private int text(final StringBuilder b, final Element parent, final Iterable<? extends DocTree> elements) {
         int count = 0;
+        boolean isCode = false;
         for (final DocTree node : elements) {
             switch (node.getKind()) {
                 case TEXT:          b.append(((TextTree) node).getBody()); break;
                 case START_ELEMENT: b.append('<').append(((StartElementTree) node).getName()).append('>'); break;
                 case END_ELEMENT:   b.append("</").append(((EndElementTree) node).getName()).append('>'); break;
                 case ENTITY:        b.append('&').append(((EntityTree) node).getName()).append(';'); break;
-                case CODE:
+                case CODE:          b.append("<code>"); isCode = true;  // Fall through
                 case LITERAL: {
-                    final boolean isCode = node.getKind() == DocTree.Kind.CODE;
-                    if (isCode) b.append("<code>");
                     int i = b.length();
                     b.append(((LiteralTree) node).getBody().getBody());
                     while (i < b.length()) {                                // Length may change during iteration.
@@ -179,16 +179,23 @@ abstract class BlockTaglet implements Taglet {
                         b.replace(i, i+1, r);
                         i += r.length();
                     }
-                    if (isCode) b.append("</code>");
+                    if (isCode) {
+                        b.append("</code>");
+                        isCode = false;
+                    }
                     break;
                 }
-                case LINK:
+                case LINK: b.append("<code>"); isCode = true;  // Fall through
                 case LINK_PLAIN: {
                     int n = text(b, parent, ((LinkTree) node).getLabel());
                     if (n == 0) {
                         b.append(((LinkTree) node).getReference().getSignature());
                     }
                     count += n;
+                    if (isCode) {
+                        b.append("</code>");
+                        isCode = false;
+                    }
                     break;
                 }
                 default: {

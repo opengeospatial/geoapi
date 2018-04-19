@@ -60,8 +60,8 @@ import static org.opengis.annotation.Specification.*;
  * @param  <T>  the type of parameter values.
  *
  * @departure rename
- *   GeoAPI uses a name which contains the "<code>Descriptor</code>" word for consistency with other
- *   libraries in Java (e.g. <code>ParameterListDescriptor</code> in Java Advanced Imaging).
+ *   GeoAPI uses a name which contains the "{@code Descriptor}" word for consistency with other
+ *   libraries in Java (e.g. {@code ParameterListDescriptor} in Java Advanced Imaging).
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Jody Garnett (Refractions Research)

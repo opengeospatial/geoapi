@@ -141,7 +141,7 @@ import org.opengis.util.GenericName;
  * @departure harmonization
  *   This interface is not part of any OGC specification. It is added for uniformity,
  *   in order to provide a common base class for all referencing factories producing
- *   <code>IdentifiedObject</code> instances.
+ *   {@code IdentifiedObject} instances.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

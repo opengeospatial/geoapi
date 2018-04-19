@@ -118,10 +118,10 @@ public interface OperationMetadata {
      * The {@link ParameterDescriptor#getName()} javadoc gives more information on the mapping of names.
      *
      * @departure harmonization
-     *   Usage of the ISO 19115 <code>SV_Parameter</code> type has been replaced by usage of the ISO 19111
-     *   <code>CC_OperationParameter</code> type, completed with new <code>SV_Parameter</code> properties,
-     *   in order to provide a unified parameter API. Note that <code>CC_OperationParameter</code> is named
-     *   <code>ParameterDescriptor</code> in GeoAPI to reflect its extended scope.
+     *   Usage of the ISO 19115 {@code SV_Parameter} type has been replaced by usage of the ISO 19111
+     *   {@code CC_OperationParameter} type, completed with new {@code SV_Parameter} properties,
+     *   in order to provide a unified parameter API. Note that {@code CC_OperationParameter} is named
+     *   {@code ParameterDescriptor} in GeoAPI to reflect its extended scope.
      *
      * @return the parameters that are required for this interface, or an empty collection if none.
      *

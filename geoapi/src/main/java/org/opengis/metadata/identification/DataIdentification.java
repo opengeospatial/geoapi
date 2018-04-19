@@ -64,15 +64,15 @@ public interface DataIdentification extends Identification {
      * @return language(s) used.
      *
      * @departure historic
-     *   ISO 19115:2014 defines <code>defaultLocale</code> and <code>otherLocale(s)</code> attributes, who's data
-     *   type (<code>PT_Locale</code>) combines the language and character encoding information into a single class.
+     *   ISO 19115:2014 defines {@code defaultLocale} and {@code otherLocale(s)} attributes, who's data
+     *   type ({@code PT_Locale}) combines the language and character encoding information into a single class.
      *   However this design does not fit well with the Java model.
-     *   For example the character encoding information is irrelevant to <code>InternationalString</code>
-     *   since the Java language fixes the encoding of all <code>String</code> instances to UTF-16.
-     *   Consequently GeoAPI keeps the <code>language(s)</code> and <code>characterSet(s)</code> attributes
+     *   For example the character encoding information is irrelevant to {@code InternationalString}
+     *   since the Java language fixes the encoding of all {@code String} instances to UTF-16.
+     *   Consequently GeoAPI keeps the {@code language(s)} and {@code characterSet(s)} attributes
      *   as separated entities, as defined in ISO 19115:2003.
      *   GeoAPI also keeps default and other locales in a single collection for compatibility with standard Java
-     *   methods like <code>Locale.lookup(List&lt;Locale.LanguageRange&gt;, Collection&lt;Locale&gt;)</code>,
+     *   methods like {@code Locale.lookup(List<Locale.LanguageRange>, Collection<Locale>)},
      *   which provides elaborated mechanism for choosing the best suited locale for a user.
      *
      * @see #getCharacterSets()
@@ -101,8 +101,8 @@ public interface DataIdentification extends Identification {
      * @return the character coding standard(s) used.
      *
      * @departure historic
-     *   GeoAPI has kept the <code>language</code> and <code>characterSet</code> properties as defined in ISO 19115:2003.
-     *   See <code>getLanguages()</code> for more information.
+     *   GeoAPI has kept the {@code language} and {@code characterSet} properties as defined in ISO 19115:2003.
+     *   See {@code getLanguages()} for more information.
      *
      * @see #getLanguages()
      * @see org.opengis.metadata.Metadata#getCharacterSets()

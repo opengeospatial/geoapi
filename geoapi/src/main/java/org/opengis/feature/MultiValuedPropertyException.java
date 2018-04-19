@@ -37,7 +37,7 @@ package org.opengis.feature;
  * on a property containing more than one value.
  *
  * <p>Callers can avoid this exception by invoking the <code>getValue<u>s</u>()</code> method instead
- * than <code>getValue()</code>.</p>
+ * than {@code getValue()}.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

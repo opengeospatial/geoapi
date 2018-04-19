@@ -115,7 +115,7 @@ public interface AuthorityFactory extends Factory {
      * <p>If the object type is known at compile time, then it is recommended to invoke the
      * most precise method instead of this one. For example it is usually better to invoke
      * <code>{@linkplain org.opengis.referencing.crs.CRSAuthorityFactory#createCoordinateReferenceSystem
-     * createCoordinateReferenceSystem}(code)</code> instead of <code>createObject(code)</code>
+     * createCoordinateReferenceSystem}(code)</code> instead of {@code createObject(code)}
      * if the requested object is known to be a {@code CoordinateReferenceSystem} instance.</p>
      *
      * @param  code  value allocated by authority.

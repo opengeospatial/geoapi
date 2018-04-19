@@ -59,10 +59,9 @@ public interface ExtendedElementInformation {
      * @departure historic
      *    This property has been kept conform to ISO 19115:2003 for simplicity.
      *    The 2014 revision defines two mutually exclusive names depending on the data type:
-     *    "<code>conceptName</code>" for <code>ENUMERATION</code>, <code>CODE_LIST</code> or
-     *    <code>CODE_LIST_ELEMENT</code>, and "<code>name</code>" for all other data types.
-     *    GeoAPI keeps the "<code>name</code>" property for all data types and let developers
-     *    inspect the "<code>dataType</code>" property if needed.
+     *    {@code "conceptName"} for {@code ENUMERATION}, {@code CODE_LIST} or {@code CODE_LIST_ELEMENT},
+     *    and {@code "name"} for all other data types. GeoAPI keeps the {@code "name"} property for all
+     *    data types and let developers inspect the {@code "dataType"} property if needed.
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19115)
     String getName();

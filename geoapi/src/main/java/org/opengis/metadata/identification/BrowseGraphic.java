@@ -57,8 +57,8 @@ public interface BrowseGraphic {
      * Name of the file that contains a graphic that provides an illustration of the dataset.
      *
      * @departure integration
-     *   ISO 19115 type is <code>CharacterString</code>. Since the specification clearly state that the
-     *   string shall be a filename, a more specific Java type like <code>URI</code> seem appropriate.
+     *   ISO 19115 type is {@code CharacterString}. Since the specification clearly state that the
+     *   string shall be a filename, a more specific Java type like {@code URI} seem appropriate.
      *
      * @return file that contains a graphic that provides an illustration of the dataset.
      */

@@ -64,7 +64,7 @@ public enum Specification {
      * This is the specification for some interfaces in package {@link org.opengis.util}.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote style="font-size:small">
+     * <div class="note">
      * <p>Provides rules and guidelines for the use of a conceptual schema language
      * within the ISO geographic information standards.
      * The chosen conceptual schema language is the Unified Modeling Language (UML).</p>
@@ -72,7 +72,7 @@ public enum Specification {
      * <p>ISO TS 19103 provides a profile of UML for use with geographic information.
      * In addition, it provides guidelines on how UML should be used to create
      * standardized geographic information and service models.</p>
-     * </blockquote>
+     * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
@@ -89,14 +89,14 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.geometry} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote style="font-size:small">
+     * <div class="note">
      * <p>Specifies conceptual schemas for describing the spatial characteristics of
      * geographic features, and a set of spatial operations consistent with these schemas. It treats
      * vector geometry and topology up to three dimensions. It defines standard spatial operations
      * for use in access, query, management, processing, and data exchange of geographic information
      * for spatial (geometric and topological) objects of up to three topological dimensions embedded
      * in coordinate spaces of up to three axes.</p>
-     * </blockquote>
+     * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
@@ -112,7 +112,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.temporal} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote style="font-size:small">
+     * <div class="note">
      * <p>Defines concepts for describing temporal characteristics of geographic
      * information. It depends upon existing information technology standards for the interchange
      * of temporal information. It provides a basis for defining temporal feature attributes,
@@ -120,7 +120,7 @@ public enum Specification {
      * metadata about geographic information. Since this International Standard is concerned with
      * the temporal characteristics of geographic information as they are abstracted from the real
      * world, it emphasizes valid time rather than transaction time.</p>
-     * </blockquote>
+     * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
@@ -137,7 +137,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.feature}.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote style="font-size:small">
+     * <div class="note">
      * <p>Defines rules for creating and documenting application schemas, including principles for the definition
      * of features. Its scope includes the following:</p>
      * <ul>
@@ -148,7 +148,7 @@ public enum Specification {
      *   <li>integration of standardized schemas from other ISO geographic information standards with the application
      *       schema.</li>
      * </ul>
-     * </blockquote>
+     * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
@@ -167,7 +167,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.referencing} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote style="font-size:small">
+     * <div class="note">
      * <p>Defines the conceptual schema for the description of spatial referencing by
      * coordinates, optionally extended to spatio-temporal referencing. It describes the minimum
      * data required to define one-, two- and three-dimensional spatial coordinate reference systems
@@ -188,7 +188,7 @@ public enum Specification {
      * position with a third non-spatial parameter which varies monotonically with height or depth.
      * This extension to non-spatial data is beyond the scope of ISO 19111 but can be implemented
      * through profiles.</p>
-     * </blockquote>
+     * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
@@ -207,10 +207,10 @@ public enum Specification {
      * This is the specification for classes {@link org.opengis.referencing.crs.ParametricCRS} and associated parametric classes.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote style="font-size:small">
+     * <div class="note">
      * <p>Extends the existing spatial referencing standard by defining the schema
      * required for describing parameterized systems.</p>
-     * </blockquote>
+     * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
@@ -228,7 +228,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.referencing.gazetteer}.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote style="font-size:small">
+     * <div class="note">
      * <p>Defines the conceptual schema for spatial references based on geographic identifiers.
      * It establishes a general model for spatial referencing using geographic identifiers,
      * defines the components of a spatial reference system and defines the essential components of a gazetteer.
@@ -239,7 +239,7 @@ public enum Specification {
      * It enables gazetteers to be constructed in a consistent manner and supports the development of other standards
      * in the field of geographic information. It is applicable to digital geographic data, and its principles may be
      * extended to other forms of geographic data such as maps, charts and textual documents.</p>
-     * </blockquote>
+     * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
@@ -257,7 +257,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote style="font-size:small">
+     * <div class="note">
      * <p>Defines the schema required for describing geographic information and services by means of metadata.
      * It provides information about the identification, the extent, the quality, the spatial and temporal aspects,
      * the content, the spatial reference, the portrayal, distribution, and other properties of digital geographic
@@ -281,7 +281,7 @@ public enum Specification {
      * <p>Though ISO 19115-1 is applicable to digital data and services, its principles can be extended to many
      * other types of resources such as maps, charts, and textual documents as well as non-geographic data.
      * Certain conditional metadata elements might not apply to these other forms of data.</p>
-     * </blockquote>
+     * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
@@ -298,7 +298,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote style="font-size:small">
+     * <div class="note">
      * <p>Extends the existing geographic metadata standard by defining the schema
      * required for describing imagery and gridded data. It provides information about the properties
      * of the measuring equipment used to acquire the data, the geometry of the measuring process
@@ -307,7 +307,7 @@ public enum Specification {
      * from raw data, including the properties of the measuring system, and the numerical methods
      * and computational procedures used in the derivation. The metadata required to address coverage
      * data in general is addressed sufficiently in the general part of ISO 19115.</p>
-     * </blockquote>
+     * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
@@ -325,7 +325,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote style="font-size:small">
+     * <div class="note">
      * <p>defines an integrated XML implementation of ISO 19115‑1, ISO 19115‑2, and concepts from ISO/TS 19139
      * by defining the following artefacts:</p>
      *
@@ -348,7 +348,7 @@ public enum Specification {
      * to XML transformation software, and refactors the packaging of a few elements into XML namespaces.
      * The XML schema has been generated systematically from the UML model for XML implementation according
      * to the rules defined in ISO/TS 19139 or ISO 19118.</p>
-     * </blockquote>
+     * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
@@ -366,12 +366,12 @@ public enum Specification {
      * This is an abstract specification for portraying features.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote style="font-size:small">
+     * <div class="note">
      * <p>Defines a schema describing the portrayal of geographic information in a
      * form understandable by humans. It includes the methodology for describing symbols and mapping
      * of the schema to an application schema. It does not include standardization of cartographic
      * symbols, and their geometric and functional description.</p>
-     * </blockquote>
+     * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
@@ -388,7 +388,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.coverage} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote style="font-size:small">
+     * <div class="note">
      * <p>Defines a conceptual schema for the spatial characteristics of coverages.
      * Coverages support mapping from a spatial, temporal or spatiotemporal domain to feature attribute
      * values where feature attribute types are common to all geographic positions within the domain.
@@ -402,7 +402,7 @@ public enum Specification {
      * <p>ISO 19123 defines the relationship between the domain of a coverage
      * and an associated attribute range. The characteristics of the spatial domain are defined
      * whereas the characteristics of the attribute range are not part of ISO 19123.</p>
-     * </blockquote>
+     * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
@@ -419,14 +419,14 @@ public enum Specification {
      * ISO 19128, Web map server interface.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote style="font-size:small">
+     * <div class="note">
      * <p>Specifies the behaviour of a service that produces spatially referenced
      * maps dynamically from geographic information. It specifies operations to retrieve a description
      * of the maps offered by a server, to retrieve a map, and to query a server about features
      * displayed on a map. ISO 19128 is applicable to pictorial renderings of maps in a
      * graphical format; it is not applicable to retrieval of actual feature data or coverage data
      * values.</p>
-     * </blockquote>
+     * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
@@ -443,10 +443,10 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote style="font-size:small">
+     * <div class="note">
      * <p>Defines Geographic MetaData XML ({@code gmd}) encoding, an XML Schema
      * implementation derived from ISO 19115.</p>
-     * </blockquote>
+     * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
@@ -466,7 +466,7 @@ public enum Specification {
      * {@link org.opengis.referencing.crs.CoordinateReferenceSystem#toWKT()}.
      *
      * <p><b>ISO abstract:</b></p>
-     * <blockquote style="font-size:small">
+     * <div class="note">
      * <p>Defines the structure and content of a text string implementation of the abstract model for coordinate reference systems
      * described in ISO 19111:2007 and ISO 19111-2:2009. The string defines frequently needed types of coordinate reference systems
      * and coordinate operations in a self-contained form that is easily readable by machines and by humans.
@@ -477,7 +477,7 @@ public enum Specification {
      * a coordinate reference system definition with look-ups or cross references only to define coordinate operation mathematics.
      * Because it omits metadata about the source of the data and may omit metadata about the applicability of the information,
      * the WKT string is not suitable for the storage of definitions of coordinate reference systems or coordinate operations.</p>
-     * </blockquote>
+     * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>

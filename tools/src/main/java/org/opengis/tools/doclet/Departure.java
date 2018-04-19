@@ -169,12 +169,7 @@ public final class Departure extends BlockTaglet implements Runnable {
              * They will be processed later by the summary() method.
              */
             synchronized (departures) {
-                List<DepartureElement> forCategory = departures.get(category);
-                if (forCategory == null) {
-                    forCategory = new ArrayList<>();
-                    departures.put(category, forCategory);
-                }
-                forCategory.add(new DepartureElement(element, tag, text));
+                departures.computeIfAbsent(category, f -> new ArrayList<>()).add(new DepartureElement(element, tag, text));
             }
             /*
              * Nows copies the text.

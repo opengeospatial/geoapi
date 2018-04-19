@@ -132,9 +132,9 @@ public interface SampleDimension extends RangeDimension {
      * Type of transfer function to be used when scaling a physical value for a given element.
      *
      * @departure harmonization
-     *   ISO 19115-2 defines this property in the <code>MI_Band</code> type (a <code>MD_Band</code> subtype)
-     *   for historical reasons. GeoAPI moves this property up in the hierarchy to a more natural place when
-     *   not constrained by historical reasons, which is together with the offset and scale factor.
+     *   ISO 19115-2 defines this property in the {@code MI_Band} type (a {@code MD_Band} subtype)
+     *   for historical reasons. GeoAPI moves this property up in the hierarchy to a more natural place
+     *   when not constrained by historical reasons, which is together with the offset and scale factor.
      *
      * @return type of transfer function.
      */
@@ -161,9 +161,9 @@ public interface SampleDimension extends RangeDimension {
      * </div>
      *
      * @departure harmonization
-     *   ISO 19115-2 defines this property in the <code>MI_Band</code> type (a <code>MD_Band</code> subtype)
-     *   for historical reasons. GeoAPI moves this property up in the hierarchy since this property can apply
-     *   to any sample dimension, not only the measurements in the electromagnetic spectrum.
+     *   ISO 19115-2 defines this property in the {@code MI_Band} type (a {@code MD_Band} subtype)
+     *   for historical reasons. GeoAPI moves this property up in the hierarchy since this property
+     *   can apply to any sample dimension, not only the measurements in the electromagnetic spectrum.
      *
      * @return Smallest distance between which separate points can be distinguished.
      * @unitof Distance

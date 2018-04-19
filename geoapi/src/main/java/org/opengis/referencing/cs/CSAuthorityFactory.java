@@ -66,7 +66,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * <p>If the coordinate system type is known at compile time, then it is recommended
      * to invoke the most precise method instead of this one. For example it is usually better
      * to invoke <code>{@linkplain #createCartesianCS createCartesianCS}(code)</code> instead
-     * of <code>createCoordinateSystem(code)</code> if the requested object is known to be a
+     * of {@code createCoordinateSystem(code)} if the requested object is known to be a
      * {@code CartesianCS} instance.</p>
      *
      * @param  code  value allocated by authority.

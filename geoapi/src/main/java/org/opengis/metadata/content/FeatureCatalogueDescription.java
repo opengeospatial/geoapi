@@ -64,7 +64,7 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      *
      * <p>Note that contrarily to the {@code PT_Locale} object defined by ISO 19115:2014, the {@code java.util.Locale}
      * object does not contain character encoding information. The Java language does not tie closely the encoding to
-     * the locale since all <code>String</code> instances are encoded in UTF-16 regardless the locale.</p>
+     * the locale since all {@code String} instances are encoded in UTF-16 regardless the locale.</p>
      *
      * <p>XML documents shall format languages using the ISO 639-2 language code
      * as returned by {@link Locale#getISO3Language()}.</p>
@@ -72,10 +72,10 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * @return language(s) used within the catalogue.
      *
      * @departure historic
-     *   GeoAPI keeps the <code>getLanguages()</code> method name for compliance with the ISO 19115:2003 model
-     *   See <code>DataIdentification.getLanguages()</code> for information about why the legacy model is more
+     *   GeoAPI keeps the {@code getLanguages()} method name for compliance with the ISO 19115:2003 model
+     *   See {@code DataIdentification.getLanguages()} for information about why the legacy model is more
      *   suitable to Java than the new ISO 19115:2014 model. In addition, the <cite>language</cite> name help
-     *   to emphases the difference with the ISO 19115:2014 definition of <code>PT_Locale</code>.
+     *   to emphases the difference with the ISO 19115:2014 definition of {@code PT_Locale}.
      *
      * @see org.opengis.metadata.identification.DataIdentification#getLanguages()
      * @see org.opengis.metadata.Metadata#getLanguages()
@@ -98,11 +98,11 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * @return subset of feature types occurring in resource.
      *
      * @departure rename
-     *   Renamed from "<code>featureTypes</code>" to "<code>featureTypeInfo</code>" for the following reasons:
+     *   Renamed from "{@code featureTypes}" to "{@code featureTypeInfo}" for the following reasons:
      *   <ol>
-     *     <li>Avoid name collision with the ISO 19115:2003 definition of "<code>featureTypes</code>".</li>
-     *     <li>Avoid confusion between <code>FeatureTypeInfo</code> and <code>org.opengis.feature.FeatureType</code>.
-     *         A <code>getFeatureTypes()</code> method name would suggest that the collection contains the later.</li>
+     *     <li>Avoid name collision with the ISO 19115:2003 definition of "{@code featureTypes}".</li>
+     *     <li>Avoid confusion between {@code FeatureTypeInfo} and {@code org.opengis.feature.FeatureType}.
+     *         A {@code getFeatureTypes()} method name would suggest that the collection contains the later.</li>
      *   </ol>
      *
      * @since 3.1
