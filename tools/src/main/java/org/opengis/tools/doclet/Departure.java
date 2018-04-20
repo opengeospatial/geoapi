@@ -38,10 +38,10 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Collections;
+import java.io.Flushable;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
-import java.io.UncheckedIOException;
 import com.sun.source.doctree.DocTree;
 import javax.lang.model.element.Name;
 import javax.lang.model.element.Element;
@@ -72,7 +72,7 @@ import javax.tools.Diagnostic;
  * @version 3.1
  * @since   2.3
  */
-public final class Departure extends BlockTaglet implements Runnable {
+public final class Departure extends BlockTaglet implements Flushable {
     /**
      * The allowed departure categories. Keys are the departure keyword, and values are descriptions
      * of that departure category. The order of elements is the order of sections to be produced by
@@ -181,12 +181,14 @@ public final class Departure extends BlockTaglet implements Runnable {
     }
 
     /**
-     * Generates a summary of all departures.
+     * Writes to the disk all information collected during the javadoc generation.
+     * In the case of this taglet, this method generates a summary of all departures.
      * This method does nothing if there is no reported departures.
      *
      * @throws IOException if an error occurred while writing the summary page.
      */
-    final void summary() throws IOException {
+    @Override
+    public void flush() throws IOException {
         synchronized (departures) {
             if (departures.isEmpty()) {
                 return;
@@ -364,20 +366,6 @@ public final class Departure extends BlockTaglet implements Runnable {
             }
             out.write("  </body>"); out.newLine();
             out.write("</html>"); out.newLine();
-        }
-    }
-
-    /**
-     * Invokes the {@link #summary()} method and wraps errors in {@link UncheckedIOException}.
-     * This is a workaround for allowing {@link Doclet} to invoke {@link #summary()} despite
-     * the doclet and the taglet classes being loaded by different class loaders.
-     */
-    @Override
-    public void run() {
-        try {
-            summary();
-        } catch (IOException e) {
-            throw new UncheckedIOException(e);
         }
     }
 }

@@ -35,10 +35,10 @@ import java.util.LinkedHashSet;
 import java.util.List;
 import java.util.Locale;
 import java.util.Set;
+import java.io.Flushable;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.StringWriter;
-import java.io.UncheckedIOException;
 import java.nio.file.FileVisitResult;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -85,7 +85,7 @@ public final class Doclet extends StandardDoclet {
      * <p>Has to be public static for now as a workaround for
      * <a href="https://bugs.openjdk.java.net/browse/JDK-8201817">JDK-8201817</a>.</p>
      */
-    public static Runnable postProcess;
+    public static Flushable postProcess;
 
     /**
      * Invoked by the Javadoc tools for instantiating the custom doclet.
@@ -192,10 +192,8 @@ public final class Doclet extends StandardDoclet {
                     }
                 }
             }
-            if (postProcess != null) try {
-                postProcess.run();
-            } catch (UncheckedIOException ue) {
-                throw ue.getCause();
+            if (postProcess != null) {
+                postProcess.flush();
             }
         } catch (IOException e) {
             if (reporter != null) {
