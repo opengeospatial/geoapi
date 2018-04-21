@@ -650,6 +650,9 @@ strictfp class JavaToPython extends SourceGenerator {
                  * Python file exist: compare all expected lines with the actual lines read from the file.
                  * This block does not write anything; if the comparison does not match, we fail the test.
                  */
+                if (skipVerification(file)) {
+                    continue;
+                }
                 try (LineNumberReader in = new LineNumberReader(new InputStreamReader(Files.newInputStream(file), ENCODING))) {
                     int startExpected = 0, endExpected;
                     while ((endExpected = content.indexOf(lineSeparator, startExpected)) >= 0) {
@@ -692,5 +695,20 @@ strictfp class JavaToPython extends SourceGenerator {
         if (!contents.isEmpty()) {
             fail("No Python modules created for " + contents.keySet());
         }
+    }
+
+    /**
+     * Returns {@code true} if verification of the given file should be skipped.
+     * This method is invoked when the file already exists.
+     * Subclasses can return {@code true} if that file has been extensively edited,
+     * so that automatized verification is likely to fail.
+     *
+     * <p>Default implementation returns {@code false} in all cases.</p>
+     *
+     * @param  file  the existing file to test.
+     * @return whether the given file should be skipped.
+     */
+    protected boolean skipVerification(final Path file) {
+        return false;
     }
 }

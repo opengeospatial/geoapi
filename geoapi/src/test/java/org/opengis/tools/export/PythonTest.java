@@ -99,4 +99,24 @@ public final strictfp class PythonTest extends JavaToPython {
                    Boolean.getBoolean("org.opengis.extensiveTesting"));
         return null;
     }
+
+    /**
+     * Specifies whether verification of the given file should be skipped.
+     * Current implementation skips the verification of following files,
+     * because they were edited by hand:
+     *
+     * <ul>
+     *   <li>{@code dataQuality.py}</li>
+     * </ul>
+     *
+     * @param  file  the existing file to test.
+     * @return whether the given file should be skipped.
+     */
+    @Override
+    protected boolean skipVerification(final Path file) {
+        if ("dataQuality.py".equals(file.getFileName().toString())) {
+            return true;
+        }
+        return super.skipVerification(file);
+    }
 }
