@@ -48,7 +48,7 @@
  * <tr>
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
- * </tr><tr><td style="width: 50%; white-space: nowrap">
+ * </tr><tr><td class="hierarchy">
  * <pre>ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.identification.Identification} «abstract»
  *  │   ├─ {@linkplain org.opengis.metadata.identification.DataIdentification}
@@ -69,7 +69,7 @@
  *  ├─ {@linkplain org.opengis.metadata.identification.TopicCategory}
  *  ├─ {@linkplain org.opengis.metadata.identification.CouplingType}
  *  └─ {@linkplain org.opengis.metadata.identification.DistributedComputingPlatform}</pre>
- * </td><td class="sep" style="width: 50%; white-space: nowrap">
+ * </td><td class="sep hierarchy">
  * <pre>{@linkplain org.opengis.metadata.identification.Identification} «abstract»
  *  ├─ {@linkplain org.opengis.metadata.identification.Resolution}
  *  ├─ {@linkplain org.opengis.metadata.identification.TopicCategory} «code list»

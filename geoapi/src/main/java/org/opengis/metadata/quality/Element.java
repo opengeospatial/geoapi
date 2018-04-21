@@ -105,8 +105,8 @@ public interface Element {
 
     /**
      * Date or range of dates on which a data quality measure was applied.
-     * The collection size is 1 for a single date, or 2 for a range. Returns
-     * an empty collection if this information is not available.
+     * The collection size is 1 for a single date, or 2 for a range.
+     * Returns an empty collection if this information is not available.
      *
      * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
      * The element type of this method may change in GeoAPI 4.0 release. It may be replaced by a

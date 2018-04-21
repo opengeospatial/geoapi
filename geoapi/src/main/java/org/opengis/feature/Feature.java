@@ -145,7 +145,7 @@ public interface Feature {
     /**
      * Sets the value for the property of the given name.
      *
-     * <div class="note"><b>Note on validation:</b>
+     * <div class="note"><b>Note on validation</b><br>
      * the verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
      * and offer an other method for performing more extensive validation.

@@ -47,7 +47,7 @@
  * <tr>
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
- * </tr><tr><td style="width: 50%; white-space: nowrap">
+ * </tr><tr><td class="hierarchy">
  * <pre> ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.citation.Citation}
  *  ├─ {@linkplain org.opengis.metadata.citation.CitationDate}
@@ -65,7 +65,7 @@
  *  ├─ {@linkplain org.opengis.metadata.citation.OnLineFunction}
  *  ├─ {@linkplain org.opengis.metadata.citation.PresentationForm}
  *  └─ {@linkplain org.opengis.metadata.citation.Role}</pre>
- * </td><td class="sep" style="width: 50%; white-space: nowrap">
+ * </td><td class="sep hierarchy">
  * <pre> {@linkplain org.opengis.metadata.citation.Citation}
  *  ├─ {@linkplain org.opengis.metadata.citation.CitationDate}
  *  │   └─ {@linkplain org.opengis.metadata.citation.DateType} «code list»

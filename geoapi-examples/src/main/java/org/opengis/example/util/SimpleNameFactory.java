@@ -126,11 +126,11 @@ public class SimpleNameFactory implements NameFactory {
      * <table class="ogc">
      *   <caption>Namespace properties</caption>
      *   <tr>
-     *     <th nowrap>Property name</th>
-     *     <th nowrap>Purpose</th>
+     *     <th>Property name</th>
+     *     <th>Purpose</th>
      *   </tr>
      *   <tr>
-     *     <td valign="top" nowrap>{@code "separator"}</td>
+     *     <td>{@code "separator"}</td>
      *     <td>The separator to insert between {@linkplain GenericName#getParsedNames() parsed names}
      *     in that namespace. For URN, this is typically {@code ":"}.</td>
      *   </tr>

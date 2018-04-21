@@ -36,17 +36,8 @@ import java.util.Collection;
 
 /**
  * Thrown when an {@link Attribute} value or a {@link FeatureAssociation} does not met the constraints
- * specified by its type. This exception can be thrown by implementations that perform validity checks.
- *
- * <div class="note"><b>Exception for invalid class:</b>
- * libraries may throw {@link ClassCastException} instead than this {@code InvalidPropertyValueException} when
- * the given value is not an instance of the expected class (typically {@link AttributeType#getValueClass()}).
- * The reason is that libraries may rely on Java parameterized types, which throws {@code ClassCastException}
- * at runtime when the objects are used in an unsafe way. Libraries may also rely on {@link Class#cast(Object)}
- * or {@link Class#asSubclass(Class)} standard methods, which are designed to throw {@code ClassCastException},
- * or may way to be consistent with all the above.</div>
- *
- * <p>This exception is typically thrown by the following methods:</p>
+ * (other than Java class) specified by its type. This exception can be thrown by implementations that
+ * perform validity checks. Such verifications happen typically in the following methods:
  * <ul>
  *   <li>In {@code Attribute}:
  *     <ul>
@@ -67,6 +58,14 @@ import java.util.Collection;
  *     </ul>
  *   </li>
  * </ul>
+ *
+ * <div class="section">Exception for invalid class</div>
+ * Libraries may throw {@link ClassCastException} instead than this {@code InvalidPropertyValueException} when
+ * the given value is not an instance of the expected class (typically {@link AttributeType#getValueClass()}).
+ * The reason is that libraries may rely on Java parameterized types, which throws {@code ClassCastException}
+ * at runtime when the objects are used in an unsafe way. Libraries may also rely on {@link Class#cast(Object)}
+ * or {@link Class#asSubclass(Class)} standard methods, which are designed to throw {@code ClassCastException},
+ * or may way to be consistent with all the above.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

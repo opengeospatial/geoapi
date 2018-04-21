@@ -172,10 +172,10 @@ public final class Departure extends BlockTaglet implements Flushable {
                 departures.computeIfAbsent(category, f -> new ArrayList<>()).add(new DepartureElement(element, tag, text));
             }
             /*
-             * Nows copies the text.
+             * Now copies the text.
              */
-            buffer.append("<blockquote><font color=\"firebrick\" size=\"-1\"><b>Departure from OGC/ISO specification:</b><br>").
-                    append(text).append("</font></blockquote>");
+            buffer.append("<div class=\"departure\"><b>Departure from OGC/ISO specification:</b><br>")
+                  .append(text).append("</div>");
         }
         return buffer.toString();
     }

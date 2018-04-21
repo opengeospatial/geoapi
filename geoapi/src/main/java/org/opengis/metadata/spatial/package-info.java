@@ -49,7 +49,7 @@
  * <tr>
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
- * </tr><tr><td style="width: 50%; white-space: nowrap">
+ * </tr><tr><td class="hierarchy">
  * <pre> ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.spatial.SpatialRepresentation} «abstract»
  *  │   ├─ {@linkplain org.opengis.metadata.spatial.VectorSpatialRepresentation}
@@ -68,7 +68,7 @@
  *  ├─ {@linkplain org.opengis.metadata.spatial.PixelOrientation}
  *  ├─ {@linkplain org.opengis.metadata.spatial.DimensionNameType}
  *  └─ {@linkplain org.opengis.metadata.spatial.SpatialRepresentationType}</pre>
- * </td><td class="sep" style="width: 50%; white-space: nowrap">
+ * </td><td class="sep hierarchy">
  * <pre> {@linkplain org.opengis.metadata.spatial.SpatialRepresentation} «abstract»
  * {@linkplain org.opengis.metadata.spatial.VectorSpatialRepresentation}
  *  ├─ {@linkplain org.opengis.metadata.spatial.TopologyLevel} «code list»

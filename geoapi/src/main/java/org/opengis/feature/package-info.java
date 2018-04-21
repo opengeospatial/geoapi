@@ -61,18 +61,18 @@
  * <tr>
  *   <th>Types (from ISO 19109)</th>
  *   <th class="sep">Instances (GeoAPI specific)</th>
- * </tr><tr><td style="width: 50%; white-space: nowrap">
+ * </tr><tr><td class="hierarchy">
  *                 {@link org.opengis.feature.IdentifiedType}<br>
- * {@code  ├─}     {@link org.opengis.feature.FeatureType}<br>
- * {@code  └─}     {@link org.opengis.feature.PropertyType}<br>
- * {@code      ├─} {@link org.opengis.feature.AttributeType}<br>
- * {@code      ├─} {@link org.opengis.feature.FeatureAssociationRole}<br>
- * {@code      └─} {@link org.opengis.feature.Operation}<br>
- * </td><td class="sep" style="width: 50%; white-space: nowrap">
+ * <code> ├─</code>     {@link org.opengis.feature.FeatureType}<br>
+ * <code> └─</code>     {@link org.opengis.feature.PropertyType}<br>
+ * <code>     ├─</code> {@link org.opengis.feature.AttributeType}<br>
+ * <code>     ├─</code> {@link org.opengis.feature.FeatureAssociationRole}<br>
+ * <code>     └─</code> {@link org.opengis.feature.Operation}<br>
+ * </td><td class="sep hierarchy">
  *             {@link org.opengis.feature.Feature}<br>
  *             {@link org.opengis.feature.Property}<br>
- * {@code  ├─} {@link org.opengis.feature.Attribute}<br>
- * {@code  └─} {@link org.opengis.feature.FeatureAssociation}<br>
+ * <code> ├─</code> {@link org.opengis.feature.Attribute}<br>
+ * <code> └─</code> {@link org.opengis.feature.FeatureAssociation}<br>
  * </td></tr></table>
  *
  * @author  Jody Garnett (Refractions Research, Inc.)

@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- =================================================================================
+<!-- =============================================================================================
          Maven 2 project configuration file
          http://maven.apache.org/maven2/
 
@@ -7,7 +7,9 @@
          Build development snapshot:    mvn clean install
          Build with Proj.4 tests:       mvn install -DskipNativeLibraryTests=false
          Publish a release:             mvn clean install deploy -Pgeoapi-release
-     ================================================================================= -->
+         Generate web site:             mvn clean install site -Pjdk9
+                                        mvn site:deploy -DdistMgmtWebSiteUrl=file:///path/to/dir/
+     ============================================================================================= -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -28,10 +30,9 @@
   <name>GeoAPI</name>
   <url>http://www.geoapi.org/</url>
   <description>
-    The development community in building GIS solutions is sustaining an enormous
-    level of effort. The GeoAPI project aims to reduce duplication and increase
-    interoperability by providing neutral, interface-only APIs derived from OGC/ISO
-    Standards.
+    GeoAPI provides a set of programming language interfaces for geospatial applications.
+    The project aims to reduce duplication and increase interoperability by providing neutral,
+    interface-only APIs derived from OGC/ISO Standards.
   </description>
 
   <organization>
@@ -604,67 +605,6 @@
             <link>http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/javadoc/</link>  <!-- Used by example code. -->
             <link>http://www.geoapi.org/snapshot/javadoc/</link>                                    <!-- For modules that depend on GeoAPI. -->
           </links>
-
-          <!-- Separates packages on the overview page into the groups specified.
-               Places the normative packages first, and the pending ones last. -->
-          <groups>
-            <group>
-              <title>Feature and coverage</title>
-              <packages>org.opengis.feature*:org.opengis.coverage*</packages>
-            </group>
-            <group>
-              <title>Geometry and Topology</title>
-              <packages>org.opengis.geometry*:org.opengis.topology*</packages>
-            </group>
-            <group>
-              <title>Spatial Referencing by Coordinates</title>
-              <packages>org.opengis.referencing*:org.opengis.temporal*:org.opengis.parameter*</packages>
-            </group>
-            <group>
-              <title>Metadata</title>
-              <packages>org.opengis.metadata*</packages>
-            </group>
-            <group>
-              <title>Base package</title>
-              <packages>org.opengis.util*:org.opengis.annotation*</packages>
-            </group>
-
-            <!-- Pending packages. -->
-            <group>
-              <title>Filter</title>
-              <packages>org.opengis.filter*</packages>
-            </group>
-            <group>
-              <title>Display and Styling</title>
-              <packages>org.opengis.display*:org.opengis.style*:org.opengis.layer*:org.opengis.sld*</packages>
-            </group>
-            <group>
-              <title>Observations and Measurements</title>
-              <packages>org.opengis.observation*</packages>
-            </group>
-            <group>
-              <title>Catalog Services</title>
-              <packages>org.opengis.catalog*</packages>
-            </group>
-
-            <!-- Other packages. -->
-            <group>
-              <title>Conformance tests</title>
-              <packages>org.opengis.test*</packages>
-            </group>
-            <group>
-              <title>Tests runner and reports</title>
-              <packages>org.opengis.test.runner*:org.opengis.test.report*</packages>
-            </group>
-            <group>
-              <title>Wrappers to existing libraries</title>
-              <packages>org.opengis.wrapper*:org.opengis.openoffice*</packages>
-            </group>
-            <group>
-              <title>Examples in public domain</title>
-              <packages>org.opengis.example*</packages>
-            </group>
-          </groups>
         </configuration>
       </plugin>
 

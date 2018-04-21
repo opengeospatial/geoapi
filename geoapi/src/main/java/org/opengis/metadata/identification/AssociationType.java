@@ -113,9 +113,10 @@ public final class AssociationType extends CodeList<AssociationType> {
 
     /**
      * Common title for a collection of resources.
-     * <div class="note">Note: title identifies elements of a series
-     * collectively, combined with information about what volumes are available
-     * at the source cite.</div>
+     *
+     * <div class="note"><b>Note:</b>
+     * title identifies elements of a series collectively,
+     * combined with information about what volumes are available at the source cite.</div>
      *
      * @since 3.1
      */

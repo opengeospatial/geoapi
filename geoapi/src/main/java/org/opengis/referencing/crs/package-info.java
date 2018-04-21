@@ -64,25 +64,25 @@
  * Thus the following principal sub-types of coordinate reference system are distinguished:</p>
  *
  * <blockquote>
- * <p><b>Geocentric</b>:
+ * <p><b>Geocentric:</b>
  * Type of coordinate reference system that deals with the earth's curvature by taking the 3D spatial view,
  * which obviates the need to model the earth's curvature.
  * The origin of a geocentric CRS is at the approximate centre of mass of the earth.</p>
  *
- * <p><b>Geographic</b>:
+ * <p><b>Geographic:</b>
  * Type of coordinate reference system based on an ellipsoidal approximation of the geoid.
  * This provides an accurate representation of the geometry of geographic features for a large portion
  * of the earth's surface. Geographic coordinate reference systems can be 2D or 3D.
  * A 2D Geographic CRS is used when positions of features are described on the surface of the reference ellipsoid;
  * a 3D Geographic CRS is used when positions are described on, above or below the reference ellipsoid.</p>
  *
- * <p><b>Projected</b>:
+ * <p><b>Projected:</b>
  * Type of coordinate reference system that is based on an approximation of the shape of the earth's surface by a plane.
  * The distortion that is inherent to the approximation is carefully controlled and known.
  * Distortion correction is commonly applied to calculated bearings and distances
  * to produce values that are a close match to actual field values.</p>
  *
- * <p><b>Engineering</b>:
+ * <p><b>Engineering:</b>
  * Type of coordinate reference system that is that is used only in a contextually local sense.
  * This sub-type is used to model two broad categories of local coordinate reference systems:</p>
  * <ul>
@@ -90,13 +90,13 @@
  *   <li>coordinates on moving platforms such as road vehicles, vessels, aircraft or spacecraft.</li>
  * </ul>
  *
- * <p><b>Image</b>:
+ * <p><b>Image:</b>
  * An Image CRS is an Engineering CRS applied to images. Image CRSs are treated as
  * a separate sub-type because a separate user community exists for images with its
  * own vocabulary. The definition of the associated Image Datum contains two data
  * attributes not relevant for other datums and coordinate reference systems.</p>
  *
- * <p><b>Vertical</b>:
+ * <p><b>Vertical:</b>
  * Type of coordinate reference system used for the recording of heights or depths.
  * Vertical CRSs make use of the direction of gravity to define the concept of height or depth,
  * but its relationship with gravity may not be straightforward.
@@ -104,7 +104,7 @@
  * Ellipsoidal heights cannot exist independently, but only as inseparable part of a 3D coordinate tuple
  * defined in a geographic 3D coordinate reference system.</p>
  *
- * <p><b>Temporal</b>:
+ * <p><b>Temporal:</b>
  * Used for the recording of time in association with any of the listed spatial coordinate reference systems.
  * Any CRS can be associate with a temporal CRS to form a spatio-temporal compound CRS.
  * More than one temporal CRS may be included if these axes represent different time quantities.</p>
