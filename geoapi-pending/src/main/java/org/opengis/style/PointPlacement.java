@@ -47,7 +47,6 @@ import org.opengis.filter.expression.Expression;
  */
 @XmlElement("PointPlacement")
 public interface PointPlacement extends LabelPlacement {
-
     /**
      * The AnchorPoint element of a PointPlacement gives the location inside of a label to use
      * for anchoring the label to the main-geometry point.
@@ -59,7 +58,7 @@ public interface PointPlacement extends LabelPlacement {
      *
      * See {@link AnchorPoint} for details.
      *
-     * @return AnchorPoint : if null use X=0.5 Y=0.5
+     * @return the anchor point, or {@code null} for the X=0.5 Y=0.5 default.
      */
     @XmlElement("PointPlacement")
     AnchorPoint getAnchorPoint();
@@ -72,8 +71,6 @@ public interface PointPlacement extends LabelPlacement {
      *
      * If Displacement is used in conjunction with Size and/or Rotation then the graphic
      * symbol shall be scaled and/or rotated before it is displaced.s
-     *
-     * @return Displacement
      */
     @XmlElement("Displacement")
     Displacement getDisplacement();
@@ -85,8 +82,6 @@ public interface PointPlacement extends LabelPlacement {
      * The Rotation of a PointPlacement gives the clockwise rotation of the label in degrees
      * from the normal direction for a font (left-to-right for Latin-derived human languages at
      * least).
-     *
-     * @return Expression
      */
     @XmlElement("Rotation")
     Expression getRotation();
@@ -97,5 +92,4 @@ public interface PointPlacement extends LabelPlacement {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

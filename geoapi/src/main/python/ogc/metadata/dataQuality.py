@@ -30,37 +30,45 @@ from ogc.metadata.citation import Identifier, Citation
 class Element(ABC):
     """Aspect of quantitative quality information."""
 
-    @abstractproperty
-    def result(self) -> Sequence[Result]:
-        pass
-
-    @property
-    def dateTime(self) -> Sequence[datetime]:
-        return None
-
     @property
     def nameOfMeasure(self) -> Sequence[str]:
-        return None
-
-    @property
-    def evaluationMethodDescription(self) -> str:
+        """Name of the test applied to the data."""
         return None
 
     @property
     def measureIdentification(self) -> Identifier:
-        return None
-
-    @property
-    def evaluationMethodType(self) -> EvaluationMethodTypeCode:
-        return None
-
-    @property
-    def evaluationProcedure(self) -> Citation:
+        """Code identifying a registered standard procedure."""
         return None
 
     @property
     def measureDescription(self) -> str:
+        """Description of the measure being determined."""
         return None
+
+    @property
+    def evaluationMethodType(self) -> EvaluationMethodTypeCode:
+        """Type of method used to evaluate quality of the dataset."""
+        return None
+
+    @property
+    def evaluationMethodDescription(self) -> str:
+        """Description of the evaluation method."""
+        return None
+
+    @property
+    def evaluationProcedure(self) -> Citation:
+        """Reference to the procedure information."""
+        return None
+
+    @property
+    def dateTime(self) -> Sequence[datetime]:
+        """Date or range of dates on which a data quality measure was applied."""
+        return None
+
+    @abstractproperty
+    def result(self) -> Sequence[Result]:
+        """Values obtained from applying a data quality measure against a specified acceptable conformance quality level."""
+        pass
 
 
 

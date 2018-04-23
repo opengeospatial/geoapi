@@ -46,7 +46,6 @@ import org.opengis.filter.expression.Expression;
  */
 @XmlElement("LineSymbolizer")
 public interface LineSymbolizer extends Symbolizer {
-
     /**
      * Returns the object containing all the information necessary to draw
      * styled lines.
@@ -63,8 +62,6 @@ public interface LineSymbolizer extends Symbolizer {
      *
      * The distance is in uoms and is positive to the left-hand side of the line string. Negative
      * numbers mean right. The default offset is 0.
-
-     * @return Expression
      */
     @XmlElement("PerpendicularOffset")
     Expression getPerpendicularOffset();
@@ -75,5 +72,4 @@ public interface LineSymbolizer extends Symbolizer {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

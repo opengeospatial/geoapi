@@ -56,16 +56,16 @@ import static org.opengis.annotation.Specification.*;
  * </table>
  *
  * @departure integration
- *   ISO 19111 defines a <code>SC_DerivedCRSType</code> code list with the following values:
- *   <code>geodetic</code>, <code>vertical</code>, <code>engineering</code> and <code>image</code>.
+ *   ISO 19111 defines a {@code SC_DerivedCRSType} code list with the following values:
+ *   {@code geodetic}, {@code vertical}, {@code engineering} and {@code image}.
  *   But ISO 19162 takes a slightly different approach without such code list.
  *   Instead, ISO 19162 writes the derived CRS using the WKT keyword of the corresponding CRS type
- *   (<code>“GeodCRS”</code>, <code>“VertCRS”</code>, <code>“TimeCRS”</code> or <code>“EngCRS”</code>).
- *   GeoAPI follows a similar path by <strong>not</strong> providing a <code>DerivedCRSType</code> code list.
+ *   ({@code “GeodCRS”}, {@code “VertCRS”}, {@code “TimeCRS”} or {@code “EngCRS”}).
+ *   GeoAPI follows a similar path by <strong>not</strong> providing a {@code DerivedCRSType} code list.
  *   Instead, we recommend to implement the corresponding interface as documented in the above table.
- *   Then, Java expressions like <code>(baseCRS instanceof FooCRS)</code> provides the same capability
+ *   Then, Java expressions like {@code (baseCRS instanceof FooCRS)} provides the same capability
  *   than the code list with more flexibility. For example it allows to use a derived CRS of type “vertical”
- *   with API expecting an instance of <code>VerticalCRS</code>.
+ *   with API expecting an instance of {@code VerticalCRS}.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

@@ -22,7 +22,6 @@
        ==================================================== -->
   <groupId>org.opengis.wrapper</groupId>
   <artifactId>geoapi-netcdf</artifactId>
-  <packaging>jar</packaging>
   <name>GeoAPI-NetCDF bindings</name>
   <description>
     A "proof of concept" implementation of GeoAPI as adapters around the NetCDF library.

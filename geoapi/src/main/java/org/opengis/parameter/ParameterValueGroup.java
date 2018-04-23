@@ -56,8 +56,9 @@ import static org.opengis.annotation.Specification.*;
  *   <li>{@link #addGroup(String)} for creating a new subgroup and adding it to the list of subgroups.</li>
  * </ul>
  *
- * <div class="note"><b>Design note:</b> there is no <code>parameter<b><u>s</u></b>(String)</code> method
- * returning a list of parameter values because the ISO 19111 standard fixes the {@link ParameterValue}
+ * <div class="note"><b>Design note</b><br>
+ * there is no <code>parameter<b><u>s</u></b>(String)</code> method returning a list of parameter values
+ * because the ISO 19111 standard fixes the {@link ParameterValue}
  * {@linkplain ParameterDescriptor#getMaximumOccurs() maximum occurrence} to 1.</div>
  *
  * @author  Martin Desruisseaux (IRD)
@@ -74,8 +75,8 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * The abstract definition of this group of parameters.
      *
      * @departure rename
-     *   The ISO name was "<code>group</code>". GeoAPI uses "<code>descriptor</code>" instead in
-     *   order to override the <code>getDescriptor()</code> generic method provided in the parent
+     *   The ISO name was "{@code group}". GeoAPI uses "{@code descriptor}" instead in
+     *   order to override the {@code getDescriptor()} generic method provided in the parent
      *   interface. In addition the "descriptor" name makes more apparent that this method returns
      *   an abstract definition of parameters - not their actual values - and is consistent with
      *   usage in other Java libraries like the <cite>Java Advanced Imaging</cite> library.

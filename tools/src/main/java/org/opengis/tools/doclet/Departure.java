@@ -36,15 +36,16 @@ import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.LinkedHashSet;
 import java.util.Collections;
-import java.io.File;
+import java.io.Flushable;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
 import com.sun.source.doctree.DocTree;
+import javax.lang.model.element.Name;
 import javax.lang.model.element.Element;
+import javax.tools.Diagnostic;
 
 
 /**
@@ -71,25 +72,21 @@ import javax.lang.model.element.Element;
  * @version 3.1
  * @since   2.3
  */
-public final class Departure extends BlockTaglet implements Runnable {
+public final class Departure extends BlockTaglet implements Flushable {
     /**
      * The allowed departure categories. Keys are the departure keyword, and values are descriptions
      * of that departure category. The order of elements is the order of sections to be produced by
      * {@link #summary}.
      */
-    private static final Map<String,String> CATEGORIES;
-    static {
-        final Map<String,String> c = new LinkedHashMap<>();
-        c.put("constraint",     "Departures due to constraints of the Java language");
-        c.put("historic",       "Departures due to historical reasons");
-        c.put("harmonization",  "Departures for harmonization between the different specifications");
-        c.put("integration",    "Departures for closer integration with the Java environment");
-        c.put("rename",         "Changes of name without change in functionality");
-        c.put("generalization", "Generalizations due to relaxation of ISO/OGC restrictions");
-        c.put("extension",      "Addition of elements not in the ISO/OGC specifications");
-        c.put("easeOfUse",      "Extensions for convenience, without introduction of new functionality");
-        CATEGORIES = c;
-    }
+    private static final Map<String,String> CATEGORIES = Map.of(
+            "constraint",     "Departures due to constraints of the Java language",
+            "historic",       "Departures due to historical reasons",
+            "harmonization",  "Departures for harmonization between the different specifications",
+            "integration",    "Departures for closer integration with the Java environment",
+            "rename",         "Changes of name without change in functionality",
+            "generalization", "Generalizations due to relaxation of ISO/OGC restrictions",
+            "extension",      "Addition of elements not in the ISO/OGC specifications",
+            "easeOfUse",      "Extensions for convenience, without introduction of new functionality");
 
     /**
      * All departures declared in javadoc tags. The keys are the category, and the value
@@ -101,25 +98,22 @@ public final class Departure extends BlockTaglet implements Runnable {
      * Constructs a <code>@departure</code> taglet.
      */
     public Departure() {
-        Runtime.getRuntime().addShutdownHook(new Thread(this));
     }
 
     /**
-     * Run the {@link #summary} method after the javadoc creation has been completed.
-     * We run this task as a JVM shutdown hook (which is far from ideal) because I'm
-     * not aware of any standard way to register an action to be executed at the end
-     * of javadoc generation.
+     * Invoked when the doclet initializes this taglet. This method register this taglet for execution of the
+     * {@link #run()} method after the doclet finished to generate all the javadoc.
+     *
+     * @param  doclet  the class of the {@link Doclet} initializing this taglet.
      */
     @Override
-    @SuppressWarnings("UseOfSystemOutOrSystemErr")
-    public void run() {
+    protected void init(final Class<?> doclet) {
+        super.init(doclet);
         try {
-            summary();
-        } catch (IOException e) {
-            // The stack trace is not of interrest since we are doing only trivial call
-            // to out.write("..."). The most likely cause is no write permission.
-            System.err.println("ERROR while writing the departures from OGC/ISO pages:");
-            System.err.println(e);
+            // Can not access Doclet.postProcess directly because of different ClassLoaders.
+            doclet.getField("postProcess").set(null, this);
+        } catch (ReflectiveOperationException e) {
+            print(Diagnostic.Kind.ERROR, null, e.toString());
         }
     }
 
@@ -147,48 +141,59 @@ public final class Departure extends BlockTaglet implements Runnable {
         }
         final StringBuilder buffer = new StringBuilder();
         for (final DocTree tag : tags) {
-            String text = text(tag).replace("\r\n", "\n").replace('\r', '\n');
-            String category = "<unspecified>";
+            String text = text(element, tag);
+            String category = "";
             /*
              * Extracts the first word, which is expected to be the category name.
              */
-            for (int i=0; i<text.length(); i++) {
-                if (Character.isWhitespace(text.charAt(i))) {
+            for (int i=0; i<text.length();) {
+                final int c = text.codePointAt(i);
+                if (Character.isWhitespace(c)) {
                     category = text.substring(0, i);
                     text = text.substring(i).trim();
                     break;
                 }
+                i += Character.charCount(c);
             }
             if (!CATEGORIES.containsKey(category)) {
-                printWarning(tag, "Unknown category: " + category);
+                final String message;
+                if (category.isEmpty()) {
+                    message = "No category has been specified for @departure tag.";
+                } else {
+                    message = "Unknown @departure category: ".concat(category);
+                }
+                print(Diagnostic.Kind.WARNING, element, message);
             }
             /*
              * Adds the current departure to the collection of departures.
              * They will be processed later by the summary() method.
              */
             synchronized (departures) {
-                List<DepartureElement> forCategory = departures.get(category);
-                if (forCategory == null) {
-                    forCategory = new ArrayList<>();
-                    departures.put(category, forCategory);
-                }
-                forCategory.add(new DepartureElement(element, tag, text));
+                departures.computeIfAbsent(category, f -> new ArrayList<>()).add(new DepartureElement(element, tag, text));
             }
             /*
-             * Nows copies the text.
+             * Now copies the text.
              */
-            buffer.append("<blockquote><font color=\"firebrick\" size=\"-1\"><b>Departure from OGC/ISO specification:</b><br>").
-                    append(text).append("</font></blockquote>");
+            buffer.append("<div class=\"departure\"><b>Departure from OGC/ISO specification:</b><br>")
+                  .append(text).append("</div>");
         }
         return buffer.toString();
     }
 
     /**
-     * Generates a summary of all departures.
+     * Writes to the disk all information collected during the javadoc generation.
+     * In the case of this taglet, this method generates a summary of all departures.
+     * This method does nothing if there is no reported departures.
      *
-     * @throws IOException If an error occured while writing the summary page.
+     * @throws IOException if an error occurred while writing the summary page.
      */
-    private void summary() throws IOException {
+    @Override
+    public void flush() throws IOException {
+        synchronized (departures) {
+            if (departures.isEmpty()) {
+                return;
+            }
+        }
         try (BufferedWriter out = new BufferedWriter(new FileWriter("departures.html"))) {
             out.write("<!DOCTYPE html>"); out.newLine();
             out.newLine();
@@ -255,7 +260,7 @@ public final class Departure extends BlockTaglet implements Runnable {
                     out.write("  <h2 id=\""); out.write(category); out.write("\">");
                     out.write(description); out.write("</h2>"); out.newLine();
                     out.write("  <blockquote>"); out.newLine();
-                    File lastFile = null;
+                    Name lastName = null;
                     boolean isBlockquote = false;
                     /*
                      * Write the departure of all classes, interfaces, methods and fields for the
@@ -264,9 +269,9 @@ public final class Departure extends BlockTaglet implements Runnable {
                      */
                     for (int i=0; i<elements.size(); i++) {
                         final DepartureElement element = elements.get(i);
-                        // Gets the filename without its path or extension.
-                        final File file = element.file;
-                        if (file.equals(lastFile)) {
+                        // Gets the fully qualified enclosing type name.
+                        final Name name = element.typeName;
+                        if (name.equals(lastName)) {
                             /*
                              * New method or field for the same interface than the previous method
                              * or field. Just insert a new line, do not repeat the interface name.
@@ -283,7 +288,7 @@ public final class Departure extends BlockTaglet implements Runnable {
                                 out.newLine();
                                 isBlockquote = false;
                             }
-                            lastFile = file;
+                            lastName = name;
                             out.newLine();
                             out.write("  <h3>");
                             element.writeClassName(out);
@@ -293,10 +298,10 @@ public final class Departure extends BlockTaglet implements Runnable {
                              * departure, merge their description in order to avoid repeating the
                              * same text twice.
                              */
-                            if (!element.member) {
+                            if (!element.isMember) {
                                 boolean alone = true;
                                 for (int j=i+1; j<elements.size(); j++) {
-                                    if (file.equals(elements.get(j).file)) {
+                                    if (name.equals(elements.get(j).typeName)) {
                                         alone = false;
                                         break;
                                     }
@@ -304,7 +309,7 @@ public final class Departure extends BlockTaglet implements Runnable {
                                 if (alone) {
                                     for (int j=i+1; j<elements.size();) {
                                         final DepartureElement candidate = elements.get(j);
-                                        if (!candidate.member && element.text.equals(candidate.text)) {
+                                        if (!candidate.isMember && element.text.equals(candidate.text)) {
                                             out.write(",<br>");
                                             candidate.writeClassName(out);
                                             elements.remove(j);
@@ -319,7 +324,7 @@ public final class Departure extends BlockTaglet implements Runnable {
                          * Formats the method or field name. This will add one indentation
                          * level if the text was not already indented.
                          */
-                        if (element.member) {
+                        if (element.isMember) {
                             if (!isBlockquote) {
                                 out.write("  <blockquote>");
                                 out.newLine();
@@ -335,7 +340,7 @@ public final class Departure extends BlockTaglet implements Runnable {
                              */
                             for (int j=i+1; j<elements.size();) {
                                 final DepartureElement candidate = elements.get(j);
-                                if (file.equals(candidate.file) && element.text.equals(candidate.text)) {
+                                if (name.equals(candidate.typeName) && element.text.equals(candidate.text)) {
                                     out.write(",<br>");
                                     candidate.writeFieldName(out);
                                     elements.remove(j);

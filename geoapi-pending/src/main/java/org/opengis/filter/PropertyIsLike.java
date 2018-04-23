@@ -31,8 +31,6 @@
  */
 package org.opengis.filter;
 
-// OpenGIS direct dependencies
-import org.opengis.annotation.Profile;
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
 
@@ -54,8 +52,9 @@ import org.opengis.filter.expression.Expression;
  */
 @XmlElement("PropertyIsLike")
 public interface PropertyIsLike extends Filter {
-	/** Operator name used to check FilterCapabilities */
-	public static String NAME = "Like";
+    /** Operator name used to check FilterCapabilities */
+    public static String NAME = "Like";
+
     /**
      * Returns the expression whose value will be compared against the wildcard-
      * containing string provided by the getLiteral() method.
@@ -101,7 +100,7 @@ public interface PropertyIsLike extends Filter {
      * Flag controlling wither comparisons are case sensitive.
      * <p>
      * The ability to match case is pending the Filter 2.0 specification.
-     *  
+     *
      * @return <code>true</code> if the comparison is case sensetive, otherwise <code>false</code>.
      */
     @XmlElement("matchCase")

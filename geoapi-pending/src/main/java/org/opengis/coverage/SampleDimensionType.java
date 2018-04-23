@@ -76,8 +76,9 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Unsigned 1 bit integers.
      *
-     * @rename Renamed {@code CV_1BIT} as {@code UNSIGNED_1BIT} since we
-     *         drop the prefix, but can't get a name starting with a digit.
+     * @departure rename
+     *   Renamed {@code CV_1BIT} as {@code UNSIGNED_1BIT} since we
+     *   drop the prefix, but can't get a name starting with a digit.
      */
     @UML(identifier="CV_1BIT", obligation=CONDITIONAL, specification=OGC_01004)
     public static final SampleDimensionType UNSIGNED_1BIT = new SampleDimensionType("UNSIGNED_1BIT");
@@ -85,8 +86,9 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Unsigned 2 bits integers.
      *
-     * @rename Renamed {@code CV_2BIT} as {@code UNSIGNED_2BITS} since we
-     *         drop the prefix, but can't get a name starting with a digit.
+     * @departure rename
+     *   Renamed {@code CV_2BIT} as {@code UNSIGNED_2BITS} since we
+     *   drop the prefix, but can't get a name starting with a digit.
      */
     @UML(identifier="CV_2BIT", obligation=CONDITIONAL, specification=OGC_01004)
     public static final SampleDimensionType UNSIGNED_2BITS = new SampleDimensionType("UNSIGNED_2BITS");
@@ -94,8 +96,9 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Unsigned 4 bits integers.
      *
-     * @rename Renamed {@code CV_4BIT} as {@code UNSIGNED_4BITS} since we
-     *         drop the prefix, but can't get a name starting with a digit.
+     * @departure rename
+     *   Renamed {@code CV_4BIT} as {@code UNSIGNED_4BITS} since we
+     *   drop the prefix, but can't get a name starting with a digit.
      */
     @UML(identifier="CV_4BIT", obligation=CONDITIONAL, specification=OGC_01004)
     public static final SampleDimensionType UNSIGNED_4BITS = new SampleDimensionType("UNSIGNED_4BITS");
@@ -103,8 +106,9 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Unsigned 8 bits integers.
      *
-     * @rename Renamed {@code CV_8BIT_U} as {@code UNSIGNED_8BITS} since we
-     *         drop the prefix, but can't get a name starting with a digit.
+     * @departure rename
+     *   Renamed {@code CV_8BIT_U} as {@code UNSIGNED_8BITS} since we
+     *   drop the prefix, but can't get a name starting with a digit.
      *
      * @see #SIGNED_8BITS
      * @see DataBuffer#TYPE_BYTE
@@ -115,8 +119,9 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Signed 8 bits integers.
      *
-     * @rename Renamed {@code CV_8BIT_S} as {@code SIGNED_8BITS} since we
-     *         drop the prefix, but can't get a name starting with a digit.
+     * @departure rename
+     *   Renamed {@code CV_8BIT_S} as {@code SIGNED_8BITS} since we
+     *   drop the prefix, but can't get a name starting with a digit.
      *
      * @see #UNSIGNED_8BITS
      */
@@ -126,8 +131,9 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Unsigned 16 bits integers.
      *
-     * @rename Renamed {@code CV_16BIT_U} as {@code UNSIGNED_16BITS} since we
-     *         drop the prefix, but can't get a name starting with a digit.
+     * @departure rename
+     *   Renamed {@code CV_16BIT_U} as {@code UNSIGNED_16BITS} since we
+     *   drop the prefix, but can't get a name starting with a digit.
      *
      * @see #SIGNED_16BITS
      * @see DataBuffer#TYPE_USHORT
@@ -138,8 +144,9 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Signed 16 bits integers.
      *
-     * @rename Renamed {@code CV_16BIT_S} as {@code SIGNED_16BITS} since we
-     *         drop the prefix, but can't get a name starting with a digit.
+     * @departure rename
+     *   Renamed {@code CV_16BIT_S} as {@code SIGNED_16BITS} since we
+     *   drop the prefix, but can't get a name starting with a digit.
      *
      * @see #UNSIGNED_16BITS
      * @see DataBuffer#TYPE_SHORT
@@ -150,8 +157,9 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Unsigned 32 bits integers.
      *
-     * @rename Renamed {@code CV_32BIT_U} as {@code UNSIGNED_32BITS} since we
-     *         drop the prefix, but can't get a name starting with a digit.
+     * @departure rename
+     *   Renamed {@code CV_32BIT_U} as {@code UNSIGNED_32BITS} since we
+     *   drop the prefix, but can't get a name starting with a digit.
      *
      * @see #SIGNED_32BITS
      */
@@ -161,8 +169,9 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Signed 32 bits integers.
      *
-     * @rename Renamed {@code CV_32BIT_S} as {@code SIGNED_32BITS} since we
-     *         drop the prefix, but can't get a name starting with a digit.
+     * @departure rename
+     *   Renamed {@code CV_32BIT_S} as {@code SIGNED_32BITS} since we
+     *   drop the prefix, but can't get a name starting with a digit.
      *
      * @see #UNSIGNED_32BITS
      * @see DataBuffer#TYPE_INT
@@ -173,8 +182,9 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Simple precision floating point numbers.
      *
-     * @rename Renamed {@code CV_32BIT_REAL} as {@code REAL_32BITS} since we
-     *         drop the prefix, but can't get a name starting with a digit.
+     * @departure rename
+     *   Renamed {@code CV_32BIT_REAL} as {@code REAL_32BITS} since we
+     *   drop the prefix, but can't get a name starting with a digit.
      *
      * @see #REAL_64BITS
      * @see DataBuffer#TYPE_FLOAT
@@ -185,8 +195,9 @@ public final class SampleDimensionType extends CodeList<SampleDimensionType> {
     /**
      * Double precision floating point numbers.
      *
-     * @rename Renamed {@code CV_64BIT_REAL} as {@code REAL_64BITS} since we
-     *         drop the prefix, but can't get a name starting with a digit.
+     * @departure rename
+     *   Renamed {@code CV_64BIT_REAL} as {@code REAL_64BITS} since we
+     *   drop the prefix, but can't get a name starting with a digit.
      *
      * @see #REAL_32BITS
      * @see DataBuffer#TYPE_DOUBLE

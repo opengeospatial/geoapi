@@ -80,7 +80,7 @@ public enum Obligation implements ControlledVocabulary {
      *   ISO specifications sometime override a parent method with a comment saying that the method
      *   is not allowed for a particular class. Since there is no construct in Java for expressing
      *   this constraint in the method signature, GeoAPI defines a {@code FORBIDDEN} obligation
-     *   (not in original ISO specifications) to be used with the <code>@UML</code> annotation and
+     *   (not in original ISO specifications) to be used with the {@code @UML} annotation and
      *   which adds a flag in the Java documentation.
      */
     FORBIDDEN(null) {

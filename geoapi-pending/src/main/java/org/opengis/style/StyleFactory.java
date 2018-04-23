@@ -58,26 +58,10 @@ import org.opengis.util.InternationalString;
  * @since GeoAPI 2.2
  */
 public interface StyleFactory {
-    /**
-     *
-     * @param x
-     * @param y
-     * @return
-     */
     AnchorPoint anchorPoint(Expression x, Expression y);
-    /**
-     *
-     * @param gray
-     * @return
-     */
+
     ChannelSelection channelSelection(SelectedChannelType gray);
-    /**
-     *
-     * @param red
-     * @param green
-     * @param blue
-     * @return
-     */
+
     ChannelSelection channelSelection(SelectedChannelType red,
             SelectedChannelType green, SelectedChannelType blue);
 
@@ -113,100 +97,36 @@ public interface StyleFactory {
      */
     ColorReplacement colorReplacement(Expression propertyName,
             Expression... mapping);
-    /**
-     *
-     * @param gamma
-     * @param method
-     * @return
-     */
+
     ContrastEnhancement contrastEnhancement(Expression gamma,
             ContrastMethod method);
 
-    /**
-     *
-     * @param title
-     * @param description
-     * @return
-     */
     Description description(InternationalString title,
             InternationalString description);
 
-    /**
-     *
-     * @param dx
-     * @param dy
-     * @return
-     */
     Displacement displacement(Expression dx, Expression dy);
 
-    /**
-     *
-     * @param resource
-     * @param format
-     * @param replacements
-     * @return
-     */
     ExternalGraphic externalGraphic(OnlineResource resource,
             String format, Collection<ColorReplacement> replacements);
 
-    /**
-     *
-     * @param inline
-     * @param replacements
-     * @return
-     */
     ExternalGraphic externalGraphic(Icon inline,
             Collection<ColorReplacement> replacements);
 
-    /**
-     *
-     * @param resource
-     * @param format
-     * @param markIndex
-     * @return
-     */
     ExternalMark externalMark(OnlineResource resource, String format,
             int markIndex);
 
-    /**
-     *
-     * @param inline
-     * @return
-     */
     ExternalMark externalMark(Icon inline);
 
     /**
-     *
-     * @param name
-     * @param description
-     * @param definedFor
-     * @param featureTypeNames
-     * @param types
      * @param rules
      *            May not be null or empty
-     * @return
      */
     FeatureTypeStyle featureTypeStyle(String name,
             Description description, Id definedFor, Set<GenericName> featureTypeNames,
             Set<SemanticType> types, List<Rule> rules);
 
-    /**
-     *
-     * @param fill
-     * @param color
-     * @param opacity
-     * @return
-     */
     Fill fill(GraphicFill fill, Expression color, Expression opacity);
 
-    /**
-     *
-     * @param family
-     * @param style
-     * @param weight
-     * @param size
-     * @return
-     */
     Font font(List<Expression> family, Expression style,
             Expression weight, Expression size);
 
@@ -214,146 +134,73 @@ public interface StyleFactory {
             Expression opacity, Expression size, Expression rotation,
             AnchorPoint anchor, Displacement disp);
 
-    /**
-     *
-     * @param symbols
-     * @param opacity
-     * @param size
-     * @param anchorPoint
-     * @param displacement
-     * @return
-     */
     GraphicFill graphicFill(List<GraphicalSymbol> symbols,
             Expression opacity, Expression size, Expression rotation,
             AnchorPoint anchorPoint, Displacement displacement);
 
-    /**
-     *
-     * @param symbols
-     * @param opacity
-     * @param size
-     * @param anchorPoint
-     * @param displacement
-     * @return
-     */
     GraphicLegend graphicLegend(List<GraphicalSymbol> symbols,
             Expression opacity, Expression size, Expression rotation,
             AnchorPoint anchorPoint, Displacement displacement);
-    /**
-     *
-     * @param symbols
-     * @param opacity
-     * @param size
-     * @param anchorPoint
-     * @param displacement
-     * @param initialGap
-     * @param gap
-     * @return
-     */
+
     GraphicStroke graphicStroke(List<GraphicalSymbol> symbols,
             Expression opacity, Expression size, Expression rotation,
             AnchorPoint anchorPoint, Displacement displacement,
             Expression initialGap, Expression gap);
 
-    /**
-     *
-     * @param fill
-     * @param radius
-     * @return
-     */
     Halo halo(Fill fill, Expression radius);
 
-    /**
-     *
-     * @param offset
-     * @param initialGap
-     * @param gap
-     * @param repeated
-     * @param aligned
-     * @param generalizedLine
-     * @return
-     */
     LinePlacement linePlacement(Expression offset, Expression initialGap,
             Expression gap, boolean repeated, boolean aligned,
             boolean generalizedLine);
+
     /**
-     * @param name handle used to refer to this symbolizer (machine readible)
-     * @param geometry Expression used to produce the Geometry to renderer; often a PropertyName
-     * @param description
-     * @param unit Unit of measure used to define this symbolizer
-     * @param stroke Definition of how to stroke linework
-     * @param offset Offset used to position line relative to origional
-     * @return Newly created Line Symbolizer
+     * @param  name      handle used to refer to this symbolizer (machine readible)
+     * @param  geometry  expression used to produce the Geometry to renderer; often a PropertyName
+     * @param  unit      unit of measure used to define this symbolizer
+     * @param  stroke    definition of how to stroke linework
+     * @param  offset    offset used to position line relative to origional
+     * @return newly created Line Symbolizer
      */
     LineSymbolizer lineSymbolizer(String name, Expression geometry,
             Description description, Unit<?> unit, Stroke stroke, Expression offset);
 
-    /**
-     *
-     * @param wellKnownName
-     * @param fill
-     * @param stroke
-     * @return
-     */
     Mark mark(Expression wellKnownName, Fill fill, Stroke stroke);
-    /**
-     *
-     * @param externalMark
-     * @param fill
-     * @param stroke
-     * @return
-     */
+
     Mark mark(ExternalMark externalMark, Fill fill, Stroke stroke);
-    /**
-     *
-     * @param anchor
-     * @param displacement
-     * @param rotation
-     * @return
-     */
+
     PointPlacement pointPlacement(AnchorPoint anchor,
             Displacement displacement, Expression rotation);
+
     /**
      * Creation of a PointSymbolizer to describe how geometry can be rendered as a point.
      *
-     * @param name handle used to refer to this symbolizer (machine readable)
-     * @param geometry Expression used to extract the Geometry rendered; usually a PropertyName
-     * @param description Human readable description of symboizer
-     * @param unit Unit of Measure used to interpret symbolizer distances
-     * @param graphic Graphic used to represent the geometry when rendering
-     * @return Newly created PointSymbolizer
+     * @param  name         handle used to refer to this symbolizer (machine readable)
+     * @param  geometry     expression used to extract the Geometry rendered; usually a PropertyName
+     * @param  description  human readable description of symboizer
+     * @param  unit         unit of Measure used to interpret symbolizer distances
+     * @param  graphic      graphic used to represent the geometry when rendering
+     * @return newly created PointSymbolizer
      */
     PointSymbolizer pointSymbolizer(String name, Expression geometry,
             Description description, Unit<?> unit, Graphic graphic);
+
     /**
      *
-     * @param name handle used to refer to this symbolizer (machine readable)
-     * @param geometry Expression used to extract the Geometry rendered; usually a PropertyName
-     * @param description Human readable description of symboizer
-     * @param unit Unit of Measure used to interpret symbolizer distances
-     * @param stroke
-     * @param fill
-     * @param displacement
-     * @param offset
-     * @return
+     * @param  name         handle used to refer to this symbolizer (machine readable)
+     * @param  geometry     expression used to extract the Geometry rendered; usually a PropertyName
+     * @param  description  human readable description of symboizer
+     * @param  unit         unit of Measure used to interpret symbolizer distances
      */
     PolygonSymbolizer polygonSymbolizer(String name, Expression geometry,
             Description description, Unit<?> unit, Stroke stroke, Fill fill,
             Displacement displacement, Expression offset);
+
     /**
      *
-     * @param name handle used to refer to this symbolizer (machine readable)
-     * @param geometry Expression used to extract the Geometry rendered; usually a PropertyName
-     * @param description Human readable description of symboizer
-     * @param unit Unit of Measure used to interpret symbolizer distances
-     * @param opacity
-     * @param channelSelection
-     * @param overlapsBehaviour
-     * @param colorMap
-     * @param contrast
-     * @param shaded
-     * @param outline
-     * @return RasterSymbolizer
+     * @param  name         handle used to refer to this symbolizer (machine readable)
+     * @param  geometry     expression used to extract the Geometry rendered; usually a PropertyName
+     * @param  description  human readable description of symboizer
+     * @param  unit         unit of Measure used to interpret symbolizer distances
      */
     RasterSymbolizer rasterSymbolizer(String name, Expression geometry,
             Description description, Unit<?> unit, Expression opacity,
@@ -361,6 +208,7 @@ public interface StyleFactory {
             OverlapBehavior overlapsBehaviour, ColorMap colorMap,
             ContrastEnhancement contrast, ShadedRelief shaded,
             Symbolizer outline);
+
     /**
      * Used to represent a symbolizer intended for a vendor specific rendering process. This
      * facility should be used to control subject matter that is beyond the scope of the traditional
@@ -370,15 +218,15 @@ public interface StyleFactory {
      * @param name
      *            handle used to refer to this symbolizer (machine readible)
      * @param geometry
-     *            Geometry expression to renderer; formally a PropertyName
+     *            geometry expression to renderer; formally a PropertyName
      * @param description
-     *            Description of this symbolizer; human readable
+     *            description of this symbolizer; human readable
      * @param unit
-     *            Unit of measure to use when interpretting this symbolizer
+     *            unit of measure to use when interpretting this symbolizer
      * @param extensionName
-     *            Extension name used to identify the vendor specific extension being controlled
+     *            extension name used to identify the vendor specific extension being controlled
      * @param parameters
-     *            Named expressions used to configure the vendor specific rendering process
+     *            named expressions used to configure the vendor specific rendering process
      * @return newly created ExtensionSymbolizer
      */
     ExtensionSymbolizer extensionSymbolizer(String name, String geometry, Description description,
@@ -393,15 +241,15 @@ public interface StyleFactory {
      * @param name
      *            handle used to refer to this symbolizer (machine readible)
      * @param geometry
-     *            Geometry expression to renderer;
+     *            geometry expression to renderer;
      * @param description
-     *            Description of this symbolizer; human readable
+     *            description of this symbolizer; human readable
      * @param unit
-     *            Unit of measure to use when interpretting this symbolizer
+     *            unit of measure to use when interpretting this symbolizer
      * @param extensionName
-     *            Extension name used to identify the vendor specific extension being controlled
+     *            extension name used to identify the vendor specific extension being controlled
      * @param parameters
-     *            Named expressions used to configure the vendor specific rendering process
+     *            named expressions used to configure the vendor specific rendering process
      * @return newly created ExtensionSymbolizer
      */
     ExtensionSymbolizer extensionSymbolizer(String name, Expression geometry, Description description,
@@ -410,31 +258,18 @@ public interface StyleFactory {
     /**
      * Create a rule from the provided definition.
      *
-     * @param name handle used to refer to this rule (machine readable)
-     * @param description Human readable description of this rule
-     * @param legend Graphic used to indicate this rule in a legend or user interface
-     * @param min minimum scale denominator used to control when this rule is applied
-     * @param max maximum scale denominator used to control when this rule is applied
-     * @param symbolizers
-     * @param filter
-     * @return Newly created Rule
+     * @param  name         handle used to refer to this rule (machine readable)
+     * @param  description  human readable description of this rule
+     * @param  legend       graphic used to indicate this rule in a legend or user interface
+     * @param  min          minimum scale denominator used to control when this rule is applied
+     * @param  max          maximum scale denominator used to control when this rule is applied
+     * @return newly created Rule
      */
     Rule rule(String name, Description description, GraphicLegend legend,
             double min, double max, List<Symbolizer> symbolizers, Filter filter);
 
-    /**
-     *
-     * @param channelName
-     * @param contrastEnhancement
-     * @return SelectedChannelType
-     */
     SelectedChannelType selectedChannelType(String channelName, ContrastEnhancement contrastEnhancement);
-    /**
-     *
-     * @param reliefFactor
-     * @param brightnessOnly
-     * @return ShadedRelief
-     */
+
     ShadedRelief shadedRelief(Expression reliefFactor,
             boolean brightnessOnly);
 
@@ -467,30 +302,22 @@ public interface StyleFactory {
             float[] dashes,
             Expression offset);
 
-    /**
-     *
-     * @param name
-     * @param description
-     * @param isDefault
-     * @param featureTypeStyles
-     * @param defaultSymbolizer
-     * @return
-     */
     Style style(String name, Description description, boolean isDefault,
             List<FeatureTypeStyle> featureTypeStyles,
             Symbolizer defaultSymbolizer);
+
     /**
      * Creation of a TextSymbolizer defining how labels are portrayed.
      *
-     * @param name Handle used to refer to this symbolizer (machine readable)
-     * @param geometry Geometry to be rendered
-     * @param description Human readable description
-     * @param unit Unit of measure used to interpret symbolizer sizes
-     * @param label Text displayed for this symbolizer
-     * @param font Font selected to renderer this symbolizer
-     * @param placement Placement information relative to orgiginal geometry
-     * @param halo definition of a halo or outline surrounding the symbolizer
-     * @param fill definition of fill used
+     * @param  name         handle used to refer to this symbolizer (machine readable)
+     * @param  geometry     geometry to be rendered
+     * @param  description  human readable description
+     * @param  unit         unit of measure used to interpret symbolizer sizes
+     * @param  label        text displayed for this symbolizer
+     * @param  font         font selected to renderer this symbolizer
+     * @param  placement    placement information relative to orgiginal geometry
+     * @param  halo         definition of a halo or outline surrounding the symbolizer
+     * @param  fill         definition of fill used
      * @return newly created TextSymbolizer
      */
     TextSymbolizer textSymbolizer(String name, Expression geometry,

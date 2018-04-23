@@ -33,7 +33,7 @@ package org.opengis.filter;
 
 import org.opengis.annotation.XmlElement;
 import org.opengis.feature.Feature;
-import org.opengis.feature.FeatureType;  // For javadoc
+import org.opengis.feature.FeatureType;
 
 
 /**
@@ -65,14 +65,14 @@ import org.opengis.feature.FeatureType;  // For javadoc
 public interface Filter {
     /**
      * Placeholder Filter that evaulates to {@code true}.
-     * <p>
+     *
      * Filtering a set with {@code Filter.INCLUDE} results in the origional set.
      */
     IncludeFilter INCLUDE = new IncludeFilter();
 
     /**
      * Placeholder Filter that evaulates to {@code false}.
-     * <p>
+     *
      * Filtering a set with {@code Filter.EXCLUDE} results in the empty Set.
      */
     ExcludeFilter EXCLUDE = new ExcludeFilter();
@@ -80,11 +80,10 @@ public interface Filter {
     /**
      * Give an object, this method determines if the test(s) represented by this filter object
      * are passed.
-     * <p>
+     *
      * This ability is used to allow Queries against both Features and and non spatial data (such as Record) and
      * to express constraints on permissable data values.
-     * </p>
-     * @param object
+     *
      * @return {@code true} if the test(s) are passed for the provided object
      */
     boolean evaluate(Object object);
@@ -95,7 +94,6 @@ public interface Filter {
      * <p>Implementations of all subinterfaces must have with a
      * method whose content is the following:</p>
      * <pre>return visitor.{@linkplain FilterVisitor#visit visit}(this, extraData);</pre>
-     *
      */
     Object accept(FilterVisitor visitor, Object extraData);
 }

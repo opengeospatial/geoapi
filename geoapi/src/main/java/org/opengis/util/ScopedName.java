@@ -95,10 +95,10 @@ public interface ScopedName extends GenericName {
      * <p>In the {@link GenericName GenericName} javadoc,
      * the heads are the blue elements in the <var>head</var>.<var>tail</var> column.</p>
      *
-     * <div class="note"><b>Example</b>:
+     * <div class="note"><b>Example:</b>
      * If {@code this} name is {@code "org.opengis.util.Record"}, then this method shall returns {@code "org"}.</div>
      *
-     * <div class="note"><b>Analogy</b>:
+     * <div class="note"><b>Analogy:</b>
      * This method is similar in purpose to:
      * <ul>
      *   <li><code>{@linkplain java.nio.file.Path#getName(int) Path.getName}(0)</code> from Java I/O;</li>
@@ -127,7 +127,7 @@ public interface ScopedName extends GenericName {
      * <p>In the {@link GenericName GenericName} javadoc,
      * the tails are the yellow elements in the <var>head</var>.<var>tail</var> column.</p>
      *
-     * <div class="note"><b>Analogy</b>:
+     * <div class="note"><b>Analogy:</b>
      * This method is similar in purpose to:
      * <ul>
      *   <li><code>{@link javax.naming.Name#getSuffix(int) Name.getSuffix}(1)</code>
@@ -154,7 +154,7 @@ public interface ScopedName extends GenericName {
      * <p>In the {@link GenericName GenericName} javadoc,
      * the paths are the blue elements in the <var>path</var>.<var>tip</var> column.</p>
      *
-     * <div class="note"><b>Analogy</b>:
+     * <div class="note"><b>Analogy:</b>
      * This method is similar in purpose to:
      * <ul>
      *   <li>the {@link java.io.File#getParentFile() File.getParentFile()} or
@@ -167,7 +167,7 @@ public interface ScopedName extends GenericName {
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. It has been added in GeoAPI as a
-     *   complement of the ISO <code>tail()</code> method.
+     *   complement of the ISO {@code tail()} method.
      *
      * @since 2.1
      */
@@ -179,7 +179,7 @@ public interface ScopedName extends GenericName {
      * <p>In the {@link GenericName GenericName} javadoc,
      * the tips are the yellow elements in the <var>path</var>.<var>tip</var> column.</p>
      *
-     * <div class="note"><b>Analogy</b>:
+     * <div class="note"><b>Analogy:</b>
      * This method is similar in purpose to:
      * <ul>
      *   <li>the {@link java.io.File#getName() File.getName()} or
@@ -204,7 +204,7 @@ public interface ScopedName extends GenericName {
      * and for {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem CRS}, it
      * will depend on the mode of expression: URN or {@code Authority:Identifier} notation.
      *
-     * <div class="note"><b>Analogy</b>:
+     * <div class="note"><b>Analogy:</b>
      * This method is similar in purpose to:
      * <ul>
      *   <li>the {@link java.io.File#toString() File.toString()} or

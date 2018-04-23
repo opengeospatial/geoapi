@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * notions of inheritance.
  * A {@code Record} may be used as an implementation representation for features.
  *
- * <div class="note"><b>Comparison with Java reflection:</b>
+ * <div class="note"><b>Comparison with Java reflection</b><br>
  * If we think about {@code Record}s as equivalent to {@code Object} instances, then the descriptions
  * of those records ({@link RecordType}) can be though as equivalent to Java {@link Class} instances,
  * and the set of members in a {@code Record} can be though as the equivalent of {@link Class#getFields()}.
@@ -68,7 +68,7 @@ public interface Record {
      * Set&lt;MemberName&gt; attributes = {@linkplain #getAttributes()}.{@linkplain Map#keySet() keySet()};
      * assert members.{@linkplain Set#containsAll containsAll}(attributes);</pre></blockquote>
      *
-     * <div class="note"><b>Comparison with Java reflection:</b>
+     * <div class="note"><b>Comparison with Java reflection</b><br>
      * If we think about this {@code Record} as equivalent to an {@code Object} instance, then
      * this method can be though as the equivalent of the Java {@link Object#getClass()} method.
      * </div>
@@ -88,9 +88,8 @@ public interface Record {
      * @see RecordType#getMemberTypes()
      *
      * @departure generalization
-     *   Figure 15 in ISO 19103:2005 specifies a cardinality of 1. However, this seems to
-     *   contradict the semantics of the <code>locate(name)</code> and
-     *   <code>RecordType.getMemberTypes()</code> methods.
+     *   Figure 15 in ISO 19103:2005 specifies a cardinality of 1. However, this seems to contradict
+     *   the semantics of the {@code locate(name)} and {@code RecordType.getMemberTypes()} methods.
      */
     @UML(identifier="memberValue", obligation=MANDATORY, specification=ISO_19103)
     Map<MemberName, Object> getAttributes();

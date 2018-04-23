@@ -55,13 +55,13 @@ import static org.opengis.annotation.Specification.*;
  *
  * @departure constraint
  *   This interface is kept conformant with the specification published in 2003. The 2007 revision
- *   of ISO 19111 removed the <code>SC_GeographicCRS</code> and <code>SC_GeocentricCRS</code> types,
- *   handling both using the <code>SC_GeodeticCRS</code> parent type. GeoAPI keeps them for two reasons:
+ *   of ISO 19111 removed the {@code SC_GeographicCRS} and {@code SC_GeocentricCRS} types,
+ *   handling both using the {@code SC_GeodeticCRS} parent type. GeoAPI keeps them for two reasons:
  *   <ul>
  *     <li>The distinction between those two types is in wide use.</li>
- *     <li>A distinct geographic type allows GeoAPI to restrict the coordinate system type to <code>EllipsoidalCS</code>.
- *         ISO 19111 uses a <code>union</code> for expressing this restriction at the <code>SC_GeodeticCRS</code> level,
- *         but the Java language does not provide such construct. A distinct geographic type is one way to achieve the
+ *     <li>A distinct geographic type allows GeoAPI to restrict the coordinate system type to {@code EllipsoidalCS}.
+ *         ISO 19111 uses a {@code union} for expressing this restriction at the {@code SC_GeodeticCRS} level, but
+ *         the Java language does not provide such construct. A distinct geographic type is one way to achieve the
  *         same goal.</li>
  *   </ul>
  *

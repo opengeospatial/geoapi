@@ -22,7 +22,6 @@
        ==================================================== -->
   <groupId>org.opengis.example</groupId>
   <artifactId>geoapi-openoffice</artifactId>
-  <packaging>jar</packaging>
   <name>OpenOffice.org addin</name>
   <description>
     An example of GeoAPI addin for OpenOffice.org. This example uses the geoapi-proj4 implementation.

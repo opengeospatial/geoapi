@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!-- =================================================================================
+<!-- =============================================================================================
          Maven 2 project configuration file
          http://maven.apache.org/maven2/
 
@@ -7,7 +7,9 @@
          Build development snapshot:    mvn clean install
          Build with Proj.4 tests:       mvn install -DskipNativeLibraryTests=false
          Publish a release:             mvn clean install deploy -Pgeoapi-release
-     ================================================================================= -->
+         Generate web site:             mvn clean install site -Pjdk9
+                                        mvn site:deploy -DdistMgmtWebSiteUrl=file:///path/to/dir/
+     ============================================================================================= -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
@@ -28,10 +30,9 @@
   <name>GeoAPI</name>
   <url>http://www.geoapi.org/</url>
   <description>
-    The development community in building GIS solutions is sustaining an enormous
-    level of effort. The GeoAPI project aims to reduce duplication and increase
-    interoperability by providing neutral, interface-only APIs derived from OGC/ISO
-    Standards.
+    GeoAPI provides a set of programming language interfaces for geospatial applications.
+    The project aims to reduce duplication and increase interoperability by providing neutral,
+    interface-only APIs derived from OGC/ISO Standards.
   </description>
 
   <organization>
@@ -306,11 +307,6 @@
           <version>3.7</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.felix</groupId>
-          <artifactId>maven-bundle-plugin</artifactId>
-          <version>3.5.0</version>
-        </plugin>
-        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>3.0.0</version>
@@ -338,7 +334,7 @@
             <configuration>
               <rules>
                 <requireJavaVersion>
-                  <version>9</version>
+                  <version>10</version>
                 </requireJavaVersion>
                 <dependencyConvergence/>
               </rules>
@@ -408,7 +404,7 @@
 
 
       <!-- ====================================================
-               JAR packaging (standard tools and OSGi)
+               JAR packaging
            ==================================================== -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -424,34 +420,16 @@
           <archive>
             <manifest>
               <addClasspath>true</addClasspath>
-              <addDefaultImplementationEntries>true</addDefaultImplementationEntries>
             </manifest>
             <manifestEntries>
               <Specification-Title>GeoAPI</Specification-Title>
               <Specification-Version>${project.version}</Specification-Version>
               <Specification-Vendor>${project.organization.name}</Specification-Vendor>
               <Implementation-Vendor>The GeoAPI project</Implementation-Vendor>
-              <Implementation-URL>http://www.geoapi.org</Implementation-URL>
+              <Implementation-URL>http://www.geoapi.org/</Implementation-URL>
             </manifestEntries>
           </archive>
           <skipIfEmpty>true</skipIfEmpty>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Bundle-Name>${project.groupId}.${project.artifactId}</Bundle-Name>
-            <Bundle-DocURL>http://www.geoapi.org</Bundle-DocURL>
-            <Specification-Title>GeoAPI</Specification-Title>
-            <Specification-Version>${project.version}</Specification-Version>
-            <Specification-Vendor>${project.organization.name}</Specification-Vendor>
-            <Implementation-Vendor>The GeoAPI project</Implementation-Vendor>
-            <Implementation-URL>http://www.geoapi.org</Implementation-URL>
-          </instructions>
         </configuration>
       </plugin>
 
@@ -556,7 +534,15 @@
            ==================================================== -->
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.0</version>
+        <version>3.0.1-SNAPSHOT</version>                   <!-- https://issues.apache.org/jira/browse/MJAVADOC-517 -->
+        <reportSets>
+          <reportSet>
+            <id>default</id>
+            <reports>
+              <report>javadoc-no-fork</report>
+            </reports>
+          </reportSet>
+        </reportSets>
         <configuration>
           <encoding>${project.build.sourceEncoding}</encoding>
           <docencoding>${website.encoding}</docencoding>
@@ -565,11 +551,12 @@
           <version>false</version>        <!-- Includes or not the version text in the generated docs.            -->
           <noqualifier>all</noqualifier>  <!-- Omits qualifying package name from ahead of class names in output. -->
           <quiet>true</quiet>             <!-- Shuts off non-error and non-warning messages.                      -->
-          <maxmemory>384M</maxmemory>     <!-- The maximum Java heap size to be used when launching the javadoc.  -->
           <locale>en</locale>             <!-- The locale that javadoc uses when generating documentation.        -->
           <keywords>true</keywords>       <!-- Adds HTML meta keyword tags to the generated file for each class.  -->
           <breakiterator>true</breakiterator>
-          <stylesheetfile>geoapi/src/main/javadoc/stylesheet.css</stylesheetfile>
+          <additionalOptions>
+            -html5 -Xdoclint:syntax --add-stylesheet "${basedir}/src/main/javadoc/geoapi.css"
+          </additionalOptions>
 
           <!-- Do not add the "API" word in document title, because it is already included in the "GeoAPI name. -->
           <doctitle>${project.name} ${project.version}</doctitle>
@@ -585,7 +572,9 @@
 
           <!-- Custom taglets implemented in Java. -->
           <taglets>
-            <taglet><tagletClass>org.opengis.tools.taglet.Departure</tagletClass></taglet>
+            <taglet>
+              <tagletClass>org.opengis.tools.doclet.Departure</tagletClass>
+            </taglet>
           </taglets>
           <tagletArtifact>
             <groupId>org.opengis</groupId>
@@ -612,74 +601,12 @@
             <link>http://docs.oracle.com/javaee/7/api/</link>                                       <!-- For InternationalString link. -->
             <link>http://download.java.net/media/java3d/javadoc/1.5.2/</link>
             <link>http://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/</link>
-            <link>http://junit.org/javadoc/latest/</link>
+            <link>http://junit.org/junit4/javadoc/latest/</link>
             <link>http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/javadoc/</link>  <!-- Used by example code. -->
             <link>http://www.geoapi.org/snapshot/javadoc/</link>                                    <!-- For modules that depend on GeoAPI. -->
           </links>
-
-          <!-- Separates packages on the overview page into the groups specified.
-               Places the normative packages first, and the pending ones last. -->
-          <groups>
-            <group>
-              <title>Feature and coverage</title>
-              <packages>org.opengis.feature*:org.opengis.coverage*</packages>
-            </group>
-            <group>
-              <title>Geometry and Topology</title>
-              <packages>org.opengis.geometry*:org.opengis.topology*</packages>
-            </group>
-            <group>
-              <title>Spatial Referencing by Coordinates</title>
-              <packages>org.opengis.referencing*:org.opengis.temporal*:org.opengis.parameter*</packages>
-            </group>
-            <group>
-              <title>Metadata</title>
-              <packages>org.opengis.metadata*</packages>
-            </group>
-            <group>
-              <title>Base package</title>
-              <packages>org.opengis.util*:org.opengis.annotation*</packages>
-            </group>
-
-            <!-- Pending packages. -->
-            <group>
-              <title>Filter</title>
-              <packages>org.opengis.filter*</packages>
-            </group>
-            <group>
-              <title>Display and Styling</title>
-              <packages>org.opengis.display*:org.opengis.style*:org.opengis.layer*:org.opengis.sld*</packages>
-            </group>
-            <group>
-              <title>Observations and Measurements</title>
-              <packages>org.opengis.observation*</packages>
-            </group>
-            <group>
-              <title>Catalog Services</title>
-              <packages>org.opengis.catalog*</packages>
-            </group>
-
-            <!-- Other packages. -->
-            <group>
-              <title>Conformance tests</title>
-              <packages>org.opengis.test*</packages>
-            </group>
-            <group>
-              <title>Tests runner and reports</title>
-              <packages>org.opengis.test.runner*:org.opengis.test.report*</packages>
-            </group>
-            <group>
-              <title>Wrappers to existing libraries</title>
-              <packages>org.opengis.wrapper*:org.opengis.openoffice*</packages>
-            </group>
-            <group>
-              <title>Examples in public domain</title>
-              <packages>org.opengis.example*</packages>
-            </group>
-          </groups>
         </configuration>
       </plugin>
-
 
 
       <!-- ====================================================
@@ -688,6 +615,13 @@
       <plugin>
         <artifactId>maven-surefire-report-plugin</artifactId>
         <version>2.21.0</version>
+        <reportSets>
+          <reportSet>
+            <reports>
+              <report>report-only</report>
+            </reports>
+          </reportSet>
+        </reportSets>
       </plugin>
 
 
@@ -717,6 +651,17 @@
       </plugin>
     </plugins>
   </reporting>
+
+  <pluginRepositories>
+    <pluginRepository>
+      <id>snapshots.apache.org</id>                         <!-- Temporary repository for maven-javadoc-plugin-3.0.1-SNAPSHOT. -->
+      <name>Apache snapshots</name>
+      <url>https://repository.apache.org/content/groups/snapshots</url>
+      <releases>
+        <enabled>false</enabled>
+      </releases>
+    </pluginRepository>
+  </pluginRepositories>
 
 
 

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2013-2016 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2018 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -30,6 +30,14 @@
  *    times remain with copyright holders.
  */
 
+
+/**
+ * Java interfaces derived from specifications of <cite>International Organization for Standardization</cite> (ISO)
+ * and <cite><a href="http://www.opengeospatial.org">Open Geospatial Consortium</a></cite> (OGC), pending review.
+ *
+ * @version 4.0
+ * @since 2.2
+ */
 module org.opengis.geoapi.pending {
     /*
      * Bellow is a copy-and-paste of geoapi module information,

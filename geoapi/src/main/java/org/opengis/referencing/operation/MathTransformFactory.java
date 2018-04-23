@@ -143,9 +143,9 @@ public interface MathTransformFactory extends Factory {
      * @departure extension
      *   This method is not part of the OGC specification.
      *   It has been added because this information appears to be important in some situations.
-     *   We did not defined a {<code>MathTransform</code>, <code>OperationMethod</code>} tuple
-     *   in order to keep <code>create(…)</code> simpler in the common case where the operation
-     *   method is not needed, and for historical reasons (conformance to OGC 01-009).
+     *   We did not defined a {{@code MathTransform}, {@code OperationMethod}} tuple in order
+     *   to keep {@code create(…)} simpler in the common case where the operation method is not needed,
+     *   and for historical reasons (conformance to OGC 01-009).
      *
      * @since 2.1
      */

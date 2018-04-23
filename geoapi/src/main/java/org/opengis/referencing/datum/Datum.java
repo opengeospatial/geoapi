@@ -68,7 +68,7 @@ import static org.opengis.annotation.Specification.*;
 public interface Datum extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} <code>createFoo(…)</code> methods.
+     * {@linkplain DatumFactory datum factory} {@code <code>createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getAnchorPoint()}.
      *
      * @see #getAnchorPoint()
@@ -77,7 +77,7 @@ public interface Datum extends IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} <code>createFoo(…)</code> methods.
+     * {@linkplain DatumFactory datum factory} {@code createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getRealizationEpoch()}.
      *
      * @see #getRealizationEpoch()
@@ -86,7 +86,7 @@ public interface Datum extends IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} <code>createFoo(…)</code> methods.
+     * {@linkplain DatumFactory datum factory} {@code createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getDomainOfValidity()}.
      *
      * @see #getDomainOfValidity()
@@ -97,7 +97,7 @@ public interface Datum extends IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} <code>createFoo(…)</code> methods.
+     * {@linkplain DatumFactory datum factory} {@code createFoo(…)} methods.
      * This is used for setting the value to be returned by {@link #getScope()}.
      *
      * @see #getScope()
@@ -131,7 +131,7 @@ public interface Datum extends IdentifiedObject {
      *
      * @departure historic
      *   This method has been kept conformant with the specification published in 2003 for compatibility reasons.
-     *   The revision published in 2007 renamed this property as <code>anchorDefinition</code>.
+     *   The revision published in 2007 renamed this property as {@code anchorDefinition}.
      *
      * @return a description of the anchor point, or {@code null} if none.
      *

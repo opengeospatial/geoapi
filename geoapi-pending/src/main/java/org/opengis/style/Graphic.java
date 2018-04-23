@@ -51,7 +51,6 @@ import org.opengis.annotation.XmlParameter;
  */
 @XmlElement("Graphic")
 public interface Graphic {
-
     /**
      * Returns the list of external image files or marks that comprise this graphic.
      * All elements of the list must be instances of either {@link Mark} or {@link ExternalGraphic}.
@@ -69,7 +68,6 @@ public interface Graphic {
      * Indicates the level of translucency as a floating point number whose value is between 0.0
      * and 1.0 (inclusive).  A value of zero means completely transparent.  A value of 1.0 means
      * completely opaque.  If null, the default value is 1.0, totally opaque.
-     * @return expression
      */
     @XmlParameter("stroke-opacity")
     Expression getOpacity();
@@ -86,8 +84,6 @@ public interface Graphic {
      * for image graphics to be on the order of 200 pixels in linear size and to be scaled to lower
      * sizes. On systems that can resample these graphic images "smoothly," the results will be
      * visually pleasing.
-     *
-     * @return Expression
      */
     @XmlParameter("Size")
     Expression getSize();
@@ -103,8 +99,6 @@ public interface Graphic {
      * has no inherent direction. Also, the point within the graphic about which it is rotated is
      * format dependent. If a format does not include an inherent rotation point, then the point
      * of rotation should be the centroid.
-     *
-     * @return Expression
      */
     @XmlParameter("Rotation")
     Expression getRotation();
@@ -120,7 +114,7 @@ public interface Graphic {
      * middle length of the graphic/label text. A system may choose different anchor points to
      * de-conflict graphics/labels.
      *
-     * @return AnchorPoint , if null should use a default point X=0.5 Y=0.5
+     * @return the anchor point, or {@code null} for a default point of X=0.5 Y=0.5.
      */
     @XmlParameter("AnchorPoint")
     AnchorPoint getAnchorPoint();
@@ -133,8 +127,6 @@ public interface Graphic {
      *
      * If Displacement is used in conjunction with Size and/or Rotation then the graphic
      * symbol shall be scaled and/or rotated before it is displaced.s
-     *
-     * @return Displacement
      */
     @XmlParameter("Displacement")
     Displacement getDisplacement();
@@ -148,5 +140,4 @@ public interface Graphic {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

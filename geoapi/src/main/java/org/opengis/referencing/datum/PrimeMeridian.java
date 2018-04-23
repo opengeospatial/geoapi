@@ -78,8 +78,8 @@ public interface PrimeMeridian extends IdentifiedObject {
      *
      * @departure historic
      *   This attribute is inherited from an older OGC specification.
-     *   In ISO 19111, <code>greenwichLongitude</code> is a property of type <code>Angle</code>
-     *   rather than <code>double</code>, and the unit of measure is part of the <code>Angle</code> value.
+     *   In ISO 19111, {@code greenwichLongitude} is a property of type {@code Angle}
+     *   rather than {@code double}, and the unit of measure is part of the {@code Angle} value.
      *
      * @return the angular unit of Greenwich longitude.
      */

@@ -46,8 +46,8 @@
         <p>GeoAPI is closely tied to the OGC both in its origins and in its ongoing work.</p>
 
         <p>The GeoAPI project is a collaboration of participants from various institutions and
-        software communities. The GeoAPI project is developing a set of interfaces in the Java
-        language to help software projects produce high quality geospatial software. The core
+        software communities. The GeoAPI project is developing a set of interfaces in programming
+        languages to help software projects produce high quality geospatial software. The core
         interfaces follow closely the specifications produced in the 19100 series of the
         International Organization for Standardization (ISO) and by the OGC. The interfaces use the
         <code>org.opengis</code> namespace and copyright to the code is assigned to the OGC. The
@@ -70,16 +70,28 @@
       <question>Why a standardized set of programming interfaces? Shouldn't OGC standards stick to web services only?</question>
       <answer>
         <p>We believe that both approaches are complementary. Web services are efficient ways to publish geographic
-        information using existing software. But some users need to build their own solution, for example as a
-        wrapper on top of their own numerical model. Many existing software packages provide sophisticated developer
-        toolkits, but each toolkit has its own learning curve, and one can not easily switch from one toolkit to
-        another or mix components from different toolkits. Using standardized interfaces, a significant part of the
-        API can stay constant across different toolkits, thus reducing both the learning curve (especially since the
-        interfaces are derived from published abstract UML) and the inter-operability pain points.</p>
+        information using existing software. But some users need to build their own solution, for example a numerical model.
+        Many existing software packages provide sophisticated developer toolkits, but each toolkit has its own learning curve,
+        and one can not easily switch from one toolkit to another or mix components from different toolkits.
+        Using standardized interfaces, a significant part of the API can stay constant across different toolkits,
+        thus reducing both the learning curve (especially since the interfaces are derived from published abstract UML)
+        and the inter-operability pain points.</p>
 
         <p>The situation is quite similar to JDBC (<cite>Java DataBase Connectivity</cite>)'s one. The fact that a high-level
         language already exists for database queries (SQL) doesn't means that low-level programming interfaces are not needed.
         JDBC interfaces have been created as a developer tools in complement to SQL, and they proven to be quite useful.</p>
+
+        <p>Web services and standard data formats are useful for transferring data to the scientist who processes them.
+        But this approach become unpracticable with the very large amount of Earth Observation data.
+        Instead, there is a need to do the opposite way: transfer the algorithm to the data in a cloud environment.
+        In a situation where both the data and the user (the algorithm) are on the cloud,
+        web services and standard data formats may not apply anymore at processing time
+        (they are still relevant for fetching the processing results however).
+        Instead, cloud environments like Google Earth Engine or Amazon Lambdas allow execution of user-defined algorithms
+        in Python, Java or other programming languages, where no data transfer happens from user's perspective
+        (whether data transfers happen under the hood when some commands are executed is implementation details).
+        But those environments are currently defining their own APIs, at the risk of vendor-lockin.
+        Defining a standard API suitable for cloud environments is part of GeoAPI goals.</p>
       </answer>
     </faq>
 
@@ -87,9 +99,9 @@
       <question>With standardization of interfaces, aren't you forcing a particular implementation?</question>
       <answer>
         <p>We try to carefully avoid implementation-specific API. Again, JDBC is a good example of what we try to achieve.
-        JDBC is an example of successful interfaces-only specification implemented by many vendors. Four categories of
-        JDBC drivers exists (pure Java, wrappers around native code, etc.). Implementations exist for Access, Derby,
-        HSQL, MySQL, Oracle, PostgreSQL and many others.</p>
+        JDBC is an example of successful interfaces-only specification implemented by many vendors.
+        Four categories of JDBC drivers exists (pure Java, wrappers around native code, etc.).
+        Implementations exist for Access, Derby, HSQL, MySQL, Oracle, PostgreSQL and many others.</p>
 
         <p>The implementation flexibility is demonstrated by the GeoAPI-Proj.4 wrappers.
         <a href="http://proj.osgeo.org/">Proj.4</a> is an open source C/C++ library performing map projections.
@@ -112,16 +124,17 @@
       <answer>
         <p>The ISO 19103, 19111 and 19115 specifications define mostly <cite>data structures</cite> convertible
         to XML or database schemas. Indeed, the <a href="http://www.epsg.org">EPSG</a> database schema follows
-        closely the ISO 19111 structures. However those ISO specifications define very few operations. For example
+        closely the ISO 19111 structures. However those ISO specifications define few operations. For example
         ISO 19111 provides data structures for describing accurately <cite>Coordinate Reference System</cite>
-        objects, but said nothing about the methods to invoke for <em>performing</em> the actual operations on
-        coordinate values. In terms of programming languages, the above-cited ISO specifications define only
-        no-argument getter methods. Any methods performing calculation based on parameter values are unspecified.</p>
+        objects, but does not said much about how to get instances of them (except from a geodetic dataset).
+        In terms of programming languages, the above-cited ISO specifications define mostly no-argument getter methods.
+        Few methods performing calculation based on parameter values are specified.</p>
 
-        <p>Since GeoAPI targets programming languages rather than data formats, we provide some methods
-        performing calculations. Rather than inventing our own, we fetch those methods from other OGC
-        specifications - including <a href="http://www.opengeospatial.org/standards/retired">retired
-        specifications</a> - as much as possible. Those methods are documented in various places:</p>
+        <p>Since GeoAPI targets programming languages rather than data formats,
+        we provide some more methods performing operations from programmatic parameters.
+        Rather than inventing our own, we fetch those methods from other OGC specifications -
+        including <a href="http://www.opengeospatial.org/standards/retired">retired specifications</a> -
+        as much as possible. Those methods are documented in various places:</p>
         <ul>
           <li>In the "<cite>Comparison with legacy OGC specifications</cite>" annex in the
           <a href="http://www.opengeospatial.org/standards/geoapi">GeoAPI specification</a>.</li>
@@ -131,9 +144,12 @@
           associated with the <a href="snapshot/javadoc/org/opengis/annotation/Specification.html#OGC_01009">OGC 01-009 specification enum</a>
           or an other OGC enum.</li>
         </ul>
-        <p>GeoAPI defines also a few convenience methods for frequently used operations (for example
-        fetching the Coordinate Reference System of an Envelope) and methods for inter-operability
-        with the standard Java library. Those methods are also documented in the departures page.</p>
+        <p>GeoAPI defines also a few convenience methods for frequently used operations
+        (for example fetching the Coordinate Reference System of an Envelope)
+        and methods for inter-operability with the standard library.
+        Those methods are also documented in the departures page.
+        Another reason is to adapt to constraints of target programming language
+        (e.g. Java has no direct equivalent for the C/C++ <code>enum</code> construct).</p>
       </answer>
     </faq>
   </part>
@@ -142,62 +158,21 @@
     <title>Technical</title>
 
     <faq id="scripts">
-      <question>Why don't you translate all OGC's UML into Java interfaces using some automatic script?</question>
+      <question>Why don't you translate all OGC's UML into programmatic interfaces using some automatic script?</question>
       <answer>
-        <p>We tried that path at the beginning of GeoAPI project, and abandoned it. Automatic scripts provide
-        useful starting points, but their output do not alway match the expectations of Java developers. For
-        example a popular approach is to generate Java classes from the <a href="http://schemas.opengis.net">XML schemas</a>
-        using JAXB-related technologies. Unfortunately the XML schema defined by ISO 19139 is quite
-        unusual, introducing a lot of redundant elements. In the example below, the right side shows
-        what would looks like a Java code fetching the URL element from the XML fragment on the left
-        side, if the Java API were derived automatically from ISO 19139 schema:</p>
+        <p>We tried that path at the beginning of GeoAPI project, and abandoned it.
+        Automatic scripts provide useful starting points, but their output do not alway match the expectations of developers.
+        For example a popular approach is to generate Java classes
+        from the <a href="http://schemas.opengis.net">XML schemas</a> using JAXB-related technologies.
+        Unfortunately the XML schemas defined by ISO 19139 are quite unusual, introducing a lot of redundant elements
+        (e.g. <code>citation</code> property values wrapped in <code>CI_Citation</code> XML elements,
+        and so on for all other properties).
+        API generated from those schemas are twice bigger than the conceptual model.</p>
 
-        <table class="section"><tr><th>XML fragment</th><th>Java code</th></tr>
-        <tr valign="top"><td><source>&lt;gmd:MD_Metadata&gt;
-  &lt;gmd:identificationInfo&gt;
-    &lt;gmd:MD_DataIdentification&gt;
-      &lt;gmd:citation&gt;
-        &lt;gmd:CI_Citation&gt;
-          &lt;gmd:citedResponsibleParty&gt;
-            &lt;gmd:CI_ResponsibleParty&gt;
-              &lt;gmd:contactInfo&gt;
-                &lt;gmd:CI_Contact&gt;
-                  &lt;gmd:onlineResource&gt;
-                    &lt;gmd:CI_OnlineResource&gt;
-                      &lt;gmd:linkage&gt;
-                        &lt;gmd:URL&gt;http://www.opengeospatial.org&lt;/gmd:URL&gt;
-                      &lt;/gmd:linkage&gt;
-                    &lt;/gmd:CI_OnlineResource&gt;
-                  &lt;/gmd:onlineResource&gt;
-                &lt;/gmd:CI_Contact&gt;
-              &lt;/gmd:contactInfo&gt;
-            &lt;/gmd:CI_ResponsibleParty&gt;
-          &lt;/gmd:citedResponsibleParty&gt;
-        &lt;/gmd:CI_Citation&gt;
-      &lt;/gmd:citation&gt;
-    &lt;/gmd:MD_DataIdentification&gt;
-  &lt;/gmd:identificationInfo&gt;
-&lt;/gmd:MD_Metadata&gt;</source></td>
-
-
-        <td><p>Note: the examples below ignore the iterations over collections and the checks for null values.</p>
-        <p><b>From automatic tools:</b></p>
-        <source>metadata.getIdentificationInfo().getMD_DataIdentification()
-        .getCitation().getCI_Citation()
-        .getCitedResponsibleParty().getCI_ResponsibleParty()
-        .getContactInfo().getCI_Contact()
-        .getOnlineResource().getCI_OnlineResource()
-        .getLinkage().getURL();</source>
-
-        <p><b>From GeoAPI (defined by humans):</b></p>
-        <source>metadata.getIdentificationInfo().getCitation()
-        .getCitedResponsibleParty().getContactInfo()
-        .getOnlineResource().getLinkage().getURL();</source>
-        </td></tr></table>
-
-        <p>We could derive the API from the UML in <cite>Rational Rose</cite> format instead than
-        the XML schemas, but a lot of human intervention is still essential. The relationship between
-        UML and Java interfaces is not always straightforward. For example:</p>
+        <p>We could derive the API from the UML in <cite>Rational Rose</cite> format instead than the XML schemas,
+        but a lot of human intervention is still essential.
+        The relationship between UML and programmatic interfaces is not always straightforward.
+        For example:</p>
         <ul>
           <li><p>Structures of type <code>union</code> are expressed in Java either by rearranging the
           interface hierarchy, by interface multi-inheritance or by omitting the data structure,
@@ -219,7 +194,8 @@
         </ul>
 
         <p>The changes applied by human intervention is documented in the
-        <a href="snapshot/javadoc/departures.html">departures</a> page.</p>
+        <a href="snapshot/javadoc/departures.html">departures</a> page.
+        </p>
       </answer>
     </faq>
 

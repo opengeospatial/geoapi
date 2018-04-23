@@ -133,10 +133,10 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * criterion.
      *
      * @departure extension
-     *   The inner <code>CodeList.Filter</code> interface is not part of the OGC specification.
-     *   It has been added because <code>CodeList</code> is one of the few concrete classes in
+     *   The inner {@code CodeList.Filter} interface is not part of the OGC specification.
+     *   It has been added because {@code CodeList} is one of the few concrete classes in
      *   GeoAPI and there is a need to give some user control over the behavior of the
-     *   <code>CodeList</code> implementation.
+     *   {@code CodeList} implementation.
      *
      * @since 2.3
      */
@@ -182,7 +182,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @return a code matching the given name, or {@code null} if the name is null.
      *
      * @departure integration
-     *   Provided by analogy with the methods in the Java <code>Enum</code> class.
+     *   Provided by analogy with the methods in the Java {@code Enum} class.
      */
     public static <T extends CodeList<T>> T valueOf(final Class<T> codeType, String name) {
         if (name == null) {
@@ -306,7 +306,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @return the codes of the same kind than this code.
      *
      * @departure integration
-     *   Provided by analogy with <code>Enum.family()</code>, which was defined in a initial
+     *   Provided by analogy with {@code Enum.family()}, which was defined in a initial
      *   draft of Java 5 before the final release.
      */
     @Override
@@ -333,7 +333,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @return all names of this code constant. This array is never null and never empty.
      *
      * @departure extension
-     *   Defined because each <code>CodeList</code> has at least two names, the Java programmatic
+     *   Defined because each {@code CodeList} has at least two names, the Java programmatic
      *   name and the UML identifier, while some subclasses have additional names.
      *
      * @since 2.3
@@ -354,7 +354,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * is the name of the public static field which declare the code.
      *
      * @departure integration
-     *   Provided by analogy with the methods in the Java <code>Enum</code> class.
+     *   Provided by analogy with the methods in the Java {@code Enum} class.
      *
      * @return the name of this code constant.
      */
@@ -370,7 +370,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @return the ISO/OGC identifier for this code constant, or {@code null} if none.
      *
      * @departure extension
-     *   Defined because each <code>CodeList</code> has a UML identifier in addition of the Java
+     *   Defined because each {@code CodeList} has a UML identifier in addition of the Java
      *   programmatic name.
      *
      * @since 2.2
@@ -424,7 +424,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @return the position of this code constants in elements declaration.
      *
      * @departure integration
-     *   Provided by analogy with the methods in the Java <code>Enum</code> class.
+     *   Provided by analogy with the methods in the Java {@code Enum} class.
      */
     @Override
     public final int ordinal() {

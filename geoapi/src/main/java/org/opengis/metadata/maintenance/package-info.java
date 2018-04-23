@@ -42,7 +42,7 @@
  * <tr>
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
- * </tr><tr><td style="width: 50%; white-space: nowrap">
+ * </tr><tr><td class="hierarchy">
  * <pre> ISO-19115 object
  *  ├─ {@linkplain org.opengis.metadata.maintenance.MaintenanceInformation}
  *  ├─ {@linkplain org.opengis.metadata.maintenance.Scope}
@@ -50,7 +50,7 @@
  * {@linkplain org.opengis.util.CodeList}
  *  ├─ {@linkplain org.opengis.metadata.maintenance.MaintenanceFrequency}
  *  └─ {@linkplain org.opengis.metadata.maintenance.ScopeCode}</pre>
- * </td><td class="sep" style="width: 50%; white-space: nowrap">
+ * </td><td class="sep hierarchy">
  * <pre> {@linkplain org.opengis.metadata.maintenance.MaintenanceInformation}
  *  ├─ {@linkplain org.opengis.metadata.maintenance.MaintenanceFrequency} «code list»
  *  └─ {@linkplain org.opengis.metadata.maintenance.Scope}

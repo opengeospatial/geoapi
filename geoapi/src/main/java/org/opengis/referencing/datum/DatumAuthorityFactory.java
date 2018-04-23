@@ -60,7 +60,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * <p>If the datum type is known at compile time, then it is recommended to invoke the
      * most precise method instead of this one. For example it is usually better to invoke
      * <code>{@linkplain #createGeodeticDatum createGeodeticDatum}(code)</code> instead of
-     * <code>createDatum(code)</code> if the requested object is known to be a
+     * {@code createDatum(code)} if the requested object is known to be a
      * {@code GeodeticDatum} instance.</p>
      *
      * @param  code  value allocated by authority.

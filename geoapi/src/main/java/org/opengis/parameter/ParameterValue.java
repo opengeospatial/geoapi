@@ -133,8 +133,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @unitof Measure
      *
      * @departure rename
-     *   Renamed the method from "<code>value</code>" to "<code>doubleValue</code>" for consistency
-     *   with <code>Number.doubleValue()</code> and the other "<code>*Value</code>" methods defined
+     *   Renamed the method from "{@code value}" to "{@code doubleValue}" for consistency
+     *   with {@code Number.doubleValue()} and the other "{@code *Value}" methods defined
      *   in this interface.
      *
      * @see #getUnit()
@@ -153,8 +153,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @throws IllegalStateException if the value can not be returned for an other raison.
      *
      * @departure rename
-     *   Renamed the method from "<code>integerValue</code>" to "<code>intValue</code>" for
-     *   consistency with <code>Number.intValue()</code> and the <code>int</code> Java primitive type.
+     *   Renamed the method from "{@code integerValue}" to "{@code intValue}" for
+     *   consistency with {@code Number.intValue()} and the {@code int} Java primitive type.
      *
      * @see #setValue(int)
      * @see #intValueList()
@@ -216,9 +216,9 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @unitof Measure
      *
      * @departure rename
-     *   Renamed the method from "<code>valueList</code>" to "<code>doubleValueList</code>" both for
-     *   consistency with <code>doubleValue()</code> and also because, like <code>doubleValue()</code>,
-     *   this method returns an array of <code>double</code> values rather than a <code>Measure</code>
+     *   Renamed the method from "{@code valueList}" to "{@code doubleValueList}" both for
+     *   consistency with {@code doubleValue()} and also because, like {@code doubleValue()},
+     *   this method returns an array of {@code double} values rather than a {@code Measure}
      *   object.
      *
      * @see #getUnit()
@@ -237,8 +237,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @throws IllegalStateException if the value can not be returned for an other raison.
      *
      * @departure rename
-     *   Renamed the attribute from "<code>integerValueList</code>" to "<code>intValueList</code>"
-     *   for consistency with <code>intValue()</code>.
+     *   Renamed the attribute from "{@code integerValueList}" to "{@code intValueList}"
+     *   for consistency with {@code intValue()}.
      *
      * @see #setValue(Object)
      * @see #intValue()

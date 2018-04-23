@@ -56,9 +56,9 @@ public interface IdentifiedType {
      * ({@link org.opengis.util.ScopedName}) or implicit
      * ({@link org.opengis.util.LocalName}).
      *
-     * <p>The name is optional for {@link Operation}, but mandatory for other types.
+     * The name is optional for {@link Operation}, but mandatory for other types.
      * For {@link AttributeType}, the name shall be unique in the {@code FeatureType}.
-     * For {@link FeatureType}, the name shall be unique in the unit processing the data.</p>
+     * For {@link FeatureType}, the name shall be unique in the unit processing the data.
      *
      * @return the type name, or {@code null} if none.
      */

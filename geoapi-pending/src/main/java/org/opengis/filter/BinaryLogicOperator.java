@@ -31,9 +31,7 @@
  */
 package org.opengis.filter;
 
-// J2SE direct dependencies
 import java.util.List;
-
 import org.opengis.annotation.XmlElement;
 
 
@@ -50,10 +48,8 @@ import org.opengis.annotation.XmlElement;
 public interface BinaryLogicOperator extends Filter {
     /**
      * Returns a list containing all of the child filters of this object.
-     * <p>
      * This list will contain at least two elements, and each element will be an
      * instance of {@code Filter}.
-     * </p>
      */
     List<Filter> getChildren();
 }

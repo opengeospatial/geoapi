@@ -45,7 +45,7 @@ import org.opengis.util.GenericName;
  *   <li>A value, which may be a singleton ([0 … 1] cardinality) or multi-valued ([0 … ∞] cardinality).</li>
  * </ul>
  *
- * <div class="note"><b>Analogy with Java language:</b>
+ * <div class="note"><b>Analogy with Java language</b><br>
  * an attribute is similar to a "field" in a Java object. A field also brings together a field name, value and type.
  * However attributes are limited to fields of primitive types or arrays of primitive types.
  * For a field of other Java type, use {@link FeatureAssociation} instead.
@@ -96,7 +96,7 @@ public interface Attribute<V> extends Property {
     /**
      * Sets the attribute value. All previous values are replaced by the given singleton.
      *
-     * <div class="note"><b>Note on validation:</b>
+     * <div class="note"><b>Note on validation</b><br>
      * the verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
      * and offer an other method for performing more extensive validation.
@@ -113,7 +113,7 @@ public interface Attribute<V> extends Property {
     /**
      * Returns all attribute values, or an empty collection if none.
      *
-     * <div class="note"><b>Implementation note:</b>
+     * <div class="note"><b>Implementation note</b><br>
      * there is different approaches in the way that collection elements are related to this property values:
      * <ul>
      *   <li>The collection may be a snapshot of property values at the method invocation time.</li>
@@ -131,7 +131,7 @@ public interface Attribute<V> extends Property {
     /**
      * Sets the attribute values. All previous values are replaced by the given collection.
      *
-     * <div class="note"><b>Note on validation:</b>
+     * <div class="note"><b>Note on validation</b><br>
      * the verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
      * and offer an other method for performing more extensive validation.

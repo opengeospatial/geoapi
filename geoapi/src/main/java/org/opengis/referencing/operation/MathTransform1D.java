@@ -41,9 +41,8 @@ package org.opengis.referencing.operation;
  *
  * @departure extension
  *   This interface is not part of the OGC specification. It has been added as a complement
- *   of <code>MathTransform2D</code> and because the 1D case provides opportunities for
- *   optimization through a <code>transform</code> method accepting a single <code>double</code>
- *   primitive type.
+ *   of {@code MathTransform2D} and because the 1D case provides opportunities for optimization
+ *   through a {@code transform} method accepting a single {@code double} primitive type.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

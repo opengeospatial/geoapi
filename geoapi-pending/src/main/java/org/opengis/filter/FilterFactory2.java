@@ -72,14 +72,6 @@ public interface FilterFactory2 extends FilterFactory {
 
     /**
      * Character string comparison operator with pattern matching and specified wildcards.
-     *
-     * @param expr
-     * @param pattern
-     * @param wildcard
-     * @param singleChar
-     * @param escape
-     * @param matchCase
-     * @return
      */
     PropertyIsLike like(Expression expr, String pattern, String wildcard, String singleChar, String escape, boolean matchCase);
 
@@ -98,8 +90,8 @@ public interface FilterFactory2 extends FilterFactory {
      * This method does not strictly confirm to the the Filter 1.0 specification, you may
      * use it to check expressions other than PropertyName.
      * </p>
-     * @param geometry Expression used to access a Geometry, in order to check for interaction with bounds
-     * @param bounds Indicates the bounds to check geometry against
+     * @param geometry  expression used to access a Geometry, in order to check for interaction with bounds
+     * @param bounds    indicates the bounds to check geometry against
      */
     BBOX        bbox( Expression geometry, Envelope bounds);
 

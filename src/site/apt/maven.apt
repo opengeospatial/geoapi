@@ -4,8 +4,8 @@
 
 Maven repositories
 
-  GeoAPI 3.0 is deployed on the {{{http://search.maven.org/}Maven Central Repository}} and can
-  be used in a Maven project as below:
+  Standard release of GeoAPI 3.0 is deployed on the {{{http://search.maven.org/}Maven Central Repository}}
+  and can be used in a Maven project as below:
 
 +------------------------------------------+
 <dependencies>
@@ -17,8 +17,8 @@ Maven repositories
 </dependencies>
 +------------------------------------------+
 
-  Development milestones (versions 3.1 and above) are deployed on an external repository,
-  which can be used as below:
+  Development milestones (versions 3.1 and above) are deployed on an external repository, which can be used as below.
+  Those milestones are *not* standards and can change at any time:
 
 +------------------------------------------+
 <repositories>

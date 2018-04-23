@@ -53,8 +53,8 @@ import static org.opengis.annotation.Specification.*;
  * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
  *
  * @departure easeOfUse
- *   The ISO specification defines this interface in the <code>coordinate</code> sub-package.
- *   GeoAPI moved this interface into the <code>org.opengis.geometry</code> root package for
+ *   The ISO specification defines this interface in the {@code coordinate} sub-package.
+ *   GeoAPI moved this interface into the {@code org.opengis.geometry} root package for
  *   convenience, because it is extensively used.
  *
  * @author  Martin Desruisseaux (IRD)

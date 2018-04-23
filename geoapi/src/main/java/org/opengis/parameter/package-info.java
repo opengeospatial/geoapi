@@ -55,12 +55,12 @@
  * <tr>
  *   <th>Parameter descriptor</th>
  *   <th class="sep">Parameter value</th>
- * </tr><tr><td style="width: 50%; white-space: nowrap">
+ * </tr><tr><td class="hierarchy">
  * <pre> {@linkplain org.opengis.referencing.IdentifiedObject}
  *  └─ {@linkplain org.opengis.parameter.GeneralParameterDescriptor}
  *      ├─ {@linkplain org.opengis.parameter.ParameterDescriptor}
  *      └─ {@linkplain org.opengis.parameter.ParameterDescriptorGroup}</pre>
- * </td><td class="sep" style="width: 50%; white-space: nowrap">
+ * </td><td class="sep hierarchy">
  * <pre> {@code Object}
  *  └─ {@linkplain org.opengis.parameter.GeneralParameterValue}
  *      ├─ {@linkplain org.opengis.parameter.ParameterValue}
@@ -115,7 +115,7 @@
  * @departure harmonization
  *   ISO 19111 defines parameters in the <cite>Coordinate Operation</cite> package, while
  *   ISO 19115 defines parameters in the <cite>Services</cite> package.
- *   GeoAPI moves those classes in this <code>parameter</code> independent package
+ *   GeoAPI moves those classes in this {@code parameter} independent package
  *   and tries to provide a single model for the two standards when possible.
  *   With this move, GeoAPI has extended the use of these parameter classes to a more general use rather
  *   than only for referencing operation types.

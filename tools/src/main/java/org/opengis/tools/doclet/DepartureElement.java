@@ -31,11 +31,12 @@
  */
 package org.opengis.tools.doclet;
 
-import java.io.File;
 import java.io.Writer;
 import java.io.IOException;
 import com.sun.source.doctree.DocTree;
+import javax.lang.model.element.Name;
 import javax.lang.model.element.Element;
+import javax.lang.model.element.QualifiedNameable;
 
 
 /**
@@ -50,14 +51,15 @@ import javax.lang.model.element.Element;
  */
 final class DepartureElement implements Comparable<DepartureElement> {
     /**
-     * The source file.
+     * Qualified name of the type, package or module that contains the departure.
+     * Used for inferring the source file path relative to the javadoc root directory.
      */
-    final File file;
+    final Name typeName;
 
     /**
-     * The name part of the source file, without path and extension.
+     * The simple name (without path or extension) of the type that contains the departure.
      */
-    private final String filename;
+    private final String shortTypeName;
 
     /**
      * Path to HTML javadoc.
@@ -70,7 +72,8 @@ final class DepartureElement implements Comparable<DepartureElement> {
     private final String type;
 
     /**
-     * The class or method name.
+     * The class or method name that contains the departure.
+     * May be the same than {@link #shortTypeName}.
      */
     private final String name;
 
@@ -83,51 +86,48 @@ final class DepartureElement implements Comparable<DepartureElement> {
      * {@code true} if this element is for a field or method.
      * {@code false} if this element is for an interface, class or package.
      */
-    final boolean member;
+    final boolean isMember;
+
+    /**
+     * {@code true} if this element is for a package.
+     */
+    private final boolean isPackage;
 
     /**
      * Stores a description for the given departure tag.
      */
     DepartureElement(final Element parent, final DocTree tag, final String text) {
-        this.file = new File(BlockTaglet.getCompilationUnitTree(tag).getSourceFile().getName());
-        this.name = parent.getSimpleName().toString();
-        this.text = text;
+        Element typeElement = parent;
+        while (!(typeElement instanceof QualifiedNameable)) {
+            if (typeElement == null) {
+                throw new IllegalArgumentException(parent.getKind() + " without parent TypeElement.");
+            }
+            typeElement = typeElement.getEnclosingElement();
+        }
+        this.typeName      = ((QualifiedNameable) typeElement).getQualifiedName();
+        this.shortTypeName = typeElement.getSimpleName().toString();
+        this.name          = parent.getSimpleName().toString();
+        this.text          = text;
+        boolean isPackage  = false;
         switch (parent.getKind()) {
-            case METHOD:        member=true;  type = "Method";    break;
-            case FIELD:         member=true;  type = "Field";     break;
-            case ENUM_CONSTANT: member=true;  type = "Enum";      break;
-            case ENUM:          member=false; type = "Enum";      break;
-            case INTERFACE:     member=false; type = "Interface"; break;
-            case CLASS:         member=false; type = "Class";     break;
-            case PACKAGE:       member=false; type = "Package";   break;
-            default:            member=false; type = "Unknown";   break;
+            case METHOD:        isMember=true;  type = "Method";    break;
+            case FIELD:         isMember=true;  type = "Field";     break;
+            case ENUM_CONSTANT: isMember=true;  type = "Enum";      break;
+            case ENUM:          isMember=false; type = "Enum";      break;
+            case INTERFACE:     isMember=false; type = "Interface"; break;
+            case CLASS:         isMember=false; type = "Class";     break;
+            case PACKAGE:       isMember=false; type = "Package";   isPackage = true; break;
+            default:            isMember=false; type = "Unknown";   break;
         }
+        this.isPackage = isPackage;
         /*
-         * Get the name of the file, without path or extension. An extension is applied for
-         * package-info, where the package name (e.g. "org.opengis.util") is used instead.
+         * Get the path relative to the javadoc root.
          */
-        String filename = file.getName();
-        int s = filename.lastIndexOf('.');
-        if (s > 0) {
-            filename = filename.substring(0, s);
+        final StringBuilder filenameHTML = new StringBuilder(typeName.toString().replace('.', '/'));
+        if (isPackage) {
+            filenameHTML.append("/package-summary");
         }
-        String filenameHTML = filename;
-        if (filename.equals("package") || filename.equals("package-info")) {
-            filename = name;
-            filenameHTML = "package-summary";
-        }
-        this.filename = filename;
-        /*
-         * Get the path relative to the javadoc root. We assume the standard
-         * Maven directory layout, with source code under the "java" directory.
-         */
-        String path = file.getParent().replace(File.separatorChar, '/');
-        s = path.lastIndexOf("/java/");
-        if (s >= 0) {
-            path = path.substring(s + 6);       // 6 is the length of "/java/".
-        }
-        path = path + '/' + filenameHTML + ".html";
-        pathToHTML = path;
+        pathToHTML = filenameHTML.append(".html").toString();
     }
 
     /**
@@ -135,17 +135,13 @@ final class DepartureElement implements Comparable<DepartureElement> {
      */
     @Override
     public int compareTo(final DepartureElement other) {
-        final String  n1 =  this.file.getName();
-        final String  n2 = other.file.getName();
-        final boolean p1 = n1.startsWith("package");
-        final boolean p2 = n2.startsWith("package");
-        if (p1 != p2) {
-            return p1 ? -1 : +1;            // Sort packages first.
+        if (isPackage != other.isPackage) {
+            return isPackage ? -1 : +1;         // Sort packages first.
         }
-        if (member != other.member) {
-            return member ? -1 : +1;        // Sort members last.
+        if (isMember != other.isMember) {
+            return isMember ? +1 : -1;          // Sort members last.
         }
-        return n1.compareTo(n2);
+        return shortTypeName.compareTo(other.shortTypeName);
     }
 
     /**
@@ -153,13 +149,13 @@ final class DepartureElement implements Comparable<DepartureElement> {
      */
     final void writeClassName(final Writer out) throws IOException {
         // If we don't know the real type, assume interface.
-        out.write(member && !type.equals("Enum") ? "Interface" : type);
+        out.write(isMember && !type.equals("Enum") ? "Interface" : type);
         out.write(' ');
-        out.write("<A HREF=\"");
+        out.write("<a href=\"");
         out.write(pathToHTML);
         out.write("\">");
-        out.write(filename);
-        out.write("</A>");
+        out.write(shortTypeName);
+        out.write("</a>");
     }
 
     /**

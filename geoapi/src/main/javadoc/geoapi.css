@@ -1,36 +1,34 @@
-@import url('standard.css');
-
 /*
  * Table without vertical space between rows, a little bit of space between columns,
  * a light background color and a header with a darker background color. The header
  * also have a little bit more space, and a border is drawn around the table.
  */
 table.ogc caption {
-  color:          #0086E0;
+  color:          steelblue;
+  font-weight:    bold;
   padding-bottom: 4px;
 }
 
 table.ogc {
-  background-color: #F4F8FF;
-  border-color:     Black;
+  background-color: ghostwhite;
+  border-color:     gray;
   border-style:     solid;
-  border-width:     1pt;
-  border-spacing:   0pt;
-  margin:           12pt 0 12pt 0;
-  padding:          0pt;
+  border-width:     1px;
+  border-spacing:   0;
+  margin:           15px 40px;
   width:            auto;
 }
 
 table.ogc tr th {
-  background-color:    #B9DCFF;
-  border-bottom-color: Black;
+  background-color:    lightsteelblue;
+  border-bottom-color: steelblue;
   border-bottom-style: solid;
-  border-bottom-width: 1pt;
-  padding:             3pt;
+  border-bottom-width: 1px;
+  padding:             3px;
 }
 
 table.ogc tr td {
-  padding:        1.5pt 9pt;
+  padding:        1.5px 9px;
   vertical-align: text-top;
 }
 
@@ -38,26 +36,26 @@ table.ogc tr td {
  * Optionally add a line or column separator.
  */
 table.ogc tr th.hsep {
-  border-top-width: 1pt;
+  border-top-width: 1px;
   border-top-style: solid;
 }
 
 table.ogc tr td.hsep {
-  border-top-width: 1pt;
-  border-top-style: solid;
-  border-left-color: #AAADB2;
+  border-top-width:  1px;
+  border-top-style:  solid;
+  border-left-color: steelblue;
 }
 
 table.ogc tr th.sep {
-  border-left-width: 1pt;
+  border-left-width: 1px;
   border-left-style: solid;
-  border-left-color: #819AB2;
+  border-left-color: steelblue;
 }
 
 table.ogc tr td.sep {
-  border-left-width: 1pt;
+  border-left-width: 1px;
   border-left-style: solid;
-  border-left-color: #AAADB2;
+  border-left-color: steelblue;
 }
 
 /*
@@ -70,19 +68,32 @@ table.gigs th {
 }
 
 /*
+ * For classes hierarchy shown in two-column tables.
+ */
+td.hierarchy {
+  width:       50%;
+  white-space: nowrap;
+  line-height: 1em;
+}
+
+td.hierarchy code {
+  line-height: 1em;
+}
+
+/*
  * Bullet and ordered lists. Put some space before and after the list.
  * Listes of the "verbose" class also have some space betweem items.
  */
 ul,
 ol {
-  margin-top:    9pt;
-  margin-bottom: 9pt;
+  margin-top:    9px;
+  margin-bottom: 9px;
 }
 
 li > ul,
 li > ol {
-  margin-top:    0pt;
-  margin-bottom: 6pt;
+  margin-top:    0;
+  margin-bottom: 6px;
 }
 
 /*
@@ -101,12 +112,26 @@ div.section {
  * Note or examples.
  */
 div.note {
-  color:     #353833;
-  font-size:   small;
-  margin-left:  40px;
-  margin-right: 40px;
-  margin-top:    9px;
-  margin-bottom: 9px;
+  color:      #353833;
+  font-size:    small;
+  margin-left:   40px;
+  margin-right:  40px;
+  margin-top:     9px;
+  margin-bottom:  9px;
+  text-align: justify;
+}
+
+/*
+ * The note about departures from OGC/ISO specifications.
+ */
+div.departure {
+  color:    slategray;
+  font-size:    small;
+  margin-left:   40px;
+  margin-right:  40px;
+  margin-top:     9px;
+  margin-bottom:  9px;
+  text-align: justify;
 }
 
 /*
@@ -115,13 +140,14 @@ div.note {
  * to set as the minimal height.
  */
 div.warning {
-  border-width: 2pt;
+  border-width: 2px;
   border-style: solid;
   border-color: darkred;
   background:   antiquewhite;
-  margin:       12pt 30pt;
+  margin:       15px 30px;
   padding:      15px;
   min-height:   34px;
+  text-align:   justify;
 }
 
 div.warning:before {

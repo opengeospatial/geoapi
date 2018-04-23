@@ -102,10 +102,10 @@
  * </table>
  *
  * @departure constraint
- *   ISO 19111 defines <code>GeodeticCS</code>, <code>EngineeringCS</code> and <code>ImageCS</code> unions.
- *   However the <code>union</code> construct found in some languages like C/C++ is not available in Java.
- *   For each union, a different approach has been applied and documented in the <code>org.opengis.referencing.cs</code>
- *   package. In the particular case of <code>ImageCS</code>, the same type-safety objective can be obtained
+ *   ISO 19111 defines {@code GeodeticCS}, {@code EngineeringCS} and {@code ImageCS} unions.
+ *   However the {@code union} construct found in some languages like C/C++ is not available in Java.
+ *   For each union, a different approach has been applied and documented in the {@code org.opengis.referencing.cs}
+ *   package. In the particular case of {@code ImageCS}, the same type-safety objective can be obtained
  *   through a slight change in the interface hierarchy.
  *
  * @author  Martin Desruisseaux (IRD)

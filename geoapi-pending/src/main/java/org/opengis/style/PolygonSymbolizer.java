@@ -50,8 +50,6 @@ public interface PolygonSymbolizer extends Symbolizer {
     /**
      * Returns the object containing all the information necessary to draw
      * styled lines.  This is used for the edges of polygons.
-     *
-     * @return Stroke
      */
     @XmlElement("Stroke")
     Stroke getStroke();
@@ -60,8 +58,6 @@ public interface PolygonSymbolizer extends Symbolizer {
      * Returns the object that holds the information about how the interior of
      * polygons should be filled.  This may be null if the polygons are not to
      * be filled at all.
-     *
-     * @return Fill
      */
     @XmlElement("Fill")
     Fill getFill();
@@ -71,8 +67,6 @@ public interface PolygonSymbolizer extends Symbolizer {
      * element may be used to avoid over-plotting of multiple PolygonSymbolizers for one
      * geometry or supplying "shadows" of polygon gemeotries. The displacements are in units
      * of pixels above and to the right of the point. The default displacement is X=0, Y=0.
-     *
-     * @return Displacement
      */
     @XmlElement("Displacement")
     Displacement getDisplacement();
@@ -82,8 +76,6 @@ public interface PolygonSymbolizer extends Symbolizer {
      * smaller or larger than their actual geometry. The distance is in uoms and is positive to the
      * outside of the polygon. Negative numbers mean drawing the polygon smaller. The default
      * offset is 0.
-
-     * @return Expression
      */
     @XmlElement("PerpendicularOffset")
     Expression getPerpendicularOffset();
@@ -94,5 +86,4 @@ public interface PolygonSymbolizer extends Symbolizer {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

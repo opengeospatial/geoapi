@@ -22,7 +22,6 @@
        ==================================================== -->
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-conformance</artifactId>
-  <packaging>jar</packaging>
   <name>GeoAPI conformance</name>
   <description>
     Utility methods for testing conformance of a GeoAPI implementation.

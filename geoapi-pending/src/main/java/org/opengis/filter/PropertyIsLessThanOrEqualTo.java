@@ -31,7 +31,6 @@
  */
 package org.opengis.filter;
 
-// Annotations
 import org.opengis.annotation.XmlElement;
 
 
@@ -45,6 +44,6 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("PropertyIsLessThanOrEqualTo")
 public interface PropertyIsLessThanOrEqualTo extends BinaryComparisonOperator {
-	/** Operator name used to check FilterCapabilities */
-	public static String NAME = "LessThanOrEqualTo";
+    /** Operator name used to check FilterCapabilities */
+    public static String NAME = "LessThanOrEqualTo";
 }

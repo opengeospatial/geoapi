@@ -72,12 +72,12 @@ import static org.opengis.annotation.Specification.*;
  * If the authority is EPSG, the implementer may consider using the corresponding metadata values in the EPSG tables.
  *
  * @departure harmonization
- *   ISO 19111 defines two types, <code>IO_IdentifiedObjectBase</code> and <code>IO_IdentifiedObject</code>, as a
- *   workaround for introducing a base type for the <code>name</code>, <code>identifier</code>, <code>alias</code>
- *   and <code>remarks </code>properties without changing the <code>RS_ReferenceSystem</code> definition inherited
+ *   ISO 19111 defines two types, {@code IO_IdentifiedObjectBase} and {@code IO_IdentifiedObject}, as a
+ *   workaround for introducing a base type for the {@code name}, {@code identifier}, {@code alias}
+ *   and {@code remarks} properties without changing the {@code RS_ReferenceSystem} definition inherited
  *   from ISO 19115. Since GeoAPI replaces ISO 19115 CRS definitions by the ISO 19111 ones for providing a unified
- *   model, it does not need this workaround. Consequently GeoAPI merges <code>IO_IdentifiedObjectBase</code> and
- *   <code>IO_IdentifiedObject</code> into this single interface.
+ *   model, it does not need this workaround. Consequently GeoAPI merges {@code IO_IdentifiedObjectBase} and
+ *   {@code IO_IdentifiedObject} into this single interface.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -183,9 +183,8 @@ public interface IdentifiedObject {
      * @throws UnsupportedOperationException if this object can not be formatted as WKT.
      *
      * @departure extension
-     *   This method is not part of the OGC specification. It has been added in order to provide
-     *   the converse of the <code>CRSFactory.createFromWKT(String)</code> method, which is
-     *   defined in OGC 01-009.
+     *   This method is not part of the OGC specification. It has been added in order to provide the
+     *   converse of the {@code CRSFactory.createFromWKT(String)} method, which is defined in OGC 01-009.
      *
      * @see org.opengis.referencing.crs.CRSFactory#createFromWKT(String)
      */

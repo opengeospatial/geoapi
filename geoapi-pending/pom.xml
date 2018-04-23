@@ -22,7 +22,6 @@
        ==================================================== -->
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-pending</artifactId>
-  <packaging>jar</packaging>
   <name>GeoAPI pending</name>
   <description>
     Incubator for interfaces under development. Those interfaces will migrate to the

@@ -68,7 +68,7 @@ public interface Matrix {
      *
      * @departure integration
      *   Needed for making the matrix usable. The method signature matches the one of
-     *   <code>GMatrix</code> in the <cite>vecmath</cite> package, for straightforward
+     *   {@code GMatrix} in the <cite>vecmath</cite> package, for straightforward
      *   implementation.
      */
     int getNumRow();
@@ -80,7 +80,7 @@ public interface Matrix {
      *
      * @departure integration
      *   Needed for making the matrix usable. The method signature matches the one of
-     *   <code>GMatrix</code> in the <cite>vecmath</cite> package, for straightforward
+     *   {@code GMatrix} in the <cite>vecmath</cite> package, for straightforward
      *   implementation.
      */
     int getNumCol();
@@ -94,7 +94,7 @@ public interface Matrix {
      *
      * @departure integration
      *   Needed for making the matrix usable. The method signature matches the one of
-     *   <code>GMatrix</code> in the <cite>vecmath</cite> package, for straightforward
+     *   {@code GMatrix} in the <cite>vecmath</cite> package, for straightforward
      *   implementation.
      */
     double getElement(int row, int column);
@@ -108,7 +108,7 @@ public interface Matrix {
      *
      * @departure integration
      *   Needed for making the matrix usable. The method signature matches the one of
-     *   <code>GMatrix</code> in the <cite>vecmath</cite> package, for straightforward
+     *   {@code GMatrix} in the <cite>vecmath</cite> package, for straightforward
      *   implementation.
      */
     void setElement(int row, int column, double value);

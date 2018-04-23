@@ -82,13 +82,13 @@ import static org.opengis.annotation.Specification.*;
  * but found in ISO 19162 as "{@code forward}" and "{@code starboard}".</div>
  *
  * @departure constraint
- *   ISO 19111 defines <code>CartesianCS</code> as a direct sub-type of <code>CoordinateSystem</code>.
- *   ISO also defines <code>ImageCS</code> as the union of <code>AffineCS</code> and <code>CartesianCS</code>,
- *   for use by <code>ImageCRS</code>. Because the <code>union</code> construct found in some languages like
- *   C/C++ does not exist in Java, GeoAPI defines <code>CartesianCS</code> as a sub-type of <code>AffineCS</code>
+ *   ISO 19111 defines {@code CartesianCS} as a direct sub-type of {@code CoordinateSystem}.
+ *   ISO also defines {@code ImageCS} as the union of {@code AffineCS} and {@code CartesianCS},
+ *   for use by {@code ImageCRS}. Because the {@code union} construct found in some languages like
+ *   C/C++ does not exist in Java, GeoAPI defines {@code CartesianCS} as a sub-type of {@code AffineCS}
  *   in order to achieve the same type safety.
- *   With this change, GeoAPI can use <code>AffineCS</code> directly without the need to define <code>ImageCS</code>.
- *   In this hierarchy, <code>CartesianCS</code> is considered a special case of <code>AffineCS</code> where all axes
+ *   With this change, GeoAPI can use {@code AffineCS} directly without the need to define {@code ImageCS}.
+ *   In this hierarchy, {@code CartesianCS} is considered a special case of {@code AffineCS} where all axes
  *   are perpendicular to each other.
  *
  * @author  Martin Desruisseaux (IRD)

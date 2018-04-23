@@ -47,15 +47,12 @@ import org.opengis.filter.expression.Expression;
  */
 @XmlElement("LinePlacement")
 public interface LinePlacement extends LabelPlacement {
-
     /**
      * The PerpendicularOffset element of a LinePlacement gives the perpendicular distance
      * away from a line to draw a label.
      *
      * The distance is in uoms and is positive to the left-hand side of the line string. Negative
      * numbers mean right. The default offset is 0.
-     *
-     * @return Expression
      */
     @XmlElement("PerpendicularOffset")
     Expression getPerpendicularOffset();
@@ -63,16 +60,12 @@ public interface LinePlacement extends LabelPlacement {
     /**
      * InitialGap specifies how far away the first graphic will be drawn relative to the start of
      * the rendering line
-     *
-     * @return Expression
      */
     @XmlElement("InitialGap")
     Expression getInitialGap();
 
     /**
      * Gap gives the distance between two graphics.
-     *
-     * @return Expression
      */
     @XmlElement("Gap")
     Expression getGap();
@@ -81,8 +74,6 @@ public interface LinePlacement extends LabelPlacement {
      * If IsRepeated is "true", the label will be repeatedly drawn
      * along the line with InitialGap and Gap defining the spaces at the
      * beginning and between labels.
-     *
-     * @return boolean
      */
     @XmlElement("IsRepeated")
     boolean isRepeated();
@@ -90,8 +81,6 @@ public interface LinePlacement extends LabelPlacement {
     /**
      * Labels can either be aligned to the line geometry if IsAligned is "true" (the default) or are
      * drawn horizontally.
-     *
-     * @return boolean
      */
     @XmlElement("IsAligned")
     boolean IsAligned();
@@ -101,8 +90,6 @@ public interface LinePlacement extends LabelPlacement {
      * linestring or polygon to be generalized for label placement. This is e.g. useful for
      * labelling polygons inside their interior when there is need for the label to resemble the
      * shape of the polygon.
-     *
-     * @return boolean
      */
     @XmlElement("GeneralizeLine")
     boolean isGeneralizeLine();
@@ -113,5 +100,4 @@ public interface LinePlacement extends LabelPlacement {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

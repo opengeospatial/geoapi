@@ -33,6 +33,10 @@
 /**
  * Javadoc taglets and annotation processing tools for processing GeoAPI after compilation.
  * Those tools are used mostly for javadoc generation.
+ *
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 4.0
+ * @since   3.0
  */
 module org.opengis.geoapi {
     requires jdk.javadoc;

@@ -34,11 +34,12 @@ package org.opengis.filter;
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.expression.Expression;
 
+
 /**
  * The PropertyIsNil operator tests the content of the specified property and evaluates if it is nil. The operator
  * can also evaluate the nil reason using the nilReason parameter. The implied operator for evaluating the nil
  * reason is “equals”.
- * 
+ *
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 3.1
@@ -59,5 +60,4 @@ public interface PropertyIsNil extends Filter {
      */
     @XmlElement("nilReason")
     String getNilReason();
-    
 }

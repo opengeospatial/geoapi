@@ -78,12 +78,11 @@ import org.opengis.filter.temporal.TOverlaps;
 public interface FilterVisitor {
     /**
      * Used to account for a <code>null</code> filter value.
-     * <p>
      * This is particularly used during data structure transofrmations, however
      * the use of <code>null</code> is not recommended. Please make use of Filter.NONE
      * and Filter.ALL as placeholder objects that communicate intent.
-     * </p>
-     * @param extraData Value object provided to visitor
+     *
+     * @param  extraData  value object provided to visitor
      * @return subclass defined
      */
     Object visitNullFilter(Object extraData);
@@ -91,8 +90,8 @@ public interface FilterVisitor {
     /**
      * Visit {@link Filter#EXCLUDE} (often used during data structure transformations).
      *
-     * @param filter {@link Filter#EXCLUDE}.
-     * @param extraData Value object provided to visitor
+     * @param  filter     {@link Filter#EXCLUDE}.
+     * @param  extraData  value object provided to visitor
      * @return subclass supplied
      */
     Object visit(ExcludeFilter filter, Object extraData);
@@ -100,8 +99,8 @@ public interface FilterVisitor {
     /**
      * Visit {@link Filter#INCLUDE} (often used during data structure transformations).
      *
-     * @param filter {@link Filter#INCLUDE}.
-     * @param extraData Value object provided to visitor
+     * @param  filter     {@link Filter#INCLUDE}.
+     * @param  extraData  value object provided to visitor
      * @return subclass supplied
      */
     Object visit(IncludeFilter filter, Object extraData);
@@ -147,5 +146,4 @@ public interface FilterVisitor {
     Object visit(TContains filter,     Object extraData);
     Object visit(TEquals filter,     Object extraData);
     Object visit(TOverlaps filter,     Object extraData);
-
 }

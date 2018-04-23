@@ -53,8 +53,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * @departure historic
  *   This interface is kept conformant with the specification published in 2003. The 2007 revision
- *   of ISO 19111 removed the <code>SC_GeographicCRS</code> and <code>SC_GeocentricCRS</code> types,
- *   handling both using the <code>SC_GeodeticCRS</code> parent type.
+ *   of ISO 19111 removed the {@code SC_GeographicCRS} and {@code SC_GeocentricCRS} types,
+ *   handling both using the {@code SC_GeodeticCRS} parent type.
  *   GeoAPI keeps them since the distinction between those two types is in wide use.
  *
  * @author  Martin Desruisseaux (IRD)

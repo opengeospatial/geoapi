@@ -2,13 +2,13 @@
 
 GeoAPI provides a set of Java and Python language programming interfaces for geospatial applications.
 The interfaces developed by the GeoAPI project include data structures and manipulation methods needed
-for geographic information system applications. The GeoAPI interfaces closely follow the abstract model
+for geographic information system applications. The GeoAPI interfaces closely follow the abstract models
 and concrete specifications published collaboratively by the International Organization for Standardization (ISO)
 in its 19100 series of documents and the Open Geospatial Consortium (OGC) in its abstract and implementation specifications.
 
 The current release is GeoAPI 3.0.1, published as an
 [Open Geospatial Consortium standard](http://www.opengeospatial.org/standards/geoapi/) and
-[available on Maven Central](http://search.maven.org/#artifactdetails%7Corg.opengis%7Cgeoapi%7C3.0.1%7Cbundle)
+[available on Maven Central](http://search.maven.org/#artifactdetails%7Corg.opengis%7Cgeoapi%7C3.0.1%7Cbundle).
 Development branches on GitHub are "3.1" for GeoAPI 3.1 (backward compatible with GeoAPI 3.0)
 and "master" for GeoAPI 4.0. The main sub-directories are:
 
@@ -24,7 +24,7 @@ and "master" for GeoAPI 4.0. The main sub-directories are:
 **Python interfaces** are located in the `geoapi/src/main/python` sub-directory
 and do not need to be built.
 
-**Java interfaces** requires [Maven 3](http://maven.apache.org) with Java 9 for building,
+**Java interfaces** requires [Maven 3](http://maven.apache.org) with Java 10 for building,
 but the compilation result can be used with Java 7 or later.
 The Java Archive File (JAR) is built with `mvn package` or `mvn install`,
 and the output file will be created in the `geoapi/target/` directory.
