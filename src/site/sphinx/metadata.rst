@@ -1,3 +1,6 @@
+.. WARNING::
+   This specification is not final and is subject to change.
+
 Naming (ISO 19103)
 =============================================
 
