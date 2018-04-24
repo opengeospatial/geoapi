@@ -161,3 +161,10 @@ div.warning:before {
 div.warning p {
   padding-left: 70px;
 }
+
+div.snapshot-warning {
+  text-align:  center;
+  padding-top:    6px;
+  padding-bottom: 6px;
+  background: papayawhip;
+}

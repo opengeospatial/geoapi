@@ -6,9 +6,13 @@ GeoAPI SNAPSHOT
   {{{http://www.opengeospatial.org/standards/geoapi}OGC 09-083}} specification document.
   The 3.1-SNAPSHOT version contains the same interfaces than 4.0-SNAPSHOT without the incompatible changes.
 
-    * {{{./javadoc/content.html}Table of content}}
+    * {{{./specification.html}Specification draft}}
 
-    * {{{./javadoc/index.html}Browse javadoc}}
+    * {{{./javadoc/content.html}Java ↔︎ OGC/ISO mapping}}
+
+    * {{{./javadoc/index.html}Browse Javadoc}}
+
+    * {{{./python/index.html}Browse Python API}}
 
     * {{{../changes/snapshot/change-summary.html}Changes compared to the latest stable release}}
 

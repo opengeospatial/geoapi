@@ -19,10 +19,10 @@
 
 
 
-  <!-- =================================================================================
+  <!-- ===========================================================================================
            Project description (license, mailing lists, issues management, etc).
            Those descriptions appear in the web site published on www.geoapi.org.
-       ================================================================================= -->
+       =========================================================================================== -->
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-parent</artifactId>
   <packaging>pom</packaging>
@@ -89,7 +89,7 @@
 
 
 
-  <!-- =================================================================================
+  <!-- ===========================================================================================
            Profiles and properties controlling the build.
 
            The default configuration is used for building snapshots, in order to test
@@ -100,7 +100,7 @@
 
            Optionally, if the Proj.4 native library is installed on the local machine,
            then GeoAPI can be built with the "-DskipNativeLibraryTests=false" option.
-       ================================================================================= -->
+       =========================================================================================== -->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <website.encoding>UTF-8</website.encoding>
@@ -187,7 +187,7 @@
 
 
 
-  <!-- =================================================================================
+  <!-- ===========================================================================================
            External dependencies used by GeoAPI or to be inherited by external projects
            using GeoAPI.   The <dependencyManagement> section declares version numbers.
            It is followed by a <dependencies> section listing the dependencies actually
@@ -205,7 +205,7 @@
                       <scope>import</scope>
                     </dependency>
                     ...
-       ================================================================================= -->
+       =========================================================================================== -->
   <dependencyManagement>
     <dependencies>
       <dependency>
@@ -252,12 +252,12 @@
 
 
 
-  <!-- =================================================================================
+  <!-- ===========================================================================================
            The plugin management section declares the version numbers of all plugins
            needed for building GeoAPI and associated documentation,  except web site
            generation which has its own section (see <reporting>). Configuration for
            each plugin appear after <pluginManagement> section.
-       ================================================================================= -->
+       =========================================================================================== -->
   <build>
     <pluginManagement>
       <plugins>
@@ -321,9 +321,9 @@
 
 
 
-    <!-- ====================================================
+    <!-- =========================================================================================
              Configuration check before compilation
-         ==================================================== -->
+         ========================================================================================= -->
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
@@ -348,9 +348,9 @@
 
 
 
-      <!-- ====================================================
+      <!-- =========================================================================================
                Compilation
-           ==================================================== -->
+           ========================================================================================= -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
@@ -387,9 +387,9 @@
 
 
 
-    <!-- ====================================================
+    <!-- =========================================================================================
              Tests
-         ==================================================== -->
+         ========================================================================================= -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-surefire-plugin</artifactId>
@@ -403,9 +403,9 @@
 
 
 
-      <!-- ====================================================
+      <!-- =========================================================================================
                JAR packaging
-           ==================================================== -->
+           ========================================================================================= -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
@@ -434,9 +434,9 @@
       </plugin>
 
 
-      <!-- =======================================================
+      <!-- ============================================================================================
                Remove previous snapshots from local repository
-           ======================================================= -->
+           ============================================================================================ -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>build-helper-maven-plugin</artifactId>
@@ -454,12 +454,13 @@
       </plugin>
 
 
-      <!-- =======================================================
+      <!-- ============================================================================================
                Specification from AsciiDoctor files
-           ======================================================= -->
+           ============================================================================================ -->
       <plugin>
         <groupId>org.asciidoctor</groupId>
         <artifactId>asciidoctor-maven-plugin</artifactId>
+        <inherited>false</inherited>
         <executions>
           <execution>
             <id>specification</id>
@@ -479,9 +480,9 @@
 
 
 
-      <!-- ====================================================
+      <!-- =========================================================================================
                Web site generation and deployment
-           ==================================================== -->
+           ========================================================================================= -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-site-plugin</artifactId>
@@ -503,9 +504,9 @@
 
 
 
-  <!-- ==============================================================
+  <!-- ===================================================================================================
          Reports configuration.
-       ============================================================== -->
+       =================================================================================================== -->
   <reporting>
     <plugins>
       <plugin>
@@ -529,9 +530,9 @@
 
 
 
-      <!-- ====================================================
+      <!-- =========================================================================================
                Javadoc generation
-           ==================================================== -->
+           ========================================================================================= -->
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>3.0.1-SNAPSHOT</version>                   <!-- https://issues.apache.org/jira/browse/MJAVADOC-517 -->
@@ -544,6 +545,12 @@
           </reportSet>
         </reportSets>
         <configuration>
+          <top>
+            <!-- Remove this notice for the final GeoAPI release! -->
+            &lt;div class="snapshot-warning"&gt;&lt;b&gt;This specification is not final and is subject to change.&lt;/b&gt;&lt;br/&gt;
+                For OGC standard, see &lt;a href="http://www.geoapi.org/3.0/javadoc/index.html"&gt;GeoAPI 3.0.1&lt;/a&gt;.
+            &lt;/div&gt;
+          </top>
           <encoding>${project.build.sourceEncoding}</encoding>
           <docencoding>${website.encoding}</docencoding>
           <charset>${website.encoding}</charset>
@@ -609,26 +616,32 @@
       </plugin>
 
 
-      <!-- ====================================================
-               Reports configuration for the web site
-           ==================================================== -->
-      <plugin>
-        <artifactId>maven-surefire-report-plugin</artifactId>
-        <version>2.21.0</version>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>report-only</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
+      <!-- =======================================================================================
+               Python API documentation.
+
+               We could use http://trustin.github.io/sphinx-maven-plugin/basic-usage.html,
+               but command-line give us more control for now. This requires the developer
+               to have Sphinx installed on his machine.
+           ======================================================================================= -->
+      <!--plugin>
+        <groupId>kr.motd.maven</groupId>
+        <artifactId>sphinx-maven-plugin</artifactId>
+        <version>2.2.0</version>
+        <inherited>false</inherited>
+        <configuration>
+          <asReport>true</asReport>
+          <name>Python API</name>
+          <description>GeoAPI abstract classes for Python</description>
+          <outputDirectory>${project.reporting.outputDirectory}/snapshot/python</outputDirectory>
+          <outputName>python</outputName>
+        </configuration>
+      </plugin -->
 
 
 
-      <!-- ====================================================
+      <!-- =======================================================================================
                TODO tags
-           ==================================================== -->
+           ======================================================================================= -->
       <plugin>
         <groupId>org.codehaus.mojo</groupId>
         <artifactId>taglist-maven-plugin</artifactId>
@@ -665,9 +678,9 @@
 
 
 
-  <!-- ====================================================
+  <!-- ===========================================================================================
            Deployment to public servers
-       ==================================================== -->
+       =========================================================================================== -->
   <distributionManagement>
     <repository>
       <id>geoapi.snapshots</id>           <!-- For snapshots and milestones only -->
@@ -683,9 +696,9 @@
 
 
 
-  <!-- ====================================================
+  <!-- =========================================================================================
            All GeoAPI modules included in the build
-       ==================================================== -->
+       ========================================================================================= -->
   <modules>
     <module>geoapi</module>
     <module>geoapi-conformance</module>
