@@ -45,6 +45,7 @@ import java.io.IOException;
  * The arguments expected by the main methods are:
  *
  * <table class="ogc">
+ * <caption>Command-line arguments</caption>
  * <tr><th>Name</th> <th>Meaning</th> <th>Example</th></tr>
  * <tr><td>{@code oldVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.0.1"}</td></tr>
  * <tr><td>{@code newVersion}</td> <td>New GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.1-M07"}</td></tr>

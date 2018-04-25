@@ -378,6 +378,8 @@
           <showDeprecation>true</showDeprecation>
           <compilerArgs>
             <arg>-Xlint:all</arg>
+            <arg>-Xdoclint:syntax,missing,accessibility</arg>
+            <arg>--doclint-format</arg> <arg>html5</arg>
           </compilerArgs>
           <excludes>
             <exclude>${future.source}</exclude>
