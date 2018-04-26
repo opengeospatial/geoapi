@@ -46,6 +46,7 @@ import org.junit.After;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
+import static org.junit.Assume.assumeFalse;
 
 
 /**
@@ -208,6 +209,10 @@ public final class CompatibilityTest implements Closeable {
                 continue;                                              // Skip intentionally deleted classes.
             }
             final Class<?> newClass = newAPI.loadClass(className);
+            assumeFalse("Old and new classes have not been loaded by different class loaders. "
+                      + "This may happen with Java 9 when at least one module is modularized. "
+                      + "We need to revisit, maybe with the use of ModuleLayer.",
+                        oldClass.equals(newClass));
             /*
              * At this point we have a class from the previous GeoAPI release (oldClass) and its new version.
              * Now compare all public methods. We skip protected methods for simplicity, since we perform our
@@ -238,8 +243,8 @@ public final class CompatibilityTest implements Closeable {
                         final String lineSeparator = System.lineSeparator();
                         fail("Incompatible change in argument #" + (i+1) + " of "
                                 + className + '.' + methodName + ':' + lineSeparator
-                                + "    (old) " + oldType + lineSeparator
-                                + "    (new) " + newType + lineSeparator);
+                                + "    (old) " + oldType + " from " + oldAPI + lineSeparator
+                                + "    (new) " + newType + " from " + newAPI + lineSeparator);
                     }
                 }
                 /*
@@ -260,9 +265,13 @@ public final class CompatibilityTest implements Closeable {
             }
         }
         if (!acceptedIncompatibleChanges.isEmpty()) {
-            fail("The collection of \"accepted incompatible changes\" has not been fully used.\n" +
-                 "Is this test configured with the right collection? Remaining items are:\n" +
-                 acceptedIncompatibleChanges);
+            final String lineSeparator = System.lineSeparator();
+            fail("The collection of \"accepted incompatible changes\" has not been fully used." + lineSeparator +
+                 "Is this test configured with the right collection? Remaining items are:" + lineSeparator +
+                 acceptedIncompatibleChanges + lineSeparator +
+                 "JAR files are:" + lineSeparator +
+                 "    old API: " + oldAPI + lineSeparator +
+                 "    new API: " + newAPI + lineSeparator);
         }
         return incompatibleChanges;
     }
