@@ -182,4 +182,16 @@ final class Release implements Closeable {
             ((Closeable) loader).close();
         }
     }
+
+    /**
+     * Returns the JAR filename. This is used when reporting JUnit error for debugging purpose.
+     */
+    @Override
+    public String toString() {
+        String name = file.getName();
+        if (isUsingLegacyUnits) {
+            name += " (uses legacy units)";
+        }
+        return name;
+    }
 }
