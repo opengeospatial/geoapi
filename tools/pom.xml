@@ -60,7 +60,10 @@
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
           <release>9</release>
-          <excludes/>                <!-- Cancel the excludes in parent pom.xml -->
+          <excludes/>                   <!-- Cancel the excludes in parent pom.xml -->
+          <compilerArgs>
+            <arg>-Xdoclint:none</arg>   <!-- -Xdoclint causes a NullPointerException with JDK 10.0.1. -->
+          </compilerArgs>
         </configuration>
       </plugin>
       <plugin>
