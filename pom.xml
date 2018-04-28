@@ -703,10 +703,12 @@
        ========================================================================================= -->
   <modules>
     <module>geoapi</module>
-    <module>geoapi-conformance</module>
     <module>geoapi-pending</module>
+    <module>geoapi-conformance</module>
+    <module>geoapi-java-python</module>
     <module>geoapi-examples</module>
     <module>geoapi-proj4</module>
+    <module>geoapi-gdal</module>
     <module>geoapi-netcdf</module>
     <module>geoapi-openoffice</module>
     <module>tools</module>
