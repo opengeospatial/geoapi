@@ -18,7 +18,6 @@ import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
-import java.util.List;
 import java.util.Locale;
 import org.gdal.gdal.Dataset;
 import org.opengis.metadata.ApplicationSchemaInformation;
@@ -60,8 +59,6 @@ import org.opengis.metadata.maintenance.MaintenanceInformation;
 import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.metadata.quality.DataQuality;
 import org.opengis.metadata.spatial.CellGeometry;
-import org.opengis.metadata.spatial.Dimension;
-import org.opengis.metadata.spatial.GridSpatialRepresentation;
 import org.opengis.metadata.spatial.SpatialRepresentation;
 import org.opengis.metadata.spatial.SpatialRepresentationType;
 import org.opengis.referencing.ReferenceSystem;
@@ -73,23 +70,20 @@ import static java.util.Collections.emptySet;
 
 
 /**
- * Metadata about a GDAL dataset for a raster.
- * The raster is assumed two-dimensional.
+ * Metadata about a GDAL dataset for a raster, which is assumed two-dimensional.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @see <a href="http://gdal.org/gdal_datamodel.html">GDAL data model</a>
+ * @see <a href="http://gdal.org/java/org/gdal/gdal/Dataset.html">Java API for GDAL Dataset</a>
  */
-final class RasterMetadata implements Metadata, MetadataScope, DataIdentification, Citation, CoverageDescription, GridSpatialRepresentation {
+final class RasterMetadata extends GridGeometry implements Metadata, MetadataScope, DataIdentification, Citation, CoverageDescription {
     /**
      * The dataset name, or {@code null} if none.
      */
     private final String description;
-
-    /**
-     * Raster shape (size, number of bands).
-     */
-    private final int xSize, ySize, numBands;
 
     /**
      * Whether the GDAL driver provided information about the content type (thematic classification,
@@ -98,17 +92,25 @@ final class RasterMetadata implements Metadata, MetadataScope, DataIdentificatio
     private final boolean hasContentInfo;
 
     /**
+     * Whether each point represents a cell, and area or a volume.
+     */
+    private final CellGeometry cellGeometry;
+
+    /**
      * Fetches metadata from the given GDAL dataset.
      */
     RasterMetadata(final Dataset ds) throws IOException {
-        if (ds == null) {
-            throw new IOException("DataSet is closed.");
-        }
-        description = trim(ds.GetDescription());
-        xSize       = ds.getRasterXSize();
-        ySize       = ds.getRasterYSize();
-        numBands    = ds.getRasterCount();
+        super(ds);
+        description    = trim(ds.GetDescription());
         hasContentInfo = false;             // TODO
+        String value = trim(ds.GetMetadataItem("AREA_OR_POINT"));
+        if ("Point".equalsIgnoreCase(value)) {
+            cellGeometry = CellGeometry.POINT;
+        } else if ("Area".equalsIgnoreCase(value)) {
+            cellGeometry = CellGeometry.AREA;
+        } else {
+            cellGeometry = null;
+        }
     }
 
     /**
@@ -122,11 +124,11 @@ final class RasterMetadata implements Metadata, MetadataScope, DataIdentificatio
     @Override public Collection<MetadataScope>                getMetadataScopes()                  {return Collections.<MetadataScope>singleton(this);}
     @Override public ScopeCode                                getResourceScope()                   {return ScopeCode.DATASET;}
     @Override public Collection<Identification>               getIdentificationInfo()              {return Collections.<Identification>singleton(this);}
+    @Override public Collection<SpatialRepresentation>        getSpatialRepresentationInfo()       {return Collections.<SpatialRepresentation>singleton(this);}
     @Override public Collection<ContentInformation>           getContentInfo()                     {return hasContentInfo ? Collections.<ContentInformation>singleton(this) : Collections.<ContentInformation>emptySet();}
     @Override public Citation                                 getCitation()                        {return this;}
     @Override public InternationalString                      getTitle()                           {return new Literal(description);}
-    @Override public Integer                                  getNumberOfDimensions()              {return 0;}  // TODO
-    @Override public List<Dimension>                          getAxisDimensionProperties()         {return Collections.emptyList();}
+    @Override public CellGeometry                             getCellGeometry()                    {return cellGeometry;}
 
     /* ISO 19115:2014 properties that are empty of null for now. */
     @Override public Identifier                               getMetadataIdentifier()              {return null;}
@@ -139,7 +141,6 @@ final class RasterMetadata implements Metadata, MetadataScope, DataIdentificatio
     @Override public Collection<Citation>                     getMetadataProfiles()                {return emptySet();}
     @Override public Collection<Citation>                     getAlternativeMetadataReferences()   {return emptySet();}
     @Override public Collection<OnlineResource>               getMetadataLinkages()                {return emptySet();}
-    @Override public Collection<SpatialRepresentation>        getSpatialRepresentationInfo()       {return emptySet();}
     @Override public Collection<ReferenceSystem>              getReferenceSystemInfo()             {return emptySet();}
     @Override public Collection<MetadataExtensionInformation> getMetadataExtensionInfo()           {return emptySet();}
     @Override public Collection<Distribution>                 getDistributionInfo()                {return emptySet();}
@@ -151,8 +152,6 @@ final class RasterMetadata implements Metadata, MetadataScope, DataIdentificatio
     @Override public MaintenanceInformation                   getMetadataMaintenance()             {return null;}
     @Override public Collection<Lineage>                      getResourceLineages()                {return emptySet();}
     @Override public InternationalString                      getName()                            {return null;}
-    @Override public CellGeometry                             getCellGeometry()                    {return null;}
-    @Override public boolean                                  isTransformationParameterAvailable() {return false;}
     @Override public RecordType                               getAttributeDescription()            {return null;}
     @Override public Identifier                               getProcessingLevelCode()             {return null;}
     @Override public Collection<AttributeGroup>               getAttributeGroups()                 {return emptySet();}
@@ -180,7 +179,7 @@ final class RasterMetadata implements Metadata, MetadataScope, DataIdentificatio
     @Override public InternationalString                      getSupplementalInformation()         {return null;}
     @Override public Collection<InternationalString>          getAlternateTitles()                 {return emptySet();}
     @Override public Collection<CitationDate>                 getDates()                           {return emptySet();}
-    @Override public InternationalString                      getEdition( )                        {return null;}
+    @Override public InternationalString                      getEdition()                         {return null;}
     @Override public Date                                     getEditionDate()                     {return null;}
     @Override public Collection<Identifier>                   getIdentifiers()                     {return emptySet();}
     @Override public Collection<Responsibility>               getCitedResponsibleParties()         {return emptySet();}

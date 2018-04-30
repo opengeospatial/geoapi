@@ -48,7 +48,11 @@ public class DataSet implements Closeable {
     public DataSet(final Path file) throws IOException {
         ds = gdal.Open(file.toString());
         if (ds == null) {
-            throw new GDALException("Can not open \"" + file + "\".");
+            String msg = gdal.GetLastErrorMsg();
+            if (msg == null) {
+                msg = "Can not open \"" + file + "\".";
+            }
+            throw new GDALException(msg);
         }
     }
 
@@ -64,6 +68,10 @@ public class DataSet implements Closeable {
         }
         return metadata;
     }
+
+    /*
+     * See http://www.gdal.org/gdal_tutorial.html
+     */
 
     /**
      * Disposes native resources used by this dataset.

@@ -12,12 +12,11 @@
 # Example on Unix systems:
 #
 #     export PYTHONPATH=/path_to_geoapi/geoapi/src/main/python
-#     python demo.py
 #
 
-from ogc.metadata.base import Metadata
+from ogc.metadata.base           import Metadata
 from ogc.metadata.identification import DataIdentification
-from ogc.metadata.citation import Citation
+from ogc.metadata.citation       import Citation
 
 #
 # Information about a data set: title, where they are located, authors, etc.
@@ -51,15 +50,15 @@ class IdentificationMock(DataIdentification, Citation):
 class MetadataMock(Metadata):
     @property
     def identificationInfo(self):
-        return IdentificationMock()
+        return [IdentificationMock()]
 
     @property
     def contact(self):
-        return None
+        return []
 
     @property
     def dateInfo(self):
-        return None
+        return []
 
 #
 # We could execute the demo with the following code:
@@ -67,7 +66,8 @@ class MetadataMock(Metadata):
 #     m = MetadataMock()
 #     print(m.identificationInfo.citation.title)
 #
-# Instead, we run as a unit test. To execute on the command-line:
+# Instead we run as a unit test, for possible inclusion
+# in Maven build. To execute on command-line:
 #
 #     python -m unittest discover
 #
@@ -77,4 +77,4 @@ import unittest
 class TestMetadata(unittest.TestCase):
     def test_title(self):
         m = MetadataMock()
-        self.assertEqual(m.identificationInfo.citation.title, "Pseudo data")
+        self.assertEqual(m.identificationInfo[0].citation.title, "Pseudo data")

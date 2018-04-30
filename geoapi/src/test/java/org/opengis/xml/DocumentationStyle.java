@@ -75,7 +75,8 @@ public enum DocumentationStyle {
         "Postion:",         // Type found in some XSD.
         "shortName:",
         "Conditional",
-        "NITF_ACFTA:"
+        "NITF_ACFTA:",
+        "Note in 19115-3"
     };
 
     /**

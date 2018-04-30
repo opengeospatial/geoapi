@@ -14,9 +14,12 @@
 #
 
 from osgeo import gdal
-from ogc.metadata.base import Metadata
-from ogc.metadata.identification import DataIdentification
-from ogc.metadata.citation import Citation
+from ogc.metadata.base                  import Metadata, MetadataScope
+from ogc.metadata.maintenance           import ScopeCode
+from ogc.metadata.identification        import DataIdentification
+from ogc.metadata.citation              import Citation
+from ogc.metadata.content               import CoverageDescription
+from ogc.metadata.spatialRepresentation import CellGeometryCode, Dimension, DimensionNameTypeCode, GridSpatialRepresentation
 
 #
 # By default the GDAL/OGR Python bindings do not raise exceptions when errors occur.
@@ -26,11 +29,39 @@ from ogc.metadata.citation import Citation
 gdal.UseExceptions()
 
 #
+# A component of RasterMetadata holding information about a single dimension of the raster.
+# Those axes are built by RasterMetadata.spatialRepresentationInfo[0].axisDimensionProperties.
+#
+class Axis(Dimension):
+    """Information about the x or y axis of a raster."""
+    def __init__(self, dimension, size):
+        """Stores information about the given raster dimension."""
+        self._dimension = dimension
+        self._size = size
+
+    @property
+    def dimensionName(self):
+        if (self._dimension == 0):
+            return DimensionNameTypeCode.COLUMN
+        elif (self._dimension == 1):
+            return DimensionNameTypeCode.ROW
+        else:
+            return None
+
+    @property
+    def dimensionSize(self):
+        return self._size
+
+    def __str__(self):
+        """Returns a string representation of this metadata for debugging purpose."""
+        return "{1} {0}s".format(self.dimensionName.value, self.dimensionSize)
+
+#
 # Information about a data set: title, where they are located, size, etc.
 # We implement many interfaces in the same class for convenience, but this
 # approach should be considered an implementation details susceptible to change.
 #
-class RasterMetadata(Metadata, DataIdentification, Citation):
+class RasterMetadata(Metadata, MetadataScope, DataIdentification, Citation, CoverageDescription, GridSpatialRepresentation):
     """Metadata about a GDAL dataset for a raster. The raster is assumed two-dimensional."""
 
     def __init__(self, ds):
@@ -39,10 +70,25 @@ class RasterMetadata(Metadata, DataIdentification, Citation):
         self._xSize       = ds.RasterXSize
         self._ySize       = ds.RasterYSize
         self._numBands    = ds.RasterCount
+        cg = ds.GetMetadataItem("AREA_OR_POINT");
+        if (cg == "Point"):
+            self._cellGeometry = CellGeometryCode.POINT
+        elif (cg == "Area"):
+            self._cellGeometry = CellGeometryCode.AREA
+        else:
+            self._cellGeometry = None
+
+    @property
+    def metadataScope(self):
+        return [self]
+
+    @property
+    def resourceScope(self):
+        return ScopeCode.DATASET
 
     @property
     def identificationInfo(self):
-        return self
+        return [self]
 
     @property
     def citation(self):
@@ -62,15 +108,43 @@ class RasterMetadata(Metadata, DataIdentification, Citation):
 
     @property
     def contact(self):
-        return None
+        return []
 
     @property
     def dateInfo(self):
+        return []
+
+    @property
+    def spatialRepresentationInfo(self):
+        return [self]
+
+    @property
+    def numberOfDimensions(self):
+        return 2
+
+    @property
+    def axisDimensionProperties(self):
+        return [Axis(0, self._xSize), Axis(1, self._ySize)]
+
+    @property
+    def cellGeometry(self):
+        return self._cellGeometry
+
+    @property
+    def transformationParameterAvailability(self):
+        return False
+
+    @property
+    def contentInfo(self):
+        return [self]
+
+    @property
+    def attributeDescription(self):
         return None
 
     def __str__(self):
         """Returns a string representation of this metadata for debugging purpose."""
-        return "Size=({0},{1}), NumBands={2}".format(self._xSize, self._ySize, self._numBands)
+        return "Size=({0},{1},{2})".format(self._xSize, self._ySize, self._numBands)
 
 
 class DataSet:

@@ -210,9 +210,7 @@ class Band(SampleDimension):
 
 
 class ContentInformation(ABC):
-    """Description of the content of a resource.
-
-Note in 19115-3 implementation, this class is implemented by abstract class _ContentInformation in the Abstract Common Classes package."""
+    """Description of the content of a resource."""
 
 
 
