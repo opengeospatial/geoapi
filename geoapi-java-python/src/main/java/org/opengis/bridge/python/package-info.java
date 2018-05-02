@@ -33,9 +33,40 @@
 /**
  * GeoAPI bridge between Java and Python.
  * This bridge allows the use of a Python implementation from Java, and conversely.
+ * This bridge uses the <a href="http://jpy.readthedocs.io/">JPY</a> project.
+ *
+ * <section class="note">
+ * <h1>Installation</h1>
+ * As of JPY 0.9, the native library must be compiled locally by the user.
+ * The installation process is <a href="http://jpy.readthedocs.io/en/latest/install.html">documented on the JPY web site</a>.
+ * The following list is a reminder of the main steps (see JPY documentation for details):
+ *
+ * <ol>
+ *   <li>Get the sources <a href="https://github.com/bcdev/jpy">from GitHub</a>.</li>
+ *   <li>Set {@code JDK_HOME} and {@code JAVA_HOME} environment variables.</li>
+ *   <li>At the root of JPY project, run {@code python setup.py --maven build}.
+ *     <ul><li>Compilation result will be in {@code build}<i>/platform/</i> sub-directory.</li></li></ul>
+ *   <li>If the above is successful, run {@code python setup.py install --user}.
+ *     <ul><li>Compilation result will be in <i>platform-dependent/</i>{@code python/site-packages/} sub-directory.</li></li></ul>
+ *   <li>Note the absolute path to {@code jpyconfig.properties} file in any of above-cited directories.</li>
+ * </ol>
+ *
+ * <h1>Execution</h1>
+ * <ol>
+ *   <li>Apply one of the followings:<ul>
+ *     <li>Set the {@code "jpy.config"} Java property to the path of above-cited {@code jpyconfig.properties} file:<ul>
+ *       <li>At Java launch time with {@code java -Djpy.config=/path/to/jpyconfig.properties}</li>
+ *       <li>In a Java program with {@code System.setProperty("jpy.config", "/path/to/jpyconfig.properties");}</li>
+ *     </ul></li>
+ *     <li>Or copy the {@code jpyconfig.properties} file to current directory.</li>
+ *   </ul></li>
+ * </ol>
+ * </section>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @see <a href="http://jpy.readthedocs.io/en/latest/_static/java-apidocs/index.html">JPY Javadoc</a>
  */
 package org.opengis.bridge.python;

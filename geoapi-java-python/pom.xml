@@ -59,6 +59,11 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
+      <groupId>org.jpy</groupId>
+      <artifactId>jpy</artifactId>
+      <version>0.9.0</version>
+    </dependency>
+    <dependency>
       <groupId>tec.units</groupId>
       <artifactId>unit-ri</artifactId>
       <scope>runtime</scope>
@@ -70,6 +75,22 @@
       <scope>test</scope>
     </dependency>
   </dependencies>
+
+
+
+  <!-- ==================================================================
+           Repository from which to download the JPY library.
+       ================================================================== -->
+  <repositories>
+    <repository>
+      <id>senbox</id>
+      <name>Senbox repository</name>
+      <url>http://nexus.senbox.net/nexus/content/repositories/releases</url>
+      <snapshots>
+        <enabled>false</enabled>
+      </snapshots>
+    </repository>
+  </repositories>
 
 
 
