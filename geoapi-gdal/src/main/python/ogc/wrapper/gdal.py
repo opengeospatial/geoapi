@@ -32,7 +32,7 @@ gdal.UseExceptions()
 # A component of RasterMetadata holding information about a single dimension of the raster.
 # Those axes are built by RasterMetadata.spatialRepresentationInfo[0].axisDimensionProperties.
 #
-class Axis(Dimension):
+class GridAxis(Dimension):
     """Information about the x or y axis of a raster."""
     def __init__(self, dimension, size):
         """Stores information about the given raster dimension."""
@@ -124,7 +124,7 @@ class RasterMetadata(Metadata, MetadataScope, DataIdentification, Citation, Cove
 
     @property
     def axisDimensionProperties(self):
-        return [Axis(0, self._xSize), Axis(1, self._ySize)]
+        return [GridAxis(0, self._xSize), GridAxis(1, self._ySize)]
 
     @property
     def cellGeometry(self):

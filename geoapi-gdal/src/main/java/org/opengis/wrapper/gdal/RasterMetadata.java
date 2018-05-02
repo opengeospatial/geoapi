@@ -86,12 +86,6 @@ final class RasterMetadata extends GridGeometry implements Metadata, MetadataSco
     private final String description;
 
     /**
-     * Whether the GDAL driver provided information about the content type (thematic classification,
-     * physical measurement, <i>etc</i>) and the bands (scale factor, <i>etc</i>).
-     */
-    private final boolean hasContentInfo;
-
-    /**
      * Whether each point represents a cell, and area or a volume.
      */
     private final CellGeometry cellGeometry;
@@ -101,8 +95,7 @@ final class RasterMetadata extends GridGeometry implements Metadata, MetadataSco
      */
     RasterMetadata(final Dataset ds) throws IOException {
         super(ds);
-        description    = trim(ds.GetDescription());
-        hasContentInfo = false;             // TODO
+        description  = trim(ds.GetDescription());
         String value = trim(ds.GetMetadataItem("AREA_OR_POINT"));
         if ("Point".equalsIgnoreCase(value)) {
             cellGeometry = CellGeometry.POINT;
@@ -125,7 +118,7 @@ final class RasterMetadata extends GridGeometry implements Metadata, MetadataSco
     @Override public ScopeCode                                getResourceScope()                   {return ScopeCode.DATASET;}
     @Override public Collection<Identification>               getIdentificationInfo()              {return Collections.<Identification>singleton(this);}
     @Override public Collection<SpatialRepresentation>        getSpatialRepresentationInfo()       {return Collections.<SpatialRepresentation>singleton(this);}
-    @Override public Collection<ContentInformation>           getContentInfo()                     {return hasContentInfo ? Collections.<ContentInformation>singleton(this) : Collections.<ContentInformation>emptySet();}
+    @Override public Collection<ContentInformation>           getContentInfo()                     {return Collections.<ContentInformation>singleton(this);}
     @Override public Citation                                 getCitation()                        {return this;}
     @Override public InternationalString                      getTitle()                           {return new Literal(description);}
     @Override public CellGeometry                             getCellGeometry()                    {return cellGeometry;}

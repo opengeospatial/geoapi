@@ -22,6 +22,7 @@ import org.opengis.metadata.spatial.CellGeometry;
 import org.opengis.metadata.spatial.Dimension;
 import org.opengis.metadata.spatial.DimensionNameType;
 import org.opengis.metadata.spatial.GridSpatialRepresentation;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.util.InternationalString;
 
 
@@ -48,6 +49,12 @@ class GridGeometry implements GridSpatialRepresentation {
     private final AffineTransform gridToCRS;
 
     /**
+     * The coordinate reference system. This is the target of {@link #gridToCRS}.
+     * May be {@code null} if the CRS is unknown or unsupported.
+     */
+    private final CoordinateReferenceSystem crs;
+
+    /**
      * Fetches metadata from the given GDAL dataset.
      */
     GridGeometry(final Dataset ds) throws IOException {
@@ -59,6 +66,7 @@ class GridGeometry implements GridSpatialRepresentation {
         numBands = ds.getRasterCount();
         final double[] gt = ds.GetGeoTransform();
         gridToCRS = new AffineTransform(gt[1], gt[4], gt[2], gt[5], gt[0], gt[3]);
+        crs = CRS.create(ds.GetProjection());
     }
 
     /**
