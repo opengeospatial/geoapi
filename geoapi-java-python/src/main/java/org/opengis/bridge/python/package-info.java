@@ -64,8 +64,8 @@
  * </section>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
+ * @version 4.0
+ * @since   4.0
  *
  * @see <a href="http://jpy.readthedocs.io/en/latest/_static/java-apidocs/index.html">JPY Javadoc</a>
  */

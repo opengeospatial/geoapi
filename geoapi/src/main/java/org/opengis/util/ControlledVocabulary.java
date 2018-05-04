@@ -90,5 +90,5 @@ public interface ControlledVocabulary {
      *
      * @return the enumeration or list of codes of the same kind than this item.
      */
-    public abstract ControlledVocabulary[] family();
+    ControlledVocabulary[] family();
 }
