@@ -37,7 +37,7 @@
     <developer>
       <id>desruisseaux</id>
       <name>Martin Desruisseaux</name>
-      <email>martin.desruisseaux@geomatys.fr</email>
+      <email>martin.desruisseaux@geomatys.com</email>
       <organization>Geomatys</organization>
       <organizationUrl>http://www.geomatys.com</organizationUrl>
       <roles>
@@ -49,7 +49,7 @@
     <developer>
       <id>eclesia</id>
       <name>Johann Sorel</name>
-      <email>johann.sorel@geomatys.fr</email>
+      <email>johann.sorel@geomatys.com</email>
       <organization>Geomatys</organization>
       <organizationUrl>http://www.geomatys.com</organizationUrl>
       <roles>
@@ -146,7 +146,7 @@
     </contributor>
     <contributor>
       <name>Guilhem Legal</name>
-      <email>guilhem.legal@geomatys.fr</email>
+      <email>guilhem.legal@geomatys.com</email>
       <organization>Geomatys</organization>
       <organizationUrl>http://www.geomatys.com</organizationUrl>
       <roles>

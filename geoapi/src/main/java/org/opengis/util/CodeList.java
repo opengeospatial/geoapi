@@ -218,7 +218,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @param  <T>       the compile-time type given as the {@code codeType} parameter.
      * @param  codeType  the type of code list.
      * @param  filter    the criterion for the code to obtain.
-     * @return a code matching the given criterion, or {@code null} if their is no match and
+     * @return a code matching the given criterion, or {@code null} if there is no match and
      *         {@link Filter#codename()} returns {@code null}.
      *
      * @since 2.3
@@ -260,6 +260,9 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                     return codeType.cast(code);
                 }
             }
+            if (Modifier.isAbstract(codeType.getModifiers())) {
+                return null;
+            }
             final String name = filter.codename();
             if (name == null) {
                 return null;
@@ -274,6 +277,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
              *
              * TODO: the check for package name may still not sufficient on a security point of view.
              *       We should also check if the package is sealed, and maybe check if it is signed by OGC.
+             *       Revisit with JDK9 modularization.
              */
             try {
                 final Constructor<T> constructor = codeType.getDeclaredConstructor(CONSTRUCTOR_PARAMETERS);

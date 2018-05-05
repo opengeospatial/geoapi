@@ -20,14 +20,19 @@
   <!-- ====================================================
            Project description
        ==================================================== -->
-  <groupId>org.opengis</groupId>
-  <artifactId>geoapi-conformance</artifactId>
-  <name>GeoAPI conformance</name>
+  <groupId>org.opengis.wrapper</groupId>
+  <artifactId>geoapi-gdal</artifactId>
+  <name>GeoAPI-GDAL bindings</name>
   <description>
-    Utility methods for testing conformance of a GeoAPI implementation.
-    Provides Validators for testing the conformance of an existing instance,
-    and suites of JUnit tests.
+    A "proof of concept" implementation of GeoAPI using Java and Python bindings to the GDAL library.
   </description>
+
+  <licenses>
+    <license>
+      <name>Public Domain</name>
+      <distribution>repo</distribution>
+    </license>
+  </licenses>
 
 
 
@@ -48,18 +53,6 @@
     </developer>
   </developers>
 
-  <contributors>
-    <contributor>
-      <name>Cédric Briançon</name>
-      <organization>Geomatys</organization>
-      <organizationUrl>http://www.geomatys.com/</organizationUrl>
-      <roles>
-        <role>Java developer</role>
-      </roles>
-      <timezone>+1</timezone>
-    </contributor>
-  </contributors>
-
 
 
   <!-- ====================================================
@@ -72,42 +65,47 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
-      <scope>compile</scope>
+      <groupId>org.gdal</groupId>
+      <artifactId>gdal</artifactId>
+      <version>2.2.0</version>
     </dependency>
     <dependency>
       <groupId>tec.units</groupId>
       <artifactId>unit-ri</artifactId>
+      <scope>runtime</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.opengis</groupId>
+      <artifactId>geoapi-conformance</artifactId>
+      <version>${project.version}</version>
       <scope>test</scope>
     </dependency>
   </dependencies>
 
 
 
-  <!-- ===========================================================
-           Compilation, JAR packaging and Javadoc.
-       =========================================================== -->
+  <!-- ====================================================
+           Skip the tests because they require native code
+       ==================================================== -->
   <build>
     <plugins>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-compiler-plugin</artifactId>
+        <artifactId>maven-surefire-plugin</artifactId>
         <configuration>
-          <debug>true</debug>           <!-- For allowing implementors to step through the test methods. -->
+          <skipTests>${skipNativeLibraryTests}</skipTests>
         </configuration>
       </plugin>
+
+      <!-- Anticipation for Java 9. -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
         <configuration>
           <archive>
-            <manifest>
-              <mainClass>org.opengis.test.runner.Main</mainClass>
-            </manifest>
             <manifestEntries>
               <Automatic-Module-Name>
-                org.opengis.geoapi.conformance
+                org.opengis.geoapi.gdal
               </Automatic-Module-Name>
             </manifestEntries>
           </archive>
@@ -115,15 +113,4 @@
       </plugin>
     </plugins>
   </build>
-  <reporting>
-    <plugins>
-      <plugin>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <linksource>true</linksource>
-        </configuration>
-      </plugin>
-    </plugins>
-  </reporting>
-
 </project>

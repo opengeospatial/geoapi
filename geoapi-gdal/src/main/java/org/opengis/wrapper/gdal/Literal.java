@@ -2,34 +2,16 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2018 Open Geospatial Consortium, Inc.
- *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
+ *    This file is hereby placed into the Public Domain.
+ *    This means anyone is free to do whatever they wish with this file.
  *
- *    Permission to use, copy, and modify this software and its documentation, with
- *    or without modification, for any purpose and without fee or royalty is hereby
- *    granted, provided that you include the following on ALL copies of the software
- *    and documentation or portions thereof, including modifications, that you make:
- *
- *    1. The full text of this NOTICE in a location viewable to users of the
- *       redistributed or derivative work.
- *    2. Notice of any changes or modifications to the OGC files, including the
- *       date changes were made.
- *
- *    THIS SOFTWARE AND DOCUMENTATION IS PROVIDED "AS IS," AND COPYRIGHT HOLDERS MAKE
- *    NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
- *    TO, WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE OR THAT
- *    THE USE OF THE SOFTWARE OR DOCUMENTATION WILL NOT INFRINGE ANY THIRD PARTY
- *    PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
- *
- *    COPYRIGHT HOLDERS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL OR
- *    CONSEQUENTIAL DAMAGES ARISING OUT OF ANY USE OF THE SOFTWARE OR DOCUMENTATION.
- *
- *    The name and trademarks of copyright holders may NOT be used in advertising or
- *    publicity pertaining to the software without specific, written prior permission.
- *    Title to copyright in this software and any associated documentation will at all
- *    times remain with copyright holders.
+ *    The GDAL wrappers are provided as code examples, in the hope to facilitate
+ *    GeoAPI implementations backed by other libraries. Implementors can take this
+ *    source code and use it for any purpose, commercial or non-commercial, copyrighted
+ *    or open-source, with no legal obligation to acknowledge the borrowing/copying
+ *    in any way.
  */
-package org.opengis.test.util;
+package org.opengis.wrapper.gdal;
 
 import java.util.Locale;
 import org.opengis.util.InternationalString;
@@ -42,7 +24,7 @@ import org.opengis.util.InternationalString;
  * @version 3.1
  * @since   3.1
  */
-final class SimpleInternationalString implements InternationalString {
+final class Literal implements InternationalString {
     /**
      * The string returned by {@link #toString()} and others methods
      * from the {@link CharSequence} interface.
@@ -54,7 +36,7 @@ final class SimpleInternationalString implements InternationalString {
      *
      * @param text  the text to wrap in an {@link InternationalString}.
      */
-    SimpleInternationalString(final String text) {
+    Literal(final String text) {
         this.text = text;
     }
 
@@ -129,8 +111,8 @@ final class SimpleInternationalString implements InternationalString {
      */
     @Override
     public boolean equals(final Object object) {
-        if (object instanceof SimpleInternationalString) {
-            return text.equals(((SimpleInternationalString) object).text);
+        if (object instanceof Literal) {
+            return text.equals(((Literal) object).text);
         }
         return false;
     }
@@ -140,6 +122,6 @@ final class SimpleInternationalString implements InternationalString {
      */
     @Override
     public int hashCode() {
-        return text.hashCode() ^ 354396380;
+        return text.hashCode() ^ 1293463701;
     }
 }
