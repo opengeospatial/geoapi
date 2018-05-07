@@ -61,5 +61,4 @@ public interface Literal extends Expression {
      * Returns the constant value held by this object.
      */
     Object getValue();
-
 }

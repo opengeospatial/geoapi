@@ -50,9 +50,9 @@ import org.opengis.feature.Feature;
 @XmlElement("expression")
 public interface Expression {
     /**
-     * Constant expression that always evaulates to {@code null}.
+     * Constant expression that always evaluates to {@code null}.
      * <p>
-     * This constant is a "NullObject" that can represent the absense of
+     * This constant is a "NullObject" that can represent the absence of
      * expression in a data structures. As example it can be used to represent
      * the default stroke color in a LineSymbolizer Stroke structure.
      */
@@ -64,14 +64,14 @@ public interface Expression {
     Object evaluate(Object object);
 
     /**
-     * Evaluates the given expressoin based on the content of the given object
+     * Evaluates the given expression based on the content of the given object
      * and the context type.
      *
      * <p>The {@code context} parameter is used to control the type of the
      * result of the expression. A particular expression may not be able to evaluate
      * to an instance of {@code context}. Therefore to be safe calling code
      * should do a null check on the return value of this method, and call {@link #evaluate(Object)}
-     * if neccessary. Example:</p>
+     * if necessary. Example:</p>
      *
      * <pre>
      *  Object input = ...;
@@ -85,12 +85,10 @@ public interface Expression {
      * <p>Implementations that can not return a result as an instance of {@code context}
      * should return {@code null}.</p>
      *
-     * @param <T> The type of the returned object.
-     * @param  object  the object to evaluate the expression against.
-     * @param context The type of the resulting value of the expression.
-     *
-     * @return Evaluates the given expression based on the content of the given object an
-     *         an instance of {@code context}.
+     * @param  <T>      the type of the returned object.
+     * @param  object   the object to evaluate the expression against.
+     * @param  context  the type of the resulting value of the expression.
+     * @return the expression based on the content of the given object an an instance of {@code context}.
      */
     <T> T evaluate( Object object, Class<T> context );
 

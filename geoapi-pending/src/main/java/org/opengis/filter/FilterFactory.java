@@ -223,21 +223,33 @@ public interface FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Checks if the bounding box of the feature's geometry overlaps the indicated bounds.
-     * This method is defined in strict accordance with the Filter 1.0 specification, you may
-     * find the FilterFactory2.bbox(Expression, Envelope) to be easier to use.
+     * Creates an operator that checks if the bounding box of the feature's geometry overlaps the given bounding box.
      *
-     * @param propertyName Name of geometry property (for a PropertyName to access a Feature's Geometry)
-     * @param minx Minimum "x" value (for a literal Envelope)
-     * @param miny Minimum "y" value (for a literal Envelope)
-     * @param maxx Maximum "x" value (for a literal Envelope)
-     * @param maxy Maximum "y" value (for a literal Envelope)
-     * @param srs Indicating the CoordinateReferenceSystem to use for a literal Envelope
+     * @param  propertyName  name of geometry property (for a {@link PropertyName} to access a feature's Geometry).
+     * @param  minx          minimum "x" value (for a literal envelope).
+     * @param  miny          minimum "y" value (for a literal envelope).
+     * @param  maxx          maximum "x" value (for a literal envelope).
+     * @param  maxy          maximum "y" value (for a literal envelope).
+     * @param  srs           identifier of the Coordinate Reference System to use for a literal envelope.
+     * @return operator that evaluates to {@code true} when the bounding box of the feature's geometry overlaps
+     *         the bounding box provided in arguments to this method.
+     *
+     * @see FilterFactory2#bbox(Expression, Envelope)
      */
-    BBOX        bbox(String propertyName, double minx, double miny, double maxx, double maxy, String srs);
+    BBOX bbox(String propertyName, double minx, double miny, double maxx, double maxy, String srs);
 
-    /** Check if all of a feature's geometry is more distant than the given distance from this object's geometry. */
-    Beyond      beyond(String propertyName, Geometry geometry, double distance, String units);
+    /**
+     * Creates an operator that checks if all of a feature's geometry is more distant than the given distance
+     * from the given geometry.
+     *
+     * @param  propertyName  name of geometry property (for a {@link PropertyName} to access a feature's Geometry).
+     * @param  geometry      the geometry from which to evaluate the distance.
+     * @param  distance      minimal distance for evaluating the expression as {@code true}.
+     * @param  units         units of the given {@code distance}.
+     * @return operator that evaluates to {@code true} when all of a feature's geometry is more distant than
+     *         the given distance from the given geometry.
+     */
+    Beyond beyond(String propertyName, Geometry geometry, double distance, String units);
 
     /** Checks if the the first geometric operand contains the second. */
     Contains    contains(String propertyName, Geometry geometry);

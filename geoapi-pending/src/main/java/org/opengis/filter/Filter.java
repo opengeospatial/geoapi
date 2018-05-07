@@ -64,14 +64,14 @@ import org.opengis.feature.FeatureType;
 @XmlElement("Filter")
 public interface Filter {
     /**
-     * Placeholder Filter that evaulates to {@code true}.
+     * Placeholder Filter that evaluates to {@code true}.
      *
      * Filtering a set with {@code Filter.INCLUDE} results in the origional set.
      */
     IncludeFilter INCLUDE = new IncludeFilter();
 
     /**
-     * Placeholder Filter that evaulates to {@code false}.
+     * Placeholder Filter that evaluates to {@code false}.
      *
      * Filtering a set with {@code Filter.EXCLUDE} results in the empty Set.
      */

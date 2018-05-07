@@ -100,7 +100,7 @@ public interface SortBy {
      *       used by WFS1.1 (ie. "year A, month A, day A" )</li>
      * </ul>
      *
-     * @todo Use QName
+     * @todo Return type could be an {@link Expression}.
      * @return name of property to sort by.
      */
     PropertyName getPropertyName();

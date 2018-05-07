@@ -99,6 +99,8 @@ abstract class BlockTaglet implements Taglet {
      * The doclet class is currently the best we can provide.
      *
      * @param  doclet  the class of the {@link Doclet} initializing this taglet.
+     *
+     * @todo Remove this hack after JDK11 has been released.
      */
     protected void init(final Class<?> doclet) {
         try {
