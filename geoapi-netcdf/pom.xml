@@ -152,6 +152,16 @@
             </manifestEntries>
           </archive>
         </configuration>
+
+        <!-- Required by some GeoAPI dependences, to be removed.
+             See https://github.com/opengeospatial/geoapi/issues/25 -->
+        <executions>
+          <execution>
+            <goals>
+              <goal>test-jar</goal>
+            </goals>
+          </execution>
+        </executions>
       </plugin>
 
       <!-- Skip dependency convergence check for edu.ucar:cdm 4.6.11. -->
