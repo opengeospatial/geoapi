@@ -32,6 +32,9 @@ import java.util.Objects;
  * and their sub-interfaces. The relationship with the GeoAPI methods is indicated in the
  * "See" tags when appropriate.</p>
  *
+ * <p>This class requires PROJ to be compiled with JNI enabled.
+ * See <a href="https://github.com/OSGeo/proj.4/tree/master/jniwrap#proj-bridge-to-java">PROJ bridge to Java</a> for details.</p>
+ *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
