@@ -401,58 +401,6 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      */
 
     /**
-     * Tests the {@value org.opengis.wrapper.netcdf.IOTestCase#THREDDS} file (XML format).
-     * The current implementation tests:
-     *
-     * <ul>
-     *   <li>The {@linkplain Metadata#getMetadataIdentifier() metadata identifier}.</li>
-     *   <li>The {@linkplain Responsibility responsible party} name, role and email address.</li>
-     *   <li>The {@linkplain GeographicBoundingBox geographic bounding box}.</li>
-     *   <li>The {@linkplain Dimension axis dimensions} names, sizes and resolution.</li>
-     *   <li>The {@linkplain Lineage lineage} statement.</li>
-     * </ul>
-     *
-     * Note that implementations don't need to support all those metadata.
-     * See the class javadoc for more information.
-     *
-     * @throws IOException if the test file can not be read.
-     */
-    @Test
-    public void testTHREDDS() throws IOException {
-        final Map<String,Object> expected = expectedProperties;
-        assertNull(expected.put("metadataIdentifier.code",                                           "crm_v1"));
-        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.role",            Role.ORIGINATOR));
-        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.individual.name", "David Neufeld"));
-        assertNull(expected.put("identificationInfo.pointOfContact.individual.name",                 "David Neufeld"));
-        assertNull(expected.put("contact.individual.name",                                           "David Neufeld"));
-        assertNull(expected.put("contact.party.contactInfo.address.electronicMailAddress",                                           "xxxxx.xxxxxxx@noaa.gov"));
-        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.party.contactInfo.address.electronicMailAddress", "xxxxx.xxxxxxx@noaa.gov"));
-        assertNull(expected.put("identificationInfo.pointOfContact.party.contactInfo.address.electronicMailAddress",                 "xxxxx.xxxxxxx@noaa.gov"));
-        assertNull(expected.put("identificationInfo.extent.geographicElement.extentTypeCode",         Boolean.TRUE));
-        assertNull(expected.put("identificationInfo.extent.geographicElement.westBoundLongitude",    -80.0));
-        assertNull(expected.put("identificationInfo.extent.geographicElement.eastBoundLongitude",    -64.0));
-        assertNull(expected.put("identificationInfo.extent.geographicElement.southBoundLatitude",     40.0));
-        assertNull(expected.put("identificationInfo.extent.geographicElement.northBoundLatitude",     48.0));
-        assertNull(expected.put("spatialRepresentationInfo.numberOfDimensions",                       2));
-        assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[0].dimensionName", DimensionNameType.COLUMN));
-        assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[1].dimensionName", DimensionNameType.ROW));
-        assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[0].dimensionSize", 19201));
-        assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[1].dimensionSize",  9601));
-        assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[0].resolution", 8.332899328159992E-4));
-        assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[1].resolution", 8.332465368190813E-4));
-        assertNull(expected.put("dataQualityInfo.lineage.statement", "xyz2grd -R-80/-64/40/48 -I3c -Gcrm_v1.grd"));
-        try (NetcdfFile file = open(THREDDS)) {
-            metadata = wrap(file);
-            validator.validate(metadata);
-            fetchMetadataProperties(THREDDS);
-            compareProperties(THREDDS, 1E-12);
-            if (getClass() == NetcdfMetadataTest.class) {
-                NonInheritable.assertProcessedAllRelevant(actualProperties, "crm_v1.grd", false);
-            }
-        }
-    }
-
-    /**
      * Tests the {@value org.opengis.wrapper.netcdf.IOTestCase#NCEP} file (binary format).
      * The current implementation tests:
      *

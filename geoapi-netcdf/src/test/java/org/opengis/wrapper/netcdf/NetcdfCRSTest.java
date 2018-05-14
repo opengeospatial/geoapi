@@ -226,38 +226,6 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
     }
 
     /**
-     * Tests the geographic CRS declared in the
-     * {@value org.opengis.wrapper.netcdf.IOTestCase#THREDDS} file.
-     * The default implementation tests the following conditions:
-     *
-     * <ul>
-     *   <li>The {@linkplain #crs CRS} shall be an instance of {@link GeographicCRS}.</li>
-     *   <li>The axis directions shall be ({@link AxisDirection#EAST EAST}, {@link AxisDirection#NORTH NORTH}).</li>
-     *   <li>The axis units shall be (<var>degrees</var>, <var>degrees</var>).</li>
-     *   <li>The axis names shall be ({@code "x"}, {@code "y"}) as declared in the NetCDF file.</li>
-     *   <li>The {@linkplain #crs CRS} name shall be {@code "y x"} as declared in the NetCDF file.</li>
-     * </ul>
-     *
-     * The checks for CRS and axis names can be modified by overriding the
-     * {@link #assertNameEquals(String, IdentifiedObject)} method.
-     *
-     * @throws IOException if an error occurred while reading the test file.
-     */
-    @Test
-    public void testGeographic() throws IOException {
-        try (NetcdfDataset file = new NetcdfDataset(open(THREDDS))) {
-            crs = wrap(assertSingleton(file.getCoordinateSystems()), file);
-            validator.dispatch(crs);
-            assertInstanceOf("Expected a geographic CRS.", GeographicCRS.class, crs);
-            final EllipsoidalCS cs = ((GeographicCRS) crs).getCoordinateSystem();
-            assertAxisDirectionsEqual("GeographicCRS.cs", cs, EAST, NORTH);
-            assertAxisEquals("x", Units.DEGREE, cs.getAxis(0));
-            assertAxisEquals("y", Units.DEGREE, cs.getAxis(1));
-            assertNameEquals("y x", crs);
-        }
-    }
-
-    /**
      * Asserts that the tested {@linkplain #crs} is an instance of {@link CompoundCRS} in which
      * the first component is of the given type and the second component is a temporal CRS. This
      * method sets the {@linkplain #temporalCRS} field to the second component and returns the

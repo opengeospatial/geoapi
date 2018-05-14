@@ -40,64 +40,6 @@ import static org.opengis.test.Assert.*;
  */
 public abstract strictfp class IOTestCase {
     /**
-     * The {@value} test file (XML format). This test uses a file derived from the
-     * <a href="http://geo-ide.noaa.gov/wiki/index.php?title=NetCDF_Attribute_Convention_for_Dataset_Discovery">NetCDF
-     * Attribute Convention for Dataset Discovery</a> page on October 5, 2011.
-     * The main parts of this file are as below:
-     *
-     *<blockquote><pre>&lt;netcdf&gt;
-     *  &lt;!-- Metadata from the NetCDF or NcML file global attributes --&gt;
-     *  &lt;attribute name="Conventions" value="CF-1.4"/&gt;
-     *  &lt;attribute name="title" value="crm_v1.grd"/&gt;
-     *  &lt;attribute name="history" value="xyz2grd -R-80/-64/40/48 -I3c -Gcrm_v1.grd"/&gt;
-     *  &lt;attribute name="GMT_version" value="4.5.1 [64-bit]"/&gt;
-     *  &lt;attribute name="creator_name" value="David Neufeld"/&gt;
-     *  &lt;attribute name="creator_email" value="xxxxx.xxxxxxx@noaa.gov"/&gt;
-     *  &lt;attribute name="geospatial_lon_units" value="degrees_east"/&gt;
-     *  &lt;attribute name="geospatial_lat_units" value="degrees_north"/&gt;
-     *  &lt;attribute name="geospatial_lon_min" type="float" value="-80.0"/&gt;
-     *  &lt;attribute name="geospatial_lon_max" type="float" value="-64.0"/&gt;
-     *  &lt;attribute name="geospatial_lat_max" type="float" value="48.0"/&gt;
-     *  &lt;attribute name="geospatial_lat_min" type="float" value="40.0"/&gt;
-     *  &lt;attribute name="geospatial_lon_resolution" type="double" value="8.33E-4"/&gt;
-     *  &lt;attribute name="geospatial_lat_resolution" type="double" value="8.33E-4"/&gt;
-     *
-     *  &lt;dimension name="x" length="19201"/&gt;
-     *  &lt;dimension name="y" length="9601"/&gt;
-     *
-     *  &lt;variable name="z" shape="y x" type="float"&gt;
-     *    &lt;attribute name="long_name" value="z"/&gt;
-     *    &lt;attribute name="_FillValue" type="float" value="NaN"/&gt;
-     *    &lt;attribute name="actual_range" type="double" value="-2754.39990234375 1903.0"/&gt;
-     *    &lt;attribute name="units" value="meters"/&gt;
-     *    &lt;attribute name="positive" value="up"/&gt;
-     *  &lt;/variable&gt;
-     *  &lt;variable name="x" shape="x" type="double"&gt;
-     *    &lt;attribute name="long_name" value="x"/&gt;
-     *    &lt;attribute name="actual_range" type="double" value="-80.0 -64.0"/&gt;
-     *    &lt;attribute name="units" value="degrees_east"/&gt;
-     *    &lt;attribute name="_CoordinateAxisType" value="Lon"/&gt;
-     *  &lt;/variable&gt;
-     *  &lt;variable name="y" shape="y" type="double"&gt;
-     *    &lt;attribute name="long_name" value="y"/&gt;
-     *    &lt;attribute name="actual_range" type="double" value="40.0 48.0"/&gt;
-     *    &lt;attribute name="units" value="degrees_north"/&gt;
-     *    &lt;attribute name="_CoordinateAxisType" value="Lat"/&gt;
-     *  &lt;/variable&gt;
-     *&lt;/netcdf&gt;</pre></blockquote>
-     *
-     * Some additional THREDDS attributes are defined but not tested by this module.
-     * The full set of attributes can be seen in the {@code thredds.ncml} file.
-     *
-     * <p>The Coordinate Reference System of this dataset is
-     * {@linkplain org.opengis.referencing.crs.GeographicCRS geographic}.</p>
-     *
-     * @see NetcdfMetadataTest#testTHREDDS()
-     * @see NetcdfCRSTest#testGeographic()
-     */
-    public static final String THREDDS = "THREDDS.ncml";
-
-    /**
      * The {@value} test file (NetCDF classic binary format). This file was downloaded from the examples provided in the
      * <a href="http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/metadata/DataDiscoveryAttConvention.html">NetCDF
      * Attribute Convention for Dataset Discovery</a> page on October 5, 2011. The global attributes
@@ -212,12 +154,11 @@ public abstract strictfp class IOTestCase {
      * This method is used for creating an initial buffer of the right size when reading
      * a NetCDF file in memory.
      *
-     * @param  file  the file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
+     * @param  file  the file name, typically one of the {@link #CIP} or {@link #NCEP} constants.
      * @param  defaultLength  the default value to return if the given file is not recognized.
      */
     static int getFileLength(final String file, final int defaultLength) {
         switch (file) {
-            case THREDDS: return  3906;
             case NCEP:    return 27204;
             case CIP:     return 76184;
             case LANDSAT: return 21096;
@@ -234,17 +175,17 @@ public abstract strictfp class IOTestCase {
      *       defined by the implementor.</li>
      *   <li>If the above resource was not found, try to get the resource in the
      *       "{@code org.opengis.wrapper.netcdf}" package. This package contains the files
-     *       defined by the {@link #THREDDS}, {@link #NCEP} and other constants.</li>
+     *       defined by the {@link #CIP}, {@link #NCEP} and other constants.</li>
      *   <li>If the above resource was not found and the given file is {@linkplain File#isAbsolute()
      *       absolute}, try to open that file directly. This case should be used only for temporary
      *       testing purpose.</li>
      * </ul>
      *
      * For example if an implementor extends this class in his "{@code com.mycompany}" package
-     * and provides a {@value #THREDDS} file in that package, then his test file will have
+     * and provides a {@value #CIP} file in that package, then his test file will have
      * precedence over the {@code geoapi-netcdf} build-in test file.
      *
-     * @param  file  the file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
+     * @param  file  the file name, typically one of the {@link #CIP} or {@link #NCEP} constants.
      * @return the NetCDF file.
      * @throws IOException if an error occurred while opening the file.
      */
@@ -317,7 +258,7 @@ public abstract strictfp class IOTestCase {
      * Returns the content of the given input stream in an array of bytes. This method is used
      * for opening a NetCDF file in memory when the resource can not be opened as a file.
      *
-     * @param  file  the file name, typically one of the {@link #THREDDS} or {@link #NCEP} constants.
+     * @param  file  the file name, typically one of the {@link #CIP} or {@link #NCEP} constants.
      * @param  in    the input stream. This stream will be closed by this method.
      * @return the stream content as an array of bytes.
      * @throws IOException if an error occurred while reading the stream content.
