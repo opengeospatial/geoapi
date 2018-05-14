@@ -472,28 +472,6 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     }
 
     /**
-     * Tests the {@value org.opengis.wrapper.netcdf.IOTestCase#LANDSAT} file (binary format).
-     *
-     * @throws IOException if the test file can not be read.
-     */
-    @Test
-    public void testLandsat() throws IOException {
-        final Map<String,Object> expected = expectedProperties;
-        assertNull(expected.put("contentInfo.dimension.sequenceIdentifier", "Band1"));
-        assertNull(expected.put("contentInfo.dimension.description",        "GDAL Band Number 1"));
-        try (NetcdfFile file = open(LANDSAT)) {
-            metadata = wrap(file);
-            // Do not validate, because the metadata is known to be invalid
-            // since the test file is not providing suffisient information.
-            fetchMetadataProperties(LANDSAT);
-            compareProperties(LANDSAT, 0.0);
-            if (getClass() == NetcdfMetadataTest.class) {
-                NonInheritable.assertProcessedAllRelevant(actualProperties, null, true);
-            }
-        }
-    }
-
-    /**
      * Tests the {@value org.opengis.wrapper.netcdf.IOTestCase#CIP} file (binary format).
      *
      * @throws IOException if the test file can not be read.

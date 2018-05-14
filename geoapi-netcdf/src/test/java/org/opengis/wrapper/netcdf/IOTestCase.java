@@ -113,37 +113,6 @@ public abstract strictfp class IOTestCase {
     public static final String CIP = "CIP.nc";
 
     /**
-     * The {@value} test file (NetCDF classic binary format). This is a freely available Landsat test file
-     * converted to NetCDF by GDAL. The main attributes are listed below:
-     *
-     * <blockquote><pre>char lambert_conformal_conic ;
-     *    lambert_conformal_conic:Northernmost_Northing = -4218968.14605944 ;
-     *    lambert_conformal_conic:Southernmost_Northing = -4221948.66130479 ;
-     *    lambert_conformal_conic:Easternmost_Easting = 1060889.92068945 ;
-     *    lambert_conformal_conic:Westernmost_Easting = 1054928.89019874 ;
-     *    lambert_conformal_conic:GeoTransform = "1054928.890198743 30.10621459950866 0 -4218968.146059438 0 -30.10621459950866 " ;
-     *    lambert_conformal_conic:grid_mapping_name = "lambert_conformal_conic" ;
-     *    lambert_conformal_conic:standard_parallel_1 = -18.f ;
-     *    lambert_conformal_conic:standard_parallel_2 = -36.f ;
-     *    lambert_conformal_conic:latitude_of_projection_origin = 0.f ;
-     *    lambert_conformal_conic:longitude_of_central_meridian = 134.f ;
-     *    lambert_conformal_conic:false_easting = 0.f ;
-     *    lambert_conformal_conic:false_northing = 0.f ;
-     *byte Band1(y, x) ;
-     *    Band1:grid_mapping = "lambert_conformal_conic" ;
-     *    Band1:long_name = "GDAL Band Number 1" ;
-     *
-     *:Conventions = "CF-1.0" ;
-     *:AREA_OR_POINT = "Area" ;</pre></blockquote>
-     *
-     * The Coordinate Reference System of this dataset is
-     * {@linkplain org.opengis.referencing.crs.ProjectedCRS projected}.
-     *
-     * @see NetcdfMetadataTest#testLandsat()
-     */
-    public static final String LANDSAT = "Landsat-GDAL.nc";
-
-    /**
      * For subclass constructors only.
      */
     protected IOTestCase() {
@@ -161,7 +130,6 @@ public abstract strictfp class IOTestCase {
         switch (file) {
             case NCEP:    return 27204;
             case CIP:     return 76184;
-            case LANDSAT: return 21096;
         }
         return defaultLength;
     }
