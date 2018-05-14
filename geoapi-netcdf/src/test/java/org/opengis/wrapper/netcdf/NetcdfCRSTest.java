@@ -334,7 +334,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
     public void testProjected_XYZT() throws IOException {
         try (NetcdfDataset file = new NetcdfDataset(open(CIP))) {
             final List<CoordinateSystem> crsList = file.getCoordinateSystems();
-            assertEquals("Unexpected number of NetCDF coordinate systems.", 2, crsList.size());
+            assertEquals("Unexpected number of NetCDF coordinate systems.", 1, crsList.size());
             crs = wrap(crsList.get(0), file);
             final ProjectedCRS projected = separateComponents("Expected a (projected + vertical + time) CRS.", ProjectedCRS.class, true);
             final CartesianCS cart = projected  .getCoordinateSystem();

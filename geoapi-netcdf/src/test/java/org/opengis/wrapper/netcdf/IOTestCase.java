@@ -129,7 +129,7 @@ public abstract strictfp class IOTestCase {
     static int getFileLength(final String file, final int defaultLength) {
         switch (file) {
             case NCEP:    return 27204;
-            case CIP:     return 76184;
+            case CIP:     return 69072;
         }
         return defaultLength;
     }

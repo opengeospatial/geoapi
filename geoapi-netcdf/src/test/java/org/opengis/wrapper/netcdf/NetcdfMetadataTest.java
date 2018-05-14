@@ -478,19 +478,29 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      */
     @Test
     public void testCIP() throws IOException {
+        final String email = "party.contactInfo.address.electronicMailAddress";     // Shortcut.
+
         final Map<String,Object> expected = expectedProperties;
-        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.role",              Role.ORIGINATOR));
-        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.organisation.name", "UCAR"));
-        assertNull(expected.put("identificationInfo.pointOfContact.organisation.name",                 "UCAR"));
+        assertNull(expected.put("contact.individual.name",                                             "John Doe"));
         assertNull(expected.put("contact.organisation.name",                                           "UCAR"));
-        assertNull(expected.put("identificationInfo.supplementalInformation",                          "Created by Mdv2NetCDF"));
+        assertNull(expected.put("contact." + email,                                                    "john.doe@example.org"));
+        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.role",              Role.ORIGINATOR));
+        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.individual.name",   "John Doe"));
+        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty.organisation.name", "UCAR"));
+        assertNull(expected.put("identificationInfo.citation.citedResponsibleParty." + email,          "john.doe@example.org"));
+        assertNull(expected.put("identificationInfo.pointOfContact.individual.name",                   "John Doe"));
+        assertNull(expected.put("identificationInfo.pointOfContact.organisation.name",                 "UCAR"));
+        assertNull(expected.put("identificationInfo.pointOfContact." + email,                          "john.doe@example.org"));
+        assertNull(expected.put("identificationInfo.citation.title",                                   "Test data from Current Icing Product (CIP)"));
+        assertNull(expected.put("identificationInfo.abstract",                                         "Hourly, three-dimensional diagnosis of the icing environment."));
+        assertNull(expected.put("identificationInfo.supplementalInformation",                          "For testing purpose only."));
         assertNull(expected.put("identificationInfo.extent.geographicElement.extentTypeCode",          Boolean.TRUE));
-        assertNull(expected.put("identificationInfo.extent.geographicElement.westBoundLongitude",     -140.290));
-        assertNull(expected.put("identificationInfo.extent.geographicElement.eastBoundLongitude",      -56.658));
-        assertNull(expected.put("identificationInfo.extent.geographicElement.southBoundLatitude",       15.944));
-        assertNull(expected.put("identificationInfo.extent.geographicElement.northBoundLatitude",       58.364));
-        assertNull(expected.put("identificationInfo.extent.verticalElement.minimumValue",            -15.0));
-        assertNull(expected.put("identificationInfo.extent.verticalElement.maximumValue",             35.0));
+        assertNull(expected.put("identificationInfo.extent.geographicElement.westBoundLongitude",     -140.29));
+        assertNull(expected.put("identificationInfo.extent.geographicElement.eastBoundLongitude",      -56.66));
+        assertNull(expected.put("identificationInfo.extent.geographicElement.southBoundLatitude",       15.94));
+        assertNull(expected.put("identificationInfo.extent.geographicElement.northBoundLatitude",       58.37));
+        assertNull(expected.put("identificationInfo.extent.verticalElement.minimumValue",              300d));
+        assertNull(expected.put("identificationInfo.extent.verticalElement.maximumValue",             7925d));
         assertNull(expected.put("spatialRepresentationInfo.numberOfDimensions",                       4));
         assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[0].dimensionName", DimensionNameType.COLUMN));
         assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[1].dimensionName", DimensionNameType.ROW));
