@@ -495,12 +495,12 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         assertNull(expected.put("identificationInfo.abstract",                                         "Hourly, three-dimensional diagnosis of the icing environment."));
         assertNull(expected.put("identificationInfo.supplementalInformation",                          "For testing purpose only."));
         assertNull(expected.put("identificationInfo.extent.geographicElement.extentTypeCode",          Boolean.TRUE));
-        assertNull(expected.put("identificationInfo.extent.geographicElement.westBoundLongitude",     -140.29));
+        assertNull(expected.put("identificationInfo.extent.geographicElement.westBoundLongitude",     -107.75));
         assertNull(expected.put("identificationInfo.extent.geographicElement.eastBoundLongitude",      -56.66));
         assertNull(expected.put("identificationInfo.extent.geographicElement.southBoundLatitude",       15.94));
         assertNull(expected.put("identificationInfo.extent.geographicElement.northBoundLatitude",       58.37));
         assertNull(expected.put("identificationInfo.extent.verticalElement.minimumValue",              300d));
-        assertNull(expected.put("identificationInfo.extent.verticalElement.maximumValue",             7925d));
+        assertNull(expected.put("identificationInfo.extent.verticalElement.maximumValue",             4875d));
         assertNull(expected.put("spatialRepresentationInfo.numberOfDimensions",                       4));
         assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[0].dimensionName", DimensionNameType.COLUMN));
         assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[1].dimensionName", DimensionNameType.ROW));
