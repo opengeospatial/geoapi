@@ -262,20 +262,14 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
     }
 
     /**
-     * Tests the compound CRS (<cite>geographic</cite> + <cite>time</cite>) declared in the
+     * Tests the geographic CRS declared in the
      * {@value org.opengis.wrapper.netcdf.IOTestCase#NCEP} file.
      * The default implementation tests the following conditions:
      *
      * <ul>
-     *   <li>The {@linkplain #crs CRS} shall be an instance of {@link CompoundCRS}
-     *       with 2 components: a {@link GeographicCRS} and a {@link TemporalCRS}.</li>
-     *   <li>The axis directions shall be ({@link AxisDirection#EAST EAST},
-     *       {@link AxisDirection#NORTH NORTH}, {@link AxisDirection#FUTURE FUTURE}).</li>
-     *   <li>The axis units shall be (<var>degrees</var>, <var>degrees</var>, <var>hours</var>).</li>
-     *   <li>The axis names shall be ({@code "lon"}, {@code "lat"}, {@code "valtime"})
-     *       as declared in the NetCDF file.</li>
-     *   <li>The {@linkplain #crs CRS} name shall be {@code "valtime lat lon"}
-     *       as declared in the NetCDF file.</li>
+     *   <li>The {@linkplain #crs CRS} shall be an instance of {@link GeographicCRS}.</li>
+     *   <li>The axis directions shall be ({@link AxisDirection#EAST EAST}, {@link AxisDirection#NORTH NORTH}).</li>
+     *   <li>The axis units shall be (<var>degrees</var>, <var>degrees</var>).</li>
      *   <li>The {@linkplain TemporalDatum#getOrigin() temporal datum origin} shall be
      *       January 1st, 1992 at midnight UTC.</li>
      * </ul>
@@ -286,19 +280,15 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * @throws IOException if an error occurred while reading the test file.
      */
     @Test
-    public void testGeographic_XYT() throws IOException {
+    public void testGeographic2D() throws IOException {
         try (NetcdfDataset file = new NetcdfDataset(open(NCEP))) {
             crs = wrap(assertSingleton(file.getCoordinateSystems()), file);
-            final GeographicCRS geographic = separateComponents("Expected a (geographic + time) CRS.", GeographicCRS.class, false);
-            final EllipsoidalCS ellp = (geographic) .getCoordinateSystem();
-            final TimeCS        time = (temporalCRS).getCoordinateSystem();
+            assertInstanceOf("Expected a geographic CRS.", GeographicCRS.class, crs);
+            final EllipsoidalCS ellp = ((GeographicCRS) crs).getCoordinateSystem();
             assertAxisDirectionsEqual("GeographicCRS.cs", ellp, EAST, NORTH);
-            assertAxisDirectionsEqual("TemporalCRS.cs",   time, FUTURE);
-            assertAxisEquals("lon",     Units.DEGREE, ellp.getAxis(0));
-            assertAxisEquals("lat",     Units.DEGREE, ellp.getAxis(1));
-            assertAxisEquals("valtime", Units.HOUR,   time.getAxis(0));
-            assertNameEquals("valtime lat lon", crs);
-            assertEquals("Time since 1992-1-1 UTC", new Date(694224000000L), temporalCRS.getDatum().getOrigin());
+            assertAxisEquals("lon", Units.DEGREE, ellp.getAxis(0));
+            assertAxisEquals("lat", Units.DEGREE, ellp.getAxis(1));
+            assertNameEquals("lat lon", crs);
         }
     }
 
@@ -315,10 +305,6 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      *       {@link AxisDirection#NORTH NORTH}, {@link AxisDirection#UP UP},
      *       {@link AxisDirection#FUTURE FUTURE}).</li>
      *   <li>The axis units shall be (<var>km</var>, <var>km</var>, <var>100 feet</var>, <var>seconds</var>).</li>
-     *   <li>The axis names shall be ({@code "x0"}, {@code "y0"}, {@code "z0"}, {@code "time"})
-     *       as declared in the NetCDF file.</li>
-     *   <li>The {@linkplain #crs CRS} name shall be {@code "time, z0, y0, x0"}
-     *       as declared in the NetCDF file.</li>
      *   <li>The {@linkplain TemporalDatum#getOrigin() temporal datum origin} shall be
      *       January 1st, 1970 at midnight UTC.</li>
      *   <li>The projection parameters shall have the values documented in the
@@ -331,7 +317,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * @throws IOException if an error occurred while reading the test file.
      */
     @Test
-    public void testProjected_XYZT() throws IOException {
+    public void testProjected4D() throws IOException {
         try (NetcdfDataset file = new NetcdfDataset(open(CIP))) {
             final List<CoordinateSystem> crsList = file.getCoordinateSystems();
             assertEquals("Unexpected number of NetCDF coordinate systems.", 1, crsList.size());

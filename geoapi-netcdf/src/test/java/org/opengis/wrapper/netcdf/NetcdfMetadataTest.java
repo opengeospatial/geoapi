@@ -434,12 +434,13 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         assertNull(expected.put("contact.individual.name",                                           "NOAA/NWS/NCEP"));
         assertNull(expected.put("identificationInfo.citation.date.date",                            NetcdfMetadata.parseDate("2005-09-22T00:00")));
         assertNull(expected.put("identificationInfo.citation.date.dateType",                        DateType.CREATION));
-        assertNull(expected.put("identificationInfo.citation.title",                                "Sea Surface Temperature Analysis Model"));
-        assertNull(expected.put("identificationInfo.abstract",                                      "NCEP SST Global 5.0 x 2.5 degree model data"));
+        assertNull(expected.put("identificationInfo.citation.title",                                "Test data from Sea Surface Temperature Analysis Model"));
+        assertNull(expected.put("identificationInfo.abstract",                                      "Global, two-dimensional model data"));
         assertNull(expected.put("identificationInfo.descriptiveKeywords.type",                      KeywordType.THEME));
         assertNull(expected.put("identificationInfo.descriptiveKeywords.thesaurusName",             "GCMD Science Keywords"));
         assertNull(expected.put("identificationInfo.descriptiveKeywords.keyword",                   "EARTH SCIENCE > Oceans > Ocean Temperature > Sea Surface Temperature"));
         assertNull(expected.put("identificationInfo.resourceConstraints.useLimitation",             "Freely available"));
+        assertNull(expected.put("identificationInfo.supplementalInformation",                       "For testing purpose only."));
         assertNull(expected.put("identificationInfo.extent.geographicElement.extentTypeCode",       Boolean.TRUE));
         assertNull(expected.put("identificationInfo.extent.geographicElement.westBoundLongitude",   -180.0));
         assertNull(expected.put("identificationInfo.extent.geographicElement.eastBoundLongitude",   +180.0));
@@ -457,9 +458,6 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[2].dimensionName", DimensionNameType.TIME));
         assertNull(expected.put("contentInfo.dimension.sequenceIdentifier",                           "SST"));
         assertNull(expected.put("contentInfo.dimension.description",                                  "Sea temperature"));
-        assertNull(expected.put("dataQualityInfo.lineage.statement",
-                "2003-04-07 12:12:50 - created by gribtocdl              " +
-                "2005-09-26T21:50:00 - edavis - add attributes for dataset discovery"));
         try (NetcdfFile file = open(NCEP)) {
             metadata = wrap(file);
             validator.validate(metadata);
