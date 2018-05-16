@@ -46,6 +46,7 @@ import org.opengis.test.referencing.CRSValidator;
 import org.opengis.test.referencing.CSValidator;
 import org.opengis.test.ValidatorContainer;
 import org.opengis.test.Validators;
+import org.opengis.test.dataset.TestData;
 
 import org.junit.Test;
 
@@ -281,7 +282,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      */
     @Test
     public void testGeographic2D() throws IOException {
-        try (NetcdfDataset file = new NetcdfDataset(open(NCEP))) {
+        try (NetcdfDataset file = new NetcdfDataset(open(TestData.NETCDF_2D_GEOGRAPHIC))) {
             crs = wrap(assertSingleton(file.getCoordinateSystems()), file);
             assertInstanceOf("Expected a geographic CRS.", GeographicCRS.class, crs);
             final EllipsoidalCS ellp = ((GeographicCRS) crs).getCoordinateSystem();
@@ -318,7 +319,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      */
     @Test
     public void testProjected4D() throws IOException {
-        try (NetcdfDataset file = new NetcdfDataset(open(CIP))) {
+        try (NetcdfDataset file = new NetcdfDataset(open(TestData.NETCDF_4D_PROJECTED))) {
             final List<CoordinateSystem> crsList = file.getCoordinateSystems();
             assertEquals("Unexpected number of NetCDF coordinate systems.", 1, crsList.size());
             crs = wrap(crsList.get(0), file);

@@ -32,6 +32,7 @@ import org.opengis.metadata.identification.*;
 import org.opengis.util.GenericName;
 import org.opengis.test.metadata.RootValidator;
 import org.opengis.test.Validators;
+import org.opengis.test.dataset.TestData;
 
 import org.junit.Test;
 
@@ -458,7 +459,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         assertNull(expected.put("spatialRepresentationInfo.axisDimensionProperties[2].dimensionName", DimensionNameType.TIME));
         assertNull(expected.put("contentInfo.dimension.sequenceIdentifier",                           "SST"));
         assertNull(expected.put("contentInfo.dimension.description",                                  "Sea temperature"));
-        try (NetcdfFile file = open(NCEP)) {
+        try (NetcdfFile file = open(TestData.NETCDF_2D_GEOGRAPHIC)) {
             metadata = wrap(file);
             validator.validate(metadata);
             fetchMetadataProperties(NCEP);
@@ -511,7 +512,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         assertNull(expected.put("contentInfo.dimension.sequenceIdentifier",                           "CIP"));
         assertNull(expected.put("contentInfo.dimension.description",                                  "Current Icing Product"));
         assertNull(expected.put("dataQualityInfo.lineage.statement", "U.S. National Weather Service - NCEP (WMC)"));
-        try (NetcdfFile file = open(CIP)) {
+        try (NetcdfFile file = open(TestData.NETCDF_4D_PROJECTED)) {
             metadata = wrap(file);
             validator.validate(metadata);
             fetchMetadataProperties(CIP);
