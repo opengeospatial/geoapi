@@ -584,7 +584,10 @@ public strictfp abstract class TestCase {
      * Implementation of the {@link TestSuite#addTestListener(TestListener)} public method.
      *
      * @param listener  the listener to add. {@code null} values are silently ignored.
+     *
+     * @deprecated To be replaced by JUnit 5 listener mechanism.
      */
+    @Deprecated
     static synchronized void addTestListener(final TestListener listener) {
         if (listener != null) {
             final int length = listeners.length;
@@ -597,7 +600,10 @@ public strictfp abstract class TestCase {
      * Implementation of the {@link TestSuite#removeTestListener(TestListener)} public method.
      *
      * @param listener  the listener to remove. {@code null} values are silently ignored.
+     *
+     * @deprecated To be replaced by JUnit 5 listener mechanism.
      */
+    @Deprecated
     static synchronized void removeTestListener(final TestListener listener) {
         for (int i=listeners.length; --i>=0;) {
             if (listeners[i] == listener) {

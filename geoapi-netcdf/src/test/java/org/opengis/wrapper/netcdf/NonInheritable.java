@@ -25,7 +25,10 @@ import static org.junit.Assert.*;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @deprecated To be merged with {@link NetcdfMetadataTest}.
  */
+@Deprecated
 final strictfp class NonInheritable {
     /**
      * Do not allow instantiation of this class.

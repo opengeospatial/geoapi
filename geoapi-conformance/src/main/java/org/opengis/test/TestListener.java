@@ -44,7 +44,10 @@ import java.util.EventListener;
  *
  * @see TestSuite#addTestListener(TestListener)
  * @see TestEvent
+ *
+ * @deprecated To be replaced by JUnit 5 listener mechanism.
  */
+@Deprecated
 public interface TestListener extends EventListener {
     /**
      * Invoked when a test is about to start.

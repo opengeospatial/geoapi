@@ -215,7 +215,10 @@ public strictfp class TestSuite {
      * (i.e. the same listener may be added more than once).
      *
      * @param listener The listener to add. {@code null} values are silently ignored.
+     *
+     * @deprecated To be replaced by JUnit 5 listener mechanism.
      */
+    @Deprecated
     public static void addTestListener(final TestListener listener) {
         TestCase.addTestListener(listener);
     }
@@ -226,7 +229,10 @@ public strictfp class TestSuite {
      * If the given listener is not found, then this method does nothing.
      *
      * @param listener  the listener to remove. {@code null} values are silently ignored.
+     *
+     * @deprecated To be replaced by JUnit 5 listener mechanism.
      */
+    @Deprecated
     public static void removeTestListener(final TestListener listener) {
         TestCase.removeTestListener(listener);
     }

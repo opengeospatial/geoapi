@@ -41,7 +41,10 @@ import org.junit.runner.Description;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @deprecated To be replaced by JUnit 5 listener mechanism.
  */
+@Deprecated
 public final class TestEvent extends EventObject {
     /**
      * For cross-version compatibility.
