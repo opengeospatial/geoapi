@@ -15,6 +15,7 @@ package org.opengis.wrapper.netcdf;
 
 import java.util.Date;
 import java.util.Locale;
+import java.util.EnumSet;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -334,7 +335,13 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     @Override
     public Collection<TopicCategory> getTopicCategories() {
-        return singleton(TopicCategory.valueOf(getUpperCase("topic_category")));
+        final String value = getUpperCase("topic_category");
+        if (value == null) return Collections.emptySet();
+        final EnumSet<TopicCategory> categories = EnumSet.noneOf(TopicCategory.class);
+        for (final String element : value.split(",")) {
+            categories.add(TopicCategory.valueOf(element.replace(' ', '_').trim()));
+        }
+        return categories;
     }
 
     /**

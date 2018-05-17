@@ -74,6 +74,8 @@ public abstract strictfp class IOTestCase {
          * Reading from a file is not possible if the test file is in geoapi-conformance JAR file.
          * But since those test files are less than 15 kilobytes, loading them in memory is okay.
          */
-        return NetcdfFile.openInMemory(file.name(), file.content());
+        String location = file.location().toString();
+        location = location.substring(location.lastIndexOf('/') + 1);
+        return NetcdfFile.openInMemory(location, file.content());
     }
 }
