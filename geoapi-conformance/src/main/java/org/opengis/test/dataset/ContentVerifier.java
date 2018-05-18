@@ -347,7 +347,7 @@ public class ContentVerifier {
                 if (Objects.equals(value, actual)) {
                     continue;
                 }
-                if (value != null) {
+                if (value instanceof CharSequence) {
                     // The main intent is to convert InternationalString.
                     if (Objects.equals(value.toString(), actual.toString())) {
                         continue;
