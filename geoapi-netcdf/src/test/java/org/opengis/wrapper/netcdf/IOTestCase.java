@@ -21,44 +21,18 @@ import ucar.nc2.NetcdfFile;
 
 /**
  * Base class of netCDF test cases performing I/O operations. This base class provides an
- * {@link #open(String)} method for creating {@link NetcdfFile} objects from the build-in
+ * {@link #open(TestData)} method for creating {@link NetcdfFile} objects from the build-in
  * test files.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public abstract strictfp class IOTestCase {
-    /**
-     * @deprecated Use {@link TestData} instead.
-     */
-    @Deprecated
-    public static final String NCEP = "NCEP-SST.nc";
-
-    /**
-     * @deprecated Use {@link TestData} instead.
-     */
-    @Deprecated
-    public static final String CIP = "CIP.nc";
-
+abstract strictfp class IOTestCase {
     /**
      * For subclass constructors only.
      */
-    protected IOTestCase() {
-    }
-
-    @Deprecated
-    private static TestData toTestData(final String file) {
-        switch (file) {
-            case NCEP: return TestData.NETCDF_2D_GEOGRAPHIC;
-            case CIP:  return TestData.NETCDF_4D_PROJECTED;
-            default:   throw new IllegalArgumentException(file);
-        }
-    }
-
-    @Deprecated
-    protected NetcdfFile open(final String file) throws IOException {
-        return open(toTestData(file));
+    IOTestCase() {
     }
 
     /**
@@ -68,7 +42,7 @@ public abstract strictfp class IOTestCase {
      * @return the netCDF file.
      * @throws IOException if an error occurred while opening the file.
      */
-    protected final NetcdfFile open(final TestData file) throws IOException {
+    final NetcdfFile open(final TestData file) throws IOException {
         /*
          * Binary netCDF files need to be read either from a file, or from a byte array in memory.
          * Reading from a file is not possible if the test file is in geoapi-conformance JAR file.

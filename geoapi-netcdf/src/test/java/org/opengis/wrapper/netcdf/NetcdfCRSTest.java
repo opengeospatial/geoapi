@@ -303,8 +303,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      *   <li>The axis units shall be (<var>km</var>, <var>km</var>, <var>100 feet</var>, <var>seconds</var>).</li>
      *   <li>The {@linkplain TemporalDatum#getOrigin() temporal datum origin} shall be
      *       January 1st, 1970 at midnight UTC.</li>
-     *   <li>The projection parameters shall have the values documented in the
-     *       {@link IOTestCase#CIP} javadoc.</li>
+     *   <li>The projection shall be a {@code "lambert_conformal_conic"}.</li>
      * </ul>
      *
      * The checks for CRS and axis names can be modified by overriding the

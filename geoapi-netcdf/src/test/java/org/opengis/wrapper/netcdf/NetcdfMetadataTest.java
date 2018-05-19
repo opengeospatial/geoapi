@@ -15,9 +15,6 @@ package org.opengis.wrapper.netcdf;
 
 import java.net.URI;
 import java.util.Date;
-import java.util.Map;
-import java.util.Iterator;
-import java.util.LinkedHashMap;
 import java.io.IOException;
 import ucar.nc2.NetcdfFile;
 
@@ -35,8 +32,6 @@ import org.opengis.test.dataset.TestData;
 import org.opengis.test.dataset.ContentVerifier;
 
 import org.junit.Test;
-
-import static org.opengis.test.Assert.*;
 
 
 /**
@@ -75,30 +70,12 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     protected Metadata metadata;
 
     /**
-     * The properties that are expected for the test being run.
-     * The content of this map is filled by the {@code testXXX()} method.
-     *
-     * @deprecated Use {@link ContentVerifier} instead.
-     */
-    @Deprecated
-    protected final Map<String,Object> expectedProperties;
-
-    /**
-     * The actual properties found in the {@linkplain #metadata}.
-     * The content of this map is filled by the {@link #fetchMetadataProperties(String)} method.
-     *
-     * @deprecated Use {@link ContentVerifier} instead.
-     */
-    @Deprecated
-    protected final Map<String,Object> actualProperties;
-
-    /**
      * Creates a new test case using the default validator.
      * This constructor sets the {@link RootValidator#requireMandatoryAttributes} field
      * to {@code false}, since netCDF metadata are sometime incomplete.
      */
     public NetcdfMetadataTest() {
-        this(new RootValidator(Validators.DEFAULT));
+        validator = new RootValidator(Validators.DEFAULT);
         validator.requireMandatoryAttributes = false;
     }
 
@@ -112,8 +89,6 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      */
     protected NetcdfMetadataTest(final RootValidator validator) {
         this.validator = validator;
-        expectedProperties = new LinkedHashMap<>(32);
-        actualProperties   = new LinkedHashMap<>(32);
     }
 
     /**
@@ -129,78 +104,6 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
         return new NetcdfMetadata(file);
     }
 
-    /**
-     * Returns the single element from the given collection, or {@code null} if none.
-     * The default implementation makes the following choice:
-     *
-     * <ul>
-     *   <li>If the given collection is null or empty, returns {@code null}.</li>
-     *   <li>If the given collection contains exactly one element, returns that element.</li>
-     *   <li>Otherwise, throws {@link AssertionError}.</li>
-     * </ul>
-     *
-     * Subclasses can override this method if they want to select the element in a different way.
-     *
-     * @param  <E>         the type of collection elements.
-     * @param  collection  the collection from which to get the singleton.
-     * @return the singleton element from the collection, or {@code null} if none.
-     *
-     * @deprecated Not needed anymore.
-     */
-    @Deprecated
-    protected <E> E getSingleton(final Iterable<? extends E> collection) {
-        if (collection != null) {
-            final Iterator<? extends E> it = collection.iterator();
-            if (it.hasNext()) {
-                final E element = it.next();
-                assertFalse("The collection has more than one element.", it.hasNext());
-                return element;
-            }
-        }
-        return null;
-    }
-
-    /**
-     * Compares the properties found in the {@linkplain #metadata} with the expected properties.
-     * The default implementation removes all properties found from the properties maps.
-     * Consequently, after this method call the maps contain the following entries:
-     *
-     * <ul>
-     *   <li>The {@link #expectedProperties} map contains all properties not found in the netCDF file.</li>
-     *   <li>The {@link #actualProperties} map contains all properties from the netCDF file which have not
-     *       been verified.</li>
-     * </ul>
-     *
-     * Subclasses can override this method if they want to modify the values before the comparison
-     * is performed, or for ensuring that their mandatory values have been removed from the maps
-     * (i.e. have been compared) after the comparison.
-     *
-     *
-     * @param filename  the netCDF file being tested,
-     *                  typically as one of the constants defined in the {@link IOTestCase} class.
-     * @param eps       tolerance factor for comparing floating-point numbers.
-     *
-     * @deprecated Use {@link ContentVerifier} instead.
-     */
-    @Deprecated
-    protected void compareProperties(final String filename, final double eps) {
-        for (final Iterator<Map.Entry<String,Object>> it=actualProperties.entrySet().iterator(); it.hasNext();) {
-            final Map.Entry<String,Object> entry = it.next();
-            final String key = entry.getKey();
-            final Object expectedValue = expectedProperties.remove(key);
-            if (expectedValue != null) {
-                final Object actualValue = entry.getValue();
-                assertEquals(key, expectedValue.getClass(), actualValue.getClass());
-                if (expectedValue instanceof Double) {
-                    assertEquals(key, (Double) expectedValue, (Double) actualValue, eps);
-                } else {
-                    assertEquals(key, expectedValue, actualValue);
-                }
-                it.remove();
-            }
-        }
-    }
-
     /*
      * Note: this test case shall not verify the hard-coded constants (metadataStandardName,
      * metadataStandardVersion, hierarchyLevel) since they are obviously implementation-dependent.
@@ -212,7 +115,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * @throws IOException if the test file can not be read.
      */
     @Test
-    public void testNCEP() throws IOException {
+    public void testGeographic2D() throws IOException {
         final ContentVerifier verifier = new ContentVerifier();
         try (NetcdfFile file = open(TestData.NETCDF_2D_GEOGRAPHIC)) {
             metadata = wrap(file);
@@ -250,7 +153,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * @throws IOException if the test file can not be read.
      */
     @Test
-    public void testCIP() throws IOException {
+    public void testCompound4D() throws IOException {
         final String individual = "identificationInfo[0].citation.citedResponsibleParty[0].party[0].individual[0].";     // Shortcut.
         final ContentVerifier verifier = new ContentVerifier();
         try (NetcdfFile file = open(TestData.NETCDF_4D_PROJECTED)) {
