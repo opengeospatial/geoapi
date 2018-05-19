@@ -53,14 +53,14 @@ import org.opengis.metadata.Metadata;
 import org.opengis.util.InternationalString;
 import org.opengis.util.ControlledVocabulary;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.junit.Assert;
 
 
 /**
  * Verification operations that compare metadata or CRS properties against the expected values.
  * The metadata or CRS to verify (typically read from a dataset) is specified by a call to one
  * of the {@code addMetadataToVerify(…)} methods. After the actual values have been specified,
- * they can be compared against the expected value by a call to one of the {@code compare(…)}
- * methods.
+ * they can be compared against the expected value by a call to {@code assertMetadataEquals(…)}.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -117,6 +117,11 @@ public class ContentVerifier {
     private final Map<String,Object> metadataValues;
 
     /**
+     * Paths of properties that were expected but not found.
+     */
+    private final List<Map.Entry<String,Object>> missings;
+
+    /**
      * Metadata values that do not match the expected values. We use a {@code List} instead than a {@code Map}
      * because the same key may appear more than once if the user invokes {@code addMetadataToVerify(…)} and
      * {@code compareMetadata(…)} many times.
@@ -124,9 +129,30 @@ public class ContentVerifier {
     private final List<Map.Entry<String,Object>> mismatches;
 
     /**
-     * Paths of properties that were expected but not found.
+     * A mismatched value.
      */
-    private final List<Map.Entry<String,Object>> missings;
+    private static final class Mismatch {
+        /** The expected metadata value. */ public final Object expected;
+        /** The value found in metadata. */ public final Object actual;
+
+        /** Creates a new entry for a mismatched value. */
+        Mismatch(final Object expected, final Object actual) {
+            this.expected = expected;
+            this.actual   = actual;
+        }
+
+        /** Returns a string representation for debugging purpose. */
+        @Override public String toString() {
+            return toString(new StringBuilder()).toString();
+        }
+
+        /** Formats the string representation in the given buffer. */
+        final StringBuilder toString(final StringBuilder appendTo) {
+            formatValue(expected, appendTo.append("expected "));
+            formatValue(actual,   appendTo.append(" but was "));
+            return appendTo;
+        }
+    }
 
     /**
      * Creates a new dataset content verifier.
@@ -335,29 +361,42 @@ public class ContentVerifier {
      * from the given map as they are found. After this method completed, the remaining entries in the given
      * map are properties not found in the metadata given to {@code addMetadataToVerify(…)} methods.
      */
-    private boolean filterProperties(final Set<Map.Entry<String,Object>> expected) {
-        final Iterator<Map.Entry<String,Object>> it = expected.iterator();
+    private boolean filterProperties(final Set<Map.Entry<String,Object>> entries) {
+        final Iterator<Map.Entry<String,Object>> it = entries.iterator();
         while (it.hasNext()) {
             final Map.Entry<String,Object> entry = it.next();
             final String key = entry.getKey();
-            Object actual = metadataValues.remove(key);
+            final Object actual = metadataValues.remove(key);
             if (actual != null) {
                 it.remove();
-                final Object value = entry.getValue();
-                if (Objects.equals(value, actual)) {
+                final Object expected = entry.getValue();
+                if (Objects.equals(expected, actual)) {
                     continue;
-                }
-                if (value instanceof CharSequence) {
+                } else if (expected instanceof Number && actual instanceof Number) {
+                    if (expected instanceof Float) {
+                        if (Float.floatToIntBits((Float) expected) ==
+                            Float.floatToIntBits(((Number) actual).floatValue()))
+                        {
+                            continue;
+                        }
+                    } else if (expected instanceof Double) {
+                        if (Double.doubleToLongBits((Double) expected) ==
+                            Double.doubleToLongBits(((Number) actual).doubleValue()))
+                        {
+                            continue;
+                        }
+                    }
+                } else if (expected instanceof CharSequence) {
                     // The main intent is to convert InternationalString.
-                    if (Objects.equals(value.toString(), actual.toString())) {
+                    if (Objects.equals(expected.toString(), actual.toString())) {
                         continue;
                     }
                 }
-                mismatches.add(new AbstractMap.SimpleEntry<>(key, actual));
+                mismatches.add(new AbstractMap.SimpleEntry<String,Object>(key, new Mismatch(expected, actual)));
             }
         }
-        missings.addAll(expected);
-        return mismatches.isEmpty() && metadataValues.isEmpty() && expected.isEmpty();
+        missings.addAll(entries);
+        return mismatches.isEmpty() && metadataValues.isEmpty() && entries.isEmpty();
     }
 
     /**
@@ -411,15 +450,46 @@ public class ContentVerifier {
             final Object value = others[++i];
             final Object previous = m.put((String) key, value);
             if (previous != null) {
-                throw new IllegalStateException(String.format("Metadata element \"%s\" is specified twice "
-                        + "with two different values:%nValue 1: %s%nValue 2: %s%n", key, previous, value));
+                throw new IllegalStateException(String.format("Metadata element \"%s\" is specified twice:"
+                        + "%nValue 1: %s%nValue 2: %s%n", key, previous, value));
             }
         }
         return filterProperties(m.entrySet());
     }
 
     /**
+     * Asserts that actual metadata properties are equal to the expected values.
+     * The {@code path} argument identifies a metadata element like the following examples
+     * ({@code [0]} is the index of an element in lists or collections):
+     *
+     * <ul>
+     *   <li>{@code "identificationInfo[0].citation.identifier[0].code"}</li>
+     *   <li>{@code "spatialRepresentationInfo[0].axisDimensionProperties[0].dimensionSize"}</li>
+     * </ul>
+     *
+     * The {@code value} argument is the expected value for the property identified by the path.
+     * If there is any <em>mismatched</em>, <em>missing</em> or <em>unexpected</em> value, then
+     * the assertion fails with an error message listing all differences found.
+     *
+     * @param  path           path of the property to compare.
+     * @param  expectedValue  expected value for the property at the given path.
+     * @param  others         other ({@code path}, {@code expectedValue}) pairs.
+     */
+    public void assertMetadataEquals(final String path, final Object expectedValue, final Object... others) {
+        if (!compareMetadata(path, expectedValue, others)) {
+            Assert.fail(toString());
+        }
+    }
+
+    /**
      * Returns a string representation of the comparison results.
+     * This method formats up to three blocks in a JSON-like format:
+     *
+     * <ul>
+     *   <li>List of actual values that do no match the expected values.</li>
+     *   <li>List of expected values that are missing in the actual values.</li>
+     *   <li>List of actual values that were unexpected.</li>
+     * </ul>
      *
      * @return a string representation of the comparison results.
      */
@@ -454,10 +524,11 @@ public class ContentVerifier {
                     appendTo.append(' ');
                 }
                 final Object value = entry.getValue();
-                final boolean quote = !isPrimitive(value);
-                if (quote) appendTo.append('"');
-                appendTo.append(value);
-                if (quote) appendTo.append('"');
+                if (value instanceof Mismatch) {
+                    ((Mismatch) value).toString(appendTo);
+                } else {
+                    formatValue(value, appendTo);
+                }
                 appendTo.append(',').append(lineSeparator);
             }
             if (width > 0) {                                                                // Paranoiac check.
@@ -465,5 +536,15 @@ public class ContentVerifier {
             }
             appendTo.append('}').append(lineSeparator);
         }
+    }
+
+    /**
+     * Formats the given value in the given buffer, eventually between quotes.
+     */
+    private static void formatValue(final Object value, final StringBuilder appendTo) {
+        final boolean quote = !isPrimitive(value);
+        if (quote) appendTo.append('"');
+        appendTo.append(value);
+        if (quote) appendTo.append('"');
     }
 }

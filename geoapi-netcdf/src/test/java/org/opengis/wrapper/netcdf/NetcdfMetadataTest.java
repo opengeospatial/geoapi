@@ -220,7 +220,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             metadata = wrap(file);
             validator.validate(metadata);
             verifier.addMetadataToVerify(metadata);
-            if (!verifier.compareMetadata(
+            verifier.assertMetadataEquals(
                 "identificationInfo[0].abstract",                                          "Global, two-dimensional model data",
                 "identificationInfo[0].purpose",                                           "GeoAPI conformance tests",
                 "identificationInfo[0].citation.title",                                    "Test data from Sea Surface Temperature Analysis Model",
@@ -231,7 +231,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
                 "identificationInfo[0].citation.identifier[0].code",                       "NCEP/SST/Global_5x2p5deg/SST_Global_5x2p5deg_20050922_0000.nc",
                 "identificationInfo[0].citation.identifier[0].codeSpace",                  "edu.ucar.unidata",
                 "identificationInfo[0].citation.identifier[0].authority.title",            "edu.ucar.unidata",
-                "identificationInfo[0].citation.onlineResource[0].name",                   "Cube2D_geographic_packed",
+                "identificationInfo[0].citation.onlineResource[0].name",                   "Cube2D geographic packed",
                 "identificationInfo[0].citation.onlineResource[0].linkage",                URI.create("Cube2D_geographic_packed.nc"),
                 "identificationInfo[0].citation.onlineResource[0].function",               OnLineFunction.FILE_ACCESS,
                 "identificationInfo[0].extent[0].geographicElement[0].extentTypeCode",     Boolean.TRUE,
@@ -242,13 +242,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
                 "identificationInfo[0].spatialRepresentationType[0]",                      SpatialRepresentationType.GRID,
                 "identificationInfo[0].supplementalInformation",                           "For testing purpose only.",
                 "metadataStandard[0].title",                                               "ISO 19115-2 Geographic Information - Metadata Part 2 Extensions for imagery and gridded data",
-                "metadataStandard[0].edition",                                             "ISO 19115-2:2009(E)"))
-            {
-                fail(verifier.toString());          // Provides details on differences found.
-            }
-            if (getClass() == NetcdfMetadataTest.class) {
-//              NonInheritable.assertProcessedAllRelevant(actualProperties, null, false);
-            }
+                "metadataStandard[0].edition",                                             "ISO 19115-2:2009(E)");
         }
     }
 
@@ -265,28 +259,26 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             metadata = wrap(file);
             validator.validate(metadata);
             verifier.addMetadataToVerify(metadata);
-            verifier.compareMetadata(
+            verifier.assertMetadataEquals(
                 "identificationInfo[0].abstract",                                          "Hourly, three-dimensional diagnosis of the icing environment.",
                 "identificationInfo[0].purpose",                                           "GeoAPI conformance tests",
                 "identificationInfo[0].citation.title",                                    "Test data from Current Icing Product (CIP)",
                 "identificationInfo[0].citation.citedResponsibleParty[0].role",            Role.ORIGINATOR,
                 "identificationInfo[0].citation.citedResponsibleParty[0].party[0].name",   "UCAR",
-                        individual + "name",                                               "John Doe",
-                        individual + "contactInfo[0].address[0].electronicMailAddress[0]", "john.doe@example.org",
+                individual + "name",                                                       "John Doe",
+                individual + "contactInfo[0].address[0].electronicMailAddress[0]",         "john.doe@example.org",
+                "identificationInfo[0].citation.onlineResource[0].name",                   "Cube4D projected float",
                 "identificationInfo[0].citation.onlineResource[0].linkage",                URI.create("Cube4D_projected_float.nc"),
+                "identificationInfo[0].citation.onlineResource[0].function",               OnLineFunction.FILE_ACCESS,
                 "identificationInfo[0].extent[0].geographicElement[0].extentTypeCode",     Boolean.TRUE,
-                "identificationInfo[0].extent[0].geographicElement[0].westBoundLongitude", -107.75,
-                "identificationInfo[0].extent[0].geographicElement[0].eastBoundLongitude", -56.65999984741211,
-                "identificationInfo[0].extent[0].geographicElement[0].southBoundLatitude",  15.9399995803833,
-                "identificationInfo[0].extent[0].geographicElement[0].northBoundLatitude",  58.369998931884766,
+                "identificationInfo[0].extent[0].geographicElement[0].westBoundLongitude", -107.75f,
+                "identificationInfo[0].extent[0].geographicElement[0].eastBoundLongitude", -56.66f,
+                "identificationInfo[0].extent[0].geographicElement[0].southBoundLatitude",  15.94f,
+                "identificationInfo[0].extent[0].geographicElement[0].northBoundLatitude",  58.37f,
                 "identificationInfo[0].topicCategory[0]",                                   TopicCategory.CLIMATOLOGY_METEOROLOGY_ATMOSPHERE,
                 "identificationInfo[0].supplementalInformation",                           "For testing purpose only.",
                 "metadataStandard[0].title",                                               "ISO 19115-2 Geographic Information - Metadata Part 2 Extensions for imagery and gridded data",
                 "metadataStandard[0].edition",                                             "ISO 19115-2:2009(E)");
-
-            if (getClass() == NetcdfMetadataTest.class) {
-//              NonInheritable.assertProcessedAllRelevant(actualProperties, null, false);
-            }
         }
     }
 }

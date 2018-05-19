@@ -17,7 +17,6 @@ import java.io.File;
 import java.util.Date;
 import java.util.Locale;
 import java.util.EnumSet;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -29,6 +28,7 @@ import ucar.nc2.NetcdfFile;
 import ucar.nc2.Attribute;
 import ucar.nc2.time.Calendar;
 import ucar.nc2.time.CalendarDateFormatter;
+import ucar.nc2.constants.ACDD;
 
 import org.opengis.metadata.*;
 import org.opengis.metadata.extent.*;
@@ -140,6 +140,13 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     private Collection<NetcdfMetadata> self(final boolean flag) {
         return flag ? Collections.singleton(this) : Collections.<NetcdfMetadata>emptySet();
+    }
+
+    /**
+     * Returns {@code true} if the netCDF file contains an attribute of the given name.
+     */
+    private boolean hasAttribute(final String name) {
+        return file.findGlobalAttributeIgnoreCase(name) != null;
     }
 
     /**
@@ -277,17 +284,18 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Returns the netCDF {@code "naming_authority"} attribute value, or {@code null} if none.
+     * Returns the netCDF {@value ACDD#naming_authority} attribute value, or {@code null} if none.
      *
      * @see #getMetadataIdentifier()
      */
     @Override
     public String getCodeSpace() {
-        return getString("naming_authority");
+        return getString(ACDD.naming_authority);
     }
 
     /**
-     * Returns the netCDF {@code "id"} attribute value, or the {@linkplain NetcdfFile#getId() file identifier},
+     * Returns the netCDF {@value ACDD#id} attribute value,
+     * or the {@linkplain NetcdfFile#getId() file identifier},
      * or {@code null} if none.
      *
      * @see NetcdfFile#getId()
@@ -295,7 +303,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     @Override
     public String getCode() {
-        final String id = getString("id");
+        final String id = getString(ACDD.id);
         return (id != null) ? id : file.getId();
     }
 
@@ -318,11 +326,11 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
         } else {
             name = new File(name.substring(0, end)).getName();
         }
-        return new SimpleCitation(name);
+        return new SimpleCitation(name.replace('_', ' '));
     }
 
     /**
-     * Returns the netCDF {@code "title"} attribute value, or the
+     * Returns the netCDF {@value ACDD#title} attribute value, or the
      * {@linkplain NetcdfFile#getTitle() file title}, or {@code null} if none.
      *
      * @return the title, or {@code null} if none.
@@ -331,7 +339,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     @Override
     public InternationalString getTitle() {
-        String title = getString("title");
+        String title = getString(ACDD.title);
         if (title == null) {
             title = file.getTitle();
             if (title == null) {
@@ -342,11 +350,11 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Returns the netCDF {@code "summary"} attribute value, or {@code null} if none.
+     * Returns the netCDF {@value ACDD#summary} attribute value, or {@code null} if none.
      */
     @Override
     public InternationalString getAbstract() {
-        return getInternationalString("summary");
+        return getInternationalString(ACDD.summary);
     }
 
     /**
@@ -372,19 +380,19 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Returns the netCDF {@code "cdm_data_type"} attribute value, or an empty set if none.
+     * Returns the netCDF {@value ACDD#cdm_data_type} attribute value, or an empty set if none.
      */
     @Override
     public Collection<SpatialRepresentationType> getSpatialRepresentationTypes() {
-        return singleton(SpatialRepresentationType.valueOf(getUpperCase("cdm_data_type")));
+        return singleton(SpatialRepresentationType.valueOf(getUpperCase(ACDD.cdm_data_type)));
     }
 
     /**
-     * Returns the netCDF {@code "creator_email"} attribute value, or {@code null} if none.
+     * Returns the netCDF {@value ACDD#creator_email} attribute value, or {@code null} if none.
      */
     @Override
     public Collection<String> getElectronicMailAddresses() {
-        return singleton(getString("creator_email"));
+        return singleton(getString(ACDD.creator_email));
     }
 
     /**
@@ -392,14 +400,18 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     @Override
     public Collection<InternationalString> getCredits() {
-        return singleton(getInternationalString("acknowledgment"));
+        InternationalString value = getInternationalString("acknowledgment");
+        if (value == null) {
+            value = getInternationalString(ACDD.acknowledgement);
+        }
+        return singleton(value);
     }
 
     /**
      * Returns {@code true} if this metadata has a date.
      */
     private boolean hasDate(final boolean data) {
-        return getString(data ? "date_created" : "metadata_creation") != null;
+        return hasAttribute(data ? ACDD.date_created : "metadata_creation");
     }
 
     /**
@@ -423,7 +435,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Encapsulates the netCDF {@code "date_created"} attribute value.
+     * Encapsulates the netCDF {@value ACDD#date_created} attribute value.
      */
     @Override
     public Collection<? extends CitationDate> getDates() {
@@ -431,7 +443,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Returns the netCDF {@code "date_created"} attribute value, or {@code null} if none.
+     * Returns the netCDF {@value ACDD#date_created} attribute value, or {@code null} if none.
      * This is the creation date of the actual dataset, not necessarily the same that the
      * metadata creation time.
      *
@@ -439,7 +451,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     @Override
     public Date getDate() {
-        return getDate("date_created");
+        return getDate(ACDD.date_created);
     }
 
     /**
@@ -453,35 +465,35 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Returns the netCDF {@code "geospatial_lon_min"} attribute value, or {@linkplain Double#NaN NaN} if none.
+     * Returns the netCDF {@value ACDD#LON_MIN} attribute value, or {@linkplain Double#NaN NaN} if none.
      */
     @Override
     public double getWestBoundLongitude() {
-        return getDouble("geospatial_lon_min");
+        return getDouble(ACDD.LON_MIN);
     }
 
     /**
-     * Returns the netCDF {@code "geospatial_lon_max"} attribute value, or {@linkplain Double#NaN NaN} if none.
+     * Returns the netCDF {@value ACDD#LON_MAX} attribute value, or {@linkplain Double#NaN NaN} if none.
      */
     @Override
     public double getEastBoundLongitude() {
-        return getDouble("geospatial_lon_max");
+        return getDouble(ACDD.LON_MAX);
     }
 
     /**
-     * Returns the netCDF {@code "geospatial_lat_min"} attribute value, or {@linkplain Double#NaN NaN} if none.
+     * Returns the netCDF {@code ACDD#LAT_MIN} attribute value, or {@linkplain Double#NaN NaN} if none.
      */
     @Override
     public double getSouthBoundLatitude() {
-        return getDouble("geospatial_lat_min");
+        return getDouble(ACDD.LAT_MIN);
     }
 
     /**
-     * Returns the netCDF {@code "geospatial_lat_max"} attribute value, or {@linkplain Double#NaN NaN} if none.
+     * Returns the netCDF {@value ACDD#LAT_MAX} attribute value, or {@linkplain Double#NaN NaN} if none.
      */
     @Override
     public double getNorthBoundLatitude() {
-        return getDouble("geospatial_lat_max");
+        return getDouble(ACDD.LAT_MAX);
     }
 
     /**
@@ -527,11 +539,11 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Returns the netCDF {@code "comment"} attribute value, or {@code null} if none.
+     * Returns the netCDF {@value ACDD#comment} attribute value, or {@code null} if none.
      */
     @Override
     public InternationalString getSupplementalInformation() {
-        return getInternationalString("comment");
+        return getInternationalString(ACDD.comment);
     }
 
     /**
@@ -621,9 +633,13 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * The party encapsulated by {@link NetcdfMetadata#getCitation()}.
-     * Defined in a separated class because of methods clash:
+     * Encapsulates the {@linkplain #getName() creator name} and
+     * {@linkplain #getElectronicMailAddresses() email address}.
+     * The responsible party represented by this class is associated to {@link Role#ORIGINATOR} instead than
+     * {@link Role#POINT_OF_CONTACT} because this simple implementation can not be associated to more than
+     * one responsible party. However library vendors are encouraged to provide more accurate implementations.
      *
+     * <p>Defined in a separated class because of methods clash:</p>
      * <ul>
      *   <li>{@link Party#getName()} not the same name than {@link OnlineResource#getName()}.</li>
      *   <li>{@link Contact#getOnlineResources()} not the same link than {@link Citation#getOnlineResources()}.</li>
@@ -633,7 +649,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     private final class Creator implements Responsibility, Individual, Contact {
         @Override public Collection<? extends Extent>         getExtents()                 {return Collections.emptySet();}
         @Override public Collection<? extends OnlineResource> getOnlineResources()         {return Collections.emptySet();}
-        @Override public Collection<? extends Address>        getAddresses()               {return self();}
+        @Override public Collection<? extends Address>        getAddresses()               {return self(hasAttribute(ACDD.creator_email));}
         @Override public InternationalString                  getPositionName()            {return null;}
         @Override public InternationalString                  getContactType()             {return null;}
         @Override public InternationalString                  getContactInstructions()     {return null;}
@@ -642,6 +658,13 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
         @Override @Deprecated public Address                  getAddress()                 {return NetcdfMetadata.this;}
         @Override @Deprecated public Telephone                getPhone()                   {return null;}
         @Override @Deprecated public OnlineResource           getOnlineResource()          {return null;}
+
+        /**
+         * Returns a collection containing {@code this} if the given attribute is presents, or an empty set otherwise.
+         */
+        private Collection<Creator> ifAttributePresents(final String name) {
+            return hasAttribute(name) ? Collections.<Creator>singleton(this) : Collections.<Creator>emptySet();
+        }
 
         /**
          * Returns {@link Role#ORIGINATOR}, because the citation encapsulated by this implementation is only
@@ -657,29 +680,32 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
          */
         @Override
         public Collection<? extends Party> getParties() {
-            final String institution = getString("institution");
-            if (institution == null) {
-                return Collections.singleton(this);
+            final Party party;
+            if (hasAttribute("institution")) {
+                party = new Organisation() {
+                    @Override public InternationalString                 getName()        {return getInternationalString("institution");}
+                    @Override public Collection<? extends BrowseGraphic> getLogo()        {return Collections.emptySet();}
+                    @Override public Collection<? extends Individual>    getIndividual()  {return ifAttributePresents(ACDD.creator_name);}
+                    @Override public Collection<? extends Contact>       getContactInfo() {
+                        if (hasAttribute(ACDD.creator_name)) {
+                            return Collections.emptySet();          // Email address to be provided with the individual instead.
+                        } else {
+                            return Creator.this.getContactInfo();
+                        }
+                    }
+                };
+            } else {
+                party = this;                           // Individual only.
             }
-            final Collection<Party> parties = new ArrayList<>(2);
-            if (getName() != null) {
-                parties.add(this);
-            }
-            parties.add(new Organisation() {
-                @Override public InternationalString                 getName()        {return new SimpleCitation(institution);}
-                @Override public Collection<? extends BrowseGraphic> getLogo()        {return Collections.emptySet();}
-                @Override public Collection<? extends Individual>    getIndividual()  {return Collections.singleton(Creator.this);}
-                @Override public Collection<? extends Contact>       getContactInfo() {return Collections.singleton(Creator.this);}
-            });
-            return parties;
+            return Collections.singleton(party);
         }
 
         /**
-         * Returns the netCDF {@code "creator_name"} attribute value, or {@code null} if none.
+         * Returns the netCDF {@value ACDD#creator_name} attribute value, or {@code null} if none.
          */
         @Override
         public InternationalString getName() {
-            return getInternationalString("creator_name");
+            return getInternationalString(ACDD.creator_name);
         }
 
         /**
@@ -687,16 +713,13 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
          */
         @Override
         public Collection<? extends Contact> getContactInfo() {
-            return Collections.singleton(this);
+            return ifAttributePresents(ACDD.creator_email);
         }
     }
 
     /**
-     * Encapsulates the {@linkplain #getName() creator name} and
-     * {@linkplain #getElectronicMailAddresses() email address}.
-     * The responsible party returned by this method is associated to {@link Role#ORIGINATOR} instead than
-     * {@link Role#POINT_OF_CONTACT} because this simple implementation can not be associated to more than
-     * one responsible party. However library vendors are encouraged to provide more accurate implementations.
+     * Defaults to an empty set.
+     * For the dataset creator, see {@link #getCitation()} instead.
      */
     @Override
     public Collection<? extends Responsibility> getPointOfContacts() {
@@ -720,7 +743,8 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     @Override
     public Collection<? extends Extent> getExtents() {
-        return self();
+        return self(hasAttribute(ACDD.LON_MIN) || hasAttribute(ACDD.LON_MAX)
+                 || hasAttribute(ACDD.LAT_MIN) || hasAttribute(ACDD.LAT_MAX));
     }
 
     /**
