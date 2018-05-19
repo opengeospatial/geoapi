@@ -84,6 +84,8 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
 
     /**
      * Returns the wrapped NetCDF earth.
+     *
+     * @return the earth representation from UCAR library.
      */
     @Override
     public Earth delegate() {
@@ -93,7 +95,7 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
     /**
      * Returns the earth name. The default implementation delegates to {@link Earth#getName()}.
      *
-     * @see Earth#getName()
+     * @return Earth#getName()
      */
     @Override
     public String getCode() {

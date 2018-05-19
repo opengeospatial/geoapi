@@ -218,8 +218,17 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
         Unit<?> unit = this.unit;
         if (unit == null) {
             final String symbol = getUnitsString();
-            if (symbol != null) {
+            if (symbol != null && !symbol.isEmpty()) {
                 this.unit = unit = Units.parse(symbol);
+            } else {
+                // Infer default units if they were not specified.
+                final AxisType type = axis.getAxisType();
+                if (type != null) {
+                    switch (type) {
+                        case Lon:
+                        case Lat: this.unit = unit = Units.DEGREE; break;
+                    }
+                }
             }
         }
         return unit;

@@ -20,7 +20,7 @@ import ucar.nc2.NetcdfFile;
 
 
 /**
- * Base class of NetCDF test cases performing I/O operations. This base class provides an
+ * Base class of netCDF test cases performing I/O operations. This base class provides an
  * {@link #open(String)} method for creating {@link NetcdfFile} objects from the build-in
  * test files.
  *
@@ -62,15 +62,15 @@ public abstract strictfp class IOTestCase {
     }
 
     /**
-     * Opens the given NetCDF file.
+     * Opens the given netCDF file.
      *
      * @param  file  one of the {@code NETCDF_*} enumeration constants.
-     * @return the NetCDF file.
+     * @return the netCDF file.
      * @throws IOException if an error occurred while opening the file.
      */
     protected final NetcdfFile open(final TestData file) throws IOException {
         /*
-         * Binary NetCDF files need to be read either from a file, or from a byte array in memory.
+         * Binary netCDF files need to be read either from a file, or from a byte array in memory.
          * Reading from a file is not possible if the test file is in geoapi-conformance JAR file.
          * But since those test files are less than 15 kilobytes, loading them in memory is okay.
          */

@@ -122,11 +122,11 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
     /**
      * Returns {@code true} if the parameter of the given name can be ignored.
      * This method is invoked when a parameter is not always declared by the
-     * NetCDF projection constructor.
+     * netCDF projection constructor.
      *
      * @param  parameterName  the parameter name.
      * @return {@code true} if the parameter of the given name is not always declared
-     *         by the NetCDF projection constructor.
+     *         by the netCDF projection constructor.
      */
     private static boolean isIgnorable(final String parameterName) {
         return CF.FALSE_EASTING  .equals(parameterName) ||
@@ -145,7 +145,7 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
         for (final Class<? extends Projection> type : projections) {
             final Projection projection;
             try {
-                projection = type.newInstance();
+                projection = type.getConstructor().newInstance();
             } catch (ReflectiveOperationException e) {
                 throw new AssertionError(e);
             }
@@ -154,7 +154,7 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
                 continue;
             }
             /*
-             * Collect the NetCDF parameter names. This code ensures that the same NetCDF
+             * Collect the netCDF parameter names. This code ensures that the same netCDF
              * parameter name is not declared twice. A failure in this test would be more
              * a UCAR library issue than a GeoAPI-wrapper one.
              *
@@ -173,7 +173,7 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
             }
             /*
              * Ensures that all parameter names known to GeoAPI-wrapper
-             * are known to the current NetCDF projection implementation.
+             * are known to the current netCDF projection implementation.
              */
             final ParameterValueGroup group = factory.getDefaultParameters(projectionName);
             validators.validate(group);
@@ -212,8 +212,8 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
             final String projectionName = type.getSimpleName();
             final ParameterValueGroup group = factory.getDefaultParameters(projectionName);
             final MathTransform projection = factory.createParameterizedTransform(group);
-            assertInstanceOf("Expected a NetCDF wrapper.", NetcdfProjection.class, projection);
-            assertInstanceOf("Expected a NetCDF projection.", type, ((NetcdfProjection) projection).delegate());
+            assertInstanceOf("Expected a netCDF wrapper.", NetcdfProjection.class, projection);
+            assertInstanceOf("Expected a netCDF projection.", type, ((NetcdfProjection) projection).delegate());
         }
     }
 
@@ -242,7 +242,7 @@ public strictfp class NetcdfTransformFactoryTest extends TestCase {
     }
 
     /**
-     * Prints a single row in the table of NetCDF parameters.
+     * Prints a single row in the table of netCDF parameters.
      * This method expects a {@code geoapi-netcdf} implementation.
      */
     @SuppressWarnings("UseOfSystemOutOrSystemErr")

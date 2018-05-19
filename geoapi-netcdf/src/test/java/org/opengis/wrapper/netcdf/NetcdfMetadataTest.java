@@ -95,7 +95,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     /**
      * Creates a new test case using the default validator.
      * This constructor sets the {@link RootValidator#requireMandatoryAttributes} field
-     * to {@code false}, since NetCDF metadata are sometime incomplete.
+     * to {@code false}, since netCDF metadata are sometime incomplete.
      */
     public NetcdfMetadataTest() {
         this(new RootValidator(Validators.DEFAULT));
@@ -117,16 +117,14 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
     }
 
     /**
-     * Wraps the given NetCDF file into a GeoAPI Metadata object.
-     * This method creates a {@link NetcdfMetadata} instance.
+     * Wraps the given netCDF file into a GeoAPI metadata object.
+     * The default implementation creates a {@link NetcdfMetadata} instance.
+     * Subclasses can override this method for creating their own instance.
      *
-     * @param  file  the NetCDF file to wrap.
+     * @param  file  the netCDF file to wrap.
      * @return a metadata implementation created from the attributes found in the given file.
-     * @throws IOException if an error occurred while wrapping the given NetCDF file.
-     *
-     * @deprecated To become a private method.
+     * @throws IOException if an error occurred while wrapping the given netCDF file.
      */
-    @Deprecated
     protected Metadata wrap(final NetcdfFile file) throws IOException {
         return new NetcdfMetadata(file);
     }
@@ -168,8 +166,8 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * Consequently, after this method call the maps contain the following entries:
      *
      * <ul>
-     *   <li>The {@link #expectedProperties} map contains all properties not found in the NetCDF file.</li>
-     *   <li>The {@link #actualProperties} map contains all properties from the NetCDF file which have not
+     *   <li>The {@link #expectedProperties} map contains all properties not found in the netCDF file.</li>
+     *   <li>The {@link #actualProperties} map contains all properties from the netCDF file which have not
      *       been verified.</li>
      * </ul>
      *
@@ -178,7 +176,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * (i.e. have been compared) after the comparison.
      *
      *
-     * @param filename  the NetCDF file being tested,
+     * @param filename  the netCDF file being tested,
      *                  typically as one of the constants defined in the {@link IOTestCase} class.
      * @param eps       tolerance factor for comparing floating-point numbers.
      *

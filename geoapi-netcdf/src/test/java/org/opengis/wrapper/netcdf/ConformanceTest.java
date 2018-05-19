@@ -37,7 +37,7 @@ import static org.opengis.test.CalculationType.*;
  */
 public class ConformanceTest extends TestSuite implements ImplementationDetails {
     /**
-     * The configuration of our NetCDF tests.
+     * The configuration of our netCDF tests.
      * Will be created when first needed.
      */
     private Configuration configuration;
@@ -58,7 +58,7 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
 
     /**
      * Returns the map of tests to disable for this implementation, or {@code null}
-     * if the given factories are not NetCDF implementations.
+     * if the given factories are not netCDF implementations.
      */
     @Override
     public synchronized Configuration configuration(final Factory... factories) {

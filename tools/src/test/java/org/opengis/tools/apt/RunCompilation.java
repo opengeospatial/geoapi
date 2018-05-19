@@ -39,7 +39,7 @@ import java.io.File;
 import java.io.FileFilter;
 import java.net.URL;
 import java.net.URISyntaxException;
-import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
 import javax.tools.ToolProvider;
 import javax.tools.JavaCompiler;
 import javax.tools.StandardJavaFileManager;
@@ -61,13 +61,13 @@ public final class RunCompilation implements FileFilter {
     /**
      * Launches the Java annotation processor.
      *
-     * @throws Exception If any kind of errors occurred.
+     * @throws Exception if any kind of errors occurred.
      */
     @Test
     @Ignore("Used for debugging purpose only.")
     public void main() throws Exception {
         final JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
-        final StandardJavaFileManager fm = compiler.getStandardFileManager(null, null, Charset.forName("UTF-8"));
+        final StandardJavaFileManager fm = compiler.getStandardFileManager(null, null, StandardCharsets.UTF_8);
         final JavaCompiler.CompilationTask task = compiler.getTask(null, fm, null, Arrays.asList(
                     "-proc:only",             // Perform only annotation processing, no compilation.
                     "-XprintProcessorInfo",   // Prints information about which annotations a processor is asked to process.
@@ -104,7 +104,7 @@ public final class RunCompilation implements FileFilter {
      */
     private Collection<File> collectJavaFiles() throws URISyntaxException {
         final File src = getSourceDirectory();
-        final Collection<File> files = new ArrayList<File>();
+        final Collection<File> files = new ArrayList<>();
         collectJavaFiles(new File(src, "main/java"),    files);
         collectJavaFiles(new File(src, "pending/java"), files);
         return files;
@@ -125,6 +125,9 @@ public final class RunCompilation implements FileFilter {
 
     /**
      * Returns {@code true} if we accepts the process the given file or directory.
+     *
+     * @param  pathname the path to test for inclusion.
+     * @return {@code true} if the given path should be processed.
      */
     @Override
     public boolean accept(final File pathname) {

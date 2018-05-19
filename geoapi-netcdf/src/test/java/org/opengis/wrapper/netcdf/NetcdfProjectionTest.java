@@ -34,7 +34,7 @@ import static org.opengis.test.Assert.*;
  * consistency is verified.
  *
  * <p>External projects can override the {@link #wrap(Projection)}
- * method in order to test their own NetCDF wrapper.</p>
+ * method in order to test their own netCDF wrapper.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -42,7 +42,7 @@ import static org.opengis.test.Assert.*;
  */
 public strictfp class NetcdfProjectionTest extends TransformTestCase {
     /**
-     * The coordinate operation wrapping the NetCDF projection. This field is initialized
+     * The coordinate operation wrapping the netCDF projection. This field is initialized
      * to the value returned by {@link #wrap(Projection)} before a test is executed.
      *
      * <p>The {@link #transform} field will be set to the {@link SingleOperation#getMathTransform()}
@@ -53,14 +53,16 @@ public strictfp class NetcdfProjectionTest extends TransformTestCase {
     /**
      * Creates a new test case initialized with a default {@linkplain #tolerance tolerance}
      * threshold. The '{@linkplain #isDerivativeSupported is derivative supported}' flag is
-     * set to {@code false} since the NetCDF library does not implement projection derivatives.
+     * set to {@code false} since the netCDF library does not implement projection derivatives.
      */
     public NetcdfProjectionTest() {
-        // We need to specify at least one NetCDF factory to the super-class constructor in
-        // order to allow ImplementationDetails to detect that it shall disable some checks.
         super(NetcdfTransformFactoryTest.getDefaultFactory());
         tolerance = 1E-10;
         isDerivativeSupported = false;
+        /*
+         * Our objects are not yet strictly ISO compliant, so be lenient...
+         */
+        validators.coordinateOperation.requireMandatoryAttributes = false;
     }
 
     /**
@@ -74,11 +76,11 @@ public strictfp class NetcdfProjectionTest extends TransformTestCase {
     }
 
     /**
-     * Wraps the given NetCDF projection into a GeoAPI operation object. The default implementation
+     * Wraps the given netCDF projection into a GeoAPI operation object. The default implementation
      * creates a {@link NetcdfProjection} instance. Subclasses can override this method for creating
      * their own instance.
      *
-     * @param  projection  the NetCDF projection to wrap.
+     * @param  projection  the netCDF projection to wrap.
      * @return an operation implementation created from the given projection.
      */
     protected SingleOperation wrap(final Projection projection) {
@@ -115,7 +117,7 @@ public strictfp class NetcdfProjectionTest extends TransformTestCase {
     /**
      * Tests the {@link NetcdfProjection#getDomainOfValidity()} method.
      *
-     * <p><b>Note:</b> In NetCDF 4.2, the declared bounding box was approximatively
+     * <p><b>Note:</b> In netCDF 4.2, the declared bounding box was approximatively
      * <var>west</var>  = -152.85°,
      * <var>east</var>  = -57.15°,
      * <var>south</var> = -43.1° and

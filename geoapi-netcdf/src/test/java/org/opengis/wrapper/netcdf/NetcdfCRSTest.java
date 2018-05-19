@@ -19,6 +19,7 @@ import java.util.Iterator;
 import java.util.logging.Logger;
 import java.io.IOException;
 import javax.measure.Unit;
+import javax.measure.IncommensurableException;
 
 import ucar.nc2.dataset.NetcdfDataset;
 import ucar.nc2.dataset.CoordinateSystem;
@@ -59,17 +60,17 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * Each test defined in this class performs the following steps:
  *
  * <ul>
- *   <li>{@linkplain #open(String) Opens} a NetCDF test file specific to the test method.</li>
- *   <li>{@linkplain #wrap(CoordinateSystem, NetcdfDataset) Wraps} the NetCDF coordinate system
+ *   <li>{@linkplain #open(String) Opens} a netCDF test file specific to the test method.</li>
+ *   <li>{@linkplain #wrap(CoordinateSystem, NetcdfDataset) Wraps} the netCDF coordinate system
  *       in the GeoAPI implementation to be tested.</li>
  *   <li>{@linkplain Validators#validate(CoordinateReferenceSystem) Validates}
  *       the wrapped {@linkplain #crs}.</li>
  *   <li>Performs verifications specific to the test methods.</li>
- *   <li>{@linkplain NetcdfDataset#close() Closes} the NetCDF file.</li>
+ *   <li>{@linkplain NetcdfDataset#close() Closes} the netCDF file.</li>
  * </ul>
  *
  * External projects can override the {@link #wrap(CoordinateSystem, NetcdfDataset)}
- * method in order to test their own NetCDF wrapper, as in the example below:
+ * method in order to test their own netCDF wrapper, as in the example below:
  *
  * <blockquote><pre>public class MyTest extends NetcdfCRSTest {
  *    &#64;Override
@@ -85,8 +86,8 @@ import static org.opengis.referencing.cs.AxisDirection.*;
 public strictfp class NetcdfCRSTest extends IOTestCase {
     /**
      * Tolerance factor for floating point comparison. We need enough tolerance for
-     * comparing {@code float} values (used internally in some NetCDF files) with
-     * {@code double} values (used by the NetCDF wrappers).
+     * comparing {@code float} values (used internally in some netCDF files) with
+     * {@code double} values (used by the netCDF wrappers).
      */
     private static final double EPS = 1E-6;
 
@@ -120,20 +121,15 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
     /**
      * Creates a new test case using the default validator.
      * This constructor sets the {@link CRSValidator#enforceStandardNames} field
-     * to {@code false}, since NetCDF axis names are non-standard.
+     * to {@code false}, since netCDF axis names are non-standard.
      */
     public NetcdfCRSTest() {
-        this(Validators.DEFAULT.clone());
-    }
-
-    /**
-     * Work around for RFE #4093999 in Sun's bug database
-     * ("Relax constraint on placement of this()/super() call in constructors").
-     */
-    private NetcdfCRSTest(final ValidatorContainer container) {
-        this(new CRSValidator(container));
-        // OperationValidator has recursive call to CRSValidator,
-        // so we need to redirect those recursive calls as well.
+        final ValidatorContainer container = Validators.DEFAULT.clone();
+        validator = new CRSValidator(container);
+        /*
+         * OperationValidator has recursive call to CRSValidator,
+         * so we need to redirect those recursive calls as well.
+         */
         container.coordinateOperation = new OperationValidator(container);
         container.crs = validator;
         container.cs = new CSValidator(container);
@@ -154,14 +150,14 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
     }
 
     /**
-     * Wraps the given NetCDF file into a GeoAPI CRS object. The default implementation
+     * Wraps the given netCDF file into a GeoAPI CRS object. The default implementation
      * creates a {@link NetcdfCRS} instance. Subclasses can override this method for
      * creating their own instance.
      *
-     * @param  cs    the NetCDF coordinate system to wrap.
+     * @param  cs    the netCDF coordinate system to wrap.
      * @param  file  the originating dataset file, or {@code null} if none.
-     * @return a CRS implementation created from the given NetCDF coordinate system.
-     * @throws IOException if an error occurred while wrapping the given NetCDF coordinate system.
+     * @return a CRS implementation created from the given netCDF coordinate system.
+     * @throws IOException if an error occurred while wrapping the given netCDF coordinate system.
      */
     protected CoordinateReferenceSystem wrap(final CoordinateSystem cs, final NetcdfDataset file) throws IOException {
         return NetcdfCRS.wrap(cs, file, Logger.getLogger("org.opengis.wrapper.netcdf"));
@@ -194,7 +190,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      *   <li>The {@linkplain Identifier#getCode() code} is the given expected value.</li>
      * </ul>
      *
-     * Subclasses shall override this method if the NetCDF name is stored elsewhere
+     * Subclasses shall override this method if the netCDF name is stored elsewhere
      * (as an {@linkplain IdentifiedObject#getIdentifiers() identifier} or an
      * {@linkplain IdentifiedObject#getAlias() alias}), or if they use a different
      * code value.
@@ -215,14 +211,14 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * @param name  the expected axis name.
      * @param unit  the expected axis unit.
      * @param axis  the axis to verify.
-     *
-     * @todo The unit check is disabled for now, because most Unit implementations can not parse the NetCDF syntax.
      */
     private void assertAxisEquals(final String name, final Unit<?> unit, final CoordinateSystemAxis axis) {
         assertNameEquals(name, axis);
         final Unit<?> axisUnit = axis.getUnit();
-        if (axisUnit != null) {
-            // assertEquals(name, unit, axisUnit);
+        if (axisUnit != null) try {
+            assertEquals(name, axisUnit.getConverterToAny(unit).convert(1), 1, 1E-15);
+        } catch (IncommensurableException e) {
+            throw new AssertionError(e);
         }
     }
 
@@ -263,8 +259,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
     }
 
     /**
-     * Tests the geographic CRS declared in the
-     * {@value org.opengis.wrapper.netcdf.IOTestCase#NCEP} file.
+     * Tests the geographic CRS declared in the {@link TestData#NETCDF_2D_GEOGRAPHIC} file.
      * The default implementation tests the following conditions:
      *
      * <ul>
@@ -295,7 +290,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
 
     /**
      * Tests the compound CRS (<cite>projected</cite> + <cite>height</cite> + <cite>time</cite>)
-     * declared in the {@value org.opengis.wrapper.netcdf.IOTestCase#CIP} file.
+     * declared in the {@link TestData#NETCDF_4D_PROJECTED} file.
      * The default implementation tests the following conditions:
      *
      * <ul>
@@ -321,7 +316,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
     public void testProjected4D() throws IOException {
         try (NetcdfDataset file = new NetcdfDataset(open(TestData.NETCDF_4D_PROJECTED))) {
             final List<CoordinateSystem> crsList = file.getCoordinateSystems();
-            assertEquals("Unexpected number of NetCDF coordinate systems.", 1, crsList.size());
+            assertEquals("Unexpected number of netCDF coordinate systems.", 1, crsList.size());
             crs = wrap(crsList.get(0), file);
             final ProjectedCRS projected = separateComponents("Expected a (projected + vertical + time) CRS.", ProjectedCRS.class, true);
             final CartesianCS cart = projected  .getCoordinateSystem();
@@ -330,10 +325,10 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
             assertAxisDirectionsEqual("ProjectedCRS.cs", cart, EAST, NORTH);
             assertAxisDirectionsEqual("VerticalCRS.cs",  vert, UP);
             assertAxisDirectionsEqual("TemporalCRS.cs",  time, FUTURE);
-            assertAxisEquals("x0",   Units.KILOMETRE,           cart.getAxis(0));
-            assertAxisEquals("y0",   Units.KILOMETRE,           cart.getAxis(1));
-            assertAxisEquals("z0",   Units.FOOT.multiply(0.01), vert.getAxis(0));
-            assertAxisEquals("time", Units.SECOND,              time.getAxis(0));
+            assertAxisEquals("x0",   Units.KILOMETRE,          cart.getAxis(0));
+            assertAxisEquals("y0",   Units.KILOMETRE,          cart.getAxis(1));
+            assertAxisEquals("z0",   Units.FOOT.multiply(100), vert.getAxis(0));
+            assertAxisEquals("time", Units.SECOND,             time.getAxis(0));
             assertNameEquals("time z0 y0 x0", crs);
             assertEquals("Time since 1992-1-1 UTC", new Date(0L), temporalCRS.getDatum().getOrigin());
             /*
