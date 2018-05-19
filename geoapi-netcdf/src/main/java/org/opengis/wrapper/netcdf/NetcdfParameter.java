@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -33,8 +33,8 @@ import org.opengis.parameter.InvalidParameterValueException;
 
 
 /**
- * A {@link ParameterValue} implementation backed by a NetCDF {@link Parameter} object.
- * The NetCDF {@code Parameter} class is both a parameter value and its own descriptor. Consequently
+ * A {@link ParameterValue} implementation backed by a netCDF {@link Parameter} object.
+ * The netCDF {@code Parameter} class is both a parameter value and its own descriptor. Consequently
  * this adapter implements both the {@link ParameterValue} and {@link ParameterDescriptor} interfaces.
  *
  * <p>NetCDF {@code Parameter} instances can store the following types:</p>
@@ -63,7 +63,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     private static final long serialVersionUID = -9215966394791752911L;
 
     /**
-     * The NetCDF parameter, never {@code null}. A new NetCDF parameter instance will be
+     * The netCDF parameter, never {@code null}. A new netCDF parameter instance will be
      * assigned to this field when a setter method is invoked.
      */
     private Parameter parameter;
@@ -74,13 +74,13 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     private final Collection<GenericName> aliases;
 
     /**
-     * Creates a new wrapper for the given NetCDF parameter. The {@linkplain #getValueClass()
+     * Creates a new wrapper for the given netCDF parameter. The {@linkplain #getValueClass()
      * value class} will be inferred from the given parameter.
      *
      * <p><b>Type safety:</b><br>
      * This constructor can not have public access because we can not guarantee that the
-     * {@code <T>} parameterized type is consistent with the given NetCDF parameter object,
-     * since the NetCDF class is not parameterized. Use the one of the {@link #create(Parameter,
+     * {@code <T>} parameterized type is consistent with the given netCDF parameter object,
+     * since the netCDF class is not parameterized. Use the one of the {@link #create(Parameter,
      * Collection) create} methods instead.</p>
      *
      * @param  parameter  the parameter to wrap.
@@ -94,13 +94,13 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     }
 
     /**
-     * Creates a new wrapper for the given NetCDF parameter. The {@linkplain #getValueClass()
+     * Creates a new wrapper for the given netCDF parameter. The {@linkplain #getValueClass()
      * value class} will be inferred from the given parameter.
      *
      * @param  parameter  the parameter to wrap.
      * @param  aliases    an immutable collection of aliases (typically the OGC and EPSG names),
      *                    or null or an empty collection if none. This collection is not cloned.
-     * @return the GeoAPI parameter for the given NetCDF parameter.
+     * @return the GeoAPI parameter for the given netCDF parameter.
      */
     @SuppressWarnings({"rawtypes", "unchecked"})
     public static NetcdfParameter<?> create(final Parameter parameter, final Collection<GenericName> aliases) {
@@ -117,7 +117,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * @param  aliases  an immutable collection of aliases (typically the OGC and EPSG names),
      *                  or null or an empty collection if none. This collection is not cloned.
      * @param  value    the parameter value.
-     * @return the GeoAPI parameter for the given NetCDF parameter.
+     * @return the GeoAPI parameter for the given netCDF parameter.
      */
     public static NetcdfParameter<String> create(String name, Collection<GenericName> aliases, String value) {
         return new NetcdfParameter<>(new Parameter(name, value), aliases);
@@ -130,7 +130,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * @param  aliases  an immutable collection of aliases (typically the OGC and EPSG names),
      *                  or null or an empty collection if none. This collection is not cloned.
      * @param  value    the parameter value.
-     * @return the GeoAPI parameter for the given NetCDF parameter.
+     * @return the GeoAPI parameter for the given netCDF parameter.
      */
     public static NetcdfParameter<Double> create(String name, Collection<GenericName> aliases, double value) {
         return new NetcdfParameter<>(new Parameter(name, value), aliases);
@@ -143,17 +143,17 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
      * @param  aliases  an immutable collection of aliases (typically the OGC and EPSG names),
      *                  or null or an empty collection if none. This collection is not cloned.
      * @param  values   the parameter values.
-     * @return the GeoAPI parameter for the given NetCDF parameter.
+     * @return the GeoAPI parameter for the given netCDF parameter.
      */
     public static NetcdfParameter<double[]> create(String name, Collection<GenericName> aliases, double... values) {
         return new NetcdfParameter<>(new Parameter(name, values), aliases);
     }
 
     /**
-     * Returns the NetCDF object wrapped by this adapter. Note that it may be different
-     * than the NetCDF object given to the constructor if a setter method has been invoked.
+     * Returns the netCDF object wrapped by this adapter. Note that it may be different
+     * than the netCDF object given to the constructor if a setter method has been invoked.
      *
-     * @return NetCDF parameter.
+     * @return netCDF parameter.
      */
     @Override
     public Parameter delegate() {
@@ -162,10 +162,10 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
 
     /**
      * Returns the parameter name. This method delegates to {@link Parameter#getName()}.
-     * The name returned by this method is the NetCDF name. For the OGC or EPSG names,
+     * The name returned by this method is the netCDF name. For the OGC or EPSG names,
      * see {@link #getAlias()}.
      *
-     * @return the NetCDF parameter name.
+     * @return the netCDF parameter name.
      *
      * @see Parameter#getName()
      */
@@ -177,7 +177,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Returns the aliases given at construction time. If the collection is non-empty,
      * then it will typically contains two aliases: one for the OGC name and one for
-     * the EPSG name. For the NetCDF name, see {@link #getCode()}.
+     * the EPSG name. For the netCDF name, see {@link #getCode()}.
      */
     @Override
     public Collection<GenericName> getAlias() {
@@ -220,7 +220,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
 
     /**
      * Returns the parameter type typically as a {@link String}, {@link Double} or {@code double[]}
-     * class. The above-cited types are the ones supported by the NetCDF parameter implementation.
+     * class. The above-cited types are the ones supported by the netCDF parameter implementation.
      */
     @Override
     @SuppressWarnings("unchecked")
@@ -231,7 +231,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Implementation of the public {@link #getValueClass()} method.
      *
-     * @param parameter The NetCDF parameter from which to infer the value class.
+     * @param  parameter  the netCDF parameter from which to infer the value class.
      */
     private static Class<?> getValueClass(final Parameter parameter) {
         if (parameter.isString()) return String.class;
@@ -300,7 +300,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Returns the exception to throw for a getter method invoked with a parameter of the wrong type.
      *
-     * @param  parameter  the NetCDF parameter.
+     * @param  parameter  the netCDF parameter.
      * @param  requested  the requested type.
      * @return the exception to throw.
      */
@@ -502,7 +502,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     /**
      * Returns the exception to throw for a setter method invoked with a parameter of the wrong type.
      *
-     * @param  parameter  the NetCDF parameter.
+     * @param  parameter  the netCDF parameter.
      * @param  value      the value given by the user.
      * @return the exception to throw.
      */
@@ -603,7 +603,7 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
 
     /**
      * Compares this parameter with the given object for equality. This method compares
-     * the {@linkplain #getAlias() aliases} in addition to the NetCDF parameter object.
+     * the {@linkplain #getAlias() aliases} in addition to the netCDF parameter object.
      *
      * @return {@code true} if this parameter is equals to the given object.
      */

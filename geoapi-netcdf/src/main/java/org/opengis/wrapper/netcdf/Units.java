@@ -147,7 +147,7 @@ final class Units {
             return unitFormat.parse(symbol);
         } catch (ParserException e) {
             /*
-             * Workaround for symbols found in some NetCDF files
+             * Workaround for symbols found in some netCDF files
              * but not recognized by all {@link UnitFormat} parsers.
              */
             // Angular units

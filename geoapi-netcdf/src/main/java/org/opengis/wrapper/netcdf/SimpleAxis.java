@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -21,7 +21,7 @@ import org.opengis.referencing.cs.RangeMeaning;
 
 
 /**
- * A {@link CoordinateSystemAxis} for longitude or latitude that are not backed by a NetCDF object.
+ * A {@link CoordinateSystemAxis} for longitude or latitude that are not backed by a netCDF object.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

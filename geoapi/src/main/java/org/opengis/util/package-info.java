@@ -69,7 +69,7 @@
  * <h3>Names and Namespaces</h3>
  * <p>The job of a "name" in the context of ISO 19103 is to associate that name with an {@link java.lang.Object}.
  * A use of the namespace structure defined in 19103 is the translation of given names into specific storage formats.
- * XML has different naming rules than shapefiles, and both are different than NetCDF.
+ * XML has different naming rules than shapefiles, and both are different than netCDF.
  * Specialized names are mapped to data as below:</p>
  *
  * <ul>

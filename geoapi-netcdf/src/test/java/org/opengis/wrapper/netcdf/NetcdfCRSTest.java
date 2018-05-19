@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -186,7 +186,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
      * name} has the following properties:
      *
      * <ul>
-     *   <li>The {@linkplain Identifier#getCodeSpace() code space} is {@code "NetCDF"}.</li>
+     *   <li>The {@linkplain Identifier#getCodeSpace() code space} is {@code "netCDF"}.</li>
      *   <li>The {@linkplain Identifier#getCode() code} is the given expected value.</li>
      * </ul>
      *
@@ -201,7 +201,7 @@ public strictfp class NetcdfCRSTest extends IOTestCase {
     protected void assertNameEquals(final String expected, final IdentifiedObject object) {
         final Identifier name = object.getName();
         assertNotNull("IdentifiedObject.name", name);
-        assertEquals("Code space", "NetCDF", name.getCodeSpace());
+        assertEquals("Code space", "netCDF", name.getCodeSpace());
         assertEquals("Code value", expected, name.getCode());
     }
 

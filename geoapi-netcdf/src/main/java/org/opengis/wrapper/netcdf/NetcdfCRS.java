@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -45,15 +45,15 @@ import org.opengis.coverage.grid.GridCoordinates;
 
 
 /**
- * A {@link CoordinateReferenceSystem} implementation backed by a NetCDF {@link CoordinateSystem} object.
+ * A {@link CoordinateReferenceSystem} implementation backed by a netCDF {@link CoordinateSystem} object.
  * This class implements both the GeoAPI {@link org.opengis.referencing.cs.CoordinateSystem} and
- * {@link CoordinateReferenceSystem} interfaces because the NetCDF {@code CoordinateSystem}
+ * {@link CoordinateReferenceSystem} interfaces because the netCDF {@code CoordinateSystem}
  * object combines the concepts of both of them. It also implements the {@link GridGeometry}
- * interface since NetCDF Coordinate Systems contain all information related to the image grid.
+ * interface since netCDF Coordinate Systems contain all information related to the image grid.
  *
  * <p><b>Axis order</b><br>
  * The order of axes returned by {@link #getAxis(int)} is reversed compared to the order of axes
- * in the wrapped NetCDF coordinate system. This is because the NetCDF convention stores axes in
+ * in the wrapped netCDF coordinate system. This is because the netCDF convention stores axes in
  * the (<var>time</var>, <var>height</var>, <var>latitude</var>, <var>longitude</var>) order, while
  * referencing framework often uses the (<var>longitude</var>, <var>latitude</var>, <var>height</var>,
  * <var>time</var>) order.</p>
@@ -63,14 +63,14 @@ import org.opengis.coverage.grid.GridCoordinates;
  * <ul>
  *   <li><p>This class supports only axes of kind {@link CoordinateAxis1D}. Callers can verify this
  *       condition with a call to the {@link CoordinateSystem#isProductSet()} method on the wrapped
- *       NetCDF coordinate system, which shall returns {@code true}.</p></li>
+ *       netCDF coordinate system, which shall returns {@code true}.</p></li>
  *
- *   <li><p>At the time of writing, the NetCDF API doesn't specify the CRS datum. Consequently the
+ *   <li><p>At the time of writing, the netCDF API doesn't specify the CRS datum. Consequently the
  *       current implementation assumes that all {@code NetcdfCRS} instances use a spherical datum.
- *       We presume a sphere rather than WGS84 because the NetCDF projection framework uses spherical
+ *       We presume a sphere rather than WGS84 because the netCDF projection framework uses spherical
  *       formulas.</p></li>
  *
- *   <li><p>This class assumes that the list of NetCDF axes returned by
+ *   <li><p>This class assumes that the list of netCDF axes returned by
  *       {@link CoordinateSystem#getCoordinateAxes()} is stable during the
  *       lifetime of this {@code NetcdfCRS} instance.</p></li>
  * </ul>
@@ -93,12 +93,12 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     private static final double EPS = 1E-10;
 
     /**
-     * The NetCDF coordinate system wrapped by this {@code NetcdfCRS} instance.
+     * The netCDF coordinate system wrapped by this {@code NetcdfCRS} instance.
      */
     private final CoordinateSystem cs;
 
     /**
-     * The NetCDF axes.
+     * The netCDF axes.
      */
     private final NetcdfAxis[] axes;
 
@@ -108,9 +108,9 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     private transient MathTransform gridToCRS;
 
     /**
-     * Creates a new {@code NetcdfCRS} object wrapping the same NetCDF coordinate system
+     * Creates a new {@code NetcdfCRS} object wrapping the same netCDF coordinate system
      * than the given object. This copy constructor is provided for subclasses wanting to
-     * wraps the same NetCDF coordinate system and change a few properties or methods.
+     * wraps the same netCDF coordinate system and change a few properties or methods.
      *
      * @param crs  the CRS to copy.
      */
@@ -121,11 +121,11 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     }
 
     /**
-     * Creates a new {@code NetcdfCRS} object wrapping the given NetCDF coordinate system.
+     * Creates a new {@code NetcdfCRS} object wrapping the given netCDF coordinate system.
      * The {@link CoordinateSystem#getCoordinateAxes()} is invoked at construction time and
      * every elements are assumed instances of {@link CoordinateAxis1D}.
      *
-     * @param  netcdfCS  the NetCDF coordinate system to wrap.
+     * @param  netcdfCS  the netCDF coordinate system to wrap.
      * @throws ClassCastException if at least one axis is not an instance of the
      *         {@link CoordinateAxis1D} subclass.
      */
@@ -134,11 +134,11 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     }
 
     /**
-     * Creates a new {@code NetcdfCRS} object wrapping the given axes of the given NetCDF
+     * Creates a new {@code NetcdfCRS} object wrapping the given axes of the given netCDF
      * coordinate system. The axes will be retained in reverse order, as documented in
      * class javadoc.
      *
-     * @param  netcdfCS    the NetCDF coordinate system to wrap.
+     * @param  netcdfCS    the netCDF coordinate system to wrap.
      * @param  netcdfAxis  the axes to add, in reverse order.
      */
     NetcdfCRS(final CoordinateSystem netcdfCS, final List<CoordinateAxis> netcdfAxis) {
@@ -166,19 +166,19 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     }
 
     /**
-     * Creates a new {@code NetcdfCRS} object wrapping the given NetCDF coordinate system.
+     * Creates a new {@code NetcdfCRS} object wrapping the given netCDF coordinate system.
      * The returned object may implement any of the {@link ProjectedCRS}, {@link GeographicCRS}
      * {@link VerticalCRS} or {@link TemporalCRS}, depending on the {@linkplain AxisType axis
      * types}.
      *
-     * <p>If the NetCDF object contains different kind of CRS, then the returned CRS will be an
+     * <p>If the netCDF object contains different kind of CRS, then the returned CRS will be an
      * instance of {@link CompoundCRS} in which each component implements one of the above-cited
      * interfaces.</p>
      *
-     * <p>If the NetCDF object contains axes of unknown type, then the returned CRS will not
+     * <p>If the netCDF object contains axes of unknown type, then the returned CRS will not
      * implement any of the above-cited interfaces.</p>
      *
-     * @param  netcdfCS  the NetCDF coordinate system to wrap, or {@code null} if none.
+     * @param  netcdfCS  the netCDF coordinate system to wrap, or {@code null} if none.
      * @return a wrapper for the given object, or {@code null} if the argument was null.
      * @throws ClassCastException if at least one axis is not an instance of the {@link CoordinateAxis1D} subclass.
      */
@@ -191,12 +191,12 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     }
 
     /**
-     * Creates a new {@code NetcdfCRS} object, optionally using the given NetCDF file for additional
+     * Creates a new {@code NetcdfCRS} object, optionally using the given netCDF file for additional
      * information. This method performs the same work than {@link #wrap(CoordinateSystem)}, except
      * that more accurate coordinate axes may be created if a reference to the original dataset file
      * is provided. This apply especially to {@link CoordinateAxis1DTime}.
      *
-     * @param  netcdfCS  the NetCDF coordinate system to wrap, or {@code null} if none.
+     * @param  netcdfCS  the netCDF coordinate system to wrap, or {@code null} if none.
      * @param  file      the originating dataset file, or {@code null} if none.
      * @param  logger    an optional object where to log warnings, or {@code null} if none.
      * @return a wrapper for the given object, or {@code null} if the {@code netcdfCS} argument was null.
@@ -213,7 +213,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         }
         /*
          * Separate the horizontal, vertical and temporal components. We need to iterate
-         * over the NetCDF axes in reverse order (see class javadoc). We don't use the
+         * over the netCDF axes in reverse order (see class javadoc). We don't use the
          * CoordinateAxis.getTaxis() and similar methods because we want to ensure that
          * the components are build in the same order than axes are found.
          */
@@ -223,7 +223,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
             CoordinateAxis1D axis = (CoordinateAxis1D) axes.get(i);
             if (axis != null) {
                 final AxisType type = axis.getAxisType();
-                if (type != null) { // This is really null in some NetCDF file.
+                if (type != null) { // This is really null in some netCDF file.
                     switch (type) {
                         case Pressure:
                         case Height:
@@ -261,7 +261,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         switch (size) {
             /*
              * If we have been unable to split the CRS ourself in various components,
-             * use the information provided by the NetCDF library as a fallback. Note
+             * use the information provided by the netCDF library as a fallback. Note
              * that the CRS created that way may not be valid in the ISO 19111 sense.
              */
             case 0: {
@@ -309,10 +309,10 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     }
 
     /**
-     * Returns the wrapped NetCDF coordinate system.
+     * Returns the wrapped netCDF coordinate system.
      *
-     * <p><b>Note:</b> The dimension of the returned NetCDF Coordinate System may be greater than the
-     * dimension of the GeoAPI CRS implemented by this object, because the NetCDF CS puts all axes
+     * <p><b>Note:</b> The dimension of the returned netCDF Coordinate System may be greater than the
+     * dimension of the GeoAPI CRS implemented by this object, because the netCDF CS puts all axes
      * in a single object while the GeoAPI CRS may splits the axes in various kind of CRS
      * ({@link GeographicCRS}, {@link VerticalCRS}, {@link TemporalCRS}).</p>
      */
@@ -352,7 +352,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
 
     /**
      * Returns the axis at the given dimension. Note that the order of axes returned by this
-     * method is reversed compared to the order of axes in the NetCDF coordinate system. See
+     * method is reversed compared to the order of axes in the netCDF coordinate system. See
      * the <a href="#skip-navbar_top">class javadoc</a> for more information.
      *
      * @param  dimension  the zero based index of axis.
@@ -438,7 +438,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     }
 
     /**
-     * Returns the valid coordinate range of the NetCDF grid coordinates.
+     * Returns the valid coordinate range of the netCDF grid coordinates.
      * The lowest valid grid coordinate is usually zero. The highest valid
      * grid coordinates are usually the length of each axis minus 1.
      *
@@ -517,7 +517,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     }
 
     /**
-     * Workaround rounding errors found in NetCDF files.
+     * Workaround rounding errors found in netCDF files.
      *
      * @since 3.16
      */
@@ -751,7 +751,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
     /**
      * The CRS for geographic coordinates. This is normally a two-dimensional CRS (current
      * {@link NetcdfCRS} implementation has no support for 3D geographic CRS). However a
-     * different dimension (either 1 or more than 2) may happen for unusual NetCDF files.
+     * different dimension (either 1 or more than 2) may happen for unusual netCDF files.
      * <p>
      * This class assumes that the geodetic datum is {@linkplain DefaultGeodeticDatum#WGS84 WGS84}.
      *
@@ -770,7 +770,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
          * exactly 2 elements (current {@link NetcdfCRS} implementation has no support for 3D
          * geographic CRS). However a different number of axes may be provided if the
          * {@link NetcdfCRS#wrap(CoordinateSystem)} method has been unable to split the
-         * NetCDF coordinate system into geodetic, vertical and temporal components.
+         * netCDF coordinate system into geodetic, vertical and temporal components.
          */
         Geographic(final CoordinateSystem cs, final List<CoordinateAxis> netcdfAxis) {
             super(cs, netcdfAxis);
@@ -798,7 +798,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
 
     /**
      * The CRS for projected coordinates. This is normally a two-dimensional CRS. However
-     * a different dimension (either 1 or more than 2) may happen for unusual NetCDF files.
+     * a different dimension (either 1 or more than 2) may happen for unusual netCDF files.
      *
      * <p>This class assumes that the geodetic datum is {@linkplain DefaultGeodeticDatum#WGS84 WGS84}.</p>
      *
@@ -813,7 +813,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         private static final long serialVersionUID = 8353773858669958163L;
 
         /**
-         * The NetCDF projection, or {@code null} if none.
+         * The netCDF projection, or {@code null} if none.
          * Will be created when first needed.
          */
         private transient Projection projection;
@@ -821,7 +821,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         /**
          * Wraps the given coordinate system. The given list of axes should in theory contains
          * exactly 2 elements. However a different number of axes may be provided if the
-         * {@link NetcdfCRS#wrap(CoordinateSystem)} method has been unable to split the NetCDF
+         * {@link NetcdfCRS#wrap(CoordinateSystem)} method has been unable to split the netCDF
          * coordinate system into geodetic, vertical and temporal components.
          */
         Projected(final CoordinateSystem cs, final List<CoordinateAxis> netcdfAxis) {
@@ -847,7 +847,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
 
         /**
          * Returns the base CRS, which is assumed spherical. We presume a sphere rather
-         * than WGS84 because the NetCDF projection framework uses spherical formulas.
+         * than WGS84 because the netCDF projection framework uses spherical formulas.
          */
         @Override
         public GeographicCRS getBaseCRS() {
@@ -855,9 +855,9 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         }
 
         /**
-         * Returns a wrapper around the NetCDF projection.
+         * Returns a wrapper around the netCDF projection.
          *
-         * @throws IllegalStateException if the NetCDF coordinate system does not define a projection.
+         * @throws IllegalStateException if the netCDF coordinate system does not define a projection.
          */
         @Override
         public synchronized Projection getConversionFromBase() {

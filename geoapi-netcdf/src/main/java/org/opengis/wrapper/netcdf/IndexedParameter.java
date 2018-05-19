@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -19,9 +19,9 @@ import org.opengis.parameter.InvalidParameterValueException;
 
 
 /**
- * A NetCDF {@link Parameter} value at a given index. This implementation is used mostly for the
+ * A netCDF {@link Parameter} value at a given index. This implementation is used mostly for the
  * "{@code standard_parallel}" parameter. While OGC is used to store the two standard parallels
- * in two distinct parameters, NetCDF rather stores the two standard parallels in a single array
+ * in two distinct parameters, netCDF rather stores the two standard parallels in a single array
  * of length 2. This {@code IndexedParameter} implementation wraps such {@code NetcdfParameter},
  * adds the suffix "{@code [1]}" or "{@code [2]}" to the parameter name and represents the value
  * at the corresponding index as a single scalar.
@@ -42,7 +42,7 @@ final class IndexedParameter extends NetcdfParameter<Double> {
     private final int index;
 
     /**
-     * Creates a new wrapper for the given NetCDF parameter.
+     * Creates a new wrapper for the given netCDF parameter.
      * The given arguments shall comply to the following conditions:
      *
      * <ul>
@@ -71,8 +71,8 @@ final class IndexedParameter extends NetcdfParameter<Double> {
 
     /**
      * Returns the parameter name declared at construction time. This is different than the
-     * parameter name of the NetCDF object, because this instance has a {"[1]"} or {"[2]"}
-     * suffix after the NetCDF name.
+     * parameter name of the netCDF object, because this instance has a {"[1]"} or {"[2]"}
+     * suffix after the netCDF name.
      */
     @Override
     public String getCode() {
@@ -114,7 +114,7 @@ final class IndexedParameter extends NetcdfParameter<Double> {
 
     /**
      * Sets this parameter to the given value. This method modify the internal array of the
-     * NetCDF {@link Parameter} instance. This is usually not a recommended practice, since
+     * netCDF {@link Parameter} instance. This is usually not a recommended practice, since
      * those {@code Parameter} are usually considered immutable. However in our case we
      * really want to modify existing instance without creating new instance, because the
      * same instance need to be shared by many {@code IndexedParameter} wrappers: one for

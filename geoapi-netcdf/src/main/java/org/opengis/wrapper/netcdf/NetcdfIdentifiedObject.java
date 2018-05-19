@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -31,16 +31,16 @@ import org.opengis.referencing.IdentifiedObject;
 
 
 /**
- * An {@link IdentifiedObject} abstract base class backed by some NetCDF object.
- * All methods in this class delegate their work to the wrapped NetCDF object.
+ * An {@link IdentifiedObject} abstract base class backed by some netCDF object.
+ * All methods in this class delegate their work to the wrapped netCDF object.
  * Consequently any change in the wrapped object is immediately reflected in this
  * {@code NetcdfIdentifiedObject} instance. However users are encouraged to not
  * change the wrapped object after construction, since GeoAPI referencing objects
  * are expected to be immutable.
  *
- * <p>This base class assumes that NetCDF objects have a single name and no alias.
+ * <p>This base class assumes that netCDF objects have a single name and no alias.
  * This assumption allows us to implement directly the {@link Identifier} interface.
- * The NetCDF object name is returned by the {@link #getCode()} method.</p>
+ * The netCDF object name is returned by the {@link #getCode()} method.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -59,14 +59,14 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
     }
 
     /**
-     * Returns the wrapped NetCDF object on which operations are delegated.
+     * Returns the wrapped netCDF object on which operations are delegated.
      *
-     * @return the wrapped NetCDF object on which operations are delegated.
+     * @return the wrapped netCDF object on which operations are delegated.
      */
     public abstract Object delegate();
 
     /**
-     * Returns the NetCDF citation.
+     * Returns the netCDF citation.
      */
     @Override
     public Citation getAuthority() {
@@ -74,17 +74,17 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
     }
 
     /**
-     * Returns the {@code "NetCDF"} constant, which is used as the code space.
+     * Returns the {@code "netCDF"} constant, which is used as the code space.
      */
     @Override
     public String getCodeSpace() {
-        return "NetCDF";
+        return "netCDF";
     }
 
     /**
-     * Returns the version of the NetCDF library. The default implementation
+     * Returns the version of the netCDF library. The default implementation
      * fetches this information from the {@code META-INF/MANIFEST.MF} file in
-     * the NetCDF JAR file.
+     * the netCDF JAR file.
      */
     @Override
     public String getVersion() {
@@ -94,7 +94,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
 
     /**
      * Returns a code which identify this instance. This is typically the value
-     * returned by the {@code getName()} method of the wrapped NetCDF object.
+     * returned by the {@code getName()} method of the wrapped netCDF object.
      */
     @Override
     public abstract String getCode();
@@ -119,7 +119,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
     }
 
     /**
-     * Returns an empty set, since NetCDF objects don't provide other identifiers than the name.
+     * Returns an empty set, since netCDF objects don't provide other identifiers than the name.
      */
     @Override
     public Set<Identifier> getIdentifiers() {
@@ -139,7 +139,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
 
     /**
      * Returns the area or region or timeframe in which this object is valid, or {@code null} if
-     * none. The default implementation returns a geographic extent for the world, since most NetCDF
+     * none. The default implementation returns a geographic extent for the world, since most netCDF
      * objects except {@link ucar.unidata.geoloc.Projection} are not restricted to a particular area.
      *
      * @return the valid domain, or {@code null} if not available.
@@ -153,7 +153,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
 
     /**
      * Returns the description of domain of usage, or limitations of usage, for which this object
-     * is valid. The default implementation returns {@code null} in all cases, since NetCDF objects
+     * is valid. The default implementation returns {@code null} in all cases, since netCDF objects
      * don't specify their scope.
      *
      * <p>Scope is a
@@ -197,7 +197,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
     }
 
     /**
-     * Returns the NetCDF object description, or {@code null} if none.
+     * Returns the netCDF object description, or {@code null} if none.
      * The default implementation returns {@code null}.
      *
      * @return the remarks, or {@code null} if none.
@@ -212,7 +212,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
     /**
      * Compares this object with the given object for equality. The default implementation
      * returns {@code true} if the given object is non-null, wraps an object of the same
-     * class than this object and the wrapped NetCDF objects are equal.
+     * class than this object and the wrapped netCDF objects are equal.
      *
      * @param  other  the other object to compare with this object.
      * @return {@code true} if both objects are equal.
@@ -230,7 +230,7 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
 
     /**
      * Returns a hash code value for this object. The default implementation
-     * derives a value from the code returned by the wrapped NetCDF object.
+     * derives a value from the code returned by the wrapped netCDF object.
      */
     @Override
     public int hashCode() {

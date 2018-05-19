@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -29,9 +29,9 @@ import org.opengis.referencing.crs.GeographicCRS;
 
 
 /**
- * An {@link Ellipsoid} implementation backed by a NetCDF {@link Earth} object.
+ * An {@link Ellipsoid} implementation backed by a netCDF {@link Earth} object.
  * This class implements also the {@link GeographicCRS} interface for allowing
- * use of CRS defined only by the NetCDF {@code Earth} object.
+ * use of CRS defined only by the netCDF {@code Earth} object.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -68,14 +68,14 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
     public static final NetcdfEllipsoid SPHERE = new NetcdfEllipsoid(new Earth(Earth.getRadius()));
 
     /**
-     * The NetCDF earth wrapped by this {@code NetcdfEllipsoid} instance.
+     * The netCDF earth wrapped by this {@code NetcdfEllipsoid} instance.
      */
     private final Earth earth;
 
     /**
-     * Creates a new {@code NetcdfEllipsoid} object wrapping the given NetCDF earth.
+     * Creates a new {@code NetcdfEllipsoid} object wrapping the given netCDF earth.
      *
-     * @param earth The NetCDF earth to wrap.
+     * @param earth The netCDF earth to wrap.
      */
     public NetcdfEllipsoid(final Earth earth) {
         Objects.requireNonNull(earth);
@@ -83,7 +83,7 @@ public class NetcdfEllipsoid extends NetcdfIdentifiedObject
     }
 
     /**
-     * Returns the wrapped NetCDF earth.
+     * Returns the wrapped netCDF earth.
      *
      * @return the earth representation from UCAR library.
      */
