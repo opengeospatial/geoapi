@@ -35,6 +35,7 @@ import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedHashMap;
@@ -50,6 +51,7 @@ import java.lang.reflect.Type;
 import java.lang.reflect.WildcardType;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Metadata;
+import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.util.ControlledVocabulary;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -155,6 +157,11 @@ public class ContentVerifier {
     }
 
     /**
+     * Properties to ignore. They are specified by user with calls to {@link #addPropertyToIgnore(Class, String)}.
+     */
+    private final Map<Class<?>, Set<String>> ignore;
+
+    /**
      * Creates a new dataset content verifier.
      */
     public ContentVerifier() {
@@ -163,6 +170,7 @@ public class ContentVerifier {
         metadataValues = new TreeMap<>();
         mismatches     = new ArrayList<>();
         missings       = new ArrayList<>();
+        ignore         = new HashMap<>();
     }
 
     /**
@@ -175,6 +183,34 @@ public class ContentVerifier {
         metadataValues.clear();
         mismatches.clear();
         missings.clear();
+        ignore.clear();
+    }
+
+    /**
+     * Adds a metadata property to ignore. The property is identified by a GeoAPI interface and the
+     * {@link UML} identifier of a property in that interface. Properties to ignore must be declared
+     * before to invoke {@code addMetadataToVerify(…)}.
+     *
+     * @param  type      GeoAPI interface containing the property to ignore.
+     * @param  property  UML identifier of a property in the given interface.
+     */
+    public void addPropertyToIgnore(final Class<?> type, final String property) {
+        Objects.requireNonNull(type);
+        Objects.requireNonNull(property);
+        Set<String> properties = ignore.get(type);
+        if (properties == null) {
+            properties = new HashSet<>();
+            ignore.put(type, properties);               // TODO: use Map.compureIfAbsent with JDK8.
+        }
+        properties.add(property);
+    }
+
+    /**
+     * Returns {@code true} if the given property shall be ignored.
+     */
+    private boolean isIgnored(final Class<?> type, final UML property) {
+        final Set<String> properties = ignore.get(type);
+        return (properties != null) && properties.contains(property.identifier());
     }
 
     /**
@@ -261,10 +297,11 @@ public class ContentVerifier {
      * @throws InvocationTargetException if an error occurred while invoking client code.
      * @throws IllegalStateException if a different metadata value is already presents for the current {@link #path} key.
      */
-    private void addPropertyValue(final Class<?> type, final Object obj) throws InvocationTargetException, IllegalAccessException {
-        if ( InternationalString.class.isAssignableFrom(type) ||        // Most common case first.
-            ControlledVocabulary.class.isAssignableFrom(type) ||
-            !type.isAnnotationPresent(UML.class))
+    private void addPropertyValue(Class<?> type, final Object obj) throws InvocationTargetException, IllegalAccessException {
+        if (InternationalString.class.isAssignableFrom(type) ||        // Most common case first.
+           ControlledVocabulary.class.isAssignableFrom(type) ||
+                    GenericName.class.isAssignableFrom(type) ||
+                       !type.isAnnotationPresent(UML.class))
         {
             final String key = path.toString();
             final Object previous = metadataValues.put(key, obj);
@@ -276,43 +313,50 @@ public class ContentVerifier {
             final Element recursivityGuard = new Element(type, obj);
             if (visited.add(recursivityGuard)) {
                 final int pathElementPosition = path.length();
-                for (final Method getter : specialized(type, obj.getClass()).getMethods()) {
+                type = specialized(type, obj.getClass());               // Example: Identification may actually be DataIdentification
+                for (final Method getter : type.getMethods()) {
+                    if (getter.getParameterTypes().length != 0) {       // TODO: use getParameterCount() with JDK8.
+                        continue;
+                    }
                     if (getter.isAnnotationPresent(Deprecated.class)) {
                         continue;
                     }
                     final UML spec = getter.getAnnotation(UML.class);
-                    if (spec != null && getter.getParameterTypes().length == 0) {       // TODO: use getParameterCount() with JDK8.
-                        Class<?> valueType = getter.getReturnType();
-                        if (valueType != Void.TYPE) {
-                            final Object value = getter.invoke(obj, (Object[]) null);
-                            if (value != null) {
-                                final Iterator<?> values;
-                                if (Iterable.class.isAssignableFrom(valueType)) {
-                                    values = ((Collection<?>) value).iterator();
-                                    if (!values.hasNext()) continue;
-                                } else {
-                                    values = null;
-                                }
-                                if (pathElementPosition != 0) {
-                                    path.append('.');
-                                }
-                                path.append(spec.identifier());
-                                if (values == null) {
-                                    addPropertyValue(valueType, value);
-                                } else {
-                                    valueType = boundOfParameterizedProperty(getter.getGenericReturnType());
-                                    final int indexPosition = path.append('[').length();
-                                    int i = 0;
-                                    do {
-                                        path.append(i++).append(']');
-                                        addPropertyValue(valueType, values.next());
-                                        path.setLength(indexPosition);
-                                    } while (values.hasNext());
-                                }
-                                path.setLength(pathElementPosition);
-                            }
-                        }
+                    if (spec == null || isIgnored(type, spec)) {
+                        continue;
                     }
+                    Class<?> valueType = getter.getReturnType();
+                    if (Void.TYPE.equals(valueType)) {
+                        continue;
+                    }
+                    final Object value = getter.invoke(obj, (Object[]) null);
+                    if (value == null) {
+                        continue;
+                    }
+                    final Iterator<?> values;
+                    if (Iterable.class.isAssignableFrom(valueType)) {
+                        values = ((Collection<?>) value).iterator();
+                        if (!values.hasNext()) continue;
+                    } else {
+                        values = null;
+                    }
+                    if (pathElementPosition != 0) {
+                        path.append('.');
+                    }
+                    path.append(spec.identifier());
+                    if (values == null) {
+                        addPropertyValue(valueType, value);
+                    } else {
+                        valueType = boundOfParameterizedProperty(getter.getGenericReturnType());
+                        final int indexPosition = path.append('[').length();
+                        int i = 0;
+                        do {
+                            path.append(i++).append(']');
+                            addPropertyValue(valueType, values.next());
+                            path.setLength(indexPosition);
+                        } while (values.hasNext());
+                    }
+                    path.setLength(pathElementPosition);
                 }
                 if (!visited.remove(recursivityGuard)) {
                     // Should never happen unless the map is modified concurrently in another thread.
@@ -473,7 +517,7 @@ public class ContentVerifier {
      *
      * @param  path           path of the property to compare.
      * @param  expectedValue  expected value for the property at the given path.
-     * @param  others         other ({@code path}, {@code expectedValue}) pairs.
+     * @param  others         other ({@code path}, {@code expectedValue}) pairs, in any order.
      */
     public void assertMetadataEquals(final String path, final Object expectedValue, final Object... others) {
         if (!compareMetadata(path, expectedValue, others)) {

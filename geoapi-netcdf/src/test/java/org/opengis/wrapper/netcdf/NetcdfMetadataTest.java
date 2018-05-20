@@ -26,6 +26,7 @@ import org.opengis.metadata.citation.OnLineFunction;
 import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.metadata.spatial.SpatialRepresentationType;
 import org.opengis.metadata.identification.TopicCategory;
+import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.test.metadata.RootValidator;
 import org.opengis.test.Validators;
 import org.opengis.test.dataset.TestData;
@@ -122,6 +123,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             validator.validate(metadata);
             verifier.addMetadataToVerify(metadata);
             verifier.assertMetadataEquals(
+                "metadataScope[0].resourceScope",                                          ScopeCode.DATASET,
                 "identificationInfo[0].abstract",                                          "Global, two-dimensional model data",
                 "identificationInfo[0].purpose",                                           "GeoAPI conformance tests",
                 "identificationInfo[0].citation.title",                                    "Test data from Sea Surface Temperature Analysis Model",
@@ -138,8 +140,8 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
                 "identificationInfo[0].extent[0].geographicElement[0].extentTypeCode",     Boolean.TRUE,
                 "identificationInfo[0].extent[0].geographicElement[0].westBoundLongitude", -180.0,
                 "identificationInfo[0].extent[0].geographicElement[0].eastBoundLongitude",  180.0,
-                "identificationInfo[0].extent[0].geographicElement[0].southBoundLatitude", -90.0,
-                "identificationInfo[0].extent[0].geographicElement[0].northBoundLatitude",  90.0,
+                "identificationInfo[0].extent[0].geographicElement[0].southBoundLatitude",  -90.0,
+                "identificationInfo[0].extent[0].geographicElement[0].northBoundLatitude",   90.0,
                 "identificationInfo[0].spatialRepresentationType[0]",                      SpatialRepresentationType.GRID,
                 "identificationInfo[0].supplementalInformation",                           "For testing purpose only.",
                 "metadataStandard[0].title",                                               "ISO 19115-2 Geographic Information - Metadata Part 2 Extensions for imagery and gridded data",
@@ -161,6 +163,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
             validator.validate(metadata);
             verifier.addMetadataToVerify(metadata);
             verifier.assertMetadataEquals(
+                "metadataScope[0].resourceScope",                                          ScopeCode.DATASET,
                 "identificationInfo[0].abstract",                                          "Hourly, three-dimensional diagnosis of the icing environment.",
                 "identificationInfo[0].purpose",                                           "GeoAPI conformance tests",
                 "identificationInfo[0].citation.title",                                    "Test data from Current Icing Product (CIP)",

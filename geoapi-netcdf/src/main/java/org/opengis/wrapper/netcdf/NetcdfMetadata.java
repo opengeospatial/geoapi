@@ -556,20 +556,14 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Returns the concatenation of {@linkplain #getAuthority() naming authority},
-     * the {@code ':'} character and the {@linkplain #getCode() identifier code}.
-     * One or both of the authority and the code can be null.
-     *
-     * @return the identifier code in the naming authority space, or {@code null} if null.
+     * Encapsulates {@link ScopeCode#DATASET}.
      */
     @Override
-    public String toString() {
-        final String code = getCode();
-        final String codeSpace = getCodeSpace();
-        if (codeSpace == null) {
-            return code;
-        }
-        return (code != null) ? codeSpace + ':' + code : codeSpace;
+    public Collection<? extends MetadataScope> getMetadataScopes() {
+        return Collections.singleton(new MetadataScope() {
+            @Override public ScopeCode getResourceScope() {return ScopeCode.DATASET;}
+            @Override public InternationalString getName() {return null;}
+        });
     }
 
 
@@ -797,7 +791,6 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     /** Defaults to an empty set. */ @Override public Collection<Citation>                     getAlternativeMetadataReferences() {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<PortrayalCatalogueReference>  getPortrayalCatalogueInfo()        {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<Distribution>                 getDistributionInfo()              {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<MetadataScope>                getMetadataScopes()                {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<InternationalString>          getDeliveryPoints()                {return Collections.emptySet();}
     /** Defaults to {@code null}. */ @Override public InternationalString                      getCity()                          {return null;}
     /** Defaults to {@code null}. */ @Override public InternationalString                      getAdministrativeArea()            {return null;}
@@ -931,5 +924,22 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     @Deprecated
     public String getMetadataStandardVersion() {
         return first(getMetadataStandards()).getEdition().toString();
+    }
+
+    /**
+     * Returns the concatenation of {@linkplain #getAuthority() naming authority},
+     * the {@code ':'} character and the {@linkplain #getCode() identifier code}.
+     * One or both of the authority and the code can be null.
+     *
+     * @return the identifier code in the naming authority space, or {@code null} if null.
+     */
+    @Override
+    public String toString() {
+        final String code = getCode();
+        final String codeSpace = getCodeSpace();
+        if (codeSpace == null) {
+            return code;
+        }
+        return (code != null) ? codeSpace + ':' + code : codeSpace;
     }
 }
