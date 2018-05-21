@@ -62,8 +62,8 @@ import static org.junit.Assert.*;
  *
  * @see org.opengis.test.Assert#assertSampleValuesEqual(String, RenderedImage, RenderedImage, double)
  *
- * @author Rémi Marechal (Geomatys).
- * @author Martin Desruisseaux (Geomatys).
+ * @author  Rémi Marechal (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
@@ -459,6 +459,8 @@ public strictfp class PixelIterator {
 
     /**
      * Returns a string representation of this iterator position for debugging purpose.
+     *
+     * @return a string representation if this iterator position.
      */
     @Override
     public String toString() {

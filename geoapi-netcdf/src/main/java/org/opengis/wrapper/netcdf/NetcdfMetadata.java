@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -13,20 +13,22 @@
  */
 package org.opengis.wrapper.netcdf;
 
+import java.io.File;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.Locale;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
 import java.util.Objects;
+import java.util.Set;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.nio.charset.Charset;
 import ucar.nc2.NetcdfFile;
 import ucar.nc2.Attribute;
 import ucar.nc2.time.Calendar;
 import ucar.nc2.time.CalendarDateFormatter;
+import ucar.nc2.constants.ACDD;
 
 import org.opengis.metadata.*;
 import org.opengis.metadata.extent.*;
@@ -46,53 +48,44 @@ import org.opengis.temporal.Duration;
 
 
 /**
- * A {@link Metadata} implementation backed by a NetCDF {@link NetcdfFile} object.
- * All getter methods fetch their values from the NetCDF file, so change to the NetCDF
+ * A {@link Metadata} implementation backed by a netCDF {@link NetcdfFile} object.
+ * All getter methods fetch their values from the netCDF file, so change to the netCDF
  * file content will be immediately reflected in this class.
  *
  * <p>Unless otherwise noted in the javadoc, this implementation defines a one-to-one relationship
- * between the metadata attributes and NetCDF attributes. This simple model allows us to implement
+ * between the metadata attributes and netCDF attributes. This simple model allows us to implement
  * relevant interfaces in a single class. Note that this simplification may not be appropriate for
  * real world usages — the purpose of this class is mainly to provide a starting point for your
  * own implementations.</p>
  *
  * <p>Some interfaces implemented by this class or its component objects:</p>
- *
  * <ul>
  *   <li>{@link Metadata} is the root interface.</li>
- *
  *   <li>{@link Identifier} implements the value returned by {@link Citation#getIdentifiers()}.
  *          <ul><li>NetCDF attributes: {@code id}, {@code naming_authority}.
- *          </li></ul><br></li>
- *
+ *          </li></ul></li>
  *   <li>{@link DataIdentification} implements the value returned by {@link Metadata#getIdentificationInfo()}.
  *          <ul><li>NetCDF attributes: {@code summary}, {@code purpose}, {@code topic_category}, {@code cdm_data_type},
  *          {@code comment}, {@code acknowledgment}.
- *          </li></ul><br></li>
- *
+ *          </li></ul></li>
  *   <li>{@link CitationDate} implements the value returned by {@link Metadata#getDateInfo()}.
  *          <ul><li>NetCDF attributes: {@code metadata_creation}.
- *          </li></ul><br></li>
- *
+ *          </li></ul></li>
  *   <li>{@link Citation} implements the value returned by {@link Identification#getCitation()},
  *          which contain only the creator. This simple implementation ignores the publisher and contributors.
  *          <ul><li>NetCDF attributes: {@code title}.
- *          </li></ul><br></li>
- *
+ *          </li></ul></li>
  *   <li>{@link Responsibility} implements the value returned by {@link Citation#getCitedResponsibleParties()},
  *          which contain only the creator and the institution.
  *          <ul><li>NetCDF attributes: {@code creator_name}, {@code institution}.
- *          </li></ul><br></li>
- *
+ *          </li></ul></li>
  *   <li>{@link Individual} implements the value returned by {@link Responsibility#getParties()},
  *          which contain only the creator. This simple implementation ignores the publisher and contributors.
  *          <ul><li>NetCDF attributes: {@code creator_name}.
- *          </li></ul><br></li>
- *
+ *          </li></ul></li>
  *   <li>{@link Address} implements the value returned by {@link Contact#getAddress()}.
  *          <ul><li>NetCDF attributes: {@code creator_email}.
- *          </li></ul><br></li>
- *
+ *          </li></ul></li>
  *   <li>{@link GeographicBoundingBox} implements the value returned by {@link Extent#getGeographicElements()}.
  *          <ul><li>NetCDF attributes: {@code geospatial_lon_min}, {@code geospatial_lon_max},
  *          {@code geospatial_lat_min}, {@code geospatial_lat_max}.
@@ -103,7 +96,7 @@ import org.opengis.temporal.Duration;
  * identifiable by the first words in their Javadoc:</p>
  *
  * <ul>
- *   <li>Each method documented as “<cite><b>Returns</b> foo…</cite>” maps directly to a NetCDF attribute
+ *   <li>Each method documented as “<cite><b>Returns</b> foo…</cite>” maps directly to a netCDF attribute
  *       or hard-coded non-empty value.</li>
  *   <li>Each method documented as “<cite><b>Encapsulates</b> foo…</cite>” returns an object (often {@code this})
  *       providing the getter methods for a group of attributes. This encapsulation is done for compliance with
@@ -112,38 +105,48 @@ import org.opengis.temporal.Duration;
  * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 4.0
+ * @version 3.1
  * @since   3.1
  *
  * @see <a href="http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/metadata/DataDiscoveryAttConvention.html">NetCDF Attribute Convention for Dataset Discovery</a>
  */
-public class NetcdfMetadata implements Metadata, DataIdentification, Identifier, CitationDate,
-        Responsibility, Individual, Contact, Address, Extent, GeographicBoundingBox
+public class NetcdfMetadata implements Metadata, DataIdentification, Identifier, Citation, CitationDate,
+        OnlineResource, Address, Extent, GeographicBoundingBox     // Do not implement Party because can be Individual or Organisation.
 {
     /**
-     * The hierarchy level returned by {@link #getHierarchyLevels()}.
-     */
-    private static final Collection<ScopeCode> HIERARCHY_LEVEL = Collections.singleton(ScopeCode.DATASET);
-
-    /**
-     * The NetCDF file given to the constructor.
+     * The netCDF file given to the constructor.
      */
     protected final NetcdfFile file;
 
     /**
-     * A singleton containing only {@code this}.
-     */
-    private final Collection<NetcdfMetadata> self;
-
-    /**
-     * Creates a new metadata object as a wrapper around the given NetCDF file.
+     * Creates a new metadata object as a wrapper around the given netCDF file.
      *
-     * @param file The NetCDF file.
+     * @param file  the netCDF file.
      */
     public NetcdfMetadata(final NetcdfFile file) {
         Objects.requireNonNull(file);
         this.file = file;
-        self = Collections.singleton(this);
+    }
+
+    /**
+     * Returns {@code this} wrapped in a singleton.
+     */
+    private Collection<NetcdfMetadata> self() {
+        return Collections.singleton(this);
+    }
+
+    /**
+     * Returns {@code this} wrapped in a singleton if the given flag is {@code true}, or an empty set otherwise.
+     */
+    private Collection<NetcdfMetadata> self(final boolean flag) {
+        return flag ? Collections.singleton(this) : Collections.<NetcdfMetadata>emptySet();
+    }
+
+    /**
+     * Returns {@code true} if the netCDF file contains an attribute of the given name.
+     */
+    private boolean hasAttribute(final String name) {
+        return file.findGlobalAttributeIgnoreCase(name) != null;
     }
 
     /**
@@ -237,7 +240,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * @return the parsed date.
      * @throws IllegalArgumentException if the given date can not be parsed.
      */
-    static Date parseDate(final String value) throws IllegalArgumentException {
+    private static Date parseDate(final String value) throws IllegalArgumentException {
         return new Date(CalendarDateFormatter.isoStringToCalendarDate(Calendar.proleptic_gregorian, value).getMillis());
     }
 
@@ -270,17 +273,29 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     // └─────────────────────────────────────────────────────────────────────────────────────────┘
 
     /**
-     * Returns the NetCDF "{@code naming_authority}" attribute value, or {@code null} if none.
+     * Encapsulates the {@linkplain #getCodeSpace() code space} in a citation.
+     *
+     * @return the authority for the dataset described by this metadata, or {@code null}.
+     */
+    @Override
+    public Citation getAuthority() {
+        final String naming = getCodeSpace();
+        return (naming != null) ? new SimpleCitation(naming) : null;
+    }
+
+    /**
+     * Returns the netCDF {@value ACDD#naming_authority} attribute value, or {@code null} if none.
      *
      * @see #getMetadataIdentifier()
      */
     @Override
     public String getCodeSpace() {
-        return getString("naming_authority");
+        return getString(ACDD.naming_authority);
     }
 
     /**
-     * Returns the NetCDF "{@code id}" attribute value, or the {@linkplain NetcdfFile#getId() file identifier},
+     * Returns the netCDF {@value ACDD#id} attribute value,
+     * or the {@linkplain NetcdfFile#getId() file identifier},
      * or {@code null} if none.
      *
      * @see NetcdfFile#getId()
@@ -288,22 +303,43 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     @Override
     public String getCode() {
-        final String id = getString("id");
+        final String id = getString(ACDD.id);
         return (id != null) ? id : file.getId();
     }
 
     /**
-     * Returns the NetCDF "{@code title}" attribute value, or the
-     * {@linkplain NetcdfFile#getTitle() file title}, or {@code null} if none.
+     * Returns the name of the resource, as the filename without path and suffix.
      *
-     * <p><b>Specified by:</b> {@link Citation}</p>
+     * @return the name of the resource, or {@code null} if none.
+     */
+    @Override
+    public String getName() {
+        String name = file.getLocation();
+        if (name == null) {
+            return null;
+        }
+        int end = name.lastIndexOf('.');
+        if (end < 0) end = name.length();
+        final int start = name.lastIndexOf('/', end);
+        if (start >= 0) {
+            name = name.substring(start + 1, end);
+        } else {
+            name = new File(name.substring(0, end)).getName();
+        }
+        return name.replace('_', ' ');
+    }
+
+    /**
+     * Returns the netCDF {@value ACDD#title} attribute value, or the
+     * {@linkplain NetcdfFile#getTitle() file title}, or {@code null} if none.
      *
      * @return the title, or {@code null} if none.
      *
      * @see NetcdfFile#getTitle()
      */
+    @Override
     public InternationalString getTitle() {
-        String title = getString("title");
+        String title = getString(ACDD.title);
         if (title == null) {
             title = file.getTitle();
             if (title == null) {
@@ -314,15 +350,15 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Returns the NetCDF "{@code summary}" attribute value, or {@code null} if none.
+     * Returns the netCDF {@value ACDD#summary} attribute value, or {@code null} if none.
      */
     @Override
     public InternationalString getAbstract() {
-        return getInternationalString("summary");
+        return getInternationalString(ACDD.summary);
     }
 
     /**
-     * Returns the NetCDF "{@code purpose}" attribute value, or {@code null} if none.
+     * Returns the netCDF {@code "purpose"} attribute value, or {@code null} if none.
      */
     @Override
     public InternationalString getPurpose() {
@@ -330,87 +366,92 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Returns the NetCDF "{@code topic_category}" attribute value, or an empty set if none.
+     * Returns the netCDF {@code "topic_category"} attribute value, or an empty set if none.
      */
     @Override
     public Collection<TopicCategory> getTopicCategories() {
-        return singleton(TopicCategory.valueOf(getUpperCase("topic_category")));
+        final String value = getUpperCase("topic_category");
+        if (value == null) return Collections.emptySet();
+        final Set<TopicCategory> categories = new HashSet<>();
+        for (final String element : value.split(",")) {
+            categories.add(TopicCategory.valueOf(element.replace(' ', '_').trim()));
+        }
+        return categories;
     }
 
     /**
-     * Returns the NetCDF "{@code cdm_data_type}" attribute value, or an empty set if none.
+     * Returns the netCDF {@value ACDD#cdm_data_type} attribute value, or an empty set if none.
      */
     @Override
     public Collection<SpatialRepresentationType> getSpatialRepresentationTypes() {
-        return singleton(SpatialRepresentationType.valueOf(getUpperCase("cdm_data_type")));
+        return singleton(SpatialRepresentationType.valueOf(getUpperCase(ACDD.cdm_data_type)));
     }
 
     /**
-     * Returns {@link Role#ORIGINATOR}, because the citation encapsulated by this implementation is only
-     * for the creator. The contributors and publishers are not supported by this simple implementation.
-     */
-    @Override
-    public Role getRole() {
-        return Role.ORIGINATOR;
-    }
-
-    /**
-     * Returns the NetCDF "{@code institution}" attribute value, or {@code null} if none.
-     */
-    InternationalString getOrganisationName() {
-        return getInternationalString("institution");
-    }
-
-    /**
-     * Returns the NetCDF "{@code creator_name}" attribute value, or {@code null} if none.
-     */
-    @Override
-    public InternationalString getName() {
-        return getInternationalString("creator_name");
-    }
-
-    /**
-     * Returns the NetCDF "{@code creator_email}" attribute value, or {@code null} if none.
+     * Returns the netCDF {@value ACDD#creator_email} attribute value, or {@code null} if none.
      */
     @Override
     public Collection<String> getElectronicMailAddresses() {
-        return singleton(getString("creator_email"));
+        return singleton(getString(ACDD.creator_email));
     }
 
     /**
-     * Returns the NetCDF "{@code acknowledgment}" attribute value, or an empty set if none.
+     * Returns the netCDF {@code "acknowledgment"} attribute value, or an empty set if none.
      */
     @Override
     public Collection<String> getCredits() {
-        return singleton(getString("acknowledgment"));
+        String value = getString("acknowledgment");
+        if (value == null) {
+            value = getString(ACDD.acknowledgement);
+        }
+        return singleton(value);
     }
 
     /**
      * Returns {@code true} if this metadata has a date.
      */
-    final boolean hasDate(final boolean data) {
-        return getString(data ? "date_created" : "metadata_creation") != null;
+    private boolean hasDate(final boolean data) {
+        return hasAttribute(data ? ACDD.date_created : "metadata_creation");
     }
 
     /**
-     * Returns the NetCDF "{@code metadata_creation}" attribute value, or {@code null} if none.
-     * This is the time when metadata have been created (not necessarily the time when data have
-     * been collected).
+     * Encapsulates the netCDF {@code "metadata_creation"} attribute value, or {@code null} if none.
+     * This is the time when metadata have been created (not necessarily the time when data have been collected).
      */
     @Override
-    public Date getDate() {
-        return getDate("metadata_creation");
+    public Collection<? extends CitationDate> getDateInfo() {
+        if (hasDate(false)) {
+            return Collections.singleton(new CitationDate() {
+                @Override public Date getDate() {
+                    return NetcdfMetadata.this.getDate("metadata_creation");
+                }
+                @Override public DateType getDateType() {
+                    return DateType.CREATION;
+                }
+            });
+        } else {
+            return Collections.emptySet();
+        }
     }
 
     /**
-     * Returns the NetCDF "{@code date_created}" attribute value, or {@code null} if none.
+     * Encapsulates the netCDF {@value ACDD#date_created} attribute value.
+     */
+    @Override
+    public Collection<? extends CitationDate> getDates() {
+        return self(hasDate(true));
+    }
+
+    /**
+     * Returns the netCDF {@value ACDD#date_created} attribute value, or {@code null} if none.
      * This is the creation date of the actual dataset, not necessarily the same that the
      * metadata creation time.
      *
      * @return the creation date, or {@code null} if none.
      */
-    public Date getDatasetDate() {
-        return getDate("date_created");
+    @Override
+    public Date getDate() {
+        return getDate(ACDD.date_created);
     }
 
     /**
@@ -424,35 +465,35 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Returns the NetCDF "{@code geospatial_lon_min}" attribute value, or {@linkplain Double#NaN NaN} if none.
+     * Returns the netCDF {@value ACDD#LON_MIN} attribute value, or {@linkplain Double#NaN NaN} if none.
      */
     @Override
     public double getWestBoundLongitude() {
-        return getDouble("geospatial_lon_min");
+        return getDouble(ACDD.LON_MIN);
     }
 
     /**
-     * Returns the NetCDF "{@code geospatial_lon_max}" attribute value, or {@linkplain Double#NaN NaN} if none.
+     * Returns the netCDF {@value ACDD#LON_MAX} attribute value, or {@linkplain Double#NaN NaN} if none.
      */
     @Override
     public double getEastBoundLongitude() {
-        return getDouble("geospatial_lon_max");
+        return getDouble(ACDD.LON_MAX);
     }
 
     /**
-     * Returns the NetCDF "{@code geospatial_lat_min}" attribute value, or {@linkplain Double#NaN NaN} if none.
+     * Returns the netCDF {@code ACDD#LAT_MIN} attribute value, or {@linkplain Double#NaN NaN} if none.
      */
     @Override
     public double getSouthBoundLatitude() {
-        return getDouble("geospatial_lat_min");
+        return getDouble(ACDD.LAT_MIN);
     }
 
     /**
-     * Returns the NetCDF "{@code geospatial_lat_max}" attribute value, or {@linkplain Double#NaN NaN} if none.
+     * Returns the netCDF {@value ACDD#LAT_MAX} attribute value, or {@linkplain Double#NaN NaN} if none.
      */
     @Override
     public double getNorthBoundLatitude() {
-        return getDouble("geospatial_lat_max");
+        return getDouble(ACDD.LAT_MAX);
     }
 
     /**
@@ -464,12 +505,19 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Returns the NetCDF {@linkplain NetcdfFile#getLocation() file location}, or {@code null} if none.
-     *
-     * <p><b>Specified by:</b> {@link OnlineResource}</p>
-     *
-     * @return the file creation, or {@code null} if none.
+     * Encapsulates the netCDF {@linkplain NetcdfFile#getLocation() file location}.
      */
+    @Override
+    public Collection<? extends OnlineResource> getOnlineResources() {
+        return self(file.getLocation() != null);
+    }
+
+    /**
+     * Returns the netCDF {@linkplain NetcdfFile#getLocation() file location}, or {@code null} if none.
+     *
+     * @return the file path, or {@code null} if none.
+     */
+    @Override
     public URI getLinkage() {
         final String location = file.getLocation();
         if (location != null) try {
@@ -481,11 +529,21 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Returns the NetCDF "{@code comment}" attribute value, or {@code null} if none.
+     * Returns the {@code getLinkage()} purpose, which is to access the file.
+     *
+     * @return {@link OnLineFunction#FILE_ACCESS}.
+     */
+    @Override
+    public OnLineFunction getFunction() {
+        return OnLineFunction.FILE_ACCESS;
+    }
+
+    /**
+     * Returns the netCDF {@value ACDD#comment} attribute value, or {@code null} if none.
      */
     @Override
     public InternationalString getSupplementalInformation() {
-        return getInternationalString("comment");
+        return getInternationalString(ACDD.comment);
     }
 
     /**
@@ -498,20 +556,14 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Returns the concatenation of {@linkplain #getAuthority() naming authority},
-     * the {@code ':'} character and the {@linkplain #getCode() identifier code}.
-     * One or both of the authority and the code can be null.
-     *
-     * @return the identifier code in the naming authority space, or {@code null} if null.
+     * Encapsulates {@link ScopeCode#DATASET}.
      */
     @Override
-    public String toString() {
-        final String code = getCode();
-        final String codeSpace = getCodeSpace();
-        if (codeSpace == null) {
-            return code;
-        }
-        return (code != null) ? codeSpace + ':' + code : codeSpace;
+    public Collection<? extends MetadataScope> getMetadataScopes() {
+        return Collections.singleton(new MetadataScope() {
+            @Override public ScopeCode getResourceScope() {return ScopeCode.DATASET;}
+            @Override public InternationalString getName() {return null;}
+        });
     }
 
 
@@ -522,28 +574,28 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     // └─────────────────────────────────────────────────────────────────────────────────────────┘
 
     /**
-     * Encapsulates the {@linkplain #getCodeSpace() code space} in a citation.
+     * Returns {@code null} by default.
+     * Metadata identifier should not be confused with data identifier.
      *
-     * @return the authority for this metadata.
+     * @return the authority and the code for this metadata.
      */
     @Override
-    public Citation getAuthority() {
-        final String naming = getCodeSpace();
-        return (naming != null) ? new SimpleCitation(naming) : null;
+    public Identifier getMetadataIdentifier() {
+        return null;
     }
 
     /**
      * Encapsulates the {@linkplain #getAuthority() naming authority} together with the
-     * {@linkplain #getCode() identifier code} for this metadata.
+     * {@linkplain #getCode() identifier code} for this data.
      *
-     * @return the authority and the code for this metadata.
+     * @return the authority and the code for this data.
      *
      * @see #getAuthority()
      * @see #getCode()
      */
     @Override
-    public Identifier getMetadataIdentifier() {
-        return this;
+    public Collection<? extends Identifier> getIdentifiers() {
+        return self();
     }
 
     /**
@@ -552,52 +604,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     @Override
     public Collection<? extends Identification> getIdentificationInfo() {
-        return self;
-    }
-
-    /**
-     * Encapsulates the {@linkplain #getName() creator} name and email address.
-     */
-    @Override
-    public Collection<? extends Party> getParties() {
-        if (getOrganisationName() == null) {
-            return self;
-        }
-        final Collection<Party> parties = new ArrayList<Party>(2);
-        if (getName() != null) {
-            parties.add(this);
-        }
-        parties.add(new Organisation() {
-            @Override public InternationalString                 getName()        {return getOrganisationName();}
-            @Override public Collection<? extends BrowseGraphic> getLogo()        {return Collections.emptySet();}
-            @Override public Collection<? extends Individual>    getIndividual()  {return Collections.singleton(NetcdfMetadata.this);}
-            @Override public Collection<? extends Contact>       getContactInfo() {return Collections.singleton(NetcdfMetadata.this);}
-        });
-        return parties;
-    }
-
-    /**
-     * Encapsulates the creator {@linkplain #getElectronicMailAddresses() email address}.
-     */
-    @Override
-    public Collection<? extends Contact> getContactInfo() {
-        return self;
-    }
-
-    /**
-     * Encapsulates the creator {@linkplain #getElectronicMailAddresses() email address}.
-     */
-    @Override
-    public Collection<? extends Address> getAddresses() {
-        return self;
-    }
-
-    /**
-     * Encapsulates the data {@linkplain #getDate() metadata creation date}.
-     */
-    @Override
-    public Collection<? extends CitationDate> getDateInfo() {
-        return hasDate(false) ? self : Collections.<CitationDate>emptySet();
+        return self();
     }
 
     /**
@@ -608,55 +615,117 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     @Override
     public Citation getCitation() {
-        return new Creator();
+        return this;
     }
 
     /**
-     * The citation returned by {@link NetcdfMetadata#getCitation()}.
-     * Defined in a separated classes because of methods clash:
-     *
-     * <ul>
-     *   <li>{@link Party#getName()} not the same name than {@link OnlineResource#getName()}.</li>
-     *   <li>{@link Contact#getOnlineResources()} not the same link than {@link Citation#getOnlineResources()}.</li>
-     * </ul>
+     * Encapsulates the role, name, contact and position information for individuals or organisations.
      */
-    private final class Creator implements Citation, CitationDate, OnlineResource {
-        @Override public InternationalString                    getTitle()                   {return NetcdfMetadata.this.getTitle();}
-        @Override public InternationalString                    getDescription()             {return NetcdfMetadata.this.getDescription();}
-        @Override public Date                                   getDate()                    {return NetcdfMetadata.this.getDatasetDate();}
-        @Override public DateType                               getDateType()                {return NetcdfMetadata.this.getDateType();}
-        @Override public URI                                    getLinkage()                 {return NetcdfMetadata.this.getLinkage();}
-        @Override public Collection<? extends ResponsibleParty> getCitedResponsibleParties() {return NetcdfMetadata.this.getPointOfContacts();}
-        @Override public Collection<? extends Identifier>       getIdentifiers()             {return self;}
-        @Override public Collection<? extends CitationDate>     getDates()                   {return hasDate(true) ? Collections.<CitationDate>singleton(this) : Collections.<CitationDate>emptySet();}
-        @Override public Collection<? extends OnlineResource>   getOnlineResources()         {return Collections.singleton(this);}
-        @Override public Collection<InternationalString>        getAlternateTitles()         {return Collections.emptySet();}
-        @Override public Collection<PresentationForm>           getPresentationForms()       {return Collections.emptySet();}
-        @Override public Collection<BrowseGraphic>              getGraphics()                {return Collections.emptySet();}
-        @Override public InternationalString                    getOtherCitationDetails()    {return null;}
-        @Override @Deprecated public InternationalString        getCollectiveTitle()         {return null;}
-        @Override public Series                                 getSeries()                  {return null;}
-        @Override public InternationalString                    getEdition()                 {return null;}
-        @Override public Date                                   getEditionDate()             {return null;}
-        @Override public String                                 getISBN()                    {return null;}
-        @Override public String                                 getISSN()                    {return null;}
-        @Override public String                                 getName()                    {return null;}
-        @Override public OnLineFunction                         getFunction()                {return null;}
-        @Override public String                                 getProtocol()                {return null;}
-        @Override public String                                 getProtocolRequest()         {return null;}
-        @Override public String                                 getApplicationProfile()      {return null;}
+    @Override
+    public Collection<? extends ResponsibleParty> getCitedResponsibleParties() {
+        return Collections.singleton(new Creator());
     }
 
     /**
      * Encapsulates the {@linkplain #getName() creator name} and
      * {@linkplain #getElectronicMailAddresses() email address}.
-     * The responsible party returned by this method is associated to {@link Role#ORIGINATOR} instead than
+     * The responsible party represented by this class is associated to {@link Role#ORIGINATOR} instead than
      * {@link Role#POINT_OF_CONTACT} because this simple implementation can not be associated to more than
      * one responsible party. However library vendors are encouraged to provide more accurate implementations.
+     *
+     * <p>Defined in a separated class because of methods clash:</p>
+     * <ul>
+     *   <li>{@link Party#getName()} not the same name than {@link OnlineResource#getName()}.</li>
+     *   <li>{@link Contact#getOnlineResources()} not the same link than {@link Citation#getOnlineResources()}.</li>
+     *   <li>{@link Responsibility#getExtents()} not the same than {@link DataIdentification#getExtents()}.</li>
+     * </ul>
+     */
+    private final class Creator implements ResponsibleParty, Contact {
+        @Override public Collection<? extends Extent>         getExtents()                 {return Collections.emptySet();}
+        @Override public Collection<? extends OnlineResource> getOnlineResources()         {return Collections.emptySet();}
+        @Override public Collection<? extends Address>        getAddresses()               {return self(hasAttribute(ACDD.creator_email));}
+        @Override public InternationalString                  getPositionName()            {return null;}
+        @Override public String                               getIndividualName()          {return getString(ACDD.creator_name);}
+        @Override public InternationalString                  getOrganisationName()        {return getInternationalString("institution");}
+        @Override public InternationalString                  getContactType()             {return null;}
+        @Override public InternationalString                  getContactInstructions()     {return null;}
+        @Override public Collection<Telephone>                getPhones()                  {return Collections.emptySet();}
+        @Override public InternationalString                  getHoursOfService()          {return null;}
+        @Override @Deprecated public Address                  getAddress()                 {return NetcdfMetadata.this;}
+        @Override @Deprecated public Telephone                getPhone()                   {return null;}
+        @Override @Deprecated public OnlineResource           getOnlineResource()          {return null;}
+
+        /**
+         * Returns a collection containing {@code this} if the given attribute is presents, or an empty set otherwise.
+         */
+        private Collection<Creator> ifAttributePresents(final String name) {
+            return hasAttribute(name) ? Collections.<Creator>singleton(this) : Collections.<Creator>emptySet();
+        }
+
+        /**
+         * Returns {@link Role#ORIGINATOR}, because the citation encapsulated by this implementation is only
+         * for the creator. The contributors and publishers are not supported by this simple implementation.
+         */
+        @Override
+        public Role getRole() {
+            return Role.ORIGINATOR;
+        }
+
+        /**
+         * Encapsulates the {@linkplain #getName() creator} name and email address.
+         */
+        @Override
+        public Collection<? extends Party> getParties() {
+            final Individual individual = new Individual() {
+                @Override public InternationalString getName()         {return Creator.this.getName();}
+                @Override public InternationalString getPositionName() {return Creator.this.getPositionName();}
+                @Override public Collection<? extends Contact> getContactInfo() {
+                    return ifAttributePresents(ACDD.creator_email);
+                }
+            };
+            final Party party;
+            if (hasAttribute("institution")) {
+                party = new Organisation() {
+                    @Override public InternationalString                 getName()        {return getInternationalString("institution");}
+                    @Override public Collection<? extends BrowseGraphic> getLogo()        {return Collections.emptySet();}
+                    @Override public Collection<? extends Individual>    getIndividual()  {return Collections.singleton(individual);}
+                    @Override public Collection<? extends Contact>       getContactInfo() {
+                        if (hasAttribute(ACDD.creator_name)) {
+                            return Collections.emptySet();          // Email address to be provided with the individual instead.
+                        } else {
+                            return individual.getContactInfo();
+                        }
+                    }
+                };
+            } else {
+                party = individual;                     // Individual only.
+            }
+            return Collections.singleton(party);
+        }
+
+        /**
+         * Returns the netCDF {@value ACDD#creator_name} attribute value, or {@code null} if none.
+         */
+        public InternationalString getName() {
+            return getInternationalString(ACDD.creator_name);
+        }
+
+        /**
+         * Encapsulates the creator {@linkplain #getElectronicMailAddresses() email address}.
+         */
+        @Override
+        public Contact getContactInfo() {
+            return hasAttribute(ACDD.creator_email) ? this : null;
+        }
+    }
+
+    /**
+     * Defaults to an empty set.
+     * For the dataset creator, see {@link #getCitation()} instead.
      */
     @Override
     public Collection<? extends ResponsibleParty> getPointOfContacts() {
-        return singleton(new ResponsiblePartyAdapter(this));
+        return Collections.emptySet();
     }
 
     /**
@@ -664,7 +733,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * in this simple implementation. Note that in theory, those two methods are not strictly
      * synonymous since {@code getContacts()} shall return the contact for the <em>metadata</em>,
      * while {@code getPointOfContacts()} shall return the contact for the <em>data</em>.
-     * However the attributes in NetCDF files usually don't make this distinction.
+     * However the attributes in netCDF files usually don't make this distinction.
      */
     @Override
     public Collection<? extends ResponsibleParty> getContacts() {
@@ -676,7 +745,8 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     @Override
     public Collection<? extends Extent> getExtents() {
-        return self;
+        return self(hasAttribute(ACDD.LON_MIN) || hasAttribute(ACDD.LON_MAX)
+                 || hasAttribute(ACDD.LAT_MIN) || hasAttribute(ACDD.LAT_MAX));
     }
 
     /**
@@ -684,7 +754,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     @Override
     public Collection<? extends GeographicExtent> getGeographicElements() {
-        return self;
+        return self();
     }
 
 
@@ -710,7 +780,6 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     /** Defaults to an empty set. */ @Override public Collection<Duration>                     getTemporalResolutions()           {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<Locale>                       getLanguages()                     {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection                               getCharacterSets()                 {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<OnlineResource>               getOnlineResources()               {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<Format>                       getResourceFormats()               {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<Usage>                        getResourceSpecificUsages()        {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<Constraints>                  getResourceConstraints()           {return Collections.emptySet();}
@@ -730,17 +799,24 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     /** Defaults to an empty set. */ @Override public Collection<Citation>                     getAlternativeMetadataReferences() {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<PortrayalCatalogueReference>  getPortrayalCatalogueInfo()        {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Distribution                             getDistributionInfo()              {return null;}
-    /** Defaults to an empty set. */ @Override public Collection<MetadataScope>                getMetadataScopes()                {return Collections.emptySet();}
-    /** Defaults to {@code null}. */ @Override public InternationalString                      getPositionName()                  {return null;}
-    /** Defaults to {@code null}. */ @Override public InternationalString                      getContactType()                   {return null;}
-    /** Defaults to {@code null}. */ @Override public InternationalString                      getContactInstructions()           {return null;}
-    /** Defaults to an empty set. */ @Override public Collection<Telephone>                    getPhones()                        {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<String>                       getDeliveryPoints()                {return Collections.emptySet();}
     /** Defaults to {@code null}. */ @Override public InternationalString                      getCity()                          {return null;}
     /** Defaults to {@code null}. */ @Override public InternationalString                      getAdministrativeArea()            {return null;}
     /** Defaults to {@code null}. */ @Override public String                                   getPostalCode()                    {return null;}
     /** Defaults to {@code null}. */ @Override public InternationalString                      getCountry()                       {return null;}
-    /** Defaults to {@code null}. */ @Override public InternationalString                      getHoursOfService()                {return null;}
+    /** Defaults to an empty set. */ @Override public Collection<InternationalString>          getAlternateTitles()               {return Collections.emptySet();}
+    /** Defaults to an empty set. */ @Override public Collection<PresentationForm>             getPresentationForms()             {return Collections.emptySet();}
+    /** Defaults to an empty set. */ @Override public Collection<BrowseGraphic>                getGraphics()                      {return Collections.emptySet();}
+    /** Defaults to an empty set. */ @Override public InternationalString                      getOtherCitationDetails()          {return null;}
+    /** Defaults to {@code null}. */ @Override @Deprecated public InternationalString          getCollectiveTitle()               {return null;}
+    /** Defaults to {@code null}. */ @Override public Series                                   getSeries()                        {return null;}
+    /** Defaults to {@code null}. */ @Override public InternationalString                      getEdition()                       {return null;}
+    /** Defaults to {@code null}. */ @Override public Date                                     getEditionDate()                   {return null;}
+    /** Defaults to {@code null}. */ @Override public String                                   getISBN()                          {return null;}
+    /** Defaults to {@code null}. */ @Override public String                                   getISSN()                          {return null;}
+    /** Defaults to {@code null}. */ @Override public String                                   getProtocol()                      {return null;}
+    /** Defaults to {@code null}. */ @Override public String                                   getApplicationProfile()            {return null;}
+    /** Defaults to {@code null}. */ @Override public String                                   getProtocolRequest()               {return null;}
 
 
 
@@ -828,7 +904,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     @Override
     @Deprecated
     public Collection<ScopeCode> getHierarchyLevels() {
-        return HIERARCHY_LEVEL;
+        return Collections.singleton(ScopeCode.DATASET);
     }
 
     /**
@@ -859,29 +935,19 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * @deprecated As of ISO 19115:2014, Replaced by {@link #getAddresses()}.
+     * Returns the concatenation of {@linkplain #getAuthority() naming authority},
+     * the {@code ':'} character and the {@linkplain #getCode() identifier code}.
+     * One or both of the authority and the code can be null.
+     *
+     * @return the identifier code in the naming authority space, or {@code null} if null.
      */
     @Override
-    @Deprecated
-    public final Address getAddress() {
-        return first(getAddresses());
-    }
-
-    /**
-     * @deprecated As of ISO 19115:2014, Replaced by {@link #getPhones()}.
-     */
-    @Override
-    @Deprecated
-    public final Telephone getPhone() {
-        return first(getPhones());
-    }
-
-    /**
-     * @deprecated As of ISO 19115:2014, Replaced by {@link #getOnlineResources()}.
-     */
-    @Override
-    @Deprecated
-    public final OnlineResource getOnlineResource() {
-        return first(getOnlineResources());
+    public String toString() {
+        final String code = getCode();
+        final String codeSpace = getCodeSpace();
+        if (codeSpace == null) {
+            return code;
+        }
+        return (code != null) ? codeSpace + ':' + code : codeSpace;
     }
 }

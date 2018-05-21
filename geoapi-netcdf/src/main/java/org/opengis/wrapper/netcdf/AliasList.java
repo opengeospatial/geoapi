@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -23,7 +23,7 @@ import org.opengis.util.GenericName;
 
 
 /**
- * A list of {@link SimpleName} instances. This list also contains the NetCDF {@linkplain #name}
+ * A list of {@link SimpleName} instances. This list also contains the netCDF {@linkplain #name}
  * for implementation convenience, but this name is not returned by the list getter methods.
  *
  * <p>Current implementation can holds at most 2 aliases: one for OGC and one for EPSG.</p>
@@ -45,7 +45,7 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
     static final int NAME_CAPACITY = 3;
 
     /**
-     * The NetCDF name.
+     * The netCDF name.
      */
     final String name;
 
@@ -55,9 +55,9 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
     final SimpleName ogc, epsg;
 
     /**
-     * Creates a new list for the given NetCDF name no alias.
+     * Creates a new list for the given netCDF name no alias.
      *
-     * @param  name  the NetCDF name (mandatory).
+     * @param  name  the netCDF name (mandatory).
      */
     AliasList(final String name) {
         this.name = name;
@@ -66,10 +66,10 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
     }
 
     /**
-     * Creates a new list for the given NetCDF name and OGC/EPSG aliases.
+     * Creates a new list for the given netCDF name and OGC/EPSG aliases.
      *
      * @param existings  the aliases created up to date. This map is updated by this constructor.
-     * @param name       the NetCDF name (mandatory).
+     * @param name       the netCDF name (mandatory).
      * @param ogc        the OGC name (optional).
      * @param epsg       the EPSG name (optional).
      */

@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -39,7 +39,7 @@ import org.opengis.parameter.ParameterDirection;
 
 /**
  * Contains the information needed for creating {@link NetcdfProjection} instances from a set of
- * parameter values. This class know how to translate EPSG parameter names into NetCDF parameter
+ * parameter values. This class know how to translate EPSG parameter names into netCDF parameter
  * names. Instances of this class are created by {@link NetcdfTransformFactory} only and returned
  * by {@link NetcdfTransformFactory#getAvailableMethods(Class)}.
  *
@@ -56,17 +56,17 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     private static final long serialVersionUID = -2450098457536077553L;
 
     /**
-     * Conversion factor for the NetCDF parameter which are expected to be in kilometres.
+     * Conversion factor for the netCDF parameter which are expected to be in kilometres.
      */
     static final double KILOMETRE = 1000;
 
     /**
-     * The name of the NetCDF projection, including its OGC and EPSG aliases.
+     * The name of the netCDF projection, including its OGC and EPSG aliases.
      */
     final AliasList name;
 
     /**
-     * The NetCDF projection parameter names and aliases.
+     * The netCDF projection parameter names and aliases.
      * This map shall not be modified after {@code ProjectionProvider} construction.
      */
     final Map<String,AliasList> byNames;
@@ -78,7 +78,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     private final AliasList[] parameters;
 
     /**
-     * {@code true} if this projection has 2 standard parallels. The NetCDF library
+     * {@code true} if this projection has 2 standard parallels. The netCDF library
      * stores those standard parallels in a single array of length 2 instead than 2
      * separated parameters, which require special processing for the wrappers.
      */
@@ -92,7 +92,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      *
      * @param names The names (may contains null elements).
      *
-     * @param  projection  the type of NetCDF projections to instantiate.
+     * @param  projection  the type of netCDF projections to instantiate.
      * @param  existings   the aliases created up to date. This map is updated by this method.
      * @param  hasStd2     {@code true} if the projection has 2 standard parallels.
      * @param  names       the projection name and aliases, followed by parameters name and aliases,
@@ -125,7 +125,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
 
     /**
      * Returns the projection name. The name returned by this method is typically
-     * the NetCDF name. For the OGC or EPSG names, see {@link #getAlias()}.
+     * the netCDF name. For the OGC or EPSG names, see {@link #getAlias()}.
      */
     @Override
     public String getCode() {
@@ -135,7 +135,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     /**
      * Returns the aliases given at construction time. If the collection is non-empty,
      * then it will typically contains two aliases: one for the OGC name and one for
-     * the EPSG name. For the NetCDF name, see {@link #getCode()}.
+     * the EPSG name. For the netCDF name, see {@link #getCode()}.
      */
     @Override
     public Collection<GenericName> getAlias() {
@@ -213,8 +213,8 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     }
 
     /**
-     * Creates a parameter for the given NetCDF name.
-     * A default value is inferred from the NetCDF name.
+     * Creates a parameter for the given netCDF name.
+     * A default value is inferred from the netCDF name.
      */
     private static NetcdfParameter<?> parameter(final AliasList alias) {
         final String name = alias.name;
@@ -236,7 +236,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     }
 
     /**
-     * Creates a new NetCDF parameter for the given name.
+     * Creates a new netCDF parameter for the given name.
      *
      * @param  parameterName  the parameter name.
      * @return the parameter value and descriptor.
@@ -253,9 +253,9 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     }
 
     /**
-     * Creates all NetCDF parameters known to this provider. This method is used for
+     * Creates all netCDF parameters known to this provider. This method is used for
      * the implementation of both {@link #descriptors()} and {@link #createValue()},
-     * because the NetCDF parameter implements both the value and descriptor GeoAPI
+     * because the netCDF parameter implements both the value and descriptor GeoAPI
      * interfaces.
      */
     private NetcdfParameter<?>[] parameters() {
@@ -277,7 +277,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     }
 
     /**
-     * Creates all NetCDF parameters known to this provider. This method gets the list of
+     * Creates all netCDF parameters known to this provider. This method gets the list of
      * {@link NetcdfParameter}s for this projection and exposes the "descriptor" aspect of
      * those objects.
      */
@@ -287,7 +287,7 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     }
 
     /**
-     * Creates all NetCDF parameters known to this provider. This method gets the list of
+     * Creates all netCDF parameters known to this provider. This method gets the list of
      * {@link NetcdfParameter}s for this projection and exposes the "value" aspect of
      * those objects.
      */
@@ -297,10 +297,10 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     }
 
     /**
-     * Creates the NetCDF projection from the given parameters.
+     * Creates the netCDF projection from the given parameters.
      *
      * @param  parameters  the parameters, or {@code null} for creating the default projection.
-     * @return the NetCDF projection.
+     * @return the netCDF projection.
      */
     protected abstract P createProjection(final ParameterValueGroup parameters);
 

@@ -44,6 +44,8 @@ import org.opengis.filter.expression.Expression;
  * @author Chris Dillard (SYS Technologies)
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 2.0
+ *
+ * @todo Remove the "Binary" in the name. It is in the XSD but not in the UML.
  */
 @XmlElement("BinaryComparisonOpType")
 public interface BinaryComparisonOperator extends Filter {
@@ -53,25 +55,27 @@ public interface BinaryComparisonOperator extends Filter {
     @XmlElement("expression")
     Expression getExpression1();
 
-   /**
+    /**
      * Returns the second of the two expressions to be compared by this operator.
      */
     @XmlElement("expression")
     Expression getExpression2();
 
     /**
-     * Flag controlling wither comparisons are case sensitive.
+     * Specifies whether comparisons are case sensitive.
      *
-     * @return <code>true</code> if the comparison is case sensetive, otherwise <code>false</code>.
+     * @return {@code true} if the comparisons are case sensitive, otherwise {@code false}.
      */
     @XmlElement("matchCase")
     boolean isMatchingCase();
 
     /**
-     * The matchAction attribute can be used to specify how the comparison predicate shall be evaluated for a
-     * collection of values.
+     * Specifies how the comparison predicate shall be evaluated for a collection of values.
+     * Values can be {@link MatchAction#ALL ALL} if all values in the collection shall satisfy the predicate,
+     * {@link MatchAction#ANY ANY} if any of the value in the collection can satisfy the predicate, or
+     * {@link MatchAction#ONE ONE} if only one of the values in the collection shall satisfy the predicate.
      *
-     * @return MatchAction or null.
+     * @return how the comparison predicate shall be evaluated for a collection of values.
      */
     @XmlElement("matchAction")
     MatchAction getMatchAction();

@@ -60,8 +60,8 @@ import static org.opengis.annotation.Specification.*;
 public interface Identifier {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(…)}
-     * methods. This is used for setting the value to be returned by {@link #getAuthority()}.
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(Map, ...)} methods.
+     * This is used for setting the value to be returned by {@link #getAuthority()}.
      *
      * @see #getAuthority()
      */
@@ -69,8 +69,8 @@ public interface Identifier {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(…)}
-     * methods. This is used for setting the value to be returned by {@link #getCode()}.
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(Map, ...)} methods.
+     * This is used for setting the value to be returned by {@link #getCode()}.
      *
      * @see #getCode()
      */
@@ -78,8 +78,8 @@ public interface Identifier {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(…)}
-     * methods. This is used for setting the value to be returned by {@link #getCodeSpace()}.
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(Map, ...)} methods.
+     * This is used for setting the value to be returned by {@link #getCodeSpace()}.
      *
      * @see #getCodeSpace()
      */
@@ -87,8 +87,8 @@ public interface Identifier {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(…)}
-     * methods. This is used for setting the value to be returned by {@link #getVersion()}.
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(Map, ...)} methods.
+     * This is used for setting the value to be returned by {@link #getVersion()}.
      *
      * @see #getVersion()
      */
@@ -96,8 +96,8 @@ public interface Identifier {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(…)}
-     * methods. This is used for setting the value to be returned by {@link #getDescription()}.
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(Map, ...)} methods.
+     * This is used for setting the value to be returned by {@link #getDescription()}.
      *
      * @see #getDescription()
      *

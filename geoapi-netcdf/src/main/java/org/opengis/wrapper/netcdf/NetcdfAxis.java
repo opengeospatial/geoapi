@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -29,10 +29,10 @@ import org.opengis.referencing.cs.RangeMeaning;
 
 
 /**
- * A {@link CoordinateSystemAxis} implementation backed by a NetCDF {@link CoordinateAxis1D} object.
+ * A {@link CoordinateSystemAxis} implementation backed by a netCDF {@link CoordinateAxis1D} object.
  *
  * <p>{@code NetcdfAxis} is a <cite>view</cite>: every methods in this class delegate their work to the
- * wrapped NetCDF axis. Consequently any change in the wrapped axis is immediately reflected in this
+ * wrapped netCDF axis. Consequently any change in the wrapped axis is immediately reflected in this
  * {@code NetcdfAxis} instance. However users are encouraged to not change the wrapped axis after
  * construction, since GeoAPI referencing objects are expected to be immutable.</p>
  *
@@ -47,7 +47,7 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
     private static final long serialVersionUID = -7151982715212018557L;
 
     /**
-     * The NetCDF coordinate axis wrapped by this {@code NetcdfAxis} instance.
+     * The netCDF coordinate axis wrapped by this {@code NetcdfAxis} instance.
      */
     private final CoordinateAxis1D axis;
 
@@ -57,9 +57,9 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
     transient volatile Unit<?> unit;
 
     /**
-     * Creates a new {@code NetcdfAxis} object wrapping the given NetCDF coordinate axis.
+     * Creates a new {@code NetcdfAxis} object wrapping the given netCDF coordinate axis.
      *
-     * @param  axis  the NetCDF coordinate axis to wrap.
+     * @param  axis  the netCDF coordinate axis to wrap.
      */
     public NetcdfAxis(final CoordinateAxis1D axis) {
         Objects.requireNonNull(axis);
@@ -67,9 +67,9 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
     }
 
     /**
-     * Returns the wrapped NetCDF axis.
+     * Returns the wrapped netCDF axis.
      *
-     * @return the wrapped NetCDF axis.
+     * @return the wrapped netCDF axis.
      */
     @Override
     public CoordinateAxis1D delegate() {
@@ -165,10 +165,10 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
     }
 
     /**
-     * Returns the number of ordinates in the NetCDF axis.
+     * Returns the number of ordinates in the netCDF axis.
      * The default implementation delegates to {@link CoordinateAxis1D#getShape(int)}.
      *
-     * @return the number or ordinates in the NetCDF axis.
+     * @return the number or ordinates in the netCDF axis.
      */
     public int length() {
         return axis.getShape(0);
@@ -218,15 +218,24 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
         Unit<?> unit = this.unit;
         if (unit == null) {
             final String symbol = getUnitsString();
-            if (symbol != null) {
+            if (symbol != null && !symbol.isEmpty()) {
                 this.unit = unit = Units.parse(symbol);
+            } else {
+                // Infer default units if they were not specified.
+                final AxisType type = axis.getAxisType();
+                if (type != null) {
+                    switch (type) {
+                        case Lon:
+                        case Lat: this.unit = unit = Units.DEGREE; break;
+                    }
+                }
             }
         }
         return unit;
     }
 
     /**
-     * Returns the NetCDF description, or {@code null} if none.
+     * Returns the netCDF description, or {@code null} if none.
      * The default implementation delegates to {@link CoordinateAxis1D#getDescription()}.
      *
      * @see CoordinateAxis1D#getDescription()

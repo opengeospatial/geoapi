@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -37,7 +37,7 @@ import static org.opengis.test.CalculationType.*;
  */
 public class ConformanceTest extends TestSuite implements ImplementationDetails {
     /**
-     * The configuration of our NetCDF tests.
+     * The configuration of our netCDF tests.
      * Will be created when first needed.
      */
     private Configuration configuration;
@@ -58,7 +58,7 @@ public class ConformanceTest extends TestSuite implements ImplementationDetails 
 
     /**
      * Returns the map of tests to disable for this implementation, or {@code null}
-     * if the given factories are not NetCDF implementations.
+     * if the given factories are not netCDF implementations.
      */
     @Override
     public synchronized Configuration configuration(final Factory... factories) {

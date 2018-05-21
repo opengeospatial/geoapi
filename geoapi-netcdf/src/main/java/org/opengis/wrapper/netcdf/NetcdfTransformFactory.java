@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -33,9 +33,9 @@ import org.opengis.referencing.operation.*;
 
 
 /**
- * Creates {@link NetcdfProjection} instances from NetCDF, OGC or EPSG parameters.
+ * Creates {@link NetcdfProjection} instances from netCDF, OGC or EPSG parameters.
  * This factory supports the following projection parameter names. In this table,
- * {@code [1]} and {@code [2]} are indices in an array (the values of the NetCDF
+ * {@code [1]} and {@code [2]} are indices in an array (the values of the netCDF
  * "{@code standard_parallel}" parameter are arrays of length up to 2).
  *
  * <table cellspacing="0" cellpadding="0">
@@ -174,7 +174,7 @@ public class NetcdfTransformFactory implements MathTransformFactory {
 
     /**
      * Returns the provider of this factory. This method returns {@code "NetCDF"} since
-     * the code doing the actual coordinate transform work is the NetCDF Java library.
+     * the code doing the actual coordinate transform work is the netCDF Java library.
      */
     @Override
     public Citation getVendor() {

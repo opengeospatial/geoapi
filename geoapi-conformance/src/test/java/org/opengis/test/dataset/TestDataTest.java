@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2018 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,52 +29,37 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.test;
+package org.opengis.test.dataset;
 
-import java.util.EventListener;
+import java.io.IOException;
+import org.junit.Test;
+
+import static org.junit.Assert.*;
 
 
 /**
- * A listener which is notified when a test begin, complete or fail.
- * Listeners can be registered by invoking {@link TestSuite#addTestListener(TestListener)}.
+ * Tests the method provided in the {@link TestData} enumeration.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
- *
- * @see TestSuite#addTestListener(TestListener)
- * @see TestEvent
- *
- * @deprecated To be replaced by JUnit 5 listener mechanism.
  */
-@Deprecated
-public interface TestListener extends EventListener {
+public final strictfp class TestDataTest {
     /**
-     * Invoked when a test is about to start.
+     * Tests {@link TestData#content()} on all enumeration values.
+     * If a file does not have the expected length, an exception will be thrown here.
      *
-     * @param event  a description of the test which is about to be run.
+     * @throws IOException if an error occurred while reading the test file.
      */
-    void starting(TestEvent event);
-
-    /**
-     * Invoked when a test succeeds.
-     *
-     * @param event  a description of the test which has been run.
-     */
-    void succeeded(TestEvent event);
-
-    /**
-     * Invoked when a test fails.
-     *
-     * @param event      a description of the test which has been run.
-     * @param exception  the exception that occurred during the execution.
-     */
-    void failed(TestEvent event, Throwable exception);
-
-    /**
-     * Invoked when a test method finishes (whether passing or failing).
-     *
-     * @param event  a description of the test which has been run.
-     */
-    void finished(TestEvent event);
+    @Test
+    public void testAllContent() throws IOException {
+        for (final TestData td : TestData.values()) {
+            final byte[] content = td.content();
+            long sum = 0;
+            for (int i=0; i<content.length; i++) {
+                sum += content[i] & 0xFF;               // TODO: Byte.toUnsignedLong(content[i]) on JDK8.
+            }
+            assertTrue(sum >= 100000);          // Arbitrary value for testing that the file is non-empty.
+        }
+    }
 }

@@ -253,7 +253,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     /**
      * Sets the image writer output to a temporary buffer or a temporary file. If the writer does
      * not accept {@link ImageOutputStream} (which is illegal according Image I/O specification,
-     * but still happen with some formats like NetCDF), then this method will try to set the output
+     * but still happen with some formats like netCDF), then this method will try to set the output
      * to a temporary file.
      *
      * @param  capacity  the initial capacity. This is an approximative value, since the actual capacity will growth as needed.

@@ -41,7 +41,7 @@ import javax.imageio.IIOParam;
  * Iterates over the pixel of an image resulting form I/O operation. The only difference between
  * this iterator and the public one is a more detailed error message in case of comparison failure.
  *
- * @author Martin Desruisseaux (Geomatys).
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */

@@ -22,10 +22,10 @@
        ==================================================== -->
   <groupId>org.opengis.wrapper</groupId>
   <artifactId>geoapi-netcdf</artifactId>
-  <name>GeoAPI-NetCDF bindings</name>
+  <name>GeoAPI-netCDF bindings</name>
   <description>
-    A "proof of concept" implementation of GeoAPI as adapters around the NetCDF library.
-    The NetCDF library provides metadata, referencing and coverage services.
+    A "proof of concept" implementation of GeoAPI as adapters around the netCDF library.
+    The netCDF library provides metadata, referencing and coverage services.
   </description>
 
   <licenses>
@@ -88,7 +88,7 @@
     <dependency>
       <groupId>org.slf4j</groupId>
       <artifactId>slf4j-jdk14</artifactId>
-      <version>1.7.22</version>                 <!-- Must matches the version used by NetCDF. -->
+      <version>1.7.22</version>                 <!-- Must matches the version used by netCDF. -->
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -96,7 +96,7 @@
 
 
   <!-- ==================================================================
-           UCAR repository from which to download the NetCDF library.
+           UCAR repository from which to download the netCDF library.
        ================================================================== -->
   <repositories>
     <repository>

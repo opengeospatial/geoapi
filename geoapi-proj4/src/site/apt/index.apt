@@ -1,11 +1,11 @@
                                        ---------------
-                                       Proj.4 bindings
+                                        PROJ bindings
                                        ---------------
 
-Proj.4 bindings
+PROJ bindings
 
   This module is a "proof of concept" implementation of GeoAPI referencing interfaces using JNI
-  bindings to the C/C++ {{{http://proj.osgeo.org/}Proj4}} library. This module contains two packages:
+  bindings to the C/C++ {{{https://proj4.org/}PROJ}} library. This module contains two packages:
 
     * The <<<{{{./apidocs/org/proj4/package-summary.html}org.proj4}}>>> package contains a slightly
       modified copy of the classes provided in the <<<jniwrap>>> directory of the Proj.4 project.
@@ -14,21 +14,24 @@ Proj.4 bindings
     * The <<<{{{./apidocs/org/opengis/wrapper/proj4/package-summary.html}org.opengis.wrapper.proj4}}>>>
       package contains implementations of GeoAPI interfaces on top of the <<<org.proj4>>> package.
 
-  This module requires the Proj.4 native library version 4.8 or above. The Proj.4 library is used
-  for performing map projection calculations. The GeoAPI wrappers extend the Proj.4 services by
+  This module requires the PROJ native library version 4.8 or above. The PROJ library is used
+  for performing map projection calculations. The GeoAPI wrappers extend the PROJ services by
   providing the following additional functionalities:
 
     * Coordinate Reference Systems created from EPSG code honor axis order as defined by EPSG.
       This reordering can be disabled if the usual (λ,φ) order is desired.
 
     * Coordinate Operations and Math Transforms can be created from EPSG and OGC parameter names,
-      in addition of Proj.4 parameter names.
+      in addition of PROJ parameter names.
+
+  See {{{https://github.com/OSGeo/proj.4/tree/master/jniwrap#proj-bridge-to-java}PROJ bridge to Java}}
+  for PROJ compilation instructions.
 
 
 * Licensing
 
   <All files provided in this module are hereby placed into the Public Domain.> This means
-  anyone is free to do whatever they wish with those files. The Proj.4 wrappers are provided
+  anyone is free to do whatever they wish with those files. The PROJ wrappers are provided
   as code examples, in the hope to facilitate GeoAPI implementations backed by other libraries.
   Implementors can take this source code and use it for any purpose, commercial or non-commercial,
   copyrighted or open-source, with no legal obligation to acknowledge the borrowing/copying in
@@ -36,14 +39,14 @@ Proj.4 bindings
 
   Note that the {{{../geoapi/index.html}GeoAPI interfaces}} are <<not>> in the public domain;
   they are copyrighted by {{{http://www.opengeospatial.org}OGC}} and distributed under a permissive,
-  BSD-like license. Only the example codes - including this Proj.4 wrappers module - are in the
+  BSD-like license. Only the example codes - including this PROJ wrappers module - are in the
   public domain.
 
 
 * Download
 
-  The Proj.4 bindings can be used in a Maven project using the following <<<pom.xml>>> configuration.
-  Note that the Proj.4 native library needs to be installed manually; this is not done by Maven.
+  The PROJ bindings can be used in a Maven project using the following <<<pom.xml>>> configuration.
+  Note that the PROJ native library needs to be installed manually; this is not done by Maven.
 
 +------------------------------------------+
 <repositories>
@@ -66,7 +69,7 @@ Proj.4 bindings
 
 * Usage example
 
-  Proj.4 functionality can be used directly (without GeoAPI interfaces) by the
+  PROJ functionality can be used directly (without GeoAPI interfaces) by the
   {{{./apidocs/org/proj4/PJ.html}PJ}} class as below:
 
 +--------------------------------------------------------------------------------------------------+
@@ -96,7 +99,7 @@ public class MyApp {
 +--------------------------------------------------------------------------------------------------+
 
   The above example - especially the CRS definitions given to the <<<PJ>>> constructors -
-  was specific to the Proj.4 library. The same functionality can be achieved through the
+  was specific to the PROJ library. The same functionality can be achieved through the
   implementation-neutral GeoAPI interfaces as below:
 
 +--------------------------------------------------------------------------------------------------+
@@ -118,7 +121,7 @@ import java.util.Arrays;
  */
 public class MyApp {
     public static void main(String[] args) throws FactoryException, TransformException {
-        // The following lines instantiate directly the factories for the Proj.4 bindings
+        // The following lines instantiate directly the factories for the PROJ bindings
         // for simplicity reasons, but a real application would be encouraged to use some
         // kind of Service Registry instead.
         CRSAuthorityFactory       crsFactory = new PJFactory.EPSG();

@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -82,7 +82,7 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
 
     /**
      * Constructs a geographic bounding box from the specified rectangle. The rectangle is assumed
-     * in the default NetCDF geographic CRS (implementation dependent).
+     * in the default netCDF geographic CRS (implementation dependent).
      *
      * @param bounds  the rectangle to use for initializing this geographic bounding box.
      */

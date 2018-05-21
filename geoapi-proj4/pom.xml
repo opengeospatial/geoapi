@@ -22,10 +22,10 @@
        ==================================================== -->
   <groupId>org.opengis.wrapper</groupId>
   <artifactId>geoapi-proj4</artifactId>
-  <name>GeoAPI-Proj.4 bindings</name>
+  <name>GeoAPI-PROJ bindings</name>
   <description>
-    A "proof of concept" implementation of GeoAPI using JNI binding to the Proj.4 library.
-    This module requires the Proj.4 native library version 4.8 or above.
+    A "proof of concept" implementation of GeoAPI using JNI binding to the PROJ library.
+    This module requires the PROJ native library version 4.8 or above.
   </description>
 
   <licenses>

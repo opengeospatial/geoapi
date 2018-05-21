@@ -359,7 +359,6 @@
             <id>attach-sources</id>
             <goals>
               <goal>jar-no-fork</goal>
-              <goal>test-jar-no-fork</goal>
             </goals>
           </execution>
         </executions>
@@ -411,13 +410,6 @@
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-jar-plugin</artifactId>
-        <executions>
-          <execution>
-            <goals>
-              <goal>test-jar</goal>
-            </goals>
-          </execution>
-        </executions>
         <configuration>
           <archive>
             <manifest>

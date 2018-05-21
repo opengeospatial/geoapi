@@ -49,7 +49,10 @@ import java.io.Serializable;
  *
  * @author Jody Garnett (Refractions Research, Inc.)
  * @author Martin Desruisseaux (Geomatys)
+ *
+ * @deprecated To be removed from public API.
  */
+@Deprecated
 public final class ExcludeFilter implements Filter, Serializable {
     /**
      * For cross-version compatibility.
@@ -65,6 +68,7 @@ public final class ExcludeFilter implements Filter, Serializable {
     /**
      * Accepts a visitor.
      */
+    @Override
     public Object accept(FilterVisitor visitor, Object extraData) {
         return visitor.visit(this, extraData);
     }
@@ -72,6 +76,7 @@ public final class ExcludeFilter implements Filter, Serializable {
     /**
      * Returns {@code false}, content is excluded.
      */
+    @Override
     public boolean evaluate(Object object) {
         return false;
     }

@@ -31,7 +31,6 @@
  */
 package org.opengis.filter.spatial;
 
-// Annotations
 import org.opengis.annotation.XmlElement;
 
 
@@ -46,6 +45,6 @@ import org.opengis.annotation.XmlElement;
  */
 @XmlElement("Beyond")
 public interface Beyond extends DistanceBufferOperator {
-	/** Operator name used to check FilterCapabilities */
-	public static String NAME = "Beyond";
+    /** Operator name used to check FilterCapabilities */
+    public static String NAME = "Beyond";
 }

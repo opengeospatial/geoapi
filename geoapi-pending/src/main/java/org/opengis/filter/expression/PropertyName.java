@@ -31,7 +31,6 @@
  */
 package org.opengis.filter.expression;
 
-// Annotations
 import org.opengis.annotation.XmlElement;
 
 
@@ -39,7 +38,7 @@ import org.opengis.annotation.XmlElement;
  * Expression class whose value is computed by retrieving the value indicated
  * by the provided name.
  * <p>
- * The most common applicatoin of this is to retrive
+ * The most common application of this is to retrieve
  * a {@linkplain org.opengis.feature.Feature feature}'s property using
  * an xpath expression.
  * </p>
@@ -59,5 +58,4 @@ public interface PropertyName extends Expression {
      * {@link #evaluate evaluate} method.
      */
     String getPropertyName();
-
 }

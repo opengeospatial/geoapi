@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -76,7 +76,7 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
     }
 
     /**
-     * Returns the list of NetCDF objects wrapped by this adapter.
+     * Returns the list of netCDF objects wrapped by this adapter.
      */
     @Override
     public List<NetcdfParameter<?>> delegate() {
@@ -94,7 +94,7 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
     /**
      * Returns the aliases given at construction time. If the collection is non-empty,
      * then it will typically contains two aliases: one for the OGC name and one for
-     * the EPSG name. For the NetCDF name, see {@link #getCode()}.
+     * the EPSG name. For the netCDF name, see {@link #getCode()}.
      */
     @Override
     public Collection<GenericName> getAlias() {
@@ -167,7 +167,7 @@ final class SimpleParameterGroup extends NetcdfIdentifiedObject
 
     /**
      * Returns the parameter descriptor in this group for the specified
-     * {@linkplain Identifier#getCode() identifier code}. Since the NetCDF parameter
+     * {@linkplain Identifier#getCode() identifier code}. Since the netCDF parameter
      * classes implement both the {@linkplain GeneralParameterValue value} and the
      * {@linkplain GeneralParameterDescriptor descriptor} interfaces, this method is
      * essentially synonymous to {@link #parameter(String)}.

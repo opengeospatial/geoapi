@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -49,8 +49,8 @@ import org.opengis.parameter.ParameterValueGroup;
 
 
 /**
- * A {@link org.opengis.referencing.operation.Projection} implementation backed by a NetCDF {@link Projection} object.
- * The NetCDF class does not distinguish <cite>Coordinate Operation</cite> from
+ * A {@link org.opengis.referencing.operation.Projection} implementation backed by a netCDF {@link Projection} object.
+ * The netCDF class does not distinguish <cite>Coordinate Operation</cite> from
  * <cite>Math Transform</cite>, so we implement the two interfaces by the same class.
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -88,7 +88,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     final ProjectionProvider<?> provider;
 
     /**
-     * The NetCDF projection specified at construction time.
+     * The netCDF projection specified at construction time.
      */
     private final Projection projection;
 
@@ -104,9 +104,9 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     private transient MathTransform2D inverse;
 
     /**
-     * Creates a new wrapper for the given NetCDF projection object.
+     * Creates a new wrapper for the given netCDF projection object.
      *
-     * @param projection  the NetCDF projection.
+     * @param projection  the netCDF projection.
      * @param sourceCRS   the source CRS to be returned by {@link #getSourceCRS()}, or {@code null}.
      * @param targetCRS   the target CRS to be returned by {@link #getTargetCRS()}, or {@code null}.
      */
@@ -146,9 +146,9 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     }
 
     /**
-     * Returns the NetCDF projection wrapped by this adapter.
+     * Returns the netCDF projection wrapped by this adapter.
      *
-     * @return the NetCDF projection object.
+     * @return the netCDF projection object.
      */
     @Override
     public Projection delegate() {
@@ -583,7 +583,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     }
 
     /**
-     * Returns the domain of validity declared by the NetCDF projection, or {@code null} if none.
+     * Returns the domain of validity declared by the netCDF projection, or {@code null} if none.
      *
      * @see ucar.unidata.geoloc.ProjectionImpl#getDefaultMapAreaLL()
      */
@@ -635,9 +635,9 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
         private static final long serialVersionUID = -5114329943808680717L;
 
         /**
-         * Returns the NetCDF projection wrapped by this adapter.
+         * Returns the netCDF projection wrapped by this adapter.
          *
-         * @return the NetCDF projection object.
+         * @return the netCDF projection object.
          */
         @Override
         public Projection delegate() {
@@ -683,7 +683,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
 
         /**
          * Returns the descriptor of the math transform parameters.
-         * This method returns a wrapper around the NetCDF {@link Parameter} objects.
+         * This method returns a wrapper around the netCDF {@link Parameter} objects.
          *
          * @see Projection#getProjectionParameters()
          */
@@ -694,7 +694,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
     }
 
     /**
-     * Returns the operation method. The name of the returned method is the NetCDF
+     * Returns the operation method. The name of the returned method is the netCDF
      * {@linkplain Projection#getClassName() projection class name}.
      *
      * @return the operation method.
@@ -708,7 +708,7 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
 
     /**
      * Returns the descriptor of the math transform parameters.
-     * This method returns a wrapper around the NetCDF {@link Parameter} objects.
+     * This method returns a wrapper around the netCDF {@link Parameter} objects.
      *
      * @see Projection#getProjectionParameters()
      */

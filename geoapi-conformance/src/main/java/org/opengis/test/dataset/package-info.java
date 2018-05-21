@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2018 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,52 +29,15 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.test;
-
-import java.util.EventListener;
-
 
 /**
- * A listener which is notified when a test begin, complete or fail.
- * Listeners can be registered by invoking {@link TestSuite#addTestListener(TestListener)}.
+ * Provides small test data files together with verification methods for applications reading those data.
+ * The test files are less than 15 kilobytes since their purpose is not to test implementation scalability.
+ * The test files are intentionally simple, sometime with only a subset of the metadata found in the field,
+ * for making easier for application developers to use them in a debugging session.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
- *
- * @see TestSuite#addTestListener(TestListener)
- * @see TestEvent
- *
- * @deprecated To be replaced by JUnit 5 listener mechanism.
  */
-@Deprecated
-public interface TestListener extends EventListener {
-    /**
-     * Invoked when a test is about to start.
-     *
-     * @param event  a description of the test which is about to be run.
-     */
-    void starting(TestEvent event);
-
-    /**
-     * Invoked when a test succeeds.
-     *
-     * @param event  a description of the test which has been run.
-     */
-    void succeeded(TestEvent event);
-
-    /**
-     * Invoked when a test fails.
-     *
-     * @param event      a description of the test which has been run.
-     * @param exception  the exception that occurred during the execution.
-     */
-    void failed(TestEvent event, Throwable exception);
-
-    /**
-     * Invoked when a test method finishes (whether passing or failing).
-     *
-     * @param event  a description of the test which has been run.
-     */
-    void finished(TestEvent event);
-}
+package org.opengis.test.dataset;

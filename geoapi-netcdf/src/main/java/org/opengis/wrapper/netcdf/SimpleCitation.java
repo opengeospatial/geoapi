@@ -5,7 +5,7 @@
  *    This file is hereby placed into the Public Domain.
  *    This means anyone is free to do whatever they wish with this file.
  *
- *    The NetCDF wrappers are provided as code examples, in the hope to facilitate
+ *    The netCDF wrappers are provided as code examples, in the hope to facilitate
  *    GeoAPI implementations backed by other libraries. Implementors can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
@@ -35,7 +35,7 @@ import static java.util.Collections.emptySet;
 
 /**
  * A simple {@link Citation} implementation, which is also its own international string.
- * In this NetCDF package, citations are used either as a cheap {@link InternationalString}
+ * In this netCDF package, citations are used either as a cheap {@link InternationalString}
  * implementation, or for specifying the {@linkplain Identifier#getAuthority() authority}
  * of identifier codes. For this later purpose, it is convenient to also implement the
  * {@link NameSpace} interface in order to allow usage of the {@link #NETCDF} constant
@@ -57,7 +57,7 @@ final class SimpleCitation implements Citation, NameSpace, InternationalString, 
     static final SimpleCitation GLOBAL = new SimpleCitation("");
 
     /**
-     * The NetCDF authority citation.
+     * The netCDF authority citation.
      */
     static final SimpleCitation NETCDF = new SimpleCitation("NetCDF");
 
