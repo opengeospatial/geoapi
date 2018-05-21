@@ -57,7 +57,7 @@ import static org.junit.Assume.assumeFalse;
  * major GeoAPI release.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   3.1
  */
 public final class CompatibilityTest implements Closeable {
@@ -237,8 +237,8 @@ public final class CompatibilityTest implements Closeable {
                 final Type[] newGPT = newMethod.getGenericParameterTypes();
                 assertEquals(methodName, oldGPT.length, newGPT.length);         // Paranoiac check (should never fail).
                 for (int i=0; i<oldGPT.length; i++) {
-                    final String oldType = Release.normalize(oldGPT[i].toString());     // TODO: use getTypeName() on JDK8.
-                    final String newType = Release.normalize(newGPT[i].toString());
+                    final String oldType = Release.normalize(oldGPT[i].getTypeName());
+                    final String newType = Release.normalize(newGPT[i].getTypeName());
                     if (!newType.equals(oldType)) {
                         final String lineSeparator = System.lineSeparator();
                         fail("Incompatible change in argument #" + (i+1) + " of "
@@ -253,8 +253,8 @@ public final class CompatibilityTest implements Closeable {
                  * as an error.
                  */
                 if (!oldMethod.isSynthetic()) {
-                    final String oldType = Release.normalize(oldMethod.getGenericReturnType().toString());     // TODO: use getTypeName() on JDK8.
-                    final String newType = Release.normalize(newMethod.getGenericReturnType().toString());
+                    final String oldType = Release.normalize(oldMethod.getGenericReturnType().getTypeName());
+                    final String newType = Release.normalize(newMethod.getGenericReturnType().getTypeName());
                     if (!newType.equals(oldType)) {
                         final IncompatibleChange change = new IncompatibleChange(className + '.' + methodName, oldType, newType);
                         if (!acceptedIncompatibleChanges.remove(change)) {

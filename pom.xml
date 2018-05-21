@@ -105,7 +105,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <website.encoding>UTF-8</website.encoding>
     <skipNativeLibraryTests>true</skipNativeLibraryTests>
-    <java.platform>7</java.platform>                            <!-- Same than the version required by JSR-363. -->
+    <java.platform>8</java.platform>
     <future.source>module-info.java</future.source>             <!-- To exclude when JDK9 profile is not enabled. -->
     <unit.api.version>1.0</unit.api.version>                    <!-- To be removed when version 2.0 will be final. -->
   </properties>

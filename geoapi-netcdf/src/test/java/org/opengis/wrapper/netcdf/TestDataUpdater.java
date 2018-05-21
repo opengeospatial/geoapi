@@ -40,7 +40,7 @@ import static org.junit.Assert.*;
  * Its code need to be updated for each purpose.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   3.1
  */
 final class TestDataUpdater {
@@ -222,7 +222,7 @@ nextVar:        for (final Variable var : file.getVariables()) {
                          */
                         if (source.getShortName().equals(pack)) {
                             final int[] shape = data.getShape();
-                            final int size = (int) Index.computeSize(shape);                  // TODO: use Math.toIntExact with JDK8.
+                            final int size = Math.toIntExact(Index.computeSize(shape));
                             final Array packed = Array.factory(target.getDataType(), shape);
                             final Index index = packed.getIndex();
                             for (int i=0; i<size; i++) {

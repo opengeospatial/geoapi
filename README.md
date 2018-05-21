@@ -25,7 +25,7 @@ and "master" for GeoAPI 4.0. The main sub-directories are:
 and do not need to be built.
 
 **Java interfaces** requires [Maven 3](http://maven.apache.org) with Java 10 for building,
-but the compilation result can be used with Java 7 or later.
+but the compilation result can be used with Java 8 or later.
 The Java Archive File (JAR) is built with `mvn package` or `mvn install`,
 and the output file will be created in the `geoapi/target/` directory.
 

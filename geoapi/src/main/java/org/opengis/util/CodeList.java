@@ -113,16 +113,15 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
     protected CodeList(String name, final Collection<E> values) {
         this.name = (name = name.trim());
         synchronized (values) {
-            this.ordinal = values.size();
+            ordinal = values.size();
             if (!values.add((E) this)) {
                 throw new IllegalArgumentException("Duplicated value: " + name);
             }
         }
         final Class<? extends CodeList> codeType = getClass();
         synchronized (VALUES) {
-            final Collection<? extends CodeList> previous = VALUES.put(codeType, values);
+            final Collection<? extends CodeList> previous = VALUES.putIfAbsent(codeType, values);
             if (previous != null && previous != values) {
-                VALUES.put(codeType, previous);                                             // Roll back
                 throw new IllegalArgumentException("List already exists: " + values);
             }
         }
@@ -284,11 +283,9 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                 if (!Modifier.isPublic(constructor.getModifiers())) {
                     final Package pkg = codeType.getPackage();
                     if (pkg != null && pkg.getName().startsWith("org.opengis.")) {
-                        AccessController.doPrivileged(new PrivilegedAction<Void>() {
-                            @Override public Void run() {
-                               constructor.setAccessible(true);
-                               return null;
-                            }
+                        AccessController.doPrivileged((PrivilegedAction<Void>) () -> {
+                            constructor.setAccessible(true);
+                            return null;
                         });
                     } else {
                         constructor.setAccessible(true);

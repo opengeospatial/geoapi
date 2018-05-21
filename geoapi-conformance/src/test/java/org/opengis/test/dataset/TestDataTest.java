@@ -41,7 +41,7 @@ import static org.junit.Assert.*;
  * Tests the method provided in the {@link TestData} enumeration.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   3.1
  */
 public final strictfp class TestDataTest {
@@ -57,7 +57,7 @@ public final strictfp class TestDataTest {
             final byte[] content = td.content();
             long sum = 0;
             for (int i=0; i<content.length; i++) {
-                sum += content[i] & 0xFF;               // TODO: Byte.toUnsignedLong(content[i]) on JDK8.
+                sum += Byte.toUnsignedLong(content[i]);
             }
             assertTrue(sum >= 100000);          // Arbitrary value for testing that the file is non-empty.
         }

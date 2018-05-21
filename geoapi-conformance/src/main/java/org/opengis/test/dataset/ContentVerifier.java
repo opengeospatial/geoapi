@@ -65,7 +65,7 @@ import org.junit.Assert;
  * they can be compared against the expected value by a call to {@code assertMetadataEquals(…)}.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   3.1
  */
 public class ContentVerifier {
@@ -197,12 +197,7 @@ public class ContentVerifier {
     public void addPropertyToIgnore(final Class<?> type, final String property) {
         Objects.requireNonNull(type);
         Objects.requireNonNull(property);
-        Set<String> properties = ignore.get(type);
-        if (properties == null) {
-            properties = new HashSet<>();
-            ignore.put(type, properties);               // TODO: use Map.compureIfAbsent with JDK8.
-        }
-        properties.add(property);
+        ignore.computeIfAbsent(type, (k) -> new HashSet<>()).add(property);
     }
 
     /**
@@ -315,7 +310,7 @@ public class ContentVerifier {
                 final int pathElementPosition = path.length();
                 type = specialized(type, obj.getClass());               // Example: Identification may actually be DataIdentification
                 for (final Method getter : type.getMethods()) {
-                    if (getter.getParameterTypes().length != 0) {       // TODO: use getParameterCount() with JDK8.
+                    if (getter.getParameterCount() != 0) {
                         continue;
                     }
                     if (getter.isAnnotationPresent(Deprecated.class)) {
@@ -436,7 +431,7 @@ public class ContentVerifier {
                         continue;
                     }
                 }
-                mismatches.add(new AbstractMap.SimpleEntry<String,Object>(key, new Mismatch(expected, actual)));
+                mismatches.add(new AbstractMap.SimpleEntry<>(key, new Mismatch(expected, actual)));
             }
         }
         missings.addAll(entries);

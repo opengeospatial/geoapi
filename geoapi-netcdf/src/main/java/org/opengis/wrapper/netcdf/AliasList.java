@@ -93,10 +93,9 @@ final class AliasList extends AbstractList<GenericName> implements RandomAccess,
             return null;
         }
         SimpleName alias = new SimpleName(namespace, name);
-        final SimpleName old = existings.put(alias, alias);
+        final SimpleName old = existings.putIfAbsent(alias, alias);
         if (old != null) {
             alias = old;                                        // Keep the existing instance.
-            existings.put(alias, alias);
         }
         return alias;
     }
