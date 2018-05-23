@@ -8204,11 +8204,11 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     }
 
     /**
-     * Tests “System Jednotne Trigonometricke Site Katastralni” geodetic datum creation from the factory.
+     * Tests “System of the Unified Trigonometrical Cadastral Network” geodetic datum creation from the factory.
      *
      * <ul>
      *   <li>EPSG datum code: <b>6156</b></li>
-     *   <li>EPSG datum name: <b>System Jednotne Trigonometricke Site Katastralni</b></li>
+     *   <li>EPSG datum name: <b>System of the Unified Trigonometrical Cadastral Network</b></li>
      *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
      *   <li>CRS using the datum: <b>S-JTSK</b></li>
@@ -8219,7 +8219,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     @Test
     public void testSJTSK() throws FactoryException {
         code              = 6156;
-        name              = "System Jednotne Trigonometricke Site Katastralni";
+        name              = "System of the Unified Trigonometrical Cadastral Network";
         crsName           = "S-JTSK";
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
@@ -8228,11 +8228,11 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     }
 
     /**
-     * Tests “System Jednotne Trigonometricke Site Katastralni (Ferro)” geodetic datum creation from the factory.
+     * Tests “System of the Unified Trigonometrical Cadastral Network (Ferro)” geodetic datum creation from the factory.
      *
      * <ul>
      *   <li>EPSG datum code: <b>6818</b></li>
-     *   <li>EPSG datum name: <b>System Jednotne Trigonometricke Site Katastralni (Ferro)</b></li>
+     *   <li>EPSG datum name: <b>System of the Unified Trigonometrical Cadastral Network (Ferro)</b></li>
      *   <li>Ellipsoid name: <b>Bessel 1841</b></li>
      *   <li>Prime meridian name: <b>Ferro</b></li>
      *   <li>CRS using the datum: <b>S-JTSK (Ferro)</b></li>
@@ -8243,7 +8243,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     @Test
     public void testSJTSK_Ferro() throws FactoryException {
         code              = 6818;
-        name              = "System Jednotne Trigonometricke Site Katastralni (Ferro)";
+        name              = "System of the Unified Trigonometrical Cadastral Network (Ferro)";
         crsName           = "S-JTSK (Ferro)";
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Ferro";
