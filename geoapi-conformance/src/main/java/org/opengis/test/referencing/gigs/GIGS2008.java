@@ -392,13 +392,13 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
     }
 
     /**
-     * Tests “Baltic depth” vertical CRS creation from the factory.
+     * Tests “Baltic 1977 depth” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG vertical datum code: <b>5105</b></li>
-     *   <li>EPSG vertical datum name: <b>Baltic Sea</b></li>
+     *   <li>EPSG vertical datum name: <b>Baltic 1977</b></li>
      *   <li>EPSG vertical CRS code: <b>5612</b></li>
-     *   <li>EPSG vertical CRS name: <b>Baltic depth</b></li>
+     *   <li>EPSG vertical CRS name: <b>Baltic 1977 depth</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -407,22 +407,22 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
     @Test
     public void testBalticDepth() throws FactoryException {
         important = true;
-        datumName = "Baltic Sea";
+        datumName = "Baltic 1977";
         datumCode = 5105;
-        name      = "Baltic depth";
+        name      = "Baltic 1977 depth";
         code      = 5612;
         createAndVerifyVerticalDatum();
         verifyVerticalCRS();
     }
 
     /**
-     * Tests “Baltic height” vertical CRS creation from the factory.
+     * Tests “Baltic 1977 height” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG vertical datum code: <b>5105</b></li>
-     *   <li>EPSG vertical datum name: <b>Baltic Sea</b></li>
+     *   <li>EPSG vertical datum name: <b>Baltic 1977</b></li>
      *   <li>EPSG vertical CRS code: <b>5705</b></li>
-     *   <li>EPSG vertical CRS name: <b>Baltic height</b></li>
+     *   <li>EPSG vertical CRS name: <b>Baltic 1977 height</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -431,9 +431,9 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
     @Test
     public void testBalticHeight() throws FactoryException {
         important = true;
-        datumName = "Baltic Sea";
+        datumName = "Baltic 1977";
         datumCode = 5105;
-        name      = "Baltic height";
+        name      = "Baltic 1977 height";
         code      = 5705;
         createAndVerifyVerticalDatum();
         verifyVerticalCRS();
@@ -944,13 +944,13 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
     }
 
     /**
-     * Tests “NGVD29 height” vertical CRS creation from the factory.
+     * Tests “NGVD29 height (ftUS)” vertical CRS creation from the factory.
      *
      * <ul>
      *   <li>EPSG vertical datum code: <b>5102</b></li>
      *   <li>EPSG vertical datum name: <b>National Geodetic Vertical Datum 1929</b></li>
      *   <li>EPSG vertical CRS code: <b>5702</b></li>
-     *   <li>EPSG vertical CRS name: <b>NGVD29 height</b></li>
+     *   <li>EPSG vertical CRS name: <b>NGVD29 height (ftUS)</b></li>
      *   <li>Particularly important to E&amp;P industry.</li>
      * </ul>
      *
@@ -961,7 +961,7 @@ public strictfp class GIGS2008 extends AuthorityFactoryTestCase<VerticalCRS> {
         important = true;
         datumName = "National Geodetic Vertical Datum 1929";
         datumCode = 5102;
-        name      = "NGVD29 height";
+        name      = "NGVD29 height (ftUS)";
         code      = 5702;
         createAndVerifyVerticalDatum();
         verifyVerticalCRS();
