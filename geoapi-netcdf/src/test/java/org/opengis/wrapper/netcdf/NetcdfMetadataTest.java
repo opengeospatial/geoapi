@@ -27,7 +27,7 @@ import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.metadata.spatial.SpatialRepresentationType;
 import org.opengis.metadata.identification.TopicCategory;
 import org.opengis.metadata.maintenance.ScopeCode;
-import org.opengis.test.metadata.RootValidator;
+import org.opengis.test.metadata.MetadataBaseValidator;
 import org.opengis.test.Validators;
 import org.opengis.test.dataset.TestData;
 import org.opengis.test.dataset.ContentVerifier;
@@ -48,7 +48,7 @@ import org.junit.Test;
  * Every {@code testXXX()} method in this class proceeds in three steps:
  *
  * <ul>
- *   <li>First,   {@linkplain RootValidator#validate(Metadata) validates} the metadata.</li>
+ *   <li>First,   {@link MetadataBaseValidator#validate(Metadata) validates} the metadata.</li>
  *   <li>Next,    {@linkplain ContentVerifier#addMetadataToVerify(Metadata) fetch all property values} which are going to be tested.</li>
  *   <li>Finally, {@linkplain ContentVerifier#compareMetadata(String, Object, Object...) compares the expected and actual values}.</li>
  * </ul>
@@ -62,7 +62,7 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * The validator to use for validating the {@link Metadata} instance.
      * This validator is specified at construction time.
      */
-    protected final RootValidator validator;
+    protected final MetadataBaseValidator validator;
 
     /**
      * The metadata object being tested. This field is set to the value returned
@@ -72,11 +72,11 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
 
     /**
      * Creates a new test case using the default validator.
-     * This constructor sets the {@link RootValidator#requireMandatoryAttributes} field
+     * This constructor sets the {@link MetadataBaseValidator#requireMandatoryAttributes} field
      * to {@code false}, since netCDF metadata are sometime incomplete.
      */
     public NetcdfMetadataTest() {
-        validator = new RootValidator(Validators.DEFAULT);
+        validator = new MetadataBaseValidator(Validators.DEFAULT);
         validator.requireMandatoryAttributes = false;
     }
 
@@ -84,11 +84,11 @@ public strictfp class NetcdfMetadataTest extends IOTestCase {
      * Creates a new test case using the given validator. This constructor is provided for
      * subclasses wanting to use different validation methods. It is caller responsibility
      * to configure the given validator (for example whether to
-     * {@linkplain RootValidator#requireMandatoryAttributes require mandatory attributes} or not).
+     * {@link MetadataBaseValidator#requireMandatoryAttributes require mandatory attributes} or not).
      *
      * @param validator  the validator to use for validating the {@link Metadata} instance.
      */
-    protected NetcdfMetadataTest(final RootValidator validator) {
+    protected NetcdfMetadataTest(final MetadataBaseValidator validator) {
         this.validator = validator;
     }
 

@@ -97,7 +97,7 @@ public class ValidatorContainer implements Cloneable {
      *
      * @since 3.1
      */
-    public RootValidator metadata = new RootValidator(this);
+    public MetadataBaseValidator metadata = new MetadataBaseValidator(this);
 
     /**
      * The validator for {@link Citation} and related objects.
@@ -263,7 +263,7 @@ public class ValidatorContainer implements Cloneable {
      *
      * @param  object  the object to test, or {@code null}.
      *
-     * @see RootValidator#validate(Metadata)
+     * @see MetadataBaseValidator#validate(Metadata)
      *
      * @since 3.1
      */
@@ -961,7 +961,7 @@ public class ValidatorContainer implements Cloneable {
      *
      * @param  object  the object to test, or {@code null}.
      *
-     * @see RootValidator#validate(Identifier)
+     * @see MetadataBaseValidator#validate(Identifier)
      *
      * @since 3.1
      */

@@ -116,7 +116,7 @@ public class Validators {
      *
      * @param  object  the object to test, or {@code null}.
      *
-     * @see RootValidator#validate(Metadata)
+     * @see MetadataBaseValidator#validate(Metadata)
      *
      * @since 3.1
      */
@@ -814,7 +814,7 @@ public class Validators {
      *
      * @param  object  the object to test, or {@code null}.
      *
-     * @see RootValidator#validate(Identifier)
+     * @see MetadataBaseValidator#validate(Identifier)
      *
      * @since 3.1
      */
