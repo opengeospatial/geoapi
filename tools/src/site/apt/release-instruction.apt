@@ -30,13 +30,6 @@ git status
 git commit --all --message "Updated the list of GeoAPI classes and methods."
 ---------------------------------------------------------------------------------------------
 
-  If the <<<geoapi-openoffice>>> module got significant changes,
-  edit the version number in the following files:
-
-    * <<<geoapi-openoffice/src/main/unopkg/description.xml>>>
-
-    * <<<geoapi-openoffice/src/site/resources/update.xml>>>
-
 
 * Create the tag and deploy
 

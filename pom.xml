@@ -702,7 +702,6 @@
     <module>geoapi-proj4</module>
     <module>geoapi-gdal</module>
     <module>geoapi-netcdf</module>
-    <module>geoapi-openoffice</module>
     <module>tools</module>
   </modules>
 </project>
