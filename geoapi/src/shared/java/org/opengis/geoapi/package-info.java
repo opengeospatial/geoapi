@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2018 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,12 +31,12 @@
  */
 
 /**
- * Validators and test suites for the {@code org.opengis.metadata} package. The main validator
- * is {@link org.opengis.test.metadata.MetadataBaseValidator#validate(org.opengis.metadata.Metadata)
- * MetadataBaseValidator.validate(Metadata)}.
+ * Information about GeoAPI content, made available for test suites.
+ * The information are either hard-coded (e.g. list of all interfaces)
+ * or read from OGC XML schema.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.2
+ * @since   3.1
  */
-package org.opengis.test.metadata;
+package org.opengis.geoapi;

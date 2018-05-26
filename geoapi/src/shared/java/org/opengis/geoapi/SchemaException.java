@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2018 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,14 +29,25 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
+package org.opengis.geoapi;
+
 
 /**
- * Validators and test suites for the {@code org.opengis.metadata} package. The main validator
- * is {@link org.opengis.test.metadata.MetadataBaseValidator#validate(org.opengis.metadata.Metadata)
- * MetadataBaseValidator.validate(Metadata)}.
+ * Thrown when a {@link SchemaCompliance} failed to load a XSD file because it does not comply
+ * with expected OGC/ISO conventions, or when a UML annotation failed a compliance check.
  *
  * @author  Martin Desruisseaux (Geomatys)
+ * @since   3.1
  * @version 3.1
- * @since   2.2
  */
-package org.opengis.test.metadata;
+@SuppressWarnings("serial")
+public class SchemaException extends Exception {
+    /**
+     * Creates an exception with the specified details message.
+     *
+     * @param message  the detail message.
+     */
+    public SchemaException(final String message) {
+        super(message);
+    }
+}

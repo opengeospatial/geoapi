@@ -10,12 +10,12 @@
                 <root id="src.proj4.dir" name="Wrapper for Proj.4"/>
                 <root id="src.gdal.dir" name="Wrapper for GDAL"/>
                 <root id="src.netcdf.dir" name="Wrapper for netCDF"/>
-                <root id="src.openoffice.dir" name="OpenOffice add-in"/>
                 <root id="src.examples.dir" name="Examples"/>
                 <root id="src.tools.dir" name="Tools"/>
             </source-roots>
             <test-roots>
                 <root id="test.core.dir" name="Test GeoAPI"/>
+                <root id="src.shared.dir" name="Shared GeoAPI tests"/>
                 <root id="src.validators.dir" name="Conformance"/>
                 <root id="rsc.validators.dir" name="Conformance resources"/>
                 <root id="test.validators.dir" name="Tests conformance"/>

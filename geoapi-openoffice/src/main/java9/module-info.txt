@@ -1,5 +1,0 @@
-This module does not yet declare a module-info.java file because it
-depends on JAR files that are not yet available as Java 9 modules.
-In particular, the juh, jurt, ridl and unoil dependencies provide
-class files in the same packages, which make hard to import them
-even as unnamed modules.

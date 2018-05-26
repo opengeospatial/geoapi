@@ -89,9 +89,9 @@ GeoAPI
   The project contains a {{{./geoapi-conformance/index.html}geoapi-conformance}} module
   which can be run as a test harness to evaluate the correctness of any implementation.
   A <proof of concept> is provided by the {{{./geoapi-proj4/index.html}geoapi-proj4}}
-  module, using wrappers around the well-known C/C++ Proj.4 library. Finally, the
-  {{{./geoapi-examples/index.html}geoapi-examples}} and {{{./geoapi-openoffice/index.html}geoapi-openoffice}}
-  modules place code samples in public domain, which implementors can use as a
+  module, using wrappers around the well-known C/C++ Proj.4 library.
+  Finally, the {{{./geoapi-examples/index.html}geoapi-examples}} module
+  places code samples in public domain, which implementors can use as a
   starting point for their own products.
 
   GeoAPI uses the {{{http://maven.apache.org}Maven}} build tool. External
