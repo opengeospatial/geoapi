@@ -31,10 +31,10 @@
  */
 
 /**
- * Tests that are global to all GeoAPI packages.
+ * Information about GeoAPI content, made available for test suites.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-package org.opengis;
+package org.opengis.geoapi;

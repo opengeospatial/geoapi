@@ -40,7 +40,7 @@ import java.util.Locale;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 
-import org.opengis.Content;
+import org.opengis.geoapi.Content;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Specification;

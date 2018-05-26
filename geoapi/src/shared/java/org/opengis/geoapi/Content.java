@@ -29,7 +29,7 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis;
+package org.opengis.geoapi;
 
 import java.lang.reflect.Type;
 import java.lang.reflect.Field;

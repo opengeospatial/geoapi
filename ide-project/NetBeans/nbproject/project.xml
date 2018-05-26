@@ -16,6 +16,7 @@
             </source-roots>
             <test-roots>
                 <root id="test.core.dir" name="Test GeoAPI"/>
+                <root id="src.shared.dir" name="Shared GeoAPI tests"/>
                 <root id="src.validators.dir" name="Conformance"/>
                 <root id="rsc.validators.dir" name="Conformance resources"/>
                 <root id="test.validators.dir" name="Tests conformance"/>

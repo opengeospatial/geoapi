@@ -29,7 +29,7 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis;
+package org.opengis.geoapi;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -72,7 +72,7 @@ public final strictfp class ClassIndexTest extends SourceGenerator {
      * The name of the index file to read or generate. This file will be located in the
      * "{@code org/opengis/annotation}" directory.
      */
-    public static final String INDEX_FILENAME = "annotation/class-index.properties";
+    private static final String INDEX_FILENAME = "class-index.properties";
 
     /**
      * The encoding to use for the {@value #INDEX_FILENAME} file. We use the default encoding
@@ -151,7 +151,7 @@ public final strictfp class ClassIndexTest extends SourceGenerator {
         assertNull(merged.put("MD_Metadata",            "MI_Metadata"));
 
         final String index = createIndex(EnumSet.of(ISO_19115, ISO_19115_2, ISO_19111), merged);
-        final InputStream in = ClassIndexTest.class.getResourceAsStream(INDEX_FILENAME);
+        final InputStream in = UML.class.getResourceAsStream(INDEX_FILENAME);
         if (in != null) {
             final String actual = load(in);
             assertEquals("The content of the \"" + INDEX_FILENAME + "\" file is different from " +
@@ -192,7 +192,7 @@ public final strictfp class ClassIndexTest extends SourceGenerator {
      * @throws IOException if an I/O error occurred while writing the index.
      */
     private String save(final String index) throws IOException {
-        Path file = sourceDirectory("resources").resolve("org").resolve("opengis").resolve(INDEX_FILENAME);
+        Path file = sourceDirectory("resources").resolve("org").resolve("opengis").resolve("annotation").resolve(INDEX_FILENAME);
         if (Files.exists(file)) {
             return "\"" + file + "\" already exists.";
         }

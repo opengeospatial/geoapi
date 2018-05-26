@@ -193,6 +193,7 @@ is divided into following sections:
         <condition property="have.tests">
             <or>
                 <available file="${test.core.dir}"/>
+                <available file="${src.shared.dir}"/>
                 <available file="${src.validators.dir}"/>
                 <available file="${rsc.validators.dir}"/>
                 <available file="${test.validators.dir}"/>
@@ -325,6 +326,7 @@ is divided into following sections:
         <fail unless="src.examples.dir">Must set src.examples.dir</fail>
         <fail unless="src.tools.dir">Must set src.tools.dir</fail>
         <fail unless="test.core.dir">Must set test.core.dir</fail>
+        <fail unless="src.shared.dir">Must set src.shared.dir</fail>
         <fail unless="src.validators.dir">Must set src.validators.dir</fail>
         <fail unless="rsc.validators.dir">Must set rsc.validators.dir</fail>
         <fail unless="test.validators.dir">Must set test.validators.dir</fail>
@@ -635,6 +637,9 @@ is divided into following sections:
                             <fileset dir="${test.core.dir}" excludes="@{excludes},${excludes}" includes="@{includes}">
                                 <filename name="@{testincludes}"/>
                             </fileset>
+                            <fileset dir="${src.shared.dir}" excludes="@{excludes},${excludes}" includes="@{includes}">
+                                <filename name="@{testincludes}"/>
+                            </fileset>
                             <fileset dir="${src.validators.dir}" excludes="@{excludes},${excludes}" includes="@{includes}">
                                 <filename name="@{testincludes}"/>
                             </fileset>
@@ -686,6 +691,9 @@ is divided into following sections:
                 </condition>
                 <union id="test.set">
                     <fileset dir="${test.core.dir}" excludes="@{excludes},**/*.xml,${excludes}" includes="@{includes}">
+                        <filename name="@{testincludes}"/>
+                    </fileset>
+                    <fileset dir="${src.shared.dir}" excludes="@{excludes},**/*.xml,${excludes}" includes="@{includes}">
                         <filename name="@{testincludes}"/>
                     </fileset>
                     <fileset dir="${src.validators.dir}" excludes="@{excludes},**/*.xml,${excludes}" includes="@{includes}">
@@ -1677,14 +1685,14 @@ is divided into following sections:
         <!-- You can override this target in the ../build.xml file. -->
     </target>
     <target depends="-init-source-module-properties" if="named.module.internal" name="-init-test-javac-module-properties-with-module">
-        <j2seproject3:modulename property="test.module.name" sourcepath="${test.core.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.python.dir}:${test.proj4.dir}:${test.gdal.dir}:${test.netcdf.dir}:${test.examples.dir}:${test.tools.dir}"/>
-        <condition else="${empty.dir}" property="javac.test.sourcepath" value="${test.core.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.python.dir}:${test.proj4.dir}:${test.gdal.dir}:${test.netcdf.dir}:${test.examples.dir}:${test.tools.dir}">
+        <j2seproject3:modulename property="test.module.name" sourcepath="${test.core.dir}:${src.shared.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.python.dir}:${test.proj4.dir}:${test.gdal.dir}:${test.netcdf.dir}:${test.examples.dir}:${test.tools.dir}"/>
+        <condition else="${empty.dir}" property="javac.test.sourcepath" value="${test.core.dir}:${src.shared.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.python.dir}:${test.proj4.dir}:${test.gdal.dir}:${test.netcdf.dir}:${test.examples.dir}:${test.tools.dir}">
             <and>
                 <isset property="test.module.name"/>
                 <length length="0" string="${test.module.name}" when="greater"/>
             </and>
         </condition>
-        <condition else="--patch-module ${module.name}=${test.core.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.python.dir}:${test.proj4.dir}:${test.gdal.dir}:${test.netcdf.dir}:${test.examples.dir}:${test.tools.dir} --add-reads ${module.name}=ALL-UNNAMED" property="javac.test.compilerargs" value="--add-reads ${test.module.name}=ALL-UNNAMED">
+        <condition else="--patch-module ${module.name}=${test.core.dir}:${src.shared.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.python.dir}:${test.proj4.dir}:${test.gdal.dir}:${test.netcdf.dir}:${test.examples.dir}:${test.tools.dir} --add-reads ${module.name}=ALL-UNNAMED" property="javac.test.compilerargs" value="--add-reads ${test.module.name}=ALL-UNNAMED">
             <and>
                 <isset property="test.module.name"/>
                 <length length="0" string="${test.module.name}" when="greater"/>
@@ -1725,16 +1733,17 @@ is divided into following sections:
     </target>
     <target depends="-init-test-javac-module-properties-with-module,-init-test-module-properties-without-module" name="-init-test-module-properties"/>
     <target if="do.depend.true" name="-compile-test-depend">
-        <j2seproject3:depend classpath="${javac.test.classpath}" destdir="${build.test.classes.dir}" srcdir="${test.core.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.python.dir}:${test.proj4.dir}:${test.gdal.dir}:${test.netcdf.dir}:${test.examples.dir}:${test.tools.dir}"/>
+        <j2seproject3:depend classpath="${javac.test.classpath}" destdir="${build.test.classes.dir}" srcdir="${test.core.dir}:${src.shared.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.python.dir}:${test.proj4.dir}:${test.gdal.dir}:${test.netcdf.dir}:${test.examples.dir}:${test.tools.dir}"/>
     </target>
     <target depends="init,deps-jar,compile,-init-test-module-properties,-pre-pre-compile-test,-pre-compile-test,-compile-test-depend" if="have.tests" name="-do-compile-test">
-        <j2seproject3:javac apgeneratedsrcdir="${build.test.classes.dir}" classpath="${javac.test.classpath}" debug="true" destdir="${build.test.classes.dir}" modulepath="${javac.test.modulepath}" processorpath="${javac.test.processorpath}" sourcepath="${javac.test.sourcepath}" srcdir="${test.core.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.python.dir}:${test.proj4.dir}:${test.gdal.dir}:${test.netcdf.dir}:${test.examples.dir}:${test.tools.dir}">
+        <j2seproject3:javac apgeneratedsrcdir="${build.test.classes.dir}" classpath="${javac.test.classpath}" debug="true" destdir="${build.test.classes.dir}" modulepath="${javac.test.modulepath}" processorpath="${javac.test.processorpath}" sourcepath="${javac.test.sourcepath}" srcdir="${test.core.dir}:${src.shared.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.python.dir}:${test.proj4.dir}:${test.gdal.dir}:${test.netcdf.dir}:${test.examples.dir}:${test.tools.dir}">
             <customize>
                 <compilerarg line="${javac.test.compilerargs}"/>
             </customize>
         </j2seproject3:javac>
         <copy todir="${build.test.classes.dir}">
             <fileset dir="${test.core.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
+            <fileset dir="${src.shared.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.validators.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${rsc.validators.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${test.validators.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
@@ -1758,13 +1767,14 @@ is divided into following sections:
     <target depends="init,deps-jar,compile,-init-test-module-properties,-pre-pre-compile-test,-pre-compile-test-single" if="have.tests" name="-do-compile-test-single">
         <fail unless="javac.includes">Must select some files in the IDE or set javac.includes</fail>
         <j2seproject3:force-recompile destdir="${build.test.classes.dir}"/>
-        <j2seproject3:javac apgeneratedsrcdir="${build.test.classes.dir}" classpath="${javac.test.classpath}" debug="true" destdir="${build.test.classes.dir}" excludes="" includes="${javac.includes}, module-info.java" modulepath="${javac.test.modulepath}" processorpath="${javac.test.processorpath}" sourcepath="${test.core.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.python.dir}:${test.proj4.dir}:${test.gdal.dir}:${test.netcdf.dir}:${test.examples.dir}:${test.tools.dir}" srcdir="${test.core.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.python.dir}:${test.proj4.dir}:${test.gdal.dir}:${test.netcdf.dir}:${test.examples.dir}:${test.tools.dir}">
+        <j2seproject3:javac apgeneratedsrcdir="${build.test.classes.dir}" classpath="${javac.test.classpath}" debug="true" destdir="${build.test.classes.dir}" excludes="" includes="${javac.includes}, module-info.java" modulepath="${javac.test.modulepath}" processorpath="${javac.test.processorpath}" sourcepath="${test.core.dir}:${src.shared.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.python.dir}:${test.proj4.dir}:${test.gdal.dir}:${test.netcdf.dir}:${test.examples.dir}:${test.tools.dir}" srcdir="${test.core.dir}:${src.shared.dir}:${src.validators.dir}:${rsc.validators.dir}:${test.validators.dir}:${test.python.dir}:${test.proj4.dir}:${test.gdal.dir}:${test.netcdf.dir}:${test.examples.dir}:${test.tools.dir}">
             <customize>
                 <compilerarg line="${javac.test.compilerargs}"/>
             </customize>
         </j2seproject3:javac>
         <copy todir="${build.test.classes.dir}">
             <fileset dir="${test.core.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
+            <fileset dir="${src.shared.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${src.validators.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${rsc.validators.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>
             <fileset dir="${test.validators.dir}" excludes="${build.classes.excludes},${excludes}" includes="${includes}"/>

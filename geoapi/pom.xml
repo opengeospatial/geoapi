@@ -133,12 +133,24 @@
         <artifactId>build-helper-maven-plugin</artifactId>
         <executions>
           <execution>
+            <id>add-pending-placeholder</id>
             <goals>
               <goal>add-source</goal>
             </goals>
             <configuration>
               <sources>
                 <source>src/pending/java</source>
+              </sources>
+            </configuration>
+          </execution>
+          <execution>
+            <id>add-shared-tests</id>
+            <goals>
+              <goal>add-test-source</goal>
+            </goals>
+            <configuration>
+              <sources>
+                <source>src/shared/java</source>
               </sources>
             </configuration>
           </execution>
