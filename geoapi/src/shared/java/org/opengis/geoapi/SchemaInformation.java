@@ -29,7 +29,7 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.xml;
+package org.opengis.geoapi;
 
 import java.io.IOException;
 import java.io.InputStream;

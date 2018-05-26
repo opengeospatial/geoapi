@@ -32,6 +32,8 @@
 
 /**
  * Information about GeoAPI content, made available for test suites.
+ * The information are either hard-coded (e.g. list of all interfaces)
+ * or read from OGC XML schema.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

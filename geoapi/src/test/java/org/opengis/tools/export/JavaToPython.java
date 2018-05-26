@@ -56,11 +56,11 @@ import org.opengis.annotation.UML;
 import org.opengis.annotation.Obligation;
 import org.opengis.util.ControlledVocabulary;
 import org.opengis.util.InternationalString;
-import org.opengis.xml.NameSpaces;
-import org.opengis.xml.Departures;
-import org.opengis.xml.DocumentationStyle;
-import org.opengis.xml.SchemaInformation;
-import org.opengis.xml.SchemaException;
+import org.opengis.geoapi.NameSpaces;
+import org.opengis.geoapi.Departures;
+import org.opengis.geoapi.DocumentationStyle;
+import org.opengis.geoapi.SchemaInformation;
+import org.opengis.geoapi.SchemaException;
 import org.xml.sax.SAXException;
 import org.junit.Test;
 

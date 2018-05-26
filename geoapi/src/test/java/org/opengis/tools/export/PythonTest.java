@@ -36,8 +36,8 @@ import java.nio.file.Paths;
 import java.io.IOException;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
-import org.opengis.xml.SchemaException;
-import org.opengis.xml.SchemaInformation;
+import org.opengis.geoapi.SchemaException;
+import org.opengis.geoapi.SchemaInformation;
 
 import static org.junit.Assume.*;
 
