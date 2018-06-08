@@ -529,7 +529,7 @@
            ========================================================================================= -->
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.0.1-SNAPSHOT</version>                   <!-- https://issues.apache.org/jira/browse/MJAVADOC-517 -->
+        <version>3.0.1</version>
         <reportSets>
           <reportSet>
             <id>default</id>
@@ -658,17 +658,6 @@
       </plugin>
     </plugins>
   </reporting>
-
-  <pluginRepositories>
-    <pluginRepository>
-      <id>snapshots.apache.org</id>                         <!-- Temporary repository for maven-javadoc-plugin-3.0.1-SNAPSHOT. -->
-      <name>Apache snapshots</name>
-      <url>https://repository.apache.org/content/groups/snapshots</url>
-      <releases>
-        <enabled>false</enabled>
-      </releases>
-    </pluginRepository>
-  </pluginRepositories>
 
 
 
