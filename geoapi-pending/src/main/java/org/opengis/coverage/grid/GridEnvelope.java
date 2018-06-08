@@ -92,9 +92,9 @@ public interface GridEnvelope {
      * </code></blockquote>
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.
-     * @return the coordinate value at the given dimension, inclusive.
+     * @return the low coordinate value at the given dimension, inclusive.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
-     *         than the {@linkplain #getDimension grid dimension}.
+     *         than the {@linkplain #getDimension() grid dimension}.
      *
      * @see Rectangle#x
      * @see Rectangle#y
@@ -112,9 +112,9 @@ public interface GridEnvelope {
      * </code></blockquote>
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.
-     * @return the coordinate value at the given dimension, <strong>inclusive</strong>.
+     * @return the high coordinate value at the given dimension, <strong>inclusive</strong>.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
-     *         than the {@linkplain #getDimension grid dimension}.
+     *         than the {@linkplain #getDimension() grid dimension}.
      *
      * @since GeoAPI 2.2
      */
@@ -128,10 +128,10 @@ public interface GridEnvelope {
      * {@linkplain #getHigh getHigh}(dimension) - {@linkplain #getLow getLow}(dimension) + 1
      * </code></blockquote>
      *
-     * @param  dimension  the dimension for which to obtain the coordinate value.
-     * @return the coordinate value at the given dimension.
+     * @param  dimension  the dimension for which to obtain the span.
+     * @return the span at the given dimension.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
-     *         than the {@linkplain #getDimension grid dimension}.
+     *         than the {@linkplain #getDimension() grid dimension}.
      *
      * @see Rectangle#width
      * @see Rectangle#height
