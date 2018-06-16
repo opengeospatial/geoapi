@@ -31,13 +31,13 @@
  */
 package org.opengis.test.referencing;
 
-import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
+import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.util.InternationalString;
 
 
 /**
- * A simple implementation of {@link Identifier},
+ * A simple implementation of {@link ReferenceIdentifier},
  * used for {@link PseudoEpsgFactory} purpose only.
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -46,7 +46,7 @@ import org.opengis.util.InternationalString;
  *
  * @see org.opengis.test.referencing.gigs.GIGSIdentifier
  */
-final strictfp class EPSGIdentifier implements Identifier {
+final strictfp class EPSGIdentifier implements ReferenceIdentifier {
     /**
      * The value to be returned by {@link #getCode()}.
      */
