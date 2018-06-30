@@ -41,7 +41,7 @@ import org.opengis.util.InternationalString;
  *
  * @author  Alexis Manin (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   3.1
  *
  * @see org.opengis.test.referencing.EPSGIdentifier

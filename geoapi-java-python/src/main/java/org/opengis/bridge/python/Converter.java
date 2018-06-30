@@ -71,56 +71,56 @@ class Converter<T> implements Function<PyObject,T> {
     }
 
     /** Shared converter from Python objects to {@code int} primitive. */
-    private static final Converter<Boolean> PRIMITIVE_BOOLEAN = new Converter<>(Boolean.class) {
+    private static final Converter<Boolean> PRIMITIVE_BOOLEAN = new Converter<Boolean>(Boolean.class) {
         @Override public Boolean apply(final PyObject value) {
             return (value != null) ? value.getIntValue() != 0 : Boolean.FALSE;
         }
     };
 
     /** Shared converter from Python objects to {@code int} primitive numbers. */
-    private static final Converter<Integer> PRIMITIVE_INTEGER = new Converter<>(Integer.class) {
+    private static final Converter<Integer> PRIMITIVE_INTEGER = new Converter<Integer>(Integer.class) {
         @Override public Integer apply(final PyObject value) {
             return (value != null) ? value.getIntValue() : 0;
         }
     };
 
     /** Shared converter from Python objects to {@code double} primitive numbers. */
-    private static final Converter<Double> PRIMITIVE_DOUBLE = new Converter<>(Double.class) {
+    private static final Converter<Double> PRIMITIVE_DOUBLE = new Converter<Double>(Double.class) {
         @Override public Double apply(final PyObject value) {
             return (value != null) ? value.getDoubleValue() : Double.NaN;
         }
     };
 
     /** Shared converter from Python objects to {@code Boolean} wrapper. */
-    private static final Converter<Boolean> BOOLEAN = new Converter<>(Boolean.class) {
+    private static final Converter<Boolean> BOOLEAN = new Converter<Boolean>(Boolean.class) {
         @Override public Boolean apply(final PyObject value) {
             return (value != null) ? value.getIntValue() != 0 : null;
         }
     };
 
     /** Shared converter from Python objects to {@code Integer} wrapped numbers. */
-    private static final Converter<Integer> INTEGER = new Converter<>(Integer.class) {
+    private static final Converter<Integer> INTEGER = new Converter<Integer>(Integer.class) {
         @Override public Integer apply(final PyObject value) {
             return (value != null) ? value.getIntValue() : null;
         }
     };
 
     /** Shared converter from Python objects to {@code Double} wrapped numbers. */
-    private static final Converter<Double> DOUBLE = new Converter<>(Double.class) {
+    private static final Converter<Double> DOUBLE = new Converter<Double>(Double.class) {
         @Override public Double apply(final PyObject value) {
             return (value != null) ? value.getDoubleValue() : null;
         }
     };
 
     /** Shared converter from Python objects to {@link String} instances. */
-    private static final Converter<String> STRING = new Converter<>(String.class) {
+    private static final Converter<String> STRING = new Converter<String>(String.class) {
         @Override public String apply(final PyObject value) {
             return (value != null) ? value.getStringValue() : null;
         }
     };
 
     /** Shared converter from Python objects to {@link InternationalString} instances. */
-    private static final Converter<InternationalString> I18N = new Converter<>(InternationalString.class) {
+    private static final Converter<InternationalString> I18N = new Converter<InternationalString>(InternationalString.class) {
         @Override public InternationalString apply(final PyObject value) {
             return (value != null) ? new Literal(value.getStringValue()) : null;
         }

@@ -41,7 +41,7 @@ import org.opengis.util.InternationalString;
  * used for {@link PseudoEpsgFactory} purpose only.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   3.1
  *
  * @see org.opengis.test.referencing.gigs.GIGSIdentifier
