@@ -58,7 +58,7 @@ public interface ScopeDescription {
      * Dataset to which the information applies.
      *
      * <div class="note"><b>Example:</b>
-     * If a geographic data provider is generating vector mapping for thee administrative areas
+     * If a geographic data provider is generating vector mapping for the administrative areas
      * and if the data were processed in the same way, then the provider could record the bulk
      * of initial data at {@link ScopeCode#DATASET} level with a
      * “<cite>Administrative area A, B &amp; C</cite>” description.
