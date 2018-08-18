@@ -2,7 +2,7 @@
 #    GeoAPI - Java interfaces for OGC/ISO standards
 #    http://www.geoapi.org
 #
-#    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+#    Copyright (C) 2018 Open Geospatial Consortium, Inc.
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 #    Permission to use, copy, and modify this software and its documentation, with
@@ -33,10 +33,10 @@
 
 ##########################################################
 # Generate pip package
-# Author : Johann Sorel (Geomatys)
+# Author: Johann Sorel (Geomatys)
 #
-# Usage : python3 build.py sdist
-# Note : this file is called twice : by build.py and by pip install
+# Usage: python3 build.py sdist
+# Note: this file is called twice: by build.py and by pip install.
 ##########################################################
 
 import setuptools
@@ -46,21 +46,20 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name="ogc",
-    author="Open Geospatial Consortium",
-    author_email="geoapi.swg@lists.opengeospatial.org",
-    description="GeoAPI - interfaces for OGC/ISO standards",
-    long_description=long_description,
-    long_description_content_type="text/markdown",
-    url="http://www.geoapi.org",
+    name                          = "ogc",
+    version                       = "4.0-alpha",
+    author                        = "Open Geospatial Consortium",
+    author_email                  = "geoapi.swg@lists.opengeospatial.org",
+    description                   = "GeoAPI - interfaces for OGC/ISO standards",
+    long_description              = long_description,
+    long_description_content_type = "text/markdown",
+    url                           = "http://www.geoapi.org",
+    packages                      = setuptools.find_packages(),
+    package_data                  = {},
     classifiers=(
         "Programming Language :: Python :: 3",
         "License :: OSI Approved :: BSD License",
         "Operating System :: OS Independent",
         "Development Status :: 4 - Alpha"
-    ),
-
-    version="4.0",
-    package_data={},
-    packages=setuptools.find_packages(),
+    )
 )

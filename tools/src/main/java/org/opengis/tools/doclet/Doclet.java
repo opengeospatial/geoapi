@@ -184,7 +184,7 @@ public final class Doclet extends StandardDoclet {
                 if (input == null) {
                     printError("Not the expected Maven target directory: " + output);
                 } else {
-                    input = input.resolve("src/main/javadoc");
+                    input = input.resolve("src").resolve("main").resolve("javadoc");
                     if (!Files.isDirectory(input)) {
                         printError("Directory not found: " + input);
                     } else {

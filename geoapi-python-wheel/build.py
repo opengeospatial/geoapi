@@ -2,7 +2,7 @@
 #    GeoAPI - Java interfaces for OGC/ISO standards
 #    http://www.geoapi.org
 #
-#    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+#    Copyright (C) 2018 Open Geospatial Consortium, Inc.
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 #    Permission to use, copy, and modify this software and its documentation, with
@@ -32,9 +32,9 @@
 
 ##########################################################
 # Python Wheel build script
-# Author : Johann Sorel (Geomatys)
+# Author: Johann Sorel (Geomatys)
 #
-# Usage : python3 build.py sdist
+# Usage: python3 build.py sdist
 ##########################################################
 
 import setuptools
@@ -44,19 +44,19 @@ import os
 
 
 def createInit(path) :
-	f = open(path+"/__init__.py", "w+")
-	f.close()
+    f = open(path+"/__init__.py", "w+")
+    f.close()
 
 
 shutil.rmtree('dist/', ignore_errors=True)
 shutil.rmtree('temp/', ignore_errors=True)
-shutil.rmtree('ogc/', ignore_errors=True)
+shutil.rmtree('ogc/',  ignore_errors=True)
 
 ##########################################################
-#copy python files localed in other modules
+# Copy python files located in other modules.
 ##########################################################
 
-#create java library folder
+# Create java library folder
 directory = 'ogc/'
 if not os.path.exists(directory):
     os.makedirs(directory)
@@ -66,21 +66,21 @@ dir = 'ogc/metadata/'
 os.makedirs(dir)
 files = glob.glob('../geoapi/src/main/python/ogc/metadata/*.py')
 for f in files:
-	shutil.copy2(f,dir)
+    shutil.copy2(f,dir)
 
 # Java bridge
 dir = 'ogc/bridge/java/'
 os.makedirs(dir)
 files = glob.glob('../geoapi-java-python/src/main/python/ogc/bridge/java/*.py')
 for f in files:
-	shutil.copy2(f,dir)
+    shutil.copy2(f,dir)
 
-# Gdal bridge
+# GDAL bridge
 dir = 'ogc/wrapper/'
 os.makedirs(dir)
 files = glob.glob('../geoapi-gdal/src/main/python/ogc/wrapper/*.py')
 for f in files:
-	shutil.copy2(f,dir)
+    shutil.copy2(f,dir)
 
 # __init__.py in each folder to include
 createInit("ogc")
@@ -89,16 +89,14 @@ createInit("ogc/bridge/java")
 
 
 ##########################################################
-# generate pip package
+# Generate pip package.
 ##########################################################
 
 import setup
 
 ##########################################################
-# cleaning, setup tool makes a lot a side files
+# Cleaning, setup tool makes a lot of side files.
 ##########################################################
 shutil.rmtree("ogc.egg-info", ignore_errors=True)
-shutil.rmtree("__pycache__", ignore_errors=True)
-shutil.rmtree("ogc", ignore_errors=True)
-
-
+shutil.rmtree("__pycache__",  ignore_errors=True)
+shutil.rmtree("ogc",          ignore_errors=True)
