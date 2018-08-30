@@ -112,7 +112,7 @@ class Series(ABC):
         return None
 
     @property
-    def issueIdentification(self) -> str:
+    def issue_identification(self) -> str:
         """Information identifying the issue of the series."""
         return None
 
@@ -127,7 +127,7 @@ class Address(ABC):
     """Location of the responsible individual or organisation."""
 
     @property
-    def deliveryPoint(self) -> Sequence[str]:
+    def delivery_point(self) -> Sequence[str]:
         """Address line for the location (as described in ISO 11180, Annex A)."""
         return None
 
@@ -137,12 +137,12 @@ class Address(ABC):
         return None
 
     @property
-    def administrativeArea(self) -> str:
+    def administrative_area(self) -> str:
         """State, province of the location."""
         return None
 
     @property
-    def postalCode(self) -> str:
+    def postal_code(self) -> str:
         """ZIP or other postal code."""
         return None
 
@@ -152,7 +152,7 @@ class Address(ABC):
         return None
 
     @property
-    def electronicMailAddress(self) -> Sequence[str]:
+    def electronic_mail_address(self) -> Sequence[str]:
         """Address of the electronic mailbox of the responsible organisation or individual."""
         return None
 
@@ -167,7 +167,7 @@ class Telephone(ABC):
         pass
 
     @property
-    def numberType(self) -> TelephoneTypeCode:
+    def number_type(self) -> TelephoneTypeCode:
         """Type of telephone responsible organisation or individual."""
         return None
 
@@ -187,7 +187,7 @@ class OnlineResource(ABC):
         return None
 
     @property
-    def applicationProfile(self) -> str:
+    def application_profile(self) -> str:
         """Name of an application profile that can be used with the online resource."""
         return None
 
@@ -207,7 +207,7 @@ class OnlineResource(ABC):
         return None
 
     @property
-    def protocolRequest(self) -> str:
+    def protocol_request(self) -> str:
         """Protocol used by the accessed resource."""
         return None
 
@@ -227,22 +227,22 @@ class Contact(ABC):
         return None
 
     @property
-    def onlineResource(self) -> Sequence[OnlineResource]:
+    def online_resource(self) -> Sequence[OnlineResource]:
         """On-line information that can be used to contact the individual or organisation."""
         return None
 
     @property
-    def hoursOfService(self) -> Sequence[str]:
+    def hours_of_service(self) -> Sequence[str]:
         """Time period (including time zone) when individuals can contact the organisation or individual."""
         return None
 
     @property
-    def contactInstructions(self) -> str:
+    def contact_instructions(self) -> str:
         """Supplemental instructions on how or when to contact the individual or organisation."""
         return None
 
     @property
-    def contactType(self) -> str:
+    def contact_type(self) -> str:
         return None
 
 
@@ -256,7 +256,7 @@ class Party(ABC):
         return None
 
     @property
-    def contactInfo(self) -> Sequence[Contact]:
+    def contact_info(self) -> Sequence[Contact]:
         """Contact information for the party."""
         return None
 
@@ -285,7 +285,7 @@ class Individual(Party):
     """Information about the party if the party is an individual."""
 
     @property
-    def positionName(self) -> str:
+    def position_name(self) -> str:
         """Position of the individual in an organisation."""
         return None
 
@@ -316,7 +316,7 @@ class Date(ABC):
         pass
 
     @abstractproperty
-    def dateType(self) -> DateTypeCode:
+    def date_type(self) -> DateTypeCode:
         """Event used for reference date."""
         pass
 
@@ -331,7 +331,7 @@ class Citation(ABC):
         pass
 
     @property
-    def alternateTitle(self) -> Sequence[str]:
+    def alternate_title(self) -> Sequence[str]:
         """Short name or other language name by which the cited information is known. Example: DCW as an alternative title for Digital Chart of the World."""
         return None
 
@@ -346,7 +346,7 @@ class Citation(ABC):
         return None
 
     @property
-    def editionDate(self) -> datetime:
+    def edition_date(self) -> datetime:
         """Date of the edition."""
         return None
 
@@ -356,12 +356,12 @@ class Citation(ABC):
         return None
 
     @property
-    def citedResponsibleParty(self) -> Sequence[Responsibility]:
+    def cited_responsible_party(self) -> Sequence[Responsibility]:
         """Name and position information for an individual or organisation that is responsible for the resource."""
         return None
 
     @property
-    def presentationForm(self) -> Sequence[PresentationFormCode]:
+    def presentation_form(self) -> Sequence[PresentationFormCode]:
         """Mode in which the resource is represented."""
         return None
 
@@ -371,7 +371,7 @@ class Citation(ABC):
         return None
 
     @property
-    def otherCitationDetails(self) -> Sequence[str]:
+    def other_citation_details(self) -> Sequence[str]:
         """Other information required to complete the citation that is not recorded elsewhere."""
         return None
 
@@ -386,7 +386,7 @@ class Citation(ABC):
         return None
 
     @property
-    def onlineResource(self) -> Sequence[OnlineResource]:
+    def online_resource(self) -> Sequence[OnlineResource]:
         """Online reference to the cited resource."""
         return None
 
@@ -411,7 +411,7 @@ class Identifier(ABC):
         pass
 
     @property
-    def codeSpace(self) -> str:
+    def code_space(self) -> str:
         """Identifier or namespace in which the code is valid."""
         return None
 

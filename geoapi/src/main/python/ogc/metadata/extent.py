@@ -15,7 +15,7 @@ class GeographicExtent(ABC):
     """Spatial area of the resource."""
 
     @property
-    def extentTypeCode(self):
+    def extent_type_code(self):
         """Indication of whether the geographic element encompasses an area covered by the data or an area where data is not present."""
         return None
 
@@ -25,22 +25,22 @@ class GeographicBoundingBox(GeographicExtent):
     """Geographic position of the resource. NOTE: This is only an approximate reference so specifying the coordinate reference system is unnecessary and need only be provided with a precision of up to two decimal places."""
 
     @abstractproperty
-    def westBoundLongitude(self) -> float:
+    def west_bound_longitude(self) -> float:
         """Western-most coordinate of the limit of the resource extent, expressed in longitude in decimal degrees (positive east)."""
         pass
 
     @abstractproperty
-    def eastBoundLongitude(self) -> float:
+    def east_bound_longitude(self) -> float:
         """Eastern-most coordinate of the limit of the resource extent, expressed in longitude in decimal degrees (positive east)."""
         pass
 
     @abstractproperty
-    def southBoundLatitude(self) -> float:
+    def south_bound_latitude(self) -> float:
         """Southern-most coordinate of the limit of the resource extent, expressed in latitude in decimal degrees (positive north)."""
         pass
 
     @abstractproperty
-    def northBoundLatitude(self) -> float:
+    def north_bound_latitude(self) -> float:
         """Northern-most, coordinate of the limit of the resource extent expressed in latitude in decimal degrees (positive north)."""
         pass
 
@@ -52,7 +52,7 @@ class GeographicDescription(GeographicExtent):
     """Description of the geographic area using identifiers."""
 
     @abstractproperty
-    def geographicIdentifier(self) -> Identifier:
+    def geographic_identifier(self) -> Identifier:
         """Identifier used to represent a geographic area e.g. a geographic identifier as described in ISO 19112."""
         pass
 
@@ -72,17 +72,17 @@ class VerticalExtent(ABC):
     """Vertical domain of resource."""
 
     @abstractproperty
-    def minimumValue(self) -> float:
+    def minimum_value(self) -> float:
         """Lowest vertical extent contained in the resource."""
         pass
 
     @abstractproperty
-    def maximumValue(self) -> float:
+    def maximum_value(self) -> float:
         """Highest vertical extent contained in the resource."""
         pass
 
     @property
-    def verticalCRS(self):
+    def vertical_CRS(self):
         return None
 
 
@@ -101,12 +101,12 @@ class SpatialTemporalExtent(TemporalExtent):
     """Extent with respect to date/time and spatial boundaries."""
 
     @property
-    def verticalExtent(self) -> VerticalExtent:
+    def vertical_extent(self) -> VerticalExtent:
         """Vertical extent component."""
         return None
 
     @abstractproperty
-    def spatialExtent(self) -> Sequence[GeographicExtent]:
+    def spatial_extent(self) -> Sequence[GeographicExtent]:
         pass
 
 
@@ -120,13 +120,13 @@ class Extent(ABC):
         return None
 
     @property
-    def geographicElement(self) -> Sequence[GeographicExtent]:
+    def geographic_element(self) -> Sequence[GeographicExtent]:
         return None
 
     @property
-    def temporalElement(self) -> Sequence[TemporalExtent]:
+    def temporal_element(self) -> Sequence[TemporalExtent]:
         return None
 
     @property
-    def verticalElement(self) -> Sequence[VerticalExtent]:
+    def vertical_element(self) -> Sequence[VerticalExtent]:
         return None

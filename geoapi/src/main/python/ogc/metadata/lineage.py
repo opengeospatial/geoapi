@@ -15,12 +15,12 @@ class NominalResolution(ABC):
     """Distance between adjacent pixels."""
 
     @property
-    def scanningResolution(self) -> float:
+    def scanning_resolution(self) -> float:
         """Distance between adjacent pixels in the scan plane."""
         return None
 
     @property
-    def groundResolution(self) -> float:
+    def ground_resolution(self) -> float:
         """Distance between adjacent pixels in the object space."""
         return None
 
@@ -39,22 +39,22 @@ class Source(ABC):
         return None
 
     @property
-    def sourceSpatialResolution(self) -> Resolution:
+    def source_spatial_resolution(self) -> Resolution:
         """Level of detail expressed as a scale factor, a distance or an angle."""
         return None
 
     @property
-    def sourceReferenceSystem(self):
+    def source_reference_system(self):
         """Spatial reference system used by the source resource."""
         return None
 
     @property
-    def sourceCitation(self) -> Citation:
+    def source_citation(self) -> Citation:
         """Recommended reference to be used for the source resource."""
         return None
 
     @property
-    def sourceMetadata(self) -> Sequence[Citation]:
+    def source_metadata(self) -> Sequence[Citation]:
         """Identifier and link to source metadata."""
         return None
 
@@ -64,11 +64,11 @@ class Source(ABC):
         return None
 
     @property
-    def sourceStep(self) -> Sequence['ProcessStep']:
+    def source_step(self) -> Sequence['ProcessStep']:
         return None
 
     @property
-    def processedLevel(self) -> Identifier:
+    def processed_level(self) -> Identifier:
         """Processing level of the source data."""
         return None
 
@@ -107,12 +107,12 @@ class Processing(ABC):
         pass
 
     @property
-    def softwareReference(self) -> Sequence[Citation]:
+    def software_reference(self) -> Sequence[Citation]:
         """Reference to document describing processing software."""
         return None
 
     @property
-    def procedureDescription(self) -> str:
+    def procedure_description(self) -> str:
         """Additional details about the processing procedures."""
         return None
 
@@ -122,7 +122,7 @@ class Processing(ABC):
         return None
 
     @property
-    def runTimeParameters(self) -> str:
+    def run_time_parameters(self) -> str:
         """Parameters to control the processing operations, entered at run time."""
         return None
 
@@ -142,7 +142,7 @@ class ProcessStepReport(ABC):
         return None
 
     @property
-    def fileType(self) -> str:
+    def file_type(self) -> str:
         """Type of file that contains that processing report."""
         return None
 
@@ -164,7 +164,7 @@ class ProcessStep(ABC):
         return None
 
     @property
-    def stepDateTime(self) -> datetime:
+    def step_date_time(self) -> datetime:
         """Date, time, range or period of process step."""
         return None
 
@@ -188,7 +188,7 @@ class ProcessStep(ABC):
         return None
 
     @property
-    def processingInformation(self) -> Processing:
+    def processing_information(self) -> Processing:
         return None
 
     @property
@@ -215,7 +215,7 @@ class Lineage(ABC):
         return None
 
     @property
-    def additionalDocumentation(self) -> Sequence[Citation]:
+    def additional_documentation(self) -> Sequence[Citation]:
         return None
 
     @property
@@ -223,5 +223,5 @@ class Lineage(ABC):
         return None
 
     @property
-    def processStep(self) -> Sequence[ProcessStep]:
+    def process_step(self) -> Sequence[ProcessStep]:
         return None

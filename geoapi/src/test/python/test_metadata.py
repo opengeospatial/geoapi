@@ -49,7 +49,7 @@ class IdentificationMock(DataIdentification, Citation):
 #
 class MetadataMock(Metadata):
     @property
-    def identificationInfo(self):
+    def identification_info(self):
         return [IdentificationMock()]
 
     @property
@@ -57,14 +57,14 @@ class MetadataMock(Metadata):
         return []
 
     @property
-    def dateInfo(self):
+    def date_info(self):
         return []
 
 #
 # We could execute the demo with the following code:
 #
 #     m = MetadataMock()
-#     print(m.identificationInfo.citation.title)
+#     print(m.identification_info.citation.title)
 #
 # Instead we run as a unit test, for possible inclusion
 # in Maven build. To execute on command-line:
@@ -77,4 +77,4 @@ import unittest
 class TestMetadata(unittest.TestCase):
     def test_title(self):
         m = MetadataMock()
-        self.assertEqual(m.identificationInfo[0].citation.title, "Pseudo data")
+        self.assertEqual(m.identification_info[0].citation.title, "Pseudo data")

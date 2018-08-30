@@ -46,27 +46,27 @@ class OperationMetadata(ABC):
     """Describes the signature of one and only one method provided by the service."""
 
     @abstractproperty
-    def operationName(self) -> str:
+    def operation_name(self) -> str:
         """A unique identifier for this interface."""
         pass
 
     @abstractproperty
-    def distributedComputingPlatform(self) -> Sequence[DCPList]:
+    def distributed_computing_platform(self) -> Sequence[DCPList]:
         """Distributed computing platforms on which the operation has been implemented."""
         pass
 
     @property
-    def operationDescription(self) -> str:
+    def operation_description(self) -> str:
         """Free text description of the intent of the operation and the results of the operation."""
         return None
 
     @property
-    def invocationName(self) -> str:
+    def invocation_name(self) -> str:
         """The name used to invoke this interface within the context of the DCP. The name is identical for all DCPs."""
         return None
 
     @abstractproperty
-    def connectPoint(self) -> Sequence[OnlineResource]:
+    def connect_point(self) -> Sequence[OnlineResource]:
         """Handle for accessing the service interface."""
         pass
 
@@ -75,7 +75,7 @@ class OperationMetadata(ABC):
         return None
 
     @property
-    def dependsOn(self) -> Sequence['OperationMetadata']:
+    def depends_on(self) -> Sequence['OperationMetadata']:
         return None
 
 
@@ -106,12 +106,12 @@ class CoupledResource(ABC):
     """Links a given operationName (mandatory attribute of SV_OperationMetadata) with a data set identified by an 'identifier'."""
 
     @property
-    def scopedName(self) -> ScopedName:
+    def scoped_name(self) -> ScopedName:
         """Scoped identifier of the resource in the context of the given service instance. NOTE: name of the resources (i.e. dataset) as it is used by a service instance (e.g. layer name or featureTypeName)."""
         return None
 
     @property
-    def resourceReference(self) -> Sequence[Citation]:
+    def resource_reference(self) -> Sequence[Citation]:
         """Reference to the dataset on which the service operates."""
         return None
 
@@ -131,32 +131,32 @@ class ServiceIdentification(Identification):
     """Identification of capabilities which a service provider makes available to a service user through a set of interfaces that define a behaviour - See ISO 19119 for further information."""
 
     @abstractproperty
-    def serviceType(self) -> GenericName:
+    def service_type(self) -> GenericName:
         """A service type name, E.G. 'discovery', 'view', 'download', 'transformation', or 'invoke'."""
         pass
 
     @property
-    def serviceTypeVersion(self) -> Sequence[str]:
+    def service_type_version(self) -> Sequence[str]:
         """Provide for searching based on the version of serviceType. For example, we may only be interested in OGC Catalogue V1.1 services. If version is maintained as a separate attribute, users can easily search for all services of a type regardless of the version."""
         return None
 
     @property
-    def accessProperties(self) -> StandardOrderProcess:
+    def access_properties(self) -> StandardOrderProcess:
         """Information about the availability of the service, including, 'fees' 'planned' 'available date and time' 'ordering instructions' 'turnaround'."""
         return None
 
     @property
-    def couplingType(self) -> CouplingType:
+    def coupling_type(self) -> CouplingType:
         """Type of coupling between service and associated data (if exists)."""
         return None
 
     @property
-    def coupledResource(self) -> Sequence[CoupledResource]:
+    def coupled_resource(self) -> Sequence[CoupledResource]:
         """Further description of the data coupling in the case of tightly coupled services."""
         return None
 
     @property
-    def operatedDataset(self) -> Sequence[Citation]:
+    def operated_dataset(self) -> Sequence[Citation]:
         """Provides a reference to the dataset on which the service operates."""
         return None
 
@@ -165,17 +165,17 @@ class ServiceIdentification(Identification):
         return None
 
     @property
-    def serviceStandard(self) -> Sequence[Citation]:
+    def service_standard(self) -> Sequence[Citation]:
         return None
 
     @property
-    def containsOperations(self) -> Sequence[OperationMetadata]:
+    def contains_operations(self) -> Sequence[OperationMetadata]:
         return None
 
     @property
-    def operatesOn(self) -> Sequence[DataIdentification]:
+    def operates_on(self) -> Sequence[DataIdentification]:
         return None
 
     @property
-    def containsChain(self) -> Sequence[OperationChainMetadata]:
+    def contains_chain(self) -> Sequence[OperationChainMetadata]:
         return None

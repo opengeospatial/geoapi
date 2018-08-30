@@ -30,7 +30,7 @@ gdal.UseExceptions()
 
 #
 # A component of RasterMetadata holding information about a single dimension of the raster.
-# Those axes are built by RasterMetadata.spatialRepresentationInfo[0].axisDimensionProperties.
+# Those axes are built by RasterMetadata.spatial_representation_info[0].axis_dimension_properties.
 #
 class GridAxis(Dimension):
     """Information about the x or y axis of a raster."""
@@ -40,7 +40,7 @@ class GridAxis(Dimension):
         self._size = size
 
     @property
-    def dimensionName(self):
+    def dimension_name(self):
         if (self._dimension == 0):
             return DimensionNameTypeCode.COLUMN
         elif (self._dimension == 1):
@@ -49,12 +49,12 @@ class GridAxis(Dimension):
             return None
 
     @property
-    def dimensionSize(self):
+    def dimension_size(self):
         return self._size
 
     def __str__(self):
         """Returns a string representation of this metadata for debugging purpose."""
-        return "{1} {0}s".format(self.dimensionName.value, self.dimensionSize)
+        return "{1} {0}s".format(self.dimension_name.value, self.dimension_size)
 
 #
 # Information about a data set: title, where they are located, size, etc.
@@ -79,15 +79,15 @@ class RasterMetadata(Metadata, MetadataScope, DataIdentification, Citation, Cove
             self._cellGeometry = None
 
     @property
-    def metadataScope(self):
+    def metadata_scope(self):
         return [self]
 
     @property
-    def resourceScope(self):
+    def resource_scope(self):
         return ScopeCode.DATASET
 
     @property
-    def identificationInfo(self):
+    def identification_info(self):
         return [self]
 
     @property
@@ -111,35 +111,35 @@ class RasterMetadata(Metadata, MetadataScope, DataIdentification, Citation, Cove
         return []
 
     @property
-    def dateInfo(self):
+    def date_info(self):
         return []
 
     @property
-    def spatialRepresentationInfo(self):
+    def spatial_representation_info(self):
         return [self]
 
     @property
-    def numberOfDimensions(self):
+    def number_of_dimensions(self):
         return 2
 
     @property
-    def axisDimensionProperties(self):
+    def axis_dimension_properties(self):
         return [GridAxis(0, self._xSize), GridAxis(1, self._ySize)]
 
     @property
-    def cellGeometry(self):
+    def cell_geometry(self):
         return self._cellGeometry
 
     @property
-    def transformationParameterAvailability(self):
+    def transformation_parameter_availability(self):
         return False
 
     @property
-    def contentInfo(self):
+    def content_info(self):
         return [self]
 
     @property
-    def attributeDescription(self):
+    def attribute_description(self):
         return None
 
     def __str__(self):

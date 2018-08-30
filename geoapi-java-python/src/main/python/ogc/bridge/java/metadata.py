@@ -60,11 +60,11 @@ class Metadata(ogc.metadata.base.Metadata):
         return None
 
     @property
-    def dateInfo(self):
+    def date_info(self):
         return None
 
     @property
-    def identificationInfo(self):
+    def identification_info(self):
         value = self._proxy.getIdentificationInfo()
         if value:
             it = value.iterator()

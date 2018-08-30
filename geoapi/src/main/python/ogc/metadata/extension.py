@@ -50,32 +50,32 @@ class ApplicationSchemaInformation(ABC):
         pass
 
     @abstractproperty
-    def schemaLanguage(self) -> str:
+    def schema_language(self) -> str:
         """Identification of the schema language used."""
         pass
 
     @abstractproperty
-    def constraintLanguage(self) -> str:
+    def constraint_language(self) -> str:
         """Formal language used in Application Schema."""
         pass
 
     @property
-    def schemaAscii(self) -> str:
+    def schema_ascii(self) -> str:
         """Full application schema given as an ASCII file."""
         return None
 
     @property
-    def graphicsFile(self) -> OnlineResource:
+    def graphics_file(self) -> OnlineResource:
         """Full application schema given as a graphics file."""
         return None
 
     @property
-    def softwareDevelopmentFile(self) -> OnlineResource:
+    def software_development_file(self) -> OnlineResource:
         """Full application schema given as a software development file."""
         return None
 
     @property
-    def softwareDevelopmentFileFormat(self) -> str:
+    def software_development_file_format(self) -> str:
         """Software dependent format used for the application schema software dependent file."""
         return None
 
@@ -105,22 +105,22 @@ class ExtendedElementInformation(ABC):
         return None
 
     @abstractproperty
-    def dataType(self) -> DatatypeCode:
+    def data_type(self) -> DatatypeCode:
         """Code which identifies the kind of value provided in the extended element."""
         pass
 
     @property
-    def maximumOccurrence(self) -> int:
+    def maximum_occurrence(self) -> int:
         """Maximum occurrence of the extended element."""
         return None
 
     @property
-    def domainValue(self) -> str:
+    def domain_value(self) -> str:
         """Valid values that can be assigned to the extended element."""
         return None
 
     @abstractproperty
-    def parentEntity(self) -> Sequence[str]:
+    def parent_entity(self) -> Sequence[str]:
         """Name of the metadata entity(s) under which this extended metadata element may appear. The name(s) may be standard metadata element(s) or other extended metadata element(s)."""
         pass
 
@@ -145,10 +145,10 @@ class MetadataExtensionInformation(ABC):
     """Information describing metadata extensions."""
 
     @property
-    def extensionOnLineResource(self) -> OnlineResource:
+    def extension_on_line_resource(self) -> OnlineResource:
         """Information about on-line sources containing the community profile name and the extended metadata elements. Information for all new metadata elements."""
         return None
 
     @property
-    def extendedElementInformation(self) -> Sequence[ExtendedElementInformation]:
+    def extended_element_information(self) -> Sequence[ExtendedElementInformation]:
         return None

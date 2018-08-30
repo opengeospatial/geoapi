@@ -62,7 +62,7 @@ class Releasability(ABC):
         return None
 
     @property
-    def disseminationConstraints(self) -> Sequence[RestrictionCode]:
+    def dissemination_constraints(self) -> Sequence[RestrictionCode]:
         """Component in determining releasability."""
         return None
 
@@ -74,12 +74,12 @@ class Constraints(ABC):
     """Restrictions on the access and use of a resource or metadata."""
 
     @property
-    def useLimitation(self) -> Sequence[str]:
+    def use_limitation(self) -> Sequence[str]:
         """Limitation affecting the fitness for use of the resource or metadata. Example, "not to be used for navigation"."""
         return None
 
     @property
-    def constraintApplicationScope(self) -> Scope:
+    def constraint_application_scope(self) -> Scope:
         """Spatial and temporal extent of the application of the constraint restrictions."""
         return None
 
@@ -99,7 +99,7 @@ class Constraints(ABC):
         return None
 
     @property
-    def responsibleParty(self) -> Sequence[Responsibility]:
+    def responsible_party(self) -> Sequence[Responsibility]:
         """Party responsible for the resource constraints."""
         return None
 
@@ -109,17 +109,17 @@ class LegalConstraints(Constraints):
     """Restrictions and legal prerequisites for accessing and using the resource or metadata."""
 
     @property
-    def accessConstraints(self) -> Sequence[RestrictionCode]:
+    def access_constraints(self) -> Sequence[RestrictionCode]:
         """Access constraints applied to assure the protection of privacy or intellectual property, and any special restrictions or limitations on obtaining the resource or metadata."""
         return None
 
     @property
-    def useConstraints(self) -> Sequence[RestrictionCode]:
+    def use_constraints(self) -> Sequence[RestrictionCode]:
         """Constraints applied to assure the protection of privacy or intellectual property, and any special restrictions or limitations or warnings on using the resource or metadata."""
         return None
 
     @property
-    def otherConstraints(self) -> Sequence[str]:
+    def other_constraints(self) -> Sequence[str]:
         """Other restrictions and legal prerequisites for accessing and using the resource or metadata."""
         return None
 
@@ -134,16 +134,16 @@ class SecurityConstraints(Constraints):
         pass
 
     @property
-    def userNote(self) -> str:
+    def user_note(self) -> str:
         """Explanation of the application of the legal constraints or other restrictions and legal prerequisites for obtaining and using the resource or metadata."""
         return None
 
     @property
-    def classificationSystem(self) -> str:
+    def classification_system(self) -> str:
         """Name of the classification system."""
         return None
 
     @property
-    def handlingDescription(self) -> str:
+    def handling_description(self) -> str:
         """Additional information about the restrictions on handling the resource or metadata."""
         return None

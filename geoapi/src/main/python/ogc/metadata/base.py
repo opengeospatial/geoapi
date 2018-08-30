@@ -17,7 +17,7 @@ class PortrayalCatalogueReference(ABC):
     """Information identifying the portrayal catalogue used."""
 
     @abstractproperty
-    def portrayalCatalogueCitation(self) -> Sequence[Citation]:
+    def portrayal_catalogue_citation(self) -> Sequence[Citation]:
         """Bibliographic reference to the portrayal catalogue cited."""
         pass
 
@@ -28,7 +28,7 @@ from ogc.metadata.maintenance import ScopeCode, MaintenanceInformation
 class MetadataScope(ABC):
 
     @abstractproperty
-    def resourceScope(self) -> ScopeCode:
+    def resource_scope(self) -> ScopeCode:
         pass
 
     @property
@@ -51,16 +51,16 @@ class Metadata(ABC):
     """Root entity which defines metadata about a resource or resources."""
 
     @property
-    def metadataIdentifier(self) -> Identifier:
+    def metadata_identifier(self) -> Identifier:
         return None
 
     @property
-    def parentMetadata(self) -> Citation:
+    def parent_metadata(self) -> Citation:
         """Identifier and onlineResource for a parent metadata record."""
         return None
 
     @property
-    def metadataScope(self) -> Sequence[MetadataScope]:
+    def metadata_scope(self) -> Sequence[MetadataScope]:
         return None
 
     @abstractproperty
@@ -69,83 +69,83 @@ class Metadata(ABC):
         pass
 
     @abstractproperty
-    def dateInfo(self) -> Sequence[Date]:
+    def date_info(self) -> Sequence[Date]:
         """Date(s) other than creation dateEG: expiry date."""
         pass
 
     @property
-    def metadataStandard(self) -> Sequence[Citation]:
+    def metadata_standard(self) -> Sequence[Citation]:
         """Citation for the standards to which the metadata conforms."""
         return None
 
     @property
-    def metadataProfile(self) -> Sequence[Citation]:
+    def metadata_profile(self) -> Sequence[Citation]:
         return None
 
     @property
-    def alternativeMetadataReference(self) -> Sequence[Citation]:
+    def alternative_metadata_reference(self) -> Sequence[Citation]:
         """Unique Identifier and onlineResource for alternative metadata."""
         return None
 
     @property
-    def metadataLinkage(self) -> Sequence[OnlineResource]:
+    def metadata_linkage(self) -> Sequence[OnlineResource]:
         """Online location where the metadata is available."""
         return None
 
     @property
-    def spatialRepresentationInfo(self) -> Sequence[SpatialRepresentation]:
+    def spatial_representation_info(self) -> Sequence[SpatialRepresentation]:
         return None
 
     @property
-    def referenceSystemInfo(self):
+    def reference_system_info(self):
         return None
 
     @property
-    def metadataExtensionInfo(self) -> Sequence[MetadataExtensionInformation]:
+    def metadata_extension_info(self) -> Sequence[MetadataExtensionInformation]:
         return None
 
     @abstractproperty
-    def identificationInfo(self) -> Sequence[Identification]:
+    def identification_info(self) -> Sequence[Identification]:
         pass
 
     @property
-    def contentInfo(self) -> Sequence[ContentInformation]:
+    def content_info(self) -> Sequence[ContentInformation]:
         return None
 
     @property
-    def distributionInfo(self) -> Sequence[Distribution]:
+    def distribution_info(self) -> Sequence[Distribution]:
         return None
 
     @property
-    def dataQualityInfo(self) -> Sequence[DataQuality]:
+    def data_quality_info(self) -> Sequence[DataQuality]:
         return None
 
     @property
-    def resourceLineage(self) -> Sequence[Lineage]:
+    def resource_lineage(self) -> Sequence[Lineage]:
         return None
 
     @property
-    def portrayalCatalogueInfo(self) -> Sequence[PortrayalCatalogueReference]:
+    def portrayal_catalogue_info(self) -> Sequence[PortrayalCatalogueReference]:
         return None
 
     @property
-    def metadataConstraints(self) -> Sequence[Constraints]:
+    def metadata_constraints(self) -> Sequence[Constraints]:
         return None
 
     @property
-    def applicationSchemaInfo(self) -> Sequence[ApplicationSchemaInformation]:
+    def application_schema_info(self) -> Sequence[ApplicationSchemaInformation]:
         return None
 
     @property
-    def metadataMaintenance(self) -> MaintenanceInformation:
+    def metadata_maintenance(self) -> MaintenanceInformation:
         return None
 
     @property
-    def acquisitionInformation(self) -> Sequence[AcquisitionInformation]:
+    def acquisition_information(self) -> Sequence[AcquisitionInformation]:
         return None
 
     @property
-    def characterSet(self):
+    def character_set(self):
         return None
 
     @property

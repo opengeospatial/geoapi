@@ -39,7 +39,7 @@ class Medium(ABC):
         return None
 
     @property
-    def densityUnits(self):
+    def density_units(self):
         """Units of measure for the recording density."""
         return None
 
@@ -49,12 +49,12 @@ class Medium(ABC):
         return None
 
     @property
-    def mediumFormat(self) -> Sequence[MediumFormatCode]:
+    def medium_format(self) -> Sequence[MediumFormatCode]:
         """Method used to write to the medium."""
         return None
 
     @property
-    def mediumNote(self) -> str:
+    def medium_note(self) -> str:
         """Description of other limitations or requirements for using the medium."""
         return None
 
@@ -68,17 +68,17 @@ class Format(ABC):
     """Description of the computer language construct that specifies the representation of data objects in a record, file, message, storage device or transmission channel."""
 
     @abstractproperty
-    def formatSpecificationCitation(self) -> Citation:
+    def format_specification_citation(self) -> Citation:
         """Citation/URL of the specification for the format."""
         pass
 
     @property
-    def amendmentNumber(self) -> str:
+    def amendment_number(self) -> str:
         """Amendment number of the format version."""
         return None
 
     @property
-    def fileDecompressionTechnique(self) -> str:
+    def file_decompression_technique(self) -> str:
         """Recommendations of algorithms or processes that can be applied to read or expand resources to which compression techniques have been applied."""
         return None
 
@@ -88,7 +88,7 @@ class Format(ABC):
         return None
 
     @property
-    def formatDistributor(self) -> Sequence['Distributor']:
+    def format_distributor(self) -> Sequence['Distributor']:
         return None
 
 
@@ -98,7 +98,7 @@ from ogc.metadata.naming import LocalName, RecordType, Record
 class DataFile(ABC):
 
     @property
-    def featureType(self) -> Sequence[LocalName]:
+    def feature_type(self) -> Sequence[LocalName]:
         return None
 
 
@@ -107,32 +107,32 @@ class DigitalTransferOptions(ABC):
     """Technical means and media by which a resource is obtained from the distributor."""
 
     @property
-    def unitsOfDistribution(self) -> str:
+    def units_of_distribution(self) -> str:
         """Tiles, layers, geographic areas, etc., in which data is available. NOTE: unitsOfDistribution applies to both onLine and offLine distributions."""
         return None
 
     @property
-    def transferSize(self) -> float:
+    def transfer_size(self) -> float:
         """Estimated size of a unit in the specified transfer format, expressed in megabytes. The transfer size is > 0.0."""
         return None
 
     @property
-    def onLine(self) -> Sequence[OnlineResource]:
+    def on_line(self) -> Sequence[OnlineResource]:
         """Information about online sources from which the resource can be obtained."""
         return None
 
     @property
-    def offLine(self) -> Sequence[Medium]:
+    def off_line(self) -> Sequence[Medium]:
         """Information about offline media on which the resource can be obtained."""
         return None
 
     @property
-    def transferFrequency(self):
+    def transfer_frequency(self):
         """Rate of occurrence of distribution."""
         return None
 
     @property
-    def distributionFormat(self) -> Sequence[Format]:
+    def distribution_format(self) -> Sequence[Format]:
         """Format of distribution."""
         return None
 
@@ -149,12 +149,12 @@ class StandardOrderProcess(ABC):
         return None
 
     @property
-    def plannedAvailableDateTime(self) -> datetime:
+    def planned_available_date_time(self) -> datetime:
         """Date and time when the resource will be available."""
         return None
 
     @property
-    def orderingInstructions(self) -> str:
+    def ordering_instructions(self) -> str:
         """General instructions, terms and services provided by the distributor."""
         return None
 
@@ -164,12 +164,12 @@ class StandardOrderProcess(ABC):
         return None
 
     @property
-    def orderOptionsType(self) -> RecordType:
+    def order_options_type(self) -> RecordType:
         """Description of the order options record."""
         return None
 
     @property
-    def orderOptions(self) -> Record:
+    def order_options(self) -> Record:
         """Request/purchase choices."""
         return None
 
@@ -179,20 +179,20 @@ class Distributor(ABC):
     """Information about the distributor."""
 
     @abstractproperty
-    def distributorContact(self) -> Responsibility:
+    def distributor_contact(self) -> Responsibility:
         """Party from whom the resource may be obtained. This list need not be exhaustive."""
         pass
 
     @property
-    def distributionOrderProcess(self) -> Sequence[StandardOrderProcess]:
+    def distribution_order_process(self) -> Sequence[StandardOrderProcess]:
         return None
 
     @property
-    def distributorFormat(self) -> Sequence[Format]:
+    def distributor_format(self) -> Sequence[Format]:
         return None
 
     @property
-    def distributorTransferOptions(self) -> Sequence[DigitalTransferOptions]:
+    def distributor_transfer_options(self) -> Sequence[DigitalTransferOptions]:
         return None
 
 
@@ -205,7 +205,7 @@ class Distribution(ABC):
         return None
 
     @property
-    def distributionFormat(self) -> Sequence[Format]:
+    def distribution_format(self) -> Sequence[Format]:
         return None
 
     @property
@@ -213,5 +213,5 @@ class Distribution(ABC):
         return None
 
     @property
-    def transferOptions(self) -> Sequence[DigitalTransferOptions]:
+    def transfer_options(self) -> Sequence[DigitalTransferOptions]:
         return None

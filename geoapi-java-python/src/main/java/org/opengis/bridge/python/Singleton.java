@@ -138,6 +138,7 @@ final class Singleton implements InvocationHandler {
          * be converted, they will be left as-is. They may cause an exception to be thrown at callMethod(…)
          * execution time, depending on JPY implementation.
          */
+        name = CharSequences.camelCaseToSnake(name);
         final PyObject result;
         if (args != null) {
             for (int i=0; i < args.length; i++) {

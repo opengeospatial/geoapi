@@ -110,12 +110,12 @@ class Dimension(ABC):
     """Axis properties."""
 
     @abstractproperty
-    def dimensionName(self) -> DimensionNameTypeCode:
+    def dimension_name(self) -> DimensionNameTypeCode:
         """Name of the axis."""
         pass
 
     @abstractproperty
-    def dimensionSize(self) -> int:
+    def dimension_size(self) -> int:
         """Number of elements along the axis."""
         pass
 
@@ -125,12 +125,12 @@ class Dimension(ABC):
         return None
 
     @property
-    def dimensionTitle(self) -> str:
+    def dimension_title(self) -> str:
         """Enhancement/modifier of the dimension name EX for other time dimension 'runtime' or dimensionName = 'column' dimensionTitle = 'Longitude'."""
         return None
 
     @property
-    def dimensionDescription(self) -> str:
+    def dimension_description(self) -> str:
         """Description of the axis."""
         return None
 
@@ -139,7 +139,7 @@ class Dimension(ABC):
 class GeolocationInformation(ABC):
 
     @property
-    def qualityInfo(self) -> Sequence['DataQuality']:
+    def quality_info(self) -> Sequence['DataQuality']:
         return None
 
 
@@ -147,11 +147,11 @@ class GeolocationInformation(ABC):
 class GCP(ABC):
 
     @abstractproperty
-    def geographicCoordinates(self):
+    def geographic_coordinates(self):
         pass
 
     @property
-    def accuracyReport(self) -> Sequence['Element']:
+    def accuracy_report(self) -> Sequence['Element']:
         return None
 
 
@@ -163,15 +163,15 @@ class GCPCollection(GeolocationInformation):
         pass
 
     @abstractproperty
-    def collectionIdentification(self) -> int:
+    def collection_identification(self) -> int:
         pass
 
     @abstractproperty
-    def collectionName(self) -> str:
+    def collection_name(self) -> str:
         pass
 
     @abstractproperty
-    def coordinateReferenceSystem(self):
+    def coordinate_reference_system(self):
         pass
 
 
@@ -180,12 +180,12 @@ class GeometricObjects(ABC):
     """Number of objects, listed by geometric object type, used in the dataset."""
 
     @abstractproperty
-    def geometricObjectType(self) -> GeometricObjectTypeCode:
+    def geometric_object_type(self) -> GeometricObjectTypeCode:
         """Name of point or vector objects used to locate zero-, one-, two-, or three-dimensional spatial locations in the dataset."""
         pass
 
     @property
-    def geometricObjectCount(self) -> int:
+    def geometric_object_count(self) -> int:
         """Total number of the point or vector object type occurring in the dataset."""
         return None
 
@@ -200,22 +200,22 @@ class GridSpatialRepresentation(SpatialRepresentation):
     """Information about grid spatial objects in the resource."""
 
     @abstractproperty
-    def numberOfDimensions(self) -> int:
+    def number_of_dimensions(self) -> int:
         """Number of independent spatial-temporal axes."""
         pass
 
     @property
-    def axisDimensionProperties(self) -> Sequence[Dimension]:
+    def axis_dimension_properties(self) -> Sequence[Dimension]:
         """Information about spatial-temporal axis properties."""
         return None
 
     @abstractproperty
-    def cellGeometry(self) -> CellGeometryCode:
+    def cell_geometry(self) -> CellGeometryCode:
         """Identification of grid data as point or cell."""
         pass
 
     @abstractproperty
-    def transformationParameterAvailability(self):
+    def transformation_parameter_availability(self):
         """Indication of whether or not parameters for transformation between image coordinates and geographic or map coordinates exist (are available)."""
         pass
 
@@ -225,12 +225,12 @@ class VectorSpatialRepresentation(SpatialRepresentation):
     """Information about the vector spatial objects in the resource."""
 
     @property
-    def topologyLevel(self) -> TopologyLevelCode:
+    def topology_level(self) -> TopologyLevelCode:
         """Code which identifies the degree of complexity of the spatial relationships."""
         return None
 
     @property
-    def geometricObjects(self) -> Sequence[GeometricObjects]:
+    def geometric_objects(self) -> Sequence[GeometricObjects]:
         """Information about the geometric objects used in the resource."""
         return None
 
@@ -240,42 +240,42 @@ class Georectified(GridSpatialRepresentation):
     """Grid whose cells are regularly spaced in a geographic (i.e., lat / long) or map coordinate system defined in the Spatial Referencing System (SRS) so that any cell in the grid can be geolocated given its grid coordinate and the grid origin, cell spacing, and orientation."""
 
     @abstractproperty
-    def checkPointAvailability(self):
+    def check_point_availability(self):
         """Indication of whether or not geographic position points are available to test the accuracy of the georeferenced grid data."""
         pass
 
     @property
-    def checkPointDescription(self) -> str:
+    def check_point_description(self) -> str:
         """Description of geographic position points used to test the accuracy of the georeferenced grid data."""
         return None
 
     @abstractproperty
-    def cornerPoints(self):
+    def corner_points(self):
         """Earth location in the coordinate system defined by the Spatial Reference System and the grid coordinate of the cells at opposite ends of grid coverage along two diagonals in the grid spatial dimensions. There are four corner points in a georectified grid; at least two corner points along one diagonal are required. The first corner point corresponds to the origin of the grid."""
         pass
 
     @property
-    def centrePoint(self):
+    def centre_point(self):
         """Earth location in the coordinate system defined by the Spatial Reference System and the grid coordinate of the cell halfway between opposite ends of the grid in the spatial dimensions."""
         return None
 
     @abstractproperty
-    def pointInPixel(self) -> PixelOrientationCode:
+    def point_in_pixel(self) -> PixelOrientationCode:
         """Point in a pixel corresponding to the Earth location of the pixel."""
         pass
 
     @property
-    def transformationDimensionDescription(self) -> str:
+    def transformation_dimension_description(self) -> str:
         """General description of the transformation."""
         return None
 
     @property
-    def transformationDimensionMapping(self) -> Sequence[str]:
+    def transformation_dimension_mapping(self) -> Sequence[str]:
         """Information about which grid axes are the spatial (map) axes."""
         return None
 
     @property
-    def checkPoint(self) -> Sequence[GCP]:
+    def check_point(self) -> Sequence[GCP]:
         return None
 
 
@@ -287,30 +287,30 @@ class Georeferenceable(GridSpatialRepresentation):
     """Grid with cells irregularly spaced in any given geographic/map projection coordinate system, whose individual cells can be geolocated using geolocation information supplied with the data but cannot be geolocated from the grid properties alone."""
 
     @abstractproperty
-    def controlPointAvailability(self):
+    def control_point_availability(self):
         """Indication of whether or not control point(s) exists."""
         pass
 
     @abstractproperty
-    def orientationParameterAvailability(self):
+    def orientation_parameter_availability(self):
         """Indication of whether or not orientation parameters are available."""
         pass
 
     @property
-    def orientationParameterDescription(self) -> str:
+    def orientation_parameter_description(self) -> str:
         """Description of parameters used to describe sensor orientation."""
         return None
 
     @abstractproperty
-    def georeferencedParameters(self) -> Record:
+    def georeferenced_parameters(self) -> Record:
         """Terms which support grid data georeferencing."""
         pass
 
     @property
-    def parameterCitation(self) -> Sequence[Citation]:
+    def parameter_citation(self) -> Sequence[Citation]:
         """Reference providing description of the parameters."""
         return None
 
     @abstractproperty
-    def geolocationInformation(self) -> Sequence[GeolocationInformation]:
+    def geolocation_information(self) -> Sequence[GeolocationInformation]:
         pass

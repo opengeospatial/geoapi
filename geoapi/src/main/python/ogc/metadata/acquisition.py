@@ -89,7 +89,7 @@ class Instrument(ABC):
         return None
 
     @property
-    def mountedOn(self) -> 'Platform':
+    def mounted_on(self) -> 'Platform':
         return None
 
 
@@ -137,7 +137,7 @@ class PlatformPass(ABC):
         return None
 
     @property
-    def relatedEvent(self) -> Sequence['Event']:
+    def related_event(self) -> Sequence['Event']:
         return None
 
 
@@ -173,15 +173,15 @@ class Event(ABC):
         pass
 
     @property
-    def relatedPass(self) -> PlatformPass:
+    def related_pass(self) -> PlatformPass:
         return None
 
     @property
-    def relatedSensor(self) -> Sequence[Instrument]:
+    def related_sensor(self) -> Sequence[Instrument]:
         return None
 
     @property
-    def expectedObjective(self) -> Sequence['Objective']:
+    def expected_objective(self) -> Sequence['Objective']:
         return None
 
 
@@ -189,19 +189,19 @@ class Event(ABC):
 class EnvironmentalRecord(ABC):
 
     @abstractproperty
-    def averageAirTemperature(self) -> float:
+    def average_air_temperature(self) -> float:
         pass
 
     @abstractproperty
-    def maxRelativeHumidity(self) -> float:
+    def max_relative_humidity(self) -> float:
         pass
 
     @abstractproperty
-    def maxAltitude(self) -> float:
+    def max_altitude(self) -> float:
         pass
 
     @abstractproperty
-    def meteorologicalConditions(self) -> str:
+    def meteorological_conditions(self) -> str:
         pass
 
 
@@ -237,7 +237,7 @@ class Objective(ABC):
         return None
 
     @property
-    def sensingInstrument(self) -> Sequence[Instrument]:
+    def sensing_instrument(self) -> Sequence[Instrument]:
         return None
 
     @property
@@ -245,7 +245,7 @@ class Objective(ABC):
         return None
 
     @abstractproperty
-    def objectiveOccurence(self) -> Sequence[Event]:
+    def objective_occurence(self) -> Sequence[Event]:
         pass
 
 
@@ -281,11 +281,11 @@ class Operation(ABC):
         return None
 
     @property
-    def parentOperation(self) -> 'Operation':
+    def parent_operation(self) -> 'Operation':
         return None
 
     @property
-    def childOperation(self) -> Sequence['Operation']:
+    def child_operation(self) -> Sequence['Operation']:
         return None
 
     @property
@@ -302,7 +302,7 @@ class Operation(ABC):
         return None
 
     @property
-    def significantEvent(self) -> Sequence[Event]:
+    def significant_event(self) -> Sequence[Event]:
         return None
 
 
@@ -311,12 +311,12 @@ class RequestedDate(ABC):
     """Range of date validity."""
 
     @abstractproperty
-    def requestedDateOfCollection(self) -> datetime:
+    def requested_date_of_collection(self) -> datetime:
         """Preferred date and time of collection."""
         pass
 
     @abstractproperty
-    def latestAcceptableDate(self) -> datetime:
+    def latest_acceptable_date(self) -> datetime:
         """Latest date and time collection must be completed."""
         pass
 
@@ -351,17 +351,17 @@ class Requirement(ABC):
         pass
 
     @abstractproperty
-    def requestedDate(self) -> RequestedDate:
+    def requested_date(self) -> RequestedDate:
         """Required or preferred acquisition date and time."""
         pass
 
     @abstractproperty
-    def expiryDate(self) -> datetime:
+    def expiry_date(self) -> datetime:
         """Date and time after which collection is no longer valid."""
         pass
 
     @property
-    def satisfiedPlan(self) -> Sequence['Plan']:
+    def satisfied_plan(self) -> Sequence['Plan']:
         return None
 
 
@@ -389,7 +389,7 @@ class Plan(ABC):
         return None
 
     @property
-    def satisfiedRequirement(self) -> Sequence[Requirement]:
+    def satisfied_requirement(self) -> Sequence[Requirement]:
         return None
 
 
@@ -410,7 +410,7 @@ class AcquisitionInformation(ABC):
         return None
 
     @property
-    def acquisitionPlan(self) -> Sequence[Plan]:
+    def acquisition_plan(self) -> Sequence[Plan]:
         return None
 
     @property
@@ -418,9 +418,9 @@ class AcquisitionInformation(ABC):
         return None
 
     @property
-    def acquisitionRequirement(self) -> Sequence[Requirement]:
+    def acquisition_requirement(self) -> Sequence[Requirement]:
         return None
 
     @property
-    def environmentalConditions(self) -> EnvironmentalRecord:
+    def environmental_conditions(self) -> EnvironmentalRecord:
         return None

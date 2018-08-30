@@ -14,7 +14,7 @@ from typing import Sequence
 class NameSpace(ABC):
 
     @abstractproperty
-    def isGlobal(self):
+    def is_global(self):
         pass
 
     @abstractproperty
@@ -34,7 +34,7 @@ class GenericName(ABC):
         pass
 
     @abstractproperty
-    def parsedName(self) -> Sequence['LocalName']:
+    def parsed_name(self) -> Sequence['LocalName']:
         pass
 
 
@@ -42,11 +42,11 @@ class GenericName(ABC):
 class LocalName(GenericName):
 
     @abstractproperty
-    def aName(self) -> str:
+    def a_name(self) -> str:
         pass
 
     @abstractproperty
-    def parsedName(self) -> Sequence['LocalName']:
+    def parsed_name(self) -> Sequence['LocalName']:
         pass
 
 
@@ -62,7 +62,7 @@ class ScopedName(GenericName):
         pass
 
     @abstractproperty
-    def scopedName(self) -> str:
+    def scoped_name(self) -> str:
         pass
 
 
@@ -70,7 +70,7 @@ class ScopedName(GenericName):
 class TypeName(LocalName):
 
     @abstractproperty
-    def aName(self) -> str:
+    def a_name(self) -> str:
         pass
 
 
@@ -78,7 +78,7 @@ class TypeName(LocalName):
 class Type(ABC):
 
     @abstractproperty
-    def typeName(self) -> TypeName:
+    def type_name(self) -> TypeName:
         pass
 
 
@@ -86,11 +86,11 @@ class Type(ABC):
 class MemberName(LocalName):
 
     @abstractproperty
-    def attributeType(self) -> TypeName:
+    def attribute_type(self) -> TypeName:
         pass
 
     @abstractproperty
-    def aName(self) -> str:
+    def a_name(self) -> str:
         pass
 
 
@@ -98,7 +98,7 @@ class MemberName(LocalName):
 class RecordSchema(ABC):
 
     @abstractproperty
-    def schemaName(self) -> LocalName:
+    def schema_name(self) -> LocalName:
         pass
 
     @abstractproperty
@@ -110,7 +110,7 @@ class RecordSchema(ABC):
 class RecordType(Type):
 
     @abstractproperty
-    def typeName(self) -> TypeName:
+    def type_name(self) -> TypeName:
         pass
 
     @abstractproperty
@@ -118,7 +118,7 @@ class RecordType(Type):
         pass
 
     @abstractproperty
-    def memberTypes(self):
+    def member_types(self):
         pass
 
 
@@ -126,9 +126,9 @@ class RecordType(Type):
 class Record(ABC):
 
     @property
-    def recordType(self) -> RecordType:
+    def record_type(self) -> RecordType:
         return None
 
     @abstractproperty
-    def memberValue(self):
+    def member_value(self):
         pass

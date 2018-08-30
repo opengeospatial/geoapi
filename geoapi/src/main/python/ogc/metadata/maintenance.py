@@ -75,12 +75,12 @@ class ScopeDescription(ABC):
         return None
 
     @property
-    def featureInstances(self) -> Sequence[str]:
+    def feature_instances(self) -> Sequence[str]:
         """Feature instances to which the information applies."""
         return None
 
     @property
-    def attributeInstances(self) -> Sequence[str]:
+    def attribute_instances(self) -> Sequence[str]:
         """Attribute instances to which the information applies."""
         return None
 
@@ -111,7 +111,7 @@ class Scope(ABC):
         return None
 
     @property
-    def levelDescription(self) -> Sequence[ScopeDescription]:
+    def level_description(self) -> Sequence[ScopeDescription]:
         return None
 
 
@@ -122,27 +122,27 @@ class MaintenanceInformation(ABC):
     """Information about the scope and frequency of updating."""
 
     @property
-    def maintenanceAndUpdateFrequency(self) -> MaintenanceFrequencyCode:
+    def maintenance_and_update_frequency(self) -> MaintenanceFrequencyCode:
         """Frequency with which changes and additions are made to the resource after the initial resource is completed."""
         return None
 
     @property
-    def maintenanceDate(self) -> Sequence[Date]:
+    def maintenance_date(self) -> Sequence[Date]:
         """Date information associated with maintenance of resource."""
         return None
 
     @property
-    def userDefinedMaintenanceFrequency(self):
+    def user_defined_maintenance_frequency(self):
         """Maintenance period other than those defined."""
         return None
 
     @property
-    def maintenanceScope(self) -> Sequence[Scope]:
+    def maintenance_scope(self) -> Sequence[Scope]:
         """Information about the scope and extent of maintenance."""
         return None
 
     @property
-    def maintenanceNote(self) -> Sequence[str]:
+    def maintenance_note(self) -> Sequence[str]:
         """Information regarding specific requirements for maintaining the resource."""
         return None
 

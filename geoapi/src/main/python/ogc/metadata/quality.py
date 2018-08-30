@@ -31,37 +31,37 @@ class Element(ABC):
     """Aspect of quantitative quality information."""
 
     @property
-    def nameOfMeasure(self) -> Sequence[str]:
+    def name_of_measure(self) -> Sequence[str]:
         """Name of the test applied to the data."""
         return None
 
     @property
-    def measureIdentification(self) -> Identifier:
+    def measure_identification(self) -> Identifier:
         """Code identifying a registered standard procedure."""
         return None
 
     @property
-    def measureDescription(self) -> str:
+    def measure_description(self) -> str:
         """Description of the measure being determined."""
         return None
 
     @property
-    def evaluationMethodType(self) -> EvaluationMethodTypeCode:
+    def evaluation_method_type(self) -> EvaluationMethodTypeCode:
         """Type of method used to evaluate quality of the dataset."""
         return None
 
     @property
-    def evaluationMethodDescription(self) -> str:
+    def evaluation_method_description(self) -> str:
         """Description of the evaluation method."""
         return None
 
     @property
-    def evaluationProcedure(self) -> Citation:
+    def evaluation_procedure(self) -> Citation:
         """Reference to the procedure information."""
         return None
 
     @property
-    def dateTime(self) -> Sequence[datetime]:
+    def date_time(self) -> Sequence[datetime]:
         """Date or range of dates on which a data quality measure was applied."""
         return None
 
@@ -194,24 +194,24 @@ class CoverageResult(Result):
     """Result of a data quality measure organising the measured values as a coverage."""
 
     @abstractproperty
-    def spatialRepresentationType(self) -> SpatialRepresentationTypeCode:
+    def spatial_representation_type(self) -> SpatialRepresentationTypeCode:
         """Method used to spatially represent the coverage result."""
         pass
 
     @abstractproperty
-    def resultFile(self) -> DataFile:
+    def result_file(self) -> DataFile:
         pass
 
     @abstractproperty
-    def resultSpatialRepresentation(self) -> 'SpatialRepresentation':
+    def result_spatial_representation(self) -> 'SpatialRepresentation':
         pass
 
     @abstractproperty
-    def resultContentDescription(self) -> CoverageDescription:
+    def result_content_description(self) -> CoverageDescription:
         pass
 
     @abstractproperty
-    def resultFormat(self) -> Format:
+    def result_format(self) -> Format:
         pass
 
 
@@ -227,16 +227,16 @@ class QuantitativeResult(Result):
         pass
 
     @abstractproperty
-    def valueUnit(self):
+    def value_unit(self):
         """Value unit for reporting a data quality result."""
         pass
 
     @property
-    def valueType(self) -> RecordType:
+    def value_type(self) -> RecordType:
         return None
 
     @property
-    def errorStatistic(self) -> str:
+    def error_statistic(self) -> str:
         return None
 
 

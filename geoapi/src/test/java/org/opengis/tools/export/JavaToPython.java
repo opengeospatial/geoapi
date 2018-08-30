@@ -162,7 +162,7 @@ strictfp class JavaToPython extends SourceGenerator {
 
         /**
          * Returns {@link #name}, eventually renamed if the given {@code replacements} map is non-null.
-         * For example When writing Python properties, we need to replace the {@code "pass"} property
+         * For example when writing Python properties, we need to replace the {@code "pass"} property
          * by something else because {@code "pass"} is a Python keyword.
          *
          * @param  replacements  value of <code>{@linkplain JavaToPython#keywords}.remove(type)</code>
@@ -173,7 +173,7 @@ strictfp class JavaToPython extends SourceGenerator {
                 final String r = replacements.get(name);
                 if (r != null) return r;
             }
-            return name;
+            return CharSequences.camelCaseToSnake(name);
         }
 
         /** For sorting properties in declaration order. */

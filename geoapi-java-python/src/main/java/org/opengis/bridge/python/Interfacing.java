@@ -38,8 +38,8 @@ import org.jpy.PyObject;
 
 
 /**
- * A code list specifying how a Python object should be interfaced to a Java of a given interface.
- * There is two-predefined modes: {@link #GEOAPI} and {@link #DEFAULT}.
+ * A code list specifying how a Python object should be interfaced to a Java implementation
+ * of a given interface. There is two-predefined modes: {@link #GEOAPI} and {@link #DEFAULT}.
  * Users can define different modes if they override the {@link #toJava(PyObject, Class)} method.
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -62,12 +62,14 @@ public abstract class Interfacing extends CodeList<Interfacing> {
     private static final List<Interfacing> VALUES = new ArrayList<>(2);
 
     /**
-     * The mapping between Java and Python uses the following rules:
+     * The mapping between Java and Python uses the GeoAPI specific rules.
+     * Those rules are:
      *
      * <ul>
      *   <li>For any Java method, the name of the corresponding Python attribute is given
-     *       by the {@link org.opengis.annotation.UML} annotation associated to the method.
-     *       If a method has no such annotation, then its name is used as a fallback.</li>
+     *       by the {@link org.opengis.annotation.UML} annotation associated to the method,
+     *       converted from camel-case to snake-case. If a method has no UML annotation,
+     *       then its Java name is used as a fallback.</li>
      *   <li>GeoAPI-specific property types are supported ({@link org.opengis.util.CodeList}
      *       and {@link InternationalString}) in addition of some Java standard types like
      *       {@link Enum} and {@link java.util.Collection}.</li>
