@@ -292,7 +292,7 @@ class AssociatedResource(ABC):
 
 
 
-from ogc.metadata.spatialRepresentation import SpatialRepresentationTypeCode
+from ogc.metadata.representation import SpatialRepresentationTypeCode
 from ogc.metadata.extent import Extent
 from ogc.metadata.maintenance import MaintenanceInformation
 from ogc.metadata.distribution import Format

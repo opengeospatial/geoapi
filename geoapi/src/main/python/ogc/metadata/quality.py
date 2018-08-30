@@ -186,7 +186,7 @@ class ConformanceResult(Result):
 
 
 
-from ogc.metadata.spatialRepresentation import SpatialRepresentationTypeCode
+from ogc.metadata.representation import SpatialRepresentationTypeCode
 from ogc.metadata.distribution import DataFile, Format
 from ogc.metadata.content import CoverageDescription
 

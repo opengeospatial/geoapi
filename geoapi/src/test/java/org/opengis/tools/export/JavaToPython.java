@@ -305,8 +305,8 @@ strictfp class JavaToPython extends SourceGenerator {
                         if (elementType.getName().startsWith("org.opengis.metadata.quality.")) {
                             if (type.getName().startsWith("org.opengis.metadata.spatial.")) {
                                 /*
-                                 * Do not allow spatialRepresentation.py to depends directly on dataQuality.py because
-                                 * those two Python files are incomplete when this circular dependency is established.
+                                 * Do not allow representation.py to depends directly on quality.py because those
+                                 * two Python files are incomplete when this circular dependency is established.
                                  */
                                 dependency = null;
                             }

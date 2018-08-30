@@ -37,12 +37,12 @@ class MetadataScope(ABC):
 
 
 
-from ogc.metadata.spatialRepresentation import SpatialRepresentation
-from ogc.metadata.applicationSchema import MetadataExtensionInformation, ApplicationSchemaInformation
+from ogc.metadata.representation import SpatialRepresentation
+from ogc.metadata.extension import MetadataExtensionInformation, ApplicationSchemaInformation
 from ogc.metadata.identification import Identification
 from ogc.metadata.content import ContentInformation
 from ogc.metadata.distribution import Distribution
-from ogc.metadata.dataQuality import DataQuality
+from ogc.metadata.quality import DataQuality
 from ogc.metadata.lineage import Lineage
 from ogc.metadata.constraints import Constraints
 from ogc.metadata.acquisition import AcquisitionInformation

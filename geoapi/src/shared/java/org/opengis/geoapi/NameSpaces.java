@@ -84,11 +84,11 @@ public final class NameSpaces {
         m.put("mac", "metadata/acquisition");
         m.put("mrc", "metadata/content");
         m.put("mrl", "metadata/lineage");
-        m.put("mdq", "metadata/dataQuality");
-        m.put("mrs", "metadata/spatialRepresentation");     // "referenceSystem" merged with spatialRepresentation
-        m.put("msr", "metadata/spatialRepresentation");
-        m.put("mas", "metadata/applicationSchema");
-        m.put("mex", "metadata/applicationSchema");         // "extension" merged with application schema.
+        m.put("mdq", "metadata/quality");                   // "dataQuality" simplified to "quality"
+        m.put("mrs", "metadata/representation");            // "referenceSystem" merged with "spatialRepresentation"
+        m.put("msr", "metadata/representation");            // "spatialRepresentation" simplified to "representation"
+        m.put("mas", "metadata/extension");                 // "applicationSchema" merged with "extension".
+        m.put("mex", "metadata/extension");
         m.put("mpc", "metadata/base");                      // "portrayalCatalog" merged with "base".
         m.put("mdb", "metadata/base");
         prefixesToPackages = m;
@@ -99,11 +99,11 @@ public final class NameSpaces {
         t.put(org.opengis.metadata.Identifier.class,                        "metadata/citation");
         t.put(org.opengis.metadata.identification.Progress.class,           "metadata/identification");
         t.put(org.opengis.metadata.identification.BrowseGraphic.class,      "metadata/identification");
-        t.put(org.opengis.metadata.spatial.SpatialRepresentationType.class, "metadata/spatialRepresentation");
+        t.put(org.opengis.metadata.spatial.SpatialRepresentationType.class, "metadata/representation");
         /*
          * Types having a different name in "dataQuality.xsd" because we have not yet updated that part.
          */
-        t.put(org.opengis.metadata.quality.TemporalAccuracy.class, "metadata/dataQuality");
+        t.put(org.opengis.metadata.quality.TemporalAccuracy.class, "metadata/quality");
         typesToPackages = t;
     }
 

@@ -106,7 +106,7 @@ public final strictfp class PythonTest extends JavaToPython {
      * because they were edited by hand:
      *
      * <ul>
-     *   <li>{@code dataQuality.py}</li>
+     *   <li>{@code quality.py}</li>
      * </ul>
      *
      * @param  file  the existing file to test.
@@ -114,7 +114,7 @@ public final strictfp class PythonTest extends JavaToPython {
      */
     @Override
     protected boolean skipVerification(final Path file) {
-        if ("dataQuality.py".equals(file.getFileName().toString())) {
+        if ("quality.py".equals(file.getFileName().toString())) {
             return true;
         }
         return super.skipVerification(file);

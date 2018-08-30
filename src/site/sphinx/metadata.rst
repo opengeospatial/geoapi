@@ -70,9 +70,9 @@ Lineage
 Data quality
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.dataQuality
+.. inheritance-diagram:: ogc.metadata.quality
 
-.. automodule:: ogc.metadata.dataQuality
+.. automodule:: ogc.metadata.quality
    :members:
    :undoc-members:
 
@@ -88,9 +88,9 @@ Maintenance
 Spatial representation
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.spatialRepresentation
+.. inheritance-diagram:: ogc.metadata.representation
 
-.. automodule:: ogc.metadata.spatialRepresentation
+.. automodule:: ogc.metadata.representation
    :members:
    :undoc-members:
 
@@ -133,8 +133,8 @@ Service metadata
 Application schema
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.applicationSchema
+.. inheritance-diagram:: ogc.metadata.extension
 
-.. automodule:: ogc.metadata.applicationSchema
+.. automodule:: ogc.metadata.extension
    :members:
    :undoc-members:
