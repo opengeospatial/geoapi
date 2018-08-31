@@ -32,6 +32,8 @@ gdal.UseExceptions()
 # A component of RasterMetadata holding information about a single dimension of the raster.
 # Those axes are built by RasterMetadata.spatial_representation_info[0].axis_dimension_properties.
 #
+
+
 class GridAxis(Dimension):
     """Information about the x or y axis of a raster."""
     def __init__(self, dimension, size):
@@ -41,9 +43,9 @@ class GridAxis(Dimension):
 
     @property
     def dimension_name(self):
-        if (self._dimension == 0):
+        if self._dimension == 0:
             return DimensionNameTypeCode.COLUMN
-        elif (self._dimension == 1):
+        elif self._dimension == 1:
             return DimensionNameTypeCode.ROW
         else:
             return None
@@ -61,6 +63,8 @@ class GridAxis(Dimension):
 # We implement many interfaces in the same class for convenience, but this
 # approach should be considered an implementation details susceptible to change.
 #
+
+
 class RasterMetadata(Metadata, MetadataScope, DataIdentification, Citation, CoverageDescription, GridSpatialRepresentation):
     """Metadata about a GDAL dataset for a raster. The raster is assumed two-dimensional."""
 
@@ -70,10 +74,10 @@ class RasterMetadata(Metadata, MetadataScope, DataIdentification, Citation, Cove
         self._xSize       = ds.RasterXSize
         self._ySize       = ds.RasterYSize
         self._numBands    = ds.RasterCount
-        cg = ds.GetMetadataItem("AREA_OR_POINT");
-        if (cg == "Point"):
+        cg = ds.GetMetadataItem("AREA_OR_POINT")
+        if cg == "Point":
             self._cellGeometry = CellGeometryCode.POINT
-        elif (cg == "Area"):
+        elif cg == "Area":
             self._cellGeometry = CellGeometryCode.AREA
         else:
             self._cellGeometry = None

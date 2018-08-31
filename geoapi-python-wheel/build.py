@@ -41,9 +41,10 @@ import setuptools
 import glob
 import shutil
 import os
+import setup
 
 
-def createInit(path) :
+def createInit(path):
     f = open(path+"/__init__.py", "w+")
     f.close()
 
@@ -66,21 +67,21 @@ dir = 'ogc/metadata/'
 os.makedirs(dir)
 files = glob.glob('../geoapi/src/main/python/ogc/metadata/*.py')
 for f in files:
-    shutil.copy2(f,dir)
+    shutil.copy2(f, dir)
 
 # Java bridge
 dir = 'ogc/bridge/java/'
 os.makedirs(dir)
 files = glob.glob('../geoapi-java-python/src/main/python/ogc/bridge/java/*.py')
 for f in files:
-    shutil.copy2(f,dir)
+    shutil.copy2(f, dir)
 
 # GDAL bridge
 dir = 'ogc/wrapper/'
 os.makedirs(dir)
 files = glob.glob('../geoapi-gdal/src/main/python/ogc/wrapper/*.py')
 for f in files:
-    shutil.copy2(f,dir)
+    shutil.copy2(f, dir)
 
 # __init__.py in each folder to include
 createInit("ogc")
@@ -92,7 +93,6 @@ createInit("ogc/bridge/java")
 # Generate pip package.
 ##########################################################
 
-import setup
 
 ##########################################################
 # Cleaning, setup tool makes a lot of side files.
