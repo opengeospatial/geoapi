@@ -12,7 +12,6 @@
 # In addition, the PYTHONPATH environmental variable must be set to the
 # "geoapi/src/main/python" directory, preferably using absolute path.
 #
-
 from osgeo import gdal
 from ogc.metadata.base           import Metadata, MetadataScope
 from ogc.metadata.maintenance    import ScopeCode
@@ -36,6 +35,7 @@ gdal.UseExceptions()
 
 class GridAxis(Dimension):
     """Information about the x or y axis of a raster."""
+
     def __init__(self, dimension, size):
         """Stores information about the given raster dimension."""
         self._dimension = dimension
@@ -150,7 +150,10 @@ class RasterMetadata(Metadata, MetadataScope, DataIdentification, Citation, Cove
         """Returns a string representation of this metadata for debugging purpose."""
         return "Size=({0},{1},{2})".format(self._xSize, self._ySize, self._numBands)
 
-
+#
+# An entry point for loading a data file with GDAL.
+# This API is not yet part of any GeoAPI standard.
+#
 class DataSet:
     """A file opened by GDAL."""
 

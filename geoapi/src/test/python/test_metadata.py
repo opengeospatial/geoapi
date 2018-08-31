@@ -9,11 +9,15 @@
 #
 # To run this demo, the PYTHONPATH environmental variable must be set to
 # the "geoapi/src/main/python" directory, preferably using absolute path.
-# Example on Unix systems:
+# Example on Unix systems where GEOAPI_HOME is the path to GeoAPI:
 #
-#     export PYTHONPATH=/path_to_geoapi/geoapi/src/main/python
+#     export PYTHONPATH=$GEOAPI_HOME/geoapi/src/main/python
 #
-
+# To execute this test on command-line:
+#
+#     python -m unittest discover
+#
+import unittest
 from ogc.metadata.base           import Metadata
 from ogc.metadata.identification import DataIdentification
 from ogc.metadata.citation       import Citation
@@ -76,8 +80,6 @@ class MetadataMock(Metadata):
 #
 #     python -m unittest discover
 #
-
-
 class TestMetadata(unittest.TestCase):
     def test_title(self):
         m = MetadataMock()
