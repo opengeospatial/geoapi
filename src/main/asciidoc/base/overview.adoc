@@ -26,6 +26,8 @@ The packages in the `org.opengis.geometry` namespace cover the data types define
 although in version 4.0 of the library only defines the elements from that specification needed by the geo-referencing types.
 
 
+include::naming.adoc[]
+
 include::annotations.adoc[]
 
 include::core-types.adoc[]

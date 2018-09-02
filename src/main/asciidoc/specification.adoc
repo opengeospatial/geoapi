@@ -1,6 +1,6 @@
 = OGC GeoAPI
 Open_Geospatial_Consortium
-Version 4.0, 2018-03-10: draft
+Version 4.0, 2018-09-01: draft
 :description: A set of types and methods which can be used for the manipulation of geographic \
 information structured following the specifications adopted by the Technical Committee 211 of the \
 International Organization for Standardization (ISO) and by the Open Geospatial Consortium (OGC).
@@ -151,6 +151,10 @@ include::doc-info/introduction.adoc[]
 <<<
 
 include::base/overview.adoc[]
+
+<<<
+
+include::metadata/overview.adoc[]
 
 <<<
 

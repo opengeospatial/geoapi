@@ -66,13 +66,19 @@ import static org.opengis.annotation.Specification.*;
  *       (e.g. “<cite>Euro-centric view of world excluding polar areas</cite>”).</li>
  * </ul>
  *
+ * @departure historic
+ *    This type was defined in ISO 19115:2003 and removed in ISO 19115:2014.
+ *    But GeoAPI kept it as a common parent for
+ *    {@link org.opengis.referencing.crs.CoordinateReferenceSystem} and
+ *    {@link org.opengis.referencing.gazetteer.ReferenceSystemUsingIdentifiers}.
+ *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   1.0
  *
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
-@UML(identifier="RS_ReferenceSystem", specification=ISO_19115)
+@UML(identifier="RS_ReferenceSystem", specification=ISO_19115, version=2003)
 public interface ReferenceSystem extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the

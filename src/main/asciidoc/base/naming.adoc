@@ -1,51 +1,27 @@
 [[naming]]
-=== Name types
-[.reference]_From ISO 19103:2015 §7.5_
+=== Naming conventions
 
-A name is a sequence of identifiers rooted within the context of a namespace.
-`NameSpace` defines a domain in which "names" given by character strings can be mapped to objects.
-For example a class forms a namespace for the properties that the class contains.
-While ISO 19103 defines mapping functions from a name to the object identified by that name,
-these mapping functions are not part of the `NameSpace` interface defined by GeoAPI.
-These mappings are left to other frameworks (for example _Java Naming and Directory Interface_).
+The class and property names defined in OGC/ISO standards may be modified
+for compliance with the conventions in use in target programming languages.
+The main changes are described below:
 
+**Classes** +
+The two-letter prefixes are dropped.
+For example `MD_Metadata` and `CI_Citation` types are named `Metadata` and `Citation` in {supported-languages}.
+The camel cases convention (for example `CoordinateSystemAxis`) is kept unchanged for classes.
 
-.Name types mapping
-[options="header"]
-|===========================================================
-|ISO 19103 type |Java type                      |Python type
-|(constructors) |`org.opengis.util.NameFactory` |
-|`NameSpace`    |`org.opengis.util.NameSpace`   |
-|`GenericName`  |`org.opengis.util.GenericName` |
-|`ScopedName`   |`org.opengis.util.ScopedName`  |
-|`LocalName`    |`org.opengis.util.LocalName`   |
-|`TypeName`     |`org.opengis.util.TypeName`    |
-|`MemberName`   |`org.opengis.util.MemberName`  |
-|===========================================================
+**Code lists and enumerations** +
+If the type name ends with the `Code` suffix, then that suffix is dropped in strongly-typed languages like Java.
+For example the ISO 19115 `TopicCategoryCode` class is named `TopicCategory` in Java interfaces.
+This renaming is not applied to more dynamic languages like Python,
+because the naming convention can be a compensation for the absence of compile-time type checks.
 
-`GenericName` is the base type for all names in a `NameSpace`.
-A generic name can be either a `LocalName`, or a `ScopedName` which is a composite of
-a `LocalName` for locating another `NameSpace` and a `GenericName` valid in that name space.
-`TypeName` and `MemberName` names are subtypes of `LocalName`
-for referencing a type (for example a class) and a member (for example a property in a class) respectively.
-The `NameFactory` is an extension of the GeoAPI project designed to allow the construction of instances of these name types.
+**Properties** +
+The property names get more changes than the type names.
+Those changes depend on the target programming language:
 
-.Mapping to Java Naming and Directory Interface™ (JNDI)
-****
-The mapping functions defined by ISO 19103 are not part of the `NameSpace` interface defined by GeoAPI.
-Java applications which need such mapping may use the methods in the `javax.naming.Context` interface instead:
+* In Java, accessor methods start with the `get` prefix and are followed by their property name in camel cases.
+  For example the ISO 19111 `coordinateSystem` property is a method named `getCoordinateSystem()` in Java.
 
-.Java Naming and Directory Interface equivalences
-[options="header"]
-|====================================================================================
-|ISO 19103 `NameSpace` member   |`org.opengis.util.NameSpace` |`javax.naming.Context`
-|`isGlobal`                     |`isGlobal()`                 |
-|`acceptableClassList`          |                             |
-|`generateID(Any*)`             |                             |
-|`locate(LocalName)`            |                             |`lookup(Name)`
-|`name`                         |`name()`                     |`getNameInNamespace()`
-|`registerID(LocalName, Any)`   |                             |`bind​(Name, Object)`
-|`select(GenericName)`          |                             |`lookup(Name)`
-|`unregisterID(LocalName, Any)` |                             |`unbind​(Name)`
-|====================================================================================
-****
+* In Python, no prefix is added and the came cases convention is replaced by the snake cases convention.
+  For example ISO 19111 `coordinateSystem` property is a property named `coordinate_system` in Python.

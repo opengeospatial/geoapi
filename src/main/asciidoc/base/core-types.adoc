@@ -23,7 +23,7 @@ include::collections.adoc[]
 
 include::controlled-vocabulary.adoc[]
 
-include::naming.adoc[]
+include::generic-name.adoc[]
 
 include::records.adoc[]
 
