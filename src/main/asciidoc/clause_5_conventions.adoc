@@ -1,0 +1,41 @@
+[[conventions]]
+== Conventions
+This section provides details for conventions used in the document.
+All examples in this document illustrated by the (i) icon are informative only.
+
+[[UML-notation]]
+=== UML notation
+
+Unified Modeling Language (UML) static structure diagrams appearing in this document
+are used as described in Subclause 5.2 of OGC Web Services Common [OGC 06-121r9].
+
+[[abbreviations]]
+=== Abbreviated terms
+
+The following symbols and abbreviated terms are used in this specification:
+
+
+.Abbreviated terms
+[.compact, options="header"]
+|===================================================
+|API |Application Program Interface
+|CRS |Coordinate Reference Systems
+|ISO |International Organization for Standardization
+|OGC |Open Geospatial Consortium
+|UML |Unified Modeling Language
+|URI |Uniform Resource Identifiers
+|WKT |Well Known Text
+|XML |eXtended Markup Language
+|1D  |One Dimensional
+|2D  |Two Dimensional
+|3D  |Three Dimensional
+|nD  |Multi-Dimensional
+|===================================================
+
+[[identifiers]]
+=== Identifiers
+The normative provisions in this specification are denoted by the URI:
+
+http://www.opengis.net/spec/{standard}/{m.n} (TODO)
+
+All requirements and conformance tests that appear in this document are denoted by partial URIs which are relative to this base.

@@ -463,10 +463,14 @@
               <goal>process-asciidoc</goal>
             </goals>
             <configuration>
-              <sourceDocumentName>specification.adoc</sourceDocumentName>
+              <sourceDocumentName>standard_document.adoc</sourceDocumentName>
               <outputDirectory>${project.build.directory}/site/snapshot</outputDirectory>
               <relativeBaseDir>true</relativeBaseDir>
               <backend>html</backend>
+              <attributes>
+                <data-uri>true</data-uri>               <!-- Should be false if the backend is pdf.-->
+                <toc-placement>true</toc-placement>     <!-- Should be false if the backend is pdf.-->
+              </attributes>
             </configuration>
           </execution>
         </executions>

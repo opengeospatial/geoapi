@@ -1,5 +1,0 @@
-[appendix]
-[[examples]]
-== Examples
-
-include::annotations.adoc[]

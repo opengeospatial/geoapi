@@ -1,0 +1,3 @@
+[appendix]
+[[java]]
+== Java Profile (Normative)

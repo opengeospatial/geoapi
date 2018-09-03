@@ -1,0 +1,22 @@
+[[requirements]]
+== Requirements
+This section describes requirements for ensuring source compatibility or binary compatibility
+(when applicable) of libraries compliant with this specification.
+Those requirements apply to the _libraries_ made available for use by other developers.
+The requirements usually do not apply to final products distributed to end users.
+For example compliant libraries shall obey to method signatures declared in published OGC interfaces,
+otherwise other developers could not base their developments on a common set of API.
+However the final product is free to modify, add or remove methods as it sees fit;
+if the GeoAPI of the final product is not invoked by any external application,
+then changes to that API has no impact on inter-operability.
+
+[[requirements-A]]
+=== Requirement class A
+
+include::requirements/class_A.adoc[]
+
+
+[[requirement-01]]
+==== Requirement 1
+
+include::requirements/REQ01.adoc[]

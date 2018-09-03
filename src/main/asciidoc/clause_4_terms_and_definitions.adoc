@@ -1,0 +1,100 @@
+[[terms-and-definitions]]
+== Terms and Definitions
+This document uses the terms defined in Sub-clause 5.3 of [OGC 06-121r8],
+which is based on the ISO/IEC Directives, Part 2, Rules for the structure and drafting of International Standards.
+In particular:
+
+* SHALL (not “must”) is the verb form used to indicate a requirement to be strictly followed to conform to this standard.
+* SHOULD is the verb form used to indicate desirable ability or use, without mentioning or excluding other possibilities.
+* MAY is the verb form used to indicate an action permissible within the limits of this specification.
+* CAN is the verb form used for statements of possibility.
+
+For the purposes of this document, the following additional terms and definitions apply.
+
+[[term-API]]
+[.term]
+=== Application Programming Interface (API)
+a formally defined set of types and methods which establish a contract between client code which uses the API
+and implementation code which provides the API
+
+[[term-conceptual-model]]
+[.term]
+=== conceptual model
+model that defines concepts of a universe of discourse +
+ [ISO 19101-1]
+
+[[term-coverage]]
+[.term]
+=== coverage
+feature that acts as a function to return values from its range for any direct position within its spatial,
+temporal, or spatiotemporal domain +
+ [ISO 19123]
+
+[[term-dataset]]
+[.term]
+=== dataset
+identifiable collection of data +
+ [ISO 19115-1]
+
+[[term-dynamic-attribute]]
+[.term]
+=== dynamic attribute
+characteristic of a feature in which its value varies with time +
+ [OGC 16-140]
+
+[[term-feature]]
+[.term]
+=== feature
+abstraction of a real world phenomena +
+[small]#Note 1 to entry: A feature can occur as a type or an instance.
+Feature type or feature instance should be used when only one is meant.# +
+ [ISO 19109]
+
+[[term-feature-attribute]]
+[.term]
+=== feature attribute
+characteristic of a feature +
+[small]#Note 1 to entry: A feature attribute can occur as a type or an instance.
+Feature attribute type or feature attribute instance is used when only one is meant.# +
+ [ISO 19109]
+
+[[term-feature-operation]]
+[.term]
+=== feature operation
+operation that every instance of a feature type may perform +
+ [ISO 19109]
+
+[[term-geographic-feature]]
+[.term]
+=== geographic feature
+representation of real world phenomenon associated with a location relative to the Earth +
+ [ISO 19101-2]
+
+[[term-geometric-object]]
+[.term]
+=== geometric object
+spatial object representing a geometric set +
+ [ISO 19107:2003]
+
+[[term-java]]
+[.term]
+=== Java
+trademark of Oracle used to refer to an object oriented, single inheritance programming language
+whose syntax derives from the C programming language and which is defined by the Java Language Specification
+
+[[term-metadata]]
+[.term]
+=== metadata
+data about data +
+ [ISO 19115-1]
+
+[[term-property]]
+[.term]
+=== property
+facet or attribute of an object referenced by a name +
+ [ISO 19143]
+
+[[term-python]]
+[.term]
+=== Python
+(TODO)
