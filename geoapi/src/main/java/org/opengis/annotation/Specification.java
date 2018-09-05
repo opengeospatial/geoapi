@@ -326,7 +326,7 @@ public enum Specification {
      *
      * <p><b>ISO abstract:</b></p>
      * <div class="note">
-     * <p>defines an integrated XML implementation of ISO 19115‑1, ISO 19115‑2, and concepts from ISO/TS 19139
+     * <p>Defines an integrated XML implementation of ISO 19115‑1, ISO 19115‑2, and concepts from ISO/TS 19139
      * by defining the following artefacts:</p>
      *
      * <ul>
@@ -458,6 +458,38 @@ public enum Specification {
      * @since 2.3
      */
     ISO_19139((short) 2007),
+
+    /**
+     * ISO 19157, Data quality.
+     * This is the specification for package {@link org.opengis.metadata.quality} and sub-packages.
+     *
+     * <p><b>ISO abstract:</b></p>
+     * <div class="note">
+     * <p>Establishes the principles for describing the quality of geographic data:</p>
+     * <ul>
+     *   <li>defines components for describing data quality;</li>
+     *   <li>specifies components and content structure of a register for data quality measures;</li>
+     *   <li>describes general procedures for evaluating the quality of geographic data;</li>
+     *   <li>establishes principles for reporting data quality.</li>
+     * </ul>
+     *
+     * <p>ISO 19157:2013 also defines a set of data quality measures for use in evaluating and reporting data quality.
+     * It is applicable to data producers providing quality information to describe and assess how well a data set
+     * conforms to its product specification and to data users attempting to determine whether or not specific
+     * geographic data are of sufficient quality for their particular application.
+     * ISO 19157:2013 does not attempt to define minimum acceptable levels of quality for geographic data.</p>
+     * </div>
+     *
+     * <p><b>Version numbers used in GeoAPI:</b></p>
+     * <ul>
+     *   <li><b>2013:</b> ISO 19157:2013   ({@linkplain #defaultVersion() default version})</li>
+     * </ul>
+     *
+     * @see <a href="https://www.iso.org/standard/32575.html">ISO/TS 19157:2013 on standards catalogue</a>
+     *
+     * @since 3.1
+     */
+    ISO_19157((short) 2013),
 
     /**
      * ISO 19162, Well known text representation of coordinate reference systems.

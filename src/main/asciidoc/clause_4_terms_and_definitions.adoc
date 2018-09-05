@@ -97,4 +97,4 @@ facet or attribute of an object referenced by a name +
 [[term-python]]
 [.term]
 === Python
-(TODO)
+an interpreted high-level programming language for general-purpose programming

@@ -24,9 +24,9 @@ div.term h3 {
  * Keep Table of Content (TOC) items on single lines.
  */
 ul.sectlevel1 li {
-  overflow: hidden;
+  overflow:      hidden;
   text-overflow: ellipsis;
-  white-space: nowrap;
+  white-space:   nowrap;
 }
 
 /*
@@ -85,4 +85,9 @@ table.compact th.tableblock {
 table.compact td.tableblock {
   padding-top: 0;
   padding-bottom: 0;
+}
+
+div.bibliography p {
+  margin-top:    4px;
+  margin-bottom: 4px;
 }

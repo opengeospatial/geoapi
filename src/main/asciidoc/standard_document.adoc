@@ -1,5 +1,5 @@
-:Title:               OGC GeoAPI
-:titletext:           OGC GeoAPI
+:Title:               OGC GeoAPI 3.1/4.0
+:titletext:           OGC GeoAPI 3.1/4.0
 :doctype:             book
 :docinfo:             shared-head
 :encoding:            utf-8
@@ -16,12 +16,13 @@
 :supported-languages: Java and Python
 :icons:               font
 :attribute-missing:   warn
+:appendix-caption:    Annex
 :description: A set of types and methods which can be used for the manipulation of geographic \
 information structured following the specifications adopted by the Technical Committee 211 of the \
 International Organization for Standardization (ISO) and by the Open Geospatial Consortium (OGC).
 :keywords: GeoAPI, programming, Java, Python, interface, geospatial, metadata, referencing, feature
 
-= OGC GeoAPI
+= OGC GeoAPI 3.1/4.0
 
 ////
 Comment for editors: AsciiDoctor syntax is described at https://asciidoctor.org/docs/user-manual.
