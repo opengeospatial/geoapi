@@ -25,9 +25,9 @@
 #
 import os
 import unittest
-from ogc.wrapper.gdal            import DataSet
-from ogc.metadata.maintenance    import ScopeCode
-from ogc.metadata.representation import DimensionNameTypeCode
+from opengis.wrapper.gdal            import DataSet
+from opengis.metadata.maintenance    import ScopeCode
+from opengis.metadata.representation import DimensionNameTypeCode
 
 #
 # To run as a unit test on command-line:

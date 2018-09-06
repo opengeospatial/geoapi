@@ -280,8 +280,8 @@ class Georectified(GridSpatialRepresentation):
 
 
 
-from ogc.metadata.naming import Record
-from ogc.metadata.citation import Citation
+from opengis.metadata.naming import Record
+from opengis.metadata.citation import Citation
 
 class Georeferenceable(GridSpatialRepresentation):
     """Grid with cells irregularly spaced in any given geographic/map projection coordinate system, whose individual cells can be geolocated using geolocation information supplied with the data but cannot be geolocated from the grid properties alone."""

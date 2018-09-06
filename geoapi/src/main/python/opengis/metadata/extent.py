@@ -46,7 +46,7 @@ class GeographicBoundingBox(GeographicExtent):
 
 
 
-from ogc.metadata.citation import Identifier
+from opengis.metadata.citation import Identifier
 
 class GeographicDescription(GeographicExtent):
     """Description of the geographic area using identifiers."""

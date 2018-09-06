@@ -11,7 +11,7 @@ from typing import Sequence
 
 
 
-from ogc.metadata.citation import Citation, Identifier, Responsibility, Date, OnlineResource
+from opengis.metadata.citation import Citation, Identifier, Responsibility, Date, OnlineResource
 
 class PortrayalCatalogueReference(ABC):
     """Information identifying the portrayal catalogue used."""
@@ -23,7 +23,7 @@ class PortrayalCatalogueReference(ABC):
 
 
 
-from ogc.metadata.maintenance import ScopeCode, MaintenanceInformation
+from opengis.metadata.maintenance import ScopeCode, MaintenanceInformation
 
 class MetadataScope(ABC):
 
@@ -37,15 +37,15 @@ class MetadataScope(ABC):
 
 
 
-from ogc.metadata.representation import SpatialRepresentation
-from ogc.metadata.extension import MetadataExtensionInformation, ApplicationSchemaInformation
-from ogc.metadata.identification import Identification
-from ogc.metadata.content import ContentInformation
-from ogc.metadata.distribution import Distribution
-from ogc.metadata.quality import DataQuality
-from ogc.metadata.lineage import Lineage
-from ogc.metadata.constraints import Constraints
-from ogc.metadata.acquisition import AcquisitionInformation
+from opengis.metadata.representation import SpatialRepresentation
+from opengis.metadata.extension import MetadataExtensionInformation, ApplicationSchemaInformation
+from opengis.metadata.identification import Identification
+from opengis.metadata.content import ContentInformation
+from opengis.metadata.distribution import Distribution
+from opengis.metadata.quality import DataQuality
+from opengis.metadata.lineage import Lineage
+from opengis.metadata.constraints import Constraints
+from opengis.metadata.acquisition import AcquisitionInformation
 
 class Metadata(ABC):
     """Root entity which defines metadata about a resource or resources."""

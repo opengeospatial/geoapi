@@ -18,9 +18,9 @@
 #     python -m unittest discover
 #
 import unittest
-from ogc.metadata.base           import Metadata
-from ogc.metadata.identification import DataIdentification
-from ogc.metadata.citation       import Citation
+from opengis.metadata.base           import Metadata
+from opengis.metadata.identification import DataIdentification
+from opengis.metadata.citation       import Citation
 import unittest
 
 #
@@ -52,7 +52,7 @@ class IdentificationMock(DataIdentification, Citation):
 
 #
 # The root metadata object. We must provide a body for all methods
-# annotated with @abstractproperty in ogc.metadata.base.Metadata.
+# annotated with @abstractproperty in opengis.metadata.base.Metadata.
 #
 
 

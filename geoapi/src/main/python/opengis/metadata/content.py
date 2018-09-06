@@ -65,8 +65,8 @@ class TransferFunctionTypeCode(Enum):
 
 
 
-from ogc.metadata.naming import MemberName, RecordType, Record, GenericName
-from ogc.metadata.citation import Identifier, Citation
+from opengis.metadata.naming import MemberName, RecordType, Record, GenericName
+from opengis.metadata.citation import Identifier, Citation
 
 class RangeDimension(ABC):
     """Information on the range of attribute values."""

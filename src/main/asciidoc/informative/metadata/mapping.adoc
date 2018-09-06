@@ -10,23 +10,23 @@ and _Reference system_ which has been replaced by the ISO 19111 types from the r
 
 .Metadata package mapping
 [.compact, options="header"]
-|====================================================================================================
+|========================================================================================================
 |ISO package                    |Java package                          |Python module
-|Metadata                       |`org.opengis.metadata`                |`ogc.metadata.base`
-|Identification                 |`org.opengis.metadata.identification` |`ogc.metadata.identification`
-|Constraint                     |`org.opengis.metadata.constraint`     |`ogc.metadata.constraints`
-|Lineage                        |`org.opengis.metadata.lineage`        |`ogc.metadata.lineage`
-|Maintenance                    |`org.opengis.metadata.maintenance`    |`ogc.metadata.maintenance`
-|Spatial representation         |`org.opengis.metadata.spatial`        |`ogc.metadata.representation`
+|Metadata                       |`org.opengis.metadata`                |`opengis.metadata.base`
+|Identification                 |`org.opengis.metadata.identification` |`opengis.metadata.identification`
+|Constraint                     |`org.opengis.metadata.constraint`     |`opengis.metadata.constraints`
+|Lineage                        |`org.opengis.metadata.lineage`        |`opengis.metadata.lineage`
+|Maintenance                    |`org.opengis.metadata.maintenance`    |`opengis.metadata.maintenance`
+|Spatial representation         |`org.opengis.metadata.spatial`        |`opengis.metadata.representation`
 |Reference system               |`org.opengis.referencing.*`           |
-|Content                        |`org.opengis.metadata.content`        |`ogc.metadata.content`
-|Portrayal catalogue            |`org.opengis.metadata`                |`ogc.metadata.base`
-|Distribution                   |`org.opengis.metadata.distribution`   |`ogc.metadata.distribution`
-|Metadata extension             |`org.opengis.metadata`                |`ogc.metadata.extension`
-|Application schema             |`org.opengis.metadata`                |`ogc.metadata.extension`
-|Service metadata               |`org.opengis.metadata.identification` |`ogc.metadata.identification`
+|Content                        |`org.opengis.metadata.content`        |`opengis.metadata.content`
+|Portrayal catalogue            |`org.opengis.metadata`                |`opengis.metadata.base`
+|Distribution                   |`org.opengis.metadata.distribution`   |`opengis.metadata.distribution`
+|Metadata extension             |`org.opengis.metadata`                |`opengis.metadata.extension`
+|Application schema             |`org.opengis.metadata`                |`opengis.metadata.extension`
+|Service metadata               |`org.opengis.metadata.identification` |`opengis.metadata.identification`
 |Extent, Citation and Common    |`org.opengis.metadata.extent` +
-`org.opengis.metadata.citation` |`ogc.metadata.extent` +
-`ogc.metadata.citation`
-|Data quality                   |`org.opengis.metadata.quality`        |`ogc.metadata.quality`
-|====================================================================================================
+`org.opengis.metadata.citation` |`opengis.metadata.extent` +
+`opengis.metadata.citation`
+|Data quality                   |`org.opengis.metadata.quality`        |`opengis.metadata.quality`
+|========================================================================================================

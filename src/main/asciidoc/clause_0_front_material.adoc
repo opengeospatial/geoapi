@@ -13,7 +13,7 @@ according to the rules required by the published API and by the ISO and OGC stan
 This standard complements existing OGC standards by defining language specific layers of normalization.
 This standard does not replace the core standards developing the OGC/ISO abstract model but complements those documents
 for developers by documenting the mapping of types and methods from the abstract model into some programming languages,
-providing standard interfaces in the `org.opengis` or `ogc` namespaces and explaining the use of GeoAPI interfaces.
+providing standard interfaces in the `org.opengis` or `opengis` namespaces and explaining the use of GeoAPI interfaces.
 
 
 [big]*ii.    Keywords*

@@ -63,7 +63,7 @@ class TriggerCode(Enum):
 
 
 
-from ogc.metadata.citation import Citation, Identifier, Responsibility
+from opengis.metadata.citation import Citation, Identifier, Responsibility
 
 class Instrument(ABC):
     """Designations for the measuring instruments."""
@@ -206,7 +206,7 @@ class EnvironmentalRecord(ABC):
 
 
 
-from ogc.metadata.extent import Extent
+from opengis.metadata.extent import Extent
 
 class Objective(ABC):
     """Describes the characteristics, spatial and temportal extent of the intended object to be observed."""
@@ -250,7 +250,7 @@ class Objective(ABC):
 
 
 
-from ogc.metadata.identification import ProgressCode
+from opengis.metadata.identification import ProgressCode
 
 class Operation(ABC):
     """Designations for the operation used to acquire the dataset."""

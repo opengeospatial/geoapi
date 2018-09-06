@@ -14,12 +14,12 @@
 #
 
 import jpy
-import ogc.metadata.base
-import ogc.metadata.citation
-import ogc.metadata.identification
+import opengis.metadata.base
+import opengis.metadata.citation
+import opengis.metadata.identification
 
 
-class Citation(ogc.metadata.citation.Citation):
+class Citation(opengis.metadata.citation.Citation):
     def __init__(self, proxy):
         self._proxy = proxy
 
@@ -31,7 +31,7 @@ class Citation(ogc.metadata.citation.Citation):
         return self._proxy.toString()
 
 
-class Identification(ogc.metadata.identification.Identification):
+class Identification(opengis.metadata.identification.Identification):
     def __init__(self, proxy):
         self._proxy = proxy
 
@@ -51,7 +51,7 @@ class Identification(ogc.metadata.identification.Identification):
         return self._proxy.toString()
 
 
-class Metadata(ogc.metadata.base.Metadata):
+class Metadata(opengis.metadata.base.Metadata):
     def __init__(self, proxy):
         self._proxy = proxy
 

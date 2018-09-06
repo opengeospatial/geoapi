@@ -13,12 +13,12 @@
 # "geoapi/src/main/python" directory, preferably using absolute path.
 #
 from osgeo import gdal
-from ogc.metadata.base           import Metadata, MetadataScope
-from ogc.metadata.maintenance    import ScopeCode
-from ogc.metadata.identification import DataIdentification
-from ogc.metadata.citation       import Citation
-from ogc.metadata.content        import CoverageDescription
-from ogc.metadata.representation import CellGeometryCode, Dimension, DimensionNameTypeCode, GridSpatialRepresentation
+from opengis.metadata.base           import Metadata, MetadataScope
+from opengis.metadata.maintenance    import ScopeCode
+from opengis.metadata.identification import DataIdentification
+from opengis.metadata.citation       import Citation
+from opengis.metadata.content        import CoverageDescription
+from opengis.metadata.representation import CellGeometryCode, Dimension, DimensionNameTypeCode, GridSpatialRepresentation
 
 #
 # By default the GDAL/OGR Python bindings do not raise exceptions when errors occur.

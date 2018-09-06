@@ -8,7 +8,7 @@ Those interfaces can be implemented by GDAL wrappers or by other implementations
 
 The following can be executed on the command-line.
 The current directory shall be this `geoapi-python-wheel` directory.
-This command will create a `dist/ogc-4.0a0.tar.gz` file.
+This command will create a `dist/opengis-4.0a0.tar.gz` file.
 
 ```
 python build.py sdist
@@ -19,6 +19,6 @@ it should be uninstalled first by the `pip uninstall` command (otherwise the uni
 Uninstallation and installation commands need to be run as administrator, which is done by `sudo`:
 
 ```
-sudo pip uninstall ogc
-sudo pip install dist/ogc-4.0.tar.gz
+sudo pip uninstall opengis
+sudo pip install dist/opengis-4.0.tar.gz
 ```

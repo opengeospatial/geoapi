@@ -46,7 +46,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name                          = "ogc",
+    name                          = "opengis",
     version                       = "4.0-alpha",
     author                        = "Open Geospatial Consortium",
     author_email                  = "geoapi.swg@lists.opengeospatial.org",

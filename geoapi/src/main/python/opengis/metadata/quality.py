@@ -25,7 +25,7 @@ class Result(ABC):
 
 
 from datetime import datetime
-from ogc.metadata.citation import Identifier, Citation
+from opengis.metadata.citation import Identifier, Citation
 
 class Element(ABC):
     """Aspect of quantitative quality information."""
@@ -186,9 +186,9 @@ class ConformanceResult(Result):
 
 
 
-from ogc.metadata.representation import SpatialRepresentationTypeCode
-from ogc.metadata.distribution import DataFile, Format
-from ogc.metadata.content import CoverageDescription
+from opengis.metadata.representation import SpatialRepresentationTypeCode
+from opengis.metadata.distribution import DataFile, Format
+from opengis.metadata.content import CoverageDescription
 
 class CoverageResult(Result):
     """Result of a data quality measure organising the measured values as a coverage."""
@@ -216,7 +216,7 @@ class CoverageResult(Result):
 
 
 
-from ogc.metadata.naming import Record, RecordType
+from opengis.metadata.naming import Record, RecordType
 
 class QuantitativeResult(Result):
     """The values or information about the value(s) (or set of values) obtained from applying a data quality measure."""
@@ -241,8 +241,8 @@ class QuantitativeResult(Result):
 
 
 
-from ogc.metadata.maintenance import Scope
-from ogc.metadata.lineage import Lineage
+from opengis.metadata.maintenance import Scope
+from opengis.metadata.lineage import Lineage
 
 class DataQuality(ABC):
     """Quality information for the data specified by a data quality scope."""

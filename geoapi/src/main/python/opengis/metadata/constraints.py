@@ -46,7 +46,7 @@ class RestrictionCode(Enum):
 
 
 
-from ogc.metadata.citation import Responsibility, Citation
+from opengis.metadata.citation import Responsibility, Citation
 
 class Releasability(ABC):
     """State, nation or organization to which resource can be released to e.g. NATO unclassified releasable to PfP."""
@@ -68,7 +68,7 @@ class Releasability(ABC):
 
 
 
-from ogc.metadata.maintenance import Scope
+from opengis.metadata.maintenance import Scope
 
 class Constraints(ABC):
     """Restrictions on the access and use of a resource or metadata."""

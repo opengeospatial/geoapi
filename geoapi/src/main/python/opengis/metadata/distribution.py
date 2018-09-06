@@ -23,7 +23,7 @@ class MediumFormatCode(Enum):
 
 
 
-from ogc.metadata.citation import Identifier, Citation, OnlineResource, Responsibility
+from opengis.metadata.citation import Identifier, Citation, OnlineResource, Responsibility
 
 class Medium(ABC):
     """Information about the media on which the resource can be distributed."""
@@ -93,7 +93,7 @@ class Format(ABC):
 
 
 
-from ogc.metadata.naming import LocalName, RecordType, Record
+from opengis.metadata.naming import LocalName, RecordType, Record
 
 class DataFile(ABC):
 

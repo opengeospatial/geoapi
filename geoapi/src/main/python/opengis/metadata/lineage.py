@@ -26,9 +26,9 @@ class NominalResolution(ABC):
 
 
 
-from ogc.metadata.identification import Resolution
-from ogc.metadata.citation import Citation, Identifier, Responsibility
-from ogc.metadata.maintenance import Scope
+from opengis.metadata.identification import Resolution
+from opengis.metadata.citation import Citation, Identifier, Responsibility
+from opengis.metadata.maintenance import Scope
 
 class Source(ABC):
     """Information about the source resource used in creating the data specified by the scope."""

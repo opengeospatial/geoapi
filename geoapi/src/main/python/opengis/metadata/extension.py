@@ -39,7 +39,7 @@ class ObligationCode(Enum):
 
 
 
-from ogc.metadata.citation import Citation, OnlineResource, Responsibility
+from opengis.metadata.citation import Citation, OnlineResource, Responsibility
 
 class ApplicationSchemaInformation(ABC):
     """Information about the application schema used to build the dataset."""

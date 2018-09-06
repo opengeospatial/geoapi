@@ -110,7 +110,7 @@ public final strictfp class GDALTest {
      */
     private static Metadata load(final String datafile) {
         assumeNotNull("The \"jpy.config\" system property must be set to the path of a \"jpyconfig.properties\" file.", rootDirectory);
-        final PyModule pm = PyModule.importModule("ogc.wrapper.gdal");
+        final PyModule pm = PyModule.importModule("opengis.wrapper.gdal");
         final PyObject dataset = pm.call("DataSet", new File(rootDirectory, datafile).toString());
         final Environment env = new Environment();
         return env.toJava(dataset.callMethod("metadata"), Metadata.class);

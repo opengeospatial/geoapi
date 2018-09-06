@@ -49,44 +49,44 @@ def createInit(path):
     f.close()
 
 
-shutil.rmtree('dist/', ignore_errors=True)
-shutil.rmtree('temp/', ignore_errors=True)
-shutil.rmtree('ogc/',  ignore_errors=True)
+shutil.rmtree('dist/',    ignore_errors=True)
+shutil.rmtree('temp/',    ignore_errors=True)
+shutil.rmtree('opengis/', ignore_errors=True)
 
 ##########################################################
 # Copy python files located in other modules.
 ##########################################################
 
 # Create java library folder
-directory = 'ogc/'
+directory = 'opengis/'
 if not os.path.exists(directory):
     os.makedirs(directory)
 
 # API
-dir = 'ogc/metadata/'
+dir = 'opengis/metadata/'
 os.makedirs(dir)
-files = glob.glob('../geoapi/src/main/python/ogc/metadata/*.py')
+files = glob.glob('../geoapi/src/main/python/opengis/metadata/*.py')
 for f in files:
     shutil.copy2(f, dir)
 
 # Java bridge
-dir = 'ogc/bridge/java/'
+dir = 'opengis/bridge/java/'
 os.makedirs(dir)
-files = glob.glob('../geoapi-java-python/src/main/python/ogc/bridge/java/*.py')
+files = glob.glob('../geoapi-java-python/src/main/python/opengis/bridge/java/*.py')
 for f in files:
     shutil.copy2(f, dir)
 
 # GDAL bridge
-dir = 'ogc/wrapper/'
+dir = 'opengis/wrapper/'
 os.makedirs(dir)
-files = glob.glob('../geoapi-gdal/src/main/python/ogc/wrapper/*.py')
+files = glob.glob('../geoapi-gdal/src/main/python/opengis/wrapper/*.py')
 for f in files:
     shutil.copy2(f, dir)
 
 # __init__.py in each folder to include
-createInit("ogc")
-createInit("ogc/bridge")
-createInit("ogc/bridge/java")
+createInit("opengis")
+createInit("opengis/bridge")
+createInit("opengis/bridge/java")
 
 
 ##########################################################
@@ -97,6 +97,6 @@ createInit("ogc/bridge/java")
 ##########################################################
 # Cleaning, setup tool makes a lot of side files.
 ##########################################################
-shutil.rmtree("ogc.egg-info", ignore_errors=True)
-shutil.rmtree("__pycache__",  ignore_errors=True)
-shutil.rmtree("ogc",          ignore_errors=True)
+shutil.rmtree("opengis.egg-info", ignore_errors=True)
+shutil.rmtree("__pycache__",      ignore_errors=True)
+shutil.rmtree("opengis",          ignore_errors=True)

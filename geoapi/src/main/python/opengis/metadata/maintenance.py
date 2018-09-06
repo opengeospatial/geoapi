@@ -96,7 +96,7 @@ class ScopeDescription(ABC):
 
 
 
-from ogc.metadata.extent import Extent
+from opengis.metadata.extent import Extent
 
 class Scope(ABC):
     """New: information about the scope of the resource."""
@@ -116,7 +116,7 @@ class Scope(ABC):
 
 
 
-from ogc.metadata.citation import Date, Responsibility
+from opengis.metadata.citation import Date, Responsibility
 
 class MaintenanceInformation(ABC):
     """Information about the scope and frequency of updating."""

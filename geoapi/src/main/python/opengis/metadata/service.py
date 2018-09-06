@@ -40,7 +40,7 @@ class ParameterDirection(Enum):
 
 
 
-from ogc.metadata.citation import OnlineResource, Citation
+from opengis.metadata.citation import OnlineResource, Citation
 
 class OperationMetadata(ABC):
     """Describes the signature of one and only one method provided by the service."""
@@ -99,8 +99,8 @@ class OperationChainMetadata(ABC):
 
 
 
-from ogc.metadata.naming import ScopedName, GenericName
-from ogc.metadata.identification import DataIdentification, Identification
+from opengis.metadata.naming import ScopedName, GenericName
+from opengis.metadata.identification import DataIdentification, Identification
 
 class CoupledResource(ABC):
     """Links a given operationName (mandatory attribute of SV_OperationMetadata) with a data set identified by an 'identifier'."""
@@ -125,7 +125,7 @@ class CoupledResource(ABC):
 
 
 
-from ogc.metadata.distribution import StandardOrderProcess
+from opengis.metadata.distribution import StandardOrderProcess
 
 class ServiceIdentification(Identification):
     """Identification of capabilities which a service provider makes available to a service user through a set of interfaces that define a behaviour - See ISO 19119 for further information."""

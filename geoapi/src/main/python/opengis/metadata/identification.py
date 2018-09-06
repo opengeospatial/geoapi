@@ -111,8 +111,8 @@ class TopicCategoryCode(Enum):
 
 
 
-from ogc.metadata.constraints import Constraints
-from ogc.metadata.citation import OnlineResource, Citation, Responsibility, Identifier
+from opengis.metadata.constraints import Constraints
+from opengis.metadata.citation import OnlineResource, Citation, Responsibility, Identifier
 
 class BrowseGraphic(ABC):
     """Graphic that provides an illustration of the dataset (should include a legend for the graphic, if applicable)."""
@@ -292,10 +292,10 @@ class AssociatedResource(ABC):
 
 
 
-from ogc.metadata.representation import SpatialRepresentationTypeCode
-from ogc.metadata.extent import Extent
-from ogc.metadata.maintenance import MaintenanceInformation
-from ogc.metadata.distribution import Format
+from opengis.metadata.representation import SpatialRepresentationTypeCode
+from opengis.metadata.extent import Extent
+from opengis.metadata.maintenance import MaintenanceInformation
+from opengis.metadata.distribution import Format
 
 class Identification(ABC):
     """Basic information required to uniquely identify a resource or resources."""

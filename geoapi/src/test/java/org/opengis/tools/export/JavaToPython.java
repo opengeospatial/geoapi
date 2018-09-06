@@ -70,7 +70,7 @@ import static org.junit.Assert.*;
 
 /**
  * Generates or verifies Python abstract classes from Java interfaces.
- * If Python files exist in the {@code geoapi/src/python/ogc} directory, they will be compared with expected content.
+ * If Python files exist in the {@code geoapi/src/python/opengis} directory, they will be compared with expected content.
  * If those files do not exist, then they will be generated from {@link UML} annotations given by Java interfaces.
  * This should be used only as a starting point before review by Python developers.
  *
@@ -392,7 +392,7 @@ strictfp class JavaToPython extends SourceGenerator {
      */
     private boolean addImport(String module, final Class<?> type, final StringBuilder content) {
         if (!module.equals(module = module.replace('/', '.'))) {
-            module = "ogc." + module;
+            module = "opengis." + module;
         }
         final String typeName = nameOf(type);
         final String statement = lineSeparator + "from " + module + " import ";
@@ -636,7 +636,7 @@ strictfp class JavaToPython extends SourceGenerator {
     @Test
     public void verifyOrCreateSourceFiles() throws IOException {
         createContent();
-        final Path dir = sourceDirectory("python").resolve("ogc");
+        final Path dir = sourceDirectory("python").resolve("opengis");
         final Set<String> modules = namespaces.packages();
         for (final String path : modules) {
             final StringBuilder content = contents.remove(path);
