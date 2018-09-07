@@ -23,9 +23,13 @@ The `snapshot` elements in above URLs will be replaced by `3.1` and `4.0` after 
 This specification makes certain requirements of libraries implementing this API and defines several conformance classes
 for implementations covering different packages of the API or providing different levels of complexity in their implementations.
 GeoAPI provides a test suite through which to establish conformance of GeoAPI implementations.
-Requirements for 1 standardization target types are considered:
+Requirements for 2 standardization target types are considered:
 
-* Libraries which provide software components for building geospatial applications.
+* *Libraries* which provide software components for building geospatial applications.
+* *Applications* which use the above-cited software components.
+
+The second target type (applications) leaves more freedom than the first target type (libraries).
+In particular, applications are free to delete any classes, methods or functionalities that they do not use.
 
 Conformance with this standard shall be checked using all the relevant tests specified in <<conformance-tests,Annex A (normative)>> of this document.
 The framework, concepts, and methodology for testing, and the criteria to be achieved to claim conformance are specified in the

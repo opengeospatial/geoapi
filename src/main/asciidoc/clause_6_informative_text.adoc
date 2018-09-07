@@ -16,14 +16,18 @@ The `opengis.annotation` package provides the annotation system
 used to document the origin and obligation level of all methods and types in GeoAPI.
 These annotations are available through introspection at runtime for any code which wishes to exploit this information.
 The base of GeoAPI is formed by a formal mapping of the core types used by ISO and OGC standards to {supported-languages} equivalents,
-along with extra types in the `org.opengis.util` package for types not provided in the standard libraries.
-The packages in the `opengis.metadata` namespace cover the data types defined in the ISO 19115 Metadata specification,
+along with extra types in the `opengis.util` package for types not provided in the standard libraries.
+The packages in the `opengis.metadata` namespace cover the data types defined in the ISO 19115 _Metadata_ specification,
 which are data structures describing other structures.
 The packages in the `opengis.parameter` and `opengis.referencing` namespaces
-implement the types from the ISO 19111 Spatial Referencing by Coordinates specification
-complemented by the mathematical operator types from the OGC 01-009 Implementation specification Coordinate Transformation Services.
-The packages in the `opengis.geometry` namespace cover the data types defined in the ISO 19107 Spatial Schema specification,
+implement the types from the ISO 19111 _Spatial Referencing by Coordinates_ specification
+complemented by the mathematical operator types from the OGC 01-009 _Coordinate Transformation Services_ implementation specification.
+The packages in the `opengis.geometry` namespace cover the data types defined in the ISO 19107 _Spatial Schema_ specification,
 although in version 4.0 of the library only defines the elements from that specification needed by the geo-referencing types.
+Finally the packages in the `opengis.feature` namespace
+covers the meta-classes defined in the ISO 19109 _Rules for application schema_ specification,
+completed by the dynamic attributes defined in OGC 14-083 _Moving Features_ specification.
+This package is not needed for dynamic languages like Python.
 
 
 include::informative/naming.adoc[]

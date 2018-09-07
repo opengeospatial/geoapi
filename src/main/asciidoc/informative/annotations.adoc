@@ -1,8 +1,11 @@
 [[annotations]]
 === Annotated API
 
-The `org.opengis.annotation` package provides annotations which enable GeoAPI to document the source,
-original name, and obligation level of the various types and methods integrated from the various specification documents.
+The `opengis.annotation` package provides annotations which reflect UML elements
+from the various specification documents used for defining GeoAPI.
+Those annotations enable GeoAPI to document the source document, stereotype, original name,
+and obligation level of the various types, properties and operations.
+
 
 .Annotations in Java source code
 ****

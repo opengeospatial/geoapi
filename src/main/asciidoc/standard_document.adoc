@@ -57,7 +57,7 @@ Around words:
 |Submission Date: <yyyy-mm-dd>
 |Approval Date:   <yyyy-mm-dd>
 |Publication Date:   <yyyy-mm-dd>
-|External identifier of this OGC^®^ document: http://www.opengis.net/doc/{doc-type}/{standard}/{m.n}
+|External identifier of this OGC^®^ document: http://www.opengis.net/doc/is/geoapi/{m.n} (TODO)
 |Internal reference number of this OGC^®^ document:    YY-nnnrx
 |Version: n.n
 |Category: OGC^®^ Implementation Specification

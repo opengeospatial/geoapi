@@ -1,12 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.2" width="161.01mm" height="62.01mm" viewBox="1000 1000 16101 6201" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:presentation="http://sun.com/xmlns/staroffice/presentation" xmlns:smil="http://www.w3.org/2001/SMIL20/" xmlns:anim="urn:oasis:names:tc:opendocument:xmlns:animation:1.0" xml:space="preserve">
+<svg version="1.2" width="161.02mm" height="71.01mm" viewBox="999 1000 16102 7101" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:presentation="http://sun.com/xmlns/staroffice/presentation" xmlns:smil="http://www.w3.org/2001/SMIL20/" xmlns:anim="urn:oasis:names:tc:opendocument:xmlns:animation:1.0" xml:space="preserve">
  <defs class="ClipPathGroup">
   <clipPath id="presentation_clip_path" clipPathUnits="userSpaceOnUse">
-   <rect x="1000" y="1000" width="16101" height="6201"/>
+   <rect x="999" y="1000" width="16102" height="7101"/>
   </clipPath>
   <clipPath id="presentation_clip_path_shrink" clipPathUnits="userSpaceOnUse">
-   <rect x="1016" y="1006" width="16069" height="6189"/>
+   <rect x="1015" y="1007" width="16070" height="7087"/>
   </clipPath>
  </defs>
  <defs>
@@ -58,8 +58,10 @@
    <glyph unicode="G" horiz-adv-x="1387" d="M 844,575 L 844,747 1465,748 1465,204 C 1370,128 1271,71 1170,33 1069,-6 965,-25 858,-25 714,-25 583,6 466,68 348,129 259,218 199,335 139,452 109,582 109,726 109,869 139,1002 199,1126 258,1249 344,1341 456,1401 568,1461 697,1491 843,1491 949,1491 1045,1474 1131,1440 1216,1405 1283,1357 1332,1296 1381,1235 1418,1155 1443,1056 L 1268,1008 C 1246,1083 1219,1141 1186,1184 1153,1227 1107,1261 1046,1287 985,1312 918,1325 844,1325 755,1325 679,1312 614,1285 549,1258 497,1222 458,1178 418,1134 387,1086 365,1033 328,942 309,844 309,738 309,607 332,498 377,410 422,322 487,257 573,214 659,171 750,150 847,150 931,150 1013,166 1093,199 1173,231 1234,265 1275,302 L 1275,575 Z"/>
    <glyph unicode="C" horiz-adv-x="1318" d="M 1204,514 L 1398,465 C 1357,306 1284,184 1179,101 1073,17 944,-25 791,-25 633,-25 505,7 406,72 307,136 231,229 180,351 128,473 102,604 102,744 102,897 131,1030 190,1144 248,1257 331,1344 439,1403 546,1462 665,1491 794,1491 941,1491 1064,1454 1164,1379 1264,1304 1334,1199 1373,1064 L 1182,1019 C 1148,1126 1099,1203 1034,1252 969,1301 888,1325 790,1325 677,1325 583,1298 508,1244 432,1190 379,1118 348,1027 317,936 302,842 302,745 302,620 320,512 357,419 393,326 449,256 526,210 603,164 686,141 775,141 884,141 976,172 1051,235 1126,298 1177,391 1204,514 Z"/>
    <glyph unicode="9" horiz-adv-x="994" d="M 112,339 L 285,355 C 300,274 328,215 369,178 410,141 463,123 528,123 583,123 632,136 674,161 715,186 749,220 776,263 803,305 825,362 843,434 861,506 870,579 870,654 870,662 870,674 869,690 833,633 784,586 722,551 659,515 592,497 519,497 398,497 295,541 211,629 127,717 85,833 85,977 85,1126 129,1245 217,1336 304,1427 414,1472 546,1472 641,1472 729,1446 808,1395 887,1344 947,1271 988,1176 1029,1081 1049,943 1049,763 1049,576 1029,427 988,316 947,205 887,120 807,62 726,4 632,-25 524,-25 409,-25 316,7 243,71 170,134 127,224 112,339 Z M 849,986 C 849,1089 822,1171 767,1232 712,1293 645,1323 568,1323 488,1323 418,1290 359,1225 300,1160 270,1075 270,971 270,878 298,802 355,744 411,685 480,656 563,656 646,656 715,685 769,744 822,802 849,883 849,986 Z"/>
+   <glyph unicode="8" horiz-adv-x="994" d="M 362,795 C 287,822 232,861 196,912 160,963 142,1023 142,1094 142,1201 180,1290 257,1363 334,1436 436,1472 563,1472 691,1472 794,1435 872,1361 950,1286 989,1196 989,1089 989,1021 971,962 936,912 900,861 846,822 773,795 863,766 932,718 979,653 1026,588 1049,510 1049,419 1049,294 1005,188 916,103 827,18 711,-25 566,-25 421,-25 305,18 216,104 127,189 83,296 83,424 83,519 107,599 156,664 204,728 273,772 362,795 Z M 326,1100 C 326,1031 348,974 393,930 438,886 496,864 567,864 636,864 693,886 738,930 782,973 804,1027 804,1090 804,1156 781,1212 736,1257 690,1302 633,1324 565,1324 496,1324 439,1302 394,1258 349,1214 326,1161 326,1100 Z M 268,423 C 268,372 280,322 305,274 329,226 365,189 413,163 461,136 513,123 568,123 654,123 725,151 781,206 837,261 865,332 865,417 865,504 836,575 779,632 721,689 649,717 562,717 477,717 407,689 352,633 296,577 268,507 268,423 Z"/>
    <glyph unicode="7" horiz-adv-x="971" d="M 97,1274 L 97,1447 1046,1447 1046,1307 C 953,1208 860,1076 769,911 677,746 606,577 556,403 520,280 497,146 487,0 L 302,0 C 304,115 327,255 370,418 413,581 476,739 557,891 638,1042 724,1170 815,1274 Z"/>
    <glyph unicode="5" horiz-adv-x="994" d="M 85,384 L 274,400 C 288,308 321,239 372,193 423,146 484,123 556,123 643,123 716,156 776,221 836,286 866,373 866,481 866,584 837,665 780,724 722,783 646,813 553,813 495,813 443,800 396,774 349,747 313,713 286,671 L 117,693 259,1446 988,1446 988,1274 403,1274 324,880 C 412,941 504,972 601,972 729,972 837,928 925,839 1013,750 1057,636 1057,497 1057,364 1018,250 941,153 847,34 719,-25 556,-25 423,-25 314,12 230,87 145,162 97,261 85,384 Z"/>
+   <glyph unicode="4" horiz-adv-x="1040" d="M 662,0 L 662,351 26,351 26,516 695,1466 842,1466 842,516 1040,516 1040,351 842,351 842,0 Z M 662,516 L 662,1177 203,516 Z"/>
    <glyph unicode="3" horiz-adv-x="994" d="M 86,387 L 266,411 C 287,309 322,236 372,191 421,146 482,123 553,123 638,123 709,152 768,211 826,270 855,342 855,429 855,512 828,580 774,634 720,687 651,714 568,714 534,714 492,707 441,694 L 461,852 C 473,851 483,850 490,850 567,850 636,870 697,910 758,950 789,1012 789,1095 789,1161 767,1216 722,1259 677,1302 620,1324 549,1324 479,1324 421,1302 374,1258 327,1214 297,1148 284,1060 L 104,1092 C 126,1213 176,1306 254,1373 332,1439 429,1472 545,1472 625,1472 699,1455 766,1421 833,1386 885,1339 921,1280 956,1221 974,1158 974,1091 974,1028 957,970 923,918 889,866 839,825 772,794 859,774 926,733 974,670 1022,607 1046,528 1046,433 1046,305 999,197 906,108 813,19 695,-26 552,-26 423,-26 317,12 232,89 147,166 98,265 86,387 Z"/>
    <glyph unicode="1" horiz-adv-x="578" d="M 763,0 L 583,0 583,1147 C 540,1106 483,1064 413,1023 342,982 279,951 223,930 L 223,1104 C 324,1151 412,1209 487,1276 562,1343 616,1409 647,1472 L 763,1472 Z"/>
    <glyph unicode="0" horiz-adv-x="994" d="M 85,723 C 85,896 103,1036 139,1142 174,1247 227,1329 298,1386 368,1443 456,1472 563,1472 642,1472 711,1456 770,1425 829,1393 878,1347 917,1288 956,1228 986,1155 1008,1070 1030,984 1041,868 1041,723 1041,551 1023,412 988,307 953,201 900,119 830,62 759,4 670,-25 563,-25 422,-25 311,26 230,127 133,249 85,448 85,723 Z M 270,723 C 270,482 298,322 355,243 411,163 480,123 563,123 646,123 715,163 772,243 828,323 856,483 856,723 856,964 828,1125 772,1204 715,1283 645,1323 561,1323 478,1323 412,1288 363,1218 301,1129 270,964 270,723 Z"/>
@@ -68,7 +70,7 @@
   </font>
  </defs>
  <defs class="TextShapeIndex">
-  <g ooo:slide="id1" ooo:id-list="id3 id4 id5 id6 id7 id8 id9 id10 id11 id12 id13 id14 id15 id16"/>
+  <g ooo:slide="id1" ooo:id-list="id3 id4 id5 id6 id7 id8 id9 id10 id11 id12 id13 id14 id15 id16 id17 id18"/>
  </defs>
  <defs class="EmbeddedBulletChars">
   <g id="bullet-char-template-57356" transform="scale(0.00048828125,-0.00048828125)">
@@ -110,66 +112,66 @@
      <g class="Page">
       <g class="com.sun.star.drawing.CustomShape">
        <g id="id3">
-        <rect class="BoundingBox" stroke="none" fill="none" x="3699" y="6399" width="6203" height="803"/>
-        <path fill="rgb(229,242,250)" stroke="none" d="M 6800,7200 L 3700,7200 3700,6400 9900,6400 9900,7200 6800,7200 Z"/>
-        <path fill="none" stroke="rgb(0,0,0)" d="M 6800,7200 L 3700,7200 3700,6400 9900,6400 9900,7200 6800,7200 Z"/>
-        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="4705" y="6910"><tspan fill="rgb(0,0,0)" stroke="none">org.opengis.annotation</tspan></tspan></tspan></text>
+        <rect class="BoundingBox" stroke="none" fill="none" x="3699" y="7299" width="6203" height="803"/>
+        <path fill="rgb(229,242,250)" stroke="none" d="M 6800,8100 L 3700,8100 3700,7300 9900,7300 9900,8100 6800,8100 Z"/>
+        <path fill="none" stroke="rgb(0,0,0)" d="M 6800,8100 L 3700,8100 3700,7300 9900,7300 9900,8100 6800,8100 Z"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="4705" y="7810"><tspan fill="rgb(0,0,0)" stroke="none">org.opengis.annotation</tspan></tspan></tspan></text>
        </g>
       </g>
       <g class="com.sun.star.drawing.CustomShape">
        <g id="id4">
-        <rect class="BoundingBox" stroke="none" fill="none" x="3699" y="5399" width="6203" height="803"/>
-        <path fill="rgb(229,242,250)" stroke="none" d="M 6800,6200 L 3700,6200 3700,5400 9900,5400 9900,6200 6800,6200 Z"/>
-        <path fill="none" stroke="rgb(0,0,0)" d="M 6800,6200 L 3700,6200 3700,5400 9900,5400 9900,6200 6800,6200 Z"/>
-        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="5276" y="5910"><tspan fill="rgb(0,0,0)" stroke="none">org.opengis.util</tspan></tspan></tspan></text>
+        <rect class="BoundingBox" stroke="none" fill="none" x="3699" y="6299" width="6203" height="803"/>
+        <path fill="rgb(229,242,250)" stroke="none" d="M 6800,7100 L 3700,7100 3700,6300 9900,6300 9900,7100 6800,7100 Z"/>
+        <path fill="none" stroke="rgb(0,0,0)" d="M 6800,7100 L 3700,7100 3700,6300 9900,6300 9900,7100 6800,7100 Z"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="5276" y="6810"><tspan fill="rgb(0,0,0)" stroke="none">org.opengis.util</tspan></tspan></tspan></text>
        </g>
       </g>
       <g class="com.sun.star.drawing.CustomShape">
        <g id="id5">
-        <rect class="BoundingBox" stroke="none" fill="none" x="3699" y="4399" width="6203" height="803"/>
-        <path fill="rgb(229,242,250)" stroke="none" d="M 6800,5200 L 3700,5200 3700,4400 9900,4400 9900,5200 6800,5200 Z"/>
-        <path fill="none" stroke="rgb(0,0,0)" d="M 6800,5200 L 3700,5200 3700,4400 9900,4400 9900,5200 6800,5200 Z"/>
-        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="4895" y="4910"><tspan fill="rgb(0,0,0)" stroke="none">org.opengis.metadata</tspan></tspan></tspan></text>
+        <rect class="BoundingBox" stroke="none" fill="none" x="3699" y="5299" width="6203" height="803"/>
+        <path fill="rgb(229,242,250)" stroke="none" d="M 6800,6100 L 3700,6100 3700,5300 9900,5300 9900,6100 6800,6100 Z"/>
+        <path fill="none" stroke="rgb(0,0,0)" d="M 6800,6100 L 3700,6100 3700,5300 9900,5300 9900,6100 6800,6100 Z"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="4895" y="5810"><tspan fill="rgb(0,0,0)" stroke="none">org.opengis.metadata</tspan></tspan></tspan></text>
        </g>
       </g>
       <g class="com.sun.star.drawing.CustomShape">
        <g id="id6">
-        <rect class="BoundingBox" stroke="none" fill="none" x="3699" y="2999" width="4803" height="1203"/>
-        <path fill="rgb(229,242,250)" stroke="none" d="M 6100,4200 L 3700,4200 3700,3000 8500,3000 8500,4200 6100,4200 Z"/>
-        <path fill="none" stroke="rgb(0,0,0)" d="M 6100,4200 L 3700,4200 3700,3000 8500,3000 8500,4200 6100,4200 Z"/>
-        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="3950" y="3532"><tspan fill="rgb(0,0,0)" stroke="none">org.opengis.referencing</tspan></tspan></tspan><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="3950" y="3888"><tspan fill="rgb(0,0,0)" stroke="none">org.opengis.parameter</tspan></tspan></tspan></text>
+        <rect class="BoundingBox" stroke="none" fill="none" x="3699" y="3899" width="4803" height="1203"/>
+        <path fill="rgb(229,242,250)" stroke="none" d="M 6100,5100 L 3700,5100 3700,3900 8500,3900 8500,5100 6100,5100 Z"/>
+        <path fill="none" stroke="rgb(0,0,0)" d="M 6100,5100 L 3700,5100 3700,3900 8500,3900 8500,5100 6100,5100 Z"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="3950" y="4432"><tspan fill="rgb(0,0,0)" stroke="none">org.opengis.referencing</tspan></tspan></tspan><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="3950" y="4788"><tspan fill="rgb(0,0,0)" stroke="none">org.opengis.parameter</tspan></tspan></tspan></text>
        </g>
       </g>
       <g class="com.sun.star.drawing.PolyPolygonShape">
        <g id="id7">
-        <rect class="BoundingBox" stroke="none" fill="none" x="3699" y="1999" width="6203" height="2203"/>
-        <path fill="rgb(229,242,250)" stroke="none" d="M 3700,2000 L 9900,2000 9900,4200 8639,4200 8639,2800 3700,2800 3700,2000 Z"/>
-        <path fill="none" stroke="rgb(0,0,0)" d="M 3700,2000 L 9900,2000 9900,4200 8639,4200 8639,2800 3700,2800 3700,2000 Z"/>
-        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="4895" y="2488"><tspan fill="rgb(0,0,0)" stroke="none">org.opengis.geometry</tspan></tspan></tspan></text>
+        <rect class="BoundingBox" stroke="none" fill="none" x="3699" y="2899" width="6203" height="2203"/>
+        <path fill="rgb(229,242,250)" stroke="none" d="M 3700,2900 L 9900,2900 9900,5100 8639,5100 8639,3700 3700,3700 3700,2900 Z"/>
+        <path fill="none" stroke="rgb(0,0,0)" d="M 3700,2900 L 9900,2900 9900,5100 8639,5100 8639,3700 3700,3700 3700,2900 Z"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="4895" y="3388"><tspan fill="rgb(0,0,0)" stroke="none">org.opengis.geometry</tspan></tspan></tspan></text>
        </g>
       </g>
       <g class="com.sun.star.drawing.CustomShape">
        <g id="id8">
-        <rect class="BoundingBox" stroke="none" fill="none" x="1000" y="2000" width="2401" height="801"/>
-        <text class="TextShape"><tspan class="TextParagraph" font-family="Arial, sans-serif" font-size="353px" font-weight="400"><tspan class="TextPosition" x="1250" y="2521"><tspan fill="rgb(0,0,0)" stroke="none">ISO 19107</tspan></tspan></tspan></text>
+        <rect class="BoundingBox" stroke="none" fill="none" x="999" y="2900" width="2600" height="801"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Arial, sans-serif" font-size="353px" font-weight="400"><tspan class="TextPosition" x="1249" y="3421"><tspan fill="rgb(0,0,0)" stroke="none">ISO 19107</tspan></tspan></tspan></text>
        </g>
       </g>
       <g class="com.sun.star.drawing.CustomShape">
        <g id="id9">
-        <rect class="BoundingBox" stroke="none" fill="none" x="1000" y="4400" width="2401" height="801"/>
-        <text class="TextShape"><tspan class="TextParagraph" font-family="Arial, sans-serif" font-size="353px" font-weight="400"><tspan class="TextPosition" x="1250" y="4921"><tspan fill="rgb(0,0,0)" stroke="none">ISO 19115</tspan></tspan></tspan></text>
+        <rect class="BoundingBox" stroke="none" fill="none" x="999" y="5300" width="2600" height="801"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Arial, sans-serif" font-size="353px" font-weight="400"><tspan class="TextPosition" x="1249" y="5821"><tspan fill="rgb(0,0,0)" stroke="none">ISO 19115</tspan></tspan></tspan></text>
        </g>
       </g>
       <g class="com.sun.star.drawing.CustomShape">
        <g id="id10">
-        <rect class="BoundingBox" stroke="none" fill="none" x="1000" y="5400" width="2401" height="801"/>
-        <text class="TextShape"><tspan class="TextParagraph" font-family="Arial, sans-serif" font-size="353px" font-weight="400"><tspan class="TextPosition" x="1250" y="5921"><tspan fill="rgb(0,0,0)" stroke="none">ISO 19103</tspan></tspan></tspan></text>
+        <rect class="BoundingBox" stroke="none" fill="none" x="999" y="6300" width="2600" height="801"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Arial, sans-serif" font-size="353px" font-weight="400"><tspan class="TextPosition" x="1249" y="6821"><tspan fill="rgb(0,0,0)" stroke="none">ISO 19103</tspan></tspan></tspan></text>
        </g>
       </g>
       <g class="com.sun.star.drawing.CustomShape">
        <g id="id11">
-        <rect class="BoundingBox" stroke="none" fill="none" x="1000" y="3000" width="2401" height="1201"/>
-        <text class="TextShape"><tspan class="TextParagraph" font-family="Arial, sans-serif" font-size="353px" font-weight="400"><tspan class="TextPosition" x="1250" y="3524"><tspan fill="rgb(0,0,0)" stroke="none">ISO 19111</tspan></tspan></tspan><tspan class="TextParagraph" font-family="Arial, sans-serif" font-size="353px" font-weight="400"><tspan class="TextPosition" x="1250" y="3918"><tspan fill="rgb(0,0,0)" stroke="none">OGC 01-009</tspan></tspan></tspan></text>
+        <rect class="BoundingBox" stroke="none" fill="none" x="999" y="3900" width="2600" height="1201"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Arial, sans-serif" font-size="353px" font-weight="400"><tspan class="TextPosition" x="1249" y="4424"><tspan fill="rgb(0,0,0)" stroke="none">ISO 19111</tspan></tspan></tspan><tspan class="TextParagraph" font-family="Arial, sans-serif" font-size="353px" font-weight="400"><tspan class="TextPosition" x="1249" y="4818"><tspan fill="rgb(0,0,0)" stroke="none">OGC 01-009</tspan></tspan></tspan></text>
        </g>
       </g>
       <g class="com.sun.star.drawing.CustomShape">
@@ -180,32 +182,46 @@
       </g>
       <g class="com.sun.star.drawing.CustomShape">
        <g id="id13">
-        <rect class="BoundingBox" stroke="none" fill="none" x="10899" y="4400" width="6203" height="803"/>
-        <path fill="rgb(229,242,250)" stroke="none" d="M 14000,5201 L 10900,5201 10900,4401 17100,4401 17100,5201 14000,5201 Z"/>
-        <path fill="none" stroke="rgb(0,0,0)" d="M 14000,5201 L 10900,5201 10900,4401 17100,4401 17100,5201 14000,5201 Z"/>
-        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="12476" y="4911"><tspan fill="rgb(0,0,0)" stroke="none">opengis.metadata</tspan></tspan></tspan></text>
+        <rect class="BoundingBox" stroke="none" fill="none" x="10899" y="5300" width="6203" height="803"/>
+        <path fill="rgb(229,242,250)" stroke="none" d="M 14000,6101 L 10900,6101 10900,5301 17100,5301 17100,6101 14000,6101 Z"/>
+        <path fill="none" stroke="rgb(0,0,0)" d="M 14000,6101 L 10900,6101 10900,5301 17100,5301 17100,6101 14000,6101 Z"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="12476" y="5811"><tspan fill="rgb(0,0,0)" stroke="none">opengis.metadata</tspan></tspan></tspan></text>
        </g>
       </g>
       <g class="com.sun.star.drawing.CustomShape">
        <g id="id14">
-        <rect class="BoundingBox" stroke="none" fill="none" x="10899" y="3000" width="4803" height="1203"/>
-        <path fill="rgb(229,242,250)" stroke="none" d="M 13300,4201 L 10900,4201 10900,3001 15700,3001 15700,4201 13300,4201 Z"/>
-        <path fill="none" stroke="rgb(0,0,0)" d="M 13300,4201 L 10900,4201 10900,3001 15700,3001 15700,4201 13300,4201 Z"/>
-        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11490" y="3711"><tspan fill="rgb(0,0,0)" stroke="none">opengis.referencing</tspan></tspan></tspan></text>
+        <rect class="BoundingBox" stroke="none" fill="none" x="10899" y="3900" width="4803" height="1203"/>
+        <path fill="rgb(229,242,250)" stroke="none" d="M 13300,5101 L 10900,5101 10900,3901 15700,3901 15700,5101 13300,5101 Z"/>
+        <path fill="none" stroke="rgb(0,0,0)" d="M 13300,5101 L 10900,5101 10900,3901 15700,3901 15700,5101 13300,5101 Z"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11490" y="4611"><tspan fill="rgb(0,0,0)" stroke="none">opengis.referencing</tspan></tspan></tspan></text>
        </g>
       </g>
       <g class="com.sun.star.drawing.PolyPolygonShape">
        <g id="id15">
-        <rect class="BoundingBox" stroke="none" fill="none" x="10899" y="2000" width="6203" height="2203"/>
-        <path fill="rgb(229,242,250)" stroke="none" d="M 10900,2001 L 17100,2001 17100,4201 15839,4201 15839,2801 10900,2801 10900,2001 Z"/>
-        <path fill="none" stroke="rgb(0,0,0)" d="M 10900,2001 L 17100,2001 17100,4201 15839,4201 15839,2801 10900,2801 10900,2001 Z"/>
-        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="12476" y="2489"><tspan fill="rgb(0,0,0)" stroke="none">opengis.geometry</tspan></tspan></tspan></text>
+        <rect class="BoundingBox" stroke="none" fill="none" x="10899" y="2900" width="6203" height="2203"/>
+        <path fill="rgb(229,242,250)" stroke="none" d="M 10900,2901 L 17100,2901 17100,5101 15839,5101 15839,3701 10900,3701 10900,2901 Z"/>
+        <path fill="none" stroke="rgb(0,0,0)" d="M 10900,2901 L 17100,2901 17100,5101 15839,5101 15839,3701 10900,3701 10900,2901 Z"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="12476" y="3389"><tspan fill="rgb(0,0,0)" stroke="none">opengis.geometry</tspan></tspan></tspan></text>
        </g>
       </g>
       <g class="com.sun.star.drawing.CustomShape">
        <g id="id16">
         <rect class="BoundingBox" stroke="none" fill="none" x="10900" y="1001" width="6201" height="801"/>
         <text class="TextShape"><tspan class="TextParagraph" font-family="Arial, sans-serif" font-size="423px" font-weight="400"><tspan class="TextPosition" x="12368" y="1549"><tspan fill="rgb(0,102,153)" stroke="none">Python packages</tspan></tspan></tspan></text>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.CustomShape">
+       <g id="id17">
+        <rect class="BoundingBox" stroke="none" fill="none" x="3700" y="1899" width="6203" height="803"/>
+        <path fill="rgb(229,242,250)" stroke="none" d="M 6801,2700 L 3701,2700 3701,1900 9901,1900 9901,2700 6801,2700 Z"/>
+        <path fill="none" stroke="rgb(0,0,0)" d="M 6801,2700 L 3701,2700 3701,1900 9901,1900 9901,2700 6801,2700 Z"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Andale Mono" font-size="318px" font-weight="400"><tspan class="TextPosition" x="4991" y="2410"><tspan fill="rgb(0,0,0)" stroke="none">org.opengis.feature</tspan></tspan></tspan></text>
+       </g>
+      </g>
+      <g class="com.sun.star.drawing.CustomShape">
+       <g id="id18">
+        <rect class="BoundingBox" stroke="none" fill="none" x="1000" y="1800" width="2601" height="1001"/>
+        <text class="TextShape"><tspan class="TextParagraph" font-family="Arial, sans-serif" font-size="353px" font-weight="400"><tspan class="TextPosition" x="1250" y="2224"><tspan fill="rgb(0,0,0)" stroke="none">ISO 19109</tspan></tspan></tspan><tspan class="TextParagraph" font-family="Arial, sans-serif" font-size="353px" font-weight="400"><tspan class="TextPosition" x="1250" y="2618"><tspan fill="rgb(0,0,0)" stroke="none">OGC 14-083</tspan></tspan></tspan></text>
        </g>
       </g>
      </g>

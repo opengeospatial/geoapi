@@ -21,7 +21,7 @@ The property names get more changes than the type names.
 Those changes depend on the target programming language:
 
 * In Java, accessor methods start with the `get` prefix and are followed by their property name in camel cases.
-  For example the ISO 19111 `coordinateSystem` property is a method named `getCoordinateSystem()` in Java.
+  For example the ISO 19111 `coordinateSystem` property become a method named `getCoordinateSystem()` in Java.
 
 * In Python, no prefix is added and the came cases convention is replaced by the snake cases convention.
-  For example ISO 19111 `coordinateSystem` property is a property named `coordinate_system` in Python.
+  For example ISO 19111 `coordinateSystem` property become a property named `coordinate_system` in Python.
