@@ -304,7 +304,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-site-plugin</artifactId>
-          <version>3.7.2</version>
+          <version>3.7.1</version>
         </plugin>
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
@@ -562,6 +562,13 @@
           <additionalOptions>
             -html5 -Xdoclint:syntax --add-stylesheet "${basedir}/src/main/javadoc/geoapi.css"
           </additionalOptions>
+          <additionalDependencies>
+            <additionalDependency>
+              <groupId>org.opengis</groupId>
+              <artifactId>geoapi-pending</artifactId>
+              <version>${project.version}</version>
+            </additionalDependency>
+          </additionalDependencies>
 
           <!-- Do not add the "API" word in document title, because it is already included in the "GeoAPI name. -->
           <doctitle>${project.name} ${project.version}</doctitle>
