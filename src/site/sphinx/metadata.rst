@@ -4,9 +4,9 @@
 Naming (ISO 19103)
 =============================================
 
-.. inheritance-diagram:: ogc.metadata.naming
+.. inheritance-diagram:: opengis.metadata.naming
 
-.. automodule:: ogc.metadata.naming
+.. automodule:: opengis.metadata.naming
    :members:
    :undoc-members:
 
@@ -16,125 +16,125 @@ Metadata (ISO 19115)
 Base
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.base
+.. inheritance-diagram:: opengis.metadata.base
 
-.. automodule:: ogc.metadata.base
+.. automodule:: opengis.metadata.base
    :members:
    :undoc-members:
 
 Citation
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.citation
+.. inheritance-diagram:: opengis.metadata.citation
 
-.. automodule:: ogc.metadata.citation
+.. automodule:: opengis.metadata.citation
    :members:
    :undoc-members:
 
 Identification
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.identification
+.. inheritance-diagram:: opengis.metadata.identification
 
-.. automodule:: ogc.metadata.identification
+.. automodule:: opengis.metadata.identification
    :members:
    :undoc-members:
 
 Constraint
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.constraints
+.. inheritance-diagram:: opengis.metadata.constraints
 
-.. automodule:: ogc.metadata.constraints
+.. automodule:: opengis.metadata.constraints
    :members:
    :undoc-members:
 
 Acquisition
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.acquisition
+.. inheritance-diagram:: opengis.metadata.acquisition
 
-.. automodule:: ogc.metadata.acquisition
+.. automodule:: opengis.metadata.acquisition
    :members:
    :undoc-members:
 
 Lineage
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.lineage
+.. inheritance-diagram:: opengis.metadata.lineage
 
-.. automodule:: ogc.metadata.lineage
+.. automodule:: opengis.metadata.lineage
    :members:
    :undoc-members:
 
 Data quality
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.quality
+.. inheritance-diagram:: opengis.metadata.quality
 
-.. automodule:: ogc.metadata.quality
+.. automodule:: opengis.metadata.quality
    :members:
    :undoc-members:
 
 Maintenance
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.maintenance
+.. inheritance-diagram:: opengis.metadata.maintenance
 
-.. automodule:: ogc.metadata.maintenance
+.. automodule:: opengis.metadata.maintenance
    :members:
    :undoc-members:
 
 Spatial representation
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.representation
+.. inheritance-diagram:: opengis.metadata.representation
 
-.. automodule:: ogc.metadata.representation
+.. automodule:: opengis.metadata.representation
    :members:
    :undoc-members:
 
 Extent
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.extent
+.. inheritance-diagram:: opengis.metadata.extent
 
-.. automodule:: ogc.metadata.extent
+.. automodule:: opengis.metadata.extent
    :members:
    :undoc-members:
 
 Content
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.content
+.. inheritance-diagram:: opengis.metadata.content
 
-.. automodule:: ogc.metadata.content
+.. automodule:: opengis.metadata.content
    :members:
    :undoc-members:
 
 Distribution
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.distribution
+.. inheritance-diagram:: opengis.metadata.distribution
 
-.. automodule:: ogc.metadata.distribution
+.. automodule:: opengis.metadata.distribution
    :members:
    :undoc-members:
 
 Service metadata
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.service
+.. inheritance-diagram:: opengis.metadata.service
 
-.. automodule:: ogc.metadata.service
+.. automodule:: opengis.metadata.service
    :members:
    :undoc-members:
 
 Application schema
 ---------------------------------------------
 
-.. inheritance-diagram:: ogc.metadata.extension
+.. inheritance-diagram:: opengis.metadata.extension
 
-.. automodule:: ogc.metadata.extension
+.. automodule:: opengis.metadata.extension
    :members:
    :undoc-members:

@@ -38,7 +38,7 @@ extensions = [
 primary_domain = None
 
 # Show (for instance) "org.metadata.citation" under "c" instead than "o".
-modindex_common_prefix = ["ogc.metadata.", "ogc.referencing."]
+modindex_common_prefix = ["opengis.metadata.", "opengis.referencing."]
 
 # The master toctree document.
 master_doc = "index"
