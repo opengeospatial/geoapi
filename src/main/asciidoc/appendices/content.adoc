@@ -1,5 +1,0 @@
-[appendix]
-[[content]]
-== Types and methods
-
-(TODO)

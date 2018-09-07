@@ -1,4 +1,4 @@
-GeoAPI - Java interfaces for OGC/ISO standards
+GeoAPI - Programming interfaces for OGC/ISO standards
 http://www.geoapi.org
 
 Copyright (C) 2003-2018 Open Geospatial Consortium, Inc.

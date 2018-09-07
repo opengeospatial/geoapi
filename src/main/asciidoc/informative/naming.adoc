@@ -1,0 +1,27 @@
+[[naming]]
+=== Naming conventions
+
+The class and property names defined in OGC/ISO standards may be modified
+for compliance with the conventions in use in target programming languages.
+The main changes are described below:
+
+**Classes** +
+The two-letter prefixes are dropped.
+For example `MD_Metadata` and `CI_Citation` types are named `Metadata` and `Citation` in {supported-languages}.
+The camel cases convention (for example `CoordinateSystemAxis`) is kept unchanged for classes.
+
+**Code lists and enumerations** +
+If the type name ends with the `Code` suffix, then that suffix is dropped in strongly-typed languages like Java.
+For example the ISO 19115 `TopicCategoryCode` class is named `TopicCategory` in Java interfaces.
+This renaming is not applied to more dynamic languages like Python,
+because the naming convention can be a compensation for the absence of compile-time type checks.
+
+**Properties** +
+The property names get more changes than the type names.
+Those changes depend on the target programming language:
+
+* In Java, accessor methods start with the `get` prefix and are followed by their property name in camel cases.
+  For example the ISO 19111 `coordinateSystem` property become a method named `getCoordinateSystem()` in Java.
+
+* In Python, no prefix is added and the came cases convention is replaced by the snake cases convention.
+  For example ISO 19111 `coordinateSystem` property become a property named `coordinate_system` in Python.

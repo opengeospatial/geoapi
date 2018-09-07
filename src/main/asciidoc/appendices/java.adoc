@@ -1,5 +1,0 @@
-[appendix]
-[[java]]
-== Java archives
-
-(TODO)

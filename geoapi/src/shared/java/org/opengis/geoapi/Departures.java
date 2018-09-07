@@ -66,7 +66,7 @@ public class Departures {
     public final Map<String,String> spellingChanges;
 
     /**
-     * Creates new collections of departure informations. All maps in public fields ({@link #mergedTypes},
+     * Creates new collections of departure information. All maps in public fields ({@link #mergedTypes},
      * <i>etc.</i>) are initialized with new instances and populated.
      */
     public Departures() {

@@ -236,8 +236,8 @@ public interface Envelope {
     double getMaximum(int dimension) throws IndexOutOfBoundsException;
 
     /**
-     * Returns the median ordinate along the specified dimension. In most cases, the result is
-     * equals (minus rounding error) to:
+     * Returns the median ordinate along the specified dimension.
+     * In most cases, the result is equals (minus rounding error) to:
      *
      * <blockquote><code>
      * median = ({@linkplain #getMinimum(int) getMinimum}(dimension) + {@linkplain #getMaximum(int) getMaximum}(dimension)) / 2;

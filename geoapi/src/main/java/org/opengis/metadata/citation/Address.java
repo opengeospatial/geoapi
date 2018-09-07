@@ -52,15 +52,18 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CI_Address", specification=ISO_19115)
 public interface Address {
     /**
-     * Address line for the location (as described in ISO 11180, Annex A).
-     * Returns an empty collection if none.
+     * Address lines for the location (as described in ISO 11180, Annex A).
+     * This method allows multiple values for describing a location on many lines,
+     * not for enumerating many locations.
      *
      * <div class="warning"><b>Upcoming API change — internationalization</b><br>
      * The return type will be changed from {@code Collection<String>} to
      * {@code Collection<? extends InternationalString>} in GeoAPI 4.0.
      * </div>
      *
-     * @return address line for the location.
+     * @return address lines for the location, or an empty collection if none.
+     *
+     * @todo https://github.com/opengeospatial/geoapi/issues/34
      */
     @UML(identifier="deliveryPoint", obligation=OPTIONAL, specification=ISO_19115)
     Collection<String> getDeliveryPoints();

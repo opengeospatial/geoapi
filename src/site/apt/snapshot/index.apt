@@ -10,7 +10,7 @@ GeoAPI SNAPSHOT
   {{{http://www.opengeospatial.org/standards/geoapi}OGC 09-083}} specification document.
   The 3.1-SNAPSHOT version contains the same interfaces than 4.0-SNAPSHOT without the incompatible changes.
 
-    * {{{./specification.html}Specification draft}}
+    * {{{./standard_document.html}Specification draft}}
 
     * {{{./javadoc/content.html}Java ↔︎ OGC/ISO mapping}}
 

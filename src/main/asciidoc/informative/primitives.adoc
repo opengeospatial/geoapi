@@ -1,0 +1,32 @@
+[[primitives]]
+==== Primitive types
+[.reference]_From ISO 19103:2015 §7.2.1_
+
+Each primitive type of the OGC/ISO specifications maps to zero, one or two object structures in GeoAPI.
+Where the mapping can be made directly to a programming language primitive type, such as `int` and `double`,
+the language primitive is preferred. However, when the value must be able to be set to `null`,
+the object wrapper of that primitive may be used in languages where "primitives" and "wrappers" are distinct.
+The following table shows the mapping used by GeoAPI to represent the primitive types in the ISO 19100 series.
+
+.Primitive types mapping
+[.compact, options="header"]
+|================================================================
+|ISO 19103 type        |Java type                    |Python type
+|`Boolean`             |`java.lang.Boolean` ^(1)^    |
+|`Number`              |`java.lang.Number`           |
+|`Integer`             |`java.lang.Integer` ^(1)(2)^ |`int`
+|`Real`                |`java.lang.Double`  ^(1)^    |`float`
+|`Decimal` ^(3)^       |`java.math.BigDecimal`       |
+|`Vector`              |unimplemented                |
+|`CharacterString`     |`java.lang.String`  ^(4)^    |`str`
+|`Sequence<Character>` |`java.lang.CharSequence`     |
+|`CharacterSetCode`    |`java.nio.charset.Charset`   |
+|`Date`                |`java.util.Date`             |
+|`Time`                |`java.util.Date`             |
+|`DateTime`            |`java.util.Date`             |`datetime`
+|================================================================
+
+[small]#(1) The primitive type, such as `int` and `double`, is used instead of the wrapper where the value can not be `null`.# +
+[small]#(2) Sometime substituted by `java.lang.Long` or `long` where the value may exceed 2^32^.# +
+[small]#(3) `Decimal` differs from `Real`, as `Decimal` is exact in base 10 while `Real` may not.# +
+[small]#(4) Substituted by `org.opengis.util.InternationalString` where the string representation depends on the locale.#

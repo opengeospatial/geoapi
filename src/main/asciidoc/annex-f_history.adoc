@@ -1,0 +1,17 @@
+[appendix]
+== Revision History
+
+[options="header"]
+|===============================================================================================
+|Date       |Release        |Editor              |Clauses modified         |Description
+|2009-04-08 |3.0.0-Draft    |Adrian Custer       |All                      |Initial public draft
+|2009-09-06 |3.0.0-Draft-r1 |Martin Desruisseaux |Annex E                  |List of departures
+|2010-02-11 |3.0.0-Draft-r2 |Martin Desruisseaux |8.1.1, 10.1, annex F     |Clarifications
+|===============================================================================================
+
+TODO: update references in above table:
+
+* 8.1.1:   Primitive types
+* 10.1:    Geometry packages - Defined types
+* annex E: list of departures
+* annex F: Comparison with legacy OGC specifications
