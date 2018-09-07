@@ -456,7 +456,10 @@ public enum Specification {
      * @see <a href="https://www.iso.org/standard/32557.html">ISO/TS 19139:2007 on standards catalogue</a>
      *
      * @since 2.3
+     *
+     * @deprecated since {@link #ISO_19115_3} publication, this standard does not define new elements used by GeoAPI.
      */
+    @Deprecated
     ISO_19139((short) 2007),
 
     /**
@@ -565,6 +568,23 @@ public enum Specification {
     OGC_01004((short) 1),
 
     /**
+     * Moving Features specification.
+     * This is the specification used as a complement of {@linkplain #ISO_19109 ISO 10109}
+     * for defining dynamic attributes.
+     *
+     * <p><b>Version numbers used in GeoAPI:</b></p>
+     * <ul>
+     *   <li><b>3:</b> OGC 14-083r3   ({@linkplain #defaultVersion() default version})</li>
+     * </ul>
+     *
+     * @see #ISO_19109
+     * @see <a href="http://docs.opengeospatial.org/is/14-083r2/14-083r2.html">Browse on OGC web site</a>
+     *
+     * @todo update URL after the revision has been publish.
+     */
+    OGC_OGC_14083((short) 3),
+
+    /**
      * Filter encoding implementation specification.
      * This is the specification for package {@link org.opengis.filter} and sub-packages.
      *
@@ -635,7 +655,7 @@ public enum Specification {
 
     /**
      * The default version of OGC/ISO standard for this enumeration constant.
-     * This is the version used when no value was explicitely given to the {@link UML#version()} annotation.
+     * This is the version used when no value was explicitly given to the {@link UML#version()} annotation.
      * The meaning of this numerical code is documented in the Javadoc of this {@code Specification} constant.
      * This is usually the OGC revision number or ISO publication year.
      *
