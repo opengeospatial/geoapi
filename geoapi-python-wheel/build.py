@@ -41,7 +41,6 @@ import setuptools
 import glob
 import shutil
 import os
-import setup
 
 
 def createInit(path):
@@ -93,6 +92,7 @@ createInit("opengis/bridge/java")
 # Generate pip package.
 ##########################################################
 
+import setup
 
 ##########################################################
 # Cleaning, setup tool makes a lot of side files.
