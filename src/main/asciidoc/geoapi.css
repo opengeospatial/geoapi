@@ -59,6 +59,11 @@ div.imageblock > div.content {
 /*
  * Blocks specific to particular programming languages.
  */
+details > summary {
+  display: list-item;
+  font-size: large;
+  font-weight: bold;
+}
 div.sidebarblock > div.content > div.title {
   text-align: left;
   font-size: 1.2em;
@@ -88,6 +93,10 @@ table.compact th.tableblock {
 table.compact td.tableblock {
   padding-top: 0;
   padding-bottom: 0;
+}
+
+p.tableblock code {
+  background-color: inherit;
 }
 
 div.bibliography p {

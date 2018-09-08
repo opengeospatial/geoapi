@@ -4,7 +4,8 @@
 
 GeoAPI distinguishes between two enumerated types depending on whether the complete set of literal types is known
 when the code is originally created, or if the list may be extended at run time.
-Many language provides an `enum` construct for the former case and GeoAPI defines the `CodeList` abstract class for the later case.
+Many language provides an `enum` construct for the former case and
+GeoAPI defines the `CodeList` abstract class in Java for the later case.
 
 .Enumerated types mapping
 [.compact, options="header"]
@@ -17,26 +18,17 @@ Many language provides an `enum` construct for the former case and GeoAPI define
 |`Sign`         |unimplemented               |
 |========================================================
 
-.Code lists in Java
-****
-The use of `org.opengis.util.CodeList` constructs includes accessing statically defined elements,
-defining new elements and retrieving any element defined for the code list.
-Considering, for example, `org.​opengis.​referencing.​cs.​AxisDirection`.
-The following code could be used:
-
-[source,java]
-----
-AxisDirection north    = AxisDirection.NORTH;
-AxisDirection northBis = AxisDirection.valueOf("NORTH");
-----
-
-where the second locution will create a new value if it does not exist.
-Special care should be taken to keep such calls consistent throughout the code
-since the `CodeList` will create a new element if there are any difference in the `String` parameters.
-****
-
 In some specifications (for example ISO 19115), code list and enumeration class names end with the `Code` suffix.
 Some other specifications (for example ISO 19111) do not use any particular suffix.
 The mapping to programmatic API may uniformize those type names to a single convention, depending on the target language.
 For the Java API, `Code` suffixes are omitted in class names.
 For the Python API, class names are left unchanged.
+
+++++
+<details>
+<summary>Code lists in Java</summary>
+++++
+include::../code/java/code-list.adoc[]
+++++
+</details>
+++++

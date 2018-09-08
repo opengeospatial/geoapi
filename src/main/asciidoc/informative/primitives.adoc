@@ -10,23 +10,24 @@ The following table shows the mapping used by GeoAPI to represent the primitive 
 
 .Primitive types mapping
 [.compact, options="header"]
-|================================================================
-|ISO 19103 type        |Java type                    |Python type
-|`Boolean`             |`java.lang.Boolean` ^(1)^    |
-|`Number`              |`java.lang.Number`           |
-|`Integer`             |`java.lang.Integer` ^(1)(2)^ |`int`
-|`Real`                |`java.lang.Double`  ^(1)^    |`float`
-|`Decimal` ^(3)^       |`java.math.BigDecimal`       |
-|`Vector`              |unimplemented                |
-|`CharacterString`     |`java.lang.String`  ^(4)^    |`str`
-|`Sequence<Character>` |`java.lang.CharSequence`     |
-|`CharacterSetCode`    |`java.nio.charset.Charset`   |
-|`Date`                |`java.util.Date`             |
-|`Time`                |`java.util.Date`             |
-|`DateTime`            |`java.util.Date`             |`datetime`
-|================================================================
+|===================================================================
+|ISO 19103 type        |Java type                       |Python type
+|`Boolean`             |`java.lang.Boolean`       ^(1)^ |
+|`Number`              |`java.lang.Number`              |
+|`Integer`             |`java.lang.Integer`    ^(1)(2)^ |`int`
+|`Real`                |`java.lang.Double`        ^(1)^ |`float`
+|`Decimal` ^(3)^       |`java.math.BigDecimal`          |
+|`Vector`              |unimplemented                   |
+|`CharacterString`     |`java.lang.String`        ^(4)^ |`str`
+|`Sequence<Character>` |`java.lang.CharSequence`        |
+|`CharacterSetCode`    |`java.nio.charset.Charset`      |
+|`Date`                |`java.time.LocalDate`     ^(5)^ |
+|`Time`                |`java.time.LocalTime`     ^(5)^ |
+|`DateTime`            |`java.time.ZonedDateTime` ^(5)^ |`datetime`
+|===================================================================
 
 [small]#(1) The primitive type, such as `int` and `double`, is used instead of the wrapper where the value can not be `null`.# +
 [small]#(2) Sometime substituted by `java.lang.Long` or `long` where the value may exceed 2^32^.# +
 [small]#(3) `Decimal` differs from `Real`, as `Decimal` is exact in base 10 while `Real` may not.# +
-[small]#(4) Substituted by `org.opengis.util.InternationalString` where the string representation depends on the locale.#
+[small]#(4) Substituted by `org.opengis.util.InternationalString` where the string representation depends on the locale.# +
+[small]#(5) Type may vary depending on the semantic of the property. GeoAPI 3.1 uses `java.util.Date` for historical reasons.#
