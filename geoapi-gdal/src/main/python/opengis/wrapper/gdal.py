@@ -164,3 +164,6 @@ class DataSet:
     def metadata(self):
         """Returns information about the dataset as ISO 19115 metadata."""
         return RasterMetadata(self._ds)
+
+    def close(self):
+        pass

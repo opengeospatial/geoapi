@@ -19,6 +19,15 @@ import opengis.metadata.citation
 import opengis.metadata.identification
 
 
+class MetadataScope(opengis.metadata.base.MetadataScope):
+    def __init__(self, proxy):
+        self._proxy = proxy
+
+    @property
+    def resource_scope(self):
+        return self._proxy.getResourceScope()
+
+
 class Citation(opengis.metadata.citation.Citation):
     def __init__(self, proxy):
         self._proxy = proxy
@@ -51,9 +60,63 @@ class Identification(opengis.metadata.identification.Identification):
         return self._proxy.toString()
 
 
+class Dimension(opengis.metadata.representation.Dimension):
+    def __init__(self, proxy):
+        self._proxy = proxy
+
+    @property
+    def dimension_name(self):
+        return self._proxy.getDimensionName()
+
+    @property
+    def dimension_size(self) -> int:
+        return self._proxy.getDimensionSize()
+
+
+class GridSpatialRepresentation(opengis.metadata.representation.SpatialRepresentation):
+    def __init__(self, proxy):
+        self._proxy = proxy
+
+    @property
+    def number_of_dimensions(self):
+        return self._proxy.getNumberOfDimensions()
+
+    @property
+    def axis_dimension_properties(self):
+        value = self._proxy.getAxisDimensionProperties()
+        if value:
+            it = value.iterator()
+            if it.hasNext():
+                return [Dimension(it.next()), Dimension(it.next())]
+            else:
+                return []
+        else:
+            return []
+
+    @property
+    def cell_geometry(self):
+        return self._proxy.getCellGeometry()
+
+    @property
+    def transformation_parameter_availability(self):
+        return self._proxy.getTransformationParameterAvailability()
+
+
 class Metadata(opengis.metadata.base.Metadata):
     def __init__(self, proxy):
         self._proxy = proxy
+
+    @property
+    def metadata_scope(self):
+        value = self._proxy.getMetadataScopes()
+        if value:
+            it = value.iterator()
+            if it.hasNext():
+                return [MetadataScope(it.next())]
+            else:
+                return []
+        else:
+            return []
 
     @property
     def contact(self):
@@ -70,6 +133,18 @@ class Metadata(opengis.metadata.base.Metadata):
             it = value.iterator()
             if it.hasNext():
                 return [Identification(it.next())]
+            else:
+                return []
+        else:
+            return []
+
+    @property
+    def spatial_representation_info(self):
+        value = self._proxy.getSpatialRepresentationInfo()
+        if value:
+            it = value.iterator()
+            if it.hasNext():
+                return [GridSpatialRepresentation(it.next())]
             else:
                 return []
         else:
