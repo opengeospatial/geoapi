@@ -31,9 +31,22 @@
  */
 package org.opengis.bridge.python;
 
+import java.util.Map;
+import java.util.HashMap;
+import java.util.Set;
+import java.util.HashSet;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.Properties;
+import java.util.Collections;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.ObjectStreamException;
+import java.nio.charset.StandardCharsets;
 import org.opengis.util.CodeList;
+import org.opengis.annotation.UML;
 import org.jpy.PyObject;
 
 
@@ -75,12 +88,12 @@ public abstract class Interfacing extends CodeList<Interfacing> {
      *       {@link Enum} and {@link java.util.Collection}.</li>
      * </ul>
      */
-    public static final Interfacing GEOAPI = new BuiltIn("GEOAPI");
+    public static final Interfacing GEOAPI = new GeoAPI("GEOAPI");
 
     /**
      * The mapping between Java and Python is delegated to the underlying JPY library.
      */
-    public static final Interfacing DEFAULT = new BuiltIn("DEFAULT");
+    public static final Interfacing DEFAULT = new Default("DEFAULT");
 
     /**
      * Constructs an element of the given name. The new element is
@@ -93,21 +106,53 @@ public abstract class Interfacing extends CodeList<Interfacing> {
     }
 
     /**
-     * An {@link Interfacing} implementation for the {@link #GEOAPI} and {@link #DEFAULT} built-in types.
-     * This implementation does not support {@link #toJava(PyObject, Class)} since those conversions are
-     * handled in a special way by {@link Converter}.
+     * Returns {@code true} if the given Java interface may potentially have sub-interfaces recognized by
+     * {@link #toJavaType(PyObject)}. This is an optimization for avoiding potentially costly checks.
+     * In case of doubt, conservatively returns {@code true}.
+     *
+     * <p>The default implementation returns {@code false} for consistency with {@link #toJavaType(PyObject)}
+     * default implementation. This method should be overridden if {@code toJavaType(PyObject)} is overridden.</p>
+     *
+     * @param  type  the Java interface to check for sub-typing.
+     * @return {@code true} if the given interface may have sub-interfaces known to {@link #toJavaType(PyObject)}.
      */
-    private static final class BuiltIn extends Interfacing {
-        private static final long serialVersionUID = 2492683726885765988L;
+    protected boolean hasKnownSubtypes(Class<?> type) {
+        return false;
+    }
 
-        BuiltIn(final String name) {
-            super(name);
-        }
+    /**
+     * Returns the Java type for the given Python type, taking in account only types assignable to the given base.
+     * Caller should have verified that {@link #hasKnownSubtypes(Class)} returns {@code true} before to invoke this
+     * method.
+     *
+     * @param  <T>       compile-time value of the {@code base} argument.
+     * @param  base      the base type of the desired interface.
+     * @param  object    the Python object for which to get the Java type.
+     * @param  builtins  the value of {@link Environment#builtins}.
+     * @return the Python object type as a type assignable to {@code base}. May be {@code base} itself.
+     *
+     * @see Environment#getJavaType(Class, PyObject)
+     */
+    final <T> Class<? extends T> getJavaType(final Class<T> base, final PyObject object, final PyObject builtins) {
+        final Class<?> c = specialize(base, builtins.call("type", object));
+        return (c != null) ? c.asSubclass(base) : base;
+    }
 
-        @Override
-        protected <T> T toJava(PyObject object, Class<T> type) {
-            throw new UnconvertibleTypeException(type);
-        }
+    /**
+     * Returns the Java type for the given Python type, or {@code null} if unknown.
+     * This method check only the given type. In case of unrecognized type, it does
+     * not verify if a parent of the given type would be recognized.
+     *
+     * <p>The default implementation returns {@code null}. If this method is overridden,
+     * then {@link #hasKnownSubtypes(Class)} may need to be overridden too.</p>
+     *
+     * @param  type  the Python type as given by {@code type(object)} in Python.
+     * @return the Java type for the given Python type, or {@code null} if unknown.
+     *
+     * @see Environment#getJavaType(Class, PyObject)
+     */
+    protected Class<?> toJavaType(final PyObject type) {
+        return null;
     }
 
     /**
@@ -166,5 +211,234 @@ public abstract class Interfacing extends CodeList<Interfacing> {
         } else {
             throw new IllegalArgumentException("No interfacing named " + code);
         }
+    }
+
+    /**
+     * An {@link Interfacing} implementation for the {@link #DEFAULT} built-in types.
+     * This implementation does not support {@link #toJava(PyObject, Class)} since
+     * those conversions are handled in a special way by {@link Converter}.
+     */
+    private static final class Default extends Interfacing {
+        private static final long serialVersionUID = 2492683726885765988L;
+
+        Default(final String name) {
+            super(name);
+        }
+
+        @Override
+        protected Object readResolve() throws ObjectStreamException {
+            return DEFAULT;
+        }
+
+        @Override
+        protected <T> T toJava(PyObject object, Class<T> type) {
+            throw new UnconvertibleTypeException(type);
+        }
+    }
+
+    /**
+     * An {@link Interfacing} implementation for the {@link #GEOAPI} built-in types.
+     * Only one instance shall exist in a running JVM.
+     */
+    static final class GeoAPI extends Interfacing {
+        private static final long serialVersionUID = -869703977561151644L;
+
+        /**
+         * The prefix of Java class names handled by {@code GeoAPI}.
+         */
+        static final String JAVA_PREFIX = "org.opengis.";
+
+        /**
+         * The prefix of Python class names handled by {@code GeoAPI}.
+         */
+        static final String PYTHON_PREFIX = "opengis.";
+
+        /**
+         * The file in the {@link UML} package containing the list of all GeoAPI interfaces.
+         * This is used for populating {@link #typesForNames}.
+         */
+        static final String CLASS_LIST = "class-index.properties";
+
+        /**
+         * The file in the {@link GeoAPI} package containing the list of all GeoAPI interfaces
+         * having subclasses. This is used for populating {@link #subclassed}.
+         */
+        static final String SUBCLASSED_LIST = "subclassed.txt";
+
+        /**
+         * Initial capacity for the {@link #typesForNames} map, as the number of lines in the
+         * {@value #CLASS_LIST} file divided by 0.75.
+         */
+        static final int CLASS_CAPACITY = 288;
+
+        /**
+         * Initial capacity for the {@link #subclassed} set, as the number of lines in the
+         * {@value #SUBCLASSED_LIST} file divided by 0.75.
+         */
+        static final int SUBCLASSED_CAPACITY = 46;
+
+        /**
+         * The Java classes for given Python type names. The content of this map is derived
+         * from the content of the {@code "class-index.properties"} file distributed with GeoAPI.
+         * This map shall not be modified after construction for thread-safety reasons.
+         */
+        private transient final Map<String,String> typesForNames;
+
+        /**
+         * The interfaces from the {@link #typesForNames} entries which have at least one sub-type.
+         * Used for determining if it is worth to perform the relatively costly detection of the
+         * subtype implemented by a Python object.
+         */
+        private transient final Set<Class<?>> subclassed;
+
+        /** For JUnit tests only. */
+        final Map<String,String> typesForNames() {
+            return Collections.unmodifiableMap(typesForNames);
+        }
+
+        /** For JUnit tests only. */
+        final Set<Class<?>> subclassed() {
+            return Collections.unmodifiableSet(subclassed);
+        }
+
+        /** Deprecated types to exclude for avoiding name collision. */
+        final Set<String> excludes() {
+            final Set<String> excludes = new HashSet<>(4);
+            excludes.add("RS_Identifier");
+            excludes.add("DQ_Scope");
+            return excludes;
+        }
+
+        /**
+         * Returns the unique instance on deserialization.
+         */
+        @Override
+        protected Object readResolve() throws ObjectStreamException {
+            return GEOAPI;
+        }
+
+        /**
+         * Creates the {@link #GEOAPI} singleton.
+         */
+        GeoAPI(final String name) {
+            super(name);
+            /*
+             * Load the list of all classes without creating the Class instead yet,
+             * except for resolving ambiguities. The amount of classes is potentially
+             * large and only a small amount of it is typically used.
+             */
+            final Properties p = new Properties();      // TODO: use (CLASS_CAPACITY + 14) on JDK10.
+            try (InputStream in = UML.class.getResourceAsStream(CLASS_LIST)) {
+                p.load(in);
+            } catch (NullPointerException | IOException e) {
+                throw new EnvironmentException(e, CLASS_LIST, true);
+            }
+            final Set<String> excludes = excludes();
+            typesForNames = new HashMap<>(CLASS_CAPACITY);
+            for (final Map.Entry<Object,Object> e : p.entrySet()) {
+                String type = (String) e.getKey();
+                if (!excludes.contains(type)) {
+                    type = type.substring(type.indexOf('_') + 1).intern();
+                    typesForNames.put(type, ((String) e.getValue()).intern());
+                }
+            }
+            /*
+             * Load the list of classes that may have sub-types. We convert the String
+             * into Class instances here because the amount of classes is smaller.
+             */
+            subclassed = new HashSet<>(SUBCLASSED_CAPACITY);
+            final ClassLoader loader = UML.class.getClassLoader();
+            try (BufferedReader in = new BufferedReader(new InputStreamReader(
+                    GeoAPI.class.getResourceAsStream(SUBCLASSED_LIST), StandardCharsets.UTF_8)))
+            {
+                String line;
+                while ((line = in.readLine()) != null) {
+                    subclassed.add(Class.forName(line, false, loader));
+                }
+            } catch (NullPointerException | IOException | ClassNotFoundException e) {
+                throw new EnvironmentException(e, SUBCLASSED_LIST, true);
+            }
+        }
+
+        /**
+         * Returns {@code true} if the given Java interface may potentially have sub-interfaces recognized by
+         * {@link #toJavaType(PyObject)}. This is an optimization for avoiding potentially costly checks.
+         */
+        @Override
+        protected boolean hasKnownSubtypes(final Class<?> type) {
+            return subclassed.contains(type);
+        }
+
+        /**
+         * Not invoked. {@link Converter#apply(PyObject)} uses a special hook for the GeoAPI case.
+         */
+        @Override
+        protected <T> T toJava(PyObject object, Class<T> type) {
+            throw new UnconvertibleTypeException(type);
+        }
+
+        /**
+         * Returns the Java type for the given Python type, or {@code null} if the given type
+         * is not one of the types defined by the {@code opengis} Python package.
+         * This method does not verify if a parent type could be returned.
+         *
+         * @param  type  the Python type as given by {@code type(object)} in Python.
+         * @return the Java type for the given Python type, or {@code null} if none.
+         */
+        @Override
+        protected Class<?> toJavaType(final PyObject type) {
+            if (type != null) {
+                PyObject obj = type.getAttribute("__module__");
+                if (obj != null) {
+                    final String module = obj.getStringValue();
+                    if (module != null && module.startsWith(PYTHON_PREFIX)) {
+                        obj = type.getAttribute("__name__");
+                        if (obj != null) {
+                            final String name = typesForNames.get(obj.getStringValue());
+                            if (name != null) try {
+                                return Class.forName(name, false, UML.class.getClassLoader());
+                            } catch (ClassNotFoundException e) {
+                                throw new EnvironmentException(e, CLASS_LIST, false);
+                            }
+                        }
+                    }
+                }
+            }
+            return null;
+        }
+    }
+
+    /**
+     * Returns the Java type for the given Python type, taking in account only types assignable to the given base.
+     *
+     * @param  base  the base type of the desired interface.
+     * @param  type  the Python type, as returned by {@code type(object)} in Python.
+     * @return an interface assignable to {@code base}, or {@code null} if none.
+     *
+     * @see #getJavaType(Class, PyObject, PyObject)
+     */
+    private Class<?> specialize(final Class<?> base, final PyObject type) {
+        if (type != null) {
+            final PyObject bases = type.getAttribute("__bases__");
+            if (bases != null) {
+                final int n = bases.callMethod("__len__").getIntValue();
+                for (int i=0; i<n; i++) {
+                    final PyObject parent = bases.callMethod("__getitem__", i);
+                    Class<?> c = toJavaType(parent);
+                    if (c == null) {
+                        c = specialize(base, parent);
+                        if (c != null) return c;
+                    } else if (base.isAssignableFrom(c)) {
+                        return c;
+                    } else {
+                        /*
+                         * Do not search the parent if the class that we found is not assignable to base.
+                         * If 'c' is not a subtype of 'base', its parents will not be subtypes neither.
+                         */
+                    }
+                }
+            }
+        }
+        return null;
     }
 }

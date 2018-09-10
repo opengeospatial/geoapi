@@ -200,10 +200,12 @@ class Converter<T> implements Function<PyObject,T> {
 
     /**
      * Converter from Python objects to Java objects implementing a GeoAPI interface.
+     * This converter is used when the given type has no known sub-type.
+     * This is the case of a majority of GeoAPI interfaces.
      */
-    private static final class GeoAPI<T> extends Converter<T> {
+    private static class GeoAPI<T> extends Converter<T> {
         /** Information about the Python environment (builtin functions, etc). */
-        private final Environment environment;
+        final Environment environment;
 
         /** Creates a new converter for the given Java type. */
         GeoAPI(final Environment environment, final Class<T> type) {
@@ -214,6 +216,23 @@ class Converter<T> implements Function<PyObject,T> {
         /** Converts the given Python object to a Java object of the converter {@link #type}. */
         @Override public T apply(final PyObject value) {
             return (value != null) ? Singleton.create(environment, value, type) : null;
+        }
+    }
+
+    /**
+     * Converter from Python objects to Java objects implementing a GeoAPI interface.
+     * This converter is used when the given type is known to have sub-types.
+     */
+    private static final class Specializable<T> extends GeoAPI<T> {
+        /** Creates a new converter for the given Java type. */
+        Specializable(final Environment environment, final Class<T> type) {
+            super(environment, type);
+        }
+
+        /** Converts the given Python object to a Java object of the converter {@link #type}. */
+        @Override public T apply(final PyObject value) {
+            return (value == null) ? null : Singleton.create(environment, value,
+                    Interfacing.GEOAPI.getJavaType(type, value, environment.builtins));
         }
     }
 
@@ -255,7 +274,11 @@ class Converter<T> implements Function<PyObject,T> {
         } else if (type.isInterface()) {
             final Interfacing inf = environment.getInterfacing(type);
             if (inf == Interfacing.GEOAPI) {
-                c = new GeoAPI<>(environment, type);
+                if (inf.hasKnownSubtypes(type)) {
+                    c = new Specializable<>(environment, type);
+                } else {
+                    c = new GeoAPI<>(environment, type);
+                }
             } else if (inf == Interfacing.DEFAULT) {
                 c = new Converter<>(type);
             } else {

@@ -40,6 +40,7 @@ import org.jpy.PyObject;
 
 /**
  * Interfaces Java applications with an environment in which a Python interpreter is running.
+ * Only one instance of {@code Environment} is needed.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
@@ -94,7 +95,7 @@ public class Environment {
     }
 
     /**
-     * Represents the given Python sequence as a Java list containing elements of the given type.
+     * Represents the given Python sequence as a read-only Java list containing elements of the given type.
      * The given {@code type} argument can be the same than the ones accepted by {@link #toJava(PyObject, Class)}.
      *
      * @param  <E>     compile-time value of the {@code type} argument.
@@ -110,6 +111,26 @@ public class Environment {
         } else {
             return Collections.emptyList();
         }
+    }
+
+    /**
+     * Returns the Java type for the given Python object. This method assumes that the Java type for the given
+     * Python object is at least the {@code base} type, but it may also be a subtype of {@code base}.
+     *
+     * @param  <T>       compile-time value of the {@code base} argument.
+     * @param  base      the base type of the desired interface.
+     * @param  object    the Python object for which to get the Java type, or {@code null}.
+     * @return the Python object type as a type assignable to {@code base}. May be {@code base} itself.
+     */
+    public <T> Class<? extends T> getJavaType(final Class<T> base, final PyObject object) {
+        Objects.requireNonNull(base);
+        if (object != null) {
+            final Interfacing inf = getInterfacing(base);
+            if (inf.hasKnownSubtypes(base)) {
+                return inf.getJavaType(base, object, builtins);
+            }
+        }
+        return base;
     }
 
     /**
@@ -135,6 +156,6 @@ public class Environment {
      * @return a specification of how to interface Java methods to Python.
      */
     protected Interfacing getInterfacing(final Class<?> type) {
-        return type.getPackageName().startsWith("org.opengis.") ? Interfacing.GEOAPI : Interfacing.DEFAULT;
+        return type.getPackageName().startsWith(Interfacing.GeoAPI.JAVA_PREFIX) ? Interfacing.GEOAPI : Interfacing.DEFAULT;
     }
 }

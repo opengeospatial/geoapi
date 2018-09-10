@@ -125,8 +125,6 @@ public final strictfp class GDALTest {
         final MetadataScope scope = first(metadata.getMetadataScopes());
         assertEquals("metadataScope.resourceScope", ScopeCode.DATASET, scope.getResourceScope());
 
-        if (true) return;   // TODO
-
         final GridSpatialRepresentation representation = (GridSpatialRepresentation) first(metadata.getSpatialRepresentationInfo());
         final List<? extends Dimension> axes = representation.getAxisDimensionProperties();
         assertEquals("axisDimensionProperties[0].dimensionName", DimensionNameType.COLUMN, axes.get(0).getDimensionName());
