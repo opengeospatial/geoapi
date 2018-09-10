@@ -331,7 +331,7 @@ public abstract class Interfacing extends CodeList<Interfacing> {
             try (InputStream in = UML.class.getResourceAsStream(CLASS_LIST)) {
                 p.load(in);
             } catch (NullPointerException | IOException e) {
-                throw new EnvironmentException(e, CLASS_LIST, true);
+                throw (Error) new ExceptionInInitializerError(error(CLASS_LIST, true)).initCause(e);
             }
             final Set<String> excludes = excludes();
             typesForNames = new HashMap<>(CLASS_CAPACITY);
@@ -356,8 +356,15 @@ public abstract class Interfacing extends CodeList<Interfacing> {
                     subclassed.add(Class.forName(line, false, loader));
                 }
             } catch (NullPointerException | IOException | ClassNotFoundException e) {
-                throw new EnvironmentException(e, SUBCLASSED_LIST, true);
+                throw (Error) new ExceptionInInitializerError(error(SUBCLASSED_LIST, true)).initCause(e);
             }
+        }
+
+        /**
+         * Builds the error message for a file that we can not load or use.
+         */
+        private static String error(final String filename, final boolean loading) {
+            return (loading ? "Can not load the \"" : "Outdated \"") + filename + "\" resource.";
         }
 
         /**
@@ -398,7 +405,7 @@ public abstract class Interfacing extends CodeList<Interfacing> {
                             if (name != null) try {
                                 return Class.forName(name, false, UML.class.getClassLoader());
                             } catch (ClassNotFoundException e) {
-                                throw new EnvironmentException(e, CLASS_LIST, false);
+                                throw new EnvironmentException(error(CLASS_LIST, false), e);
                             }
                         }
                     }

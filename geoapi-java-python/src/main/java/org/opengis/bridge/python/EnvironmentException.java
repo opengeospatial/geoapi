@@ -54,11 +54,4 @@ public class EnvironmentException extends RuntimeException {
     public EnvironmentException(final String message, final Exception cause) {
         super(message, cause);
     }
-
-    /**
-     * Creates a new exception for a file that can not be loaded.
-     */
-    EnvironmentException(final Exception cause, final String filename, final boolean loading) {
-        super((loading ? "Can not load the \"" : "Outdated \"") + filename + "\" resource.", cause);
-    }
 }
