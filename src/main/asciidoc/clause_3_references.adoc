@@ -28,6 +28,9 @@ ISO / TC 211: ISO 19115-1:2014,  Geographic information — Metadata — Fun
 ISO / TC 211: ISO 19115-2:2009,  Geographic information — Metadata — Extensions for imagery and gridded data (2009)
 
 [.bibliography]
+ISO / TC 211: ISO 19141:2008,    Geographic information — Schema for moving features (2008)
+
+[.bibliography]
 OGC: OGC 01‑009, OpenGIS® Implementation Specification: Coordinate Transformation Services, revision 1.00 (2001)
 
 [.bibliography]

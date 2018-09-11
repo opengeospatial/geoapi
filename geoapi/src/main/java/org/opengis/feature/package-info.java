@@ -45,7 +45,7 @@
  *       (similar to {@link java.lang.reflect.Method} in Java).</li>
  * </ul>
  *
- * Features containing only attributes constrained to the [1 … 1] cardinality and said
+ * Features containing only attributes constrained to the [1 … 1] multiplicity and said
  * {@linkplain org.opengis.feature.FeatureType#isSimple() simple}.
  * Such simple features can also be represented by {@link org.opengis.util.Record} instances.
  *

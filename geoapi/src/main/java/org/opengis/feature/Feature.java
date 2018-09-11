@@ -37,7 +37,7 @@ package org.opengis.feature;
  * Each feature instance can provide values for the following properties:
  *
  * <ul>
- *   <li>{@linkplain Attribute          Attributes}</li>
+ *   <li>{@linkplain Attribute          Attributes}, which may be {@linkplain DynamicAttribute dynamic}</li>
  *   <li>{@linkplain FeatureAssociation Associations to other features}</li>
  *   <li>{@linkplain Operation          Operations}</li>
  * </ul>
@@ -45,10 +45,17 @@ package org.opengis.feature;
  * {@code Feature} can be instantiated by calls to {@link FeatureType#newInstance()}.
  *
  * <h3>Simple features</h3>
- * A feature is said “simple” if it complies to the following conditions:
+ * A feature is said “simple” if it complies to all the following conditions:
  * <ul>
  *   <li>the feature allows only attributes and operations (no associations),</li>
- *   <li>the cardinality of all attributes is constrained to [1 … 1].</li>
+ *   <li>the multiplicity of all attributes is constrained to [1 … 1].</li>
+ * </ul>
+ *
+ * <h3>Moving features</h3>
+ * A feature is a moving feature if it complies to at least one of the following conditions:
+ * <ul>
+ *   <li>the feature contains {@linkplain DynamicAttribute dynamic attributes},</li>
+ *   <li>the geometry value of an {@linkplain Attribute attribute} is a trajectory.</li>
  * </ul>
  *
  * @author  Jody Garnett (Refractions Research, Inc.)
@@ -117,7 +124,7 @@ public interface Feature {
     /**
      * Returns the value for the property of the given name.
      * This convenience method is equivalent to invoking {@link #getProperty(String)} for the given name,
-     * then to perform one of the following actions depending on the property type and the cardinality:
+     * then to perform one of the following actions depending on the property type and the multiplicity:
      *
      * <table class="ogc">
      *   <caption>Class of returned value</caption>

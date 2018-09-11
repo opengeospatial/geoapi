@@ -106,7 +106,7 @@ public interface FeatureType extends IdentifiedType {
     boolean isAbstract();
 
     /**
-     * Returns {@code true} if this feature type contains only attributes constrained to the [1 … 1] cardinality,
+     * Returns {@code true} if this feature type contains only attributes constrained to the [1 … 1] multiplicity,
      * or operations (no feature association).
      * Such feature types can be handled as a {@link org.opengis.util.RecordType} instances.
      *

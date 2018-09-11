@@ -109,6 +109,15 @@ whose syntax derives from the C programming language and which is defined by the
 data about data +
  [source: ISO 19115-1]
 
+[[term-moving-feature]]
+[.term]
+=== moving feature
+feature whose location changes over time +
+[small]#Note 1 to entry: Its base representation uses a local origin and local coordinate vectors
+of a geometric object at a given reference time.# +
+[small]#Note 2 to entry: The local origin and ordinate vectors establish an engineering coordinate +
+reference system (ISO 19111), also called a local frame or a local Euclidean coordinate system.#
+
 [[term-package]]
 [.term]
 === package
@@ -126,3 +135,9 @@ facet or attribute of an object referenced by a name +
 === Python
 an interpreted high-level programming language for general-purpose programming
  [source: Wikipedia]
+
+[[term-trajectory]]
+[.term]
+=== trajectory
+path of a moving point described by a one parameter set of points +
+ [source: ISO 19141]

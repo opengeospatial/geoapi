@@ -90,9 +90,9 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * For example:</p>
      *
      * <ul>
-     *   <li>For {@link ParameterDescriptor} with cardinality 1:* a {@code ParameterValue} will
+     *   <li>For {@link ParameterDescriptor} with multiplicity 1:* a {@code ParameterValue} will
      *       be included with the default value (even if this default value is null).</li>
-     *   <li>For {@code ParameterDescriptor} with cardinality 0:* no entry is required.
+     *   <li>For {@code ParameterDescriptor} with multiplicity 0:* no entry is required.
      *       {@code ParameterValue} entries may be created only as needed.</li>
      * </ul>
      *

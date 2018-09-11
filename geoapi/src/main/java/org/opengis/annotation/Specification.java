@@ -582,7 +582,7 @@ public enum Specification {
      *
      * @todo update URL after the revision has been publish.
      */
-    OGC_OGC_14083((short) 3),
+    OGC_14083((short) 3),
 
     /**
      * Filter encoding implementation specification.
