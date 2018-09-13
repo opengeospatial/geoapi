@@ -12,11 +12,17 @@ The current release is GeoAPI 3.0.1, published as an
 Development branches on GitHub are "3.1" for GeoAPI 3.1 (backward compatible with GeoAPI 3.0)
 and "master" for GeoAPI 4.0. The main sub-directories are:
 
-* **geoapi**              contains the normative interfaces proposed for next GeoAPI releases.
-* **geoapi-pending**      contains experimental interfaces not yet targeted for a release.
-* **geoapi-conformance**  contains a test suite for testing vendor implementations.
-* **src/main/asciidoc**   contains the GeoAPI specification.
+* **[geoapi](https://github.com/opengeospatial/geoapi/tree/master/geoapi)**
+  contains the normative interfaces proposed for next GeoAPI releases.
+* **[geoapi-pending](https://github.com/opengeospatial/geoapi/tree/master/geoapi-pending)**
+  contains experimental interfaces not yet targeted for a release.
+* **[geoapi-conformance](https://github.com/opengeospatial/geoapi/tree/master/geoapi-conformance)**
+  contains a test suite for testing vendor implementations.
+* **[src/main/asciidoc](https://github.com/opengeospatial/geoapi/tree/master/src/main/asciidoc)**
+  contains the GeoAPI specification.
 * Other directories are examples, including netCDF and Proj.4 bindings.
+
+See the [wiki page](https://github.com/opengeospatial/geoapi/wiki) for the roadmap and completion status.
 
 
 ## How to build
