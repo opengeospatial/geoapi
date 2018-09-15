@@ -14,6 +14,9 @@ h4 {
   font-weight: bold;
   font-size:   large;
 }
+h5 {
+  font-weight: bold;
+}
 div.term h3 {
   margin-top:    9px;
   margin-bottom: 6px;

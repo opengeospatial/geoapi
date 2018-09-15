@@ -19,6 +19,8 @@ Such types are listed as "unimplemented" in the tables below.
 
 include::primitives.adoc[]
 
+include::datetime.adoc[]
+
 include::collections.adoc[]
 
 include::controlled-vocabulary.adoc[]

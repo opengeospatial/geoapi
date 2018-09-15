@@ -10,18 +10,14 @@ In particular:
 * CAN is the verb form used for statements of possibility.
 
 For the purposes of this document, the following additional terms and definitions apply.
+Further discussion about _type_, _class_, _interface_, _property_, _attribute_ and _implementation_ terms
+can be found in the <<type-terminology,conventions>> section.
 
 [[term-API]]
 [.term]
 === Application Programming Interface (API)
 a formally defined set of types and methods which establish a contract between client code which uses the API
 and implementation code which provides the API
-
-[[term-class]]
-[.term]
-=== class
-description of a set of objects that share the same attributes, operations, methods, relationships, and semantics +
- [source: ISO 19103]
 
 [[term-conceptual-model]]
 [.term]
@@ -35,6 +31,30 @@ model that defines concepts of a universe of discourse +
 UML condition or restriction expressed in natural language text or in a machine readable language
 for the purpose of declaring some of the semantics of an element +
  [source: ISO 19103]
+
+[[term-coordinate]]
+[.term]
+=== coordinate
+one of a sequence of numbers designating the position of a point +
+[small]#Note 1 to entry: In a spatial coordinate reference system, the coordinate numbers are qualified by units.# +
+ [source: ISO 19111]
+
+[[term-coordinate-operation]]
+[.term]
+=== coordinate operation
+process using a mathematical model, based on a one-to-one relationship, that changes coordinates in a source coordinate
+reference system to coordinates in a target coordinate reference system, or that changes coordinates at a source coordinate
+epoch to coordinates at a target coordinate epoch within the same coordinate reference system +
+ [source: ISO 19111]
+
+[[term-crs]]
+[.term]
+=== coordinate reference system
+coordinate system that is related to an object by a datum +
+[small]#Note 1 to entry: Geodetic and vertical datums are referred to as reference frames.# +
+[small]#Note 2 to entry: For geodetic and vertical reference frames, the object will be the Earth.
+In planetary applications, geodetic and vertical reference frames may be applied to other celestial bodies.# +
+ [source: ISO 19111]
 
 [[term-coverage]]
 [.term]
@@ -54,7 +74,7 @@ identifiable collection of data +
 === datatype
 specification of a value domain with operations allowed on values in this domain +
 [small]#Examples: `Integer`, `Real`, `Boolean`, `String` and `Date`.# +
-[small]#Note 1 to entry: Data types include primitive predefined types (4.36) and user definable types.# +
+[small]#Note 1 to entry: Data types include primitive predefined types and user definable types.# +
  [source: ISO 19103]
 
 [[term-dynamic-attribute]]
@@ -97,6 +117,16 @@ representation of real world phenomenon associated with a location relative to t
 spatial object representing a geometric set +
  [source: ISO 19107:2003]
 
+[[term-interface]]
+[.term]
+=== interface
+UML classifier that represents a declaration of a set of coherent public UML features and obligations +
+[small]#Note 1 to entry: An interface specifies a contract; any classifier that realizes the interface must fulfil that contract.
+The obligations that can be associated with an interface are in the form of various kinds of constraints
+(such as pre- and post-conditions) or protocol specifications,
+which can impose ordering restrictions on interactions through the interface.# +
+ [source: UML 2]
+
 [[term-java]]
 [.term]
 === Java
@@ -115,8 +145,15 @@ data about data +
 feature whose location changes over time +
 [small]#Note 1 to entry: Its base representation uses a local origin and local coordinate vectors
 of a geometric object at a given reference time.# +
-[small]#Note 2 to entry: The local origin and ordinate vectors establish an engineering coordinate +
+[small]#Note 2 to entry: The local origin and ordinate vectors establish an engineering coordinate
 reference system (ISO 19111), also called a local frame or a local Euclidean coordinate system.#
+
+[[term-multiplicity]]
+[.term]
+=== multiplicity
+UML specification of the range of allowable cardinalities that a set may assume +
+[small]#Note 1 to entry: Contrast with _cardinality_, which is the number of elements in a set.# +
+ [source: ISO 19103]
 
 [[term-package]]
 [.term]
@@ -133,7 +170,7 @@ facet or attribute of an object referenced by a name +
 [[term-python]]
 [.term]
 === Python
-an interpreted high-level programming language for general-purpose programming
+an interpreted high-level programming language for general-purpose programming +
  [source: Wikipedia]
 
 [[term-trajectory]]

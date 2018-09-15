@@ -12,18 +12,18 @@ These mappings are left to other frameworks (for example _Java Naming and Direct
 
 .Name types mapping
 [.compact, options="header"]
-|===========================================================
-|ISO 19103 type |Java type                      |Python type
-|(constructors) |`org.opengis.util.NameFactory` |
-|`NameSpace`    |`org.opengis.util.NameSpace`   |
-|`GenericName`  |`org.opengis.util.GenericName` |
-|`ScopedName`   |`org.opengis.util.ScopedName`  |
-|`LocalName`    |`org.opengis.util.LocalName`   |
-|`TypeName`     |`org.opengis.util.TypeName`    |
-|`MemberName`   |`org.opengis.util.MemberName`  |
-|===========================================================
+|=================================================================
+|ISO 19103 interface |Java interface                 |Python class
+|(constructors)      |`org.opengis.util.NameFactory` |
+|`NameSpace`         |`org.opengis.util.NameSpace`   |
+|`GenericName`       |`org.opengis.util.GenericName` |
+|`ScopedName`        |`org.opengis.util.ScopedName`  |
+|`LocalName`         |`org.opengis.util.LocalName`   |
+|`TypeName`          |`org.opengis.util.TypeName`    |
+|`MemberName`        |`org.opengis.util.MemberName`  |
+|=================================================================
 
-`GenericName` is the base type for all names in a `NameSpace`.
+`GenericName` is the base interface for all names in a `NameSpace`.
 A generic name can be either a `LocalName`, or a `ScopedName` which is a composite of
 a `LocalName` (the _head_) for locating another `NameSpace` and a `GenericName` (the _tail_) valid in that name space.
 `TypeName` and `MemberName` are subtypes of `LocalName`
@@ -37,7 +37,7 @@ GeoAPI extends the ISO 19103 model by adding a (_path_, _tip_) pair in complemen
 While the _head_ and _tip_ properties carry non-trivial information only inside `ScopedName`,
 GeoAPI nevertheless makes them available from the `GenericName` interface (not shown in above diagram)
 with the restriction that they shall return `this` (Java) or `self` (Python) when the name is an instance of `LocalName`.
-This generalization makes common operations simpler without the need to check for the exact name type.
+This generalization makes common operations simpler without the need to check for the exact name interface.
 
 The ISO 19103 `aName` property appears as `toString` in above UML diagram,
 but this property should be mapped to the standard mechanism for representing an arbitrary object

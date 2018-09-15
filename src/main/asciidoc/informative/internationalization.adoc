@@ -2,7 +2,7 @@
 === Internationalization
 [.reference]_From ISO 19103:2015 §C.2_
 
-The `InternationalString` type is defined by GeoAPI to handle textual sequences
+The `InternationalString` interface is defined by GeoAPI to handle textual sequences
 which may potentially need to be translated for users of different locales.
 Conceptually this act as a `CharacterString` but may, depending on the implementation,
 provide access to locale specific representations of that string.
@@ -16,12 +16,12 @@ to allow sending string representations in the locale of the client rather than 
 
 .Linguistic types mapping
 [.compact, options="header"]
-|==========================================================================
-|ISO 19103 type        |Java type                              |Python type
+|===========================================================================
+|ISO 19103 interface   |Java class or interface                |Python class
 |`CharacterString`     |`java.lang.String`                     |`str`
 |`LanguageString`      |`org.opengis.util.InternationalString` |
 |`LanguageCode`        |`java.util.Locale`                     |
-|==========================================================================
+|===========================================================================
 
 .Internationalization in Java
 ****
