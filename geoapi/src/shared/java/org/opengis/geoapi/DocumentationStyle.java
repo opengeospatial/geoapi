@@ -80,6 +80,18 @@ public enum DocumentationStyle {
     };
 
     /**
+     * Known typos in XSD files. Values at even indexes are the typos
+     * and values at odd indexes are the fixes.
+     *
+     * @see <a href="https://github.com/opengeospatial/geoapi/pull/42">Issue #42</a>
+     */
+    private static final String[] TYPOS = {
+        "occured",   "occurred",
+        "temportal", "temporal",
+        "recieve",   "receive"
+    };
+
+    /**
      * Returns the index {@literal >=} {@code from} of the first non-whitespace character.
      */
     private static int skipLeadingWhitespaces(final String doc, int from) {
@@ -143,6 +155,18 @@ public enum DocumentationStyle {
         int i = buffer.indexOf(" NOTE: ");
         if (i > 0 && buffer.charAt(i-1) != '.') {
             buffer.insert(i, '.');
+        }
+        /*
+         * Fix typos.
+         */
+        for (int t=0; t<TYPOS.length;) {
+            final String typo = TYPOS[t++];
+            final String fix  = TYPOS[t++];
+            i = buffer.indexOf(typo);
+            while (i >= 0) {
+                buffer.replace(i, i + typo.length(), fix);
+                i = buffer.indexOf(typo, i + fix.length());
+            }
         }
         return buffer.toString();
     }
