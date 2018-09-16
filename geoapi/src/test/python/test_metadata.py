@@ -17,7 +17,6 @@
 #
 #     python -m unittest discover
 #
-import unittest
 from opengis.metadata.base           import Metadata
 from opengis.metadata.identification import DataIdentification
 from opengis.metadata.citation       import Citation
