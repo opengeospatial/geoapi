@@ -96,6 +96,10 @@ public interface Objective {
     /**
      * Event or events associated with objective completion.
      *
+     * <div class="note"><b>Known typo:</b>
+     * "occurrence" is missing a "r" in the UML diagram of ISO 19115-2 specification.
+     * The {@code UML} annotation below reflects that spelling.</div>
+     *
      * @return events associated with objective completion.
      */
     @UML(identifier="objectiveOccurence", obligation=MANDATORY, specification=ISO_19115_2)

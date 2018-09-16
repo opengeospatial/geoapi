@@ -410,7 +410,7 @@ public interface GeometryFactory {
      * @throws MismatchedDimensionException if geometric objects given in argument don't have
      *         the expected dimension.
      */
-    @UML(identifier="GM_PolyhedralSurace(GM_Polygon)", obligation=MANDATORY, specification=ISO_19107)
+    @UML(identifier="GM_PolyhedralSurface(GM_Polygon)", obligation=MANDATORY, specification=ISO_19107)
     PolyhedralSurface createPolyhedralSurface(List<Polygon> tiles)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
 

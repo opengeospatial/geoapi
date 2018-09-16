@@ -54,7 +54,7 @@ public interface SamplingCurve extends SpatiallyExtensiveSamplingFeature {
     /**
      * Length of the curve.
      */
-    @UML(identifier="lenght", obligation=OPTIONAL, specification=OGC_07022)
+    @UML(identifier="length", obligation=OPTIONAL, specification=OGC_07022)
     Measure getLength();
 
     /**
