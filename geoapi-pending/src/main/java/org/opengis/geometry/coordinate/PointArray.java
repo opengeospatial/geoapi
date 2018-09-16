@@ -101,7 +101,7 @@ public interface PointArray extends List<Position> {
     /**
      * Returns the Coordinate Reference System in which the coordinates are given. May be
      * {@code null} if this particular {@code PointArray} is included in a larger object with such a
-     * reference to a coordinate reference system}. In this case, the cordinate reference system is
+     * reference to a coordinate reference system}. In this case, the coordinate reference system is
      * implicitly assumed to take on the value of the containing object's coordinate reference
      * system.
      *
@@ -128,7 +128,7 @@ public interface PointArray extends List<Position> {
      *
      * @param index The location in the array, from 0 inclusive to the array
      *        {@linkplain #length length} exclusive.
-     * @param dest An optionnaly pre-allocated direct position.
+     * @param dest An optionally pre-allocated direct position.
      * @return the {@code dest} argument, or a new object if {@code dest} was null.
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */

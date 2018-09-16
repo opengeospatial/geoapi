@@ -121,7 +121,7 @@ public interface OnlineResource {
      *
      * <div class="note"><b>Example:</b>
      * <pre> &lt;GetFeature service="WFS" version="2.0.0"
-     *             outputFormat="application/gml+xml;verson=3.2"
+     *             outputFormat="application/gml+xml;version=3.2"
      *             xmlns="(…snip…)"&gt;
      *     &lt;Query typeNames="Roads"/&gt;
      * &lt;/GetFeature&gt;</pre>

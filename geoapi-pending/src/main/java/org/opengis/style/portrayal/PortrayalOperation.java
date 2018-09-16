@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A portrayal operation holds the details for a particular portrayal operation.
- * It declares a set of formal parameters that are neeed when invoking the
+ * It declares a set of formal parameters that are need when invoking the
  * underlying rendering functions.
  *
  * <p>They should be one instance of portrayal specification class for each operation

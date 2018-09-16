@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Evaluates a coverage at direct positions within a Thiessen polygon network constructed from a set
  * of discrete {@linkplain PointValuePair point-value pairs}. Evaluation is based on interpolation
- * between the centeres of the {@linkplain ThiessenValuePolygon Thiessen value polygons} surrounding
+ * between the centres of the {@linkplain ThiessenValuePolygon Thiessen value polygons} surrounding
  * the input position.
  *
  * <h3>Thiessen polygon networks</h3>

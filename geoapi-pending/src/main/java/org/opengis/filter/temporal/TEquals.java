@@ -35,7 +35,7 @@ import org.opengis.annotation.XmlElement;
 
 /**
  * Concrete {@linkplain BinaryTemporalOperator binary temporal operator} that evaluates to
- * {@code true} if the the first expression is equald to the second.
+ * {@code true} if the the first expression is equals to the second.
  * 
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
  * @author Johann Sorel (Geomatys)

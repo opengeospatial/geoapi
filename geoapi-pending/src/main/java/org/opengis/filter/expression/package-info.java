@@ -44,7 +44,7 @@
  * {@link org.opengis.filter.expression.PropertyName}, {@link org.opengis.filter.expression.Literal}
  * and {@link org.opengis.filter.expression.Function}. They all belong to the substitution group
  * expression which means that any of them can be used wherever an expression is called for. In addition,
- * the combinaison of these elements are themselves expressions and can be used wherever an expression is
+ * the combination of these elements are themselves expressions and can be used wherever an expression is
  * called for.</p>
  *
  * <h3>Arithmetic operators</h3>

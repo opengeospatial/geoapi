@@ -528,7 +528,7 @@ public class OperationParametersReport extends Report {
         for (final Row row : rows) {
             final String category = row.category;
             /*
-             * If begining a new section in the table, print the category
+             * If beginning a new section in the table, print the category
              * in bold characters. The column headers will be printed below.
              */
             if (category != null && !category.equals(previous)) {

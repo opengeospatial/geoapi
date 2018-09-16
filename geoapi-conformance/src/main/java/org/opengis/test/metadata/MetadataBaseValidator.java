@@ -110,7 +110,7 @@ public class MetadataBaseValidator extends MetadataValidator {
         validate(object.getMetadataExtensionInfo());
 
         final Collection<? extends Identification> identifications = object.getIdentificationInfo();
-        mandatory("Metadata: shall have an identication information.",
+        mandatory("Metadata: shall have an identification information.",
                 (identifications != null && identifications.isEmpty()) ? null : identifications);
         validate(identifications);
 

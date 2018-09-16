@@ -59,6 +59,6 @@
  *
  * <h3>Identity</h3>
  * <p>Identity can be checked using {@link org.opengis.filter.Id}, selected objects
- * will are matched against a set of {@link org.opengis.filter.identiy.Identifier}.</p>
+ * will are matched against a set of {@link org.opengis.filter.identify.Identifier}.</p>
  */
 package org.opengis.filter;

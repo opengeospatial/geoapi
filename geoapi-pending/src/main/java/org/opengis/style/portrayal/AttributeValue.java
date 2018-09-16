@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The AttributValue holds the value for an associated AttributeDefinition.
+ * The AttributeValue holds the value for an associated AttributeDefinition.
  *
  * @version <A HREF="http://www.isotc211.org">ISO 19117 Portrayal</A>
  * @author Open Geospatial Consortium
@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
 public interface AttributeValue {
     /**
      * Gets the value for the associated AttributeDefinition.
-     * This objact shall have the same Class as defined in the AttributeDefinition.
+     * This object shall have the same Class as defined in the AttributeDefinition.
      */
     @UML(identifier="value", obligation=MANDATORY, specification=ISO_19117)
     Object getValue();

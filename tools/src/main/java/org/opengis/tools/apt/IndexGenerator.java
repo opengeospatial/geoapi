@@ -209,7 +209,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
             writeLine("     for example “ISO 19115:2003”.</p>");
             writeLine("  <p>Differences between the <abbr>OGC</abbr>/<abbr>ISO</abbr> identifiers and the GeoAPI name");
             writeLine("     are mostly for compliance with Java usage, for example by adding the <code>get</code> prefix.");
-            writeLine("     More significant name changes are emphased by italics.</p>");
+            writeLine("     More significant name changes are emphasized by italics.</p>");
             writeLine("  <p id=\"notes\">The “Note” column can contain the following values:</p>");
             writeLine("  <table>");
             writeLine("    <tr><td>(N)</td>  <td>for new methods added in GeoAPI " + VERSION + " (sometime merely renaming of older methods).</td></tr>");
@@ -345,7 +345,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
         }
         out.write("</td>");
         /*
-         * Write the symbols refering to notes.
+         * Write the symbols referring to notes.
          */
         String note = notes.getProperty(getQualifiedName(element));
         if (note != null) {

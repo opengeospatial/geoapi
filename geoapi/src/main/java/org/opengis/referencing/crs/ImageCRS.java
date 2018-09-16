@@ -64,7 +64,7 @@ import static org.opengis.annotation.Specification.*;
 public interface ImageCRS extends SingleCRS {
     /**
      * Returns the affine coordinate system, which shall be {@linkplain AffineCS affine} or
-     * {@linkplain CartesianCS Cartsian}.
+     * {@linkplain CartesianCS Cartesian}.
      *
      * @return the affine or Cartesian coordinate system.
      */

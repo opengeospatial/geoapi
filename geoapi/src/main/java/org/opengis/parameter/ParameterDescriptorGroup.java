@@ -86,7 +86,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      *
      * <p>The number of {@link ParameterValue} objects included must be between the
      * {@linkplain ParameterDescriptor#getMinimumOccurs() minimum} and
-     * {@linkplain ParameterDescriptor#getMaximumOccurs() maximum occurences} required.
+     * {@linkplain ParameterDescriptor#getMaximumOccurs() maximum occurrences} required.
      * For example:</p>
      *
      * <ul>

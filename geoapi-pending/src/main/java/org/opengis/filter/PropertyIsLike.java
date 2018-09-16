@@ -101,7 +101,7 @@ public interface PropertyIsLike extends Filter {
      * <p>
      * The ability to match case is pending the Filter 2.0 specification.
      *
-     * @return <code>true</code> if the comparison is case sensetive, otherwise <code>false</code>.
+     * @return <code>true</code> if the comparison is case sensitive, otherwise <code>false</code>.
      */
     @XmlElement("matchCase")
     boolean isMatchingCase();

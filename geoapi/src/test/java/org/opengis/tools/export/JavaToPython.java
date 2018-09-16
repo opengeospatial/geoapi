@@ -516,7 +516,7 @@ strictfp class JavaToPython extends SourceGenerator {
                 }
                 /*
                  * Create a Python class with all properties defined in the Java interface. We use UML annotations
-                 * in Java interfaces instead than elements in XSD file because the later contains a few mispellings
+                 * in Java interfaces instead than elements in XSD file because the latter contains a few misspellings
                  * (e.g. "satisifiedPlan" instead of "satisfiedPlan") or extra properties not in abstract specification.
                  */
                 case INTERFACES: {

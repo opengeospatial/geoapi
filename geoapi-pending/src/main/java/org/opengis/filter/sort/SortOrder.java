@@ -60,7 +60,7 @@ public final class SortOrder extends CodeList<SortOrder> {
     private static final List<SortOrder> VALUES = new ArrayList<SortOrder>(2);
 
     /**
-     * Represents acending order.
+     * Represents ascending order.
      * <p>
      * Note this has the string representation of {@code "ASC"} to agree
      * with the Filter 1.1 specification.

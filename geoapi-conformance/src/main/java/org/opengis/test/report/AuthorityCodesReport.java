@@ -102,7 +102,7 @@ public class AuthorityCodesReport extends Report {
      *
      * <p>Content of each {@code Row} instance is written in the following order:</p>
      * <ol>
-     *   <li>{@link #annotation} if explicitely set (the default is none).</li>
+     *   <li>{@link #annotation} if explicitly set (the default is none).</li>
      *   <li>{@link #code}</li>
      *   <li>{@link #name}</li>
      *   <li>{@link #remark}</li>

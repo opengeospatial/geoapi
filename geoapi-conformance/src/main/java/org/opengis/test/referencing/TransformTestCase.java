@@ -82,7 +82,7 @@ import static org.opengis.test.Assert.*;
  *       validate} the transform. It is caller responsibility to validate the transform if wanted.</li>
  *   <li>Unless otherwise indicated, every {@code verify} methods are independent. For example invoking
  *       {@link #verifyConsistency(float[])} does not imply a call to {@link #verifyInverse(float[])}
- *       or {@link #verifyDerivative(double[])}. The later methods must be invoked explicitely if wanted.</li>
+ *       or {@link #verifyDerivative(double[])}. The later methods must be invoked explicitly if wanted.</li>
  * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)

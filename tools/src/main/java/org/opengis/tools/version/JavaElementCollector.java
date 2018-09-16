@@ -102,7 +102,7 @@ final class JavaElementCollector {
      * dependencies.
      *
      * @param jarFiles The JAR files which define the API.
-     * @param hiearchy An optional map in which to store type hierarchy.
+     * @param hierarchy An optional map in which to store type hierarchy.
      *        If non-null, this map will be filled with (type, parent) entries.
      */
     private JavaElementCollector(final List<File> jarFiles, final Map<String,String> hierarchy)

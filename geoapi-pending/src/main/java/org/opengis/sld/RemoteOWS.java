@@ -35,7 +35,7 @@ import org.opengis.annotation.XmlElement;
 import org.opengis.metadata.citation.OnlineResource;
 
 /**
- * OGC Web Service. Information about the remove serveur.
+ * OGC Web Service. Information about the remove server.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/sld">Implementation specification 1.1.0</A>
  * @author Open Geospatial Consortium

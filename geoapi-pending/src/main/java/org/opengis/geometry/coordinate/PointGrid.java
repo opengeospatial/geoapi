@@ -101,7 +101,7 @@ public interface PointGrid {
      *
      * @param  row The row index from 0 inclusive to {@link #height} exclusive.
      * @param  column The column index from 0 inclusive to {@link #width} exclusive.
-     * @param  dest An optionnaly pre-allocated direct position.
+     * @param  dest An optionally pre-allocated direct position.
      * @return the {@code dest} argument, or a new object if {@code dest} was null.
      * @throws IndexOutOfBoundsException if an index is out of bounds.
      */

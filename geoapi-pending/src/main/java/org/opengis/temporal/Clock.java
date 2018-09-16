@@ -75,7 +75,7 @@ public interface Clock extends TemporalReferenceSystem {
     ClockTime getUTCReference();
     
     /**
-     * Returns convertion of an UTC time to a time on this clock.
+     * Returns conversion of an UTC time to a time on this clock.
      * 
      * @param uTime the UTC time which will be convert.
      * @return convertion of an UTC time to a time on this clock.

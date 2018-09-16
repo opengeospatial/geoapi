@@ -92,7 +92,7 @@ public interface PositionFactory {
     Position createPosition(Position position);
 
     /**
-     * Creates a (possibiliy optimized) list for positions. The list is initially
+     * Creates a (possibly optimized) list for positions. The list is initially
      * empty. New direct positions can be stored using the {@link List#add} method.
      */
     PointArray createPointArray();
