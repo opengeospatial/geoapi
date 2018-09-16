@@ -127,7 +127,7 @@ final class PJParameterGroup extends PJObject implements ParameterValueGroup, Pa
 
     /**
      * Returns the minimum number of times that values for this group are required.
-     * This method returns 1, meaning that this group shall alway be supplied at least once.
+     * This method returns 1, meaning that this group shall always be supplied at least once.
      */
     @Override
     public int getMinimumOccurs() {

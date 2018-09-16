@@ -58,7 +58,7 @@ public interface Mark extends GraphicalSymbol {
      * if the WellKnowname is null, check the ExternalMark before using the default square
      * symbol.
      *
-     * Both WellKnowName and ExternalMark canot be set, but both can be null.
+     * Both WellKnowName and ExternalMark cannot be set, but both can be null.
      * If none are set then the default square symbol is used.
      *
      * @return Expression or null

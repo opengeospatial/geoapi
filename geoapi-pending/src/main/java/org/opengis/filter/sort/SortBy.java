@@ -69,15 +69,15 @@ public interface SortBy {
 
     /**
      * Used to indicate "natural" sorting order, usually according
-     * FID (hopefully based on Key attribtues).
-     * This is the order that is most likely to be available in optimzied
+     * FID (hopefully based on Key attributes).
+     * This is the order that is most likely to be available in optimized
      * form, if an Attribute is marked as "key" an optimized ordering should
-     * be considered avaialble.
+     * be considered available.
      *
      * <p>Non optimized orderings are will at the very least require as pass
-     * through the data to bring it into memory, you can assume somekind
+     * through the data to bring it into memory, you can assume some kind
      * of TreeSet would be used. Where the nodes in the tree would indicate
-     * a list of FeatureIds assoicated with the node, in the order encountered.</p>
+     * a list of FeatureIds associated with the node, in the order encountered.</p>
      *
      * <p>This is a "NullObject".</p>
      */

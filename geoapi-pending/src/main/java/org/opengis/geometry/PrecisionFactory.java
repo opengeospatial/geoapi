@@ -55,10 +55,10 @@ package org.opengis.geometry;
  * invalid geometry.
  *
  * <p>The easiest example is the construction of a very small
- * poloygon for a WFS configured to use 2 significant digits when generating
- * GML. When generating a polgon in meters of less than 1 cm in size the
+ * polygon for a WFS configured to use 2 significant digits when generating
+ * GML. When generating a polygon in meters of less than 1 cm in size the
  * rounding policy would "collapse" all the points of the outer ring into the
- * same location - a WFS faced with this situtation may choose to skip the polygon
+ * same location - a WFS faced with this situation may choose to skip the polygon
  * or represent it as a Point.</p>
  *
  * @author Jody Garnett

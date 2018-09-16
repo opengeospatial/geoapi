@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * AttributDefinition is used to define the formal parameters of external functions and the underlying
+ * AttributeDefinition is used to define the formal parameters of external functions and the underlying
  * rendering operations of the portrayal service.
  *
  * @version <A HREF="http://www.isotc211.org">ISO 19117 Portrayal</A>

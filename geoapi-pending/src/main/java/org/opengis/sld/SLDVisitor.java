@@ -125,7 +125,7 @@ public interface SLDVisitor {
     Object visit(CoverageConstraint constraint, Object data );
 
     /**
-     * Called when accept is called on a featrure constraint.
+     * Called when accept is called on a feature constraint.
      *
      * @param constraint The feature constraint to visit
      */

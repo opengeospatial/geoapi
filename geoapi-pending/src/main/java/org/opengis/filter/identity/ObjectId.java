@@ -37,7 +37,7 @@ import org.opengis.annotation.XmlElement;
 /**
  * ObjectId refered to by Filter 1.1 specification (as an example).
  * <p>
- * Although ObjectId is refered to as an example we are making explicit use of it
+ * Although ObjectId is referred to as an example we are making explicit use of it
  * here in order to show identification being defined with a long (as with several
  * popular object relational mappers).
  * </p>
@@ -56,7 +56,7 @@ public interface ObjectId extends Identifier {
     Long getID();
 
     /**
-     * Evaluates the identifer value against the given Object.
+     * Evaluates the identifier value against the given Object.
      *
      * @param obj Object to be tested.
      *

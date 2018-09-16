@@ -52,7 +52,7 @@ import static org.opengis.annotation.Obligation.*;
 public interface SamplingCurve extends SpatiallyExtensiveSamplingFeature {
 
     /**
-     * Lenght of the curve.
+     * Length of the curve.
      */
     @UML(identifier="lenght", obligation=OPTIONAL, specification=OGC_07022)
     Measure getLength();

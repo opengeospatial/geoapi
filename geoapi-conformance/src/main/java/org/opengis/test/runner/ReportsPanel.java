@@ -229,7 +229,7 @@ final class ReportsPanel extends JPanel implements ActionListener {
     }
 
     /**
-     * Enables or disables the start bouton and all check boxes. The progress bar is set
+     * Enables or disables the start button and all check boxes. The progress bar is set
      * to the reverse of {@code enabled}, since this method is invoked when the reports
      * generation begins or ends.
      */

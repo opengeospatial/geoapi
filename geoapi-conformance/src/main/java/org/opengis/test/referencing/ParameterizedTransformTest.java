@@ -70,7 +70,7 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
 
 /**
  * Tests {@linkplain MathTransformFactory#createParameterizedTransform(ParameterValueGroup)
- * parameterized math tranforms} from the {@code org.opengis.referencing.operation} package.
+ * parameterized math transforms} from the {@code org.opengis.referencing.operation} package.
  * Math transform instances are created using the factory given at construction time.
  *
  * <p><b>Skipping tests for unsupported operations:</b><br>

@@ -51,7 +51,7 @@ import static org.opengis.annotation.Specification.*;
  *       {@link Integer}, {@code int[]}, {@link Boolean}, {@link String}, {@link java.net.URI} or
  *       {@link org.opengis.metadata.citation.Citation}.</li>
  *   <li>Whether this parameter is optional or mandatory. This is specified by the {@linkplain #getMinimumOccurs()
- *       minimum occurences} number, which can be 0 or 1 respectively.</li>
+ *       minimum occurrences} number, which can be 0 or 1 respectively.</li>
  *   <li>The {@linkplain #getDefaultValue() default value} and its {@linkplain #getUnit() unit of measurement}.</li>
  *   <li>The domain of values, as a {@linkplain #getMinimumValue() minimum value}, {@linkplain #getMaximumValue()
  *       maximum value} or an enumeration of {@linkplain #getValidValues() valid values}.</li>

@@ -173,7 +173,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * <p><b>Implementation note:</b> The {@code codeType} class needs to be initialized before to
      * invoke this method. This is usually the case when the caller is a static method of the
      * {@code codeType} class. However in other situations, callers may need to initialize
-     * explicitely the given class.</p>
+     * explicitly the given class.</p>
      *
      * @param  <T>       the compile-time type given as the {@code codeType} parameter.
      * @param  codeType  the type of code list.
@@ -302,7 +302,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * Returns the list of codes of the same kind than this code.
      * Invoking this method gives identical results than invoking the static {@code values()} methods
      * provided in {@code CodeList} subclasses, except that {@code family()} does not require the class
-     * to be known at compile-time — provided that at leat one instance of the family is available.
+     * to be known at compile-time — provided that at least one instance of the family is available.
      *
      * @return the codes of the same kind than this code.
      *
@@ -379,7 +379,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
     @Override
     public String identifier() {
         // Save the field in a local variable for protection against concurrent change (this
-        // operation is garanteed atomic according Java specification). We don't synchronize
+        // operation is guaranteed atomic according Java specification). We don't synchronize
         // since it is not a problem if this method is executed twice in concurrent threads.
         String identifier = this.identifier;
         if (identifier == null) {

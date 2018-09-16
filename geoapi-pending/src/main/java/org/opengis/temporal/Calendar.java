@@ -66,7 +66,7 @@ public interface Calendar extends TemporalReferenceSystem {
      * {@linkplain JulianDate julian date}.
      *
      * @param date reference date which will be convert.
-     * @return convertion of a {@linkplain CalendarDate date} in this calendar to a
+     * @return conversion of a {@linkplain CalendarDate date} in this calendar to a
      * {@linkplain JulianDate julian date}.
      */
     @UML(identifier="dateTrans", obligation=MANDATORY, specification=ISO_19108)

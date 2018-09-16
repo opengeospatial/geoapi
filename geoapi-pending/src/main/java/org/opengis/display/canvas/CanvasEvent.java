@@ -55,7 +55,7 @@ public abstract class CanvasEvent extends EventObject {
     }
 
     /**
-     * Returns the canvas on which the event occured.
+     * Returns the canvas on which the event occurred.
      *
      * @return the source canvas.
      */

@@ -129,7 +129,7 @@ class Processing(ABC):
 
 
 class ProcessStepReport(ABC):
-    """Report of what occured during the process step."""
+    """Report of what occurred during the process step."""
 
     @abstractproperty
     def name(self) -> str:

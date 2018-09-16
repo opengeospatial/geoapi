@@ -45,7 +45,7 @@ import java.io.Serializable;
  *   <li>not INCLUDE ==&gt; EXCLUDE</li>
  * </ul>
  *
- * The above does imply that the OR opperator can short circuit on encountering NONE.
+ * The above does imply that the OR operator can short circuit on encountering NONE.
  *
  * @author Jody Garnett (Refractions Research, Inc.)
  * @author Martin Desruisseaux (Geomatys)

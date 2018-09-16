@@ -62,7 +62,7 @@ public interface GridValuesMatrix {
      * the {@linkplain #getExtent extent}.
      *
      * @todo Comment (Wim): Both extracting an image for display and operation chaining require
-     *       memory effiecient and fast access to the data. How should the data be structured per
+     *       memory efficient and fast access to the data. How should the data be structured per
      *       record? Some use cases:
      *       <table border="1" summary="Use cases">
      *         <tr><td>DTM<td>double<td>List&lt;double&gt;

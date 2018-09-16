@@ -206,7 +206,7 @@ public final class Version implements Comparable<Version> {
      * Compares this version with the given version for equality.
      *
      * @param  other The other version to compare with this version.
-     * @return a negative number if the other version preceed this version,
+     * @return a negative number if the other version precedes this version,
      *         a positive number if it follows, or 0 if equals.
      */
     @Override

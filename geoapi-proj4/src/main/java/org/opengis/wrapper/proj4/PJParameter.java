@@ -93,7 +93,7 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
 
     /**
      * Returns the minimum number of times that values for this parameter are required.
-     * This method returns 1, meaning that a value shall alway be supplied
+     * This method returns 1, meaning that a value shall always be supplied
      * (the {@link #getValue()} method never return {@code null}).
      */
     @Override

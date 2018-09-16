@@ -169,7 +169,7 @@ class Event(ABC):
 
     @abstractproperty
     def time(self) -> datetime:
-        """Time the event occured."""
+        """Time the event occurred."""
         pass
 
     @property
@@ -209,7 +209,7 @@ class EnvironmentalRecord(ABC):
 from opengis.metadata.extent import Extent
 
 class Objective(ABC):
-    """Describes the characteristics, spatial and temportal extent of the intended object to be observed."""
+    """Describes the characteristics, spatial and temporal extent of the intended object to be observed."""
 
     @abstractproperty
     def identifier(self) -> Sequence[Identifier]:
@@ -342,7 +342,7 @@ class Requirement(ABC):
 
     @abstractproperty
     def recipient(self) -> Sequence[Responsibility]:
-        """Person(s), or body(ies), to recieve results of requirement."""
+        """Person(s), or body(ies), to receive results of requirement."""
         pass
 
     @abstractproperty

@@ -80,7 +80,7 @@ public final class ValueInBytePacking extends CodeList<ValueInBytePacking> {
     private static final List<ValueInBytePacking> VALUES = new ArrayList<ValueInBytePacking>(2);
 
     /**
-     * Low bit firts (little endian order).
+     * Low bit first (little endian order).
      */
     @UML(identifier="GC_LoBitFirst", obligation=CONDITIONAL, specification=OGC_01004)
     public static final ValueInBytePacking LO_BIT_FIRST = new ValueInBytePacking("LO_BIT_FIRST");

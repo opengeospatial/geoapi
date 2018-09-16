@@ -65,7 +65,7 @@ public interface SequenceRule {
      * allow for interleaving of feature attribute values.
      * Example: <code>{"x", "-y"}</code>
      *
-     * @return an ordered list of axis names that indicates the scaning direction.
+     * @return an ordered list of axis names that indicates the scanning direction.
      */
     @UML(identifier="scanDirection", obligation=MANDATORY, specification=ISO_19123)
     List<String> getScanDirection();

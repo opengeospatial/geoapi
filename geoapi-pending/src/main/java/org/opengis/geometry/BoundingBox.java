@@ -137,7 +137,7 @@ public interface BoundingBox extends Envelope {
     boolean isEmpty();
 
     /**
-     * Includes the provided bounding box, expanding as necesary.
+     * Includes the provided bounding box, expanding as necessary.
      *
      * @param bounds The bounds to add to this geographic bounding box.
      */

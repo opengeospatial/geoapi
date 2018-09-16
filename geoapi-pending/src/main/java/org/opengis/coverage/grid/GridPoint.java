@@ -57,7 +57,7 @@ public interface GridPoint extends DomainObject<Geometry> {
      * Returns the set of grid coordinates that specifies the location of the
      * grid point within the {@linkplain Grid grid}.
      *
-     * @return the coordinates that specifieds the location of the grid point.
+     * @return the coordinates that specifies the location of the grid point.
      */
     @UML(identifier="gridCoord", obligation=MANDATORY, specification=ISO_19123)
     GridCoordinates getGridCoordinates();

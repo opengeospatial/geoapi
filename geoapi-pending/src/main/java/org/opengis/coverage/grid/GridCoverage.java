@@ -324,7 +324,7 @@ public interface GridCoverage extends Coverage {
      * The requested grid range must satisfy the following rules for each dimension of the grid
      * coverage:
      * <center>
-     * minimum grid coordinate &lt;= {@linkplain GridRange#getLower() grid range mimimun} &lt;=
+     * minimum grid coordinate &lt;= {@linkplain GridRange#getLower() grid range minimum} &lt;=
      * {@linkplain GridRange#getUpper() grid range maximum} &lt;= maximum grid coordinate
      * </center>
      *
@@ -406,7 +406,7 @@ public interface GridCoverage extends Coverage {
      *      <td>Padding occurs at the end of each row or column (depending on the
      *          valueSequence of the grid).</td>
      * </tr>
-     * <tr> <td>For BandSequencial</td>
+     * <tr> <td>For BandSequential</td>
      *      <td>Padding occurs at the end of every sample dimension.</td>
      * </tr>
      * </table>

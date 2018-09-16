@@ -83,7 +83,7 @@
  *         and {@code SphericalCS} cases.</td>
  *   </tr>
  *   <tr>
- *     <td>{@code EnginneringCS}</td>
+ *     <td>{@code EngineeringCS}</td>
  *     <td>{@link org.opengis.referencing.cs.AffineCS},
  *         {@link org.opengis.referencing.cs.CartesianCS},
  *         {@link org.opengis.referencing.cs.CylindricalCS},

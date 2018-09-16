@@ -118,7 +118,7 @@ public final class Classification extends CodeList<Classification> {
     public static final Classification PROTECTED = new Classification("PROTECTED");
 
     /**
-     * Desimination limited by designating body.
+     * Dissemination limited by designating body.
      *
      * @since 3.1
      */

@@ -178,7 +178,7 @@ public final class NameSpaces {
                         pkg = prefixesToPackages.get(prefix);
                         if (pkg == null) {
                             if (prefixesToPackages.containsKey(prefix)) {
-                                return null;                        // Type explicitely excluded.
+                                return null;                        // Type explicitly excluded.
                             }
                             pkg = prefix;
                         }

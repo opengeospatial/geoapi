@@ -60,7 +60,7 @@ public interface SLDLibrary {
     OnlineResource getOnlineResource();
 
     /**
-     * This is a convinient method for the one using this interface.
+     * This is a convenient method for the one using this interface.
      * If we only provide the getOnlineResource method the user would be stuck
      * because he might not no how to parse correctly the given file.
      * This method must be implemented correctly and return the SLD object resulting
