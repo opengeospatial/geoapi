@@ -42,7 +42,7 @@ class TestGDAL(unittest.TestCase):
         directory = os.path.dirname(os.path.realpath('__file__'))
         directory = os.path.join(directory, "..", "..", "..", "..", "geoapi-conformance", "src", "main", "resources", "org", "opengis", "test", "dataset")
         directory = os.path.realpath(directory)
-        self.dataDirectory = directory;
+        self.dataDirectory = directory
 
     def test_geographic(self):
         """Test a case using geographic coordinate reference system."""
