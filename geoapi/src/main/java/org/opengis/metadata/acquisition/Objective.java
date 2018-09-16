@@ -98,7 +98,7 @@ public interface Objective {
      *
      * @return events associated with objective completion.
      */
-    @UML(identifier="objectiveOccurence", obligation=MANDATORY, specification=ISO_19115_2)
+    @UML(identifier="objectiveOccurrence", obligation=MANDATORY, specification=ISO_19115_2)
     Collection<? extends Event> getObjectiveOccurences();
 
     /**

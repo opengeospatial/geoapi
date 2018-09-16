@@ -58,6 +58,6 @@ public interface AttributeValue {
     /**
      * Gets the associated AttributeDefinition.
      */
-    @UML(identifier="attributType", obligation=MANDATORY, specification=ISO_19117)
+    @UML(identifier="attributeType", obligation=MANDATORY, specification=ISO_19117)
     AttributeDefinition getDefinition();
 }
