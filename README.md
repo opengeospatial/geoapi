@@ -30,12 +30,12 @@ See the [wiki page](https://github.com/opengeospatial/geoapi/wiki) for the roadm
 GeoAPI requires Java 10 and [Maven 3](http://maven.apache.org) for building,
 but the compilation result can be used with Java 8 or later.
 
+* **[OGC specification](http://www.geoapi.org/snapshot/standard_document.html)**
+  is built in HTML format with `mvn pre-site -N`.\
+  The output file will be created in the `target/site/` directory.
+* **[Java interfaces](http://www.geoapi.org/snapshot/javadoc/index.html)**
+  are built as a Java Archive File (JAR) with `mvn install`.\
+  The output file will be created in the `geoapi/target/` directory.
 * **[Python interfaces](http://www.geoapi.org/snapshot/python/index.html)**
   are located in the `geoapi/src/main/python` sub-directory
   and do not need to be built.
-* **[Java interfaces](http://www.geoapi.org/snapshot/javadoc/index.html)**
-  are built as a Java Archive File (JAR) with `mvn package` or `mvn install`,
-  and the output file will be created in the `geoapi/target/` directory.
-* **[The specification](http://www.geoapi.org/snapshot/standard_document.html)**
-  is built in HTML format with `mvn pre-site -N`.
-  The output file will be created in the `target/site/` directory.
