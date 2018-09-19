@@ -11,12 +11,12 @@ those models are generally non-redundant: each value is stored in exactly one pr
 By contrast in GeoAPI all properties are getter methods;
 no matter how implementations store property values, users can fetch them only through method calls.
 Since methods are free to compute values from other properties,
-GeoAPI uses this freedom for making some information more easily accessible
-in situations where the information is available only indirectly in OGC/ISO models.
+GeoAPI uses this capability for making some information more easily accessible
+in situations where property values can be reached only indirectly in OGC/ISO models.
 Those additional methods introduce apparent duplications,
 but they should be thought as links to the real properties rather than copies of the property values.
 Those methods are added sparsely,
-in place where introducing them brings some harmonization by reducing the needs to perform special cases.
+in places where introducing them brings some harmonization by reducing the needs to perform special cases.
 Examples include fetching the head of an arbitrary `GenericName`,
 fetching the Geodetic Reference Frame indirectly associated to a `ProjectedCRS`,
 fetching axes of an arbitrary Coordinate Reference System (including compound ones), and more.

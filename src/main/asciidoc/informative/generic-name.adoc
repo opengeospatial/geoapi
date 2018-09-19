@@ -5,9 +5,6 @@
 A name is a sequence of identifiers rooted within the context of a namespace.
 `NameSpace` defines a domain in which "names" given by character strings can be mapped to objects.
 For example a class forms a namespace for the properties that the class contains.
-While ISO 19103 defines mapping functions from a name to the object identified by that name,
-these mapping functions are not part of the `NameSpace` interface defined by GeoAPI.
-These mappings are left to other frameworks (for example _Java Naming and Directory Interface_).
 
 
 .Name types mapping
@@ -26,6 +23,11 @@ These mappings are left to other frameworks (for example _Java Naming and Direct
 `GenericName` is the base interface for all names in a `NameSpace`.
 A generic name can be either a `LocalName`, or a `ScopedName` which is a composite of
 a `LocalName` (the _head_) for locating another `NameSpace` and a `GenericName` (the _tail_) valid in that name space.
+For example if `"urn:​ogc:​def:​crs:​EPSG:​9.5:​4326"` is a `ScopedName`,
+then `"urn"` is the _head_ and `"ogc:​def:​crs:​EPSG:​9.5:​4326"` is the _tail_.
+GeoAPI extends the model by allowing navigation in the opposite direction,
+with `"urn:​ogc:​def:​crs:​EPSG:​9.5"` as the _path_ and `"4326"` as the _tip_.
+
 `TypeName` and `MemberName` are subtypes of `LocalName`
 for referencing a type (for example a class) and a member (for example a property in a class) respectively.
 The `NameFactory` is an extension of the GeoAPI project designed to allow the construction of instances of these name types.
@@ -45,6 +47,10 @@ as a character string in the target programming language.
 In Java this is the `toString()` method;
 in Python this is `+__str__+` or `+__repr__+`.
 This specification uses the Java method name as it is more readable, but other languages should adapt.
+
+The ISO 19103 `NameSpace` interface defines also mapping functions from a name to the object identified by that name.
+But this functionality does not appear in the GeoAPI `NameSpace` interface;
+instead we left these mappings to other frameworks (for example _Java Naming and Directory Interface_).
 
 ++++
 <details>

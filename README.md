@@ -25,15 +25,18 @@ and "master" for GeoAPI 4.0. The main sub-directories are:
 See the [wiki page](https://github.com/opengeospatial/geoapi/wiki) for the roadmap and completion status.
 
 
-## How to build
+## Development snapshots
 
-**Python interfaces** are located in the `geoapi/src/main/python` sub-directory
+**[Python interfaces](http://www.geoapi.org/snapshot/python/index.html)**
+are located in the `geoapi/src/main/python` sub-directory
 and do not need to be built.
 
-**Java interfaces** requires [Maven 3](http://maven.apache.org) with Java 10 for building,
+**[Java interfaces](http://www.geoapi.org/snapshot/javadoc/index.html)**
+requires [Maven 3](http://maven.apache.org) with Java 10 for building,
 but the compilation result can be used with Java 8 or later.
 The Java Archive File (JAR) is built with `mvn package` or `mvn install`,
 and the output file will be created in the `geoapi/target/` directory.
 
-**The specification** is built in HTML format with `mvn pre-site -N`.
+**[The specification](http://www.geoapi.org/snapshot/standard_document.html)**
+is built in HTML format with `mvn pre-site -N`.
 The output file will be created in the `target/site/` directory.
