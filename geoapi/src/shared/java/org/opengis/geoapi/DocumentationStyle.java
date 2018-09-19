@@ -86,9 +86,14 @@ public enum DocumentationStyle {
      * @see <a href="https://github.com/opengeospatial/geoapi/pull/42">Issue #42</a>
      */
     private static final String[] TYPOS = {
-        "occured",   "occurred",
-        "temportal", "temporal",
-        "recieve",   "receive"
+        "avaialble",    "available",
+        "desimination", "dissemination",
+        "identifer",    "identifier",
+        "occurance",    "occurrence",
+        "occurence",    "occurrence",
+        "occured",      "occurred",
+        "recieve",      "receive",
+        "temportal",    "temporal"
     };
 
     /**
