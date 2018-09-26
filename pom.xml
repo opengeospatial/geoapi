@@ -105,7 +105,7 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <website.encoding>UTF-8</website.encoding>
     <skipNativeLibraryTests>true</skipNativeLibraryTests>
-    <java.platform>8</java.platform>
+    <maven.compiler.release>8</maven.compiler.release>
     <future.source>module-info.java</future.source>             <!-- To exclude when JDK9 profile is not enabled. -->
     <unit.api.version>1.0</unit.api.version>                    <!-- To be removed when version 2.0 will be final. -->
   </properties>
@@ -118,7 +118,7 @@
       -->
       <id>jdk9</id>
       <properties>
-        <java.platform>9</java.platform>
+        <maven.compiler.release>9</maven.compiler.release>
         <future.source>(none)</future.source>
         <unit.api.version>2.0-SNAPSHOT</unit.api.version>       <!-- Property to be removed after Unit API 2 release. -->
       </properties>
@@ -279,7 +279,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.22.0</version>
+          <version>2.22.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -299,7 +299,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
+          <version>3.0.0-M1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -314,7 +314,7 @@
         <plugin>
           <groupId>org.asciidoctor</groupId>
           <artifactId>asciidoctor-maven-plugin</artifactId>
-          <version>1.5.6</version>
+          <version>1.5.7.1</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -368,7 +368,7 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <release>${java.platform}</release>
+          <release>${maven.compiler.release}</release>
           <debug>false</debug>                                          <!-- Whether to include debugging information.  -->
           <optimize>true</optimize>                                     <!-- Use the compiler's optimization methods.   -->
           <encoding>${project.build.sourceEncoding}</encoding>
