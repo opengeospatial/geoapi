@@ -50,7 +50,7 @@
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
  * </tr><tr><td class="hierarchy">
- * <pre> ISO-19115 object
+ * <pre> ISO 19115 object
  *  ├─ {@linkplain org.opengis.metadata.spatial.SpatialRepresentation} «abstract»
  *  │   ├─ {@linkplain org.opengis.metadata.spatial.VectorSpatialRepresentation}
  *  │   └─ {@linkplain org.opengis.metadata.spatial.GridSpatialRepresentation}

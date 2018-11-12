@@ -43,7 +43,7 @@
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
  * </tr><tr><td class="hierarchy">
- * <pre> ISO-19115 object
+ * <pre> ISO 19115 object
  *  ├─ {@linkplain org.opengis.metadata.acquisition.AcquisitionInformation Acquisition}
  *  ├─ {@linkplain org.opengis.metadata.acquisition.Objective}
  *  ├─ {@linkplain org.opengis.metadata.acquisition.PlatformPass}

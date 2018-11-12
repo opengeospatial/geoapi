@@ -58,7 +58,7 @@ public interface ValueTriangle extends ValueObject {
      *
      * @return the geometry as a triangle.
      *
-     * @todo The returns type in ISO-19123 is {@link Triangle}.
+     * @todo The returns type in ISO 19123 is {@link Triangle}.
      */
     @UML(identifier="geometry", obligation=MANDATORY, specification=ISO_19123)
     DomainObject<?> getGeometry();
