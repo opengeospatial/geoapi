@@ -90,6 +90,11 @@ strictfp class JavaToPython extends SourceGenerator {
     private static final String ENCODING = "UTF-8";
 
     /**
+     * Start of the copyright statement to put in headers, before the year.
+     */
+    private static final String COPYRIGHT = "#    Copyright (C) ";
+
+    /**
      * The line separator to use for the Python files to create.
      */
     private final String lineSeparator;
@@ -151,6 +156,7 @@ strictfp class JavaToPython extends SourceGenerator {
         /** Whether the property is mandatory.  */ final boolean  mandatory;
         /** Declaration order, to be set later. */ int position;
 
+        /** Creates a new set of information about a Python property. */
         Property(final UML def, final String name, final Class<?> javaType, final String pythonType, final String importFrom) {
             this.name       = name;
             this.javaType   = javaType;
@@ -167,6 +173,7 @@ strictfp class JavaToPython extends SourceGenerator {
          *
          * @param  replacements  value of <code>{@linkplain JavaToPython#keywords}.remove(type)</code>
          *                       where {@code type} is the Java interface.
+         * @return the OGC/ISO name, or a modification of that name.
          */
         final String name(final Map<String,String> replacements) {
             if (replacements != null) {
@@ -243,6 +250,9 @@ strictfp class JavaToPython extends SourceGenerator {
     /**
      * Returns {@code true} if the given type is a member of an excluded namespaces.
      * The excluded namespaces are those for which {@link NameSpaces#exclude(String...)} has been invoked.
+     *
+     * @param  type  the type to test for exclusion.
+     * @return whether the given type is a member of an excluded namespace.
      */
     private boolean isExcluded(final Class<?> type) {
         return namespaces.name(type, schema.getTypeDefinition(type)) == null;
@@ -254,6 +264,7 @@ strictfp class JavaToPython extends SourceGenerator {
      * If not, then the UML identifier is returned with the prefix omitted.
      *
      * @param  type  the Java interface for which to get the Python name.
+     * @return Python name of the given Java type, or {@code null}.
      */
     private String nameOf(final Class<?> type) {
         String name = primitiveTypes.get(type);
@@ -387,6 +398,9 @@ strictfp class JavaToPython extends SourceGenerator {
      * not necessarily at the beginning, because the imported file may have a circular dependency to the types already
      * defined in the importing file.
      *
+     * @param  module  name of the Python module to import.
+     * @param  type    Java type of the object to import. The Python type name will be inferred from that type.
+     * @param  content where to write the import statement.
      * @return {@code true} if an import statement has been added. If an existing import statement has been modified,
      *         or if there is no change at all, then this method returns {@code false}.
      */
@@ -424,7 +438,7 @@ strictfp class JavaToPython extends SourceGenerator {
     }
 
     /**
-     * Creates Python files for all supported types, in approximative dependency order.
+     * Creates Python files for all supported types, in approximate dependency order.
      * The contents are stored in the {@link #contents} map.
      */
     private void createContent() {
@@ -435,6 +449,8 @@ strictfp class JavaToPython extends SourceGenerator {
     /**
      * Creates Python files for all types in the given category.
      * The contents are stored in the {@link #contents} map.
+     *
+     * @param  category  the category (interfaces, enumerations, etc.) of types for which to create Python files.
      */
     private void createContent(final Content category) {
         for (final Class<?> type : category.types()) {
@@ -479,7 +495,7 @@ strictfp class JavaToPython extends SourceGenerator {
                        .append("#    GeoAPI - Programming interfaces for OGC/ISO standards").append(lineSeparator)
                        .append("#    http://www.geoapi.org").append(lineSeparator)
                        .append('#').append(lineSeparator)
-                       .append("#    Copyright (C) ").append(currentYear).append(" Open Geospatial Consortium, Inc.").append(lineSeparator)
+                       .append(COPYRIGHT).append(currentYear).append(" Open Geospatial Consortium, Inc.").append(lineSeparator)
                        .append("#    All Rights Reserved. http://www.opengeospatial.org/ogc/legal").append(lineSeparator)
                        .append('#').append(lineSeparator)
                        .append(lineSeparator)
@@ -599,6 +615,9 @@ strictfp class JavaToPython extends SourceGenerator {
 
     /**
      * Adds spaces for the given indentation level.
+     *
+     * @param  content  where to append indentation.
+     * @param  n        number of spaces to append.
      */
     private static StringBuilder indent(final StringBuilder content, int n) {
         while (--n >= 0) {
@@ -649,6 +668,8 @@ strictfp class JavaToPython extends SourceGenerator {
                 /*
                  * Python file exist: compare all expected lines with the actual lines read from the file.
                  * This block does not write anything; if the comparison does not match, we fail the test.
+                 * The actual file may contain some additional lines compared to the expected ones.
+                 * The intent is to allow hand-written comments.
                  */
                 if (skipVerification(file)) {
                     continue;
@@ -658,19 +679,28 @@ strictfp class JavaToPython extends SourceGenerator {
                     while ((endExpected = content.indexOf(lineSeparator, startExpected)) >= 0) {
                         if (endExpected > startExpected) {
                             final String expected = content.substring(startExpected, endExpected);
-                            String firstLine = null;
-                            int lineNumber = 0;
-                            for (String line; !expected.equals(line = in.readLine());) {
-                                if (line == null) {
+                            String firstMismatchedLine = null;
+                            int mismatchedLineNumber = 0;
+                            for (String actual; !expected.equals(actual = in.readLine());) {
+                                /*
+                                 * If the actual line does not match the expected line, this is not necessarily a
+                                 * test failure. Maybe the expected line exists somewhere down. Continue searching
+                                 * and report a failure only if we reach end-of-file without finding that line.
+                                 */
+                                if (actual == null) {
                                     fail(String.format("Unexpected content at line %d of file %s%n" +
-                                            "Expected: %s%nActual:   %s%n", lineNumber, file, expected,
-                                            (firstLine != null) ? firstLine : "<end of file>"));
+                                            "Expected: %s%nActual:   %s%n", mismatchedLineNumber, file, expected,
+                                            (firstMismatchedLine != null) ? firstMismatchedLine : "<end of file>"));
                                     break;
                                 }
-                                if (!line.isEmpty()) {
-                                    if (firstLine == null) {
-                                        firstLine = line;
-                                        lineNumber = in.getLineNumber();
+                                if (!actual.isEmpty()) {
+                                    if (actual.startsWith(COPYRIGHT) && expected.startsWith(COPYRIGHT)) {
+                                        // Skip comparison of "Copyright (C) year" line because the year varies.
+                                        break;
+                                    }
+                                    if (firstMismatchedLine == null) {
+                                        firstMismatchedLine = actual;
+                                        mismatchedLineNumber = in.getLineNumber();
                                     }
                                 }
                             }
