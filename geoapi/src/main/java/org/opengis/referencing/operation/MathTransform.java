@@ -262,7 +262,7 @@ public interface MathTransform {
      *└    ┘     └                    ┘ │ x₃ │
      *                                  └    ┘</pre>
      *
-     * @param  point The coordinate point where to evaluate the derivative. Null
+     * @param  point the coordinate point where to evaluate the derivative. Null
      *         value is accepted only if the derivative is the same everywhere.
      *         For example affine transform accept null value since they produces
      *         identical derivative no matter the coordinate value. But most map
