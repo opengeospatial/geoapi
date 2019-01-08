@@ -31,7 +31,6 @@
  */
 package org.opengis.coverage.grid.quadrilateral;
 
-import org.opengis.coverage.grid.GridGeometry;
 import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.MathTransform;
@@ -86,7 +85,7 @@ public interface RectifiableGrid  extends GridPositioning {
     GridCoordinates inverseConvertCoordinates(DirectPosition p) throws TransformException;
 
     /**
-     * This optional attribute is specified on the {@link GridGeometry} from the legacy OGC 01-004
+     * This optional attribute is specified on the {@code GridGeometry} from the legacy OGC 01-004
      * specification.  It is retained here because it allows the user access to a conversion object
      * which yields non-integer results.  This property is derived from the {@link MathTransform}
      * object associated with the operation and conversion attributes, and is merely a convenience
