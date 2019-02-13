@@ -114,7 +114,7 @@ public class OperationValidator extends ReferencingValidator {
         }
         final int sourceDimension = transform.getSourceDimensions();
         for (int i : index) {
-            assertBetween("PassThroughOperation: invalid modified ordinate index.", 0, sourceDimension-1, i);
+            assertBetween("PassThroughOperation: invalid modified coordinate index.", 0, sourceDimension-1, i);
         }
     }
 

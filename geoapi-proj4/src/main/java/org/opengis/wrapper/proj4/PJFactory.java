@@ -1091,17 +1091,17 @@ public class PJFactory implements Factory {
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
          *
-         * @throws FactoryException alway thrown.
+         * @throws FactoryException always thrown.
          */
         @Override
-        public MathTransform createPassThroughTransform(int firstAffectedOrdinate, MathTransform subTransform, int numTrailingOrdinates) throws FactoryException {
+        public MathTransform createPassThroughTransform(int firstAffectedCoordinate, MathTransform subTransform, int numTrailingCoordinates) throws FactoryException {
             throw unsupportedOperation();
         }
 
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
          *
-         * @throws FactoryException alway thrown.
+         * @throws FactoryException always thrown.
          */
         @Override
         @Deprecated
@@ -1112,7 +1112,7 @@ public class PJFactory implements Factory {
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
          *
-         * @throws FactoryException alway thrown.
+         * @throws FactoryException always thrown.
          */
         @Override
         public MathTransform createFromWKT(String wkt) throws FactoryException {
