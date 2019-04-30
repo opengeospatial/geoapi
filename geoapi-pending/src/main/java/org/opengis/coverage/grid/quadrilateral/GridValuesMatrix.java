@@ -37,6 +37,7 @@ import org.opengis.annotation.UML;
 import org.opengis.coverage.grid.GridEnvelope;
 import org.opengis.coverage.grid.GridPoint;
 import org.opengis.coverage.grid.SequenceRule;
+import org.opengis.coverage.grid.GridCoordinates;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;

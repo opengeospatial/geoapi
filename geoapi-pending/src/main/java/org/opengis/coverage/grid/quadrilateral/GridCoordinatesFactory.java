@@ -31,6 +31,8 @@
  */
 package org.opengis.coverage.grid.quadrilateral;
 
+import org.opengis.coverage.grid.GridCoordinates;
+
 
 /**
  * This is the primary method of constructing {@linkplain GridCoordinates}.

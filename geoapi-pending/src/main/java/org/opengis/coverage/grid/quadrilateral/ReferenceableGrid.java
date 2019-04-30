@@ -32,6 +32,7 @@
 package org.opengis.coverage.grid.quadrilateral;
 
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.coverage.grid.GridCoordinates;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
 

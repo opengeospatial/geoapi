@@ -35,6 +35,7 @@ import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
+import org.opengis.coverage.grid.GridCoordinates;
 import org.opengis.geometry.DirectPosition;
 
 
