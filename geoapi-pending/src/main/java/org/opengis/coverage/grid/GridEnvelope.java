@@ -41,12 +41,12 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Provides the {@linkplain GridCoordinates grid coordinate} values for the diametrically opposed
  * corners of the {@linkplain Grid grid}.
- * <p>
- * Remark that both corners are inclusive. Thus the number of elements in the direction of the first
+ *
+ * <p>Remark that both corners are inclusive. Thus the number of elements in the direction of the first
  * axis is <code>{@linkplain #getHigh(int) getHigh}(0) - {@linkplain #getLow(int) getLow}(0) + 1</code>.
  * This is the opposite of Java2D usage where maximal values in {@link Rectangle} (as computed by
  * {@linkplain Rectangle#getMaxX getMaxX()} and {@linkplain Rectangle#getMinY getMaxY()}) are
- * exclusive.
+ * exclusive.</p>
  *
  * @version ISO 19123:2004
  * @author  Wim Koolhoven
@@ -98,10 +98,8 @@ public interface GridEnvelope {
      *
      * @see Rectangle#x
      * @see Rectangle#y
-     *
-     * @since GeoAPI 2.2
      */
-    int getLow(int dimension) throws IndexOutOfBoundsException;
+    long getLow(int dimension) throws IndexOutOfBoundsException;
 
     /**
      * Returns the valid maximum inclusive grid coordinate along the specified dimension. This is a
@@ -115,10 +113,8 @@ public interface GridEnvelope {
      * @return the high coordinate value at the given dimension, <strong>inclusive</strong>.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() grid dimension}.
-     *
-     * @since GeoAPI 2.2
      */
-    int getHigh(int dimension) throws IndexOutOfBoundsException;
+    long getHigh(int dimension) throws IndexOutOfBoundsException;
 
     /**
      * Returns the number of integer grid coordinates along the specified dimension.
@@ -138,5 +134,5 @@ public interface GridEnvelope {
      *
      * @since GeoAPI 2.2
      */
-    int getSpan(int dimension) throws IndexOutOfBoundsException;
+    long getSpan(int dimension) throws IndexOutOfBoundsException;
 }

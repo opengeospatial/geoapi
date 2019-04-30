@@ -39,7 +39,7 @@ public class SimpleGridEnvelope implements GridEnvelope, Serializable {
      * Minimum and maximum grid ordinates. The first half contains minimum ordinates (inclusive),
      * while the last half contains maximum ordinates (<strong>inclusive</strong>).
      */
-    private final int[] index;
+    private final long[] index;
 
     /**
      * Checks if ordinate values in the minimum index are less than or
@@ -48,11 +48,11 @@ public class SimpleGridEnvelope implements GridEnvelope, Serializable {
      * @throws IllegalArgumentException if an ordinate value in the minimum index is not
      *         less than or equal to the corresponding ordinate value in the maximum index.
      */
-    private static void checkCoherence(final int[] index) throws IllegalArgumentException {
+    private static void checkCoherence(final long[] index) throws IllegalArgumentException {
         final int dimension = index.length >>> 1;
         for (int i=0; i<dimension; i++) {
-            final int lower = index[i];
-            final int upper = index[dimension+i];
+            final long lower = index[i];
+            final long upper = index[dimension+i];
             if (!(lower < upper)) {
                 throw new IllegalArgumentException("Invalid range at dimension " + i);
             }
@@ -66,7 +66,7 @@ public class SimpleGridEnvelope implements GridEnvelope, Serializable {
      */
     public SimpleGridEnvelope(final GridEnvelope envelope) {
         final int dimension = envelope.getDimension();
-        index = new int[dimension << 1];
+        index = new long[dimension << 1];
         for (int i=0; i<dimension; i++) {
             index[i] = envelope.getLow(i);
             index[i + dimension] = envelope.getHigh(i);
@@ -86,7 +86,7 @@ public class SimpleGridEnvelope implements GridEnvelope, Serializable {
      * @see #getLow()
      * @see #getHigh()
      */
-    public SimpleGridEnvelope(final int[] low, final int[] high) {
+    public SimpleGridEnvelope(final long[] low, final long[] high) {
         if (low.length != high.length) {
             throw new IllegalArgumentException("Mismatched array length.");
         }
@@ -127,7 +127,7 @@ public class SimpleGridEnvelope implements GridEnvelope, Serializable {
      * @see #getLow()
      */
     @Override
-    public int getLow(final int dimension) {
+    public long getLow(final int dimension) {
         if (dimension < (index.length >>> 1)) {
             return index[dimension];
         }
@@ -141,7 +141,7 @@ public class SimpleGridEnvelope implements GridEnvelope, Serializable {
      * @see #getHigh()
      */
     @Override
-    public int getHigh(final int dimension) {
+    public long getHigh(final int dimension) {
         if (dimension >= 0) {
             return index[dimension + (index.length >>> 1)];
         }
@@ -153,7 +153,7 @@ public class SimpleGridEnvelope implements GridEnvelope, Serializable {
      * This is equal to {@code getHigh(dimension) - getLow(dimension) + 1}.
      */
     @Override
-    public int getSpan(final int dimension) {
+    public long getSpan(final int dimension) {
         return index[dimension + (index.length >>> 1)] - index[dimension] + 1;
     }
 

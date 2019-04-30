@@ -68,7 +68,7 @@ public interface GridCoordinates {
      *         back in this {@code GridCoordinates} object.
      */
     @UML(identifier="coordValues", obligation=MANDATORY, specification=ISO_19123)
-    int[] getCoordinateValues();
+    long[] getCoordinateValues();
 
     /**
      * Returns the coordinate value at the specified dimension. This method is equivalent to
@@ -80,7 +80,7 @@ public interface GridCoordinates {
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension grid dimension}.
      */
-    int getCoordinateValue(int dimension) throws IndexOutOfBoundsException;
+    long getCoordinateValue(int dimension) throws IndexOutOfBoundsException;
 
     /**
      * Sets the coordinate value at the specified dimension (optional operation).
@@ -91,6 +91,6 @@ public interface GridCoordinates {
      *         than the {@linkplain #getDimension grid dimension}.
      * @throws UnsupportedOperationException if this grid coordinates is not modifiable.
      */
-    void setCoordinateValue(int dimension, int value)
+    void setCoordinateValue(int dimension, long value)
             throws IndexOutOfBoundsException, UnsupportedOperationException;
 }

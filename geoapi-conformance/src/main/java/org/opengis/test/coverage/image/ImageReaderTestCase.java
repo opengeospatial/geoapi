@@ -355,7 +355,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
                     boolean foundWidth = false, foundHeight = false;
                     final int dimension = extent.getDimension();
                     for (int i=0; i<dimension; i++) {
-                        final int span = extent.getSpan(i);
+                        final long span = extent.getSpan(i);
                         if (span == width) {
                             foundWidth = true;
                         } else if (span == height) {
