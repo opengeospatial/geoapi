@@ -95,9 +95,6 @@ public interface GridEnvelope {
      * @return the low coordinate value at the given dimension, inclusive.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() grid dimension}.
-     *
-     * @see Rectangle#x
-     * @see Rectangle#y
      */
     long getLow(int dimension) throws IndexOutOfBoundsException;
 
@@ -124,15 +121,14 @@ public interface GridEnvelope {
      * {@linkplain #getHigh getHigh}(dimension) - {@linkplain #getLow getLow}(dimension) + 1
      * </code></blockquote>
      *
-     * @param  dimension  the dimension for which to obtain the span.
-     * @return the span at the given dimension.
+     * @param  dimension  the dimension for which to obtain the size.
+     * @return the number of integer grid coordinates along the given dimension.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() grid dimension}.
+     * @throws ArithmeticException if the size is too large for the {@code long} primitive type.
      *
-     * @see Rectangle#width
-     * @see Rectangle#height
-     *
-     * @since GeoAPI 2.2
+     * @see #getLow(int)
+     * @see #getHigh(int)
      */
-    long getSpan(int dimension) throws IndexOutOfBoundsException;
+    long getSize(int dimension) throws IndexOutOfBoundsException;
 }

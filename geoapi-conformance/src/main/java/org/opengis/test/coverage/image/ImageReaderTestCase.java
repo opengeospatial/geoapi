@@ -325,7 +325,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      *       {@linkplain org.opengis.test.metadata.ExtentValidator#validate(Extent) Validate}
      *       the spatial extent, if any.</li>
      *   <li>{@link Grid#getExtent()}<ul>
-     *     <li>{@link GridEnvelope}: Verify that the {@linkplain GridEnvelope#getSpan(int) span}
+     *     <li>{@link GridEnvelope}: Verify that the {@linkplain GridEnvelope#getSize(int) span}
      *         in at least one dimension is equals to the {@linkplain ImageReader#getWidth(int)
      *         image width}, and a span in another dimension is equals to the
      *         {@linkplain ImageReader#getHeight(int) image height}.</li>
@@ -355,7 +355,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
                     boolean foundWidth = false, foundHeight = false;
                     final int dimension = extent.getDimension();
                     for (int i=0; i<dimension; i++) {
-                        final long span = extent.getSpan(i);
+                        final long span = extent.getSize(i);
                         if (span == width) {
                             foundWidth = true;
                         } else if (span == height) {

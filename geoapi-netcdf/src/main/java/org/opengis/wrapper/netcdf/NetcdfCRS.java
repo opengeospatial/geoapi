@@ -375,7 +375,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * @see NetcdfAxis#length()
      */
     @Override
-    public long getSpan(final int dimension) throws IndexOutOfBoundsException {
+    public long getSize(final int dimension) throws IndexOutOfBoundsException {
         return axes[dimension].length();
     }
 
@@ -401,7 +401,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      */
     @Override
     public long getHigh(int dimension) throws IndexOutOfBoundsException {
-        return Math.addExact(getLow(dimension), getSpan(dimension) - 1);
+        return Math.addExact(getLow(dimension), getSize(dimension) - 1);
     }
 
     /**

@@ -153,7 +153,7 @@ public class SimpleGridEnvelope implements GridEnvelope, Serializable {
      * This is equal to {@code getHigh(dimension) - getLow(dimension) + 1}.
      */
     @Override
-    public long getSpan(final int dimension) {
+    public long getSize(final int dimension) {
         return index[dimension + (index.length >>> 1)] - index[dimension] + 1;
     }
 
