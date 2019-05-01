@@ -200,11 +200,13 @@ class Band(SampleDimension):
         return None
 
     @property
-    def detected_polarization(self) -> PolarizationOrientationCode:
+    def transmitted_polarisation(self) -> PolarizationOrientationCode:
+        """Polarisation of the transmitter or detector."""
         return None
 
     @property
-    def transmitted_polarization(self) -> PolarizationOrientationCode:
+    def detected_polarisation(self) -> PolarizationOrientationCode:
+        """Polarisation of the transmitter or detector."""
         return None
 
 
