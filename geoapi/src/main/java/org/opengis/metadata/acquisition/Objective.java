@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * observed.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 4.0
  * @since   2.3
  */
 @UML(identifier="MI_Objective", specification=ISO_19115_2)
@@ -103,7 +103,7 @@ public interface Objective {
      * @return events associated with objective completion.
      */
     @UML(identifier="objectiveOccurence", obligation=MANDATORY, specification=ISO_19115_2)
-    Collection<? extends Event> getObjectiveOccurences();
+    Collection<? extends Event> getObjectiveOccurrences();
 
     /**
      * Pass of the platform over the objective.
