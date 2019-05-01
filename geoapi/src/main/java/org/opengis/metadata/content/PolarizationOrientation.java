@@ -44,11 +44,16 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Polarization of the antenna relative to the waveform.
  *
+ * <div class="warning"><b>Upcoming API change</b><br>
+ * This class will be renamed {@code PolarisationOrientation} in GeoAPI 4.0
+ * for compliance with ISO 19115-2:2019.
+ * </div>
+ *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
- * @since   2.3
+ * @version 3.1
+ * @since   3.0
  */
-@UML(identifier="MI_PolarizationOrientationCode", specification=ISO_19115_2)
+@UML(identifier="MI_PolarisationOrientationCode", specification=ISO_19115_2)
 public final class PolarizationOrientation extends CodeList<PolarizationOrientation> {
     /**
      * Serial number for compatibility with different versions.
@@ -108,7 +113,7 @@ public final class PolarizationOrientation extends CodeList<PolarizationOrientat
     }
 
     /**
-     * Returns the list of {@code PolarizationOrientation}s.
+     * Returns the list of {@code PolarisationOrientation}s.
      *
      * @return the list of codes declared in the current JVM.
      */

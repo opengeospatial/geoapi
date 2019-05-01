@@ -114,20 +114,26 @@ public interface Band extends SampleDimension {
     /**
      * Polarization of the radiation transmitted.
      *
-     * @return polarization of the radiation transmitted.
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * This method will be renamed {@code getTransmittedPolarisation} in GeoAPI 4.0
+     * for compliance with ISO 19115-2:2019.
+     * </div>
      *
-     * @since 2.3
+     * @return polarization of the radiation transmitted.
      */
-    @UML(identifier="transmittedPolarization", obligation=OPTIONAL, specification=ISO_19115_2)
+    @UML(identifier="transmittedPolarisation", obligation=OPTIONAL, specification=ISO_19115_2)
     PolarizationOrientation getTransmittedPolarization();
 
     /**
      * Polarization of the radiation detected.
      *
-     * @return polarization of the radiation detected.
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * This method will be renamed {@code getDetectedPolarisation} in GeoAPI 4.0
+     * for compliance with ISO 19115-2:2019.
+     * </div>
      *
-     * @since 2.3
+     * @return polarization of the radiation detected.
      */
-    @UML(identifier="detectedPolarization", obligation=OPTIONAL, specification=ISO_19115_2)
+    @UML(identifier="detectedPolarisation", obligation=OPTIONAL, specification=ISO_19115_2)
     PolarizationOrientation getDetectedPolarization();
 }

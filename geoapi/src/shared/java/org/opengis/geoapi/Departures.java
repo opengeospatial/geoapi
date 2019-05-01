@@ -84,9 +84,6 @@ public class Departures {
         mergedTypes = m;
 
         m = new HashMap<>(12);
-        m.put("MI_PolarizationOrientationCode",                  "MI_PolarisationOrientationCode");
-        m.put("MI_Band.detectedPolarization",                    "detectedPolarisation");
-        m.put("MI_Band.transmittedPolarization",                 "transmittedPolarisation");
         m.put("MI_EnvironmentalRecord.meteorologicalConditions", "meterologicalConditions");    // Misspelling in ISO 19115-3:2016
         m.put("MI_Requirement.satisfiedPlan",                    "satisifiedPlan");             // Misspelling in ISO 19115-3:2016
         m.put("LI_ProcessStep.stepDateTime",                     "dateTime");                   // Spelling change in XSD files

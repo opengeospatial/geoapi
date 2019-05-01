@@ -311,14 +311,13 @@ public enum Specification {
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
-     *   <li><b>2009:</b> ISO 19115-2:2009   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2009:</b> ISO 19115-2:2009</li>
+     *   <li><b>2019:</b> ISO 19115-2:2019   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
-     * @see <a href="https://www.iso.org/standard/39229.html">ISO 19115-2:2009 on standards catalogue</a>
-     *
-     * @since 2.3
+     * @see <a href="https://www.iso.org/standard/67039.html">ISO 19115-2:2019 on standards catalogue</a>
      */
-    ISO_19115_2((short) 2009),
+    ISO_19115_2((short) 2019),
 
     /**
      * ISO 19115-3, Metadata part 3: XML schema implementation for fundamental concepts.
