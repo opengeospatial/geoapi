@@ -98,7 +98,9 @@ public interface Objective {
      *
      * <div class="note"><b>Known typo:</b>
      * "occurrence" is missing a "r" in the UML diagram of ISO 19115-2 specification.
-     * The {@code UML} annotation below reflects that spelling.</div>
+     * The {@code UML} annotation below reflects that spelling.
+     * The method reflects that spelling in GeoAPI 3.1, but will be changed to
+     * {@code getObjectiveOccurrences()} in GeoAPI 4.0.</div>
      *
      * @return events associated with objective completion.
      */
