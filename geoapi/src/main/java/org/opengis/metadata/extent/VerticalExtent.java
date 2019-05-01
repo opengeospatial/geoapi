@@ -86,8 +86,6 @@ public interface VerticalExtent {
      * order to have a single CRS framework: the ISO 19111 one.</p>
      *
      * @return the vertical CRS.
-     *
-     * @since 2.1
      */
     @UML(identifier="verticalCRS", obligation=CONDITIONAL, specification=ISO_19115)
     VerticalCRS getVerticalCRS();

@@ -70,8 +70,6 @@ public interface RepresentativeFraction {
      * Returns the scale value in a form usable for computation.
      *
      * @return <code>1.0 / (double) {@linkplain #getDenominator()}</code>
-     *
-     * @since 2.2
      */
     double doubleValue();
 

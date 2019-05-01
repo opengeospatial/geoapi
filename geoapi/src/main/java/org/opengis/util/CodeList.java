@@ -136,8 +136,6 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      *   It has been added because {@code CodeList} is one of the few concrete classes in
      *   GeoAPI and there is a need to give some user control over the behavior of the
      *   {@code CodeList} implementation.
-     *
-     * @since 2.3
      */
     public static interface Filter {
         /**
@@ -219,8 +217,6 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @param  filter    the criterion for the code to obtain.
      * @return a code matching the given criterion, or {@code null} if there is no match and
      *         {@link Filter#codename()} returns {@code null}.
-     *
-     * @since 2.3
      */
     public static <T extends CodeList<T>> T valueOf(final Class<T> codeType, final Filter filter) {
         @SuppressWarnings("rawtypes")
@@ -336,8 +332,6 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @departure extension
      *   Defined because each {@code CodeList} has at least two names, the Java programmatic
      *   name and the UML identifier, while some subclasses have additional names.
-     *
-     * @since 2.3
      */
     @Override
     public String[] names() {
@@ -373,8 +367,6 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @departure extension
      *   Defined because each {@code CodeList} has a UML identifier in addition of the Java
      *   programmatic name.
-     *
-     * @since 2.2
      */
     @Override
     public String identifier() {

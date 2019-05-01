@@ -93,8 +93,6 @@ public interface OnlineResource {
      * Name of the online resource.
      *
      * @return name of the online resource, or {@code null}.
-     *
-     * @since 2.1
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
     InternationalString getName();

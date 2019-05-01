@@ -97,8 +97,6 @@ public interface NameFactory extends Factory {
      *                     <code>{@linkplain #createGenericName createGenericName}(null, namespace)</code>.
      * @param  properties  an optional map of properties to be assigned to the namespace, or {@code null} if none.
      * @return a namespace having the given name and separators.
-     *
-     * @since 2.3
      */
     NameSpace createNameSpace(GenericName name, Map<String,?> properties);
 
@@ -110,8 +108,6 @@ public interface NameFactory extends Factory {
      *                or {@code null} for a global namespace.
      * @param  name   the type name as a string or an international string.
      * @return the type name for the given character sequence.
-     *
-     * @since 2.3
      */
     TypeName createTypeName(NameSpace scope, CharSequence name);
 
@@ -138,8 +134,6 @@ public interface NameFactory extends Factory {
      *                or {@code null} for a global namespace.
      * @param  name   the local name as a string or an international string.
      * @return the local name for the given character sequence.
-     *
-     * @since 2.2
      */
     LocalName createLocalName(NameSpace scope, CharSequence name);
 
@@ -158,8 +152,6 @@ public interface NameFactory extends Factory {
      * @param  parsedNames  the local names as an array of strings or international strings.
      *                      This array must contains at least one element.
      * @return the generic name for the given parsed names.
-     *
-     * @since 2.2
      */
     GenericName createGenericName(NameSpace scope, CharSequence... parsedNames);
 
@@ -179,8 +171,6 @@ public interface NameFactory extends Factory {
      *                or {@code null} for a global namespace.
      * @param  name   the qualified name, as a sequence of names separated by a scope-dependent separator.
      * @return a name parsed from the given string.
-     *
-     * @since 2.2
      */
     GenericName parseGenericName(NameSpace scope, CharSequence name);
 }

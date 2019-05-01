@@ -147,8 +147,6 @@ public enum TopicCategory implements ControlledVocabulary {
      * disease and illness, factors affecting health, hygiene, substance abuse,
      * mental and physical health, health services.
      * </p>
-     *
-     * @since 2.1
      */
     @UML(identifier="health", obligation=CONDITIONAL, specification=ISO_19115)
     HEALTH("health"),

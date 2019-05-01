@@ -61,8 +61,6 @@ public class TransformException extends Exception {
      *
      * @see #getLastCompletedTransform()
      * @see #setLastCompletedTransform(MathTransform)
-     *
-     * @since 2.2
      */
     private MathTransform lastCompletedTransform;
 
@@ -108,8 +106,6 @@ public class TransformException extends Exception {
      * is useful in the context of concatenated transforms. May be {@code null} if unknown.
      *
      * @return the last reliable transform.
-     *
-     * @since 2.2
      */
     public MathTransform getLastCompletedTransform() {
         return lastCompletedTransform;
@@ -120,8 +116,6 @@ public class TransformException extends Exception {
      * filled the untransformable coordinates with {@linkplain Double#NaN NaN} values.
      *
      * @param transform  the last reliable transform.
-     *
-     * @since 2.2
      */
     public void setLastCompletedTransform(final MathTransform transform) {
         lastCompletedTransform = transform;

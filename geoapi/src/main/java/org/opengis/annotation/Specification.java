@@ -454,8 +454,6 @@ public enum Specification {
      *
      * @see <a href="https://www.iso.org/standard/32557.html">ISO/TS 19139:2007 on standards catalogue</a>
      *
-     * @since 2.3
-     *
      * @deprecated since {@link #ISO_19115_3} publication, this standard does not define new elements used by GeoAPI.
      */
     @Deprecated

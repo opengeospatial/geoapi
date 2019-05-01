@@ -99,8 +99,6 @@ public interface CoverageDescription extends ContentInformation {
      *
      * @return dimensions of the cell measurement value.
      *
-     * @since 2.1
-     *
      * @deprecated As of ISO 19115:2014, moved to {@link AttributeGroup#getAttributes()}.
      */
     @Deprecated
@@ -111,8 +109,6 @@ public interface CoverageDescription extends ContentInformation {
      * Provides the description of the specific range elements of a coverage.
      *
      * @return description of the specific range elements.
-     *
-     * @since 2.3
      */
     @UML(identifier="rangeElementDescription", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends RangeElementDescription> getRangeElementDescriptions();

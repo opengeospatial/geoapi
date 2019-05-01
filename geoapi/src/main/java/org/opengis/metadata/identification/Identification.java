@@ -282,8 +282,6 @@ public interface Identification {
      *
      * @return aggregate dataset information.
      *
-     * @since 2.1
-     *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getAssociatedResources()}.
      */
     @Deprecated

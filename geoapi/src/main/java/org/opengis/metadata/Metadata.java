@@ -151,8 +151,6 @@ public interface Metadata {
      *
      * @return alternatively used localized character string for a linguistic extension.
      *
-     * @since 2.1
-     *
      * @deprecated As of GeoAPI 3.1, replaced by {@link #getLanguages()}.
      */
     @Deprecated
@@ -281,8 +279,6 @@ public interface Metadata {
      * @return parties responsible for the metadata information.
      *
      * @see Identification#getPointOfContacts()
-     *
-     * @since 2.1
      */
     @Profile(level=CORE)
     @UML(identifier="contact", obligation=MANDATORY, specification=ISO_19115)
@@ -390,8 +386,6 @@ public interface Metadata {
      * Uniform Resource Identifier (URI) of the dataset to which the metadata applies.
      *
      * @return Uniform Resource Identifier of the dataset, or {@code null}.
-     *
-     * @since 2.1
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getIdentificationInfo()} followed by
      *    {@link Identification#getCitation()} followed by {@link Citation#getOnlineResources()}.

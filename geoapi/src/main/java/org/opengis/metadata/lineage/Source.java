@@ -158,8 +158,6 @@ public interface Source {
      * Processing level of the source data.
      *
      * @return processing level of the source data, or {@code null}.
-     *
-     * @since 2.3
      */
     @UML(identifier="processedLevel", obligation=OPTIONAL, specification=ISO_19115_2)
     Identifier getProcessedLevel();
@@ -168,8 +166,6 @@ public interface Source {
      * Distance between consistent parts (centre, left side, right side) of two adjacent pixels.
      *
      * @return distance between consistent parts of two adjacent pixels.
-     *
-     * @since 2.3
      */
     @UML(identifier="resolution", obligation=OPTIONAL, specification=ISO_19115_2)
     NominalResolution getResolution();

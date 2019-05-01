@@ -127,8 +127,6 @@ public interface Georectified extends GridSpatialRepresentation {
      * Geographic references used to validate georectification of the data.
      *
      * @return geographic references used to validate georectification.
-     *
-     * @since 2.3
      */
     @UML(identifier="checkPoint", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends GCP> getCheckPoints();

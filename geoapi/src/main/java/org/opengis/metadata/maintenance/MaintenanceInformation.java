@@ -135,8 +135,6 @@ public interface MaintenanceInformation {
      * Information regarding specific requirements for maintaining the resource.
      *
      * @return information regarding specific requirements for maintaining the resource.
-     *
-     * @since 2.1
      */
     @UML(identifier="maintenanceNote", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends InternationalString> getMaintenanceNotes();
@@ -147,8 +145,6 @@ public interface MaintenanceInformation {
      *
      * @return means of communicating with person(s) and organization(s) with responsibility
      *         for maintaining the resource.
-     *
-     * @since 2.1
      */
     @UML(identifier="contact", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends Responsibility> getContacts();

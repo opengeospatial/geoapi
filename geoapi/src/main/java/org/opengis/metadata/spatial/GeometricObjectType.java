@@ -65,16 +65,12 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
     /**
      * Set of geometric primitives such that their boundaries can be represented as a
      * union of other primitives.
-     *
-     * @since 2.1
      */
     @UML(identifier="complex", obligation=CONDITIONAL, specification=ISO_19115)
     public static final GeometricObjectType COMPLEX = new GeometricObjectType("COMPLEX");
 
     /**
      * Connected set of curves, solids or surfaces.
-     *
-     * @since 2.1
      */
     @UML(identifier="composite", obligation=CONDITIONAL, specification=ISO_19115)
     public static final GeometricObjectType COMPOSITE = new GeometricObjectType("COMPOSITE");

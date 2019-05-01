@@ -233,8 +233,6 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
      * @see MathTransformFactory#createBaseToDerived(CoordinateReferenceSystem, ParameterValueGroup, CoordinateSystem)
-     *
-     * @since 2.1
      */
     @UML(identifier="createFittedCoordinateSystem", specification=OGC_01009)
     DerivedCRS createDerivedCRS(Map<String,?>          properties,
@@ -276,8 +274,6 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
      * @see MathTransformFactory#createBaseToDerived(CoordinateReferenceSystem, ParameterValueGroup, CoordinateSystem)
-     *
-     * @since 2.1
      */
     @UML(identifier="createProjectedCoordinateSystem", specification=OGC_01009)
     ProjectedCRS createProjectedCRS(Map<String,?> properties,

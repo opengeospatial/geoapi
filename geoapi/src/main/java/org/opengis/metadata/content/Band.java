@@ -87,8 +87,6 @@ public interface Band extends SampleDimension {
      * Designation of criterion for defining maximum and minimum wavelengths for a spectral band.
      *
      * @return criterion for defining maximum and minimum wavelengths.
-     *
-     * @since 2.3
      */
     @UML(identifier="bandBoundaryDefinition", obligation=OPTIONAL, specification=ISO_19115_2)
     BandDefinition getBandBoundaryDefinition();

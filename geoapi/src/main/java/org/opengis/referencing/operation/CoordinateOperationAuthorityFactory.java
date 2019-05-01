@@ -69,8 +69,6 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      * @departure extension
      *   This method has been added because OGC 01-009 does not define a factory
      *   method for creating such object.
-     *
-     * @since 2.3
      */
     OperationMethod createOperationMethod(String code)
             throws NoSuchAuthorityCodeException, FactoryException;

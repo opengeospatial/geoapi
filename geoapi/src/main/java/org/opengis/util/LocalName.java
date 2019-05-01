@@ -73,16 +73,12 @@ public interface LocalName extends GenericName {
 
     /**
      * Returns {@code this} since this object is already a local name.
-     *
-     * @since 2.2
      */
     @Override
     LocalName head();
 
     /**
      * Returns {@code this} since this object is already a local name.
-     *
-     * @since 2.1
      */
     @Override
     LocalName tip();

@@ -198,8 +198,6 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   The <cite>defining conversion</cite> concept appears in ISO 19111:2007 textual specification
      *   without formalization in UML diagrams. This concept has been formalized in GeoAPI
      *   in order to allow the creation of {@code ProjectedCRS} instances.
-     *
-     * @since 2.1
      */
     Conversion createDefiningConversion(Map<String,?>       properties,
                                         OperationMethod     method,

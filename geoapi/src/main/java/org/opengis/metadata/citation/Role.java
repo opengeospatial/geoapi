@@ -126,8 +126,6 @@ public final class Role extends CodeList<Role> {
 
     /**
      * Party who authored the resource.
-     *
-     * @since 2.1
      */
     @UML(identifier="author", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Role AUTHOR = new Role("AUTHOR");

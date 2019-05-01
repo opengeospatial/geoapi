@@ -57,8 +57,6 @@ public interface SingleOperation extends CoordinateOperation {
      * Returns the operation method.
      *
      * @return the operation method.
-     *
-     * @since 2.3
      */
     @UML(identifier="method", obligation=MANDATORY, specification=ISO_19111)
     OperationMethod getMethod();
@@ -67,8 +65,6 @@ public interface SingleOperation extends CoordinateOperation {
      * Returns the parameter values.
      *
      * @return the parameter values.
-     *
-     * @since 2.3
      */
     @UML(identifier="parameterValue", obligation=MANDATORY, specification=ISO_19111)
     ParameterValueGroup getParameterValues();
