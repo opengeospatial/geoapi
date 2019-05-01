@@ -22,7 +22,6 @@
   <target name="-pre-jar">
     <copy todir="${build.classes.dir}">
       <fileset dir="${project.root}/geoapi/src/main/resources"/>
-      <fileset dir="${project.root}/geoapi-java-python/src/main/resources"> <exclude name="META-INF/**"/> </fileset>
       <fileset dir="${project.root}/geoapi-proj4/src/main/resources">       <exclude name="META-INF/**"/> </fileset>
       <fileset dir="${project.root}/geoapi-examples/src/main/resources">    <exclude name="META-INF/**"/> </fileset>
     </copy>
