@@ -93,6 +93,10 @@ public interface Georectified extends GridSpatialRepresentation {
      * and the grid coordinate of the cell halfway between opposite ends of the grid in the
      * spatial dimensions.
      *
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * This method will be renamed {@code getCentrePoint()} in GeoAPI 4.0
+     * for compliance with ISO 19115:2014 standard.</div>
+     *
      * @return the center point, or {@code null}.
      */
     @UML(identifier="centrePoint", obligation=OPTIONAL, specification=ISO_19115)
