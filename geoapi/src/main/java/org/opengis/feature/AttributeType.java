@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -75,7 +75,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * the constant can be given by the characteristic {@linkplain #getDefaultValue() default value} and
  * {@code Attribute.characteristics()} may return an empty map (at implementation choice).</p>
  *
- * @param <V> The type of attribute values.
+ * @param <V> the type of attribute values.
  *
  * @author  Jody Garnett (Refractions Research)
  * @author  Justin Deoliveira (The Open Planning Project)
@@ -84,6 +84,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * @since   3.1
  *
  * @see Attribute
+ * @see DynamicAttributeType
  */
 @Classifier(Stereotype.METACLASS)
 @UML(identifier="AttributeType", specification=ISO_19109)

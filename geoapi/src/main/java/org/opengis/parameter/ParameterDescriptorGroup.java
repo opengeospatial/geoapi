@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -86,13 +86,13 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      *
      * <p>The number of {@link ParameterValue} objects included must be between the
      * {@linkplain ParameterDescriptor#getMinimumOccurs() minimum} and
-     * {@linkplain ParameterDescriptor#getMaximumOccurs() maximum occurences} required.
+     * {@linkplain ParameterDescriptor#getMaximumOccurs() maximum occurrences} required.
      * For example:</p>
      *
      * <ul>
-     *   <li>For {@link ParameterDescriptor} with cardinality 1:* a {@code ParameterValue} will
+     *   <li>For {@link ParameterDescriptor} with multiplicity 1:* a {@code ParameterValue} will
      *       be included with the default value (even if this default value is null).</li>
-     *   <li>For {@code ParameterDescriptor} with cardinality 0:* no entry is required.
+     *   <li>For {@code ParameterDescriptor} with multiplicity 0:* no entry is required.
      *       {@code ParameterValue} entries may be created only as needed.</li>
      * </ul>
      *

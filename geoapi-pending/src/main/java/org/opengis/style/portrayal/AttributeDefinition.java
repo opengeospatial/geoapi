@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * AttributDefinition is used to define the formal parameters of external functions and the underlying
+ * AttributeDefinition is used to define the formal parameters of external functions and the underlying
  * rendering operations of the portrayal service.
  *
  * @version <A HREF="http://www.isotc211.org">ISO 19117 Portrayal</A>

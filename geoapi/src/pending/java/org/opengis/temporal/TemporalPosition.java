@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2005-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,21 +29,12 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.coverage.grid.quadrilateral;
+package org.opengis.temporal;
 
 
 /**
- * Proposed extension of ISO {@link org.opengis.coverage.grid.GridCoordinates}.
- *
- * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-82
- *
- * @author  Alexander Petkov
+ * Temporary placeholder for an interface defined in the
+ * <a href="http://www.geoapi.org/geoapi-pending/">geoapi-pending</a> module.
  */
-public interface GridCoordinates extends org.opengis.coverage.grid.GridCoordinates {
-    /**
-     * This is a compromise method which loads the values of this GridCoordinates implementation
-     * into the array provided by the user.
-     * Use of this method should be encouraged by those desiring to access the grid coordinates as an array.
-     */
-    void loadCoordinateValues(int[] vals);
+public interface TemporalPosition {
 }

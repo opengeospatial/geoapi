@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -49,7 +49,7 @@ import org.opengis.style.Style;
  * these create methods are in agreement with the Style Layer Descriptor 1.1
  * specification.
  *
- * This factory is pending. We need feedback from implementors before writting methods
+ * This factory is pending. We need feedback from implementors before writing methods
  * in this one.
  *
  * @author Open Geospatial Consortium

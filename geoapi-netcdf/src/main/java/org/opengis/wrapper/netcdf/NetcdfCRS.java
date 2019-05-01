@@ -39,7 +39,6 @@ import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.coverage.grid.Grid;
-import org.opengis.coverage.grid.GridGeometry;
 import org.opengis.coverage.grid.GridEnvelope;
 import org.opengis.coverage.grid.GridCoordinates;
 
@@ -48,7 +47,7 @@ import org.opengis.coverage.grid.GridCoordinates;
  * A {@link CoordinateReferenceSystem} implementation backed by a netCDF {@link CoordinateSystem} object.
  * This class implements both the GeoAPI {@link org.opengis.referencing.cs.CoordinateSystem} and
  * {@link CoordinateReferenceSystem} interfaces because the netCDF {@code CoordinateSystem}
- * object combines the concepts of both of them. It also implements the {@link GridGeometry}
+ * object combines the concepts of both of them. It also implements the {@code GridGeometry}
  * interface since netCDF Coordinate Systems contain all information related to the image grid.
  *
  * <p><b>Axis order</b><br>
@@ -80,7 +79,7 @@ import org.opengis.coverage.grid.GridCoordinates;
  * @since   3.1
  */
 public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateReferenceSystem,
-        org.opengis.referencing.cs.CoordinateSystem, GridGeometry, GridEnvelope
+        org.opengis.referencing.cs.CoordinateSystem, GridEnvelope
 {
     /**
      * For cross-version compatibility.
@@ -376,7 +375,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * @see NetcdfAxis#length()
      */
     @Override
-    public int getSpan(final int dimension) throws IndexOutOfBoundsException {
+    public long getSize(final int dimension) throws IndexOutOfBoundsException {
         return axes[dimension].length();
     }
 
@@ -389,7 +388,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * @throws IndexOutOfBoundsException if {@code dimension} is out of bounds.
      */
     @Override
-    public int getLow(int dimension) throws IndexOutOfBoundsException {
+    public long getLow(int dimension) throws IndexOutOfBoundsException {
         return 0;
     }
 
@@ -401,8 +400,8 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      * @throws IndexOutOfBoundsException if {@code dimension} is out of bounds.
      */
     @Override
-    public int getHigh(int dimension) throws IndexOutOfBoundsException {
-        return getLow(dimension) + getSpan(dimension) - 1;
+    public long getHigh(int dimension) throws IndexOutOfBoundsException {
+        return Math.addExact(getLow(dimension), getSize(dimension) - 1);
     }
 
     /**
@@ -414,7 +413,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      */
     @Override
     public GridCoordinates getLow() {
-        final int[] c = new int[getDimension()];
+        final long[] c = new long[getDimension()];
         for (int i=0; i<c.length; i++) {
             c[i] = getLow(i);
         }
@@ -430,7 +429,7 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      */
     @Override
     public GridCoordinates getHigh() {
-        final int[] c = new int[getDimension()];
+        final long[] c = new long[getDimension()];
         for (int i=0; i<c.length; i++) {
             c[i] = getHigh(i);
         }
@@ -444,18 +443,8 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      *
      * @return the valid coordinate range of a grid coverage.
      */
-    @Override
     public GridEnvelope getExtent() {
         return this;
-    }
-
-    /**
-     * @deprecated Renamed {@link #getExtent()}.
-     */
-    @Override
-    @Deprecated
-    public final GridEnvelope getGridRange() {
-        return getExtent();
     }
 
     /**
@@ -469,7 +458,6 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
      *
      * @return the transform from grid to this CRS, or {@code null} if none.
      */
-    @Override
     public synchronized MathTransform getGridToCRS() {
         if (gridToCRS == null) {
             gridToCRS = getGridToCRS(0, axes.length);

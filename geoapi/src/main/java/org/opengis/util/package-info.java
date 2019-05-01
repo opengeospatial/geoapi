@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2003-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2003-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -43,13 +43,13 @@
  *   <th class="sep">Factories</th>
  *   <th class="sep">Other</th>
  * </tr><tr><td style="width: 25%; white-space: nowrap">
- * <pre> ISO-19103 object
+ * <pre> ISO 19103 object
  *  ├─ {@linkplain org.opengis.util.RecordSchema}
  *  ├─ {@linkplain org.opengis.util.Type}
  *  │   └─ {@linkplain org.opengis.util.RecordType}
  *  └─ {@linkplain org.opengis.util.Record}</pre>
  * </td><td class="sep" style="width: 25%; white-space: nowrap">
- * <pre> ISO-19103 object
+ * <pre> ISO 19103 object
  *  └─ {@linkplain org.opengis.util.GenericName}
  *      ├─ {@linkplain org.opengis.util.ScopedName}
  *      └─ {@linkplain org.opengis.util.LocalName}

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -70,7 +70,7 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
 
 /**
  * Tests {@linkplain MathTransformFactory#createParameterizedTransform(ParameterValueGroup)
- * parameterized math tranforms} from the {@code org.opengis.referencing.operation} package.
+ * parameterized math transforms} from the {@code org.opengis.referencing.operation} package.
  * Math transform instances are created using the factory given at construction time.
  *
  * <p><b>Skipping tests for unsupported operations:</b><br>

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -63,7 +63,7 @@ public interface Bearing {
     Unit<Angle> getAngleUnit();
 
     /**
-     * Returns the azimuth and (optionnaly) the altitude.
+     * Returns the azimuth and (optionally) the altitude.
      * In this variant of bearing usually used for 2D coordinate systems, the first angle (azimuth)
      * is measured from the first coordinate axis (usually north) in a counterclockwise fashion
      * parallel to the reference surface tangent plane. If two angles are given, the second angle

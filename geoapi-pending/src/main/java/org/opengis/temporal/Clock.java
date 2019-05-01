@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -75,7 +75,7 @@ public interface Clock extends TemporalReferenceSystem {
     ClockTime getUTCReference();
     
     /**
-     * Returns convertion of an UTC time to a time on this clock.
+     * Returns conversion of an UTC time to a time on this clock.
      * 
      * @param uTime the UTC time which will be convert.
      * @return convertion of an UTC time to a time on this clock.

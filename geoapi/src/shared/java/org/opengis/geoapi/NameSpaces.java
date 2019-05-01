@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2018-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -178,7 +178,7 @@ public final class NameSpaces {
                         pkg = prefixesToPackages.get(prefix);
                         if (pkg == null) {
                             if (prefixesToPackages.containsKey(prefix)) {
-                                return null;                        // Type explicitely excluded.
+                                return null;                        // Type explicitly excluded.
                             }
                             pkg = prefix;
                         }

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -125,7 +125,7 @@ public interface SLDVisitor {
     Object visit(CoverageConstraint constraint, Object data );
 
     /**
-     * Called when accept is called on a featrure constraint.
+     * Called when accept is called on a feature constraint.
      *
      * @param constraint The feature constraint to visit
      */

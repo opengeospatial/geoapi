@@ -586,7 +586,7 @@ public class PJFactory implements Factory {
 
         /**
          * Returns the authority for this factory, which is EPSG. This is actually the default
-         * authority when no codespace is explicitely given to a {@code createFoo(String)}
+         * authority when no codespace is explicitly given to a {@code createFoo(String)}
          * method. If a codespace is explicitely given, any authority recognized by the Proj.4
          * library will be accepted.
          */
@@ -1096,17 +1096,17 @@ public class PJFactory implements Factory {
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
          *
-         * @throws FactoryException alway thrown.
+         * @throws FactoryException always thrown.
          */
         @Override
-        public MathTransform createPassThroughTransform(int firstAffectedOrdinate, MathTransform subTransform, int numTrailingOrdinates) throws FactoryException {
+        public MathTransform createPassThroughTransform(int firstAffectedCoordinate, MathTransform subTransform, int numTrailingCoordinates) throws FactoryException {
             throw unsupportedOperation();
         }
 
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
          *
-         * @throws FactoryException alway thrown.
+         * @throws FactoryException always thrown.
          */
         @Override
         @Deprecated
@@ -1117,7 +1117,7 @@ public class PJFactory implements Factory {
         /**
          * Unconditionally throw an exception, since this functionality is not supported yet.
          *
-         * @throws FactoryException alway thrown.
+         * @throws FactoryException always thrown.
          */
         @Override
         public MathTransform createFromWKT(String wkt) throws FactoryException {

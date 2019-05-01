@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -45,7 +45,7 @@ import java.io.Serializable;
  *   <li>not INCLUDE ==&gt; EXCLUDE</li>
  * </ul>
  *
- * The above does imply that the OR opperator can short circuit on encountering NONE.
+ * The above does imply that the OR operator can short circuit on encountering NONE.
  *
  * @author Jody Garnett (Refractions Research, Inc.)
  * @author Martin Desruisseaux (Geomatys)

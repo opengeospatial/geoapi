@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2005-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2005-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -41,12 +41,12 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Provides the {@linkplain GridCoordinates grid coordinate} values for the diametrically opposed
  * corners of the {@linkplain Grid grid}.
- * <p>
- * Remark that both corners are inclusive. Thus the number of elements in the direction of the first
+ *
+ * <p>Remark that both corners are inclusive. Thus the number of elements in the direction of the first
  * axis is <code>{@linkplain #getHigh(int) getHigh}(0) - {@linkplain #getLow(int) getLow}(0) + 1</code>.
  * This is the opposite of Java2D usage where maximal values in {@link Rectangle} (as computed by
  * {@linkplain Rectangle#getMaxX getMaxX()} and {@linkplain Rectangle#getMinY getMaxY()}) are
- * exclusive.
+ * exclusive.</p>
  *
  * @version ISO 19123:2004
  * @author  Wim Koolhoven
@@ -95,13 +95,8 @@ public interface GridEnvelope {
      * @return the low coordinate value at the given dimension, inclusive.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() grid dimension}.
-     *
-     * @see Rectangle#x
-     * @see Rectangle#y
-     *
-     * @since GeoAPI 2.2
      */
-    int getLow(int dimension) throws IndexOutOfBoundsException;
+    long getLow(int dimension) throws IndexOutOfBoundsException;
 
     /**
      * Returns the valid maximum inclusive grid coordinate along the specified dimension. This is a
@@ -115,10 +110,8 @@ public interface GridEnvelope {
      * @return the high coordinate value at the given dimension, <strong>inclusive</strong>.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() grid dimension}.
-     *
-     * @since GeoAPI 2.2
      */
-    int getHigh(int dimension) throws IndexOutOfBoundsException;
+    long getHigh(int dimension) throws IndexOutOfBoundsException;
 
     /**
      * Returns the number of integer grid coordinates along the specified dimension.
@@ -128,15 +121,14 @@ public interface GridEnvelope {
      * {@linkplain #getHigh getHigh}(dimension) - {@linkplain #getLow getLow}(dimension) + 1
      * </code></blockquote>
      *
-     * @param  dimension  the dimension for which to obtain the span.
-     * @return the span at the given dimension.
+     * @param  dimension  the dimension for which to obtain the size.
+     * @return the number of integer grid coordinates along the given dimension.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() grid dimension}.
+     * @throws ArithmeticException if the size is too large for the {@code long} primitive type.
      *
-     * @see Rectangle#width
-     * @see Rectangle#height
-     *
-     * @since GeoAPI 2.2
+     * @see #getLow(int)
+     * @see #getHigh(int)
      */
-    int getSpan(int dimension) throws IndexOutOfBoundsException;
+    long getSize(int dimension) throws IndexOutOfBoundsException;
 }

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2005-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2005-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -65,7 +65,7 @@ public interface SequenceRule {
      * allow for interleaving of feature attribute values.
      * Example: <code>{"x", "-y"}</code>
      *
-     * @return an ordered list of axis names that indicates the scaning direction.
+     * @return an ordered list of axis names that indicates the scanning direction.
      */
     @UML(identifier="scanDirection", obligation=MANDATORY, specification=ISO_19123)
     List<String> getScanDirection();

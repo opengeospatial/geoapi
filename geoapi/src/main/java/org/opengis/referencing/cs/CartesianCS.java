@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -72,7 +72,7 @@ import static org.opengis.annotation.Specification.*;
  * <table class="ogc">
  *   <caption>Example 4: used with an Engineering CRS for a moving platform</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Ahead</td><td>x</td> <td>{@code AxisDirection.valueOf("FORDWARD")}</td>  <td>metre</td></tr>
+ *   <tr><td>Ahead</td><td>x</td> <td>{@code AxisDirection.valueOf("FORWARD")}</td>  <td>metre</td></tr>
  *   <tr><td>Right</td><td>y</td> <td>{@code AxisDirection.valueOf("STARBOARD")}</td> <td>metre</td></tr>
  *   <tr><td>Down</td> <td>z</td> <td>{@link AxisDirection#DOWN}</td>                 <td>metre</td></tr>
  * </table>

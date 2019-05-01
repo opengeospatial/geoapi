@@ -197,7 +197,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
 
     /**
      * Returns the minimum number of times that values for this parameter are required.
-     * The default implementation returns 1, meaning that a value shall alway be supplied
+     * The default implementation returns 1, meaning that a value shall always be supplied
      * (the {@link #getValue()} method never return {@code null}).
      */
     @Override

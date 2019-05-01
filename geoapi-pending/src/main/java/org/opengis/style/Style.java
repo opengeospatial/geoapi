@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * that is stored inside of a map server.</p>
  *
  *
- * <p>A portrayal catalog consits of a set of feature portrayal objects. Many may
+ * <p>A portrayal catalog consists of a set of feature portrayal objects. Many may
  * exist for each feature type that may occur in the dataset. each feature object
  * has assigned a set of portrayal rules.</p>
  *
@@ -94,7 +94,7 @@ public interface Style {
     /**
      * Returns the default specification used if no rule return true.
      * This specification should not use any external functions.
-     * This specification should use at least one spatial attribut.
+     * This specification should use at least one spatial attribute.
      */
     @UML(identifier="defaultPortrayalSpec", obligation=MANDATORY, specification=ISO_19117)
     Symbolizer getDefaultSpecification();

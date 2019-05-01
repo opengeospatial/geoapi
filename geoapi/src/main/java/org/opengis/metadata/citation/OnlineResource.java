@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -125,7 +125,7 @@ public interface OnlineResource {
      *
      * <div class="note"><b>Example:</b>
      * <pre> &lt;GetFeature service="WFS" version="2.0.0"
-     *             outputFormat="application/gml+xml;verson=3.2"
+     *             outputFormat="application/gml+xml;version=3.2"
      *             xmlns="(…snip…)"&gt;
      *     &lt;Query typeNames="Roads"/&gt;
      * &lt;/GetFeature&gt;</pre>

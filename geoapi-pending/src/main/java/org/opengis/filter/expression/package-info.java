@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -44,7 +44,7 @@
  * {@link org.opengis.filter.expression.PropertyName}, {@link org.opengis.filter.expression.Literal}
  * and {@link org.opengis.filter.expression.Function}. They all belong to the substitution group
  * expression which means that any of them can be used wherever an expression is called for. In addition,
- * the combinaison of these elements are themselves expressions and can be used wherever an expression is
+ * the combination of these elements are themselves expressions and can be used wherever an expression is
  * called for.</p>
  *
  * <h3>Arithmetic operators</h3>

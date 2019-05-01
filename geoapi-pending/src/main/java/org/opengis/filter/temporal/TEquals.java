@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -35,7 +35,7 @@ import org.opengis.annotation.XmlElement;
 
 /**
  * Concrete {@linkplain BinaryTemporalOperator binary temporal operator} that evaluates to
- * {@code true} if the the first expression is equald to the second.
+ * {@code true} if the the first expression is equals to the second.
  * 
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
  * @author Johann Sorel (Geomatys)

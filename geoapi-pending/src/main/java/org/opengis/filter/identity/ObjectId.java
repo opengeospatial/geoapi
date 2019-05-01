@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -37,7 +37,7 @@ import org.opengis.annotation.XmlElement;
 /**
  * ObjectId refered to by Filter 1.1 specification (as an example).
  * <p>
- * Although ObjectId is refered to as an example we are making explicit use of it
+ * Although ObjectId is referred to as an example we are making explicit use of it
  * here in order to show identification being defined with a long (as with several
  * popular object relational mappers).
  * </p>
@@ -56,7 +56,7 @@ public interface ObjectId extends Identifier {
     Long getID();
 
     /**
-     * Evaluates the identifer value against the given Object.
+     * Evaluates the identifier value against the given Object.
      *
      * @param obj Object to be tested.
      *

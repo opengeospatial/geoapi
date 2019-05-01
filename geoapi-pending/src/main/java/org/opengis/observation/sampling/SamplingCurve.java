@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -52,9 +52,9 @@ import static org.opengis.annotation.Obligation.*;
 public interface SamplingCurve extends SpatiallyExtensiveSamplingFeature {
 
     /**
-     * Lenght of the curve.
+     * Length of the curve.
      */
-    @UML(identifier="lenght", obligation=OPTIONAL, specification=OGC_07022)
+    @UML(identifier="length", obligation=OPTIONAL, specification=OGC_07022)
     Measure getLength();
 
     /**

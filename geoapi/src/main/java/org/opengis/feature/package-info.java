@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2014-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2014-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -45,7 +45,7 @@
  *       (similar to {@link java.lang.reflect.Method} in Java).</li>
  * </ul>
  *
- * Features containing only attributes constrained to the [1 … 1] cardinality and said
+ * Features containing only attributes constrained to the [1 … 1] multiplicity and said
  * {@linkplain org.opengis.feature.FeatureType#isSimple() simple}.
  * Such simple features can also be represented by {@link org.opengis.util.Record} instances.
  *

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -35,8 +35,7 @@ import org.opengis.geometry.DirectPosition;  // For Javadoc
 
 
 /**
- * The base class for exceptions thrown when a quantity can't be evaluated.
- * This exception is usually invoked by a
+ * Thrown when a quantity can not be evaluated. This exception is usually thrown by a
  * <code>Coverage.{@linkplain Coverage#evaluate(DirectPosition, double[]) evaluate}(…)</code>
  * method, for example when a point is outside the coverage.
  *
@@ -95,8 +94,6 @@ public class CannotEvaluateException extends RuntimeException {
      * details.
      *
      * @return the coverage, or {@code null} if unknown.
-     *
-     * @since GeoAPÏ 2.2
      */
     public Coverage getCoverage() {
         return coverage;
@@ -105,9 +102,7 @@ public class CannotEvaluateException extends RuntimeException {
     /**
      * Sets the coverage.
      *
-     * @param coverage The coverage, or {@code null} if unknown.
-     *
-     * @since GeoAPÏ 2.2
+     * @param  coverage  the coverage, or {@code null} if unknown.
      */
     public void setCoverage(final Coverage coverage) {
         this.coverage = coverage;

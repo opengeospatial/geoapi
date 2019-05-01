@@ -284,9 +284,9 @@ public class NetcdfTransformFactory implements MathTransformFactory {
      * Not yet implemented.
      */
     @Override
-    public MathTransform createPassThroughTransform(final int firstAffectedOrdinate,
+    public MathTransform createPassThroughTransform(final int firstAffectedCoordinate,
                                                     final MathTransform subTransform,
-                                                    final int numTrailingOrdinates)
+                                                    final int numTrailingCoordinates)
             throws FactoryException
     {
         throw new FactoryException("Not supported yet.");

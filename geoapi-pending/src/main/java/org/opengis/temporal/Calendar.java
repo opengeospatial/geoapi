@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -66,7 +66,7 @@ public interface Calendar extends TemporalReferenceSystem {
      * {@linkplain JulianDate julian date}.
      *
      * @param date reference date which will be convert.
-     * @return convertion of a {@linkplain CalendarDate date} in this calendar to a
+     * @return conversion of a {@linkplain CalendarDate date} in this calendar to a
      * {@linkplain JulianDate julian date}.
      */
     @UML(identifier="dateTrans", obligation=MANDATORY, specification=ISO_19108)

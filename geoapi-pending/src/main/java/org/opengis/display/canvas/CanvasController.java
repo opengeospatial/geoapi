@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -78,7 +78,7 @@ public interface CanvasController {
      * Graphic data will be projected to this CRS before to be display.
      *
      * @param  crs The new objective Coordinate Reference System.
-     * @throws TransformException if at least one graphic primivite can not be transformed to
+     * @throws TransformException if at least one graphic primitive can not be transformed to
      *         the specified CRS, or if the given CRS can not be accepted for an other reason.
      *
      * @see CanvasState#getObjectiveCRS

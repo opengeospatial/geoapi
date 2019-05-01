@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -88,7 +88,7 @@ public interface Record {
      * @see RecordType#getMemberTypes()
      *
      * @departure generalization
-     *   Figure 15 in ISO 19103:2005 specifies a cardinality of 1. However, this seems to contradict
+     *   Figure 15 in ISO 19103:2005 specifies a multiplicity of 1. However, this seems to contradict
      *   the semantics of the {@code locate(name)} and {@code RecordType.getMemberTypes()} methods.
      */
     @UML(identifier="memberValue", obligation=MANDATORY, specification=ISO_19103)

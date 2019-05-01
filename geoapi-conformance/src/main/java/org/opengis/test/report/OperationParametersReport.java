@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -528,7 +528,7 @@ public class OperationParametersReport extends Report {
         for (final Row row : rows) {
             final String category = row.category;
             /*
-             * If begining a new section in the table, print the category
+             * If beginning a new section in the table, print the category
              * in bold characters. The column headers will be printed below.
              */
             if (category != null && !category.equals(previous)) {

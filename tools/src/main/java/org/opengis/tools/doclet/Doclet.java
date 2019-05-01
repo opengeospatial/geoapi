@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -44,6 +44,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.SimpleFileVisitor;
+import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import javax.tools.Diagnostic;
 import jdk.javadoc.doclet.Reporter;
@@ -242,7 +243,7 @@ public final class Doclet extends StandardDoclet {
                 final String filename = file.getFileName().toString();
                 if (!filename.startsWith(".") && !EXCLUDES.contains(filename)) {
                     final Path target = outputDirectory.resolve(inputDirectory.relativize(file));
-                    Files.copy(file, target);
+                    Files.copy(file, target, StandardCopyOption.REPLACE_EXISTING);
                 }
                 return FileVisitResult.CONTINUE;
             }

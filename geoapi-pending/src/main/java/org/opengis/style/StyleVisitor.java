@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -67,7 +67,7 @@ public interface StyleVisitor {
     Object visit(Style style, Object data);
 
     /**
-     * Called when accept is called on a FetaureTypeStyle
+     * Called when accept is called on a FeatureTypeStyle
      *
      * @param style the feature type styler to visit
      */

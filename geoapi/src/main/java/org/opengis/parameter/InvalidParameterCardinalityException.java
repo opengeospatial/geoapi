@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -42,8 +42,12 @@ package org.opengis.parameter;
  * method, or indirectly during the add or remove operations applied on the list returned by
  * {@link ParameterValueGroup#values()}.</p>
  *
- * <div class="note"><b>Note:</b>
- * This exception is of kind {@code IllegalStateException} instead than {@code IllegalArgumentException}
+ * <div class="note"><b>Note 1:</b>
+ * the <cite>cardinality</cite> is the number of elements in a set. Contrast with <cite>multiplicity</cite>,
+ * which is the range of possible cardinalities a set can hold.</div>
+ *
+ * <div class="note"><b>Note 2:</b>
+ * this exception is of kind {@code IllegalStateException} instead than {@code IllegalArgumentException}
  * because it is not caused by a bad argument. It is rather a consequence of an {@link ParameterValueGroup}
  * being "full".</div>
  *

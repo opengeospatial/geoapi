@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -82,7 +82,7 @@ public interface StyleFactory {
      *            Property name to categorize, or use "Raster"
      * @param mapping
      *            Defined as a series of Expressions
-     * @return ColorMap wrapped around the "Cateogize" function
+     * @return ColorMap wrapped around the "Categorize" function
      */
     ColorMap colorMap(Expression propertyName, Expression... mapping);
 
@@ -158,7 +158,7 @@ public interface StyleFactory {
      * @param  geometry  expression used to produce the Geometry to renderer; often a PropertyName
      * @param  unit      unit of measure used to define this symbolizer
      * @param  stroke    definition of how to stroke linework
-     * @param  offset    offset used to position line relative to origional
+     * @param  offset    offset used to position line relative to original
      * @return newly created Line Symbolizer
      */
     LineSymbolizer lineSymbolizer(String name, Expression geometry,
@@ -222,7 +222,7 @@ public interface StyleFactory {
      * @param description
      *            description of this symbolizer; human readable
      * @param unit
-     *            unit of measure to use when interpretting this symbolizer
+     *            unit of measure to use when interpreting this symbolizer
      * @param extensionName
      *            extension name used to identify the vendor specific extension being controlled
      * @param parameters
@@ -315,7 +315,7 @@ public interface StyleFactory {
      * @param  unit         unit of measure used to interpret symbolizer sizes
      * @param  label        text displayed for this symbolizer
      * @param  font         font selected to renderer this symbolizer
-     * @param  placement    placement information relative to orgiginal geometry
+     * @param  placement    placement information relative to original geometry
      * @param  halo         definition of a halo or outline surrounding the symbolizer
      * @param  fill         definition of fill used
      * @return newly created TextSymbolizer

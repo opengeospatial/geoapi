@@ -13,7 +13,7 @@ This is useful, for example, when code needs to marshall data using the name def
 ==== Java example
 
 At runtime, the annotation of a reference to a GeoAPI interface can be obtained as follows,
-taking as an example the method `getTitle()` in the `Citation` type:
+taking as an example the method `getTitle()` in the `Citation` interface:
 
 [source,java]
 ----

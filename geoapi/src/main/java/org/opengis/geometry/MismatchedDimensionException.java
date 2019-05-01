@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -34,7 +34,9 @@ package org.opengis.geometry;
 
 /**
  * Indicates that an operation cannot be completed properly because
- * of a mismatch in the dimensions of object attributes.
+ * of a mismatch in the dimensions of an argument given to a method.
+ * For example this exception may be thrown if a method expects a two-dimensional {@link DirectPosition},
+ * but the {@linkplain DirectPosition#getDimension() dimension} of a given position is 3.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

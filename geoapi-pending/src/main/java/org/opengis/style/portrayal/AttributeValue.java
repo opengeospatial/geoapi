@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The AttributValue holds the value for an associated AttributeDefinition.
+ * The AttributeValue holds the value for an associated AttributeDefinition.
  *
  * @version <A HREF="http://www.isotc211.org">ISO 19117 Portrayal</A>
  * @author Open Geospatial Consortium
@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
 public interface AttributeValue {
     /**
      * Gets the value for the associated AttributeDefinition.
-     * This objact shall have the same Class as defined in the AttributeDefinition.
+     * This object shall have the same Class as defined in the AttributeDefinition.
      */
     @UML(identifier="value", obligation=MANDATORY, specification=ISO_19117)
     Object getValue();
@@ -58,6 +58,6 @@ public interface AttributeValue {
     /**
      * Gets the associated AttributeDefinition.
      */
-    @UML(identifier="attributType", obligation=MANDATORY, specification=ISO_19117)
+    @UML(identifier="attributeType", obligation=MANDATORY, specification=ISO_19117)
     AttributeDefinition getDefinition();
 }

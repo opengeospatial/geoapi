@@ -34,7 +34,7 @@ public class SimpleGridCoordinates implements GridCoordinates, Serializable {
     /**
      * The grid coordinates.
      */
-    protected final int[] coordinates;
+    protected final long[] coordinates;
 
     /**
      * Creates a grid coordinates of the specified dimension.
@@ -43,7 +43,7 @@ public class SimpleGridCoordinates implements GridCoordinates, Serializable {
      * @param  dimension  the number of dimension.
      */
     public SimpleGridCoordinates(final int dimension) {
-        coordinates = new int[dimension];
+        coordinates = new long[dimension];
     }
 
     /**
@@ -51,7 +51,7 @@ public class SimpleGridCoordinates implements GridCoordinates, Serializable {
      *
      * @param coordinates  the grid coordinates to copy.
      */
-    public SimpleGridCoordinates(final int[] coordinates) {
+    public SimpleGridCoordinates(final long[] coordinates) {
         this.coordinates = coordinates.clone();
     }
 
@@ -62,7 +62,7 @@ public class SimpleGridCoordinates implements GridCoordinates, Serializable {
      * @param lower        index of the first value to copy, inclusive.
      * @param upper        index of the last value to copy, exclusive.
      */
-    public SimpleGridCoordinates(final int[] coordinates, final int lower, final int upper) {
+    public SimpleGridCoordinates(final long[] coordinates, final int lower, final int upper) {
         this.coordinates = Arrays.copyOfRange(coordinates, lower, upper);
     }
 
@@ -86,7 +86,7 @@ public class SimpleGridCoordinates implements GridCoordinates, Serializable {
      *         back in this {@code SimpleGridCoordinates} object.
      */
     @Override
-    public int[] getCoordinateValues() {
+    public long[] getCoordinateValues() {
         return coordinates.clone();
     }
 
@@ -100,7 +100,7 @@ public class SimpleGridCoordinates implements GridCoordinates, Serializable {
      * @throws ArrayIndexOutOfBoundsException if the specified dimension is out of bounds.
      */
     @Override
-    public int getCoordinateValue(final int dimension) throws ArrayIndexOutOfBoundsException {
+    public long getCoordinateValue(final int dimension) throws ArrayIndexOutOfBoundsException {
         return coordinates[dimension];
     }
 
@@ -112,7 +112,7 @@ public class SimpleGridCoordinates implements GridCoordinates, Serializable {
      * @throws ArrayIndexOutOfBoundsException if the specified dimension is out of bounds.
      */
     @Override
-    public void setCoordinateValue(final int dimension, final int value) throws ArrayIndexOutOfBoundsException {
+    public void setCoordinateValue(final int dimension, final long value) throws ArrayIndexOutOfBoundsException {
         coordinates[dimension] = value;
     }
 

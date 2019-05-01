@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2012-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2012-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -110,7 +110,7 @@ public class MetadataBaseValidator extends MetadataValidator {
         validate(object.getMetadataExtensionInfo());
 
         final Collection<? extends Identification> identifications = object.getIdentificationInfo();
-        mandatory("Metadata: shall have an identication information.",
+        mandatory("Metadata: shall have an identification information.",
                 (identifications != null && identifications.isEmpty()) ? null : identifications);
         validate(identifications);
 

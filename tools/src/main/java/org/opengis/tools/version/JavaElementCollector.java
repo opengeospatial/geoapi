@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -102,7 +102,7 @@ final class JavaElementCollector {
      * dependencies.
      *
      * @param jarFiles The JAR files which define the API.
-     * @param hiearchy An optional map in which to store type hierarchy.
+     * @param hierarchy An optional map in which to store type hierarchy.
      *        If non-null, this map will be filled with (type, parent) entries.
      */
     private JavaElementCollector(final List<File> jarFiles, final Map<String,String> hierarchy)

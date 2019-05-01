@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Alexander Petkov
  * @author Martin Desruisseaux (IRD)
  * @since   2.3
- * @version 4.0 
+ * @version 4.0
  */
 @UML(identifier="TM_IndeterminateValue", specification=ISO_19108)
 public final class IndeterminateValue extends CodeList<IndeterminateValue> {
@@ -62,26 +62,26 @@ public final class IndeterminateValue extends CodeList<IndeterminateValue> {
     private static final List<IndeterminateValue> VALUES = new ArrayList<IndeterminateValue>(4);
 
     /**
-     * Shall be used with the parent class {@link TemporalPosition} to indicate that 
+     * Shall be used with the parent class {@link TemporalPosition} to indicate that
      * not specific value for temporal position is provided.
      */
     public static final IndeterminateValue UNKNOWN = new IndeterminateValue("UNKNOWN");
-    
+
     /**
-     * Shall be used with any subtype of {@link TemporalPosition} to indicate that 
+     * Shall be used with any subtype of {@link TemporalPosition} to indicate that
      * the specified value shall be replaced with the current temporal position whenever the value is accessed.
      */
     public static final IndeterminateValue NOW = new IndeterminateValue("NOW");
-    
+
     /**
-     * Shall be used with any subtype of {@link TemporalPosition} to indicate that the actual 
-     * temporal position is unknow, but it is know to be before the specified value.
+     * Shall be used with any subtype of {@link TemporalPosition} to indicate that the actual
+     * temporal position is unknown, but it is known to be before the specified value.
      */
     public static final IndeterminateValue BEFORE = new IndeterminateValue("BEFORE");
-    
+
     /**
-     * Shall be used with any subtype of {@link TemporalPosition} to indicate that the actual 
-     * temporal position is unknow, but it is know to be after the specified value.
+     * Shall be used with any subtype of {@link TemporalPosition} to indicate that the actual
+     * temporal position is unknown, but it is known to be after the specified value.
      */
     public static final IndeterminateValue AFTER = new IndeterminateValue("AFTER");
 

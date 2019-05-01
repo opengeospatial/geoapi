@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2005-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2005-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -68,7 +68,7 @@ public interface GridCoordinates {
      *         back in this {@code GridCoordinates} object.
      */
     @UML(identifier="coordValues", obligation=MANDATORY, specification=ISO_19123)
-    int[] getCoordinateValues();
+    long[] getCoordinateValues();
 
     /**
      * Returns the coordinate value at the specified dimension. This method is equivalent to
@@ -80,7 +80,7 @@ public interface GridCoordinates {
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension grid dimension}.
      */
-    int getCoordinateValue(int dimension) throws IndexOutOfBoundsException;
+    long getCoordinateValue(int dimension) throws IndexOutOfBoundsException;
 
     /**
      * Sets the coordinate value at the specified dimension (optional operation).
@@ -91,6 +91,6 @@ public interface GridCoordinates {
      *         than the {@linkplain #getDimension grid dimension}.
      * @throws UnsupportedOperationException if this grid coordinates is not modifiable.
      */
-    void setCoordinateValue(int dimension, int value)
+    void setCoordinateValue(int dimension, long value)
             throws IndexOutOfBoundsException, UnsupportedOperationException;
 }

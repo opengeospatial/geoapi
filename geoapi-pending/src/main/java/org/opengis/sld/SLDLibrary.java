@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -60,7 +60,7 @@ public interface SLDLibrary {
     OnlineResource getOnlineResource();
 
     /**
-     * This is a convinient method for the one using this interface.
+     * This is a convenient method for the one using this interface.
      * If we only provide the getOnlineResource method the user would be stuck
      * because he might not no how to parse correctly the given file.
      * This method must be implemented correctly and return the SLD object resulting

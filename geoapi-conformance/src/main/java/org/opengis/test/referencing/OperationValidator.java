@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -114,7 +114,7 @@ public class OperationValidator extends ReferencingValidator {
         }
         final int sourceDimension = transform.getSourceDimensions();
         for (int i : index) {
-            assertBetween("PassThroughOperation: invalid modified ordinate index.", 0, sourceDimension-1, i);
+            assertBetween("PassThroughOperation: invalid modified coordinate index.", 0, sourceDimension-1, i);
         }
     }
 

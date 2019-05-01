@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -206,7 +206,7 @@ public final class Version implements Comparable<Version> {
      * Compares this version with the given version for equality.
      *
      * @param  other The other version to compare with this version.
-     * @return a negative number if the other version preceed this version,
+     * @return a negative number if the other version precedes this version,
      *         a positive number if it follows, or 0 if equals.
      */
     @Override

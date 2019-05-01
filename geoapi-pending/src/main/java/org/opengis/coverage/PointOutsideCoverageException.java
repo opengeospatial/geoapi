@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,6 +31,7 @@
  */
 package org.opengis.coverage;
 
+import java.util.Collection;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
 
@@ -38,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Thrown when a {@link Coverage#evaluate(DirectPosition, java.util.Collection) evaluate} method
+ * Thrown when a {@link Coverage#evaluate(DirectPosition, Collection) evaluate} method
  * is invoked for a location outside the domain of the coverage.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
@@ -95,8 +96,6 @@ public class PointOutsideCoverageException extends CannotEvaluateException {
      * which is outside the domain of the {@linkplain #getCoverage() coverage}.
      *
      * @return the position outside the coverage, or {@code null} if unknown.
-     *
-     * @since GeoAPI 2.2
      */
     public DirectPosition getOffendingLocation() {
         return offendingLocation;
@@ -106,9 +105,7 @@ public class PointOutsideCoverageException extends CannotEvaluateException {
      * Sets the {@linkplain DirectPosition direct position}
      * which is outside the domain of the {@linkplain #getCoverage() coverage}.
      *
-     * @param location The position outside the coverage, or {@code null} if unknown.
-     *
-     * @since GeoAPI 2.2
+     * @param  location  the position outside the coverage, or {@code null} if unknown.
      */
     public void setOffendingLocation(final DirectPosition location) {
         this.offendingLocation = location;

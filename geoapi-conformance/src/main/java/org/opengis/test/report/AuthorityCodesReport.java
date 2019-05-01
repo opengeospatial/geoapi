@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -102,7 +102,7 @@ public class AuthorityCodesReport extends Report {
      *
      * <p>Content of each {@code Row} instance is written in the following order:</p>
      * <ol>
-     *   <li>{@link #annotation} if explicitely set (the default is none).</li>
+     *   <li>{@link #annotation} if explicitly set (the default is none).</li>
      *   <li>{@link #code}</li>
      *   <li>{@link #name}</li>
      *   <li>{@link #remark}</li>

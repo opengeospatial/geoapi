@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -58,7 +58,7 @@ public interface Mark extends GraphicalSymbol {
      * if the WellKnowname is null, check the ExternalMark before using the default square
      * symbol.
      *
-     * Both WellKnowName and ExternalMark canot be set, but both can be null.
+     * Both WellKnowName and ExternalMark cannot be set, but both can be null.
      * If none are set then the default square symbol is used.
      *
      * @return Expression or null

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2018-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -80,6 +80,23 @@ public enum DocumentationStyle {
     };
 
     /**
+     * Known typos in XSD files. Values at even indexes are the typos
+     * and values at odd indexes are the fixes.
+     *
+     * @see <a href="https://github.com/opengeospatial/geoapi/pull/42">Issue #42</a>
+     */
+    private static final String[] TYPOS = {
+        "avaialble",    "available",
+        "desimination", "dissemination",
+        "identifer",    "identifier",
+        "occurance",    "occurrence",
+        "occurence",    "occurrence",
+        "occured",      "occurred",
+        "recieve",      "receive",
+        "temportal",    "temporal"
+    };
+
+    /**
      * Returns the index {@literal >=} {@code from} of the first non-whitespace character.
      */
     private static int skipLeadingWhitespaces(final String doc, int from) {
@@ -143,6 +160,18 @@ public enum DocumentationStyle {
         int i = buffer.indexOf(" NOTE: ");
         if (i > 0 && buffer.charAt(i-1) != '.') {
             buffer.insert(i, '.');
+        }
+        /*
+         * Fix typos.
+         */
+        for (int t=0; t<TYPOS.length;) {
+            final String typo = TYPOS[t++];
+            final String fix  = TYPOS[t++];
+            i = buffer.indexOf(typo);
+            while (i >= 0) {
+                buffer.replace(i, i + typo.length(), fix);
+                i = buffer.indexOf(typo, i + fix.length());
+            }
         }
         return buffer.toString();
     }

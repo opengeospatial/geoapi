@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -45,7 +45,7 @@ import org.opengis.annotation.XmlElement;
  * <p>
  * It should be noted that content of getValue() may be persisted with with
  * XML based technologies. As an example a geoapi Geometry may be written out
- * uding GML3, while a JTS Geometry may be written out using GML2. You should
+ * using GML3, while a JTS Geometry may be written out using GML2. You should
  * not assume that the same instance will be made available to all callers,
  * please limit your self to pure data objects and don't use Literal to pass
  * state or operations between systems.

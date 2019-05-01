@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A portrayal operation holds the details for a particular portrayal operation.
- * It declares a set of formal parameters that are neeed when invoking the
+ * It declares a set of formal parameters that are need when invoking the
  * underlying rendering functions.
  *
  * <p>They should be one instance of portrayal specification class for each operation

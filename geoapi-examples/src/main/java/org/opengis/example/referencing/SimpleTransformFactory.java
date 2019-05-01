@@ -42,7 +42,7 @@ import org.opengis.referencing.operation.SingleOperation;
 public class SimpleTransformFactory implements MathTransformFactory {
     /**
      * The value to be returned by {@link #getVendor()}.
-     * Implementors should replace {@code "GeoAPI-example"} by their name.
+     * Implementations should replace {@code "GeoAPI-example"} by their name.
      */
     private static final Citation VENDOR = new SimpleCitation("GeoAPI-example");
 
@@ -164,7 +164,7 @@ public class SimpleTransformFactory implements MathTransformFactory {
      * are not implemented by this simple factory.
      */
     @Override
-    public MathTransform createPassThroughTransform(int firstAffectedOrdinate, MathTransform subTransform, int numTrailingOrdinates) throws FactoryException {
+    public MathTransform createPassThroughTransform(int firstAffectedCoordinate, MathTransform subTransform, int numTrailingCoordinates) throws FactoryException {
         throw new FactoryException("Pass through transforms are not implemented.");
     }
 

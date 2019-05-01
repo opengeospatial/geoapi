@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -118,7 +118,7 @@ public final class Classification extends CodeList<Classification> {
     public static final Classification PROTECTED = new Classification("PROTECTED");
 
     /**
-     * Desimination limited by designating body.
+     * Dissemination limited by designating body.
      *
      * @since 3.1
      */

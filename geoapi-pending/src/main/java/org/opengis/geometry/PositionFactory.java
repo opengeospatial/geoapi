@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2007-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2007-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -92,7 +92,7 @@ public interface PositionFactory {
     Position createPosition(Position position);
 
     /**
-     * Creates a (possibiliy optimized) list for positions. The list is initially
+     * Creates a (possibly optimized) list for positions. The list is initially
      * empty. New direct positions can be stored using the {@link List#add} method.
      */
     PointArray createPointArray();

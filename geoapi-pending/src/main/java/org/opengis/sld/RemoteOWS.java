@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2008-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2008-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -35,7 +35,7 @@ import org.opengis.annotation.XmlElement;
 import org.opengis.metadata.citation.OnlineResource;
 
 /**
- * OGC Web Service. Information about the remove serveur.
+ * OGC Web Service. Information about the remove server.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/sld">Implementation specification 1.1.0</A>
  * @author Open Geospatial Consortium

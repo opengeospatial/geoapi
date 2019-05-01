@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * This geometry is mainly used as a transition curve between curves of type straight
  * line/circular arc or circular arc/circular arc. With this curve type it is possible
- * to achieve a C2-continous transition between the above mentioned curve types. One
+ * to achieve a C2-continuous transition between the above mentioned curve types. One
  * formula for the clothoid is <var>A</var>² = <var>R</var>×<var>t</var>
  * where <var>A</var> is a constant, <var>R</var> is the varying radius of curvature along
  * the curve and <var>t</var> is the length along the curve and given in the Fresnel integrals.

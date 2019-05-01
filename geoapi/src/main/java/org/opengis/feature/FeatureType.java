@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -106,7 +106,7 @@ public interface FeatureType extends IdentifiedType {
     boolean isAbstract();
 
     /**
-     * Returns {@code true} if this feature type contains only attributes constrained to the [1 … 1] cardinality,
+     * Returns {@code true} if this feature type contains only attributes constrained to the [1 … 1] multiplicity,
      * or operations (no feature association).
      * Such feature types can be handled as a {@link org.opengis.util.RecordType} instances.
      *

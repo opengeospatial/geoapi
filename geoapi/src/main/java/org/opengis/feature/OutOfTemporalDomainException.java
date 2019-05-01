@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2014-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -29,49 +29,46 @@
  *    Title to copyright in this software and any associated documentation will at all
  *    times remain with copyright holders.
  */
-package org.opengis.coverage.grid;
-
-import org.opengis.annotation.UML;
-import static org.opengis.annotation.Specification.*;
+package org.opengis.feature;
 
 
 /**
- * Thrown when a {@linkplain GridRange grid range} is out of
- * {@linkplain GridCoverage grid coverage} bounds.
+ * Thrown when the temporal position given to a dynamic attribute {@link DynamicAttribute#valuesAt valuesAt}
+ * method is outside the period of validity.
  *
- * <div class="warning"><b>Warning — this class will change</b><br>
- * Current API is derived from OGC <a href="http://www.opengis.org/docs/01-004.pdf">Grid Coverages Implementation specification 1.0</a>.
- * We plan to replace it by new interfaces derived from ISO 19123 (<cite>Schema for coverage geometry
- * and functions</cite>). Current interfaces should be considered as legacy and are included in this
- * distribution only because they were part of GeoAPI 1.0 release. We will try to preserve as much
- * compatibility as possible, but no migration plan has been determined yet.
- * </div>
- *
- * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>
- * @author  Martin Desruisseaux (IRD)
- * @since   GeoAPI 1.0
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.1
+ * @since   3.1
  */
-@UML(identifier="GC_InvalidRange", specification=OGC_01004)
-public class InvalidRangeException extends IllegalArgumentException {
+public class OutOfTemporalDomainException extends IllegalStateException {
     /**
-     * Serial number for interoperability with different versions.
+     * Serial number for inter-operability with different versions.
      */
-    private static final long serialVersionUID = 3165512862939920847L;
+    private static final long serialVersionUID = 9093961373831759766L;
 
     /**
      * Creates an exception with no message.
      */
-    public InvalidRangeException() {
+    public OutOfTemporalDomainException() {
         super();
     }
 
     /**
      * Creates an exception with the specified message.
      *
-     * @param  message  the detail message. The detail message is saved for
-     *         later retrieval by the {@link #getMessage()} method.
+     * @param message  the detail message, saved for later retrieval by the {@link #getMessage()} method.
      */
-    public InvalidRangeException(String message) {
+    public OutOfTemporalDomainException(final String message) {
         super(message);
+    }
+
+    /**
+     * Creates an exception with the specified message and cause.
+     *
+     * @param message  the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param cause    the cause, saved for later retrieval by the {@link #getCause()} method.
+     */
+    public OutOfTemporalDomainException(final String message, final Throwable cause) {
+        super(message, cause);
     }
 }

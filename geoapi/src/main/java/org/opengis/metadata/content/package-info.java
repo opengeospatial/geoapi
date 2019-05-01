@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -47,7 +47,7 @@
  *   <th>Class hierarchy</th>
  *   <th class="sep">Aggregation hierarchy</th>
  * </tr><tr><td class="hierarchy">
- * <pre> ISO-19115 object
+ * <pre> ISO 19115 object
  *  ├─ {@linkplain org.opengis.metadata.content.ContentInformation} «abstract»
  *  │   ├─ FeatureCatalogue
  *  │   ├─ {@linkplain org.opengis.metadata.content.FeatureCatalogueDescription}

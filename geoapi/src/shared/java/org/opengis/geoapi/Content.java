@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -48,7 +48,7 @@ import java.lang.reflect.WildcardType;
  */
 public enum Content {
     /**
-     * All GeoAPI interfaces, in approximative dependency order.
+     * All GeoAPI interfaces, in approximate dependency order.
      * It is not possible to list the interfaces in strict dependency order because of circular dependencies.
      * But this list nevertheless tries to provide such order in a "best effort" basis.
      */
@@ -87,6 +87,7 @@ public enum Content {
                org.opengis.parameter               .ParameterDescriptorGroup            .class,
                org.opengis.parameter               .ParameterValueGroup                 .class,
                org.opengis.temporal                .TemporalPrimitive                   .class,
+               org.opengis.temporal                .TemporalPosition                    .class,
                org.opengis.temporal                .Duration                            .class,
                org.opengis.temporal                .PeriodDuration                      .class,
                org.opengis.metadata.extent         .GeographicExtent                    .class,
@@ -261,6 +262,8 @@ public enum Content {
                org.opengis.feature                 .Property                            .class,
                org.opengis.feature                 .AttributeType                       .class,
                org.opengis.feature                 .Attribute                           .class,
+               org.opengis.feature                 .DynamicAttributeType                .class,
+               org.opengis.feature                 .DynamicAttribute                    .class,
                org.opengis.feature                 .FeatureType                         .class,
                org.opengis.feature                 .Feature                             .class,
                org.opengis.feature                 .FeatureAssociation                  .class,
@@ -361,6 +364,7 @@ public enum Content {
                org.opengis.feature               .FeatureInstantiationException        .class,
                org.opengis.feature               .FeatureOperationException            .class,
                org.opengis.feature               .PropertyNotFoundException            .class,
+               org.opengis.feature               .OutOfTemporalDomainException         .class,
                org.opengis.feature               .InvalidPropertyValueException        .class,
                org.opengis.feature               .MultiValuedPropertyException         .class),
 

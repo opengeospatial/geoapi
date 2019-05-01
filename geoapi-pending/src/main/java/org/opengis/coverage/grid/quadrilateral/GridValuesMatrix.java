@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2005-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2005-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -37,6 +37,7 @@ import org.opengis.annotation.UML;
 import org.opengis.coverage.grid.GridEnvelope;
 import org.opengis.coverage.grid.GridPoint;
 import org.opengis.coverage.grid.SequenceRule;
+import org.opengis.coverage.grid.GridCoordinates;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -62,7 +63,7 @@ public interface GridValuesMatrix {
      * the {@linkplain #getExtent extent}.
      *
      * @todo Comment (Wim): Both extracting an image for display and operation chaining require
-     *       memory effiecient and fast access to the data. How should the data be structured per
+     *       memory efficient and fast access to the data. How should the data be structured per
      *       record? Some use cases:
      *       <table border="1" summary="Use cases">
      *         <tr><td>DTM<td>double<td>List&lt;double&gt;

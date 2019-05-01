@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -101,7 +101,7 @@ public interface PointGrid {
      *
      * @param  row The row index from 0 inclusive to {@link #height} exclusive.
      * @param  column The column index from 0 inclusive to {@link #width} exclusive.
-     * @param  dest An optionnaly pre-allocated direct position.
+     * @param  dest An optionally pre-allocated direct position.
      * @return the {@code dest} argument, or a new object if {@code dest} was null.
      * @throws IndexOutOfBoundsException if an index is out of bounds.
      */

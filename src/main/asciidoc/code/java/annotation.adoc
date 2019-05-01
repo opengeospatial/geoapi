@@ -1,0 +1,35 @@
+[NOTE]
+====
+All classes, interfaces and enumeration types in GeoAPI which are based on a published standard
+shall have an `@UML` annotation documenting the standard in which is defined the type,
+the original name of the element, and the version of the standard if different than the dated normative reference.
+As an example, the annotation label for the `ProjectedCRS` interface appears in the source code as below
+(except the classifier which is implicit):
+
+[source,java]
+----
+@Classifier(Stereotype.TYPE)
+@UML(identifier = "ProjectedCRS", specification = ISO_19111)
+public interface ProjectedCRS extends GeneralDerivedCRS {
+    ...
+}
+----
+
+which specifies that the type was defined in ISO 19111 standard as a type also named `ProjectedCRS`.
+The `@Classifier` annotation is omitted when the value is `Stereotype.TYPE`, which is the most common case.
+In addition, that interface contains the method `getCoordinateSystem()` with the following annotation:
+
+[source,java]
+----
+@UML(identifier    = "coordinateSystem",
+     obligation    = MANDATORY,
+     specification = ISO_19111)
+CartesianCS getCoordinateSystem();
+----
+
+which indicates that the method was defined in the same ISO 19111 specification
+but had the name `coordinateSystem` in the standard rather than the `getCoordinateSystem` name used by GeoAPI,
+and that a non-null value must be provided by every `ProjectedCRS` instance.
+
+<<UML-introspection,An example in annex>> shows how these annotations are available at runtime by introspection.
+====

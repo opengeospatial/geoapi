@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -64,7 +64,7 @@ import static org.opengis.annotation.Specification.*;
 public interface ImageCRS extends SingleCRS {
     /**
      * Returns the affine coordinate system, which shall be {@linkplain AffineCS affine} or
-     * {@linkplain CartesianCS Cartsian}.
+     * {@linkplain CartesianCS Cartesian}.
      *
      * @return the affine or Cartesian coordinate system.
      */

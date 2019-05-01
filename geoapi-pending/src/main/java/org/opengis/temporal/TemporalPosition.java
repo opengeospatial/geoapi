@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -63,7 +63,7 @@ public interface TemporalPosition {
     /**
      * Returns the association which connect the {@link TemporalPosition} to a {@link TemporalReferenceSystem}.
      * Every {@link TemporalPosition} shall be associated with a {@link TemporalReferenceSystem}.
-     * This association need not be explicite at the instance level.
+     * This association need not be explicit at the instance level.
      * If not specified, it is assumed to be an association to Gregorian Calendar and UTC.
      *
      * @return the association which connect the {@link TemporalPosition} to a {@link TemporalReferenceSystem}.

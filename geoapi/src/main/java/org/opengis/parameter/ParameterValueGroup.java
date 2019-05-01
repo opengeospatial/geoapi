@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -183,7 +183,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @throws InvalidParameterCardinalityException if this parameter group already contains the
      *         {@linkplain ParameterDescriptorGroup#getMaximumOccurs() maximum number of occurences}
      *         of subgroups of the given name.
-     * @throws IllegalStateException if the group can not be added for an other raison.
+     * @throws IllegalStateException if the group can not be added for an other reason.
      *
      * @departure easeOfUse
      *   This method is not part of the ISO specification. It has been added in an attempt to make

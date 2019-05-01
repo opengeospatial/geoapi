@@ -1,7 +1,7 @@
 [[metadata-usage]]
 ==== How to use
 
-The types in the GeoAPI metadata packages are primarily containers of primitive types and other metadata types.
+The interfaces in the GeoAPI metadata packages are primarily containers of primitive types and other metadata types.
 Metadata elements will be encountered in the data types from the referencing packages and the interfaces enable
 users to obtain the elements of the data type.
 As an example, we want to print a list of all the individuals (ignoring organizations)

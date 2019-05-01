@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -306,21 +306,21 @@ public interface MathTransformFactory extends Factory {
      * through transform can convert the height values from meters to feet without affecting
      * the (<var>latitude</var>, <var>longitude</var>) values.
      *
-     * @param  firstAffectedOrdinate  the lowest index of the affected ordinates.
-     * @param  subTransform           transform to use for affected ordinates.
-     * @param  numTrailingOrdinates   number of trailing ordinates to pass through.
-     *         Affected ordinates will range from {@code firstAffectedOrdinate}
-     *         inclusive to {@code dimTarget-numTrailingOrdinates} exclusive.
+     * @param  firstAffectedCoordinate  the lowest index of the affected coordinates.
+     * @param  subTransform             transform to use for affected coordinates.
+     * @param  numTrailingCoordinates   number of trailing coordinates to pass through.
+     *         Affected coordinates will range from {@code firstAffectedCoordinate}
+     *         inclusive to {@code dimTarget-numTrailingCoordinates} exclusive.
      * @return a pass through transform with the following dimensions:<br>
      *         <pre>
-     * Source: firstAffectedOrdinate + subTransform.getDimSource() + numTrailingOrdinates
-     * Target: firstAffectedOrdinate + subTransform.getDimTarget() + numTrailingOrdinates</pre>
+     * Source: firstAffectedCoordinate + subTransform.getDimSource() + numTrailingCoordinates
+     * Target: firstAffectedCoordinate + subTransform.getDimTarget() + numTrailingCoordinates</pre>
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createPassThroughTransform", obligation=MANDATORY, specification=OGC_01009)
-    MathTransform createPassThroughTransform(int firstAffectedOrdinate,
+    MathTransform createPassThroughTransform(int firstAffectedCoordinate,
                                              MathTransform subTransform,
-                                             int numTrailingOrdinates) throws FactoryException;
+                                             int numTrailingCoordinates) throws FactoryException;
 
     /**
      * Creates a math transform object from a XML string.

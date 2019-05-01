@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2005-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2005-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Evaluates a coverage at direct positions within a Thiessen polygon network constructed from a set
  * of discrete {@linkplain PointValuePair point-value pairs}. Evaluation is based on interpolation
- * between the centeres of the {@linkplain ThiessenValuePolygon Thiessen value polygons} surrounding
+ * between the centres of the {@linkplain ThiessenValuePolygon Thiessen value polygons} surrounding
  * the input position.
  *
  * <h3>Thiessen polygon networks</h3>

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -59,6 +59,6 @@
  *
  * <h3>Identity</h3>
  * <p>Identity can be checked using {@link org.opengis.filter.Id}, selected objects
- * will are matched against a set of {@link org.opengis.filter.identiy.Identifier}.</p>
+ * will are matched against a set of {@link org.opengis.filter.identify.Identifier}.</p>
  */
 package org.opengis.filter;

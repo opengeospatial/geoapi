@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2014-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2014-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -123,7 +123,7 @@ public interface SampleDimension extends RangeDimension {
      * Physical value corresponding to a cell value of zero.
      * May be {@code null} if unspecified.
      *
-     * @return Physical value corresponding to a cell value of zero, or {@code null} if none.
+     * @return physical value corresponding to a cell value of zero, or {@code null} if none.
      */
     @UML(identifier="offset", obligation=OPTIONAL, specification=ISO_19115)
     Double getOffset();
@@ -165,7 +165,7 @@ public interface SampleDimension extends RangeDimension {
      *   for historical reasons. GeoAPI moves this property up in the hierarchy since this property
      *   can apply to any sample dimension, not only the measurements in the electromagnetic spectrum.
      *
-     * @return Smallest distance between which separate points can be distinguished.
+     * @return smallest distance between which separate points can be distinguished.
      * @unitof Distance
      */
     @UML(identifier="nominalSpatialResolution", obligation=OPTIONAL, specification=ISO_19115_2)

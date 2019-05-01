@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -38,22 +38,28 @@ import org.opengis.util.GenericName;
 
 /**
  * An instance of an {@link AttributeType} containing the value of an attribute in a feature.
- * {@code Attribute} holds two main information:
+ * {@code Attribute} holds three main information:
  *
  * <ul>
- *   <li>A reference to an {@link AttributeType} which define the base Java type and domain of valid values.</li>
- *   <li>A value, which may be a singleton ([0 … 1] cardinality) or multi-valued ([0 … ∞] cardinality).</li>
+ *   <li>A {@linkplain #getType() reference to an attribute type}
+ *       which defines the base Java type and domain of valid values.</li>
+ *   <li>One or more {@linkplain #getValues() values}, which may be a singleton ([0 … 1] multiplicity)
+ *       or multi-valued ([0 … ∞] multiplicity).</li>
+ *   <li>Optional {@linkplain #characteristics() characteristics} about the attribute
+ *       (e.g. a <var>temperature</var> attribute may have a characteristic holding the measurement <var>accuracy</var>).
+ *       Characteristics are often, but not necessarily, constant for all attributes of the same type in a dataset.</li>
  * </ul>
  *
  * <div class="note"><b>Analogy with Java language</b><br>
- * an attribute is similar to a "field" in a Java object. A field also brings together a field name, value and type.
- * However attributes are limited to fields of primitive types or arrays of primitive types.
- * For a field of other Java type, use {@link FeatureAssociation} instead.
+ * an attribute is similar to a "field" in a Java object. A field also brings together a field name, value and type,
+ * optionally completed by annotations. The value types are typically {@link String}, {@link Number} or collections
+ * of them, but other Java type are allowed except {@link Feature}.
+ * For storing a {@code Feature} value, use {@link FeatureAssociation} instead.
  * </div>
  *
- * {@code Attribute} can be instantiated by calls to {@link AttributeType#newInstance()}.
+ * <p>{@code Attribute} can be instantiated by calls to {@link AttributeType#newInstance()}.</p>
  *
- * @param <V> The type of attribute values.
+ * @param <V> the type of attribute values.
  *
  * @author  Jody Garnett (Refractions Research, Inc.)
  * @author  Justin Deoliveira (The Open Planning Project)
@@ -62,6 +68,7 @@ import org.opengis.util.GenericName;
  * @since   3.1
  *
  * @see AttributeType
+ * @see DynamicAttribute
  */
 public interface Attribute<V> extends Property {
     /**
@@ -112,6 +119,9 @@ public interface Attribute<V> extends Property {
 
     /**
      * Returns all attribute values, or an empty collection if none.
+     * This method supports arbitrary cardinality of attribute values.
+     * In the common case where the {@linkplain AttributeType#getMaximumOccurs() maximum number of occurrences}
+     * is restricted to 1, {@link #getValue()} is a convenient alternative.
      *
      * <div class="note"><b>Implementation note</b><br>
      * there is different approaches in the way that collection elements are related to this property values:

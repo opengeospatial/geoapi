@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2005-2018 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2005-2019 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -57,7 +57,7 @@ public interface GridPoint extends DomainObject<Geometry> {
      * Returns the set of grid coordinates that specifies the location of the
      * grid point within the {@linkplain Grid grid}.
      *
-     * @return the coordinates that specifieds the location of the grid point.
+     * @return the coordinates that specifies the location of the grid point.
      */
     @UML(identifier="gridCoord", obligation=MANDATORY, specification=ISO_19123)
     GridCoordinates getGridCoordinates();
