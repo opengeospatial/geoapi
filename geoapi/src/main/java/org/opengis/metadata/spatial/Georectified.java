@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 4.0
  * @since   2.0
  */
 @UML(identifier="MD_Georectified", specification=ISO_19115)
@@ -96,7 +96,7 @@ public interface Georectified extends GridSpatialRepresentation {
      * @return the center point, or {@code null}.
      */
     @UML(identifier="centrePoint", obligation=OPTIONAL, specification=ISO_19115)
-    Point getCenterPoint();
+    Point getCentrePoint();
 
     /**
      * Point in a pixel corresponding to the Earth location of the pixel.
