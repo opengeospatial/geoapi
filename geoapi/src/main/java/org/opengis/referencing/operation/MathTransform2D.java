@@ -111,8 +111,6 @@ public interface MathTransform2D extends MathTransform {
      * @throws NoninvertibleTransformException if the transform can not be inverted.
      *
      * @see AffineTransform#createInverse()
-     *
-     * @since 2.2
      */
     @Override
     MathTransform2D inverse() throws NoninvertibleTransformException;

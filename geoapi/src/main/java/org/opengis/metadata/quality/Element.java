@@ -114,8 +114,6 @@ public interface Element {
      * </div>
      *
      * @return date or range of dates on which a data quality measure was applied.
-     *
-     * @since 2.1
      */
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Collection<? extends Date> getDates();
@@ -126,8 +124,6 @@ public interface Element {
      * acceptable conformance quality level.
      *
      * @return set of values obtained from applying a data quality measure.
-     *
-     * @since 2.1
      */
     @UML(identifier="result", obligation=MANDATORY, specification=ISO_19115, version=2003)
     Collection<? extends Result> getResults();

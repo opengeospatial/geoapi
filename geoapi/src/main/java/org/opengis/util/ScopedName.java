@@ -107,8 +107,6 @@ public interface ScopedName extends GenericName {
      * </ul></div>
      *
      * @return the first element in the list of {@linkplain #getParsedNames() parsed names}.
-     *
-     * @since 2.2
      */
     @Override
     @UML(identifier="head", obligation=MANDATORY, specification=ISO_19103)
@@ -135,8 +133,6 @@ public interface ScopedName extends GenericName {
      * </ul></div>
      *
      * @return all elements except the first one in the in the list of {@linkplain #getParsedNames() parsed names}.
-     *
-     * @since 2.1
      */
     @UML(identifier="tail", obligation=MANDATORY, specification=ISO_19103)
     GenericName tail();
@@ -168,8 +164,6 @@ public interface ScopedName extends GenericName {
      * @departure easeOfUse
      *   This method is not part of ISO specification. It has been added in GeoAPI as a
      *   complement of the ISO {@code tail()} method.
-     *
-     * @since 2.1
      */
     GenericName path();
 
@@ -189,8 +183,6 @@ public interface ScopedName extends GenericName {
      * </ul></div>
      *
      * @return the last element in the list of {@linkplain #getParsedNames() parsed names}.
-     *
-     * @since 2.1
      */
     @Override
     LocalName tip();

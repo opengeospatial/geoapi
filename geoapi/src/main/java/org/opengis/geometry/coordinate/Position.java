@@ -71,8 +71,6 @@ public interface Position {
      * {@code this} if invoked on an object which is already a {@code DirectPosition} instance.
      *
      * @return the direct position (may be {@code this}).
-     *
-     * @since 2.2
      */
     @UML(identifier="direct", obligation=CONDITIONAL, specification=ISO_19107)
     DirectPosition getDirectPosition();

@@ -67,8 +67,6 @@ public interface ScopeDescription {
      *
      * @return dataset to which the information applies, or {@code null}.
      *
-     * @since 2.1
-     *
      * @condition {@code features}, {@code attributes}, {@code featureInstances},
      *            {@code attributeInstances} and {@code other} not provided.
      *
@@ -165,8 +163,6 @@ public interface ScopeDescription {
      *
      * @return attribute instances to which the information applies.
      *
-     * @since 2.1
-     *
      * @condition {@code features}, {@code attributes}, {@code featureInstances},
      *            {@code dataset} and {@code other} not provided.
      *
@@ -183,8 +179,6 @@ public interface ScopeDescription {
      * </div>
      *
      * @return class of information that does not fall into the other categories, or {@code null}.
-     *
-     * @since 2.1
      *
      * @condition {@code features}, {@code attributes}, {@code featureInstances},
      *            {@code attributeInstances} and {@code dataset} not provided.

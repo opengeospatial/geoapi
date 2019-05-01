@@ -88,8 +88,6 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      *   flat list of single CRSs when needed than to reconstruct the 3D CRS from the single components.
      *   Consequently GeoAPI has been keep conformant with the legacy OGC 01-009 specification in this aspect,
      *   which were allowing nested compound CRS.
-     *
-     * @since 2.3
      */
     @UML(identifier="componentReferenceSystem", obligation=MANDATORY, specification=ISO_19111)
     List<CoordinateReferenceSystem> getComponents();

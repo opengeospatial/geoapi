@@ -74,8 +74,6 @@ public interface MathTransform1D extends MathTransform {
      *
      * @return the inverse transform.
      * @throws NoninvertibleTransformException if the transform can not be inverted.
-     *
-     * @since 2.2
      */
     @Override
     MathTransform1D inverse() throws NoninvertibleTransformException;

@@ -349,8 +349,6 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      * while UML names are lower case) and special characters like {@code '-'}.
      *
      * @return all names of this code constant. This array is never null and never empty.
-     *
-     * @since 2.3
      */
     @Override
     public String[] names() {

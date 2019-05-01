@@ -87,8 +87,6 @@ public interface Scope extends org.opengis.metadata.maintenance.Scope {
      * to {@link ScopeCode#DATASET} or {@link ScopeCode#SERIES}.
      *
      * @return detailed description about the level of the data.
-     *
-     * @since 2.1
      */
     @Override
     @UML(identifier="levelDescription", obligation=CONDITIONAL, specification=ISO_19115)

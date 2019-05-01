@@ -168,8 +168,6 @@ public interface DirectPosition extends Position {
      *
      * @param  object  the object to compare with this direct position for equality.
      * @return {@code true} if the given object is equals to this direct position.
-     *
-     * @since 2.1
      */
     @Override
     boolean equals(Object object);
@@ -185,8 +183,6 @@ public interface DirectPosition extends Position {
      * system is null.
      *
      * @return a hash code value for this direct position.
-     *
-     * @since 2.1
      */
     @Override
     int hashCode();

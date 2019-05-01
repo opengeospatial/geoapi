@@ -71,8 +71,6 @@ public interface Scope {
      * Detailed description about the level of the data specified by the scope.
      *
      * @return detailed description about the level of the data.
-     *
-     * @since 2.1
      */
     @UML(identifier="levelDescription", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends ScopeDescription> getLevelDescription();

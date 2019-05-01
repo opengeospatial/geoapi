@@ -87,8 +87,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      * This is used for setting the value to be returned by {@link #getCoordinateOperationAccuracy()}.
      *
      * @see #getCoordinateOperationAccuracy()
-     *
-     * @since 2.1
      */
     String COORDINATE_OPERATION_ACCURACY_KEY = "coordinateOperationAccuracy";
 
@@ -97,8 +95,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      * This is used for setting the value to be returned by {@link #getDomainOfValidity()}.
      *
      * @see #getDomainOfValidity()
-     *
-     * @since 2.1
      */
     String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
 
@@ -152,8 +148,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      * operation, assuming no errors in source coordinates.
      *
      * @return the position error estimates, or an empty collection if not available.
-     *
-     * @since 2.1
      */
     @UML(identifier="coordinateOperationAccuracy", obligation=OPTIONAL, specification=ISO_19111)
     Collection<PositionalAccuracy> getCoordinateOperationAccuracy();
@@ -162,8 +156,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      * Area or region or timeframe in which this coordinate operation is valid.
      *
      * @return the coordinate operation valid domain, or {@code null} if not available.
-     *
-     * @since 2.1
      */
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
     Extent getDomainOfValidity();

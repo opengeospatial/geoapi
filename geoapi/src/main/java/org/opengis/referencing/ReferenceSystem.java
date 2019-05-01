@@ -86,8 +86,6 @@ public interface ReferenceSystem extends IdentifiedObject {
      * This is used for setting the value to be returned by {@link #getDomainOfValidity()}.
      *
      * @see #getDomainOfValidity()
-     *
-     * @since 2.1
      */
     String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
 
@@ -110,8 +108,6 @@ public interface ReferenceSystem extends IdentifiedObject {
      *   Later revisions changed the multiplicity, so the return type should now be a
      *   collection. The singleton has been preserved in GeoAPI for historical reasons,
      *   and also because the {@code Extent} attributes already allow collections.
-     *
-     * @since 2.1
      */
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
     Extent getDomainOfValidity();

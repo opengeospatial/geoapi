@@ -146,8 +146,6 @@ public interface MathTransformFactory extends Factory {
      *   We did not defined a {{@code MathTransform}, {@code OperationMethod}} tuple in order
      *   to keep {@code create(…)} simpler in the common case where the operation method is not needed,
      *   and for historical reasons (conformance to OGC 01-009).
-     *
-     * @since 2.1
      */
     OperationMethod getLastMethodUsed();
 
@@ -203,8 +201,6 @@ public interface MathTransformFactory extends Factory {
      * @departure extension
      *   This method is part of the GeoAPI mechanism for defining the math transform parameters
      *   or deriving other transforms.
-     *
-     * @since 2.1
      */
     MathTransform createBaseToDerived(CoordinateReferenceSystem baseCRS,
                                       ParameterValueGroup       parameters,

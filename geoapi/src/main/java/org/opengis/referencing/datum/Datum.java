@@ -90,8 +90,6 @@ public interface Datum extends IdentifiedObject {
      * This is used for setting the value to be returned by {@link #getDomainOfValidity()}.
      *
      * @see #getDomainOfValidity()
-     *
-     * @since 2.1
      */
     String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
 
@@ -164,8 +162,6 @@ public interface Datum extends IdentifiedObject {
      * Area or region or timeframe in which this datum is valid.
      *
      * @return the datum valid domain, or {@code null} if not available.
-     *
-     * @since 2.1
      */
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
     Extent getDomainOfValidity();

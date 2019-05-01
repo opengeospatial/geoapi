@@ -196,8 +196,6 @@ public interface MathTransform {
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
      * @see AffineTransform#transform(float[], int, double[], int, int)
-     *
-     * @since 2.2
      */
     void transform(float [] srcPts, int srcOff,
                    double[] dstPts, int dstOff, int numPts) throws TransformException;
@@ -224,8 +222,6 @@ public interface MathTransform {
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
      * @see AffineTransform#transform(double[], int, float[], int, int)
-     *
-     * @since 2.2
      */
     void transform(double[] srcPts, int srcOff,
                    float [] dstPts, int dstOff, int numPts) throws TransformException;

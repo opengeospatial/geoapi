@@ -203,8 +203,6 @@ public interface GenericName extends Comparable<GenericName> {
      * </ul></div>
      *
      * @return the scope of this name.
-     *
-     * @since 2.1
      */
     @UML(identifier="scope", obligation=MANDATORY, specification=ISO_19103)
     NameSpace scope();
@@ -229,8 +227,6 @@ public interface GenericName extends Comparable<GenericName> {
      * </ul></div>
      *
      * @return the depth of this name.
-     *
-     * @since 2.1
      */
     @UML(identifier="depth", obligation=MANDATORY, specification=ISO_19103)
     int depth();
@@ -288,8 +284,6 @@ public interface GenericName extends Comparable<GenericName> {
      *   ISO defines this method in <code>ScopedName</code> only. GeoAPI defines it in the base
      *   class since <code>LocalName</code> can return a sensible value for it. This reduces the
      *   need for casts.
-     *
-     * @since 2.2
      */
     @UML(identifier="ScopedName.head", obligation=MANDATORY, specification=ISO_19103)
     LocalName head();
@@ -321,8 +315,6 @@ public interface GenericName extends Comparable<GenericName> {
      *   This method is not part of ISO specification. It does not provide any additional
      *   information compared to that accessible though the standard methods defined by
      *   ISO, but provides easier to access frequently requested information.
-     *
-     * @since 2.1
      */
     LocalName tip();
 
@@ -350,8 +342,6 @@ public interface GenericName extends Comparable<GenericName> {
      *   This method is not part of ISO specification. It does not provide any additional
      *   information compared to that accessible though the standard methods defined by
      *   ISO, but makes easier to access frequently requested information.
-     *
-     * @since 2.1
      */
     GenericName toFullyQualifiedName();
 
@@ -389,8 +379,6 @@ public interface GenericName extends Comparable<GenericName> {
      *
      * @param  scope  the name to use as prefix.
      * @return a concatenation of the given scope with this name.
-     *
-     * @since 2.1
      */
     @UML(identifier="push", obligation=MANDATORY, specification=ISO_19103)
     ScopedName push(GenericName scope);

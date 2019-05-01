@@ -82,8 +82,6 @@ public interface Georeferenceable extends GridSpatialRepresentation {
      * Terms which support grid data georeferencing.
      *
      * @return terms which support grid data georeferencing.
-     *
-     * @since 2.1
      */
     @UML(identifier="georeferencedParameters", obligation=MANDATORY, specification=ISO_19115)
     Record getGeoreferencedParameters();
@@ -100,8 +98,6 @@ public interface Georeferenceable extends GridSpatialRepresentation {
      * Information that can be used to geolocate the data.
      *
      * @return a geolocalisation of the data.
-     *
-     * @since 2.3
      */
     @UML(identifier="geolocationInformation", obligation=MANDATORY, specification=ISO_19115_2)
     Collection<? extends GeolocationInformation> getGeolocationInformation();

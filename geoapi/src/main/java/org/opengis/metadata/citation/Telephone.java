@@ -79,8 +79,6 @@ public interface Telephone {
      *
      * @return telephone numbers by which individuals can speak to the responsible organization or individual.
      *
-     * @since 2.1
-     *
      * @deprecated As of ISO 19115:2014, replaced by a {@linkplain #getNumber() number}
      *             with {@link TelephoneType#VOICE}.
      */
@@ -92,8 +90,6 @@ public interface Telephone {
      * Telephone numbers of a facsimile machine for the responsible organization or individual.
      *
      * @return telephone numbers of a facsimile machine for the responsible organization or individual.
-     *
-     * @since 2.1
      *
      * @deprecated As of ISO 19115:2014, replaced by a {@linkplain #getNumber() number}
      *             with {@link TelephoneType#FACSIMILE}.
