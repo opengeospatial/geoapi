@@ -307,7 +307,7 @@ public enum Content {
             org.opengis.metadata.content        .BandDefinition               .class,
             org.opengis.metadata.content        .CoverageContentType          .class,
             org.opengis.metadata.content        .ImagingCondition             .class,
-            org.opengis.metadata.content        .PolarizationOrientation      .class,
+            org.opengis.metadata.content        .PolarisationOrientation      .class,
             org.opengis.metadata.content        .TransferFunctionType         .class,
             org.opengis.metadata.distribution   .MediumFormat                 .class,
             org.opengis.metadata.distribution   .MediumName                   .class,

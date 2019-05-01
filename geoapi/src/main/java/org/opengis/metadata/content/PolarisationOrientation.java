@@ -45,11 +45,11 @@ import static org.opengis.annotation.Specification.*;
  * Polarization of the antenna relative to the waveform.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
- * @since   2.3
+ * @version 4.0
+ * @since   3.0
  */
-@UML(identifier="MI_PolarizationOrientationCode", specification=ISO_19115_2)
-public final class PolarizationOrientation extends CodeList<PolarizationOrientation> {
+@UML(identifier="MI_PolarisationOrientationCode", specification=ISO_19115_2)
+public final class PolarisationOrientation extends CodeList<PolarisationOrientation> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -59,43 +59,43 @@ public final class PolarizationOrientation extends CodeList<PolarizationOrientat
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<PolarizationOrientation> VALUES = new ArrayList<>(6);
+    private static final List<PolarisationOrientation> VALUES = new ArrayList<>(6);
 
     /**
      * Polarization of the sensor oriented in the horizontal plane in relation to swath direction.
      */
     @UML(identifier="horizontal", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final PolarizationOrientation HORIZONTAL = new PolarizationOrientation("HORIZONTAL");
+    public static final PolarisationOrientation HORIZONTAL = new PolarisationOrientation("HORIZONTAL");
 
     /**
      * Polarization of the sensor oriented in the vertical plane in relation to swath direction.
      */
     @UML(identifier="vertical", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final PolarizationOrientation VERTICAL = new PolarizationOrientation("VERTICAL");
+    public static final PolarisationOrientation VERTICAL = new PolarisationOrientation("VERTICAL");
 
     /**
      * Polarization of the sensor oriented in the left circular plane in relation to swath direction.
      */
     @UML(identifier="leftCircular", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final PolarizationOrientation LEFT_CIRCULAR = new PolarizationOrientation("LEFT_CIRCULAR");
+    public static final PolarisationOrientation LEFT_CIRCULAR = new PolarisationOrientation("LEFT_CIRCULAR");
 
     /**
      * Polarization of the sensor oriented in the right circular plane in relation to swath direction.
      */
     @UML(identifier="rightCircular", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final PolarizationOrientation RIGHT_CIRCULAR = new PolarizationOrientation("RIGHT_CIRCULAR");
+    public static final PolarisationOrientation RIGHT_CIRCULAR = new PolarisationOrientation("RIGHT_CIRCULAR");
 
     /**
      * Polarization of the sensor oriented in the angle between +90 ° and 0 ° parallel to swath direction.
      */
     @UML(identifier="theta", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final PolarizationOrientation THETA = new PolarizationOrientation("THETA");
+    public static final PolarisationOrientation THETA = new PolarisationOrientation("THETA");
 
     /**
      * Polarization of the sensor oriented in the +90 ° and 0 ° perpendicular to swath direction.
      */
     @UML(identifier="phi", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final PolarizationOrientation PHI = new PolarizationOrientation("PHI");
+    public static final PolarisationOrientation PHI = new PolarisationOrientation("PHI");
 
     /**
      * Constructs an element of the given name. The new element is
@@ -103,18 +103,18 @@ public final class PolarizationOrientation extends CodeList<PolarizationOrientat
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
-    private PolarizationOrientation(final String name) {
+    private PolarisationOrientation(final String name) {
         super(name, VALUES);
     }
 
     /**
-     * Returns the list of {@code PolarizationOrientation}s.
+     * Returns the list of {@code PolarisationOrientation}s.
      *
      * @return the list of codes declared in the current JVM.
      */
-    public static PolarizationOrientation[] values() {
+    public static PolarisationOrientation[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new PolarizationOrientation[VALUES.size()]);
+            return VALUES.toArray(new PolarisationOrientation[VALUES.size()]);
         }
     }
 
@@ -126,7 +126,7 @@ public final class PolarizationOrientation extends CodeList<PolarizationOrientat
      * @return all code {@linkplain #values() values} for this code list.
      */
     @Override
-    public PolarizationOrientation[] family() {
+    public PolarisationOrientation[] family() {
         return values();
     }
 
@@ -140,7 +140,7 @@ public final class PolarizationOrientation extends CodeList<PolarizationOrientat
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
-    public static PolarizationOrientation valueOf(String code) {
-        return valueOf(PolarizationOrientation.class, code);
+    public static PolarisationOrientation valueOf(String code) {
+        return valueOf(PolarisationOrientation.class, code);
     }
 }

@@ -62,7 +62,7 @@
  *  ├─ {@linkplain org.opengis.metadata.content.BandDefinition}
  *  ├─ {@linkplain org.opengis.metadata.content.CoverageContentType}
  *  ├─ {@linkplain org.opengis.metadata.content.ImagingCondition}
- *  ├─ {@linkplain org.opengis.metadata.content.PolarizationOrientation}
+ *  ├─ {@linkplain org.opengis.metadata.content.PolarisationOrientation}
  *  └─ {@linkplain org.opengis.metadata.content.TransferFunctionType}</pre>
  * </td><td class="sep hierarchy">
  * <pre> {@linkplain org.opengis.metadata.content.ContentInformation} «abstract»
@@ -75,7 +75,7 @@
  *  └─ {@linkplain org.opengis.metadata.content.RangeElementDescription}
  * {@linkplain org.opengis.metadata.content.Band}
  *  ├─ {@linkplain org.opengis.metadata.content.BandDefinition} «code list»
- *  ├─ {@linkplain org.opengis.metadata.content.PolarizationOrientation} «code list»
+ *  ├─ {@linkplain org.opengis.metadata.content.PolarisationOrientation} «code list»
  *  └─ {@linkplain org.opengis.metadata.content.TransferFunctionType} «code list»
  * {@linkplain org.opengis.metadata.content.ImageDescription}
  *  └─ {@linkplain org.opengis.metadata.content.ImagingCondition} «code list»</pre>

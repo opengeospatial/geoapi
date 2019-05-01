@@ -48,7 +48,7 @@ class ImagingConditionCode(Enum):
 
 
 
-class PolarizationOrientationCode(Enum):
+class PolarisationOrientationCode(Enum):
     HORIZONTAL = "horizontal"
     VERTICAL = "vertical"
     LEFT_CIRCULAR = "leftCircular"
@@ -200,12 +200,12 @@ class Band(SampleDimension):
         return None
 
     @property
-    def transmitted_polarisation(self) -> PolarizationOrientationCode:
+    def transmitted_polarisation(self) -> PolarisationOrientationCode:
         """Polarisation of the transmitter or detector."""
         return None
 
     @property
-    def detected_polarisation(self) -> PolarizationOrientationCode:
+    def detected_polarisation(self) -> PolarisationOrientationCode:
         """Polarisation of the transmitter or detector."""
         return None
 

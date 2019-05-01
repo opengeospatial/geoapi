@@ -117,7 +117,7 @@ public interface Band extends SampleDimension {
      * @return polarization of the radiation transmitted.
      */
     @UML(identifier="transmittedPolarisation", obligation=OPTIONAL, specification=ISO_19115_2)
-    PolarizationOrientation getTransmittedPolarisation();
+    PolarisationOrientation getTransmittedPolarisation();
 
     /**
      * Polarization of the radiation detected.
@@ -125,5 +125,5 @@ public interface Band extends SampleDimension {
      * @return polarization of the radiation detected.
      */
     @UML(identifier="detectedPolarisation", obligation=OPTIONAL, specification=ISO_19115_2)
-    PolarizationOrientation getDetectedPolarisation();
+    PolarisationOrientation getDetectedPolarisation();
 }
