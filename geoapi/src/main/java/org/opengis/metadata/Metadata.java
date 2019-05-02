@@ -33,6 +33,7 @@ package org.opengis.metadata;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 import java.util.Date;
 import java.util.Locale;
 import java.nio.charset.Charset;
@@ -104,62 +105,13 @@ public interface Metadata {
     String getFileIdentifier();
 
     /**
-     * Language(s) used for documenting metadata.
+     * Language(s) and character set(s) used for documenting metadata.
      * The first element in iteration order shall be the default language.
      * All other elements, if any, are alternate language(s) used within the resource.
      *
-     * <p>XML documents shall format languages using the ISO 639-2 language code
-     * as returned by {@link Locale#getISO3Language()}.</p>
-     *
-     * @departure historic
-     *   ISO 19115:2014 defines {@code defaultLocale} and {@code otherLocale(s)} attributes, who's data type
-     *   ({@code PT_Locale}) combines the language and character encoding information into a single class.
-     *   However this design does not fit well with the Java model.
-     *   For example the character encoding information is irrelevant to {@code InternationalString}
-     *   since the Java language fixes the encoding of all {@code String} instances to UTF-16.
-     *   Consequently GeoAPI keeps the {@code language(s)} and {@code characterSet(s)} attributes
-     *   as separated entities, as defined in ISO 19115:2003.
-     *   GeoAPI also keeps default and other locales in a single collection for compatibility with standard Java
-     *   methods like {@code Locale.lookup(List<Locale.LanguageRange>, Collection<Locale>)},
-     *   which provides elaborated mechanism for choosing the best suited locale for a user.
-     *
-     * @return language used for documenting metadata.
-     *
-     * @see org.opengis.metadata.identification.DataIdentification#getLanguages()
-     * @see org.opengis.metadata.content.FeatureCatalogueDescription#getLanguages()
-     * @see Locale#getISO3Language()
-     * @see Locale#lookup(List, Collection)
-     *
-     * @since 3.1
-     */
-    @Profile(level=CORE)
-    @UML(identifier="language", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
-    Collection<Locale> getLanguages();
-
-    /**
-     * Language used for documenting metadata.
-     *
-     * @return language used for documenting metadata, or {@code null}.
-     *
-     * @deprecated As of GeoAPI 3.1, replaced by {@link #getLanguages()}.
-     */
-    @Deprecated
-    Locale getLanguage();
-
-    /**
-     * Provides information about an alternatively used localized character string for a linguistic extension.
-     *
-     * @return alternatively used localized character string for a linguistic extension.
-     *
-     * @deprecated As of GeoAPI 3.1, replaced by {@link #getLanguages()}.
-     */
-    @Deprecated
-    @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Collection<Locale> getLocales();
-
-    /**
-     * The character coding standard used for the metadata set.
-     * ISO 19115:2014 represents character sets by references to the
+     * <h3>Relationship with ISO 19115</h3>
+     * Each ({@link Locale}, {@link Charset}) entry is equivalent to an instance of ISO {@code PT_Locale} class.
+     * ISO 19115-1:2014 represents character sets by references to the
      * <a href="http://www.iana.org/assignments/character-sets">IANA Character Set register</a>,
      * which is represented in Java by {@link java.nio.charset.Charset}.
      * Instances can be obtained by a call to {@link Charset#forName(String)}.
@@ -174,28 +126,64 @@ public interface Metadata {
      * {@code Big5}, {@code GB2312}.
      * </div>
      *
-     * @return character coding standards used for the metadata.
+     * <h3>XML representation</h3>
+     * XML documents shall format languages using the ISO 639-2 language code as returned by {@link Locale#getISO3Language()}.
      *
-     * @departure historic
-     *   GeoAPI has kept the {@code language} and {@code characterSet} properties as defined in ISO 19115:2003.
-     *   See {@code getLanguages()} for more information.
+     * @departure integration
+     *   GeoAPI replaces ISO 19115:2014 {@code LanguageCode}, {@code CountryCode} and {@code MD_CharacterSetCode}
+     *   code lists by equivalent objects from the standard Java library. The {@code PT_Locale} class, which is a
+     *   container for above code-lists, is replaced by {@link Map} entries in order to avoid to introduce a new class
+     *   and because the character set information is not as relevant in Java than in XML documents.
+     *   For example the character encoding information is irrelevant to {@code InternationalString}
+     *   because the Java language fixes the encoding of all {@code String} instances to UTF-16.
+     *   Collection of {@link Locale} objects only can be obtained by <code>getLocales().{@linkplain Map#keySet() keySet()}</code>.
      *
-     * @see #getLanguages()
-     * @see org.opengis.metadata.identification.DataIdentification#getCharacterSets()
-     * @see Charset#forName(String)
+     *   <p>In addition ISO 19115:2014 defines {@code defaultLocale} and {@code otherLocale(s)} as separated attributes,
+     *   but GeoAPI groups them in a single collection for compatibility with standard Java methods like
+     *   <code>{@link Locale#lookup(List, Collection) Locale.lookup(…, Collection&lt;Locale&gt;)}</code>.</p>
+     *
+     * @return language(s) and character set(s) used for documenting metadata.
+     *
+     * @see org.opengis.metadata.identification.DataIdentification#getLocalesAndCharsets()
+     * @see org.opengis.metadata.content.FeatureCatalogueDescription#getLocalesAndCharsets()
      *
      * @since 3.1
      */
     @Profile(level=CORE)
-    @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
-    Collection<Charset> getCharacterSets();
+    @UML(identifier="defaultLocale+otherLocale", obligation=CONDITIONAL, specification=ISO_19115)
+    Map<Locale,Charset> getLocalesAndCharsets();
 
     /**
-     * @deprecated As of GeoAPI 3.1, replaced by {@link #getCharacterSets()}.
+     * Language used for documenting metadata.
      *
-     * @return character coding standard used for the metadata, or {@code null}.
+     * @return language used for documenting metadata, or {@code null}.
+     *
+     * @deprecated As of GeoAPI 3.1, replaced by {@link #getLocalesAndCharsets()}.
      */
     @Deprecated
+    @UML(identifier="language", obligation=OPTIONAL, specification=ISO_19115, version=2003)
+    Locale getLanguage();
+
+    /**
+     * Provides information about an alternatively used localized character string for a linguistic extension.
+     *
+     * @return alternatively used localized character string for a linguistic extension.
+     *
+     * @deprecated As of GeoAPI 3.1, replaced by {@link #getLocalesAndCharsets()}.
+     */
+    @Deprecated
+    @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115, version=2003)
+    Collection<Locale> getLocales();
+
+    /**
+     * The character coding standard used for the metadata set.
+     *
+     * @return character coding standard used for the metadata, or {@code null}.
+     *
+     * @deprecated As of GeoAPI 3.1, replaced by {@code getLocalesAndCharsets().values()}.
+     */
+    @Deprecated
+    @UML(identifier="characterSet", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     CharacterSet getCharacterSet();
 
     /**

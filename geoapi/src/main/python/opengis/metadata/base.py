@@ -55,6 +55,11 @@ class Metadata(ABC):
         return None
 
     @property
+    def default_locale(self):
+        """Provides information about an alternatively used localized character string for a linguistic extension."""
+        return None
+
+    @property
     def parent_metadata(self) -> Citation:
         """Identifier and onlineResource for a parent metadata record."""
         return None
@@ -142,12 +147,4 @@ class Metadata(ABC):
 
     @property
     def acquisition_information(self) -> Sequence[AcquisitionInformation]:
-        return None
-
-    @property
-    def character_set(self):
-        return None
-
-    @property
-    def language(self):
         return None

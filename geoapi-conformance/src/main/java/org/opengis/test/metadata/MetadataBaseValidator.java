@@ -73,7 +73,6 @@ public class MetadataBaseValidator extends MetadataValidator {
             return;
         }
         validate(object.getMetadataIdentifier());
-        validate(object.getLanguages());
         container.validate(object.getParentMetadata());
         for (final MetadataScope scope : toArray(MetadataScope.class, object.getMetadataScopes())) {
             mandatory("Metadata: shall have a scope code.", scope.getResourceScope());

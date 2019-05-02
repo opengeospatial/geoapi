@@ -399,6 +399,11 @@ class DataIdentification(Identification):
     """Information required to identify a resource."""
 
     @property
+    def default_locale(self):
+        """Provides information about an alternatively used localized character string for a linguistic extension."""
+        return None
+
+    @property
     def environment_description(self) -> str:
         """Description of the resource in the producer's processing environment, including items such as the software, the computer operating system, file name, and the dataset size."""
         return None
@@ -407,11 +412,3 @@ class DataIdentification(Identification):
     def supplemental_information(self) -> str:
         """Any other descriptive information about the resource."""
         return None
-
-    @property
-    def character_set(self):
-        return None
-
-    @abstractproperty
-    def language(self):
-        pass

@@ -329,7 +329,10 @@ public class ContentVerifier {
                         continue;
                     }
                     final Iterator<?> values;
-                    if (Iterable.class.isAssignableFrom(valueType)) {
+                    if (Map.class.isAssignableFrom(valueType)) {
+                        values = ((Map<?,?>) value).values().iterator();
+                        if (!values.hasNext()) continue;
+                    } else if (Iterable.class.isAssignableFrom(valueType)) {
                         values = ((Collection<?>) value).iterator();
                         if (!values.hasNext()) continue;
                     } else {

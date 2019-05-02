@@ -266,7 +266,7 @@ strictfp class JavaToPython extends SourceGenerator {
      * @param  type  the Java interface for which to get the Python name.
      * @return Python name of the given Java type, or {@code null}.
      */
-    private String nameOf(final Class<?> type) {
+    private String nameOfClass(final Class<?> type) {
         String name = primitiveTypes.get(type);
         if (name == null) {
             final UML uml = type.getAnnotation(UML.class);
@@ -275,6 +275,26 @@ strictfp class JavaToPython extends SourceGenerator {
                 name = name.substring(name.indexOf('_') + 1);
                 if (name.isEmpty()) name = null;
             }
+        }
+        return name;
+    }
+
+    /**
+     * Returns the Python name of the given Java property.
+     *
+     * @param  property  annotation on the Java getter method for which to get the Python name.
+     * @return Python name of the given Java property.
+     */
+    private static String nameOfProperty(final UML property) {
+        String name = property.identifier();
+        final int s = name.indexOf('+');
+        if (s >= 0) {
+            /*
+             * If a GeoAPI property is a combination of two ISO properties, take only the first property.
+             * The main use case is "defaultLocale+otherLocale", in which case we take only "defaultLocale".
+             * The second property, if desired, needs to be added manually in the Python file.
+             */
+            name = name.substring(0, s);
         }
         return name;
     }
@@ -295,7 +315,7 @@ strictfp class JavaToPython extends SourceGenerator {
             if (!property.isSynthetic() && !property.isAnnotationPresent(Deprecated.class)) {
                 final UML def = property.getAnnotation(UML.class);
                 if (def != null) {
-                    final String name = def.identifier();
+                    final String name = nameOfProperty(def);
                     if (name.indexOf('.') >= 0) {
                         continue;                                   // TODO: property taken from another OGC/ISO class
                     }
@@ -303,7 +323,7 @@ strictfp class JavaToPython extends SourceGenerator {
                         continue;                                   // TODO: methods with parameters will need to be supported.
                     }
                     final Class<?> elementType = Content.typeOf(property);
-                    String typeName = nameOf(elementType);
+                    String typeName = nameOfClass(elementType);
                     /*
                      * If the property type is a type not yet declared, we can not reference that type directly.
                      * This situation happen with circular dependencies. For example Responsibility.extent is of
@@ -408,7 +428,7 @@ strictfp class JavaToPython extends SourceGenerator {
         if (!module.equals(module = module.replace('/', '.'))) {
             module = "opengis." + module;
         }
-        final String typeName = nameOf(type);
+        final String typeName = nameOfClass(type);
         final String statement = lineSeparator + "from " + module + " import ";
         int p = content.indexOf(statement);
         if (p >= 0) {
@@ -539,7 +559,7 @@ strictfp class JavaToPython extends SourceGenerator {
                     String parent = "ABC";
                     boolean hasDependencies = false;
                     for (final Class<?> parentType : type.getInterfaces()) {
-                        final String pythonType = nameOf(parentType);
+                        final String pythonType = nameOfClass(parentType);
                         if (pythonType != null) {
                             parent = pythonType;
                             final QName parentName = namespaces.name(parentType, schema.getTypeDefinition(parentType));
