@@ -23,13 +23,13 @@ class MediumFormatCode(Enum):
 
 
 
-from opengis.metadata.citation import Identifier, Citation, OnlineResource, Responsibility
+from opengis.metadata.citation import Citation, Identifier, OnlineResource, Responsibility
 
 class Medium(ABC):
     """Information about the media on which the resource can be distributed."""
 
     @property
-    def name(self) -> 'MediumNameCode':
+    def name(self) -> Citation:
         """Name of the medium on which the resource can be received."""
         return None
 

@@ -37,6 +37,7 @@ import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 import org.opengis.metadata.Identifier;
+import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
 
 import static org.opengis.annotation.Obligation.*;
@@ -47,7 +48,7 @@ import static org.opengis.annotation.Specification.*;
  * Information about the media on which the resource can be stored or distributed.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.1
+ * @version 4.0
  * @since   2.0
  */
 @Classifier(Stereotype.DATATYPE)
@@ -56,15 +57,10 @@ public interface Medium {
     /**
      * Name of the medium on which the resource can be stored or distributed.
      *
-     * <div class="warning"><b>Upcoming API change — generalization</b><br>
-     * As of ISO 19115:2014, {@code MediumName} is replaced by {@link org.opengis.metadata.citation.Citation}.
-     * This change may be applied in GeoAPI 4.0.
-     * See <a href="https://github.com/opengeospatial/geoapi/issues/14">issue #14</a>.</div>
-     *
      * @return name of the medium, or {@code null}.
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
-    MediumName getName();
+    Citation getName();
 
     /**
      * Density at which the data is recorded.

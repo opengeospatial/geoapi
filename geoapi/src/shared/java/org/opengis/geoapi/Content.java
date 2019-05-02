@@ -310,7 +310,6 @@ public enum Content {
             org.opengis.metadata.content        .PolarisationOrientation      .class,
             org.opengis.metadata.content        .TransferFunctionType         .class,
             org.opengis.metadata.distribution   .MediumFormat                 .class,
-            org.opengis.metadata.distribution   .MediumName                   .class,
             org.opengis.metadata.identification .AssociationType              .class,
             org.opengis.metadata.identification .CharacterSet                 .class,
             org.opengis.metadata.identification .CouplingType                 .class,

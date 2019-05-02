@@ -52,7 +52,6 @@
  *  ├─ {@linkplain org.opengis.metadata.distribution.DigitalTransferOptions}
  *  └─ {@linkplain org.opengis.metadata.distribution.DataFile}
  * {@linkplain org.opengis.util.CodeList}
- *  ├─ {@linkplain org.opengis.metadata.distribution.MediumName}
  *  └─ {@linkplain org.opengis.metadata.distribution.MediumFormat}</pre>
  * </td><td class="sep hierarchy">
  * <pre> {@linkplain org.opengis.metadata.distribution.Distribution}
@@ -61,7 +60,6 @@
  *  │   └─ {@linkplain org.opengis.metadata.distribution.StandardOrderProcess}
  *  └─ {@linkplain org.opengis.metadata.distribution.DigitalTransferOptions}
  *      └─ {@linkplain org.opengis.metadata.distribution.Medium}
- *          ├─ {@linkplain org.opengis.metadata.distribution.MediumName} «code list»
  *          └─ {@linkplain org.opengis.metadata.distribution.MediumFormat} «code list»
  * {@linkplain org.opengis.metadata.distribution.DataFile}</pre>
  * </td></tr></table>
