@@ -106,13 +106,16 @@ public interface Metadata {
 
     /**
      * Language(s) and character set(s) used for documenting metadata.
-     * The first element in iteration order shall be the default language.
-     * All other elements, if any, are alternate language(s) used within the resource.
+     * The first entry in iteration order shall be the default language and its character set.
+     * All other entries, if any, are alternate language(s) and character set(s) used within the resource.
      *
      * <h3>Relationship with ISO 19115</h3>
      * Each ({@link Locale}, {@link Charset}) entry is equivalent to an instance of ISO {@code PT_Locale} class.
-     * ISO 19115-1:2014 represents character sets by references to the
-     * <a href="http://www.iana.org/assignments/character-sets">IANA Character Set register</a>,
+     * The language code and the character set are mandatory elements in ISO 19115 standard; consequently this map
+     * should not contain null key or null values, but implementations are encouraged to be tolerant for historical
+     * reasons (languages and character sets were defined as separated attributes in legacy ISO 19115:2003 standard).
+     * The same character set may be associated to many languages. ISO 19115-1:2014 identifies those character sets
+     * by references to the <a href="http://www.iana.org/assignments/character-sets">IANA Character Set register</a>,
      * which is represented in Java by {@link java.nio.charset.Charset}.
      * Instances can be obtained by a call to {@link Charset#forName(String)}.
      *
@@ -130,17 +133,18 @@ public interface Metadata {
      * XML documents shall format languages using the ISO 639-2 language code as returned by {@link Locale#getISO3Language()}.
      *
      * @departure integration
-     *   GeoAPI replaces ISO 19115:2014 {@code LanguageCode}, {@code CountryCode} and {@code MD_CharacterSetCode}
+     *   GeoAPI replaces ISO 19115-1:2014 {@code LanguageCode}, {@code CountryCode} and {@code MD_CharacterSetCode}
      *   code lists by equivalent objects from the standard Java library. The {@code PT_Locale} class, which is a
      *   container for above code-lists, is replaced by {@link Map} entries in order to avoid to introduce a new class
      *   and because the character set information is not as relevant in Java than in XML documents.
      *   For example the character encoding information is irrelevant to {@code InternationalString}
      *   because the Java language fixes the encoding of all {@code String} instances to UTF-16.
-     *   Collection of {@link Locale} objects only can be obtained by <code>getLocales().{@linkplain Map#keySet() keySet()}</code>.
      *
      *   <p>In addition ISO 19115:2014 defines {@code defaultLocale} and {@code otherLocale(s)} as separated attributes,
      *   but GeoAPI groups them in a single collection for compatibility with standard Java methods like
-     *   <code>{@link Locale#lookup(List, Collection) Locale.lookup(…, Collection&lt;Locale&gt;)}</code>.</p>
+     *   <code>{@link Locale#lookup(List, Collection) Locale.lookup(…, Collection&lt;Locale&gt;)}</code>.
+     *   This API design makes easy to provide the collection of {@link Locale} objects with
+     *   <code>getLocalesAndCharsets().{@linkplain Map#keySet() keySet()}</code>.</p>
      *
      * @return language(s) and character set(s) used for documenting metadata.
      *
