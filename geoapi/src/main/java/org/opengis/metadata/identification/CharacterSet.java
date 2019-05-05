@@ -88,7 +88,7 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
  * }</pre></blockquote>
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @version 3.0
+ * @version 3.1
  * @since   2.1
  *
  * @deprecated As of ISO 19115:2014, replaced by a reference to the
@@ -324,7 +324,31 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     }
 
     /**
+     * Converts the given Java Character Set to {@code CharacterSet}.
+     *
+     * @param  cs  the character set, or {@cod null}.
+     * @return a code list for the given character set, or {@code null} if the given {@code cs} was null.
+     *
+     * @since 3.1
+     */
+    public static CharacterSet fromCharset(final Charset cs) {
+        if (cs == null) {
+            return null;
+        }
+        final String name = cs.name();
+        for (final CharacterSet candidate : CharacterSet.values()) {
+            for (final String n : candidate.names()) {
+                if (name.equals(n)) {
+                    return candidate;
+                }
+            }
+        }
+        return valueOf(name);
+    }
+
+    /**
      * Converts the Character Set to a java Charset, if it can.
+     * This method is provided for migration from this legacy code lists to {@link Charset}.
      *
      * @return the Java Charset.
      * @throws UnsupportedCharsetException if no support for the charset is available.
