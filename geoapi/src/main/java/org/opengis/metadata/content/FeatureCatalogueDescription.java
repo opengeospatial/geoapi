@@ -31,8 +31,10 @@
  */
 package org.opengis.metadata.content;
 
+import java.util.Map;
 import java.util.Collection;
 import java.util.Locale;
+import java.nio.charset.Charset;
 import org.opengis.util.GenericName;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.annotation.UML;
@@ -60,27 +62,39 @@ public interface FeatureCatalogueDescription extends ContentInformation {
     Boolean isCompliant();
 
     /**
+     * Language(s) and character set(s) used within the catalogue.
+     * Note that contrarily to the {@code PT_Locale} object defined by ISO 19115:2014, the {@code java.util.Locale}
+     * object does not contain character encoding information. The character set information is stored in separated
+     * objects, associated to locales through entries in the map.
+     *
+     * <h3>XML representation</h3>
+     * XML documents shall format languages using the ISO 639-2 language code as returned by {@link Locale#getISO3Language()}.
+     * Character sets shall be referenced by name from the IANA Character Set register.
+     *
+     * @departure integration
+     *   GeoAPI replaces ISO 19115:2014 {@code LanguageCode}, {@code CountryCode} and {@code MD_CharacterSetCode}
+     *   code lists by equivalent objects from the standard Java library.
+     *   See {@link org.opengis.metadata.Metadata#getLocalesAndCharsets()} for more information.
+     *
+     * @return language(s) and character set(s) used within the catalogue.
+     *
+     * @see org.opengis.metadata.identification.DataIdentification#getLocalesAndCharsets()
+     * @see org.opengis.metadata.Metadata#getLocalesAndCharsets()
+     *
+     * @since 3.1
+     */
+    @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115)
+    Map<Locale,Charset> getLocalesAndCharsets();
+
+    /**
      * Language(s) used within the catalogue.
-     *
-     * <p>Note that contrarily to the {@code PT_Locale} object defined by ISO 19115:2014, the {@code java.util.Locale}
-     * object does not contain character encoding information. The Java language does not tie closely the encoding to
-     * the locale since all {@code String} instances are encoded in UTF-16 regardless the locale.</p>
-     *
-     * <p>XML documents shall format languages using the ISO 639-2 language code
-     * as returned by {@link Locale#getISO3Language()}.</p>
      *
      * @return language(s) used within the catalogue.
      *
-     * @departure historic
-     *   GeoAPI keeps the {@code getLanguages()} method name for compliance with the ISO 19115:2003 model
-     *   See {@code DataIdentification.getLanguages()} for information about why the legacy model is more
-     *   suitable to Java than the new ISO 19115:2014 model. In addition, the <cite>language</cite> name help
-     *   to emphases the difference with the ISO 19115:2014 definition of {@code PT_Locale}.
-     *
-     * @see org.opengis.metadata.identification.DataIdentification#getLanguages()
-     * @see org.opengis.metadata.Metadata#getLanguages()
+     * @deprecated Replaced by {@code getLocalesAndCharsets().keySet()}.
      */
-    @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115)
+    @Deprecated
+    @UML(identifier="language", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Collection<Locale> getLanguages();
 
     /**

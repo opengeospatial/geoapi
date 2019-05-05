@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.nio.charset.Charset;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Map;
 import java.util.Date;
 import java.util.Locale;
 import org.gdal.gdal.Dataset;
@@ -66,6 +67,7 @@ import org.opengis.util.InternationalString;
 import org.opengis.util.RecordType;
 
 import static java.util.Collections.emptySet;
+import static java.util.Collections.emptyMap;
 
 
 /**
@@ -124,9 +126,8 @@ final class RasterMetadata extends GridGeometry implements Metadata, MetadataSco
 
     /* ISO 19115:2014 properties that are empty of null for now. */
     @Override public Identifier                               getMetadataIdentifier()              {return null;}
-    @Override public Collection<Locale>                       getLanguages()                       {return emptySet();}
-    @Override public Collection<Charset>                      getCharacterSets()                   {return emptySet();}
     @Override public Citation                                 getParentMetadata()                  {return null;}
+    @Override public Map<Locale,Charset>                      getLocalesAndCharsets()              {return emptyMap();}
     @Override public Collection<ResponsibleParty>             getContacts()                        {return emptySet();}
     @Override public Collection<CitationDate>                 getDateInfo()                        {return emptySet();}
     @Override public Collection<Citation>                     getMetadataStandards()               {return emptySet();}

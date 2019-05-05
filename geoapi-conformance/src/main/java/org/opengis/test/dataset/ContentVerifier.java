@@ -33,6 +33,7 @@ package org.opengis.test.dataset;
 
 import java.util.AbstractMap;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.ConcurrentModificationException;
 import java.util.HashMap;
@@ -334,7 +335,10 @@ public class ContentVerifier {
                         continue;
                     }
                     final Iterator<?> values;
-                    if (Iterable.class.isAssignableFrom(valueType)) {
+                    if (Map.class.isAssignableFrom(valueType)) {
+                        values = ((Map<?,?>) value).keySet().iterator();
+                        if (!values.hasNext()) continue;
+                    } else if (Iterable.class.isAssignableFrom(valueType)) {
                         values = ((Collection<?>) value).iterator();
                         if (!values.hasNext()) continue;
                     } else {
@@ -373,6 +377,17 @@ public class ContentVerifier {
     private static Class<?> boundOfParameterizedProperty(Type type) {
         if (type instanceof ParameterizedType) {
             Type[] p = ((ParameterizedType) type).getActualTypeArguments();
+            if (p != null && p.length == 2) {
+                final Type raw = ((ParameterizedType) type).getRawType();
+                if (raw instanceof Class<?> && Map.class.isAssignableFrom((Class<?>) raw)) {
+                    /*
+                     * If the type is a map, keep only the first type parameter (for keys type).
+                     * The type that we retain here must be consistent with the choice of iterator
+                     * (keys or values) done in above addPropertyValue(…) method.
+                     */
+                    p = Arrays.copyOf(p, 1);
+                }
+            }
             while (p != null && p.length == 1) {
                 type = p[0];
                 if (type instanceof WildcardType) {

@@ -22,8 +22,10 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.Objects;
 import java.util.Set;
+import java.util.Map;
 import java.net.URI;
 import java.net.URISyntaxException;
+import java.nio.charset.Charset;
 import ucar.nc2.NetcdfFile;
 import ucar.nc2.Attribute;
 import ucar.nc2.time.Calendar;
@@ -778,6 +780,7 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     /** Defaults to an empty set. */ @Override public Collection<VerticalExtent>               getVerticalElements()              {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<Resolution>                   getSpatialResolutions()            {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<Duration>                     getTemporalResolutions()           {return Collections.emptySet();}
+    /** Defaults to an empty map. */ @Override public Map<Locale,Charset>                      getLocalesAndCharsets()            {return Collections.emptyMap();}
     /** Defaults to an empty set. */ @Override public Collection<Locale>                       getLanguages()                     {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection                               getCharacterSets()                 {return Collections.emptySet();}
     /** Defaults to an empty set. */ @Override public Collection<Format>                       getResourceFormats()               {return Collections.emptySet();}
