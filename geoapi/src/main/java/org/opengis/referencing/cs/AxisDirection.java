@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The direction of positive increase in the ordinate value for a coordinate system axis.
+ * The direction of positive increase in the coordinate value for a coordinate system axis.
  * This direction is exact in some cases, and is approximate in other cases.
  *
  * <p>Some coordinate systems use non-standard orientations. For example, the first axis in

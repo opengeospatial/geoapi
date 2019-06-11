@@ -89,7 +89,7 @@
  *   A vertical datum is of type "barometric" if atmospheric pressure is the basis
  *   for the definition of the origin. Atmospheric pressure may be used as the
  *   intermediary to determine height (barometric height determination) or it may
- *   be used directly as the vertical ordinate, against which other parameters are
+ *   be used directly as the vertical coordinate, against which other parameters are
  *   measured. The latter case is applied routinely in meteorology.</p>
  *
  *   <p>Barometric height determination is routinely used in aircraft.
@@ -113,7 +113,7 @@
  *   point above MSL.</p>
  *
  *   <p>In meteorology, atmospheric pressure routinely takes the role
- *   as vertical ordinate in a CRS that is used as a spatial reference frame for
+ *   as vertical coordinate in a CRS that is used as a spatial reference frame for
  *   meteorological parameters in the upper atmosphere. The origin of the datum
  *   is in that case the (hypothetical) zero atmospheric pressure and the positive
  *   vertical axis points down (to increasing pressure).</p></li>
@@ -127,7 +127,7 @@
  *
  * <h3>Image datum</h3>
  * <p>The image pixel grid is defined as the set of lines of constant
- * integer ordinate values. The term "image grid" is often used in other standards to
+ * integer coordinate values. The term "image grid" is often used in other standards to
  * describe the concept of Image CRS. However, care must be taken to correctly interpret
  * this term in the context in which it is used. The term "grid cell" is often used as a
  * substitute for the term "pixel".</p>

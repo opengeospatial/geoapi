@@ -43,7 +43,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * The set of coordinate system axes that spans a given coordinate space. A coordinate system (CS)
  * is derived from a set of (mathematical) rules for specifying how coordinates in a given space
- * are to be assigned to points. The ordinate values in a coordinate tuple shall be recorded in
+ * are to be assigned to points. The coordinate values in a coordinate tuple shall be recorded in
  * the order in which the coordinate system axes associations are recorded, whenever those
  * coordinates use a coordinate reference system that uses this coordinate system.
  *

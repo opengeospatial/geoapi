@@ -110,8 +110,8 @@ public interface Envelope {
     int getDimension();
 
     /**
-     * The limits in the direction of decreasing ordinate values for each dimension.
-     * This is typically a coordinate position consisting of all the minimal ordinates
+     * The limits in the direction of decreasing coordinate values for each dimension.
+     * This is typically a coordinate position consisting of all the minimal coordinates
      * for each dimension for all points within the {@code Envelope}.
      *
      * <div class="note"><b>Spanning the anti-meridian of a geographic CRS</b><br>
@@ -128,14 +128,14 @@ public interface Envelope {
      * name still "visually" appropriate since the <cite>lower</cite> corner still toward the
      * bottom of the map even if the left corner became the right corner.</div>
      *
-     * @return the lower corner, typically (but not necessarily) containing minimal ordinate values.
+     * @return the lower corner, typically (but not necessarily) containing minimal coordinate values.
      */
     @UML(identifier="lowerCorner", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getLowerCorner();
 
     /**
-     * The limits in the direction of increasing ordinate values for each dimension.
-     * This is typically a coordinate position consisting of all the maximal ordinates
+     * The limits in the direction of increasing coordinate values for each dimension.
+     * This is typically a coordinate position consisting of all the maximal coordinates
      * for each dimension for all points within the {@code Envelope}.
      *
      * <div class="note"><b>Spanning the anti-meridian of a geographic CRS</b><br>
@@ -152,13 +152,13 @@ public interface Envelope {
      * name still "visually" appropriate since the <cite>upper</cite> corner still toward the
      * top of the map even if the right corner became the left corner.</div>
      *
-     * @return the upper corner, typically (but not necessarily) containing maximal ordinate values.
+     * @return the upper corner, typically (but not necessarily) containing maximal coordinate values.
      */
     @UML(identifier="upperCorner", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getUpperCorner();
 
     /**
-     * Returns the minimal ordinate value for the specified dimension. In the typical case of
+     * Returns the minimal coordinate value for the specified dimension. In the typical case of
      * non-empty envelopes <em>not</em> spanning the anti-meridian, this method is a shortcut
      * for the following code without the cost of creating a temporary {@link DirectPosition}
      * object:
@@ -177,14 +177,14 @@ public interface Envelope {
      * {@linkplain Double#NEGATIVE_INFINITY negative infinity}, {@linkplain Double#NaN NaN} or other
      * value, at implementor choice.</div>
      *
-     * @param  dimension  the dimension for which to obtain the ordinate value.
-     * @return the minimal ordinate at the given dimension.
+     * @param  dimension  the dimension for which to obtain the coordinate value.
+     * @return the minimal coordinate at the given dimension.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() envelope dimension}.
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. GeoAPI adds this method for convenience and efficiency,
-     *   since some implementations might store the minimum and maximum ordinate values directly in the
+     *   since some implementations might store the minimum and maximum coordinate values directly in the
      *   {@code Envelope} itself rather than in a contained {@code DirectPosition} corner.
      *
      * @see Rectangle2D#getMinX()
@@ -193,7 +193,7 @@ public interface Envelope {
     double getMinimum(int dimension) throws IndexOutOfBoundsException;
 
     /**
-     * Returns the maximal ordinate value for the specified dimension. In the typical case of
+     * Returns the maximal coordinate value for the specified dimension. In the typical case of
      * non-empty envelopes <em>not</em> spanning the anti-meridian, this method is a shortcut
      * for the following code without the cost of creating a temporary {@link DirectPosition}
      * object:
@@ -212,14 +212,14 @@ public interface Envelope {
      * {@linkplain Double#POSITIVE_INFINITY positive infinity}, {@linkplain Double#NaN NaN} or other
      * value, at implementor choice.</div>
      *
-     * @param  dimension  the dimension for which to obtain the ordinate value.
-     * @return the maximal ordinate at the given dimension.
+     * @param  dimension  the dimension for which to obtain the coordinate value.
+     * @return the maximal coordinate at the given dimension.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() envelope dimension}.
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. GeoAPI adds this method for convenience and efficiency,
-     *   since some implementations might store the minimum and maximum ordinate values directly in the
+     *   since some implementations might store the minimum and maximum coordinate values directly in the
      *   {@code Envelope} itself rather than in a contained {@code DirectPosition} corner.
      *
      * @see Rectangle2D#getMaxX()
@@ -228,7 +228,7 @@ public interface Envelope {
     double getMaximum(int dimension) throws IndexOutOfBoundsException;
 
     /**
-     * Returns the median ordinate along the specified dimension.
+     * Returns the median coordinate along the specified dimension.
      * In most cases, the result is equals (minus rounding error) to:
      *
      * <blockquote><code>
@@ -239,21 +239,21 @@ public interface Envelope {
      * If this envelope supports the {@linkplain #getLowerCorner() lower} and
      * {@linkplain #getUpperCorner() upper} corners extended interpretation, and if the axis
      * range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND}, then a special cases occurs
-     * when <var>upper</var> &lt; <var>lower</var>. In such cases, the ordinate values from the
+     * when <var>upper</var> &lt; <var>lower</var>. In such cases, the coordinate values from the
      * lower and upper corner may be used instead than the minimum and maximum values, with the
      * periodicity (360° for longitudes) added to the upper value before to perform the median calculation.
      * Implementations are free to use variants of the above algorithm. For example some
      * libraries may add different multiples of the periodicity in order to ensure that the
      * median value is inside the axis range.</div>
      *
-     * @param  dimension  the dimension for which to obtain the ordinate value.
-     * @return the median ordinate at the given dimension.
+     * @param  dimension  the dimension for which to obtain the coordinate value.
+     * @return the median coordinate at the given dimension.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() envelope dimension}.
      *
      * @departure easeOfUse
      *   This method is not part of ISO specification. GeoAPI adds this method for convenience and efficiency,
-     *   since some implementations might store the minimum and maximum ordinate values directly in the
+     *   since some implementations might store the minimum and maximum coordinate values directly in the
      *   {@code Envelope} itself rather than in a contained {@code DirectPosition} corner.
      *
      * @see Rectangle2D#getCenterX()
@@ -273,7 +273,7 @@ public interface Envelope {
      * If this envelope supports the {@linkplain #getLowerCorner() lower} and
      * {@linkplain #getUpperCorner() upper} corners extended interpretation, and if the axis
      * range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND}, then a special cases occurs
-     * when <var>upper</var> &lt; <var>lower</var>. In such cases, the ordinate values from the
+     * when <var>upper</var> &lt; <var>lower</var>. In such cases, the coordinate values from the
      * lower and upper corner may be used instead than the minimum and maximum values, with the
      * periodicity (360° for longitudes) added to the upper value before to perform the span calculation.
      * Implementations are free to use variants of the above algorithm. For example some
