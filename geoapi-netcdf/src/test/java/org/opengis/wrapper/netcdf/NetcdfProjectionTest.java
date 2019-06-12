@@ -117,7 +117,7 @@ public strictfp class NetcdfProjectionTest extends TransformTestCase {
     /**
      * Tests the {@link NetcdfProjection#getDomainOfValidity()} method.
      *
-     * <p><b>Note:</b> In netCDF 4.2, the declared bounding box was approximatively
+     * <p><b>Note:</b> In netCDF 4.2, the declared bounding box was approximately
      * <var>west</var>  = -152.85°,
      * <var>east</var>  = -57.15°,
      * <var>south</var> = -43.1° and

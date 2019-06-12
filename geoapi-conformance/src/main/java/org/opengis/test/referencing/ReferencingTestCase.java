@@ -346,7 +346,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      *   </li>
      * </ul>
      *
-     * The tolerance threshold is 0.005° since geographic bounding box are only approximative information.
+     * The tolerance threshold is 0.005° since geographic bounding box are only approximate information.
      *
      * <p>If the given {@code extent} is {@code null}, then this method does nothing.
      * Deciding if {@code null} extents are allowed or not is {@link org.opengis.test.Validator}'s job.</p>

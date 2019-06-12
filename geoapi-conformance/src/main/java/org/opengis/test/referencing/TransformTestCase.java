@@ -206,7 +206,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * the standard nautical mile length ({@value org.opengis.test.ToleranceModifiers#NAUTICAL_MILE}
      * metres by minute of angle) as below:</p>
      *
-     * <blockquote><pre>derivativeDeltas = new double[] {100.0 / (60 * 1852)};      // Approximatively 100 metres.</pre></blockquote>
+     * <blockquote><pre>derivativeDeltas = new double[] {100.0 / (60 * 1852)};      // Approximately 100 metres.</pre></blockquote>
      *
      * @see #isDerivativeSupported
      * @see #verifyDerivative(double[])
@@ -1506,7 +1506,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                     buffer.append(lineSeparator).append("Matrix(").append(j).append(',').append(i)
                             .append("): expected ").append(e).append(" but got ").append(a)
                             .append(" (a difference of ").append(d).append(')').append(lineSeparator)
-                            .append("Expected matrix (may be approximative):").append(lineSeparator);
+                            .append("Expected matrix (may be approximate):").append(lineSeparator);
                     SimpleMatrix.toString(expected, buffer, lineSeparator);
                     buffer.append(lineSeparator).append("Actual matrix:").append(lineSeparator);
                     SimpleMatrix.toString(actual, buffer, lineSeparator);

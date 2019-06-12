@@ -103,7 +103,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
 
     /**
      * The names of map projection (informative). Projected CRS conversion should have one of those names.
-     * However those names are approximative. For example the “Argentina zones” name may apply to a wide
+     * However those names are approximate. For example the “Argentina zones” name may apply to a wide
      * range of names like “Argentina zone 1”, “Argentina zone 2”, <i>etc</i>.
      */
     public String[] projectionNames;
