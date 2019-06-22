@@ -164,6 +164,12 @@ public interface FeatureType extends IdentifiedType {
 
     /**
      * Returns {@code true} if this type is same or a super-type of the given type.
+     * Implementations should ensure that the following constraints are met:
+     *
+     * <ul>
+     *   <li>If <var>A</var> is assignable from <var>B</var> and <var>B</var> is assignable from <var>C</var>,
+     *       then <var>A</var> is assignable from <var>C</var>.</li>
+     * </ul>
      *
      * <div class="note"><b>Analogy with Java reflection</b><br>
      * if we compare {@code FeatureType} to {@link Class} in the Java language, then this method is equivalent
