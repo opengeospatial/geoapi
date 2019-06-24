@@ -77,8 +77,8 @@ public interface Objective {
      * @return collection technique for the objective.
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115_2)
-    default Collection<? extends ObjectiveType> getTypes() {
-        return Collections.emptyList();
+    default Collection<ObjectiveType> getTypes() {
+        return Collections.emptySet();
     }
 
     /**

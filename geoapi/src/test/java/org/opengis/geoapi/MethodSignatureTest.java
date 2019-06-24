@@ -31,8 +31,14 @@
  */
 package org.opengis.geoapi;
 
+import java.util.Collection;
+import java.lang.reflect.Type;
+import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.AnnotatedElement;
+import java.lang.reflect.ParameterizedType;
+import java.lang.reflect.WildcardType;
+import java.lang.reflect.Modifier;
 import org.opengis.annotation.UML;
 import org.junit.Test;
 
@@ -54,6 +60,12 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
     public void verifyUML() {
         for (final Class<?> c : Content.ALL.types()) {
             verifyUML(c);
+            for (final Field m : c.getFields()) {
+                verifyUML(m);
+            }
+            for (final Method m : c.getMethods()) {
+                verifyUML(m);
+            }
         }
     }
 
@@ -76,7 +88,9 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
             final short version = uml.version();
             final short defaultVersion = uml.specification().defaultVersion();
             if (!c.isAnnotationPresent(Deprecated.class)) {
-                assertFalse(identifier, version == defaultVersion);
+                if (version == defaultVersion) {
+                    fail(c + ": " + identifier + " does not need explicit version number.");
+                }
             }
             /*
              * We expect deprecated methods to be legacy from older standards.
@@ -90,7 +104,61 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
                  */
                 if (!identifier.equals("MD_CharacterSetCode")) {
                     if (defaultVersion != 1) {
-                        assertFalse(identifier, version == 0);
+                        if (version == 0) {
+                            fail(c + ": " + identifier + " should have a version number.");
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    /**
+     * Verifies that collections have parameterized type.
+     * The upper bounds depend on whether the collection element type are final classes or not.
+     */
+    @Test
+    public void verifyReturnTypes() {
+        for (final Class<?> c : Content.ALL.types()) {
+            for (final Method m : c.getMethods()) {
+                if (Collection.class.isAssignableFrom(m.getReturnType())) {
+                    final String pkg = m.getDeclaringClass().getPackage().getName();        // TODO: replace by getPackageName() in JDK9.
+                    if (pkg.startsWith("org.opengis.util"))        continue;                // Skipped for now.
+                    if (pkg.startsWith("org.opengis.referencing")) continue;                // Skipped for now.
+                    if (pkg.startsWith("org.opengis.parameter"))   continue;                // Skipped for now.
+                    if (pkg.startsWith("org.opengis.geometry"))    continue;                // Skipped for now.
+                    if (pkg.startsWith("org.opengis.feature"))     continue;                // Skipped for now.
+                    final String description = m.toString();
+                    Type type = m.getGenericReturnType();
+                    /*
+                     * Require all collections to be parameterized with exactly one parameter.
+                     */
+                    assertTrue(description, type instanceof ParameterizedType);
+                    Type[] p = ((ParameterizedType) type).getActualTypeArguments();
+                    assertEquals(description, 1, p.length);
+                    type = p[0];
+                    /*
+                     * Whether we allow covariant element type, i.e. <? extends T> instead of <T>.
+                     * If T is an actual class or interface like org.opengis.metadata.Identifier,
+                     * we verify its bound. Otherwise we skip the check.
+                     */
+                    final boolean isCovariant = (type instanceof WildcardType);
+                    if (isCovariant) {
+                        p = ((WildcardType) type).getUpperBounds();
+                        assertEquals(description, 1, p.length);
+                        type = p[0];
+                    }
+                    if (type instanceof Class<?>) {
+                        final Class<?> cl = (Class<?>) type;
+                        boolean isFinal = Modifier.isFinal(cl.getModifiers());
+                        if (!isFinal && !cl.isInterface()) {
+                            // If no public constructor, consider as final.
+                            isFinal = cl.getConstructors().length == 0;
+                        }
+                        if (isFinal == isCovariant) {
+                            fail(description + ": " + (isFinal ? "does not need" : "should allow")
+                                    + " covariant element type. The element type is " + type + '.');
+                        }
                     }
                 }
             }
@@ -103,11 +171,15 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
     @Test
     public void verifyDefaultMethods() {
         for (final Class<?> c : Content.ALL.types()) {
-            if (!c.getName().startsWith("org.opengis.metadata.")) {
-                continue;       // Default methods currently applied on metadata package only.
-            }
             if (c.isInterface() && !c.isAnnotationPresent(Deprecated.class)) {
-                for (Method m : c.getMethods()) {
+                for (final Method m : c.getMethods()) {
+                    final String pkg = m.getDeclaringClass().getPackage().getName();        // TODO: replace by getPackageName() in JDK9.
+                    if (pkg.startsWith("org.opengis.util"))        continue;                // Skipped for now.
+                    if (pkg.startsWith("org.opengis.referencing")) continue;                // Skipped for now.
+                    if (pkg.startsWith("org.opengis.parameter"))   continue;                // Skipped for now.
+                    if (pkg.startsWith("org.opengis.temporal"))    continue;                // Skipped for now.
+                    if (pkg.startsWith("org.opengis.geometry"))    continue;                // Skipped for now.
+                    if (pkg.startsWith("org.opengis.feature"))     continue;                // Skipped for now.
                     final UML uml = m.getAnnotation(UML.class);
                     if (uml != null) {
                         final boolean isOptional;
@@ -123,9 +195,9 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
                             }
                         }
                         if (m.isDefault() != isOptional) {
-                            fail(c.getSimpleName() + '.' + m.getName() + ": " +
-                                    (isOptional ? "expected a default method."
-                                                : "should not have default method."));
+                            fail(c.getSimpleName() + '.' + m.getName() + ": " + (isOptional
+                                    ? "expected a default method."
+                                    : "should not have default method."));
                         }
                     }
                 }
