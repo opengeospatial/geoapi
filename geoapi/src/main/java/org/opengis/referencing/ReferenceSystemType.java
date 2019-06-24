@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @since   3.1
  */
 @UML(identifier="MD_ReferenceSystemTypeCode", specification=ISO_19115)
-public class ReferenceSystemType extends CodeList<ReferenceSystemType> {
+public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
     /**
      * Serial number for compatibility with different versions.
      */

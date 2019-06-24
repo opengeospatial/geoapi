@@ -40,6 +40,7 @@ import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.WildcardType;
 import java.lang.reflect.Modifier;
 import org.opengis.annotation.UML;
+import org.opengis.util.CodeList;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -109,6 +110,18 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
                         }
                     }
                 }
+            }
+        }
+    }
+
+    /**
+     * Verifies that code lists are final.
+     */
+    @Test
+    public void verifyCodeLists() {
+        for (final Class<?> c : Content.ALL.types()) {
+            if (CodeList.class.isAssignableFrom(c) && c != CodeList.class) {
+                assertTrue(c.getName(), Modifier.isFinal(c.getModifiers()));
             }
         }
     }
