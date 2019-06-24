@@ -35,6 +35,7 @@ import java.util.Collection;
 import java.lang.reflect.Type;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
+import java.lang.reflect.Member;
 import java.lang.reflect.AnnotatedElement;
 import java.lang.reflect.ParameterizedType;
 import java.lang.reflect.WildcardType;
@@ -55,17 +56,28 @@ import static org.junit.Assert.*;
  */
 public final strictfp class MethodSignatureTest extends SourceGenerator {
     /**
+     * Returns {@code true} if the given field or method is public from a GeoAPI point of view.
+     */
+    private static boolean isPublic(final Member method) {
+        return (method.getModifiers() & (Modifier.PUBLIC | Modifier.PROTECTED)) != 0;
+    }
+
+    /**
      * Verifies the values of all UML annotations.
      */
     @Test
     public void verifyUML() {
         for (final Class<?> c : Content.ALL.types()) {
             verifyUML(c);
-            for (final Field m : c.getFields()) {
-                verifyUML(m);
+            for (final Field m : c.getDeclaredFields()) {
+                if (isPublic(m)) {
+                    verifyUML(m);
+                }
             }
-            for (final Method m : c.getMethods()) {
-                verifyUML(m);
+            for (final Method m : c.getDeclaredMethods()) {
+                if (isPublic(m)) {
+                    verifyUML(m);
+                }
             }
         }
     }
@@ -133,14 +145,14 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
     @Test
     public void verifyReturnTypes() {
         for (final Class<?> c : Content.ALL.types()) {
-            for (final Method m : c.getMethods()) {
-                if (Collection.class.isAssignableFrom(m.getReturnType())) {
-                    final String pkg = m.getDeclaringClass().getPackage().getName();        // TODO: replace by getPackageName() in JDK9.
-                    if (pkg.startsWith("org.opengis.util"))        continue;                // Skipped for now.
-                    if (pkg.startsWith("org.opengis.referencing")) continue;                // Skipped for now.
-                    if (pkg.startsWith("org.opengis.parameter"))   continue;                // Skipped for now.
-                    if (pkg.startsWith("org.opengis.geometry"))    continue;                // Skipped for now.
-                    if (pkg.startsWith("org.opengis.feature"))     continue;                // Skipped for now.
+            final String pkg = c.getPackage().getName();                    // TODO: replace by getPackageName() in JDK9.
+            if (pkg.startsWith("org.opengis.util"))        continue;        // Skipped for now.
+            if (pkg.startsWith("org.opengis.referencing")) continue;        // Skipped for now.
+            if (pkg.startsWith("org.opengis.parameter"))   continue;        // Skipped for now.
+            if (pkg.startsWith("org.opengis.geometry"))    continue;        // Skipped for now.
+            if (pkg.startsWith("org.opengis.feature"))     continue;        // Skipped for now.
+            for (final Method m : c.getDeclaredMethods()) {
+                if (isPublic(m) && Collection.class.isAssignableFrom(m.getReturnType())) {
                     final String description = m.toString();
                     Type type = m.getGenericReturnType();
                     /*
@@ -184,17 +196,16 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
     @Test
     public void verifyDefaultMethods() {
         for (final Class<?> c : Content.ALL.types()) {
+            final String pkg = c.getPackage().getName();                // TODO: replace by getPackageName() in JDK9.
+            if (pkg.startsWith("org.opengis.util"))      continue;      // Skipped for now.
+            if (pkg.startsWith("org.opengis.parameter")) continue;      // Skipped for now.
+            if (pkg.startsWith("org.opengis.temporal"))  continue;      // Skipped for now.
+            if (pkg.startsWith("org.opengis.geometry"))  continue;      // Skipped for now.
             if (c.isInterface() && !c.isAnnotationPresent(Deprecated.class)) {
-                for (final Method m : c.getMethods()) {
-                    final String pkg = m.getDeclaringClass().getPackage().getName();        // TODO: replace by getPackageName() in JDK9.
-                    if (pkg.startsWith("org.opengis.util"))      continue;                  // Skipped for now.
-                    if (pkg.startsWith("org.opengis.parameter")) continue;                  // Skipped for now.
-                    if (pkg.startsWith("org.opengis.temporal"))  continue;                  // Skipped for now.
-                    if (pkg.startsWith("org.opengis.geometry"))  continue;                  // Skipped for now.
-                    if (pkg.startsWith("org.opengis.feature"))   continue;                  // Skipped for now.
-                    final UML uml = m.getAnnotation(UML.class);
-                    if (uml != null) {
-                        final boolean isOptional;
+                for (final Method m : c.getDeclaredMethods()) {
+                    final UML uml;
+                    if (isPublic(m) && !m.isBridge() && (uml = m.getAnnotation(UML.class)) != null) {
+                        boolean isOptional;
                         if (m.isAnnotationPresent(Deprecated.class)) {
                             isOptional = true;
                         } else {
@@ -205,14 +216,28 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
                                 case OPTIONAL:  isOptional = true;  break;
                                 default: throw new AssertionError(uml);
                             }
-                        }
-                        if (m.isDefault() != isOptional && !m.isBridge()) {
+                            /*
+                             * Special case for methods withoud default despite declared optional.
+                             */
                             if (c == org.opengis.referencing.operation.Conversion.class) {
                                 switch (m.getName()) {
-                                    case "getSourceCRS": continue;      // Special case: no default method despite optional.
-                                    case "getTargetCRS": continue;
+                                    case "getSourceCRS":
+                                    case "getTargetCRS": isOptional = false;
                                 }
                             }
+                            if (c == org.opengis.feature.IdentifiedType.class) {
+                                switch (m.getName()) {
+                                    case "getName": isOptional = false;
+                                }
+                            }
+                            if (c == org.opengis.feature.FeatureType.class) {
+                                switch (m.getName()) {
+                                    case "getSuperTypes":
+                                    case "getProperties": isOptional = false;
+                                }
+                            }
+                        }
+                        if (m.isDefault() != isOptional) {
                             fail(c.getSimpleName() + '.' + m.getName() + ": " + (isOptional
                                     ? "expected a default method."
                                     : "should not have default method."));

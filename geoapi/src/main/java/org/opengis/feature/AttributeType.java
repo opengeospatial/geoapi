@@ -32,6 +32,7 @@
 package org.opengis.feature;
 
 import java.util.Map;
+import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.Classifier;
@@ -167,7 +168,9 @@ public interface AttributeType<V> extends PropertyType {
      * @see Attribute#characteristics()
      */
     @UML(identifier="characterizeBy", obligation=OPTIONAL, specification=ISO_19109)
-    Map<String,AttributeType<?>> characteristics();
+    default Map<String,AttributeType<?>> characteristics() {
+        return Collections.emptyMap();
+    }
     /*
      * Note: ISO 19109 also defines the following member
      * for traversing the association in the opposite way:
