@@ -73,20 +73,19 @@ public interface TemporalDatum extends Datum {
      */
     @Override
     @UML(identifier="anchorPoint", obligation=FORBIDDEN, specification=ISO_19111)
-    InternationalString getAnchorPoint();
+    default InternationalString getAnchorPoint() {
+        return null;
+    }
 
     /**
      * This attribute is defined in the {@link Datum} parent interface,
      * but is not used by a temporal datum.
      *
-     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
-     * </div>
-     *
      * @return always {@code null}.
      */
     @Override
     @UML(identifier="realizationEpoch", obligation=FORBIDDEN, specification=ISO_19111)
-    Date getRealizationEpoch();
+    default Date getRealizationEpoch() {
+        return null;
+    }
 }

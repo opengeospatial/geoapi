@@ -330,7 +330,9 @@ public interface MathTransformFactory extends Factory {
      */
     @Deprecated
     @UML(identifier="createFromXML", obligation=MANDATORY, specification=OGC_01009)
-    MathTransform createFromXML(String xml) throws FactoryException;
+    default MathTransform createFromXML(String xml) throws FactoryException {
+        throw new FactoryException("No XML format defined for MathTransform.");
+    }
 
     /**
      * Creates a math transform object from a <cite>Well-Known Text</cite>.

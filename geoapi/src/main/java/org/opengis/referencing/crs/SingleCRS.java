@@ -78,6 +78,6 @@ public interface SingleCRS extends CoordinateReferenceSystem {
      *   The ISO specification declares the datum as absent when the association is indirect.
      *   GeoAPI recommends to follow the link to the base CRS for users convenience.
      */
-    @UML(identifier="datum", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="datum", obligation=CONDITIONAL, specification=ISO_19111)
     Datum getDatum();
 }

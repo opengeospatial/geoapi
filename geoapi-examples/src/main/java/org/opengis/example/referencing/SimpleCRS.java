@@ -27,7 +27,6 @@ import org.opengis.referencing.datum.TemporalDatum;
 import org.opengis.referencing.datum.VerticalDatum;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.VerticalDatumType;
-import org.opengis.util.InternationalString;
 
 
 /**
@@ -261,22 +260,6 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
         public VerticalDatumType getVerticalDatumType() {
             return type;
         }
-
-        /**
-         * Returns {@code null} since this simple implementation does not define anchor point.
-         */
-        @Override
-        public InternationalString getAnchorPoint() {
-            return null;
-        }
-
-        /**
-         * Returns {@code null} since this simple implementation does not define realization epoch.
-         */
-        @Override
-        public Date getRealizationEpoch() {
-            return null;
-        }
     }
 
     /**
@@ -343,22 +326,6 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
         @Override
         public Date getOrigin() {
             return new Date(origin);
-        }
-
-        /**
-         * Returns {@code null} since this simple implementation does not define anchor point.
-         */
-        @Override
-        public InternationalString getAnchorPoint() {
-            return null;
-        }
-
-        /**
-         * Returns {@code null} since this simple implementation does not define realization epoch.
-         */
-        @Override
-        public Date getRealizationEpoch() {
-            return null;
         }
     }
 }

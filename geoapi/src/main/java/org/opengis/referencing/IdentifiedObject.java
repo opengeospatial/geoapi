@@ -33,6 +33,7 @@ package org.opengis.referencing;
 
 import java.util.Set;
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.Identifier;
@@ -136,7 +137,9 @@ public interface IdentifiedObject {
      * @return alternative names and abbreviations, or an empty collection if there is none.
      */
     @UML(identifier="alias", obligation=OPTIONAL, specification=ISO_19111)
-    Collection<GenericName> getAlias();
+    default Collection<GenericName> getAlias() {
+        return Collections.emptyList();
+    }
 
     /**
      * An identifier which references elsewhere the object's defining information.
@@ -145,7 +148,9 @@ public interface IdentifiedObject {
      * @return this object identifiers, or an empty collection if there is none.
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19111)
-    Set<Identifier> getIdentifiers();
+    default Set<Identifier> getIdentifiers() {
+        return Collections.emptySet();
+    }
 
     /**
      * Comments on or information about this object, including data source information.
@@ -153,7 +158,9 @@ public interface IdentifiedObject {
      * @return the remarks, or {@code null} if none.
      */
     @UML(identifier="remarks", obligation=OPTIONAL, specification=ISO_19111)
-    InternationalString getRemarks();
+    default InternationalString getRemarks() {
+        return null;
+    }
 
     /**
      * Returns a <cite>Well-Known Text</cite> (WKT) for this object.
@@ -178,5 +185,7 @@ public interface IdentifiedObject {
      *
      * @see org.opengis.referencing.crs.CRSFactory#createFromWKT(String)
      */
-    String toWKT() throws UnsupportedOperationException;
+    default String toWKT() throws UnsupportedOperationException {
+        throw new UnsupportedOperationException();
+    }
 }

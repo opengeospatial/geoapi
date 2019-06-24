@@ -110,7 +110,9 @@ public interface ReferenceSystem extends IdentifiedObject {
      *   and also because the {@code Extent} attributes already allow collections.
      */
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
-    Extent getDomainOfValidity();
+    default Extent getDomainOfValidity() {
+        return null;
+    }
 
     /**
      * Description of domain of usage, or limitations of usage, for which this
@@ -132,5 +134,7 @@ public interface ReferenceSystem extends IdentifiedObject {
      *   </ul>
      */
     @UML(identifier="SC_CRS.scope", obligation=OPTIONAL, specification=ISO_19111)
-    InternationalString getScope();
+    default InternationalString getScope() {
+        return null;
+    }
 }

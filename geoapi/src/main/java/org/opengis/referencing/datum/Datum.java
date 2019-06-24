@@ -136,7 +136,9 @@ public interface Datum extends IdentifiedObject {
      * @see VerticalDatum#getVerticalDatumType()
      */
     @UML(identifier="anchorDefinition", obligation=OPTIONAL, specification=ISO_19111)
-    InternationalString getAnchorPoint();
+    default InternationalString getAnchorPoint() {
+        return null;
+    }
 
     /**
      * The time after which this datum definition is valid. This time may be precise (e.g. 1997
@@ -156,7 +158,9 @@ public interface Datum extends IdentifiedObject {
      * @return the datum realization epoch, or {@code null} if not available.
      */
     @UML(identifier="realizationEpoch", obligation=OPTIONAL, specification=ISO_19111)
-    Date getRealizationEpoch();
+    default Date getRealizationEpoch() {
+        return null;
+    }
 
     /**
      * Area or region or timeframe in which this datum is valid.
@@ -164,7 +168,9 @@ public interface Datum extends IdentifiedObject {
      * @return the datum valid domain, or {@code null} if not available.
      */
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
-    Extent getDomainOfValidity();
+    default Extent getDomainOfValidity() {
+        return null;
+    }
 
     /**
      * Description of domain of usage, or limitations of usage, for which this datum object is valid.
@@ -178,5 +184,7 @@ public interface Datum extends IdentifiedObject {
      *   if the scope is unknown.
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
-    InternationalString getScope();
+    default InternationalString getScope() {
+        return null;
+    }
 }

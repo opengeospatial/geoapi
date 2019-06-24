@@ -187,12 +187,11 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
             if (c.isInterface() && !c.isAnnotationPresent(Deprecated.class)) {
                 for (final Method m : c.getMethods()) {
                     final String pkg = m.getDeclaringClass().getPackage().getName();        // TODO: replace by getPackageName() in JDK9.
-                    if (pkg.startsWith("org.opengis.util"))        continue;                // Skipped for now.
-                    if (pkg.startsWith("org.opengis.referencing")) continue;                // Skipped for now.
-                    if (pkg.startsWith("org.opengis.parameter"))   continue;                // Skipped for now.
-                    if (pkg.startsWith("org.opengis.temporal"))    continue;                // Skipped for now.
-                    if (pkg.startsWith("org.opengis.geometry"))    continue;                // Skipped for now.
-                    if (pkg.startsWith("org.opengis.feature"))     continue;                // Skipped for now.
+                    if (pkg.startsWith("org.opengis.util"))      continue;                  // Skipped for now.
+                    if (pkg.startsWith("org.opengis.parameter")) continue;                  // Skipped for now.
+                    if (pkg.startsWith("org.opengis.temporal"))  continue;                  // Skipped for now.
+                    if (pkg.startsWith("org.opengis.geometry"))  continue;                  // Skipped for now.
+                    if (pkg.startsWith("org.opengis.feature"))   continue;                  // Skipped for now.
                     final UML uml = m.getAnnotation(UML.class);
                     if (uml != null) {
                         final boolean isOptional;
@@ -207,7 +206,13 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
                                 default: throw new AssertionError(uml);
                             }
                         }
-                        if (m.isDefault() != isOptional) {
+                        if (m.isDefault() != isOptional && !m.isBridge()) {
+                            if (c == org.opengis.referencing.operation.Conversion.class) {
+                                switch (m.getName()) {
+                                    case "getSourceCRS": continue;      // Special case: no default method despite optional.
+                                    case "getTargetCRS": continue;
+                                }
+                            }
                             fail(c.getSimpleName() + '.' + m.getName() + ": " + (isOptional
                                     ? "expected a default method."
                                     : "should not have default method."));

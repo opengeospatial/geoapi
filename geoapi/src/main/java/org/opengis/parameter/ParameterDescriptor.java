@@ -95,7 +95,9 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * @departure extension
      *   This method is not part of ISO specification. It is provided as a complement of information.
      */
-    Set<T> getValidValues();
+    default Set<T> getValidValues() {
+        return null;                    // Really null, not an empty collection, because we mean "no restriction".
+    }
 
     /**
      * Returns the minimum parameter value.
@@ -105,7 +107,9 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * @return the minimum parameter value (often an instance of {@link Double}), or {@code null}.
      */
     @UML(identifier="GC_ParameterInfo.minimumValue", obligation=OPTIONAL, specification=ISO_19111)
-    Comparable<T> getMinimumValue();
+    default Comparable<T> getMinimumValue() {
+        return null;
+    }
 
     /**
      * Returns the maximum parameter value.
@@ -115,7 +119,9 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * @return the maximum parameter value (often an instance of {@link Double}), or {@code null}.
      */
     @UML(identifier="GC_ParameterInfo.maximumValue", obligation=OPTIONAL, specification=ISO_19111)
-    Comparable<T> getMaximumValue();
+    default Comparable<T> getMaximumValue() {
+        return null;
+    }
 
     /**
      * Returns the default value for the parameter.
@@ -124,7 +130,9 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * @return the default value, or {@code null} in none.
      */
     @UML(identifier="GC_ParameterInfo.defaultValue", obligation=OPTIONAL, specification=ISO_19111)
-    T getDefaultValue();
+    default T getDefaultValue() {
+        return null;
+    }
 
     /**
      * Returns the unit of measurement for the
@@ -139,7 +147,9 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * @departure extension
      *   This method is not part of ISO specification. It is provided as a complement of information.
      */
-    Unit<?> getUnit();
+    default Unit<?> getUnit() {
+        return null;
+    }
 
     /**
      * Creates a new instance of {@linkplain ParameterValue parameter value} initialized with the

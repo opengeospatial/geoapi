@@ -163,7 +163,9 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * @since 3.1
      */
     @UML(identifier="direction", obligation=OPTIONAL, specification=ISO_19115)
-    ParameterDirection getDirection();
+    default ParameterDirection getDirection() {
+        return null;
+    }
 
     /**
      * A narrative explanation of the role of the parameter.
@@ -176,7 +178,9 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * @see #getRemarks()
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getDescription();
+    default InternationalString getDescription() {
+        return null;
+    }
 
     /**
      * The minimum number of times that values for this parameter group or parameter are required.
@@ -187,7 +191,9 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * @see #getMaximumOccurs()
      */
     @UML(identifier="minimumOccurs", obligation=OPTIONAL, specification=ISO_19111)
-    int getMinimumOccurs();
+    default int getMinimumOccurs() {
+        return 1;
+    }
 
     /**
      * The maximum number of times that values for this parameter group or parameter can be included.
@@ -207,7 +213,9 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * @see #getMinimumOccurs()
      */
     @UML(identifier="CC_OperationParameterGroup.maximumOccurs", obligation=OPTIONAL, specification=ISO_19111)
-    int getMaximumOccurs();
+    default int getMaximumOccurs() {
+        return 1;
+    }
 
     /**
      * Creates a new instance of {@linkplain GeneralParameterValue parameter value or group}

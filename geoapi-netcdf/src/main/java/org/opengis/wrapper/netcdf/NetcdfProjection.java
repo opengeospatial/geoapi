@@ -14,7 +14,6 @@
 package org.opengis.wrapper.netcdf;
 
 import java.util.Map;
-import java.util.Set;
 import java.util.List;
 import java.util.Arrays;
 import java.util.Collections;
@@ -34,7 +33,6 @@ import ucar.unidata.geoloc.ProjectionPointImpl;
 import ucar.unidata.geoloc.projection.ProjectionAdapter;
 
 import org.opengis.metadata.extent.Extent;
-import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.referencing.crs.GeographicCRS;
@@ -596,28 +594,6 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
                     domain.getLatMin(), domain.getLatMax());
         }
         return null;
-    }
-
-    /**
-     * Version of the coordinate transformation (i.e., instantiation due to the stochastic
-     * nature of the parameters). The default implementation returns {@code null}.
-     *
-     * @return the coordinate operation version, or {@code null} in none.
-     */
-    @Override
-    public String getOperationVersion() {
-        return null;
-    }
-
-    /**
-     * Estimate(s) of the impact of this operation on point accuracy.
-     * The default implementation returns an empty set.
-     *
-     * @return the position error estimates, or an empty set if not available.
-     */
-    @Override
-    public Set<PositionalAccuracy> getCoordinateOperationAccuracy() {
-        return Collections.emptySet();
     }
 
     /**

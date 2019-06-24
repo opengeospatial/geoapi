@@ -7,7 +7,6 @@
  */
 package org.opengis.example.parameter;
 
-import java.util.Set;
 import java.net.URI;
 
 import javax.measure.Unit;
@@ -208,26 +207,6 @@ public class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
-     * Returns the minimum number of times that values for this parameter are required.
-     * The default implementation returns 1, meaning that a value shall always be supplied
-     * (the {@link #getValue()} method never return {@code null}).
-     */
-    @Override
-    public int getMinimumOccurs() {
-        return 1;
-    }
-
-    /**
-     * Returns the maximum number of times that values for this parameter can be included.
-     * This method unconditionally returns 1, which is the mandatory value for
-     * {@link ParameterValue} implementations.
-     */
-    @Override
-    public int getMaximumOccurs() {
-        return 1;
-    }
-
-    /**
      * Unconditionally returns {@code Double.class}, which is the hard-coded type of values
      * in this parameter implementation.
      */
@@ -269,24 +248,6 @@ public class SimpleParameter extends SimpleIdentifiedObject
     @Override
     public Comparable<Double> getMaximumValue() {
         return (type != null) ? type.maximum : null;
-    }
-
-    /**
-     * Returns the set of allowed values when these are restricted to some finite set or returns
-     * {@code null} otherwise. The default implementation unconditionally returns {@code null}.
-     */
-    @Override
-    public Set<Double> getValidValues() {
-        return null;
-    }
-
-    /**
-     * Returns the default value for the parameter.
-     * The default implementation unconditionally returns {@code null}.
-     */
-    @Override
-    public Double getDefaultValue() {
-        return null;
     }
 
     /**

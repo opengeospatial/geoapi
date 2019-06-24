@@ -144,7 +144,9 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * @return the minimum value, or {@link Double#NEGATIVE_INFINITY} if none.
      */
     @UML(identifier="minimumValue", obligation=OPTIONAL, specification=ISO_19111)
-    double getMinimumValue();
+    default double getMinimumValue() {
+        return Double.NEGATIVE_INFINITY;
+    }
 
     /**
      * Returns the maximum value normally allowed for this axis,
@@ -155,7 +157,9 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * @return the maximum value, or {@link Double#POSITIVE_INFINITY} if none.
      */
     @UML(identifier="maximumValue", obligation=OPTIONAL, specification=ISO_19111)
-    double getMaximumValue();
+    default double getMaximumValue() {
+        return Double.POSITIVE_INFINITY;
+    }
 
     /**
      * Returns the meaning of axis value range specified by the {@linkplain #getMinimumValue()

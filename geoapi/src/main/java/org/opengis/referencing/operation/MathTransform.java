@@ -312,5 +312,5 @@ public interface MathTransform {
      * @see MathTransformFactory#createFromWKT(String)
      */
     @UML(identifier="getWKT", specification=OGC_01009)
-    String toWKT() throws UnsupportedOperationException;
+    String toWKT();
 }

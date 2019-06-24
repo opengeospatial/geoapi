@@ -13,23 +13,16 @@
  */
 package org.opengis.wrapper.proj4;
 
-import java.util.Date;
-import java.util.Set;
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 
 import org.proj4.PJ;
-import org.opengis.util.GenericName;
-import org.opengis.util.InternationalString;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.PrimeMeridian;
-import org.opengis.metadata.extent.Extent;
 
 import static java.lang.Math.*;
 
@@ -134,17 +127,6 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
         return name;
     }
 
-    /*
-     * Various GeoAPI method having no direct mapping in the Proj.4 library.
-     */
-    @Override public Collection<GenericName>  getAlias()            {return Collections.emptySet();}
-    @Override public Set<Identifier>          getIdentifiers()      {return Collections.emptySet();}
-    @Override public InternationalString      getScope()            {return null;}
-    @Override public InternationalString      getRemarks()          {return null;}
-    @Override public InternationalString      getAnchorPoint()      {return null;}
-    @Override public Date                     getRealizationEpoch() {return null;}
-    @Override public Extent                   getDomainOfValidity() {return null;}
-
     /**
      * Returns the ellipsoid associated with the geodetic datum.
      */
@@ -238,13 +220,5 @@ final class PJDatum extends PJ implements GeodeticDatum, PrimeMeridian, Ellipsoi
             }
         }
         return null;
-    }
-
-    /**
-     * Throws unconditionally an exception since there is no WKT formatting provided by the {@literal Proj.4} library.
-     */
-    @Override
-    public String toWKT() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException();
     }
 }

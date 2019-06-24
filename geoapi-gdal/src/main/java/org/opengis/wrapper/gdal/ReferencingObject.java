@@ -13,14 +13,8 @@
  */
 package org.opengis.wrapper.gdal;
 
-import java.util.Set;
-import java.util.Collection;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.IdentifiedObject;
-import org.opengis.util.GenericName;
-import org.opengis.util.InternationalString;
-
-import static java.util.Collections.emptySet;
 
 
 /**
@@ -45,10 +39,7 @@ abstract class ReferencingObject implements IdentifiedObject, Identifier {
         this.name = name;
     }
 
-    @Override public final Identifier              getName()        {return this;}
-    @Override public final Collection<GenericName> getAlias()       {return emptySet();}
-    @Override public final Set<Identifier>         getIdentifiers() {return emptySet();}
-    @Override public final String                  getCode()        {return name;}
-    @Override public final InternationalString     getRemarks()     {return null;}
-    @Override public final String                  toString()       {return toWKT();}
+    @Override public final Identifier getName()  {return this;}
+    @Override public final String     getCode()  {return name;}
+    @Override public final String     toString() {return toWKT();}
 }

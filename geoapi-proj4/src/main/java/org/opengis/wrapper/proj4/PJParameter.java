@@ -14,13 +14,11 @@
 package org.opengis.wrapper.proj4;
 
 import java.net.URI;
-import java.util.Set;
 import java.util.Collection;
 import javax.measure.Unit;
 import javax.measure.IncommensurableException;
 
 import org.opengis.util.GenericName;
-import org.opengis.util.InternationalString;
 import org.opengis.metadata.Identifier;
 import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterDescriptor;
@@ -76,39 +74,11 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
     }
 
     /**
-     * Returns {@code null}, since this simple class does not provide parameter description.
-     */
-    @Override
-    public InternationalString getDescription() {
-        return null;
-    }
-
-    /**
      * Returns {@code this}, since this simple class is used only as input parameter.
      */
     @Override
     public ParameterDirection getDirection() {
         return ParameterDirection.IN;
-    }
-
-    /**
-     * Returns the minimum number of times that values for this parameter are required.
-     * This method returns 1, meaning that a value shall always be supplied
-     * (the {@link #getValue()} method never return {@code null}).
-     */
-    @Override
-    public int getMinimumOccurs() {
-        return 1;
-    }
-
-    /**
-     * Returns the maximum number of times that values for this parameter can be included.
-     * This method unconditionally returns 1, which is the mandatory value for
-     * {@link ParameterValue} implementations.
-     */
-    @Override
-    public int getMaximumOccurs() {
-        return 1;
     }
 
     /**
@@ -125,41 +95,6 @@ final class PJParameter extends PJObject implements ParameterValue<Double>, Para
      */
     @Override
     public Unit<?> getUnit() {
-        return null;
-    }
-
-    /**
-     * Returns {@code null}, since this simple class has no information about the
-     * range of valid values.
-     */
-    @Override
-    public Comparable<Double> getMinimumValue() {
-        return null;
-    }
-
-    /**
-     * Returns {@code null}, since this simple class has no information about the
-     * range of valid values.
-     */
-    @Override
-    public Comparable<Double> getMaximumValue() {
-        return null;
-    }
-
-    /**
-     * Returns {@code null}, since this simple class has no information about the
-     * set of valid values.
-     */
-    @Override
-    public Set<Double> getValidValues() {
-        return null;
-    }
-
-    /**
-     * Returns {@code null}, since this simple class has no information about the default value.
-     */
-    @Override
-    public Double getDefaultValue() {
         return null;
     }
 

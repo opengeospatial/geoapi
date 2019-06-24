@@ -126,7 +126,9 @@ public interface OperationMethod extends IdentifiedObject {
      * @see MathTransform#getSourceDimensions()
      */
     @UML(identifier="sourceDimensions", obligation=OPTIONAL, specification=ISO_19111)
-    Integer getSourceDimensions();
+    default Integer getSourceDimensions() {
+        return null;
+    }
 
     /**
      * Number of dimensions in the target CRS of this operation method.
@@ -138,7 +140,9 @@ public interface OperationMethod extends IdentifiedObject {
      * @see MathTransform#getTargetDimensions()
      */
     @UML(identifier="targetDimensions", obligation=OPTIONAL, specification=ISO_19111)
-    Integer getTargetDimensions();
+    default Integer getTargetDimensions() {
+        return null;
+    }
 
     /**
      * The set of parameters.

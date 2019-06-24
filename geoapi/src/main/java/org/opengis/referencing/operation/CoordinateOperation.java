@@ -32,6 +32,7 @@
 package org.opengis.referencing.operation;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.metadata.quality.PositionalAccuracy;
@@ -150,7 +151,9 @@ public interface CoordinateOperation extends IdentifiedObject {
      * @return the position error estimates, or an empty collection if not available.
      */
     @UML(identifier="coordinateOperationAccuracy", obligation=OPTIONAL, specification=ISO_19111)
-    Collection<PositionalAccuracy> getCoordinateOperationAccuracy();
+    default Collection<PositionalAccuracy> getCoordinateOperationAccuracy() {
+        return Collections.emptyList();
+    }
 
     /**
      * Area or region or timeframe in which this coordinate operation is valid.
@@ -158,7 +161,9 @@ public interface CoordinateOperation extends IdentifiedObject {
      * @return the coordinate operation valid domain, or {@code null} if not available.
      */
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
-    Extent getDomainOfValidity();
+    default Extent getDomainOfValidity() {
+        return null;
+    }
 
     /**
      * Description of domain of usage, or limitations of usage, for which this operation is valid.
@@ -172,7 +177,9 @@ public interface CoordinateOperation extends IdentifiedObject {
      *   <cite>"not known"</cite> if the scope is unknown. This change is still under review.
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
-    InternationalString getScope();
+    default InternationalString getScope() {
+        return null;
+    }
 
     /**
      * Gets the math transform. The math transform will transform positions in the

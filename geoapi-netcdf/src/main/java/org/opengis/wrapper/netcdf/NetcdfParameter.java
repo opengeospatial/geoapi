@@ -16,7 +16,6 @@ package org.opengis.wrapper.netcdf;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Objects;
-import java.util.Set;
 import java.net.URI;
 import java.net.URISyntaxException;
 import javax.measure.Unit;
@@ -240,14 +239,6 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     }
 
     /**
-     * Returns {@code null} since the {@link Parameter} class does not define a set of valid values.
-     */
-    @Override
-    public Set<T> getValidValues() {
-        return null;
-    }
-
-    /**
      * Returns the {@linkplain #getValue() current value} as the default value.
      * This is consistent with the {@link #createValue()} method, which creates
      * a copy of {@code NetcdfParameter} containing the same parameter value.
@@ -255,22 +246,6 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     @Override
     public T getDefaultValue() {
         return getValue();
-    }
-
-    /**
-     * Returns {@code null} since there is no descriptor defining a minimal value.
-     */
-    @Override
-    public Comparable<T> getMinimumValue() {
-        return null;
-    }
-
-    /**
-     * Returns {@code null} since there is no descriptor defining a maximal value.
-     */
-    @Override
-    public Comparable<T> getMaximumValue() {
-        return null;
     }
 
     /**
@@ -287,14 +262,6 @@ public class NetcdfParameter<T> extends NetcdfIdentifiedObject
     @Override
     public int getMinimumOccurs() {
         return 0;
-    }
-
-    /**
-     * Returns 1 since this parameter is not a group of parameters.
-     */
-    @Override
-    public int getMaximumOccurs() {
-        return 1;
     }
 
     /**
