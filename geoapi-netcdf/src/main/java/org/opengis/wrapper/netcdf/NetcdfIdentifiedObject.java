@@ -127,17 +127,6 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Identi
     }
 
     /**
-     * Returns a natural language description of this object.
-     * The default implementation returns {@code null}.
-     *
-     * @return the natural language description, or {@code null} if none.
-     */
-    @Override
-    public InternationalString getDescription() {
-        return null;
-    }
-
-    /**
      * Returns the area or region or timeframe in which this object is valid, or {@code null} if
      * none. The default implementation returns a geographic extent for the world, since most netCDF
      * objects except {@link ucar.unidata.geoloc.Projection} are not restricted to a particular area.

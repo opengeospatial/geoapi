@@ -57,7 +57,9 @@ public interface SampleDimension extends RangeDimension {
      * @return minimum value of data values in each dimension included in the resource, or {@code null} if none.
      */
     @UML(identifier="minValue", obligation=OPTIONAL, specification=ISO_19115)
-    Double getMinValue();
+    default Double getMinValue() {
+        return null;
+    }
 
     /**
      * Maximum value of data values in each dimension included in the resource.
@@ -66,7 +68,9 @@ public interface SampleDimension extends RangeDimension {
      * @return maximum value of data values in each dimension included in the resource, or {@code null} if none.
      */
     @UML(identifier="maxValue", obligation=OPTIONAL, specification=ISO_19115)
-    Double getMaxValue();
+    default Double getMaxValue() {
+        return null;
+    }
 
     /**
      * Mean value of data values in each dimension included in the resource.
@@ -75,7 +79,9 @@ public interface SampleDimension extends RangeDimension {
      * @return the mean value of data values in each dimension included in the resource, or {@code null} if none.
      */
     @UML(identifier="meanValue", obligation=OPTIONAL, specification=ISO_19115)
-    Double getMeanValue();
+    default Double getMeanValue() {
+        return null;
+    }
 
     /**
      * Number of values used in a thematic classification resource.
@@ -87,7 +93,9 @@ public interface SampleDimension extends RangeDimension {
      * @return the number of values used in a thematic classification resource, or {@code null} if none.
      */
     @UML(identifier="numberOfValues", obligation=OPTIONAL, specification=ISO_19115)
-    Integer getNumberOfValues();
+    default Integer getNumberOfValues() {
+        return null;
+    }
 
     /**
      * Standard deviation of data values in each dimension included in the resource.
@@ -96,7 +104,9 @@ public interface SampleDimension extends RangeDimension {
      * @return standard deviation of data values in each dimension included in the resource, or {@code null} if none.
      */
     @UML(identifier="standardDeviation", obligation=OPTIONAL, specification=ISO_19115)
-    Double getStandardDeviation();
+    default Double getStandardDeviation() {
+        return null;
+    }
 
     /**
      * Units of data in each dimension included in the resource.
@@ -117,7 +127,9 @@ public interface SampleDimension extends RangeDimension {
      * @return scale factor which has been applied to the cell value, or {@code null} if none.
      */
     @UML(identifier="scaleFactor", obligation=OPTIONAL, specification=ISO_19115)
-    Double getScaleFactor();
+    default Double getScaleFactor() {
+        return null;
+    }
 
     /**
      * Physical value corresponding to a cell value of zero.
@@ -126,7 +138,9 @@ public interface SampleDimension extends RangeDimension {
      * @return physical value corresponding to a cell value of zero, or {@code null} if none.
      */
     @UML(identifier="offset", obligation=OPTIONAL, specification=ISO_19115)
-    Double getOffset();
+    default Double getOffset() {
+        return null;
+    }
 
     /**
      * Type of transfer function to be used when scaling a physical value for a given element.
@@ -139,7 +153,9 @@ public interface SampleDimension extends RangeDimension {
      * @return type of transfer function.
      */
     @UML(identifier="transferFunctionType", obligation=OPTIONAL, specification=ISO_19115_2)
-    TransferFunctionType getTransferFunctionType();
+    default TransferFunctionType getTransferFunctionType() {
+        return null;
+    }
 
     /**
      * Maximum number of significant bits in the uncompressed representation for the value in each band of each pixel.
@@ -149,7 +165,9 @@ public interface SampleDimension extends RangeDimension {
      *         for the value in each band of each pixel, or {@code null} if none.
      */
     @UML(identifier="bitsPerValue", obligation=OPTIONAL, specification=ISO_19115)
-    Integer getBitsPerValue();
+    default Integer getBitsPerValue() {
+        return null;
+    }
 
     /**
      * Smallest distance between which separate points can be distinguished, as specified in instrument design.
@@ -169,7 +187,9 @@ public interface SampleDimension extends RangeDimension {
      * @unitof Distance
      */
     @UML(identifier="nominalSpatialResolution", obligation=OPTIONAL, specification=ISO_19115_2)
-    Double getNominalSpatialResolution();
+    default Double getNominalSpatialResolution() {
+        return null;
+    }
 
     /**
      * Type of other attribute description.
@@ -178,7 +198,9 @@ public interface SampleDimension extends RangeDimension {
      * @return type of other attribute description, or {@code null} if none.
      */
     @UML(identifier="otherPropertyType", obligation=OPTIONAL, specification=ISO_19115)
-    RecordType getOtherPropertyType();
+    default RecordType getOtherPropertyType() {
+        return null;
+    }
 
     /**
      * Instance of other attribute type that defines attributes not explicitly included in {@link CoverageContentType}.
@@ -187,5 +209,7 @@ public interface SampleDimension extends RangeDimension {
      * @return instance of other/attributeType that defines attributes, or {@code null} if none.
      */
     @UML(identifier="otherProperty", obligation=OPTIONAL, specification=ISO_19115)
-    Record getOtherProperty();
+    default Record getOtherProperty() {
+        return null;
+    }
 }

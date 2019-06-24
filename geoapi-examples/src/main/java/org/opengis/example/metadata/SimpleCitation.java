@@ -7,22 +7,12 @@
  */
 package org.opengis.example.metadata;
 
-import java.util.Set;
-import java.util.Date;
 import java.util.Locale;
 import java.util.Objects;
 import java.io.Serializable;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
-import org.opengis.metadata.citation.CitationDate;
-import org.opengis.metadata.citation.OnlineResource;
-import org.opengis.metadata.citation.PresentationForm;
-import org.opengis.metadata.citation.Responsibility;
-import org.opengis.metadata.citation.Series;
-import org.opengis.metadata.identification.BrowseGraphic;
 import org.opengis.util.InternationalString;
-
-import static java.util.Collections.emptySet;
 
 
 /**
@@ -154,136 +144,6 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
     @Override
     public InternationalString getTitle() {
         return this;
-    }
-
-    /**
-     * Short name or other language name by which the cited information is known.
-     * The default implementation returns an empty set.
-     */
-    @Override
-    public Set<InternationalString> getAlternateTitles() {
-        return emptySet();
-    }
-
-    /**
-     * Reference date for the cited resource.
-     * The default implementation returns an empty set.
-     */
-    @Override
-    public Set<CitationDate> getDates() {
-        return emptySet();
-    }
-
-    /**
-     * Version of the cited resource.
-     * The default implementation returns {@code null}.
-     */
-    @Override
-    public InternationalString getEdition() {
-        return null;
-    }
-
-    /**
-     * Date of the edition, or {@code null} if none.
-     * The default implementation returns {@code null}.
-     */
-    @Override
-    public Date getEditionDate() {
-        return null;
-    }
-
-    /**
-     * Unique identifier for the resource.
-     * The default implementation returns an empty set.
-     */
-    @Override
-    public Set<Identifier> getIdentifiers() {
-        return emptySet();
-    }
-
-    /**
-     * Name and position information for an individual or organization that is responsible
-     * for the resource. The default implementation returns an empty set.
-     */
-    @Override
-    public Set<Responsibility> getCitedResponsibleParties() {
-        return emptySet();
-    }
-
-    /**
-     * Mode in which the resource is represented, or an empty set if none.
-     * The default implementation returns an empty set.
-     */
-    @Override
-    public Set<PresentationForm> getPresentationForms() {
-        return emptySet();
-    }
-
-    /**
-     * Information about the series, or aggregate dataset, of which the dataset is a part.
-     * The default implementation returns {@code null}.
-     */
-    @Override
-    public Series getSeries() {
-        return null;
-    }
-
-    /**
-     * Other information required to complete the citation that is not recorded elsewhere.
-     * The default implementation returns an empty set.
-     */
-    @Override
-    public Set<InternationalString> getOtherCitationDetails() {
-        return emptySet();
-    }
-
-    /**
-     * @deprecated Removed in ISO 19115:2014.
-     */
-    @Override
-    @Deprecated
-    public InternationalString getCollectiveTitle() {
-        return null;
-    }
-
-    /**
-     * International Standard Book Number, or {@code null} if none.
-     * The default implementation returns {@code null}.
-     */
-    @Override
-    public String getISBN() {
-        return null;
-    }
-
-    /**
-     * International Standard Serial Number, or {@code null} if none.
-     * The default implementation returns {@code null}.
-     */
-    @Override
-    public String getISSN() {
-        return null;
-    }
-
-    /**
-     * Returns online references to the cited resource.
-     * The default implementation returns an empty set.
-     *
-     * @return online reference to the cited resource, or an empty collection if there is none.
-     */
-    @Override
-    public Set<OnlineResource> getOnlineResources() {
-        return emptySet();
-    }
-
-    /**
-     * Returns citation graphic or logo for cited party.
-     * The default implementation returns an empty set.
-     *
-     * @return graphics or logo for cited party, or an empty collection if there is none.
-     */
-    @Override
-    public Set<BrowseGraphic> getGraphics() {
-        return emptySet();
     }
 
     /**

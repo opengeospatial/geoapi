@@ -32,6 +32,7 @@
 package org.opengis.metadata;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Responsibility;
 import org.opengis.annotation.Obligation;
@@ -82,7 +83,9 @@ public interface ExtendedElementInformation {
      */
     @Deprecated
     @UML(identifier="shortName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
-    String getShortName();
+    default String getShortName() {
+        return null;
+    }
 
     /**
      * Three digit code assigned to the extended element.
@@ -99,7 +102,9 @@ public interface ExtendedElementInformation {
      */
     @Deprecated
     @UML(identifier="domainCode", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
-    Integer getDomainCode();
+    default Integer getDomainCode() {
+        return null;
+    }
 
     /**
      * Definition of the extended element.
@@ -195,7 +200,9 @@ public interface ExtendedElementInformation {
      * @since 3.1
      */
     @UML(identifier="rationale", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getRationale();
+    default InternationalString getRationale() {
+        return null;
+    }
 
     /**
      * @deprecated As of ISO 19115:2014, replaced by {@link #getRationale()}.
@@ -203,7 +210,10 @@ public interface ExtendedElementInformation {
      * @return reason for creating the extended element.
      */
     @Deprecated
-    Collection<? extends InternationalString> getRationales();
+    default Collection<? extends InternationalString> getRationales() {
+        InternationalString rationale = getRationale();
+        return (rationale != null) ? Collections.singletonList(rationale) : Collections.emptyList();
+    }
 
     /**
      * Name of the person or organization creating the extended element.

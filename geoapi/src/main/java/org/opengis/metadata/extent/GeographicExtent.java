@@ -62,5 +62,7 @@ public interface GeographicExtent {
      *   and 0 for exclusion. GeoAPI uses a name which better expresses the meaning of the return value.
      */
     @UML(identifier="extentTypeCode", obligation=OPTIONAL, specification=ISO_19115)
-    Boolean getInclusion();
+    default Boolean getInclusion() {
+        return null;
+    }
 }

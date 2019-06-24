@@ -32,6 +32,7 @@
 package org.opengis.metadata.acquisition;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
@@ -57,7 +58,9 @@ public interface Instrument {
      * @return complete citation of the instrument.
      */
     @UML(identifier="citation", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Citation> getCitations();
+    default Collection<? extends Citation> getCitations() {
+        return Collections.emptyList();
+    }
 
     /**
      * Unique identification of the instrument.
@@ -81,7 +84,9 @@ public interface Instrument {
      * @return textual description, or {@code null}.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115_2)
-    InternationalString getDescription();
+    default InternationalString getDescription() {
+        return null;
+    }
 
     /**
      * Platform on which the instrument is mounted.
@@ -89,5 +94,7 @@ public interface Instrument {
      * @return platform on which the instrument is mounted, or {@code null}.
      */
     @UML(identifier="mountedOn", obligation=OPTIONAL, specification=ISO_19115_2)
-    Platform getMountedOn();
+    default Platform getMountedOn() {
+        return null;
+    }
 }

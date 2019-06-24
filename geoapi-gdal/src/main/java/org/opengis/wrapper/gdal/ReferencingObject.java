@@ -16,7 +16,6 @@ package org.opengis.wrapper.gdal;
 import java.util.Set;
 import java.util.Collection;
 import org.opengis.metadata.Identifier;
-import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
@@ -49,11 +48,7 @@ abstract class ReferencingObject implements IdentifiedObject, Identifier {
     @Override public final Identifier              getName()        {return this;}
     @Override public final Collection<GenericName> getAlias()       {return emptySet();}
     @Override public final Set<Identifier>         getIdentifiers() {return emptySet();}
-    @Override public final Citation                getAuthority()   {return null;}
     @Override public final String                  getCode()        {return name;}
-    @Override public final String                  getCodeSpace()   {return null;}
-    @Override public final String                  getVersion()     {return null;}
-    @Override public final InternationalString     getDescription() {return null;}
     @Override public final InternationalString     getRemarks()     {return null;}
     @Override public final String                  toString()       {return toWKT();}
 }

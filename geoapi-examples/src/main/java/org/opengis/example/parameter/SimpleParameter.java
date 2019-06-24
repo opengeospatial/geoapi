@@ -16,6 +16,7 @@ import javax.measure.quantity.Angle;
 import tec.units.ri.AbstractUnit;
 import tec.units.ri.unit.Units;
 
+import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.parameter.InvalidParameterValueException;
 import org.opengis.parameter.InvalidParameterTypeException;
@@ -185,6 +186,17 @@ public class SimpleParameter extends SimpleIdentifiedObject
     @Override
     public ParameterDescriptor<Double> getDescriptor() {
         return this;
+    }
+
+    /**
+     * Returns a natural language description of this object.
+     * The default implementation returns {@code null}.
+     *
+     * @return the natural language description, or {@code null} if none.
+     */
+    @Override
+    public InternationalString getDescription() {
+        return null;
     }
 
     /**

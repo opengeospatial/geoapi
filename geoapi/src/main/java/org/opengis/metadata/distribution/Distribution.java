@@ -32,6 +32,7 @@
 package org.opengis.metadata.distribution;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
 import org.opengis.util.InternationalString;
@@ -58,7 +59,9 @@ public interface Distribution {
      * @since 3.1
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getDescription();
+    default InternationalString getDescription() {
+        return null;
+    }
 
     /**
      * Provides a description of the format of the data to be distributed.
@@ -79,7 +82,9 @@ public interface Distribution {
      * @return information about the distributor.
      */
     @UML(identifier="distributor", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Distributor> getDistributors();
+    default Collection<? extends Distributor> getDistributors() {
+        return Collections.emptyList();
+    }
 
     /**
      * Provides information about technical means and media by which a resource is obtained
@@ -89,5 +94,7 @@ public interface Distribution {
      */
     @Profile(level=CORE)
     @UML(identifier="transferOptions", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends DigitalTransferOptions> getTransferOptions();
+    default Collection<? extends DigitalTransferOptions> getTransferOptions() {
+        return Collections.emptyList();
+    }
 }

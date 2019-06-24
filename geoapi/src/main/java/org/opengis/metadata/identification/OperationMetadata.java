@@ -33,6 +33,7 @@ package org.opengis.metadata.identification;
 
 import java.util.List;
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.util.InternationalString;
 import org.opengis.parameter.ParameterDescriptor;
@@ -74,7 +75,9 @@ public interface OperationMetadata {
      *         or {@code null} if none.
      */
     @UML(identifier="operationDescription", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getOperationDescription();
+    default InternationalString getOperationDescription() {
+        return null;
+    }
 
     /**
      * The name used to invoke this interface within the context of the DCP.
@@ -83,7 +86,9 @@ public interface OperationMetadata {
      * @return the name used to invoke this interface within the context of the DCP, or {@code null} if none.
      */
     @UML(identifier="invocationName", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getInvocationName();
+    default InternationalString getInvocationName() {
+        return null;
+    }
 
     /**
      * Handle for accessing the service interface.
@@ -128,7 +133,9 @@ public interface OperationMetadata {
      * @see org.opengis.parameter.GeneralParameterDescriptor
      */
     @UML(identifier="parameter", obligation=OPTIONAL, specification=ISO_19115)     // Was "parameters" in ISO 19115:2003
-    Collection<? extends ParameterDescriptor<?>> getParameters();
+    default Collection<? extends ParameterDescriptor<?>> getParameters() {
+        return Collections.emptyList();
+    }
 
     /**
      * List of operation that must be completed immediately before current operation is invoked.
@@ -138,5 +145,7 @@ public interface OperationMetadata {
      * @return list of operation that must be completed immediately, or an empty list if none.
      */
     @UML(identifier="dependsOn", obligation=OPTIONAL, specification=ISO_19115)
-    List<? extends OperationMetadata> getDependsOn();
+    default List<? extends OperationMetadata> getDependsOn() {
+        return Collections.emptyList();
+    }
 }

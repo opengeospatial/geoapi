@@ -32,6 +32,8 @@
 package org.opengis.metadata.citation;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
@@ -61,7 +63,9 @@ public interface Contact {
      * @since 3.1
      */
     @UML(identifier="phone", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Telephone> getPhones();
+    default Collection<? extends Telephone> getPhones() {
+        return Collections.emptyList();
+    }
 
     /**
      * Telephone numbers at which the organization or individual may be contacted.
@@ -73,7 +77,10 @@ public interface Contact {
      * @deprecated As of ISO 19115:2014, replaced by {@link #getPhones()}.
      */
     @Deprecated
-    Telephone getPhone();
+    default Telephone getPhone() {
+        Iterator<? extends Telephone> it = getPhones().iterator();
+        return it.hasNext() ? it.next() : null;
+    }
 
     /**
      * Physical and email addresses at which the organization or individual may be contacted.
@@ -84,7 +91,9 @@ public interface Contact {
      * @since 3.1
      */
     @UML(identifier="address", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Address> getAddresses();
+    default Collection<? extends Address> getAddresses() {
+        return Collections.emptyList();
+    }
 
     /**
      * Physical and email address at which the organization or individual may be contacted.
@@ -96,7 +105,10 @@ public interface Contact {
      * @deprecated As of ISO 19115:2014, replaced by {@link #getAddresses()}.
      */
     @Deprecated
-    Address getAddress();
+    default Address getAddress() {
+        Iterator<? extends Address> it = getAddresses().iterator();
+        return it.hasNext() ? it.next() : null;
+    }
 
     /**
      * On-line information that can be used to contact the individual or organization.
@@ -107,7 +119,9 @@ public interface Contact {
      * @since 3.1
      */
     @UML(identifier="onlineResource", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends OnlineResource> getOnlineResources();
+    default Collection<? extends OnlineResource> getOnlineResources() {
+        return Collections.emptyList();
+    }
 
     /**
      * On-line information that can be used to contact the individual or organization.
@@ -119,7 +133,10 @@ public interface Contact {
      * @deprecated As of ISO 19115:2014, replaced by {@link #getOnlineResources()}.
      */
     @Deprecated
-    OnlineResource getOnlineResource();
+    default OnlineResource getOnlineResource() {
+        Iterator<? extends OnlineResource> it = getOnlineResources().iterator();
+        return it.hasNext() ? it.next() : null;
+    }
 
     /**
      * Time period (including time zone) when individuals can contact the organization or individual.
@@ -128,7 +145,9 @@ public interface Contact {
      * @return time period when individuals can contact the organization or individual.
      */
     @UML(identifier="hoursOfService", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends InternationalString> getHoursOfService();
+    default Collection<? extends InternationalString> getHoursOfService() {
+        return Collections.emptyList();
+    }
 
     /**
      * Supplemental instructions on how or when to contact the individual or organization.
@@ -138,7 +157,9 @@ public interface Contact {
      *         or {@code null} if none.
      */
     @UML(identifier="contactInstructions", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getContactInstructions();
+    default InternationalString getContactInstructions() {
+        return null;
+    }
 
     /**
      * Type of the contact.
@@ -149,5 +170,7 @@ public interface Contact {
      * @since 3.1
      */
     @UML(identifier="contactType", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getContactType();
+    default InternationalString getContactType() {
+        return null;
+    }
 }

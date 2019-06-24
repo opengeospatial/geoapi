@@ -63,5 +63,7 @@ public interface MetadataScope {
      * @return the description of the scope, or {@code null} if none.
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getName();
+    default InternationalString getName() {
+        return null;
+    }
 }

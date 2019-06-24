@@ -24,6 +24,7 @@ import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterNotFoundException;
 import org.opengis.example.referencing.SimpleIdentifiedObject;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -93,6 +94,17 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
     @Override
     public ParameterDescriptorGroup getDescriptor() {
         return this;
+    }
+
+    /**
+     * Returns a natural language description of this object.
+     * The default implementation returns {@code null}.
+     *
+     * @return the natural language description, or {@code null} if none.
+     */
+    @Override
+    public InternationalString getDescription() {
+        return null;
     }
 
     /**

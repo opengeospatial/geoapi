@@ -32,8 +32,6 @@
 package org.opengis.test.referencing.gigs;
 
 import org.opengis.metadata.Identifier;
-import org.opengis.metadata.citation.Citation;
-import org.opengis.util.InternationalString;
 
 
 /**
@@ -73,30 +71,6 @@ final strictfp class GIGSIdentifier implements Identifier {
     @Override
     public String getCodeSpace() {
         return "GIGS";
-    }
-
-    /**
-     * Unsupported - returns {@code null} for now.
-     */
-    @Override
-    public Citation getAuthority() {
-        return null;
-    }
-
-    /**
-     * Returns {@code null} since we do not hold version information.
-     */
-    @Override
-    public String getVersion() {
-        return null;
-    }
-
-    /**
-     * Returns {@code null} since we do not hold object description.
-     */
-    @Override
-    public InternationalString getDescription() {
-        return null;
     }
 
     /**

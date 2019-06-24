@@ -32,6 +32,7 @@
 package org.opengis.metadata.acquisition;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.opengis.annotation.UML;
 import org.opengis.geometry.Geometry;
@@ -64,7 +65,9 @@ public interface PlatformPass {
      * @return area covered by the pass, or {@code null}.
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115_2)
-    Geometry getExtent();
+    default Geometry getExtent() {
+        return null;
+    }
 
     /**
      * Occurrence of one or more events for a pass.
@@ -72,5 +75,7 @@ public interface PlatformPass {
      * @return occurrence of one or more events for a pass.
      */
     @UML(identifier="relatedEvent", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Event> getRelatedEvents();
+    default Collection<? extends Event> getRelatedEvents() {
+        return Collections.emptyList();
+    }
 }

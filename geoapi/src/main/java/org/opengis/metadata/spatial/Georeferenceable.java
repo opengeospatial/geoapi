@@ -32,6 +32,7 @@
 package org.opengis.metadata.spatial;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.util.Record;
 import org.opengis.metadata.citation.Citation;
@@ -76,7 +77,9 @@ public interface Georeferenceable extends GridSpatialRepresentation {
      * @return description of parameters used to describe sensor orientation, or {@code null}.
      */
     @UML(identifier="orientationParameterDescription", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getOrientationParameterDescription();
+    default InternationalString getOrientationParameterDescription() {
+        return null;
+    }
 
     /**
      * Terms which support grid data georeferencing.
@@ -92,7 +95,9 @@ public interface Georeferenceable extends GridSpatialRepresentation {
      * @return reference providing description of the parameters.
      */
     @UML(identifier="parameterCitation", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getParameterCitations();
+    default Collection<? extends Citation> getParameterCitations() {
+        return Collections.emptyList();
+    }
 
     /**
      * Information that can be used to geolocate the data.

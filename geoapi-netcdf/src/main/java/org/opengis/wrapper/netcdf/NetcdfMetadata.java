@@ -19,7 +19,6 @@ import java.util.Locale;
 import java.util.EnumSet;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Iterator;
 import java.util.Objects;
 import java.util.Map;
 import java.net.URI;
@@ -36,16 +35,8 @@ import org.opengis.metadata.extent.*;
 import org.opengis.metadata.spatial.*;
 import org.opengis.metadata.citation.*;
 import org.opengis.metadata.maintenance.*;
-import org.opengis.metadata.distribution.*;
 import org.opengis.metadata.identification.*;
-import org.opengis.metadata.quality.DataQuality;
-import org.opengis.metadata.constraint.Constraints;
-import org.opengis.metadata.content.ContentInformation;
-import org.opengis.metadata.acquisition.AcquisitionInformation;
-import org.opengis.metadata.lineage.Lineage;
-import org.opengis.referencing.ReferenceSystem;
 import org.opengis.util.InternationalString;
-import org.opengis.temporal.Duration;
 
 
 /**
@@ -256,14 +247,6 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      */
     private static <T> Collection<T> singleton(final T value) {
         return (value != null) ? Collections.singleton(value) : Collections.<T>emptySet();
-    }
-
-    /**
-     * Returns the first item in the given collection, or {@code null} if none.
-     */
-    private static <T> T first(final Collection<? extends T> values) {
-        final Iterator<? extends T> it = values.iterator();
-        return it.hasNext() ? it.next() : null;
     }
 
 
@@ -563,7 +546,6 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     public Collection<? extends MetadataScope> getMetadataScopes() {
         return Collections.singleton(new MetadataScope() {
             @Override public ScopeCode getResourceScope() {return ScopeCode.DATASET;}
-            @Override public InternationalString getName() {return null;}
         });
     }
 
@@ -573,17 +555,6 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     // ┌─────────────────────────────────────────────────────────────────────────────────────────┐
     // │    Indirection levels to the above attributes                                           │
     // └─────────────────────────────────────────────────────────────────────────────────────────┘
-
-    /**
-     * Returns {@code null} by default.
-     * Metadata identifier should not be confused with data identifier.
-     *
-     * @return the authority and the code for this metadata.
-     */
-    @Override
-    public Identifier getMetadataIdentifier() {
-        return null;
-    }
 
     /**
      * Encapsulates the {@linkplain #getAuthority() naming authority} together with the
@@ -642,17 +613,8 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * </ul>
      */
     private final class Creator implements Responsibility, Individual, Contact {
-        @Override public Collection<? extends Extent>         getExtents()                 {return Collections.emptySet();}
-        @Override public Collection<? extends OnlineResource> getOnlineResources()         {return Collections.emptySet();}
-        @Override public Collection<? extends Address>        getAddresses()               {return self(hasAttribute(ACDD.creator_email));}
-        @Override public InternationalString                  getPositionName()            {return null;}
-        @Override public InternationalString                  getContactType()             {return null;}
-        @Override public InternationalString                  getContactInstructions()     {return null;}
-        @Override public Collection<Telephone>                getPhones()                  {return Collections.emptySet();}
-        @Override public Collection<InternationalString>      getHoursOfService()          {return Collections.emptySet();}
-        @Override @Deprecated public Address                  getAddress()                 {return NetcdfMetadata.this;}
-        @Override @Deprecated public Telephone                getPhone()                   {return null;}
-        @Override @Deprecated public OnlineResource           getOnlineResource()          {return null;}
+        @Override public Collection<? extends Address> getAddresses()    {return self(hasAttribute(ACDD.creator_email));}
+        @Override public InternationalString           getPositionName() {return null;}
 
         /**
          * Returns a collection containing {@code this} if the given attribute is presents, or an empty set otherwise.
@@ -713,15 +675,6 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     }
 
     /**
-     * Defaults to an empty set.
-     * For the dataset creator, see {@link #getCitation()} instead.
-     */
-    @Override
-    public Collection<? extends Responsibility> getPointOfContacts() {
-        return Collections.emptySet();
-    }
-
-    /**
      * Defaults to a synonymous for the {@linkplain #getPointOfContacts() point of contacts}
      * in this simple implementation. Note that in theory, those two methods are not strictly
      * synonymous since {@code getContacts()} shall return the contact for the <em>metadata</em>,
@@ -757,176 +710,18 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     // │    Non-implemented methods                                                              │
     // └─────────────────────────────────────────────────────────────────────────────────────────┘
 
-    /** Defaults to {@code null}. */ @Override public String                                   getVersion()                       {return null;}
-    /** Defaults to {@code null}. */ @Override public Citation                                 getParentMetadata()                {return null;}
-    /** Defaults to {@code null}. */ @Override public InternationalString                      getDescription()                   {return null;}
-    /** Defaults to {@code null}. */ @Override public InternationalString                      getEnvironmentDescription()        {return null;}
-    /** Defaults to {@code null}. */ @Override public Identifier                               getProcessingLevel()               {return null;}
-    /** Defaults to an empty set. */ @Override public Collection<Keywords>                     getDescriptiveKeywords()           {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<BrowseGraphic>                getGraphicOverviews()              {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<ContentInformation>           getContentInfo()                   {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<SpatialRepresentation>        getSpatialRepresentationInfo()     {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<ReferenceSystem>              getReferenceSystemInfo()           {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<TemporalExtent>               getTemporalElements()              {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<VerticalExtent>               getVerticalElements()              {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<Resolution>                   getSpatialResolutions()            {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<Duration>                     getTemporalResolutions()           {return Collections.emptySet();}
-    /** Defaults to an empty map. */ @Override public Map<Locale,Charset>                      getLocalesAndCharsets()            {return Collections.emptyMap();}
-    /** Defaults to an empty set. */ @Override public Collection<Locale>                       getLanguages()                     {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<Charset>                      getCharacterSets()                 {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<Format>                       getResourceFormats()               {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<Usage>                        getResourceSpecificUsages()        {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<Constraints>                  getResourceConstraints()           {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<Constraints>                  getMetadataConstraints()           {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<MaintenanceInformation>       getResourceMaintenances()          {return Collections.emptySet();}
-    /** Defaults to {@code null}. */ @Override public MaintenanceInformation                   getMetadataMaintenance()           {return null;}
-    /** Defaults to an empty set. */ @Override public Collection<Lineage>                      getResourceLineages()              {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<AcquisitionInformation>       getAcquisitionInformation()        {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<DataQuality>                  getDataQualityInfo()               {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<Progress>                     getStatus()                        {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<OnlineResource>               getMetadataLinkages()              {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<Citation>                     getMetadataProfiles()              {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<ApplicationSchemaInformation> getApplicationSchemaInfo()         {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<AssociatedResource>           getAssociatedResources()           {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<MetadataExtensionInformation> getMetadataExtensionInfo()         {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<Citation>                     getAdditionalDocumentations()      {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<Citation>                     getAlternativeMetadataReferences() {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<PortrayalCatalogueReference>  getPortrayalCatalogueInfo()        {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<Distribution>                 getDistributionInfo()              {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<InternationalString>          getDeliveryPoints()                {return Collections.emptySet();}
-    /** Defaults to {@code null}. */ @Override public InternationalString                      getCity()                          {return null;}
-    /** Defaults to {@code null}. */ @Override public InternationalString                      getAdministrativeArea()            {return null;}
-    /** Defaults to {@code null}. */ @Override public String                                   getPostalCode()                    {return null;}
-    /** Defaults to {@code null}. */ @Override public InternationalString                      getCountry()                       {return null;}
-    /** Defaults to an empty set. */ @Override public Collection<InternationalString>          getAlternateTitles()               {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<PresentationForm>             getPresentationForms()             {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<BrowseGraphic>                getGraphics()                      {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<InternationalString>          getOtherCitationDetails()          {return Collections.emptySet();}
-    /** Defaults to {@code null}. */ @Override @Deprecated public InternationalString          getCollectiveTitle()               {return null;}
-    /** Defaults to {@code null}. */ @Override public Series                                   getSeries()                        {return null;}
-    /** Defaults to {@code null}. */ @Override public InternationalString                      getEdition()                       {return null;}
-    /** Defaults to {@code null}. */ @Override public Date                                     getEditionDate()                   {return null;}
-    /** Defaults to {@code null}. */ @Override public String                                   getISBN()                          {return null;}
-    /** Defaults to {@code null}. */ @Override public String                                   getISSN()                          {return null;}
-    /** Defaults to {@code null}. */ @Override public String                                   getProtocol()                      {return null;}
-    /** Defaults to {@code null}. */ @Override public String                                   getApplicationProfile()            {return null;}
-    /** Defaults to {@code null}. */ @Override public String                                   getProtocolRequest()               {return null;}
+    /** Defaults to {@code null}. */ @Override public Citation                   getParentMetadata()     {return null;}
+    /** Defaults to {@code null}. */ @Override public InternationalString        getDescription()        {return null;}
+    /** Defaults to an empty set. */ @Override public Collection<TemporalExtent> getTemporalElements()   {return Collections.emptySet();}
+    /** Defaults to an empty set. */ @Override public Collection<VerticalExtent> getVerticalElements()   {return Collections.emptySet();}
+    /** Defaults to an empty map. */ @Override public Map<Locale,Charset>        getLocalesAndCharsets() {return Collections.emptyMap();}
 
 
 
 
     // ┌─────────────────────────────────────────────────────────────────────────────────────────┐
-    // │    Deprecated methods                                                                   │
+    // │    Other methods                                                                        │
     // └─────────────────────────────────────────────────────────────────────────────────────────┘
-
-    /**
-     * @deprecated Replaced by {@link #getMetadataIdentifier()}.
-     */
-    @Override
-    @Deprecated
-    public String getFileIdentifier() {
-        return toString();
-    }
-
-    /**
-     * @deprecated Replaced by {@link #getParentMetadata()}.
-     */
-    @Override
-    @Deprecated
-    public String getParentIdentifier() {
-        return null;
-    }
-
-    /**
-     * @deprecated Replaced by {@link #getLinkage()}.
-     */
-    @Override
-    @Deprecated
-    public String getDataSetUri() {
-        final URI uri = getLinkage();
-        return (uri != null) ? uri.toString() : null;
-    }
-
-    /**
-     * @deprecated Replaced by {@link #getDate()}.
-     */
-    @Override
-    @Deprecated
-    public Date getDateStamp() {
-        return getDate();
-    }
-
-    /**
-     * @deprecated Replaced by {@link #getLanguages()}.
-     */
-    @Override
-    @Deprecated
-    public Locale getLanguage() {
-        return first(getLanguages());
-    }
-
-    /**
-     * Defaults to an empty set.
-     */
-    @Override
-    @Deprecated
-    public Collection<Locale> getLocales() {
-        return Collections.emptySet();
-    }
-
-    /**
-     * @deprecated Replaced by {@link #getCharacterSets()}.
-     */
-    @Override
-    @Deprecated
-    public CharacterSet getCharacterSet() {
-        return null;
-    }
-
-    /**
-     * @deprecated As of ISO 19115:2014, replaced by {@link #getAssociatedResources()}.
-     */
-    @Override
-    @Deprecated
-    public Collection<? extends AggregateInformation> getAggregationInfo() {
-        return Collections.emptySet();
-    }
-
-    /**
-     * Defaults to {@link ScopeCode#DATASET}.
-     */
-    @Override
-    @Deprecated
-    public Collection<ScopeCode> getHierarchyLevels() {
-        return Collections.singleton(ScopeCode.DATASET);
-    }
-
-    /**
-     * Defaults to an empty set.
-     */
-    @Override
-    @Deprecated
-    public Collection<String> getHierarchyLevelNames() {
-        return Collections.emptySet();
-    }
-
-    /**
-     * @deprecated As of ISO 19115:2014, Replaced by {@link #getMetadataStandards()}.
-     */
-    @Override
-    @Deprecated
-    public String getMetadataStandardName() {
-        return first(getMetadataStandards()).getTitle().toString();
-    }
-
-    /**
-     * @deprecated As of ISO 19115:2014, Replaced by {@link #getMetadataStandards()}.
-     */
-    @Override
-    @Deprecated
-    public String getMetadataStandardVersion() {
-        return first(getMetadataStandards()).getEdition().toString();
-    }
 
     /**
      * Returns the concatenation of {@linkplain #getAuthority() naming authority},

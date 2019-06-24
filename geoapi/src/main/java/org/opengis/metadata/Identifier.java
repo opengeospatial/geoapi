@@ -111,7 +111,9 @@ public interface Identifier {
      * @return the person or party responsible for maintenance of the namespace, or {@code null} if none.
      */
     @UML(identifier="authority", obligation=OPTIONAL, specification=ISO_19115)
-    Citation getAuthority();
+    default Citation getAuthority() {
+        return null;
+    }
 
     /**
      * Alphanumeric value identifying an instance in the namespace.
@@ -134,7 +136,9 @@ public interface Identifier {
      * @since 3.1
      */
     @UML(identifier="codeSpace", obligation=OPTIONAL, specification=ISO_19115)
-    String getCodeSpace();
+    default String getCodeSpace() {
+        return null;
+    }
 
     /**
      * Version identifier for the namespace, as specified by the code authority.
@@ -149,7 +153,9 @@ public interface Identifier {
      * @since 3.1
      */
     @UML(identifier="version", obligation=OPTIONAL, specification=ISO_19115)
-    String getVersion();
+    default String getVersion() {
+        return null;
+    }
 
     /**
      * Natural language description of the meaning of the code value.
@@ -162,5 +168,7 @@ public interface Identifier {
      * @since 3.1
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getDescription();
+    default InternationalString getDescription() {
+        return null;
+    }
 }

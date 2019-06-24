@@ -32,6 +32,7 @@
 package org.opengis.metadata.citation;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
@@ -72,7 +73,9 @@ public interface Telephone {
      * @since 3.1
      */
     @UML(identifier="numberType", obligation=OPTIONAL, specification=ISO_19115)
-    TelephoneType getNumberType();
+    default TelephoneType getNumberType() {
+        return null;
+    }
 
     /**
      * Telephone numbers by which individuals can speak to the responsible organization or individual.
@@ -84,7 +87,15 @@ public interface Telephone {
      */
     @Deprecated
     @UML(identifier="voice", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Collection<String> getVoices();
+    default Collection<String> getVoices() {
+        if (TelephoneType.VOICE.equals(getNumberType())) {
+            String number = getNumber();
+            if (number != null) {
+                return Collections.singleton(number);
+            }
+        }
+        return Collections.emptySet();          // Use Set instead of List for hash-safe final classes.
+    }
 
     /**
      * Telephone numbers of a facsimile machine for the responsible organization or individual.
@@ -96,5 +107,13 @@ public interface Telephone {
      */
     @Deprecated
     @UML(identifier="facsimile", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Collection<String> getFacsimiles();
+    default Collection<String> getFacsimiles() {
+        if (TelephoneType.FACSIMILE.equals(getNumberType())) {
+            String number = getNumber();
+            if (number != null) {
+                return Collections.singleton(number);
+            }
+        }
+        return Collections.emptySet();          // Use Set instead of List for hash-safe final classes.
+    }
 }

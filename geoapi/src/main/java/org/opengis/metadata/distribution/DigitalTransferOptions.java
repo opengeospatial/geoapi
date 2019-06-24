@@ -32,6 +32,7 @@
 package org.opengis.metadata.distribution;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.temporal.PeriodDuration;
 import org.opengis.metadata.citation.OnlineResource;
@@ -60,7 +61,9 @@ public interface DigitalTransferOptions {
      * @return tiles, layers, geographic areas, <cite>etc.</cite> in which data is available, or {@code null}.
      */
     @UML(identifier="unitsOfDistribution", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getUnitsOfDistribution();
+    default InternationalString getUnitsOfDistribution() {
+        return null;
+    }
 
     /**
      * Estimated size of a unit in the specified transfer format, expressed in megabytes.
@@ -70,7 +73,9 @@ public interface DigitalTransferOptions {
      * @return estimated size of a unit in the specified transfer format in megabytes, or {@code null}.
      */
     @UML(identifier="transferSize", obligation=OPTIONAL, specification=ISO_19115)
-    Double getTransferSize();
+    default Double getTransferSize() {
+        return null;
+    }
 
     /**
      * Information about online sources from which the resource can be obtained.
@@ -79,7 +84,9 @@ public interface DigitalTransferOptions {
      */
     @Profile(level=CORE)
     @UML(identifier="onLine", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends OnlineResource> getOnLines();
+    default Collection<? extends OnlineResource> getOnLines() {
+        return Collections.emptyList();
+    }
 
     /**
      * Information about offline media on which the resource can be obtained.
@@ -89,7 +96,9 @@ public interface DigitalTransferOptions {
      * @since 3.1
      */
     @UML(identifier="offLine", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Medium> getOffLines();
+    default Collection<? extends Medium> getOffLines() {
+        return Collections.emptyList();
+    }
 
     /**
      * Information about offline media on which the resource can be obtained.
@@ -109,7 +118,9 @@ public interface DigitalTransferOptions {
      * @since 3.1
      */
     @UML(identifier="transferFrequency", obligation=OPTIONAL, specification=ISO_19115)
-    PeriodDuration getTransferFrequency();
+    default PeriodDuration getTransferFrequency() {
+        return null;
+    }
 
     /**
      * Formats of distribution.
@@ -119,5 +130,7 @@ public interface DigitalTransferOptions {
      * @since 3.1
      */
     @UML(identifier="distributionFormat", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Format> getDistributionFormats();
+    default Collection<? extends Format> getDistributionFormats() {
+        return Collections.emptyList();
+    }
 }

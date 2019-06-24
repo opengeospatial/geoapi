@@ -32,6 +32,7 @@
 package org.opengis.metadata.content;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.util.MemberName;
 import org.opengis.metadata.Identifier;
@@ -60,7 +61,9 @@ public interface RangeDimension {
      * @return unique name or number, or {@code null} if none.
      */
     @UML(identifier="sequenceIdentifier", obligation=OPTIONAL, specification=ISO_19115)
-    MemberName getSequenceIdentifier();
+    default MemberName getSequenceIdentifier() {
+        return null;
+    }
 
     /**
      * Description of the attribute.
@@ -70,7 +73,9 @@ public interface RangeDimension {
      * @since 3.1
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getDescription();
+    default InternationalString getDescription() {
+        return null;
+    }
 
     /**
      * Description of the range of a cell measurement value.
@@ -81,7 +86,9 @@ public interface RangeDimension {
      */
     @Deprecated
     @UML(identifier="descriptor", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    InternationalString getDescriptor();
+    default InternationalString getDescriptor() {
+        return getDescription();
+    }
 
     /**
      * Identifiers for each attribute included in the resource. These identifiers
@@ -92,5 +99,7 @@ public interface RangeDimension {
      * @since 3.1
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Identifier> getNames();
+    default Collection<? extends Identifier> getNames() {
+        return Collections.emptyList();
+    }
 }

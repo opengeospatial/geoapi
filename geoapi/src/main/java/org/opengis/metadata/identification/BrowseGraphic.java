@@ -33,6 +33,7 @@ package org.opengis.metadata.identification;
 
 import java.net.URI;
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.metadata.constraint.Constraints;
@@ -71,7 +72,9 @@ public interface BrowseGraphic {
      * @return text description of the illustration, or {@code null}.
      */
     @UML(identifier="fileDescription", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getFileDescription();
+    default InternationalString getFileDescription() {
+        return null;
+    }
 
     /**
      * Format in which the illustration is encoded.
@@ -87,7 +90,9 @@ public interface BrowseGraphic {
      * @see javax.imageio.ImageIO#getReaderFormatNames()
      */
     @UML(identifier="fileType", obligation=OPTIONAL, specification=ISO_19115)
-    String getFileType();
+    default String getFileType() {
+        return null;
+    }
 
     /**
      * Restriction on access and / or use of browse graphic.
@@ -98,7 +103,9 @@ public interface BrowseGraphic {
      * @since 3.1
      */
     @UML(identifier="imageConstraints", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Constraints> getImageConstraints();
+    default Collection<? extends Constraints> getImageConstraints() {
+        return Collections.emptyList();
+    }
 
     /**
      * Links to browse graphic.
@@ -109,5 +116,7 @@ public interface BrowseGraphic {
      * @since 3.1
      */
     @UML(identifier="linkage", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<OnlineResource> getLinkages();
+    default Collection<? extends OnlineResource> getLinkages() {
+        return Collections.emptyList();
+    }
 }

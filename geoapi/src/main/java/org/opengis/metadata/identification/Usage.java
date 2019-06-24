@@ -32,6 +32,7 @@
 package org.opengis.metadata.identification;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
@@ -73,7 +74,9 @@ public interface Usage {
      * @todo This become a collection in ISO 19115:2014.
      */
     @UML(identifier="usageDateTime", obligation=OPTIONAL, specification=ISO_19115)
-    Date getUsageDate();
+    default Date getUsageDate() {
+        return null;
+    }
 
     /**
      * Applications, determined by the user for which the resource and/or resource series is not suitable.
@@ -81,7 +84,9 @@ public interface Usage {
      * @return applications for which the resource and/or resource series is not suitable, or {@code null}.
      */
     @UML(identifier="userDeterminedLimitations", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getUserDeterminedLimitations();
+    default InternationalString getUserDeterminedLimitations() {
+        return null;
+    }
 
     /**
      * Identification of and means of communicating with person(s) and organization(s) using the resource(s).
@@ -90,7 +95,9 @@ public interface Usage {
      * @return means of communicating with person(s) and organization(s) using the resource(s).
      */
     @UML(identifier="userContactInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Responsibility> getUserContactInfo();
+    default Collection<? extends Responsibility> getUserContactInfo() {
+        return Collections.emptyList();
+    }
 
     /**
      * Responses to the user-determined limitations.
@@ -104,7 +111,9 @@ public interface Usage {
      * @since 3.1
      */
     @UML(identifier="response", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends InternationalString> getResponses();
+    default Collection<? extends InternationalString> getResponses() {
+        return Collections.emptyList();
+    }
 
     /**
      * Publications that describe usage of data.
@@ -114,7 +123,9 @@ public interface Usage {
      * @since 3.1
      */
     @UML(identifier="additionalDocumentation", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getAdditionalDocumentation();
+    default Collection<? extends Citation> getAdditionalDocumentation() {
+        return Collections.emptyList();
+    }
 
     /**
      * Citations of a description of known issues associated with the resource
@@ -125,5 +136,7 @@ public interface Usage {
      * @since 3.1
      */
     @UML(identifier="identifiedIssues", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getIdentifiedIssues();
+    default Collection<? extends Citation> getIdentifiedIssues() {
+        return Collections.emptyList();
+    }
 }

@@ -32,6 +32,7 @@
 package org.opengis.metadata.lineage;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.maintenance.Scope;
 import org.opengis.metadata.citation.Citation;
@@ -77,7 +78,9 @@ public interface Lineage {
      * @since 3.1
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19115)
-    Scope getScope();
+    default Scope getScope() {
+        return null;
+    }
 
     /**
      * Additional documentation.
@@ -91,7 +94,9 @@ public interface Lineage {
      * @since 3.1
      */
     @UML(identifier="additionalDocumentation", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getAdditionalDocumentation();
+    default Collection<? extends Citation> getAdditionalDocumentation() {
+        return Collections.emptyList();
+    }
 
     /**
      * Information about events in the life of a resource specified by the scope.

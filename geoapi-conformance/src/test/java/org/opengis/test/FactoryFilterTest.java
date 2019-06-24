@@ -31,20 +31,11 @@
  */
 package org.opengis.test;
 
-import java.util.Date;
 import java.util.Locale;
 import java.util.Set;
-import java.util.Collection;
 
 import org.opengis.util.InternationalString;
-import org.opengis.metadata.Identifier;
-import org.opengis.metadata.citation.Series;
 import org.opengis.metadata.citation.Citation;
-import org.opengis.metadata.citation.CitationDate;
-import org.opengis.metadata.citation.OnlineResource;
-import org.opengis.metadata.citation.PresentationForm;
-import org.opengis.metadata.citation.Responsibility;
-import org.opengis.metadata.identification.BrowseGraphic;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.IdentifiedObject;
 
@@ -90,9 +81,8 @@ public strictfp class FactoryFilterTest implements AuthorityFactory, Citation, I
     /*
      * Trivial AuthorityFactory and Citation methods for the purpose of this test.
      */
-    @Override public Citation                        getAuthority()       {return this;}
-    @Override public InternationalString             getTitle()           {return this;}
-    @Override public Collection<InternationalString> getAlternateTitles() {return null;}
+    @Override public Citation            getAuthority() {return this;}
+    @Override public InternationalString getTitle()     {return this;}
 
     /*
      * Trivial InternationalString methods for the purpose of this test.
@@ -107,21 +97,7 @@ public strictfp class FactoryFilterTest implements AuthorityFactory, Citation, I
      * Non-interresting methods for this test.
      */
     @Override public Citation                     getVendor()                              {return null;}
-    @Override public Collection<CitationDate>     getDates()                               {return null;}
-    @Override public InternationalString          getEdition()                             {return null;}
-    @Override public Date                         getEditionDate()                         {return null;}
-    @Override public Collection<Identifier>       getIdentifiers()                         {return null;}
-    @Override public Collection<Responsibility>   getCitedResponsibleParties()             {return null;}
-    @Override public Collection<PresentationForm> getPresentationForms()                   {return null;}
-    @Override public Series                       getSeries()                              {return null;}
-    @Override public Set<InternationalString>     getOtherCitationDetails()                {return null;}
-    @Override public String                       getISBN()                                {return null;}
-    @Override public String                       getISSN()                                {return null;}
-    @Override public Collection<OnlineResource>   getOnlineResources()                     {return null;}
-    @Override public Collection<BrowseGraphic>    getGraphics()                            {return null;}
     @Override public InternationalString          getDescriptionText(String code)          {return null;}
     @Override public IdentifiedObject             createObject(String code)                {return null;}
     @Override public Set<String> getAuthorityCodes(Class<? extends IdentifiedObject> type) {return null;}
-    @Deprecated
-    @Override public InternationalString          getCollectiveTitle()                     {return null;}
 }

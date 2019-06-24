@@ -32,6 +32,7 @@
 package org.opengis.metadata;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.annotation.UML;
 
@@ -55,7 +56,9 @@ public interface MetadataExtensionInformation {
      * @return on-line sources to community profile name and extended metadata elements, or {@code null}.
      */
     @UML(identifier="extensionOnLineResource", obligation=OPTIONAL, specification=ISO_19115)
-    OnlineResource getExtensionOnLineResource();
+    default OnlineResource getExtensionOnLineResource() {
+        return null;
+    }
 
     /**
      * Provides information about a new metadata element, not found in ISO 19115,
@@ -64,5 +67,7 @@ public interface MetadataExtensionInformation {
      * @return new metadata element not found in ISO 19115.
      */
     @UML(identifier="extendedElementInformation", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends ExtendedElementInformation> getExtendedElementInformation();
+    default Collection<? extends ExtendedElementInformation> getExtendedElementInformation() {
+        return Collections.emptyList();
+    }
 }

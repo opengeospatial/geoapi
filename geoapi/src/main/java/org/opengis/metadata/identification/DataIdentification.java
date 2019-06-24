@@ -90,7 +90,9 @@ public interface DataIdentification extends Identification {
      */
     @Deprecated
     @UML(identifier="language", obligation=MANDATORY, specification=ISO_19115, version=2003)
-    Collection<Locale> getLanguages();
+    default Collection<Locale> getLanguages() {
+        return getLocalesAndCharsets().keySet();
+    }
 
     /**
      * The character coding standard(s) used for the dataset.
@@ -101,7 +103,9 @@ public interface DataIdentification extends Identification {
      */
     @Deprecated
     @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
-    Collection<Charset> getCharacterSets();
+    default Collection<Charset> getCharacterSets() {
+        return getLocalesAndCharsets().values();
+    }
 
     /**
      * Description of the resource in the producer's processing environment, including items
@@ -110,7 +114,9 @@ public interface DataIdentification extends Identification {
      * @return description of the resource in the producer's processing environment, or {@code null}.
      */
     @UML(identifier="environmentDescription", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getEnvironmentDescription();
+    default InternationalString getEnvironmentDescription() {
+        return null;
+    }
 
     /**
      * Any other descriptive information about the resource.
@@ -118,5 +124,7 @@ public interface DataIdentification extends Identification {
      * @return other descriptive information, or {@code null}.
      */
     @UML(identifier="supplementalInformation", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getSupplementalInformation();
+    default InternationalString getSupplementalInformation() {
+        return null;
+    }
 }

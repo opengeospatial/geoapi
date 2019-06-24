@@ -32,6 +32,7 @@
 package org.opengis.metadata.lineage;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
@@ -66,7 +67,9 @@ public interface Processing {
      * @return document describing processing software.
      */
     @UML(identifier="softwareReference", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Citation> getSoftwareReferences();
+    default Collection<? extends Citation> getSoftwareReferences() {
+        return Collections.emptyList();
+    }
 
     /**
      * Additional details about the processing procedures.
@@ -74,7 +77,9 @@ public interface Processing {
      * @return processing procedures, or {@code null}.
      */
     @UML(identifier="procedureDescription", obligation=OPTIONAL, specification=ISO_19115_2)
-    InternationalString getProcedureDescription();
+    default InternationalString getProcedureDescription() {
+        return null;
+    }
 
     /**
      * Reference to documentation describing the processing.
@@ -82,7 +87,9 @@ public interface Processing {
      * @return documentation describing the processing.
      */
     @UML(identifier="documentation", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Citation> getDocumentations();
+    default Collection<? extends Citation> getDocumentations() {
+        return Collections.emptyList();
+    }
 
     /**
      * Parameters to control the processing operations, entered at run time.
@@ -90,7 +97,9 @@ public interface Processing {
      * @return parameters to control the processing operations, or {@code null}.
      */
     @UML(identifier="runTimeParameters", obligation=OPTIONAL, specification=ISO_19115_2)
-    InternationalString getRunTimeParameters();
+    default InternationalString getRunTimeParameters() {
+        return null;
+    }
 
     /**
      * Details of the methodology by which geographic information was derived from the
@@ -99,5 +108,7 @@ public interface Processing {
      * @return methodology by which geographic information was derived from the instrument readings.
      */
     @UML(identifier="algorithm", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Algorithm> getAlgorithms();
+    default Collection<? extends Algorithm> getAlgorithms() {
+        return Collections.emptyList();
+    }
 }

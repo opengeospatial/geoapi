@@ -32,6 +32,7 @@
 package org.opengis.metadata.spatial;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.opengis.annotation.UML;
 import org.opengis.geometry.DirectPosition;
@@ -64,5 +65,7 @@ public interface GCP {
      * @return accuracy of a ground control point.
      */
     @UML(identifier="accuracyReport", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Element> getAccuracyReports();
+    default Collection<? extends Element> getAccuracyReports() {
+        return Collections.emptyList();
+    }
 }

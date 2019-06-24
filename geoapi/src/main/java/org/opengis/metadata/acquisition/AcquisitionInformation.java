@@ -32,6 +32,7 @@
 package org.opengis.metadata.acquisition;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.opengis.annotation.UML;
 
@@ -55,7 +56,9 @@ public interface AcquisitionInformation {
      * @return plan as implemented by the acquisition.
      */
     @UML(identifier="acquisitionPlan", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Plan> getAcquisitionPlans();
+    default Collection<? extends Plan> getAcquisitionPlans() {
+        return Collections.emptyList();
+    }
 
     /**
      * Identifies the requirement the data acquisition intends to satisfy.
@@ -63,7 +66,9 @@ public interface AcquisitionInformation {
      * @return requirement the data acquisition intends to satisfy.
      */
     @UML(identifier="acquisitionRequirement", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Requirement> getAcquisitionRequirements();
+    default Collection<? extends Requirement> getAcquisitionRequirements() {
+        return Collections.emptyList();
+    }
 
     /**
      * A record of the environmental circumstances during the data acquisition.
@@ -71,7 +76,9 @@ public interface AcquisitionInformation {
      * @return record of the environmental circumstances, or {@code null}.
      */
     @UML(identifier="environmentalConditions", obligation=OPTIONAL, specification=ISO_19115_2)
-    EnvironmentalRecord getEnvironmentalConditions();
+    default EnvironmentalRecord getEnvironmentalConditions() {
+        return null;
+    }
 
     /**
      * General information about the instrument used in data acquisition.
@@ -79,7 +86,9 @@ public interface AcquisitionInformation {
      * @return instrument used in data acquisition.
      */
     @UML(identifier="instrument", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Instrument> getInstruments();
+    default Collection<? extends Instrument> getInstruments() {
+        return Collections.emptyList();
+    }
 
     /**
      * Identification of the area or object to be sensed.
@@ -87,7 +96,9 @@ public interface AcquisitionInformation {
      * @return area or object to be sensed.
      */
     @UML(identifier="objective", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Objective> getObjectives();
+    default Collection<? extends Objective> getObjectives() {
+        return Collections.emptyList();
+    }
 
     /**
      * General information about an identifiable activity which provided the data.
@@ -95,7 +106,9 @@ public interface AcquisitionInformation {
      * @return identifiable activity which provided the data.
      */
     @UML(identifier="operation", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Operation> getOperations();
+    default Collection<? extends Operation> getOperations() {
+        return Collections.emptyList();
+    }
 
     /**
      * General information about the platform from which the data were taken.
@@ -103,5 +116,7 @@ public interface AcquisitionInformation {
      * @return platform from which the data were taken.
      */
     @UML(identifier="platform", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Platform> getPlatforms();
+    default Collection<? extends Platform> getPlatforms() {
+        return Collections.emptyList();
+    }
 }

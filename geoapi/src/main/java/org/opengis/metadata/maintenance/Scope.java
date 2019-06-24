@@ -32,6 +32,7 @@
 package org.opengis.metadata.maintenance;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
@@ -65,7 +66,9 @@ public interface Scope {
      * @return information about the extent of the resource.
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Extent> getExtents();
+    default Collection<? extends Extent> getExtents() {
+        return Collections.emptyList();
+    }
 
     /**
      * Detailed description about the level of the data specified by the scope.

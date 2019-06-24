@@ -32,6 +32,7 @@
 package org.opengis.metadata.distribution;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.metadata.citation.Responsibility;
 import org.opengis.annotation.UML;
 
@@ -63,7 +64,9 @@ public interface Distributor {
      * @return information about how the resource may be obtained.
      */
     @UML(identifier="distributionOrderProcess", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends StandardOrderProcess> getDistributionOrderProcesses();
+    default Collection<? extends StandardOrderProcess> getDistributionOrderProcesses() {
+        return Collections.emptyList();
+    }
 
     /**
      * Provides information about the format used by the distributor.
@@ -81,5 +84,7 @@ public interface Distributor {
      * @return information about the technical means and media used by the distributor.
      */
     @UML(identifier="distributorTransferOptions", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends DigitalTransferOptions> getDistributorTransferOptions();
+    default Collection<? extends DigitalTransferOptions> getDistributorTransferOptions() {
+        return Collections.emptyList();
+    }
 }

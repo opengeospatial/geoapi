@@ -32,6 +32,7 @@
 package org.opengis.metadata.constraint;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.Responsibility;
@@ -62,7 +63,9 @@ public interface Constraints {
      * @return limitation affecting the fitness for use of the resource.
      */
     @UML(identifier="useLimitation", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends InternationalString> getUseLimitations();
+    default Collection<? extends InternationalString> getUseLimitations() {
+        return Collections.emptyList();
+    }
 
     /**
      * Spatial and / or temporal extents and or levels of the application of the constraints restrictions.
@@ -72,7 +75,9 @@ public interface Constraints {
      * @since 3.1
      */
     @UML(identifier="constraintApplicationScope", obligation=OPTIONAL, specification=ISO_19115)
-    Scope getConstraintApplicationScope();
+    default Scope getConstraintApplicationScope() {
+        return null;
+    }
 
     /**
      * Graphics / symbols indicating the constraint.
@@ -83,7 +88,9 @@ public interface Constraints {
      * @since 3.1
      */
     @UML(identifier="graphic", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends BrowseGraphic> getGraphics();
+    default Collection<? extends BrowseGraphic> getGraphics() {
+        return Collections.emptyList();
+    }
 
     /**
      * Citations for the limitation of constraint.
@@ -96,7 +103,9 @@ public interface Constraints {
      * @since 3.1
      */
     @UML(identifier="reference", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getReferences();
+    default Collection<? extends Citation> getReferences() {
+        return Collections.emptyList();
+    }
 
     /**
      * Information concerning the parties to whom the resource can or cannot be released.
@@ -106,7 +115,9 @@ public interface Constraints {
      * @since 3.1
      */
     @UML(identifier="releasability", obligation=OPTIONAL, specification=ISO_19115)
-    Releasability getReleasability();
+    default Releasability getReleasability() {
+        return null;
+    }
 
     /**
      * Parties responsible for the resource constraints.
@@ -117,5 +128,7 @@ public interface Constraints {
      * @since 3.1
      */
     @UML(identifier="responsibleParty", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Responsibility> getResponsibleParties();
+    default Collection<? extends Responsibility> getResponsibleParties() {
+        return Collections.emptyList();
+    }
 }

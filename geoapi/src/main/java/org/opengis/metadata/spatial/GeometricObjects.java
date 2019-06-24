@@ -64,5 +64,7 @@ public interface GeometricObjects {
      * @return total number of the point or vector object type, or {@code null}.
      */
     @UML(identifier="geometricObjectCount", obligation=OPTIONAL, specification=ISO_19115)
-    Integer getGeometricObjectCount();
+    default Integer getGeometricObjectCount() {
+        return null;
+    }
 }

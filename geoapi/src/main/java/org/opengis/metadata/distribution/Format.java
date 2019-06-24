@@ -32,6 +32,8 @@
 package org.opengis.metadata.distribution;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.annotation.UML;
@@ -73,7 +75,10 @@ public interface Format {
      */
     @Deprecated
     @UML(identifier="specification", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    InternationalString getSpecification();
+    default InternationalString getSpecification() {
+        Citation spec = getFormatSpecificationCitation();
+        return (spec != null) ? spec.getTitle() : null;
+    }
 
     /**
      * Name of the data transfer format(s).
@@ -87,7 +92,14 @@ public interface Format {
     @Deprecated
     @Profile(level=CORE)
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19115, version=2003)
-    InternationalString getName();
+    default InternationalString getName() {
+        Citation spec = getFormatSpecificationCitation();
+        if (spec != null) {
+            Iterator<? extends InternationalString> it = spec.getAlternateTitles().iterator();
+            if (it.hasNext()) it.next();
+        }
+        return null;
+    }
 
     /**
      * Version of the format (date, number, <i>etc</i>).
@@ -100,7 +112,10 @@ public interface Format {
     @Deprecated
     @Profile(level=CORE)
     @UML(identifier="version", obligation=MANDATORY, specification=ISO_19115, version=2003)
-    InternationalString getVersion();
+    default InternationalString getVersion() {
+        Citation spec = getFormatSpecificationCitation();
+        return (spec != null) ? spec.getEdition() : null;
+    }
 
     /**
      * Amendment number of the format version.
@@ -108,7 +123,9 @@ public interface Format {
      * @return amendment number of the format version, or {@code null}.
      */
     @UML(identifier="amendmentNumber", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getAmendmentNumber();
+    default InternationalString getAmendmentNumber() {
+        return null;
+    }
 
     /**
      * Recommendations of algorithms or processes that can be applied to read or
@@ -118,7 +135,9 @@ public interface Format {
      *         or {@code null}.
      */
     @UML(identifier="fileDecompressionTechnique", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getFileDecompressionTechnique();
+    default InternationalString getFileDecompressionTechnique() {
+        return null;
+    }
 
     /**
      * Media used by the format.
@@ -128,7 +147,9 @@ public interface Format {
      * @since 3.1
      */
     @UML(identifier="medium", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Medium> getMedia();
+    default Collection<? extends Medium> getMedia() {
+        return Collections.emptyList();
+    }
 
     /**
      * Provides information about the distributor's format.
@@ -136,5 +157,7 @@ public interface Format {
      * @return information about the distributor's format.
      */
     @UML(identifier="formatDistributor", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Distributor> getFormatDistributors();
+    default Collection<? extends Distributor> getFormatDistributors() {
+        return Collections.emptyList();
+    }
 }

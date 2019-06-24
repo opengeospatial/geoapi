@@ -111,15 +111,6 @@ public class SimpleIdentifiedObject implements IdentifiedObject, Identifier, Ser
     }
 
     /**
-     * Version identifier for the namespace, as specified by the code authority.
-     * The default implementation returns {@code null}.
-     */
-    @Override
-    public String getVersion() {
-        return null;
-    }
-
-    /**
      * Alternative names by which this object is identified.
      * The default implementation returns an empty set.
      *
@@ -140,17 +131,6 @@ public class SimpleIdentifiedObject implements IdentifiedObject, Identifier, Ser
     @Override
     public Set<Identifier> getIdentifiers() {
         return Collections.emptySet();
-    }
-
-    /**
-     * Returns a natural language description of this object.
-     * The default implementation returns {@code null}.
-     *
-     * @return the natural language description, or {@code null} if none.
-     */
-    @Override
-    public InternationalString getDescription() {
-        return null;
     }
 
     /**

@@ -62,7 +62,9 @@ public interface SecurityConstraints extends Constraints {
      * @return explanation of the application of the legal constraints, or {@code null}.
      */
     @UML(identifier="userNote", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getUserNote();
+    default InternationalString getUserNote() {
+        return null;
+    }
 
     /**
      * Name of the classification system.
@@ -70,7 +72,9 @@ public interface SecurityConstraints extends Constraints {
      * @return name of the classification system, or {@code null}.
      */
     @UML(identifier="classificationSystem", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getClassificationSystem();
+    default InternationalString getClassificationSystem() {
+        return null;
+    }
 
     /**
      * Additional information about the restrictions on handling the resource.
@@ -78,5 +82,7 @@ public interface SecurityConstraints extends Constraints {
      * @return additional information about the restrictions, or {@code null}.
      */
     @UML(identifier="handlingDescription", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getHandlingDescription();
+    default InternationalString getHandlingDescription() {
+        return null;
+    }
 }

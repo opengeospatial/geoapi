@@ -32,6 +32,7 @@
 package org.opengis.metadata.acquisition;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.opengis.annotation.UML;
 import org.opengis.metadata.citation.Citation;
@@ -56,7 +57,9 @@ public interface Plan {
      * @return manner of sampling geometry, or {@code null}.
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115_2)
-    GeometryType getType();
+    default GeometryType getType() {
+        return null;
+    }
 
     /**
      * Current status of the plan (pending, completed, etc.)
@@ -80,7 +83,9 @@ public interface Plan {
      * @return identification of the activity or activities.
      */
     @UML(identifier="operation", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Operation> getOperations();
+    default Collection<? extends Operation> getOperations() {
+        return Collections.emptyList();
+    }
 
     /**
      * Requirement satisfied by the plan.
@@ -88,5 +93,7 @@ public interface Plan {
      * @return requirement satisfied by the plan.
      */
     @UML(identifier="satisfiedRequirement", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Requirement> getSatisfiedRequirements();
+    default Collection<? extends Requirement> getSatisfiedRequirements() {
+        return Collections.emptyList();
+    }
 }

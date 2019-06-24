@@ -32,6 +32,7 @@
 package org.opengis.metadata.citation;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.identification.BrowseGraphic;
@@ -78,7 +79,9 @@ public interface Citation {
      * @return other names for the resource, or an empty collection if none.
      */
     @UML(identifier="alternateTitle", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends InternationalString> getAlternateTitles();
+    default Collection<? extends InternationalString> getAlternateTitles() {
+        return Collections.emptyList();
+    }
 
     /**
      * Reference dates for the cited resource.
@@ -87,7 +90,9 @@ public interface Citation {
      */
     @Profile(level=CORE)
     @UML(identifier="date", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends CitationDate> getDates();
+    default Collection<? extends CitationDate> getDates() {
+        return Collections.emptyList();
+    }
 
     /**
      * Version of the cited resource.
@@ -95,7 +100,9 @@ public interface Citation {
      * @return the version, or {@code null} if none.
      */
     @UML(identifier="edition", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getEdition();
+    default InternationalString getEdition() {
+        return null;
+    }
 
     /**
      * Date of the edition, or {@code null} if none.
@@ -108,7 +115,9 @@ public interface Citation {
      * @return the edition date, or {@code null} if none.
      */
     @UML(identifier="editionDate", obligation=OPTIONAL, specification=ISO_19115)
-    Date getEditionDate();
+    default Date getEditionDate() {
+        return null;
+    }
 
     /**
      * Unique identifier for the resource.
@@ -121,7 +130,9 @@ public interface Citation {
      * @return the identifiers, or an empty collection if none.
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Identifier> getIdentifiers();
+    default Collection<? extends Identifier> getIdentifiers() {
+        return Collections.emptyList();
+    }
 
     /**
      * Role, name, contact and position information for individuals or organisations
@@ -132,7 +143,9 @@ public interface Citation {
      *         or an empty collection if none.
      */
     @UML(identifier="citedResponsibleParty", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Responsibility> getCitedResponsibleParties();
+    default Collection<? extends Responsibility> getCitedResponsibleParties() {
+        return Collections.emptyList();
+    }
 
     /**
      * Mode in which the resource is represented.
@@ -141,7 +154,9 @@ public interface Citation {
      * @return the presentation mode, or an empty collection if none.
      */
     @UML(identifier="presentationForm", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<PresentationForm> getPresentationForms();
+    default Collection<PresentationForm> getPresentationForms() {
+        return Collections.emptySet();                          // Use Set instead of List for hash-safe final classes.
+    }
 
     /**
      * Information about the series, or aggregate dataset, of which the dataset is a part.
@@ -150,7 +165,9 @@ public interface Citation {
      * @return the series or aggregate dataset of which the dataset is a part, or {@code null} if none.
      */
     @UML(identifier="series", obligation=OPTIONAL, specification=ISO_19115)
-    Series getSeries();
+    default Series getSeries() {
+        return null;
+    }
 
     /**
      * Other information required to complete the citation that is not recorded elsewhere.
@@ -159,7 +176,9 @@ public interface Citation {
      * @return other details, or an empty collection if none.
      */
     @UML(identifier="otherCitationDetails", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends InternationalString> getOtherCitationDetails();
+    default Collection<? extends InternationalString> getOtherCitationDetails() {
+        return Collections.emptyList();
+    }
 
     /**
      * Common title with holdings note. Title identifies elements of a series collectively,
@@ -171,7 +190,9 @@ public interface Citation {
      */
     @Deprecated
     @UML(identifier="collectiveTitle", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    InternationalString getCollectiveTitle();
+    default InternationalString getCollectiveTitle() {
+        return null;
+    }
 
     /**
      * International Standard Book Number.
@@ -180,7 +201,9 @@ public interface Citation {
      * @return the International Standard Book Number, or {@code null} if none.
      */
     @UML(identifier="ISBN", obligation=OPTIONAL, specification=ISO_19115)
-    String getISBN();
+    default String getISBN() {
+        return null;
+    }
 
     /**
      * International Standard Serial Number.
@@ -189,7 +212,9 @@ public interface Citation {
      * @return the International Standard Serial Number, or {@code null} if none.
      */
     @UML(identifier="ISSN", obligation=OPTIONAL, specification=ISO_19115)
-    String getISSN();
+    default String getISSN() {
+        return null;
+    }
 
     /**
      * Online references to the cited resource.
@@ -200,7 +225,9 @@ public interface Citation {
      * @since 3.1
      */
     @UML(identifier="onlineResource", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends OnlineResource> getOnlineResources();
+    default Collection<? extends OnlineResource> getOnlineResources() {
+        return Collections.emptyList();
+    }
 
     /**
      * Citation graphics or logo for cited party.
@@ -211,5 +238,7 @@ public interface Citation {
      * @since 3.1
      */
     @UML(identifier="graphic", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends BrowseGraphic> getGraphics();
+    default Collection<? extends BrowseGraphic> getGraphics() {
+        return Collections.emptyList();
+    }
 }

@@ -70,5 +70,7 @@ public interface SpatialTemporalExtent extends TemporalExtent {
      * @since 3.1
      */
     @UML(identifier="verticalExtent", obligation=OPTIONAL, specification=ISO_19115)
-    VerticalExtent getVerticalExtent();
+    default VerticalExtent getVerticalExtent() {
+        return null;
+    }
 }

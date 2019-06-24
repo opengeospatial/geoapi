@@ -71,7 +71,9 @@ public interface AssociatedResource {
      * @return the type of initiative under which the associated resource was produced, or {@code null} if none.
      */
     @UML(identifier="initiativeType", obligation=OPTIONAL, specification=ISO_19115)
-    InitiativeType getInitiativeType();
+    default InitiativeType getInitiativeType() {
+        return null;
+    }
 
     /**
      * Reference to the metadata of the associated resource.

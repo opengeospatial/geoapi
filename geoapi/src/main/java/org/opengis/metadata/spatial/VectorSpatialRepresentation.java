@@ -32,6 +32,7 @@
 package org.opengis.metadata.spatial;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -53,7 +54,9 @@ public interface VectorSpatialRepresentation extends SpatialRepresentation {
      * @return the degree of complexity of the spatial relationships, or {@code null}.
      */
     @UML(identifier="topologyLevel", obligation=OPTIONAL, specification=ISO_19115)
-    TopologyLevel getTopologyLevel();
+    default TopologyLevel getTopologyLevel() {
+        return null;
+    }
 
     /**
      * Information about the geometric objects used in the dataset.
@@ -61,5 +64,7 @@ public interface VectorSpatialRepresentation extends SpatialRepresentation {
      * @return information about the geometric objects used in the dataset, or {@code null}.
      */
     @UML(identifier="geometricObjects", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends GeometricObjects> getGeometricObjects();
+    default Collection<? extends GeometricObjects> getGeometricObjects() {
+        return Collections.emptyList();
+    }
 }
