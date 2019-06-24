@@ -32,6 +32,7 @@
 package org.opengis.metadata.identification;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.util.ScopedName;
 import org.opengis.metadata.citation.Citation;
@@ -67,7 +68,9 @@ public interface CoupledResource {
      * @return scoped identifier of the resource in the context of the given service instance, or {@code null} if none.
      */
     @UML(identifier="scopedName", obligation=OPTIONAL, specification=ISO_19115)
-    ScopedName getScopedName();
+    default ScopedName getScopedName() {
+        return null;
+    }
 
     /**
      * References to the resource on which the services operates.
@@ -80,7 +83,9 @@ public interface CoupledResource {
      * @see DataIdentification#getCitation()
      */
     @UML(identifier="resourceReference", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getResourceReferences();
+    default Collection<? extends Citation> getResourceReferences() {
+        return Collections.emptyList();
+    }
 
     /**
      * The tightly coupled resources.
@@ -91,7 +96,9 @@ public interface CoupledResource {
      * @condition Only one of resources and {@linkplain #getResourceReferences() resource references} should be non-empty.
      */
     @UML(identifier="resource", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends DataIdentification> getResources();
+    default Collection<? extends DataIdentification> getResources() {
+        return Collections.emptyList();
+    }
 
     /**
      * The service operation.
@@ -99,5 +106,7 @@ public interface CoupledResource {
      * @return the service operation, or {@code null} if none.
      */
     @UML(identifier="operation", obligation=OPTIONAL, specification=ISO_19115)
-    OperationMetadata getOperation();
+    default OperationMetadata getOperation() {
+        return null;
+    }
 }

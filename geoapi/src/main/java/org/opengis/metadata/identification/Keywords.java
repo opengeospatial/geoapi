@@ -68,7 +68,9 @@ public interface Keywords {
      * @return subject matter used to group similar keywords, or {@code null}.
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115)
-    KeywordType getType();
+    default KeywordType getType() {
+        return null;
+    }
 
     /**
      * Name of the formally registered thesaurus or a similar authoritative source of keywords.
@@ -76,7 +78,9 @@ public interface Keywords {
      * @return name of registered thesaurus or similar authoritative source of keywords, or {@code null}.
      */
     @UML(identifier="thesaurusName", obligation=OPTIONAL, specification=ISO_19115)
-    Citation getThesaurusName();
+    default Citation getThesaurusName() {
+        return null;
+    }
 
     /**
      * User-defined categorization of groups of keywords that extend or are orthogonal
@@ -96,5 +100,7 @@ public interface Keywords {
      * @since 3.1
      */
     @UML(identifier="keywordClass", obligation=OPTIONAL, specification=ISO_19115)
-    KeywordClass getKeywordClass();
+    default KeywordClass getKeywordClass() {
+        return null;
+    }
 }

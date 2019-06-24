@@ -31,8 +31,9 @@
  */
 package org.opengis.metadata.quality;
 
-import java.util.Collection;
 import java.util.Date;
+import java.util.Collection;
+import java.util.Collections;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
@@ -61,7 +62,9 @@ public interface Element {
      * @return name of the test applied to the data.
      */
     @UML(identifier="nameOfMeasure", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Collection<? extends InternationalString> getNamesOfMeasure();
+    default Collection<? extends InternationalString> getNamesOfMeasure() {
+        return Collections.emptyList();
+    }
 
     /**
      * Code identifying a registered standard procedure, or {@code null} if none.
@@ -69,7 +72,9 @@ public interface Element {
      * @return code identifying a registered standard procedure, or {@code null}.
      */
     @UML(identifier="measureIdentification", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Identifier getMeasureIdentification();
+    default Identifier getMeasureIdentification() {
+        return null;
+    }
 
     /**
      * Description of the measure being determined.
@@ -77,7 +82,9 @@ public interface Element {
      * @return description of the measure being determined, or {@code null}.
      */
     @UML(identifier="measureDescription", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    InternationalString getMeasureDescription();
+    default InternationalString getMeasureDescription() {
+        return null;
+    }
 
     /**
      * Type of method used to evaluate quality of the dataset.
@@ -85,7 +92,9 @@ public interface Element {
      * @return type of method used to evaluate quality, or {@code null}.
      */
     @UML(identifier="evaluationMethodType", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    EvaluationMethodType getEvaluationMethodType();
+    default EvaluationMethodType getEvaluationMethodType() {
+        return null;
+    }
 
     /**
      * Description of the evaluation method.
@@ -93,7 +102,9 @@ public interface Element {
      * @return description of the evaluation method, or {@code null}.
      */
     @UML(identifier="evaluationMethodDescription", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    InternationalString getEvaluationMethodDescription();
+    default InternationalString getEvaluationMethodDescription() {
+        return null;
+    }
 
     /**
      * Reference to the procedure information, or {@code null} if none.
@@ -101,7 +112,9 @@ public interface Element {
      * @return reference to the procedure information, or {@code null}.
      */
     @UML(identifier="evaluationProcedure", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Citation getEvaluationProcedure();
+    default Citation getEvaluationProcedure() {
+        return null;
+    }
 
     /**
      * Date or range of dates on which a data quality measure was applied.
@@ -116,7 +129,9 @@ public interface Element {
      * @return date or range of dates on which a data quality measure was applied.
      */
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Collection<? extends Date> getDates();
+    default Collection<? extends Date> getDates() {
+        return Collections.emptyList();
+    }
 
     /**
      * Value (or set of values) obtained from applying a data quality measure or the out

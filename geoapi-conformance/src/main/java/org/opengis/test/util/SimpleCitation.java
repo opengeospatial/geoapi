@@ -31,21 +31,8 @@
  */
 package org.opengis.test.util;
 
-import java.util.Collection;
-import java.util.Collections;
-import java.util.Set;
-import java.util.Date;
-import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
-import org.opengis.metadata.citation.CitationDate;
-import org.opengis.metadata.citation.OnlineResource;
-import org.opengis.metadata.citation.PresentationForm;
-import org.opengis.metadata.citation.ResponsibleParty;
-import org.opengis.metadata.citation.Series;
-import org.opengis.metadata.identification.BrowseGraphic;
 import org.opengis.util.InternationalString;
-
-import static java.util.Collections.emptySet;
 
 
 /**
@@ -70,20 +57,12 @@ final class SimpleCitation implements Citation {
         this.title = title;
     }
 
-    @Override public InternationalString        getTitle()                   {return title;}
-    @Override public Set<InternationalString>   getAlternateTitles()         {return emptySet();}
-    @Override public Set<CitationDate>          getDates()                   {return emptySet();}
-    @Override public InternationalString        getEdition()                 {return null;}
-    @Override public Date                       getEditionDate()             {return null;}
-    @Override public Set<Identifier>            getIdentifiers()             {return emptySet();}
-    @Override public Set<ResponsibleParty>      getCitedResponsibleParties() {return emptySet();}
-    @Override public Set<PresentationForm>      getPresentationForms()       {return emptySet();}
-    @Override public Series                     getSeries()                  {return null;}
-    @Override public InternationalString        getOtherCitationDetails()    {return null;}
-    @Override public String                     getISBN()                    {return null;}
-    @Override public String                     getISSN()                    {return null;}
-    @Override public Collection<OnlineResource> getOnlineResources()         {return Collections.emptyList();}
-    @Override public Collection<BrowseGraphic>  getGraphics()                {return Collections.emptyList();}
-    @Deprecated
-    @Override public InternationalString        getCollectiveTitle()         {return null;}
+    /**
+     * Returns the title specified at construction time.
+     * This is the only {@link Citation} mandatory property.
+     */
+    @Override
+    public InternationalString getTitle() {
+        return title;
+    }
 }

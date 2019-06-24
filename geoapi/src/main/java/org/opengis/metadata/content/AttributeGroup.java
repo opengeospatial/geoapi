@@ -32,6 +32,7 @@
 package org.opengis.metadata.content;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -64,5 +65,7 @@ public interface AttributeGroup {
      * @return information on an attribute of the resource.
      */
     @UML(identifier="attribute", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends RangeDimension> getAttributes();
+    default Collection<? extends RangeDimension> getAttributes() {
+        return Collections.emptyList();
+    }
 }

@@ -32,6 +32,7 @@
 package org.opengis.metadata.acquisition;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
@@ -58,7 +59,9 @@ public interface Platform {
      * @return source where information about the platform is described, or {@code null}.
      */
     @UML(identifier="citation", obligation=OPTIONAL, specification=ISO_19115_2)
-    Citation getCitation();
+    default Citation getCitation() {
+        return null;
+    }
 
     /**
      * Unique identification of the platform.
@@ -87,7 +90,9 @@ public interface Platform {
      * @return organization responsible for building, launch, or operation of the platform.
      */
     @UML(identifier="sponsor", obligation=OPTIONAL, specification=ISO_19115_2, version=2003)
-    Collection<? extends ResponsibleParty> getSponsors();
+    default Collection<? extends ResponsibleParty> getSponsors() {
+        return Collections.emptyList();
+    }
 
     /**
      * Instrument(s) mounted on a platform.

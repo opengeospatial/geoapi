@@ -32,6 +32,7 @@
 package org.opengis.metadata.lineage;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.maintenance.Scope;
@@ -80,7 +81,9 @@ public interface Source {
      * @since 3.1
      */
     @UML(identifier="sourceSpatialResolution", obligation=OPTIONAL, specification=ISO_19115)
-    Resolution getSourceSpatialResolution();
+    default Resolution getSourceSpatialResolution() {
+        return null;
+    }
 
     /**
      * Denominator of the representative fraction on a source map.
@@ -91,7 +94,10 @@ public interface Source {
      */
     @Deprecated
     @UML(identifier="scaleDenominator", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    RepresentativeFraction getScaleDenominator();
+    default RepresentativeFraction getScaleDenominator() {
+        Resolution res = getSourceSpatialResolution();
+        return (res != null) ? res.getEquivalentScale() : null;
+    }
 
     /**
      * Spatial reference system used by the source data.
@@ -99,7 +105,9 @@ public interface Source {
      * @return spatial reference system used by the source data, or {@code null}.
      */
     @UML(identifier="sourceReferenceSystem", obligation=OPTIONAL, specification=ISO_19115)
-    ReferenceSystem getSourceReferenceSystem();
+    default ReferenceSystem getSourceReferenceSystem() {
+        return null;
+    }
 
     /**
      * Recommended reference to be used for the source data.
@@ -107,7 +115,9 @@ public interface Source {
      * @return recommended reference to be used for the source data, or {@code null}.
      */
     @UML(identifier="sourceCitation", obligation=OPTIONAL, specification=ISO_19115)
-    Citation getSourceCitation();
+    default Citation getSourceCitation() {
+        return null;
+    }
 
     /**
      * References to metadata for the source.
@@ -118,7 +128,9 @@ public interface Source {
      * @since 3.1
      */
     @UML(identifier="sourceMetadata", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getSourceMetadata();
+    default Collection<? extends Citation> getSourceMetadata() {
+        return Collections.emptyList();
+    }
 
     /**
      * Type and / or extent of the source.
@@ -144,7 +156,9 @@ public interface Source {
      */
     @Deprecated
     @UML(identifier="sourceExtent", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
-    Collection<? extends Extent> getSourceExtents();
+    default Collection<? extends Extent> getSourceExtents() {
+        return Collections.emptyList();
+    }
 
     /**
      * Information about process steps in which this source was used.
@@ -152,7 +166,9 @@ public interface Source {
      * @return information about process steps in which this source was used.
      */
     @UML(identifier="sourceStep", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends ProcessStep> getSourceSteps();
+    default Collection<? extends ProcessStep> getSourceSteps() {
+        return Collections.emptyList();
+    }
 
     /**
      * Processing level of the source data.
@@ -160,7 +176,9 @@ public interface Source {
      * @return processing level of the source data, or {@code null}.
      */
     @UML(identifier="processedLevel", obligation=OPTIONAL, specification=ISO_19115_2)
-    Identifier getProcessedLevel();
+    default Identifier getProcessedLevel() {
+        return null;
+    }
 
     /**
      * Distance between consistent parts (centre, left side, right side) of two adjacent pixels.
@@ -168,5 +186,7 @@ public interface Source {
      * @return distance between consistent parts of two adjacent pixels.
      */
     @UML(identifier="resolution", obligation=OPTIONAL, specification=ISO_19115_2)
-    NominalResolution getResolution();
+    default NominalResolution getResolution() {
+        return null;
+    }
 }

@@ -7,13 +7,11 @@
  */
 package org.opengis.example.referencing;
 
-import java.util.Date;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 import tec.units.ri.unit.Units;
 
-import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.example.metadata.SimpleCitation;
 import org.opengis.referencing.datum.Ellipsoid;
@@ -210,28 +208,6 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
     @Override
     public PrimeMeridian getPrimeMeridian() {
         return Greenwich.INSTANCE;
-    }
-
-    /**
-     * Description, possibly including coordinates, of the point or points used to anchor the datum
-     * to the Earth. The default implementation returns {@code null}.
-     *
-     * @return a description of the anchor point, or {@code null} if none.
-     */
-    @Override
-    public InternationalString getAnchorPoint() {
-        return null;
-    }
-
-    /**
-     * The time after which this datum definition is valid.
-     * The default implementation returns {@code null}.
-     *
-     * @return the datum realization epoch, or {@code null} if not available.
-     */
-    @Override
-    public Date getRealizationEpoch() {
-        return null;
     }
 
     /**

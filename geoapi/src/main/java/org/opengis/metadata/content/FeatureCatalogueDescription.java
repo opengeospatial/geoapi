@@ -33,6 +33,7 @@ package org.opengis.metadata.content;
 
 import java.util.Map;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Locale;
 import java.nio.charset.Charset;
 import org.opengis.util.GenericName;
@@ -59,7 +60,9 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * @return whether or not the cited feature catalogue complies with ISO 19110, or {@code null}.
      */
     @UML(identifier="complianceCode", obligation=OPTIONAL, specification=ISO_19115)
-    Boolean isCompliant();
+    default Boolean isCompliant() {
+        return null;
+    }
 
     /**
      * Language(s) and character set(s) used within the catalogue.
@@ -84,7 +87,9 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * @since 3.1
      */
     @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115)
-    Map<Locale,Charset> getLocalesAndCharsets();
+    default Map<Locale,Charset> getLocalesAndCharsets() {
+        return Collections.emptyMap();
+    }
 
     /**
      * Language(s) used within the catalogue.
@@ -95,7 +100,9 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      */
     @Deprecated
     @UML(identifier="language", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Collection<Locale> getLanguages();
+    default Collection<Locale> getLanguages() {
+        return getLocalesAndCharsets().keySet();
+    }
 
     /**
      * Indication of whether or not the feature catalogue is included with the resource.
@@ -103,7 +110,9 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * @return whether or not the feature catalogue is included with the resource.
      */
     @UML(identifier="includedWithDataset", obligation=OPTIONAL, specification=ISO_19115)
-    boolean isIncludedWithDataset();
+    default boolean isIncludedWithDataset() {
+        return false;
+    }
 
     /**
      * Subset of feature types from cited feature catalogue occurring in resource
@@ -122,7 +131,9 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * @since 3.1
      */
     @UML(identifier="featureTypes", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends FeatureTypeInfo> getFeatureTypeInfo();
+    default Collection<? extends FeatureTypeInfo> getFeatureTypeInfo() {
+        return Collections.emptyList();
+    }
 
     /**
      * Names of the {@linkplain #getFeatureTypes() feature types}.

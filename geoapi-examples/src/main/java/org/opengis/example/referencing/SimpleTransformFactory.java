@@ -169,16 +169,6 @@ public class SimpleTransformFactory implements MathTransformFactory {
     }
 
     /**
-     * Creates a transform from a XML string. The default implementation throws an exception
-     * in all cases since XML parsing is not implemented by this simple factory.
-     */
-    @Override
-    @Deprecated
-    public MathTransform createFromXML(String xml) throws FactoryException {
-        throw new FactoryException("XML parsing is not implemented.");
-    }
-
-    /**
      * Creates a transform from a WKT string. The default implementation throws an exception
      * in all cases since WKT parsing is not implemented by this simple factory.
      */

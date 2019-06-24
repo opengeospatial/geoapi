@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * A type consisting of either a {@linkplain DirectPosition direct position} or of a
  * {@linkplain Point point} from which a {@linkplain DirectPosition direct position}
  * shall be obtained. The use of this data type allows the identification of a position
- * either directly as a coordinate (variant direct) or indirectly as a {@linkplain Point point}
+ * either directly as a coordinate tuple (variant direct) or indirectly as a {@linkplain Point point}
  * (variant indirect).
  *
  * @departure constraint

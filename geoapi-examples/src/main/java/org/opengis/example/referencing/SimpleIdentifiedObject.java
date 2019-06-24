@@ -7,12 +7,8 @@
  */
 package org.opengis.example.referencing;
 
-import java.util.Set;
 import java.util.Objects;
-import java.util.Collection;
-import java.util.Collections;
 import java.io.Serializable;
-import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
@@ -112,49 +108,6 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
     }
 
     /**
-     * Version identifier for the namespace, as specified by the code authority.
-     * The default implementation returns {@code null}.
-     */
-    @Override
-    public String getVersion() {
-        return null;
-    }
-
-    /**
-     * Alternative names by which this object is identified.
-     * The default implementation returns an empty set.
-     *
-     * @return the aliases, or an empty collection if there is none.
-     */
-    @Override
-    public Collection<GenericName> getAlias() {
-        return Collections.emptySet();
-    }
-
-    /**
-     * An identifier which references elsewhere the object's defining information.
-     * Alternatively an identifier by which this object can be referenced.
-     * The default implementation returns an empty set.
-     *
-     * @return this object identifiers, or an empty set if there is none.
-     */
-    @Override
-    public Set<ReferenceIdentifier> getIdentifiers() {
-        return Collections.emptySet();
-    }
-
-    /**
-     * Returns a natural language description of this object.
-     * The default implementation returns {@code null}.
-     *
-     * @return the natural language description, or {@code null} if none.
-     */
-    @Override
-    public InternationalString getDescription() {
-        return null;
-    }
-
-    /**
      * Description of domain of usage, or limitations of usage, for which this object is valid.
      * Note that this method is not inherited from {@link IdentifiedObject}, but is
      * defined in sub-interfaces like {@link org.opengis.referencing.crs.SingleCRS}.
@@ -177,17 +130,6 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * @return the valid domain, or {@code null} if not available.
      */
     public Extent getDomainOfValidity() {
-        return null;
-    }
-
-    /**
-     * Comments on or information about this object, including data source information.
-     * The default implementation returns {@code null}.
-     *
-     * @return the remarks, or {@code null} if none.
-     */
-    @Override
-    public InternationalString getRemarks() {
         return null;
     }
 

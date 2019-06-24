@@ -318,7 +318,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       tolerance threshold is already set in which case the existing value is left
      *       unchanged.</p></li>
      *   <li><p>{@link #derivativeDeltas} is set to a value in degrees corresponding to
-     *       approximatively 1 metre on Earth (calculated using the standard nautical mile length).
+     *       approximately 1 metre on Earth (calculated using the standard nautical mile length).
      *       A finer value can lead to more accurate derivative approximation by the
      *       {@link #verifyDerivative(double[]) verifyDerivative(double...)} method,
      *       at the expense of more sensitivity to the accuracy of the

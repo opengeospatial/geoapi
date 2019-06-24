@@ -60,7 +60,9 @@ public interface Band extends SampleDimension {
      * @since 3.1
      */
     @UML(identifier="boundMin", obligation=OPTIONAL, specification=ISO_19115)
-    Double getBoundMin();
+    default Double getBoundMin() {
+        return null;
+    }
 
     /**
      * Longest wavelength that the sensor is capable of collecting within a designated band.
@@ -71,7 +73,9 @@ public interface Band extends SampleDimension {
      * @since 3.1
      */
     @UML(identifier="boundMax", obligation=OPTIONAL, specification=ISO_19115)
-    Double getBoundMax();
+    default Double getBoundMax() {
+        return null;
+    }
 
     /**
      * Units in which sensor wavelengths are expressed.
@@ -81,7 +85,9 @@ public interface Band extends SampleDimension {
      * @since 3.1
      */
     @UML(identifier="boundUnits", obligation=OPTIONAL, specification=ISO_19115)
-    Unit<Length> getBoundUnits();
+    default Unit<Length> getBoundUnits() {
+        return null;
+    }
 
     /**
      * Designation of criterion for defining maximum and minimum wavelengths for a spectral band.
@@ -89,7 +95,9 @@ public interface Band extends SampleDimension {
      * @return criterion for defining maximum and minimum wavelengths.
      */
     @UML(identifier="bandBoundaryDefinition", obligation=OPTIONAL, specification=ISO_19115_2)
-    BandDefinition getBandBoundaryDefinition();
+    default BandDefinition getBandBoundaryDefinition() {
+        return null;
+    }
 
     /**
      * Wavelength at which the response is the highest.
@@ -98,7 +106,9 @@ public interface Band extends SampleDimension {
      * @return wavelength at which the response is the highest, or {@code null} if unspecified.
      */
     @UML(identifier="peakResponse", obligation=OPTIONAL, specification=ISO_19115)
-    Double getPeakResponse();
+    default Double getPeakResponse() {
+        return null;
+    }
 
     /**
      * Number of discrete numerical values in the grid data.
@@ -107,7 +117,9 @@ public interface Band extends SampleDimension {
      * @return number of discrete numerical values in the grid data, or {@code null}.
      */
     @UML(identifier="toneGradation", obligation=OPTIONAL, specification=ISO_19115)
-    Integer getToneGradation();
+    default Integer getToneGradation() {
+        return null;
+    }
 
     /**
      * Polarization of the radiation transmitted.
@@ -120,7 +132,9 @@ public interface Band extends SampleDimension {
      * @return polarization of the radiation transmitted.
      */
     @UML(identifier="transmittedPolarisation", obligation=OPTIONAL, specification=ISO_19115_2)
-    PolarizationOrientation getTransmittedPolarization();
+    default PolarizationOrientation getTransmittedPolarization() {
+        return null;
+    }
 
     /**
      * Polarization of the radiation detected.
@@ -133,5 +147,7 @@ public interface Band extends SampleDimension {
      * @return polarization of the radiation detected.
      */
     @UML(identifier="detectedPolarisation", obligation=OPTIONAL, specification=ISO_19115_2)
-    PolarizationOrientation getDetectedPolarization();
+    default PolarizationOrientation getDetectedPolarization() {
+        return null;
+    }
 }

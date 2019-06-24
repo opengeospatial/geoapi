@@ -32,6 +32,7 @@
 package org.opengis.metadata.citation;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
@@ -66,7 +67,9 @@ public interface Address {
      * @todo https://github.com/opengeospatial/geoapi/issues/34
      */
     @UML(identifier="deliveryPoint", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<String> getDeliveryPoints();
+    default Collection<String> getDeliveryPoints() {
+        return Collections.emptyList();
+    }
 
     /**
      * The city of the location.
@@ -75,7 +78,9 @@ public interface Address {
      * @return the city of the location, or {@code null}.
      */
     @UML(identifier="city", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getCity();
+    default InternationalString getCity() {
+        return null;
+    }
 
     /**
      * State, province of the location.
@@ -84,7 +89,9 @@ public interface Address {
      * @return state, province of the location, or {@code null}.
      */
     @UML(identifier="administrativeArea", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getAdministrativeArea();
+    default InternationalString getAdministrativeArea() {
+        return null;
+    }
 
     /**
      * ZIP or other postal code.
@@ -93,7 +100,9 @@ public interface Address {
      * @return ZIP or other postal code, or {@code null}.
      */
     @UML(identifier="postalCode", obligation=OPTIONAL, specification=ISO_19115)
-    String getPostalCode();
+    default String getPostalCode() {
+        return null;
+    }
 
     /**
      * Country of the physical address.
@@ -102,7 +111,9 @@ public interface Address {
      * @return country of the physical address, or {@code null}.
      */
     @UML(identifier="country", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getCountry();
+    default InternationalString getCountry() {
+        return null;
+    }
 
     /**
      * Address of the electronic mailbox of the responsible organization or individual.
@@ -111,5 +122,7 @@ public interface Address {
      * @return address of the electronic mailbox of the responsible organization or individual.
      */
     @UML(identifier="electronicMailAddress", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<String> getElectronicMailAddresses();
+    default Collection<String> getElectronicMailAddresses() {
+        return Collections.emptySet();                          // Use Set instead of List for hash-safe final classes.
+    }
 }

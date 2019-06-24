@@ -55,7 +55,8 @@ import org.opengis.annotation.Stereotype;
 
 /**
  * Information about types and properties declared in OGC/ISO schemas. This class requires a connection
- * to <a href="http://standards.iso.org/iso/19115/-3/">http://standards.iso.org/iso/19115/-3/</a>.
+ * to <a href="http://standards.iso.org/iso/19115/-3/">http://standards.iso.org/iso/19115/-3/</a>
+ * or a local copy of those files.
  *
  * <p><b>Limitations:</b></p>
  * Current implementation ignores the XML prefix (e.g. {@code "cit:"} in {@code "cit:CI_Citation"}).
@@ -268,7 +269,7 @@ public class SchemaInformation {
 
     /**
      * Loads the default set of XSD files. This method invokes {@link #loadSchema(String)}
-     * for a pre-defined set of metadata schemas, in approximative dependency order.
+     * for a pre-defined set of metadata schemas, in approximate dependency order.
      *
      * @throws ParserConfigurationException if the XML parser can not be created.
      * @throws IOException     if an I/O error occurred while reading a file.

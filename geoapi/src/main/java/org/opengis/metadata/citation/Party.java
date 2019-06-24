@@ -32,6 +32,7 @@
 package org.opengis.metadata.citation;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
@@ -69,5 +70,7 @@ public interface Party {
      * @return contact information for the party, or {@code null} if none.
      */
     @UML(identifier="contactInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Contact> getContactInfo();
+    default Collection<? extends Contact> getContactInfo() {
+        return Collections.emptyList();
+    }
 }

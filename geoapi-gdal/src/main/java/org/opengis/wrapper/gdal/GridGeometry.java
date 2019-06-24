@@ -23,7 +23,6 @@ import org.opengis.metadata.spatial.Dimension;
 import org.opengis.metadata.spatial.DimensionNameType;
 import org.opengis.metadata.spatial.GridSpatialRepresentation;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.util.InternationalString;
 
 
 /**
@@ -94,10 +93,12 @@ class GridGeometry implements GridSpatialRepresentation {
             }
         }
 
-        @Override public Integer             getDimensionSize()        {return size;}
-        @Override public Double              getResolution()           {return null;}
-        @Override public InternationalString getDimensionTitle()       {return null;}
-        @Override public InternationalString getDimensionDescription() {return null;}
+        /** Number of elements along the axis. */
+        @Override public Integer getDimensionSize() {
+            return size;
+        }
+
+        /** String representation for debugging purpose. */
         @Override public String toString() {
             final StringBuilder b = new StringBuilder().append(size).append(' ').append(getDimensionName().identifier());
             if (size >= 2) b.append('s');

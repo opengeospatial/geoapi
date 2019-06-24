@@ -14,11 +14,8 @@
 package org.opengis.wrapper.proj4;
 
 import java.util.Arrays;
-import java.util.Collection;
-import java.util.Collections;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
-import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -88,10 +85,6 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
     @Override public final int     getTargetDimensions()      {return target.getDimension();}
     @Override public MathTransform getMathTransform()         {return this;}
     @Override public String        getOperationVersion()      {return PJ.getVersion();}
-    @Override
-    public Collection<PositionalAccuracy> getCoordinateOperationAccuracy() {
-        return Collections.emptySet();
-    }
 
     /**
      * Returns {@code true} if this transform is the identity transform. Note that a value of
@@ -291,14 +284,6 @@ class PJOperation extends PJObject implements SingleOperation, MathTransform {
     static final class Projection extends PJOperation implements org.opengis.referencing.operation.Projection {
         Projection(final ReferenceIdentifier name, final PJCRS.Geographic source, final PJCRS.Projected target) {
             super(name, source, target);
-        }
-
-        /**
-         * Always {@code null} by definition for map projection, according ISO 19111.
-         */
-        @Override
-        public String getOperationVersion() {
-            return null;
         }
 
         /**

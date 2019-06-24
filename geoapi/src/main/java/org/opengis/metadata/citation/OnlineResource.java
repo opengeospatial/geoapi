@@ -79,7 +79,9 @@ public interface OnlineResource {
      * @return connection protocol to be used, or {@code null}.
      */
     @UML(identifier="protocol", obligation=OPTIONAL, specification=ISO_19115)
-    String getProtocol();
+    default String getProtocol() {
+        return null;
+    }
 
     /**
      * Name of an application profile that can be used with the online resource.
@@ -87,7 +89,9 @@ public interface OnlineResource {
      * @return application profile that can be used with the online resource, or {@code null}.
      */
     @UML(identifier="applicationProfile", obligation=OPTIONAL, specification=ISO_19115)
-    String getApplicationProfile();
+    default String getApplicationProfile() {
+        return null;
+    }
 
     /**
      * Name of the online resource.
@@ -99,7 +103,9 @@ public interface OnlineResource {
      * @return name of the online resource, or {@code null}.
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
-    String getName();
+    default String getName() {
+        return null;
+    }
 
     /**
      * Detailed text description of what the online resource is/does.
@@ -107,7 +113,9 @@ public interface OnlineResource {
      * @return text description of what the online resource is/does, or {@code null}.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getDescription();
+    default InternationalString getDescription() {
+        return null;
+    }
 
     /**
      * Code for function performed by the online resource.
@@ -115,7 +123,9 @@ public interface OnlineResource {
      * @return function performed by the online resource, or {@code null}.
      */
     @UML(identifier="function", obligation=OPTIONAL, specification=ISO_19115)
-    OnLineFunction getFunction();
+    default OnLineFunction getFunction() {
+        return null;
+    }
 
     /**
      * Request used to access the resource depending on the protocol.
@@ -134,5 +144,7 @@ public interface OnlineResource {
      * @since 3.1
      */
     @UML(identifier="protocolRequest", obligation=OPTIONAL, specification=ISO_19115)
-    String getProtocolRequest();
+    default String getProtocolRequest() {
+        return null;
+    }
 }

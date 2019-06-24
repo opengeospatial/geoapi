@@ -32,6 +32,7 @@
 package org.opengis.metadata.quality;
 
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.maintenance.ScopeCode;
@@ -79,7 +80,10 @@ public interface Scope extends org.opengis.metadata.maintenance.Scope {
      */
     @Deprecated
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Extent getExtent();
+    default Extent getExtent() {
+        Iterator<? extends Extent> it = getExtents().iterator();
+        return it.hasNext() ? it.next() : null;
+    }
 
     /**
      * Detailed description about the level of the data specified by the scope.

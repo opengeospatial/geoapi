@@ -180,7 +180,7 @@ public interface MathTransformFactory extends Factory {
      * Creates a {@linkplain #createParameterizedTransform parameterized transform} from a base CRS
      * to a derived CS. This convenience constructor {@linkplain #createConcatenatedTransform concatenates}
      * the parameterized transform with any other transform required for performing units changes and
-     * ordinates swapping, as described in the {@linkplain #createParameterizedTransform note on
+     * coordinates swapping, as described in the {@linkplain #createParameterizedTransform note on
      * cartographic projections}.
      *
      * <p>In addition, implementations are encouraged to infer the {@code "semi_major"} and
@@ -238,7 +238,7 @@ public interface MathTransformFactory extends Factory {
      * reference systems have different properties. For example, in Europe some projected CRSs use grads instead of degrees,
      * and often the {@linkplain ProjectedCRS#getBaseCRS() base geographic CRS} is (<var>latitude</var>, <var>longitude</var>)
      * instead of (<var>longitude</var>, <var>latitude</var>). This means that the cartographic projected transform is often
-     * used as a single step in a series of transforms, where the other steps change units and swap ordinates.
+     * used as a single step in a series of transforms, where the other steps change units and swap coordinates.
      *
      * <p>When the change of axis directions is part of the map projection definition as in <cite>"Transverse Mercator
      * (South Orientated)"</cite>, there is a conflict with the above-cited (<var>east</var>, <var>north</var>) directions.
@@ -266,7 +266,7 @@ public interface MathTransformFactory extends Factory {
      * If the transform's input dimension is {@code M}, and output dimension is {@code N},
      * then the matrix will have size {@code [N+1][M+1]}.
      * The +1 in the matrix dimensions allows the matrix to do a shift, as well as a rotation.
-     * The {@code [M][j]} element of the matrix will be the <var>j</var>'th ordinate of the moved origin.
+     * The {@code [M][j]} element of the matrix will be the <var>j</var>'th coordinate of the moved origin.
      * The {@code [i][N]} element of the matrix will be 0 for <var>i</var> less than {@code M},
      * and 1 for <var>i</var> equals {@code M}.
      *
@@ -296,8 +296,8 @@ public interface MathTransformFactory extends Factory {
                                               MathTransform transform2) throws FactoryException;
 
     /**
-     * Creates a transform which passes through a subset of ordinates to another transform.
-     * This allows transforms to operate on a subset of ordinates. For example giving
+     * Creates a transform which passes through a subset of coordinates to another transform.
+     * This allows transforms to operate on a subset of coordinates. For example giving
      * (<var>latitude</var>, <var>longitude</var>, <var>height</var>) coordinates, a pass
      * through transform can convert the height values from meters to feet without affecting
      * the (<var>latitude</var>, <var>longitude</var>) values.
@@ -330,7 +330,9 @@ public interface MathTransformFactory extends Factory {
      */
     @Deprecated
     @UML(identifier="createFromXML", obligation=MANDATORY, specification=OGC_01009)
-    MathTransform createFromXML(String xml) throws FactoryException;
+    default MathTransform createFromXML(String xml) throws FactoryException {
+        throw new FactoryException("No XML format defined for MathTransform.");
+    }
 
     /**
      * Creates a math transform object from a <cite>Well-Known Text</cite>.

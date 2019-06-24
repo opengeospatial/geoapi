@@ -60,8 +60,8 @@ import static org.opengis.annotation.Specification.*;
  * (the developer is responsible to ensure that all changes compared to previous version are wanted). If the
  * file is presents, then its content will be compared with the content of the file that would have been generated.
  *
- * <p>This class use information provided by {@link UML} annotations. This information will be verified
- * by {@link #verifyUML()}, which should pass before {@link #generateOrVerifyIndex()} is executed.</p>
+ * <p>This class use information provided by {@link UML} annotations. Those information are verified by
+ * {@link MethodSignatureTest}, which should pass before {@link #generateOrVerifyIndex()} is executed.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -79,48 +79,6 @@ public final strictfp class ClassIndexTest extends SourceGenerator {
      * used by {@link java.util.Properties} when loading a file from an {@link InputStream}.
      */
     private static final String ENCODING = "ISO-8859-1";
-
-    /**
-     * Verifies the values of all UML annotations.
-     */
-    @Test
-    public void verifyUML() {
-        for (final Class<?> c : Content.ALL.types()) {
-            final UML uml = c.getAnnotation(UML.class);
-            if (uml != null) {
-                final String identifier = uml.identifier().trim();
-                if (identifier.isEmpty()) {
-                    fail("UML identifier is empty in " + c);
-                }
-                /*
-                 * As a policy, we do not declare version numbers which are equal to the default version.
-                 * This make easier for users to identify methods derived from older standards.
-                 * We make an exception for deprecated interfaces, when the version number is sometime
-                 * added in anticipation to a future upgrade.
-                 */
-                final short version = uml.version();
-                final short defaultVersion = uml.specification().defaultVersion();
-                if (!c.isAnnotationPresent(Deprecated.class)) {
-                    assertFalse(identifier, version == defaultVersion);
-                }
-                /*
-                 * We expect deprecated methods to be legacy from older standards.
-                 * Consequently their version number shall not be the default one
-                 * (except if we have only one version, as in old OGC documents).
-                 */
-                if (c.isAnnotationPresent(Deprecated.class)) {
-                    if (identifier.equals("MD_CharacterSetCode")) {
-                        // Exception to the above rule for MD_CharacterSetCode because that code list has not been
-                        // removed by ISO 19115:2014 but GeoAPI nevertheless replaced it by java.nio.charset.Charset.
-                        continue;
-                    }
-                    if (defaultVersion != 1) {
-                        assertFalse(identifier, version == 0);
-                    }
-                }
-            }
-        }
-    }
 
     /**
      * Verifies the class index (if it exists) or generates the class index (if it doesn't exist).

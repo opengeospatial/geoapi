@@ -7,7 +7,6 @@
  */
 package org.opengis.example.parameter;
 
-import java.util.Set;
 import java.net.URI;
 
 import javax.measure.Unit;
@@ -16,6 +15,7 @@ import javax.measure.quantity.Angle;
 import tec.units.ri.AbstractUnit;
 import tec.units.ri.unit.Units;
 
+import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.parameter.InvalidParameterValueException;
 import org.opengis.parameter.InvalidParameterTypeException;
@@ -188,31 +188,22 @@ public class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
+     * Returns a natural language description of this object.
+     * The default implementation returns {@code null}.
+     *
+     * @return the natural language description, or {@code null} if none.
+     */
+    @Override
+    public InternationalString getDescription() {
+        return null;
+    }
+
+    /**
      * Returns {@code this}, since this simple class is used only as input parameter.
      */
     @Override
     public ParameterDirection getDirection() {
         return ParameterDirection.IN;
-    }
-
-    /**
-     * Returns the minimum number of times that values for this parameter are required.
-     * The default implementation returns 1, meaning that a value shall always be supplied
-     * (the {@link #getValue()} method never return {@code null}).
-     */
-    @Override
-    public int getMinimumOccurs() {
-        return 1;
-    }
-
-    /**
-     * Returns the maximum number of times that values for this parameter can be included.
-     * This method unconditionally returns 1, which is the mandatory value for
-     * {@link ParameterValue} implementations.
-     */
-    @Override
-    public int getMaximumOccurs() {
-        return 1;
     }
 
     /**
@@ -257,24 +248,6 @@ public class SimpleParameter extends SimpleIdentifiedObject
     @Override
     public Comparable<Double> getMaximumValue() {
         return (type != null) ? type.maximum : null;
-    }
-
-    /**
-     * Returns the set of allowed values when these are restricted to some finite set or returns
-     * {@code null} otherwise. The default implementation unconditionally returns {@code null}.
-     */
-    @Override
-    public Set<Double> getValidValues() {
-        return null;
-    }
-
-    /**
-     * Returns the default value for the parameter.
-     * The default implementation unconditionally returns {@code null}.
-     */
-    @Override
-    public Double getDefaultValue() {
-        return null;
     }
 
     /**

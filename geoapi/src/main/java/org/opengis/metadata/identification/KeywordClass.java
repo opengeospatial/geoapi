@@ -67,7 +67,9 @@ public interface KeywordClass {
      * @return URI of concept in the ontology, or {@code null} if none.
      */
     @UML(identifier="conceptIdentifier", obligation=OPTIONAL, specification=ISO_19115)
-    URI getConceptIdentifier();
+    default URI getConceptIdentifier() {
+        return null;
+    }
 
     /**
      * A reference that binds the keyword class to a formal conceptualization

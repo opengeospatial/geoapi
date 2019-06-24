@@ -61,7 +61,9 @@ public interface ProcessStepReport {
      * @return what occurred during the process step, or {@code null}.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115_2)
-    InternationalString getDescription();
+    default InternationalString getDescription() {
+        return null;
+    }
 
     /**
      * Type of file that contains the processing report.
@@ -69,5 +71,7 @@ public interface ProcessStepReport {
      * @return type of file that contains the processing report, or {@code null}.
      */
     @UML(identifier="fileType", obligation=OPTIONAL, specification=ISO_19115_2)
-    InternationalString getFileType();
+    default InternationalString getFileType() {
+        return null;
+    }
 }

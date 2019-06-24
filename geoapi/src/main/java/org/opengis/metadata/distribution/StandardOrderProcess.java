@@ -60,7 +60,9 @@ public interface StandardOrderProcess {
      * @return fees and terms for retrieving the resource, or {@code null}.
      */
     @UML(identifier="fees", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getFees();
+    default InternationalString getFees() {
+        return null;
+    }
 
     /**
      * The monetary units of the {@link #getFees() fees} (as specified in ISO 4217).
@@ -79,7 +81,9 @@ public interface StandardOrderProcess {
      *
      * @since 3.1
      */
-    Currency getCurrency();
+    default Currency getCurrency() {
+        return null;
+    }
 
     /**
      * Date and time when the dataset will be available.
@@ -92,7 +96,9 @@ public interface StandardOrderProcess {
      * @return date and time when the dataset will be available, or {@code null}.
      */
     @UML(identifier="plannedAvailableDateTime", obligation=OPTIONAL, specification=ISO_19115)
-    Date getPlannedAvailableDateTime();
+    default Date getPlannedAvailableDateTime() {
+        return null;
+    }
 
     /**
      * General instructions, terms and services provided by the distributor.
@@ -100,7 +106,9 @@ public interface StandardOrderProcess {
      * @return general instructions, terms and services provided by the distributor, or {@code null}.
      */
     @UML(identifier="orderingInstructions", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getOrderingInstructions();
+    default InternationalString getOrderingInstructions() {
+        return null;
+    }
 
     /**
      * Typical turnaround time for the filling of an order.
@@ -108,7 +116,9 @@ public interface StandardOrderProcess {
      * @return typical turnaround time for the filling of an order, or {@code null}.
      */
     @UML(identifier="turnaround", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getTurnaround();
+    default InternationalString getTurnaround() {
+        return null;
+    }
 
     /**
      * Description of the {@linkplain #getOrderOptions() order options} record.
@@ -120,7 +130,9 @@ public interface StandardOrderProcess {
      * @see Record#getRecordType()
      */
     @UML(identifier="orderOptionsType", obligation=OPTIONAL, specification=ISO_19115)
-    RecordType getOrderOptionsType();
+    default RecordType getOrderOptionsType() {
+        return null;
+    }
 
     /**
      * Request/purchase choices.
@@ -134,5 +146,7 @@ public interface StandardOrderProcess {
      *       orders, otherwise this method would need to be a factory rather than a getter.
      */
     @UML(identifier="orderOptions", obligation=OPTIONAL, specification=ISO_19115)
-    Record getOrderOptions();
+    default Record getOrderOptions() {
+        return null;
+    }
 }

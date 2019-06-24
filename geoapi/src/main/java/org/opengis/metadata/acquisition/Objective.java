@@ -32,6 +32,7 @@
 package org.opengis.metadata.acquisition;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
@@ -66,7 +67,9 @@ public interface Objective {
      * @return priority applied, or {@code null}.
      */
     @UML(identifier="priority", obligation=OPTIONAL, specification=ISO_19115_2)
-    InternationalString getPriority();
+    default InternationalString getPriority() {
+        return null;
+    }
 
     /**
      * Collection technique for the objective.
@@ -74,7 +77,9 @@ public interface Objective {
      * @return collection technique for the objective.
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends ObjectiveType> getTypes();
+    default Collection<ObjectiveType> getTypes() {
+        return Collections.emptySet();
+    }
 
     /**
      * Role or purpose performed by or activity performed at the objective.
@@ -82,7 +87,9 @@ public interface Objective {
      * @return role or purpose performed by or activity performed at the objective.
      */
     @UML(identifier="function", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends InternationalString> getFunctions();
+    default Collection<? extends InternationalString> getFunctions() {
+        return Collections.emptyList();
+    }
 
     /**
      * Extent information including the bounding box, bounding polygon, vertical and
@@ -91,7 +98,9 @@ public interface Objective {
      * @return extent information.
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Extent> getExtents();
+    default Collection<? extends Extent> getExtents() {
+        return Collections.emptyList();
+    }
 
     /**
      * Event or events associated with objective completion.
@@ -113,7 +122,9 @@ public interface Objective {
      * @return pass of the platform.
      */
     @UML(identifier="pass", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends PlatformPass> getPass();
+    default Collection<? extends PlatformPass> getPass() {
+        return Collections.emptyList();
+    }
 
     /**
      * Instrument which senses the objective data.
@@ -121,5 +132,7 @@ public interface Objective {
      * @return instrument which senses the objective data.
      */
     @UML(identifier="sensingInstrument", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Instrument> getSensingInstruments();
+    default Collection<? extends Instrument> getSensingInstruments() {
+        return Collections.emptyList();
+    }
 }

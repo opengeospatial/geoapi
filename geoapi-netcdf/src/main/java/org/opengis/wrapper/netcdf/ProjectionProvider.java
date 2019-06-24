@@ -179,24 +179,6 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
     }
 
     /**
-     * Returns the minimum number of times that values for this group are required.
-     * This is 1, meaning that this group shall always be supplied at least once.
-     */
-    @Override
-    public int getMinimumOccurs() {
-        return 1;
-    }
-
-    /**
-     * Returns the maximum number of times that values for this group can be included.
-     * This is 1, meaning that values for this group shall always be supplied at most once.
-     */
-    @Override
-    public int getMaximumOccurs() {
-        return 1;
-    }
-
-    /**
      * Returns the parameter descriptor, which is this object itself.
      */
     @Override

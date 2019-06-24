@@ -31,9 +31,7 @@
  */
 package org.opengis.test.referencing;
 
-import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.ReferenceIdentifier;
-import org.opengis.util.InternationalString;
 
 
 /**
@@ -73,30 +71,6 @@ final strictfp class EPSGIdentifier implements ReferenceIdentifier {
     @Override
     public String getCodeSpace() {
         return "EPSG";
-    }
-
-    /**
-     * Unsupported - returns {@code null} for now.
-     */
-    @Override
-    public Citation getAuthority() {
-        return null;
-    }
-
-    /**
-     * Returns {@code null} since we do not hold version information.
-     */
-    @Override
-    public String getVersion() {
-        return null;
-    }
-
-    /**
-     * Returns {@code null} since we do not hold object description.
-     */
-    @Override
-    public InternationalString getDescription() {
-        return null;
     }
 
     /**

@@ -32,6 +32,7 @@
 package org.opengis.metadata.constraint;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.opengis.annotation.UML;
 import org.opengis.util.InternationalString;
@@ -57,7 +58,9 @@ public interface Releasability {
      * @return parties to which the release statement applies.
      */
     @UML(identifier="addressee", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Responsibility> getAddressees();
+    default Collection<? extends Responsibility> getAddressees() {
+        return Collections.emptyList();
+    }
 
     /**
      * Release statement.
@@ -66,7 +69,9 @@ public interface Releasability {
      * @return release statement, or {@code null} if none.
      */
     @UML(identifier="statement", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getStatement();
+    default InternationalString getStatement() {
+        return null;
+    }
 
     /**
      * Components in determining releasability.
@@ -75,5 +80,7 @@ public interface Releasability {
      * @return components in determining releasability.
      */
     @UML(identifier="disseminationConstraints", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Restriction> getDisseminationConstraints();
+    default Collection<Restriction> getDisseminationConstraints() {
+        return Collections.emptySet();          // Use Set instead of List for hash-safe final classes.
+    }
 }

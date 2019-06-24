@@ -256,7 +256,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * but still happen with some formats like netCDF), then this method will try to set the output
      * to a temporary file.
      *
-     * @param  capacity  the initial capacity. This is an approximative value, since the actual capacity will growth as needed.
+     * @param  capacity  the initial capacity. This is an approximated value, since the actual capacity will growth as needed.
      * @return the byte buffer, or {@code null} if this method created a temporary file instead.
      * @throws IOException In an error occurred while setting the output.
      */

@@ -80,7 +80,9 @@ public interface IdentifiedType {
      * @return natural language designator for the element, or {@code null} if none.
      */
     @UML(identifier="designation", obligation=OPTIONAL, specification=ISO_19109)
-    InternationalString getDesignation();
+    default InternationalString getDesignation() {
+        return null;
+    }
 
     /**
      * Returns optional information beyond that required for concise definition of the element.
@@ -89,7 +91,9 @@ public interface IdentifiedType {
      * @return information beyond that required for concise definition of the element, or {@code null} if none.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19109)
-    InternationalString getDescription();
+    default InternationalString getDescription() {
+        return null;
+    }
 
     /*
      * ISO 19109 properties omitted for now:

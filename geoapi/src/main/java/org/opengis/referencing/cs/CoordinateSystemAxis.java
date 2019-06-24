@@ -94,7 +94,7 @@ import static org.opengis.annotation.Specification.*;
 public interface CoordinateSystemAxis extends IdentifiedObject {
     /**
      * Returns the abbreviation used for this coordinate system axes.
-     * This abbreviation is also used to identify the ordinates in coordinate tuple.
+     * This abbreviation is also used to identify the coordinates in coordinate tuple.
      * Examples are “<var>X</var>” and “<var>Y</var>”.
      *
      * @return the coordinate system axis abbreviation.
@@ -126,7 +126,7 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
 
     /**
      * Returns the unit of measure used for this coordinate system axis.
-     * The value of a ordinate in a coordinate tuple shall be recorded using this unit of measure,
+     * The value of a coordinate in a coordinate tuple shall be recorded using this unit of measure,
      * whenever those coordinates use a coordinate reference system that uses a coordinate system
      * that uses this axis.
      *
@@ -144,7 +144,9 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * @return the minimum value, or {@link Double#NEGATIVE_INFINITY} if none.
      */
     @UML(identifier="minimumValue", obligation=OPTIONAL, specification=ISO_19111)
-    double getMinimumValue();
+    default double getMinimumValue() {
+        return Double.NEGATIVE_INFINITY;
+    }
 
     /**
      * Returns the maximum value normally allowed for this axis,
@@ -155,7 +157,9 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * @return the maximum value, or {@link Double#POSITIVE_INFINITY} if none.
      */
     @UML(identifier="maximumValue", obligation=OPTIONAL, specification=ISO_19111)
-    double getMaximumValue();
+    default double getMaximumValue() {
+        return Double.POSITIVE_INFINITY;
+    }
 
     /**
      * Returns the meaning of axis value range specified by the {@linkplain #getMinimumValue()

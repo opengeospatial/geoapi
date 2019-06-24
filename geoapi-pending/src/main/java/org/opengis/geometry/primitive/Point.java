@@ -69,6 +69,7 @@ public interface Point extends Primitive, Position {
      *
      * @return the direct position.
      */
+    @Override
     @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getDirectPosition();
 
@@ -86,7 +87,6 @@ public interface Point extends Primitive, Position {
      *
      * @since GeoAPI 2.2
      */
-    @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
     void setDirectPosition(DirectPosition position) throws UnmodifiableGeometryException;
 
     /**
@@ -96,7 +96,6 @@ public interface Point extends Primitive, Position {
      * @throws UnmodifiableGeometryException if this geometry is not modifiable.
      */
     @Deprecated
-    @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
     void setPosition(DirectPosition position) throws UnmodifiableGeometryException;
 
     /**

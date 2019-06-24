@@ -119,14 +119,6 @@ class PJObject implements IdentifiedObject {
     }
 
     /**
-     * Returns {@code null} since there is no remarks associated with our {@literal Proj.4} wrappers.
-     */
-    @Override
-    public InternationalString getRemarks() {
-        return null;
-    }
-
-    /**
      * Throws unconditionally the exception since we do not support WKT formatting.
      */
     @Override

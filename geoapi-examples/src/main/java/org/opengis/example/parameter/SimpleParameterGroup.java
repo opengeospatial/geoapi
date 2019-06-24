@@ -24,6 +24,7 @@ import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterNotFoundException;
 import org.opengis.example.referencing.SimpleIdentifiedObject;
+import org.opengis.util.InternationalString;
 
 
 /**
@@ -96,31 +97,22 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
     }
 
     /**
+     * Returns a natural language description of this object.
+     * The default implementation returns {@code null}.
+     *
+     * @return the natural language description, or {@code null} if none.
+     */
+    @Override
+    public InternationalString getDescription() {
+        return null;
+    }
+
+    /**
      * Returns {@code this}, since this simple class is used only as input parameters.
      */
     @Override
     public ParameterDirection getDirection() {
         return ParameterDirection.IN;
-    }
-
-    /**
-     * Returns the minimum number of times that values for this group are required.
-     * The default implementation returns 1, meaning that this group shall always be
-     * supplied at least once.
-     */
-    @Override
-    public int getMinimumOccurs() {
-        return 1;
-    }
-
-    /**
-     * Returns the maximum number of times that values for this group can be included.
-     * The default implementation returns 1, meaning that values for this group shall
-     * always be supplied at most once.
-     */
-    @Override
-    public int getMaximumOccurs() {
-        return 1;
     }
 
     /**

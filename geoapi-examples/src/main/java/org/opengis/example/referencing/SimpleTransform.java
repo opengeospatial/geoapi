@@ -7,13 +7,10 @@
  */
 package org.opengis.example.referencing;
 
-import java.util.Set;
 import java.util.Arrays;
 import java.util.Objects;
-import java.util.Collections;
 
 import org.opengis.metadata.citation.Citation;
-import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -369,17 +366,6 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     @Override
     public String getOperationVersion() {
         return null;
-    }
-
-    /**
-     * Estimate(s) of the impact of this operation on point accuracy.
-     * The default implementation returns an empty set.
-     *
-     * @return the position error estimates, or an empty set if not available.
-     */
-    @Override
-    public Set<PositionalAccuracy> getCoordinateOperationAccuracy() {
-        return Collections.emptySet();
     }
 
     /**

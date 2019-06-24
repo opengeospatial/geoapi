@@ -44,9 +44,9 @@
  * The number of axes shall be equal to the dimension of the space of which it describes the geometry.
  * It is therefore not permitted to supply a coordinate tuple with two heights of different definition.</p>
  *
- * <p>The {@linkplain org.opengis.geometry.DirectPosition#getDimension() number of ordinates} in a coordinate tuple
+ * <p>The {@linkplain org.opengis.geometry.DirectPosition#getDimension() number of coordinates} in a coordinate tuple
  * shall be equal to the {@linkplain org.opengis.referencing.cs.CoordinateSystem#getDimension() number of coordinate
- * axes} in the coordinate system. Ordinates in coordinate tuples shall be supplied in the order in which
+ * axes} in the coordinate system. Coordinates in coordinate tuples shall be supplied in the order in which
  * the coordinate system's axes are defined.</p>
  *
  * <p>A coordinate system implies how coordinates are calculated from geometric elements such as distances

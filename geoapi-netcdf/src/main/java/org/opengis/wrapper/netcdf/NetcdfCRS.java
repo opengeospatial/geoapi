@@ -518,16 +518,6 @@ public class NetcdfCRS extends NetcdfIdentifiedObject implements CoordinateRefer
         return value;
     }
 
-    /**
-     * Returns the area or region or timeframe in which this CRS is valid, or {@code null} if none.
-     * The default implementation returns {@code null} except for {@link ProjectedCRS}, in which
-     * case the {@link NetcdfProjection} domain of validity is returned.
-     */
-    @Override
-    public Extent getDomainOfValidity() {
-        return null;
-    }
-
 
 
     /**

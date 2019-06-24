@@ -64,5 +64,7 @@ public interface FeatureTypeInfo {
      * @return number of occurrence of feature instances for this feature types, or {@code null} if none.
      */
     @UML(identifier="featureInstanceCount", obligation=OPTIONAL, specification=ISO_19115)
-    Integer getFeatureInstanceCount();
+    default Integer getFeatureInstanceCount() {
+        return null;
+    }
 }

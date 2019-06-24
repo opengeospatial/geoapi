@@ -64,8 +64,6 @@ final class Axis extends ReferencingObject implements CoordinateSystemAxis {
 
     @Override public String       getAbbreviation() {return null;}                          // TODO
     @Override public Unit<?>      getUnit()         {return null;}                          // TODO
-    @Override public double       getMinimumValue() {return Double.NEGATIVE_INFINITY;}
-    @Override public double       getMaximumValue() {return Double.POSITIVE_INFINITY;}
     @Override public RangeMeaning getRangeMeaning() {return null;}
     @Override public String       toWKT()           {return "AXIS[\"" + getName() + "\", " + getDirection().name() + ']';}
 }

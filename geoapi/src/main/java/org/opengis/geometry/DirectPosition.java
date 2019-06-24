@@ -65,7 +65,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="DirectPosition", specification=ISO_19107)
 public interface DirectPosition extends Position {
     /**
-     * The coordinate reference system in which the coordinate is given. May be {@code null} if this
+     * The coordinate reference system in which the coordinate tuple is given. May be {@code null} if this
      * particular {@code DirectPosition} is included in a larger object with such a reference to a
      * {@linkplain CoordinateReferenceSystem coordinate reference system}. In this case, the
      * coordinate reference system is implicitly assumed to take on the value of the containing
@@ -86,7 +86,7 @@ public interface DirectPosition extends Position {
     int getDimension();
 
     /**
-     * A <b>copy</b> of the ordinates presented as an array of double values.
+     * A <b>copy</b> of the coordinates presented as an array of double values.
      * Please note that this is only a copy (the real values may be stored in
      * another format) so changes to the returned array will not affect the
      * source DirectPosition.
@@ -98,7 +98,7 @@ public interface DirectPosition extends Position {
      * }
      * </pre></blockquote>
      *
-     * To manipulate ordinates, the following idiom can be used:
+     * To manipulate coordinates, the following idiom can be used:
      *
      * <blockquote><pre>
      * position.{@linkplain #setOrdinate setOrdinate}(i, value);    // edit in place
@@ -123,28 +123,34 @@ public interface DirectPosition extends Position {
      *
      * @return a copy of the coordinates. Changes in the returned array will not be reflected back
      *         in this {@code DirectPosition} object.
+     *
+     * @todo needs to be renamed {@code getCoordinates()}.
      */
     @UML(identifier="coordinate", obligation=MANDATORY, specification=ISO_19107)
     double[] getCoordinate();
 
     /**
-     * Returns the ordinate at the specified dimension.
+     * Returns the coordinate at the specified dimension.
      *
      * @param  dimension  the dimension in the range 0 to {@linkplain #getDimension dimension}-1.
      * @return the coordinate at the specified dimension.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() position dimension}.
+     *
+     * @todo needs to be renamed {@code getCoordinate(int)}.
      */
     double getOrdinate(int dimension) throws IndexOutOfBoundsException;
 
     /**
-     * Sets the ordinate value along the specified dimension.
+     * Sets the coordinate value along the specified dimension.
      *
-     * @param  dimension  the dimension for the ordinate of interest.
-     * @param  value      the ordinate value of interest.
+     * @param  dimension  the dimension for the coordinate of interest.
+     * @param  value      the coordinate value of interest.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() position dimension}.
      * @throws UnsupportedOperationException if this direct position is immutable.
+     *
+     * @todo needs to be renamed {@code setCoordinate(int, double)}.
      */
     void setOrdinate(int dimension, double value)
             throws IndexOutOfBoundsException, UnsupportedOperationException;
@@ -159,7 +165,7 @@ public interface DirectPosition extends Position {
      *   <li>Both direct positions have the same {@linkplain #getDimension() number of dimensions}.</li>
      *   <li>Both direct positions have the same or equal {@linkplain #getCoordinateReferenceSystem
      *       coordinate reference system}.</li>
-     *   <li>For all dimension <var>i</var>, the {@linkplain #getOrdinate ordinate value} of both
+     *   <li>For all dimension <var>i</var>, the {@linkplain #getOrdinate coordinate value} of both
      *       direct positions at that dimension are equals in the sense of {@link Double#equals(Object)}.
      *       In other words, <code>{@linkplain java.util.Arrays#equals(double[],double[])
      *       Arrays.equals}({@linkplain #getCoordinate()}, object.getCoordinate())</code>

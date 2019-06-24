@@ -237,7 +237,7 @@ public interface MathTransform {
      *              {e<sub>n,m</sub> : <var>n</var>=0 … (<var>N</var>-1)}
      *
      * form a vector in the output space which is parallel to the displacement
-     * caused by a small change in the <var>m</var>'th ordinate in the input space.
+     * caused by a small change in the <var>m</var>'th coordinate in the input space.
      *
      * <p>For example, if the input dimension is 4 and the output dimension is 3,
      * then a small displacement
@@ -312,5 +312,5 @@ public interface MathTransform {
      * @see MathTransformFactory#createFromWKT(String)
      */
     @UML(identifier="getWKT", specification=OGC_01009)
-    String toWKT() throws UnsupportedOperationException;
+    String toWKT();
 }

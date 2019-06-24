@@ -99,7 +99,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     private static final double DERIVATIVE_DELTA = 1;
 
     /**
-     * Approximative number of points to transform in each test.
+     * Approximate number of points to transform in each test.
      */
     private static final int NUM_POINTS = 2500;
 

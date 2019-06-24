@@ -32,6 +32,7 @@
 package org.opengis.metadata.acquisition;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
@@ -59,7 +60,9 @@ public interface Operation {
      * @return description of the mission, or {@code null}.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115_2)
-    InternationalString getDescription();
+    default InternationalString getDescription() {
+        return null;
+    }
 
     /**
      * Identification of the mission.
@@ -67,7 +70,9 @@ public interface Operation {
      * @return identification of the mission, or {@code null}.
      */
     @UML(identifier="citation", obligation=OPTIONAL, specification=ISO_19115_2)
-    Citation getCitation();
+    default Citation getCitation() {
+        return null;
+    }
 
     /**
      * Unique identification of the operation.
@@ -75,7 +80,9 @@ public interface Operation {
      * @return unique identification of the operation.
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19115_2)
-    Identifier getIdentifier();
+    default Identifier getIdentifier() {
+        return null;
+    }
 
     /**
      * Status of the data acquisition.
@@ -91,7 +98,9 @@ public interface Operation {
      * @return collection technique for the operation, or {@code null}.
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115_2)
-    OperationType getType();
+    default OperationType getType() {
+        return null;
+    }
 
     /**
      * Sub-missions that make up part of a larger mission.
@@ -99,7 +108,9 @@ public interface Operation {
      * @return sub-missions.
      */
     @UML(identifier="childOperation", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Operation> getChildOperations();
+    default Collection<? extends Operation> getChildOperations() {
+        return Collections.emptyList();
+    }
 
     /**
      * Object(s) or area(s) of interest to be sensed.
@@ -107,7 +118,9 @@ public interface Operation {
      * @return object(s) or area(s) of interest.
      */
     @UML(identifier="objective", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Objective> getObjectives();
+    default Collection<? extends Objective> getObjectives() {
+        return Collections.emptyList();
+    }
 
     /**
      * Heritage of the operation.
@@ -115,7 +128,9 @@ public interface Operation {
      * @return heritage of the operation, or {@code null}.
      */
     @UML(identifier="parentOperation", obligation=OPTIONAL, specification=ISO_19115_2)
-    Operation getParentOperation();
+    default Operation getParentOperation() {
+        return null;
+    }
 
     /**
      * Plan satisfied by the operation.
@@ -123,7 +138,9 @@ public interface Operation {
      * @return plan satisfied by the operation, or {@code null}.
      */
     @UML(identifier="plan", obligation=OPTIONAL, specification=ISO_19115_2)
-    Plan getPlan();
+    default Plan getPlan() {
+        return null;
+    }
 
     /**
      * Platform (or platforms) used in the operation.
@@ -131,7 +148,9 @@ public interface Operation {
      * @return Platforms used in the operation.
      */
     @UML(identifier="platform", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Platform> getPlatforms();
+    default Collection<? extends Platform> getPlatforms() {
+        return Collections.emptyList();
+    }
 
     /**
      * Record of an event occurring during an operation.
@@ -139,5 +158,7 @@ public interface Operation {
      * @return record of an event occurring during an operation.
      */
     @UML(identifier="significantEvent", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Event> getSignificantEvents();
+    default Collection<? extends Event> getSignificantEvents() {
+        return Collections.emptyList();
+    }
 }

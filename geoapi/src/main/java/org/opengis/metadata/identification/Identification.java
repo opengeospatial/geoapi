@@ -31,7 +31,10 @@
  */
 package org.opengis.metadata.identification;
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.MetadataScope;
@@ -90,7 +93,9 @@ public interface Identification {
      * @return the intentions with which the resource was developed, or {@code null}.
      */
     @UML(identifier="purpose", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getPurpose();
+    default InternationalString getPurpose() {
+        return null;
+    }
 
     /**
      * Recognition of those who contributed to the resource.
@@ -102,7 +107,9 @@ public interface Identification {
      * @return recognition of those who contributed to the resource.
      */
     @UML(identifier="credit", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<String> getCredits();
+    default Collection<String> getCredits() {
+        return Collections.emptyList();
+    }
 
     /**
      * Status of the resource.
@@ -110,7 +117,9 @@ public interface Identification {
      * @return status of the resource.
      */
     @UML(identifier="status", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<Progress> getStatus();
+    default Collection<Progress> getStatus() {
+        return Collections.emptySet();          // Use Set instead of List for hash-safe final classes.
+    }
 
     /**
      * Identification of, and means of communication with, person(s) and organisations
@@ -127,7 +136,9 @@ public interface Identification {
      */
     @Profile(level=CORE)
     @UML(identifier="pointOfContact", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Collection<? extends ResponsibleParty> getPointOfContacts();
+    default Collection<? extends ResponsibleParty> getPointOfContacts() {
+        return Collections.emptyList();
+    }
 
     /**
      * Methods used to spatially represent geographic information.
@@ -137,7 +148,9 @@ public interface Identification {
      * @since 3.1
      */
     @UML(identifier="spatialRepresentationType", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<SpatialRepresentationType> getSpatialRepresentationTypes();
+    default Collection<SpatialRepresentationType> getSpatialRepresentationTypes() {
+        return Collections.emptySet();          // Use Set instead of List for hash-safe final classes.
+    }
 
     /**
      * Factor which provides a general understanding of the density of spatial data in the resource.
@@ -153,7 +166,9 @@ public interface Identification {
      */
     @Profile(level=CORE)
     @UML(identifier="spatialResolution", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Resolution> getSpatialResolutions();
+    default Collection<? extends Resolution> getSpatialResolutions() {
+        return Collections.emptyList();
+    }
 
     /**
      * Smallest resolvable temporal period in a resource.
@@ -163,7 +178,9 @@ public interface Identification {
      * @since 3.1
      */
     @UML(identifier="temporalResolution", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Duration> getTemporalResolutions();
+    default Collection<? extends Duration> getTemporalResolutions() {
+        return Collections.emptyList();
+    }
 
     /**
      * Main theme(s) of the resource.
@@ -207,7 +224,9 @@ public interface Identification {
      * @since 3.1
      */
     @UML(identifier="additionalDocumentation", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getAdditionalDocumentations();
+    default Collection<? extends Citation> getAdditionalDocumentations() {
+        return Collections.emptyList();
+    }
 
     /**
      * Code that identifies the level of processing in the producers coding system of a resource.
@@ -223,7 +242,9 @@ public interface Identification {
      * @see org.opengis.metadata.content.CoverageDescription#getProcessingLevelCode()
      */
     @UML(identifier="processingLevel", obligation=OPTIONAL, specification=ISO_19115)
-    Identifier getProcessingLevel();
+    default Identifier getProcessingLevel() {
+        return null;
+    }
 
     /**
      * Information about the frequency of resource updates, and the scope of those updates.
@@ -231,7 +252,9 @@ public interface Identification {
      * @return frequency and scope of resource updates.
      */
     @UML(identifier="resourceMaintenance", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends MaintenanceInformation> getResourceMaintenances();
+    default Collection<? extends MaintenanceInformation> getResourceMaintenances() {
+        return Collections.emptyList();
+    }
 
     /**
      * Graphic that illustrates the resource(s) (should include a legend for the graphic).
@@ -239,7 +262,9 @@ public interface Identification {
      * @return a graphic that illustrates the resource(s).
      */
     @UML(identifier="graphicOverview", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends BrowseGraphic> getGraphicOverviews();
+    default Collection<? extends BrowseGraphic> getGraphicOverviews() {
+        return Collections.emptyList();
+    }
 
     /**
      * Description of the format of the resource(s).
@@ -249,7 +274,9 @@ public interface Identification {
      * @see org.opengis.metadata.distribution.Distribution#getDistributionFormats()
      */
     @UML(identifier="resourceFormat", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Format> getResourceFormats();
+    default Collection<? extends Format> getResourceFormats() {
+        return Collections.emptyList();
+    }
 
     /**
      * Category keywords, their type, and reference source.
@@ -257,7 +284,9 @@ public interface Identification {
      * @return category keywords, their type, and reference source.
      */
     @UML(identifier="descriptiveKeywords", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Keywords> getDescriptiveKeywords();
+    default Collection<? extends Keywords> getDescriptiveKeywords() {
+        return Collections.emptyList();
+    }
 
     /**
      * Basic information about specific application(s) for which the resource(s)
@@ -267,7 +296,9 @@ public interface Identification {
      *         has/have been or is being used.
      */
     @UML(identifier="resourceSpecificUsage", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Usage> getResourceSpecificUsages();
+    default Collection<? extends Usage> getResourceSpecificUsages() {
+        return Collections.emptyList();
+    }
 
     /**
      * Information about constraints which apply to the resource(s).
@@ -275,7 +306,9 @@ public interface Identification {
      * @return constraints which apply to the resource(s).
      */
     @UML(identifier="resourceConstraints", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Constraints> getResourceConstraints();
+    default Collection<? extends Constraints> getResourceConstraints() {
+        return Collections.emptyList();
+    }
 
     /**
      * Associated resource information.
@@ -285,7 +318,9 @@ public interface Identification {
      * @since 3.1
      */
     @UML(identifier="associatedResource", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends AssociatedResource> getAssociatedResources();
+    default Collection<? extends AssociatedResource> getAssociatedResources() {
+        return Collections.emptyList();
+    }
 
     /**
      * Aggregate dataset information.
@@ -296,5 +331,25 @@ public interface Identification {
      */
     @Deprecated
     @UML(identifier="aggregationInfo", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Collection<? extends AggregateInformation> getAggregationInfo();
+    default Collection<? extends AggregateInformation> getAggregationInfo() {
+        ArrayList<AggregateInformation> info = new ArrayList<>();
+        for (final AssociatedResource res : getAssociatedResources()) {
+            info.add(new AggregateInformation() {
+                @Override public Citation        getName()                 {return res.getName();}
+                @Override public AssociationType getAssociationType()      {return res.getAssociationType();}
+                @Override public InitiativeType  getInitiativeType()       {return res.getInitiativeType();}
+                @Override public Citation        getMetadataReference()    {return res.getMetadataReference();}
+                @Override public Citation        getAggregateDataSetName() {return res.getName();}
+                @Override public Identifier      getAggregateDataSetIdentifier() {
+                    Citation name = res.getName();
+                    if (name != null) {
+                        Iterator<? extends Identifier> it = name.getIdentifiers().iterator();
+                        if (it.hasNext()) return it.next();
+                    }
+                    return null;
+                }
+            });
+        }
+        return info;
+    }
 }

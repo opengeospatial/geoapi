@@ -32,6 +32,7 @@
 package org.opengis.metadata.distribution;
 
 import java.util.Collection;
+import java.util.Collections;
 import javax.measure.Unit;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
@@ -64,7 +65,9 @@ public interface Medium {
      * @return name of the medium, or {@code null}.
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
-    MediumName getName();
+    default MediumName getName() {
+        return null;
+    }
 
     /**
      * Density at which the data is recorded.
@@ -75,7 +78,9 @@ public interface Medium {
      * @since 3.1
      */
     @UML(identifier="density", obligation=OPTIONAL, specification=ISO_19115)
-    Double getDensity();
+    default Double getDensity() {
+        return null;
+    }
 
     /**
      * @deprecated As of ISO 19115:2014, replaced by {@link #getDensity()}.
@@ -83,7 +88,10 @@ public interface Medium {
      * @return density at which the data is recorded.
      */
     @Deprecated
-    Collection<Double> getDensities();
+    default Collection<Double> getDensities() {
+        Double density = getDensity();
+        return (density != null) ? Collections.singleton(density) : Collections.emptySet();
+    }
 
     /**
      * Units of measure for the recording density.
@@ -102,7 +110,9 @@ public interface Medium {
      * @return number of items in the media identified, or {@code null}.
      */
     @UML(identifier="volumes", obligation=OPTIONAL, specification=ISO_19115)
-    Integer getVolumes();
+    default Integer getVolumes() {
+        return null;
+    }
 
     /**
      * Method used to write to the medium.
@@ -110,7 +120,9 @@ public interface Medium {
      * @return method used to write to the medium, or {@code null}.
      */
     @UML(identifier="mediumFormat", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<MediumFormat> getMediumFormats();
+    default Collection<MediumFormat> getMediumFormats() {
+        return Collections.emptySet();          // Use Set instead of List for hash-safe final classes.
+    }
 
     /**
      * Description of other limitations or requirements for using the medium.
@@ -118,7 +130,9 @@ public interface Medium {
      * @return description of other limitations for using the medium, or {@code null}.
      */
     @UML(identifier="mediumNote", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getMediumNote();
+    default InternationalString getMediumNote() {
+        return null;
+    }
 
     /**
      * Unique identifier for an instance of the medium.
@@ -128,5 +142,7 @@ public interface Medium {
      * @since 3.1
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19115)
-    Identifier getIdentifier();
+    default Identifier getIdentifier() {
+        return null;
+    }
 }

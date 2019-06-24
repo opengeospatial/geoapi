@@ -13,16 +13,12 @@
  */
 package org.opengis.wrapper.netcdf;
 
-import java.util.Set;
-import java.util.Collection;
-import java.util.Collections;
 import java.util.Objects;
 import java.util.Date;
 import java.io.Serializable;
 
 import ucar.nc2.VariableSimpleIF;
 
-import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
@@ -111,34 +107,6 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Refere
     }
 
     /**
-     * Returns the aliases, or an empty set if none. The default implementation returns an empty
-     * set. Some subclasses will infer the aliases from the projection {@linkplain #getName()}.
-     */
-    @Override
-    public Collection<GenericName> getAlias() {
-        return Collections.emptySet();
-    }
-
-    /**
-     * Returns an empty set, since netCDF objects don't provide other identifiers than the name.
-     */
-    @Override
-    public Set<ReferenceIdentifier> getIdentifiers() {
-        return Collections.emptySet();
-    }
-
-    /**
-     * Returns a natural language description of this object.
-     * The default implementation returns {@code null}.
-     *
-     * @return the natural language description, or {@code null} if none.
-     */
-    @Override
-    public InternationalString getDescription() {
-        return null;
-    }
-
-    /**
      * Returns the area or region or timeframe in which this object is valid, or {@code null} if
      * none. The default implementation returns a geographic extent for the world, since most netCDF
      * objects except {@link ucar.unidata.geoloc.Projection} are not restricted to a particular area.
@@ -194,19 +162,6 @@ public abstract class NetcdfIdentifiedObject implements IdentifiedObject, Refere
      * @return the datum realization epoch, or {@code null} if not available.
      */
     public Date getRealizationEpoch() {
-        return null;
-    }
-
-    /**
-     * Returns the netCDF object description, or {@code null} if none.
-     * The default implementation returns {@code null}.
-     *
-     * @return the remarks, or {@code null} if none.
-     *
-     * @see NetcdfAxis#getRemarks()
-     */
-    @Override
-    public InternationalString getRemarks() {
         return null;
     }
 

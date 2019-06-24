@@ -32,6 +32,7 @@
 package org.opengis.metadata.distribution;
 
 import java.util.Collection;
+import java.util.Collections;
 
 import org.opengis.annotation.UML;
 import org.opengis.util.LocalName;
@@ -58,7 +59,9 @@ public interface DataFile {
      * @return list of features types concerned by the transfer data file.
      */
     @UML(identifier="featureType", obligation=OPTIONAL, specification=ISO_19115_3)
-    Collection<? extends LocalName> getFeatureTypes();
+    default Collection<? extends LocalName> getFeatureTypes() {
+        return Collections.emptyList();
+    }
 
     /**
      * Defines the format of the transfer data file.
@@ -69,5 +72,7 @@ public interface DataFile {
      */
     @Deprecated
     @UML(identifier="fileFormat", obligation=MANDATORY, specification=ISO_19139, version=2007)
-    Format getFileFormat();
+    default Format getFileFormat() {
+        return null;
+    }
 }

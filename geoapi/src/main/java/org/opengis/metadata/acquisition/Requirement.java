@@ -33,6 +33,7 @@ package org.opengis.metadata.acquisition;
 
 import java.util.Date;
 import java.util.Collection;
+import java.util.Collections;
 
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
@@ -58,7 +59,9 @@ public interface Requirement {
      * @return identification of reference or guidance material, or {@code null}.
      */
     @UML(identifier="citation", obligation=OPTIONAL, specification=ISO_19115_2)
-    Citation getCitation();
+    default Citation getCitation() {
+        return null;
+    }
 
     /**
      * Unique name, or code, for the requirement.
@@ -129,5 +132,7 @@ public interface Requirement {
      * @return plan that identifies solution to satisfy the requirement.
      */
     @UML(identifier="satisfiedPlan", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Plan> getSatisfiedPlans();
+    default Collection<? extends Plan> getSatisfiedPlans() {
+        return Collections.emptyList();
+    }
 }

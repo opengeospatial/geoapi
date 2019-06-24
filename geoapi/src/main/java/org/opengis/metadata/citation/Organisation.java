@@ -32,6 +32,7 @@
 package org.opengis.metadata.citation;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.identification.BrowseGraphic;
 
@@ -67,5 +68,7 @@ public interface Organisation extends Party {
      * @return individuals in the named organisation.
      */
     @UML(identifier="individual", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Individual> getIndividual();
+    default Collection<? extends Individual> getIndividual() {
+        return Collections.emptyList();
+    }
 }

@@ -32,6 +32,7 @@
 package org.opengis.metadata.acquisition;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Date;
 
 import org.opengis.annotation.UML;
@@ -101,7 +102,9 @@ public interface Event {
      * @return objectives satisfied by an event.
      */
     @UML(identifier="expectedObjective", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Objective> getExpectedObjectives();
+    default Collection<? extends Objective> getExpectedObjectives() {
+        return Collections.emptyList();
+    }
 
     /**
      * Pass during which an event occurs.
@@ -109,7 +112,9 @@ public interface Event {
      * @return pass during which an event occurs, or {@code null}.
      */
     @UML(identifier="relatedPass", obligation=OPTIONAL, specification=ISO_19115_2)
-    PlatformPass getRelatedPass();
+    default PlatformPass getRelatedPass() {
+        return null;
+    }
 
     /**
      * Instrument or instruments for which the event is meaningful.
@@ -117,5 +122,7 @@ public interface Event {
      * @return instruments for which the event is meaningful.
      */
     @UML(identifier="relatedSensor", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends Instrument> getRelatedSensors();
+    default Collection<? extends Instrument> getRelatedSensors() {
+        return Collections.emptyList();
+    }
 }

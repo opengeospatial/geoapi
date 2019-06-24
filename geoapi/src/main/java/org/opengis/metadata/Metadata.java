@@ -32,12 +32,16 @@
 package org.opengis.metadata;
 
 import java.util.Collection;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
 import java.util.Locale;
+import java.util.LinkedHashSet;
 import java.nio.charset.Charset;
+import java.net.URI;
 
+import org.opengis.util.InternationalString;
 import org.opengis.metadata.acquisition.AcquisitionInformation;
 import org.opengis.metadata.quality.DataQuality;
 import org.opengis.metadata.maintenance.ScopeCode;
@@ -86,7 +90,9 @@ public interface Metadata {
      */
     @Profile(level=CORE)
     @UML(identifier="metadataIdentifier", obligation=OPTIONAL, specification=ISO_19115)
-    Identifier getMetadataIdentifier();
+    default Identifier getMetadataIdentifier() {
+        return null;
+    }
 
     /**
      * Unique identifier for this metadata file, or {@code null} if none.
@@ -103,7 +109,10 @@ public interface Metadata {
      */
     @Deprecated
     @UML(identifier="fileIdentifier", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    String getFileIdentifier();
+    default String getFileIdentifier() {
+        Identifier id = getMetadataIdentifier();
+        return (id != null) ? id.getCode() : null;
+    }
 
     /**
      * Language(s) and character set(s) used for documenting metadata.
@@ -167,7 +176,12 @@ public interface Metadata {
      */
     @Deprecated
     @UML(identifier="language", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Locale getLanguage();
+    default Locale getLanguage() {
+        for (Locale lc : getLocalesAndCharsets().keySet()) {
+            if (lc != null) return lc;
+        }
+        return null;
+    }
 
     /**
      * Provides information about an alternatively used localized character string for a linguistic extension.
@@ -178,7 +192,19 @@ public interface Metadata {
      */
     @Deprecated
     @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Collection<Locale> getLocales();
+    default Collection<Locale> getLocales() {
+        Locale first = null;
+        LinkedHashSet<Locale> locales = new LinkedHashSet<>();
+        for (Locale lc : getLocalesAndCharsets().keySet()) {
+            if (first == null) {
+                first = lc;
+            }
+            locales.add(lc);
+        }
+        locales.remove(first);
+        locales.remove(null);
+        return locales;
+    }
 
     /**
      * The character coding standard used for the metadata set.
@@ -189,7 +215,12 @@ public interface Metadata {
      */
     @Deprecated
     @UML(identifier="characterSet", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    CharacterSet getCharacterSet();
+    default CharacterSet getCharacterSet() {
+        for (Charset cs : getLocalesAndCharsets().values()) {
+            if (cs != null) return CharacterSet.fromCharset(cs);
+        }
+        return null;
+    }
 
     /**
      * Identification of the parent metadata record.
@@ -221,7 +252,16 @@ public interface Metadata {
      */
     @Deprecated
     @UML(identifier="parentIdentifier", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
-    String getParentIdentifier();
+    default String getParentIdentifier() {
+        Citation parentMetadata = getParentMetadata();
+        if (parentMetadata != null) {
+            InternationalString title = parentMetadata.getTitle();
+            if (title != null) {
+                return title.toString();
+            }
+        }
+        return null;
+    }
 
     /**
      * The scope or type of resource for which metadata is provided.
@@ -249,7 +289,13 @@ public interface Metadata {
      */
     @Deprecated
     @UML(identifier="hierarchyLevel", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
-    Collection<ScopeCode> getHierarchyLevels();
+    default Collection<ScopeCode> getHierarchyLevels() {
+        LinkedHashSet<ScopeCode> scopes = new LinkedHashSet<>();
+        getMetadataScopes().forEach((mds) -> {
+            scopes.add(mds.getResourceScope());
+        });
+        return scopes;
+    }
 
     /**
      * Name of the hierarchy levels for which the metadata is provided.
@@ -264,7 +310,16 @@ public interface Metadata {
      */
     @Deprecated
     @UML(identifier="hierarchyLevelName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
-    Collection<String> getHierarchyLevelNames();
+    default Collection<String> getHierarchyLevelNames() {
+        LinkedHashSet<String> names = new LinkedHashSet<>();
+        getMetadataScopes().forEach((mds) -> {
+            InternationalString name = mds.getName();
+            if (name != null) {
+                names.add(name.toString());
+            }
+        });
+        return names;
+    }
 
     /**
      * Parties responsible for the metadata information.
@@ -305,7 +360,19 @@ public interface Metadata {
      */
     @Deprecated
     @UML(identifier="dateStamp", obligation=MANDATORY, specification=ISO_19115, version=2003)
-    Date getDateStamp();
+    default Date getDateStamp() {
+        Date fallback = null;
+        for (CitationDate info : getDateInfo()) {
+            Date date = info.getDate();
+            DateType type = info.getDateType();
+            if (DateType.CREATION.equals(type)) {
+                return date;
+            } else if (fallback == null) {
+                fallback = date;
+            }
+        }
+        return fallback;
+    }
 
     /**
      * Name of the metadata standard (including profile name) used.
@@ -317,7 +384,13 @@ public interface Metadata {
      */
     @Deprecated
     @UML(identifier="metadataStandardName", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    String getMetadataStandardName();
+    default String getMetadataStandardName() {
+        for (Citation c : getMetadataStandards()) {
+            InternationalString t = c.getTitle();
+            if (t != null) return t.toString();
+        }
+        return null;
+    }
 
     /**
      * Version (profile) of the metadata standard used.
@@ -330,7 +403,13 @@ public interface Metadata {
     @Deprecated
     @Profile(level=CORE)
     @UML(identifier="metadataStandardVersion", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    String getMetadataStandardVersion();
+    default String getMetadataStandardVersion() {
+        for (Citation c : getMetadataStandards()) {
+            InternationalString t = c.getEdition();
+            if (t != null) return t.toString();
+        }
+        return null;
+    }
 
     /**
      * Citation(s) for the standard(s) to which the metadata conform.
@@ -344,7 +423,9 @@ public interface Metadata {
      */
     @Profile(level=CORE)
     @UML(identifier="metadataStandard", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getMetadataStandards();
+    default Collection<? extends Citation> getMetadataStandards() {
+        return Collections.emptyList();
+    }
 
     /**
      * Citation(s) for the profile(s) of the metadata standard to which the metadata conform.
@@ -358,7 +439,9 @@ public interface Metadata {
      * @since 3.1
      */
     @UML(identifier="metadataProfile", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getMetadataProfiles();
+    default Collection<? extends Citation> getMetadataProfiles() {
+        return Collections.emptyList();
+    }
 
     /**
      * Reference(s) to alternative metadata or metadata in a non-ISO standard for the same resource.
@@ -368,7 +451,9 @@ public interface Metadata {
      * @since 3.1
      */
     @UML(identifier="alternativeMetadataReference", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getAlternativeMetadataReferences();
+    default Collection<? extends Citation> getAlternativeMetadataReferences() {
+        return Collections.emptyList();
+    }
 
     /**
      * Online location(s) where the metadata is available.
@@ -378,7 +463,9 @@ public interface Metadata {
      * @since 3.1
      */
     @UML(identifier="metadataLinkage", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends OnlineResource> getMetadataLinkages();
+    default Collection<? extends OnlineResource> getMetadataLinkages() {
+        return Collections.emptyList();
+    }
 
     /**
      * Uniform Resource Identifier (URI) of the dataset to which the metadata applies.
@@ -386,11 +473,25 @@ public interface Metadata {
      * @return Uniform Resource Identifier of the dataset, or {@code null}.
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getIdentificationInfo()} followed by
-     *    {@link Identification#getCitation()} followed by {@link Citation#getOnlineResources()}.
+     *    {@link Identification#getCitation()} followed by {@link Citation#getOnlineResources()}
+     *    followed by {@link OnlineResource#getLinkage()}.
      */
     @Deprecated
     @UML(identifier="dataSetURI", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    String getDataSetUri();
+    default String getDataSetUri() {
+        for (Identification id : getIdentificationInfo()) {
+            Citation citation = id.getCitation();
+            if (citation != null) {
+                for (OnlineResource r : citation.getOnlineResources()) {
+                    URI linkage = r.getLinkage();
+                    if (linkage != null) {
+                        return linkage.toString();
+                    }
+                }
+            }
+        }
+        return null;
+    }
 
     /**
      * Digital representation of spatial information in the dataset.
@@ -398,7 +499,9 @@ public interface Metadata {
      * @return digital representation of spatial information in the dataset.
      */
     @UML(identifier="spatialRepresentationInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends SpatialRepresentation> getSpatialRepresentationInfo();
+    default Collection<? extends SpatialRepresentation> getSpatialRepresentationInfo() {
+        return Collections.emptyList();
+    }
 
     /**
      * Description of the spatial and temporal reference systems used in the dataset.
@@ -407,7 +510,9 @@ public interface Metadata {
      */
     @Profile(level=CORE)
     @UML(identifier="referenceSystemInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends ReferenceSystem> getReferenceSystemInfo();
+    default Collection<? extends ReferenceSystem> getReferenceSystemInfo() {
+        return Collections.emptyList();
+    }
 
     /**
      * Information describing metadata extensions.
@@ -417,7 +522,9 @@ public interface Metadata {
      * @see #getMetadataProfiles()
      */
     @UML(identifier="metadataExtensionInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends MetadataExtensionInformation> getMetadataExtensionInfo();
+    default Collection<? extends MetadataExtensionInformation> getMetadataExtensionInfo() {
+        return Collections.emptyList();
+    }
 
     /**
      * Basic information about the resource(s) to which the metadata applies.
@@ -434,7 +541,9 @@ public interface Metadata {
      * @return information about the feature and coverage characteristics.
      */
     @UML(identifier="contentInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends ContentInformation> getContentInfo();
+    default Collection<? extends ContentInformation> getContentInfo() {
+        return Collections.emptyList();
+    }
 
     /**
      * Information about the distributor of and options for obtaining the resource(s).
@@ -448,7 +557,9 @@ public interface Metadata {
      */
     @Profile(level=CORE)
     @UML(identifier="distributionInfo", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Distribution getDistributionInfo();
+    default Distribution getDistributionInfo() {
+        return null;
+    }
 
     /**
      * Overall assessment of quality of a resource(s).
@@ -457,7 +568,9 @@ public interface Metadata {
      */
     @Profile(level=CORE)
     @UML(identifier="dataQualityInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends DataQuality> getDataQualityInfo();
+    default Collection<? extends DataQuality> getDataQualityInfo() {
+        return Collections.emptyList();
+    }
 
     /**
      * Information about the catalogue of rules defined for the portrayal of a resource(s).
@@ -465,7 +578,9 @@ public interface Metadata {
      * @return the catalogue of rules defined for the portrayal of a resource(s).
      */
     @UML(identifier="portrayalCatalogueInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends PortrayalCatalogueReference> getPortrayalCatalogueInfo();
+    default Collection<? extends PortrayalCatalogueReference> getPortrayalCatalogueInfo() {
+        return Collections.emptyList();
+    }
 
     /**
      * Restrictions on the access and use of metadata.
@@ -475,7 +590,9 @@ public interface Metadata {
      * @see Identification#getResourceConstraints()
      */
     @UML(identifier="metadataConstraints", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Constraints> getMetadataConstraints();
+    default Collection<? extends Constraints> getMetadataConstraints() {
+        return Collections.emptyList();
+    }
 
     /**
      * Information about the conceptual schema of a dataset.
@@ -483,7 +600,9 @@ public interface Metadata {
      * @return the conceptual schema of a dataset.
      */
     @UML(identifier="applicationSchemaInfo", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends ApplicationSchemaInformation> getApplicationSchemaInfo();
+    default Collection<? extends ApplicationSchemaInformation> getApplicationSchemaInfo() {
+        return Collections.emptyList();
+    }
 
     /**
      * Information about the acquisition of the data.
@@ -491,7 +610,9 @@ public interface Metadata {
      * @return the acquisition of data.
      */
     @UML(identifier="acquisitionInformation", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends AcquisitionInformation> getAcquisitionInformation();
+    default Collection<? extends AcquisitionInformation> getAcquisitionInformation() {
+        return Collections.emptyList();
+    }
 
     /**
      * Information about the frequency of metadata updates, and the scope of those updates.
@@ -501,7 +622,9 @@ public interface Metadata {
      * @see Identification#getResourceMaintenances()
      */
     @UML(identifier="metadataMaintenance", obligation=OPTIONAL, specification=ISO_19115)
-    MaintenanceInformation getMetadataMaintenance();
+    default MaintenanceInformation getMetadataMaintenance() {
+        return null;
+    }
 
     /**
      * Information about the provenance, sources and/or the production processes applied to the resource.
@@ -511,5 +634,7 @@ public interface Metadata {
      * @since 3.1
      */
     @UML(identifier="resourceLineage", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Lineage> getResourceLineages();
+    default Collection<? extends Lineage> getResourceLineages() {
+        return Collections.emptyList();
+    }
 }

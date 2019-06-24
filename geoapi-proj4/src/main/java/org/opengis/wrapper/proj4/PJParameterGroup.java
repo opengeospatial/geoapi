@@ -22,8 +22,8 @@ import java.util.MissingResourceException;
 
 import org.opengis.util.GenericName;
 import org.opengis.util.FactoryException;
-import org.opengis.util.InternationalString;
 import org.opengis.referencing.ReferenceIdentifier;
+import org.opengis.metadata.Identifier;
 import org.opengis.parameter.ParameterDescriptor;
 import org.opengis.parameter.ParameterDescriptorGroup;
 import org.opengis.parameter.GeneralParameterDescriptor;
@@ -110,38 +110,11 @@ final class PJParameterGroup extends PJObject implements ParameterValueGroup, Pa
     }
 
     /**
-     * Returns {@code null}, since this simple class does not provide parameters description.
-     */
-    @Override
-    public InternationalString getDescription() {
-        return null;
-    }
-
-    /**
      * Returns {@code this}, since this simple class is used only as input parameters.
      */
     @Override
     public ParameterDirection getDirection() {
         return ParameterDirection.IN;
-    }
-
-    /**
-     * Returns the minimum number of times that values for this group are required.
-     * This method returns 1, meaning that this group shall always be supplied at least once.
-     */
-    @Override
-    public int getMinimumOccurs() {
-        return 1;
-    }
-
-    /**
-     * Returns the maximum number of times that values for this group can be included.
-     * This method returns 1, meaning that values for this group shall alway be supplied
-     * exactly once.
-     */
-    @Override
-    public int getMaximumOccurs() {
-        return 1;
     }
 
     /**

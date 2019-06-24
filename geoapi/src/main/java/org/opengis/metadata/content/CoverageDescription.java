@@ -32,6 +32,8 @@
 package org.opengis.metadata.content;
 
 import java.util.Collection;
+import java.util.Collections;
+import java.util.Iterator;
 import org.opengis.util.RecordType;
 import org.opengis.metadata.Identifier;
 import org.opengis.annotation.UML;
@@ -71,7 +73,9 @@ public interface CoverageDescription extends ContentInformation {
      * @see org.opengis.metadata.identification.Identification#getProcessingLevel()
      */
     @UML(identifier="processingLevelCode", obligation=OPTIONAL, specification=ISO_19115)
-    Identifier getProcessingLevelCode();
+    default Identifier getProcessingLevelCode() {
+        return null;
+    }
 
     /**
      * Information on attribute groups of the resource.
@@ -81,7 +85,9 @@ public interface CoverageDescription extends ContentInformation {
      * @since 3.1
      */
     @UML(identifier="attributeGroup", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends AttributeGroup> getAttributeGroups();
+    default Collection<? extends AttributeGroup> getAttributeGroups() {
+        return Collections.emptyList();
+    }
 
     /**
      * Type of information represented by the cell value.
@@ -92,7 +98,13 @@ public interface CoverageDescription extends ContentInformation {
      */
     @Deprecated
     @UML(identifier="contentType", obligation=MANDATORY, specification=ISO_19115, version=2003)
-    CoverageContentType getContentType();
+    default CoverageContentType getContentType() {
+        for (AttributeGroup group : getAttributeGroups()) {
+            Iterator<CoverageContentType> it = group.getContentTypes().iterator();
+            if (it.hasNext()) return it.next();
+        }
+        return null;
+    }
 
     /**
      * Information on the dimensions of the cell measurement value.
@@ -103,7 +115,9 @@ public interface CoverageDescription extends ContentInformation {
      */
     @Deprecated
     @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Collection<? extends RangeDimension> getDimensions();
+    default Collection<? extends RangeDimension> getDimensions() {
+        return Collections.emptyList();
+    }
 
     /**
      * Provides the description of the specific range elements of a coverage.
@@ -111,5 +125,7 @@ public interface CoverageDescription extends ContentInformation {
      * @return description of the specific range elements.
      */
     @UML(identifier="rangeElementDescription", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends RangeElementDescription> getRangeElementDescriptions();
+    default Collection<? extends RangeElementDescription> getRangeElementDescriptions() {
+        return Collections.emptyList();
+    }
 }

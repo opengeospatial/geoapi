@@ -121,14 +121,6 @@ final class PJIdentifier implements ReferenceIdentifier, LocalName {
         return code;
     }
 
-    /**
-     * Returns {@code null} since we do not hold object description.
-     */
-    @Override
-    public InternationalString getDescription() {
-        return null;
-    }
-
     /*
      * LocalName implementation.
      */

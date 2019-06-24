@@ -31,8 +31,11 @@
  */
 package org.opengis.metadata.maintenance;
 
-import java.util.Collection;
 import java.util.Date;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.LinkedHashSet;
+import org.opengis.metadata.citation.DateType;
 import org.opengis.metadata.citation.CitationDate;
 import org.opengis.metadata.citation.Responsibility;
 import org.opengis.metadata.citation.ResponsibleParty;
@@ -63,7 +66,9 @@ public interface MaintenanceInformation {
      * @return frequency with which changes and additions are made to the resource.
      */
     @UML(identifier="maintenanceAndUpdateFrequency", obligation=OPTIONAL, specification=ISO_19115)
-    MaintenanceFrequency getMaintenanceAndUpdateFrequency();
+    default MaintenanceFrequency getMaintenanceAndUpdateFrequency() {
+        return null;
+    }
 
     /**
      * Date information associated with maintenance of resource.
@@ -74,7 +79,9 @@ public interface MaintenanceInformation {
      * @since 3.1
      */
     @UML(identifier="maintenanceDate", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends CitationDate> getMaintenanceDates();
+    default Collection<? extends CitationDate> getMaintenanceDates() {
+        return Collections.emptyList();
+    }
 
     /**
      * Scheduled revision date for resource.
@@ -87,7 +94,19 @@ public interface MaintenanceInformation {
      */
     @Deprecated
     @UML(identifier="dateOfNextUpdate", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Date getDateOfNextUpdate();
+    default Date getDateOfNextUpdate() {
+        Date fallback = null;
+        for (CitationDate info : getMaintenanceDates()) {
+            Date date = info.getDate();
+            DateType type = info.getDateType();
+            if (DateType.NEXT_UPDATE.equals(type)) {
+                return date;
+            } else if (fallback == null) {
+                fallback = date;
+            }
+        }
+        return fallback;
+    }
 
     /**
      * Maintenance period other than those defined.
@@ -95,7 +114,9 @@ public interface MaintenanceInformation {
      * @return the maintenance period, or {@code null}.
      */
     @UML(identifier="userDefinedMaintenanceFrequency", obligation=OPTIONAL, specification=ISO_19115)
-    PeriodDuration getUserDefinedMaintenanceFrequency();
+    default PeriodDuration getUserDefinedMaintenanceFrequency() {
+        return null;
+    }
 
     /**
      * Type of resource and / or extent to which the maintenance information applies.
@@ -105,7 +126,9 @@ public interface MaintenanceInformation {
      * @since 3.1
      */
     @UML(identifier="maintenanceScope", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Scope> getMaintenanceScopes();
+    default Collection<? extends Scope> getMaintenanceScopes() {
+        return Collections.emptyList();
+    }
 
     /**
      * Scope of data to which maintenance is applied.
@@ -118,7 +141,13 @@ public interface MaintenanceInformation {
      */
     @Deprecated
     @UML(identifier="updateScope", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Collection<ScopeCode> getUpdateScopes();
+    default Collection<ScopeCode> getUpdateScopes() {
+        LinkedHashSet<ScopeCode> codes = new LinkedHashSet<>();
+        getMaintenanceScopes().forEach((scope) -> {
+            codes.add(scope.getLevel());
+        });
+        return codes;
+    }
 
     /**
      * Additional information about the range or extent of the resource.
@@ -131,7 +160,13 @@ public interface MaintenanceInformation {
      */
     @Deprecated
     @UML(identifier="updateScopeDescription", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Collection<? extends ScopeDescription> getUpdateScopeDescriptions();
+    default Collection<? extends ScopeDescription> getUpdateScopeDescriptions() {
+        for (Scope scope : getMaintenanceScopes()) {
+            Collection<? extends ScopeDescription> desc = scope.getLevelDescription();
+            if (desc != null) return desc;
+        }
+        return Collections.emptyList();
+    }
 
     /**
      * Information regarding specific requirements for maintaining the resource.
@@ -139,7 +174,9 @@ public interface MaintenanceInformation {
      * @return information regarding specific requirements for maintaining the resource.
      */
     @UML(identifier="maintenanceNote", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends InternationalString> getMaintenanceNotes();
+    default Collection<? extends InternationalString> getMaintenanceNotes() {
+        return Collections.emptyList();
+    }
 
     /**
      * Identification of, and means of communicating with,
@@ -154,5 +191,7 @@ public interface MaintenanceInformation {
      *         for maintaining the resource.
      */
     @UML(identifier="contact", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    Collection<? extends ResponsibleParty> getContacts();
+    default Collection<? extends ResponsibleParty> getContacts() {
+        return Collections.emptyList();
+    }
 }

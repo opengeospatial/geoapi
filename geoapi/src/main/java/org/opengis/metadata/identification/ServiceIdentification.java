@@ -32,6 +32,7 @@
 package org.opengis.metadata.identification;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.util.GenericName;
 import org.opengis.metadata.citation.Citation;
@@ -79,7 +80,9 @@ public interface ServiceIdentification extends Identification {
      * @since 3.1
      */
     @UML(identifier="serviceTypeVersion", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<String> getServiceTypeVersions();
+    default Collection<String> getServiceTypeVersions() {
+        return Collections.emptySet();          // Use Set instead of List for hash-safe final classes.
+    }
 
     /**
      * Information about the availability of the service.
@@ -96,7 +99,9 @@ public interface ServiceIdentification extends Identification {
      * @since 3.1
      */
     @UML(identifier="accessProperties", obligation=OPTIONAL, specification=ISO_19115)
-    StandardOrderProcess getAccessProperties();
+    default StandardOrderProcess getAccessProperties() {
+        return null;
+    }
 
     /**
      * Type of coupling between service and associated data (if exist).
@@ -135,7 +140,9 @@ public interface ServiceIdentification extends Identification {
      * @since 3.1
      */
     @UML(identifier="operatedDataset", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getOperatedDatasets();
+    default Collection<? extends Citation> getOperatedDatasets() {
+        return Collections.emptyList();
+    }
 
     /**
      * Profile(s) to which the service adheres.
@@ -146,7 +153,9 @@ public interface ServiceIdentification extends Identification {
      * @since 3.1
      */
     @UML(identifier="profile", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getProfiles();
+    default Collection<? extends Citation> getProfiles() {
+        return Collections.emptyList();
+    }
 
     /**
      * Standard(s) to which the service adheres.
@@ -157,7 +166,9 @@ public interface ServiceIdentification extends Identification {
      * @since 3.1
      */
     @UML(identifier="serviceStandard", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends Citation> getServiceStandards();
+    default Collection<? extends Citation> getServiceStandards() {
+        return Collections.emptyList();
+    }
 
     /**
      * Provides information about the operations that comprise the service.
@@ -168,7 +179,9 @@ public interface ServiceIdentification extends Identification {
      * @since 3.1
      */
     @UML(identifier="containsOperations", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends OperationMetadata> getContainsOperations();
+    default Collection<? extends OperationMetadata> getContainsOperations() {
+        return Collections.emptyList();
+    }
 
     /**
      * Provides information on the resources that the service operates on.
@@ -182,7 +195,9 @@ public interface ServiceIdentification extends Identification {
      * @since 3.1
      */
     @UML(identifier="operatesOn", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends DataIdentification> getOperatesOn();
+    default Collection<? extends DataIdentification> getOperatesOn() {
+        return Collections.emptyList();
+    }
 
     /**
      * Provides information about the chain applied by the service.
@@ -193,5 +208,7 @@ public interface ServiceIdentification extends Identification {
      * @since 3.1
      */
     @UML(identifier="containsChain", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends OperationChainMetadata> getContainsChain();
+    default Collection<? extends OperationChainMetadata> getContainsChain() {
+        return Collections.emptyList();
+    }
 }

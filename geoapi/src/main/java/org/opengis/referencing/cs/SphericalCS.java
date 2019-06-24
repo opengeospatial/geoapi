@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 3-dimensional coordinate system with one distance measured from the origin and two angular ordinates.
+ * A 3-dimensional coordinate system with one distance measured from the origin and two angular coordinates.
  * Not to be confused with an {@link EllipsoidalCS} based on an ellipsoid "degenerated" into a sphere.
  *
  * <p>This type of CS can be used by coordinate reference systems of type

@@ -31,8 +31,9 @@
  */
 package org.opengis.metadata.spatial;
 
-import java.util.Collection;
 import java.util.List;
+import java.util.Collection;
+import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.geometry.primitive.Point;
 import org.opengis.annotation.UML;
@@ -100,7 +101,9 @@ public interface Georectified extends GridSpatialRepresentation {
      * @return the center point, or {@code null}.
      */
     @UML(identifier="centrePoint", obligation=OPTIONAL, specification=ISO_19115)
-    Point getCenterPoint();
+    default Point getCenterPoint() {
+        return null;
+    }
 
     /**
      * Point in a pixel corresponding to the Earth location of the pixel.
@@ -116,7 +119,9 @@ public interface Georectified extends GridSpatialRepresentation {
      * @return general description of the transformation, or {@code null}.
      */
     @UML(identifier="transformationDimensionDescription", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getTransformationDimensionDescription();
+    default InternationalString getTransformationDimensionDescription() {
+        return null;
+    }
 
     /**
      * Information about which grid dimensions are the spatial dimensions.
@@ -125,7 +130,9 @@ public interface Georectified extends GridSpatialRepresentation {
      * @return information about which grid dimensions are the spatial dimensions, or {@code null}.
      */
     @UML(identifier="transformationDimensionMapping", obligation=OPTIONAL, specification=ISO_19115)
-    Collection<? extends InternationalString> getTransformationDimensionMapping();
+    default Collection<? extends InternationalString> getTransformationDimensionMapping() {
+        return Collections.emptyList();
+    }
 
     /**
      * Geographic references used to validate georectification of the data.
@@ -133,5 +140,7 @@ public interface Georectified extends GridSpatialRepresentation {
      * @return geographic references used to validate georectification.
      */
     @UML(identifier="checkPoint", obligation=OPTIONAL, specification=ISO_19115_2)
-    Collection<? extends GCP> getCheckPoints();
+    default Collection<? extends GCP> getCheckPoints() {
+        return Collections.emptyList();
+    }
 }

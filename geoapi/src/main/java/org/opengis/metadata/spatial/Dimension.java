@@ -81,7 +81,9 @@ public interface Dimension {
      * @unitof Measure
      */
     @UML(identifier="resolution", obligation=OPTIONAL, specification=ISO_19115)
-    Double getResolution();
+    default Double getResolution() {
+        return null;
+    }
 
     /**
      * Enhancement / modifier of the dimension name.
@@ -94,7 +96,9 @@ public interface Dimension {
      * @since 3.1
      */
     @UML(identifier="dimensionTitle", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getDimensionTitle();
+    default InternationalString getDimensionTitle() {
+        return null;
+    }
 
     /**
      * Description of the axis.
@@ -104,5 +108,7 @@ public interface Dimension {
      * @since 3.1
      */
     @UML(identifier="dimensionDescription", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getDimensionDescription();
+    default InternationalString getDimensionDescription() {
+        return null;
+    }
 }

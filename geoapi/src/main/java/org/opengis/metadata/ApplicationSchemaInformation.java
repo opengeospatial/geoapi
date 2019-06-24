@@ -83,7 +83,9 @@ public interface ApplicationSchemaInformation {
      * @return application schema as an ASCII file, or {@code null}.
      */
     @UML(identifier="schemaAscii", obligation=OPTIONAL, specification=ISO_19115)
-    URI getSchemaAscii();
+    default URI getSchemaAscii() {
+        return null;
+    }
 
     /**
      * Full application schema given as a graphics file.
@@ -96,7 +98,9 @@ public interface ApplicationSchemaInformation {
      * @return application schema as a graphics file, or {@code null}.
      */
     @UML(identifier="graphicsFile", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    URI getGraphicsFile();
+    default URI getGraphicsFile() {
+        return null;
+    }
 
     /**
      * Full application schema given as a software development file.
@@ -109,7 +113,9 @@ public interface ApplicationSchemaInformation {
      * @return application schema as a software development file, or {@code null}.
      */
     @UML(identifier="softwareDevelopmentFile", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    URI getSoftwareDevelopmentFile();
+    default URI getSoftwareDevelopmentFile() {
+        return null;
+    }
 
     /**
      * Software dependent format used for the application schema software dependent file.
@@ -117,5 +123,7 @@ public interface ApplicationSchemaInformation {
      * @return format used for the application schema software file, or {@code null}.
      */
     @UML(identifier="softwareDevelopmentFileFormat", obligation=OPTIONAL, specification=ISO_19115)
-    String getSoftwareDevelopmentFileFormat();
+    default String getSoftwareDevelopmentFileFormat() {
+        return null;
+    }
 }

@@ -57,7 +57,9 @@ public interface Series {
      * @return the name of the series or aggregate dataset, or {@code null}.
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
-    InternationalString getName();
+    default InternationalString getName() {
+        return null;
+    }
 
     /**
      * Information identifying the issue of the series.
@@ -65,7 +67,9 @@ public interface Series {
      * @return information identifying the issue of the series, or {@code null}.
      */
     @UML(identifier="issueIdentification", obligation=OPTIONAL, specification=ISO_19115)
-    String getIssueIdentification();
+    default String getIssueIdentification() {
+        return null;
+    }
 
     /**
      * Details on which pages of the publication the article was published.
@@ -73,5 +77,7 @@ public interface Series {
      * @return details on which pages of the publication the article was published, or {@code null}.
      */
     @UML(identifier="page", obligation=OPTIONAL, specification=ISO_19115)
-    String getPage();
+    default String getPage() {
+        return null;
+    }
 }
