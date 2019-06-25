@@ -104,22 +104,19 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
                 if (version == defaultVersion) {
                     fail(c + ": " + identifier + " does not need explicit version number.");
                 }
-            }
-            /*
-             * We expect deprecated methods to be legacy from older standards.
-             * Consequently their version number shall not be the default one
-             * (except if we have only one version, as in old OGC documents).
-             */
-            if (c.isAnnotationPresent(Deprecated.class)) {
+            } else if (!identifier.equals("MD_CharacterSetCode")) {
                 /*
-                 * Exception to the above rule for MD_CharacterSetCode because that code list has not been
-                 * removed by ISO 19115:2014 but GeoAPI nevertheless replaced it by java.nio.charset.Charset.
+                 * We expect deprecated methods to be legacy from older standards.
+                 * Consequently their version number shall not be the default one
+                 * (except if we have only one version, as in old OGC documents).
+                 *
+                 * We skip MD_CharacterSetCode because that code list has not been
+                 * removed by ISO 19115:2014 but GeoAPI nevertheless replaced it by
+                 * java.nio.charset.Charset.
                  */
-                if (!identifier.equals("MD_CharacterSetCode")) {
-                    if (defaultVersion != 1) {
-                        if (version == 0) {
-                            fail(c + ": " + identifier + " should have a version number.");
-                        }
+                if (defaultVersion != 1) {
+                    if (version == 0) {
+                        fail(c + ": " + identifier + " should have a version number.");
                     }
                 }
             }
