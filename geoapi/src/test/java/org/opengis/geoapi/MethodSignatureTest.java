@@ -181,6 +181,9 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
                             isFinal = cl.getConstructors().length == 0;
                         }
                         if (isFinal == isCovariant) {
+                            if (c == org.opengis.metadata.acquisition.Objective.class && m.getName().equals("getTypes")) {
+                                continue;       // Exception for an error in GeoAPI 3.0, kept for compatibility reason.
+                            }
                             fail(description + ": " + (isFinal ? "does not need" : "should allow")
                                     + " covariant element type. The element type is " + type + '.');
                         }
