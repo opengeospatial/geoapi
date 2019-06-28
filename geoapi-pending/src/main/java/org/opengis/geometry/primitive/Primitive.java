@@ -142,7 +142,6 @@ public interface Primitive extends Geometry {
      *         not available or not implemented that way.
      *
      * @see Composite#getGenerators
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)
     Composite getComposite();
@@ -162,7 +161,6 @@ public interface Primitive extends Geometry {
      * @return the orientable primitives as an array of length 2, or {@code null} if none.
      *
      * @see OrientablePrimitive#getPrimitive
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @UML(identifier="proxy", obligation=CONDITIONAL, specification=ISO_19107)
     OrientablePrimitive[] getProxy();

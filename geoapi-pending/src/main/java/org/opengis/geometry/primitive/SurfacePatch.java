@@ -66,7 +66,6 @@ public interface SurfacePatch extends GenericSurface {
      *
      * @see Surface#getPatches
      * @see CurveSegment#getCurve
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @UML(identifier="surface", obligation=OPTIONAL, specification=ISO_19107)
     Surface getSurface();

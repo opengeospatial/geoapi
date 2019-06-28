@@ -48,8 +48,6 @@ import static org.opengis.annotation.Specification.*;
  * {@link org.opengis.coverage.grid.Grid}. The later is replaced by a composition to be
  * queried by {@link #getGrid}.
  *
- * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-82
- *
  * @version ISO 19123:2004
  * @author  Wim Koolhoven
  * @author  Martin Schouwenburg

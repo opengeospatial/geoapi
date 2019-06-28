@@ -40,8 +40,6 @@ import org.opengis.temporal.TemporalGeometricPrimitive;
 /**
  * Proposed extension of ISO {@link org.opengis.coverage.grid.GridCell}.
  *
- * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-82
- *
  * @author  Alexander Petkov
  */
 public interface GridCell extends org.opengis.coverage.grid.GridCell {

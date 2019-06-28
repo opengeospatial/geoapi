@@ -35,8 +35,6 @@ package org.opengis.coverage.grid.quadrilateral;
 /**
  * Proposed extension of ISO {@link org.opengis.coverage.grid.Grid}.
  *
- * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-82
- *
  * @author  Alexander Petkov
  */
 public interface Grid extends org.opengis.coverage.grid.Grid {

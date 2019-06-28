@@ -46,8 +46,6 @@ import static org.opengis.annotation.Specification.*;
  * {@link org.opengis.coverage.grid.Grid}. In addition, conversion methods have been replaced
  * by a conversion object.
  *
- * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-82
- *
  * @version ISO 19123:2004
  * @author  Wim Koolhoven
  * @author  Martin Schouwenburg

@@ -68,7 +68,6 @@ public interface CompositeSurface extends Composite, OrientableSurface {
      * @return the list of orientable surfaces in this composite.
      *
      * @see OrientableSurface#getComposite
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)
     Set<OrientableSurface> getGenerators();

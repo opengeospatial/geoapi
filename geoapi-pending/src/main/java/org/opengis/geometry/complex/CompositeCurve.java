@@ -68,7 +68,6 @@ public interface CompositeCurve extends Composite, OrientableCurve {
      * @return the list of orientable curves in this composite.
      *
      * @see OrientableCurve#getComposite
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)
     List<OrientableCurve> getGenerators();

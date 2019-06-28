@@ -99,8 +99,6 @@ public interface Solid extends Primitive {
 
     /**
      * Returns always {@code null}, since solids have no proxy.
-     *
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @UML(identifier="proxy", obligation=FORBIDDEN, specification=ISO_19107)
     OrientablePrimitive[] getProxy();

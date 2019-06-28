@@ -78,7 +78,6 @@ public interface Surface extends OrientableSurface, GenericSurface {
      *
      * @see SurfacePatch#getSurface
      * @see Curve#getSegments
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @UML(identifier="patch", obligation=MANDATORY, specification=ISO_19107)
     List<? extends SurfacePatch> getPatches();
@@ -89,7 +88,6 @@ public interface Surface extends OrientableSurface, GenericSurface {
      * @return the orientable surfaces as an array of length 2.
      *
      * @see OrientableSurface#getPrimitive
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @UML(identifier="proxy", obligation=MANDATORY, specification=ISO_19107)
     OrientableSurface[] getProxy();

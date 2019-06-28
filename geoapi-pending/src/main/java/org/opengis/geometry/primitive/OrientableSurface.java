@@ -78,7 +78,6 @@ public interface OrientableSurface extends OrientablePrimitive {
      *         not available or not implemented that way.
      *
      * @see Surface#getProxy
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @UML(identifier="primitive", obligation=OPTIONAL, specification=ISO_19107)
     Surface getPrimitive();
@@ -92,7 +91,6 @@ public interface OrientableSurface extends OrientablePrimitive {
      *         not available or not implemented that way.
      *
      * @see CompositeSurface#getGenerators
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)
     CompositeSurface getComposite();

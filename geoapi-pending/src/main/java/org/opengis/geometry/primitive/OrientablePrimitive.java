@@ -96,7 +96,6 @@ public interface OrientablePrimitive extends Primitive {
      *         not available or not implemented that way.
      *
      * @see Primitive#getProxy
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
     @UML(identifier="primitive", obligation=OPTIONAL, specification=ISO_19107)
     Primitive getPrimitive();
