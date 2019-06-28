@@ -32,7 +32,6 @@
 package org.opengis.geometry.primitive;
 
 import org.opengis.geometry.coordinate.GenericSurface;
-import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -67,9 +66,7 @@ public interface SurfacePatch extends GenericSurface {
      *
      * @see Surface#getPatches
      * @see CurveSegment#getCurve
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
-    @Association("Segmentation")
     @UML(identifier="surface", obligation=OPTIONAL, specification=ISO_19107)
     Surface getSurface();
 

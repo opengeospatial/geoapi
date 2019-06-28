@@ -32,7 +32,6 @@
 package org.opengis.geometry.primitive;
 
 import org.opengis.geometry.complex.CompositeSurface;
-import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -79,9 +78,7 @@ public interface OrientableSurface extends OrientablePrimitive {
      *         not available or not implemented that way.
      *
      * @see Surface#getProxy
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
-    @Association("Oriented")
     @UML(identifier="primitive", obligation=OPTIONAL, specification=ISO_19107)
     Surface getPrimitive();
 
@@ -94,9 +91,7 @@ public interface OrientableSurface extends OrientablePrimitive {
      *         not available or not implemented that way.
      *
      * @see CompositeSurface#getGenerators
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
-    @Association("Composition")
     @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)
     CompositeSurface getComposite();
 }

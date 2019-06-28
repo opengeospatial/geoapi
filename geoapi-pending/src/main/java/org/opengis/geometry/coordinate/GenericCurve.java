@@ -32,9 +32,7 @@
 package org.opengis.geometry.coordinate;
 
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Draft;
 import org.opengis.geometry.DirectPosition;
-import org.opengis.geometry.primitive.CurveBoundary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -284,53 +282,6 @@ public interface GenericCurve {
     double length(double cparam1, double cparam2);
 
     /**
-     * Returns the geometry of the curve topological boundary. If the {@linkplain #getStartPoint()
-     * start point} is not equal to the {@linkplain #getEndPoint() end point}, the boundary is a
-     * two point array. If the start point is equal to the end point, the boundary is an empty array.
-     *
-     * <div class="note"><b>Note:</b>
-     * The above point array will almost always be two distinct positions, but both
-     * {@linkplain org.opengis.geometry.primitive.Curve curves} and
-     * {@linkplain org.opengis.geometry.primitive.CurveSegment} can be cycles in themselves.
-     * The most likely scenario is that all of the points used will be transients (constructed
-     * to support the return value), except for the start point and end point of the aggregated
-     * curve. These two positions, in the case where the curve is involved in a
-     * {@linkplain org.opengis.geometry.complex.Complex complex}, will be represented as
-     * {@linkplain org.opengis.geometry.primitive.Point points} in the same complex.
-     * </div>
-     *
-     * @return the sets of positions on the boundary.
-     */
-    @Draft
-    @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
-    CurveBoundary getBoundary();
-
-    /**
-     * Returns an ordered array of point values that lie on the curve.
-     * In most cases, these will be related to control points used in the construction of the segment.
-     *
-     * <div class="note"><b>Note:</b>
-     * The control points of a curve segment are used to control its shape, and are not always on the
-     * curve segment itself. For example in a spline curve, the curve segment is given as a weighted
-     * vector sum of the control points. Each weight function will have a maximum within the
-     * constructive parameter interval, which will roughly correspond to the point on the curve
-     * where it passes closest that the corresponding control point. These points, the values of
-     * the curve at the maxima of the weight functions, will be the sample points for the curve
-     * segment.
-     * </div>
-     *
-     * @departure easeOfUse
-     *   The ISO 19107 specification returns an array of {@link org.opengis.geometry.primitive.Point}
-     *   object. GeoAPI returns a {@link PointArray} object instead, in order to allow deferred point
-     *   creation for implementors, and convenient access to the {@code PointArray} methods for users.
-     *
-     * @return the control points.
-     */
-    @Draft
-    @UML(identifier="samplePoints", obligation=MANDATORY, specification=ISO_19107)
-    PointArray getSamplePoints();
-
-    /**
      * Constructs a line string (sequence of line segments) where the control points (ends of
      * the segments) lie on this curve. If {@code maxSpacing} is given (not zero), then
      * the distance between control points along the generated curve shall be not more than
@@ -363,15 +314,4 @@ public interface GenericCurve {
      */
     @UML(identifier="asLineString", obligation=MANDATORY, specification=ISO_19107)
     LineString asLineString(double maxSpacing, double maxOffset);
-
-    /**
-     * Reverses the orientation of the parameterizations of the curve. In most cases this involves
-     * a reversal of the ordering of parameters in the curve segments, and a reversal of the order
-     * of the segments with a curve.
-     *
-     * @return the reverse of the curve.
-     */
-    @Draft
-    @UML(identifier="reverse", obligation=MANDATORY, specification=ISO_19107)
-    GenericCurve reverse();
 }

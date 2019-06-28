@@ -34,7 +34,6 @@ package org.opengis.geometry.primitive;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.coordinate.Position;
 import org.opengis.geometry.UnmodifiableGeometryException;
-import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -90,15 +89,6 @@ public interface Point extends Primitive, Position {
     void setDirectPosition(DirectPosition position) throws UnmodifiableGeometryException;
 
     /**
-     * @deprecated Renamed as {@link #setDirectPosition} for consistency with {@link #getDirectPosition}.
-     *
-     * @param  position The direct position.
-     * @throws UnmodifiableGeometryException if this geometry is not modifiable.
-     */
-    @Deprecated
-    void setPosition(DirectPosition position) throws UnmodifiableGeometryException;
-
-    /**
      * Returns always {@code null}, since point has no boundary.
      *
      * @return always {@code null}.
@@ -125,10 +115,7 @@ public interface Point extends Primitive, Position {
 
     /**
      * Returns always {@code null}, since points have no proxy.
-     *
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
-    @Association("Oriented")
     @UML(identifier="proxy", obligation=FORBIDDEN, specification=ISO_19107)
     OrientablePrimitive[] getProxy();
 

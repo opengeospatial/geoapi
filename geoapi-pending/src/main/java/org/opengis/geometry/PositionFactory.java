@@ -41,7 +41,7 @@ import org.opengis.geometry.coordinate.Position;
  * A factory for managing {@linkplain DirectPosition direct position} creation.
  * <p>
  * This factory will be created for a known {@linkplain CoordinateReferenceSystem
- * Coordinate Reference System} and {@linkplain Precision precision} model.
+ * Coordinate Reference System}.
  * </p>
  *
  * @author Jody Garnett
@@ -54,18 +54,6 @@ public interface PositionFactory {
      * through this interface.
      */
     CoordinateReferenceSystem getCoordinateReferenceSystem();
-
-    /**
-     * The Precision used used by {@linkplain DirectPosition direct positions}
-     * created via this factory.
-     * <p>
-     * The Precision is used to inform topological operations of the number of
-     * significant digits maintained by the {@link DirectPosition} instances. This
-     * information both helps operations stop when the correct level of detail is
-     * reached, and ensure the result will be valid when rounded to the required
-     * precision.
-     */
-    Precision getPrecision();
 
     /**
      * Creates a direct position at the specified location specified by coordinates.

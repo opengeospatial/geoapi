@@ -33,7 +33,6 @@ package org.opengis.geometry.complex;
 
 import java.util.List;
 import org.opengis.geometry.primitive.OrientableCurve;
-import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -69,9 +68,7 @@ public interface CompositeCurve extends Composite, OrientableCurve {
      * @return the list of orientable curves in this composite.
      *
      * @see OrientableCurve#getComposite
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
-    @Association("Composition")
     @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)
     List<OrientableCurve> getGenerators();
 }

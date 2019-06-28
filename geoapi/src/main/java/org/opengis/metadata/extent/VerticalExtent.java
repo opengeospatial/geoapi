@@ -55,8 +55,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @version 3.1
  * @since   1.0
- *
- * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-134
  */
 @UML(identifier="EX_VerticalExtent", specification=ISO_19115)
 public interface VerticalExtent {

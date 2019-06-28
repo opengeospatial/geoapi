@@ -38,7 +38,6 @@ import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.Envelope;
 import org.opengis.geometry.MismatchedDimensionException;
 import org.opengis.geometry.MismatchedReferenceSystemException;
-import org.opengis.geometry.aggregate.MultiPrimitive;
 import org.opengis.geometry.primitive.Surface;
 import org.opengis.geometry.primitive.SurfaceBoundary;
 import org.opengis.annotation.UML;
@@ -65,20 +64,6 @@ public interface GeometryFactory {
      * to be created through this interface.
      */
     CoordinateReferenceSystem getCoordinateReferenceSystem();
-
-    /**
-     * Create a direct position with empty coordinates.
-     * @deprecated Moved to PositionFactory
-     */
-    @Deprecated
-    DirectPosition createDirectPosition();
-
-    /**
-     * Create a direct position at the specified location specified by coordinates.
-     * @deprecated Moved to PositionFactory
-     */
-    @Deprecated
-    DirectPosition createDirectPosition(double[] coordinates);
 
     /**
      * Creates a new Envelope with the given corners.
@@ -413,14 +398,4 @@ public interface GeometryFactory {
     @UML(identifier="GM_PolyhedralSurface(GM_Polygon)", obligation=MANDATORY, specification=ISO_19107)
     PolyhedralSurface createPolyhedralSurface(List<Polygon> tiles)
             throws MismatchedReferenceSystemException, MismatchedDimensionException;
-
-    /**
-     * Placeholder to create a MultiPrimitive (or derivatives).
-     *
-     * @deprecated <strong>This method is temporary. It will move to some {@code MultiPrimitive}
-     *             factory when the creation of Geometry interfaces will be completed.</strong>
-     *             See <A HREF="https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-1">GEO-1 on JIRA</A>.
-     */
-    @Deprecated
-    MultiPrimitive createMultiPrimitive();
 }

@@ -48,8 +48,6 @@ import org.opengis.geometry.DirectPosition;
  * only supply the {@link Conversion} object (stored in the inherited {@code operation} attribute)
  * to produce a functional coordinate conversion object.
  *
- * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-82
- *
  * @author  Alexander Petkov
  */
 public interface RectifiableGrid  extends GridPositioning {

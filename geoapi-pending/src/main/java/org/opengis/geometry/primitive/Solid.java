@@ -31,7 +31,6 @@
  */
 package org.opengis.geometry.primitive;
 
-import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -100,10 +99,7 @@ public interface Solid extends Primitive {
 
     /**
      * Returns always {@code null}, since solids have no proxy.
-     *
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
-    @Association("Oriented")
     @UML(identifier="proxy", obligation=FORBIDDEN, specification=ISO_19107)
     OrientablePrimitive[] getProxy();
 

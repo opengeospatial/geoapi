@@ -44,8 +44,6 @@ import static org.opengis.annotation.Specification.*;
  * A modified copy of {@link org.opengis.coverage.grid.ReferenceableGrid} which does not inherit
  * {@link org.opengis.coverage.grid.Grid}.
  *
- * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-82
- *
  * @version ISO 19123:2004
  * @author  Wim Koolhoven
  * @author  Martin Schouwenburg

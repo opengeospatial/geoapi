@@ -33,7 +33,6 @@ package org.opengis.geometry.complex;
 
 import java.util.Set;
 import org.opengis.geometry.primitive.OrientableSurface;
-import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -69,9 +68,7 @@ public interface CompositeSurface extends Composite, OrientableSurface {
      * @return the list of orientable surfaces in this composite.
      *
      * @see OrientableSurface#getComposite
-     * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
-    @Association("Composition")
     @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)
     Set<OrientableSurface> getGenerators();
 }

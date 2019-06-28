@@ -33,7 +33,6 @@ package org.opengis.geometry.complex;
 
 import java.util.Collection;
 import org.opengis.geometry.primitive.Primitive;
-import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -68,7 +67,6 @@ public interface Composite extends Complex {
      * @see CompositeSurface#getGenerators
      * @see CompositeSolid#getGenerators
      */
-    @Association("Composition")
     @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)
     Collection<? extends Primitive> getGenerators();
 }

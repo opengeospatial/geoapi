@@ -83,13 +83,6 @@ public interface Geometry extends TransfiniteSet {
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
     /**
-     * Returns the precision model used to guide the accuracy of topology operations.
-     *
-     * @return the precision model used for topological operations.
-     */
-    Precision getPrecision();
-
-    /**
      * Returns a region in the coordinate reference system that contains this {@code Geometry}.
      * The default shall be to return an instance of an appropriate {@code Geometry} subclass
      * that represents the same spatial set returned from {@link #getEnvelope}. The most common
