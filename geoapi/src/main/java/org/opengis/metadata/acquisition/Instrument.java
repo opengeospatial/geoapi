@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * Designations for the measuring instruments.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
 @UML(identifier="MI_Instrument", specification=ISO_19115_2)

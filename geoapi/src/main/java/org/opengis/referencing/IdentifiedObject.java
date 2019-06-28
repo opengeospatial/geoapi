@@ -81,7 +81,7 @@ import static org.opengis.annotation.Specification.*;
  *   {@code IO_IdentifiedObject} into this single interface.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 @Classifier(Stereotype.ABSTRACT)

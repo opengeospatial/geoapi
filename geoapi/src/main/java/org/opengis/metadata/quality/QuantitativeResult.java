@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0.1
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="DQ_QuantitativeResult", specification=ISO_19115, version=2003)

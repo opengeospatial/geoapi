@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * which the data contributes.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
 @UML(identifier="MI_AcquisitionInformation", specification=ISO_19115_2)

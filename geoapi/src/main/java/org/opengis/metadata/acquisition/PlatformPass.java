@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * Identification of collection coverage.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
 @UML(identifier="MI_PlatformPass", specification=ISO_19115_2)

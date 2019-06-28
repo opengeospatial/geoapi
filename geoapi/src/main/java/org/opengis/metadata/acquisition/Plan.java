@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * Designations for the planning information related to meeting the data acquisition requirements.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
 @UML(identifier="MI_Plan", specification=ISO_19115_2)
