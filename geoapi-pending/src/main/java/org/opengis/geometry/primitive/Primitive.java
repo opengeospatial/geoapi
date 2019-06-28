@@ -35,7 +35,6 @@ import java.util.Set;
 import org.opengis.geometry.Geometry;
 import org.opengis.geometry.complex.Complex;
 import org.opengis.geometry.complex.Composite;
-import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -145,7 +144,6 @@ public interface Primitive extends Geometry {
      * @see Composite#getGenerators
      * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
-    @Association("Composition")
     @UML(identifier="composite", obligation=OPTIONAL, specification=ISO_19107)
     Composite getComposite();
 
@@ -166,7 +164,6 @@ public interface Primitive extends Geometry {
      * @see OrientablePrimitive#getPrimitive
      * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
-    @Association("Oriented")
     @UML(identifier="proxy", obligation=CONDITIONAL, specification=ISO_19107)
     OrientablePrimitive[] getProxy();
 

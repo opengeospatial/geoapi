@@ -33,7 +33,6 @@ package org.opengis.geometry.complex;
 
 import java.util.Set;
 import org.opengis.geometry.primitive.Solid;
-import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -70,7 +69,6 @@ public interface CompositeSolid extends Composite, Solid {
      * @see Solid#getComposite
      * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
-    @Association("Composition")
     @UML(identifier="generator", obligation=MANDATORY, specification=ISO_19107)
     Set<Solid> getGenerators();
 }

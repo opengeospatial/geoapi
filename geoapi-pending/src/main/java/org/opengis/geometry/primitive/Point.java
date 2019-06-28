@@ -34,7 +34,6 @@ package org.opengis.geometry.primitive;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.coordinate.Position;
 import org.opengis.geometry.UnmodifiableGeometryException;
-import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -128,7 +127,6 @@ public interface Point extends Primitive, Position {
      *
      * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
-    @Association("Oriented")
     @UML(identifier="proxy", obligation=FORBIDDEN, specification=ISO_19107)
     OrientablePrimitive[] getProxy();
 

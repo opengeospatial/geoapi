@@ -33,7 +33,6 @@ package org.opengis.geometry.primitive;
 
 import org.opengis.geometry.coordinate.GenericCurve;
 import org.opengis.geometry.coordinate.PointArray;
-import org.opengis.annotation.Association;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -70,7 +69,6 @@ public interface CurveSegment extends GenericCurve {
      * @see SurfacePatch#getSurface
      * @issue https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-63
      */
-    @Association("Segmentation")
     @UML(identifier="curve", obligation=OPTIONAL, specification=ISO_19107)
     Curve getCurve();
 
