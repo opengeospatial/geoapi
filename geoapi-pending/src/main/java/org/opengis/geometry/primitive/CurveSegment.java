@@ -142,54 +142,6 @@ public interface CurveSegment extends GenericCurve {
     @UML(identifier="numDerivativesAtEnd", obligation=MANDATORY, specification=ISO_19107)
     int getNumDerivativesAtEnd();
 
-    /**
-     * Returns an ordered array of point values that lie on the {@linkplain CurveSegment curve segment}.
-     * In most cases, these will be related to control points used in the construction of the segment.
-     * The control points of a curve segment are use to control its shape, and are not always on the
-     * curve segment itself. For example in a spline curve, the curve segment is given as a weighted
-     * vector sum of the control points. Each weight function will have a maximum within the
-     * constructive parameter interval, which will roughly correspond to the point on the curve
-     * where it passes closest that the corresponding control point. These points, the values of
-     * the curve at the maxima of the weight functions, will be the sample points for the curve
-     * segment.
-     *
-     * @return the control points.
-     *
-     * @todo This interface has been removed from ISO 19107:2008 draft, since it is now
-     *       inherited from {@link GenericCurve}.
-     */
-    @UML(identifier="samplePoint", obligation=MANDATORY, specification=ISO_19107)
-    PointArray getSamplePoints();
 
-    /**
-     * Returns an ordered pair of points, which are the start point and end point of the curve.
-     * This method operates with the same semantics as that on {@linkplain Curve#getBoundary curve}
-     * except that the end points of a {@code CurveSegment} are not necessarily existing
-     * {@linkplain Point points} and thus the boundary may contain transient {@linkplain Point points}.
-     *
-     * <div class="note"><b>Note:</b>
-     * The above {@linkplain CurveBoundary curve boundary} will almost always be two distinct
-     * positions, but, like {@linkplain Curve curves}, {@code CurveSegment}s can be cycles in
-     * themselves. The most likely scenario is that all of the points used will be transients
-     * (constructed to support the return value), except for the start point and end point of
-     * the aggregated {@linkplain Curve curve}. These two positions, in the case where the
-     * {@linkplain Curve curve} is involved in a {@linkplain org.opengis.geometry.complex.Complex complex},
-     * will be represented as {@linkplain Point points} in the same complex.
-     * </div>
-     *
-     * @return the sets of positions on the boundary.
-     *
-     * @todo This interface has been removed from ISO 19107:2008 draft, since it is now
-     *       inherited from {@link GenericCurve}.
-     */
-    @UML(identifier="boundary", obligation=MANDATORY, specification=ISO_19107)
-    CurveBoundary getBoundary();
 
-    /**
-     * Reverses the orientation of the parameterizations of the segment.
-     *
-     * @return the reverse of this curve segment.
-     */
-    @UML(identifier="reverse", obligation=MANDATORY, specification=ISO_19107)
-    CurveSegment reverse();
 }
