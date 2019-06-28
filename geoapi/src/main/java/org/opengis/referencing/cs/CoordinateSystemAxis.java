@@ -174,5 +174,7 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * @see RangeMeaning#WRAPAROUND
      */
     @UML(identifier="rangeMeaning", obligation=CONDITIONAL, specification=ISO_19111)
-    RangeMeaning getRangeMeaning();
+    default RangeMeaning getRangeMeaning() {
+        return null;
+    }
 }

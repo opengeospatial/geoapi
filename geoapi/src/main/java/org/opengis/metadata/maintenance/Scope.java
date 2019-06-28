@@ -75,6 +75,8 @@ public interface Scope {
      *
      * @return detailed description about the level of the data.
      */
-    @UML(identifier="levelDescription", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<? extends ScopeDescription> getLevelDescription();
+    @UML(identifier="levelDescription", obligation=OPTIONAL, specification=ISO_19115)
+    default Collection<? extends ScopeDescription> getLevelDescription() {
+        return Collections.emptyList();
+    }
 }

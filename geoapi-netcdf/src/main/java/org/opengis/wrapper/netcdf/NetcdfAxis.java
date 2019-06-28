@@ -25,7 +25,6 @@ import ucar.nc2.dataset.CoordinateAxis1D;
 import org.opengis.util.InternationalString;
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
-import org.opengis.referencing.cs.RangeMeaning;
 
 
 /**
@@ -172,14 +171,6 @@ public class NetcdfAxis extends NetcdfIdentifiedObject implements CoordinateSyst
      */
     public int length() {
         return axis.getShape(0);
-    }
-
-    /**
-     * Returns {@code null} since the range meaning is unspecified.
-     */
-    @Override
-    public RangeMeaning getRangeMeaning() {
-        return null;
     }
 
     /**

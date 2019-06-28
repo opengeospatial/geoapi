@@ -32,6 +32,7 @@
 package org.opengis.metadata.maintenance;
 
 import java.util.Set;
+import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
@@ -72,7 +73,9 @@ public interface ScopeDescription {
      * @see ScopeCode#DATASET
      */
     @UML(identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
-    String getDataset();
+    default String getDataset() {
+        return null;
+    }
 
     /**
      * Feature types to which the information applies.
@@ -91,7 +94,9 @@ public interface ScopeDescription {
      * @see ScopeCode#FEATURE_TYPE
      */
     @UML(identifier="features", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getFeatures();
+    default Set<? extends CharSequence> getFeatures() {
+        return Collections.emptySet();
+    }
 
     /**
      * Attribute types to which the information applies.
@@ -110,7 +115,9 @@ public interface ScopeDescription {
      * @see ScopeCode#ATTRIBUTE_TYPE
      */
     @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getAttributes();
+    default Set<? extends CharSequence> getAttributes() {
+        return Collections.emptySet();
+    }
 
     /**
      * Feature instances to which the information applies.
@@ -129,7 +136,9 @@ public interface ScopeDescription {
      * @see ScopeCode#FEATURE
      */
     @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getFeatureInstances();
+    default Set<? extends CharSequence> getFeatureInstances() {
+        return Collections.emptySet();
+    }
 
     /**
      * Attribute instances to which the information applies.
@@ -148,7 +157,9 @@ public interface ScopeDescription {
      * @see ScopeCode#ATTRIBUTE
      */
     @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115)
-    Set<? extends CharSequence> getAttributeInstances();
+    default Set<? extends CharSequence> getAttributeInstances() {
+        return Collections.emptySet();
+    }
 
     /**
      * Class of information that does not fall into the other categories to which the information applies.
@@ -159,5 +170,7 @@ public interface ScopeDescription {
      *            {@code attributeInstances} and {@code dataset} not provided.
      */
     @UML(identifier="other", obligation=CONDITIONAL, specification=ISO_19115)
-    InternationalString getOther();
+    default InternationalString getOther() {
+        return null;
+    }
 }

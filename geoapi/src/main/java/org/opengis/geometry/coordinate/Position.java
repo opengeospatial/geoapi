@@ -67,7 +67,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GM_Position", specification=ISO_19107)
 public interface Position {
     /**
-     * Returns the direct position. This method shall never returns {@code null}, but may returns
+     * Returns the direct position. This method shall never return {@code null}, but may return
      * {@code this} if invoked on an object which is already a {@code DirectPosition} instance.
      *
      * @return the direct position (may be {@code this}).

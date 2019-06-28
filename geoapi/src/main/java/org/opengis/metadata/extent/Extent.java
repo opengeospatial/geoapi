@@ -32,6 +32,7 @@
 package org.opengis.metadata.extent;
 
 import java.util.Collection;
+import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
@@ -69,7 +70,9 @@ public interface Extent {
      *            {@linkplain #getTemporalElements() temporal element} are not provided.
      */
     @UML(identifier="description", obligation=CONDITIONAL, specification=ISO_19115)
-    InternationalString getDescription();
+    default InternationalString getDescription() {
+        return null;
+    }
 
     /**
      * Provides geographic component of the extent of the referring object.
@@ -82,7 +85,9 @@ public interface Extent {
      */
     @Profile(level=CORE)
     @UML(identifier="geographicElement", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<? extends GeographicExtent> getGeographicElements();
+    default Collection<? extends GeographicExtent> getGeographicElements() {
+        return Collections.emptyList();
+    }
 
     /**
      * Provides vertical component of the extent of the referring object.
@@ -95,7 +100,9 @@ public interface Extent {
      */
     @Profile(level=CORE)
     @UML(identifier="verticalElement", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<? extends VerticalExtent> getVerticalElements();
+    default Collection<? extends VerticalExtent> getVerticalElements() {
+        return Collections.emptyList();
+    }
 
     /**
      * Provides temporal component of the extent of the referring object.
@@ -108,5 +115,7 @@ public interface Extent {
      */
     @Profile(level=CORE)
     @UML(identifier="temporalElement", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<? extends TemporalExtent> getTemporalElements();
+    default Collection<? extends TemporalExtent> getTemporalElements() {
+        return Collections.emptyList();
+    }
 }

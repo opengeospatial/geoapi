@@ -70,6 +70,15 @@ import static org.opengis.annotation.ComplianceLevel.*;
 /**
  * Root entity which defines metadata about a resource or resources.
  *
+ * <p><b>Conditional properties:</b></p>
+ * Following properties have default methods but shall nevertheless be implemented if the corresponding condition is met:
+ * <ul>
+ *   <li>{@linkplain #getLocalesAndCharsets() Locale and character set}:
+ *       mandatory if not defined by encoding and UTF-8 not used.</li>
+ *   <li>{@link #getParentMetadata() Parent metadata}:
+ *       mandatory if there is an upper object.</li>
+ * </ul>
+ *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @version 3.1
@@ -157,14 +166,19 @@ public interface Metadata {
      *
      * @return language(s) and character set(s) used for documenting metadata.
      *
+     * @condition Mandatory if not defined by encoding and UTF-8 not used.
+     *
      * @see org.opengis.metadata.identification.DataIdentification#getLocalesAndCharsets()
      * @see org.opengis.metadata.content.FeatureCatalogueDescription#getLocalesAndCharsets()
      *
      * @since 3.1
      */
     @Profile(level=CORE)
+    // Obligation note: `defaultLocale` is conditional and `otherLocale` is optional.
     @UML(identifier="defaultLocale+otherLocale", obligation=CONDITIONAL, specification=ISO_19115)
-    Map<Locale,Charset> getLocalesAndCharsets();
+    default Map<Locale,Charset> getLocalesAndCharsets() {
+        return Collections.emptyMap();
+    }
 
     /**
      * Language used for documenting metadata.
@@ -232,7 +246,9 @@ public interface Metadata {
      * @since 3.1
      */
     @UML(identifier="parentMetadata", obligation=CONDITIONAL, specification=ISO_19115)
-    Citation getParentMetadata();
+    default Citation getParentMetadata() {
+        return null;
+    }
 
     /**
      * File identifier of the metadata to which this metadata is a subset (child).

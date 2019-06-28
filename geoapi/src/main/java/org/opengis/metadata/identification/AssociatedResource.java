@@ -41,6 +41,13 @@ import static org.opengis.annotation.Specification.ISO_19115;
 /**
  * Associated resource information.
  *
+ * <p><b>Conditional properties:</b></p>
+ * Following property has default method but shall nevertheless be implemented if the corresponding condition is met:
+ * <ul>
+ *   <li>{@linkplain #getMetadataReference() Metadata reference} is mandatory if the resource
+ *       {@linkplain #getName() name} is not provided.</li>
+ * </ul>
+ *
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   3.1
@@ -83,5 +90,7 @@ public interface AssociatedResource {
      * @condition Mandatory if the {@linkplain #getName() name} is not documented.
      */
     @UML(identifier="metadataReference", obligation=CONDITIONAL, specification=ISO_19115)
-    Citation getMetadataReference();
+    default Citation getMetadataReference() {
+        return null;
+    }
 }

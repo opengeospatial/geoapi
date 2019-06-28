@@ -18,7 +18,6 @@ import org.gdal.osr.SpatialReference;
 import org.gdal.osr.osrConstants;
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
-import org.opengis.referencing.cs.RangeMeaning;
 
 
 /**
@@ -62,8 +61,7 @@ final class Axis extends ReferencingObject implements CoordinateSystemAxis {
         }
     }
 
-    @Override public String       getAbbreviation() {return null;}                          // TODO
-    @Override public Unit<?>      getUnit()         {return null;}                          // TODO
-    @Override public RangeMeaning getRangeMeaning() {return null;}
-    @Override public String       toWKT()           {return "AXIS[\"" + getName() + "\", " + getDirection().name() + ']';}
+    @Override public String  getAbbreviation() {return null;}                          // TODO
+    @Override public Unit<?> getUnit()         {return null;}                          // TODO
+    @Override public String  toWKT()           {return "AXIS[\"" + getName() + "\", " + getDirection().name() + ']';}
 }

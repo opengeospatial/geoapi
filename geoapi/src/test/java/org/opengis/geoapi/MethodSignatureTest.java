@@ -207,7 +207,7 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
                             isOptional = true;
                         } else {
                             switch (uml.obligation()) {
-                                case CONDITIONAL:
+                                case CONDITIONAL: continue;                     // Choice on a case-by-case basis.
                                 case MANDATORY: isOptional = false; break;
                                 case FORBIDDEN:
                                 case OPTIONAL:  isOptional = true;  break;

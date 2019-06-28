@@ -67,7 +67,9 @@ public interface Resolution {
      */
     @Profile(level=CORE)
     @UML(identifier="equivalentScale", obligation=CONDITIONAL, specification=ISO_19115)
-    RepresentativeFraction getEquivalentScale();
+    default RepresentativeFraction getEquivalentScale() {
+        return null;
+    }
 
     /**
      * Horizontal ground sample distance.
@@ -85,7 +87,9 @@ public interface Resolution {
      */
     @Profile(level=CORE)
     @UML(identifier="distance", obligation=CONDITIONAL, specification=ISO_19115)
-    Double getDistance();
+    default Double getDistance() {
+        return null;
+    }
 
     /**
      * Vertical sampling distance.
@@ -105,7 +109,9 @@ public interface Resolution {
      */
     @Profile(level=CORE)
     @UML(identifier="vertical", obligation=CONDITIONAL, specification=ISO_19115)
-    Double getVertical();
+    default Double getVertical() {
+        return null;
+    }
 
     /**
      * Angular sampling measure.
@@ -125,7 +131,9 @@ public interface Resolution {
      */
     @Profile(level=CORE)
     @UML(identifier="angularDistance", obligation=CONDITIONAL, specification=ISO_19115)
-    Double getAngularDistance();
+    default Double getAngularDistance() {
+        return null;
+    }
 
     /**
      * Brief textual description of the spatial resolution of the resource.
@@ -138,5 +146,7 @@ public interface Resolution {
      */
     @Profile(level=CORE)
     @UML(identifier="levelOfDetail", obligation=CONDITIONAL, specification=ISO_19115)
-    InternationalString getLevelOfDetail();
+    default InternationalString getLevelOfDetail() {
+        return null;
+    }
 }

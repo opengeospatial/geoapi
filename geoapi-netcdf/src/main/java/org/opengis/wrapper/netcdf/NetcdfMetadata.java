@@ -613,8 +613,13 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
      * </ul>
      */
     private final class Creator implements Responsibility, Individual, Contact {
-        @Override public Collection<? extends Address> getAddresses()    {return self(hasAttribute(ACDD.creator_email));}
-        @Override public InternationalString           getPositionName() {return null;}
+        /**
+         * Returns email address at which the individual may be contacted.
+         */
+        @Override
+        public Collection<? extends Address> getAddresses() {
+            return self(hasAttribute(ACDD.creator_email));
+        }
 
         /**
          * Returns a collection containing {@code this} if the given attribute is presents, or an empty set otherwise.
@@ -640,10 +645,9 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
             final Party party;
             if (hasAttribute("institution")) {
                 party = new Organisation() {
-                    @Override public InternationalString                 getName()        {return getInternationalString("institution");}
-                    @Override public Collection<? extends BrowseGraphic> getLogo()        {return Collections.emptySet();}
-                    @Override public Collection<? extends Individual>    getIndividual()  {return ifAttributePresents(ACDD.creator_name);}
-                    @Override public Collection<? extends Contact>       getContactInfo() {
+                    @Override public InternationalString              getName()        {return getInternationalString("institution");}
+                    @Override public Collection<? extends Individual> getIndividual()  {return ifAttributePresents(ACDD.creator_name);}
+                    @Override public Collection<? extends Contact>    getContactInfo() {
                         if (hasAttribute(ACDD.creator_name)) {
                             return Collections.emptySet();          // Email address to be provided with the individual instead.
                         } else {
@@ -710,11 +714,8 @@ public class NetcdfMetadata implements Metadata, DataIdentification, Identifier,
     // │    Non-implemented methods                                                              │
     // └─────────────────────────────────────────────────────────────────────────────────────────┘
 
-    /** Defaults to {@code null}. */ @Override public Citation                   getParentMetadata()     {return null;}
-    /** Defaults to {@code null}. */ @Override public InternationalString        getDescription()        {return null;}
-    /** Defaults to an empty set. */ @Override public Collection<TemporalExtent> getTemporalElements()   {return Collections.emptySet();}
-    /** Defaults to an empty set. */ @Override public Collection<VerticalExtent> getVerticalElements()   {return Collections.emptySet();}
-    /** Defaults to an empty map. */ @Override public Map<Locale,Charset>        getLocalesAndCharsets() {return Collections.emptyMap();}
+    /** Defaults to {@code null}. */ @Override public InternationalString getDescription()        {return null;}
+    /** Defaults to an empty map. */ @Override public Map<Locale,Charset> getLocalesAndCharsets() {return Collections.emptyMap();}
 
 
 

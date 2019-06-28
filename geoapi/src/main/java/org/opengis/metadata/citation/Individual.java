@@ -41,6 +41,13 @@ import static org.opengis.annotation.Specification.ISO_19115;
 /**
  * Information about the party if the party is an individual.
  *
+ * <p><b>Conditional properties:</b></p>
+ * Following property has default method but shall nevertheless be implemented if the corresponding condition is met:
+ * <ul>
+ *   <li>{@linkplain #getPositionName() Position name} is mandatory if the
+ *       {@linkplain #getName() name} (in parent interface) is not documented.</li>
+ * </ul>
+ *
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   3.1
@@ -55,5 +62,7 @@ public interface Individual extends Party {
      * @condition Mandatory if {@linkplain #getName() name} is not documented.
      */
     @UML(identifier="positionName", obligation=CONDITIONAL, specification=ISO_19115)
-    InternationalString getPositionName();
+    default InternationalString getPositionName() {
+        return null;
+    }
 }
