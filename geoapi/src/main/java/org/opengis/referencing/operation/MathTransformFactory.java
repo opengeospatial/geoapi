@@ -76,7 +76,7 @@ import static org.opengis.annotation.Specification.*;
  * target coordinate systems.</p>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see <a href="http://www.remotesensing.org/geotiff/proj_list/">Projection transform list on RemoteSensing.org</a>

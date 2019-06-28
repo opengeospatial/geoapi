@@ -43,6 +43,13 @@ import static org.opengis.annotation.Specification.ISO_19115;
 /**
  * Information about the party if the party is an organisation.
  *
+ * <p><b>Conditional properties:</b></p>
+ * Following properties have default methods but shall nevertheless be implemented if the corresponding condition is met:
+ * <ul>
+ *   <li>At least one of {@linkplain #getIndividual() individual} and {@linkplain #getLogo() logo} properties
+ *       shall be documented if the {@linkplain #getName() name} (in parent interface) is not documented.</li>
+ * </ul>
+ *
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   3.1
@@ -59,7 +66,9 @@ public interface Organisation extends Party {
      *            is not documented.
      */
     @UML(identifier="logo", obligation=CONDITIONAL, specification=ISO_19115)
-    Collection<? extends BrowseGraphic> getLogo();
+    default Collection<? extends BrowseGraphic> getLogo() {
+        return Collections.emptyList();
+    }
 
     /**
      * Individuals in the named organisation.

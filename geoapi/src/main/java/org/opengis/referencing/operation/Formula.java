@@ -45,12 +45,12 @@ import static org.opengis.annotation.Specification.*;
  * Specification of the coordinate operation method formula.
  * A formula may be {@linkplain #getFormula() given textually},
  * or may be a {@linkplain #getCitation() reference to a publication}.
+ * If the operation method is not analytic, then {@code Formula} actually gives
+ * the procedure rather than an analytic formula.
  *
- * <p>Formulas are given by {@link OperationMethod#getFormula()}. If the operation method is not analytic,
- * then this object actually gives the procedure rather than an analytic formula.</p>
- *
- * <p>{@code Formula} objects are for human reading. The object that actually does the work of applying
- * the formula or procedure to coordinate values is {@link MathTransform}.</p>
+ * <p>Formulas are given by {@link OperationMethod#getFormula()}.
+ * {@code Formula} objects are for human reading; the object that actually does the work
+ * of applying the formula or procedure to coordinate values is {@link MathTransform}.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0
@@ -64,21 +64,18 @@ import static org.opengis.annotation.Specification.*;
 public interface Formula {
     /**
      * Formula(s) or procedure used by the operation method.
+     * Only one of {@code getFormula()} and {@link #getCitation()} should be supplied.
      *
      * @return the formula used by the operation method, or {@code null} if none.
-     *
-     * @condition Only one of {@code getFormula()} and {@code getCitation()} shall be supplied.
      */
     @UML(identifier="formula", obligation=CONDITIONAL, specification=ISO_19111)
     InternationalString getFormula();
 
     /**
-     * Reference to a publication giving the formula(s) or procedure used by the
-     * coordinate operation method.
+     * Reference to a publication giving the formula(s) or procedure used by the coordinate operation method.
+     * Only one of {@link #getFormula()} and {@code getCitation()} should be supplied.
      *
      * @return reference to a publication giving the formula, or {@code null} if none.
-     *
-     * @condition Only one of {@code getFormula()} and {@code getCitation()} shall be supplied.
      */
     @UML(identifier="formulaCitation", obligation=CONDITIONAL, specification=ISO_19111)
     Citation getCitation();

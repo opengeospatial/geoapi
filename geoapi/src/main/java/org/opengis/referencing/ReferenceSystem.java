@@ -73,7 +73,7 @@ import static org.opengis.annotation.Specification.*;
  *    {@link org.opengis.referencing.gazetteer.ReferenceSystemUsingIdentifiers}.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem

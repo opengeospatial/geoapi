@@ -68,7 +68,7 @@ public interface Georectified extends GridSpatialRepresentation {
      *
      * @return description of geographic position points used to test accuracy, or {@code null}.
      *
-     * @condition {@linkplain #isCheckPointAvailable() Check point availability} equals {@code true}.
+     * @condition Mandatory if {@linkplain #isCheckPointAvailable() check point availability} equals {@code true}.
      */
     @UML(identifier="checkPointDescription", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getCheckPointDescription();

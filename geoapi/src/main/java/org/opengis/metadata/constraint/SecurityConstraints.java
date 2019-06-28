@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
  * Handling restrictions imposed on the resource or metadata for national security or similar security concerns.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_SecurityConstraints", specification=ISO_19115)

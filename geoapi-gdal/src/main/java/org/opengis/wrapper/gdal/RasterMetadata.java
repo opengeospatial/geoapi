@@ -95,7 +95,6 @@ final class RasterMetadata extends GridGeometry implements Metadata, MetadataSco
     @Override public CellGeometry                      getCellGeometry()              {return cellGeometry;}
 
     /* ISO 19115:2014 properties that are empty of null for now. */
-    @Override public Citation                     getParentMetadata()          {return null;}
     @Override public Map<Locale,Charset>          getLocalesAndCharsets()      {return emptyMap();}
     @Override public Collection<ResponsibleParty> getContacts()                {return emptySet();}
     @Override public Collection<CitationDate>     getDateInfo()                {return emptySet();}

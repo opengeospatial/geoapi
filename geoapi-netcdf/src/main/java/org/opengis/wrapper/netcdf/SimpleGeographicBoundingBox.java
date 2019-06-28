@@ -19,11 +19,8 @@ import java.io.Serializable;
 import java.awt.geom.Rectangle2D;
 
 import org.opengis.metadata.extent.Extent;
-import org.opengis.metadata.extent.VerticalExtent;
-import org.opengis.metadata.extent.TemporalExtent;
 import org.opengis.metadata.extent.GeographicExtent;
 import org.opengis.metadata.extent.GeographicBoundingBox;
-import org.opengis.util.InternationalString;
 
 
 /**
@@ -197,17 +194,6 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
     }
 
     /**
-     * Returns the spatial and temporal extent for the referring object.
-     * The default implementation unconditionally returns {@code null}.
-     *
-     * @return the spatial and temporal extent, or {@code null} in none.
-     */
-    @Override
-    public InternationalString getDescription() {
-        return null;
-    }
-
-    /**
      * Provides geographic component of the extent of the referring object.
      * The default implementation returns a singleton containing only this
      * geographic bounding box.
@@ -217,28 +203,6 @@ final class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent
     @Override
     public Collection<? extends GeographicExtent> getGeographicElements() {
         return Collections.singleton(this);
-    }
-
-    /**
-     * Provides temporal component of the extent of the referring object.
-     * The default implementation unconditionally returns an empty set.
-     *
-     * @return the temporal extent, or an empty set if none.
-     */
-    @Override
-    public Collection<? extends TemporalExtent> getTemporalElements() {
-        return Collections.emptySet();
-    }
-
-    /**
-     * Provides vertical component of the extent of the referring object.
-     * The default implementation unconditionally returns an empty set.
-     *
-     * @return the vertical extent, or an empty set if none.
-     */
-    @Override
-    public Collection<? extends VerticalExtent> getVerticalElements() {
-        return Collections.emptySet();
     }
 
     /**

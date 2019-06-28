@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * A temporal datum defines the origin of a temporal coordinate reference system.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see DatumAuthorityFactory#createTemporalDatum(String)

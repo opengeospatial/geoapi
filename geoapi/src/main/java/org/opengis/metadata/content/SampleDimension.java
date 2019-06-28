@@ -44,6 +44,13 @@ import static org.opengis.annotation.Specification.ISO_19115_2;
 /**
  * The characteristics of each dimension (layer) included in the resource.
  *
+ * <p><b>Conditional properties:</b></p>
+ * Following property has default method but shall nevertheless be implemented if the corresponding condition is met:
+ * <ul>
+ *   <li>{@linkplain #getUnits() Units} are mandatory if any of the {@linkplain #getMinValue() minimum},
+ *     {@linkplain #getMaxValue() maximum} or {@linkplain #getMeanValue() mean value} properties are provided.</li>
+ * </ul>
+ *
  * @author  Rémi Maréchal (geomatys)
  * @version 3.1
  * @since   3.1
@@ -114,11 +121,13 @@ public interface SampleDimension extends RangeDimension {
      *
      * @return units of data in each dimension included in the resource, or {@code null} if none.
      *
-     * @condition Mandatory if {@linkplain #getMinValue()}, {@linkplain #getMaxValue()}
-     *            or {@linkplain #getMeanValue()} are provided.
+     * @condition Mandatory if {@linkplain #getMinValue() minimum}, {@linkplain #getMaxValue() maximum}
+     *            or {@linkplain #getMeanValue() mean value} are provided.
      */
     @UML(identifier="units", obligation=CONDITIONAL, specification=ISO_19115)
-    Unit<?> getUnits();
+    default Unit<?> getUnits() {
+        return null;
+    }
 
     /**
      * Scale factor which has been applied to the cell value.

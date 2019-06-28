@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * Information used to determine geographic location corresponding to image location.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
 @Classifier(Stereotype.ABSTRACT)

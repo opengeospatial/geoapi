@@ -83,7 +83,7 @@ import static org.opengis.annotation.Specification.*;
  * datums, which may lead to the two systems being slightly rotated with respect to each other.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0.1
+ * @version 3.1
  * @since   1.0
  *
  * @see CoordinateSystem
@@ -174,5 +174,7 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * @see RangeMeaning#WRAPAROUND
      */
     @UML(identifier="rangeMeaning", obligation=CONDITIONAL, specification=ISO_19111)
-    RangeMeaning getRangeMeaning();
+    default RangeMeaning getRangeMeaning() {
+        return null;
+    }
 }

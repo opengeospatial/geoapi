@@ -41,6 +41,8 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Distance between consistent parts of (centre, left side, right side) adjacent pixels.
+ * Exactly one of {@linkplain #getScanningResolution() scanning resolution} and
+ * {@linkplain #getGroundResolution() ground resolution} properties shall be provided.
  *
  * @author  Cédric Briançon (Geomatys)
  * @version 3.1
@@ -63,7 +65,9 @@ public interface NominalResolution {
      * @unitof Distance
      */
     @UML(identifier="scanningResolution", obligation=CONDITIONAL, specification=ISO_19115_2)
-    Double getScanningResolution();
+    default Double getScanningResolution() {
+        return null;
+    }
 
     /**
      * Distance between consistent parts of (centre, left side, right side) adjacent pixels
@@ -79,5 +83,7 @@ public interface NominalResolution {
      * @unitof Distance
      */
     @UML(identifier="groundResolution", obligation=CONDITIONAL, specification=ISO_19115_2)
-    Double getGroundResolution();
+    default Double getGroundResolution() {
+        return null;
+    }
 }

@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * Information on ground control point.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
 @UML(identifier="MI_GCP", specification=ISO_19115_2)

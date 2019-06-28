@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * Information describing metadata extensions.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
 @UML(identifier="MD_MetadataExtensionInformation", specification=ISO_19115)

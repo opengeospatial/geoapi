@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.*;
  * Requirement to be satisfied by the planned data acquisition.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
 @UML(identifier="MI_Requirement", specification=ISO_19115_2)

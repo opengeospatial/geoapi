@@ -31,13 +31,14 @@
  */
 package org.opengis.metadata.content;
 
+import java.util.ArrayList;
 import java.util.Map;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Locale;
 import java.nio.charset.Charset;
-import org.opengis.util.GenericName;
 import org.opengis.metadata.citation.Citation;
+import org.opengis.util.GenericName;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -143,11 +144,16 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * @deprecated As of ISO 19115:2014, replaced by {@link #getFeatureTypeInfo()}.
      */
     @Deprecated
-    Collection<? extends GenericName> getFeatureTypes();
+    default Collection<? extends GenericName> getFeatureTypes() {
+        final ArrayList<GenericName> names = new ArrayList<>();
+        getFeatureTypeInfo().forEach((info) -> names.add(info.getFeatureTypeName()));
+        return names;
+    }
 
     /**
      * Complete bibliographic reference to one or more external feature catalogues.
-     * This citation is mandatory if the feature catalogue is not included with resource
+     *
+     * @condition Mandatory if the feature catalogue is not included with resource
      * and {@code FeatureCatalogue} is not provided.
      *
      * @return bibliographic reference to one or more external feature catalogues.
