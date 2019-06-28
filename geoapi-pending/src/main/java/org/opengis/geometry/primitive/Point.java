@@ -89,15 +89,6 @@ public interface Point extends Primitive, Position {
     void setDirectPosition(DirectPosition position) throws UnmodifiableGeometryException;
 
     /**
-     * @deprecated Renamed as {@link #setDirectPosition} for consistency with {@link #getDirectPosition}.
-     *
-     * @param  position The direct position.
-     * @throws UnmodifiableGeometryException if this geometry is not modifiable.
-     */
-    @Deprecated
-    void setPosition(DirectPosition position) throws UnmodifiableGeometryException;
-
-    /**
      * Returns always {@code null}, since point has no boundary.
      *
      * @return always {@code null}.
