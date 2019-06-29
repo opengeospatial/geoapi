@@ -45,7 +45,7 @@ package org.opengis.annotation;
  * @deprecated has never been used outside a few metadata classes,
  *             and core profile is not defined anymore in latest ISO 19115.
  *
- * @see <a href="https://github.com/opengeospatial/geoapi/issues/20">Issue #20</a>
+ * @see <a href="https://github.com/opengeospatial/geoapi/issues/29">Issue #29</a>
  */
 @Deprecated
 public enum ComplianceLevel {
