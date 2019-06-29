@@ -319,22 +319,6 @@ public interface MathTransformFactory extends Factory {
                                              int numTrailingCoordinates) throws FactoryException;
 
     /**
-     * Creates a math transform object from a XML string.
-     *
-     * @param  xml  math transform encoded in XML format.
-     * @return the math transform (never {@code null}).
-     * @throws FactoryException if the object creation failed.
-     *
-     * @deprecated This method was defined in OGC 01-009 in anticipation for future normative specification,
-     *             but no XML format for math transforms have been defined.
-     */
-    @Deprecated
-    @UML(identifier="createFromXML", obligation=MANDATORY, specification=OGC_01009)
-    default MathTransform createFromXML(String xml) throws FactoryException {
-        throw new FactoryException("No XML format defined for MathTransform.");
-    }
-
-    /**
      * Creates a math transform object from a <cite>Well-Known Text</cite>.
      * The <a href="../doc-files/WKT.html">definition for WKT</a> is
      * shown using Extended Backus Naur Form (EBNF).
