@@ -41,7 +41,13 @@ package org.opengis.annotation;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.0
+ *
+ * @deprecated has never been used outside a few metadata classes,
+ *             and core profile is not defined anymore in latest ISO 19115.
+ *
+ * @see <a href="https://github.com/opengeospatial/geoapi/issues/20">Issue #20</a>
  */
+@Deprecated
 public enum ComplianceLevel {
     /**
      * Core metadata elements required to identify a dataset, typically for catalogue purposes.
