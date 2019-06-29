@@ -34,12 +34,10 @@ package org.opengis.metadata.distribution;
 import java.util.Collection;
 import java.util.Collections;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 import org.opengis.util.InternationalString;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -72,7 +70,6 @@ public interface Distribution {
      *
      * @see org.opengis.metadata.identification.Identification#getResourceFormats()
      */
-    @Profile(level=CORE)
     @UML(identifier="distributionFormat", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Format> getDistributionFormats();
 
@@ -92,7 +89,6 @@ public interface Distribution {
      *
      * @return technical means and media by which a resource is obtained from the distributor.
      */
-    @Profile(level=CORE)
     @UML(identifier="transferOptions", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends DigitalTransferOptions> getTransferOptions() {
         return Collections.emptyList();

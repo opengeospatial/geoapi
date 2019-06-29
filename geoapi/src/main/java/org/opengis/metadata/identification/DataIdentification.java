@@ -38,11 +38,9 @@ import java.util.Locale;
 import java.nio.charset.Charset;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -80,7 +78,6 @@ public interface DataIdentification extends Identification {
      *
      * @since 3.1
      */
-    @Profile(level=CORE)
     // Obligation note: `defaultLocale` is conditional and `otherLocale` is optional.
     @UML(identifier="defaultLocale+otherLocale", obligation=CONDITIONAL, specification=ISO_19115)
     default Map<Locale,Charset> getLocalesAndCharsets() {

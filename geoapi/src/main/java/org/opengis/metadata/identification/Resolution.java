@@ -32,14 +32,12 @@
 package org.opengis.metadata.identification;
 
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 import org.opengis.util.InternationalString;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -65,7 +63,6 @@ public interface Resolution {
      *
      * @condition {@code distance}, {@code vertical}, {@code angularDistance} and {@code levelOfDetail} not provided.
      */
-    @Profile(level=CORE)
     @UML(identifier="equivalentScale", obligation=CONDITIONAL, specification=ISO_19115)
     default RepresentativeFraction getEquivalentScale() {
         return null;
@@ -85,7 +82,6 @@ public interface Resolution {
      *
      * @condition {@code equivalentScale}, {@code vertical}, {@code angularDistance} and {@code levelOfDetail} not provided.
      */
-    @Profile(level=CORE)
     @UML(identifier="distance", obligation=CONDITIONAL, specification=ISO_19115)
     default Double getDistance() {
         return null;
@@ -107,7 +103,6 @@ public interface Resolution {
      *
      * @since 3.1
      */
-    @Profile(level=CORE)
     @UML(identifier="vertical", obligation=CONDITIONAL, specification=ISO_19115)
     default Double getVertical() {
         return null;
@@ -129,7 +124,6 @@ public interface Resolution {
      *
      * @since 3.1
      */
-    @Profile(level=CORE)
     @UML(identifier="angularDistance", obligation=CONDITIONAL, specification=ISO_19115)
     default Double getAngularDistance() {
         return null;
@@ -144,7 +138,6 @@ public interface Resolution {
      *
      * @since 3.1
      */
-    @Profile(level=CORE)
     @UML(identifier="levelOfDetail", obligation=CONDITIONAL, specification=ISO_19115)
     default InternationalString getLevelOfDetail() {
         return null;

@@ -34,12 +34,10 @@ package org.opengis.metadata.citation;
 import java.net.URI;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -65,7 +63,6 @@ public interface OnlineResource {
      *
      * @return location for on-line access using a Uniform Resource Locator address or similar scheme.
      */
-    @Profile(level=CORE)
     @UML(identifier="linkage", obligation=MANDATORY, specification=ISO_19115)
     URI getLinkage();
 

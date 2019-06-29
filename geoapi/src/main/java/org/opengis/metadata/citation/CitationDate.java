@@ -33,13 +33,11 @@ package org.opengis.metadata.citation;
 
 import java.util.Date;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -62,7 +60,6 @@ public interface CitationDate {
      *
      * @return reference date for the cited resource.
      */
-    @Profile(level=CORE)
     @UML(identifier="date", obligation=MANDATORY, specification=ISO_19115)
     Date getDate();
 
@@ -71,7 +68,6 @@ public interface CitationDate {
      *
      * @return event used for reference date.
      */
-    @Profile(level=CORE)
     @UML(identifier="dateType", obligation=MANDATORY, specification=ISO_19115)
     DateType getDateType();
 }

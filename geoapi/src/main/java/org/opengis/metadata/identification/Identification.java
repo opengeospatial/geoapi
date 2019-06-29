@@ -48,13 +48,11 @@ import org.opengis.metadata.distribution.Format;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.temporal.Duration;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -73,7 +71,6 @@ public interface Identification {
      *
      * @return citation for the resource.
      */
-    @Profile(level=CORE)
     @UML(identifier="citation", obligation=MANDATORY, specification=ISO_19115)
     Citation getCitation();
 
@@ -82,7 +79,6 @@ public interface Identification {
      *
      * @return brief narrative summary of the resource.
      */
-    @Profile(level=CORE)
     @UML(identifier="abstract", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getAbstract();
 
@@ -124,7 +120,6 @@ public interface Identification {
      *
      * @see org.opengis.metadata.Metadata#getContacts()
      */
-    @Profile(level=CORE)
     @UML(identifier="pointOfContact", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Responsibility> getPointOfContacts() {
         return Collections.emptyList();
@@ -154,7 +149,6 @@ public interface Identification {
      *
      * @since 3.1
      */
-    @Profile(level=CORE)
     @UML(identifier="spatialResolution", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Resolution> getSpatialResolutions() {
         return Collections.emptyList();
@@ -182,7 +176,6 @@ public interface Identification {
      *
      * @since 3.1
      */
-    @Profile(level=CORE)
     @UML(identifier="topicCategory", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<TopicCategory> getTopicCategories();
 
@@ -198,7 +191,6 @@ public interface Identification {
      *
      * @since 3.1
      */
-    @Profile(level=CORE)
     @UML(identifier="extent", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Extent> getExtents();
 

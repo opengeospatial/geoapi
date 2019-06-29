@@ -33,13 +33,11 @@ package org.opengis.metadata.citation;
 
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -70,7 +68,6 @@ public interface ResponsibleParty extends Responsibility {
      * @deprecated As of ISO 19115:2014, replaced by {@code getName()} in {@link Individual}.
      */
     @Deprecated
-    @Profile(level=CORE)
     @UML(identifier="individualName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     String getIndividualName();
 
@@ -85,7 +82,6 @@ public interface ResponsibleParty extends Responsibility {
      * @deprecated As of ISO 19115:2014, replaced by {@code getName()} in {@link Organisation}.
      */
     @Deprecated
-    @Profile(level=CORE)
     @UML(identifier="organisationName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     InternationalString getOrganisationName();
 
@@ -100,7 +96,6 @@ public interface ResponsibleParty extends Responsibility {
      * @deprecated As of ISO 19115:2014, replaced by {@link Individual#getPositionName()}.
      */
     @Deprecated
-    @Profile(level=CORE)
     @UML(identifier="positionName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     InternationalString getPositionName();
 
@@ -122,7 +117,6 @@ public interface ResponsibleParty extends Responsibility {
      */
     // No explicit @Deprecation because the inherited Responsibility.getRole() method is not deprecated.
     @Override
-    @Profile(level=CORE)
     @UML(identifier="role", obligation=MANDATORY, specification=ISO_19115)
     Role getRole();
 }

@@ -35,13 +35,11 @@ import java.util.Collection;
 import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -83,7 +81,6 @@ public interface Extent {
      *            {@linkplain #getVerticalElements() vertical element} and
      *            {@linkplain #getTemporalElements() temporal element} are not provided.
      */
-    @Profile(level=CORE)
     @UML(identifier="geographicElement", obligation=CONDITIONAL, specification=ISO_19115)
     default Collection<? extends GeographicExtent> getGeographicElements() {
         return Collections.emptyList();
@@ -98,7 +95,6 @@ public interface Extent {
      *            {@linkplain #getGeographicElements() geographic element} and
      *            {@linkplain #getTemporalElements() temporal element} are not provided.
      */
-    @Profile(level=CORE)
     @UML(identifier="verticalElement", obligation=CONDITIONAL, specification=ISO_19115)
     default Collection<? extends VerticalExtent> getVerticalElements() {
         return Collections.emptyList();
@@ -113,7 +109,6 @@ public interface Extent {
      *            {@linkplain #getGeographicElements() geographic element} and
      *            {@linkplain #getVerticalElements() vertical element} are not provided.
      */
-    @Profile(level=CORE)
     @UML(identifier="temporalElement", obligation=CONDITIONAL, specification=ISO_19115)
     default Collection<? extends TemporalExtent> getTemporalElements() {
         return Collections.emptyList();

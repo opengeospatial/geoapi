@@ -35,11 +35,9 @@ import java.util.Collection;
 import org.opengis.metadata.lineage.Lineage;
 import org.opengis.metadata.maintenance.Scope;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -79,7 +77,6 @@ public interface DataQuality {
      *
      * @condition Mandatory if the {@linkplain #getReports() report} is not provided.
      */
-    @Profile(level=CORE)
     @UML(identifier="lineage", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Lineage getLineage();
 }

@@ -38,11 +38,9 @@ import org.opengis.metadata.maintenance.Scope;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -66,7 +64,6 @@ public interface Lineage {
      * @condition Shall be provided only if {@linkplain Scope#getLevel() scope level} is
      *            {@link ScopeCode#DATASET} or {@link ScopeCode#SERIES}.
      */
-    @Profile(level=CORE)
     @UML(identifier="statement", obligation=CONDITIONAL, specification=ISO_19115)
     InternationalString getStatement();
 

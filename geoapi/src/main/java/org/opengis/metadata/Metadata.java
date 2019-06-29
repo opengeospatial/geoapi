@@ -60,11 +60,9 @@ import org.opengis.metadata.maintenance.MaintenanceInformation;
 import org.opengis.metadata.lineage.Lineage;
 import org.opengis.referencing.ReferenceSystem;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -96,7 +94,6 @@ public interface Metadata {
      *
      * @return unique identifier for this metadata record, or {@code null}.
      */
-    @Profile(level=CORE)
     @UML(identifier="metadataIdentifier", obligation=OPTIONAL, specification=ISO_19115)
     default Identifier getMetadataIdentifier() {
         return null;
@@ -173,7 +170,6 @@ public interface Metadata {
      *
      * @since 3.1
      */
-    @Profile(level=CORE)
     // Obligation note: `defaultLocale` is conditional and `otherLocale` is optional.
     @UML(identifier="defaultLocale+otherLocale", obligation=CONDITIONAL, specification=ISO_19115)
     default Map<Locale,Charset> getLocalesAndCharsets() {
@@ -343,7 +339,6 @@ public interface Metadata {
      *
      * @see Identification#getPointOfContacts()
      */
-    @Profile(level=CORE)
     @UML(identifier="contact", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends Responsibility> getContacts();
 
@@ -357,7 +352,6 @@ public interface Metadata {
      *
      * @since 3.1
      */
-    @Profile(level=CORE)
     @UML(identifier="dateInfo", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends CitationDate> getDateInfo();
 
@@ -411,7 +405,6 @@ public interface Metadata {
      *   followed by {@link Citation#getEdition()}.
      */
     @Deprecated
-    @Profile(level=CORE)
     @UML(identifier="metadataStandardVersion", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default String getMetadataStandardVersion() {
         for (Citation c : getMetadataStandards()) {
@@ -431,7 +424,6 @@ public interface Metadata {
      *
      * @since 3.1
      */
-    @Profile(level=CORE)
     @UML(identifier="metadataStandard", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getMetadataStandards() {
         return Collections.emptyList();
@@ -518,7 +510,6 @@ public interface Metadata {
      *
      * @return spatial and temporal reference systems used in the dataset.
      */
-    @Profile(level=CORE)
     @UML(identifier="referenceSystemInfo", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends ReferenceSystem> getReferenceSystemInfo() {
         return Collections.emptyList();
@@ -541,7 +532,6 @@ public interface Metadata {
      *
      * @return the resource(s) to which the metadata applies.
      */
-    @Profile(level=CORE)
     @UML(identifier="identificationInfo", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends Identification> getIdentificationInfo();
 
@@ -560,7 +550,6 @@ public interface Metadata {
      *
      * @return the distributor of and options for obtaining the resource(s), or {@code null}.
      */
-    @Profile(level=CORE)
     @UML(identifier="distributionInfo", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Distribution> getDistributionInfo() {
         return Collections.emptyList();
@@ -571,7 +560,6 @@ public interface Metadata {
      *
      * @return overall assessment of quality of a resource(s).
      */
-    @Profile(level=CORE)
     @UML(identifier="dataQualityInfo", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends DataQuality> getDataQualityInfo() {
         return Collections.emptyList();

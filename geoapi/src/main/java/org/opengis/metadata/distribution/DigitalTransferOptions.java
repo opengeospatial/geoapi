@@ -37,11 +37,9 @@ import org.opengis.util.InternationalString;
 import org.opengis.temporal.PeriodDuration;
 import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -82,7 +80,6 @@ public interface DigitalTransferOptions {
      *
      * @return online sources from which the resource can be obtained.
      */
-    @Profile(level=CORE)
     @UML(identifier="onLine", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends OnlineResource> getOnLines() {
         return Collections.emptyList();

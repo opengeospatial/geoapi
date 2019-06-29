@@ -34,11 +34,9 @@ package org.opengis.metadata.citation;
 import java.util.Collection;
 import java.util.Collections;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 import org.opengis.metadata.extent.Extent;
 
 import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.ComplianceLevel.CORE;
 import static org.opengis.annotation.Specification.ISO_19115;
 
 
@@ -56,7 +54,6 @@ public interface Responsibility {
      *
      * @return function performed by the responsible party.
      */
-    @Profile(level=CORE)
     @UML(identifier="role", obligation=MANDATORY, specification=ISO_19115)
     Role getRole();
 

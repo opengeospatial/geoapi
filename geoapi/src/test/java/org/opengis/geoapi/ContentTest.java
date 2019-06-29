@@ -105,7 +105,6 @@ public final strictfp class ContentTest implements FileVisitor<Path> {
             types[i] = new HashSet<>();
         }
         ignoreTypes = new HashSet<>(Arrays.asList(
-                org.opengis.annotation.ComplianceLevel.class,
                 org.opengis.annotation.Specification.class,
                 org.opengis.annotation.Stereotype.class,
                 org.opengis.util.CodeList.Filter.class,

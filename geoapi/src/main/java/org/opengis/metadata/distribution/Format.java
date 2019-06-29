@@ -37,11 +37,9 @@ import java.util.Iterator;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -61,7 +59,6 @@ public interface Format {
      *
      * @since 3.1
      */
-    @Profile(level=CORE)
     @UML(identifier="formatSpecificationCitation", obligation=MANDATORY, specification=ISO_19115)
     Citation getFormatSpecificationCitation();
 
@@ -90,7 +87,6 @@ public interface Format {
      * Note that citation alternate titles are often used for abbreviations.
      */
     @Deprecated
-    @Profile(level=CORE)
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19115, version=2003)
     default InternationalString getName() {
         Citation spec = getFormatSpecificationCitation();
@@ -110,7 +106,6 @@ public interface Format {
      * <code>{@linkplain #getFormatSpecificationCitation()}.{@linkplain Citation#getEdition() getEdition()}</code>.
      */
     @Deprecated
-    @Profile(level=CORE)
     @UML(identifier="version", obligation=MANDATORY, specification=ISO_19115, version=2003)
     default InternationalString getVersion() {
         Citation spec = getFormatSpecificationCitation();

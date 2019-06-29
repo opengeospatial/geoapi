@@ -38,13 +38,11 @@ import org.opengis.metadata.Identifier;
 import org.opengis.metadata.identification.BrowseGraphic;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Profile;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import static org.opengis.annotation.ComplianceLevel.*;
 
 
 /**
@@ -64,7 +62,6 @@ public interface Citation {
      *
      * @return the cited resource name.
      */
-    @Profile(level=CORE)
     @UML(identifier="title", obligation=MANDATORY, specification=ISO_19115)
     InternationalString getTitle();
 
@@ -88,7 +85,6 @@ public interface Citation {
      *
      * @return reference dates for the cited resource.
      */
-    @Profile(level=CORE)
     @UML(identifier="date", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends CitationDate> getDates() {
         return Collections.emptyList();
