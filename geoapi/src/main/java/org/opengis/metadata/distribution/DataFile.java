@@ -103,7 +103,7 @@ public interface DataFile {
      *
      * @return list of features types concerned by the transfer data file.
      */
-    @UML(identifier="featureType", obligation=OPTIONAL, specification=ISO_19115_3)
+    @UML(identifier="featureTypes", obligation=OPTIONAL, specification=ISO_19115_3)
     default Collection<? extends GenericName> getFeatureTypes() {
         return Collections.emptyList();
     }

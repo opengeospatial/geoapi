@@ -114,7 +114,7 @@ class DataFile(ABC):
         pass
 
     @property
-    def feature_type(self) -> Sequence[GenericName]:
+    def feature_types(self) -> Sequence[GenericName]:
         """Provides the list of feature types concerned by the transfer data file."""
         return None
 
