@@ -129,6 +129,7 @@ class BrowseGraphic(ABC):
 
     @property
     def file_type(self) -> str:
+        """Format in which the illustration is encoded."""
         return None
 
     @property

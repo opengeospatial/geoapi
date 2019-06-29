@@ -93,12 +93,29 @@ class Format(ABC):
 
 
 
-from opengis.metadata.naming import LocalName, RecordType, Record
+from opengis.metadata.naming import GenericName, RecordType, Record
 
 class DataFile(ABC):
+    """Description of a transfer data file."""
+
+    @abstractproperty
+    def file_name(self):
+        """Name of the file that contains the data."""
+        pass
+
+    @abstractproperty
+    def file_description(self) -> str:
+        """Text description of the data."""
+        pass
+
+    @abstractproperty
+    def file_type(self) -> str:
+        """Format in which the data is encoded."""
+        pass
 
     @property
-    def feature_type(self) -> Sequence[LocalName]:
+    def feature_type(self) -> Sequence[GenericName]:
+        """Provides the list of feature types concerned by the transfer data file."""
         return None
 
 
