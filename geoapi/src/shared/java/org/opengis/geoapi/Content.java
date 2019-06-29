@@ -202,7 +202,6 @@ public enum Content {
                org.opengis.metadata.spatial        .VectorSpatialRepresentation         .class,
                org.opengis.metadata.spatial        .Georectified                        .class,
                org.opengis.metadata.spatial        .Georeferenceable                    .class,
-               org.opengis.metadata                .FeatureTypeList                     .class,
                org.opengis.metadata                .ApplicationSchemaInformation        .class,
                org.opengis.metadata                .ExtendedElementInformation          .class,
                org.opengis.metadata                .MetadataExtensionInformation        .class,
