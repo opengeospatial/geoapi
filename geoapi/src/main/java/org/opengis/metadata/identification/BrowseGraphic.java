@@ -37,6 +37,7 @@ import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.metadata.constraint.Constraints;
+import org.opengis.metadata.distribution.DataFile;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -55,19 +56,23 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="MD_BrowseGraphic", specification=ISO_19115)
 public interface BrowseGraphic {
     /**
-     * Name of the file that contains a graphic that provides an illustration of the dataset.
+     * Name of the file that contains a graphic that provides an illustration of the resource.
      *
      * @departure integration
-     *   ISO 19115 type is {@code CharacterString}. Since the specification clearly state that the
+     *   ISO 19115 type is {@code CharacterString}. Since the specification clearly states that the
      *   string shall be a filename, a more specific Java type like {@code URI} seem appropriate.
      *
-     * @return file that contains a graphic that provides an illustration of the dataset.
+     * @see DataFile#getFileName()
+     *
+     * @return file that contains a graphic that provides an illustration of the resource.
      */
     @UML(identifier="fileName", obligation=MANDATORY, specification=ISO_19115)
     URI getFileName();
 
     /**
      * Text description of the illustration.
+     *
+     * @see DataFile#getFileDescription()
      *
      * @return text description of the illustration, or {@code null}.
      */
@@ -87,6 +92,7 @@ public interface BrowseGraphic {
      *
      * @return format in which the illustration is encoded, or {@code null}.
      *
+     * @see DataFile#getFileType()
      * @see javax.imageio.ImageIO#getReaderFormatNames()
      */
     @UML(identifier="fileType", obligation=OPTIONAL, specification=ISO_19115)

@@ -437,7 +437,10 @@ public class SchemaInformation {
                             throw new SchemaException(String.format("Code list \"%s\" is defined twice.", name));
                         }
                     } else {
-                        // addProperty(null, …) with null as a sentinel value for class definition.
+                        /*
+                         * Any type other than code list. Call `addProperty(null, …)` with null as a sentinel value
+                         * for class definition. Properties will be added later when reading the `complexType` block.
+                         */
                         verifyNamingConvention(schemaLocations.getLast(), name, type, TYPE_SUFFIX);
                         preparePropertyDefinitions(type);
                         addProperty(null, type, false, false, doc);
@@ -457,16 +460,17 @@ public class SchemaInformation {
                         currentPropertyType = null;
                     } else {
                         /*
-                         * In the case of "(…)_PropertyType", replace some ISO 19115-2 types by ISO 19115-1 types.
+                         * In the case of "(…)_Type", we will replace some ISO 19115-2 types by ISO 19115-1 types.
                          * For example "MI_Band_Type" is renamed as "MD_Band_Type". We do that because we use only
-                         * one class for representing those two distincts ISO types. Note that not all ISO 19115-2
+                         * one class for representing those two distinct ISO types. Note that not all ISO 19115-2
                          * types extend an ISO 19115-1 type, so we need to apply a case-by-case approach.
                          */
                         requiredByDefault = true;
-                        String parent = departures.mergedTypes.remove(name);
-                        if (parent != null) name = parent;
-                        preparePropertyDefinitions(name);
+                        final Departures.MergeInfo info = departures.nameOfMergedType(name);
+                        preparePropertyDefinitions(info.typeName);
+                        info.beforeAddProperties(currentProperties);
                         storePropertyDefinition(node);
+                        info.afterAddProperties(currentProperties);
                         currentProperties = null;
                     }
                     return;                             // Skip children since they have already been examined.
@@ -690,7 +694,7 @@ public class SchemaInformation {
     }
 
     /**
-     * Returns the type definitions for the given class. This convenience method compute a XML name from
+     * Returns the type definitions for the given class. This convenience method computes a XML name from
      * the annotations attached to the given type, then delegates to {@link #getTypeDefinition(String)}.
      *
      * @param  type  the GeoAPI interface (e.g. {@link org.opengis.metadata.Metadata}), or {@code null}.
