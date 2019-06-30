@@ -627,17 +627,7 @@ public class Configuration implements Serializable {
         @SuppressWarnings("unchecked")
         public static <T> Key<? extends T> valueOf(final String name, final Class<T> type) {
             Objects.requireNonNull(type, "type");
-            final Key<?> key = valueOf(Key.class, new Filter() {
-                @Override
-                public boolean accept(final CodeList<?> code) {
-                    return name.equals(code.name());
-                }
-
-                @Override
-                public String codename() {
-                    return null;
-                }
-            });
+            final Key<?> key = valueOf(Key.class, (code) -> name.equals(code.name()), null);
             if (key != null) {
                 if (!type.isAssignableFrom(key.type)) {
                     throw new ClassCastException(key.type.getName());

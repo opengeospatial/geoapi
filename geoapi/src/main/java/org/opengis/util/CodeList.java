@@ -37,6 +37,7 @@ import java.io.InvalidObjectException;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
+import java.util.function.Predicate;
 import java.security.AccessController;
 import java.security.PrivilegedAction;
 import java.util.Collection;
@@ -59,7 +60,7 @@ import static org.opengis.annotation.Specification.*;
  * @param <E> The type of this code list.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  */
 @UML(identifier="CodeList", specification=ISO_19103)
@@ -73,7 +74,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * The values for each code list.
      */
     @SuppressWarnings("rawtypes")
-    private static final Map<Class<? extends CodeList>, Collection<? extends CodeList>> VALUES = new HashMap<>();
+    private static final Map<Class<? extends CodeList<?>>, Collection<? extends CodeList<?>>> VALUES = new HashMap<>();
 
     /**
      * The types expected in constructors.
@@ -118,11 +119,10 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                 throw new IllegalArgumentException("Duplicated value: " + name);
             }
         }
-        final Class<? extends CodeList> codeType = getClass();
+        final Class<? extends CodeList<?>> codeType = (Class<? extends CodeList<?>>) getClass();
         synchronized (VALUES) {
-            final Collection<? extends CodeList> previous = VALUES.put(codeType, values);
+            final Collection<? extends CodeList> previous = VALUES.putIfAbsent(codeType, values);
             if (previous != null && previous != values) {
-                VALUES.put(codeType, previous);                                             // Roll back
                 throw new IllegalArgumentException("List already exists: " + values);
             }
         }
@@ -137,7 +137,10 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      *   It has been added because {@code CodeList} is one of the few concrete classes in
      *   GeoAPI and there is a need to give some user control over the behavior of the
      *   {@code CodeList} implementation.
+     *
+     * @deprecated Replaced by {@link Predicate} from the standard Java library.
      */
+    @Deprecated
     public static interface Filter {
         /**
          * Returns {@code true} if the given code matches the criterion defined by this filter.
@@ -166,18 +169,16 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * Returns the code of the given type that matches the given name, or returns a new one if none
      * match it. More specifically, this methods returns the first instance of the given class for
      * which <code>{@linkplain #name()}.{@linkplain String#equals equals}(name)</code> is {@code true}.
-     * If no such instance is found, then a new instance is created using the constructor expecting a
-     * single {@link String} argument.
+     * If no such instance is found, then a new instance is created using the constructor expecting
+     * a single {@link String} argument.
      *
-     * <p><b>Implementation note:</b> The {@code codeType} class needs to be initialized before to
-     * invoke this method. This is usually the case when the caller is a static method of the
-     * {@code codeType} class. However in other situations, callers may need to initialize
-     * explicitly the given class.</p>
+     * <p><strong>Note that invoking this method may result in the creation of a new code value.</strong>
+     * If this is not desired, use {@link #valueOf(Class, Predicate, String)} instead.</p>
      *
      * @param  <T>       the compile-time type given as the {@code codeType} parameter.
      * @param  codeType  the type of code list.
      * @param  name      the name of the code to obtain, or {@code null}.
-     * @return a code matching the given name, or {@code null} if the name is null.
+     * @return a code matching the given name (possible a new code), or {@code null} if the given name is null.
      *
      * @departure integration
      *   Provided by analogy with the methods in the Java {@code Enum} class.
@@ -187,18 +188,8 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
             return null;
         }
         name = name.trim();
-        final String n = name;
-        return valueOf(codeType, new Filter() {
-            @Override
-            public boolean accept(CodeList<?> code) {
-                return code.name().equals(n);
-            }
-
-            @Override
-            public String codename() {
-                return n;
-            }
-        });
+        final String n = name.trim();       // Need final for lambda.
+        return valueOf(codeType, (code) -> n.equals(code.name), name);
     }
 
     /**
@@ -218,10 +209,43 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @param  filter    the criterion for the code to obtain.
      * @return a code matching the given criterion, or {@code null} if there is no match and
      *         {@link Filter#codename()} returns {@code null}.
+     *
+     * @deprecated Since deprecation of {@link Filter}, replaced by {@link #valueOf(Class, Predicate, String)}.
      */
+    @Deprecated
     public static <T extends CodeList<T>> T valueOf(final Class<T> codeType, final Filter filter) {
-        @SuppressWarnings("rawtypes")
-        Collection<? extends CodeList> values;
+        return valueOf(codeType, (code) -> filter.accept(code), filter.codename());
+    }
+
+    /**
+     * Returns the code of the given type that matches the given criterion, or potentially a new code if there is no match.
+     * More specifically, this methods returns the first element (in declaration order) of the given
+     * class where <code>filter.{@linkplain Predicate#test test}(code)</code> returns {@code true}.
+     * If no such element is found, then there is a choice:
+     *
+     * <ul>
+     *   <li>If {@code nameIfNew} is {@code null}, then this method returns {@code null}.</li>
+     *   <li>Otherwise a new instance is created using the constructor expecting a single {@link String}
+     *       argument, which is given the {@code nameIfNew} value.</li>
+     * </ul>
+     *
+     * <p>This method is useful when a lenient comparisons of names is desired (for example ignoring cases or
+     * taking in account all names enumerated by {@link #names()}, or when the caller does not want to create
+     * new code value in case of no match.</p>
+     *
+     * @param  <T>        the compile-time type given as the {@code codeType} parameter.
+     * @param  codeType   the type of code list.
+     * @param  filter     the criterion for the code to obtain.
+     * @param  nameIfNew  the name to use if a new code list needs to be created,
+     *                     or {@code null} for not creating any new code list.
+     * @return a code matching the given criterion, or {@code null} if none and {@code nameIfNew} is null.
+     *
+     * @since 3.1
+     */
+    public static <T extends CodeList<T>> T valueOf(final Class<T> codeType,
+            final Predicate<CodeList<?>> filter, final String nameIfNew)
+    {
+        Collection<? extends CodeList<?>> values;
         synchronized (VALUES) {
             values = VALUES.get(codeType);
             if (values == null) {
@@ -248,19 +272,17 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
         }
         /*
          * At this point we got the list of all code list values. Now search for a value matching
-         * the filter specified to this method.
+         * the filter specified to this method. The search and, eventually, the code creation are
+         * done in the same synchronized block for making sure that the came code is nit created
+         * twice concurrently.
          */
         synchronized (values) {
             for (final CodeList<?> code : values) {
-                if (filter.accept(code)) {
+                if (filter.test(code)) {
                     return codeType.cast(code);
                 }
             }
-            if (Modifier.isAbstract(codeType.getModifiers())) {
-                return null;
-            }
-            final String name = filter.codename();
-            if (name == null) {
+            if (nameIfNew == null || Modifier.isAbstract(codeType.getModifiers())) {
                 return null;
             }
             /*
@@ -290,7 +312,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                         constructor.setAccessible(true);
                     }
                 }
-                return constructor.newInstance(name);
+                return constructor.newInstance(nameIfNew);
             } catch (ReflectiveOperationException exception) {
                 throw new IllegalArgumentException("Can not create code of type " + codeType.getSimpleName(), exception);
             }
