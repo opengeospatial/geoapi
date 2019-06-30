@@ -153,20 +153,14 @@ class Converter<T> implements Function<PyObject,T> {
         @Override public T apply(final PyObject value) {
             final String name = name(value);
             if (name == null) return null;
-            return CodeList.valueOf(type, new CodeList.Filter() {
-                @Override public String codename() {
-                    return name;
-                }
-
-                @Override public boolean accept(final CodeList<?> code) {
-                    for (final String n : code.names()) {
-                        if (name.equalsIgnoreCase(n)) {
-                            return true;
-                        }
+            return CodeList.valueOf(type, (c) -> {
+                for (final String n : c.names()) {
+                    if (name.equalsIgnoreCase(n)) {
+                        return true;
                     }
-                    return false;
                 }
-            });
+                return false;
+            }, name);
         }
     }
 
