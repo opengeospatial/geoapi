@@ -59,7 +59,7 @@ public interface Expression {
     Expression NIL = new NilExpression();
 
     /**
-     * Evaluates the given expression based on the content of the given object.
+     * Evaluates the expression based on the content of the given object.
      */
     Object evaluate(Object object);
 
