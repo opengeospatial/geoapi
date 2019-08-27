@@ -326,7 +326,7 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     /**
      * Converts the given Java Character Set to {@code CharacterSet}.
      *
-     * @param  cs  the character set, or {@cod null}.
+     * @param  cs  the character set, or {@code null}.
      * @return a code list for the given character set, or {@code null} if the given {@code cs} was null.
      *
      * @since 3.1

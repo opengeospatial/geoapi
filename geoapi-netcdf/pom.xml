@@ -83,7 +83,7 @@
     <dependency>
       <groupId>edu.ucar</groupId>
       <artifactId>cdm</artifactId>
-      <version>4.6.13</version>
+      <version>4.6.14</version>
     </dependency>
     <dependency>
       <groupId>org.slf4j</groupId>
@@ -154,7 +154,7 @@
         </configuration>
       </plugin>
 
-      <!-- Skip dependency convergence check for edu.ucar:cdm 4.6.13. -->
+      <!-- Skip dependency convergence check for edu.ucar:cdm 4.6.14. -->
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-enforcer-plugin</artifactId>
