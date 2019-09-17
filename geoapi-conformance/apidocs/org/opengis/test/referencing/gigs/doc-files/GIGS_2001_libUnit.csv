@@ -1,0 +1,42 @@
+#
+# Derived from file GIGS_201_libUnit_v1_2009-12-01.xls
+# Test 201, Application pre-defined geodetic parameter library - Units, v1_2009-12-01.
+#
+# Instructions:
+# Compare the definitions of units in the application pre-defined library with those in the EPSG Dataset. Those listed below are the minimum that should be reviewed.
+# (This list identifies items of especial interest to the E&P industry for geodetic integrity testing purposes; it is not a fully inclusive list of items of interest).
+#
+# Columns:
+#   [0]: EPSG UoM Code
+#   [1]: Type
+#   [2]: Name of Units used in EPSG db parameters
+#   [3]: Base units per unit
+#   [4]: Particularly important to E&P industry?
+#   [5]: Specific usage / Remarks
+#
+9001,Linear,metre,1,true,Numerous
+9036,Linear,kilometre,1000,true,Tunisia
+9002,Linear,foot,0.3048,true,US
+9003,Linear,US survey foot,0.30480060960121924,true,US
+9031,Linear,German legal metre,1.0000135965,true,Namibia
+9005,Linear,Clarke's foot,0.3047972654,true,Trinidad
+9039,Linear,Clarke's link,0.201166195164,true,Trinidad
+9042,Linear,British chain (Sears 1922),20.116765121552632,true,Brunei Malaysia
+9051,Linear,British foot (Sears 1922),0.3047997333333333,true,Brunei Malaysia
+9040,Linear,British yard (Sears 1922),0.9143984146160287,true,New Zealand
+9301,Linear,British chain (Sears 1922 truncated),20.116756,true,Malaysia
+9084,Linear,Indian yard,0.9143985307444408,false,south Asia - historic
+9094,Linear,Gold Coast foot,0.3047997101815088,false,Ghana
+9098,Linear,link,0.201168,false,Fiji
+
+9101,Angle,radian,1,true,Some geocentric 7- and 10-parameter transformations for Colombia and US/Canada.
+9102,Angle,degree,0.017453292519943278,true,Numerous
+9104,Angle,arc-second,0.000004848136811095355,true,Numerous
+9105,Angle,grad,0.01570796326794895,true,France
+9109,Angle,microradian,0.000001,true,Some 7- and 10-parameter transformations for Netherlands and Norway.
+9110,Angle,sexagesimal DMS,,true,"Special EPSG construct for storing sexagesimal degree values as a single real number. Applications do not necessarily have to adopt this approach but should somehow exactly honour sexagesimal value. Sexagesimal degree (123º45'67.8""[H]) should be used for display at human interface."
+9113,Angle,centesimal second,0.000001570796326794895,false,Used in one geocentric 7-parameter transformation for Switzerland.
+
+9201,Scale,unity,1,true,Numerous
+9202,Scale,parts per million,0.000001,true,Numerous
+9203,Scale,coefficient,,true,Numerous

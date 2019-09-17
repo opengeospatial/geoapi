@@ -1,0 +1,726 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Changes between GeoAPI 2.3-M2 and 2.3-M5</title>
+    <style type="text/css" media="all">
+      @import url("../../css/change-summary.css");
+    </style>
+  </head>
+  <body><div>
+    <h1>GeoAPI changes</h1>
+    <p>This page contains two tables:</p>
+    <ol>
+      <li>Changes in the normative part of GeoAPI</li>
+      <li>Changes in the conformance tests</li>
+    </ol>
+    <h2>Changes between GeoAPI 2.3-M2 and 2.3-M5</h2>
+    <table border="1" cellspacing="0">
+      <tr>
+        <th>OGC/ISO identifier</th>
+        <th>Modified type or member</th>
+        <th>Change description</th>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.annotation</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code><del>Extension</del></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.feature.type</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code>AttributeType</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code>FeatureType</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.geometry</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code>Geometry</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.geometry.primitive</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code>Point</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.metadata</code></th>
+      </tr>
+      <tr>
+        <td><code>MD_Metadata</code></td>
+        <td>Interface <code>MetaData</code></td>
+        <td>OGC/ISO identifier changed from “MD_MetaData” to “MD_Metadata”</td>
+      </tr>
+      <tr>
+        <td><code>MD_SpatialAttributeSupplement</code></td>
+        <td>Interface <code><del>SpatialAttributeSupplement</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.metadata.acquisition</code></th>
+      </tr>
+      <tr>
+        <td><code>MI_ContextCode</code></td>
+        <td>Code list <code>Context</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_GeometryTypeCode</code></td>
+        <td>Code list <code>GeometryType</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_ObjectiveTypeCode</code></td>
+        <td>Code list <code>ObjectiveType</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_OperationTypeCode</code></td>
+        <td>Code list <code>OperationType</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_PriorityCode</code></td>
+        <td>Code list <code>Priority</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_SequenceCode</code></td>
+        <td>Code list <code>Sequence</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_TriggerCode</code></td>
+        <td>Code list <code>Trigger</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_AcquisitionInformation</code></td>
+        <td>Interface <code>AcquisitionInformation</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_EnvironmentalRecord</code></td>
+        <td>Interface <code>EnvironmentalRecord</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_Event</code></td>
+        <td>Interface <code>Event</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_Instrument</code></td>
+        <td>Interface <code>Instrument</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_Objective</code></td>
+        <td>Interface <code>Objective</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_Operation</code></td>
+        <td>Interface <code>Operation</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_Plan</code></td>
+        <td>Interface <code>Plan</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_Platform</code></td>
+        <td>Interface <code>Platform</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_PlatformPass</code></td>
+        <td>Interface <code>PlatformPass</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_RequestedDate</code></td>
+        <td>Interface <code>RequestedDate</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_Requirement</code></td>
+        <td>Interface <code>Requirement</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.metadata.citation</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code><del>CitationFactory</del></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.metadata.content</code></th>
+      </tr>
+      <tr>
+        <td><code>MI_BandDefinition</code></td>
+        <td>Code list <code>BandDefinition</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_PolarizationOrientationCode</code></td>
+        <td>Code list <code>PolarizationOrientation</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_TransferFunctionTypeCode</code></td>
+        <td>Code list <code>TransferFunctionType</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_RangeElementDescription</code></td>
+        <td>Interface <code>RangeElementDescription</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.metadata.distribution</code></th>
+      </tr>
+      <tr>
+        <td><code>MX_DataFile</code></td>
+        <td>Interface <code>DataFile</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.metadata.lineage</code></th>
+      </tr>
+      <tr>
+        <td><code>LE_Algorithm</code></td>
+        <td>Interface <code>Algorithm</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>LE_NominalResolution</code></td>
+        <td>Interface <code>NominalResolution</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>LE_ProcessStepReport</code></td>
+        <td>Interface <code>ProcessStepReport</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>LE_Processing</code></td>
+        <td>Interface <code>Processing</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.metadata.quality</code></th>
+      </tr>
+      <tr>
+        <td><code>QE_CoverageResult</code></td>
+        <td>Interface <code>CoverageResult</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>QE_Usability</code></td>
+        <td>Interface <code>Usability</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.metadata.spatial</code></th>
+      </tr>
+      <tr>
+        <td><code>MI_GCP</code></td>
+        <td>Interface <code>GCP</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_GCPCollection</code></td>
+        <td>Interface <code>GCPCollection</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>MI_GeolocationInformation</code></td>
+        <td>Interface <code>GeolocationInformation</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.referencing.operation</code></th>
+      </tr>
+      <tr>
+        <td><code>CC_Conversion</code></td>
+        <td>Interface <code>Conversion</code></td>
+        <td>Parent changed from “Operation” to “SingleOperation”</td>
+      </tr>
+      <tr>
+        <td><code>CC_Formula</code></td>
+        <td>Interface <code>Formula</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>CC_Operation</code></td>
+        <td>Interface <code><del>Operation</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <td><code>CC_Transformation</code></td>
+        <td>Interface <code>Transformation</code></td>
+        <td>Parent changed from “Operation” to “SingleOperation”</td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.temporal</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code>PeriodDuration</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code>TemporalPrimitive</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.util</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code>CodeList.Filter</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>RecordType</code></td>
+        <td>Interface <code>RecordType</code></td>
+        <td>Parent set to “Type”</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code>Type</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Enumeration <code>org.opengis.annotation.ComplianceLevel</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Field <code><del>DATA_PROVIDER</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Field <code><del>DISPLAY_OBJECT</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Field <code><del>EDITABLE_DISPLAY_OBJECT</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Field <code><del>FEATURE</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Field <code><del>FEATURE_DISPLAY_OBJECT</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Field <code><del>SPATIAL</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Enumeration <code>org.opengis.annotation.Specification</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Field <code>ISO_19115_2</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Field <code>ISO_19139</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.MetaData</code></th>
+      </tr>
+      <tr>
+        <td><code>acquisitionInformation</code></td>
+        <td>Method <code>getAcquisitionInformation()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.citation.Citation</code></th>
+      </tr>
+      <tr>
+        <td><code>presentationForm</code></td>
+        <td>Method <code><del>getPresentationForm()</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.citation.Contact</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code><del>getOnLineResource()</del></code></td>
+        <td>OGC/ISO identifier “onLineResource” removed, Obligation “OPTIONAL” removed, <span class="remove">Deprecated</span></td>
+      </tr>
+      <tr>
+        <td><code>onlineResource</code></td>
+        <td>Method <code>getOnlineResource()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.constraint.Constraints</code></th>
+      </tr>
+      <tr>
+        <td><code>useLimitation</code></td>
+        <td>Method <code><del>getUseLimitation()</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.content.Band</code></th>
+      </tr>
+      <tr>
+        <td><code>bandBoundaryDefinition</code></td>
+        <td>Method <code>getBandBoundaryDefinition()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>detectedPolarization</code></td>
+        <td>Method <code>getDetectedPolarization()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>nominalSpatialResolution</code></td>
+        <td>Method <code>getNominalSpatialResolution()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>transferFunctionType</code></td>
+        <td>Method <code>getTransferFunctionType()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>transmittedPolarization</code></td>
+        <td>Method <code>getTransmittedPolarization()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.content.CoverageDescription</code></th>
+      </tr>
+      <tr>
+        <td><code>rangeElementDescription</code></td>
+        <td>Method <code>getRangeElementDescriptions()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Code list <code>org.opengis.metadata.identification.CharacterSet</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code><del>matches(String)</del></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>names()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.identification.DataIdentification</code></th>
+      </tr>
+      <tr>
+        <td><code>extent</code></td>
+        <td>Method <code><del>getExtent()</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <td><code>language</code></td>
+        <td>Method <code><del>getLanguage()</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.identification.Identification</code></th>
+      </tr>
+      <tr>
+        <td><code>resourceFormat</code></td>
+        <td>Method <code><del>getResourceFormat()</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <td><code>resourceMaintenance</code></td>
+        <td>Method <code><del>getResourceMaintenance()</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.lineage.ProcessStep</code></th>
+      </tr>
+      <tr>
+        <td><code>output</code></td>
+        <td>Method <code>getOutputs()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>processingInformation</code></td>
+        <td>Method <code>getProcessingInformation()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>report</code></td>
+        <td>Method <code>getReports()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.lineage.Source</code></th>
+      </tr>
+      <tr>
+        <td><code>processedLevel</code></td>
+        <td>Method <code>getProcessedLevel()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>resolution</code></td>
+        <td>Method <code>getResolution()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.spatial.Georectified</code></th>
+      </tr>
+      <tr>
+        <td><code>checkPoint</code></td>
+        <td>Method <code>getCheckPoints()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.spatial.Georeferenceable</code></th>
+      </tr>
+      <tr>
+        <td><code>geolocationInformation</code></td>
+        <td>Method <code>getGeolocationInformation()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td><code>parameterCitation</code></td>
+        <td>Method <code><del>getParameterCitation()</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.spatial.GridSpatialRepresentation</code></th>
+      </tr>
+      <tr>
+        <td><code>axisDimensionProperties</code></td>
+        <td>Method <code>getAxisDimensionProperties()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code><del>getAxisDimensionsProperties()</del></code></td>
+        <td>OGC/ISO identifier “axisDimensionsProperties” removed, Obligation “MANDATORY” removed, <span class="remove">Deprecated</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.parameter.GeneralParameterValue</code></th>
+      </tr>
+      <tr>
+        <td><code>parameter</code></td>
+        <td>Method <code>getDescriptor()</code></td>
+        <td>OGC/ISO identifier set to “parameter”, Obligation set to “MANDATORY”</td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.parameter.ParameterDescriptorGroup</code></th>
+      </tr>
+      <tr>
+        <td><code>parameter</code></td>
+        <td>Method <code>descriptors()</code></td>
+        <td>OGC/ISO identifier changed from “includesParameter” to “parameter”</td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.parameter.ParameterValue</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>doubleValue()</code></td>
+        <td>OGC/ISO identifier “value” removed, Obligation “CONDITIONAL” removed</td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.parameter.ParameterValueGroup</code></th>
+      </tr>
+      <tr>
+        <td><code>group</code></td>
+        <td>Method <code>getDescriptor()</code></td>
+        <td>OGC/ISO identifier changed from “valuesOfGroup” to “group”</td>
+      </tr>
+      <tr>
+        <td><code>parameterValue</code></td>
+        <td>Method <code>values()</code></td>
+        <td>OGC/ISO identifier changed from “includesValue” to “parameterValue”</td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.referencing.crs.CompoundCRS</code></th>
+      </tr>
+      <tr>
+        <td><code>componentReferenceSystem</code></td>
+        <td>Method <code><del>getCoordinateReferenceSystems()</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Code list <code>org.opengis.referencing.datum.VerticalDatumType</code></th>
+      </tr>
+      <tr>
+        <td><code>CS_DatumType.CS_VD_Ellipsoidal</code></td>
+        <td>Field <code><del>ELLIPSOIDAL</del></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <td><code>CS_DatumType.CS_VD_Orthometric</code></td>
+        <td>Field <code><del>ORTHOMETRIC</del></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.referencing.operation.OperationMethod</code></th>
+      </tr>
+      <tr>
+        <td><code>formulaReference</code></td>
+        <td>Method <code>getFormula()</code></td>
+        <td>OGC/ISO identifier changed from “formula” to “formulaReference”, Return type changed from “InternationalString” to “Formula”</td>
+      </tr>
+      <tr>
+        <td><code>sourceDimensions</code></td>
+        <td>Method <code>getSourceDimensions()</code></td>
+        <td>Return type changed from “int” to “Integer”, Obligation changed from “MANDATORY” to “OPTIONAL”</td>
+      </tr>
+      <tr>
+        <td><code>targetDimensions</code></td>
+        <td>Method <code>getTargetDimensions()</code></td>
+        <td>Return type changed from “int” to “Integer”, Obligation changed from “MANDATORY” to “OPTIONAL”</td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.referencing.operation.SingleOperation</code></th>
+      </tr>
+      <tr>
+        <td><code>parameterValue</code></td>
+        <td>Method <code>getParameterValues()</code></td>
+        <td>OGC/ISO identifier changed from “value” to “parameterValue”</td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Code list <code>org.opengis.util.CodeList</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code><del>matches(String)</del></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>names()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>valueOf(Class, Filter)</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.util.NameFactory</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code><del>createLocalName(GenericName, String, InternationalString)</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code><del>createNameSpace(GenericName, String, String)</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code><del>createScopedName(GenericName, String, InternationalString)</del>  — <span class="note">was deprecated</span></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>createTypeName(NameSpace, CharSequence)</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.util.Record</code></th>
+      </tr>
+      <tr>
+        <td><code>memberValue</code></td>
+        <td>Method <code>getAttributes()</code></td>
+        <td>OGC/ISO identifier changed from “attributes” to “memberValue”</td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.util.RecordSchema</code></th>
+      </tr>
+      <tr>
+        <td><code>element</code></td>
+        <td>Method <code><del>getElements()</del></code></td>
+        <td><span class="remove">Deprecated</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.util.RecordType</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code><del>getAttributeTypes()</del></code></td>
+        <td>OGC/ISO identifier “attributeTypes” removed, Obligation “MANDATORY” removed, <span class="remove">Deprecated</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>getContainer()</code></td>
+        <td>OGC/ISO identifier “container” removed, Obligation “OPTIONAL” removed</td>
+      </tr>
+      <tr>
+        <td><code>memberTypes</code></td>
+        <td>Method <code>getMemberTypes()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+    </table>
+    <hr/>
+    <h2>Changes in GeoAPI-conformance</h2>
+    <table border="1" cellspacing="0">
+      <tr>
+        <th>Modified type or member</th>
+        <th>Change description</th>
+      </tr>
+      <tr>
+        <th class="section" colspan="2">Classe <code>org.opengis.test.ValidatorContainer</code></th>
+      </tr>
+      <tr>
+        <td>Method <code>validate(Formula)</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section" colspan="2">Classe <code>org.opengis.test.Validators</code></th>
+      </tr>
+      <tr>
+        <td>Method <code>validate(Formula)</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section" colspan="2">Classe <code>org.opengis.test.referencing.OperationValidator</code></th>
+      </tr>
+      <tr>
+        <td>Method <code>validate(Formula)</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+    </table>
+  </div></body>
+</html>

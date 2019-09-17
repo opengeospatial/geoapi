@@ -1,0 +1,84 @@
+#
+# Derived from file GIGS_3004_userGeodeticDatumCRS_v2-0_2011-06-28.xls
+# Test 3004, Application user-definable geodetic parameter library - Geodetic Datums and CRSs.
+#
+# Instructions:
+# This test builds geodetic CRSs. It does so using both user-defined data (part 1)
+# and pre-defined components (part 2).
+#
+# Part 1 (user datum code 66001 to 66016) - using user-defined components
+#
+#  Step 1: Using the data in each row, create geodetic datum with identifier as in columns 0 and 1,
+#          using ellipsoid, prime meridian, and origin given in columns 2 through 4.
+#  Step 2: Create geodetic coordinate reference system (CRS) with identifier as in columns 5 and 6
+#          by associating an EPSG coordinate system with the datum built in step 1. Other CRS
+#          attributes are given in columns 7 through 9. (Note: no user-defined coordinate systems
+#          are built as part of the GIGS tests. Use definitions as in EPSG Dataset).
+#  Step 3: (conditional) If application requires transformation to WGS 84 to be part of datum or
+#          CRS definition (early binding) then refer to early binding transformation code in
+#          column 13 and see test 3007 for details.
+#
+# Part 2 (user datum code above 66200) - using application pre-defined components
+#  Repeat steps for part 1.
+#
+# Part 3 (user datum code 66017 to 66022)
+#  For applications which insist on early binding, it will be necessary to additionally create
+#  the CRSs in this part. They are used in the application performance (5000 series) tests.
+#
+# Columns:
+#  [ 0]: User Datum code
+#  [ 1]: User Datum name
+#  [ 2]: GIGS User-defined Ellipsoid Name (see test 3002)
+#  [ 3]: GIGS User-defined Prime Meridian Name (see test 3003)
+#  [ 4]: Datum origin
+#  [ 5]: GIGS User-defined CRS Code
+#  [ 6]: GIGS CRS Name
+#  [ 7]: EPSG CRS Type
+#  [ 8]: GIGS datum code (see column 0)
+#  [ 9]: EPSG coordinate system code
+#  [10]: Remarks regarding CRS definition
+#  [11]: Equivalent EPSG CRS code
+#  [12]: Equivalent EPSG CRS name
+#  [13]: Early binding transformation code (see test 3007)
+#
+66001,GIGS geodetic datum A,GIGS ellipsoid A,GIGS PM A,,64001,GIGS geocenCRS A,Geocentric,66001,6500,,4978,WGS 84,61001
+,,,,,64002,GIGS geog3DCRS A,Geographic 3D,66001,6423,,4979,WGS 84,61001
+,,,,,64003,GIGS geogCRS A,Geographic 2D,66001,6422,,4326,WGS 84,61001
+,,,,,64004,GIGS geogCRS Alonlat,Geographic 2D,66001,6424,WGS 84 with CS axes changed.,,,61001
+,,,,,64033,GIGS geogCRS Agr,Geographic 2D,66001,6403,WGS 84 in grads
+66002,GIGS geodetic datum B,GIGS ellipsoid B,GIGS PM A,,64019,GIGS geog3DCRS B,Geographic 3D,66002,6423,,,,61196
+,,,,,64005,GIGS geogCRS B,Geographic 2D,66002,6422,,4277,OSGB 1936,61196
+66003,GIGS geodetic datum C,GIGS ellipsoid C, GIGS PM A ,,64021,GIGS geog3DCRS C,Geographic 3D,66003,6423,,,,61002
+,,,,,64006,GIGS geogCRS C,Geographic 2D,66003,6422,,4289,Amersfoort,61002
+66004,GIGS geodetic datum D,GIGS ellipsoid C,GIGS PM D,,64007,GIGS geogCRS D,Geographic 2D,66004,6422,,4813,Batavia (Jakarta),68178
+66005,GIGS geodetic datum E,GIGS ellipsoid E,GIGS PM A,,64022,GIGS geog3DCRS E,Geographic 3D,66005,6423,,,,61610
+,,,,,64008,GIGS geogCRS E,Geographic 2D,66005,6422,,4313,Belge 1972,61610
+66006,GIGS geodetic datum F,GIGS ellipsoid F,GIGS PM A,Origin F,64009,GIGS geogCRS F,Geographic 2D,66006,6422,,4283,GDA94,61150
+66007,GIGS geodetic datum G,GIGS ellipsoid F,GIGS PM A,Origin G,64010,GIGS geogCRS G,Geographic 2D,66007,6422,This GIGS CRS is functionally equivalent to any ITRS realisation using the GRS 1980 ellipsoid.,4258;4742;4152;4190;4674,ETRS89;GDM2000;NAD83(HARN);POSGAR98;SIRGAS 2000,61005
+66008,GIGS geodetic datum H,GIGS ellipsoid H,GIGS PM H,,64011,GIGS geogCRS H,Geographic 2D,66008,6403,,4807,NTF (Paris),68094
+66009,GIGS geodetic datum J,GIGS ellipsoid J,GIGS PM A,,64012,GIGS geogCRS J,Geographic 2D,66009,6422,,4267,NAD27,61173
+66012,GIGS geodetic datum K,GIGS ellipsoid K,GIGS PM A,,64015,GIGS geogCRS K,Geographic 2D,66012,6422,,4237,HD72,61242
+66011,GIGS geodetic datum L,GIGS ellipsoid C,GIGS PM A,Origin L,64014,GIGS geogCRS L,Geographic 2D,66011,6422,,4211,Batavia,61123
+66016,GIGS geodetic datum M,GIGS ellipsoid E,GIGS PM A,,64020,GIGS geogCRS M,Geographic 2D,66016,6422,,4230,ED50,61275
+66010,GIGS geodetic datum T,GIGS ellipsoid H,GIGS PM A,,64013,GIGS geogCRS T,Geographic 2D,66010,6403,,4275,NTF,61193
+66013,GIGS geodetic datum X,GIGS ellipsoid X,GIGS PM A,,64016,GIGS geogCRS X,Geographic 2D,66013,6422,,4202,AGD66,15788
+66014,GIGS geodetic datum Y,GIGS ellipsoid Y,GIGS PM A,,64017,GIGS geogCRS Y,Geographic 2D,66014,6422,,4284,Pulkovo 1942,61254
+66015,GIGS geodetic datum Z,GIGS ellipsoid F,GIGS PM A,Origin Z,64018,GIGS geogCRS Z,Geographic 2D,66015,6422,,4269,NAD83,61188
+66326,GIGS geodetic datum AA,WGS 84,Greenwich,,64326,GIGS geogCRS AA,Geographic 2D,66326,6422,,4326,WGS 84,61001
+66277,GIGS geodetic datum BB,Airy 1830,Greenwich,,64277,GIGS geogCRS BB,Geographic 2D,66277,6422,,4277,OSGB 1936,1196
+66289,GIGS geodetic datum CC,Bessel 1841,Greenwich,,64289,GIGS geogCRS CC,Geographic 2D,66289,6422,,4289,Amersfoort,61002
+66813,GIGS geodetic datum DD,Bessel 1841,Jakarta,,64813,GIGS geogCRS DD,Geographic 2D,66813,6422,,4813,Batavia (Jakarta),8178
+66313,GIGS geodetic datum EE,International 1924,Greenwich,,64313,GIGS geogCRS EE,Geographic 2D,66313,6422,,4313,Belge 1972,1610
+66283,GIGS geodetic datum FF,GRS 1980,Greenwich,,64283,GIGS geogCRS FF,Geographic 2D,66283,6422,,4283,GDA94,1150
+66807,GIGS geodetic datum HH,Clarke 1880 (IGN),Paris,,64807,GIGS geogCRS HH,Geographic 2D,66807,6422,,4807,NTF(Paris),8094
+66269,GIGS geodetic datum ZZ,GRS 1980,Greenwich,,64269,GIGS geogCRS ZZ,Geographic 2D,66269,6422,,4269,NAD83,1188
+66017,GIGS geodetic datum B',GIGS ellipsoid B,GIGS PM A,,64023,GIGS geogCRS B',Geographic 2D,66017,6422,,,,1314
+,,,,,64024,GIGS geog3DCRS B',Geographic 3D,66017,6423
+66018,GIGS geodetic datum C',GIGS ellipsoid C,GIGS PM A,Origin C,64025,GIGS geogCRS C',Geographic 2D,66018,6422,,,,61003
+,,,,,64026,GIGS geog3DCRS C',Geographic 3D,66018,6423
+66023,GIGS geodetic datum E',GIGS ellipsoid E,GIGS PM A,,64027,GIGS geogCRS E',Geographic 2D,66023,6422,,,,15929
+,,,,,64028,GIGS geog3DCRS E',Geographic 3D,66023,6423
+66021,GIGS geodetic datum J',GIGS ellipsoid J,GIGS PM A,,64029,GIGS geogCRS J',Geographic 2D,66021,6422,,,,1243
+66019,GIGS geodetic datum J'',GIGS ellipsoid J,GIGS PM A,,64030,GIGS geogCRS J'',Geographic 2D,66019,6422,,,,1241
+66020,GIGS geodetic datum J''',GIGS ellipsoid J,GIGS PM A,,64031,GIGS geogCRS J''',Geographic 2D,66020,6422,,,,1693
+66022,GIGS geodetic datum X',GIGS ellipsoid X,GIGS PM A,,64032,GIGS geogCRS X',Geographic 2D,66022,6422,,,,15786

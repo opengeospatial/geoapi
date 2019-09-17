@@ -1,0 +1,108 @@
+/*
+ * This stylesheet is applied in addition to the standard.css;
+ * it does not replace it. We need to declare in this file only
+ * the elements that we want to overwrite.
+ */
+
+/*
+ * Add more space before headers or titles.
+ */
+h2 {margin-top: 80px;}
+h3 {margin-top: 40px;}
+h4 {
+  margin-top:  40px;
+  font-weight: bold;
+  font-size:   large;
+}
+h5 {
+  font-weight: bold;
+}
+div.term h3 {
+  margin-top:    9px;
+  margin-bottom: 6px;
+  font-size:     large;
+}
+div.imageblock div.title {
+  margin-top: 9px;
+}
+
+/*
+ * Keep Table of Content (TOC) items on single lines.
+ */
+ul.sectlevel1 li {
+  overflow:      hidden;
+  text-overflow: ellipsis;
+  white-space:   nowrap;
+}
+
+/*
+ * The "From ISO 19xxx:yyyy §#.#" reference below headers.
+ */
+em.reference {
+  top: -0.4em;
+  position: relative;
+  color: darkgoldenrod;
+}
+
+/*
+ * Main content.
+ */
+div.paragraph:not(.text-right) > p {
+  text-align: justify;
+}
+
+/*
+ * Images and their legends.
+ */
+div.imageblock > div.title,
+div.imageblock > div.content {
+  text-align: center;
+}
+
+/*
+ * Blocks specific to particular programming languages.
+ */
+details > summary {
+  display: list-item;
+  font-size: large;
+  font-weight: bold;
+}
+div.sidebarblock > div.content > div.title {
+  text-align: left;
+  font-size: 1.2em;
+  color: black;
+}
+pre, pre code {
+  line-height: 1.2em;
+}
+
+/*
+ * Reduce the space between items in lists.
+ * Instead, we try to keep lines short.
+ */
+ul > li p {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/*
+ * Less space between the table rows.
+ */
+table.compact th.tableblock {
+  padding-top:    3px;
+  padding-bottom: 2px;
+}
+
+table.compact td.tableblock {
+  padding-top: 0;
+  padding-bottom: 0;
+}
+
+p.tableblock code {
+  background-color: inherit;
+}
+
+div.bibliography p {
+  margin-top:    4px;
+  margin-bottom: 4px;
+}

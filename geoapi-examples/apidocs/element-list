@@ -1,0 +1,6 @@
+org.opengis.example.coverage
+org.opengis.example.geometry
+org.opengis.example.metadata
+org.opengis.example.parameter
+org.opengis.example.referencing
+org.opengis.example.util

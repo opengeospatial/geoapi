@@ -1,0 +1,6 @@
+# Convert line endings to native line endings on checkout.
+*.java       text
+*.md         text
+*.properties text
+*.xml        text
+*.html       text

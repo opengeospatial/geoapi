@@ -1,0 +1,74 @@
+/*
+ * Stylesheet for the content.html file.
+ */
+caption {
+  color: darkblue;
+  font-weight: bold;
+  font-size: large;
+  margin-top: 40px;
+  margin-bottom: 9px;
+}
+
+table {
+  width:          auto;
+  border:         none;
+  border-spacing: 0;
+  padding:        0;
+  text-align:     left;
+  white-space:    nowrap;
+}
+
+table tr th {
+  padding: 3px 9px;
+}
+
+table tr td {
+  padding: 0 9px;
+  vertical-align: text-top;
+}
+
+.separator {
+  padding: 0;
+}
+
+.header {
+  background: lightgray;
+}
+
+.package {
+  color: white;
+  background: darkblue;
+  font-size: 110%;
+}
+
+.type {
+  font-weight: bold;
+}
+
+.member {
+  padding: 0 9px 0 21px;
+}
+
+.spec {
+  font-size: smaller;
+}
+
+.new {
+  color: cadetblue;
+  text-align: center;
+}
+
+.incompatible {
+  color: red;
+  text-align: center;
+}
+
+.warning {
+  color: darkgoldenrod;
+  text-align: center;
+}
+
+.new a, .incompatible a, .warning a {
+  text-decoration: none;
+  color: currentColor;
+}

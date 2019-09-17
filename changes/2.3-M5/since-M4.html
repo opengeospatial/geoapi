@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <title>Changes between GeoAPI 2.3-M4 and 2.3-M5</title>
+    <style type="text/css" media="all">
+      @import url("../../css/change-summary.css");
+    </style>
+  </head>
+  <body><div>
+    <h1>GeoAPI changes</h1>
+    <p>This page contains two tables:</p>
+    <ol>
+      <li>Changes in the normative part of GeoAPI</li>
+      <li>Changes in the conformance tests</li>
+    </ol>
+    <h2>Changes between GeoAPI 2.3-M4 and 2.3-M5</h2>
+    <table border="1" cellspacing="0">
+      <tr>
+        <th>OGC/ISO identifier</th>
+        <th>Modified type or member</th>
+        <th>Change description</th>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.annotation</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code><del>Extension</del></code></td>
+        <td><span class="remove">Removed</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.feature.type</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code>AttributeType</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code>FeatureType</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.geometry</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code>Geometry</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.geometry.primitive</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code>Point</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.metadata</code></th>
+      </tr>
+      <tr>
+        <td><code>MD_Metadata</code></td>
+        <td>Interface <code>MetaData</code></td>
+        <td>OGC/ISO identifier changed from “MD_MetaData” to “MD_Metadata”</td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.temporal</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code>PeriodDuration</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code>TemporalPrimitive</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Package <code>org.opengis.util</code></th>
+      </tr>
+      <tr>
+        <td><code>RecordType</code></td>
+        <td>Interface <code>RecordType</code></td>
+        <td>Parent set to “Type”</td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Interface <code>Type</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.acquisition.Requirement</code></th>
+      </tr>
+      <tr>
+        <td><code>satisfiedPlan</code></td>
+        <td>Method <code>getSatisfiedPlans()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code><del>getSatisifedPlans()</del></code></td>
+        <td>OGC/ISO identifier “satisfiedPlan” removed, Obligation “OPTIONAL” removed, <span class="remove">Deprecated</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.citation.Contact</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code><del>getOnLineResource()</del></code></td>
+        <td>OGC/ISO identifier “onLineResource” removed, Obligation “OPTIONAL” removed, <span class="remove">Deprecated</span></td>
+      </tr>
+      <tr>
+        <td><code>onlineResource</code></td>
+        <td>Method <code>getOnlineResource()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.metadata.spatial.GridSpatialRepresentation</code></th>
+      </tr>
+      <tr>
+        <td><code>axisDimensionProperties</code></td>
+        <td>Method <code>getAxisDimensionProperties()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code><del>getAxisDimensionsProperties()</del></code></td>
+        <td>OGC/ISO identifier “axisDimensionsProperties” removed, Obligation “MANDATORY” removed, <span class="remove">Deprecated</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.util.NameFactory</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>createTypeName(NameSpace, CharSequence)</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.util.Record</code></th>
+      </tr>
+      <tr>
+        <td><code>memberValue</code></td>
+        <td>Method <code>getAttributes()</code></td>
+        <td>OGC/ISO identifier changed from “attributes” to “memberValue”</td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.util.RecordSchema</code></th>
+      </tr>
+      <tr>
+        <td><code>element</code></td>
+        <td>Method <code><del>getElements()</del></code></td>
+        <td><span class="remove">Deprecated</span></td>
+      </tr>
+      <tr>
+        <th class="section"></th><th class="section" colspan="2">Interface <code>org.opengis.util.RecordType</code></th>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code><del>getAttributeTypes()</del></code></td>
+        <td>OGC/ISO identifier “attributeTypes” removed, Obligation “MANDATORY” removed, <span class="remove">Deprecated</span></td>
+      </tr>
+      <tr>
+        <td></td>
+        <td>Method <code>getContainer()</code></td>
+        <td>OGC/ISO identifier “container” removed, Obligation “OPTIONAL” removed</td>
+      </tr>
+      <tr>
+        <td><code>memberTypes</code></td>
+        <td>Method <code>getMemberTypes()</code></td>
+        <td><span class="add">New</span></td>
+      </tr>
+    </table>
+    <hr/>
+    <h2>Changes in GeoAPI-conformance</h2>
+    <table border="1" cellspacing="0">
+      <tr>
+        <th>Modified type or member</th>
+        <th>Change description</th>
+      </tr>
+    </table>
+  </div></body>
+</html>
