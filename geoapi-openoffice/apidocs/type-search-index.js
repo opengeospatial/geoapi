@@ -1,1 +1,0 @@
-typeSearchIndex = [{"p":"org.opengis.openoffice","l":"Formulas"},{"p":"org.opengis.openoffice","l":"Referencing"},{"p":"org.opengis.openoffice","l":"XReferencing"}]
