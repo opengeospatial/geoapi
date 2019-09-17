@@ -65,7 +65,7 @@ public interface Function extends Expression {
      */
     String getName();
 
-   /**
+    /**
      * Returns the list subexpressions that will be evaluated to provide the
      * parameters to the function.
      */
@@ -79,6 +79,8 @@ public interface Function extends Expression {
      * @return Optional literal to use if an implementation for this function is not available.
      *
      * @since GeoAPI 2.2
+     *
+     * @todo Does this method make sense for a Java interface?
      */
     @XmlElement("fallbackValue")
     Literal getFallbackValue();

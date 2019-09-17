@@ -167,7 +167,7 @@ public interface FilterFactory {
      *
      * @param expr1 first expression
      * @param expr2 second expression
-     * @param matchCase true if the comparison should be case insensitive
+     * @param matchCase true if the comparison should be case sensitive
      * @return evaluates to true of expr1 not equal to expr2
      */
     PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
@@ -180,7 +180,7 @@ public interface FilterFactory {
      *
      * @param expr1 first expression
      * @param expr2 second expression
-     * @param matchCase true if the comparison should be case insensitive
+     * @param matchCase true if the comparison should be case sensitive
      * @return evaluates to true of expr1 is greater than expr2
      */
     PropertyIsGreaterThan greater(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);

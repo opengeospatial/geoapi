@@ -121,7 +121,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
         }
         final Class<? extends CodeList<?>> codeType = (Class<? extends CodeList<?>>) getClass();
         synchronized (VALUES) {
-            final Collection<? extends CodeList> previous = VALUES.putIfAbsent(codeType, values);
+            final Collection<? extends CodeList<?>> previous = VALUES.putIfAbsent(codeType, values);
             if (previous != null && previous != values) {
                 throw new IllegalArgumentException("List already exists: " + values);
             }
@@ -493,10 +493,10 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @return this code list as an unique instance.
      * @throws ObjectStreamException if the deserialization failed.
      */
-    @SuppressWarnings("rawtypes")
     protected Object readResolve() throws ObjectStreamException {
-        final Class<? extends CodeList> codeType = getClass();
-        final Collection<? extends CodeList> values;
+        @SuppressWarnings("unchecked")
+        final Class<? extends CodeList<?>> codeType = (Class<? extends CodeList<?>>) getClass();
+        final Collection<? extends CodeList<?>> values;
         synchronized (VALUES) {
             values = VALUES.get(codeType);
         }
@@ -516,7 +516,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                 // We have verified with codeType.isInstance(code) that every elements are
                 // of the appropriate class. This is the best we can do for type safety.
                 @SuppressWarnings("unchecked")
-                final Collection<CodeList> unsafe = (Collection) values;
+                final Collection<CodeList<?>> unsafe = (Collection) values;
                 if (!unsafe.add(this)) {
                     // Paranoiac check - should never happen.
                     throw new InvalidObjectException(name);
