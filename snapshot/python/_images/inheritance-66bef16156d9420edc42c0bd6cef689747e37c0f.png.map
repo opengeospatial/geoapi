@@ -1,0 +1,6 @@
+<map id="inheritancebc8cb64ae1" name="inheritancebc8cb64ae1">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="5,55,81,80"/>
+<area shape="rect" id="node2" href="#opengis.metadata.base.Metadata" target="_top" title="Root entity which defines metadata about a resource or resources." alt="" coords="194,5,434,31"/>
+<area shape="rect" id="node3" href="#opengis.metadata.base.MetadataScope" target="_top" title="opengis.metadata.base.MetadataScope" alt="" coords="175,55,453,80"/>
+<area shape="rect" id="node4" href="#opengis.metadata.base.PortrayalCatalogueReference" target="_top" title="Information identifying the portrayal catalogue used." alt="" coords="129,104,499,129"/>
+</map>

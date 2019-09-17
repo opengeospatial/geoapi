@@ -1,0 +1,21 @@
+<map id="inheritancef566b57025" name="inheritancef566b57025">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="16,438,86,462"/>
+<area shape="rect" id="node3" href="#opengis.metadata.citation.Address" target="_top" title="Location of the responsible individual or organisation." alt="" coords="186,233,416,256"/>
+<area shape="rect" id="node4" href="#opengis.metadata.citation.Citation" target="_top" title="Standardized resource reference." alt="" coords="186,278,415,302"/>
+<area shape="rect" id="node5" href="#opengis.metadata.citation.Contact" target="_top" title="Information required to enable contact with the responsible person and/or organisation." alt="" coords="187,324,415,347"/>
+<area shape="rect" id="node6" href="#opengis.metadata.citation.Date" target="_top" title="Reference date and event used to describe it." alt="" coords="196,369,406,393"/>
+<area shape="rect" id="node8" href="#opengis.metadata.citation.Identifier" target="_top" title="Value uniquely identifying an object within a namespace." alt="" coords="183,415,418,438"/>
+<area shape="rect" id="node10" href="#opengis.metadata.citation.Party" target="_top" title="Information about the individual and/or organisation of the party." alt="" coords="194,460,407,484"/>
+<area shape="rect" id="node12" href="#opengis.metadata.citation.OnlineResource" target="_top" title="Information about on&#45;line sources from which the resource, specification, or community profile name and extended metadata elements can be obtained." alt="" coords="163,506,439,529"/>
+<area shape="rect" id="node15" href="#opengis.metadata.citation.Responsibility" target="_top" title="Information about the party and their role." alt="" coords="168,551,434,575"/>
+<area shape="rect" id="node17" href="#opengis.metadata.citation.Series" target="_top" title="Information about the series, or aggregate resource, to which a resource belongs." alt="" coords="191,597,410,620"/>
+<area shape="rect" id="node18" href="#opengis.metadata.citation.Telephone" target="_top" title="Telephone numbers for contacting the responsible individual or organisation." alt="" coords="180,642,422,666"/>
+<area shape="rect" id="node2" title="Generic enumeration." alt="" coords="5,96,97,119"/>
+<area shape="rect" id="node7" href="#opengis.metadata.citation.DateTypeCode" target="_top" title="An enumeration." alt="" coords="167,5,435,28"/>
+<area shape="rect" id="node11" href="#opengis.metadata.citation.OnLineFunctionCode" target="_top" title="An enumeration." alt="" coords="149,50,453,74"/>
+<area shape="rect" id="node14" href="#opengis.metadata.citation.PresentationFormCode" target="_top" title="An enumeration." alt="" coords="142,96,460,119"/>
+<area shape="rect" id="node16" href="#opengis.metadata.citation.RoleCode" target="_top" title="An enumeration." alt="" coords="182,142,420,165"/>
+<area shape="rect" id="node19" href="#opengis.metadata.citation.TelephoneTypeCode" target="_top" title="An enumeration." alt="" coords="150,187,452,210"/>
+<area shape="rect" id="node9" href="#opengis.metadata.citation.Individual" target="_top" title="Information about the party if the party is an individual." alt="" coords="513,438,754,462"/>
+<area shape="rect" id="node13" href="#opengis.metadata.citation.Organisation" target="_top" title="Information about the party if the party is an organisation." alt="" coords="505,484,763,507"/>
+</map>

@@ -1,0 +1,21 @@
+<map id="inheritanceb9e013034a" name="inheritanceb9e013034a">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="9,232,48,245"/>
+<area shape="rect" id="node4" href="#opengis.metadata.representation.Dimension" target="_top" title="Axis properties." alt="" coords="114,181,276,194"/>
+<area shape="rect" id="node6" href="#opengis.metadata.representation.GCP" target="_top" title="opengis.metadata.representation.GCP" alt="" coords="125,206,265,219"/>
+<area shape="rect" id="node8" href="#opengis.metadata.representation.GeolocationInformation" target="_top" title="opengis.metadata.representation.GeolocationInformation" alt="" coords="92,232,297,245"/>
+<area shape="rect" id="node10" href="#opengis.metadata.representation.GeometricObjects" target="_top" title="Number of objects, listed by geometric object type, used in the dataset." alt="" coords="102,257,288,270"/>
+<area shape="rect" id="node14" href="#opengis.metadata.representation.SpatialRepresentation" target="_top" title="Digital mechanism used to represent spatial information." alt="" coords="95,283,295,296"/>
+<area shape="rect" id="node2" title="Generic enumeration." alt="" coords="3,79,54,92"/>
+<area shape="rect" id="node3" href="#opengis.metadata.representation.CellGeometryCode" target="_top" title="An enumeration." alt="" coords="100,3,289,16"/>
+<area shape="rect" id="node5" href="#opengis.metadata.representation.DimensionNameTypeCode" target="_top" title="An enumeration." alt="" coords="88,28,302,41"/>
+<area shape="rect" id="node9" href="#opengis.metadata.representation.GeometricObjectTypeCode" target="_top" title="An enumeration." alt="" coords="88,54,302,67"/>
+<area shape="rect" id="node15" href="#opengis.metadata.representation.PixelOrientationCode" target="_top" title="An enumeration." alt="" coords="97,79,293,92"/>
+<area shape="rect" id="node16" href="#opengis.metadata.representation.ReferenceSystemTypeCode" target="_top" title="An enumeration." alt="" coords="87,105,303,118"/>
+<area shape="rect" id="node17" href="#opengis.metadata.representation.SpatialRepresentationTypeCode" target="_top" title="An enumeration." alt="" coords="79,130,311,143"/>
+<area shape="rect" id="node18" href="#opengis.metadata.representation.TopologyLevelCode" target="_top" title="An enumeration." alt="" coords="100,155,290,168"/>
+<area shape="rect" id="node7" href="#opengis.metadata.representation.GCPCollection" target="_top" title="opengis.metadata.representation.GCPCollection" alt="" coords="359,232,532,245"/>
+<area shape="rect" id="node11" href="#opengis.metadata.representation.Georectified" target="_top" title="Grid whose cells are regularly spaced in a geographic (i.e., lat / long) or map coordinate system defined in the Spatial Referencing System (SRS) so that any cell in the grid can be geolocated given its grid coordinate and the grid origin, cell spacing, and orientation." alt="" coords="590,257,756,270"/>
+<area shape="rect" id="node12" href="#opengis.metadata.representation.GridSpatialRepresentation" target="_top" title="Information about grid spatial objects in the resource." alt="" coords="339,270,552,283"/>
+<area shape="rect" id="node13" href="#opengis.metadata.representation.Georeferenceable" target="_top" title="Grid with cells irregularly spaced in any given geographic/map projection coordinate system, whose individual cells can be geolocated using geolocation information supplied with the data but cannot be geolocated from the grid properties alone." alt="" coords="580,283,765,296"/>
+<area shape="rect" id="node19" href="#opengis.metadata.representation.VectorSpatialRepresentation" target="_top" title="Information about the vector spatial objects in the resource." alt="" coords="336,295,556,308"/>
+</map>

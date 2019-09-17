@@ -1,0 +1,18 @@
+<map id="inheritance5c3fff40cd" name="inheritance5c3fff40cd">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="14,348,76,369"/>
+<area shape="rect" id="node3" href="#opengis.metadata.identification.AssociatedResource" target="_top" title="Associated resource information. NOTE: An associated resource is a dataset composed of a collection of datasets." alt="" coords="134,206,430,227"/>
+<area shape="rect" id="node5" href="#opengis.metadata.identification.BrowseGraphic" target="_top" title="Graphic that provides an illustration of the dataset (should include a legend for the graphic, if applicable)." alt="" coords="147,247,417,267"/>
+<area shape="rect" id="node7" href="#opengis.metadata.identification.Identification" target="_top" title="Basic information required to uniquely identify a resource or resources." alt="" coords="152,287,412,308"/>
+<area shape="rect" id="node9" href="#opengis.metadata.identification.KeywordClass" target="_top" title="Specification of a class to categorize keywords in a domain&#45;specific vocabulary that has a binding to a formal ontology." alt="" coords="149,327,415,348"/>
+<area shape="rect" id="node11" href="#opengis.metadata.identification.Keywords" target="_top" title="Keywords, their type and reference source. NOTE: When the resource described is a service, one instance of MD_Keyword shall refer to the service taxonomy defined in ISO 19119, 8.3)." alt="" coords="161,368,403,388"/>
+<area shape="rect" id="node13" href="#opengis.metadata.identification.RepresentativeFraction" target="_top" title="Derived from ISO 19103 Scale where MD_RepresentativeFraction.denominator = 1 / Scale.measure And Scale.targetUnits = Scale.sourceUnits." alt="" coords="125,408,439,429"/>
+<area shape="rect" id="node14" href="#opengis.metadata.identification.Resolution" target="_top" title="Level of detail expressed as a scale factor, a distance or an angle." alt="" coords="159,448,405,469"/>
+<area shape="rect" id="node16" href="#opengis.metadata.identification.Usage" target="_top" title="Brief description of ways in which the resource(s) is/are currently or has been used." alt="" coords="170,489,394,509"/>
+<area shape="rect" id="node2" title="Generic enumeration." alt="" coords="4,85,86,106"/>
+<area shape="rect" id="node4" href="#opengis.metadata.identification.AssociationTypeCode" target="_top" title="An enumeration." alt="" coords="130,4,434,25"/>
+<area shape="rect" id="node8" href="#opengis.metadata.identification.InitiativeTypeCode" target="_top" title="An enumeration." alt="" coords="137,45,427,65"/>
+<area shape="rect" id="node10" href="#opengis.metadata.identification.KeywordTypeCode" target="_top" title="An enumeration." alt="" coords="138,85,426,106"/>
+<area shape="rect" id="node12" href="#opengis.metadata.identification.ProgressCode" target="_top" title="An enumeration." alt="" coords="150,125,414,146"/>
+<area shape="rect" id="node15" href="#opengis.metadata.identification.TopicCategoryCode" target="_top" title="An enumeration." alt="" coords="135,166,429,187"/>
+<area shape="rect" id="node6" href="#opengis.metadata.identification.DataIdentification" target="_top" title="Information required to identify a resource." alt="" coords="478,287,764,308"/>
+</map>
