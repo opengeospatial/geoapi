@@ -621,28 +621,6 @@
       </plugin>
 
 
-      <!-- =======================================================================================
-               Python API documentation.
-
-               We could use http://trustin.github.io/sphinx-maven-plugin/basic-usage.html,
-               but command-line give us more control for now. This requires the developer
-               to have Sphinx installed on his machine.
-           ======================================================================================= -->
-      <!--plugin>
-        <groupId>kr.motd.maven</groupId>
-        <artifactId>sphinx-maven-plugin</artifactId>
-        <version>2.6.0</version>
-        <inherited>false</inherited>
-        <configuration>
-          <asReport>true</asReport>
-          <name>Python API</name>
-          <description>GeoAPI abstract classes for Python</description>
-          <outputDirectory>${project.reporting.outputDirectory}/snapshot/python</outputDirectory>
-          <outputName>python</outputName>
-        </configuration>
-      </plugin -->
-
-
 
       <!-- =======================================================================================
                TODO tags

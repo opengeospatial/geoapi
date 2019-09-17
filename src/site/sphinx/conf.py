@@ -6,7 +6,7 @@
 #
 # Execution on command-line from the root of GeoAPI project;
 #
-#     sphinx-build -b html src/site/sphinx target/site/snapshot/python
+#     sphinx-build-3 -b html src/site/sphinx target/site/snapshot/python
 
 
 # -- Path setup --------------------------------------------------------------
@@ -20,7 +20,7 @@ sys.path.insert(0, os.path.abspath('../../../geoapi/src/main/python'))
 # -- Project information -----------------------------------------------------
 
 project    = "GeoAPI"
-copyright  = "1994–2018 Open Geospatial Consortium. All rights reserved"
+copyright  = u"1994–2019 Open Geospatial Consortium. All rights reserved"
 author     = "Open Geospatial Consortium"
 version    = "4.0-SNAPSHOT"
 release    = "4.0-SNAPSHOT"
