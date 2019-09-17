@@ -2,8 +2,7 @@
 <project name="GeoAPI">
   <body>
     <menu name="GeoAPI pending" inherit="none">
-      <item name="Javadoc"            href="../snapshot/pending/index.html"/>
-      <item name="Stable interfaces"  href="../geoapi/index.html"/>
+      <item name="Javadoc"            href="../geoapi/index.html"/>
       <item name="Maven repositories" href="../maven.html"/>
     </menu>
 

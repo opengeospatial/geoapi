@@ -11,7 +11,5 @@ GeoAPI pending interfaces
   here. Consequently, importing the <<<geoapi-pending>>> module in a project is sufficient
   for using both the normative and the experimental interfaces.
 
-    * {{{./apidocs/index.html}Browse javadoc}}
-
     * {{{../maven.html}Maven repositories}} (JAR file can be downloaded manually from the
       <<<org/opengis/geoapi-pending/>>> directory in any of those repositories)
