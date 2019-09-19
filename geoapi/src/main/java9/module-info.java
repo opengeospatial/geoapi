@@ -43,7 +43,7 @@
  *   <li><a href="content.html">GeoAPI content (with mapping to <abbr>OGC</abbr>/<abbr>ISO</abbr> <abbr>UML</abbr>)</a></li>
  *   <li><a href="UML-Java.html">Mapping from <abbr>UML</abbr> diagrams to Java interfaces</a></li>
  *   <li><a href="departures.html">Departures in Java interfaces compared to <abbr>UML</abbr> diagrams</a></li>
- *   <li><a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html"><cite>Well-Known Text 2</cite> (<abbr>WKT</abbr> 2) specification</a></li>
+ *   <li><a href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html"><cite>Well-Known Text 2</cite> (<abbr>WKT</abbr> 2) specification</a></li>
  *   <li><a href="org/opengis/referencing/doc-files/WKT.html"><cite>Well-Known Text 1</cite> (<abbr>WKT</abbr> 1) specification</a></li>
  *   <li><a href="future-work.html">Future work</a></li>
  * </ul>
