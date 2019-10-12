@@ -127,7 +127,7 @@ extends <a href="../../../../org/opengis/referencing/AuthorityFactory.html" titl
 <dt><span class="simpleTagLabel">Since:</span></dt>
 <dd>1.0</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../org/opengis/referencing/cs/CSAuthorityFactory.html" title="interface in org.opengis.referencing.cs"><code>CSAuthorityFactory</code></a>, 
+<dd><a href="../../../../org/opengis/referencing/cs/CSAuthorityFactory.html" title="interface in org.opengis.referencing.cs"><code>CSAuthorityFactory</code></a>,
 <a href="../../../../org/opengis/referencing/crs/CRSAuthorityFactory.html" title="interface in org.opengis.referencing.crs"><code>CRSAuthorityFactory</code></a></dd>
 </dl>
 </li>
@@ -248,8 +248,8 @@ extends <a href="../../../../org/opengis/referencing/AuthorityFactory.html" titl
 <dd><code><a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a></code> - if the specified <code>code</code> was not found.</dd>
 <dd><code><a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></code> - if the object creation failed for some other reason.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../org/opengis/referencing/datum/DatumAuthorityFactory.html#createGeodeticDatum-java.lang.String-"><code>createGeodeticDatum(String)</code></a>, 
-<a href="../../../../org/opengis/referencing/datum/DatumAuthorityFactory.html#createVerticalDatum-java.lang.String-"><code>createVerticalDatum(String)</code></a>, 
+<dd><a href="../../../../org/opengis/referencing/datum/DatumAuthorityFactory.html#createGeodeticDatum-java.lang.String-"><code>createGeodeticDatum(String)</code></a>,
+<a href="../../../../org/opengis/referencing/datum/DatumAuthorityFactory.html#createVerticalDatum-java.lang.String-"><code>createVerticalDatum(String)</code></a>,
 <a href="../../../../org/opengis/referencing/datum/DatumAuthorityFactory.html#createTemporalDatum-java.lang.String-"><code>createTemporalDatum(String)</code></a></dd>
 </dl>
 </li>
@@ -309,8 +309,8 @@ extends <a href="../../../../org/opengis/referencing/AuthorityFactory.html" titl
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createVerticalDatum",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/datum/VerticalDatum.html" title="interface in org.opengis.referencing.datum">VerticalDatum</a>&nbsp;createVerticalDatum(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;code)
-                                                                                                throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
-                                                                                                       <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                           throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
+                                  <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a <a href="../../../../org/opengis/referencing/datum/VerticalDatum.html" title="interface in org.opengis.referencing.datum">vertical datum</a> from a code.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -357,8 +357,8 @@ extends <a href="../../../../org/opengis/referencing/AuthorityFactory.html" titl
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createHorizontalDatum",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/datum/GeodeticDatum.html" title="interface in org.opengis.referencing.datum">GeodeticDatum</a>&nbsp;createGeodeticDatum(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;code)
-                                                                                                  throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
-                                                                                                         <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                           throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
+                                  <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Returns a <a href="../../../../org/opengis/referencing/datum/GeodeticDatum.html" title="interface in org.opengis.referencing.datum">geodetic datum</a> from a code.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -369,9 +369,9 @@ extends <a href="../../../../org/opengis/referencing/AuthorityFactory.html" titl
 <dd><code><a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a></code> - if the specified <code>code</code> was not found.</dd>
 <dd><code><a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></code> - if the object creation failed for some other reason.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../org/opengis/referencing/datum/DatumAuthorityFactory.html#createEllipsoid-java.lang.String-"><code>createEllipsoid(String)</code></a>, 
-<a href="../../../../org/opengis/referencing/datum/DatumAuthorityFactory.html#createPrimeMeridian-java.lang.String-"><code>createPrimeMeridian(String)</code></a>, 
-<a href="../../../../org/opengis/referencing/crs/CRSAuthorityFactory.html#createGeographicCRS-java.lang.String-"><code>CRSAuthorityFactory.createGeographicCRS(String)</code></a>, 
+<dd><a href="../../../../org/opengis/referencing/datum/DatumAuthorityFactory.html#createEllipsoid-java.lang.String-"><code>createEllipsoid(String)</code></a>,
+<a href="../../../../org/opengis/referencing/datum/DatumAuthorityFactory.html#createPrimeMeridian-java.lang.String-"><code>createPrimeMeridian(String)</code></a>,
+<a href="../../../../org/opengis/referencing/crs/CRSAuthorityFactory.html#createGeographicCRS-java.lang.String-"><code>CRSAuthorityFactory.createGeographicCRS(String)</code></a>,
 <a href="../../../../org/opengis/referencing/crs/CRSAuthorityFactory.html#createProjectedCRS-java.lang.String-"><code>CRSAuthorityFactory.createProjectedCRS(String)</code></a></dd>
 </dl>
 </li>
@@ -385,8 +385,8 @@ extends <a href="../../../../org/opengis/referencing/AuthorityFactory.html" titl
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createEllipsoid",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/datum/Ellipsoid.html" title="interface in org.opengis.referencing.datum">Ellipsoid</a>&nbsp;createEllipsoid(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;code)
-                                                                                    throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
-                                                                                           <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                   throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
+                          <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Returns an <a href="../../../../org/opengis/referencing/datum/Ellipsoid.html" title="interface in org.opengis.referencing.datum">ellipsoid</a> from a code.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -410,8 +410,8 @@ extends <a href="../../../../org/opengis/referencing/AuthorityFactory.html" titl
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createPrimeMeridian",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/datum/PrimeMeridian.html" title="interface in org.opengis.referencing.datum">PrimeMeridian</a>&nbsp;createPrimeMeridian(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;code)
-                                                                                                throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
-                                                                                                       <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                           throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
+                                  <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Returns a <a href="../../../../org/opengis/referencing/datum/PrimeMeridian.html" title="interface in org.opengis.referencing.datum">prime meridian</a> from a code.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>

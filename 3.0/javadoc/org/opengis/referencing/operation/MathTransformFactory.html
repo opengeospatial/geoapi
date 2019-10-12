@@ -285,7 +285,7 @@ extends <a href="../../../../org/opengis/util/Factory.html" title="interface in 
 <dt><span class="returnLabel">Returns:</span></dt>
 <dd>All <a href="../../../../org/opengis/referencing/operation/MathTransform.html" title="interface in org.opengis.referencing.operation">math transform</a> methods available in this factory.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../org/opengis/referencing/operation/MathTransformFactory.html#getDefaultParameters-java.lang.String-"><code>getDefaultParameters(String)</code></a>, 
+<dd><a href="../../../../org/opengis/referencing/operation/MathTransformFactory.html#getDefaultParameters-java.lang.String-"><code>getDefaultParameters(String)</code></a>,
 <a href="../../../../org/opengis/referencing/operation/MathTransformFactory.html#createParameterizedTransform-org.opengis.parameter.ParameterValueGroup-"><code>createParameterizedTransform(ParameterValueGroup)</code></a></dd>
 <blockquote><font color="firebrick" size=-1><b>Departure from OGC/ISO specification:</b><br>This method is not part of the OGC specification. It has been added as a way to publish
    the capabilities of a factory.</font></blockquote></dl>
@@ -350,7 +350,7 @@ extends <a href="../../../../org/opengis/util/Factory.html" title="interface in 
 <dt><span class="throwsLabel">Throws:</span></dt>
 <dd><code><a href="../../../../org/opengis/util/NoSuchIdentifierException.html" title="class in org.opengis.util">NoSuchIdentifierException</a></code> - if there is no transform registered for the specified method.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../org/opengis/referencing/operation/MathTransformFactory.html#getAvailableMethods-java.lang.Class-"><code>getAvailableMethods(Class)</code></a>, 
+<dd><a href="../../../../org/opengis/referencing/operation/MathTransformFactory.html#getAvailableMethods-java.lang.Class-"><code>getAvailableMethods(Class)</code></a>,
 <a href="../../../../org/opengis/referencing/operation/MathTransformFactory.html#createParameterizedTransform-org.opengis.parameter.ParameterValueGroup-"><code>createParameterizedTransform(ParameterValueGroup)</code></a></dd>
 <blockquote><font color="firebrick" size=-1><b>Departure from OGC/ISO specification:</b><br>This method is part of the GeoAPI mechanism for defining the math transform parameters
    or deriving other transforms.</font></blockquote></dl>
@@ -403,8 +403,8 @@ extends <a href="../../../../org/opengis/util/Factory.html" title="interface in 
      <a href="../../../../org/opengis/annotation/UML.html#obligation--">obligation</a>=<a href="../../../../org/opengis/annotation/Obligation.html#MANDATORY">MANDATORY</a>,
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/operation/MathTransform.html" title="interface in org.opengis.referencing.operation">MathTransform</a>&nbsp;createParameterizedTransform(<a href="../../../../org/opengis/parameter/ParameterValueGroup.html" title="interface in org.opengis.parameter">ParameterValueGroup</a>&nbsp;parameters)
-                                                                                                                                             throws <a href="../../../../org/opengis/util/NoSuchIdentifierException.html" title="class in org.opengis.util">NoSuchIdentifierException</a>,
-                                                                                                                                                    <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                                    throws <a href="../../../../org/opengis/util/NoSuchIdentifierException.html" title="class in org.opengis.util">NoSuchIdentifierException</a>,
+                                           <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a transform from a group of parameters. The method name is inferred from
  the <a href="../../../../org/opengis/referencing/IdentifiedObject.html#getName--">parameter group name</a>. Example:
 
@@ -440,7 +440,7 @@ extends <a href="../../../../org/opengis/util/Factory.html" title="interface in 
 <dd><code><a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></code> - if the object creation failed. This exception is thrown
          if some required parameter has not been supplied, or has illegal value.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../org/opengis/referencing/operation/MathTransformFactory.html#getDefaultParameters-java.lang.String-"><code>getDefaultParameters(String)</code></a>, 
+<dd><a href="../../../../org/opengis/referencing/operation/MathTransformFactory.html#getDefaultParameters-java.lang.String-"><code>getDefaultParameters(String)</code></a>,
 <a href="../../../../org/opengis/referencing/operation/MathTransformFactory.html#getAvailableMethods-java.lang.Class-"><code>getAvailableMethods(Class)</code></a></dd>
 </dl>
 </li>
@@ -455,7 +455,7 @@ extends <a href="../../../../org/opengis/util/Factory.html" title="interface in 
      <a href="../../../../org/opengis/annotation/UML.html#obligation--">obligation</a>=<a href="../../../../org/opengis/annotation/Obligation.html#MANDATORY">MANDATORY</a>,
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/operation/MathTransform.html" title="interface in org.opengis.referencing.operation">MathTransform</a>&nbsp;createAffineTransform(<a href="../../../../org/opengis/referencing/operation/Matrix.html" title="interface in org.opengis.referencing.operation">Matrix</a>&nbsp;matrix)
-                                                                                                                               throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                             throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates an affine transform from a matrix.
  If the transform's input dimension is <code>M</code>, and output dimension
  is <code>N</code>, then the matrix will have size <code>[N+1][M+1]</code>.
@@ -484,8 +484,8 @@ extends <a href="../../../../org/opengis/util/Factory.html" title="interface in 
      <a href="../../../../org/opengis/annotation/UML.html#obligation--">obligation</a>=<a href="../../../../org/opengis/annotation/Obligation.html#MANDATORY">MANDATORY</a>,
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/operation/MathTransform.html" title="interface in org.opengis.referencing.operation">MathTransform</a>&nbsp;createConcatenatedTransform(<a href="../../../../org/opengis/referencing/operation/MathTransform.html" title="interface in org.opengis.referencing.operation">MathTransform</a>&nbsp;transform1,
-                                                                                                                                                  <a href="../../../../org/opengis/referencing/operation/MathTransform.html" title="interface in org.opengis.referencing.operation">MathTransform</a>&nbsp;transform2)
-                                                                                                                                           throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                                          <a href="../../../../org/opengis/referencing/operation/MathTransform.html" title="interface in org.opengis.referencing.operation">MathTransform</a>&nbsp;transform2)
+                                   throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a transform by concatenating two existing transforms.
  A concatenated transform acts in the same way as applying two
  transforms, one after the other.
@@ -515,9 +515,9 @@ extends <a href="../../../../org/opengis/util/Factory.html" title="interface in 
      <a href="../../../../org/opengis/annotation/UML.html#obligation--">obligation</a>=<a href="../../../../org/opengis/annotation/Obligation.html#MANDATORY">MANDATORY</a>,
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/operation/MathTransform.html" title="interface in org.opengis.referencing.operation">MathTransform</a>&nbsp;createPassThroughTransform(int&nbsp;firstAffectedOrdinate,
-                                                                                                                                                <a href="../../../../org/opengis/referencing/operation/MathTransform.html" title="interface in org.opengis.referencing.operation">MathTransform</a>&nbsp;subTransform,
-                                                                                                                                                int&nbsp;numTrailingOrdinates)
-                                                                                                                                         throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                                         <a href="../../../../org/opengis/referencing/operation/MathTransform.html" title="interface in org.opengis.referencing.operation">MathTransform</a>&nbsp;subTransform,
+                                         int&nbsp;numTrailingOrdinates)
+                                  throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a transform which passes through a subset of ordinates to another transform.
  This allows transforms to operate on a subset of ordinates. For example giving
  (<var>latitude</var>, <var>longitude</var>, <var>height</var>) coordinates, a pass
@@ -550,7 +550,7 @@ extends <a href="../../../../org/opengis/util/Factory.html" title="interface in 
      <a href="../../../../org/opengis/annotation/UML.html#obligation--">obligation</a>=<a href="../../../../org/opengis/annotation/Obligation.html#MANDATORY">MANDATORY</a>,
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/operation/MathTransform.html" title="interface in org.opengis.referencing.operation">MathTransform</a>&nbsp;createFromXML(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;xml)
-                                                                                                               throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                     throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a math transform object from a XML string.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -572,7 +572,7 @@ extends <a href="../../../../org/opengis/util/Factory.html" title="interface in 
      <a href="../../../../org/opengis/annotation/UML.html#obligation--">obligation</a>=<a href="../../../../org/opengis/annotation/Obligation.html#MANDATORY">MANDATORY</a>,
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/operation/MathTransform.html" title="interface in org.opengis.referencing.operation">MathTransform</a>&nbsp;createFromWKT(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;wkt)
-                                                                                                               throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                     throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a math transform object from a string.
  The <A HREF="../doc-files/WKT.html">definition for WKT</A> is
  shown using Extended Backus Naur Form (EBNF).</div>

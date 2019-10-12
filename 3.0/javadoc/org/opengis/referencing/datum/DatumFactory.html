@@ -129,7 +129,7 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <dt><span class="simpleTagLabel">Since:</span></dt>
 <dd>1.0</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../org/opengis/referencing/cs/CSFactory.html" title="interface in org.opengis.referencing.cs"><code>CSFactory</code></a>, 
+<dd><a href="../../../../org/opengis/referencing/cs/CSFactory.html" title="interface in org.opengis.referencing.cs"><code>CSFactory</code></a>,
 <a href="../../../../org/opengis/referencing/crs/CRSFactory.html" title="interface in org.opengis.referencing.crs"><code>CRSFactory</code></a></dd>
 </dl>
 </li>
@@ -242,7 +242,7 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createLocalDatum",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/datum/EngineeringDatum.html" title="interface in org.opengis.referencing.datum">EngineeringDatum</a>&nbsp;createEngineeringDatum(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,?&gt;&nbsp;properties)
-                                                                                                   throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                                        throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates an engineering datum.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -264,9 +264,9 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createHorizontalDatum",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/datum/GeodeticDatum.html" title="interface in org.opengis.referencing.datum">GeodeticDatum</a>&nbsp;createGeodeticDatum(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,?&gt;&nbsp;properties,
-                                                                                                         <a href="../../../../org/opengis/referencing/datum/Ellipsoid.html" title="interface in org.opengis.referencing.datum">Ellipsoid</a>&nbsp;ellipsoid,
-                                                                                                         <a href="../../../../org/opengis/referencing/datum/PrimeMeridian.html" title="interface in org.opengis.referencing.datum">PrimeMeridian</a>&nbsp;primeMeridian)
-                                                                                                  throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                                  <a href="../../../../org/opengis/referencing/datum/Ellipsoid.html" title="interface in org.opengis.referencing.datum">Ellipsoid</a>&nbsp;ellipsoid,
+                                  <a href="../../../../org/opengis/referencing/datum/PrimeMeridian.html" title="interface in org.opengis.referencing.datum">PrimeMeridian</a>&nbsp;primeMeridian)
+                           throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates geodetic datum from ellipsoid and (optionally) Bursa-Wolf parameters.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -343,8 +343,8 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createVerticalDatum",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/datum/VerticalDatum.html" title="interface in org.opengis.referencing.datum">VerticalDatum</a>&nbsp;createVerticalDatum(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,?&gt;&nbsp;properties,
-                                                                                                       <a href="../../../../org/opengis/referencing/datum/VerticalDatumType.html" title="class in org.opengis.referencing.datum">VerticalDatumType</a>&nbsp;type)
-                                                                                                throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                                  <a href="../../../../org/opengis/referencing/datum/VerticalDatumType.html" title="class in org.opengis.referencing.datum">VerticalDatumType</a>&nbsp;type)
+                           throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a vertical datum from an enumerated type value.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -367,10 +367,10 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createEllipsoid",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/datum/Ellipsoid.html" title="interface in org.opengis.referencing.datum">Ellipsoid</a>&nbsp;createEllipsoid(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,?&gt;&nbsp;properties,
-                                                                                           double&nbsp;semiMajorAxis,
-                                                                                           double&nbsp;semiMinorAxis,
-                                                                                           <a href="http://jscience.org/api/javax/measure/Unit.html?is-external=true" title="class or interface in javax.measure">Unit</a>&lt;<a href="http://jscience.org/api/javax/measure/quantity/Length.html?is-external=true" title="class or interface in javax.measure.quantity">Length</a>&gt;&nbsp;unit)
-                                                                                    throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                          double&nbsp;semiMajorAxis,
+                          double&nbsp;semiMinorAxis,
+                          <a href="http://jscience.org/api/javax/measure/Unit.html?is-external=true" title="class or interface in javax.measure">Unit</a>&lt;<a href="http://jscience.org/api/javax/measure/quantity/Length.html?is-external=true" title="class or interface in javax.measure.quantity">Length</a>&gt;&nbsp;unit)
+                   throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates an ellipsoid from radius values.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -395,10 +395,10 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createFlattenedSphere",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/datum/Ellipsoid.html" title="interface in org.opengis.referencing.datum">Ellipsoid</a>&nbsp;createFlattenedSphere(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,?&gt;&nbsp;properties,
-                                                                                                       double&nbsp;semiMajorAxis,
-                                                                                                       double&nbsp;inverseFlattening,
-                                                                                                       <a href="http://jscience.org/api/javax/measure/Unit.html?is-external=true" title="class or interface in javax.measure">Unit</a>&lt;<a href="http://jscience.org/api/javax/measure/quantity/Length.html?is-external=true" title="class or interface in javax.measure.quantity">Length</a>&gt;&nbsp;unit)
-                                                                                                throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                                double&nbsp;semiMajorAxis,
+                                double&nbsp;inverseFlattening,
+                                <a href="http://jscience.org/api/javax/measure/Unit.html?is-external=true" title="class or interface in javax.measure">Unit</a>&lt;<a href="http://jscience.org/api/javax/measure/quantity/Length.html?is-external=true" title="class or interface in javax.measure.quantity">Length</a>&gt;&nbsp;unit)
+                         throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates an ellipsoid from an major radius, and inverse flattening.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -423,9 +423,9 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createPrimeMeridian",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/datum/PrimeMeridian.html" title="interface in org.opengis.referencing.datum">PrimeMeridian</a>&nbsp;createPrimeMeridian(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,?&gt;&nbsp;properties,
-                                                                                                       double&nbsp;longitude,
-                                                                                                       <a href="http://jscience.org/api/javax/measure/Unit.html?is-external=true" title="class or interface in javax.measure">Unit</a>&lt;<a href="http://jscience.org/api/javax/measure/quantity/Angle.html?is-external=true" title="class or interface in javax.measure.quantity">Angle</a>&gt;&nbsp;unit)
-                                                                                                throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                                  double&nbsp;longitude,
+                                  <a href="http://jscience.org/api/javax/measure/Unit.html?is-external=true" title="class or interface in javax.measure">Unit</a>&lt;<a href="http://jscience.org/api/javax/measure/quantity/Angle.html?is-external=true" title="class or interface in javax.measure.quantity">Angle</a>&gt;&nbsp;unit)
+                           throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a prime meridian, relative to Greenwich.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>

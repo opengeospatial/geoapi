@@ -139,7 +139,7 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <dt><span class="simpleTagLabel">Since:</span></dt>
 <dd>1.0</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../org/opengis/referencing/cs/CSFactory.html" title="interface in org.opengis.referencing.cs"><code>CSFactory</code></a>, 
+<dd><a href="../../../../org/opengis/referencing/cs/CSFactory.html" title="interface in org.opengis.referencing.cs"><code>CSFactory</code></a>,
 <a href="../../../../org/opengis/referencing/datum/DatumFactory.html" title="interface in org.opengis.referencing.datum"><code>DatumFactory</code></a></dd>
 </dl>
 </li>
@@ -285,8 +285,8 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createCompoundCoordinateSystem",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/crs/CompoundCRS.html" title="interface in org.opengis.referencing.crs">CompoundCRS</a>&nbsp;createCompoundCRS(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,?&gt;&nbsp;properties,
-                                                                                                              <a href="../../../../org/opengis/referencing/crs/CoordinateReferenceSystem.html" title="interface in org.opengis.referencing.crs">CoordinateReferenceSystem</a>...&nbsp;elements)
-                                                                                                       throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                              <a href="../../../../org/opengis/referencing/crs/CoordinateReferenceSystem.html" title="interface in org.opengis.referencing.crs">CoordinateReferenceSystem</a>...&nbsp;elements)
+                       throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a compound coordinate reference system from an ordered
  list of <code>CoordinateReferenceSystem</code> objects.</div>
 <dl>
@@ -310,9 +310,9 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createLocalCoordinateSystem",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/crs/EngineeringCRS.html" title="interface in org.opengis.referencing.crs">EngineeringCRS</a>&nbsp;createEngineeringCRS(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,?&gt;&nbsp;properties,
-                                                                                                                 <a href="../../../../org/opengis/referencing/datum/EngineeringDatum.html" title="interface in org.opengis.referencing.datum">EngineeringDatum</a>&nbsp;datum,
-                                                                                                                 <a href="../../../../org/opengis/referencing/cs/CoordinateSystem.html" title="interface in org.opengis.referencing.cs">CoordinateSystem</a>&nbsp;cs)
-                                                                                                          throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                                    <a href="../../../../org/opengis/referencing/datum/EngineeringDatum.html" title="interface in org.opengis.referencing.datum">EngineeringDatum</a>&nbsp;datum,
+                                    <a href="../../../../org/opengis/referencing/cs/CoordinateSystem.html" title="interface in org.opengis.referencing.cs">CoordinateSystem</a>&nbsp;cs)
+                             throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a engineering coordinate reference system.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -384,9 +384,9 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createVerticalCoordinateSystem",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/crs/VerticalCRS.html" title="interface in org.opengis.referencing.crs">VerticalCRS</a>&nbsp;createVerticalCRS(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,?&gt;&nbsp;properties,
-                                                                                                              <a href="../../../../org/opengis/referencing/datum/VerticalDatum.html" title="interface in org.opengis.referencing.datum">VerticalDatum</a>&nbsp;datum,
-                                                                                                              <a href="../../../../org/opengis/referencing/cs/VerticalCS.html" title="interface in org.opengis.referencing.cs">VerticalCS</a>&nbsp;cs)
-                                                                                                       throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                              <a href="../../../../org/opengis/referencing/datum/VerticalDatum.html" title="interface in org.opengis.referencing.datum">VerticalDatum</a>&nbsp;datum,
+                              <a href="../../../../org/opengis/referencing/cs/VerticalCS.html" title="interface in org.opengis.referencing.cs">VerticalCS</a>&nbsp;cs)
+                       throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a vertical coordinate reference system.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -458,9 +458,9 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createGeographicCoordinateSystem",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/crs/GeographicCRS.html" title="interface in org.opengis.referencing.crs">GeographicCRS</a>&nbsp;createGeographicCRS(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,?&gt;&nbsp;properties,
-                                                                                                                    <a href="../../../../org/opengis/referencing/datum/GeodeticDatum.html" title="interface in org.opengis.referencing.datum">GeodeticDatum</a>&nbsp;datum,
-                                                                                                                    <a href="../../../../org/opengis/referencing/cs/EllipsoidalCS.html" title="interface in org.opengis.referencing.cs">EllipsoidalCS</a>&nbsp;cs)
-                                                                                                             throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                                  <a href="../../../../org/opengis/referencing/datum/GeodeticDatum.html" title="interface in org.opengis.referencing.datum">GeodeticDatum</a>&nbsp;datum,
+                                  <a href="../../../../org/opengis/referencing/cs/EllipsoidalCS.html" title="interface in org.opengis.referencing.cs">EllipsoidalCS</a>&nbsp;cs)
+                           throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a geographic coordinate reference system.
  It could be <var>Latitude</var>/<var>Longitude</var> or
  <var>Longitude</var>/<var>Latitude</var>.</div>
@@ -486,10 +486,10 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createFittedCoordinateSystem",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/crs/DerivedCRS.html" title="interface in org.opengis.referencing.crs">DerivedCRS</a>&nbsp;createDerivedCRS(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,?&gt;&nbsp;properties,
-                                                                                                          <a href="../../../../org/opengis/referencing/crs/CoordinateReferenceSystem.html" title="interface in org.opengis.referencing.crs">CoordinateReferenceSystem</a>&nbsp;baseCRS,
-                                                                                                          <a href="../../../../org/opengis/referencing/operation/Conversion.html" title="interface in org.opengis.referencing.operation">Conversion</a>&nbsp;conversionFromBase,
-                                                                                                          <a href="../../../../org/opengis/referencing/cs/CoordinateSystem.html" title="interface in org.opengis.referencing.cs">CoordinateSystem</a>&nbsp;derivedCS)
-                                                                                                   throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                            <a href="../../../../org/opengis/referencing/crs/CoordinateReferenceSystem.html" title="interface in org.opengis.referencing.crs">CoordinateReferenceSystem</a>&nbsp;baseCRS,
+                            <a href="../../../../org/opengis/referencing/operation/Conversion.html" title="interface in org.opengis.referencing.operation">Conversion</a>&nbsp;conversionFromBase,
+                            <a href="../../../../org/opengis/referencing/cs/CoordinateSystem.html" title="interface in org.opengis.referencing.cs">CoordinateSystem</a>&nbsp;derivedCS)
+                     throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a derived coordinate reference system. If the transform is an affine
  map performing a rotation, then any mixed axes must have identical units.
  For example, a (<var>lat_deg</var>, <var>lon_deg</var>, <var>height_feet</var>)
@@ -525,7 +525,7 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <dt><span class="simpleTagLabel">Since:</span></dt>
 <dd>2.1</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../org/opengis/referencing/operation/CoordinateOperationFactory.html#createDefiningConversion-java.util.Map-org.opengis.referencing.operation.OperationMethod-org.opengis.parameter.ParameterValueGroup-"><code>CoordinateOperationFactory.createDefiningConversion(Map, OperationMethod, ParameterValueGroup)</code></a>, 
+<dd><a href="../../../../org/opengis/referencing/operation/CoordinateOperationFactory.html#createDefiningConversion-java.util.Map-org.opengis.referencing.operation.OperationMethod-org.opengis.parameter.ParameterValueGroup-"><code>CoordinateOperationFactory.createDefiningConversion(Map, OperationMethod, ParameterValueGroup)</code></a>,
 <a href="../../../../org/opengis/referencing/operation/MathTransformFactory.html#createBaseToDerived-org.opengis.referencing.crs.CoordinateReferenceSystem-org.opengis.parameter.ParameterValueGroup-org.opengis.referencing.cs.CoordinateSystem-"><code>MathTransformFactory.createBaseToDerived(CoordinateReferenceSystem, ParameterValueGroup, CoordinateSystem)</code></a></dd>
 </dl>
 </li>
@@ -539,10 +539,10 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createProjectedCoordinateSystem",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/crs/ProjectedCRS.html" title="interface in org.opengis.referencing.crs">ProjectedCRS</a>&nbsp;createProjectedCRS(<a href="https://docs.oracle.com/javase/8/docs/api/java/util/Map.html?is-external=true" title="class or interface in java.util">Map</a>&lt;<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>,?&gt;&nbsp;properties,
-                                                                                                                 <a href="../../../../org/opengis/referencing/crs/GeographicCRS.html" title="interface in org.opengis.referencing.crs">GeographicCRS</a>&nbsp;baseCRS,
-                                                                                                                 <a href="../../../../org/opengis/referencing/operation/Conversion.html" title="interface in org.opengis.referencing.operation">Conversion</a>&nbsp;conversionFromBase,
-                                                                                                                 <a href="../../../../org/opengis/referencing/cs/CartesianCS.html" title="interface in org.opengis.referencing.cs">CartesianCS</a>&nbsp;derivedCS)
-                                                                                                          throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                                <a href="../../../../org/opengis/referencing/crs/GeographicCRS.html" title="interface in org.opengis.referencing.crs">GeographicCRS</a>&nbsp;baseCRS,
+                                <a href="../../../../org/opengis/referencing/operation/Conversion.html" title="interface in org.opengis.referencing.operation">Conversion</a>&nbsp;conversionFromBase,
+                                <a href="../../../../org/opengis/referencing/cs/CartesianCS.html" title="interface in org.opengis.referencing.cs">CartesianCS</a>&nbsp;derivedCS)
+                         throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a projected coordinate reference system from a defining conversion.
  The <code>conversionFromBase</code> shall contains the <a href="../../../../org/opengis/referencing/operation/SingleOperation.html#getParameterValues--">parameter values</a> required for the projection. It may or may not contain the corresponding
  "<a href="../../../../org/opengis/referencing/operation/CoordinateOperation.html#getMathTransform--">base to derived</a>" transform, at user's choice. If
@@ -579,7 +579,7 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <dt><span class="simpleTagLabel">Since:</span></dt>
 <dd>2.1</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../org/opengis/referencing/operation/CoordinateOperationFactory.html#createDefiningConversion-java.util.Map-org.opengis.referencing.operation.OperationMethod-org.opengis.parameter.ParameterValueGroup-"><code>CoordinateOperationFactory.createDefiningConversion(Map, OperationMethod, ParameterValueGroup)</code></a>, 
+<dd><a href="../../../../org/opengis/referencing/operation/CoordinateOperationFactory.html#createDefiningConversion-java.util.Map-org.opengis.referencing.operation.OperationMethod-org.opengis.parameter.ParameterValueGroup-"><code>CoordinateOperationFactory.createDefiningConversion(Map, OperationMethod, ParameterValueGroup)</code></a>,
 <a href="../../../../org/opengis/referencing/operation/MathTransformFactory.html#createBaseToDerived-org.opengis.referencing.crs.CoordinateReferenceSystem-org.opengis.parameter.ParameterValueGroup-org.opengis.referencing.cs.CoordinateSystem-"><code>MathTransformFactory.createBaseToDerived(CoordinateReferenceSystem, ParameterValueGroup, CoordinateSystem)</code></a></dd>
 </dl>
 </li>
@@ -593,7 +593,7 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createFromXML",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/crs/CoordinateReferenceSystem.html" title="interface in org.opengis.referencing.crs">CoordinateReferenceSystem</a>&nbsp;createFromXML(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;xml)
-                                                                                                throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                                 throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a coordinate reference system object from a XML string.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -614,7 +614,7 @@ extends <a href="../../../../org/opengis/referencing/ObjectFactory.html" title="
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createFromWKT",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/crs/CoordinateReferenceSystem.html" title="interface in org.opengis.referencing.crs">CoordinateReferenceSystem</a>&nbsp;createFromWKT(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;wkt)
-                                                                                                throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                                 throws <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a coordinate reference system object from a string.
  The <A HREF="../doc-files/WKT.html">definition for WKT</A>
  is shown using Extended Backus Naur Form (EBNF).</div>

@@ -129,7 +129,7 @@ extends <a href="../../../../org/opengis/referencing/AuthorityFactory.html" titl
 <dt><span class="simpleTagLabel">Since:</span></dt>
 <dd>1.0</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../org/opengis/referencing/cs/CSAuthorityFactory.html" title="interface in org.opengis.referencing.cs"><code>CSAuthorityFactory</code></a>, 
+<dd><a href="../../../../org/opengis/referencing/cs/CSAuthorityFactory.html" title="interface in org.opengis.referencing.cs"><code>CSAuthorityFactory</code></a>,
 <a href="../../../../org/opengis/referencing/datum/DatumAuthorityFactory.html" title="interface in org.opengis.referencing.datum"><code>DatumAuthorityFactory</code></a></dd>
 </dl>
 </li>
@@ -248,8 +248,8 @@ extends <a href="../../../../org/opengis/referencing/AuthorityFactory.html" titl
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createHorizontalCoordinateSystem",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/crs/CoordinateReferenceSystem.html" title="interface in org.opengis.referencing.crs">CoordinateReferenceSystem</a>&nbsp;createCoordinateReferenceSystem(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;code)
-                                                                                                                                     throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
-                                                                                                                                            <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                                                   throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
+                                                          <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Returns an arbitrary <a href="../../../../org/opengis/referencing/crs/CoordinateReferenceSystem.html" title="interface in org.opengis.referencing.crs">coordinate reference system</a> from a code. If the
  coordinate reference system type is know at compile time, it is recommended to invoke the most precise method
  instead of this one (for example
@@ -265,10 +265,10 @@ extends <a href="../../../../org/opengis/referencing/AuthorityFactory.html" titl
 <dd><code><a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a></code> - if the specified <code>code</code> was not found.</dd>
 <dd><code><a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></code> - if the object creation failed for some other reason.</dd>
 <dt><span class="seeLabel">See Also:</span></dt>
-<dd><a href="../../../../org/opengis/referencing/crs/CRSAuthorityFactory.html#createGeographicCRS-java.lang.String-"><code>createGeographicCRS(String)</code></a>, 
-<a href="../../../../org/opengis/referencing/crs/CRSAuthorityFactory.html#createProjectedCRS-java.lang.String-"><code>createProjectedCRS(String)</code></a>, 
-<a href="../../../../org/opengis/referencing/crs/CRSAuthorityFactory.html#createVerticalCRS-java.lang.String-"><code>createVerticalCRS(String)</code></a>, 
-<a href="../../../../org/opengis/referencing/crs/CRSAuthorityFactory.html#createTemporalCRS-java.lang.String-"><code>createTemporalCRS(String)</code></a>, 
+<dd><a href="../../../../org/opengis/referencing/crs/CRSAuthorityFactory.html#createGeographicCRS-java.lang.String-"><code>createGeographicCRS(String)</code></a>,
+<a href="../../../../org/opengis/referencing/crs/CRSAuthorityFactory.html#createProjectedCRS-java.lang.String-"><code>createProjectedCRS(String)</code></a>,
+<a href="../../../../org/opengis/referencing/crs/CRSAuthorityFactory.html#createVerticalCRS-java.lang.String-"><code>createVerticalCRS(String)</code></a>,
+<a href="../../../../org/opengis/referencing/crs/CRSAuthorityFactory.html#createTemporalCRS-java.lang.String-"><code>createTemporalCRS(String)</code></a>,
 <a href="../../../../org/opengis/referencing/crs/CRSAuthorityFactory.html#createCompoundCRS-java.lang.String-"><code>createCompoundCRS(String)</code></a></dd>
 </dl>
 </li>
@@ -282,8 +282,8 @@ extends <a href="../../../../org/opengis/referencing/AuthorityFactory.html" titl
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createCompoundCoordinateSystem",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/crs/CompoundCRS.html" title="interface in org.opengis.referencing.crs">CompoundCRS</a>&nbsp;createCompoundCRS(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;code)
-                                                                                                       throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
-                                                                                                              <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                       throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
+                              <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Creates a 3D coordinate reference system from a code.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -347,8 +347,8 @@ extends <a href="../../../../org/opengis/referencing/AuthorityFactory.html" titl
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createGeographicCoordinateSystem",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/crs/GeographicCRS.html" title="interface in org.opengis.referencing.crs">GeographicCRS</a>&nbsp;createGeographicCRS(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;code)
-                                                                                                             throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
-                                                                                                                    <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                           throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
+                                  <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Returns a <a href="../../../../org/opengis/referencing/crs/GeographicCRS.html" title="interface in org.opengis.referencing.crs">geographic coordinate reference system</a> from a code.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -416,8 +416,8 @@ extends <a href="../../../../org/opengis/referencing/AuthorityFactory.html" titl
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createProjectedCoordinateSystem",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/crs/ProjectedCRS.html" title="interface in org.opengis.referencing.crs">ProjectedCRS</a>&nbsp;createProjectedCRS(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;code)
-                                                                                                          throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
-                                                                                                                 <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                         throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
+                                <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Returns a <a href="../../../../org/opengis/referencing/crs/ProjectedCRS.html" title="interface in org.opengis.referencing.crs">projected coordinate reference system</a> from a code.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
@@ -464,8 +464,8 @@ extends <a href="../../../../org/opengis/referencing/AuthorityFactory.html" titl
 <pre><a href="../../../../org/opengis/annotation/UML.html" title="annotation in org.opengis.annotation">@UML</a>(<a href="../../../../org/opengis/annotation/UML.html#identifier--">identifier</a>="createVerticalCoordinateSystem",
      <a href="../../../../org/opengis/annotation/UML.html#specification--">specification</a>=<a href="../../../../org/opengis/annotation/Specification.html#OGC_01009">OGC_01009</a>)
 <a href="../../../../org/opengis/referencing/crs/VerticalCRS.html" title="interface in org.opengis.referencing.crs">VerticalCRS</a>&nbsp;createVerticalCRS(<a href="https://docs.oracle.com/javase/8/docs/api/java/lang/String.html?is-external=true" title="class or interface in java.lang">String</a>&nbsp;code)
-                                                                                                       throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
-                                                                                                              <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
+                       throws <a href="../../../../org/opengis/referencing/NoSuchAuthorityCodeException.html" title="class in org.opengis.referencing">NoSuchAuthorityCodeException</a>,
+                              <a href="../../../../org/opengis/util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></pre>
 <div class="block">Create a <a href="../../../../org/opengis/referencing/crs/VerticalCRS.html" title="interface in org.opengis.referencing.crs">vertical coordinate reference system</a> from a code.</div>
 <dl>
 <dt><span class="paramLabel">Parameters:</span></dt>
