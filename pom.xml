@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- =============================================================================================
-         Maven 2 project configuration file
-         http://maven.apache.org/maven2/
+         Maven project configuration file
+         http://maven.apache.org/
 
          Build specification only:      mvn pre-site -N
          Build development snapshot:    mvn clean install
@@ -370,7 +370,6 @@
         <configuration>
           <release>${maven.compiler.release}</release>
           <debug>false</debug>                                          <!-- Whether to include debugging information.  -->
-          <optimize>true</optimize>                                     <!-- Use the compiler's optimization methods.   -->
           <encoding>${project.build.sourceEncoding}</encoding>
           <useIncrementalCompilation>false</useIncrementalCompilation>  <!-- https://issues.apache.org/jira/browse/MCOMPILER-209 -->
           <showWarnings>true</showWarnings>

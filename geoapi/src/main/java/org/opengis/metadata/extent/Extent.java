@@ -75,7 +75,7 @@ public interface Extent {
     /**
      * Provides geographic component of the extent of the referring object.
      *
-     * @return the geographic extent, or an empty set if none.
+     * @return the geographic extent, or an empty list if none.
      *
      * @condition Mandatory if {@linkplain #getDescription() description},
      *            {@linkplain #getVerticalElements() vertical element} and
@@ -89,7 +89,7 @@ public interface Extent {
     /**
      * Provides vertical component of the extent of the referring object.
      *
-     * @return the vertical extent, or an empty set if none.
+     * @return the vertical extent, or an empty list if none.
      *
      * @condition Mandatory if {@linkplain #getDescription() description},
      *            {@linkplain #getGeographicElements() geographic element} and
@@ -103,7 +103,7 @@ public interface Extent {
     /**
      * Provides temporal component of the extent of the referring object.
      *
-     * @return the temporal extent, or an empty set if none.
+     * @return the temporal extent, or an empty list if none.
      *
      * @condition Mandatory if {@linkplain #getDescription() description},
      *            {@linkplain #getGeographicElements() geographic element} and
