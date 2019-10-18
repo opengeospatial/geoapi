@@ -62,7 +62,7 @@ module org.opengis.geoapi {
     /*
      * The only java.desktop dependency is the java.awt.geom.Point2D class used in
      * org.opengis.referencing.operation.MathTransform2D.  Since that interface is
-     * not directly referenced anywhere, it can easily be ignored by implementors.
+     * not directly referenced anywhere, it can easily be ignored by implementers.
      */
     requires transitive static java.desktop;
 

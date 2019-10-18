@@ -61,7 +61,7 @@ import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
  * created using the factory given at construction time.
  *
  * <div class="note"><b>Usage example:</b>
- * in order to specify their factories and run the tests in a JUnit framework, implementors can
+ * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
  * <blockquote><pre>import org.junit.runner.RunWith;
@@ -114,7 +114,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * method in this class.
      *
      * <p>If this field is non-null before a test is run, then those parameters will be used
-     * directly. This allow implementors to alter the parameters before to run the test one
+     * directly. This allow implementers to alter the parameters before to run the test one
      * more time.</p>
      */
     protected Matrix matrix;
@@ -137,7 +137,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
-     * sub-classed by the implementor. The factories are fetched as documented in the
+     * sub-classed by the implementer. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
      * @return the default set of arguments to be given to the {@code AffineTransformTest} constructor.
@@ -211,8 +211,8 @@ public strictfp class AffineTransformTest extends TransformTestCase {
         final float[] coordinates = verifyInternalConsistency(reference.hashCode());
         /*
          * At this point, we have performed internal consistency check of the
-         * implementor transform. Now compute the expected values using the
-         * Java2D transform and compare with the implementor transform.
+         * implementer transform. Now compute the expected values using the
+         * Java2D transform and compare with the implementer transform.
          */
         final double[] source = new double[coordinates.length];
         final double[] target = new double[coordinates.length];

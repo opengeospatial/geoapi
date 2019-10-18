@@ -117,7 +117,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * <div class="note"><b>Note on Service Metadata name:</b>
      * the metadata standard ({@linkplain Specification#ISO_19111 ISO 19115}) defines the {@code name}
      * property as of type {@link MemberName} instead than {@code Identifier}. The details of mapping
-     * the former to the later are left to implementors, but the following can be used as guidelines:
+     * the former to the later are left to implementers, but the following can be used as guidelines:
      *
      * <table class="ogc">
      *   <caption>Suggested mapping from {@code MemberName} to {@code Identifier}</caption>

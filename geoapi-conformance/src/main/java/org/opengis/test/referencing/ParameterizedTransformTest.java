@@ -87,7 +87,7 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  *
  * <p><b>Tests and accuracy:</b><br>
  * By default, every tests expect an accuracy of 1 centimetre. This accuracy matches the precision
- * of most example points given in the EPSG guidance notice. Implementors can modify the kind of
+ * of most example points given in the EPSG guidance notice. Implementers can modify the kind of
  * tests being executed and the tolerance threshold in different ways:</p>
  *
  * <ul>
@@ -100,8 +100,8 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  * </ul>
  *
  * <div class="note"><b>Usage example:</b>
- * in order to specify their factories and run the tests in a JUnit framework, implementors can define
- * a subclass in their own test suite as in the example below. That example shows also how implementors
+ * in order to specify their factories and run the tests in a JUnit framework, implementers can define
+ * a subclass in their own test suite as in the example below. That example shows also how implementers
  * can alter some tests (here the tolerance value for the <cite>Lambert Azimuthal Equal Area</cite> projection)
  * and add more checks to be executed after every tests (here ensuring that the {@linkplain #transform transform}
  * implements the {@link MathTransform2D} interface):
@@ -191,7 +191,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * in this class.
      *
      * <p>If this field is non-null before a test is run, then those parameters will be used
-     * directly. This allow implementors to alter the parameters before to run the test one
+     * directly. This allow implementers to alter the parameters before to run the test one
      * more time.</p>
      */
     protected ParameterValueGroup parameters;
@@ -214,7 +214,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
-     * subclassed by the implementor. The factories are fetched as documented in the
+     * subclassed by the implementer. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
      * @return the default set of arguments to be given to the {@code ParameterizedTransformTest} constructor.
@@ -837,7 +837,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
          * In this particular case we have a conflict between the change of axis direction performed by the
          * "Transverse Mercator (South Orientated)" operation method  and the (east, north) axis directions
          * documented in the MathTransformFactory.createParameterizedTransform(…) method. We do not mandate
-         * any particular behavior at this time, so we have to determine what the implementor choose to do,
+         * any particular behavior at this time, so we have to determine what the implementer choose to do,
          * by projecting a point in the south hemisphere and checking the sign of the result.
          */
         double[] expected = sample.targetPoints;
@@ -845,7 +845,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         transform.transform(check, 0, check, 0, 1);
         if (check[1] < 0) {
             /*
-             * Point in the South hemisphere have negative y values. In other words, the implementor chooses to
+             * Point in the South hemisphere have negative y values. In other words, the implementer chooses to
              * keep (east,north) directions instead of (west,south). Reverse the sign of all expected coordinates.
              */
             expected = expected.clone();

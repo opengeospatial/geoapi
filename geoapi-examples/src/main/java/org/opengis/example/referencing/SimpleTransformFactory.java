@@ -53,7 +53,7 @@ public class SimpleTransformFactory implements MathTransformFactory {
     }
 
     /**
-     * Returns the implementor of this factory.
+     * Returns the implementer of this factory.
      */
     @Override
     public Citation getVendor() {

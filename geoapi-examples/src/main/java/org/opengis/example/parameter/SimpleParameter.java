@@ -140,7 +140,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      *   <li>Developers may find convenient to set this field to {@code false} during debugging,
      *       since strict behavior often help to identify unexpected usage of parameters.</li>
      *   <li>This field make easy to spot the codes implementing a lenient behavior. Library
-     *       implementors may want to remove such codes for making parameters definitively
+     *       implementers may want to remove such codes for making parameters definitively
      *       strict.</li>
      * </ul>
      *

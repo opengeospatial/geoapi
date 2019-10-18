@@ -123,7 +123,7 @@ final class ResultEntry {
     final List<String[]> factories;
 
     /**
-     * The configuration specified by the implementor.
+     * The configuration specified by the implementer.
      */
     final List<Map.Entry<Configuration.Key<?>, StatusOptional>> configuration;
 

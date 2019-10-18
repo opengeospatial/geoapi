@@ -84,7 +84,7 @@ import static org.junit.Assert.*;
  *
  *
  * <div class="note"><b>Usage example:</b>
- * in order to specify their factories and run the tests in a JUnit framework, implementors can
+ * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
  * <blockquote><pre>import org.junit.runner.RunWith;
@@ -163,7 +163,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
-     * subclassed by the implementor. The factories are fetched as documented in the
+     * subclassed by the implementer. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
      * @return the default set of arguments to be given to the {@code GIGS2002} constructor.

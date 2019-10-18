@@ -409,7 +409,7 @@ public interface Geometry extends TransfiniteSet {
      * change.  Any attempts to change the values of the returned object will
      * result in a {@code UnmodifiableGeometryException}.
      * <p>
-     * Implementors are free to return {@code this} if this object is
+     * Implementers are free to return {@code this} if this object is
      * already immutable.
      *
      * @return an immutable copy of this geometry.

@@ -49,8 +49,8 @@ import static org.opengis.annotation.Specification.*;
  * {@link org.opengis.referencing.cs.EllipsoidalCS}; they should never be built as
  * {@link org.opengis.referencing.crs.CompoundCRS}. If nevertheless an ellipsoidal height is needed
  * (for example in order to process a CRS in the <a href="../doc-files/WKT.html">WKT 1 format</a>),
- * implementors can get a suitable vertical datum type using {@code VerticalDatumType.valueOf("ELLIPSOIDAL")}.
- * Implementors are encouraged to not expose that datum type in public API however.</div>
+ * implementers can get a suitable vertical datum type using {@code VerticalDatumType.valueOf("ELLIPSOIDAL")}.
+ * Implementers are encouraged to not expose that datum type in public API however.</div>
  *
  * @departure historic
  *   This code list was defined in the specification published in 2003, but removed from the 2007

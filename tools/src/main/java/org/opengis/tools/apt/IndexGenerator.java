@@ -335,7 +335,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
             /*
              * The 'doubleValue()' method is considered a Java method only in the case of
              * the RepresentativeFraction interface, because the Javadoc of that interface
-             * encourage implementors to extend java.lang.Number.
+             * encourage implementers to extend java.lang.Number.
              */
             if (!name.equals("doubleValue") || classname.equals("RepresentativeFraction")) {
                 out.write("Java");

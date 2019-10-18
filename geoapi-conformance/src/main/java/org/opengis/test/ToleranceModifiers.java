@@ -506,7 +506,7 @@ public strictfp final class ToleranceModifiers {
 
     /**
      * Returns all implementation-specific modifiers found on the classpath for the given math
-     * transform. Implementors can modify the tolerance threshold for particular math transforms
+     * transform. Implementers can modify the tolerance threshold for particular math transforms
      * using the {@link ImplementationDetails} interface.
      *
      * @param  transform  the transform for which to get implementation-specific modifiers.

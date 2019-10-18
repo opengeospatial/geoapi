@@ -36,7 +36,7 @@ import org.opengis.referencing.operation.MathTransform;
 
 
 /**
- * Provides optional information about the implementation being tested. Implementors can
+ * Provides optional information about the implementation being tested. Implementers can
  * provide an instance of this interface in their test packages and declare their instance
  * in the {@code META-INF/services/org.opengis.test.ImplementationDetails} file. GeoAPI
  * will iterate over every {@code ImplementationDetails} found on the classpath when needed:
@@ -74,7 +74,7 @@ public interface ImplementationDetails {
      * is performed on the boolean values returned by all {@code ImplementationDetails.configuration(…)} calls.
      *
      * <p>This method is invoked often (typically one or two time before every single test method),
-     * so implementors may want to cache their configuration map.</p>
+     * so implementers may want to cache their configuration map.</p>
      *
      * @param  factories  the factories to be tested.
      * @return the collection of tests to disable for the given factories, or {@code null} if none.

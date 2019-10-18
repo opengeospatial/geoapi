@@ -6,7 +6,7 @@
  *    This means anyone is free to do whatever they wish with this file.
  *
  *    The Proj.4 wrappers are provided as code examples, in the hope to facilitate
- *    GeoAPI implementations backed by other libraries. Implementors can take this
+ *    GeoAPI implementations backed by other libraries. Implementers can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
  *    in any way.
@@ -27,7 +27,7 @@
  * </ul>
  *
  * This package is for internal use by the {@link org.opengis.wrapper.proj4} package. It should
- * generally not be used directly, unless an implementor wants more direct access to the Proj.4
+ * generally not be used directly, unless an implementer wants more direct access to the Proj.4
  * functions.
  *
  * @author  Martin Desruisseaux (Geomatys)

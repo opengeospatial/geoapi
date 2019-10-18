@@ -126,7 +126,7 @@ public interface MathTransformFactory extends Factory {
      * Returns the operation method used by the latest call to a {@code create(…)} constructor,
      * or {@code null} if not applicable.
      *
-     * <p>Implementors should document how their implementation behave in a multi-threads environment.
+     * <p>Implementers should document how their implementation behave in a multi-threads environment.
      * For example some implementations use {@linkplain java.lang.ThreadLocal thread local variables},
      * while other can choose to returns {@code null} in all cases since {@code getLastMethodUsed()}
      * is optional.</p>

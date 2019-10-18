@@ -49,7 +49,7 @@ import org.opengis.style.Style;
  * these create methods are in agreement with the Style Layer Descriptor 1.1
  * specification.
  *
- * This factory is pending. We need feedback from implementors before writing methods
+ * This factory is pending. We need feedback from implementers before writing methods
  * in this one.
  *
  * @author Open Geospatial Consortium

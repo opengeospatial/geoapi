@@ -175,7 +175,7 @@ public interface Envelope {
      * <var>minimum</var> &lt; <var>maximum</var> (ignoring NaN). It may be the
      * {@linkplain org.opengis.referencing.cs.CoordinateSystemAxis#getMinimumValue() axis minimum value},
      * {@linkplain Double#NEGATIVE_INFINITY negative infinity}, {@linkplain Double#NaN NaN} or other
-     * value, at implementor choice.
+     * value, at implementer choice.
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.
      * @return the minimal coordinate at the given dimension.
@@ -210,7 +210,7 @@ public interface Envelope {
      * <var>maximum</var> &gt; <var>minimum</var> (ignoring NaN). It may be the
      * {@linkplain org.opengis.referencing.cs.CoordinateSystemAxis#getMaximumValue() axis maximum value},
      * {@linkplain Double#POSITIVE_INFINITY positive infinity}, {@linkplain Double#NaN NaN} or other
-     * value, at implementor choice.
+     * value, at implementer choice.
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.
      * @return the maximal coordinate at the given dimension.

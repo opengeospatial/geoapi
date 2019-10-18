@@ -111,7 +111,7 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <debug>true</debug>           <!-- For allowing implementors to step through the test methods. -->
+          <debug>true</debug>           <!-- For allowing implementers to step through the test methods. -->
         </configuration>
       </plugin>
       <plugin>

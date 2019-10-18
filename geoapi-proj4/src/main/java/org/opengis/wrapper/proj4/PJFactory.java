@@ -6,7 +6,7 @@
  *    This means anyone is free to do whatever they wish with this file.
  *
  *    The Proj.4 wrappers are provided as code examples, in the hope to facilitate
- *    GeoAPI implementations backed by other libraries. Implementors can take this
+ *    GeoAPI implementations backed by other libraries. Implementers can take this
  *    source code and use it for any purpose, commercial or non-commercial, copyrighted
  *    or open-source, with no legal obligation to acknowledge the borrowing/copying
  *    in any way.
@@ -69,7 +69,7 @@ public class PJFactory implements Factory {
     }
 
     /**
-     * Returns the implementor responsible for creating this factory implementation.
+     * Returns the implementer responsible for creating this factory implementation.
      */
     @Override
     public Citation getVendor() {

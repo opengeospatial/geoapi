@@ -53,7 +53,7 @@ import static org.opengis.annotation.Obligation.MANDATORY;
  * By contrast, a {@link MemberName} is similar to the name of a field in a Java class.
  * <p>
  * It is sometime useful to establish a mapping between {@code TypeName} and {@code Class}.
- * Such mapping is left to implementors, but the following table can be used as an example.
+ * Such mapping is left to implementers, but the following table can be used as an example.
  * This example uses UML identifiers, arbitrarily prefixed by the {@code "OGC"} namespace
  * (this is <strong>not</strong> a standard practice, and should not be used for types not found in OGC standards).
  * The definition identifiers in OGC namespace are also shown for information purpose.

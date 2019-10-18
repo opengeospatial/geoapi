@@ -77,12 +77,12 @@ import org.opengis.referencing.operation.MathTransform;
  * All tests use {@link Factory} instances that are specific to the implementation being tested.
  * By default {@code TestSuite} fetches the factory implementations with {@link ServiceLoader},
  * which will scan every <code>META-INF/services/org.opengis.<var>TheFactory</var></code> files
- * on the classpath. However implementors can override this default mechanism with explicit calls
+ * on the classpath. However implementers can override this default mechanism with explicit calls
  * to the {@link #setFactories(Class, Factory[])} method.
  *
- * <p>Implementors can have some control on the tests (factories to use, features to test, tolerance
+ * <p>Implementers can have some control on the tests (factories to use, features to test, tolerance
  * thresholds) by registering their {@link FactoryFilter} or {@link ImplementationDetails} in the
- * {@code META-INF/services/} directory. As an alternative, implementors can also extend directly
+ * {@code META-INF/services/} directory. As an alternative, implementers can also extend directly
  * the various {@link TestCase} subclasses.</p>
  *
  * <div class="note"><b>Example:</b>

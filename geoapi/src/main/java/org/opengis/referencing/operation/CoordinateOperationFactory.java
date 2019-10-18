@@ -276,7 +276,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *
      * Implementations may delegate to their {@link MathTransformFactory}, or delegate to their
      * {@link CoordinateOperationAuthorityFactory}, or get the operation method in some other way
-     * at implementor choice.
+     * at implementer choice.
      *
      * @param  name  the name of the operation method to fetch.
      * @return the operation method of the given name.
