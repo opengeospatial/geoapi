@@ -102,8 +102,6 @@ li > ol {
  * Note or examples.
  */
 div.note {
-  color:      #353833;
-  font-size:    small;
   margin-left:   40px;
   margin-right:  40px;
   margin-top:     9px;
@@ -111,12 +109,20 @@ div.note {
   text-align: justify;
 }
 
+div.note:before {
+  color:     green;
+  position:  relative;
+  float:     left;
+  left:      -28px;
+  width:     0;
+  content:   "🛈";
+}
+
 /*
  * The note about departures from OGC/ISO specifications.
  */
 div.departure {
   color:    slategray;
-  font-size:    small;
   margin-left:   40px;
   margin-right:  40px;
   margin-top:     9px;
