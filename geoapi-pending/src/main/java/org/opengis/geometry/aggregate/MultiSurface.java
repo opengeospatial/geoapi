@@ -72,7 +72,7 @@ public interface MultiSurface extends MultiPrimitive {
      * meters squared (m²).
      *
      * <div class="note"><b>Note:</b>
-     * Consistent with the definition of surface as a set of
+     * consistent with the definition of surface as a set of
      * {@linkplain DirectPosition direct positions}, holes in the surfaces will not contribute to
      * the total area. If the usual Green's Theorem (or more general Stokes' Theorem) integral is
      * used, the integral around the holes in the surface are subtracted from the integral

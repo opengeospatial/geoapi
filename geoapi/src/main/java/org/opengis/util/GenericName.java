@@ -190,17 +190,15 @@ public interface GenericName extends Comparable<GenericName> {
      * the scopes are the blue elements in the <var>scope</var>.<var>this</var> column.</p>
      *
      * <div class="note"><b>Example:</b>
-     * For a {@linkplain #toFullyQualifiedName() fully qualified name} (a name having a
+     * for a {@linkplain #toFullyQualifiedName() fully qualified name} (a name having a
      * {@linkplain NameSpace#isGlobal() global namespace}) {@code "org.opengis.util.Record"},
      * if this instance is the {@code "util.Record"} name, then the scope of this instance
      * has the {@code "org.opengis"} {@linkplain NameSpace#name() name}.
      * </div>
      *
      * <div class="note"><b>Analogy:</b>
-     * This method is similar in purpose to:
-     * <ul>
-     *   <li>the current directory of a file system.</li>
-     * </ul></div>
+     * this method is similar in purpose to the current directory of a file system.
+     * </div>
      *
      * @return the scope of this name.
      */
@@ -214,13 +212,13 @@ public interface GenericName extends Comparable<GenericName> {
      * equal to 2.
      *
      * <div class="note"><b>Example:</b>
-     * If {@code this} name is {@code "urn:ogc:def:crs:EPSG:8.2:4326"} with {@code ':'} as separator,
+     * if {@code this} name is {@code "urn:ogc:def:crs:EPSG:8.2:4326"} with {@code ':'} as separator,
      * then this method shall return {@code 7}. If this name is {@code "EPSG:8.2:4326"} in the
      * {@code "urn:ogc:def:crs"} scope, then this method shall return {@code 3}.
      * </div>
      *
      * <div class="note"><b>Analogy:</b>
-     * This method is similar in purpose to:
+     * this method is similar in purpose to:
      * <ul>
      *   <li>the {@link java.nio.file.Path#getNameCount() Path.getNameCount()} method in Java I/O;</li>
      *   <li>the {@link javax.naming.Name#size() Name.size()} method from the <cite>Java Naming and Directory Interface</cite>.</li>
@@ -247,7 +245,7 @@ public interface GenericName extends Comparable<GenericName> {
      * </div>
      *
      * <div class="note"><b>Analogy:</b>
-     * This method is similar in purpose to:
+     * this method is similar in purpose to:
      * <ul>
      *   <li>the {@link java.nio.file.Path#iterator() Path.iterator()} method in Java I/O;</li>
      *   <li>the {@link javax.naming.Name#getAll() Name.getAll()} method from the <cite>Java Naming and Directory Interface</cite>.</li>
@@ -267,11 +265,11 @@ public interface GenericName extends Comparable<GenericName> {
      * the heads are the blue elements in the <var>head</var>.<var>tail</var> column.</p>
      *
      * <div class="note"><b>Example:</b>
-     * If {@code this} name is {@code "urn:ogc:def:crs:EPSG::4326"}, then this method shall returns {@code "urn"}.
+     * if {@code this} name is {@code "urn:ogc:def:crs:EPSG::4326"}, then this method shall returns {@code "urn"}.
      * </div>
      *
      * <div class="note"><b>Analogy:</b>
-     * This method is similar in purpose to:
+     * this method is similar in purpose to:
      * <ul>
      *   <li><code>{@linkplain java.nio.file.Path#getName(int) Path.getName}(0)</code> from Java I/O;</li>
      *   <li><code>{@linkplain javax.naming.Name#get(int) Name.get}(0)</code>
@@ -296,12 +294,12 @@ public interface GenericName extends Comparable<GenericName> {
      * the tips are the yellow elements in the <var>head</var>.<var>tail</var> column.</p>
      *
      * <div class="note"><b>Example:</b>
-     * If {@code this} name is {@code "urn:ogc:def:crs:EPSG::4326"} (no matter its
+     * if {@code this} name is {@code "urn:ogc:def:crs:EPSG::4326"} (no matter its
      * {@linkplain #scope scope}), then this method shall returns {@code "4326"}.
      * </div>
      *
      * <div class="note"><b>Analogy:</b>
-     * This method is similar in purpose to:
+     * this method is similar in purpose to:
      * <ul>
      *   <li>the {@link java.io.File#getName() File.getName()} or
      *       {@link java.nio.file.Path#getFileName() Path.getFileName()} method in Java I/O;</li>
@@ -324,17 +322,15 @@ public interface GenericName extends Comparable<GenericName> {
      * of this name is already global, then this method shall returns {@code this}.
      *
      * <div class="note"><b>Example:</b>
-     * If {@code this} name is {@code "EPSG::4326"} ({@linkplain #depth() depth} of 3) and its
+     * if {@code this} name is {@code "EPSG::4326"} ({@linkplain #depth() depth} of 3) and its
      * {@linkplain #scope() scope} is {@code "urn:ogc:def:crs"}, then the fully qualified name
      * is {@code "urn:ogc:def:crs:EPSG::4326"}.
      * </div>
      *
      * <div class="note"><b>Analogy:</b>
-     * This method is similar in purpose to:
-     * <ul>
-     *   <li>the {@link java.io.File#getAbsoluteFile() File.getAbsoluteFile()} or
-     *       {@link java.nio.file.Path#toAbsolutePath() Path.toAbsolutePath()} method in Java I/O.</li>
-     * </ul></div>
+     * this method is similar in purpose to the {@link java.io.File#getAbsoluteFile() File.getAbsoluteFile()}
+     * or {@link java.nio.file.Path#toAbsolutePath() Path.toAbsolutePath()} methods in Java I/O.
+     * </div>
      *
      * @return the fully-qualified name (never {@code null}).
      *
@@ -366,16 +362,15 @@ public interface GenericName extends Comparable<GenericName> {
      * </ul>
      *
      * <div class="note"><b>Example:</b>
-     * If {@code this} name is {@code "EPSG::4326"} and the given {@code scope} argument is {@code "urn:ogc:def:crs"},
+     * if {@code this} name is {@code "EPSG::4326"} and the given {@code scope} argument is {@code "urn:ogc:def:crs"},
      * then {@code this.push(scope)} shall returns {@code "urn:ogc:def:crs:EPSG::4326"}.
      * </div>
      *
      * <div class="note"><b>Analogy:</b>
-     * This method is similar in purpose to:
-     * <ul>
-     *   <li><code>{@linkplain javax.naming.Name#addAll(int,javax.naming.Name) Name.addAll}(0, name)</code>
-     *       from the <cite>Java Naming and Directory Interface</cite>.</li>
-     * </ul></div>
+     * this method is similar in purpose to
+     * <code>{@linkplain javax.naming.Name#addAll(int,javax.naming.Name) Name.addAll}(0, name)</code>
+     * from the <cite>Java Naming and Directory Interface</cite>.
+     * </div>
      *
      * @param  scope  the name to use as prefix.
      * @return a concatenation of the given scope with this name.
@@ -390,11 +385,9 @@ public interface GenericName extends Comparable<GenericName> {
      * Specific attributes of the name, such as how it treats case, may affect the ordering.
      *
      * <div class="note"><b>Analogy:</b>
-     * This method is similar in purpose to:
-     * <ul>
-     *   <li>the {@link java.io.File#compareTo File.compareTo(File)} or
-     *       {@link java.nio.file.Path#compareTo Path.compareTo(Path)} method in Java I/O.</li>
-     * </ul></div>
+     * this method is similar in purpose to the {@link java.io.File#compareTo File.compareTo(File)} or
+     * {@link java.nio.file.Path#compareTo Path.compareTo(Path)} methods in Java I/O.
+     * </div>
      *
      * @param  other  the other object to be compared to this name.
      * @return a negative integer, zero, or a positive integer as this name is lexicographically
@@ -421,11 +414,9 @@ public interface GenericName extends Comparable<GenericName> {
      * In the {@link ScopedName} sub-type, this method maps to the {@code scopedName} ISO 19103 attribute.</p>
      *
      * <div class="note"><b>Analogy:</b>
-     * This method is similar in purpose to:
-     * <ul>
-     *   <li>the {@link java.io.File#toString() File.toString()} or
-     *       {@link java.nio.file.Path#toString() Path.toString()} method in Java I/O.</li>
-     * </ul></div>
+     * this method is similar in purpose to the {@link java.io.File#toString() File.toString()} or
+     * {@link java.nio.file.Path#toString() Path.toString()} methods in Java I/O.
+     * </div>
      *
      * @return the local-independent string representation of this name.
      */
@@ -440,7 +431,7 @@ public interface GenericName extends Comparable<GenericName> {
      * returns an implementation mapping to {@link #toString()} for all locales.
      *
      * <div class="note"><b>Example:</b>
-     * An implementation may want to localize the {@code "My Documents"} directory name
+     * an implementation may want to localize the {@code "My Documents"} directory name
      * into {@code "Mes Documents"} on French installation of Windows operating system.
      * </div>
      *

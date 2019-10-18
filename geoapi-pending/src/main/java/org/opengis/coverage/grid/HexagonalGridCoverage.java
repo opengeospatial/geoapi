@@ -62,7 +62,7 @@ import static org.opengis.annotation.Specification.*;
  * are the Thiessen polygons that are generated around the grid points.</p>
  *
  * <div class="note"><b>Note:</b>
- * A set of Thiessen polygons generated from the grid points of any 2-dimensional
+ * a set of Thiessen polygons generated from the grid points of any 2-dimensional
  * rectified grid described by two offset vectors that are equal in length but not orthogonal
  * will be a set of congruent hexagons. The hexagons will be irregular unless the offset vectors
  * differ in direction by exactly 60°.

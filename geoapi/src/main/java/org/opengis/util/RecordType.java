@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
  * <p>This interface has methods for data access, but no methods to dynamically add members.
  * This approach ensures that once a {@code RecordType} is constructed, it is immutable.</p>
  *
- * <div class="note"><b>Comparison with Java reflection</b><br>
+ * <div class="note"><b>Comparison with Java reflection:</b>
  * {@code RecordType} instances can be though as equivalent to instances of the Java {@link Class} class.
  * The set of members in a {@code RecordType} can be though as equivalent to the set of fields in a class.
  * </div>
@@ -70,8 +70,8 @@ public interface RecordType extends Type {
      * If this {@code RecordType} is contained in a {@linkplain RecordSchema record schema},
      * then the record type name shall be a valid in the name space of the record schema.
      *
-     * <div class="note"><b>Comparison with Java reflection</b><br>
-     * If we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
+     * <div class="note"><b>Comparison with Java reflection:</b>
+     * if we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
      * this method can be though as the equivalent of the Java {@link Class#getName()} method.
      * </div>
      *
@@ -84,8 +84,8 @@ public interface RecordType extends Type {
     /**
      * Returns the schema that contains this record type.
      *
-     * <div class="note"><b>Comparison with Java reflection</b><br>
-     * If we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
+     * <div class="note"><b>Comparison with Java reflection:</b>
+     * if we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
      * this method can be though as the equivalent of the Java {@link Class#getPackage()} method.
      * </div>
      *
@@ -102,8 +102,8 @@ public interface RecordType extends Type {
      * <p>The {@linkplain NameSpace name space} associated with a {@code RecordType} contains only
      * members of this {@code RecordType}. There is no potential for conflict with other record types.</p>
      *
-     * <div class="note"><b>Comparison with Java reflection</b><br>
-     * If we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
+     * <div class="note"><b>Comparison with Java reflection:</b>
+     * if we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
      * this method can be though as related to the Java {@link Class#getFields()} method.
      * </div>
      *
@@ -137,8 +137,8 @@ public interface RecordType extends Type {
      * <blockquote><code>return {@linkplain #getMemberTypes()}.{@linkplain Map#get get}(name).{@linkplain
      * Type#getTypeName() getTypeName()}</code></blockquote>
      *
-     * <div class="note"><b>Comparison with Java reflection</b><br>
-     * If we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
+     * <div class="note"><b>Comparison with Java reflection:</b>
+     * if we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
      * this method can be though as related to the Java {@link Class#getField(String)} method.
      * </div>
      *
@@ -162,8 +162,8 @@ public interface RecordType extends Type {
      * to require that <code>{@linkplain Record#getRecordType() == this}</code>. The choice between more lenient
      * or more restrictive conditions is similar to allowing or not sub-classing.
      *
-     * <div class="note"><b>Comparison with Java reflection</b><br>
-     * If we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
+     * <div class="note"><b>Comparison with Java reflection:</b>
+     * if we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
      * this method can be though as the equivalent of the Java {@link Class#isInstance(Object)} method.
      * </div>
      *

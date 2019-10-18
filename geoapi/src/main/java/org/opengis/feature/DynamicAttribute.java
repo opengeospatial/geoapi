@@ -100,7 +100,7 @@ public interface DynamicAttribute<V> extends Attribute<V> {
      * Evaluating at the given temporal position may require interpolation.
      * Interpolation algorithm, if any, is implementation-dependent.
      *
-     * <div class="note"><b>Implementation note</b><br>
+     * <div class="note"><b>Implementation note</b>:
      * there is different approaches in the way that collection elements are related to those property values:
      * <ul>
      *   <li>The collection may be a snapshot of property values at the method invocation time.</li>

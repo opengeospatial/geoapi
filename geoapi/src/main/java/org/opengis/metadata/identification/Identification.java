@@ -142,7 +142,7 @@ public interface Identification {
      * May also describe the range of resolutions in which a digital resource may be used.
      *
      * <div class="note"><b>Note:</b>
-     * This element should be repeated when describing upper and lower range.
+     * this element should be repeated when describing upper and lower range.
      * </div>
      *
      * @return factor which provides a general understanding of the density of spatial resource.

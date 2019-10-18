@@ -62,10 +62,9 @@ import static org.opengis.annotation.Obligation.MANDATORY;
  * <a href="http://schemas.opengis.net/definitions/">http://schemas.opengis.net/definitions/</a>.
  * </p>
  *
- * <div class="note">
  * <table class="ogc">
  *   <caption>Examples of mapping from Java classes to type names</caption>
- *   <tr><th>Java class</th>                            <th>Name example</th>                    <th>Definition identifier in OGC namespace</th></tr>
+ *   <tr><th>Java class</th>                            <th>Name example</th>                  <th>Definition identifier in OGC namespace</th></tr>
  *   <tr><td>{@link java.lang.String}</td>              <td>"{@code OGC:CharacterString}"</td> <td>urn:ogc:def:dataType:OGC::string</td></tr>
  *   <tr><td>{@link java.util.Date}</td>                <td>"{@code OGC:DateTime}"</td>        <td></td></tr>
  *   <tr><td>{@link java.lang.Double}</td>              <td>"{@code OGC:Real}"</td>            <td></td></tr>
@@ -73,7 +72,6 @@ import static org.opengis.annotation.Obligation.MANDATORY;
  *   <tr><td>{@link java.lang.Boolean}</td>             <td>"{@code OGC:Boolean}"</td>         <td>urn:ogc:def:dataType:OGC::boolean</td></tr>
  *   <tr><td>{@link org.opengis.metadata.Metadata}</td> <td>"{@code OGC:MD_Metadata}"</td>     <td></td></tr>
  * </table>
- * </div>
  *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)

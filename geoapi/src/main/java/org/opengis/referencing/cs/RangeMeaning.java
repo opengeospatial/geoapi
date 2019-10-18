@@ -79,7 +79,7 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
      * Values with the same meaning repeat modulo the difference between maximum value and
      * minimum value.
      *
-     * <div class="note"><b>Example:</b> In a geographic CRS, longitude values are
+     * <div class="note"><b>Example:</b> in a geographic CRS, longitude values are
      * often defined with a finite extent (e.g., from -180 degrees to +180 degrees). The minimum
      * and maximum longitude limits define a single line (on the ellipsoid, sphere, or cylinder),
      * known as the anti-meridian, across which longitude values are discontinuous: as this line

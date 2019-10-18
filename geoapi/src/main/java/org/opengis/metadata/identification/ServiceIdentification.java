@@ -70,7 +70,7 @@ public interface ServiceIdentification extends Identification {
      * Supports searching based on the version of {@linkplain #getServiceType() service type}.
      *
      * <div class="note"><b>Example:</b>
-     * We might only be interested in OGC Catalogue V1.1 services.
+     * we might only be interested in OGC Catalogue V1.1 services.
      * If version is maintained as a separate attribute, users can easily search
      * for all services of a type regardless of the version.
      * </div>

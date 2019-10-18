@@ -49,7 +49,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * not mandatory. The scope could also be defined by the ontology for example.
  *
  * <div class="note"><b>Note:</b>
- * Compared to the Java language, {@code AttributeType} is equivalent to {@link java.lang.reflect.Field}
+ * compared to the Java language, {@code AttributeType} is equivalent to {@link java.lang.reflect.Field}
  * while {@code FeatureType} is equivalent to {@link Class}.</div>
  *
  * <h2>Value type</h2>
@@ -156,7 +156,7 @@ public interface AttributeType<V> extends PropertyType {
      * See <cite>"Attribute characterization"</cite> in class Javadoc for more information.
      *
      * <div class="note"><b>Example:</b>
-     * An attribute that carries a measurement (e.g. air temperature) may have another attribute
+     * an attribute that carries a measurement (e.g. air temperature) may have another attribute
      * that holds the measurement accuracy.</div>
      *
      * The characteristics are enumerated in the {@linkplain Map#values() map values}.

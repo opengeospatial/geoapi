@@ -60,7 +60,7 @@ public interface OrientableSurface extends OrientablePrimitive {
      * shall be listed as "interior".
      *
      * <div class="note"><b>Note:</b>
-     * The concept of exterior boundary for a surface is really only
+     * the concept of exterior boundary for a surface is really only
      * valid in a 2-dimensional plane. A bounded cylinder has two boundary components, neither
      * of which can logically be classified as its exterior. Thus, in 3 dimensions, there is no
      * valid definition of exterior that covers all cases.

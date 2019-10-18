@@ -86,7 +86,7 @@ import org.opengis.referencing.operation.MathTransform;
  * the various {@link TestCase} subclasses.</p>
  *
  * <div class="note"><b>Example:</b>
- * The test suite below declares that the tolerance threshold for {@code MyProjection}
+ * the test suite below declares that the tolerance threshold for {@code MyProjection}
  * needs to be relaxed by a factor 10 during inverse projections.
  *
  * <blockquote><pre>package org.myproject;

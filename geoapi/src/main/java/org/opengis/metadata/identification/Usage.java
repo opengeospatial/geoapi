@@ -103,7 +103,7 @@ public interface Usage {
      * Responses to the user-determined limitations.
      *
      * <div class="note"><b>Example:</b>
-     * This has been fixed in version <var>x</var>.
+     * this has been fixed in version <var>x</var>.
      * </div>
      *
      * @return responses to the user-determined limitations.

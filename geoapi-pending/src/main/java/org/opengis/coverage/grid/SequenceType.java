@@ -150,7 +150,7 @@ public class SequenceType extends CodeList<SequenceType> {
      * discontinuous.
      *
      * <div class="note"><b>Note:</b>
-     * Because of the shape of the curve formed by the initial ordering of quadrants,
+     * because of the shape of the curve formed by the initial ordering of quadrants,
      * Morton ordering is also known as Z ordering.
      * </div>
      *
@@ -175,7 +175,7 @@ public class SequenceType extends CodeList<SequenceType> {
      * be constructed with patterns from the same set; it uses all the patterns in that set.
      *
      * <div class="note"><b>Note:</b>
-     * Because of the shape of the curve formed by the initial ordering of quadrants, Hilbert
+     * because of the shape of the curve formed by the initial ordering of quadrants, Hilbert
      * ordering is also known as pi ordering.
      * </div>
      *

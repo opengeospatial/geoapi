@@ -142,7 +142,7 @@ public interface GenericCurve {
      * (strictly increasing, or strictly decreasing).
      *
      * <div class="note"><b>Note:</b>
-     * Constructive parameters are often chosen for convenience of
+     * constructive parameters are often chosen for convenience of
      * calculation, and seldom have any simple relation to arc distances, which are defined
      * as the default parameterization. Normally, geometric constructions will use constructive
      * parameters, as the programmer deems reasonable, and calculate arc length parameters when
@@ -165,7 +165,7 @@ public interface GenericCurve {
      * (strictly increasing, or strictly decreasing).
      *
      * <div class="note"><b>Note:</b>
-     * Constructive parameters are often chosen for convenience of
+     * constructive parameters are often chosen for convenience of
      * calculation, and seldom have any simple relation to arc distances, which are defined
      * as the default parameterization. Normally, geometric constructions will use constructive
      * parameters, as the programmer deems reasonable, and calculate arc length parameters when
@@ -294,7 +294,7 @@ public interface GenericCurve {
      * original curve.
      *
      * <div class="note"><b>Note:</b>
-     * This function is useful in creating linear approximations of the
+     * this function is useful in creating linear approximations of the
      * curve for simple actions such as display. It is often referred to as a "stroked curve".
      * For this purpose, the {@code maxOffset} version is useful in maintaining a minimal
      * representation of the curve appropriate for the display device being targeted. This

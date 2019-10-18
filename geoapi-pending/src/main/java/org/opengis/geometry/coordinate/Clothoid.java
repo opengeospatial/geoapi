@@ -79,7 +79,7 @@ public interface Clothoid extends CurveSegment {
      * acts as a constructive parameter.
      *
      * <div class="note"><b>Note:</b>
-     * If 0 lies between the {@linkplain #getStartConstructiveParam start constructive
+     * if 0 lies between the {@linkplain #getStartConstructiveParam start constructive
      * parameter} and {@linkplain #getEndConstructiveParam end constructive parameter} of the
      * clothoid, then the curve goes through the clothoid's inflection point, and the direction
      * of its radius of curvature, given by the second derivative vector, changes sides

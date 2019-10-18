@@ -276,7 +276,7 @@ public interface GeometryFactory {
      * {@code degree}+1. If the {@code knotType} is uniform they need not be specified.
      *
      * <div class="note"><b>Note:</b>
-     * If the B-spline curve is uniform and degree = 1, the B-spline
+     * if the B-spline curve is uniform and degree = 1, the B-spline
      * is equivalent to a polyline ({@link LineString}). If the {@code knotType} is
      * {@linkplain KnotType#PIECEWISE_BEZIER piecewise Bezier}, then the knots are
      * defaulted so that they are evenly spaced, and except for the first and last
@@ -327,7 +327,7 @@ public interface GeometryFactory {
      * as control points.
      *
      * <div class="note"><b>Note:</b>
-     * The meaning of exterior in the surface boundary is consistent
+     * the meaning of exterior in the surface boundary is consistent
      * with the plane of the constructed planar polygon.
      * </div>
      *
@@ -349,7 +349,7 @@ public interface GeometryFactory {
      * {@linkplain Polygon#getSpanningSurface spanning surface} for the process to succeed.
      *
      * <div class="note"><b>Note:</b>
-     * It is important that the boundary components be oriented properly
+     * it is important that the boundary components be oriented properly
      * for this to work. It is often the case that in bounded manifolds, such as the sphere,
      * there is an ambiguity unless the orientation is properly used.
      * </div>

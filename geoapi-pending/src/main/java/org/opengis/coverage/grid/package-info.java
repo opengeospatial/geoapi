@@ -61,7 +61,7 @@
  * value records to the grid points.</p>
  *
  * <div class="note"><b>Note:</b>
- * The dimensions (axes) of a 2-dimensional grid are often called row and column.
+ * the dimensions (axes) of a 2-dimensional grid are often called row and column.
  * </div>
  *
  * <p>A grid may be defined in terms of an external {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem
@@ -74,7 +74,7 @@
  * of grid coordinates to coordinates of the external coordinate reference system is an affine transformation.</p>
  *
  * <div class="note"><b>Note:</b>
- * The word rectified implies a transformation from an image space to another
+ * the word rectified implies a transformation from an image space to another
  * coordinate reference system. However, grids of this form are often defined initially in an earth-based coordinate system
  * and used as a basis for collecting data from sources other than imagery.
  * </div>

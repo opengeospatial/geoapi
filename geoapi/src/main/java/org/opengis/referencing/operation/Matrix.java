@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
  * A two dimensional array of numbers. Row and column numbering begins with zero.
  *
  * <div class="note"><b>API note:</b>
- * The API for this interface matches closely the API in various {@link javax.vecmath} implementations,
+ * the API for this interface matches closely the API in various {@link javax.vecmath} implementations,
  * which should enable straightforward implementations on top of {@code javax.vecmath}.
  * The later package provides matrix for the general case and optimized versions for 3×3 and 4×4 cases,
  * which are quite common in a transformation package.

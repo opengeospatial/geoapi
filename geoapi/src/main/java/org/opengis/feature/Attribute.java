@@ -50,7 +50,7 @@ import org.opengis.util.GenericName;
  *       Characteristics are often, but not necessarily, constant for all attributes of the same type in a dataset.</li>
  * </ul>
  *
- * <div class="note"><b>Analogy with Java language</b><br>
+ * <div class="note"><b>Analogy with Java language</b>:
  * an attribute is similar to a "field" in a Java object. A field also brings together a field name, value and type,
  * optionally completed by annotations. The value types are typically {@link String}, {@link Number} or collections
  * of them, but other Java type are allowed except {@link Feature}.
@@ -103,7 +103,7 @@ public interface Attribute<V> extends Property {
     /**
      * Sets the attribute value. All previous values are replaced by the given singleton.
      *
-     * <div class="note"><b>Note on validation</b><br>
+     * <div class="note"><b>Note on validation</b>:
      * the verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
      * and offer an other method for performing more extensive validation.
@@ -123,7 +123,7 @@ public interface Attribute<V> extends Property {
      * In the common case where the {@linkplain AttributeType#getMaximumOccurs() maximum number of occurrences}
      * is restricted to 1, {@link #getValue()} is a convenient alternative.
      *
-     * <div class="note"><b>Implementation note</b><br>
+     * <div class="note"><b>Implementation note</b>:
      * there is different approaches in the way that collection elements are related to this property values:
      * <ul>
      *   <li>The collection may be a snapshot of property values at the method invocation time.</li>
@@ -141,7 +141,7 @@ public interface Attribute<V> extends Property {
     /**
      * Sets the attribute values. All previous values are replaced by the given collection.
      *
-     * <div class="note"><b>Note on validation</b><br>
+     * <div class="note"><b>Note on validation</b>:
      * the verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
      * and offer an other method for performing more extensive validation.

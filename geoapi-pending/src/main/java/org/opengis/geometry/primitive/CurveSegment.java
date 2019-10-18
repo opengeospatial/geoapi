@@ -32,7 +32,6 @@
 package org.opengis.geometry.primitive;
 
 import org.opengis.geometry.coordinate.GenericCurve;
-import org.opengis.geometry.coordinate.PointArray;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -55,7 +54,7 @@ public interface CurveSegment extends GenericCurve {
      * not the other way.
      *
      * <div class="note"><b>Note:</b>
-     * In the specification, curve segments do not appear except in the context of a curve,
+     * in the specification, curve segments do not appear except in the context of a curve,
      * and therefore this method should never returns {@code null} which would preclude the
      * use of curve segments except in this manner. While this would not affect the specification,
      * allowing {@code null} owner allows other standards based on ISO 19107 one to use curve
@@ -86,7 +85,7 @@ public interface CurveSegment extends GenericCurve {
      * If this is the first curve segment in the curve, this value is ignored.
      *
      * <div class="note"><b>Note:</b>
-     * Use of these values is only appropriate when the basic curve definition is an underdetermined
+     * use of these values is only appropriate when the basic curve definition is an underdetermined
      * system. For example, line strings and segments cannot support continuity above C⁰,
      * since there is no spare control parameter to adjust the incoming angle at the end points of
      * the segment. Spline functions on the other hand often have extra degrees of freedom on end
@@ -123,7 +122,7 @@ public interface CurveSegment extends GenericCurve {
      * If this is the last curve segment in the curve, this value is ignored.
      *
      * <div class="note"><b>Note:</b>
-     * Use of these values is only appropriate when the basic curve definition is an underdetermined
+     * use of these values is only appropriate when the basic curve definition is an underdetermined
      * system. For example, line strings and segments cannot support continuity above C⁰,
      * since there is no spare control parameter to adjust the incoming angle at the end points of
      * the segment. Spline functions on the other hand often have extra degrees of freedom on end

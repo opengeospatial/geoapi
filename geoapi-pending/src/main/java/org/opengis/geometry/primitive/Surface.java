@@ -53,7 +53,7 @@ import static org.opengis.annotation.Specification.*;
  * the interior structure of a {@code Surface}.
  *
  * <div class="note"><b>Note:</b>
- * Other than the restriction on orientability, no other "validity" condition is required for GM_Surface.
+ * other than the restriction on orientability, no other "validity" condition is required for GM_Surface.
  * </div>
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>

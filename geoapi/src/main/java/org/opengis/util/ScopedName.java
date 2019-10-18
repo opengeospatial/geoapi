@@ -96,10 +96,10 @@ public interface ScopedName extends GenericName {
      * the heads are the blue elements in the <var>head</var>.<var>tail</var> column.</p>
      *
      * <div class="note"><b>Example:</b>
-     * If {@code this} name is {@code "org.opengis.util.Record"}, then this method shall returns {@code "org"}.</div>
+     * if {@code this} name is {@code "org.opengis.util.Record"}, then this method shall returns {@code "org"}.</div>
      *
      * <div class="note"><b>Analogy:</b>
-     * This method is similar in purpose to:
+     * this method is similar in purpose to:
      * <ul>
      *   <li><code>{@linkplain java.nio.file.Path#getName(int) Path.getName}(0)</code> from Java I/O;</li>
      *   <li><code>{@linkplain javax.naming.Name#get(int) Name.get}(0)</code>
@@ -126,11 +126,9 @@ public interface ScopedName extends GenericName {
      * the tails are the yellow elements in the <var>head</var>.<var>tail</var> column.</p>
      *
      * <div class="note"><b>Analogy:</b>
-     * This method is similar in purpose to:
-     * <ul>
-     *   <li><code>{@link javax.naming.Name#getSuffix(int) Name.getSuffix}(1)</code>
-     *       from the <cite>Java Naming and Directory Interface</cite>.</li>
-     * </ul></div>
+     * this method is similar in purpose to <code>{@link javax.naming.Name#getSuffix(int) Name.getSuffix}(1)</code>
+     * from the <cite>Java Naming and Directory Interface</cite>.
+     * </div>
      *
      * @return all elements except the first one in the in the list of {@linkplain #getParsedNames() parsed names}.
      */
@@ -151,7 +149,7 @@ public interface ScopedName extends GenericName {
      * the paths are the blue elements in the <var>path</var>.<var>tip</var> column.</p>
      *
      * <div class="note"><b>Analogy:</b>
-     * This method is similar in purpose to:
+     * this method is similar in purpose to:
      * <ul>
      *   <li>the {@link java.io.File#getParentFile() File.getParentFile()} or
      *       {@link java.nio.file.Path#getParent() Path.getParent()} from Java I/O;</li>
@@ -174,7 +172,7 @@ public interface ScopedName extends GenericName {
      * the tips are the yellow elements in the <var>path</var>.<var>tip</var> column.</p>
      *
      * <div class="note"><b>Analogy:</b>
-     * This method is similar in purpose to:
+     * this method is similar in purpose to:
      * <ul>
      *   <li>the {@link java.io.File#getName() File.getName()} or
      *       {@link java.nio.file.Path#getFileName() Path.getFileName()} method in Java I/O;</li>
@@ -197,11 +195,9 @@ public interface ScopedName extends GenericName {
      * will depend on the mode of expression: URN or {@code Authority:Identifier} notation.
      *
      * <div class="note"><b>Analogy:</b>
-     * This method is similar in purpose to:
-     * <ul>
-     *   <li>the {@link java.io.File#toString() File.toString()} or
-     *       {@link java.nio.file.Path#toString() Path.toString()} method in Java I/O.</li>
-     * </ul></div>
+     * this method is similar in purpose to the {@link java.io.File#toString() File.toString()}
+     * or {@link java.nio.file.Path#toString() Path.toString()} method in Java I/O.
+     * </div>
      */
     @Override
     @UML(identifier="scopedName", obligation=MANDATORY, specification=ISO_19103)

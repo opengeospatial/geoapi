@@ -114,8 +114,8 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
     /**
      * The name, as used by the service or operation for this parameter.
      *
-     * <div class="note"><b>Note on Service Metadata name</b><br>
-     * The metadata standard ({@linkplain Specification#ISO_19111 ISO 19115}) defines the {@code name}
+     * <div class="note"><b>Note on Service Metadata name:</b>
+     * the metadata standard ({@linkplain Specification#ISO_19111 ISO 19115}) defines the {@code name}
      * property as of type {@link MemberName} instead than {@code Identifier}. The details of mapping
      * the former to the later are left to implementors, but the following can be used as guidelines:
      *

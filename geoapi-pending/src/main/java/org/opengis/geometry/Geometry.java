@@ -205,7 +205,7 @@ public interface Geometry extends TransfiniteSet {
      * is neither consistent between implementations, nor theoretically viable.</p>
      *
      * <div class="note"><b>Note:</b>
-     * The role of the reference system in distance calculations is
+     * the role of the reference system in distance calculations is
      * important. Generally, there are at least three types of distances that may be defined
      * between points (and therefore between geometric objects): map distance, geodesic distance,
      * and terrain distance.
