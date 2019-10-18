@@ -41,7 +41,7 @@
  * how it was computed in a model. The domain of a grid coverage is a set of grid points, including their
  * convex hull in the case of a continuous grid coverage.</p>
  *
- * <H3>Quadrilateral grid geometry</H3>
+ * <h2>Quadrilateral grid geometry</h2>
  * <p>A grid is a network composed of two or more sets of curves in which the members of each
  * set intersect the members of the other sets in a systematic way. The curves are called grid lines; the points
  * at which they intersect are {@linkplain org.opengis.coverage.grid.GridPoint grid points}, and the interstices
@@ -97,7 +97,7 @@
  * reference system, but the grid lines of that grid need not be straight or orthogonal, and the grid cells may be of
  * different shapes and sizes.</p>
  *
- * <H3>Cell structures</H3>
+ * <h2>Cell structures</h2>
  * <p>The term "grid cell" refers to two concepts: one important from the perspective of data collection
  * and portrayal, the other important from the perspective of grid coverage evaluation. The ambiguity of this term is a
  * common cause of positioning error in evaluating or portraying grid coverages.</p>

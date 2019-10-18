@@ -48,7 +48,7 @@ import static org.opengis.annotation.Obligation.MANDATORY;
  *   <li>{@link MemberName#getAttributeType()} as a reference to the type definition of the attribute.</li>
  * </ul>
  *
- * <h3>Comparison with the Java language</h3>
+ * <h2>Comparison with the Java language</h2>
  * A {@code TypeName} is similar to the name of a java {@link Class}.
  * By contrast, a {@link MemberName} is similar to the name of a field in a Java class.
  * <p>

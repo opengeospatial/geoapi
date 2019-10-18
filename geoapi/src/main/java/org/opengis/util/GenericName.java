@@ -86,7 +86,7 @@ import static org.opengis.annotation.Specification.*;
  *   </tr>
  * </table></blockquote>
  *
- * <h3>Example</h3>
+ * <h2>Example</h2>
  * In the following illustration, each line is one possible construction for {@code "urn:crs:epsg:4326"}
  * (taken as an abridged form of above URN for this example only). For each construction:
  *
@@ -132,7 +132,7 @@ import static org.opengis.annotation.Specification.*;
  * </table>
  * </blockquote>
  *
- * <h3>Comparison with Java Content Repository (JCR) names</h3>
+ * <h2>Comparison with Java Content Repository (JCR) names</h2>
  * In the Java standard {@link javax.xml.namespace.QName} class and in the Java Content Repository (JCR) specification,
  * a name is an ordered pair of (<var>Name space</var>, <var>Local part</var>) strings. A JCR name can take two lexical
  * forms: <cite>expanded form</cite> and <cite>qualified form</cite>. Those names are defined as:

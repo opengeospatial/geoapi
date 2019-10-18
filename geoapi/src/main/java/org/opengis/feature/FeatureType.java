@@ -50,11 +50,11 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * compared to the Java language, {@code FeatureType} is equivalent to {@link Class} while
  * {@code Feature} instances are equivalent to {@link Object} instances of that class.</div>
  *
- * <h3>Naming</h3>
+ * <h2>Naming</h2>
  * The feature type {@linkplain #getName() name} is mandatory and should be unique.
  * Names can be {@linkplain org.opengis.util.ScopedName} for avoiding name collision.
  *
- * <h3>Properties and inheritance</h3>
+ * <h2>Properties and inheritance</h2>
  * Each feature type can provide descriptions for the following {@linkplain #getProperties(boolean) properties}:
  *
  * <ul>

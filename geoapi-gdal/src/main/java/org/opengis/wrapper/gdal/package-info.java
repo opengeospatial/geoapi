@@ -25,8 +25,7 @@
  *   <tr><td>WCS</td>    <td>OGC Web Coverage Service</td></tr>
  * </table>
  *
- * <section class="note">
- * <h1>Installation</h1>
+ * <h2>Installation</h2>
  * GDAL needs to be built with the {@code --with-java} option.
  * If the package manager for a given platform does not support this option,
  * then GDAL may have to be <a href="https://trac.osgeo.org/gdal/wiki/BuildHints">built from the sources</a>:
@@ -44,7 +43,6 @@
  *
  * See {@code configure --help} for a list of options.
  * For example MacOS users may need to add the {@code --with-macosx-framework} option at configuration time.
- * </section>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

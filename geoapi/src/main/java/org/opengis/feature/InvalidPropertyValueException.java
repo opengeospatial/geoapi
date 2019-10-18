@@ -59,15 +59,13 @@ import java.util.Collection;
  *   </li>
  * </ul>
  *
- * <section class="note">
- * <h1>Exception for invalid class</h1>
+ * <h2>Exception for invalid class</h2>
  * Libraries may throw {@link ClassCastException} instead than this {@code InvalidPropertyValueException} when
  * the given value is not an instance of the expected class (typically {@link AttributeType#getValueClass()}).
  * The reason is that libraries may rely on Java parameterized types, which throws {@code ClassCastException}
  * at runtime when the objects are used in an unsafe way. Libraries may also rely on {@link Class#cast(Object)}
  * or {@link Class#asSubclass(Class)} standard methods, which are designed to throw {@code ClassCastException},
  * or may way to be consistent with all the above.
- * </section>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

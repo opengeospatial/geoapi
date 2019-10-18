@@ -102,7 +102,7 @@ public interface OperationMetadata {
      * The parameters that are required for this interface.
      * Returns an empty collection if none.
      *
-     * <h3>Unified parameter API</h3>
+     * <h4>Unified parameter API</h4>
      * In GeoAPI, the {@code SV_Parameter} type defined by ISO 19115 is replaced by {@code ParameterDescriptor}
      * in order to provide a single parameter API (see {@link org.opengis.parameter} for more information).
      * The mapping from ISO 19115 to GeoAPI is defined as bellow:

@@ -44,14 +44,14 @@ package org.opengis.feature;
  *
  * {@code Feature} can be instantiated by calls to {@link FeatureType#newInstance()}.
  *
- * <h3>Simple features</h3>
+ * <h2>Simple features</h2>
  * A feature is said “simple” if it complies to all the following conditions:
  * <ul>
  *   <li>the feature allows only attributes and operations (no associations),</li>
  *   <li>the multiplicity of all attributes is constrained to [1 … 1].</li>
  * </ul>
  *
- * <h3>Moving features</h3>
+ * <h2>Moving features</h2>
  * A feature is a moving feature if it complies to at least one of the following conditions:
  * <ul>
  *   <li>the feature contains {@linkplain DynamicAttribute dynamic attributes},</li>

@@ -38,7 +38,7 @@
  *   <li><a href="http://portal.opengeospatial.org/files/?artifact_id=5929">OpenGIS® Catalogue Service Implementation Specification 2.0.1</a></li>
  * </ul>
  *
- * <h3>Catalog and Web Feature Server</h3>
+ * <h2>Catalog and Web Feature Server</h2>
  * <p>Both the Catalog and Web Feature Server specifications use specific identifiers (like FeatureId)
  * during their requests and responses.</p>
  */

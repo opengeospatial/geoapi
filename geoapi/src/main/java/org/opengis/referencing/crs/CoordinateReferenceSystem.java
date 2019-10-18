@@ -51,7 +51,7 @@ import static org.opengis.annotation.Specification.*;
  *   <li>{@link CompoundCRS}, defined as a sequence of {@code SingleCRS}.</li>
  * </ul>
  *
- * <h3>Purpose</h3>
+ * <h2>Purpose</h2>
  * A coordinate reference system (CRS) captures the choice of values for the parameters that constitute
  * the degrees of freedom of the coordinate space. The fact that such a choice has to be made,
  * either arbitrarily or by adopting values from survey measurements, leads to the large number
@@ -60,7 +60,7 @@ import static org.opengis.annotation.Specification.*;
  * specification of the coordinate reference system, coordinates are ambiguous at best and
  * meaningless at worst.
  *
- * <h3>Spatio-temporal CRS</h3>
+ * <h2>Spatio-temporal CRS</h2>
  * The concept of coordinates may be expanded from a strictly spatial context to include time.
  * Time is then added as another coordinate to the coordinate tuple. It is even possible to add
  * two time-coordinates, provided the two coordinates describe different independent quantities.

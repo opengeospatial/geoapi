@@ -51,7 +51,7 @@ import org.opengis.util.GenericName;
  * that cannot be created by an {@linkplain AuthorityFactory authority factory}.
  * This factory is very flexible, whereas the authority factory is easier to use.
  *
- * <h3>Object properties</h3>
+ * <h2>Object properties</h2>
  * Most factory methods expect a {@link Map Map&lt;String,?&gt;} argument.
  * The table below lists the keys that {@code ObjectFactory} implementations shall accept,
  * together with the type of values associated to those keys (the <cite>alternative types</cite> column
@@ -132,7 +132,7 @@ import org.opengis.util.GenericName;
  *   </tr>
  * </table>
  *
- * <h3>Localization</h3>
+ * <h2>Localization</h2>
  * Localizable attributes like {@code "remarks"} can be specified either as a single {@code InternationalString},
  * or as one or many {@code String}s associated to keys suffixed by a language and country code.
  * For example the {@code "remarks_fr"} key stands for remarks in {@linkplain Locale#FRENCH French} and the

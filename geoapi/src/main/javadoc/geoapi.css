@@ -97,16 +97,6 @@ li > ol {
 }
 
 /*
- * Formatting of section headers.
- */
-div.section {
-  font-size:    18px;
-  font-weight:  bold;
-  margin-top:   30px;
-  margin-bottom: 3px;
-}
-
-/*
  * Definition of <div class="note">
  *
  * Note or examples.

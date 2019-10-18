@@ -52,7 +52,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * Compared to the Java language, {@code AttributeType} is equivalent to {@link java.lang.reflect.Field}
  * while {@code FeatureType} is equivalent to {@link Class}.</div>
  *
- * <h3>Value type</h3>
+ * <h2>Value type</h2>
  * Attributes can be used for both spatial and non-spatial properties.
  * Some examples are:
  *
@@ -64,7 +64,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  *   <tr><td>Horizontal accuracy</td> <td>{@link org.opengis.metadata.quality.PositionalAccuracy}</td></tr>
  * </table>
  *
- * <h3>Attribute characterization</h3>
+ * <h2>Attribute characterization</h2>
  * An {@code Attribute} can be characterized by other attributes. For example an attribute that carries a measurement
  * (e.g. air temperature) may have another attribute that holds the measurement accuracy (e.g. ±0.1°C).
  * Such accuracy can be stored as a <cite>characteristic</cite> of the measurement attribute.

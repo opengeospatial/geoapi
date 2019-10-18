@@ -216,8 +216,7 @@ public interface MathTransformFactory extends Factory {
      * p.parameter("semi_minor").setValue(6356752.314);
      * MathTransform mt = factory.createParameterizedTransform(p);</pre></blockquote>
      *
-     * <section class="note">
-     * <h2>Note on cartographic projections:</h2>
+     * <h4>Note on cartographic projections:</h4>
      * Cartographic projection transforms are used by {@linkplain ProjectedCRS projected coordinate reference systems}
      * to map geographic coordinates (e.g. <var>longitude</var> and <var>latitude</var>) into (<var>x</var>,<var>y</var>)
      * coordinates. These (<var>x</var>,<var>y</var>) coordinates can be imagined to lie on a plane, such as a paper map
@@ -245,7 +244,6 @@ public interface MathTransformFactory extends Factory {
      * In such cases the {@code createParameterizedTransform(…)} behavior is implementation specific, since different
      * libraries may resolve this conflict in different ways.
      * Users can invoke {@link #createBaseToDerived createBaseToDerived(…)} instead for more determinist results.</p>
-     * </section>
      *
      * @param  parameters  the parameter values.
      * @return the parameterized transform.

@@ -73,8 +73,7 @@ import org.opengis.referencing.operation.MathTransform;
  * explicitely which factories to use} or {@linkplain #addTestListener being notified of test results}.
  * Those methods take effect even if the {@link TestCase} are run outside of a {@code TestSuite} context.
  *
- * <section class="note">
- * <h1>How implementations are discovered</h1>
+ * <h2>How implementations are discovered</h2>
  * All tests use {@link Factory} instances that are specific to the implementation being tested.
  * By default {@code TestSuite} fetches the factory implementations with {@link ServiceLoader},
  * which will scan every <code>META-INF/services/org.opengis.<var>TheFactory</var></code> files
@@ -120,7 +119,6 @@ import org.opengis.referencing.operation.MathTransform;
  * directory if the implementation details shall be honored (otherwise the tests will be run,
  * but the implementation details will be ignored).
  * </div>
- * </section>
  *
  * @see ImplementationDetails
  * @see TestCase

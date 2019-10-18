@@ -55,7 +55,7 @@
  * ellipsoid (curved 2D space) involves more complex ellipsoidal calculus. These rules cannot be specified
  * in detail, but are implied in the geometric properties of the coordinate space.</p>
  *
- * <h3>Coordinate system types and unions</h3>
+ * <h2>Coordinate system types and unions</h2>
  * <p>Coordinate systems are divided into subtypes by the geometric properties of the coordinate space spanned
  * and the geometric properties of the axes themselves (straight or curved; perpendicular or not).
  * Certain subtypes of coordinate system shall be used only with specific subtypes of coordinate reference system.
