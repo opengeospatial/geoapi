@@ -59,6 +59,9 @@ class IdentifiedObject(ABC):
     def name(self) -> str:
         """
         The primary name by which this object is identified.
+
+        :return: The primary name.
+        :rtype: str
         """
         pass
 
@@ -66,6 +69,9 @@ class IdentifiedObject(ABC):
     def remarks(self) -> str:
         """
         Comments on or information about this object, including data source information.
+
+        :return: The remarks, or null if none.
+        :rtype: str
         """
         return None
 
@@ -74,6 +80,9 @@ class IdentifiedObject(ABC):
     def to_wkt(self) -> str:
         """
         Returns a Well-Known Text (WKT) for this object.
+
+        :return: The Well Know Text for this object.
+        :rtype: str
         """
         pass
 
@@ -87,7 +96,11 @@ class CoordinateSystemAxis(IdentifiedObject):
     @abstractmethod
     def abbreviation(self) -> str:
         """
-        Returns the abbreviation used for this coordinate system axes.
+        The abbreviation used for this coordinate system axes.
+        This abbreviation is also used to identify the ordinates in coordinate tuple.
+
+        :return: The coordinate system axis abbreviation.
+        :rtype: int
         """
         pass
 
@@ -95,7 +108,10 @@ class CoordinateSystemAxis(IdentifiedObject):
     @abstractmethod
     def direction(self) -> AxisDirection:
         """
-        Returns the direction of this coordinate system axis.
+        Direction of this coordinate system axis.
+
+        :return: The coordinate system axis direction.
+        :rtype: AxisDirection
         """
         pass
 
@@ -104,13 +120,21 @@ class CoordinateSystemAxis(IdentifiedObject):
     def unit(self):
         """
         Returns the unit of measure used for this coordinate system axis.
+        The value of a coordinate in a coordinate tuple shall be recorded using this unit of measure, whenever those
+        coordinates use a coordinate reference system that uses a coordinate system that uses this axis.
+
+        :return: The coordinate system axis unit.
         """
         pass
 
     @property
     def minimum_value(self) -> float:
         """
-        Returns the minimum value normally allowed for this axis, in the unit of measure for the axis.
+        Returns the minimum value normally allowed for this axis, in the unit of measure for the axis. If there is no
+        minimum value, then this method returns negative infinity.
+
+        :return: The minimum value, or the negative infinity if none.
+        :rtype: float
         """
         return float("-inf")
 
@@ -119,13 +143,21 @@ class CoordinateSystemAxis(IdentifiedObject):
         """
         Returns the maximum value normally allowed for this axis, in the unit of measure for the axis. If there is no
         maximum value, then this method returns positive infinity.
+
+        :return: The maximum value, or the positive infinity if none.
+        :rtype: float
         """
         return float("inf")
 
     @property
     def range_meaning(self) -> RangeMeaning:
         """
-        Returns the meaning of axis value range specified by the minimum and maximum values.
+        Returns the meaning of axis value range specified by the minimum and maximum values. This element shall be
+        omitted when both minimum and maximum values are omitted. It may be included when minimum and/or maximum values
+        are included. If this element is omitted when minimum or maximum values are included, the meaning is unspecified
+
+        :return: The range meaning, or null in none.
+        :rtype: RangeMeaning
         """
         return None
 
@@ -143,14 +175,21 @@ class CoordinateSystem(IdentifiedObject):
     def dimension(self) -> int:
         """
         Returns the dimension of the coordinate system.
+
+        :return: The dimension of the coordinate system.
+        :rtype: int
         """
         pass
 
-    @property
     @abstractmethod
-    def axis(self) -> CoordinateSystemAxis:
+    def axis(self, dimension: int) -> CoordinateSystemAxis:
         """
         Returns the axis for this coordinate system at the specified dimension.
+
+        :param dimension: The zero based index of axis.
+        :type dimension: int
+        :return: The axis at the specified dimension.
+        :rtype: CoordinateSystemAxis
         """
         pass
 

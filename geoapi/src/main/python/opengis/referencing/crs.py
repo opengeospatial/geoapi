@@ -4,6 +4,7 @@ from opengis.referencing.cs \
     import IdentifiedObject, CoordinateSystem, VerticalCS, TimeCS, AffineCS, CartesianCS, EllipsoidalCS
 from opengis.metadata.datum \
     import Datum, VerticalDatum, TemporalDatum, ImageDatum, EngineeringDatum, GeodeticDatum
+from org.opengis.referencing.operation import Projection, Conversion
 from opengis.metadata.extent import Extent
 
 
@@ -16,6 +17,9 @@ class ReferenceSystem(IdentifiedObject):
     def domain_of_validity(self) -> Extent:
         """
         Area or region or timeframe in which this (coordinate) reference system is valid.
+
+        :return: The reference system valid domain, or null if not available.
+        :rtype: Extent
         """
         return None
 
@@ -23,6 +27,9 @@ class ReferenceSystem(IdentifiedObject):
     def scope(self) -> str:
         """
         Description of domain of usage, or limitations of usage, for which this Reference System object is valid.
+
+        :return: The domain of usage, or null if none.
+        :rtype: str
         """
         return None
 
@@ -44,6 +51,9 @@ class CompoundCRS(CoordinateReferenceSystem):
     def components(self) -> list:
         """
         The ordered list of coordinate reference systems.
+
+        :return: The ordered list of coordinate reference systems.
+        :rtype: list
         """
         pass
 
@@ -56,10 +66,22 @@ class SingleCRS(CoordinateReferenceSystem):
     @property
     @abstractmethod
     def coordinate_system(self) -> CoordinateSystem:
+        """
+        Returns the coordinate system.
+
+        :return: The coordinate system.
+        :rtype: CoordinateSystem
+        """
         pass
 
     @property
     def datum(self) -> Datum:
+        """
+        Returns the datum.
+
+        :return: The datum
+        :rtype: Datum
+        """
         return None
 
 
@@ -71,11 +93,23 @@ class VerticalCRS(SingleCRS):
     @property
     @abstractmethod
     def coordinate_system(self) -> VerticalCS:
+        """
+        Returns the coordinate system, which must be vertical.
+
+        :return: The coordinate system.
+        :rtype: VerticalCS
+        """
         pass
 
     @property
     @abstractmethod
     def datum(self) -> VerticalDatum:
+        """
+        Returns the datum, which must be vertical.
+
+        :return: The datum
+        :rtype: VerticalDatum
+        """
         pass
 
 
@@ -87,11 +121,23 @@ class TemporalCRS(SingleCRS):
     @property
     @abstractmethod
     def coordinate_system(self) -> TimeCS:
+        """
+        Returns the coordinate system, which must be temporal.
+
+        :return: The coordinate system.
+        :rtype: TimeCS
+        """
         pass
 
     @property
     @abstractmethod
     def datum(self) -> TemporalDatum:
+        """
+        Returns the datum, which must be temporal.
+
+        :return: The datum
+        :rtype: TemporalDatum
+        """
         pass
 
 
@@ -103,11 +149,23 @@ class ImageCRS(SingleCRS):
     @property
     @abstractmethod
     def coordinate_system(self) -> AffineCS:
+        """
+        Returns the cartesian coordinate system.
+
+        :return: The coordinate system.
+        :rtype: AffineCS
+        """
         pass
 
     @property
     @abstractmethod
     def datum(self) -> ImageDatum:
+        """
+        Returns the datum, which must be an image one.
+
+        :return: The datum
+        :rtype: ImageDatum
+        """
         pass
 
 
@@ -119,11 +177,14 @@ class EngineeringCRS(SingleCRS):
     @property
     @abstractmethod
     def datum(self) -> EngineeringDatum:
+        """
+        Returns the datum, which must be an engineering one.
+
+        :return: The datum
+        :rtype: EngineeringDatum
+        """
         pass
 
-
-# from org.opengis.referencing.operation import Conversion
-# TODO: conversion_from_base(self) -> Conversion (mandatory)
 
 class GeneralDerivedCRS(SingleCRS):
     """
@@ -134,6 +195,23 @@ class GeneralDerivedCRS(SingleCRS):
     @property
     @abstractmethod
     def base_crs(self) -> CoordinateReferenceSystem:
+        """
+        Returns the base coordinate reference system.
+
+        :return: The base coordinate reference system.
+        :rtype: CoordinateReferenceSystem
+        """
+        pass
+
+    @property
+    @abstractmethod
+    def conversion_from_base(self) -> Conversion:
+        """
+        Returns the conversion from the base CRS to this CRS.
+
+        :return: The conversion from the base CRS.
+        :rtype: Conversion
+        """
         pass
 
 
@@ -145,6 +223,12 @@ class GeodeticCRS(SingleCRS):
     @property
     @abstractmethod
     def datum(self) -> GeodeticDatum:
+        """
+        Returns the datum, which must be geodetic.
+
+        :return: The datum.
+        :rtype: GeodeticDatum
+        """
         pass
 
 
@@ -164,11 +248,15 @@ class GeographicCRS(GeodeticCRS):
     @property
     @abstractmethod
     def coordinate_system(self) -> EllipsoidalCS:
+        """
+        Returns the coordinate system, which must be ellipsoidal.
+
+        :return: The coordinate system.
+        :rtype: EllipsoidalCS
+        """
         pass
 
 
-# from org.opengis.referencing.operation import Projection
-# TODO: conversion_from_base(self) -> Projection
 class ProjectedCRS(GeneralDerivedCRS):
     """
     A 2D coordinate reference system used to approximate the shape of the earth on a planar surface.
@@ -176,15 +264,44 @@ class ProjectedCRS(GeneralDerivedCRS):
 
     @property
     @abstractmethod
+    def conversion_from_base(self) -> Projection:
+        """
+        Returns the map projection from the base CRS to this CRS.
+
+        :return: The conversion from the base CRS.
+        :rtype: Projection
+        """
+        pass
+
+    @property
+    @abstractmethod
     def base_crs(self) -> GeographicCRS:
+        """
+        Returns the base coordinate reference system, which must be geographic.
+
+        :return: The base coordinate reference system.
+        :rtype: GeographicCRS
+        """
         pass
 
     @property
     @abstractmethod
     def coordinate_system(self) -> CartesianCS:
+        """
+        Returns the coordinate system, which must be cartesian.
+
+        :return: The coordinate system.
+        :rtype: CartesianCS
+        """
         pass
 
     @property
     @abstractmethod
     def datum(self) -> GeodeticDatum:
+        """
+        Returns the datum.
+
+        :return: The datum.
+        :rtype: GeodeticDatum
+        """
         pass
