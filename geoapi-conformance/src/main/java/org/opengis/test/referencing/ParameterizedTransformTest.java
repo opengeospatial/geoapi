@@ -1379,6 +1379,45 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
+     * Tests the <cite>"Orthographic"</cite> (EPSG:9840) projection.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
+     * <tr><th>Parameter</th>                                <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                          <td>6378137.0 m</td></tr>
+     * <tr><td>semi-minor axis</td>                          <td>6356752.314247833 m</td></tr>
+     * <tr><td>Latitude of natural origin</td>               <td>55.0°</td></tr>
+     * <tr><td>Longitude of natural origin</td>              <td>5.0°</td></tr>
+     * <tr><td>False easting</td>                            <td>0.0 m</td></tr>
+     * <tr><td>False northing</td>                           <td>0.0 m</td></tr>
+     * </table></td><td>
+     * <table class="ogc">
+     * <caption>Test points</caption>
+     * <tr><th>Source ordinates</th>                            <th>Expected results</th></tr>
+     * <tr align="right"><td>2°07'46.38"E<br>53°48'33.82"N</td> <td>–189011.711 m<br>–128 640.567 m</td></tr>
+     * </table></td></tr></table>
+     *
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
+     */
+    @Test
+    public void testOrthographic() throws FactoryException, TransformException {
+        description = "WGS 84 / Orthographic";
+        final SamplePoints sample = SamplePoints.forCRS(9840);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
+    }
+
+    /**
      * Tests the <cite>"Abridged Molodensky"</cite> (EPSG:9605) datum shift operation.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
