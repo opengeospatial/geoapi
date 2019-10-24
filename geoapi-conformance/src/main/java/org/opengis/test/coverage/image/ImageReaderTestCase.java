@@ -79,7 +79,8 @@ import static org.junit.Assume.*;
  *}</pre></blockquote>
  *
  * <p>Subclasses inherit the following tests:</p>
- * <table class="ogc" summary="Inherited tests">
+ * <table class="ogc">
+ *   <caption>Inherited tests</caption>
  *   <tr><th>Inherited method</th>                   <th>Tested method</th></tr>
  *   <tr><td>{@link #testStreamMetadata()}</td>      <td>{@link ImageReader#getStreamMetadata()}</td></tr>
  *   <tr><td>{@link #testImageMetadata()}</td>       <td>{@link ImageReader#getImageMetadata(int)}</td></tr>

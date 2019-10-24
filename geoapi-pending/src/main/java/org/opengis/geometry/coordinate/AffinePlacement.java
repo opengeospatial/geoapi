@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * by using an affine transformation, (<var>u</var>, <var>v</var>) → (<var>x</var>, <var>y</var>, <var>z</var>),
  * which is defined:
  *
- * <center><img src="doc-files/AffinePlacement.png" alt="Afine placement"></center>
+ * <img src="doc-files/AffinePlacement.png" alt="Afine placement">
  *
  * Then, given this equation, the {@link #getLocation()} method returns the direct position
  * (<var>x₀</var>, <var>y₀</var>, <var>z₀</var>), which

@@ -54,7 +54,9 @@ import static org.junit.Assert.*;
 /**
  * Verifies reference vertical datums and CRSs bundled with the geoscience software.
  *
- * <table class="gigs" summary="Test description"><tr>
+ * <table class="gigs">
+ * <caption>Test description</caption>
+ * <tr>
  *   <th>Test method:</th>
  *   <td>Compare vertical datum and CRS definitions included in the software against the EPSG Dataset.</td>
  * </tr><tr>

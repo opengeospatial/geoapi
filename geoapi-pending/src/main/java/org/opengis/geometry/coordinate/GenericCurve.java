@@ -268,10 +268,10 @@ public interface GenericCurve {
      * the difference of the parameter. The length function also allows for the conversion of the
      * constructive parameter to the arc length parameter using the following idiom:</p>
      *
-     * <center><code>
+     * <blockquote><code>
      * param=length({@linkplain #getStartConstructiveParam startConstructiveParam}, constructiveParam)
      *       + {@linkplain #getStartParam startParam}
-     * </code></center>
+     * </code></blockquote>
      *
      * @param cparam1 The first constructive parameter.
      * @param cparam2 The second constructive parameter.

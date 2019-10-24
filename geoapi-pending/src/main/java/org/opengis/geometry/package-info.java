@@ -35,7 +35,7 @@
  * from {@linkplain org.opengis.annotation.Specification#ISO_19107 OpenGIS® Feature Geometry
  * (Topic 1)} specification.
  *
- * <P ALIGN="justify">The geometry packages contain the various classes for coordinate geometry. All
+ * <P>The geometry packages contain the various classes for coordinate geometry. All
  * of these classes through the root class {@link org.opengis.geometry.Geometry} inherit an optional
  * association to a {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate
  * reference system}. All {@linkplain org.opengis.geometry.DirectPosition direct positions} exposed
@@ -50,11 +50,11 @@
  * specified, then these elements are assumed to be in that same coordinate reference system unless
  * otherwise specified.</P>
  *
- * <P ALIGN="justify">The geometry package has several sub-packages that separate primitive
+ * <P>The geometry package has several sub-packages that separate primitive
  * geometric objects, aggregates and complexes, which have a more elaborate internal structure
  * than simple aggregates.</P>
  *
- * <P ALIGN="justify">Any object that inherits the semantics of the {@link org.opengis.geometry.Geometry}
+ * <P>Any object that inherits the semantics of the {@link org.opengis.geometry.Geometry}
  * object acts as a set of direct positions. Its behavior will be determined by which direct positions it
  * contains. Objects under {@link org.opengis.geometry.primitive.Primitive} will be open, that is, they
  * will not contain their boundary points; curves will not contain their end points, surfaces will not
@@ -66,7 +66,7 @@
  * points as a set of direct positions. This means that identical digital representations will have
  * slightly different semantics depending on whether they are accessed as primitives or complexes.</P>
  *
- * <P ALIGN="justify">This difference of semantics is most striking in the
+ * <P>This difference of semantics is most striking in the
  * {@link org.opengis.geometry.complex.CompositeCurve}. Composite curves are used to represent features
  * whose geometry could also be represented as curve primitives. From a cartographic point of view, these
  * two representations are not different. From a topological point of view, they are different. This
@@ -82,7 +82,7 @@
  * Creators of implementation profiles may take this into account and use a proxy mechanism for realization
  * relationships that cause semantic dissonance.</P>
  *
- * <P ALIGN="justify">{@link org.opengis.geometry.Geometry} and {@link org.opengis.geometry.primitive.Primitive}
+ * <P>{@link org.opengis.geometry.Geometry} and {@link org.opengis.geometry.primitive.Primitive}
  * are purely abstract in the sense that no object or data structure from an application can instantiate
  * them directly. Instances of these classes must be instances of one of their non-abstract subtypes,
  * such as {@link org.opengis.geometry.primitive.Point}, {@link org.opengis.geometry.primitive.Curve}, or

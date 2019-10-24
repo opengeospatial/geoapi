@@ -1,4 +1,15 @@
 /*
+ * Main text.
+ */
+:not(td) > div.block {
+  text-align: justify;
+}
+
+p.right-note {
+  text-align: right;
+}
+
+/*
  * Table without vertical space between rows, a little bit of space between columns,
  * a light background color and a header with a darker background color. The header
  * also have a little bit more space, and a border is drawn around the table.
@@ -32,6 +43,10 @@ table.ogc tr td {
   vertical-align: text-top;
 }
 
+table.ogc tr.coordinates {
+  text-align: right;
+}
+
 /*
  * Optionally add a line or column separator.
  */
@@ -61,6 +76,21 @@ table.ogc tr td.sep {
 /*
  * Table providing description of GIGS tests.
  */
+table.gigs caption {
+  text-align:     left;
+  font-weight:    bold;
+  padding-bottom: 9px;
+}
+
+table.gigs {
+  border-color:     gray;
+  border-style:     solid;
+  border-width:     1px;
+  border-spacing:   15px 2px;
+  margin:           15px 0px;
+  padding:          9px;
+}
+
 table.gigs th {
   text-align: left;
   vertical-align: top;

@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * Any general conic curve. Any of the conic section curves can be canonically represented
  * in polar co-ordinates (&rho;, φ) as:
  *
- * <center><img src="doc-files/ConicCurve.png" alt="Conic curve"></center>
+ * <img src="doc-files/ConicCurve.png" alt="Conic curve">
  *
  * <p>where "<var>P</var>" is semi-latus rectum and "<var>e</var>" is the eccentricity. This gives
  * a conic with focus at the pole (origin), and the vertex on the conic nearest this focus in the
@@ -64,7 +64,7 @@ import static org.opengis.annotation.Specification.*;
  * (<var>u</var>,&nbsp;<var>v</var>) → (<var>x</var>,&nbsp;<var>y</var>,&nbsp;<var>z</var>)
  * which is defined by:</p>
  *
- * <center>(TODO: paste the matrix here, same as AffinePlacement)</center>
+ * (TODO: paste the matrix here, same as AffinePlacement)
  *
  * <p>This gives us <var>φ</var> as the constructive parameter.
  * The {@linkplain DirectPosition direct position} given by

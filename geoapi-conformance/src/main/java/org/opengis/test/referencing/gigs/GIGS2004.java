@@ -62,7 +62,9 @@ import static org.opengis.test.Assert.*;
  * Each test method in this class instantiate exactly one {@link GeodeticDatum}, but
  * may instantiate an arbitrary amount of {@link GeodeticCRS} using that datum.
  *
- * <table class="gigs" summary="Test description"><tr>
+ * <table class="gigs">
+ * <caption>Test description</caption>
+ * <tr>
  *   <th>Test method:</th>
  *   <td>Compare geodetic datum and geocentric, geographic 3D and geographic 2D CRS definitions
  *       included in the geoscience software against the EPSG Dataset.</td>

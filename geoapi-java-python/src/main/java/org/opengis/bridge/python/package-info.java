@@ -43,10 +43,12 @@
  * <ol>
  *   <li>Get the sources <a href="https://github.com/bcdev/jpy">from GitHub</a>.</li>
  *   <li>Set {@code JDK_HOME} and {@code JAVA_HOME} environment variables.</li>
- *   <li>At the root of JPY project, run {@code python setup.py --maven build}.
- *     <ul><li>Compilation result will be in {@code build}<i>/platform/</i> sub-directory.</li></li></ul>
- *   <li>If the above is successful, run {@code python setup.py install --user}.
- *     <ul><li>Compilation result will be in <i>platform-dependent/</i>{@code python/site-packages/} sub-directory.</li></li></ul>
+ *   <li>At the root of JPY project, run {@code python setup.py --maven build}.<ul>
+ *     <li>Compilation result will be in {@code build}<i>/platform/</i> sub-directory.</li>
+ *   </ul></li>
+ *   <li>If the above is successful, run {@code python setup.py install --user}.<ul>
+ *     <li>Compilation result will be in <i>platform-dependent/</i>{@code python/site-packages/} sub-directory.</li>
+ *   </ul></li>
  *   <li>Note the absolute path to {@code jpyconfig.properties} file in any of above-cited directories.</li>
  * </ol>
  *

@@ -8,44 +8,44 @@
   Set of primitive geometric objects whose interiors are disjoint. The following is adapted from
   <A HREF="http://www.opengis.org/docs/01-101.pdf">Feature Geometry (Topic 1)</A> specification.
 
-  <P ALIGN="justify">A geometric complex ({@link org.opengis.geometry.complex.Complex}) is a set of
+  <P>A geometric complex ({@link org.opengis.geometry.complex.Complex}) is a set of
   primitive geometric objects (in a common coordinate system) whose interiors are disjoint.
   Further, if a primitive is in a geometric complex, then there exists a set of primitives in
   that complex whose point-wise union is the boundary of this first primitive.</P>
 
-  <P ALIGN="justify">A subcomplex of a complex is a subset of the primitives of that complex
+  <P>A subcomplex of a complex is a subset of the primitives of that complex
   that is, in its own right, a geometric complex. A supercomplex of a complex is a superset
   of primitives that is also a complex. These definitions are essentially subset and superset
   with the added restriction that they must be a complex. A complex is maximal if it is a
   subcomplex of no larger complex.</P>
 
-  <P ALIGN="justify">The boundary of a geometric object in a geometric complex is a subcomplex
+  <P>The boundary of a geometric object in a geometric complex is a subcomplex
   of that complex. The simplest complex is a single point. The simplest 1-dimensional complex
   is a curve with its two end points. The simplest 2-dimensional complex is a surface with its
   boundary curve, and the curve's start and end points.</P>
 
-  <P ALIGN="justify">The underlying geometry of a complex is usually referred to as a "manifold".
+  <P>The underlying geometry of a complex is usually referred to as a "manifold".
   The structure of a complex organizes the geometry of the manifold into primitive elements,
   analogously to the way in which "charts" are organized by an "atlas" into a map of the world.</P>
 
-  <P ALIGN="justify">One way, but obviously not the only way, to generate a complex from a set of
+  <P>One way, but obviously not the only way, to generate a complex from a set of
   primitives is by beginning with those primitives and performing the following operations.</P>
 
   <UL>
-    <LI><P ALIGN="justify">If two primitives overlap, then subdivide them, eliminating repetitions
+    <LI><P>If two primitives overlap, then subdivide them, eliminating repetitions
         until there is no overlap.</P></LI>
 
-    <LI><P ALIGN="justify">Similarly, if a primitive is not simple, subdivide it where it
+    <LI><P>Similarly, if a primitive is not simple, subdivide it where it
         intersects itself, eliminating repetitions until there is no overlap.</P></LI>
 
-    <LI><P ALIGN="justify">If a primitive is not a point, calculate its boundary as a collection
+    <LI><P>If a primitive is not a point, calculate its boundary as a collection
         of other primitives, using those already in the generating set if possible, and insert
         them into the complex.</P></LI>
 
-    <LI><P ALIGN="justify">Repeat previous steps until no new primitive is required.</P></LI>
+    <LI><P>Repeat previous steps until no new primitive is required.</P></LI>
   </UL>
 
-  <P ALIGN="justify">Many systems have a concept of a universal face (for 2D) or universal solid
+  <P>Many systems have a concept of a universal face (for 2D) or universal solid
   (for 3D). This is valid only in the case where the underlying space of the complex is an
   unbounded Euclidean space. In this case, for 2D, the universal face is the surface in the
   {@link org.opengis.geometry.complex.Complex} that has only interior boundary rings (its exterior
@@ -60,7 +60,7 @@
   boundaries are represented in the same manner as any other boundary relationship.</P>
 
   <BLOCKQUOTE>
-  <P ALIGN="justify"><FONT SIZE=2><STRONG>NOTE:</STRONG> A maximal complex could reasonably be
+  <P><FONT SIZE=2><STRONG>NOTE:</STRONG> A maximal complex could reasonably be
   considered a strong aggregation of its primitives depending on the internal semantics of the
   application. For this reason, the mechanism for the containment of
   {@link org.opengis.geometry.primitive.Primitive}s in a {@link org.opengis.geometry.complex.Complex} is left

@@ -324,7 +324,7 @@
             <configuration>
               <rules>
                 <requireJavaVersion>
-                  <version>10</version>
+                  <version>13</version>
                 </requireJavaVersion>
                 <dependencyConvergence/>
               </rules>
@@ -366,7 +366,7 @@
           <showDeprecation>true</showDeprecation>
           <compilerArgs>
             <arg>-Xlint:all</arg>
-            <arg>-Xdoclint:syntax,missing,accessibility</arg>
+            <arg>-Xdoclint:all,-reference</arg>
             <arg>--doclint-format</arg> <arg>html5</arg>
           </compilerArgs>
           <excludes>

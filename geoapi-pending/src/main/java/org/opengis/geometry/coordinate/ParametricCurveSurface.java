@@ -67,31 +67,32 @@ import static org.opengis.annotation.Specification.*;
  * reference system. The table below lists some possible pairs of types for these surface curves
  * (other representations of these same surfaces are possible).</p>
  *
- * <table border="1" cellspacing="0" cellpadding="2" summary="Examples">
+ * <table class="ogc">
+ *   <caption>Examples</caption>
  *   <tr style="background:#CCCCFF" class="TableHeadingColor">
- *     <th nowrap>&nbsp;Surface type&nbsp;</th>
- *     <th nowrap>&nbsp;Horizontal Curve type&nbsp;</th>
- *     <th nowrap>&nbsp;Vertical curve type&nbsp;</th>
+ *     <th>&nbsp;Surface type&nbsp;</th>
+ *     <th>&nbsp;Horizontal Curve type&nbsp;</th>
+ *     <th>&nbsp;Vertical curve type&nbsp;</th>
  *   </tr><tr>
- *     <td nowrap>&nbsp;{@link Cylinder}&nbsp;</td>
- *     <td nowrap>&nbsp;Circle, constant radii&nbsp;</td>
- *     <td nowrap>&nbsp;Line Segment&nbsp;</td>
+ *     <td>&nbsp;{@link Cylinder}&nbsp;</td>
+ *     <td>&nbsp;Circle, constant radii&nbsp;</td>
+ *     <td>&nbsp;Line Segment&nbsp;</td>
  *   </tr><tr>
- *     <td nowrap>&nbsp;{@link Cone}&nbsp;</td>
- *     <td nowrap>&nbsp;Circle, decreasing radii&nbsp;</td>
- *     <td nowrap>&nbsp;Line Segment&nbsp;</td>
+ *     <td>&nbsp;{@link Cone}&nbsp;</td>
+ *     <td>&nbsp;Circle, decreasing radii&nbsp;</td>
+ *     <td>&nbsp;Line Segment&nbsp;</td>
  *   </tr><tr>
- *     <td nowrap>&nbsp;{@link Sphere}&nbsp;</td>
- *     <td nowrap>&nbsp;Circle of constant latitude&nbsp;</td>
- *     <td nowrap>&nbsp;Circle of constant longitude&nbsp;</td>
+ *     <td>&nbsp;{@link Sphere}&nbsp;</td>
+ *     <td>&nbsp;Circle of constant latitude&nbsp;</td>
+ *     <td>&nbsp;Circle of constant longitude&nbsp;</td>
  *   </tr><tr>
- *     <td nowrap>&nbsp;{@link BilinearGrid}&nbsp;</td>
- *     <td nowrap>&nbsp;Line string&nbsp;</td>
- *     <td nowrap>&nbsp;Line string&nbsp;</td>
+ *     <td>&nbsp;{@link BilinearGrid}&nbsp;</td>
+ *     <td>&nbsp;Line string&nbsp;</td>
+ *     <td>&nbsp;Line string&nbsp;</td>
  *   </tr><tr>
- *     <td nowrap>&nbsp;{@link BicubicGrid}&nbsp;</td>
- *     <td nowrap>&nbsp;Cubic spline&nbsp;</td>
- *     <td nowrap>&nbsp;Cubic spline&nbsp;</td>
+ *     <td>&nbsp;{@link BicubicGrid}&nbsp;</td>
+ *     <td>&nbsp;Cubic spline&nbsp;</td>
+ *     <td>&nbsp;Cubic spline&nbsp;</td>
  *   </tr>
  * </table>
  *

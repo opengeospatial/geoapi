@@ -52,7 +52,9 @@ import static org.junit.Assert.*;
 /**
  * Verifies that the software allows correct definition of a user-defined ellipsoid.
  *
- * <table class="gigs" summary="Test description"><tr>
+ * <table class="gigs">
+ * <caption>Test description</caption>
+ * <tr>
  *   <th>Test method:</th>
  *   <td>Create user-defined ellipsoid for each of several different ellipsoids.</td>
  * </tr><tr>

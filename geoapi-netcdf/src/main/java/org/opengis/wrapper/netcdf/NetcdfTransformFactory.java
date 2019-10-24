@@ -38,7 +38,7 @@ import org.opengis.referencing.operation.*;
  * {@code [1]} and {@code [2]} are indices in an array (the values of the netCDF
  * "{@code standard_parallel}" parameter are arrays of length up to 2).
  *
- * <table cellspacing="0" cellpadding="0">
+ * <table class="ogc">
  *   <caption>Projection parameter names</caption>
  *   <tr><th>NetCDF</th><th>OGC</th><th>EPSG</th></tr>
  *   <tr><td colspan="3"><hr></td></tr>

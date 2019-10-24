@@ -96,7 +96,7 @@ public class SequenceType extends CodeList<SequenceType> {
      * from plane to plane in a direction parallel to the third axis of the grid. The process can be extended to any
      * number of axes. Linear scanning is continuous only along a single grid line.
      *
-     * <center><img src="doc-files/LinearScanning.png" alt="Linear scanning"></center>
+     * <img src="doc-files/LinearScanning.png" alt="Linear scanning">
      */
     @UML(identifier="Linear scanning", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType LINEAR = new SequenceType("LINEAR");
@@ -110,7 +110,7 @@ public class SequenceType extends CodeList<SequenceType> {
      * Boustrophedonic scanning is also known as byte-offset scanning.
      * </div>
      *
-     * <center><img src="doc-files/BoustrophedonicScanning.png" alt="Boustrophedonic scanning"></center>
+     * <img src="doc-files/BoustrophedonicScanning.png" alt="Boustrophedonic scanning">
      */
     @UML(identifier="Boustrophedonic scanning", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType BOUSTROPHEDONIC = new SequenceType("BOUSTROPHEDONIC");
@@ -122,7 +122,7 @@ public class SequenceType extends CodeList<SequenceType> {
      * or more dimensions by repeating the scan pattern in consecutive planes. Cantor-diagonal scanning
      * is semi-continuous within a single plane.
      *
-     * <center><img src="doc-files/CantorDiagonalScanning.png" alt="Cantor-diagonal scanning"></center>
+     * <img src="doc-files/CantorDiagonalScanning.png" alt="Cantor-diagonal scanning">
      */
     @UML(identifier="Cantor-diagonal scanning", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType CANTOR_DIAGONAL = new SequenceType("CANTOR_DIAGONAL");
@@ -135,7 +135,7 @@ public class SequenceType extends CodeList<SequenceType> {
      * in grids of more than two dimensions can only be maintained by reversing the inward/outward direction
      * of the scan in alternate planes.
      *
-     * <center><img src="doc-files/SpiralScanning.png" alt="Spiral scanning"></center>
+     * <img src="doc-files/SpiralScanning.png" alt="Spiral scanning">
      */
     @UML(identifier="Spiral scanning", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType SPIRAL = new SequenceType("SPIRAL");
@@ -154,7 +154,7 @@ public class SequenceType extends CodeList<SequenceType> {
      * Morton ordering is also known as Z ordering.
      * </div>
      *
-     * <center><img src="doc-files/Morton.png" alt="Morton scanning"></center>
+     * <img src="doc-files/Morton.png" alt="Morton scanning">
      *
      * <p>A grid generated with the Morton ordering technique will be square and its size in each direction
      * will be a multiple of a power of 2. However, the bit interleaving technique for generating an index
@@ -179,7 +179,7 @@ public class SequenceType extends CodeList<SequenceType> {
      * ordering is also known as pi ordering.
      * </div>
      *
-     * <center><img src="doc-files/Hilbert.png" alt="Hilbert scanning"></center>
+     * <img src="doc-files/Hilbert.png" alt="Hilbert scanning">
      */
     @UML(identifier="Hilbert order", obligation=CONDITIONAL, specification=ISO_19123)
     public static final SequenceType HILBERT = new SequenceType("HILBERT");

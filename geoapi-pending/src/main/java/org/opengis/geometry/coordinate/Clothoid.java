@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
  * The clothoid (or Cornu's spiral), a plane curve whose curvature is a fixed function of
  * its length. In suitably chosen co-ordinates it is given by Fresnel's integrals:
  *
- * <center>(TODO: paste the equation here)</center>
+ * @todo TODO: paste the equation here
  *
  * This geometry is mainly used as a transition curve between curves of type straight
  * line/circular arc or circular arc/circular arc. With this curve type it is possible
