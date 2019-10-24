@@ -885,7 +885,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>60°00'00"W<br>10°00'00"N</td> <td>66644.94 links<br>82536.22 links</td></tr>
      * </table>
      * <p align="right">1 link = 0.66 feet<br>1 feet = 0.3048 metre</p>
-     * </td></tr></table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -975,7 +975,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>96°00'W<br>28°30'N</td> <td>2963503.91 US feet<br>254759.80 US feet</td></tr>
      * </table>
      * <p align="right">1 metre = 3.2808333… US feet</p>
-     * </td></tr></table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -1065,7 +1065,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * <tr align="right"><td>83°10"W<br>43°45'N</td> <td>2308335.75 US feet<br>160210.48 US feet</td></tr>
      * </table>
      * <p align="right">1 metre = 3.2808333… US feet</p>
-     * </td></tr></table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
