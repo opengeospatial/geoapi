@@ -314,7 +314,7 @@ final class SamplePoints {
                 fn =         0.00;   φ0 = 55;
                 e  =   -189011.711;  λ  =  2 + ( 7 + 46.38/60)/60;          //  2°07'46.38"E
                 n  =   -128640.567;  φ  = 53 + (48 + 33.82/60)/60;          // 53°48'33.82"N
-                λmin = λ0 - 50; φmin = φ0 - 80;
+                λmin = λ0 - 50; φmin = φ0 - 60;
                 λmax = λ0 + 50; φmax =      90;
                 sourcePoints = new double[] {λ, φ};
                 targetPoints = new double[] {e, n};

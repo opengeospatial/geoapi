@@ -102,12 +102,13 @@ import static org.opengis.annotation.Specification.*;
  * </ul>
  *
  * <blockquote>
- * <table style="border-spacing:21pt 0" summary="Graphics showing various representations of a generic name.">
+ * <table class="ogc" style="margin-top:21px; margin-bottom:45px; border-spacing:40px 0">
+ *   <caption>Various representations of a generic name</caption>
  *   <tr>
- *     <th>{@linkplain #scope() scope}.this</th>
- *     <th>{@linkplain #head() head}.{@linkplain ScopedName#tail() tail}</th>
- *     <th>{@linkplain ScopedName#path() path}.{@linkplain #tip() tip}</th>
- *     <th>Type</th>
+ *     <th style="background-color:inherit">{@linkplain #scope() scope}.this</th>
+ *     <th style="background-color:inherit">{@linkplain #head() head}.{@linkplain ScopedName#tail() tail}</th>
+ *     <th style="background-color:inherit">{@linkplain ScopedName#path() path}.{@linkplain #tip() tip}</th>
+ *     <th style="background-color:inherit">Type</th>
  *   </tr><tr>
  *     <td><code><span style="background:LawnGreen">urn:crs:epsg:4326</span></code></td>
  *     <td><code><span style="background:LightSkyBlue">urn:</span><span style="background:Yellow">crs:epsg:4326</span></code></td>

@@ -68,6 +68,22 @@ table.gigs th {
 }
 
 /*
+ * Layout two or more elements horizontally.
+ */
+div.horizontal-flow {
+  display:       flex;
+  margin-left:   28px;
+  margin-top:    12px;
+  margin-bottom: 12px;
+}
+
+div.horizontal-flow > table,
+div.horizontal-flow > div {
+  margin-left:  24px;
+  margin-right: 24px;
+}
+
+/*
  * For classes hierarchy shown in two-column tables.
  */
 td.hierarchy {

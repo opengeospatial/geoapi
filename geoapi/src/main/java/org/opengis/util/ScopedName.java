@@ -45,22 +45,18 @@ import static org.opengis.annotation.Specification.*;
  * then the {@linkplain #head() head} and {@linkplain #tail() tail} components are as below.
  * The {@linkplain #path() path} and {@linkplain #tip()} are also shown for completeness:
  *
- * <blockquote><table border="0" summary="Graphics showing various representations of a scoped name.">
- *   <tr>
- *     <th align="right">org</th>
- *     <th>.</th><th>opengis</th>
- *     <th>.</th><th>util</th>
- *     <th>.</th><th>Record</th>
- *   </tr>
- *   <tr align="center">
- *     <td style="background:palegoldenrod" colspan="1">{@linkplain #head() head}</td><td></td>
- *     <td style="background:palegoldenrod" colspan="5">{@linkplain #tail() tail}</td>
- *   </tr>
- *   <tr align="center">
- *     <td style="background:wheat" colspan="5">{@linkplain #path() path}</td><td></td>
- *     <td style="background:wheat" colspan="1">{@linkplain #tip() tip}</td>
- *   </tr>
- * </table></blockquote>
+ * <blockquote>
+ * <div style="display:grid; grid-template-columns:3em 1ch 4.5em 1ch 2em 1ch 4em; text-align:center">
+ *   <div style="grid-row:1;grid-column:1">org</div>     <div style="grid-row:1;grid-column:2">.</div>
+ *   <div style="grid-row:1;grid-column:3">opengis</div> <div style="grid-row:1;grid-column:4">.</div>
+ *   <div style="grid-row:1;grid-column:5">util</div>    <div style="grid-row:1;grid-column:6">.</div>
+ *   <div style="grid-row:1;grid-column:7">Record</div>
+ *   <div style="grid-row:2;grid-column:1;   background:palegoldenrod">{@linkplain #head() head}</div>
+ *   <div style="grid-row:2;grid-column:3/8; background:palegoldenrod; background:palegoldenrod">{@linkplain #tail() tail}</div>
+ *   <div style="grid-row:3;grid-column:1/6; background:palegoldenrod; background:wheat">{@linkplain #path() path}</div>
+ *   <div style="grid-row:3;grid-column:7;   background:palegoldenrod; background:wheat">{@linkplain #tip() tip}</div>
+ * </div>
+ * </blockquote>
  *
  * This definition allows for iteration.
  * The tail may be either a {@link LocalName} or another {@code ScopedName}.
