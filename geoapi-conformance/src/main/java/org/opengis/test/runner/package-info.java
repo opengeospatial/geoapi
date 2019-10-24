@@ -32,7 +32,7 @@
 
 /**
  * Provides a Swing widget for running the GeoAPI conformance test.
- * Implementors can ignore this package and extend the {@link org.opengis.test.TestCase}
+ * Implementers can ignore this package and extend the {@link org.opengis.test.TestCase}
  * or {@link org.opengis.test.TestSuite} classes directly in order to incorporate the
  * {@code geoapi-conformance} tests in their build process.
  *

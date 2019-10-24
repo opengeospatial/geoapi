@@ -110,7 +110,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
     private final FactoryTableModel factories;
 
     /**
-     * The configuration specified by the implementor for the test case,
+     * The configuration specified by the implementer for the test case,
      * to be reported in the "details" tab.
      */
     private final ConfigurationTableModel configuration;

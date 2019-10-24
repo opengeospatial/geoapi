@@ -41,7 +41,7 @@ package org.opengis.feature;
  *   <li>the feature type definition is incomplete.</li>
  * </ul>
  *
- * <div class="note"><b>Analogy with Java reflection</b><br>
+ * <div class="note"><b>Analogy with Java reflection</b>:
  * if we compare {@code FeatureType} to {@link Class} and {@code Feature} to {@link Object} in the Java language,
  * then this exception is equivalent to {@link java.lang.InstantiationException}.</div>
  *

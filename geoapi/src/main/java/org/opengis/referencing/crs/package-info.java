@@ -56,7 +56,7 @@
  * Furthermore, it is recommended that the date of realization be included in the names of those datums
  * and coordinate reference systems.</p>
  *
- * <h3>Sub-types of coordinate reference system</h3>
+ * <h2>Sub-types of coordinate reference system</h2>
  * <p>Geodetic survey practice usually divides coordinate reference systems into a number of sub-types.
  * The common classification criterion for sub-typing of coordinate reference systems can be described
  * as the way in which they deal with earth curvature. This has a direct effect on the portion of the

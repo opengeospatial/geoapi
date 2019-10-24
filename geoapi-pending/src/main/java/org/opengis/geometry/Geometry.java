@@ -205,7 +205,7 @@ public interface Geometry extends TransfiniteSet {
      * is neither consistent between implementations, nor theoretically viable.</p>
      *
      * <div class="note"><b>Note:</b>
-     * The role of the reference system in distance calculations is
+     * the role of the reference system in distance calculations is
      * important. Generally, there are at least three types of distances that may be defined
      * between points (and therefore between geometric objects): map distance, geodesic distance,
      * and terrain distance.
@@ -409,7 +409,7 @@ public interface Geometry extends TransfiniteSet {
      * change.  Any attempts to change the values of the returned object will
      * result in a {@code UnmodifiableGeometryException}.
      * <p>
-     * Implementors are free to return {@code this} if this object is
+     * Implementers are free to return {@code this} if this object is
      * already immutable.
      *
      * @return an immutable copy of this geometry.

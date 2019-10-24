@@ -1007,6 +1007,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>19983</td> <td>2985</td>  <td>Petrels 1972 / Terre Adelie Polar Stereographic</td> <td>Polar Stereographic (variant C)</td></tr>
      *   <tr><td>19914</td> <td>28992</td> <td>Amersfoort / RD New</td>                             <td>Oblique Stereographic</td></tr>
      *   <tr><td><i>9818</i></td> <td><i>9818</i></td> <td><i>Polyconic</i></td>                    <td><i>Polyconic</i></td></tr>
+     *   <tr><td><i>9840</i></td> <td><i>9840</i></td> <td><i>Orthographic</i></td>                 <td><i>Orthographic</i></td></tr>
      *   <tr><td>19952</td> <td>2065</td>  <td>CRS S-JTSK (Ferro) / Krovak</td>                     <td>Krovak</td></tr>
      *   <tr><td><i>9605</i></td> <td>4230</td> <td>ED50 to WGS 84</td>                             <td>Abridged Molodensky</td></tr>
      * </table>
@@ -1215,6 +1216,16 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("semi_minor").setValue(6356583.8);
                 parameters.parameter("Latitude of natural origin") .setValue(0.0);
                 parameters.parameter("Longitude of natural origin").setValue(0.0);
+                parameters.parameter("False easting") .setValue(0.0);
+                parameters.parameter("False northing").setValue(0.0);
+                break;
+            }
+            case 9840: {        // (not an official EPSG code) using operation method 9840
+                parameters = factory.getDefaultParameters("Orthographic");
+                parameters.parameter("semi_major").setValue(6378137.0);                                 // WGS84
+                parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
+                parameters.parameter("Latitude of natural origin").setValue(55.0);
+                parameters.parameter("Longitude of natural origin").setValue(5.0);
                 parameters.parameter("False easting") .setValue(0.0);
                 parameters.parameter("False northing").setValue(0.0);
                 break;

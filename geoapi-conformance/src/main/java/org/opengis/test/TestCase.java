@@ -53,7 +53,7 @@ import org.opengis.util.Factory;
 /**
  * Base class of all GeoAPI tests. All concrete subclasses need at least one {@linkplain Factory
  * factory} for instantiating the objects to test. The factories must be specified at subclasses
- * construction time either directly by the implementor, or indirectly by calls to the
+ * construction time either directly by the implementer, or indirectly by calls to the
  * {@link #factories(Class[])} method.
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -70,7 +70,7 @@ public strictfp abstract class TestCase {
     private static final Factory[] NO_FACTORY = new Factory[0];
 
     /**
-     * The factories specified explicitely by the implementors, or the {@link ServiceLoader}
+     * The factories specified explicitely by the implementers, or the {@link ServiceLoader}
      * to use for loading those factories.
      *
      * <p>Accesses to this field must be synchronized on itself.</p>

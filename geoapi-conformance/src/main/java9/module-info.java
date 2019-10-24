@@ -44,7 +44,7 @@
  *     defined in this module.</li>
  * </ul>
  *
- * Implementors can alter the tests, for example in order to disable testing of some unsupported features,
+ * Implementers can alter the tests, for example in order to disable testing of some unsupported features,
  * either by extending directly the appropriate {@code TestCase} subclass (easiest way),
  * or by providing {@linkplain org.opengis.test.ImplementationDetails implementation details} in a central place.
  * See the <a href="http://www.geoapi.org/geoapi-conformance/index.html">web site</a> for examples.

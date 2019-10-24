@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * Value uniquely identifying an object within a namespace.
  *
  * <div class="note"><b>Example:</b>
- * For the WGS 84 geographic coordinate reference system,
+ * for the WGS 84 geographic coordinate reference system,
  * {@code code}        = {@code "4326"},
  * {@code codeSpace}   = {@code "EPSG"},
  * {@code description} = {@code "WGS 84"} and

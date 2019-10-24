@@ -47,10 +47,8 @@ import static org.opengis.annotation.Specification.ISO_19111_2;
  * The values or functions can vary monotonically with height.
  *
  * <div class="note"><b>Examples:</b>
- * <ul>
- *   <li>Pressure in meteorological applications.</li>
- *   <li>Density (isopycnals) in oceanographic applications.</li>
- * </ul>
+ * Pressure in meteorological applications, or
+ * density (isopycnals) in oceanographic applications.
  * </div>
  *
  * <p>This type of CRS can be used with coordinate systems of type

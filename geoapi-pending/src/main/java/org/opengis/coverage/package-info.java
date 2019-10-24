@@ -43,7 +43,7 @@
  *
  * <P ALIGN="justify">A coverage may represent a single feature or a set of features.</P>
  *
- * <H3>Domain of a coverage</H3>
+ * <h2>Domain of a coverage</h2>
  * <P ALIGN="justify">A coverage domain is a set of geometric objects described in terms of
  * {@linkplain org.opengis.geometry.DirectPosition direct positions}. It may be
  * extended to all of the direct positions within the convex hull of that set of geometric objects.
@@ -64,7 +64,7 @@
  * of features. Many of these geometric objects can be used to define domains for coverages. In addition, ISO 19108
  * defines {@code TM_GeometricPrimitives} that may also be used to define domains of coverages.</P>
  *
- * <H3>The range of a coverage</H3>
+ * <h2>The range of a coverage</h2>
  * <P ALIGN="justify">The range of a coverage is a set of feature attribute values. It may be either a finite or
  * a transfinite set. Coverages often model many associated functions sharing the same domain. Therefore, the value
  * set is represented as a collection of records with a common schema.</P>
@@ -88,7 +88,7 @@
  * Inverse evaluation is used for the extraction of contours from an elevation coverage and the extraction of
  * classified regions in an image.</P></BLOCKQUOTE>
  *
- * <H3>Discrete and continuous coverages</H3>
+ * <h2>Discrete and continuous coverages</h2>
  * <P ALIGN="justify">Coverages are of two types. A {@linkplain org.opengis.coverage.DiscreteCoverage discrete coverage}
  * has a domain that consists of a finite collection of geometric objects and the direct positions contained in those
  * geometric objects. A discrete coverage maps each geometric object to a single record of feature attribute values.

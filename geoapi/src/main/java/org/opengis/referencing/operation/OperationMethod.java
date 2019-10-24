@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain org.opengis.parameter.ParameterValue values} to these parameters.
  *
  * <div class="note"><b>Example:</b>
- * An operation method named “<cite>Mercator (variant A)</cite>” (EPSG:9804) declares the following parameters:
+ * an operation method named “<cite>Mercator (variant A)</cite>” (EPSG:9804) declares the following parameters:
  * <ul>
  *   <li>“<cite>Latitude of natural origin</cite>” in degrees.</li>
  *   <li>“<cite>Longitude of natural origin</cite>” in degrees.</li>

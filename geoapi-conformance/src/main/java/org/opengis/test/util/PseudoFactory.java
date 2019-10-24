@@ -47,7 +47,7 @@ import org.opengis.metadata.citation.Citation;
  */
 public class PseudoFactory implements Factory {
     /**
-     * The implementor of this factory.
+     * The implementer of this factory.
      */
     private static final Citation VENDOR = new SimpleCitation(new SimpleInternationalString("GeoAPI"));
 
@@ -58,7 +58,7 @@ public class PseudoFactory implements Factory {
     }
 
     /**
-     * Returns the implementor of this pseudo-factory, which is "GeoAPI".
+     * Returns the implementer of this pseudo-factory, which is "GeoAPI".
      */
     @Override
     public Citation getVendor() {

@@ -308,6 +308,18 @@ final class SamplePoints {
                 λmax = 3; φmax =  50;
                 break;
             }
+            case 9840: {                                                    // "Orthographic" (not an official EPSG code)
+                operation = 9840;
+                fe =         0.00;   λ0 =  5;
+                fn =         0.00;   φ0 = 55;
+                e  =   -189011.711;  λ  =  2 + ( 7 + 46.38/60)/60;          //  2°07'46.38"E
+                n  =   -128640.567;  φ  = 53 + (48 + 33.82/60)/60;          // 53°48'33.82"N
+                λmin = λ0 - 50; φmin = φ0 - 80;
+                λmax = λ0 + 50; φmax =      90;
+                sourcePoints = new double[] {λ, φ};
+                targetPoints = new double[] {e, n};
+                break;
+            }
             case 2065: {                                                    // "CRS S-JTSK (Ferro) / Krovak"
                 operation = 19952;
                 fe =         0.00;   λ0 = 24 + 50.0/60;                     // 24°50'00"E

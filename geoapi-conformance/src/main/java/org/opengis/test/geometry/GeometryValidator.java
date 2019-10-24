@@ -63,7 +63,7 @@ public class GeometryValidator extends Validator {
     /**
      * Small relative tolerance values for comparisons of floating point numbers.
      * The default value is {@value org.opengis.test.Validator#DEFAULT_TOLERANCE}.
-     * Implementors can change this value before to run the tests.
+     * Implementers can change this value before to run the tests.
      */
     public double tolerance = DEFAULT_TOLERANCE;
 

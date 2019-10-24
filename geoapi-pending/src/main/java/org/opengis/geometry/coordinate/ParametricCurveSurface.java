@@ -121,7 +121,7 @@ import static org.opengis.annotation.Specification.*;
  * as defined in this paragraph to define the upNormal of the surface.
  *
  * <div class="note"><b>Note:</b>
- * The existence of a viable moving frame is the definition of "orientable"
+ * the existence of a viable moving frame is the definition of "orientable"
  * manifold. This is why the existence of a continuous {@linkplain #getUpNormal upNormal} implies
  * that the surface is orientable. Non-orientable surfaces, such as the Möbius band and Klein bottle
  * are counter-intuitive. {@link Surface} forbids their use in application schemas conforming to
@@ -154,7 +154,7 @@ public interface ParametricCurveSurface extends SurfacePatch {
      * <var>s</var>. This curve holds the parameter <var>t</var> constant.
      *
      * <div class="note"><b>Note:</b>
-     * The curve returned by this function or by the corresponding vertical curve function, are
+     * the curve returned by this function or by the corresponding vertical curve function, are
      * normally not part of any {@linkplain Complex complex} to which this surface is included.
      * These are, in general, calculated transient values. The exceptions to this may occur at
      * the extremes of the parameter space. The boundaries of the parameter space support for

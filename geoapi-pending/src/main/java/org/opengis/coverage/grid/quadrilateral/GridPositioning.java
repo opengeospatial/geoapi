@@ -37,7 +37,7 @@ import org.opengis.referencing.operation.CoordinateOperation;
 
 /**
  * This is an abstract supertype used to form the Positioning association between {@link Grid} and
- * either {@link RectifiedGrid} or {@link ReferenceableGrid}.  Implementors should never make an
+ * either {@link RectifiedGrid} or {@link ReferenceableGrid}.  Implementers should never make an
  * instantiable implementation of this interface.  The two child interfaces represent different
  * levels of complexity for the referencing of gridded data.  A {@link RectifiedGrid} object is
  * capable of transforming coordinates through a simple affine transformation.

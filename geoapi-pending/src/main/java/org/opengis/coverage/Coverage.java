@@ -234,7 +234,7 @@ public interface Coverage {
      * shall return the empty set.
      *
      * <div class="note"><b>Note:</b>
-     * This operation is useful when the domain of a coverage does not exhaustively
+     * this operation is useful when the domain of a coverage does not exhaustively
      * partition the extent of the coverage. Even in that case, the first element of the sequence
      * returned may be the <var>geometry</var>-<var>value</var> pair that contains the input direct
      * position.
@@ -268,7 +268,7 @@ public interface Coverage {
      * according to the {@linkplain #getCommonPointRule common point rule}.
      *
      * <div class="note"><b>Note:</b>
-     * Normally, the operation will return a single record of feature attribute values.
+     * normally, the operation will return a single record of feature attribute values.
      * </div>
      *
      * @param  p The position where to evaluate.
@@ -449,7 +449,7 @@ public interface Coverage {
      * domain, as specified by the application schema.
      *
      * <div class="note"><b>Example:</b>
-     * The {@code evaluateInverse} operation could return a set
+     * the {@code evaluateInverse} operation could return a set
      * of contours derived from the feature attribute values associated with the
      * {@linkplain org.opengis.coverage.grid.GridPoint grid points} of a grid coverage.
      * </div>

@@ -82,7 +82,7 @@ public class SimpleNameFactory implements NameFactory {
     }
 
     /**
-     * Returns the implementor responsible for creating the factory implementation.
+     * Returns the implementer responsible for creating the factory implementation.
      */
     @Override
     public Citation getVendor() {

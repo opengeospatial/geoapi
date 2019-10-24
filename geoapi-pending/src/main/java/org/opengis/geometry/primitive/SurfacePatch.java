@@ -54,7 +54,7 @@ public interface SurfacePatch extends GenericSurface {
      * not the other way.
      *
      * <div class="note"><b>Note:</b>
-     * In the specification, surface patches do not appear except in the
+     * in the specification, surface patches do not appear except in the
      * context of a surface, and therefore this method should never returns {@code null} which
      * would preclude the use of surface patches except in this manner. While this would not
      * affect the specification, allowing {@code null} owner allows other standards based on

@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * and the exterior will be empty.
  *
  * <div class="note"><b>Note:</b>
- * The use of exterior and interior here is not intended to invoke the
+ * the use of exterior and interior here is not intended to invoke the
  * definitions of "interior" and "exterior" of geometric objects. The terms are in common usage,
  * and reflect a linguistic metaphor that uses the same linguistic constructs for the concept of
  * being inside an object to being inside a container. In normal mathematical terms, the exterior

@@ -34,9 +34,8 @@
     </menu>
 
     <menu name="Current development" inherit="none">
-      <item name="Overview"            href="snapshot/index.html"/>
-      <item name="Javadoc"             href="snapshot/javadoc/index.html"/>
-      <item name="Javadoc (pending)"   href="snapshot/pending/index.html"/>
+      <item name="Overview" href="snapshot/index.html"/>
+      <item name="Javadoc"  href="snapshot/javadoc/index.html"/>
     </menu>
 
     <menu name="Previous releases" inherit="none">

@@ -79,7 +79,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * </ul>
  *
  * <div class="note"><b>Usage example:</b>
- * in order to specify their factories and run the tests in a JUnit framework, implementors can
+ * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
  * <blockquote><pre>import org.junit.runner.RunWith;
@@ -118,7 +118,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
 
     /**
      * {@code true} if the test methods can invoke a <code>{@linkplain #validators validators}.validate(…)}</code>
-     * method after parsing. Implementors can set this flag to {@code false} if their WKT parser is known to create
+     * method after parsing. Implementers can set this flag to {@code false} if their WKT parser is known to create
      * CRS objects that differ from the ISO 19111 model. One of the main reasons for disabling validation is because
      * the axis names specified by ISO 19162 differ from the axis names specified by ISO 19111.
      */
@@ -128,7 +128,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
-     * sub-classed by the implementor. The factories are fetched as documented in the
+     * sub-classed by the implementer. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
      * @return the default set of arguments to be given to the {@code ObjectFactoryTest} constructor.

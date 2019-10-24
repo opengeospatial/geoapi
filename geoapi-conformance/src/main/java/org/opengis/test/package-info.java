@@ -37,7 +37,7 @@
  *
  * <ul>
  *   <li><p><b>Test cases</b><br>
- *       {@link org.opengis.test.TestCase} is the base class of all GeoAPI tests. Implementors can extend directly
+ *       {@link org.opengis.test.TestCase} is the base class of all GeoAPI tests. Implementers can extend directly
  *       the {@code TestCase} subclasses of their choice for gaining some control, for example in order to specify
  *       whether {@linkplain org.opengis.test.referencing.TransformTestCase#isDerivativeSupported math transform
  *       derivatives are supported} by their implementation.</p></li>
@@ -45,7 +45,7 @@
  *   <li><p><b>Test suite</b><br>
  *       {@link org.opengis.test.TestSuite} groups all GeoAPI {@code TestCases} in a single point. This is not the
  *       easiest class to use since implementations typically support only a subset of GeoAPI functionalities. But
- *       {@code TestSuite} can provide some help for implementors defining their own test suite.</p></li>
+ *       {@code TestSuite} can provide some help for implementers defining their own test suite.</p></li>
  *
  *   <li><p><b>Validation</b><br>
  *       {@link org.opengis.test.Validators} class provides static {@code validate(…)} methods that can be used for
@@ -64,11 +64,11 @@
  *   <li><p><b>Configuration</b><br>
  *       {@link org.opengis.test.Configuration}, {@link org.opengis.test.CalculationType},
  *       {@link org.opengis.test.ToleranceModifier}, {@link org.opengis.test.FactoryFilter} and
- *       {@link org.opengis.test.ImplementationDetails} allow implementors to alter the tests.</p></li>
+ *       {@link org.opengis.test.ImplementationDetails} allow implementers to alter the tests.</p></li>
  *
  *   <li><p><b>Events</b><br>
  *       {@link org.opengis.test.TestListener}, {@link org.opengis.test.TestEvent} and
- *       {@link org.opengis.test.ComputationFailure} allow implementors to be notified about test executions,
+ *       {@link org.opengis.test.ComputationFailure} allow implementers to be notified about test executions,
  *       successes or failures.</p></li>
  * </ul>
  *

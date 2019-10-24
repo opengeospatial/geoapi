@@ -60,7 +60,7 @@ public interface ScopeDescription {
      * Dataset to which the information applies.
      *
      * <div class="note"><b>Example:</b>
-     * If a geographic data provider is generating vector mapping for the administrative areas
+     * if a geographic data provider is generating vector mapping for the administrative areas
      * and if the data were processed in the same way, then the provider could record the bulk
      * of initial data at {@link ScopeCode#DATASET} level with a
      * “<cite>Administrative area A, B &amp; C</cite>” description.
@@ -82,7 +82,7 @@ public interface ScopeDescription {
      * Feature types to which the information applies.
      *
      * <div class="note"><b>Example:</b>
-     * If an administrative area performs a complete re-survey of the road network,
+     * if an administrative area performs a complete re-survey of the road network,
      * the change can be recorded at {@link ScopeCode#FEATURE_TYPE} level with a
      * “<cite>Administrative area A — Road network</cite>” description.
      * </div>
@@ -108,7 +108,7 @@ public interface ScopeDescription {
      * Attribute types to which the information applies.
      *
      * <div class="note"><b>Example:</b>
-     * If an administrative area detects an anomaly in all overhead clearance of the road survey,
+     * if an administrative area detects an anomaly in all overhead clearance of the road survey,
      * the correction can be recorded at {@link ScopeCode#ATTRIBUTE_TYPE} level with a
      * “<cite>Administrative area A — Overhead clearance</cite>” description.
      * </div>
@@ -134,7 +134,7 @@ public interface ScopeDescription {
      * Feature instances to which the information applies.
      *
      * <div class="note"><b>Example:</b>
-     * If a new bridge is constructed in a road network,
+     * if a new bridge is constructed in a road network,
      * the change can be recorded at {@link ScopeCode#FEATURE} level with a
      * “<cite>Administrative area A — New bridge</cite>” description.
      * </div>
@@ -160,7 +160,7 @@ public interface ScopeDescription {
      * Attribute instances to which the information applies.
      *
      * <div class="note"><b>Example:</b>
-     * If the overhead clearance of a new bridge was wrongly recorded,
+     * if the overhead clearance of a new bridge was wrongly recorded,
      * the correction can be recorded at {@link ScopeCode#ATTRIBUTE} level with a
      * “<cite>Administrative area A — New bridge — Overhead clearance</cite>” description.
      * </div>

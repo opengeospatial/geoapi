@@ -72,7 +72,7 @@ abstract class BlockTaglet implements Taglet {
      * Invoked on taglet initialization.
      * Current implementation delegates to {@link #init(Class)} with the {@link Doclet} class loader.
      *
-     * <h3>Note:</h3>
+     * <h2>Note:</h2>
      * <p>the doclet given in argument to this method can not be used
      * because as of JDK 10, this is a JDK internal doclet rather than {@link Doclet}.
      * See <a href="https://bugs.openjdk.java.net/browse/JDK-8201817">JDK-8201817</a>.</p>

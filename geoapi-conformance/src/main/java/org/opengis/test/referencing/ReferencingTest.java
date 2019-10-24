@@ -44,7 +44,7 @@ import org.junit.runners.Parameterized;
  * {@code datum}. The instances are created using the various factories given at construction time.
  *
  * <div class="note"><b>Usage example:</b>
- * in order to specify their factories and run the tests in a JUnit framework, implementors can
+ * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
  * <blockquote><pre>import org.junit.runner.RunWith;

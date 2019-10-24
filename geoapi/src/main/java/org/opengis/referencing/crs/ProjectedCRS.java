@@ -62,12 +62,16 @@ import static org.opengis.annotation.Specification.*;
 public interface ProjectedCRS extends GeneralDerivedCRS {
     /**
      * Returns the base coordinate reference system, which must be geographic.
+     *
+     * @return the base geographic CRS.
      */
     @Override
     GeographicCRS getBaseCRS();
 
     /**
      * Returns the map projection from the {@linkplain #getBaseCRS() base CRS} to this CRS.
+     *
+     * @return the conversion from the base CRS to this projected CRS.
      */
     @Override
     Projection getConversionFromBase();

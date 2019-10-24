@@ -209,7 +209,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * user object} of the given type. If an ambiguity is found, this method conservatively returns
      * {@code true}.
      *
-     * <p>Implementors are encouraged to override this method if they can look for metadata in a
+     * <p>Implementers are encouraged to override this method if they can look for metadata in a
      * more accurate way.</p>
      *
      * <p>See {@link #testStreamMetadata()} and {@link #testImageMetadata()} for a list of types
@@ -454,7 +454,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * <ul>
      *   <li>The potentially large complete image is read only once.</li>
      *   <li>If the tests for subregions or subsamplings fails, avoid the test mixing both.</li>
-     *   <li>Less methods to override if the implementor want to provide his own test.</li>
+     *   <li>Less methods to override if the implementer want to provide his own test.</li>
      * </ul>
      * </div>
      *

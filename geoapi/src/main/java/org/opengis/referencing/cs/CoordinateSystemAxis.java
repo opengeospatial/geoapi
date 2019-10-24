@@ -43,7 +43,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Definition of a coordinate system axis.
  *
- * <h3>Axis name</h3>
+ * <h2>Axis name</h2>
  * Usage of coordinate system axis names is constrained by geodetic custom in a number of cases,
  * depending mainly on the coordinate reference system type. These constraints are shown in the
  * table below. This constraint works in two directions; for example the names <cite>"geodetic
@@ -76,7 +76,7 @@ import static org.opengis.annotation.Specification.*;
  * Image and engineering coordinate reference systems may make use of names specific to the
  * local context or custom and are therefore not included as constraints in the above list.
  *
- * <h3>Axis direction</h3>
+ * <h2>Axis direction</h2>
  * The {@linkplain #getDirection() direction} of the coordinate axes is often only approximate;
  * two geographic coordinate reference systems will make use of the same ellipsoidal coordinate
  * system. These coordinate systems are associated with the earth through two different geodetic

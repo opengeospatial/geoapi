@@ -39,7 +39,7 @@
  * The following is adapted from the <a href="http://docs.opengeospatial.org/is/09-026r2/09-026r2.html">OGC®
  * Filter Encoding 2.0 Encoding Standard</a>:
  *
- * <h3>Comparison operators</h3>
+ * <h2>Comparison operators</h2>
  * <p>A comparison operator is used to form expressions that evaluate the mathematical comparison between two arguments.
  * If the arguments satisfy the comparison then the expression {@linkplain org.opengis.filter.Filter#evaluate evaluates}
  * to {@code true}. Otherwise the expression evaluates to {@code false}.</p>
@@ -48,7 +48,7 @@
  * of comparison operators, this package defines the elements {@link org.opengis.filter.PropertyIsLike},
  * {@link org.opengis.filter.PropertyIsBetween} and {@link org.opengis.filter.PropertyIsNull}.</p>
  *
- * <h3>Logical operators</h3>
+ * <h2>Logical operators</h2>
  * <p>A logical operator can be used to combine one or more conditional expressions.
  * The logical operator {@link org.opengis.filter.And} evaluates to {@code true} if all the combined
  * expressions evaluate to {@code true}. The operator {@link org.opengis.filter.Or} operator evaluates
@@ -57,7 +57,7 @@
  * The elements {@code And}, {@code Or} and {@code Not} can be used to combine scalar,
  * spatial and other logical expressions to form more complex compound expressions.</p>
  *
- * <h3>Identity</h3>
+ * <h2>Identity</h2>
  * <p>Identity can be checked using {@link org.opengis.filter.Id}, selected objects
  * will are matched against a set of {@link org.opengis.filter.identify.Identifier}.</p>
  */

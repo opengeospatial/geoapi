@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
  * A mathematical operation on coordinates that transforms or converts coordinates to
  * another coordinate reference system.
  *
- * <h3>Inverse operation</h3>
+ * <h2>Inverse operation</h2>
  * Many but not all coordinate operations (from
  * {@linkplain CoordinateReferenceSystem coordinate reference system} <var>A</var> to
  * {@linkplain CoordinateReferenceSystem coordinate reference system} <var>B</var>)

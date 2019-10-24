@@ -33,7 +33,6 @@ package org.opengis.geometry;
 
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -84,7 +83,7 @@ public interface TransfiniteSet {
      * capture intersection information.
      *
      * <div class="note"><b>Note:</b>
-     * This intersect is strictly a set theoretic common containment of
+     * this intersect is strictly a set theoretic common containment of
      * {@linkplain DirectPosition direct positions}.
      * Two {@linkplain org.opengis.geometry.primitive.Curve curves} do not intersect if they share a common
      * end point because {@linkplain org.opengis.geometry.primitive.Primitive primitives} are considered to be
@@ -108,7 +107,7 @@ public interface TransfiniteSet {
      * to the object.
      *
      * <div class="note"><b>Note:</b>
-     * Since an infinite set of direct positions cannot be tested,
+     * since an infinite set of direct positions cannot be tested,
      * the internal implementation of equal must test for equivalence between two, possibly
      * quite different, representations. This test may be limited to the resolution of the
      * coordinate system or the accuracy of the data. Implementations may define a tolerance

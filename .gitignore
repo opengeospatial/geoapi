@@ -21,3 +21,4 @@ ide-project/NetBeans/nbproject/private/
 
 # Python files
 __pycache__/
+*.pyc

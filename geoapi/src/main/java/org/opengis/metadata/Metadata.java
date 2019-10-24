@@ -128,7 +128,7 @@ public interface Metadata {
      * The first entry in iteration order shall be the default language and its character set.
      * All other entries, if any, are alternate language(s) and character set(s) used within the resource.
      *
-     * <h3>Relationship with ISO 19115</h3>
+     * <h4>Relationship with ISO 19115</h4>
      * Each ({@link Locale}, {@link Charset}) entry is equivalent to an instance of ISO {@code PT_Locale} class.
      * The language code and the character set are mandatory elements in ISO 19115 standard; consequently this map
      * should not contain null key or null values, but implementations are encouraged to be tolerant for historical
@@ -148,7 +148,7 @@ public interface Metadata {
      * {@code Big5}, {@code GB2312}.
      * </div>
      *
-     * <h3>XML representation</h3>
+     * <h4>XML representation</h4>
      * XML documents shall format languages using the ISO 639-2 language code as returned by {@link Locale#getISO3Language()}.
      *
      * @departure integration

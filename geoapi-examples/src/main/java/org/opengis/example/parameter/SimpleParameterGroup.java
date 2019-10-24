@@ -120,7 +120,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * The list returned by this method is unmodifiable.
      *
      * <div class="note"><b>Implementation note:</b>
-     * Since the simple classes in this package implement both the {@linkplain GeneralParameterValue
+     * since the simple classes in this package implement both the {@linkplain GeneralParameterValue
      * value} and the {@linkplain GeneralParameterDescriptor descriptor} interfaces, this method
      * returns the same list than the {@link #values()} methods. However more sophisticated libraries
      * are likely to return a distinct list.</div>
@@ -138,7 +138,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * The list returned by this method is unmodifiable.
      *
      * <div class="note"><b>Implementation note:</b>
-     * Since the simple classes in this package implement both the {@linkplain GeneralParameterValue
+     * since the simple classes in this package implement both the {@linkplain GeneralParameterValue
      * value} and the {@linkplain GeneralParameterDescriptor descriptor} interfaces, this method
      * returns the same list than the {@link #descriptors()} methods. However more sophisticated
      * libraries are likely to return a distinct list.</div>
@@ -156,7 +156,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * {@linkplain Identifier#getCode() identifier code}.
      *
      * <div class="note"><b>Implementation note:</b>
-     * Since the simple classes in this package implement both the {@linkplain GeneralParameterValue
+     * since the simple classes in this package implement both the {@linkplain GeneralParameterValue
      * value} and the {@linkplain GeneralParameterDescriptor descriptor} interfaces, this method is
      * essentially synonymous to {@link #parameter(String)}. However more sophisticated libraries
      * are likely to return a distinct object.</div>
@@ -193,7 +193,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * </code></blockquote>
      *
      * <div class="note"><b>Implementation note:</b>
-     * Since the simple classes in this package implement both the {@linkplain GeneralParameterValue
+     * since the simple classes in this package implement both the {@linkplain GeneralParameterValue
      * value} and the {@linkplain GeneralParameterDescriptor descriptor} interfaces, this method is
      * essentially synonymous to {@link #descriptor(String)}. However more sophisticated libraries
      * are likely to return a distinct object.</div>
@@ -249,7 +249,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * of each parameter is left to their default value.
      *
      * <div class="note"><b>Implementation note:</b>
-     * Since this simple class implements both the {@linkplain ParameterValueGroup value} and the
+     * since this simple class implements both the {@linkplain ParameterValueGroup value} and the
      * {@linkplain ParameterDescriptorGroup descriptor} interfaces, this method is very similar to
      * the {@link #clone()} method. However in more sophisticated libraries, the
      * {@link ParameterDescriptorGroup#createValue()} and {@link ParameterValueGroup#clone()}

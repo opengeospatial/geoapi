@@ -58,7 +58,7 @@ public interface Solid extends Primitive {
      * (closed composite surface without boundary).
      *
      * <div class="note"><b>Note:</b>
-     * The exterior shell of a solid is defined only because the embedding
+     * the exterior shell of a solid is defined only because the embedding
      * coordinate space is always a 3D Euclidean one. In general, a solid in a bounded 3-dimensional
      * manifold has no distinguished exterior boundary. In cases where "exterior" boundary is not
      * well defined, all the shells of the {@linkplain SolidBoundary solid boundary} shall be

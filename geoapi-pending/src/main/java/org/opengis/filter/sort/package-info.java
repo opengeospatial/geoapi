@@ -47,14 +47,14 @@
  * the combination of these elements are themselves expressions and can be used wherever an expression is
  * called for.</p>
  *
- * <h3>FeatureCollections</h3>
+ * <h2>FeatureCollections</h2>
  * <p>The contents of a FeatureCollection are not defined with respect to order.</p>
  *
- * <h3>FeatureLists</h3>
+ * <h2>FeatureLists</h2>
  * <p>A FeatureList represents an ordered collection of features, possibly using a
  * siers of SortBy elements to define the intended order.</p>
  *
- * <h3>Catalog and Web Feature Server</h3>
+ * <h2>Catalog and Web Feature Server</h2>
  * <p>Both the Catalog and Web Feature Server specifications all the use of SortBy during requests.</p>
  */
 package org.opengis.filter.sort;

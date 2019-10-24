@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * Listed examples are not exhaustive.
  *
  * <div class="note"><b>Note:</b>
- * It is understood there are overlaps between general categories and the user
+ * it is understood there are overlaps between general categories and the user
  * is encouraged to select the one most appropriate.</div>
  *
  * <div class="warning"><b>Upcoming API change — enumeration</b><br>

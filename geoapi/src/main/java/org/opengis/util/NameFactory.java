@@ -40,7 +40,7 @@ import java.util.Locale;
  * {@linkplain InternationalString international strings}.
  *
  * <div class="note"><b>Note:</b>
- * Despite the "{@code create(…)}" method names, implementations may return cached instances.</div>
+ * despite the "{@code create(…)}" method names, implementations may return cached instances.</div>
  *
  * @departure extension
  *   Added in order to provide constructors for {@code GenericName} and related interfaces.

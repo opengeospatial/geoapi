@@ -35,7 +35,7 @@ import org.opengis.example.geometry.SimpleDirectPosition;
  *
  * <b>Performance note:</b>
  * This implementation is known to be slow. However the intent is to be pedagogic, not to be
- * efficient. Performance enhancements are left to implementors (<i>Tip:</i> override all
+ * efficient. Performance enhancements are left to implementers (<i>Tip:</i> override all
  * {@code transform} methods expecting array arguments).
  *
  * @author  Martin Desruisseaux (Geomatys)

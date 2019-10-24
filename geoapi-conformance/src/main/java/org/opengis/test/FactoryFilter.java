@@ -41,7 +41,7 @@ import org.opengis.referencing.AuthorityFactory;
 
 /**
  * Specifies whether a factory can be used for creating the objects to be tested.
- * Implementors can provide an instance of this interface in their test packages and
+ * Implementers can provide an instance of this interface in their test packages and
  * declare their instance in the {@code META-INF/services/org.opengis.test.FactoryFilter}
  * file. GeoAPI will iterate over every {@code FactoryFilter}s found on the classpath before
  * the first execution of any particular {@link TestCase} subclass, in order to check
@@ -53,7 +53,7 @@ import org.opengis.referencing.AuthorityFactory;
  */
 public interface FactoryFilter {
     /**
-     * Returns {@code true} if the given factory can be tested. Implementors shall return
+     * Returns {@code true} if the given factory can be tested. Implementers shall return
      * {@code false} only when they really want to exclude a particular factory. For every
      * unknown factory, this method shall return {@code true}.
      *

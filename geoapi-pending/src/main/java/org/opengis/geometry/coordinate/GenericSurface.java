@@ -65,7 +65,7 @@ public interface GenericSurface {
      * of the normal shall always be equal to 1.0.
      *
      * <div class="note"><b>Note:</b>
-     * The upNormal along a boundary of a solid always points away from the
+     * the upNormal along a boundary of a solid always points away from the
      * solid. This is a slight semantics problem in dealing with voids within solids, where the
      * upNormal (for sake of mathematical consistency) points into the center of the voided region,
      * which linguistically can be considered the interior of the void. What the confusion is here
@@ -92,7 +92,7 @@ public interface GenericSurface {
      * for measuring distances.
      *
      * <div class="note"><b>Note:</b>
-     * The perimeter is defined as the sum of the lengths of all boundary
+     * the perimeter is defined as the sum of the lengths of all boundary
      * components. The length of a curve or of a collection of curves is always positive and
      * non-zero (unless the curve is pathological). This means that holes in surfaces will
      * contribute positively to the total perimeter.
@@ -112,7 +112,7 @@ public interface GenericSurface {
      * (m²).
      *
      * <div class="note"><b>Note:</b>
-     * Consistent with the definition of surface as a set of
+     * consistent with the definition of surface as a set of
      * {@linkplain DirectPosition direct positions}, holes in the surfaces will not contribute to
      * the total area. If the usual Green's Theorem (or more general Stokes' Theorem) integral is
      * used, the integral around the holes in the surface are subtracted from the integral

@@ -80,7 +80,7 @@ public enum CalculationType {
      * transform derivative}. Each column of the derivative matrix is the displacement in the
      * <em>target</em> CRS when an ordinate value in the source CRS is increased by one. Those
      * derivative values are comparable to the target ordinate values: they use the same units
-     * in the same order. Consequently in case of doubt, implementors can use the same policy
+     * in the same order. Consequently in case of doubt, implementers can use the same policy
      * than for {@link #DIRECT_TRANSFORM}.
      */
     TRANSFORM_DERIVATIVE;

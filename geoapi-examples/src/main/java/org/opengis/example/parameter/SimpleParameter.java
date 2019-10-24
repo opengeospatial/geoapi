@@ -140,7 +140,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      *   <li>Developers may find convenient to set this field to {@code false} during debugging,
      *       since strict behavior often help to identify unexpected usage of parameters.</li>
      *   <li>This field make easy to spot the codes implementing a lenient behavior. Library
-     *       implementors may want to remove such codes for making parameters definitively
+     *       implementers may want to remove such codes for making parameters definitively
      *       strict.</li>
      * </ul>
      *
@@ -556,7 +556,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * value.
      *
      * <div class="note"><b>Implementation note:</b>
-     * Since this simple class implements both the {@linkplain ParameterValue value} and the
+     * since this simple class implements both the {@linkplain ParameterValue value} and the
      * {@linkplain ParameterDescriptor descriptor} interfaces, this method is very similar to
      * the {@link #clone()} method. However in more sophisticated libraries, the
      * {@link ParameterDescriptor#createValue()} and {@link ParameterValue#clone()}

@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * coordinate conversions are defined rather than empirically derived.
  *
  * <div class="note"><b>Example:</b>
- * Conversion from an ellipsoidal coordinate reference system based on the WGS 84 datum
+ * conversion from an ellipsoidal coordinate reference system based on the WGS 84 datum
  * to a Cartesian coordinate reference system also based on the WGS 84 datum, or change
  * of units such as from radians to degrees or feet to meters.</div>
  *

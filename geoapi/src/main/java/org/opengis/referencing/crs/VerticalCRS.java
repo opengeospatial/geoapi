@@ -50,10 +50,10 @@ import static org.opengis.annotation.Specification.*;
  * of a 3D coordinate tuple defined in a geographic 3D coordinate reference system.</p>
  *
  * <div class="note"><b>Note:</b>
- * Some applications may relax the above rule and accept ellipsoidal heights in some contexts.
+ * some applications may relax the above rule and accept ellipsoidal heights in some contexts.
  * For example as a transient state while parsing <a href="../doc-files/WKT.html">Well-Known Text 1</a>,
  * or any other format based on legacy specifications where ellipsoidal heights were allowed as an
- * independent axis. However implementors are encouraged to assemble the full 3D CRS as soon as they can.</div>
+ * independent axis. However implementers are encouraged to assemble the full 3D CRS as soon as they can.</div>
  *
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.VerticalCS}.</p>

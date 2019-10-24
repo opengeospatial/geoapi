@@ -341,7 +341,7 @@ public class Configuration implements Serializable {
 
         /**
          * Whether {@link MathTransform#transform(double[], int, double[], int, int)} is supported.
-         * Implementors can set the value for this key to {@code false} in order to test
+         * Implementers can set the value for this key to {@code false} in order to test
          * {@link MathTransform} instances which are not yet fully implemented.
          *
          * @see org.opengis.test.referencing.TransformTestCase#isDoubleToDoubleSupported
@@ -351,7 +351,7 @@ public class Configuration implements Serializable {
 
         /**
          * Whether {@link MathTransform#transform(float[], int, float[], int, int)} is supported.
-         * Implementors can set the value for this key to {@code false} in order to test
+         * Implementers can set the value for this key to {@code false} in order to test
          * {@link MathTransform} instances which are not yet fully implemented.
          *
          * @see org.opengis.test.referencing.TransformTestCase#isFloatToFloatSupported
@@ -361,7 +361,7 @@ public class Configuration implements Serializable {
 
         /**
          * Whether {@link MathTransform#transform(double[], int, float[], int, int)} is supported.
-         * Implementors can set the value for this key to {@code false} in order to test
+         * Implementers can set the value for this key to {@code false} in order to test
          * {@link MathTransform} instances which are not yet fully implemented.
          *
          * @see org.opengis.test.referencing.TransformTestCase#isDoubleToFloatSupported
@@ -371,7 +371,7 @@ public class Configuration implements Serializable {
 
         /**
          * Whether {@link MathTransform#transform(float[], int, double[], int, int)} is supported.
-         * Implementors can set the value for this key to {@code false} in order to test
+         * Implementers can set the value for this key to {@code false} in order to test
          * {@link MathTransform} instances which are not yet fully implemented.
          *
          * @see org.opengis.test.referencing.TransformTestCase#isFloatToDoubleSupported
@@ -401,7 +401,7 @@ public class Configuration implements Serializable {
 
         /**
          * Whether {@link MathTransform#inverse()} is supported.
-         * Implementors can set the value for this key to {@code false} in order to test
+         * Implementers can set the value for this key to {@code false} in order to test
          * {@link MathTransform} instances which are not yet fully implemented.
          *
          * @see org.opengis.test.referencing.TransformTestCase#isInverseTransformSupported
@@ -411,7 +411,7 @@ public class Configuration implements Serializable {
 
         /**
          * Whether {@link MathTransform#derivative(DirectPosition)} is supported.
-         * Implementors can set the value for this key to {@code false} in order to test
+         * Implementers can set the value for this key to {@code false} in order to test
          * {@link MathTransform} instances which are not yet fully implemented.
          *
          * @see org.opengis.test.referencing.TransformTestCase#isDerivativeSupported
@@ -457,7 +457,7 @@ public class Configuration implements Serializable {
          * ISO 19111 (the <cite>referencing by coordinates</cite> abstract model) specifies that the name of
          * the latitude axis in a geographic CRS shall be <cite>"Geodetic latitude"</cite> while ISO 19162
          * (a.k.a <cite>Well Known Text 2</cite>) specifies <cite>"Latitude"</cite>. Consequently the GeoAPI
-         * conformance module allows implementor to disable the check for ISO 19111 conformance if their WKT
+         * conformance module allows implementer to disable the check for ISO 19111 conformance if their WKT
          * parser does not adapt the parsed CRS objects to the ISO 19111 axis naming.</div>
          *
          * @see org.opengis.test.wkt.CRSParserTest#isValidationEnabled

@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * angle.
  *
  * <div class="note"><b>Note:</b>
- * In the model, an  {@code Arc} is a subclass of {@link ArcString},
+ * in the model, an  {@code Arc} is a subclass of {@link ArcString},
  * being a trivial arc string consisting of only one arc. This may be counter-intuitive in the
  * sense that subclasses are often thought of as more complex than their superclass (with
  * additional methods and attributes). An {@code Arc} is simpler than a {@linkplain ArcString
@@ -65,7 +65,7 @@ import static org.opengis.annotation.Specification.*;
  * the arc.
  *
  * <div class="note"><b>Note:</b>
- * The use of the term "midPoint" for the center {@linkplain Position position}
+ * the use of the term "midPoint" for the center {@linkplain Position position}
  * of the {@linkplain #getControlPoints control point} sequence is not meant to require that
  * the {@linkplain Position position} be the geometric midpoint of the arc. This is the best
  * choice for this {@linkplain Position position} from a computational stability perspective,

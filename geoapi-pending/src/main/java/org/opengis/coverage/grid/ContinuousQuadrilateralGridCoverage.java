@@ -99,7 +99,7 @@ public interface ContinuousQuadrilateralGridCoverage extends ContinuousCoverage 
      * grid value cell} that contains the {@linkplain DirectPosition direct position}.
      *
      * <div class="note"><b>Note:</b>
-     * {@linkplain InterpolationMethod#NEAREST_NEIGHBOUR Nearest neighbour interpolation} will return
+     * {@linkplain InterpolationMethod#NEAREST_NEIGHBOUR nearest neighbour interpolation} will return
      * for any direct position within a {@linkplain GridValueCell grid value cell} the record associated
      * with the {@linkplain GridPointValuePair grid point value pair} at the nearest corner of the
      * {@linkplain GridValueCell grid value cell}. In other words, a continuous grid coverage

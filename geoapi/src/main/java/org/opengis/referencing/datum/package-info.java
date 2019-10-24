@@ -65,7 +65,7 @@
  *       to describe the origin of an image and the origin of an engineering (or local) coordinate reference system.</li>
  * </ul>
  *
- * <h3>Vertical datum</h3>
+ * <h2>Vertical datum</h2>
  * <p>Further sub-typing is required to describe vertical datums adequately.
  * The following types of vertical datum are distinguished:</p>
  * <ul>
@@ -125,7 +125,7 @@
  *   vertical datum types may exist and are all bracketed in this category.</p></li>
  * </ul>
  *
- * <h3>Image datum</h3>
+ * <h2>Image datum</h2>
  * <p>The image pixel grid is defined as the set of lines of constant
  * integer coordinate values. The term "image grid" is often used in other standards to
  * describe the concept of Image CRS. However, care must be taken to correctly interpret
@@ -153,7 +153,7 @@
  * interpretation, but is important for coordinate transformations involving this
  * defined image.</p>
  *
- * <h3>Prime meridian</h3>
+ * <h2>Prime meridian</h2>
  * <p>A prime meridian defines the origin from which longitude values
  * are specified. Most geodetic datums use Greenwich as their prime meridian. A prime
  * meridian description is not needed for any datum type other than geodetic, or if the
@@ -161,7 +161,7 @@
  * description is mandatory if the datum type is geodetic and its prime meridian
  * is not Greenwich.</p>
  *
- * <h3>Ellipsoid</h3>
+ * <h2>Ellipsoid</h2>
  * <p>An ellipsoid is defined that approximates the surface of the
  * geoid. Because of the area for which the approximation is valid - traditionally
  * regionally, but with the advent of satellite positioning often globally - the

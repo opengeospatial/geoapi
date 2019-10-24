@@ -76,7 +76,7 @@ public interface KeywordClass {
      * of a knowledge domain for use in semantic processing.
      *
      * <div class="note"><b>Note:</b>
-     * {@linkplain Keywords#getKeywords() Keywords} in the associated {@link Keywords} list
+     * {@linkplain Keywords#getKeywords() keywords} in the associated {@link Keywords} list
      * must be within the scope of this ontology.
      * </div>
      *

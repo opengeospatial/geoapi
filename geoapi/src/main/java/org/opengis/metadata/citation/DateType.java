@@ -156,7 +156,7 @@ public final class DateType extends CodeList<DateType> {
      * Time at which the data are considered to become valid.
      *
      * <div class="note"><b>Note:</b>
-     * There could be quite a delay between creation and validity begins.</div>
+     * there could be quite a delay between creation and validity begins.</div>
      *
      * @since 3.1
      */

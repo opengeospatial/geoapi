@@ -52,7 +52,7 @@ import static org.opengis.annotation.Specification.*;
  * </table>
  *
  * <div class="note"><b>Note:</b>
- * The above example uses two axis directions that are not defined in ISO 19111,
+ * the above example uses two axis directions that are not defined in ISO 19111,
  * but found in ISO 19162 as "{@code awayFrom}" and "{@code clockwise}".</div>
  *
  * @author  Martin Desruisseaux (IRD)

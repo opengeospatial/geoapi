@@ -102,7 +102,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * together with the {@link #tolerance} field, before any test is run.
      *
      * <p>All {@link ParameterizedTransformTest} test methods will set this field to a non-null value.
-     * Implementors can use this value for their own assertions after any test method has been run.</p>
+     * Implementers can use this value for their own assertions after any test method has been run.</p>
      *
      * @see #tolerance
      */
@@ -279,7 +279,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * {@code true} if the {@link #getToleranceModifier()} method found at least one
      * {@link ToleranceModifier} registered on the classpath. We presume that the
-     * implementor specified such tolerance modifier in order to relax the tolerance
+     * implementer specified such tolerance modifier in order to relax the tolerance
      * threshold.
      *
      * @since 3.1
@@ -808,7 +808,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * </ul>
      *
      * Those information are then passed to the {@link #assertMatrixEquals(String, Matrix, Matrix,
-     * Matrix)} method. Implementors can override the later method, for example in order to overwrite
+     * Matrix)} method. Implementers can override the later method, for example in order to overwrite
      * the tolerance values.
      *
      * @param  coordinate  the point where to compute the derivative, in units of the source CRS.

@@ -74,7 +74,7 @@
  * will involve time. For example, some of the parameters may have time, velocity, and/or
  * acceleration values and units.</p>
  *
- * <h3>Coordinate conversions</h3>
+ * <h2>Coordinate conversions</h2>
  * <p>Coordinate conversions are coordinate operations that make use
  * of exact, defined (rather than measured or computed), and therefore error-free
  * parameter values. Corresponding pairs of coordinate tuples in each of the two
@@ -90,7 +90,7 @@
  * coordinate reference system}. The associated map projection effectively defines the
  * projected coordinate reference system from the geographic coordinate system.</p>
  *
- * <h3>Concatenated coordinate operation</h3>
+ * <h2>Concatenated coordinate operation</h2>
  * <p>A concatenated coordinate operation is an ordered sequence of
  * coordinate operations. The sequence of operations is constrained by the requirement
  * that the source coordinate reference system of step (<var>n</var>+1) must be the
@@ -120,7 +120,7 @@
  * from source to target coordinate reference system, if a direct transformation between
  * the two is not available.</p>
  *
- * <h3>Pass-through coordinate operation</h3>
+ * <h2>Pass-through coordinate operation</h2>
  * <p>Coordinate operations require input coordinate tuples of certain
  * dimensions and produce output tuples of certain dimensions. The dimensions of these
  * coordinate tuples and the dimensions of the coordinate reference system they are defined
@@ -144,7 +144,7 @@
  * shall agree with the order of the coordinate system axes as defined for the associated
  * coordinate system.</p>
  *
- * <h3>Operation method and parameters</h3>
+ * <h2>Operation method and parameters</h2>
  * <p>The algorithm used to execute the coordinate operation is defined in the
  * {@linkplain org.opengis.referencing.operation.OperationMethod operation method}. Concatenated operations
  * and pass-through operations do not require a coordinate operation to be specified. Each
@@ -164,7 +164,7 @@
  * operation formulae be included or referenced in the relevant object, and if possible a
  * worked example.</p>
  *
- * <h3>Implementation considerations</h3>
+ * <h2>Implementation considerations</h2>
  * <p>This explanation is not complete without giving some thought to
  * implementations. Coordinate transformation services should be able to automatically
  * derive coordinate operations that are not stored explicitly in any permanent data store,

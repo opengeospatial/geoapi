@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!-- =============================================================================================
-         Maven 2 project configuration file
-         http://maven.apache.org/maven2/
+         Maven project configuration file
+         http://maven.apache.org/
 
          Build specification only:      mvn pre-site -N
          Build development snapshot:    mvn clean install
@@ -107,7 +107,7 @@
     <skipNativeLibraryTests>true</skipNativeLibraryTests>
     <maven.compiler.release>8</maven.compiler.release>
     <future.source>module-info.java</future.source>             <!-- To exclude when JDK9 profile is not enabled. -->
-    <unit.api.version>1.0</unit.api.version>                    <!-- To be removed when version 2.0 will be final. -->
+    <unit.api.version>1.0</unit.api.version>                    <!-- To be removed after JDK9 profile is default. -->
   </properties>
   <profiles>
     <profile>
@@ -120,18 +120,8 @@
       <properties>
         <maven.compiler.release>9</maven.compiler.release>
         <future.source>(none)</future.source>
-        <unit.api.version>2.0-SNAPSHOT</unit.api.version>       <!-- Property to be removed after Unit API 2 release. -->
+        <unit.api.version>2.0</unit.api.version>
       </properties>
-      <repositories>
-        <repository>
-          <id>geotoolkit.org</id>                               <!-- Temporary repository for Unit API 2.0-SNAPSHOT. -->
-          <name>Geotoolkit.org repository</name>
-          <url>http://maven.geotoolkit.org</url>
-          <releases>
-            <enabled>false</enabled>
-          </releases>
-        </repository>
-      </repositories>
       <build>
         <plugins>
           <plugin>
@@ -370,7 +360,6 @@
         <configuration>
           <release>${maven.compiler.release}</release>
           <debug>false</debug>                                          <!-- Whether to include debugging information.  -->
-          <optimize>true</optimize>                                     <!-- Use the compiler's optimization methods.   -->
           <encoding>${project.build.sourceEncoding}</encoding>
           <useIncrementalCompilation>false</useIncrementalCompilation>  <!-- https://issues.apache.org/jira/browse/MCOMPILER-209 -->
           <showWarnings>true</showWarnings>
@@ -619,28 +608,6 @@
           </links>
         </configuration>
       </plugin>
-
-
-      <!-- =======================================================================================
-               Python API documentation.
-
-               We could use http://trustin.github.io/sphinx-maven-plugin/basic-usage.html,
-               but command-line give us more control for now. This requires the developer
-               to have Sphinx installed on his machine.
-           ======================================================================================= -->
-      <!--plugin>
-        <groupId>kr.motd.maven</groupId>
-        <artifactId>sphinx-maven-plugin</artifactId>
-        <version>2.6.0</version>
-        <inherited>false</inherited>
-        <configuration>
-          <asReport>true</asReport>
-          <name>Python API</name>
-          <description>GeoAPI abstract classes for Python</description>
-          <outputDirectory>${project.reporting.outputDirectory}/snapshot/python</outputDirectory>
-          <outputName>python</outputName>
-        </configuration>
-      </plugin -->
 
 
 

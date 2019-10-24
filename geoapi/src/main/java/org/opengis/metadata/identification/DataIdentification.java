@@ -63,7 +63,7 @@ public interface DataIdentification extends Identification {
      * object does not contain character encoding information. The character set information is stored in separated
      * objects, associated to locales through entries in the map.
      *
-     * <h3>XML representation</h3>
+     * <h4>XML representation</h4>
      * XML documents shall format languages using the ISO 639-2 language code as returned by {@link Locale#getISO3Language()}.
      * Character sets shall be referenced by name from the IANA Character Set register.
      *

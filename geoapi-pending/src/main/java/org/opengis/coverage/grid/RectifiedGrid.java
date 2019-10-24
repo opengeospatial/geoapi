@@ -49,7 +49,7 @@ import static org.opengis.annotation.Specification.*;
  * that external CRS.
  *
  * <div class="note"><b>Note:</b>
- * If the coordinate reference system is related to the earth by a
+ * if the coordinate reference system is related to the earth by a
  * {@linkplain Datum datum}, the grid is a georectified grid.
  * </div>
  *

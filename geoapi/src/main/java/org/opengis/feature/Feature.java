@@ -44,14 +44,14 @@ package org.opengis.feature;
  *
  * {@code Feature} can be instantiated by calls to {@link FeatureType#newInstance()}.
  *
- * <h3>Simple features</h3>
+ * <h2>Simple features</h2>
  * A feature is said “simple” if it complies to all the following conditions:
  * <ul>
  *   <li>the feature allows only attributes and operations (no associations),</li>
  *   <li>the multiplicity of all attributes is constrained to [1 … 1].</li>
  * </ul>
  *
- * <h3>Moving features</h3>
+ * <h2>Moving features</h2>
  * A feature is a moving feature if it complies to at least one of the following conditions:
  * <ul>
  *   <li>the feature contains {@linkplain DynamicAttribute dynamic attributes},</li>
@@ -80,7 +80,7 @@ public interface Feature {
      * the result of {@linkplain Operation#apply executing} the operation on this feature,
      * at implementation choice.
      *
-     * <div class="note"><b>Tip:</b> This method returns the property <em>instance</em>.
+     * <div class="note"><b>Tip:</b> this method returns the property <em>instance</em>.
      * If only the property <em>value</em> is desired, then {@link #getPropertyValue(String)} is preferred
      * since it gives to implementations a chance to avoid the creation of {@link Attribute} or
      * {@link FeatureAssociation} instances.</div>
@@ -107,7 +107,7 @@ public interface Feature {
      *
      * <blockquote><pre>assert property.getType() == getType().getProperty(property.getName());</pre></blockquote>
      *
-     * <div class="note"><b>Note:</b> This method is useful for storing non-default {@code Attribute} or
+     * <div class="note"><b>Note:</b> this method is useful for storing non-default {@code Attribute} or
      * {@code Association} implementations in this feature. When default implementations are sufficient,
      * the {@link #setPropertyValue(String, Object)} method is preferred.</div>
      *
@@ -152,7 +152,7 @@ public interface Feature {
     /**
      * Sets the value for the property of the given name.
      *
-     * <div class="note"><b>Note on validation</b><br>
+     * <div class="note"><b>Note on validation</b>:
      * the verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
      * and offer an other method for performing more extensive validation.

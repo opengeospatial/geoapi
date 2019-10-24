@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.*;
  * between the centres of the {@linkplain ThiessenValuePolygon Thiessen value polygons} surrounding
  * the input position.
  *
- * <h3>Thiessen polygon networks</h3>
+ * <h2>Thiessen polygon networks</h2>
  * A finite collection of points on a plane determines a partition of the plane into a collection of
  * polygons equal in number to the collection of points. A Thiessen polygon is generated from one of
  * a defining set of points by forming the set of direct positions that are closer to that point than

@@ -87,7 +87,7 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  *
  * <p><b>Tests and accuracy:</b><br>
  * By default, every tests expect an accuracy of 1 centimetre. This accuracy matches the precision
- * of most example points given in the EPSG guidance notice. Implementors can modify the kind of
+ * of most example points given in the EPSG guidance notice. Implementers can modify the kind of
  * tests being executed and the tolerance threshold in different ways:</p>
  *
  * <ul>
@@ -100,8 +100,8 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  * </ul>
  *
  * <div class="note"><b>Usage example:</b>
- * in order to specify their factories and run the tests in a JUnit framework, implementors can define
- * a subclass in their own test suite as in the example below. That example shows also how implementors
+ * in order to specify their factories and run the tests in a JUnit framework, implementers can define
+ * a subclass in their own test suite as in the example below. That example shows also how implementers
  * can alter some tests (here the tolerance value for the <cite>Lambert Azimuthal Equal Area</cite> projection)
  * and add more checks to be executed after every tests (here ensuring that the {@linkplain #transform transform}
  * implements the {@link MathTransform2D} interface):
@@ -191,7 +191,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * in this class.
      *
      * <p>If this field is non-null before a test is run, then those parameters will be used
-     * directly. This allow implementors to alter the parameters before to run the test one
+     * directly. This allow implementers to alter the parameters before to run the test one
      * more time.</p>
      */
     protected ParameterValueGroup parameters;
@@ -214,7 +214,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
      * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
-     * subclassed by the implementor. The factories are fetched as documented in the
+     * subclassed by the implementer. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
      * @return the default set of arguments to be given to the {@code ParameterizedTransformTest} constructor.
@@ -837,7 +837,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
          * In this particular case we have a conflict between the change of axis direction performed by the
          * "Transverse Mercator (South Orientated)" operation method  and the (east, north) axis directions
          * documented in the MathTransformFactory.createParameterizedTransform(…) method. We do not mandate
-         * any particular behavior at this time, so we have to determine what the implementor choose to do,
+         * any particular behavior at this time, so we have to determine what the implementer choose to do,
          * by projecting a point in the south hemisphere and checking the sign of the result.
          */
         double[] expected = sample.targetPoints;
@@ -845,7 +845,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         transform.transform(check, 0, check, 0, 1);
         if (check[1] < 0) {
             /*
-             * Point in the South hemisphere have negative y values. In other words, the implementor chooses to
+             * Point in the South hemisphere have negative y values. In other words, the implementer chooses to
              * keep (east,north) directions instead of (west,south). Reverse the sign of all expected coordinates.
              */
             expected = expected.clone();
@@ -1373,6 +1373,45 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testKrovak() throws FactoryException, TransformException {
         description = "CRS S-JTSK (Ferro) / Krovak";
         final SamplePoints sample = SamplePoints.forCRS(2065);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
+    }
+
+    /**
+     * Tests the <cite>"Orthographic"</cite> (EPSG:9840) projection.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
+     * <table cellspacing="15" summary="Test data">
+     * <tr valign="top"><td><table class="ogc">
+     * <caption>CRS characteristics</caption>
+     * <tr><th>Parameter</th>                                <th>Value</th></tr>
+     * <tr><td>semi-major axis</td>                          <td>6378137.0 m</td></tr>
+     * <tr><td>semi-minor axis</td>                          <td>6356752.314247833 m</td></tr>
+     * <tr><td>Latitude of natural origin</td>               <td>55.0°</td></tr>
+     * <tr><td>Longitude of natural origin</td>              <td>5.0°</td></tr>
+     * <tr><td>False easting</td>                            <td>0.0 m</td></tr>
+     * <tr><td>False northing</td>                           <td>0.0 m</td></tr>
+     * </table></td><td>
+     * <table class="ogc">
+     * <caption>Test points</caption>
+     * <tr><th>Source ordinates</th>                            <th>Expected results</th></tr>
+     * <tr align="right"><td>2°07'46.38"E<br>53°48'33.82"N</td> <td>–189011.711 m<br>–128 640.567 m</td></tr>
+     * </table></td></tr></table>
+     *
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
+     */
+    @Test
+    public void testOrthographic() throws FactoryException, TransformException {
+        description = "WGS 84 / Orthographic";
+        final SamplePoints sample = SamplePoints.forCRS(9840);
         createMathTransform(Projection.class, sample);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
