@@ -107,7 +107,7 @@
     <skipNativeLibraryTests>true</skipNativeLibraryTests>
     <maven.compiler.release>8</maven.compiler.release>
     <future.source>module-info.java</future.source>             <!-- To exclude when JDK9 profile is not enabled. -->
-    <unit.api.version>1.0</unit.api.version>                    <!-- To be removed when version 2.0 will be final. -->
+    <unit.api.version>1.0</unit.api.version>                    <!-- To be removed after JDK9 profile is default. -->
   </properties>
   <profiles>
     <profile>
@@ -120,18 +120,8 @@
       <properties>
         <maven.compiler.release>9</maven.compiler.release>
         <future.source>(none)</future.source>
-        <unit.api.version>2.0-SNAPSHOT</unit.api.version>       <!-- Property to be removed after Unit API 2 release. -->
+        <unit.api.version>2.0</unit.api.version>
       </properties>
-      <repositories>
-        <repository>
-          <id>geotoolkit.org</id>                               <!-- Temporary repository for Unit API 2.0-SNAPSHOT. -->
-          <name>Geotoolkit.org repository</name>
-          <url>http://maven.geotoolkit.org</url>
-          <releases>
-            <enabled>false</enabled>
-          </releases>
-        </repository>
-      </repositories>
       <build>
         <plugins>
           <plugin>
