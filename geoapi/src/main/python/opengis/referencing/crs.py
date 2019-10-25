@@ -1,10 +1,17 @@
-from abc import property, abstractmethod
+#
+#    GeoAPI - Programming interfaces for OGC/ISO standards
+#    http://www.geoapi.org
+#
+#    Copyright (C) 2019 Open Geospatial Consortium, Inc.
+#    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
+#
+
+from abc import abstractmethod
 
 from opengis.referencing.cs \
     import IdentifiedObject, CoordinateSystem, VerticalCS, TimeCS, AffineCS, CartesianCS, EllipsoidalCS
-from opengis.metadata.datum \
+from opengis.referencing.datum \
     import Datum, VerticalDatum, TemporalDatum, ImageDatum, EngineeringDatum, GeodeticDatum
-from org.opengis.referencing.operation import Projection, Conversion
 from opengis.metadata.extent import Extent
 
 
@@ -75,6 +82,7 @@ class SingleCRS(CoordinateReferenceSystem):
         pass
 
     @property
+    @abstractmethod
     def datum(self) -> Datum:
         """
         Returns the datum.
@@ -205,7 +213,7 @@ class GeneralDerivedCRS(SingleCRS):
 
     @property
     @abstractmethod
-    def conversion_from_base(self) -> Conversion:
+    def conversion_from_base(self):
         """
         Returns the conversion from the base CRS to this CRS.
 
@@ -264,12 +272,12 @@ class ProjectedCRS(GeneralDerivedCRS):
 
     @property
     @abstractmethod
-    def conversion_from_base(self) -> Projection:
+    def conversion_from_base(self):
         """
         Returns the map projection from the base CRS to this CRS.
 
         :return: The conversion from the base CRS.
-        :rtype: Projection
+        :rtype: Conversion
         """
         pass
 

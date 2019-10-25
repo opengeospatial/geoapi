@@ -2,7 +2,7 @@
 #
 # Configuration file for the Sphinx documentation builder.
 # This file contains only a selection of the most common options.
-# For a full list see http://www.sphinx-doc.org/en/stable/config.html
+# For a full list see http://www.sphinx-doc.org/en/master/usage/configuration.html
 #
 # Execution on command-line from the root of GeoAPI project;
 #

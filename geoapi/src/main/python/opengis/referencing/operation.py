@@ -1,4 +1,12 @@
-from abc import ABC, property, abstractmethod
+#
+#    GeoAPI - Programming interfaces for OGC/ISO standards
+#    http://www.geoapi.org
+#
+#    Copyright (C) 2019 Open Geospatial Consortium, Inc.
+#    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
+#
+
+from abc import ABC, abstractmethod
 from typing import Sequence
 
 import numpy as np
@@ -8,11 +16,11 @@ from opengis.referencing.crs import CoordinateReferenceSystem
 from opengis.metadata.quality import PositionalAccuracy
 from opengis.metadata.extent import Extent
 from opengis.metadata.citation import Citation
+from opengis.geometry.primitive import DirectPosition
 
 
 # TODO :
 # from opengis.parameter import ParameterValueGroup, ParameterDescriptorGroup
-# from opengis.geometry import DirectPosition
 
 
 class MathTransform(ABC):
@@ -67,7 +75,7 @@ class MathTransform(ABC):
 
     @property
     @abstractmethod
-    def inverse(self) -> MathTransform:
+    def inverse(self):
         """
         Creates the inverse transform of this object. This method may fail if the transform is not one to one.
 
@@ -84,8 +92,8 @@ class MathTransform(ABC):
         :type pt_src: DirectPosition
         :param pt_dst: the specified coordinate point that stores the result of transforming ptSrc, or null.
         :type pt_dst: DirectPosition
-        :return: the coordinate point after transforming ptSrc and storing the result in ptDst, or a newly created point
-        if ptDst was null.
+        :return: the coordinate point after transforming ptSrc and storing the result in ptDst,
+                 or a newly created point if ptDst was null.
         :rtype: DirectPosition
         """
         pass
@@ -115,12 +123,11 @@ class MathTransform(ABC):
         of the approximate affine map at the point. The matrix will have dimensions corresponding to the source and
         target coordinate systems.
 
-        :param point: The coordinate point where to evaluate the derivative. Null value is accepted only if the
-        derivative is the same everywhere. For example affine transform accept null value since they produces identical
-        derivative no matter the coordinate value. But most map projection will requires a non-null value.
+        :param point: The coordinate point where to evaluate the derivative.
+                      Null value is accepted only if the derivative is the same everywhere (e.g. with affine transforms).
+                      But most map projection will requires a non-null value.
         :type point: DirectPosition
-        :return: The derivative at the specified point (never null). This method never returns an internal object:
-        changing the matrix will not change the state of this math transform.
+        :return: The derivative at the specified point (never null).
         :rtype: numpy.ndarray
         """
         pass
@@ -133,7 +140,7 @@ class MathTransform1D(MathTransform):
 
     @property
     @abstractmethod
-    def inverse(self) -> MathTransform1D:
+    def inverse(self):
         """
         Creates the inverse transform of this object.
 
@@ -201,9 +208,9 @@ class OperationMethod(IdentifiedObject):
     @abstractmethod
     def formula(self) -> Formula:
         """
-        Formula(s) or procedure used by this operation method. This may be a reference to a publication. Note that the
-        operation method may not be analytic, in which case this attribute references or contains the procedure, not an
-        analytic formula.
+        Formula(s) or procedure used by this operation method. This may be a reference to a publication.
+        Note that the operation method may not be analytic, in which case this attribute references or
+        contains the procedure, not an analytic formula.
 
         :return: The formula used by this method.
         :rtype: Formula
@@ -212,7 +219,7 @@ class OperationMethod(IdentifiedObject):
 
     @property
     @abstractmethod
-    def parameters(self) -> ParameterDescriptorGroup:
+    def parameters(self):
         """
         The set of parameters.
 
@@ -231,8 +238,9 @@ class CoordinateOperation(IdentifiedObject):
     @property
     def source_crs(self) -> CoordinateReferenceSystem:
         """
-        Returns the source CRS. The source CRS is mandatory for transformations only. Conversions may have a source CRS
-        that is not specified here, but through GeneralDerivedCRS.getBaseCRS() instead.
+        Returns the source CRS. The source CRS is mandatory for transformations only.
+        Conversions may have a source CRS that is not specified here, but through
+        ``GeneralDerivedCRS.getBaseCRS()`` instead.
 
         :return: The source CRS, or null if not available.
         :rtype: CoordinateReferenceSystem
@@ -242,8 +250,9 @@ class CoordinateOperation(IdentifiedObject):
     @property
     def target_crs(self) -> CoordinateReferenceSystem:
         """
-        Returns the target CRS. The target CRS is mandatory for transformations only. Conversions may have a target CRS
-        that is not specified here, but through GeneralDerivedCRS instead.
+        Returns the target CRS. The target CRS is mandatory for transformations only.
+        Conversions may have a target CRS that is not specified here, but through
+        ``GeneralDerivedCRS`` instead.
 
         :return: The target CRS, or null if not available.
         :rtype: CoordinateReferenceSystem
@@ -324,7 +333,7 @@ class SingleOperation(CoordinateOperation):
 
     @property
     @abstractmethod
-    def parameter_values(self) -> ParameterValueGroup:
+    def parameter_values(self):
         """
         Returns the parameter values.
 
@@ -413,7 +422,7 @@ class Conversion(SingleOperation):
     def source_crs(self) -> CoordinateReferenceSystem:
         """
         Returns the source CRS. Conversions may have a source CRS that is not specified here, but through
-        GeneralDerivedCRS.getBaseCRS() instead.
+        ``GeneralDerivedCRS.getBaseCRS()`` instead.
 
         :return: The source CRS, or null if not available.
         :rtype: CoordinateReferenceSystem
@@ -424,7 +433,7 @@ class Conversion(SingleOperation):
     def target_crs(self) -> CoordinateReferenceSystem:
         """
         Returns the target CRS. Conversions may have a target CRS that is not specified here, but through
-        GeneralDerivedCRS instead.
+        ``GeneralDerivedCRS`` instead.
 
         :return: The target CRS, or null if not available.
         :rtype: CoordinateReferenceSystem
@@ -435,6 +444,6 @@ class Conversion(SingleOperation):
     @abstractmethod
     def operation_version(self) -> None:
         """
-        This attribute is declared in CoordinateOperation but is not used in a conversion.
+        This attribute is declared in ``CoordinateOperation`` but is not used in a conversion.
         """
         pass

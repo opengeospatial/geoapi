@@ -8,11 +8,19 @@ GeoAPI for Python
    :caption: Contents:
 
    metadata
+   referencing
+   geometry
 
 * :ref:`genindex`
 * :ref:`modindex`
 * :ref:`search`
 
 Experimental set of Python interfaces for GeoAPI.
-See the `GeoAPI web site <http://www.geoapi.org/>`_ for more information.
-More documentation specific to Python language will be provided later.
+This package provides only code lists and abstract classes; implementations can be provided by separated projects.
+Implementations in the Java language can also be used in Python using the ``geoapi-java-python`` module.
+
+
+------------
+Requirements
+------------
+This package requires Python 3.3 or later.

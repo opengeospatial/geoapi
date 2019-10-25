@@ -1,11 +1,19 @@
-from abc import ABC, property, abstractmethod
+#
+#    GeoAPI - Programming interfaces for OGC/ISO standards
+#    http://www.geoapi.org
+#
+#    Copyright (C) 2019 Open Geospatial Consortium, Inc.
+#    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
+#
+
+from abc import ABC, abstractmethod
 from enum import Enum
 
 
 class AxisDirection(Enum):
     """
-    The direction of positive increase in the coordinate value for a coordinate system axis. This direction is exact in
-    some cases, and is approximate in other cases.
+    The direction of positive increase in the coordinate value for a coordinate system axis.
+    This direction is exact in some cases, and is approximate in other cases.
     """
     COLUMN_NEGATIVE = "columnNegative"
     COLUMN_POSITIVE = "columnPositive"
@@ -130,8 +138,8 @@ class CoordinateSystemAxis(IdentifiedObject):
     @property
     def minimum_value(self) -> float:
         """
-        Returns the minimum value normally allowed for this axis, in the unit of measure for the axis. If there is no
-        minimum value, then this method returns negative infinity.
+        Returns the minimum value normally allowed for this axis, in the unit of measure for the axis.
+        If there is no minimum value, then this method returns negative infinity.
 
         :return: The minimum value, or the negative infinity if none.
         :rtype: float
@@ -141,8 +149,8 @@ class CoordinateSystemAxis(IdentifiedObject):
     @property
     def maximum_value(self) -> float:
         """
-        Returns the maximum value normally allowed for this axis, in the unit of measure for the axis. If there is no
-        maximum value, then this method returns positive infinity.
+        Returns the maximum value normally allowed for this axis, in the unit of measure for the axis.
+        If there is no maximum value, then this method returns positive infinity.
 
         :return: The maximum value, or the positive infinity if none.
         :rtype: float
@@ -165,8 +173,8 @@ class CoordinateSystemAxis(IdentifiedObject):
 class CoordinateSystem(IdentifiedObject):
     """
     The set of coordinate system axes that spans a given coordinate space. A coordinate system (CS) is derived from a
-    set of (mathematical) rules for specifying how coordinates in a given space are to be assigned to points. The
-    coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes
+    set of (mathematical) rules for specifying how coordinates in a given space are to be assigned to points.
+    The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes
     associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system.
     """
 
@@ -223,8 +231,9 @@ class EllipsoidalCS(CoordinateSystem):
 
 class LinearCS(CoordinateSystem):
     """
-    A 1-dimensional coordinate system that consists of the points that lie on the single axis described. The associated
-    coordinate is the distance – with or without offset – from the origin point, specified through the datum definition, to the point along the axis.
+    A 1-dimensional coordinate system that consists of the points that lie on the single axis described.
+    The associated coordinate is the distance – with or without offset – from the origin point,
+    specified through the datum definition, to the point along the axis.
     """
 
 
@@ -244,8 +253,8 @@ class PolarCS(CoordinateSystem):
 
 class SphericalCS(CoordinateSystem):
     """
-    A 3-dimensional coordinate system with one distance measured from the origin and two angular coordinates. Not to be
-    confused with an EllipsoidalCS based on an ellipsoid "degenerated" into a sphere.
+    A 3-dimensional coordinate system with one distance measured from the origin and two angular coordinates.
+    Not to be confused with an EllipsoidalCS based on an ellipsoid "degenerated" into a sphere.
     """
 
 

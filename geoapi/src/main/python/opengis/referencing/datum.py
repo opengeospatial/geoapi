@@ -1,4 +1,12 @@
-from abc import property, abstractmethod
+#
+#    GeoAPI - Programming interfaces for OGC/ISO standards
+#    http://www.geoapi.org
+#
+#    Copyright (C) 2019 Open Geospatial Consortium, Inc.
+#    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
+#
+
+from abc import abstractmethod
 from enum import Enum
 from datetime import datetime
 
@@ -137,7 +145,7 @@ class Ellipsoid(IdentifiedObject):
     @abstractmethod
     def inverse_flattering(self) -> float:
         """
-        Value of the inverse of the flattening constan
+        Value of the inverse of the flattening constant.
         """
         pass
 
@@ -155,8 +163,8 @@ class Ellipsoid(IdentifiedObject):
     @abstractmethod
     def is_sphere(self) -> bool:
         """
-        true if the ellipsoid is degenerate and is actually a sphere. The sphere is completely defined by the semi-major
-        axis, which is the radius of the sphere.
+        true if the ellipsoid is degenerate and is actually a sphere.
+        The sphere is completely defined by the semi-major axis, which is the radius of the sphere.
         """
         pass
 
@@ -167,18 +175,20 @@ class PrimeMeridian(IdentifiedObject):
     """
 
     @property
+    @abstractmethod
     def greenwich_longitude(self) -> float:
         """
         Longitude of the prime meridian measured from the Greenwich meridian, positive eastward.
         """
-        return None
+        pass
 
     @property
+    @abstractmethod
     def angular_unit(self):
         """
         Returns the angular unit of the Greenwich longitude.
         """
-        return None
+        pass
 
 
 class GeodeticDatum(Datum):
