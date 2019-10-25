@@ -9,9 +9,9 @@
 from abc import abstractmethod
 
 from opengis.referencing.cs \
-    import IdentifiedObject, CoordinateSystem, VerticalCS, TimeCS, AffineCS, CartesianCS, EllipsoidalCS
+    import CoordinateSystem, VerticalCS, TimeCS, AffineCS, CartesianCS, EllipsoidalCS
 from opengis.referencing.datum \
-    import Datum, VerticalDatum, TemporalDatum, ImageDatum, EngineeringDatum, GeodeticDatum
+    import IdentifiedObject, Datum, VerticalDatum, TemporalDatum, ImageDatum, EngineeringDatum, GeodeticDatum
 from opengis.metadata.extent import Extent
 
 

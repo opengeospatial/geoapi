@@ -11,7 +11,7 @@ from typing import Sequence
 
 import numpy as np
 
-from opengis.referencing.cs import IdentifiedObject
+from opengis.referencing.datum import IdentifiedObject
 from opengis.referencing.crs import CoordinateReferenceSystem
 from opengis.metadata.quality import PositionalAccuracy
 from opengis.metadata.extent import Extent

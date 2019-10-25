@@ -6,8 +6,10 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractmethod
+from abc import abstractmethod
 from enum import Enum
+
+from opengis.referencing.datum import IdentifiedObject
 
 
 class AxisDirection(Enum):
@@ -55,43 +57,6 @@ class RangeMeaning(Enum):
     """
     EXACT = "exact"
     WRAPAROUND = "wraparound"
-
-
-class IdentifiedObject(ABC):
-    """
-    Identification and remarks information for a reference system or CRS-related object.
-    """
-
-    @property
-    @abstractmethod
-    def name(self) -> str:
-        """
-        The primary name by which this object is identified.
-
-        :return: The primary name.
-        :rtype: str
-        """
-        pass
-
-    @property
-    def remarks(self) -> str:
-        """
-        Comments on or information about this object, including data source information.
-
-        :return: The remarks, or null if none.
-        :rtype: str
-        """
-        return None
-
-    @abstractmethod
-    def to_wkt(self) -> str:
-        """
-        Returns a Well-Known Text (WKT) for this object.
-
-        :return: The Well Know Text for this object.
-        :rtype: str
-        """
-        pass
 
 
 class CoordinateSystemAxis(IdentifiedObject):
