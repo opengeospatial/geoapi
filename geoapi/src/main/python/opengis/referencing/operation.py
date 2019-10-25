@@ -359,13 +359,13 @@ class PassThroughOperation(SingleOperation):
 
     @property
     @abstractmethod
-    def modified_coordinates(self) -> np.ndarray:
+    def modified_coordinates(self) -> Sequence[int]:
         """
         Ordered sequence of positive integers defining the positions in a coordinate tuple of the coordinates affected
         by this pass-through operation.
 
         :return: The modified coordinates.
-        :rtype: numpy.ndarray
+        :rtype: Sequence[int]
         """
         pass
 

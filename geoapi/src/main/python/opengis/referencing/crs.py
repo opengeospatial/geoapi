@@ -7,6 +7,7 @@
 #
 
 from abc import abstractmethod
+from typing import Sequence
 
 from opengis.referencing.cs \
     import CoordinateSystem, VerticalCS, TimeCS, AffineCS, CartesianCS, EllipsoidalCS
@@ -47,24 +48,6 @@ class CoordinateReferenceSystem(ReferenceSystem):
     """
 
 
-class CompoundCRS(CoordinateReferenceSystem):
-    """
-    A coordinate reference system describing the position of points through two or more independent coordinate
-    reference systems.
-    """
-
-    @property
-    @abstractmethod
-    def components(self) -> list:
-        """
-        The ordered list of coordinate reference systems.
-
-        :return: The ordered list of coordinate reference systems.
-        :rtype: list
-        """
-        pass
-
-
 class SingleCRS(CoordinateReferenceSystem):
     """
     Abstract coordinate reference system, consisting of a single Coordinate System and a single Datum.
@@ -91,6 +74,24 @@ class SingleCRS(CoordinateReferenceSystem):
         :rtype: Datum
         """
         return None
+
+
+class CompoundCRS(CoordinateReferenceSystem):
+    """
+    A coordinate reference system describing the position of points through two or more independent coordinate
+    reference systems.
+    """
+
+    @property
+    @abstractmethod
+    def components(self) -> Sequence[SingleCRS]:
+        """
+        The ordered list of coordinate reference systems.
+
+        :return: The ordered list of coordinate reference systems.
+        :rtype: Sequence[SingleCRS]
+        """
+        pass
 
 
 class VerticalCRS(SingleCRS):
