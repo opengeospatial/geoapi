@@ -83,7 +83,6 @@ class IdentifiedObject(ABC):
         """
         return None
 
-    @property
     @abstractmethod
     def to_wkt(self) -> str:
         """

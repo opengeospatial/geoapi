@@ -61,7 +61,6 @@ class MathTransform(ABC):
         """
         pass
 
-    @property
     @abstractmethod
     def to_wkt(self) -> str:
         """
@@ -73,7 +72,6 @@ class MathTransform(ABC):
         """
         pass
 
-    @property
     @abstractmethod
     def inverse(self):
         """
@@ -138,7 +136,6 @@ class MathTransform1D(MathTransform):
     Transforms one-dimensional coordinate points.
     """
 
-    @property
     @abstractmethod
     def inverse(self):
         """
