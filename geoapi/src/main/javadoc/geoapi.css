@@ -74,7 +74,11 @@ table.ogc tr td.sep {
 }
 
 /*
- * Table providing description of GIGS tests.
+ * Table providing description of GIGS tests. It currently applies only to the
+ * org.opengis.test.referencing.gigs package. Note: JDK 13 seems to include any
+ * CSS file in doc-files directory for the package that contains it, but I have
+ * not found a documentation saying if this is officially supported. If yes, we
+ * could move the GIGS style in that package.
  */
 table.gigs caption {
   text-align:     left;
