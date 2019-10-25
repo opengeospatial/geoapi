@@ -6,7 +6,7 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Sequence
 
 
@@ -16,7 +16,8 @@ from opengis.metadata.citation import Citation, Identifier, Responsibility, Date
 class PortrayalCatalogueReference(ABC):
     """Information identifying the portrayal catalogue used."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def portrayal_catalogue_citation(self) -> Sequence[Citation]:
         """Bibliographic reference to the portrayal catalogue cited."""
         pass
@@ -27,7 +28,8 @@ from opengis.metadata.maintenance import ScopeCode, MaintenanceInformation
 
 class MetadataScope(ABC):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def resource_scope(self) -> ScopeCode:
         pass
 
@@ -68,12 +70,14 @@ class Metadata(ABC):
     def metadata_scope(self) -> Sequence[MetadataScope]:
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def contact(self) -> Sequence[Responsibility]:
         """Party responsible for the metadata information."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def date_info(self) -> Sequence[Date]:
         """Date(s) other than creation dateEG: expiry date."""
         pass
@@ -109,7 +113,8 @@ class Metadata(ABC):
     def metadata_extension_info(self) -> Sequence[MetadataExtensionInformation]:
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def identification_info(self) -> Sequence[Identification]:
         pass
 

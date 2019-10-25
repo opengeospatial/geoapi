@@ -6,7 +6,7 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Sequence
 from enum import Enum
 
@@ -67,7 +67,8 @@ class Medium(ABC):
 class Format(ABC):
     """Description of the computer language construct that specifies the representation of data objects in a record, file, message, storage device or transmission channel."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def format_specification_citation(self) -> Citation:
         """Citation/URL of the specification for the format."""
         pass
@@ -98,17 +99,20 @@ from opengis.metadata.naming import GenericName, RecordType, Record
 class DataFile(ABC):
     """Description of a transfer data file."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def file_name(self):
         """Name of the file that contains the data."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def file_description(self) -> str:
         """Text description of the data."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def file_type(self) -> str:
         """Format in which the data is encoded."""
         pass
@@ -195,7 +199,8 @@ class StandardOrderProcess(ABC):
 class Distributor(ABC):
     """Information about the distributor."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def distributor_contact(self) -> Responsibility:
         """Party from whom the resource may be obtained. This list need not be exhaustive."""
         pass

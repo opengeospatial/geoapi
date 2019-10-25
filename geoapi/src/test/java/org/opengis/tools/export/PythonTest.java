@@ -57,8 +57,8 @@ import static org.junit.Assume.*;
  * Otherwise the test is skipped.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @since   3.1
- * @version 3.1
+ * @since   4.0
+ * @version 4.0
  */
 public final strictfp class PythonTest extends JavaToPython {
     /**

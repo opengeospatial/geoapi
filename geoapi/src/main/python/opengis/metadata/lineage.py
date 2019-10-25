@@ -6,7 +6,7 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Sequence
 
 
@@ -82,12 +82,14 @@ class Source(ABC):
 class Algorithm(ABC):
     """Details of the methodology by which geographic information was derived from the instrument readings."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def citation(self) -> Citation:
         """Information identifying the algorithm and version or date."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def description(self) -> str:
         """Information describing the algorithm used to generate the data."""
         pass
@@ -101,7 +103,8 @@ class Processing(ABC):
     def algorithm(self) -> Sequence[Algorithm]:
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def identifier(self) -> Identifier:
         """Information to identify the processing package that produced the data."""
         pass
@@ -131,7 +134,8 @@ class Processing(ABC):
 class ProcessStepReport(ABC):
     """Report of what occurred during the process step."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def name(self) -> str:
         """Name of the processing report."""
         pass
@@ -153,7 +157,8 @@ from datetime import datetime
 class ProcessStep(ABC):
     """Information about an event or transformation in the life of a resource including the process used to maintain the resource."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def description(self) -> str:
         """Description of the event, including related parameters or tolerances."""
         pass

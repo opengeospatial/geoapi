@@ -6,7 +6,7 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Sequence
 from enum import Enum
 
@@ -45,12 +45,14 @@ from opengis.metadata.citation import OnlineResource, Citation
 class OperationMetadata(ABC):
     """Describes the signature of one and only one method provided by the service."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def operation_name(self) -> str:
         """A unique identifier for this interface."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def distributed_computing_platform(self) -> Sequence[DCPList]:
         """Distributed computing platforms on which the operation has been implemented."""
         pass
@@ -65,7 +67,8 @@ class OperationMetadata(ABC):
         """The name used to invoke this interface within the context of the DCP. The name is identical for all DCPs."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def connect_point(self) -> Sequence[OnlineResource]:
         """Handle for accessing the service interface."""
         pass
@@ -83,7 +86,8 @@ class OperationMetadata(ABC):
 class OperationChainMetadata(ABC):
     """Operation Chain Information."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def name(self) -> str:
         """The name, as used by the service for this chain."""
         pass
@@ -93,7 +97,8 @@ class OperationChainMetadata(ABC):
         """A narrative explanation of the services in the chain and resulting output."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def operation(self) -> Sequence[OperationMetadata]:
         pass
 
@@ -130,7 +135,8 @@ from opengis.metadata.distribution import StandardOrderProcess
 class ServiceIdentification(Identification):
     """Identification of capabilities which a service provider makes available to a service user through a set of interfaces that define a behaviour - See ISO 19119 for further information."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def service_type(self) -> GenericName:
         """A service type name, E.G. 'discovery', 'view', 'download', 'transformation', or 'invoke'."""
         pass

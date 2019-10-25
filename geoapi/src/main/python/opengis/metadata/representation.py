@@ -6,7 +6,7 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Sequence
 from enum import Enum
 
@@ -109,12 +109,14 @@ class PixelOrientationCode(Enum):
 class Dimension(ABC):
     """Axis properties."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def dimension_name(self) -> DimensionNameTypeCode:
         """Name of the axis."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def dimension_size(self) -> int:
         """Number of elements along the axis."""
         pass
@@ -146,7 +148,8 @@ class GeolocationInformation(ABC):
 
 class GCP(ABC):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def geographic_coordinates(self):
         pass
 
@@ -158,19 +161,23 @@ class GCP(ABC):
 
 class GCPCollection(GeolocationInformation):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def gcp(self) -> Sequence[GCP]:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def collection_identification(self) -> int:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def collection_name(self) -> str:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def coordinate_reference_system(self):
         pass
 
@@ -179,7 +186,8 @@ class GCPCollection(GeolocationInformation):
 class GeometricObjects(ABC):
     """Number of objects, listed by geometric object type, used in the dataset."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def geometric_object_type(self) -> GeometricObjectTypeCode:
         """Name of point or vector objects used to locate zero-, one-, two-, or three-dimensional spatial locations in the dataset."""
         pass
@@ -199,7 +207,8 @@ class SpatialRepresentation(ABC):
 class GridSpatialRepresentation(SpatialRepresentation):
     """Information about grid spatial objects in the resource."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def number_of_dimensions(self) -> int:
         """Number of independent spatial-temporal axes."""
         pass
@@ -209,12 +218,14 @@ class GridSpatialRepresentation(SpatialRepresentation):
         """Information about spatial-temporal axis properties."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def cell_geometry(self) -> CellGeometryCode:
         """Identification of grid data as point or cell."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def transformation_parameter_availability(self):
         """Indication of whether or not parameters for transformation between image coordinates and geographic or map coordinates exist (are available)."""
         pass
@@ -239,7 +250,8 @@ class VectorSpatialRepresentation(SpatialRepresentation):
 class Georectified(GridSpatialRepresentation):
     """Grid whose cells are regularly spaced in a geographic (i.e., lat / long) or map coordinate system defined in the Spatial Referencing System (SRS) so that any cell in the grid can be geolocated given its grid coordinate and the grid origin, cell spacing, and orientation."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def check_point_availability(self):
         """Indication of whether or not geographic position points are available to test the accuracy of the georeferenced grid data."""
         pass
@@ -249,7 +261,8 @@ class Georectified(GridSpatialRepresentation):
         """Description of geographic position points used to test the accuracy of the georeferenced grid data."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def corner_points(self):
         """Earth location in the coordinate system defined by the Spatial Reference System and the grid coordinate of the cells at opposite ends of grid coverage along two diagonals in the grid spatial dimensions. There are four corner points in a georectified grid; at least two corner points along one diagonal are required. The first corner point corresponds to the origin of the grid."""
         pass
@@ -259,7 +272,8 @@ class Georectified(GridSpatialRepresentation):
         """Earth location in the coordinate system defined by the Spatial Reference System and the grid coordinate of the cell halfway between opposite ends of the grid in the spatial dimensions."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def point_in_pixel(self) -> PixelOrientationCode:
         """Point in a pixel corresponding to the Earth location of the pixel."""
         pass
@@ -286,12 +300,14 @@ from opengis.metadata.citation import Citation
 class Georeferenceable(GridSpatialRepresentation):
     """Grid with cells irregularly spaced in any given geographic/map projection coordinate system, whose individual cells can be geolocated using geolocation information supplied with the data but cannot be geolocated from the grid properties alone."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def control_point_availability(self):
         """Indication of whether or not control point(s) exists."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def orientation_parameter_availability(self):
         """Indication of whether or not orientation parameters are available."""
         pass
@@ -301,7 +317,8 @@ class Georeferenceable(GridSpatialRepresentation):
         """Description of parameters used to describe sensor orientation."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def georeferenced_parameters(self) -> Record:
         """Terms which support grid data georeferencing."""
         pass
@@ -311,6 +328,7 @@ class Georeferenceable(GridSpatialRepresentation):
         """Reference providing description of the parameters."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def geolocation_information(self) -> Sequence[GeolocationInformation]:
         pass

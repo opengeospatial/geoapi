@@ -6,7 +6,7 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Sequence
 from enum import Enum
 
@@ -128,7 +128,8 @@ class LegalConstraints(Constraints):
 class SecurityConstraints(Constraints):
     """Handling restrictions imposed on the resource or metadata for national security or similar security concerns."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def classification(self) -> ClassificationCode:
         """Name of the handling restrictions on the resource or metadata."""
         pass

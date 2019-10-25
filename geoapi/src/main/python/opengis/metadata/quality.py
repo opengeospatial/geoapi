@@ -6,7 +6,7 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Sequence
 from enum import Enum
 
@@ -65,7 +65,8 @@ class Element(ABC):
         """Date or range of dates on which a data quality measure was applied."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def result(self) -> Sequence[Result]:
         """Values obtained from applying a data quality measure against a specified acceptable conformance quality level."""
         pass
@@ -169,17 +170,20 @@ class CompletenessOmission(Completeness):
 class ConformanceResult(Result):
     """Information about the outcome of evaluating the obtained value (or set of values) against a specified acceptable conformance quality level."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def specification(self) -> Citation:
         """Citation of data product specification or user requirement against which data is being evaluated."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def explanation(self) -> str:
         """Explanation of the meaning of conformance for this result."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def is_conform(self):
         """Indication of the conformance result where 0 = fail and 1 = pass."""
         pass
@@ -193,24 +197,29 @@ from opengis.metadata.content import CoverageDescription
 class CoverageResult(Result):
     """Result of a data quality measure organising the measured values as a coverage."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def spatial_representation_type(self) -> SpatialRepresentationTypeCode:
         """Method used to spatially represent the coverage result."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def result_file(self) -> DataFile:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def result_spatial_representation(self) -> 'SpatialRepresentation':
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def result_content_description(self) -> CoverageDescription:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def result_format(self) -> Format:
         pass
 
@@ -221,12 +230,14 @@ from opengis.metadata.naming import Record, RecordType
 class QuantitativeResult(Result):
     """The values or information about the value(s) (or set of values) obtained from applying a data quality measure."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def value(self) -> Sequence[Record]:
         """Quantitative value or values, content determined by the evaluation procedure used, accordingly with the value type and valueStructure defined for the measure."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def value_unit(self):
         """Value unit for reporting a data quality result."""
         pass
@@ -247,7 +258,8 @@ from opengis.metadata.lineage import Lineage
 class DataQuality(ABC):
     """Quality information for the data specified by a data quality scope."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def scope(self) -> Scope:
         """The specific data to which the data quality information applies."""
         pass

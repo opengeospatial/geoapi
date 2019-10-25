@@ -6,7 +6,7 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Sequence
 from enum import Enum
 
@@ -101,7 +101,8 @@ from opengis.metadata.extent import Extent
 class Scope(ABC):
     """New: information about the scope of the resource."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def level(self) -> ScopeCode:
         """Description of the scope."""
         pass

@@ -6,18 +6,20 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Sequence
 
 
 
 class NameSpace(ABC):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def is_global(self):
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def name(self) -> 'GenericName':
         pass
 
@@ -25,15 +27,18 @@ class NameSpace(ABC):
 
 class GenericName(ABC):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def depth(self) -> int:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def scope(self) -> NameSpace:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def parsed_name(self) -> Sequence['LocalName']:
         pass
 
@@ -41,11 +46,13 @@ class GenericName(ABC):
 
 class LocalName(GenericName):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def a_name(self) -> str:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def parsed_name(self) -> Sequence['LocalName']:
         pass
 
@@ -53,15 +60,18 @@ class LocalName(GenericName):
 
 class ScopedName(GenericName):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def head(self) -> LocalName:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def tail(self) -> GenericName:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def scoped_name(self) -> str:
         pass
 
@@ -69,7 +79,8 @@ class ScopedName(GenericName):
 
 class TypeName(LocalName):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def a_name(self) -> str:
         pass
 
@@ -77,7 +88,8 @@ class TypeName(LocalName):
 
 class Type(ABC):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def type_name(self) -> TypeName:
         pass
 
@@ -85,11 +97,13 @@ class Type(ABC):
 
 class MemberName(LocalName):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def attribute_type(self) -> TypeName:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def a_name(self) -> str:
         pass
 
@@ -97,11 +111,13 @@ class MemberName(LocalName):
 
 class RecordSchema(ABC):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def schema_name(self) -> LocalName:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def description(self):
         pass
 
@@ -109,15 +125,18 @@ class RecordSchema(ABC):
 
 class RecordType(Type):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def type_name(self) -> TypeName:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def schema(self) -> RecordSchema:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def member_types(self):
         pass
 
@@ -129,6 +148,7 @@ class Record(ABC):
     def record_type(self) -> RecordType:
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def member_value(self):
         pass

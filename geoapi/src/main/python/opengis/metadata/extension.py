@@ -6,7 +6,7 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Sequence
 from enum import Enum
 
@@ -44,17 +44,20 @@ from opengis.metadata.citation import Citation, OnlineResource, Responsibility
 class ApplicationSchemaInformation(ABC):
     """Information about the application schema used to build the dataset."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def name(self) -> Citation:
         """Name of the application schema used."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def schema_language(self) -> str:
         """Identification of the schema language used."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def constraint_language(self) -> str:
         """Formal language used in Application Schema."""
         pass
@@ -84,12 +87,14 @@ class ApplicationSchemaInformation(ABC):
 class ExtendedElementInformation(ABC):
     """New metadata element, not found in ISO 19115, which is required to describe geographic data."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def name(self) -> str:
         """Name of the extended metadata element."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def definition(self) -> str:
         """Definition of the extended element."""
         pass
@@ -104,7 +109,8 @@ class ExtendedElementInformation(ABC):
         """Condition under which the extended element is mandatory."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def data_type(self) -> DatatypeCode:
         """Code which identifies the kind of value provided in the extended element."""
         pass
@@ -119,12 +125,14 @@ class ExtendedElementInformation(ABC):
         """Valid values that can be assigned to the extended element."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def parent_entity(self) -> Sequence[str]:
         """Name of the metadata entity(s) under which this extended metadata element may appear. The name(s) may be standard metadata element(s) or other extended metadata element(s)."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def rule(self) -> str:
         """Specifies how the extended element relates to other existing elements and entities."""
         pass
@@ -134,7 +142,8 @@ class ExtendedElementInformation(ABC):
         """Reason for creating the extended element."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def source(self) -> Sequence[Responsibility]:
         """Name of the person or organisation creating the extended element."""
         pass

@@ -6,7 +6,7 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Sequence
 
 
@@ -24,22 +24,26 @@ class GeographicExtent(ABC):
 class GeographicBoundingBox(GeographicExtent):
     """Geographic position of the resource. NOTE: This is only an approximate reference so specifying the coordinate reference system is unnecessary and need only be provided with a precision of up to two decimal places."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def west_bound_longitude(self) -> float:
         """Western-most coordinate of the limit of the resource extent, expressed in longitude in decimal degrees (positive east)."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def east_bound_longitude(self) -> float:
         """Eastern-most coordinate of the limit of the resource extent, expressed in longitude in decimal degrees (positive east)."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def south_bound_latitude(self) -> float:
         """Southern-most coordinate of the limit of the resource extent, expressed in latitude in decimal degrees (positive north)."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def north_bound_latitude(self) -> float:
         """Northern-most, coordinate of the limit of the resource extent expressed in latitude in decimal degrees (positive north)."""
         pass
@@ -51,7 +55,8 @@ from opengis.metadata.citation import Identifier
 class GeographicDescription(GeographicExtent):
     """Description of the geographic area using identifiers."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def geographic_identifier(self) -> Identifier:
         """Identifier used to represent a geographic area e.g. a geographic identifier as described in ISO 19112."""
         pass
@@ -61,7 +66,8 @@ class GeographicDescription(GeographicExtent):
 class BoundingPolygon(GeographicExtent):
     """Enclosing geometric object which locates the resource, expressed as a set of (x,y) coordinate (s). NOTE: If a polygon is used it should be closed (last point replicates first point)."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def polygon(self):
         """Sets of points defining the bounding polygon or any other GM_Object geometry (point, line or polygon)."""
         pass
@@ -71,12 +77,14 @@ class BoundingPolygon(GeographicExtent):
 class VerticalExtent(ABC):
     """Vertical domain of resource."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def minimum_value(self) -> float:
         """Lowest vertical extent contained in the resource."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def maximum_value(self) -> float:
         """Highest vertical extent contained in the resource."""
         pass
@@ -90,7 +98,8 @@ class VerticalExtent(ABC):
 class TemporalExtent(ABC):
     """Time period covered by the content of the resource."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def extent(self):
         """Period for the content of the resource."""
         pass
@@ -105,7 +114,8 @@ class SpatialTemporalExtent(TemporalExtent):
         """Vertical extent component."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def spatial_extent(self) -> Sequence[GeographicExtent]:
         pass
 

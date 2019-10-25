@@ -6,7 +6,7 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Sequence
 from enum import Enum
 
@@ -161,7 +161,8 @@ class Address(ABC):
 class Telephone(ABC):
     """Telephone numbers for contacting the responsible individual or organisation."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def number(self) -> str:
         """Telephone number by which individuals can contact responsible organisation or individual."""
         pass
@@ -176,7 +177,8 @@ class Telephone(ABC):
 class OnlineResource(ABC):
     """Information about on-line sources from which the resource, specification, or community profile name and extended metadata elements can be obtained."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def linkage(self):
         """Location (address) for on-line access using a Uniform Resource Locator/Uniform Resource Identifier address or similar addressing scheme such as http://www.statkart.no/isotc211."""
         pass
@@ -265,7 +267,8 @@ class Party(ABC):
 class Responsibility(ABC):
     """Information about the party and their role."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def role(self) -> RoleCode:
         """Function performed by the responsible party."""
         pass
@@ -275,7 +278,8 @@ class Responsibility(ABC):
         """Spatial or temporal extent of the role."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def party(self) -> Sequence[Party]:
         pass
 
@@ -310,12 +314,14 @@ from datetime import datetime
 class Date(ABC):
     """Reference date and event used to describe it."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def date(self) -> datetime:
         """Reference date for the cited resource."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def date_type(self) -> DateTypeCode:
         """Event used for reference date."""
         pass
@@ -325,7 +331,8 @@ class Date(ABC):
 class Citation(ABC):
     """Standardized resource reference."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def title(self) -> str:
         """Name by which the cited resource is known."""
         pass
@@ -405,7 +412,8 @@ class Identifier(ABC):
         """Citation for the code namespace and optionally the person or party responsible for maintenance of that namespace."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def code(self) -> str:
         """Alphanumeric value identifying an instance in the namespace e.g. EPSG::4326."""
         pass

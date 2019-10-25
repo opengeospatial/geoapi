@@ -6,7 +6,7 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Sequence
 from enum import Enum
 
@@ -90,7 +90,8 @@ class RangeDimension(ABC):
 
 class AttributeGroup(ABC):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def content_type(self) -> Sequence[CoverageContentTypeCode]:
         """Type of information represented by the value."""
         pass
@@ -219,17 +220,20 @@ class ContentInformation(ABC):
 class RangeElementDescription(ABC):
     """Description of specific range elements."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def name(self) -> str:
         """Designation associated with a set of range elements."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def definition(self) -> str:
         """Description of a set of specific range elements."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def range_element(self) -> Sequence[Record]:
         """Specific range elements, i.e. range elements associated with a name and definition defining their meaning."""
         pass
@@ -239,7 +243,8 @@ class RangeElementDescription(ABC):
 class CoverageDescription(ContentInformation):
     """Details about the content of a resource."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def attribute_description(self) -> RecordType:
         """Description of the attribute described by the measurement value."""
         pass
@@ -321,7 +326,8 @@ class ImageDescription(CoverageDescription):
 
 class FeatureTypeInfo(ABC):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def feature_type_name(self) -> GenericName:
         pass
 

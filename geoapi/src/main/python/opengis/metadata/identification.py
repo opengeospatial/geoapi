@@ -6,7 +6,7 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Sequence
 from enum import Enum
 
@@ -117,7 +117,8 @@ from opengis.metadata.citation import OnlineResource, Citation, Responsibility, 
 class BrowseGraphic(ABC):
     """Graphic that provides an illustration of the dataset (should include a legend for the graphic, if applicable)."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def file_name(self):
         """Name of the file that contains a graphic that provides an illustration of the dataset."""
         pass
@@ -147,7 +148,8 @@ class BrowseGraphic(ABC):
 class KeywordClass(ABC):
     """Specification of a class to categorize keywords in a domain-specific vocabulary that has a binding to a formal ontology."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def class_name(self) -> str:
         """Character string to label the keyword category in natural language."""
         pass
@@ -157,7 +159,8 @@ class KeywordClass(ABC):
         """URI of concept in ontology specified by the ontology attribute; this concept is labeled by the className: CharacterString."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def ontology(self) -> Citation:
         """A reference that binds the keyword class to a formal conceptualization of a knowledge domain for use in semantic processingNOTE: Keywords in the associated MD_Keywords keyword list must be within the scope of this ontology."""
         pass
@@ -167,7 +170,8 @@ class KeywordClass(ABC):
 class Keywords(ABC):
     """Keywords, their type and reference source. NOTE: When the resource described is a service, one instance of MD_Keyword shall refer to the service taxonomy defined in ISO 19119, 8.3)."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def keyword(self) -> Sequence[str]:
         """Commonly used word(s) or formalised word(s) or phrase(s) used to describe the subject."""
         pass
@@ -193,7 +197,8 @@ from datetime import datetime
 class Usage(ABC):
     """Brief description of ways in which the resource(s) is/are currently or has been used."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def specific_usage(self) -> str:
         """Brief description of the resource and/or resource series usage."""
         pass
@@ -231,7 +236,8 @@ class Usage(ABC):
 class RepresentativeFraction(ABC):
     """Derived from ISO 19103 Scale where MD_RepresentativeFraction.denominator = 1 / Scale.measure And Scale.targetUnits = Scale.sourceUnits."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def denominator(self) -> int:
         """The number below the line in a vulgar fraction."""
         pass
@@ -276,7 +282,8 @@ class AssociatedResource(ABC):
         """Citation information about the associated resource."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def association_type(self) -> AssociationTypeCode:
         """Type of relation between the resources."""
         pass
@@ -301,12 +308,14 @@ from opengis.metadata.distribution import Format
 class Identification(ABC):
     """Basic information required to uniquely identify a resource or resources."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def citation(self) -> Citation:
         """Citation for the resource(s)."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def abstract(self) -> str:
         """Brief narrative summary of the content of the resource(s)."""
         pass

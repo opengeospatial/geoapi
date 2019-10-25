@@ -6,7 +6,7 @@
 #    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
-from abc import ABC, abstractproperty
+from abc import ABC, abstractmethod
 from typing import Sequence
 from enum import Enum
 
@@ -73,12 +73,14 @@ class Instrument(ABC):
         """Complete citation of the instrument."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def identifier(self) -> Identifier:
         """Complete citation of the instrument."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def type(self) -> str:
         """Code describing the type of instrument."""
         pass
@@ -102,12 +104,14 @@ class Platform(ABC):
         """Complete citation of the platform."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def identifier(self) -> Identifier:
         """Unique identification of the platform."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def description(self) -> str:
         """Narrative description of the platform supporting the instrument."""
         pass
@@ -117,7 +121,8 @@ class Platform(ABC):
         """Organization responsible for building, launch, or operation of the platform."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def instrument(self) -> Sequence[Instrument]:
         pass
 
@@ -126,7 +131,8 @@ class Platform(ABC):
 class PlatformPass(ABC):
     """Identification of collection coverage."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def identifier(self) -> Identifier:
         """Unique name of the pass."""
         pass
@@ -147,27 +153,32 @@ from datetime import datetime
 class Event(ABC):
     """Identification of a significant collection point within an operation."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def identifier(self) -> Identifier:
         """Event name or number."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def trigger(self) -> TriggerCode:
         """Initiator of the event."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def context(self) -> ContextCode:
         """Meaning of the event."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def sequence(self) -> SequenceCode:
         """Relative time ordering of the event."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def time(self) -> datetime:
         """Time the event occurred."""
         pass
@@ -188,19 +199,23 @@ class Event(ABC):
 
 class EnvironmentalRecord(ABC):
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def average_air_temperature(self) -> float:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def max_relative_humidity(self) -> float:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def max_altitude(self) -> float:
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def meteorological_conditions(self) -> str:
         pass
 
@@ -211,7 +226,8 @@ from opengis.metadata.extent import Extent
 class Objective(ABC):
     """Describes the characteristics, spatial and temporal extent of the intended object to be observed."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def identifier(self) -> Sequence[Identifier]:
         """Registered code used to identify the objective."""
         pass
@@ -244,7 +260,8 @@ class Objective(ABC):
     def platformPass(self) -> Sequence[PlatformPass]:
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def objective_occurence(self) -> Sequence[Event]:
         pass
 
@@ -270,7 +287,8 @@ class Operation(ABC):
         """Character string by which the mission is known."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def status(self) -> ProgressCode:
         """Status of the data acquisition."""
         pass
@@ -310,12 +328,14 @@ class Operation(ABC):
 class RequestedDate(ABC):
     """Range of date validity."""
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def requested_date_of_collection(self) -> datetime:
         """Preferred date and time of collection."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def latest_acceptable_date(self) -> datetime:
         """Latest date and time collection must be completed."""
         pass
@@ -330,32 +350,38 @@ class Requirement(ABC):
         """Identification of reference or guidance material for the requirement."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def identifier(self) -> Identifier:
         """Unique name, or code, for the requirement."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def requestor(self) -> Sequence[Responsibility]:
         """Origin of requirement."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def recipient(self) -> Sequence[Responsibility]:
         """Person(s), or body(ies), to receive results of requirement."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def priority(self) -> PriorityCode:
         """Relative ordered importance, or urgency, of the requirement."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def requested_date(self) -> RequestedDate:
         """Required or preferred acquisition date and time."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def expiry_date(self) -> datetime:
         """Date and time after which collection is no longer valid."""
         pass
@@ -374,12 +400,14 @@ class Plan(ABC):
         """Manner of sampling geometry the planner expects for collection of the objective data."""
         return None
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def status(self) -> ProgressCode:
         """Current status of the plan (pending, completed, etc.)."""
         pass
 
-    @abstractproperty
+    @property
+    @abstractmethod
     def citation(self) -> Citation:
         """Identification of authority requesting target collection."""
         pass

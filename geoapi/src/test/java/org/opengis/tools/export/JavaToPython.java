@@ -70,13 +70,14 @@ import static org.junit.Assert.*;
 
 /**
  * Generates or verifies Python abstract classes from Java interfaces.
- * If Python files exist in the {@code geoapi/src/python/opengis} directory, they will be compared with expected content.
- * If those files do not exist, then they will be generated from {@link UML} annotations given by Java interfaces.
+ * If Python files exist in the {@code geoapi/src/main/python/opengis/metadata} directory,
+ * they will be compared with expected content. If those files do not exist, then they will
+ * be generated from {@link UML} annotations given by Java interfaces.
  * This should be used only as a starting point before review by Python developers.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @since   3.1
- * @version 3.1
+ * @since   4.0
+ * @version 4.0
  */
 strictfp class JavaToPython extends SourceGenerator {
     /**
@@ -519,7 +520,7 @@ strictfp class JavaToPython extends SourceGenerator {
                        .append("#    All Rights Reserved. http://www.opengeospatial.org/ogc/legal").append(lineSeparator)
                        .append('#').append(lineSeparator)
                        .append(lineSeparator)
-                       .append("from abc import ABC, abstractproperty").append(lineSeparator)
+                       .append("from abc import ABC, abstractmethod").append(lineSeparator)
                        .append("from typing import Sequence").append(lineSeparator);
                 if (category.isControlledVocabulary()) {
                     content.append("from enum import Enum").append(lineSeparator);
@@ -585,23 +586,21 @@ strictfp class JavaToPython extends SourceGenerator {
                         hasBody |= appendDocumentation(definition.get(null), content, 1);
                     }
                     /*
-                     * Declare properties with "@abstractproperty" for mandatory properties, and "@property" for optional ones.
+                     * Declare properties with "@abstractmethod" for mandatory properties, and "@property" for optional ones.
                      * Optional properties are implemented with {@code "return None"}. Special care is needed for properties of
                      * type not yet declared; we have to declare those types as strings instead.
                      */
                     final Map<String,String> replacements = keywords.remove(type);
                     for (final Property property : props) {
                         final String name = property.name(replacements);
-                        String classifier = "abstract";
                         String implementation = "pass";
-                        if (!property.mandatory) {
-                            classifier = "";
-                            if (!Void.TYPE.equals(property.javaType)) {
-                                implementation = "return None";
-                            }
-                        }
                         content.append(lineSeparator);
-                        indent(content, 1).append('@').append(classifier).append("property").append(lineSeparator);
+                        indent(content, 1).append("@property").append(lineSeparator);
+                        if (property.mandatory) {
+                            indent(content, 1).append("@abstractmethod").append(lineSeparator);
+                        } else if (!Void.TYPE.equals(property.javaType)) {
+                            implementation = "return None";
+                        }
                         indent(content, 1).append("def ").append(name).append("(self)");
                         if (property.pythonType != null) {
                             content.append(" -> ").append(property.pythonType);
