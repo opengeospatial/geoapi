@@ -48,6 +48,7 @@ from opengis.metadata.quality import DataQuality
 from opengis.metadata.lineage import Lineage
 from opengis.metadata.constraints import Constraints
 from opengis.metadata.acquisition import AcquisitionInformation
+from opengis.referencing.crs import ReferenceSystem
 
 class Metadata(ABC):
     """Root entity which defines metadata about a resource or resources."""
@@ -106,7 +107,7 @@ class Metadata(ABC):
         return None
 
     @property
-    def reference_system_info(self):
+    def reference_system_info(self) -> Sequence[ReferenceSystem]:
         return None
 
     @property
