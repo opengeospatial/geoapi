@@ -1,0 +1,154 @@
+/*
+ * Style sheet for GeoAPI web site.
+ * https://www.geoapi.org/
+ *
+ * Pages are split in 4 parts:
+ *  - GeoAPI logo on top (banner)
+ *  - OGC copyright in footer
+ *  - Navigation links in left column
+ *  - Main content in body column.
+ */
+#leftColumn {
+ float: left;
+ width: 200px;
+ margin-top: 30px;
+}
+#bodyColumn {
+  margin-left:  220px;
+  margin-right: 100px;
+}
+#banner {
+  height: 90px;
+  background: url(images/banner-background.png);
+}
+#footer {
+  text-align: center;
+  font-size: smaller;
+}
+
+/*
+ * Main styles for all pages using this CSS.
+ */
+h1 {
+  margin-top: 30px;
+}
+h2 {
+  margin-top: 50px;
+}
+p {
+  text-align: justify;
+}
+a {
+  color: #387085;
+  text-decoration: none;
+}
+a:active, a:hover {
+  text-decoration: underline;
+}
+a.externalLink {
+  background: url(images/external.png) right top no-repeat;
+  padding-right: 12px;
+}
+ul.verbose li {
+  margin-bottom: 12px;
+  text-align: justify;
+}
+li.disabled {
+  color: gray;
+}
+details.code {
+  border:     1px solid #E0E0F0;
+  background: #F6F6FC;
+  padding:    9px;
+  margin:     9px 0;
+}
+details.code > summary {
+  font-weight: bold;
+}
+details.code > p {
+  margin-left: 40px;
+}
+pre {
+  margin-left: 40px;
+}
+pre, code {
+  font-family: "Courier New";
+}
+pre > var, code > var {
+  font-family: "Sans serif";
+  color: red;
+}
+
+/*
+ * Navigation links.
+ */
+nav {
+  padding:    12px 0 12px 12px;
+  border:     1px solid steelblue;
+  background: aliceblue;
+}
+nav ul {
+  margin:          0;
+  padding-left:    20px;
+  list-style-type: none;
+  font-size:       small;
+}
+nav > ul {
+  padding-left: 0;
+}
+nav a {
+  color: #247ac5;
+}
+
+/*
+ * Navigation links in the form of buttons.
+ */
+div.button-bar {
+  display:         flex;
+  justify-content: center;
+  column-gap:      100px;
+  padding:         20px 0 50px 0;
+}
+button.link {
+    border:           0;
+    width:            150px;
+    padding:          0 20px;
+    line-height:      2.2;
+    text-align:       center;
+    color:            white;
+    font-size:        large;
+    font-weight:      bold;
+    text-shadow:      1px 1px 1px black;
+    border-radius:    10px;
+    background-color: crimson;
+    background-image: linear-gradient(to top left,
+                                      rgba(0, 0, 0, .2),
+                                      rgba(0, 0, 0, .2) 30%,
+                                      rgba(0, 0, 0, 0));
+    box-shadow: inset  2px  2px 3px rgba(255, 255, 255, .6),
+                inset -2px -2px 3px rgba(0, 0, 0, .6);
+}
+button.link:hover {
+    background-color: red;
+}
+button.link:active {
+    box-shadow: inset -2px -2px 3px rgba(255, 255, 255, .6),
+                inset  2px  2px 3px rgba(0, 0, 0, .6);
+}
+button.link a {
+  color: white;
+  text-decoration: none;
+}
+
+/*
+ * Warning box.
+ */
+p.warning {
+  padding:          12px;
+  text-align:       center;
+  background-color: tomato;
+  color:            white;
+  font-size:        large;
+  font-weight:      bold;
+  margin-bottom:    15px;
+}
