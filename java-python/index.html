@@ -80,10 +80,11 @@
 cd jpy
 rm -r build target                          # Needed only if JPY has previously been built.
 git checkout 0.9.0                          # If a more recent release is available, it may be worth to try.
-python setup.py build                       # C/C++ compilation result will be in the ./build/ directory.</pre>
+python setup.py build maven                 # C/C++ compilation result will be in the ./build/ directory.</pre>
       </details>
       <p>
-        Next, create a <code>jpyconfig.properties</code> file in any directory of your choice.
+        Next, verify the <code>build/<var>platform-and-version</var>/jpyconfig.properties</code> file.
+        That file can optionally be moved in any directory of your choice.
         The content should be similar to below, with <code>path-to-build-result</code> replaced
         by the path to the <code>*.so</code> files under the <code>jpy/build</code> directory.
 <!--    If <abbr>JPY</abbr> has been installed from a release instead than built locally,
@@ -107,9 +108,10 @@ jpy.jdlLib           = /<var>path-to-build-result</var>/jdl.cpython-<var>version
 </pre>
       </details>
       <p>
-        Next, compile Java code of <abbr>JPY</abbr>. This build includes tests, so a successful build
-        means that above <code>jpyconfig.properties</code> is correct.
-        The compilation result will be in the <code>./target</code> directory.
+        Next, install Java code of <abbr>JPY</abbr> in the <code>~/.m2/repository</code> directory
+        for easier configuration in the next steps below.
+        A successful build means that above <code>jpyconfig.properties</code> is correct.
+        The compilation result will be in the <code>./target</code> and <code>~/.m2/repository</code> directories.
       </p>
       <details class="code">
         <summary>Build <abbr>JPY</abbr> Java code</summary>
@@ -129,10 +131,11 @@ jpy.jdlLib           = /<var>path-to-build-result</var>/jdl.cpython-<var>version
         <pre>cd ..            # Or move to any other directory.
 git clone https://github.com/opengeospatial/geoapi
 cd geoapi
-mvn install</pre>
+mvn install --activate-profiles python</pre>
       </details>
       <p>
-        Finally, create a <code>jpyconfig.py</code> file in any directory of your choice.
+        Finally, verify and complete the <code>build/<var>platform-and-version</var>/jpyconfig.py</code> file.
+        That file can optionally be moved in any directory of your choice.
 <!--    If <abbr>JPY</abbr> has been installed from a release, that file already exists in the <abbr>site-packages</abbr> directory
         and may be edited in-place (attempts to use a copy elsewhere seems to have no effect). -->
         The <code>jpyconfig.py</code> content should be like this
@@ -148,6 +151,7 @@ jvm_dll        = '<var>path-to-java</var>/lib/server/libjvm.so'
 jvm_maxmem     = None
 jvm_classpath  = ["<var>user-directory</var>/.m2/repository/javax/measure/unit-api/1.0/unit-api-1.0.jar",
                   "<var>user-directory</var>/.m2/repository/org/opengis/geoapi-pending/4.0-SNAPSHOT/geoapi-pending-4.0-SNAPSHOT.jar",
+                  "<var>user-directory</var>/.m2/repository/org/opengis/bridge/geoapi-java-python/4.0-SNAPSHOT/geoapi-java-python-4.0-SNAPSHOT.jar",
                   "<var>any additional JAR files required by the GeoAPI implementation to use.</var>"]
 jvm_properties = {}</pre>
       </details>
@@ -165,8 +169,7 @@ jvm_properties = {}</pre>
 jvm = jpyutil.init_jvm(config_file="<var>path-to-config</var>/jpyconfig.py")
 
 import sys
-sys.path.append('<var>path-to-geoapi</var>/geoapi/src/main/python')
-sys.path.append('<var>path-to-geoapi</var>/geoapi-java-python/src/main/python/opengis')</pre>
+sys.path.append('<var>path-to-geoapi</var>/target/python')</pre>
       </details>
       <p>
         After the <abbr>JVM</abbr> has been initialized, Java methods can be invoked using <abbr>JPY</abbr>.
