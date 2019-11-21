@@ -1,5 +1,19 @@
-import jpy
+#
+#    GeoAPI - Programming interfaces for OGC/ISO standards
+#    http://www.geoapi.org
+#
+#    Copyright (C) 2019 Open Geospatial Consortium, Inc.
+#    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
+#
 
+#
+# This module requires jpy module to be installed on the local machine.
+# That Java-Python module is documented at http://jpy.readthedocs.io/.
+# In addition, the PYTHONPATH environmental variable must be set to the
+# "geoapi/src/main/python" directory, preferably using absolute path.
+#
+
+import jpy
 import opengis.referencing.cs
 import opengis.referencing.crs
 import opengis.referencing.operation
@@ -14,6 +28,9 @@ class CoordinateReferenceSystem(opengis.referencing.crs.ReferenceSystem):
 
     def name(self):
         return self._proxy.getName()
+
+    def __str__(self):
+        return self._proxy.toString()
 
 
 class CoordinateSystemAxis(opengis.referencing.datum.IdentifiedObject):

@@ -8,7 +8,7 @@
 
 #
 # Demonstrate the use of GeoAPI wrappers for GDAL. This test requires the
-# osgeo module to be installed on the local machine with netCDF support.
+# GDAL module to be installed on the local machine with netCDF support.
 #
 #   MacOS example: sudo port install gdal +hdf4 +hdf5 +netcdf
 #

@@ -9,13 +9,18 @@
 #
 # To run this demo, the PYTHONPATH environmental variable must be set to
 # the "geoapi/src/main/python" directory, preferably using absolute path.
-# Example on Unix systems where GEOAPI_HOME is the path to GeoAPI:
+# Example on Unix systems executed from the GeoAPI project root directory:
 #
+#     export GEOAPI_HOME=`pwd`
 #     export PYTHONPATH=$GEOAPI_HOME/geoapi/src/main/python
 #
 # To execute this test on command-line:
 #
+#     cd $GEOAPI_HOME/geoapi/src/test/python
 #     python -m unittest discover
+#
+# The test in this file is a little bit trivial, but useful for testing
+# configuration. More advanced test is available in geoapi-java-python.
 #
 from opengis.metadata.base           import Metadata
 from opengis.metadata.identification import DataIdentification

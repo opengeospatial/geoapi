@@ -7,10 +7,11 @@
 #
 
 #
-# This module requires osgeo module to be installed on the local machine.
+# This module requires GDAL module to be installed on the local machine.
 # GDAL/OGR Python binding API is documented at http://gdal.org/python/.
 # In addition, the PYTHONPATH environmental variable must be set to the
 # "geoapi/src/main/python" directory, preferably using absolute path.
+# See geoapi-gdal/src/test/python/test_metadata.py for an example.
 #
 from osgeo import gdal
 from opengis.metadata.base           import Metadata, MetadataScope
