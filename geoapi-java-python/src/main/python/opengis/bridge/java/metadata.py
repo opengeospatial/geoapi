@@ -19,6 +19,7 @@ import opengis.metadata.citation
 import opengis.metadata.identification
 
 
+
 class MetadataScope(opengis.metadata.base.MetadataScope):
     def __init__(self, proxy):
         self._proxy = proxy
@@ -26,6 +27,7 @@ class MetadataScope(opengis.metadata.base.MetadataScope):
     @property
     def resource_scope(self):
         return self._proxy.getResourceScope()
+
 
 
 class Citation(opengis.metadata.citation.Citation):
@@ -38,6 +40,32 @@ class Citation(opengis.metadata.citation.Citation):
 
     def __str__(self):
         return self._proxy.toString()
+
+
+
+class Identifier(opengis.metadata.citation.Identifier):
+    def __init__(self, proxy):
+        self._proxy = proxy
+
+    @property
+    def code(self):
+        return self._proxy.getCode()
+
+    @property
+    def code_space(self):
+        return self._proxy.getCodeSpace()
+
+    @property
+    def version(self):
+        return self._proxy.getVersion()
+
+    @property
+    def description(self):
+        return self._proxy.getDescription()
+
+    def __str__(self):
+        return self._proxy.toString()
+
 
 
 class Identification(opengis.metadata.identification.Identification):
@@ -60,6 +88,7 @@ class Identification(opengis.metadata.identification.Identification):
         return self._proxy.toString()
 
 
+
 class Dimension(opengis.metadata.representation.Dimension):
     def __init__(self, proxy):
         self._proxy = proxy
@@ -71,6 +100,7 @@ class Dimension(opengis.metadata.representation.Dimension):
     @property
     def dimension_size(self) -> int:
         return self._proxy.getDimensionSize()
+
 
 
 class GridSpatialRepresentation(opengis.metadata.representation.SpatialRepresentation):
@@ -100,6 +130,7 @@ class GridSpatialRepresentation(opengis.metadata.representation.SpatialRepresent
     @property
     def transformation_parameter_availability(self):
         return self._proxy.getTransformationParameterAvailability()
+
 
 
 class Metadata(opengis.metadata.base.Metadata):

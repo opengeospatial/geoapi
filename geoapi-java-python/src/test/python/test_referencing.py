@@ -38,4 +38,4 @@ class TestReferencing(unittest.TestCase):
         value = self._handler.findCoordinateReferenceSystem("EPSG:3395")
         if value:
             crs = opengis.bridge.java.referencing.CoordinateReferenceSystem(value)
-            print(crs)
+            self.assertEqual(crs.name.code, "WGS 84 / World Mercator")

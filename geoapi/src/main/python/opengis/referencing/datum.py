@@ -11,6 +11,8 @@ from enum import Enum
 from datetime import datetime
 
 from opengis.metadata.extent import Extent
+from opengis.metadata.citation import Identifier
+
 
 
 class VerticalDatumType(Enum):
@@ -23,12 +25,14 @@ class VerticalDatumType(Enum):
     OTHER_SURFACE = "otherSurface"
 
 
+
 class PixelInCell(Enum):
     """
     Specification of the way the image grid is associated with the image data attributes.
     """
     CELL_CENTER = "cellCenter"
     CELL_CORNER = "cellCorner"
+
 
 
 class IdentifiedObject(ABC):
@@ -38,12 +42,12 @@ class IdentifiedObject(ABC):
 
     @property
     @abstractmethod
-    def name(self) -> str:
+    def name(self) -> Identifier:
         """
         The primary name by which this object is identified.
 
         :return: The primary name.
-        :rtype: str
+        :rtype: Identifier
         """
         pass
 
@@ -52,7 +56,7 @@ class IdentifiedObject(ABC):
         """
         Comments on or information about this object, including data source information.
 
-        :return: The remarks, or null if none.
+        :return: The remarks, or None.
         :rtype: str
         """
         return None
