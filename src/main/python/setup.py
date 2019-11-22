@@ -31,13 +31,12 @@
 #
 
 
-##########################################################
+##################################################################
 # Generate pip package
 # Author: Johann Sorel (Geomatys)
 #
-# Usage: python3 build.py sdist
 # Note: this file is called twice: by build.py and by pip install.
-##########################################################
+##################################################################
 
 import setuptools
 
@@ -47,19 +46,22 @@ with open("README.md", "r") as fh:
 
 setuptools.setup(
     name                          = "opengis",
-    version                       = "4.0-alpha",
-    author                        = "Open Geospatial Consortium",
-    author_email                  = "geoapi.swg@lists.opengeospatial.org",
+    version                       = "4.0a0",
+    url                           = "https://www.geoapi.org",
     description                   = "GeoAPI - interfaces for OGC/ISO standards",
     long_description              = long_description,
     long_description_content_type = "text/markdown",
-    url                           = "http://www.geoapi.org",
+    platforms                     = "OS Independent",
+    keywords                      = ["geospatial", "metadata", "referencing"],
+    license                       = "OGC Software License",
     packages                      = setuptools.find_packages(),
-    package_data                  = {},
-    classifiers=(
-        "Programming Language :: Python :: 3",
-        "License :: OSI Approved :: BSD License",
+    classifiers=[
+        "Development Status :: 3 - Alpha",
+        "Intended Audience :: Information Technology",
+        "License :: OGC Software License",
+        "Natural Language :: English",
         "Operating System :: OS Independent",
-        "Development Status :: 4 - Alpha"
-    )
+        "Programming Language :: Python :: 3",
+        "Topic :: Scientific/Engineering :: GIS"
+    ]
 )

@@ -6,12 +6,11 @@ Those interfaces can be implemented by GDAL wrappers or by other implementations
 
 ## Compilation from the sources
 
-The following can be executed on the command-line.
-The current directory shall be this `geoapi-python-wheel` directory.
-This command will create a `dist/opengis-4.0a0.tar.gz` file.
+The following can be executed on the command-line from the GeoAPI project root.
+This command will create a `target/dist/opengis-4.0a0.tar.gz` file:
 
 ```
-python build.py sdist
+python3 src/main/python/build.py sdist
 ```
 
 If any version of this package has been installed before,

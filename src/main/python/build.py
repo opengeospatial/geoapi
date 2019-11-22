@@ -34,69 +34,63 @@
 # Python Wheel build script
 # Author: Johann Sorel (Geomatys)
 #
-# Usage: python3 build.py sdist
+# Usage: python3 src/main/python/build.py sdist
 ##########################################################
 
 import setuptools
 import glob
-import shutil
 import os
+import os.path
+
+# The directory relative to project root where all files will be copied or created.
+buildDir = 'target/python/'
 
 
-def createInit(path):
-    f = open(path+"/__init__.py", "w+")
-    f.close()
+def link(sourceFile, targetFile):
+    """
+    "Copies" a file using hard-link instead than a real copy.
+    If the target file exists, it will be removed before to be relinked.
+    """
+    if os.path.exists(targetFile):
+        os.remove(targetFile)
+    os.link(sourceFile, targetFile)
 
 
-shutil.rmtree('dist/',    ignore_errors=True)
-shutil.rmtree('temp/',    ignore_errors=True)
-shutil.rmtree('opengis/', ignore_errors=True)
+def copyPythonFiles(module, directory):
+    """
+    Links all python files from the given source directory to the target directory.
+    The source directory is inferred from the given module name (e.g. 'geoapi') and
+    directory relative to the `src/main/python` base directory. The use of hard links
+    instead of copies is for efficiency since the "copied" files are only temporary.
+    """
+    targetDir = buildDir + directory
+    os.makedirs(name=targetDir, exist_ok=True)
+    files = glob.glob(module + '/src/main/python/' + directory + '/*.py')
+    for sourceFile in files:
+        (head, tail) = os.path.split(sourceFile)
+        link(sourceFile, targetDir + '/' + tail)
+
 
 ##########################################################
-# Copy python files located in other modules.
+# Copy python files located in various modules.
 ##########################################################
 
-# Create java library folder
-directory = 'opengis/'
-if not os.path.exists(directory):
-    os.makedirs(directory)
-
-# API
-dir = 'opengis/metadata/'
-os.makedirs(dir)
-files = glob.glob('../geoapi/src/main/python/opengis/metadata/*.py')
-for f in files:
-    shutil.copy2(f, dir)
-
-# Java bridge
-dir = 'opengis/bridge/java/'
-os.makedirs(dir)
-files = glob.glob('../geoapi-java-python/src/main/python/opengis/bridge/java/*.py')
-for f in files:
-    shutil.copy2(f, dir)
-
-# GDAL bridge
-dir = 'opengis/wrapper/'
-os.makedirs(dir)
-files = glob.glob('../geoapi-gdal/src/main/python/opengis/wrapper/*.py')
-for f in files:
-    shutil.copy2(f, dir)
-
-# __init__.py in each folder to include
-createInit("opengis")
-createInit("opengis/bridge")
-createInit("opengis/bridge/java")
+copyPythonFiles('geoapi',             'opengis')
+copyPythonFiles('geoapi',             'opengis/metadata')
+copyPythonFiles('geoapi',             'opengis/referencing')
+copyPythonFiles('geoapi',             'opengis/geometry')
+copyPythonFiles('geoapi-java-python', 'opengis/bridge')
+copyPythonFiles('geoapi-java-python', 'opengis/bridge/java')
+copyPythonFiles('geoapi-gdal',        'opengis/wrapper')
 
 
 ##########################################################
 # Generate pip package.
 ##########################################################
 
+link('src/main/python/setup.py',    buildDir + 'setup.py')
+link('src/main/python/README.md',   buildDir + 'README.md')
+link('src/main/python/MANIFEST.in', buildDir + 'MANIFEST.in')
+link('LICENSE.txt',                 buildDir + 'LICENSE')
+os.chdir(buildDir)
 import setup
-
-##########################################################
-# Cleaning, setup tool makes a lot of side files.
-##########################################################
-shutil.rmtree("opengis.egg-info", ignore_errors=True)
-shutil.rmtree("__pycache__",      ignore_errors=True)
-shutil.rmtree("opengis",          ignore_errors=True)
