@@ -43,8 +43,6 @@ import java.math.BigInteger;
 import java.lang.reflect.Method;
 import java.io.Writer;
 import java.io.IOException;
-import java.io.InputStreamReader;
-import java.io.LineNumberReader;
 import java.io.OutputStreamWriter;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -53,7 +51,6 @@ import javax.xml.parsers.ParserConfigurationException;
 import org.opengis.geoapi.Content;
 import org.opengis.geoapi.SourceGenerator;
 import org.opengis.annotation.UML;
-import org.opengis.annotation.Obligation;
 import org.opengis.util.ControlledVocabulary;
 import org.opengis.util.InternationalString;
 import org.opengis.geoapi.NameSpaces;
@@ -88,22 +85,23 @@ strictfp class JavaToPython extends SourceGenerator {
     /**
      * The character encoding to use for reading and writing Python files.
      */
-    private static final String ENCODING = "UTF-8";
+    static final String ENCODING = "UTF-8";
 
     /**
      * Start of the copyright statement to put in headers, before the year.
      */
-    private static final String COPYRIGHT = "#    Copyright (C) ";
+    static final String COPYRIGHT = "#    Copyright (C) ";
+
+    /**
+     * The current year, for formatting the Copyright header. This is used only for writing files.
+     * When comparing existing files with expected content, the year will be ignored since it varies.
+     */
+    private final int currentYear;
 
     /**
      * The line separator to use for the Python files to create.
      */
-    private final String lineSeparator;
-
-    /**
-     * The current year, for formatting the Copyright header.
-     */
-    private final int currentYear;
+    final String lineSeparator;
 
     /**
      * Content of python files to write. Keys are module paths
@@ -144,56 +142,7 @@ strictfp class JavaToPython extends SourceGenerator {
      * A temporary map used for sorting properties in declaration order.
      * Keys are the UML identifiers.
      */
-    private final Map<String,Property> properties;
-
-    /**
-     * Information about a Python property to declare in a class.
-     */
-    private static final class Property implements Comparable<Property> {
-        /** The OGC/ISO name (can not be null). */ final String   name;
-        /** The Java type,   or null if none.   */ final Class<?> javaType;
-        /** The python type, or null if none.   */ final String   pythonType;
-        /** Module from which to import type.   */ final String   importFrom;
-        /** Whether the property is mandatory.  */ final boolean  mandatory;
-        /** Declaration order, to be set later. */ int position;
-
-        /** Creates a new set of information about a Python property. */
-        Property(final UML def, final String name, final Class<?> javaType, final String pythonType, final String importFrom) {
-            this.name       = name;
-            this.javaType   = javaType;
-            this.pythonType = pythonType;
-            this.importFrom = importFrom;
-            this.mandatory  = def.obligation() == Obligation.MANDATORY;
-            this.position   = Integer.MAX_VALUE / 2;
-        }
-
-        /**
-         * Returns {@link #name}, eventually renamed if the given {@code replacements} map is non-null.
-         * For example when writing Python properties, we need to replace the {@code "pass"} property
-         * by something else because {@code "pass"} is a Python keyword.
-         *
-         * @param  replacements  value of <code>{@linkplain JavaToPython#keywords}.remove(type)</code>
-         *                       where {@code type} is the Java interface.
-         * @return the OGC/ISO name, or a modification of that name.
-         */
-        final String name(final Map<String,String> replacements) {
-            if (replacements != null) {
-                final String r = replacements.get(name);
-                if (r != null) return r;
-            }
-            return CharSequences.camelCaseToSnake(name);
-        }
-
-        /** For sorting properties in declaration order. */
-        @Override public int compareTo(final Property o) {
-            return position - o.position;
-        }
-
-        /** Returns a string representation for error reporting only. */
-        @Override public String toString() {
-            return name;
-        }
-    }
+    private final Map<String,PythonProperty> properties;
 
     /**
      * Creates a new Python classes writer or verifier. If the computer contains a local copy of ISO schemas,
@@ -309,7 +258,7 @@ strictfp class JavaToPython extends SourceGenerator {
      * @param  definition  the value of {@code schema.getTypeDefinition(type)} (may be {@code null}).
      * @return the properties found in the specified interface.
      */
-    private Property[] listProperties(final Class<?> type, final String module,
+    private PythonProperty[] listProperties(final Class<?> type, final String module,
             final Map<String, SchemaInformation.Element> definition)
     {
         for (final Method property : type.getDeclaredMethods()) {
@@ -372,7 +321,7 @@ strictfp class JavaToPython extends SourceGenerator {
                             // TODO
                         }
                     }
-                    final Property p = new Property(def, name, elementType, typeName, importFrom);
+                    final PythonProperty p = new PythonProperty(def, name, elementType, typeName, importFrom);
                     if (properties.put(name, p) != null) switch (name) {
                         /*
                          * If the same property appears twice, this is theoretically an error.
@@ -400,13 +349,13 @@ strictfp class JavaToPython extends SourceGenerator {
         if (definition != null) {
             int position = 0;
             for (final String name : definition.keySet()) {
-                final Property p = properties.get(name);
+                final PythonProperty p = properties.get(name);
                 if (p != null) {
                     p.position = position++;
                 }
             }
         }
-        final Property[] props = properties.values().toArray(new Property[properties.size()]);
+        final PythonProperty[] props = properties.values().toArray(new PythonProperty[properties.size()]);
         properties.clear();
         Arrays.sort(props);
         return props;
@@ -573,8 +522,8 @@ strictfp class JavaToPython extends SourceGenerator {
                             break;              // No multi-inheritence expected. The first type should be the main one.
                         }
                     }
-                    final Property[] props = listProperties(type, module, definition);
-                    for (final Property property : props) {
+                    final PythonProperty[] props = listProperties(type, module, definition);
+                    for (final PythonProperty property : props) {
                         if (property.importFrom != null) {
                             hasDependencies |= addImport(property.importFrom, property.javaType, content);
                         }
@@ -583,33 +532,17 @@ strictfp class JavaToPython extends SourceGenerator {
                     content.append("class ").append(typeName).append('(').append(parent).append("):").append(lineSeparator);
                     boolean hasBody = (props.length != 0);
                     if (definition != null) {
-                        hasBody |= appendDocumentation(definition.get(null), content, 1);
+                        hasBody |= appendDocumentation(definition.get(null), 1, content, lineSeparator);
                     }
                     /*
                      * Declare properties with "@abstractmethod" for mandatory properties, and "@property" for optional ones.
-                     * Optional properties are implemented with {@code "return None"}. Special care is needed for properties of
-                     * type not yet declared; we have to declare those types as strings instead.
+                     * Optional properties are implemented with {@code "return None"}. Special care is needed for properties
+                     * of type not yet declared; we have to declare those types as strings instead.
                      */
                     final Map<String,String> replacements = keywords.remove(type);
-                    for (final Property property : props) {
-                        final String name = property.name(replacements);
-                        String implementation = "pass";
+                    for (final PythonProperty property : props) {
                         content.append(lineSeparator);
-                        indent(content, 1).append("@property").append(lineSeparator);
-                        if (property.mandatory) {
-                            indent(content, 1).append("@abstractmethod").append(lineSeparator);
-                        } else if (!Void.TYPE.equals(property.javaType)) {
-                            implementation = "return None";
-                        }
-                        indent(content, 1).append("def ").append(name).append("(self)");
-                        if (property.pythonType != null) {
-                            content.append(" -> ").append(property.pythonType);
-                        }
-                        content.append(':').append(lineSeparator);
-                        if (definition != null) {
-                            appendDocumentation(definition.get(property.name), content, 2);
-                        }
-                        indent(content, 2).append(implementation).append(lineSeparator);
+                        property.write(replacements, definition, content, lineSeparator);
                     }
                     /*
                      * Python syntax requires that we have at least one indented like below "class" keyword.
@@ -638,7 +571,7 @@ strictfp class JavaToPython extends SourceGenerator {
      * @param  content  where to append indentation.
      * @param  n        number of spaces to append.
      */
-    private static StringBuilder indent(final StringBuilder content, int n) {
+    static StringBuilder indent(final StringBuilder content, int n) {
         while (--n >= 0) {
             content.append("    ");
         }
@@ -648,12 +581,15 @@ strictfp class JavaToPython extends SourceGenerator {
     /**
      * Adds documentation for the given element if non-null and if documentation exists.
      *
-     * @param  element  the element for which to add documentation, or {@code null}.
-     * @param  content  where to add documentation if it exists.
-     * @param  level    the indentation level to use (1 or 2).
+     * @param  element        the element for which to add documentation, or {@code null}.
+     * @param  level          the indentation level to use (1 or 2).
+     * @param  content        where to add documentation if it exists.
+     * @param  lineSeparator  the Windows or Unix style line separator.
      * @return whether a documentation has been written.
      */
-    private boolean appendDocumentation(final SchemaInformation.Element element, final StringBuilder content, final int level) {
+    static boolean appendDocumentation(final SchemaInformation.Element element, final int level,
+                                       final StringBuilder content, final String lineSeparator)
+    {
         if (element != null) {
             final String doc = element.documentation;
             if (doc != null) {
@@ -687,46 +623,8 @@ strictfp class JavaToPython extends SourceGenerator {
                 /*
                  * Python file exist: compare all expected lines with the actual lines read from the file.
                  * This block does not write anything; if the comparison does not match, we fail the test.
-                 * The actual file may contain some additional lines compared to the expected ones.
-                 * The intent is to allow hand-written comments.
                  */
-                if (skipVerification(file)) {
-                    continue;
-                }
-                try (LineNumberReader in = new LineNumberReader(new InputStreamReader(Files.newInputStream(file), ENCODING))) {
-                    int startExpected = 0, endExpected;
-                    while ((endExpected = content.indexOf(lineSeparator, startExpected)) >= 0) {
-                        if (endExpected > startExpected) {
-                            final String expected = content.substring(startExpected, endExpected);
-                            String firstMismatchedLine = null;
-                            int mismatchedLineNumber = 0;
-                            for (String actual; !expected.equals(actual = in.readLine());) {
-                                /*
-                                 * If the actual line does not match the expected line, this is not necessarily a
-                                 * test failure. Maybe the expected line exists somewhere down. Continue searching
-                                 * and report a failure only if we reach end-of-file without finding that line.
-                                 */
-                                if (actual == null) {
-                                    fail(String.format("Unexpected content at line %d of file %s%n" +
-                                            "Expected: %s%nActual:   %s%n", mismatchedLineNumber, file, expected,
-                                            (firstMismatchedLine != null) ? firstMismatchedLine : "<end of file>"));
-                                    break;
-                                }
-                                if (!actual.isEmpty()) {
-                                    if (actual.startsWith(COPYRIGHT) && expected.startsWith(COPYRIGHT)) {
-                                        // Skip comparison of "Copyright (C) year" line because the year varies.
-                                        break;
-                                    }
-                                    if (firstMismatchedLine == null) {
-                                        firstMismatchedLine = actual;
-                                        mismatchedLineNumber = in.getLineNumber();
-                                    }
-                                }
-                            }
-                        }
-                        startExpected = endExpected + lineSeparator.length();
-                    }
-                }
+                verify(file, content);
             } else {
                 /*
                  * Python file does not exist: write it.
@@ -747,17 +645,17 @@ strictfp class JavaToPython extends SourceGenerator {
     }
 
     /**
-     * Returns {@code true} if verification of the given file should be skipped.
-     * This method is invoked when the file already exists.
-     * Subclasses can return {@code true} if that file has been extensively edited,
+     * Invoked by {@link #verifyOrCreateSourceFiles()} for comparing the content of an existing file
+     * against the expected content. This method is invoked when the file already exists.
+     * Subclasses may do nothing if the given file has been extensively edited,
      * so that automatized verification is likely to fail.
      *
-     * <p>Default implementation returns {@code false} in all cases.</p>
+     * <p>The default implementation does nothing.</p>
      *
-     * @param  file  the existing file to test.
-     * @return whether the given file should be skipped.
+     * @param  file      the existing file to verify.
+     * @param  expected  expected content of the file.
+     * @throws IOException if an error occurred while reading the file.
      */
-    protected boolean skipVerification(final Path file) {
-        return false;
+    protected void verify(final Path file, final StringBuilder expected) throws IOException {
     }
 }

@@ -33,13 +33,17 @@ package org.opengis.tools.export;
 
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.nio.file.Files;
 import java.io.IOException;
+import java.io.InputStreamReader;
+import java.io.LineNumberReader;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
 import org.opengis.geoapi.SchemaException;
 import org.opengis.geoapi.SchemaInformation;
 
 import static org.junit.Assume.*;
+import static org.junit.Assert.*;
 
 
 /**
@@ -101,7 +105,8 @@ public final strictfp class PythonTest extends JavaToPython {
     }
 
     /**
-     * Specifies whether verification of the given file should be skipped.
+     * Compares content of the given file against expected content.
+     * This method is invoked when the file already exists.
      * Current implementation skips the verification of following files,
      * because they were edited by hand:
      *
@@ -109,14 +114,86 @@ public final strictfp class PythonTest extends JavaToPython {
      *   <li>{@code quality.py}</li>
      * </ul>
      *
-     * @param  file  the existing file to test.
-     * @return whether the given file should be skipped.
+     * For all other files, this method compares the expected lines with actual lines read from the file.
+     * The file may contain some additional lines compared to the expected lines. Those additional lines
+     * are for example hand-written comments.
+     *
+     * @param  file     the existing file to verify.
+     * @param  content  expected content of the file.
      */
     @Override
-    protected boolean skipVerification(final Path file) {
+    protected void verify(final Path file, final StringBuilder content) throws IOException {
         if ("quality.py".equals(file.getFileName().toString())) {
+            return;
+        }
+        try (LineNumberReader in = new LineNumberReader(new InputStreamReader(Files.newInputStream(file), ENCODING))) {
+            int startExpected = 0, endExpected;
+            while ((endExpected = content.indexOf(lineSeparator, startExpected)) >= 0) {
+                if (endExpected > startExpected) {
+                    final String expected = content.substring(startExpected, endExpected);
+                    String firstMismatchedLine = null;
+                    int mismatchedLineNumber = 0;
+                    for (String actual; !expected.equals(actual = in.readLine());) {
+                        /*
+                         * If the actual line does not match the expected line, this is not necessarily a
+                         * test failure. Maybe the expected line exists somewhere down. Continue searching
+                         * and report a failure only if we reach end-of-file without finding that line.
+                         */
+                        if (actual == null) {
+                            fail(String.format("Unexpected content at line %d of file %s%n" +
+                                    "Expected: %s%nActual:   %s%n", mismatchedLineNumber, file, expected,
+                                    (firstMismatchedLine != null) ? firstMismatchedLine : "<end of file>"));
+                            break;
+                        }
+                        if (!actual.isEmpty()) {
+                            if (isMatch(expected, actual)) {
+                                break;
+                            }
+                            if (firstMismatchedLine == null) {
+                                firstMismatchedLine = actual;
+                                mismatchedLineNumber = in.getLineNumber();
+                            }
+                        }
+                    }
+                }
+                startExpected = endExpected + lineSeparator.length();
+            }
+        }
+    }
+
+    /**
+     * Returns {@code true} if the given lines should be considered as a match despite being different.
+     * This method is invoked only if {@code actual} is non-empty and not equal to {@code expected}.
+     *
+     * @param  expected  the line that we expected.
+     * @param  actual    a line read from the Python file.
+     * @return whether we have a match.
+     */
+    private boolean isMatch(final String expected, final String actual) {
+        /*
+         * Skip comparison of "Copyright (C) year" line because the year varies.
+         */
+        if (actual.startsWith(COPYRIGHT) && expected.startsWith(COPYRIGHT)) {
             return true;
         }
-        return super.skipVerification(file);
+        /*
+         * If the actual line contains a type but the expected line did not, then
+         * the actual line is more accurate maybe because it has been edited by hand.
+         * Example:
+         *
+         *    Expected:     def reference_system_info(self):
+         *    Actual:       def reference_system_info(self) -> Sequence[ReferenceSystem]:
+         */
+        if (!expected.contains("->")) {
+            final int start = actual.indexOf(" -> ");
+            if (start >= 0) {
+                final int end = actual.indexOf(':', start);
+                if (end >= 0) {
+                    final String reduced = actual.substring(0, start) + actual.substring(end);
+                    return expected.equals(reduced);
+                }
+            }
+        }
+        return false;
     }
 }
