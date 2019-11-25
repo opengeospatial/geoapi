@@ -34,7 +34,7 @@ import unittest
 class TestReferencing(unittest.TestCase):
 
     def test_find_crs(self):
-        self._handler = jpy.get_type('org.opengis.bridge.python.PythonHandler')
+        self._handler = jpy.get_type('org.opengis.bridge.python.PythonHelper')
         value = self._handler.findCoordinateReferenceSystem("EPSG:3395")
         if value:
             crs = opengis.bridge.java.referencing.CoordinateReferenceSystem(value)
