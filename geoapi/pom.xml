@@ -174,4 +174,43 @@
     </plugins>
   </build>
 
+
+
+  <!-- ========================
+           Run Python tests
+       ======================== -->
+  <profiles>
+    <profile>
+      <id>python</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <phase>test</phase>
+              </execution>
+            </executions>
+            <configuration>
+              <executable>python3</executable>
+              <workingDirectory>${project.basedir}/src/test/python</workingDirectory>
+              <environmentVariables>
+                <PYTHONPATH>${project.basedir}/src/main/python</PYTHONPATH>
+              </environmentVariables>
+              <arguments>
+                <argument>-m</argument>
+                <argument>unittest</argument>
+                <argument>discover</argument>
+              </arguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+
 </project>

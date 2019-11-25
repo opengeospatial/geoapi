@@ -5,6 +5,7 @@
 
          Build specification only:      mvn pre-site -N
          Build development snapshot:    mvn clean install
+         Build also Python wheel:       mvn install -Ppython
          Build with Proj.4 tests:       mvn install -DskipNativeLibraryTests=false
          Publish a release:             mvn clean install deploy -Pgeoapi-release
          Generate web site:             mvn clean install site -Pjdk9
@@ -110,12 +111,42 @@
     <unit.api.version>1.0</unit.api.version>                    <!-- To be removed after JDK9 profile is default. -->
   </properties>
   <profiles>
+    <!--
+      Create Python wheel package in target/dist/geoapi-*.tar.gz
+    -->
     <profile>
-      <!--
-        Build as Java 9 modules (experimental). We provide the module-info.java file in
-        a separated director for avoiding to confuse IDEs, and for making easier to use
-        a different module-info.java file in geoapi-pending.
-      -->
+      <id>python</id>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>exec-maven-plugin</artifactId>
+            <inherited>false</inherited>
+            <executions>
+              <execution>
+                <goals>
+                  <goal>exec</goal>
+                </goals>
+                <phase>package</phase>
+              </execution>
+            </executions>
+            <configuration>
+              <executable>python3</executable>
+              <arguments>
+                <argument>src/main/python/build.py</argument>
+                <argument>sdist</argument>
+              </arguments>
+            </configuration>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+    <!--
+      Build as Java 9 modules (experimental). We provide the module-info.java file in
+      a separated director for avoiding to confuse IDEs, and for making easier to use
+      a different module-info.java file in geoapi-pending.
+    -->
+    <profile>
       <id>jdk9</id>
       <properties>
         <maven.compiler.release>9</maven.compiler.release>
@@ -144,10 +175,10 @@
         </plugins>
       </build>
     </profile>
+    <!--
+      Official release: require signing the JAR files.
+    -->
     <profile>
-      <!--
-        Official release: require signing the JAR files.
-      -->
       <id>geoapi-release</id>
       <build>
         <plugins>
@@ -300,6 +331,11 @@
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>3.0.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>1.6.0</version>
         </plugin>
         <plugin>
           <groupId>org.asciidoctor</groupId>

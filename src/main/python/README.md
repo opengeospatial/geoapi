@@ -1,23 +1,18 @@
 # GeoAPI for python
 
 This Python module offers implementation-neutral interfaces for OGC/ISO standards.
-Those interfaces can be implemented by GDAL wrappers or by other implementations.
+Those interfaces can be implemented by wrappers around libraries, not necessarily
+in Python. A wrapper around Java implementations of GeoAPI is provided.
 
 
-## Compilation from the sources
-
-The following can be executed on the command-line from the GeoAPI project root.
-This command will create a `target/dist/opengis-4.0a0.tar.gz` file:
-
-```
-python3 src/main/python/build.py sdist
-```
+## Installation
 
 If any version of this package has been installed before,
-it should be uninstalled first by the `pip uninstall` command (otherwise the uninstall can be skipped).
+it should be uninstalled first by the `pip uninstall` command.
 Uninstallation and installation commands need to be run as administrator, which is done by `sudo`:
 
 ```
-sudo pip uninstall opengis
-sudo pip install dist/opengis-4.0.tar.gz
+# Skip next line if GeoAPI has not been previously installed.
+sudo pip uninstall geoapi
+sudo pip install geoapi-<version>.tar.gz
 ```

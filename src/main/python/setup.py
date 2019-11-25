@@ -45,7 +45,7 @@ with open("README.md", "r") as fh:
     long_description = fh.read()
 
 setuptools.setup(
-    name                          = "opengis",
+    name                          = "geoapi",
     version                       = "4.0a0",
     url                           = "https://www.geoapi.org",
     description                   = "GeoAPI - interfaces for OGC/ISO standards",
