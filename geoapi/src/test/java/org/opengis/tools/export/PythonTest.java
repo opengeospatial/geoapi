@@ -173,8 +173,8 @@ public final strictfp class PythonTest extends JavaToPython {
         /*
          * Skip comparison of "Copyright (C) year" line because the year varies.
          */
-        if (actual.startsWith(COPYRIGHT) && expected.startsWith(COPYRIGHT)) {
-            return true;
+        if (expected.startsWith(COPYRIGHT)) {
+            return actual.startsWith(COPYRIGHT);
         }
         /*
          * If the actual line contains a type but the expected line did not, then
@@ -193,6 +193,15 @@ public final strictfp class PythonTest extends JavaToPython {
                     return expected.equals(reduced);
                 }
             }
+        }
+        /*
+         * Relax comparison for the """Date(s) other than creation dateEG: expiry date.""" sentence,
+         * which we rewrote as  """Date(s) other than creation date. Example: expiry date.""".
+         */
+        int s = expected.indexOf("EG:");
+        if (s >= 30) {
+            final String reduced = expected.substring(0, s);
+            return actual.startsWith(reduced);
         }
         return false;
     }

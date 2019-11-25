@@ -55,6 +55,7 @@ class Metadata(ABC):
 
     @property
     def metadata_identifier(self) -> Identifier:
+        """Unique identifier for this metadata record."""
         return None
 
     @property
@@ -69,6 +70,7 @@ class Metadata(ABC):
 
     @property
     def metadata_scope(self) -> Sequence[MetadataScope]:
+        """The scope or type of resource for which metadata is provided."""
         return None
 
     @property
@@ -80,7 +82,7 @@ class Metadata(ABC):
     @property
     @abstractmethod
     def date_info(self) -> Sequence[Date]:
-        """Date(s) other than creation dateEG: expiry date."""
+        """Date(s) other than creation date. Example: expiry date."""
         pass
 
     @property
@@ -90,6 +92,7 @@ class Metadata(ABC):
 
     @property
     def metadata_profile(self) -> Sequence[Citation]:
+        """Citation(s) for the profile(s) of the metadata standard to which the metadata conform."""
         return None
 
     @property
@@ -104,53 +107,76 @@ class Metadata(ABC):
 
     @property
     def spatial_representation_info(self) -> Sequence[SpatialRepresentation]:
+        """Digital representation of spatial information in the dataset."""
         return None
 
     @property
     def reference_system_info(self) -> Sequence[ReferenceSystem]:
+        """
+        Description of the spatial and temporal reference systems used in the dataset.
+        The reference system may be:
+
+        * An ISO 19111 object such as ``CoordinateReferenceSystem``.
+        * A ``ReferenceSystem`` with the ``identifier`` property (from ISO 19111) sets to a list of ``Identifier`` values such as ``["EPSG::4326"]``.
+        * An object with the ``referenceSystemIdentifier`` property (from ISO 19115) sets to a single ``Identifier`` value such as ``"EPSG::4326"``,
+          optionally with a ``referenceSystemType`` property sets to a value such as ``geodeticGeographic2D`` or ``compoundProjectedTemporal``.
+
+        :rtype: Sequence[ReferenceSystem]
+        """
         return None
 
     @property
     def metadata_extension_info(self) -> Sequence[MetadataExtensionInformation]:
+        """Information describing metadata extensions."""
         return None
 
     @property
     @abstractmethod
     def identification_info(self) -> Sequence[Identification]:
+        """Basic information about the resource(s) to which the metadata applies."""
         pass
 
     @property
     def content_info(self) -> Sequence[ContentInformation]:
+        """Information about the feature and coverage characteristics."""
         return None
 
     @property
     def distribution_info(self) -> Sequence[Distribution]:
+        """Information about the distributor of and options for obtaining the resource(s)."""
         return None
 
     @property
     def data_quality_info(self) -> Sequence[DataQuality]:
+        """Overall assessment of quality of a resource(s)."""
         return None
 
     @property
     def resource_lineage(self) -> Sequence[Lineage]:
+        """Information about the provenance, sources and/or the production processes applied to the resource."""
         return None
 
     @property
     def portrayal_catalogue_info(self) -> Sequence[PortrayalCatalogueReference]:
+        """Information about the catalogue of rules defined for the portrayal of a resource(s)."""
         return None
 
     @property
     def metadata_constraints(self) -> Sequence[Constraints]:
+        """Restrictions on the access and use of metadata."""
         return None
 
     @property
     def application_schema_info(self) -> Sequence[ApplicationSchemaInformation]:
+        """Information about the conceptual schema of a dataset."""
         return None
 
     @property
     def metadata_maintenance(self) -> MaintenanceInformation:
+        """Information about the frequency of metadata updates, and the scope of those updates."""
         return None
 
     @property
     def acquisition_information(self) -> Sequence[AcquisitionInformation]:
+        """Information about the acquisition of the data."""
         return None

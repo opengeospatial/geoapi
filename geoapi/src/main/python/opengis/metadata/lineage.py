@@ -46,6 +46,7 @@ class Source(ABC):
     @property
     def source_reference_system(self):
         """Spatial reference system used by the source resource."""
+        # See https://github.com/opengeospatial/geoapi/issues/57
         return None
 
     @property
@@ -65,6 +66,7 @@ class Source(ABC):
 
     @property
     def source_step(self) -> Sequence['ProcessStep']:
+        """Information about process steps in which this source was used."""
         return None
 
     @property

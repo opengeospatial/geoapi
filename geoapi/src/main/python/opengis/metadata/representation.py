@@ -164,21 +164,26 @@ class GCPCollection(GeolocationInformation):
     @property
     @abstractmethod
     def gcp(self) -> Sequence[GCP]:
+        """Ground control point(s) used in the collection."""
         pass
 
     @property
     @abstractmethod
     def collection_identification(self) -> int:
+        """Identifier of the GCP collection."""
         pass
 
     @property
     @abstractmethod
     def collection_name(self) -> str:
+        """Name of the GCP collection."""
         pass
 
     @property
     @abstractmethod
     def coordinate_reference_system(self):
+        """Coordinate system in which the ground control points are defined."""
+        # See https://github.com/opengeospatial/geoapi/issues/57
         pass
 
 
