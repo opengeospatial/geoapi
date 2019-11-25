@@ -178,7 +178,7 @@ public final class Version implements Comparable<Version> {
         if (artefact.endsWith("conformance")) {
             switch (major) {
                 case 3: switch (minor) {
-                    case 1:  return "http://www.geoapi.org/geoapi-conformance/apidocs/";
+                    case 1:  return "http://www.geoapi.org/conformance/java/";
                     default: return null;
                 }
                 default: return null;

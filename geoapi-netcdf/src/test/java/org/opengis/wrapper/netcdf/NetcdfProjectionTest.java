@@ -29,7 +29,7 @@ import static org.opengis.test.Assert.*;
 
 /**
  * Tests the {@link NetcdfProjection} class using the
- * <code><a href="http://www.geoapi.org/geoapi-conformance/index.html">geoapi-conformance</a></code>
+ * <code><a href="http://www.geoapi.org/conformance/index.html">geoapi-conformance</a></code>
  * module. The projected values correctness (external consistency) is not verified - only internal
  * consistency is verified.
  *

@@ -130,10 +130,6 @@
           </archive>
         </configuration>
       </plugin>
-    </plugins>
-  </build>
-  <reporting>
-    <plugins>
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
         <configuration>
@@ -141,6 +137,6 @@
         </configuration>
       </plugin>
     </plugins>
-  </reporting>
+  </build>
 
 </project>

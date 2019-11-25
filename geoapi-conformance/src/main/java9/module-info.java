@@ -47,7 +47,7 @@
  * Implementers can alter the tests, for example in order to disable testing of some unsupported features,
  * either by extending directly the appropriate {@code TestCase} subclass (easiest way),
  * or by providing {@linkplain org.opengis.test.ImplementationDetails implementation details} in a central place.
- * See the <a href="http://www.geoapi.org/geoapi-conformance/index.html">web site</a> for examples.
+ * See the <a href="http://www.geoapi.org/conformance/index.html">web site</a> for examples.
  *
  * @version 4.0
  * @since 2.2

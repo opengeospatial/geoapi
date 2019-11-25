@@ -278,19 +278,4 @@
     </plugins>
   </build>
 
-  <!--
-    No javadoc for this "geoapi-pending" module because it duplicates in large parts the
-    javadoc in "geoapi" module, and the non-duplicated part is in need of massive changes.
-  -->
-  <reporting>
-    <plugins>
-      <plugin>
-        <artifactId>maven-javadoc-plugin</artifactId>
-        <configuration>
-          <skip>true</skip>
-        </configuration>
-      </plugin>
-    </plugins>
-  </reporting>
-
 </project>

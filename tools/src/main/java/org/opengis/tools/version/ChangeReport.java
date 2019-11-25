@@ -135,7 +135,7 @@ public final class ChangeReport {
         out.write(newVersion.toString());
         out.write(    "</title>\n"
                 + "    <meta charset=\"UTF-8\"/>\n"
-                + "    <link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/change-summary.css\"/>\n"
+                + "    <link rel=\"stylesheet\" type=\"text/css\" href=\"../summary.css\"/>\n"
                 + "  </head>\n"
                 + "  <body><div>\n"
                 + "    <h1>GeoAPI changes</h1>\n"
@@ -158,7 +158,7 @@ public final class ChangeReport {
                     + "    <hr/>\n"
                     + "    <h2>Changes in GeoAPI-conformance</h2>\n"
                     + "    <p>The following table summarizes changes in the "
-                    + "<a href=\"http://www.geoapi.org/geoapi-conformance/index.html\">conformance tests</a> provided by GeoAPI.\n"
+                    + "<a href=\"http://www.geoapi.org/conformance/index.html\">conformance tests</a> provided by GeoAPI.\n"
                     + "    The <code>geoapi-conformance</code> test suite is not part of standard API that vendors are expected to "
                     + "implement, and will change over time to offer clarification for GeoAPI implementations.<p>\n");
             write(out, collectAPIChanges("geoapi-conformance"), "geoapi-conformance");

@@ -101,6 +101,12 @@
           </archive>
         </configuration>
       </plugin>
+      <plugin>
+        <artifactId>maven-javadoc-plugin</artifactId>
+        <configuration>
+          <linksource>true</linksource>
+        </configuration>
+      </plugin>
     </plugins>
   </build>
 
