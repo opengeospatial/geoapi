@@ -1,6 +1,6 @@
 <map id="inheritance4fd9af041e" name="inheritance4fd9af041e">
 <area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="17,203,93,228"/>
-<area shape="rect" id="node3" href="#opengis.metadata.distribution.DataFile" target="_top" title="Description of a transfer data file." alt="" coords="199,55,474,80"/>
+<area shape="rect" id="node3" href="#opengis.metadata.distribution.DataFile" target="_top" title="Description of a transfer data file." alt="" coords="199,55,475,80"/>
 <area shape="rect" id="node4" href="#opengis.metadata.distribution.DigitalTransferOptions" target="_top" title="Technical means and media by which a resource is obtained from the distributor." alt="" coords="153,104,520,129"/>
 <area shape="rect" id="node5" href="#opengis.metadata.distribution.Distribution" target="_top" title="Information about the distributor of and options for obtaining the resource." alt="" coords="187,153,486,179"/>
 <area shape="rect" id="node6" href="#opengis.metadata.distribution.Distributor" target="_top" title="Information about the distributor." alt="" coords="191,203,482,228"/>
@@ -8,5 +8,5 @@
 <area shape="rect" id="node8" href="#opengis.metadata.distribution.Medium" target="_top" title="Information about the media on which the resource can be distributed." alt="" coords="199,301,474,327"/>
 <area shape="rect" id="node10" href="#opengis.metadata.distribution.StandardOrderProcess" target="_top" title="Common ways in which the resource may be obtained or received, and related instructions and fee information." alt="" coords="153,351,520,376"/>
 <area shape="rect" id="node2" title="Generic enumeration." alt="" coords="5,5,105,31"/>
-<area shape="rect" id="node9" href="#opengis.metadata.distribution.MediumFormatCode" target="_top" title="An enumeration." alt="" coords="160,5,513,31"/>
+<area shape="rect" id="node9" href="#opengis.metadata.distribution.MediumFormatCode" target="_top" title="An enumeration." alt="" coords="159,5,514,31"/>
 </map>

@@ -4,8 +4,7 @@
 
 <html xmlns="http://www.w3.org/1999/xhtml">
   <head>
-    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
-    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta charset="utf-8" />
     <title>GeoAPI for Python &#8212; Documentation</title>
     <link rel="stylesheet" href="static/bizstyle.css" type="text/css" />
     <link rel="stylesheet" href="static/pygments.css" type="text/css" />
@@ -45,17 +44,23 @@
             <p class="logo"><a href="#">
               <img class="logo" src="static/logo.png" alt="Logo"/>
             </a></p>
+  <h3><a href="#">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">GeoAPI for Python</a><ul>
+<li><a class="reference internal" href="#requirements">Requirements</a></li>
+</ul>
+</li>
+</ul>
+
   <h4>Next topic</h4>
   <p class="topless"><a href="metadata.html"
                         title="next chapter">Naming (ISO 19103)</a></p>
 <div id="searchbox" style="display: none" role="search">
-  <h3>Quick search</h3>
+  <h3 id="searchlabel">Quick search</h3>
     <div class="searchformwrapper">
     <form class="search" action="search.html" method="get">
-      <input type="text" name="q" />
+      <input type="text" name="q" aria-labelledby="searchlabel" />
       <input type="submit" value="Go" />
-      <input type="hidden" name="check_keywords" value="yes" />
-      <input type="hidden" name="area" value="default" />
     </form>
     </div>
 </div>
@@ -91,16 +96,31 @@
 <li class="toctree-l2"><a class="reference internal" href="metadata.html#application-schema">Application schema</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="referencing.html">Referencing (ISO 19111)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="referencing.html#coordinate-operation">Coordinate Operation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="referencing.html#coordinate-reference-system">Coordinate Reference System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="referencing.html#coordinate-system">Coordinate System</a></li>
+<li class="toctree-l2"><a class="reference internal" href="referencing.html#datum">Datum</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="geometry.html">Geometry (ISO 19107)</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="geometry.html#primitives">Primitives</a></li>
+</ul>
+</li>
 </ul>
 </div>
 <ul class="simple">
-<li><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></li>
-<li><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></li>
-<li><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></li>
+<li><p><a class="reference internal" href="genindex.html"><span class="std std-ref">Index</span></a></p></li>
+<li><p><a class="reference internal" href="py-modindex.html"><span class="std std-ref">Module Index</span></a></p></li>
+<li><p><a class="reference internal" href="search.html"><span class="std std-ref">Search Page</span></a></p></li>
 </ul>
 <p>Experimental set of Python interfaces for GeoAPI.
-See the <a class="reference external" href="http://www.geoapi.org/">GeoAPI web site</a> for more information.
-More documentation specific to Python language will be provided later.</p>
+This package provides only code lists and abstract classes; implementations can be provided by separated projects.
+Implementations in the Java language can also be used in Python using the <code class="docutils literal notranslate"><span class="pre">geoapi-java-python</span></code> module.</p>
+<div class="section" id="requirements">
+<h2>Requirements</h2>
+<p>This package requires Python 3.3 or later.</p>
+</div>
 </div>
 
 

@@ -1,9 +1,9 @@
 <map id="inheritancead6dfef35a" name="inheritancead6dfef35a">
 <area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="17,153,93,179"/>
-<area shape="rect" id="node4" href="#opengis.metadata.maintenance.MaintenanceInformation" target="_top" title="Information about the scope and frequency of updating." alt="" coords="165,104,557,129"/>
-<area shape="rect" id="node5" href="#opengis.metadata.maintenance.Scope" target="_top" title="New: information about the scope of the resource." alt="" coords="225,153,497,179"/>
-<area shape="rect" id="node7" href="#opengis.metadata.maintenance.ScopeDescription" target="_top" title="Description of the class of information covered by the information." alt="" coords="187,203,534,228"/>
+<area shape="rect" id="node4" href="#opengis.metadata.maintenance.MaintenanceInformation" target="_top" title="Information about the scope and frequency of updating." alt="" coords="165,104,559,129"/>
+<area shape="rect" id="node5" href="#opengis.metadata.maintenance.Scope" target="_top" title="New: information about the scope of the resource." alt="" coords="226,153,498,179"/>
+<area shape="rect" id="node7" href="#opengis.metadata.maintenance.ScopeDescription" target="_top" title="Description of the class of information covered by the information." alt="" coords="189,203,535,228"/>
 <area shape="rect" id="node2" title="Generic enumeration." alt="" coords="5,31,105,56"/>
-<area shape="rect" id="node3" href="#opengis.metadata.maintenance.MaintenanceFrequencyCode" target="_top" title="An enumeration." alt="" coords="153,5,568,31"/>
-<area shape="rect" id="node6" href="#opengis.metadata.maintenance.ScopeCode" target="_top" title="An enumeration." alt="" coords="208,55,513,80"/>
+<area shape="rect" id="node3" href="#opengis.metadata.maintenance.MaintenanceFrequencyCode" target="_top" title="An enumeration." alt="" coords="153,5,571,31"/>
+<area shape="rect" id="node6" href="#opengis.metadata.maintenance.ScopeCode" target="_top" title="An enumeration." alt="" coords="209,55,515,80"/>
 </map>

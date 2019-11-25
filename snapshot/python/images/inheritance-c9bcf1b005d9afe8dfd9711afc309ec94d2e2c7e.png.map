@@ -1,10 +1,10 @@
 <map id="inheritance4cdc25b2c1" name="inheritance4cdc25b2c1">
 <area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="5,153,81,179"/>
 <area shape="rect" id="node2" href="#opengis.metadata.lineage.Algorithm" target="_top" title="Details of the methodology by which geographic information was derived from the instrument readings." alt="" coords="159,5,419,31"/>
-<area shape="rect" id="node3" href="#opengis.metadata.lineage.Lineage" target="_top" title="Information about the events or source data used in constructing the data specified by the scope or lack of knowledge about lineage." alt="" coords="165,55,412,80"/>
-<area shape="rect" id="node4" href="#opengis.metadata.lineage.NominalResolution" target="_top" title="Distance between adjacent pixels." alt="" coords="129,104,448,129"/>
-<area shape="rect" id="node5" href="#opengis.metadata.lineage.ProcessStep" target="_top" title="Information about an event or transformation in the life of a resource including the process used to maintain the resource." alt="" coords="151,153,426,179"/>
-<area shape="rect" id="node6" href="#opengis.metadata.lineage.ProcessStepReport" target="_top" title="Report of what occurred during the process step." alt="" coords="130,203,447,228"/>
-<area shape="rect" id="node7" href="#opengis.metadata.lineage.Processing" target="_top" title="Comprehensive information about the procedure(s), process(es) and algorithm(s) applied in the process step." alt="" coords="155,252,422,277"/>
+<area shape="rect" id="node3" href="#opengis.metadata.lineage.Lineage" target="_top" title="Information about the events or source data used in constructing the data specified by the scope or lack of knowledge about lineage." alt="" coords="166,55,413,80"/>
+<area shape="rect" id="node4" href="#opengis.metadata.lineage.NominalResolution" target="_top" title="Distance between adjacent pixels." alt="" coords="129,104,449,129"/>
+<area shape="rect" id="node5" href="#opengis.metadata.lineage.ProcessStep" target="_top" title="Information about an event or transformation in the life of a resource including the process used to maintain the resource." alt="" coords="152,153,427,179"/>
+<area shape="rect" id="node6" href="#opengis.metadata.lineage.ProcessStepReport" target="_top" title="Report of what occurred during the process step." alt="" coords="130,203,449,228"/>
+<area shape="rect" id="node7" href="#opengis.metadata.lineage.Processing" target="_top" title="Comprehensive information about the procedure(s), process(es) and algorithm(s) applied in the process step." alt="" coords="156,252,423,277"/>
 <area shape="rect" id="node8" href="#opengis.metadata.lineage.Source" target="_top" title="Information about the source resource used in creating the data specified by the scope." alt="" coords="169,301,409,327"/>
 </map>

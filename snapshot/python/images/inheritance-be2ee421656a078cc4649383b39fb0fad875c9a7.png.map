@@ -2,11 +2,11 @@
 <area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="15,196,80,218"/>
 <area shape="rect" id="node3" href="#opengis.metadata.identification.Identification" target="_top" title="Basic information required to uniquely identify a resource or resources." alt="" coords="149,132,423,154"/>
 <area shape="rect" id="node4" href="#opengis.metadata.service.CoupledResource" target="_top" title="Links a given operationName (mandatory attribute of SV_OperationMetadata) with a data set identified by an &#39;identifier&#39;." alt="" coords="154,174,418,196"/>
-<area shape="rect" id="node7" href="#opengis.metadata.service.OperationChainMetadata" target="_top" title="Operation Chain Information." alt="" coords="132,217,440,239"/>
+<area shape="rect" id="node7" href="#opengis.metadata.service.OperationChainMetadata" target="_top" title="Operation Chain Information." alt="" coords="132,217,440,238"/>
 <area shape="rect" id="node8" href="#opengis.metadata.service.OperationMetadata" target="_top" title="Describes the signature of one and only one method provided by the service." alt="" coords="148,259,424,281"/>
 <area shape="rect" id="node2" title="Generic enumeration." alt="" coords="5,47,91,69"/>
-<area shape="rect" id="node5" href="#opengis.metadata.service.CouplingType" target="_top" title="An enumeration." alt="" coords="164,5,408,26"/>
-<area shape="rect" id="node6" href="#opengis.metadata.service.DCPList" target="_top" title="An enumeration." alt="" coords="180,47,391,69"/>
-<area shape="rect" id="node9" href="#opengis.metadata.service.ParameterDirection" target="_top" title="An enumeration." alt="" coords="148,90,424,111"/>
+<area shape="rect" id="node5" href="#opengis.metadata.service.CouplingType" target="_top" title="An enumeration." alt="" coords="164,5,407,26"/>
+<area shape="rect" id="node6" href="#opengis.metadata.service.DCPList" target="_top" title="An enumeration." alt="" coords="181,47,391,69"/>
+<area shape="rect" id="node9" href="#opengis.metadata.service.ParameterDirection" target="_top" title="An enumeration." alt="" coords="148,89,424,111"/>
 <area shape="rect" id="node10" href="#opengis.metadata.service.ServiceIdentification" target="_top" title="Identification of capabilities which a service provider makes available to a service user through a set of interfaces that define a behaviour &#45; See ISO 19119 for further information." alt="" coords="481,132,763,154"/>
 </map>

@@ -1,0 +1,19 @@
+<map id="inheritance1d632988a4" name="inheritance1d632988a4">
+<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="12,171,63,188"/>
+<area shape="rect" id="node7" href="#opengis.referencing.datum.IdentifiedObject" target="_top" title="Identification and remarks information for a reference system or CRS&#45;related object." alt="" coords="103,171,308,188"/>
+<area shape="rect" id="node2" title="Generic enumeration." alt="" coords="4,121,71,138"/>
+<area shape="rect" id="node5" href="#opengis.referencing.cs.AxisDirection" target="_top" title="The direction of positive increase in the coordinate value for a coordinate system axis." alt="" coords="118,104,293,121"/>
+<area shape="rect" id="node14" href="#opengis.referencing.cs.RangeMeaning" target="_top" title="Meaning of the axis value range specified through minimum value and maximum value." alt="" coords="115,137,297,154"/>
+<area shape="rect" id="node3" href="#opengis.referencing.cs.AffineCS" target="_top" title="A 2&#45; or 3&#45;dimensional coordinate system with straight axes that are not necessarily orthogonal." alt="" coords="600,4,754,21"/>
+<area shape="rect" id="node4" href="#opengis.referencing.cs.CoordinateSystem" target="_top" title="The set of coordinate system axes that spans a given coordinate space. A coordinate system (CS) is derived from a" alt="" coords="350,154,547,171"/>
+<area shape="rect" id="node6" href="#opengis.referencing.cs.CartesianCS" target="_top" title="A 2&#45; or 3&#45;dimensional coordinate system with orthogonal straight axes. All axes shall have the same length unit of" alt="" coords="592,37,762,54"/>
+<area shape="rect" id="node9" href="#opengis.referencing.cs.CylindralCS" target="_top" title="A 3&#45;dimensional coordinate system consisting of a PolarCS extended by a straight axis perpendicular to the plane" alt="" coords="593,70,760,87"/>
+<area shape="rect" id="node10" href="#opengis.referencing.cs.EllipsoidalCS" target="_top" title="A 2&#45; or 3&#45;dimensional coordinate system in which position is specified by geodetic latitude, geodetic longitude," alt="" coords="590,103,764,120"/>
+<area shape="rect" id="node11" href="#opengis.referencing.cs.LinearCS" target="_top" title="A 1&#45;dimensional coordinate system that consists of the points that lie on the single axis described." alt="" coords="599,137,755,154"/>
+<area shape="rect" id="node12" href="#opengis.referencing.cs.ParametricCS" target="_top" title="A 1&#45;dimensional coordinate system containing a single axis. This coordinate system uses parameter values or" alt="" coords="589,170,764,187"/>
+<area shape="rect" id="node13" href="#opengis.referencing.cs.PolarCS" target="_top" title="A 2&#45;dimensional coordinate system in which position is specified by the distance from the origin and the angle" alt="" coords="602,203,752,220"/>
+<area shape="rect" id="node15" href="#opengis.referencing.cs.SphericalCS" target="_top" title="A 3&#45;dimensional coordinate system with one distance measured from the origin and two angular coordinates." alt="" coords="592,236,761,253"/>
+<area shape="rect" id="node16" href="#opengis.referencing.cs.TimeCS" target="_top" title="A 1&#45;dimensional coordinate system containing a single time axis. This coordinate system is used to describe the" alt="" coords="602,269,752,287"/>
+<area shape="rect" id="node17" href="#opengis.referencing.cs.VerticalCS" target="_top" title="A 1&#45;dimensional coordinate system used to record the heights or depths of points. Such a coordinate system is" alt="" coords="596,303,757,320"/>
+<area shape="rect" id="node8" href="#opengis.referencing.cs.CoordinateSystemAxis" target="_top" title="Definition of a coordinate system axis." alt="" coords="340,187,557,204"/>
+</map>

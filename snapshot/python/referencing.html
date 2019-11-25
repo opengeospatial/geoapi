@@ -1,0 +1,1739 @@
+
+
+<!doctype html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta charset="utf-8" />
+    <title>Referencing (ISO 19111) &#8212; Documentation</title>
+    <link rel="stylesheet" href="static/bizstyle.css" type="text/css" />
+    <link rel="stylesheet" href="static/pygments.css" type="text/css" />
+    <link rel="stylesheet" type="text/css" href="static/graphviz.css" />
+
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="static/documentation_options.js"></script>
+    <script type="text/javascript" src="static/jquery.js"></script>
+    <script type="text/javascript" src="static/underscore.js"></script>
+    <script type="text/javascript" src="static/doctools.js"></script>
+    <script type="text/javascript" src="static/language_data.js"></script>
+    <script type="text/javascript" src="static/bizstyle.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Geometry (ISO 19107)" href="geometry.html" />
+    <link rel="prev" title="Naming (ISO 19103)" href="metadata.html" />
+    <meta name="viewport" content="width=device-width,initial-scale=1.0">
+    <!--[if lt IE 9]>
+    <script type="text/javascript" src="static/css3-mediaqueries.js"></script>
+    <![endif]-->
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="geometry.html" title="Geometry (ISO 19107)"
+             accesskey="N">next</a> |</li>
+        <li class="right" >
+          <a href="metadata.html" title="Naming (ISO 19103)"
+             accesskey="P">previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
+      </ul>
+    </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+            <p class="logo"><a href="index.html">
+              <img class="logo" src="static/logo.png" alt="Logo"/>
+            </a></p>
+  <h3><a href="index.html">Table of Contents</a></h3>
+  <ul>
+<li><a class="reference internal" href="#">Referencing (ISO 19111)</a><ul>
+<li><a class="reference internal" href="#coordinate-operation">Coordinate Operation</a></li>
+<li><a class="reference internal" href="#coordinate-reference-system">Coordinate Reference System</a></li>
+<li><a class="reference internal" href="#coordinate-system">Coordinate System</a></li>
+<li><a class="reference internal" href="#datum">Datum</a></li>
+</ul>
+</li>
+</ul>
+
+  <h4>Previous topic</h4>
+  <p class="topless"><a href="metadata.html"
+                        title="previous chapter">Naming (ISO 19103)</a></p>
+  <h4>Next topic</h4>
+  <p class="topless"><a href="geometry.html"
+                        title="next chapter">Geometry (ISO 19107)</a></p>
+<div id="searchbox" style="display: none" role="search">
+  <h3 id="searchlabel">Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" aria-labelledby="searchlabel" />
+      <input type="submit" value="Go" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+
+  <div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This specification is not final and is subject to change.</p>
+</div>
+<div class="section" id="referencing-iso-19111">
+<h1>Referencing (ISO 19111)</h1>
+<div class="section" id="coordinate-operation">
+<h2>Coordinate Operation</h2>
+<div class="graphviz"><img src="images/inheritance-988cc768099b2be342a88c710c8e82f176b4c4f0.png" alt="Inheritance diagram of opengis.referencing.operation" usemap="#inheritancefeb4cb89f5" class="inheritance graphviz" /></div>
+<map id="inheritancefeb4cb89f5" name="inheritancefeb4cb89f5">
+<area shape="rect" id="node2" href="#opengis.referencing.datum.IdentifiedObject" target="_top" title="Identification and remarks information for a reference system or CRS&#45;related object." alt="" coords="140,43,266,54"/>
+<area shape="rect" id="node7" href="#opengis.referencing.operation.MathTransform" target="_top" title="Transforms multi&#45;dimensional coordinate points." alt="" coords="137,64,269,74"/>
+<area shape="rect" id="node5" href="#opengis.referencing.operation.CoordinateOperation" target="_top" title="A mathematical operation on coordinates that transforms or converts coordinates to another coordinate reference" alt="" coords="289,23,438,33"/>
+<area shape="rect" id="node9" href="#opengis.referencing.operation.OperationMethod" target="_top" title="Definition of an algorithm used to perform a coordinate operation." alt="" coords="294,43,433,54"/>
+<area shape="rect" id="node3" href="#opengis.referencing.operation.Conversion" target="_top" title="An operation on coordinates that does not include any change of Datum." alt="" coords="628,2,751,13"/>
+<area shape="rect" id="node4" href="#opengis.referencing.operation.SingleOperation" target="_top" title="A parameterized mathematical operation on coordinates that transforms or converts coordinates to another coordinate" alt="" coords="458,23,593,33"/>
+<area shape="rect" id="node10" href="#opengis.referencing.operation.PassThroughOperation" target="_top" title="A pass&#45;through operation specifies that a subset of a coordinate tuple is subject to a specific coordinate" alt="" coords="613,23,766,33"/>
+<area shape="rect" id="node11" href="#opengis.referencing.operation.Transformation" target="_top" title="An operation on coordinates that usually includes a change of Datum." alt="" coords="623,43,756,54"/>
+<area shape="rect" id="node6" href="#opengis.referencing.operation.Formula" target="_top" title="Specification of the coordinate operation method formula." alt="" coords="2,33,117,44"/>
+<area shape="rect" id="node8" href="#opengis.referencing.operation.MathTransform1D" target="_top" title="Transforms one&#45;dimensional coordinate points." alt="" coords="293,64,434,74"/>
+</map><span class="target" id="module-opengis.referencing.operation"></span><dl class="class">
+<dt id="opengis.referencing.operation.Conversion">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.operation.</code><code class="sig-name descname">Conversion</code></dt>
+<dd><p>An operation on coordinates that does not include any change of Datum.</p>
+<dl class="method">
+<dt id="opengis.referencing.operation.Conversion.operation_version">
+<em class="property">abstract property </em><code class="sig-name descname">operation_version</code></dt>
+<dd><p>This attribute is declared in <code class="docutils literal notranslate"><span class="pre">CoordinateOperation</span></code> but is not used in a conversion.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.Conversion.source_crs">
+<em class="property">property </em><code class="sig-name descname">source_crs</code></dt>
+<dd><p>Returns the source CRS. Conversions may have a source CRS that is not specified here, but through
+<code class="docutils literal notranslate"><span class="pre">GeneralDerivedCRS.getBaseCRS()</span></code> instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The source CRS, or null if not available.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.crs.CoordinateReferenceSystem" title="opengis.referencing.crs.CoordinateReferenceSystem">CoordinateReferenceSystem</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.Conversion.target_crs">
+<em class="property">property </em><code class="sig-name descname">target_crs</code></dt>
+<dd><p>Returns the target CRS. Conversions may have a target CRS that is not specified here, but through
+<code class="docutils literal notranslate"><span class="pre">GeneralDerivedCRS</span></code> instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The target CRS, or null if not available.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.crs.CoordinateReferenceSystem" title="opengis.referencing.crs.CoordinateReferenceSystem">CoordinateReferenceSystem</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.operation.CoordinateOperation">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.operation.</code><code class="sig-name descname">CoordinateOperation</code></dt>
+<dd><p>A mathematical operation on coordinates that transforms or converts coordinates to another coordinate reference
+system.</p>
+<dl class="method">
+<dt id="opengis.referencing.operation.CoordinateOperation.coordinate_operation_accuracy">
+<em class="property">property </em><code class="sig-name descname">coordinate_operation_accuracy</code></dt>
+<dd><p>Estimate(s) of the impact of this operation on point accuracy. Gives position error estimates for target
+coordinates of this coordinate operation, assuming no errors in source coordinates.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The position error estimates, or an empty collection if not available.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Sequence[<a class="reference internal" href="metadata.html#opengis.metadata.quality.PositionalAccuracy" title="opengis.metadata.quality.PositionalAccuracy">PositionalAccuracy</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.CoordinateOperation.domain_of_validity">
+<em class="property">property </em><code class="sig-name descname">domain_of_validity</code></dt>
+<dd><p>Area or region or timeframe in which this coordinate operation is valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The coordinate operation valid domain, or null if not available.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="metadata.html#opengis.metadata.extent.Extent" title="opengis.metadata.extent.Extent">Extent</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.CoordinateOperation.math_transform">
+<em class="property">property </em><code class="sig-name descname">math_transform</code></dt>
+<dd><p>Gets the math transform. The math transform will transform positions in the source coordinate reference system
+into positions in the target coordinate reference system. It may be null in the case of defining conversions.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The transform from source to target CRS, or null if not applicable.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.operation.MathTransform" title="opengis.referencing.operation.MathTransform">MathTransform</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.CoordinateOperation.operation_version">
+<em class="property">property </em><code class="sig-name descname">operation_version</code></dt>
+<dd><p>Version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters).
+Mandatory when describing a transformation, and should not be supplied for a conversion.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The coordinate operation version, or null in none.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.CoordinateOperation.scope">
+<em class="property">abstract property </em><code class="sig-name descname">scope</code></dt>
+<dd><p>Description of domain of usage, or limitations of usage, for which this operation is valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>A description of domain of usage.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.CoordinateOperation.source_crs">
+<em class="property">property </em><code class="sig-name descname">source_crs</code></dt>
+<dd><p>Returns the source CRS. The source CRS is mandatory for transformations only.
+Conversions may have a source CRS that is not specified here, but through
+<code class="docutils literal notranslate"><span class="pre">GeneralDerivedCRS.getBaseCRS()</span></code> instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The source CRS, or null if not available.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.crs.CoordinateReferenceSystem" title="opengis.referencing.crs.CoordinateReferenceSystem">CoordinateReferenceSystem</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.CoordinateOperation.target_crs">
+<em class="property">property </em><code class="sig-name descname">target_crs</code></dt>
+<dd><p>Returns the target CRS. The target CRS is mandatory for transformations only.
+Conversions may have a target CRS that is not specified here, but through
+<code class="docutils literal notranslate"><span class="pre">GeneralDerivedCRS</span></code> instead.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The target CRS, or null if not available.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.crs.CoordinateReferenceSystem" title="opengis.referencing.crs.CoordinateReferenceSystem">CoordinateReferenceSystem</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.operation.Formula">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.operation.</code><code class="sig-name descname">Formula</code></dt>
+<dd><p>Specification of the coordinate operation method formula.</p>
+<dl class="method">
+<dt id="opengis.referencing.operation.Formula.citation">
+<em class="property">property </em><code class="sig-name descname">citation</code></dt>
+<dd><p>Reference to a publication giving the formula(s) or procedure used by the coordinate operation method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>Reference to a publication giving the formula, or null if none.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="metadata.html#opengis.metadata.citation.Citation" title="opengis.metadata.citation.Citation">Citation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.Formula.formula">
+<em class="property">property </em><code class="sig-name descname">formula</code></dt>
+<dd><p>Formula(s) or procedure used by the operation method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The formula used by the operation method, or null if none.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.operation.MathTransform">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.operation.</code><code class="sig-name descname">MathTransform</code></dt>
+<dd><p>Transforms multi-dimensional coordinate points.</p>
+<dl class="method">
+<dt id="opengis.referencing.operation.MathTransform.derivative">
+<code class="sig-name descname">derivative</code><span class="sig-paren">(</span><em class="sig-param">point: opengis.geometry.primitive.DirectPosition</em><span class="sig-paren">)</span> &#x2192; numpy.ndarray</dt>
+<dd><p>Gets the derivative of this transform at a point. The derivative is the matrix of the non-translating portion
+of the approximate affine map at the point. The matrix will have dimensions corresponding to the source and
+target coordinate systems.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>point</strong> (<a class="reference internal" href="geometry.html#opengis.geometry.primitive.DirectPosition" title="opengis.geometry.primitive.DirectPosition"><em>DirectPosition</em></a>) – The coordinate point where to evaluate the derivative.
+Null value is accepted only if the derivative is the same everywhere (e.g. with affine transforms).
+But most map projection will requires a non-null value.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The derivative at the specified point (never null).</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>numpy.ndarray</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.MathTransform.inverse">
+<em class="property">abstract </em><code class="sig-name descname">inverse</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Creates the inverse transform of this object. This method may fail if the transform is not one to one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The inverse transform.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.operation.MathTransform" title="opengis.referencing.operation.MathTransform">MathTransform</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.MathTransform.is_identity">
+<em class="property">abstract property </em><code class="sig-name descname">is_identity</code></dt>
+<dd><p>Tests whether this transform does not move any points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>True if this MathTransform is an identity transform; false otherwise.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>bool</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.MathTransform.source_dimensions">
+<em class="property">abstract property </em><code class="sig-name descname">source_dimensions</code></dt>
+<dd><p>Gets the dimension of input points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The dimension of input points.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.MathTransform.target_dimensions">
+<em class="property">abstract property </em><code class="sig-name descname">target_dimensions</code></dt>
+<dd><p>Gets the dimension of output points.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The dimension of output points.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.MathTransform.to_wkt">
+<em class="property">abstract </em><code class="sig-name descname">to_wkt</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str</dt>
+<dd><p>Returns a Well Known Text (WKT) for this object. Well know text are defined in extended Backus Naur form.
+This operation may fails if an object is too complex for the WKT format capability.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The Well Known Text (WKT) for this object.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.MathTransform.transform">
+<code class="sig-name descname">transform</code><span class="sig-paren">(</span><em class="sig-param">pt_src: opengis.geometry.primitive.DirectPosition</em>, <em class="sig-param">pt_dst: opengis.geometry.primitive.DirectPosition</em><span class="sig-paren">)</span> &#x2192; opengis.geometry.primitive.DirectPosition</dt>
+<dd><p>Transforms the specified ptSrc and stores the result in ptDst.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>pt_src</strong> (<a class="reference internal" href="geometry.html#opengis.geometry.primitive.DirectPosition" title="opengis.geometry.primitive.DirectPosition"><em>DirectPosition</em></a>) – the specified coordinate point to be transformed.</p></li>
+<li><p><strong>pt_dst</strong> (<a class="reference internal" href="geometry.html#opengis.geometry.primitive.DirectPosition" title="opengis.geometry.primitive.DirectPosition"><em>DirectPosition</em></a>) – the specified coordinate point that stores the result of transforming ptSrc, or null.</p></li>
+</ul>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the coordinate point after transforming ptSrc and storing the result in ptDst,
+or a newly created point if ptDst was null.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="geometry.html#opengis.geometry.primitive.DirectPosition" title="opengis.geometry.primitive.DirectPosition">DirectPosition</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.MathTransform.transform_list">
+<code class="sig-name descname">transform_list</code><span class="sig-paren">(</span><em class="sig-param">src_pts: numpy.ndarray</em>, <em class="sig-param">src_off: int</em>, <em class="sig-param">dst_pts: numpy.ndarray</em>, <em class="sig-param">dst_off: int</em>, <em class="sig-param">num_pts: int</em><span class="sig-paren">)</span></dt>
+<dd><p>Transforms a list of coordinate point ordinal values. This method is provided for efficiently transforming many
+points. The supplied array of ordinal values will contain packed ordinal values. For example, if the source
+dimension is 3, then the ordinals will be packed in this order: (x0,y0,z0, x1,y1,z1 …).</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>src_pts</strong> (<em>numpy.ndarray</em>) – the array containing the source point coordinates.</p></li>
+<li><p><strong>src_off</strong> (<em>int</em>) – the offset to the first point to be transformed in the source array.</p></li>
+<li><p><strong>dst_pts</strong> (<em>numpy.ndarray</em>) – the array into which the transformed point coordinates are returned. May be the same than srcPts</p></li>
+<li><p><strong>dst_off</strong> (<em>int</em>) – the offset to the location of the first transformed point that is stored in the destination</p></li>
+<li><p><strong>num_pts</strong> (<em>int</em>) – the number of point objects to be transformed.</p></li>
+</ul>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.operation.MathTransform1D">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.operation.</code><code class="sig-name descname">MathTransform1D</code></dt>
+<dd><p>Transforms one-dimensional coordinate points.</p>
+<dl class="method">
+<dt id="opengis.referencing.operation.MathTransform1D.derivative">
+<code class="sig-name descname">derivative</code><span class="sig-paren">(</span><em class="sig-param">value: float</em><span class="sig-paren">)</span> &#x2192; float</dt>
+<dd><p>Gets the derivative of this function at a value. The derivative is the 1×1 matrix of the non-translating portion
+of the approximate affine map at the value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – The value where to evaluate the derivative.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The derivative at the specified point.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.MathTransform1D.inverse">
+<em class="property">abstract </em><code class="sig-name descname">inverse</code><span class="sig-paren">(</span><span class="sig-paren">)</span></dt>
+<dd><p>Creates the inverse transform of this object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The inverse transform.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.operation.MathTransform1D" title="opengis.referencing.operation.MathTransform1D">MathTransform1D</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.MathTransform1D.transform_value">
+<code class="sig-name descname">transform_value</code><span class="sig-paren">(</span><em class="sig-param">value: float</em><span class="sig-paren">)</span> &#x2192; float</dt>
+<dd><p>Transforms the specified value.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>value</strong> (<em>float</em>) – The value to transform.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>the transformed value.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.operation.OperationMethod">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.operation.</code><code class="sig-name descname">OperationMethod</code></dt>
+<dd><p>Definition of an algorithm used to perform a coordinate operation.</p>
+<dl class="method">
+<dt id="opengis.referencing.operation.OperationMethod.formula">
+<em class="property">abstract property </em><code class="sig-name descname">formula</code></dt>
+<dd><p>Formula(s) or procedure used by this operation method. This may be a reference to a publication.
+Note that the operation method may not be analytic, in which case this attribute references or
+contains the procedure, not an analytic formula.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The formula used by this method.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.operation.Formula" title="opengis.referencing.operation.Formula">Formula</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.OperationMethod.parameters">
+<em class="property">abstract property </em><code class="sig-name descname">parameters</code></dt>
+<dd><p>The set of parameters.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The parameters, or an empty group if none.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>ParameterDescriptorGroup</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.operation.PassThroughOperation">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.operation.</code><code class="sig-name descname">PassThroughOperation</code></dt>
+<dd><p>A pass-through operation specifies that a subset of a coordinate tuple is subject to a specific coordinate
+operation.</p>
+<dl class="method">
+<dt id="opengis.referencing.operation.PassThroughOperation.modified_coordinates">
+<em class="property">abstract property </em><code class="sig-name descname">modified_coordinates</code></dt>
+<dd><p>Ordered sequence of positive integers defining the positions in a coordinate tuple of the coordinates affected
+by this pass-through operation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The modified coordinates.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Sequence[int]</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.PassThroughOperation.operation">
+<em class="property">abstract property </em><code class="sig-name descname">operation</code></dt>
+<dd><p>Returns the operation to apply on the subset of a coordinate tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The operation to apply on the subset of a coordinate tuple.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.operation.SingleOperation" title="opengis.referencing.operation.SingleOperation">SingleOperation</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.operation.SingleOperation">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.operation.</code><code class="sig-name descname">SingleOperation</code></dt>
+<dd><p>A parameterized mathematical operation on coordinates that transforms or converts coordinates to another coordinate
+reference system.</p>
+<dl class="method">
+<dt id="opengis.referencing.operation.SingleOperation.method">
+<em class="property">abstract property </em><code class="sig-name descname">method</code></dt>
+<dd><p>Returns the operation method.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The operation method.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.operation.OperationMethod" title="opengis.referencing.operation.OperationMethod">OperationMethod</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.SingleOperation.parameter_values">
+<em class="property">abstract property </em><code class="sig-name descname">parameter_values</code></dt>
+<dd><p>Returns the parameter values.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The parameters values.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>ParameterValueGroup</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.operation.Transformation">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.operation.</code><code class="sig-name descname">Transformation</code></dt>
+<dd><p>An operation on coordinates that usually includes a change of Datum.</p>
+<dl class="method">
+<dt id="opengis.referencing.operation.Transformation.operation_version">
+<em class="property">abstract property </em><code class="sig-name descname">operation_version</code></dt>
+<dd><p>Version of the coordinate transformation (i.e., instantiation due to the stochastic nature of the parameters).
+This attribute is mandatory in a Transformation.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The coordinate operation version.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.Transformation.source_crs">
+<em class="property">abstract property </em><code class="sig-name descname">source_crs</code></dt>
+<dd><p>Returns the source CRS</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The source CRS (never null).</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.crs.CoordinateReferenceSystem" title="opengis.referencing.crs.CoordinateReferenceSystem">CoordinateReferenceSystem</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.operation.Transformation.target_crs">
+<em class="property">abstract property </em><code class="sig-name descname">target_crs</code></dt>
+<dd><p>Returns the target CRS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The target CRS (never null)</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.crs.CoordinateReferenceSystem" title="opengis.referencing.crs.CoordinateReferenceSystem">CoordinateReferenceSystem</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="coordinate-reference-system">
+<h2>Coordinate Reference System</h2>
+<div class="graphviz"><img src="images/inheritance-81c0318feefc92e9096fb175a1f1265bacd21ff7.png" alt="Inheritance diagram of opengis.referencing.crs" usemap="#inheritance657716c684" class="inheritance graphviz" /></div>
+<map id="inheritance657716c684" name="inheritance657716c684">
+<area shape="rect" id="node13" href="#opengis.referencing.datum.IdentifiedObject" target="_top" title="Identification and remarks information for a reference system or CRS&#45;related object." alt="" coords="45,45,152,54"/>
+<area shape="rect" id="node2" href="#opengis.referencing.crs.CompoundCRS" target="_top" title="A coordinate reference system describing the position of points through two or more independent coordinate" alt="" coords="432,36,528,45"/>
+<area shape="rect" id="node3" href="#opengis.referencing.crs.CoordinateReferenceSystem" target="_top" title="Abstract coordinate reference system, usually defined by a coordinate system and a datum." alt="" coords="288,45,415,54"/>
+<area shape="rect" id="node8" href="#opengis.referencing.crs.SingleCRS" target="_top" title="Abstract coordinate reference system, consisting of a single Coordinate System and a single Datum." alt="" coords="437,54,522,62"/>
+<area shape="rect" id="node4" href="#opengis.referencing.crs.ReferenceSystem" target="_top" title="Description of a spatial and temporal reference system used by a dataset." alt="" coords="168,45,271,54"/>
+<area shape="rect" id="node5" href="#opengis.referencing.crs.DerivedCRS" target="_top" title="A coordinate reference system that is defined by its coordinate conversion from another coordinate reference system" alt="" coords="673,2,762,11"/>
+<area shape="rect" id="node6" href="#opengis.referencing.crs.GeneralDerivedCRS" target="_top" title="A coordinate reference system that is defined by its coordinate conversion from another coordinate reference system" alt="" coords="545,10,652,19"/>
+<area shape="rect" id="node12" href="#opengis.referencing.crs.ProjectedCRS" target="_top" title="A 2D coordinate reference system used to approximate the shape of the earth on a planar surface." alt="" coords="671,19,764,28"/>
+<area shape="rect" id="node7" href="#opengis.referencing.crs.EngineeringCRS" target="_top" title="A contextually local coordinate reference system." alt="" coords="549,28,647,36"/>
+<area shape="rect" id="node9" href="#opengis.referencing.crs.GeodeticCRS" target="_top" title="A coordinate reference system associated with a geodetic datum." alt="" coords="552,45,644,54"/>
+<area shape="rect" id="node11" href="#opengis.referencing.crs.ImageCRS" target="_top" title="An engineering coordinate reference system applied to locations in images." alt="" coords="555,62,641,71"/>
+<area shape="rect" id="node14" href="#opengis.referencing.crs.TemporalCRS" target="_top" title="A 1D coordinate reference system used for the recording of time." alt="" coords="552,79,644,88"/>
+<area shape="rect" id="node15" href="#opengis.referencing.crs.VerticalCRS" target="_top" title="A 1D coordinate reference system used for recording heights or depths." alt="" coords="554,97,643,105"/>
+<area shape="rect" id="node10" href="#opengis.referencing.crs.GeographicCRS" target="_top" title="A coordinate reference system based on an ellipsoidal approximation of the geoid; this provides an accurate" alt="" coords="669,45,766,54"/>
+</map><span class="target" id="module-opengis.referencing.crs"></span><dl class="class">
+<dt id="opengis.referencing.crs.CompoundCRS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.crs.</code><code class="sig-name descname">CompoundCRS</code></dt>
+<dd><p>A coordinate reference system describing the position of points through two or more independent coordinate
+reference systems.</p>
+<dl class="method">
+<dt id="opengis.referencing.crs.CompoundCRS.components">
+<em class="property">abstract property </em><code class="sig-name descname">components</code></dt>
+<dd><p>The ordered list of coordinate reference systems.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The ordered list of coordinate reference systems.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>Sequence[<a class="reference internal" href="#opengis.referencing.crs.SingleCRS" title="opengis.referencing.crs.SingleCRS">SingleCRS</a>]</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.crs.CoordinateReferenceSystem">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.crs.</code><code class="sig-name descname">CoordinateReferenceSystem</code></dt>
+<dd><p>Abstract coordinate reference system, usually defined by a coordinate system and a datum.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.crs.DerivedCRS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.crs.</code><code class="sig-name descname">DerivedCRS</code></dt>
+<dd><p>A coordinate reference system that is defined by its coordinate conversion from another coordinate reference system
+but is not a projected coordinate reference system.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.crs.EngineeringCRS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.crs.</code><code class="sig-name descname">EngineeringCRS</code></dt>
+<dd><p>A contextually local coordinate reference system.</p>
+<dl class="method">
+<dt id="opengis.referencing.crs.EngineeringCRS.datum">
+<em class="property">abstract property </em><code class="sig-name descname">datum</code></dt>
+<dd><p>Returns the datum, which must be an engineering one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The datum</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.datum.EngineeringDatum" title="opengis.referencing.datum.EngineeringDatum">EngineeringDatum</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.crs.GeneralDerivedCRS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.crs.</code><code class="sig-name descname">GeneralDerivedCRS</code></dt>
+<dd><p>A coordinate reference system that is defined by its coordinate conversion from another coordinate reference system
+(not by a datum).</p>
+<dl class="method">
+<dt id="opengis.referencing.crs.GeneralDerivedCRS.base_crs">
+<em class="property">abstract property </em><code class="sig-name descname">base_crs</code></dt>
+<dd><p>Returns the base coordinate reference system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The base coordinate reference system.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.crs.CoordinateReferenceSystem" title="opengis.referencing.crs.CoordinateReferenceSystem">CoordinateReferenceSystem</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.crs.GeneralDerivedCRS.conversion_from_base">
+<em class="property">abstract property </em><code class="sig-name descname">conversion_from_base</code></dt>
+<dd><p>Returns the conversion from the base CRS to this CRS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The conversion from the base CRS.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.operation.Conversion" title="opengis.referencing.operation.Conversion">Conversion</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.crs.GeodeticCRS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.crs.</code><code class="sig-name descname">GeodeticCRS</code></dt>
+<dd><p>A coordinate reference system associated with a geodetic datum.</p>
+<dl class="method">
+<dt id="opengis.referencing.crs.GeodeticCRS.datum">
+<em class="property">abstract property </em><code class="sig-name descname">datum</code></dt>
+<dd><p>Returns the datum, which must be geodetic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The datum.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.datum.GeodeticDatum" title="opengis.referencing.datum.GeodeticDatum">GeodeticDatum</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.crs.GeographicCRS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.crs.</code><code class="sig-name descname">GeographicCRS</code></dt>
+<dd><p>A coordinate reference system based on an ellipsoidal approximation of the geoid; this provides an accurate
+representation of the geometry of geographic features for a large portion of the earth’s surface.</p>
+<dl class="method">
+<dt id="opengis.referencing.crs.GeographicCRS.coordinate_system">
+<em class="property">abstract property </em><code class="sig-name descname">coordinate_system</code></dt>
+<dd><p>Returns the coordinate system, which must be ellipsoidal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The coordinate system.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.cs.EllipsoidalCS" title="opengis.referencing.cs.EllipsoidalCS">EllipsoidalCS</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.crs.ImageCRS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.crs.</code><code class="sig-name descname">ImageCRS</code></dt>
+<dd><p>An engineering coordinate reference system applied to locations in images.</p>
+<dl class="method">
+<dt id="opengis.referencing.crs.ImageCRS.coordinate_system">
+<em class="property">abstract property </em><code class="sig-name descname">coordinate_system</code></dt>
+<dd><p>Returns the cartesian coordinate system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The coordinate system.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.cs.AffineCS" title="opengis.referencing.cs.AffineCS">AffineCS</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.crs.ImageCRS.datum">
+<em class="property">abstract property </em><code class="sig-name descname">datum</code></dt>
+<dd><p>Returns the datum, which must be an image one.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The datum</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.datum.ImageDatum" title="opengis.referencing.datum.ImageDatum">ImageDatum</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.crs.ProjectedCRS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.crs.</code><code class="sig-name descname">ProjectedCRS</code></dt>
+<dd><p>A 2D coordinate reference system used to approximate the shape of the earth on a planar surface.</p>
+<dl class="method">
+<dt id="opengis.referencing.crs.ProjectedCRS.base_crs">
+<em class="property">abstract property </em><code class="sig-name descname">base_crs</code></dt>
+<dd><p>Returns the base coordinate reference system, which must be geographic.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The base coordinate reference system.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.crs.GeographicCRS" title="opengis.referencing.crs.GeographicCRS">GeographicCRS</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.crs.ProjectedCRS.conversion_from_base">
+<em class="property">abstract property </em><code class="sig-name descname">conversion_from_base</code></dt>
+<dd><p>Returns the map projection from the base CRS to this CRS.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The conversion from the base CRS.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.operation.Conversion" title="opengis.referencing.operation.Conversion">Conversion</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.crs.ProjectedCRS.coordinate_system">
+<em class="property">abstract property </em><code class="sig-name descname">coordinate_system</code></dt>
+<dd><p>Returns the coordinate system, which must be cartesian.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The coordinate system.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.cs.CartesianCS" title="opengis.referencing.cs.CartesianCS">CartesianCS</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.crs.ProjectedCRS.datum">
+<em class="property">abstract property </em><code class="sig-name descname">datum</code></dt>
+<dd><p>Returns the datum.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The datum.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.datum.GeodeticDatum" title="opengis.referencing.datum.GeodeticDatum">GeodeticDatum</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.crs.ReferenceSystem">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.crs.</code><code class="sig-name descname">ReferenceSystem</code></dt>
+<dd><p>Description of a spatial and temporal reference system used by a dataset.</p>
+<dl class="method">
+<dt id="opengis.referencing.crs.ReferenceSystem.domain_of_validity">
+<em class="property">property </em><code class="sig-name descname">domain_of_validity</code></dt>
+<dd><p>Area or region or timeframe in which this (coordinate) reference system is valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The reference system valid domain, or null if not available.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="metadata.html#opengis.metadata.extent.Extent" title="opengis.metadata.extent.Extent">Extent</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.crs.ReferenceSystem.scope">
+<em class="property">property </em><code class="sig-name descname">scope</code></dt>
+<dd><p>Description of domain of usage, or limitations of usage, for which this Reference System object is valid.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The domain of usage, or null if none.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.crs.SingleCRS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.crs.</code><code class="sig-name descname">SingleCRS</code></dt>
+<dd><p>Abstract coordinate reference system, consisting of a single Coordinate System and a single Datum.</p>
+<dl class="method">
+<dt id="opengis.referencing.crs.SingleCRS.coordinate_system">
+<em class="property">abstract property </em><code class="sig-name descname">coordinate_system</code></dt>
+<dd><p>Returns the coordinate system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The coordinate system.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.cs.CoordinateSystem" title="opengis.referencing.cs.CoordinateSystem">CoordinateSystem</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.crs.SingleCRS.datum">
+<em class="property">abstract property </em><code class="sig-name descname">datum</code></dt>
+<dd><p>Returns the datum.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The datum</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.datum.Datum" title="opengis.referencing.datum.Datum">Datum</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.crs.TemporalCRS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.crs.</code><code class="sig-name descname">TemporalCRS</code></dt>
+<dd><p>A 1D coordinate reference system used for the recording of time.</p>
+<dl class="method">
+<dt id="opengis.referencing.crs.TemporalCRS.coordinate_system">
+<em class="property">abstract property </em><code class="sig-name descname">coordinate_system</code></dt>
+<dd><p>Returns the coordinate system, which must be temporal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The coordinate system.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.cs.TimeCS" title="opengis.referencing.cs.TimeCS">TimeCS</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.crs.TemporalCRS.datum">
+<em class="property">abstract property </em><code class="sig-name descname">datum</code></dt>
+<dd><p>Returns the datum, which must be temporal.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The datum</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.datum.TemporalDatum" title="opengis.referencing.datum.TemporalDatum">TemporalDatum</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.crs.VerticalCRS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.crs.</code><code class="sig-name descname">VerticalCRS</code></dt>
+<dd><p>A 1D coordinate reference system used for recording heights or depths.</p>
+<dl class="method">
+<dt id="opengis.referencing.crs.VerticalCRS.coordinate_system">
+<em class="property">abstract property </em><code class="sig-name descname">coordinate_system</code></dt>
+<dd><p>Returns the coordinate system, which must be vertical.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The coordinate system.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.cs.VerticalCS" title="opengis.referencing.cs.VerticalCS">VerticalCS</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.crs.VerticalCRS.datum">
+<em class="property">abstract property </em><code class="sig-name descname">datum</code></dt>
+<dd><p>Returns the datum, which must be vertical.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The datum</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.datum.VerticalDatum" title="opengis.referencing.datum.VerticalDatum">VerticalDatum</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="coordinate-system">
+<h2>Coordinate System</h2>
+<div class="graphviz"><img src="images/inheritance-f1e8937de79b70bfdcf8f36dbc8fd0e901979f69.png" alt="Inheritance diagram of opengis.referencing.cs" usemap="#inheritance1d632988a4" class="inheritance graphviz" /></div>
+<map id="inheritance1d632988a4" name="inheritance1d632988a4">
+<area shape="rect" id="node7" href="#opengis.referencing.datum.IdentifiedObject" target="_top" title="Identification and remarks information for a reference system or CRS&#45;related object." alt="" coords="103,171,308,188"/>
+<area shape="rect" id="node5" href="#opengis.referencing.cs.AxisDirection" target="_top" title="The direction of positive increase in the coordinate value for a coordinate system axis." alt="" coords="118,104,293,121"/>
+<area shape="rect" id="node14" href="#opengis.referencing.cs.RangeMeaning" target="_top" title="Meaning of the axis value range specified through minimum value and maximum value." alt="" coords="115,137,297,154"/>
+<area shape="rect" id="node3" href="#opengis.referencing.cs.AffineCS" target="_top" title="A 2&#45; or 3&#45;dimensional coordinate system with straight axes that are not necessarily orthogonal." alt="" coords="600,4,754,21"/>
+<area shape="rect" id="node4" href="#opengis.referencing.cs.CoordinateSystem" target="_top" title="The set of coordinate system axes that spans a given coordinate space. A coordinate system (CS) is derived from a" alt="" coords="350,154,547,171"/>
+<area shape="rect" id="node6" href="#opengis.referencing.cs.CartesianCS" target="_top" title="A 2&#45; or 3&#45;dimensional coordinate system with orthogonal straight axes. All axes shall have the same length unit of" alt="" coords="592,37,762,54"/>
+<area shape="rect" id="node9" href="#opengis.referencing.cs.CylindralCS" target="_top" title="A 3&#45;dimensional coordinate system consisting of a PolarCS extended by a straight axis perpendicular to the plane" alt="" coords="593,70,760,87"/>
+<area shape="rect" id="node10" href="#opengis.referencing.cs.EllipsoidalCS" target="_top" title="A 2&#45; or 3&#45;dimensional coordinate system in which position is specified by geodetic latitude, geodetic longitude," alt="" coords="590,103,764,120"/>
+<area shape="rect" id="node11" href="#opengis.referencing.cs.LinearCS" target="_top" title="A 1&#45;dimensional coordinate system that consists of the points that lie on the single axis described." alt="" coords="599,137,755,154"/>
+<area shape="rect" id="node12" href="#opengis.referencing.cs.ParametricCS" target="_top" title="A 1&#45;dimensional coordinate system containing a single axis. This coordinate system uses parameter values or" alt="" coords="589,170,764,187"/>
+<area shape="rect" id="node13" href="#opengis.referencing.cs.PolarCS" target="_top" title="A 2&#45;dimensional coordinate system in which position is specified by the distance from the origin and the angle" alt="" coords="602,203,752,220"/>
+<area shape="rect" id="node15" href="#opengis.referencing.cs.SphericalCS" target="_top" title="A 3&#45;dimensional coordinate system with one distance measured from the origin and two angular coordinates." alt="" coords="592,236,761,253"/>
+<area shape="rect" id="node16" href="#opengis.referencing.cs.TimeCS" target="_top" title="A 1&#45;dimensional coordinate system containing a single time axis. This coordinate system is used to describe the" alt="" coords="602,269,752,287"/>
+<area shape="rect" id="node17" href="#opengis.referencing.cs.VerticalCS" target="_top" title="A 1&#45;dimensional coordinate system used to record the heights or depths of points. Such a coordinate system is" alt="" coords="596,303,757,320"/>
+<area shape="rect" id="node8" href="#opengis.referencing.cs.CoordinateSystemAxis" target="_top" title="Definition of a coordinate system axis." alt="" coords="340,187,557,204"/>
+</map><span class="target" id="module-opengis.referencing.cs"></span><dl class="class">
+<dt id="opengis.referencing.cs.AffineCS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.cs.</code><code class="sig-name descname">AffineCS</code></dt>
+<dd><p>A 2- or 3-dimensional coordinate system with straight axes that are not necessarily orthogonal.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.cs.AxisDirection">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.cs.</code><code class="sig-name descname">AxisDirection</code></dt>
+<dd><p>The direction of positive increase in the coordinate value for a coordinate system axis.
+This direction is exact in some cases, and is approximate in other cases.</p>
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.COLUMN_NEGATIVE">
+<code class="sig-name descname">COLUMN_NEGATIVE</code><em class="property"> = 'columnNegative'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.COLUMN_POSITIVE">
+<code class="sig-name descname">COLUMN_POSITIVE</code><em class="property"> = 'columnPositive'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.DISPLAY_DOWN">
+<code class="sig-name descname">DISPLAY_DOWN</code><em class="property"> = 'displayDown'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.DISPLAY_LEFT">
+<code class="sig-name descname">DISPLAY_LEFT</code><em class="property"> = 'displayLeft'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.DISPLAY_RIGHT">
+<code class="sig-name descname">DISPLAY_RIGHT</code><em class="property"> = 'displayRight'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.DISPLAY_UP">
+<code class="sig-name descname">DISPLAY_UP</code><em class="property"> = 'displayUp'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.DOWN">
+<code class="sig-name descname">DOWN</code><em class="property"> = 'down'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.EAST">
+<code class="sig-name descname">EAST</code><em class="property"> = 'east'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.EAST_NORTH_EAST">
+<code class="sig-name descname">EAST_NORTH_EAST</code><em class="property"> = 'eastNorthEast'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.EAST_SOUTH_EAST">
+<code class="sig-name descname">EAST_SOUTH_EAST</code><em class="property"> = 'eastSouthEast'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.FUTURE">
+<code class="sig-name descname">FUTURE</code><em class="property"> = 'future'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.GEOCENTRIC_X">
+<code class="sig-name descname">GEOCENTRIC_X</code><em class="property"> = 'geocentricX'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.GEOCENTRIC_Y">
+<code class="sig-name descname">GEOCENTRIC_Y</code><em class="property"> = 'geocentricY'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.GEOCENTRIC_Z">
+<code class="sig-name descname">GEOCENTRIC_Z</code><em class="property"> = 'geocentricZ'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.NORTH">
+<code class="sig-name descname">NORTH</code><em class="property"> = 'north'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.NORTH_EAST">
+<code class="sig-name descname">NORTH_EAST</code><em class="property"> = 'northEast'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.NORTH_NORTH_EAST">
+<code class="sig-name descname">NORTH_NORTH_EAST</code><em class="property"> = 'northNorthEast'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.NORTH_NORTH_WEST">
+<code class="sig-name descname">NORTH_NORTH_WEST</code><em class="property"> = 'northNorthWest'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.NORTH_WEST">
+<code class="sig-name descname">NORTH_WEST</code><em class="property"> = 'northWest'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.OTHER">
+<code class="sig-name descname">OTHER</code><em class="property"> = 'other'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.PAST">
+<code class="sig-name descname">PAST</code><em class="property"> = 'past'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.ROW_NEGATIVE">
+<code class="sig-name descname">ROW_NEGATIVE</code><em class="property"> = 'rowNegative'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.ROW_POSITIVE">
+<code class="sig-name descname">ROW_POSITIVE</code><em class="property"> = 'rowPositive'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.SOUTH">
+<code class="sig-name descname">SOUTH</code><em class="property"> = 'south'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.SOUTH_EAST">
+<code class="sig-name descname">SOUTH_EAST</code><em class="property"> = 'southEast'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.SOUTH_SOUTH_EAST">
+<code class="sig-name descname">SOUTH_SOUTH_EAST</code><em class="property"> = 'southSouthWest'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.SOUTH_SOUTH_WEST">
+<code class="sig-name descname">SOUTH_SOUTH_WEST</code><em class="property"> = 'southSouthWest'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.SOUTH_WEST">
+<code class="sig-name descname">SOUTH_WEST</code><em class="property"> = 'southWest'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.UP">
+<code class="sig-name descname">UP</code><em class="property"> = 'up'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.WEST">
+<code class="sig-name descname">WEST</code><em class="property"> = 'west'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.WEST_NORTH_WEST">
+<code class="sig-name descname">WEST_NORTH_WEST</code><em class="property"> = 'westNorthWest'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.AxisDirection.WEST_SOUTH_WEST">
+<code class="sig-name descname">WEST_SOUTH_WEST</code><em class="property"> = 'westSouthWest'</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.cs.CartesianCS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.cs.</code><code class="sig-name descname">CartesianCS</code></dt>
+<dd><p>A 2- or 3-dimensional coordinate system with orthogonal straight axes. All axes shall have the same length unit of
+measure.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.cs.CoordinateSystem">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.cs.</code><code class="sig-name descname">CoordinateSystem</code></dt>
+<dd><p>The set of coordinate system axes that spans a given coordinate space. A coordinate system (CS) is derived from a
+set of (mathematical) rules for specifying how coordinates in a given space are to be assigned to points.
+The coordinate values in a coordinate tuple shall be recorded in the order in which the coordinate system axes
+associations are recorded, whenever those coordinates use a coordinate reference system that uses this coordinate system.</p>
+<dl class="method">
+<dt id="opengis.referencing.cs.CoordinateSystem.axis">
+<em class="property">abstract </em><code class="sig-name descname">axis</code><span class="sig-paren">(</span><em class="sig-param">dimension: int</em><span class="sig-paren">)</span> &#x2192; opengis.referencing.cs.CoordinateSystemAxis</dt>
+<dd><p>Returns the axis for this coordinate system at the specified dimension.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters</dt>
+<dd class="field-odd"><p><strong>dimension</strong> (<em>int</em>) – The zero based index of axis.</p>
+</dd>
+<dt class="field-even">Returns</dt>
+<dd class="field-even"><p>The axis at the specified dimension.</p>
+</dd>
+<dt class="field-odd">Return type</dt>
+<dd class="field-odd"><p><a class="reference internal" href="#opengis.referencing.cs.CoordinateSystemAxis" title="opengis.referencing.cs.CoordinateSystemAxis">CoordinateSystemAxis</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.cs.CoordinateSystem.dimension">
+<em class="property">abstract property </em><code class="sig-name descname">dimension</code></dt>
+<dd><p>Returns the dimension of the coordinate system.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The dimension of the coordinate system.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.cs.CoordinateSystemAxis">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.cs.</code><code class="sig-name descname">CoordinateSystemAxis</code></dt>
+<dd><p>Definition of a coordinate system axis.</p>
+<dl class="method">
+<dt id="opengis.referencing.cs.CoordinateSystemAxis.abbreviation">
+<em class="property">abstract property </em><code class="sig-name descname">abbreviation</code></dt>
+<dd><p>The abbreviation used for this coordinate system axes.
+This abbreviation is also used to identify the ordinates in coordinate tuple.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The coordinate system axis abbreviation.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>int</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.cs.CoordinateSystemAxis.direction">
+<em class="property">abstract property </em><code class="sig-name descname">direction</code></dt>
+<dd><p>Direction of this coordinate system axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The coordinate system axis direction.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.cs.AxisDirection" title="opengis.referencing.cs.AxisDirection">AxisDirection</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.cs.CoordinateSystemAxis.maximum_value">
+<em class="property">property </em><code class="sig-name descname">maximum_value</code></dt>
+<dd><p>Returns the maximum value normally allowed for this axis, in the unit of measure for the axis.
+If there is no maximum value, then this method returns positive infinity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The maximum value, or the positive infinity if none.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.cs.CoordinateSystemAxis.minimum_value">
+<em class="property">property </em><code class="sig-name descname">minimum_value</code></dt>
+<dd><p>Returns the minimum value normally allowed for this axis, in the unit of measure for the axis.
+If there is no minimum value, then this method returns negative infinity.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The minimum value, or the negative infinity if none.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>float</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.cs.CoordinateSystemAxis.range_meaning">
+<em class="property">property </em><code class="sig-name descname">range_meaning</code></dt>
+<dd><p>Returns the meaning of axis value range specified by the minimum and maximum values. This element shall be
+omitted when both minimum and maximum values are omitted. It may be included when minimum and/or maximum values
+are included. If this element is omitted when minimum or maximum values are included, the meaning is unspecified</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The range meaning, or null in none.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="#opengis.referencing.cs.RangeMeaning" title="opengis.referencing.cs.RangeMeaning">RangeMeaning</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.cs.CoordinateSystemAxis.unit">
+<em class="property">abstract property </em><code class="sig-name descname">unit</code></dt>
+<dd><p>Returns the unit of measure used for this coordinate system axis.
+The value of a coordinate in a coordinate tuple shall be recorded using this unit of measure, whenever those
+coordinates use a coordinate reference system that uses a coordinate system that uses this axis.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The coordinate system axis unit.</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.cs.CylindralCS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.cs.</code><code class="sig-name descname">CylindralCS</code></dt>
+<dd><p>A 3-dimensional coordinate system consisting of a PolarCS extended by a straight axis perpendicular to the plane
+spanned by the polar CS.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.cs.EllipsoidalCS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.cs.</code><code class="sig-name descname">EllipsoidalCS</code></dt>
+<dd><p>A 2- or 3-dimensional coordinate system in which position is specified by geodetic latitude, geodetic longitude,
+and (in the 3D case) ellipsoidal height.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.cs.LinearCS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.cs.</code><code class="sig-name descname">LinearCS</code></dt>
+<dd><p>A 1-dimensional coordinate system that consists of the points that lie on the single axis described.
+The associated coordinate is the distance – with or without offset – from the origin point,
+specified through the datum definition, to the point along the axis.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.cs.ParametricCS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.cs.</code><code class="sig-name descname">ParametricCS</code></dt>
+<dd><p>A 1-dimensional coordinate system containing a single axis. This coordinate system uses parameter values or
+functions to describe the position of a point.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.cs.PolarCS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.cs.</code><code class="sig-name descname">PolarCS</code></dt>
+<dd><p>A 2-dimensional coordinate system in which position is specified by the distance from the origin and the angle
+between the line from the origin to a point and a reference direction.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.cs.RangeMeaning">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.cs.</code><code class="sig-name descname">RangeMeaning</code></dt>
+<dd><p>Meaning of the axis value range specified through minimum value and maximum value.</p>
+<dl class="attribute">
+<dt id="opengis.referencing.cs.RangeMeaning.EXACT">
+<code class="sig-name descname">EXACT</code><em class="property"> = 'exact'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.cs.RangeMeaning.WRAPAROUND">
+<code class="sig-name descname">WRAPAROUND</code><em class="property"> = 'wraparound'</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.cs.SphericalCS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.cs.</code><code class="sig-name descname">SphericalCS</code></dt>
+<dd><p>A 3-dimensional coordinate system with one distance measured from the origin and two angular coordinates.
+Not to be confused with an EllipsoidalCS based on an ellipsoid “degenerated” into a sphere.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.cs.TimeCS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.cs.</code><code class="sig-name descname">TimeCS</code></dt>
+<dd><p>A 1-dimensional coordinate system containing a single time axis. This coordinate system is used to describe the
+temporal position of a point in the specified time units from a specified time origin.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.cs.VerticalCS">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.cs.</code><code class="sig-name descname">VerticalCS</code></dt>
+<dd><p>A 1-dimensional coordinate system used to record the heights or depths of points. Such a coordinate system is
+usually dependent on the Earth’s gravity field, perhaps loosely as when atmospheric pressure is the basis for the
+vertical coordinate system axis. An exact definition is deliberately not provided as the complexities of the subject
+fall outside the scope of the ISO 19111 specification.</p>
+</dd></dl>
+
+</div>
+<div class="section" id="datum">
+<h2>Datum</h2>
+<div class="graphviz"><img src="images/inheritance-43f8e6aeafc063fc9f3ef6ddc3cfc5a7ff5f52ff.png" alt="Inheritance diagram of opengis.referencing.datum" usemap="#inheritancedf2ccfbe51" class="inheritance graphviz" /></div>
+<map id="inheritancedf2ccfbe51" name="inheritancedf2ccfbe51">
+<area shape="rect" id="node4" href="#opengis.referencing.datum.IdentifiedObject" target="_top" title="Identification and remarks information for a reference system or CRS&#45;related object." alt="" coords="105,98,300,115"/>
+<area shape="rect" id="node9" href="#opengis.referencing.datum.PixelInCell" target="_top" title="Specification of the way the image grid is associated with the image data attributes." alt="" coords="116,35,289,51"/>
+<area shape="rect" id="node13" href="#opengis.referencing.datum.VerticalDatumType" target="_top" title="Type of a vertical datum." alt="" coords="98,67,306,83"/>
+<area shape="rect" id="node3" href="#opengis.referencing.datum.Datum" target="_top" title="Specifies the relationship of a coordinate system to the earth, thus creating a coordinate reference system." alt="" coords="353,67,511,83"/>
+<area shape="rect" id="node6" href="#opengis.referencing.datum.EngineeringDatum" target="_top" title="Defines the origin of an engineering coordinate reference system." alt="" coords="558,3,765,20"/>
+<area shape="rect" id="node7" href="#opengis.referencing.datum.GeodeticDatum" target="_top" title="Defines the location and precise orientation in 3&#45;dimensional space of a defined ellipsoid (or sphere) that" alt="" coords="564,35,758,51"/>
+<area shape="rect" id="node8" href="#opengis.referencing.datum.ImageDatum" target="_top" title="Defines the origin of an image coordinate reference system." alt="" coords="569,67,753,83"/>
+<area shape="rect" id="node11" href="#opengis.referencing.datum.TemporalDatum" target="_top" title="A temporal datum defines the origin of a temporal coordinate reference system." alt="" coords="563,98,759,115"/>
+<area shape="rect" id="node12" href="#opengis.referencing.datum.VerticalDatum" target="_top" title="A textual description and/or a set of parameters identifying a particular reference level surface used as a" alt="" coords="567,130,756,146"/>
+<area shape="rect" id="node5" href="#opengis.referencing.datum.Ellipsoid" target="_top" title="Geometric figure that can be used to describe the approximate shape of the earth." alt="" coords="350,98,514,115"/>
+<area shape="rect" id="node10" href="#opengis.referencing.datum.PrimeMeridian" target="_top" title="A prime meridian defines the origin from which longitude values are determined." alt="" coords="337,130,527,146"/>
+</map><span class="target" id="module-opengis.referencing.datum"></span><dl class="class">
+<dt id="opengis.referencing.datum.Datum">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.datum.</code><code class="sig-name descname">Datum</code></dt>
+<dd><p>Specifies the relationship of a coordinate system to the earth, thus creating a coordinate reference system.</p>
+<dl class="method">
+<dt id="opengis.referencing.datum.Datum.anchor_point">
+<em class="property">property </em><code class="sig-name descname">anchor_point</code></dt>
+<dd><p>Description, possibly including coordinates, of the point or points used to anchor the datum to the Earth.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.datum.Datum.domain_of_validity">
+<em class="property">property </em><code class="sig-name descname">domain_of_validity</code></dt>
+<dd><p>Information about spatial, vertical, and temporal extent. This interface has four optional attributes
+(geographic elements, temporal elements, and vertical elements) and an element called description. At least one
+of the four shall be used.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.datum.Datum.realization_epoch">
+<em class="property">property </em><code class="sig-name descname">realization_epoch</code></dt>
+<dd><p>The time after which this datum definition is valid.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.datum.Datum.scope">
+<em class="property">property </em><code class="sig-name descname">scope</code></dt>
+<dd><p>Description of domain of usage, or limitations of usage, for which this datum object is valid.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.datum.Ellipsoid">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.datum.</code><code class="sig-name descname">Ellipsoid</code></dt>
+<dd><p>Geometric figure that can be used to describe the approximate shape of the earth.</p>
+<dl class="method">
+<dt id="opengis.referencing.datum.Ellipsoid.axis_unit">
+<em class="property">property </em><code class="sig-name descname">axis_unit</code></dt>
+<dd><p>Linear unit of the semi-major and semi-minor axis values.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.datum.Ellipsoid.inverse_flattering">
+<em class="property">abstract property </em><code class="sig-name descname">inverse_flattering</code></dt>
+<dd><p>Value of the inverse of the flattening constant.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.datum.Ellipsoid.is_inf_definitive">
+<em class="property">abstract property </em><code class="sig-name descname">is_inf_definitive</code></dt>
+<dd><p>Indicates if the inverse flattening is definitive for this ellipsoid. Some ellipsoids use the IVF as the
+defining value, and calculate the polar radius whenever asked. Other ellipsoids use the polar radius to
+calculate the IVF whenever asked. This distinction can be important to avoid floating-point rounding errors.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.datum.Ellipsoid.is_sphere">
+<em class="property">abstract property </em><code class="sig-name descname">is_sphere</code></dt>
+<dd><p>true if the ellipsoid is degenerate and is actually a sphere.
+The sphere is completely defined by the semi-major axis, which is the radius of the sphere.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.datum.Ellipsoid.semi_major_axis">
+<em class="property">abstract property </em><code class="sig-name descname">semi_major_axis</code></dt>
+<dd><p>Length of the semi-major axis of the ellipsoid. This is the equatorial radius in axis linear unit.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.datum.Ellipsoid.semi_minor_axis">
+<em class="property">abstract property </em><code class="sig-name descname">semi_minor_axis</code></dt>
+<dd><p>Length of the semi-minor axis of the ellipsoid. This is the polar radius in axis linear unit.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.datum.EngineeringDatum">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.datum.</code><code class="sig-name descname">EngineeringDatum</code></dt>
+<dd><p>Defines the origin of an engineering coordinate reference system.</p>
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.datum.GeodeticDatum">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.datum.</code><code class="sig-name descname">GeodeticDatum</code></dt>
+<dd><p>Defines the location and precise orientation in 3-dimensional space of a defined ellipsoid (or sphere) that
+approximates the shape of the earth.</p>
+<dl class="method">
+<dt id="opengis.referencing.datum.GeodeticDatum.ellipsoid">
+<em class="property">abstract property </em><code class="sig-name descname">ellipsoid</code></dt>
+<dd><p>Returns the ellipsoid.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.datum.GeodeticDatum.prime_meridian">
+<em class="property">abstract property </em><code class="sig-name descname">prime_meridian</code></dt>
+<dd><p>Returns the prime meridian.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.datum.IdentifiedObject">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.datum.</code><code class="sig-name descname">IdentifiedObject</code></dt>
+<dd><p>Identification and remarks information for a reference system or CRS-related object.</p>
+<dl class="method">
+<dt id="opengis.referencing.datum.IdentifiedObject.name">
+<em class="property">abstract property </em><code class="sig-name descname">name</code></dt>
+<dd><p>The primary name by which this object is identified.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The primary name.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p><a class="reference internal" href="metadata.html#opengis.metadata.citation.Identifier" title="opengis.metadata.citation.Identifier">Identifier</a></p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.datum.IdentifiedObject.remarks">
+<em class="property">property </em><code class="sig-name descname">remarks</code></dt>
+<dd><p>Comments on or information about this object, including data source information.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The remarks, or None.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.datum.IdentifiedObject.to_wkt">
+<em class="property">abstract </em><code class="sig-name descname">to_wkt</code><span class="sig-paren">(</span><span class="sig-paren">)</span> &#x2192; str</dt>
+<dd><p>Returns a Well-Known Text (WKT) for this object.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Returns</dt>
+<dd class="field-odd"><p>The Well Know Text for this object.</p>
+</dd>
+<dt class="field-even">Return type</dt>
+<dd class="field-even"><p>str</p>
+</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.datum.ImageDatum">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.datum.</code><code class="sig-name descname">ImageDatum</code></dt>
+<dd><p>Defines the origin of an image coordinate reference system.</p>
+<dl class="method">
+<dt id="opengis.referencing.datum.ImageDatum.pixel_in_cell">
+<em class="property">abstract property </em><code class="sig-name descname">pixel_in_cell</code></dt>
+<dd><p>Specification of the way the image grid is associated with the image data attributes.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.datum.PixelInCell">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.datum.</code><code class="sig-name descname">PixelInCell</code></dt>
+<dd><p>Specification of the way the image grid is associated with the image data attributes.</p>
+<dl class="attribute">
+<dt id="opengis.referencing.datum.PixelInCell.CELL_CENTER">
+<code class="sig-name descname">CELL_CENTER</code><em class="property"> = 'cellCenter'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.datum.PixelInCell.CELL_CORNER">
+<code class="sig-name descname">CELL_CORNER</code><em class="property"> = 'cellCorner'</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.datum.PrimeMeridian">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.datum.</code><code class="sig-name descname">PrimeMeridian</code></dt>
+<dd><p>A prime meridian defines the origin from which longitude values are determined.</p>
+<dl class="method">
+<dt id="opengis.referencing.datum.PrimeMeridian.angular_unit">
+<em class="property">abstract property </em><code class="sig-name descname">angular_unit</code></dt>
+<dd><p>Returns the angular unit of the Greenwich longitude.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.datum.PrimeMeridian.greenwich_longitude">
+<em class="property">abstract property </em><code class="sig-name descname">greenwich_longitude</code></dt>
+<dd><p>Longitude of the prime meridian measured from the Greenwich meridian, positive eastward.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.datum.TemporalDatum">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.datum.</code><code class="sig-name descname">TemporalDatum</code></dt>
+<dd><p>A temporal datum defines the origin of a temporal coordinate reference system.</p>
+<dl class="method">
+<dt id="opengis.referencing.datum.TemporalDatum.anchor_point">
+<em class="property">abstract property </em><code class="sig-name descname">anchor_point</code></dt>
+<dd><p>This attribute is defined in the Datum parent interface, but is not used by a temporal datum.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.datum.TemporalDatum.origin">
+<em class="property">abstract property </em><code class="sig-name descname">origin</code></dt>
+<dd><p>The date and time origin of this temporal datum.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="opengis.referencing.datum.TemporalDatum.realization_epoch">
+<em class="property">abstract property </em><code class="sig-name descname">realization_epoch</code></dt>
+<dd><p>This attribute is defined in the Datum parent interface, but is not used by a temporal datum.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.datum.VerticalDatum">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.datum.</code><code class="sig-name descname">VerticalDatum</code></dt>
+<dd><p>A textual description and/or a set of parameters identifying a particular reference level surface used as a
+zero-height surface.</p>
+<dl class="method">
+<dt id="opengis.referencing.datum.VerticalDatum.vertical_datum_type">
+<em class="property">abstract property </em><code class="sig-name descname">vertical_datum_type</code></dt>
+<dd><p>The type of this vertical datum.</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="opengis.referencing.datum.VerticalDatumType">
+<em class="property">class </em><code class="sig-prename descclassname">opengis.referencing.datum.</code><code class="sig-name descname">VerticalDatumType</code></dt>
+<dd><p>Type of a vertical datum.</p>
+<dl class="attribute">
+<dt id="opengis.referencing.datum.VerticalDatumType.BAROMETRIC">
+<code class="sig-name descname">BAROMETRIC</code><em class="property"> = 'barometric'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.datum.VerticalDatumType.DEPTH">
+<code class="sig-name descname">DEPTH</code><em class="property"> = 'depth'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.datum.VerticalDatumType.GEOIDAL">
+<code class="sig-name descname">GEOIDAL</code><em class="property"> = 'geoidal'</em></dt>
+<dd></dd></dl>
+
+<dl class="attribute">
+<dt id="opengis.referencing.datum.VerticalDatumType.OTHER_SURFACE">
+<code class="sig-name descname">OTHER_SURFACE</code><em class="property"> = 'otherSurface'</em></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="right" >
+          <a href="geometry.html" title="Geometry (ISO 19107)"
+             >next</a> |</li>
+        <li class="right" >
+          <a href="metadata.html" title="Naming (ISO 19103)"
+             >previous</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Documentation</a> &#187;</li>
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 1994–2019 Open Geospatial Consortium. All rights reserved.
+    </div>
+  </body>
+</html>
