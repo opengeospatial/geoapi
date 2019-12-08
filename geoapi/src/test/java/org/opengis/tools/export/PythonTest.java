@@ -81,7 +81,7 @@ public final strictfp class PythonTest extends JavaToPython {
      * Returns the directory of the local copy of ISO schemas, or {@code null} if none.
      * If there is no local copy and the {@code "org.opengis.extensiveTesting"} property
      * is not set to {@code true}, then this method skip the test since downloading the
-     * schemas from {@value SchemaInformation#ROOT_NAMESPACE} is slow.
+     * schemas from {@value SchemaInformation#SCHEMA_ROOT_URL} is slow.
      *
      * @return the directory of the local copy of ISO schemas, or {@code null} for downloading from internet.
      */
@@ -95,7 +95,7 @@ public final strictfp class PythonTest extends JavaToPython {
                    "To enable this test, apply one of the following configurations:\n" +
                    "\n" +
                    "  • Set the ISO_SCHEMAS_DIR environment variable to the path of\n" +
-                   "    a directory containing a copy of " + SchemaInformation.ROOT_NAMESPACE + "\n" +
+                   "    a directory containing a copy of " + SchemaInformation.SCHEMA_ROOT_URL + "\n" +
                    "    files (only the 19115 sub-directory is needed)." +
                    "\n" +
                    "  • Or execute the test with org.opengis.extensiveTesting property\n" +

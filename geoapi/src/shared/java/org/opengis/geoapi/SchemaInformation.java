@@ -76,9 +76,15 @@ import org.opengis.annotation.Stereotype;
  */
 public class SchemaInformation {
     /**
-     * The root of ISO schemas and namespaces, which is {@value}.
+     * The URL from where to download ISO schema. The complete URL is formed by taking a namespace,
+     * replace the {@value #ROOT_NAMESPACE} by this {@value} value, then append {@code ".xsd"} suffix.
      */
-    public static final String ROOT_NAMESPACE = "http://standards.iso.org/iso/";
+    public static final String SCHEMA_ROOT_URL = "https://standards.iso.org/iso/";
+
+    /**
+     * The root of ISO namespaces, which is {@value}.
+     */
+    private static final String ROOT_NAMESPACE = "http://standards.iso.org/iso/";
 
     /**
      * The prefix of XML type names for properties. In ISO/OGC schemas, this prefix does not appear
@@ -112,7 +118,7 @@ public class SchemaInformation {
 
     /**
      * If the computer contains a local copy of ISO schemas, path to that directory. Otherwise {@code null}.
-     * If non-null, the {@value #ROOT_NAMESPACE} prefix in URL will be replaced by that path.
+     * If non-null, the {@value #SCHEMA_ROOT_URL} prefix in URL will be replaced by that path.
      * This field is usually {@code null}, but can be set to a non-null value for making tests faster.
      */
     private final Path schemaRootDirectory;
@@ -130,7 +136,7 @@ public class SchemaInformation {
     private final DocumentBuilderFactory factory;
 
     /**
-     * URL of schemas loaded, for avoiding loading the same schema many time.
+     * URL of schemas loaded, for avoiding loading the same schema many times.
      * The last element on the queue is the schema in process of being loaded,
      * used for resolving relative paths in {@code <xs:include>} elements.
      */
@@ -300,7 +306,7 @@ public class SchemaInformation {
                 "19115/-3/mpc/1.0/mpc.xsd",         // Metadata for portrayal catalog
                 "19115/-3/mdb/1.0/mdb.xsd"})        // Metadata base
         {
-            loadSchema(ROOT_NAMESPACE + p);
+            loadSchema(SCHEMA_ROOT_URL + p);
         }
         /*
          * Hard-coded information from "19115/-3/gco/1.0/gco.xsd". We apply this workaround because current SchemaInformation
@@ -376,8 +382,8 @@ public class SchemaInformation {
     public void loadSchema(String location)
             throws ParserConfigurationException, IOException, SAXException, SchemaException
     {
-        if (schemaRootDirectory != null && location.startsWith(ROOT_NAMESPACE)) {
-            location = schemaRootDirectory.resolve(location.substring(ROOT_NAMESPACE.length())).toUri().toString();
+        if (schemaRootDirectory != null && location.startsWith(SCHEMA_ROOT_URL)) {
+            location = schemaRootDirectory.resolve(location.substring(SCHEMA_ROOT_URL.length())).toUri().toString();
         }
         if (!schemaLocations.contains(location)) {
             if (location.startsWith("http")) {
