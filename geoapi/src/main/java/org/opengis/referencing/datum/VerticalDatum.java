@@ -59,12 +59,7 @@ public interface VerticalDatum extends Datum {
     /**
      * The type of this vertical datum.
      *
-     * @departure historic
-     *   This attribute is kept conformant with the specification published in 2003.
-     *   The 2007 revision of ISO 19111 removed this attribute, since this information
-     *   can be encoded in the <cite>anchor definition</cite>. However GeoAPI keep this attribute
-     *   for historical reasons, and because it provides some of the anchor definition information
-     *   in a programmatic way more suitable to coordinate transformation engines.
+     * @todo Renamed {@code RealizationMethod} in ISO 19111:2019.
      *
      * @return the type of this vertical datum.
      *
