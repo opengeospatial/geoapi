@@ -1,0 +1,174 @@
+# Welcome to Jekyll!
+#
+# This config file is meant for settings that affect your whole blog, values
+# which you are expected to set up once and rarely edit after that. If you find
+# yourself editing this file very often, consider using Jekyll's data files
+# feature for the data you need to update frequently.
+#
+# For technical reasons, this file is *NOT* reloaded automatically when you use
+# 'bundle exec jekyll serve'. If you change this file, please restart the server process.
+
+# Site settings
+# These are used to personalize your new site. If you look in the HTML files,
+# you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
+# You can create any custom variable you would like, and they will be accessible
+# in the templates via {{ site.myvariable }}.
+title: GeoAPI
+email: your-email@example.com
+description: >- # this means to ignore newlines until "baseurl:"
+ Programming interfaces for geospatial applications
+baseurl: "" # the subpath of your site, e.g. /blog
+url: "https://geoapi.org" # the base hostname & protocol for your site, e.g. http://example.com
+twitter_username:
+github_username:
+
+menu:
+ # home, and the page-menus are handled differently in _includes/menu.html
+ - text: "License"
+   link: "https://www.opengeospatial.org/ogc/software"
+   is_external: true
+ - text: "Latest release"
+   link: "/3.0/index.html"
+ - text: "Archives"
+   link: "/archives/index.html"
+ - text: "Conformance"
+   link: "/conformance/index.html"
+ - text: "Developments"
+   link: "/snapshot/index.html"
+ - text: "FAQ"
+   link: "/faq.html"
+
+defaults:
+  - scope:
+      path: "*3.0*"
+    values:
+      pagemenu:
+        - text: "Latest release"
+          link: "/3.0/index.html"
+        - text: "Specification"
+          link: "https://www.opengeospatial.org/standards/geoapi"
+          is_external: true
+        - text: "Java API"
+          link: "/3.0/javadoc/index.html"
+  - scope:
+      path: "*/java-python*"
+    values:
+      pagemenu:
+        - text: "Java ↔ Python"
+          link: "/java-python/index.html"
+        - text: "Java API"
+          link: "/java/index.html"
+        - text: "Python API"
+          link: "/python/index.html"
+  - scope:
+      path: "*/python*"
+    values:
+      pagemenu:
+        - text: "Python"
+          link: "/python/index.html"
+        - text: API (snapshot)
+          link: "/snapshot/python/index.html"
+        - text: "Source files"
+          link: "https://github.com/opengeospatial/geoapi/tree/master/geoapi/src/main/python/opengis"
+          is_external: true
+        - text: "Examples"
+          link: "/python/examples/index.html"
+        - text: "Bridge with Java"
+          link: "/java-python/index.html"
+  - scope:
+      path: "*/web/**"
+    values:
+      pagemenu:
+        - text: "Web API"
+          link: "/web/index.html"
+  - scope:
+      path: "*/snapshot/*"
+    values:
+      pagemenu:
+        - text: "Developments"
+          link: "/snapshot/index.html"
+        - text: Specification draft
+          link: "/snapshot/standard_document.html"
+        - text: "Java API preview"
+          link: "/snapshot/javadoc/index.html"
+        - text: "Python API preview"
+          link: "/snapshot/python/index.html"
+        - text: "Conformance"
+          link: "/snapshot/conformance.html"
+        - text: "Roadmap"
+          link: "https://github.com/opengeospatial/geoapi/wiki"
+          is_external: true
+  - scope:
+      path: "*/java/*"
+    values:
+      pagemenu:
+        - text: Java
+          link: "/java/index.html"
+        - text: API (release)
+          link: "/3.0/javadoc/index.html"
+        - text: API (preview)
+          link: "/snapshot/javadoc/index.html"
+        - text: Examples
+          link: "/java/examples/index.html"
+        - text: Bridge with Python
+          link: "/java-python/index.html"
+  - scope:
+      path: "*/archives*"
+    values:
+      pagemenu:
+        - text: "Archives"
+          link: "/archives/index.html"
+        - text: "0.1"
+          link: "/archives/0.1/index.html"
+        - text: "1.0"
+          link: "/archives/1.0/index.html"
+        - text: "2.0"
+          link: "/archives/2.0/index.html"
+        - text: "2.1"
+          link: "/archives/2.1/index.html"
+        - text: "2.2"
+          link: "/archives/2.2/index.html"
+        - text: "2.3"
+          link: "/archives/2.3/index.html"
+
+# Build settings
+markdown: kramdown
+theme: minima
+plugins:
+  - jekyll-feed
+
+sass:
+  sass_dir: _sass
+
+collections:
+ pages:
+  output: true
+  permalink: /:path/
+
+permalink: pretty
+
+include:
+  - 3.0
+  - archives
+  - conformance
+  - java
+  - snapshot
+
+# Exclude from processing.
+# The following items will not be processed, by default. Create a custom list
+# to override the default setting.
+exclude:
+ - Gemfile
+ - Gemfile.lock
+ - node_modules
+ - vendor/bundle/
+ - vendor/cache/
+ - vendor/gems/
+ - vendor/ruby/
+ - .idea/
+ - base.css
+ - package.json
+ - package-lock.json
+ - postcss.config.js
+ - .sass-cache
+ - README.md

@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="{{ page.lang | default: site.lang | default: 'en' }}">
+
+  {%- include head.html -%}
+
+  <body class="bg-gray-100 tracking-wider tracking-normal">
+
+    {%- include header.html -%}
+
+    <div class="flex flex-wrap px-2 py-8" style="min-height: calc(100vh - 108px - 145px);">
+      {%- include menu.html -%}
+      <div class="lg:w-3/4 p-8 mt-6 lg:mt-0 text-gray-900 leading-normal bg-white border border-gray-400 border-rounded" style="flex-grow: 0.7;">
+        {{ content }}
+      </div>
+    </div>
+
+    {%- include footer.html -%}
+
+  </body>
+
+</html>

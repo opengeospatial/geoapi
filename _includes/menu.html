@@ -1,0 +1,111 @@
+<div class="lg:px-6 text-xl text-gray-800 leading-normal" style="flex-grow: 0.3">
+  <div class="block lg:hidden sticky inset-0">
+    <button id="menu-toggle" class="flex w-full justify-end px-3 py-3 bg-white lg:bg-transparent border rounded border-gray-600 hover:border-blue-500 appearance-none focus:outline-none">
+      <svg class="fill-current h-3 float-right" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+        <path d="M9.293 12.95l.707.707L15.657 8l-1.414-1.414L10 10.828 5.757 6.586 4.343 8z"/>
+      </svg>
+    </button>
+  </div>
+  <div class="w-full sticky inset-0 hidden h-64 lg:h-auto overflow-x-hidden overflow-y-auto lg:overflow-y-hidden lg:block mt-0 border border-gray-400 lg:border-transparent bg-white shadow lg:shadow-none lg:bg-transparent z-20" style="top:5em;" id="menu-content">
+    <ul class="list-reset" id="menu">
+      {%- comment -%}Home link{%- endcomment -%}
+      {%- assign normal_link_class = "lg:hover:border-gray-400 text-gray-700" -%}
+      {%- assign active_link_class = "lg:border-blue-500 lg:hover:border-blue-500 font-bold text-gray-900" -%}
+      {%- if page.url == '/' -%}
+        {%- assign link_class = active_link_class -%}
+      {%- else -%}
+        {%- assign link_class = normal_link_class -%}
+      {%- endif -%}
+      <li class="py-0 md:my-0 hover:bg-blue-200 lg:hover:bg-transparent text-left">
+        <a href="{{ '/' | relative_url }}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-blue-500 border-l-4 border-transparent {{ link_class }}">
+          <span class="text-sm">Home</span>
+        </a>
+      </li>
+      {%- comment -%}This is for the menu generation{%- endcomment -%}
+      {%- assign pagemenu_done = false -%}
+      {%- for entry in site.menu -%}
+        {%- comment -%}This is for the style of the active link (we decide which item is active here too){%- endcomment -%}
+        {%- if page.url == entry.link -%}
+          {%- assign link_class = active_link_class -%}
+        {%- else -%}
+          {%- assign link_class = normal_link_class -%}
+        {%- endif -%}
+      {%- assign link = nil -%}
+      {%- if entry.is_external -%}
+        {%- assign link = entry.link -%}
+      {%- else -%}
+        {%- assign link = entry.link | relative_url -%}
+      {%- endif -%}
+      <li class="py-0 md:my-0 hover:bg-blue-200 lg:hover:bg-transparent text-left">
+        <a href="{{ link }}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-blue-500 border-l-4 border-transparent {{ link_class }}">
+          <span class="text-sm">{{ entry.text }}</span>
+          {%- if entry.is_external -%}
+          <svg class="ml-1 w-4 h-4 fill-current text-gray-600 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path class="heroicon-ui" d="M19 6.41L8.7 16.71a1 1 0 1 1-1.4-1.42L17.58 5H14a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V6.41zM17 14a1 1 0 0 1 2 0v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7c0-1.1.9-2 2-2h5a1 1 0 0 1 0 2H5v12h12v-5z"/>
+          </svg>
+          {%- endif -%}
+        </a>
+      </li>
+        {%- if page.pagemenu -%}
+          {%- if page.pagemenu[0].link == entry.link -%}
+            {%- for pagemenu_entry in page.pagemenu offset:1 -%}
+              {%- if page.url == pagemenu_entry.link -%}
+              {%- assign link_class = active_link_class -%}
+              {%- else -%}
+              {%- assign link_class = normal_link_class -%}
+              {%- endif -%}
+              {%- assign link = nil -%}
+              {%- if pagemenu_entry.is_external -%}
+                {%- assign link = pagemenu_entry.link -%}
+              {%- else -%}
+                {%- assign link = pagemenu_entry.link | relative_url -%}
+              {%- endif -%}
+      <li class="py-0 ml-2 md:my-0 hover:bg-blue-200 lg:hover:bg-transparent text-left">
+        <a href="{{ link }}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-blue-500 border-l-4 border-transparent {{ link_class }}">
+          <span class="text-sm">{{ pagemenu_entry.text }}</span>
+          {%- if pagemenu_entry.is_external -%}
+          <svg class="ml-1 w-4 h-4 fill-current text-gray-600 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path class="heroicon-ui" d="M19 6.41L8.7 16.71a1 1 0 1 1-1.4-1.42L17.58 5H14a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V6.41zM17 14a1 1 0 0 1 2 0v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7c0-1.1.9-2 2-2h5a1 1 0 0 1 0 2H5v12h12v-5z"/>
+          </svg>
+          {%- endif -%}
+        </a>
+      </li>
+            {%- endfor -%}
+            {%- assign pagemenu_done = true -%}
+          {%- endif -%}
+        {%- endif -%}
+      {%- endfor -%}
+      {%- comment -%}Page-menus{%- endcomment -%}
+      {%- if pagemenu_done == false && page.pagemenu -%}
+        {%- for entry in page.pagemenu -%}
+          {%- comment -%}This is for the style of the active link (we decide which item is active here too){%- endcomment -%}
+          {%- if page.url == entry.link -%}
+            {%- assign link_class = active_link_class -%}
+          {%- else -%}
+            {%- assign link_class = normal_link_class -%}
+          {%- endif -%}
+          {%- assign margin_class = "my-0" -%}
+          {%- if forloop.first -%}
+            {%- assign margin_class = "mb-0 mt-4 border-t-2" -%}
+          {%- endif -%}
+          {%- assign link = nil -%}
+          {%- if entry.is_external -%}
+            {%- assign link = entry.link -%}
+          {%- else -%}
+            {%- assign link = entry.link | relative_url -%}
+          {%- endif -%}
+      <li class="py-0 md:{{ margin_class }} hover:bg-blue-200 lg:hover:bg-transparent text-left">
+        <a href="{{ link }}" class="block pl-4 align-middle text-gray-700 no-underline hover:text-blue-500 border-l-4 border-transparent {{ link_class }}">
+          <span class="text-sm">{{ entry.text }}</span>
+          {%- if entry.is_external -%}
+          <svg class="ml-1 w-4 h-4 fill-current text-gray-600 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+            <path class="heroicon-ui" d="M19 6.41L8.7 16.71a1 1 0 1 1-1.4-1.42L17.58 5H14a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V6.41zM17 14a1 1 0 0 1 2 0v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7c0-1.1.9-2 2-2h5a1 1 0 0 1 0 2H5v12h12v-5z"/>
+          </svg>
+          {%- endif -%}
+        </a>
+      </li>
+        {%- endfor -%}
+      {%- endif -%}
+    </ul>
+  </div>
+</div>
