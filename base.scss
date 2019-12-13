@@ -1,0 +1,47 @@
+@tailwind base;
+
+@tailwind components;
+
+@tailwind utilities;
+
+h1, h2, h3 {
+  @apply font-bold;
+}
+
+h1 {
+  @apply text-2xl;
+}
+h2 {
+  @apply text-xl;
+}
+h3 {
+  @apply text-lg;
+}
+
+a {
+  @apply underline;
+}
+
+p {
+  @apply my-4 text-justify tracking-normal subpixel-antialiased text-gray-800;
+}
+
+code, pre {
+  @apply text-gray-800 text-sm my-4;
+}
+
+ul {
+  @apply list-disc ml-4 my-4;
+}
+
+ul > li > ul {
+  @apply my-0;
+}
+
+ul > li {
+  @apply my-1 text-justify;
+}
+
+details {
+  @apply my-4;
+}
