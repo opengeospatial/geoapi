@@ -55,33 +55,43 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="LocalName", specification=ISO_19103)
 public interface LocalName extends GenericName {
     /**
-     * Returns always 1 for a local name.
+     * Returns the number of levels specified by this name, which is always 1 for a local name.
      *
      * @return always 1 for a local name.
      */
     @Override
-    int depth();
+    default int depth() {
+        return 1;
+    }
 
     /**
-     * Returns a singleton containing only {@code this}, since this name is itself a local name.
+     * Returns the sequence of local names. Since this object is itself a locale name,
+     * this method always returns a {@linkplain Collections#singletonList(Object) singleton list}
+     * containing only {@code this}.
      *
-     * @return a {@linkplain Collections#singleton singleton} containing only {@code this}.
+     * @return a singleton containing only {@code this}.
      */
     @Override
     @UML(identifier="parsedName", obligation=MANDATORY, specification=ISO_19103)
-    List<? extends LocalName> getParsedNames();
+    default List<? extends LocalName> getParsedNames() {
+        return Collections.singletonList(this);
+    }
 
     /**
      * Returns {@code this} since this object is already a local name.
      */
     @Override
-    LocalName head();
+    default LocalName head() {
+        return this;
+    }
 
     /**
      * Returns {@code this} since this object is already a local name.
      */
     @Override
-    LocalName tip();
+    default LocalName tip() {
+        return this;
+    }
 
     /**
      * Returns a locale-independent string representation of this local name.

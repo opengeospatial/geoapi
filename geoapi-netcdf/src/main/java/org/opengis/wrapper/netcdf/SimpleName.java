@@ -13,9 +13,7 @@
  */
 package org.opengis.wrapper.netcdf;
 
-import java.util.List;
 import java.util.Objects;
-import java.util.Collections;
 import java.io.Serializable;
 
 import org.opengis.util.LocalName;
@@ -74,40 +72,6 @@ final class SimpleName implements LocalName, Serializable {
             throw new UnsupportedOperationException("Global namespace can not have scope.");
         }
         return scope;
-    }
-
-    /**
-     * Returns the number of levels specified by this name, which is always 1 for a local name.
-     */
-    @Override
-    public final int depth() {
-        return 1;
-    }
-
-    /**
-     * Returns the sequence of local name. Since this object is itself a locale name,
-     * this method always returns a {@linkplain Collections#singletonList(Object) singleton}
-     * list containing only {@code this}.
-     */
-    @Override
-    public final List<LocalName> getParsedNames() {
-        return Collections.<LocalName>singletonList(this);
-    }
-
-    /**
-     * Returns {@code this} since this object is already a local name.
-     */
-    @Override
-    public final LocalName head() {
-        return this;
-    }
-
-    /**
-     * Returns {@code this} since this object is already a local name.
-     */
-    @Override
-    public final LocalName tip() {
-        return this;
     }
 
     /**
