@@ -83,57 +83,6 @@ public interface PointGrid {
     DirectPosition get(int row, int column) throws IndexOutOfBoundsException;
 
     /**
-     * Gets a copy of the {@code DirectPosition} at the particular location in this
-     * {@code PointGrid}. If the {@code dest} argument is non-null, that object
-     * will be populated with the value from the array. In all cases, the position in insulated
-     * from changes in the {@code PointArray}, and vice-versa. Consequently, the same
-     * {@code DirectPosition} object can be reused for fetching many points from this grid.
-     * Example:
-     * <blockquote><pre>
-     * &nbsp;DirectPosition position = null;
-     * &nbsp;for (int j=0; j&lt;grid.height(); j++) {
-     * &nbsp;    for (int i=0; i&lt;grid.width(); i++) {
-     * &nbsp;        position = array.get(j, i, position);
-     * &nbsp;        // Do some processing...
-     * &nbsp;    }
-     * &nbsp;}
-     * </pre></blockquote>
-     *
-     * @param  row The row index from 0 inclusive to {@link #height} exclusive.
-     * @param  column The column index from 0 inclusive to {@link #width} exclusive.
-     * @param  dest An optionally pre-allocated direct position.
-     * @return the {@code dest} argument, or a new object if {@code dest} was null.
-     * @throws IndexOutOfBoundsException if an index is out of bounds.
-     */
-    DirectPosition get(int row, int column, DirectPosition dest) throws IndexOutOfBoundsException;
-
-    /**
-     * Set the point at the given index. The point coordinates will be copied, i.e. changes
-     * to the given {@code position} after this method call will not be reflected into
-     * this point array. Consequently, the same {@code DirectPosition} object can be
-     * reused for setting many points in this array.
-     *
-     * @param  row The row index from 0 inclusive to {@link #height} exclusive.
-     * @param  column The column index from 0 inclusive to {@link #width} exclusive.
-     * @param  position The point to set at the given location in this array.
-     * @throws IndexOutOfBoundsException if an index is out of bounds.
-     * @throws UnsupportedOperationException if this grid is immutable.
-     */
-    void set(int row, int column, DirectPosition position) throws IndexOutOfBoundsException,
-                                                                         UnsupportedOperationException;
-
-    /**
-     * Returns the row at the given index.
-     * The row is backed by this {@code PointGrid}, so changes to the row
-     * are reflected in the grid, and vice-versa.
-     *
-     * @param  row The index from 0 inclusive to {@link #height} exclusive.
-     * @return the row at the given index.
-     * @throws IndexOutOfBoundsException if the index is out of bounds.
-     */
-    PointArray getRow(int row) throws IndexOutOfBoundsException;
-
-    /**
      * Returns a view of all rows in this array.
      * The list is backed by this {@code PointGrid}, so changes to any
      * {@linkplain PointArray point array} are reflected in the grid, and vice-versa.

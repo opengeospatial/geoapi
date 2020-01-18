@@ -59,8 +59,4 @@ public interface MultiPoint extends MultiPrimitive {
      */
     @UML(identifier="element", obligation=MANDATORY, specification=ISO_19107)
     Set<Point> getElements();
-
-//    public java.util.Vector /*DirectPosition*/ position;
-//    public void setPosition(java.util.Vector /*DirectPosition*/ position) {  }
-//    public java.util.Vector /*DirectPosition*/ getPosition() { return null; }
 }

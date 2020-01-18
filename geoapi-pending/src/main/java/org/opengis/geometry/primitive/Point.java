@@ -33,7 +33,6 @@ package org.opengis.geometry.primitive;
 
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.coordinate.Position;
-import org.opengis.geometry.UnmodifiableGeometryException;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -71,22 +70,6 @@ public interface Point extends Primitive, Position {
     @Override
     @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getDirectPosition();
-
-    /**
-     * Sets the direct position of this point. {@code Point} is the only subclass
-     * of {@linkplain Primitive primitive} that cannot use {@linkplain Position positions}
-     * to represent its defining geometry. A {@linkplain Position position} is either a
-     * {@linkplain DirectPosition direct position} or a reference to a {@code Point}
-     * (from which a {@linkplain DirectPosition direct position} may be obtained). By not
-     * allowing {@code Point} to use this technique, infinitely recursive references
-     * are prevented.
-     *
-     * @param  position The direct position.
-     * @throws UnmodifiableGeometryException if this geometry is not modifiable.
-     *
-     * @since GeoAPI 2.2
-     */
-    void setDirectPosition(DirectPosition position) throws UnmodifiableGeometryException;
 
     /**
      * Returns always {@code null}, since point has no boundary.
