@@ -200,7 +200,7 @@ public class MyApp {
   &lt;dependency&gt;
     &lt;groupId&gt;org.kortforsyningen&lt;/groupId&gt;
     &lt;artifactId&gt;proj&lt;/artifactId&gt;
-    &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
+    &lt;version&gt;1.0&lt;/version&gt;
   &lt;/dependency&gt;
 &lt;/dependencies&gt;</pre>
 </details>
