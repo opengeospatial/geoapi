@@ -82,7 +82,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     static final double CLARKE_KEET = 0.3047972654;
 
     /**
-     * Conversion from feets to metres.
+     * Conversion from feet to metres.
      */
     static final double FEET = 0.3048;
 
@@ -517,7 +517,10 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * <table class="ogc">
      *   <caption>Supported codes</caption>
      *   <tr><th>Code</th> <th>Name</th></tr>
-     *   <tr><td>6500</td> <td>Earth centred, earth fixed, righthanded 3D coordinate system, consisting of 3 orthogonal axes with X and Y axes in the equatorial plane, positive Z-axis parallel to mean earth rotation axis and pointing towards North Pole. UoM: m</td></tr>
+     *   <tr><td>6500</td> <td>Earth centred, earth fixed, righthanded 3D coordinate system,
+     *     consisting of 3 orthogonal axes with X and Y axes in the equatorial plane,
+     *     positive Z-axis parallel to mean earth rotation axis and pointing towards North Pole.
+     *     UoM: m</td></tr>
      * </table>
      *
      * @param  code  value allocated by authority.
@@ -1008,6 +1011,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>19914</td> <td>28992</td> <td>Amersfoort / RD New</td>                             <td>Oblique Stereographic</td></tr>
      *   <tr><td><i>9818</i></td> <td><i>9818</i></td> <td><i>Polyconic</i></td>                    <td><i>Polyconic</i></td></tr>
      *   <tr><td><i>9840</i></td> <td><i>9840</i></td> <td><i>Orthographic</i></td>                 <td><i>Orthographic</i></td></tr>
+     *   <tr><td>15399</td> <td>3295</td>  <td>Guam 1963 / Yap Islands</td>                         <td>Modified Azimuthal Equidistant</td></tr>
      *   <tr><td>19952</td> <td>2065</td>  <td>CRS S-JTSK (Ferro) / Krovak</td>                     <td>Krovak</td></tr>
      *   <tr><td><i>9605</i></td> <td>4230</td> <td>ED50 to WGS 84</td>                             <td>Abridged Molodensky</td></tr>
      * </table>
@@ -1228,6 +1232,16 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("Longitude of natural origin").setValue(5.0);
                 parameters.parameter("False easting") .setValue(0.0);
                 parameters.parameter("False northing").setValue(0.0);
+                break;
+            }
+            case 15399: {       // "Guam 1963 / Yap Islands" using operation method 9832
+                parameters = factory.getDefaultParameters("Modified Azimuthal Equidistant");
+                parameters.parameter("semi_major").setValue(6378206.4);                                 // Clarke 1866
+                parameters.parameter("semi_minor").setValue(6356583.8);
+                parameters.parameter("Latitude of natural origin").setValue(9 + (32 + 48.15/60)/60);
+                parameters.parameter("Longitude of natural origin").setValue(138 + (10 + 7.48/60)/60);
+                parameters.parameter("False easting") .setValue(40000.0);
+                parameters.parameter("False northing").setValue(60000.0);
                 break;
             }
             case 19952: {       // "CRS S-JTSK (Ferro) / Krovak" using operation method 9819

@@ -1580,6 +1580,51 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
+     * Tests the <cite>"Modified Azimuthal Equidistant"</cite> (EPSG:9832) projection.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                                <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                          <td>6378206.4 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                          <td>6356583.8 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>               <td>9.546708333333333°</td></tr>
+     *     <tr><td>Longitude of natural origin</td>              <td>138.168744444444444°</td></tr>
+     *     <tr><td>False easting</td>                            <td>40000.0 m</td></tr>
+     *     <tr><td>False northing</td>                           <td>60000.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>138°11'34.908"E<br>9°35'47.493"N</td>
+     *       <td>42665.90 m<br>65509.82 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
+     *
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
+     */
+    @Test
+    public void testModifiedAzimuthalEquidistant() throws FactoryException, TransformException {
+        description = "Guam 1963 / Yap Islands";
+        final SamplePoints sample = SamplePoints.forCRS(3295);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
+    }
+
+    /**
      * Tests the <cite>"Abridged Molodensky"</cite> (EPSG:9605) datum shift operation.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
