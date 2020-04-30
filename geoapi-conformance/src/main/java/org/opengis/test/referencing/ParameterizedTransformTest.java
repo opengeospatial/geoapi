@@ -977,6 +977,57 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
+     * Tests the <cite>"Hyperbolic Cassini-Soldner"</cite> (EPSG:9833) projection method.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                   <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>             <td>6378306.3696 m</td></tr>
+     *     <tr><td>semi-minor axis</td>             <td>6356571.9960 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>  <td>-16.25°</td></tr>
+     *     <tr><td>Longitude of natural origin</td> <td>179.33333333333333°</td></tr>
+     *     <tr><td>False easting</td>               <td>251727.9155424 m</td></tr>
+     *     <tr><td>False northing</td>              <td>334519.9537680 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>16°15'00"S<br>179°20'00"E</td>
+     *       <td>41251331.8 links<br>1662888.5 links</td>
+     *     </tr><tr class="coordinates">
+     *       <td>179°59′39.6115″E<br>16°50′29.2435″S</td>
+     *       <td>1601528.90 links<br>1336966.01 links</td>
+     *     </tr>
+     *   </table>
+     *   <p class="right-note">1 link = 0.66 feet<br>1 feet = 0.3048 metre</p>
+     * </div>
+     *
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_3139()
+     */
+    @Test
+    public void testHyperbolicCassiniSoldner() throws FactoryException, TransformException {
+        description = "Vanua Levu 1915 / Vanua Levu Grid";
+        final SamplePoints sample = SamplePoints.forCRS(3139);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
+    }
+
+    /**
      * Tests the <cite>"Lambert Conic Conformal (1SP)"</cite> (EPSG:9801) projection method.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.

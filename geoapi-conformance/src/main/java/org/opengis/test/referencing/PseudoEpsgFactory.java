@@ -1000,6 +1000,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>19916</td> <td>27700</td> <td>OSGB 1936 / British National Grid</td>               <td>Transverse Mercator</td></tr>
      *   <tr><td>17529</td> <td>2053</td>  <td>South African Survey Grid zone 29</td>               <td>Transverse Mercator</td></tr>
      *   <tr><td>19975</td> <td>2314</td>  <td>Trinidad 1903 / Trinidad Grid</td>                   <td>Cassini-Soldner</td></tr>
+     *   <tr><td>19878</td> <td>3139</td>  <td>Vanua Levu 1915 / Vanua Levu Grid</td>               <td>Hyperbolic Cassini-Soldner</td></tr>
      *   <tr><td>19910</td> <td>24200</td> <td>JAD69 / Jamaica National Grid</td>                   <td>Lambert Conic Conformal (1SP)</td></tr>
      *   <tr><td>14204</td> <td>32040</td> <td>NAD27 / Texas South Central</td>                     <td>Lambert Conic Conformal (2SP)</td></tr>
      *   <tr> <td>6198</td> <td>6201</td>  <td>Michigan CS27 Central zone</td>                      <td>Lambert Conic Conformal (2SP Michigan)</td></tr>
@@ -1112,6 +1113,16 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("Longitude of natural origin").setValue(-(61 + 20.0/60));          // 61°20'00"W
                 parameters.parameter("False easting") .setValue(430000.00 * LINKS);
                 parameters.parameter("False northing").setValue(325000.00 * LINKS);
+                break;
+            }
+            case 19878: {       // "Vanua Levu Grid" using operation method 9833
+                parameters = factory.getDefaultParameters("Hyperbolic Cassini-Soldner");
+                parameters.parameter("semi_major").setValue(20926202.0 * FEET);                         // Clarke 1880
+                parameters.parameter("semi_minor").setValue(20854895.0 * FEET);
+                parameters.parameter("Latitude of natural origin") .setValue(-(16 + 15./60));           // 16°15'00"S
+                parameters.parameter("Longitude of natural origin").setValue( 179 + 20./60);            // 179°20'00"E
+                parameters.parameter("False easting") .setValue(1251331.8 * LINKS);
+                parameters.parameter("False northing").setValue(1662888.5 * LINKS);
                 break;
             }
             case 19910: {       // "JAD69 / Jamaica National Grid" using operation method 9801

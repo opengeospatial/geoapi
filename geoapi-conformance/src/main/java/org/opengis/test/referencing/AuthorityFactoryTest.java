@@ -651,6 +651,28 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     }
 
     /**
+     * Tests the EPSG:3139 (<cite>Vanua Levu 1915 / Vanua Levu Grid</cite>) projected CRS.
+     *
+     * <table class="ogc">
+     * <caption>CRS characteristics</caption>
+     * <tr><td>Projection method:</td> <td>Hyperbolic Cassini-Soldner</td></tr>
+     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
+     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in links - <strong>note the units!</strong></td></tr>
+     * </table>
+     *
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
+     *
+     * @see ParameterizedTransformTest#testHyperbolicCassiniSoldner()
+     */
+    @Test
+    public void testEPSG_3139() throws FactoryException, TransformException {
+        toLinearUnit = 1/PseudoEpsgFactory.LINKS;
+        runProjectionTest(3139);
+    }
+
+    /**
      * Tests the EPSG:24200 (<cite>JAD69 / Jamaica National Grid</cite>) projected CRS.
      *
      * <table class="ogc">

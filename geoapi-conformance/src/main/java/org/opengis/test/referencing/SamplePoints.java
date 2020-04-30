@@ -199,6 +199,16 @@ final class SamplePoints {
                 λmax = -60.00; φmax = 11.50;
                 break;
             }
+            case 3139: {                                                    // "Vanua Levu 1915 / Vanua Levu Grid"
+                operation = 19878;
+                fe =   1251331.8*LINKS;  λ0 =  179 + 20./60;                // 179°20'00"E
+                fn =   1662888.5*LINKS;  φ0 = -(16 + 15./60);               // 16°15'00"S
+                e  =  1601528.90*LINKS;  λ  =  179 + (59 + 39.6115/60)/60;  // 179°59′39.6115″E
+                n  =  1336966.01*LINKS;  φ  = -(16 + (50 + 29.2435/60)/60); //  16°50′29.2435″S
+                λmin = 178.42; φmin = -17.07;
+                λmax = 180.23; φmax = -16.1;
+                break;
+            }
             case 24200: {                                                   // "JAD69 / Jamaica National Grid"
                 operation = 19910;
                 fe =    250000.00;  λ0 = -77.0;
