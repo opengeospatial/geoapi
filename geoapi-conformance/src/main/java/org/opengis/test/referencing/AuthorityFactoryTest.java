@@ -646,7 +646,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      */
     @Test
     public void testEPSG_2314() throws FactoryException, TransformException {
-        toLinearUnit = 1/PseudoEpsgFactory.CLARKE_KEET;
+        toLinearUnit = 1/PseudoEpsgFactory.CLARKE_FEET;
         runProjectionTest(2314);
     }
 
