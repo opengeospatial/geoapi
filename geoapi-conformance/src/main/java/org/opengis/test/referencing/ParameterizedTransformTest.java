@@ -377,8 +377,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Initializes the tolerance thresholds to their default values if the users did not
-     * specified his own thresholds.
+     * Initializes the tolerance thresholds to their default values if the user did not
+     * specified her/his own thresholds.
      */
     final void setTolerance(final ToleranceModifier modifier) {
         if (toleranceModifier == null) {
@@ -740,8 +740,6 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
-     *
-     * @see AuthorityFactoryTest#testIGNF_MILLER()
      */
     @Test
     public void testMiller() throws FactoryException, TransformException {

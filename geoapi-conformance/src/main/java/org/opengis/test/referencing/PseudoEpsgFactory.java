@@ -1106,6 +1106,14 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 break;
             }
             case 19975: {       // "Trinidad 1903 / Trinidad Grid" using operation method 9806
+                /*
+                 * Values used below are those published in IOGP Publication 373-7-2 §3.2.2 — September 2019.
+                 * They differ from values in EPSG geodetic dataset 9.8.11 in following aspects: geodetic dataset
+                 * uses Clarke's foot units instead than foot and link units, with same values for ellipsoid axis
+                 * lengths (before conversion) but different values for false easting and northing parameters.
+                 * The differences in easting/northing parameters is up to 0.8 metre. We keep the values published
+                 * in IOGP 373-7-2 because the sample point tested in map projection is computed with those values.
+                 */
                 parameters = factory.getDefaultParameters("Cassini-Soldner");
                 parameters.parameter("semi_major").setValue(20926348.0 * FEET);                         // Clarke 1858
                 parameters.parameter("semi_minor").setValue(20855233.0 * FEET);

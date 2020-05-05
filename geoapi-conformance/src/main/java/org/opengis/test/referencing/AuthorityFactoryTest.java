@@ -389,8 +389,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
         try {
             crs = crsAuthorityFactory.createProjectedCRS("EPSG:" + code);
         } catch (NoSuchAuthorityCodeException e) {
-            // If a code was not found, ensure that the factory does not declare that it was
-            // a supported code. If the code was unsupported, then the test will be ignored.
+            /*
+             * If a code was not found, ensure that the factory does not declare that it was
+             * a supported code. If the code was unsupported, then the test will be ignored.
+             */
             final Set<String> authorityCodes = crsAuthorityFactory.getAuthorityCodes(ProjectedCRS.class);
             if (authorityCodes == null || !authorityCodes.contains(String.valueOf(code))) {
                 assumeNoException(e);               // Will mark the test as "ignored".
@@ -489,6 +491,13 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
             double λmin, double φmin, double λmax, double φmax,
             final boolean swapλφ, final double toAngularUnit)
     {
+        if (λmax < λmin) {                      // Domain crosses anti-meridian.
+            if (180 + λmax < 180 - λmin) {      // Which bound is closest to anti-meridian?
+                λmax += 360;                    // Example: -175° → +185°
+            } else {
+                λmin -= 360;                    // Example: +175° → -185°
+            }
+        }
         λmin *= toAngularUnit;
         λmax *= toAngularUnit;
         φmin *= toAngularUnit;
@@ -566,27 +575,6 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     }
 
     /**
-     * Tests the IGNF:MILLER (unofficial EPSG:310642901 code) projected CRS.
-     *
-     * <table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Miller</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
-     * </table>
-     *
-     * @throws FactoryException if the math transform can not be created.
-     * @throws TransformException if the example point can not be transformed.
-     *
-     * @see ParameterizedTransformTest#testMiller()
-     */
-    @Test
-    public void testIGNF_MILLER() throws FactoryException, TransformException {
-        runProjectionTest(310642901);
-    }
-
-    /**
      * Tests the EPSG:29873 (<cite>Timbalai 1948 / RSO Borneo (m)</cite>) projected CRS.
      *
      * <table class="ogc">
@@ -647,6 +635,14 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     @Test
     public void testEPSG_2314() throws FactoryException, TransformException {
         toLinearUnit = 1/PseudoEpsgFactory.CLARKE_FEET;
+        /*
+         * Relax the tolerance threshold because the sample point in IOGP Publication 373-7-2 §3.2.2 — September 2019
+         * has been computed for a CRS defined with slightly different numbers than in EPSG:9.8.11:2314 definition.
+         * The differences are in units of measurement used for defining axis lengths and false easting/northing.
+         */
+        if (test.tolerance < 0.8) {
+            test.tolerance = 0.8;
+        }
         runProjectionTest(2314);
     }
 
@@ -669,6 +665,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     @Test
     public void testEPSG_3139() throws FactoryException, TransformException {
         toLinearUnit = 1/PseudoEpsgFactory.LINKS;
+        swapxy = true;
         runProjectionTest(3139);
     }
 
