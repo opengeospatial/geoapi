@@ -124,8 +124,11 @@ public interface OperationMethod extends IdentifiedObject {
      * @return the dimension of source CRS, or {@code null} if unknown.
      *
      * @see MathTransform#getSourceDimensions()
+     *
+     * @deprecated This attribute has been removed from ISO 19111:2019.
      */
-    @UML(identifier="sourceDimensions", obligation=OPTIONAL, specification=ISO_19111)
+    @Deprecated
+    @UML(identifier="sourceDimensions", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default Integer getSourceDimensions() {
         return null;
     }
@@ -138,8 +141,11 @@ public interface OperationMethod extends IdentifiedObject {
      * @return the dimension of target CRS, or {@code null} if unknown.
      *
      * @see MathTransform#getTargetDimensions()
+     *
+     * @deprecated This attribute has been removed from ISO 19111:2019.
      */
-    @UML(identifier="targetDimensions", obligation=OPTIONAL, specification=ISO_19111)
+    @Deprecated
+    @UML(identifier="targetDimensions", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default Integer getTargetDimensions() {
         return null;
     }
