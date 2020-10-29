@@ -218,7 +218,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
      *
      * @return the <cite>Well-Known Text</cite> representation of this direct position.
      *
-     * @see <a href="http://en.wikipedia.org/wiki/Well-known_text">Well-known text on Wikipedia</a>
+     * @see <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">Well-known text on Wikipedia</a>
      */
     @Override
     public String toString() {

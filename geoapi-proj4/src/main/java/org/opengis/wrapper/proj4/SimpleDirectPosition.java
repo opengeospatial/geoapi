@@ -131,7 +131,7 @@ final class SimpleDirectPosition implements DirectPosition, Serializable {
     /**
      * Returns a string representation of this direct position in <cite>Well-Known Text</cite> (WKT) format.
      *
-     * @see <a href="http://en.wikipedia.org/wiki/Well-known_text">Well-known text on Wikipedia</a>
+     * @see <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">Well-known text on Wikipedia</a>
      */
     @Override
     public String toString() {
