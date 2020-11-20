@@ -588,9 +588,8 @@ public class SchemaInformation {
         if (type.endsWith(suffix)) {
             int nameStart = name.indexOf(PREFIX_SEPARATOR) + 1;        // Skip "mdb:" or similar prefix.
             int typeStart = type.indexOf(PREFIX_SEPARATOR) + 1;
-            final int plg = ABSTRACT_PREFIX.length();
-            if (name.regionMatches(nameStart, ABSTRACT_PREFIX, 0, plg)) nameStart += plg;
-            if (type.regionMatches(typeStart, ABSTRACT_PREFIX, 0, plg)) typeStart += plg;
+            if (name.startsWith(ABSTRACT_PREFIX, nameStart)) nameStart += ABSTRACT_PREFIX.length();
+            if (type.startsWith(ABSTRACT_PREFIX, typeStart)) typeStart += ABSTRACT_PREFIX.length();
             final int length = name.length() - nameStart;
             if (type.length() - typeStart - suffix.length() == length &&
                     type.regionMatches(typeStart, name, nameStart, length))
