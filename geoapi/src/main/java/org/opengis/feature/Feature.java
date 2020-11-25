@@ -141,13 +141,35 @@ public interface Feature {
      * is empty.</div>
      *
      * @param  name  the property name.
-     * @return the value for the given property, or {@code null} if none.
+     * @return the value for the specified property, or {@code null} if none.
      * @throws PropertyNotFoundException if the given argument is not an attribute or association name of this feature.
      *
      * @see Attribute#getValue()
      * @see FeatureAssociation#getValue()
      */
     Object getPropertyValue(String name) throws PropertyNotFoundException;
+
+    /**
+     * Returns the value for the property of the given name if that property exists, or a fallback value otherwise.
+     * This method is equivalent to the following code, but potentially more efficient:
+     *
+     * <pre>
+     * try {
+     *     return {@linkplain #getPropertyValue(String) getPropertyValue}(name);
+     * } catch ({@linkplain PropertyNotFoundException} ignore) {
+     *     return missingPropertyFallback
+     * }</pre>
+     *
+     * Note that if a property of the given name exists but has no value, then this method returns {@code null}.
+     * <cite>Property without value</cite> is not equivalent to <cite>non-existent property</cite>.
+     *
+     * @param  name  the property name.
+     * @param  missingPropertyFallback  the (potentially {@code null}) value to return
+     *         if no attribute or association of the given name exists.
+     * @return the value for the specified property, or the fallback value if no attribute or association
+     *         of that name exists. This value may be {@code null}.
+     */
+    Object getPropertyValue(String name, Object missingPropertyFallback);
 
     /**
      * Sets the value for the property of the given name.
