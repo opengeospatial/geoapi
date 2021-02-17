@@ -35,7 +35,7 @@
  * {@linkplain org.opengis.annotation.Specification#ISO_19107 OpenGIS® Feature Geometry
  * (Topic 1)} specification.
  *
- * <P ALIGN="justify">A large number of the geometric types in the ISO 19107 standard are defined
+ * <P>A large number of the geometric types in the ISO 19107 standard are defined
  * parametrically, that is they are represented by functions from a set of parameters (in a parametric
  * space, usually a subset of some Euclidean <var>n</var>-dimensional coordinate space) into a coordinate
  * space of some larger dimension. The first few dimensions (up to 3) representing geographic space,
@@ -46,7 +46,7 @@
  * object is a curve, a 2-parameter geometric object is a surface, a 3-parameter geometric object
  * is a solid.</P>
  *
- * <P ALIGN="justify">An <var>n</var>-dimensional coordinate space consists of all <var>n</var>-long arrays
+ * <P>An <var>n</var>-dimensional coordinate space consists of all <var>n</var>-long arrays
  * of numbers; each array represents a point in the space. In particular situations, this may be restricted
  * to a subset of such points, called the extent of validity, usually based on a set of constraints
  * on values of the various offsets within the array. Each point is associated to a spatial or
@@ -54,7 +54,7 @@
  * points. Locations given by such structures are called {@linkplain org.opengis.geometry.DirectPosition
  * direct positions}.</P>
  *
- * <P ALIGN="justify">All locations in a list or array shall use the same coordinate system and
+ * <P>All locations in a list or array shall use the same coordinate system and
  * shall reference reality in a manner representable by continuous functions from the coordinate
  * tuples ({@link org.opengis.geometry.DirectPosition}s) to reality in such a manner that “nearby”
  * coordinates in the {@code DirectPosition}s map to “nearby” positions in reality. The ISO 19107

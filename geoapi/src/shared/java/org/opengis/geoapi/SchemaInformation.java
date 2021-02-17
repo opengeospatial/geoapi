@@ -55,7 +55,7 @@ import org.opengis.annotation.Stereotype;
 
 /**
  * Information about types and properties declared in OGC/ISO schemas. This class requires a connection
- * to <a href="http://standards.iso.org/iso/19115/-3/">http://standards.iso.org/iso/19115/-3/</a>
+ * to <a href="https://standards.iso.org/iso/19115/-3/">https://standards.iso.org/iso/19115/-3/</a>
  * or a local copy of those files.
  *
  * <p><b>Limitations:</b></p>
@@ -76,9 +76,16 @@ import org.opengis.annotation.Stereotype;
  */
 public class SchemaInformation {
     /**
-     * The root of ISO schemas and namespaces, which is {@value}.
+     * The URL from where to download ISO schema. The complete URL is formed by taking a namespace,
+     * replace the {@value #ROOT_NAMESPACE} by this {@value} value, then append {@code ".xsd"} suffix.
      */
-    public static final String ROOT_NAMESPACE = "http://standards.iso.org/iso/";
+    public static final String SCHEMA_ROOT_URL = "https://standards.iso.org/iso/";
+
+    /**
+     * The root of ISO namespaces, which is {@value}. This is identical to {@link #SCHEMA_ROOT_URL}
+     * but with {@code "http"} protocol instead of {@code "https"} for historical reasons.
+     */
+    private static final String ROOT_NAMESPACE = "http://standards.iso.org/iso/";
 
     /**
      * The prefix of XML type names for properties. In ISO/OGC schemas, this prefix does not appear
@@ -112,7 +119,7 @@ public class SchemaInformation {
 
     /**
      * If the computer contains a local copy of ISO schemas, path to that directory. Otherwise {@code null}.
-     * If non-null, the {@value #ROOT_NAMESPACE} prefix in URL will be replaced by that path.
+     * If non-null, the {@value #SCHEMA_ROOT_URL} prefix in URL will be replaced by that path.
      * This field is usually {@code null}, but can be set to a non-null value for making tests faster.
      */
     private final Path schemaRootDirectory;
@@ -130,7 +137,7 @@ public class SchemaInformation {
     private final DocumentBuilderFactory factory;
 
     /**
-     * URL of schemas loaded, for avoiding loading the same schema many time.
+     * URL of schemas loaded, for avoiding loading the same schema many times.
      * The last element on the queue is the schema in process of being loaded,
      * used for resolving relative paths in {@code <xs:include>} elements.
      */
@@ -246,8 +253,8 @@ public class SchemaInformation {
     /**
      * Creates a new verifier. If the computer contains a local copy of ISO schemas, then the {@code schemaRootDirectory}
      * argument can be set to that directory for faster schema loadings. If non-null, that directory should contain the
-     * same files than <a href="http://standards.iso.org/iso/">http://standards.iso.org/iso/</a> (not necessarily with all
-     * sub-directories). In particular, that directory should contain an {@code 19115} sub-directory.
+     * same files than <a href="https://standards.iso.org/iso/">https://standards.iso.org/iso/</a> (not necessarily with
+     * all sub-directories). In particular, that directory should contain an {@code 19115} sub-directory.
      *
      * <p>The {@link Departures#mergedTypes} entries will be {@linkplain Map#remove removed} as they are found.
      * This allows the caller to verify if the map contains any unnecessary departure declarations.</p>
@@ -300,7 +307,7 @@ public class SchemaInformation {
                 "19115/-3/mpc/1.0/mpc.xsd",         // Metadata for portrayal catalog
                 "19115/-3/mdb/1.0/mdb.xsd"})        // Metadata base
         {
-            loadSchema(ROOT_NAMESPACE + p);
+            loadSchema(SCHEMA_ROOT_URL + p);
         }
         /*
          * Hard-coded information from "19115/-3/gco/1.0/gco.xsd". We apply this workaround because current SchemaInformation
@@ -376,8 +383,8 @@ public class SchemaInformation {
     public void loadSchema(String location)
             throws ParserConfigurationException, IOException, SAXException, SchemaException
     {
-        if (schemaRootDirectory != null && location.startsWith(ROOT_NAMESPACE)) {
-            location = schemaRootDirectory.resolve(location.substring(ROOT_NAMESPACE.length())).toUri().toString();
+        if (schemaRootDirectory != null && location.startsWith(SCHEMA_ROOT_URL)) {
+            location = schemaRootDirectory.resolve(location.substring(SCHEMA_ROOT_URL.length())).toUri().toString();
         }
         if (!schemaLocations.contains(location)) {
             if (location.startsWith("http")) {
@@ -581,9 +588,8 @@ public class SchemaInformation {
         if (type.endsWith(suffix)) {
             int nameStart = name.indexOf(PREFIX_SEPARATOR) + 1;        // Skip "mdb:" or similar prefix.
             int typeStart = type.indexOf(PREFIX_SEPARATOR) + 1;
-            final int plg = ABSTRACT_PREFIX.length();
-            if (name.regionMatches(nameStart, ABSTRACT_PREFIX, 0, plg)) nameStart += plg;
-            if (type.regionMatches(typeStart, ABSTRACT_PREFIX, 0, plg)) typeStart += plg;
+            if (name.startsWith(ABSTRACT_PREFIX, nameStart)) nameStart += ABSTRACT_PREFIX.length();
+            if (type.startsWith(ABSTRACT_PREFIX, typeStart)) typeStart += ABSTRACT_PREFIX.length();
             final int length = name.length() - nameStart;
             if (type.length() - typeStart - suffix.length() == length &&
                     type.regionMatches(typeStart, name, nameStart, length))

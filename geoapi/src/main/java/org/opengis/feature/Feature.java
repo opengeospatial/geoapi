@@ -141,7 +141,8 @@ public interface Feature {
      * is empty.</div>
      *
      * @param  name  the property name.
-     * @return the value for the given property, or {@code null} if none.
+     * @return value of the specified property,
+     *         or the {@linkplain AttributeType#getDefaultValue() default value} (which may be {@code null}} if none.
      * @throws PropertyNotFoundException if the given argument is not an attribute or association name of this feature.
      *
      * @see Attribute#getValue()
@@ -155,11 +156,11 @@ public interface Feature {
      * <div class="note"><b>Note on validation</b>:
      * the verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
-     * and offer an other method for performing more extensive validation.
+     * and offer another method for performing more extensive validation.
      * Implementations should document their validation process.</div>
      *
      * @param  name   the property name.
-     * @param  value  the new value for the given property (may be {@code null}).
+     * @param  value  the new value for the specified property (may be {@code null}).
      * @throws PropertyNotFoundException if the given name is not an attribute or association name of this feature.
      * @throws ClassCastException if the value is not assignable to the expected value class.
      * @throws InvalidPropertyValueException if the given value is not valid for a reason other than its type.
@@ -168,4 +169,27 @@ public interface Feature {
      * @see FeatureAssociation#setValue(Feature)
      */
     void setPropertyValue(final String name, final Object value) throws IllegalArgumentException;
+
+    /**
+     * Returns the value for the property of the given name if that property exists, or a fallback value otherwise.
+     * This method is equivalent to the following code, but potentially more efficient when the property does not exist:
+     *
+     * <pre>
+     * try {
+     *     return {@linkplain #getPropertyValue(String) getPropertyValue}(name);
+     * } catch ({@linkplain PropertyNotFoundException} ignore) {
+     *     return missingPropertyFallback
+     * }</pre>
+     *
+     * Note that if a property of the given name exists but has no value, then this method returns
+     * the {@linkplain AttributeType#getDefaultValue() default value} (which may be {@code null}).
+     * <cite>Property without value</cite> is not equivalent to <cite>non-existent property</cite>.
+     *
+     * @param  name  the property name.
+     * @param  missingPropertyFallback  the (potentially {@code null}) value to return
+     *         if no attribute or association of the given name exists.
+     * @return value or default value of the specified property, or {@code missingPropertyFallback}
+     *         if no attribute or association of that name exists. This value may be {@code null}.
+     */
+    Object getValueOrFallback(String name, Object missingPropertyFallback);
 }

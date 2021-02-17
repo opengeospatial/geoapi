@@ -79,7 +79,7 @@ final class ResultEntry {
     /**
      * The base URL of {@code geoapi-conformance} javadoc. The trailing slash is mandatory.
      */
-    private static final String JAVADOC_BASEURL = "http://www.geoapi.org/geoapi-conformance/apidocs/";
+    private static final String JAVADOC_BASEURL = "http://www.geoapi.org/conformance/java/";
 
     /**
      * Typical suffix of test class name. This suffix is not mandatory. But if the suffix

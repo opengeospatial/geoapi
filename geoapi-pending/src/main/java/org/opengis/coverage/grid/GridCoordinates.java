@@ -77,8 +77,8 @@ public interface GridCoordinates {
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.
      * @return the coordinate value at the given dimension.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
-     *         than the {@linkplain #getDimension grid dimension}.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal
+     *         or greater than the {@linkplain #getDimension grid dimension}.
      */
     long getCoordinateValue(int dimension) throws IndexOutOfBoundsException;
 
@@ -87,8 +87,8 @@ public interface GridCoordinates {
      *
      * @param  dimension  the dimension for which to set the coordinate value.
      * @param  value  the new value.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
-     *         than the {@linkplain #getDimension grid dimension}.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal
+     *         or greater than the {@linkplain #getDimension grid dimension}.
      * @throws UnsupportedOperationException if this grid coordinates is not modifiable.
      */
     void setCoordinateValue(int dimension, long value)

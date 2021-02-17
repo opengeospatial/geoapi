@@ -59,7 +59,9 @@ import static org.opengis.test.Assert.*;
 /**
  * Verifies that the software allows correct definition of a user-defined map projection.
  *
- * <table class="gigs" summary="Test description"><tr>
+ * <table class="gigs">
+ * <caption>Test description</caption>
+ * <tr>
  *   <th>Test method:</th>
  *   <td>Create user-defined projection for each of several different map projections.</td>
  * </tr><tr>

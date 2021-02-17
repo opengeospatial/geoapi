@@ -118,21 +118,4 @@ public interface PointArray extends List<Position> {
      * @throws IndexOutOfBoundsException if the index is out of bounds.
      */
     DirectPosition getDirectPosition(int index, DirectPosition dest) throws IndexOutOfBoundsException;
-
-    /**
-     * Sets the point at the given index. The point coordinates will be copied, i.e. changes to the
-     * given {@code position} after this method call will not be reflected into this point array.
-     * Consequently, the same {@code DirectPosition} object can be reused for setting many points in
-     * this array.
-     *
-     * @param index The location in the array, from 0 inclusive to the array
-     *        {@linkplain #length length} exclusive.
-     * @param position The point to set at the given location in this array.
-     * @throws IndexOutOfBoundsException if the index is out of bounds.
-     * @throws UnsupportedOperationException if this array is immutable.
-     *
-     * @see List#set
-     */
-    void setDirectPosition(int index, DirectPosition position)
-            throws IndexOutOfBoundsException, UnsupportedOperationException;
 }

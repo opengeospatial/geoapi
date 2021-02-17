@@ -46,16 +46,22 @@ final class PJMethod extends PJObject implements OperationMethod {
 
     /**
      * Returns the number of source dimensions, which is 2.
+     *
+     * @deprecated This attribute has been removed from ISO 19111:2019.
      */
     @Override
+    @Deprecated
     public Integer getSourceDimensions() {
         return 2;
     }
 
     /**
      * Returns the number of target dimensions, which is 2.
+     *
+     * @deprecated This attribute has been removed from ISO 19111:2019.
      */
     @Override
+    @Deprecated
     public Integer getTargetDimensions() {
         return 2;
     }

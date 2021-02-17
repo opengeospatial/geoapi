@@ -60,7 +60,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * Each test defined in this class performs the following steps:
  *
  * <ul>
- *   <li>{@linkplain #open(String) Opens} a netCDF test file specific to the test method.</li>
+ *   <li>{@linkplain #open(TestData) Opens} a netCDF test file specific to the test method.</li>
  *   <li>{@linkplain #wrap(CoordinateSystem, NetcdfDataset) Wraps} the netCDF coordinate system
  *       in the GeoAPI implementation to be tested.</li>
  *   <li>{@linkplain Validators#validate(CoordinateReferenceSystem) Validates}

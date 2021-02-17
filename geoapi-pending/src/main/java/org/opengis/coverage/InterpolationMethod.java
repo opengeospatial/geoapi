@@ -51,7 +51,7 @@ import static org.opengis.annotation.Specification.*;
  * {@code InterpolationMethod} is a {@code CodeList}, it may be extended in an application
  * schema that specifies additional interpolation methods.
  *
- * <table border="1" cellspacing="0" cellpadding="2">
+ * <table class="ogc">
  *   <caption>Interpolation methods</caption>
  *   <tr><th>Method</th>           <th>Coverage Type</th> <th>Value object dimension</th></tr>
  *   <tr><td>Nearest Neighbour</td><td>Any</td>                             <td>Any</td></tr>

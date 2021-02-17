@@ -17,7 +17,7 @@ import org.opengis.referencing.operation.TransformException;
 
 /**
  * Tests {@link AffineTransform2D} using the
- * <code><a href="http://www.geoapi.org/geoapi-conformance/index.html">geoapi-conformance</a></code>
+ * <code><a href="http://www.geoapi.org/conformance/index.html">geoapi-conformance</a></code>
  * module.
  *
  * @author  Martin Desruisseaux (Geomatys)

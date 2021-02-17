@@ -72,16 +72,16 @@ import org.opengis.metadata.citation.Responsibility;
  *
  * <table class="ogc">
  *   <caption>Report properties</caption>
- *   <tr><th>Key</th>                    <th align="center">Remarks</th>   <th>Meaning</th></tr>
- *   <tr><td>{@code TITLE}</td>          <td align="center">&nbsp;</td>    <td>Title of the web page to produce.</td></tr>
- *   <tr><td>{@code DATE}</td>           <td align="center">automatic</td> <td>Date of report creation.</td></tr>
- *   <tr><td>{@code DESCRIPTION}</td>    <td align="center">optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
- *   <tr><td>{@code OBJECTS.KIND}</td>   <td align="center">&nbsp;</td>    <td>Kind of objects listed in the page (e.g. <cite>"Operation Methods"</cite>).</td></tr>
- *   <tr><td>{@code PRODUCT.NAME}</td>   <td align="center">&nbsp;</td>    <td>Name of the product for which the report is generated.</td></tr>
- *   <tr><td>{@code PRODUCT.VERSION}</td><td align="center">&nbsp;</td>    <td>Version of the product for which the report is generated.</td></tr>
- *   <tr><td>{@code PRODUCT.URL}</td>    <td align="center">&nbsp;</td>    <td>URL where more information is available about the product.</td></tr>
- *   <tr><td>{@code JAVADOC.GEOAPI}</td> <td align="center">predefined</td><td>Base URL of GeoAPI javadoc.</td></tr>
- *   <tr><td>{@code FILENAME}</td>       <td align="center">predefined</td><td>Name of the file to create if the {@link #write(File)} argument is a directory.</td></tr>
+ *   <tr><th>Key</th>                    <th>Remarks</th>   <th>Meaning</th></tr>
+ *   <tr><td>{@code TITLE}</td>          <td></td>          <td>Title of the web page to produce.</td></tr>
+ *   <tr><td>{@code DATE}</td>           <td>automatic</td> <td>Date of report creation.</td></tr>
+ *   <tr><td>{@code DESCRIPTION}</td>    <td>optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
+ *   <tr><td>{@code OBJECTS.KIND}</td>   <td></td>          <td>Kind of objects listed in the page (e.g. <cite>"Operation Methods"</cite>).</td></tr>
+ *   <tr><td>{@code PRODUCT.NAME}</td>   <td></td>          <td>Name of the product for which the report is generated.</td></tr>
+ *   <tr><td>{@code PRODUCT.VERSION}</td><td></td>          <td>Version of the product for which the report is generated.</td></tr>
+ *   <tr><td>{@code PRODUCT.URL}</td>    <td></td>          <td>URL where more information is available about the product.</td></tr>
+ *   <tr><td>{@code JAVADOC.GEOAPI}</td> <td>predefined</td><td>Base URL of GeoAPI javadoc.</td></tr>
+ *   <tr><td>{@code FILENAME}</td>       <td>predefined</td><td>Name of the file to create if the {@link #write(File)} argument is a directory.</td></tr>
  * </table>
  *
  * <p><b>How to use this class:</b></p>

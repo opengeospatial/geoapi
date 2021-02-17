@@ -194,6 +194,7 @@ public enum Specification {
      * <ul>
      *   <li><b>2003:</b> OGC 03-073r1</li>
      *   <li><b>2007:</b> ISO 19111:2007   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2019:</b> ISO 19111:2019
      * </ul>
      *
      * @see #OGC_01009

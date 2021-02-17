@@ -66,7 +66,9 @@ import static org.junit.Assert.*;
  * Each test method in this class instantiate exactly one {@link GeodeticDatum}, but
  * may instantiate an arbitrary amount of {@link GeodeticCRS} using that datum.
  *
- * <table class="gigs" summary="Test description"><tr>
+ * <table class="gigs">
+ * <caption>Test description</caption>
+ * <tr>
  *   <th>Test method:</th>
  *   <td>Create user-defined geodetic datum for each of several different datums.
  *       Create user-defined geodetic CRS for each of several different CRSs.</td>

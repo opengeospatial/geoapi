@@ -7,8 +7,6 @@
          Build development snapshot:    mvn clean install
          Build with Proj.4 tests:       mvn install -DskipNativeLibraryTests=false
          Publish a release:             mvn clean install deploy -Pgeoapi-release
-         Generate web site:             mvn clean install site -Pjdk9
-                                        mvn site:deploy -DdistMgmtWebSiteUrl=file:///path/to/dir/
      ============================================================================================= -->
 
 <project xmlns="http://maven.apache.org/POM/4.0.0"
@@ -21,7 +19,6 @@
 
   <!-- ===========================================================================================
            Project description (license, mailing lists, issues management, etc).
-           Those descriptions appear in the web site published on www.geoapi.org.
        =========================================================================================== -->
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-parent</artifactId>
@@ -110,12 +107,12 @@
     <unit.api.version>1.0</unit.api.version>                    <!-- To be removed after JDK9 profile is default. -->
   </properties>
   <profiles>
+    <!--
+      Build as Java 9 modules (experimental). We provide the module-info.java file in
+      a separated director for avoiding to confuse IDEs, and for making easier to use
+      a different module-info.java file in geoapi-pending.
+    -->
     <profile>
-      <!--
-        Build as Java 9 modules (experimental). We provide the module-info.java file in
-        a separated director for avoiding to confuse IDEs, and for making easier to use
-        a different module-info.java file in geoapi-pending.
-      -->
       <id>jdk9</id>
       <properties>
         <maven.compiler.release>9</maven.compiler.release>
@@ -144,10 +141,10 @@
         </plugins>
       </build>
     </profile>
+    <!--
+      Official release: require signing the JAR files.
+    -->
     <profile>
-      <!--
-        Official release: require signing the JAR files.
-      -->
       <id>geoapi-release</id>
       <build>
         <plugins>
@@ -244,8 +241,7 @@
 
   <!-- ===========================================================================================
            The plugin management section declares the version numbers of all plugins
-           needed for building GeoAPI and associated documentation,  except web site
-           generation which has its own section (see <reporting>). Configuration for
+           needed for building GeoAPI and associated documentation. Configuration for
            each plugin appear after <pluginManagement> section.
        =========================================================================================== -->
   <build>
@@ -264,7 +260,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.1.2</version>
+          <version>3.2.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -279,7 +275,7 @@
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
-          <version>3.1.0</version>
+          <version>3.2.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
@@ -292,14 +288,14 @@
           <version>3.0.0-M1</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-site-plugin</artifactId>
-          <version>3.8.2</version>
-        </plugin>
-        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>3.0.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.codehaus.mojo</groupId>
+          <artifactId>exec-maven-plugin</artifactId>
+          <version>1.6.0</version>
         </plugin>
         <plugin>
           <groupId>org.asciidoctor</groupId>
@@ -324,7 +320,7 @@
             <configuration>
               <rules>
                 <requireJavaVersion>
-                  <version>10</version>
+                  <version>13</version>
                 </requireJavaVersion>
                 <dependencyConvergence/>
               </rules>
@@ -366,7 +362,7 @@
           <showDeprecation>true</showDeprecation>
           <compilerArgs>
             <arg>-Xlint:all</arg>
-            <arg>-Xdoclint:syntax,missing,accessibility</arg>
+            <arg>-Xdoclint:all,-reference</arg>
             <arg>--doclint-format</arg> <arg>html5</arg>
           </compilerArgs>
           <excludes>
@@ -466,71 +462,12 @@
       </plugin>
 
 
-
-      <!-- =========================================================================================
-               Web site generation and deployment
-           ========================================================================================= -->
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <configuration>
-          <locales>en</locales>
-          <inputEncoding>${project.build.sourceEncoding}</inputEncoding>
-          <outputEncoding>${website.encoding}</outputEncoding>
-        </configuration>
-        <dependencies>
-          <dependency>
-            <groupId>org.apache.maven.wagon</groupId>
-            <artifactId>wagon-ssh</artifactId>
-            <version>3.3.3</version>
-          </dependency>
-        </dependencies>
-      </plugin>
-    </plugins>
-  </build>
-
-
-
-  <!-- ===================================================================================================
-         Reports configuration.
-       =================================================================================================== -->
-  <reporting>
-    <plugins>
-      <plugin>
-        <artifactId>maven-project-info-reports-plugin</artifactId>
-        <version>3.0.0</version>
-        <reportSets>
-          <reportSet>
-            <reports>
-              <report>index</report>
-              <report>summary</report>
-              <report>modules</report>
-              <report>licenses</report>
-              <report>scm</report>
-              <report>ci-management</report>
-              <report>mailing-lists</report>
-              <report>issue-management</report>
-            </reports>
-          </reportSet>
-        </reportSets>
-      </plugin>
-
-
-
-      <!-- =========================================================================================
+      <!-- ============================================================================================
                Javadoc generation
-           ========================================================================================= -->
+           ============================================================================================ -->
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
         <version>3.1.1</version>
-        <reportSets>
-          <reportSet>
-            <id>default</id>
-            <reports>
-              <report>javadoc-no-fork</report>
-            </reports>
-          </reportSet>
-        </reportSets>
         <configuration>
           <top>
             <!-- Remove this notice for the final GeoAPI release! -->
@@ -608,34 +545,8 @@
           </links>
         </configuration>
       </plugin>
-
-
-
-      <!-- =======================================================================================
-               TODO tags
-           ======================================================================================= -->
-      <plugin>
-        <groupId>org.codehaus.mojo</groupId>
-        <artifactId>taglist-maven-plugin</artifactId>
-        <version>2.4</version>
-        <configuration>
-          <tagListOptions>
-            <tagClasses>
-              <tagClass>
-                <displayName>TODO</displayName>
-                <tags>
-                  <tag>
-                    <matchString>@todo</matchString>
-                    <matchType>ignoreCase</matchType>
-                  </tag>
-                </tags>
-              </tagClass>
-            </tagClasses>
-          </tagListOptions>
-        </configuration>
-      </plugin>
     </plugins>
-  </reporting>
+  </build>
 
 
 
@@ -648,11 +559,6 @@
       <name>GeoAPI snapshots</name>
       <url>${distMgmtSnapshotsUrl}</url>
     </repository>
-    <site>
-      <id>geoapi</id>
-      <name>GeoAPI web site</name>
-      <url>${distMgmtWebSiteUrl}</url>
-    </site>
   </distributionManagement>
 
 

@@ -1,6 +1,6 @@
 The 'geoapi-conformance.zip' file contains the geoapi-conformance module
 together with all its dependencies and some demonstration JAR files. See
-http://www.geoapi.org/geoapi-conformance/index.html for more information.
+http://www.geoapi.org/conformance/index.html for more information.
 
 The '*.pack.gz' file is encoded in the Pack200 format and need to be
 uncompressed before use. This bundle file include all of the following:

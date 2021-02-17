@@ -107,8 +107,10 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * the {@code values} argument. This list is used for {@code values()}
      * method implementations.
      *
-     * @param name    the code name.
-     * @param values  the collection to add the element to.
+     * @param  name    the code name.
+     * @param  values  the collection to add the element to.
+     * @throws IllegalArgumentException if {@code values} is not the same collection
+     *         than the one specified for previous instances of the same code list class.
      */
     @SuppressWarnings({"unchecked","rawtypes"})
     protected CodeList(String name, final Collection<E> values) {
@@ -116,15 +118,17 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
         synchronized (values) {
             this.ordinal = values.size();
             if (!values.add((E) this)) {
+                // Should not happen with standard collection implementations.
                 throw new IllegalArgumentException("Duplicated value: " + name);
             }
         }
         final Class<? extends CodeList<?>> codeType = (Class<? extends CodeList<?>>) getClass();
+        final Collection<? extends CodeList<?>> previous;
         synchronized (VALUES) {
-            final Collection<? extends CodeList<?>> previous = VALUES.putIfAbsent(codeType, values);
-            if (previous != null && previous != values) {
-                throw new IllegalArgumentException("List already exists: " + values);
-            }
+            previous = VALUES.putIfAbsent(codeType, values);
+        }
+        if (previous != null && previous != values) {
+            throw new IllegalArgumentException("List already exists: " + values);
         }
     }
 
@@ -474,8 +478,8 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
     }
 
     /*
-     * Do not define 'equals' and 'hashCode'. The identity comparison is consistent with the above
-     * 'compareTo' method because there is no two CodeLists of the same class having the same ordinal value.
+     * Do not define `equals(Object)` and `hashCode()`. The identity comparison is consistent with above
+     * `compareTo(E)` method because there is no two CodeLists of the same class having the same ordinal value.
      */
 
     /**

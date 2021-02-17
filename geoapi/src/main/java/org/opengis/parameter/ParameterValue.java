@@ -125,7 +125,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
 
     /**
      * Returns the numeric value of this operation parameter.
-     * The units of measurement are specified by {@link #getUnit()}.
+     * The unit of measurement is specified by {@link #getUnit()}.
      *
      * @return the numeric value represented by this parameter after conversion to type {@code double}.
      * @throws InvalidParameterTypeException if the value is not a numeric type.

@@ -642,8 +642,11 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
         /**
          * Returns the number of {@linkplain MathTransform#getSourceDimensions() source dimensions}
          * of the math transform.
+         *
+         * @deprecated This attribute has been removed from ISO 19111:2019.
          */
         @Override
+        @Deprecated
         public Integer getSourceDimensions() {
             return NetcdfProjection.this.getSourceDimensions();
         }
@@ -651,8 +654,11 @@ public class NetcdfProjection extends NetcdfIdentifiedObject
         /**
          * Returns the number of {@linkplain MathTransform#getTargetDimensions() target dimensions}
          * of the math transform.
+         *
+         * @deprecated This attribute has been removed from ISO 19111:2019.
          */
         @Override
+        @Deprecated
         public Integer getTargetDimensions() {
             return NetcdfProjection.this.getTargetDimensions();
         }

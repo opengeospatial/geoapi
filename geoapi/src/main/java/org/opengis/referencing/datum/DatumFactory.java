@@ -74,7 +74,7 @@ public interface DatumFactory extends ObjectFactory {
             throws FactoryException;
 
     /**
-     * Creates geodetic datum from ellipsoid and (optionally) Bursa-Wolf parameters.
+     * Creates geodetic datum from ellipsoid and prime meridian.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.

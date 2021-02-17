@@ -377,8 +377,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Initializes the tolerance thresholds to their default values if the users did not
-     * specified his own thresholds.
+     * Initializes the tolerance thresholds to their default values if the user did not
+     * specified her/his own thresholds.
      */
     final void setTolerance(final ToleranceModifier modifier) {
         if (toleranceModifier == null) {
@@ -440,24 +440,32 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                      <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                <td>6377397.155 m</td></tr>
-     * <tr><td>semi-minor axis</td>                <td>6356078.962818189 m</td></tr>
-     * <tr><td>Latitude of natural origin</td>     <td>0.0°</td></tr>
-     * <tr><td>Longitude of natural origin</td>    <td>110.0°</td></tr>
-     * <tr><td>Scale factor at natural origin</td> <td>0.997</td></tr>
-     * <tr><td>False easting</td>                  <td>3900000.0 m</td></tr>
-     * <tr><td>False northing</td>                 <td>900000.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
-     * <tr align="right"><td>110°E<br>0°N</td> <td>3900000.00 m<br>900000.00 m</td></tr>
-     * <tr align="right"><td>120°E<br>3°S</td> <td>5009726.58 m<br>569150.82 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                      <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                <td>6377397.155 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                <td>6356078.962818189 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>     <td>0.0°</td></tr>
+     *     <tr><td>Longitude of natural origin</td>    <td>110.0°</td></tr>
+     *     <tr><td>Scale factor at natural origin</td> <td>0.997</td></tr>
+     *     <tr><td>False easting</td>                  <td>3900000.0 m</td></tr>
+     *     <tr><td>False northing</td>                 <td>900000.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>110°E<br>0°N</td>
+     *       <td>3900000.00 m<br>900000.00 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>120°E<br>3°S</td>
+     *       <td>5009726.58 m<br>569150.82 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -483,23 +491,31 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                         <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                   <td>6378245.0 m</td></tr>
-     * <tr><td>semi-minor axis</td>                   <td>6356863.018773047 m</td></tr>
-     * <tr><td>Latitude of 1st standard parallel</td> <td>42.0°</td></tr>
-     * <tr><td>Longitude of natural origin</td>       <td>51.0°</td></tr>
-     * <tr><td>False easting</td>                     <td>0.0 m</td></tr>
-     * <tr><td>False northing</td>                    <td>0.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
-     * <tr align="right"><td>51°E<br>0°N</td>  <td>0.00 m<br>0.00 m</td></tr>
-     * <tr align="right"><td>53°E<br>53°N</td> <td>165704.29 m<br>5171848.07 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                         <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                   <td>6378245.0 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                   <td>6356863.018773047 m</td></tr>
+     *     <tr><td>Latitude of 1st standard parallel</td> <td>42.0°</td></tr>
+     *     <tr><td>Longitude of natural origin</td>       <td>51.0°</td></tr>
+     *     <tr><td>False easting</td>                     <td>0.0 m</td></tr>
+     *     <tr><td>False northing</td>                    <td>0.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>51°E<br>0°N</td>
+     *       <td>0.00 m<br>0.00 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>53°E<br>53°N</td>
+     *       <td>165704.29 m<br>5171848.07 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -527,24 +543,31 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Note that this is similar to {@link #testMercator2SP()}, except that the
      * <cite>"latitude of false origin"</cite> parameter is set to 42°N.</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                         <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                   <td>6378245.0 m</td></tr>
-     * <tr><td>semi-minor axis</td>                   <td>6356863.018773047 m</td></tr>
-     * <tr><td>Latitude of 1st standard parallel</td> <td>42.0°</td></tr>
-     * <tr><td>Longitude of natural origin</td>       <td>51.0°</td></tr>
-     * <tr><td>Latitude of false origin</td>          <td>42.0°</td></tr>
-     * <tr><td>Easting at false origin</td>           <td>0.0 m</td></tr>
-     * <tr><td>Northing at false origin</td>          <td>0.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
-     * <tr align="right"><td>51°E<br>42°N</td> <td>0.00 m<br>0.00 m</td></tr>
-     * <tr align="right"><td>53°E<br>53°N</td> <td>165704.29 m<br>1351950.22 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                         <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                   <td>6378245.0 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                   <td>6356863.018773047 m</td></tr>
+     *     <tr><td>Latitude of 1st standard parallel</td> <td>42.0°</td></tr>
+     *     <tr><td>Longitude of natural origin</td>       <td>51.0°</td></tr>
+     *     <tr><td>Latitude of false origin</td>          <td>42.0°</td></tr>
+     *     <tr><td>Easting at false origin</td>           <td>0.0 m</td></tr>
+     *     <tr><td>Northing at false origin</td>          <td>0.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>51°E<br>42°N</td>
+     *       <td>0.00 m<br>0.00 m</td>
+     *     </tr><tr class="coordinates"><td>53°E<br>53°N</td>
+     *       <td>165704.29 m<br>1351950.22 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -587,23 +610,30 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Note that the sample point is the same than for {@link #testPseudoMercator()},
      * but with a different result in projected coordinates.</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                         <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                   <td>6371007.0 m</td></tr>
-     * <tr><td>semi-minor axis</td>                   <td>6371007.0 m</td></tr>
-     * <tr><td>Longitude of natural origin</td>       <td>0.0°</td></tr>
-     * <tr><td>False easting</td>                     <td>0.0 m</td></tr>
-     * <tr><td>False northing</td>                    <td>0.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
-     * <tr align="right"><td>0°E<br>0°N</td> <td>0.00 m<br>0.00 m</td></tr>
-     * <tr align="right"><td>100°20'00.000"W<br>24°22'54.433"N</td>
-     * <td>-11156569.90 m<br>2796869.94 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                   <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>             <td>6371007.0 m</td></tr>
+     *     <tr><td>semi-minor axis</td>             <td>6371007.0 m</td></tr>
+     *     <tr><td>Longitude of natural origin</td> <td>0.0°</td></tr>
+     *     <tr><td>False easting</td>               <td>0.0 m</td></tr>
+     *     <tr><td>False northing</td>              <td>0.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>0°E<br>0°N</td>
+     *       <td>0.00 m<br>0.00 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>100°20'00.000"W<br>24°22'54.433"N</td>
+     *       <td>-11156569.90 m<br>2796869.94 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -633,24 +663,31 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                   <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>             <td>6378137.0 m</td></tr>
-     * <tr><td>semi-minor axis</td>             <td>6356752.314247833 m</td></tr>
-     * <tr><td>Latitude of natural origin</td>  <td>0.0°</td></tr>
-     * <tr><td>Longitude of natural origin</td> <td>0.0°</td></tr>
-     * <tr><td>False easting</td>               <td>0.0 m</td></tr>
-     * <tr><td>False northing</td>              <td>0.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
-     * <tr align="right"><td>0°E<br>0°N</td> <td>0.00 m<br>0.00 m</td></tr>
-     * <tr align="right"><td>100°20'00.000"W<br>24°22'54.433"N</td>
-     * <td>-11169055.58 m<br>2800000.00 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                   <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>             <td>6378137.0 m</td></tr>
+     *     <tr><td>semi-minor axis</td>             <td>6356752.314247833 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>  <td>0.0°</td></tr>
+     *     <tr><td>Longitude of natural origin</td> <td>0.0°</td></tr>
+     *     <tr><td>False easting</td>               <td>0.0 m</td></tr>
+     *     <tr><td>False northing</td>              <td>0.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>0°E<br>0°N</td>
+     *       <td>0.00 m<br>0.00 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>100°20'00.000"W<br>24°22'54.433"N</td>
+     *       <td>-11169055.58 m<br>2800000.00 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -676,27 +713,33 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>           <th>Value</th></tr>
-     * <tr><td>semi_major</td>          <td>6378137.0 m</td></tr>
-     * <tr><td>semi_minor</td>          <td>6378137.0 m</td></tr>
-     * <tr><td>central_meridian</td>    <td>0.0°</td></tr>
-     * <tr><td>false_easting</td>       <td>0.0 m</td></tr>
-     * <tr><td>false_northing</td>      <td>0.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>                        <th>Expected results</th></tr>
-     * <tr align="right"><td>0°E<br>0°N</td>                <td>0.00 m<br>0.00 m</td></tr>
-     * <tr align="right"><td>2.478917°E<br>48.805639°N</td> <td>275951.78 m<br>5910061.78 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>        <th>Value</th></tr>
+     *     <tr><td>semi_major</td>       <td>6378137.0 m</td></tr>
+     *     <tr><td>semi_minor</td>       <td>6378137.0 m</td></tr>
+     *     <tr><td>central_meridian</td> <td>0.0°</td></tr>
+     *     <tr><td>false_easting</td>    <td>0.0 m</td></tr>
+     *     <tr><td>false_northing</td>   <td>0.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>0°E<br>0°N</td>
+     *       <td>0.00 m<br>0.00 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>2.478917°E<br>48.805639°N</td>
+     *       <td>275951.78 m<br>5910061.78 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
-     *
-     * @see AuthorityFactoryTest#testIGNF_MILLER()
      */
     @Test
     public void testMiller() throws FactoryException, TransformException {
@@ -717,27 +760,34 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                         <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                   <td>6377298.556 m</td></tr>
-     * <tr><td>semi-minor axis</td>                   <td>6356097.550300896 m</td></tr>
-     * <tr><td>Latitude of projection centre</td>     <td>4.0°</td></tr>
-     * <tr><td>Longitude of projection centre</td>    <td>109.6855202029758°</td></tr>
-     * <tr><td>Azimuth of initial line</td>           <td>53.31582047222222°</td></tr>
-     * <tr><td>Angle from Rectified to Skew Grid</td> <td>53.13010236111111°</td></tr>
-     * <tr><td>Scale factor on initial line</td>      <td>0.99984</td></tr>
-     * <tr><td>Easting at projection centre</td>      <td>590476.87 m</td></tr>
-     * <tr><td>Northing at projection centre</td>     <td>442857.65 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
-     * <tr align="right"><td>115°E<br>4°N</td> <td>590476.87 m<br>442857.65 m</td></tr>
-     * <tr align="right"><td>115°48'19.8196"E<br>5°23'14.1129"N</td>
-     * <td>679245.73 m<br>596562.78 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                         <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                   <td>6377298.556 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                   <td>6356097.550300896 m</td></tr>
+     *     <tr><td>Latitude of projection centre</td>     <td>4.0°</td></tr>
+     *     <tr><td>Longitude of projection centre</td>    <td>109.6855202029758°</td></tr>
+     *     <tr><td>Azimuth of initial line</td>           <td>53.31582047222222°</td></tr>
+     *     <tr><td>Angle from Rectified to Skew Grid</td> <td>53.13010236111111°</td></tr>
+     *     <tr><td>Scale factor on initial line</td>      <td>0.99984</td></tr>
+     *     <tr><td>Easting at projection centre</td>      <td>590476.87 m</td></tr>
+     *     <tr><td>Northing at projection centre</td>     <td>442857.65 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>115°E<br>4°N</td>
+     *       <td>590476.87 m<br>442857.65 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>115°48'19.8196"E<br>5°23'14.1129"N</td>
+     *       <td>679245.73 m<br>596562.78 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -763,24 +813,32 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                      <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                <td>6377563.396 m</td></tr>
-     * <tr><td>semi-minor axis</td>                <td>6356256.908909849 m</td></tr>
-     * <tr><td>Latitude of natural origin</td>     <td>49.0°</td></tr>
-     * <tr><td>Longitude of natural origin</td>    <td>-2.0°</td></tr>
-     * <tr><td>Scale factor at natural origin</td> <td>0.9996012717</td></tr>
-     * <tr><td>False easting</td>                  <td>400000.0 m</td></tr>
-     * <tr><td>False northing</td>                 <td>-100000.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>                 <th>Expected results</th></tr>
-     * <tr align="right"><td>2°W<br>49°N</td>        <td>400000.00 m<br>-100000.00 m</td></tr>
-     * <tr align="right"><td>00°30'E<br>50°30'N</td> <td>577274.98 m<br>69740.49 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                      <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                <td>6377563.396 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                <td>6356256.908909849 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>     <td>49.0°</td></tr>
+     *     <tr><td>Longitude of natural origin</td>    <td>-2.0°</td></tr>
+     *     <tr><td>Scale factor at natural origin</td> <td>0.9996012717</td></tr>
+     *     <tr><td>False easting</td>                  <td>400000.0 m</td></tr>
+     *     <tr><td>False northing</td>                 <td>-100000.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>2°W<br>49°N</td>
+     *       <td>400000.00 m<br>-100000.00 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>00°30'E<br>50°30'N</td>
+     *       <td>577274.98 m<br>69740.49 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -806,24 +864,32 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                      <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                <td>6378137.0 m</td></tr>
-     * <tr><td>semi-minor axis</td>                <td>6356752.314247833 m</td></tr>
-     * <tr><td>Latitude of natural origin</td>     <td>0°</td></tr>
-     * <tr><td>Longitude of natural origin</td>    <td>29°</td></tr>
-     * <tr><td>Scale factor at natural origin</td> <td>1</td></tr>
-     * <tr><td>False easting</td>                  <td>0 m</td></tr>
-     * <tr><td>False northing</td>                 <td>0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>                 <th>Expected results</th></tr>
-     * <tr align="right"><td>20°E<br>0°S</td>        <td>0 m<br>0 m</td></tr>
-     * <tr align="right"><td>28°16'57.479"E<br>25°43'55.302"S</td> <td>71984.48 m<br>2847342.74 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                      <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                <td>6378137.0 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                <td>6356752.314247833 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>     <td>0°</td></tr>
+     *     <tr><td>Longitude of natural origin</td>    <td>29°</td></tr>
+     *     <tr><td>Scale factor at natural origin</td> <td>1</td></tr>
+     *     <tr><td>False easting</td>                  <td>0 m</td></tr>
+     *     <tr><td>False northing</td>                 <td>0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>20°E<br>0°S</td>
+     *       <td>0 m<br>0 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>28°16'57.479"E<br>25°43'55.302"S</td>
+     *       <td>71984.48 m<br>2847342.74 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -867,25 +933,32 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                   <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>             <td>6378350.8704 m</td></tr>
-     * <tr><td>semi-minor axis</td>             <td>6356675.0184 m</td></tr>
-     * <tr><td>Latitude of natural origin</td>  <td>10.441666666666666°</td></tr>
-     * <tr><td>Longitude of natural origin</td> <td>-61.33333333333333°</td></tr>
-     * <tr><td>False easting</td>               <td>86501.46392052001 m</td></tr>
-     * <tr><td>False northing</td>              <td>65379.0134283 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>                       <th>Expected results</th></tr>
-     * <tr align="right"><td>61°20'00"W<br>10°26'30"N</td> <td>430000.00 links<br>325000.00 links</td></tr>
-     * <tr align="right"><td>60°00'00"W<br>10°00'00"N</td> <td>66644.94 links<br>82536.22 links</td></tr>
-     * </table>
-     * <p align="right">1 link = 0.66 feet<br>1 feet = 0.3048 metre</p>
-     * </td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                   <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>             <td>6378350.8704 m</td></tr>
+     *     <tr><td>semi-minor axis</td>             <td>6356675.0184 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>  <td>10.441666666666666°</td></tr>
+     *     <tr><td>Longitude of natural origin</td> <td>-61.33333333333333°</td></tr>
+     *     <tr><td>False easting</td>               <td>86501.46392052001 m</td></tr>
+     *     <tr><td>False northing</td>              <td>65379.0134283 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>61°20'00"W<br>10°26'30"N</td>
+     *       <td>430000.00 links<br>325000.00 links</td>
+     *     </tr><tr class="coordinates">
+     *       <td>60°00'00"W<br>10°00'00"N</td>
+     *       <td>66644.94 links<br>82536.22 links</td>
+     *     </tr>
+     *   </table>
+     *   <p class="right-note">1 link = 0.66 feet<br>1 feet = 0.3048 metre</p>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -902,6 +975,57 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
+     * Tests the <cite>"Hyperbolic Cassini-Soldner"</cite> (EPSG:9833) projection method.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                   <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>             <td>6378306.3696 m</td></tr>
+     *     <tr><td>semi-minor axis</td>             <td>6356571.9960 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>  <td>-16.25°</td></tr>
+     *     <tr><td>Longitude of natural origin</td> <td>179.33333333333333°</td></tr>
+     *     <tr><td>False easting</td>               <td>251727.9155424 m</td></tr>
+     *     <tr><td>False northing</td>              <td>334519.9537680 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>16°15'00"S<br>179°20'00"E</td>
+     *       <td>41251331.8 links<br>1662888.5 links</td>
+     *     </tr><tr class="coordinates">
+     *       <td>179°59′39.6115″E<br>16°50′29.2435″S</td>
+     *       <td>1601528.90 links<br>1336966.01 links</td>
+     *     </tr>
+     *   </table>
+     *   <p class="right-note">1 link = 0.66 feet<br>1 feet = 0.3048 metre</p>
+     * </div>
+     *
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
+     *
+     * @see AuthorityFactoryTest#testEPSG_3139()
+     */
+    @Test
+    public void testHyperbolicCassiniSoldner() throws FactoryException, TransformException {
+        description = "Vanua Levu 1915 / Vanua Levu Grid";
+        final SamplePoints sample = SamplePoints.forCRS(3139);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
+    }
+
+    /**
      * Tests the <cite>"Lambert Conic Conformal (1SP)"</cite> (EPSG:9801) projection method.
      * First, this method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
@@ -911,25 +1035,32 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                       <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                 <td>6378206.4 m</td></tr>
-     * <tr><td>semi-minor axis</td>                 <td>6356583.8 m</td></tr>
-     * <tr><td>Latitude of natural origin</td>      <td>18.0°</td></tr>
-     * <tr><td>Longitude of natural origin</td>     <td>-77.0°</td></tr>
-     * <tr><td>Scale factor at natural origin</td>  <td>1.0</td></tr>
-     * <tr><td>False easting</td>                   <td>250000.0 m</td></tr>
-     * <tr><td>False northing</td>                  <td>150000.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
-     * <tr align="right"><td>77°W<br>18°N</td> <td>250000.00 m<br>150000.00 m</td></tr>
-     * <tr align="right"><td>76°56'37.26"W<br>17°55'55.80"N</td>
-     * <td>255966.58 m<br>142493.51 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                      <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                <td>6378206.4 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                <td>6356583.8 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>     <td>18.0°</td></tr>
+     *     <tr><td>Longitude of natural origin</td>    <td>-77.0°</td></tr>
+     *     <tr><td>Scale factor at natural origin</td> <td>1.0</td></tr>
+     *     <tr><td>False easting</td>                  <td>250000.0 m</td></tr>
+     *     <tr><td>False northing</td>                 <td>150000.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>77°W<br>18°N</td>
+     *       <td>250000.00 m<br>150000.00 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>76°56'37.26"W<br>17°55'55.80"N</td>
+     *       <td>255966.58 m<br>142493.51 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -955,27 +1086,34 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                         <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                   <td>6378206.4 m</td></tr>
-     * <tr><td>semi-minor axis</td>                   <td>6356583.8 m</td></tr>
-     * <tr><td>Latitude of false origin</td>          <td>27.833333333333333°</td></tr>
-     * <tr><td>Longitude of false origin</td>         <td>-99.0°</td></tr>
-     * <tr><td>Latitude of 1st standard parallel</td> <td>28.383333333333333°</td></tr>
-     * <tr><td>Latitude of 2nd standard parallel</td> <td>30.283333333333333°</td></tr>
-     * <tr><td>Easting at false origin</td>           <td>609601.2192024385 m</td></tr>
-     * <tr><td>Northing at false origin</td>          <td>0.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>                 <th>Expected results</th></tr>
-     * <tr align="right"><td>99°00'W<br>27°30'N</td> <td>2000000.00 US feet<br>0 US feet</td></tr>
-     * <tr align="right"><td>96°00'W<br>28°30'N</td> <td>2963503.91 US feet<br>254759.80 US feet</td></tr>
-     * </table>
-     * <p align="right">1 metre = 3.2808333… US feet</p>
-     * </td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                         <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                   <td>6378206.4 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                   <td>6356583.8 m</td></tr>
+     *     <tr><td>Latitude of false origin</td>          <td>27.833333333333333°</td></tr>
+     *     <tr><td>Longitude of false origin</td>         <td>-99.0°</td></tr>
+     *     <tr><td>Latitude of 1st standard parallel</td> <td>28.383333333333333°</td></tr>
+     *     <tr><td>Latitude of 2nd standard parallel</td> <td>30.283333333333333°</td></tr>
+     *     <tr><td>Easting at false origin</td>           <td>609601.2192024385 m</td></tr>
+     *     <tr><td>Northing at false origin</td>          <td>0.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>99°00'W<br>27°30'N</td>
+     *        <td>2000000.00 US feet<br>0 US feet</td>
+     *     </tr><tr class="coordinates">
+     *       <td>96°00'W<br>28°30'N</td>
+     *       <td>2963503.91 US feet<br>254759.80 US feet</td>
+     *     </tr>
+     *   </table>
+     *   <p class="right-note">1 metre = 3.2808333… US feet</p>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -1001,25 +1139,33 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                         <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                   <td>6378388.0 m</td></tr>
-     * <tr><td>semi-minor axis</td>                   <td>6356911.9461279465 m</td></tr>
-     * <tr><td>Latitude of false origin</td>          <td>90.0°</td></tr>
-     * <tr><td>Longitude of false origin</td>         <td>4.356939722222222°</td></tr>
-     * <tr><td>Latitude of 1st standard parallel</td> <td>49.83333333333333°</td></tr>
-     * <tr><td>Latitude of 2nd standard parallel</td> <td>51.16666666666667°</td></tr>
-     * <tr><td>Easting at false origin</td>           <td>150000.01256 m</td></tr>
-     * <tr><td>Northing at false origin</td>          <td>5400088.4378 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>                              <th>Expected results</th></tr>
-     * <tr align="right"><td>4°21'24.983"E<br>90°00'00.000"N</td> <td>150000.01 m<br>5400088.44 m</td></tr>
-     * <tr align="right"><td>5°48'26.533"E<br>50°40'46.461"N</td> <td>251763.20 m<br>153034.13 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                         <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                   <td>6378388.0 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                   <td>6356911.9461279465 m</td></tr>
+     *     <tr><td>Latitude of false origin</td>          <td>90.0°</td></tr>
+     *     <tr><td>Longitude of false origin</td>         <td>4.356939722222222°</td></tr>
+     *     <tr><td>Latitude of 1st standard parallel</td> <td>49.83333333333333°</td></tr>
+     *     <tr><td>Latitude of 2nd standard parallel</td> <td>51.16666666666667°</td></tr>
+     *     <tr><td>Easting at false origin</td>           <td>150000.01256 m</td></tr>
+     *     <tr><td>Northing at false origin</td>          <td>5400088.4378 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>4°21'24.983"E<br>90°00'00.000"N</td>
+     *       <td>150000.01 m<br>5400088.44 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>5°48'26.533"E<br>50°40'46.461"N</td>
+     *       <td>251763.20 m<br>153034.13 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -1045,27 +1191,34 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                         <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                   <td>6378206.4 m</td></tr>
-     * <tr><td>semi-minor axis</td>                   <td>6356583.8 m</td></tr>
-     * <tr><td>Latitude of false origin</td>          <td>43.316666666666667°</td></tr>
-     * <tr><td>Longitude of false origin</td>         <td>-84.333333333333333°</td></tr>
-     * <tr><td>Latitude of 1st standard parallel</td> <td>44.183333333333333°</td></tr>
-     * <tr><td>Latitude of 2nd standard parallel</td> <td>45.7°</td></tr>
-     * <tr><td>Easting at false origin</td>           <td>609601.2192024385 m</td></tr>
-     * <tr><td>Northing at false origin</td>          <td>0.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>                 <th>Expected results</th></tr>
-     * <tr align="right"><td>84°20'W<br>43°19'N</td> <td>2000000.00 US feet<br>0 US feet</td></tr>
-     * <tr align="right"><td>83°10"W<br>43°45'N</td> <td>2308335.75 US feet<br>160210.48 US feet</td></tr>
-     * </table>
-     * <p align="right">1 metre = 3.2808333… US feet</p>
-     * </td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                         <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                   <td>6378206.4 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                   <td>6356583.8 m</td></tr>
+     *     <tr><td>Latitude of false origin</td>          <td>43.316666666666667°</td></tr>
+     *     <tr><td>Longitude of false origin</td>         <td>-84.333333333333333°</td></tr>
+     *     <tr><td>Latitude of 1st standard parallel</td> <td>44.183333333333333°</td></tr>
+     *     <tr><td>Latitude of 2nd standard parallel</td> <td>45.7°</td></tr>
+     *     <tr><td>Easting at false origin</td>           <td>609601.2192024385 m</td></tr>
+     *     <tr><td>Northing at false origin</td>          <td>0.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>84°20'W<br>43°19'N</td>
+     *       <td>2000000.00 US feet<br>0 US feet</td>
+     *     </tr><tr class="coordinates">
+     *       <td>83°10"W<br>43°45'N</td>
+     *       <td>2308335.75 US feet<br>160210.48 US feet</td>
+     *     </tr>
+     *   </table>
+     *   <p class="right-note">1 metre = 3.2808333… US feet</p>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -1089,23 +1242,31 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                   <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>             <td>6378137.0 m</td></tr>
-     * <tr><td>semi-minor axis</td>             <td>6356752.314140284 m</td></tr>
-     * <tr><td>Latitude of natural origin</td>  <td>52.0°</td></tr>
-     * <tr><td>Longitude of natural origin</td> <td>10.0°</td></tr>
-     * <tr><td>False easting</td>               <td>4321000.0 m</td></tr>
-     * <tr><td>False northing</td>              <td>3210000.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
-     * <tr align="right"><td>10°E<br>52°N</td> <td>4321000.00 m<br>3210000.00 m</td></tr>
-     * <tr align="right"><td>5°E<br>50°N</td>  <td>3962799.45 m<br>2999718.85 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                   <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>             <td>6378137.0 m</td></tr>
+     *     <tr><td>semi-minor axis</td>             <td>6356752.314140284 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>  <td>52.0°</td></tr>
+     *     <tr><td>Longitude of natural origin</td> <td>10.0°</td></tr>
+     *     <tr><td>False easting</td>               <td>4321000.0 m</td></tr>
+     *     <tr><td>False northing</td>              <td>3210000.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>10°E<br>52°N</td>
+     *       <td>4321000.00 m<br>3210000.00 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>5°E<br>50°N</td>
+     *       <td>3962799.45 m<br>2999718.85 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -1131,24 +1292,32 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                      <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                <td>6378137.0 m</td></tr>
-     * <tr><td>semi-minor axis</td>                <td>6356752.314247833 m</td></tr>
-     * <tr><td>Latitude of natural origin</td>     <td>90.0°</td></tr>
-     * <tr><td>Longitude of natural origin</td>    <td>0.0°</td></tr>
-     * <tr><td>Scale factor at natural origin</td> <td>0.994</td></tr>
-     * <tr><td>False easting</td>                  <td>2000000.0 m</td></tr>
-     * <tr><td>False northing</td>                 <td>2000000.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>           <th>Expected results</th></tr>
-     * <tr align="right"><td>0°E<br>90°N</td>  <td>2000000.00 m<br>2000000.00 m</td></tr>
-     * <tr align="right"><td>44°E<br>73°N</td> <td>3320416.75 m<br>632668.43 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                      <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                <td>6378137.0 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                <td>6356752.314247833 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>     <td>90.0°</td></tr>
+     *     <tr><td>Longitude of natural origin</td>    <td>0.0°</td></tr>
+     *     <tr><td>Scale factor at natural origin</td> <td>0.994</td></tr>
+     *     <tr><td>False easting</td>                  <td>2000000.0 m</td></tr>
+     *     <tr><td>False northing</td>                 <td>2000000.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>0°E<br>90°N</td>
+     *       <td>2000000.00 m<br>2000000.00 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>44°E<br>73°N</td>
+     *       <td>3320416.75 m<br>632668.43 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -1175,24 +1344,32 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                      <th>Value</th></tr>
-     * <tr><th>Source ordinates</th>               <th>Expected results</th></tr>
-     * <tr><td>semi-major axis</td>                <td>6378137.0 m</td></tr>
-     * <tr><td>semi-minor axis</td>                <td>6356752.314247833 m</td></tr>
-     * <tr><td>Latitude of standard parallel</td>  <td>-71.0°</td></tr>
-     * <tr><td>Longitude of origin</td>            <td>70.0°</td></tr>
-     * <tr><td>False easting</td>                  <td>6000000.0 m</td></tr>
-     * <tr><td>False northing</td>                 <td>6000000.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>            <th>Expected results</th></tr>
-     * <tr align="right"><td>70°E<br>90°S</td>  <td>6000000.00 m<br>6000000.00 m</td></tr>
-     * <tr align="right"><td>120°E<br>75°S</td> <td>7255380.79 m<br>7053389.56 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                     <th>Value</th></tr>
+     *     <tr><th>Source ordinates</th>              <th>Expected results</th></tr>
+     *     <tr><td>semi-major axis</td>               <td>6378137.0 m</td></tr>
+     *     <tr><td>semi-minor axis</td>               <td>6356752.314247833 m</td></tr>
+     *     <tr><td>Latitude of standard parallel</td> <td>-71.0°</td></tr>
+     *     <tr><td>Longitude of origin</td>           <td>70.0°</td></tr>
+     *     <tr><td>False easting</td>                 <td>6000000.0 m</td></tr>
+     *     <tr><td>False northing</td>                <td>6000000.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>70°E<br>90°S</td>
+     *       <td>6000000.00 m<br>6000000.00 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>120°E<br>75°S</td>
+     *       <td>7255380.79 m<br>7053389.56 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -1218,24 +1395,32 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                      <th>Value</th></tr>
-     * <tr><th>Source ordinates</th>               <th>Expected results</th></tr>
-     * <tr><td>semi-major axis</td>                <td>6378388.0 m</td></tr>
-     * <tr><td>semi-minor axis</td>                <td>6356911.9461279465 m</td></tr>
-     * <tr><td>Latitude of standard parallel</td>  <td>-67°</td></tr>
-     * <tr><td>Longitude of origin</td>            <td>140°</td></tr>
-     * <tr><td>False easting</td>                  <td>300000 m</td></tr>
-     * <tr><td>False northing</td>                 <td>200000 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>            <th>Expected results</th></tr>
-     * <tr align="right"><td>67°E<br>90°S</td>  <td>300000.00 m<br>200000.00 m</td></tr>
-     * <tr align="right"><td>140°04'17.040"E<br>66°36'18.820"S</td> <td>303169.52 m<br>244055.72 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                     <th>Value</th></tr>
+     *     <tr><th>Source ordinates</th>              <th>Expected results</th></tr>
+     *     <tr><td>semi-major axis</td>               <td>6378388.0 m</td></tr>
+     *     <tr><td>semi-minor axis</td>               <td>6356911.9461279465 m</td></tr>
+     *     <tr><td>Latitude of standard parallel</td> <td>-67°</td></tr>
+     *     <tr><td>Longitude of origin</td>           <td>140°</td></tr>
+     *     <tr><td>False easting</td>                 <td>300000 m</td></tr>
+     *     <tr><td>False northing</td>                <td>200000 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>67°E<br>90°S</td>
+     *       <td>300000.00 m<br>200000.00 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>140°04'17.040"E<br>66°36'18.820"S</td>
+     *       <td>303169.52 m<br>244055.72 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -1261,24 +1446,32 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                      <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                <td>6377397.155 m</td></tr>
-     * <tr><td>semi-minor axis</td>                <td>6356078.9626186555 m</td></tr>
-     * <tr><td>Latitude of natural origin</td>     <td>52.15616055555556°</td></tr>
-     * <tr><td>Longitude of natural origin</td>    <td>5.38763888888889°</td></tr>
-     * <tr><td>Scale factor at natural origin</td> <td>0.9999079</td></tr>
-     * <tr><td>False easting</td>                  <td>155000.0 m</td></tr>
-     * <tr><td>False northing</td>                 <td>463000.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>                              <th>Expected results</th></tr>
-     * <tr align="right"><td>5°23'15.500"E<br>52°09'22.178"N</td> <td>155000.000 m<br>463000.000 m</td></tr>
-     * <tr align="right"><td>6°E<br>53°N</td>                     <td>196105.283 m<br>557057.739 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                      <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                <td>6377397.155 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                <td>6356078.9626186555 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>     <td>52.15616055555556°</td></tr>
+     *     <tr><td>Longitude of natural origin</td>    <td>5.38763888888889°</td></tr>
+     *     <tr><td>Scale factor at natural origin</td> <td>0.9999079</td></tr>
+     *     <tr><td>False easting</td>                  <td>155000.0 m</td></tr>
+     *     <tr><td>False northing</td>                 <td>463000.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>5°23'15.500"E<br>52°09'22.178"N</td>
+     *       <td>155000.000 m<br>463000.000 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>6°E<br>53°N</td>
+     *       <td>196105.283 m<br>557057.739 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -1304,22 +1497,28 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                                <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                          <td>6378206.4 m</td></tr>
-     * <tr><td>semi-minor axis</td>                          <td>6356583.8 m</td></tr>
-     * <tr><td>Latitude of natural origin</td>               <td>0.0°</td></tr>
-     * <tr><td>Longitude of natural origin</td>              <td>0.0°</td></tr>
-     * <tr><td>False easting</td>                            <td>0.0 m</td></tr>
-     * <tr><td>False northing</td>                           <td>0.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>         <th>Expected results</th></tr>
-     * <tr align="right"><td>See source</td> <td>See source</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                   <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>             <td>6378206.4 m</td></tr>
+     *     <tr><td>semi-minor axis</td>             <td>6356583.8 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>  <td>0.0°</td></tr>
+     *     <tr><td>Longitude of natural origin</td> <td>0.0°</td></tr>
+     *     <tr><td>False easting</td>               <td>0.0 m</td></tr>
+     *     <tr><td>False northing</td>              <td>0.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>See source</td>
+     *       <td>See source</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -1344,25 +1543,31 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                                <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                          <td>6377397.155 m</td></tr>
-     * <tr><td>semi-minor axis</td>                          <td>6356078.9626186555 m</td></tr>
-     * <tr><td>Latitude of projection centre</td>            <td>49.5°</td></tr>
-     * <tr><td>Longitude of origin</td>                      <td>24.5°</td></tr>
-     * <tr><td>Co-latitude of cone axis</td>                 <td>30.288139722222222°</td></tr>
-     * <tr><td>Latitude of pseudo standard parallel</td>     <td>78.5°</td></tr>
-     * <tr><td>Scale factor on pseudo standard parallel</td> <td>0.9999</td></tr>
-     * <tr><td>False easting</td>                            <td>0.0 m</td></tr>
-     * <tr><td>False northing</td>                           <td>0.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>                               <th>Expected results</th></tr>
-     * <tr align="right"><td>16°50'59.179"E<br>50°12'32.442"N</td> <td>-568990.997 m<br>-1050538.643 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                                <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                          <td>6377397.155 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                          <td>6356078.9626186555 m</td></tr>
+     *     <tr><td>Latitude of projection centre</td>            <td>49.5°</td></tr>
+     *     <tr><td>Longitude of origin</td>                      <td>24.5°</td></tr>
+     *     <tr><td>Co-latitude of cone axis</td>                 <td>30.288139722222222°</td></tr>
+     *     <tr><td>Latitude of pseudo standard parallel</td>     <td>78.5°</td></tr>
+     *     <tr><td>Scale factor on pseudo standard parallel</td> <td>0.9999</td></tr>
+     *     <tr><td>False easting</td>                            <td>0.0 m</td></tr>
+     *     <tr><td>False northing</td>                           <td>0.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>16°50'59.179"E<br>50°12'32.442"N</td>
+     *       <td>-568990.997 m<br>-1050538.643 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -1388,22 +1593,28 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                                <th>Value</th></tr>
-     * <tr><td>semi-major axis</td>                          <td>6378137.0 m</td></tr>
-     * <tr><td>semi-minor axis</td>                          <td>6356752.314247833 m</td></tr>
-     * <tr><td>Latitude of natural origin</td>               <td>55.0°</td></tr>
-     * <tr><td>Longitude of natural origin</td>              <td>5.0°</td></tr>
-     * <tr><td>False easting</td>                            <td>0.0 m</td></tr>
-     * <tr><td>False northing</td>                           <td>0.0 m</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th>                            <th>Expected results</th></tr>
-     * <tr align="right"><td>2°07'46.38"E<br>53°48'33.82"N</td> <td>–189011.711 m<br>–128 640.567 m</td></tr>
-     * </table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                                <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                          <td>6378137.0 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                          <td>6356752.314247833 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>               <td>55.0°</td></tr>
+     *     <tr><td>Longitude of natural origin</td>              <td>5.0°</td></tr>
+     *     <tr><td>False easting</td>                            <td>0.0 m</td></tr>
+     *     <tr><td>False northing</td>                           <td>0.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>2°07'46.38"E<br>53°48'33.82"N</td>
+     *       <td>–189011.711 m<br>–128 640.567 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.
@@ -1412,6 +1623,51 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testOrthographic() throws FactoryException, TransformException {
         description = "WGS 84 / Orthographic";
         final SamplePoints sample = SamplePoints.forCRS(9840);
+        createMathTransform(Projection.class, sample);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
+    }
+
+    /**
+     * Tests the <cite>"Modified Azimuthal Equidistant"</cite> (EPSG:9832) projection.
+     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                                <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                          <td>6378206.4 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                          <td>6356583.8 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>               <td>9.546708333333333°</td></tr>
+     *     <tr><td>Longitude of natural origin</td>              <td>138.168744444444444°</td></tr>
+     *     <tr><td>False easting</td>                            <td>40000.0 m</td></tr>
+     *     <tr><td>False northing</td>                           <td>60000.0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>138°11'34.908"E<br>9°35'47.493"N</td>
+     *       <td>42665.90 m<br>65509.82 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
+     *
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
+     */
+    @Test
+    public void testModifiedAzimuthalEquidistant() throws FactoryException, TransformException {
+        description = "Guam 1963 / Yap Islands";
+        final SamplePoints sample = SamplePoints.forCRS(3295);
         createMathTransform(Projection.class, sample);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -1427,26 +1683,30 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are:</p>
      *
-     * <table cellspacing="15" summary="Test data">
-     * <tr valign="top"><td><table class="ogc">
-     * <caption>CRS characteristics</caption>
-     * <tr><th>Parameter</th>                         <th>Value</th></tr>
-     * <tr><td>dim</td>                               <td>3</td></tr>
-     * <tr><td>src_semi_major</td>                    <td>6378137.0 m</td></tr>
-     * <tr><td>src_semi_minor</td>                    <td>6356752.314247833 m</td></tr>
-     * <tr><td>X-axis translation</td>                <td>84.87 m</td></tr>
-     * <tr><td>Y-axis translation</td>                <td>96.49 m</td></tr>
-     * <tr><td>Z-axis translation</td>                <td>116.95 m</td></tr>
-     * <tr><td>Semi-major axis length difference</td> <td>251 m</td></tr>
-     * <tr><td>Flattening difference</td>             <td>1.41927E-05</td></tr>
-     * </table></td><td>
-     * <table class="ogc">
-     * <caption>Test points</caption>
-     * <tr><th>Source ordinates</th><th>Expected results</th></tr>
-     * <tr align="right">
-     *   <td>2°7'46.380"E<br>53°48'33.820"N<br>73.000 m</td>
-     *   <td>2°7'51.477"E<br>53°48'36.563"N<br>28.091 m</td>
-     * </tr></table></td></tr></table>
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                         <th>Value</th></tr>
+     *     <tr><td>dim</td>                               <td>3</td></tr>
+     *     <tr><td>src_semi_major</td>                    <td>6378137.0 m</td></tr>
+     *     <tr><td>src_semi_minor</td>                    <td>6356752.314247833 m</td></tr>
+     *     <tr><td>X-axis translation</td>                <td>84.87 m</td></tr>
+     *     <tr><td>Y-axis translation</td>                <td>96.49 m</td></tr>
+     *     <tr><td>Z-axis translation</td>                <td>116.95 m</td></tr>
+     *     <tr><td>Semi-major axis length difference</td> <td>251 m</td></tr>
+     *     <tr><td>Flattening difference</td>             <td>1.41927E-05</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source ordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>2°7'46.380"E<br>53°48'33.820"N<br>73.000 m</td>
+     *       <td>2°7'51.477"E<br>53°48'36.563"N<br>28.091 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
      *
      * @throws FactoryException if the math transform can not be created.
      * @throws TransformException if the example point can not be transformed.

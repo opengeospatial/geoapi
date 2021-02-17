@@ -162,8 +162,11 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      * Returns the number of source dimensions, which is assumed to be 2 for all projections.
      * Note that {@link NetcdfProjection.Method#getSourceDimensions()} may return a different
      * answer is the transform is associated to a 3 or 4 dimensional CRS (but usually not).
+     *
+     * @deprecated This attribute has been removed from ISO 19111:2019.
      */
     @Override
+    @Deprecated
     public Integer getSourceDimensions() {
         return 2;
     }
@@ -172,8 +175,11 @@ abstract class ProjectionProvider<P extends Projection> extends NetcdfIdentified
      * Returns the number of target dimensions, which is assumed to be 2 for all projections.
      * Note that {@link NetcdfProjection.Method#getTargetDimensions()} may return a different
      * answer is the transform is associated to a 3 or 4 dimensional CRS (but usually not).
+     *
+     * @deprecated This attribute has been removed from ISO 19111:2019.
      */
     @Override
+    @Deprecated
     public Integer getTargetDimensions() {
         return 2;
     }

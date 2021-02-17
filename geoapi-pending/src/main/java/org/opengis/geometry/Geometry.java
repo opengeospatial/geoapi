@@ -33,7 +33,6 @@ package org.opengis.geometry;
 
 import java.util.Set;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.geometry.complex.Complex;
 import org.opengis.annotation.UML;
@@ -293,20 +292,6 @@ public interface Geometry extends TransfiniteSet {
     Geometry transform(CoordinateReferenceSystem newCRS) throws TransformException;
 
     /**
-     * Returns a new {@code Geometry} that is the coordinate transformation of this
-     * {@code Geometry} into the passed coordinate reference system, using the
-     * specified transform. It is the user responsibility to ensure that the supplied
-     * transform is appropriate for this geometry.
-     *
-     * @param  newCRS The new coordinate reference system.
-     * @param  transform The transform from the existing coordinate reference system
-     *         to the new coordinate reference system.
-     * @throws TransformException if the transformation failed.
-     * @return the transformed {@code Geometry}.
-     */
-    Geometry transform(CoordinateReferenceSystem newCRS, MathTransform transform) throws TransformException;
-
-    /**
      * Returns the minimum bounding box for this {@code Geometry}. This shall be the
      * coordinate region spanning the minimum and maximum value for each ordinate taken on by
      * {@linkplain DirectPosition direct positions} in this {@code Geometry}. The simplest
@@ -369,78 +354,4 @@ public interface Geometry extends TransfiniteSet {
      */
     @UML(identifier="buffer", obligation=MANDATORY, specification=ISO_19107)
     Geometry getBuffer(double distance);
-
-    /**
-     * Returns {@code false} if this geometry is immutable. Immutable geometries are
-     * guarantee to never change their state, neither directly (through a change in this object)
-     * or indirectly (through a change in an other object this geometry depends upon). Immutable
-     * geometries avoid the need for {@linkplain #clone cloning them}. More specifically:
-     *
-     * <ul>
-     *   <li><p>If {@code false}, then this geometry is <cite>immutable</cite>. It is
-     *       guarantee that a call to any {@code setFoo(…)} method will throws an
-     *       {@link UnmodifiableGeometryException} (that said, <cite>immutable</cite> geometries
-     *       are necessarily <cite>unmodifiable</cite>. The converse is not true, see next point
-     *       below). This geometry will never change its state, and there is no need for
-     *       {@linkplain #clone cloning it}.</p></li>
-     *   <li><p>If {@code true}, then this geometry is <cite>mutable</cite>. Note that
-     *       <cite>mutable</cite> geometry is not synonymous of <cite>modifiable</cite>
-     *       geometry. The nuance lays in whether the geometry may changes its state
-     *       directly (as of user request) or indirectly:</p>
-     *       <ul>
-     *         <li><p>This geometry may be <cite>modifiable</cite>, in which case invoking
-     *             {@code setFoo(…)} methods is legal and will not throws exception.</p></li>
-     *         <li><p>This geometry may still <cite>unmodifiable</cite>. User is not allowed to
-     *             modify it himself and invoking any {@code setFoo(…)} method will throws
-     *             an {@link UnmodifiableGeometryException}. However, the implementation may change
-     *             the geometry itself (for example a time-varying geometry).</p></li>
-     *       </ul>
-     *   </li>
-     * </ul>
-     *
-     * @return {@code true} if this geometry is mutable.
-     */
-    boolean isMutable();
-
-    /**
-     * Returns an immutable copy of this geometry.  The returned Geometry is
-     * guaranteed to have an {@code isMutable()} value of false.  Moreover,
-     * as per the contract of {@code isMutable()}, its values will never
-     * change.  Any attempts to change the values of the returned object will
-     * result in a {@code UnmodifiableGeometryException}.
-     * <p>
-     * Implementers are free to return {@code this} if this object is
-     * already immutable.
-     *
-     * @return an immutable copy of this geometry.
-     */
-    Geometry toImmutable();
-
-    /**
-     * Returns a clone of this geometry with <em>deep</em> copy semantic. Any change on this object
-     * will have no impact on the returned clone, and conversely. For big geometries, implementations
-     * are encouraged to share as much internal data as possible (as opposed to performing a real
-     * copy of the data), while preserving the deep copy semantic.
-     *
-     * <P>Special cases:</P>
-     *
-     * <UL>
-     *   <LI><P>If this geometry is immutable (<code>{@linkplain #isMutable} == false</code>), then
-     *       there is no need for cloning this object. This method may return {@code this}
-     *       or returns a modifiable copy of this object, at implementation choice.</P></LI>
-     *   <LI><P>If a deep copy semantic is not possible at a reasonable cost (for example for some
-     *       database backend), then this method throws a {@link CloneNotSupportedException}.</P></LI>
-     *   <LI><P>If a deep cloning is possible for all case (i.e. if this method never throws
-     *       {@link CloneNotSupportedException}), then the implementation should implements
-     *       the {@link Cloneable} interface.</P></LI>
-     * </UL>
-     *
-     * @return a clone of this geometry, which may or may not be mutable.
-     * @throws CloneNotSupportedException if this object do not support clone. This exception is
-     *         never throws if this object implements {@link Cloneable}.
-     *
-     * @see Cloneable
-     * @see #isMutable
-     */
-    Geometry clone() throws CloneNotSupportedException;
 }

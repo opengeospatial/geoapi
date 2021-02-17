@@ -28,7 +28,7 @@
  *   </li>
  * </ul>
  *
- * Home page: <a href="http://www.geoapi.org/geoapi-netcdf/index.html">GeoAPI-netCDF bindings</a>.
+ * Home page: <a href="http://www.geoapi.org/java/examples/netcdf/index.html">GeoAPI-netCDF bindings</a>.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

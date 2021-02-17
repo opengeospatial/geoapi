@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
  * all of the data types in this specification, their state is represented by their publicly
  * accessible attributes.
  *
- * <h2>Spanning the anti-meridian of a geographic CRS</h2>
+ * <h2>Crossing the anti-meridian of a geographic CRS</h2>
  * The <cite>Web Coverage Service</cite> (WCS) 1.1 specification uses an extended interpretation
  * of the bounding box definition. In a WCS 1.1 data structure, the {@linkplain #getUpperCorner()
  * upper corner} defines the edges region in the directions of <em>increasing</em> coordinate
@@ -114,7 +114,7 @@ public interface Envelope {
      * This is typically a coordinate position consisting of all the minimal coordinates
      * for each dimension for all points within the {@code Envelope}.
      *
-     * <h4>Spanning the anti-meridian of a geographic CRS</h4>
+     * <h4>Crossing the anti-meridian of a geographic CRS</h4>
      * The <cite>Web Coverage Service</cite> (WCS) 1.1 specification uses an extended interpretation
      * of the bounding box definition. In a WCS 1.1 data structure, the lower corner defines the
      * edges region in the directions of <em>decreasing</em> coordinate values in the envelope CRS.
@@ -138,7 +138,7 @@ public interface Envelope {
      * This is typically a coordinate position consisting of all the maximal coordinates
      * for each dimension for all points within the {@code Envelope}.
      *
-     * <h4>Spanning the anti-meridian of a geographic CRS</h4>
+     * <h4>Crossing the anti-meridian of a geographic CRS</h4>
      * The <cite>Web Coverage Service</cite> (WCS) 1.1 specification uses an extended interpretation
      * of the bounding box definition. In a WCS 1.1 data structure, the upper corner defines the
      * edges region in the directions of <em>increasing</em> coordinate values in the envelope CRS.
@@ -159,7 +159,7 @@ public interface Envelope {
 
     /**
      * Returns the minimal coordinate value for the specified dimension. In the typical case of
-     * non-empty envelopes <em>not</em> spanning the anti-meridian, this method is a shortcut
+     * non-empty envelopes <em>not</em> crossing the anti-meridian, this method is a shortcut
      * for the following code without the cost of creating a temporary {@link DirectPosition}
      * object:
      *
@@ -167,7 +167,7 @@ public interface Envelope {
      * minimum = {@linkplain #getLowerCorner()}.{@linkplain DirectPosition#getOrdinate(int) getOrdinate}(dimension);
      * </code></blockquote>
      *
-     * <h4>Spanning the anti-meridian of a geographic CRS</h4>
+     * <h4>Crossing the anti-meridian of a geographic CRS</h4>
      * If the axis range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND} and this envelope
      * supports the {@linkplain #getLowerCorner() lower} and {@linkplain #getUpperCorner() upper}
      * corners extended interpretation, then <var>lower</var> may possibly be greater than
@@ -194,7 +194,7 @@ public interface Envelope {
 
     /**
      * Returns the maximal coordinate value for the specified dimension. In the typical case of
-     * non-empty envelopes <em>not</em> spanning the anti-meridian, this method is a shortcut
+     * non-empty envelopes <em>not</em> crossing the anti-meridian, this method is a shortcut
      * for the following code without the cost of creating a temporary {@link DirectPosition}
      * object:
      *
@@ -202,7 +202,7 @@ public interface Envelope {
      * maximum = {@linkplain #getUpperCorner()}.{@linkplain DirectPosition#getOrdinate(int) getOrdinate}(dimension);
      * </code></blockquote>
      *
-     * <h4>Spanning the anti-meridian of a geographic CRS</h4>
+     * <h4>Crossing the anti-meridian of a geographic CRS</h4>
      * If the axis range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND} and this envelope
      * supports the {@linkplain #getLowerCorner() lower} and {@linkplain #getUpperCorner() upper}
      * corners extended interpretation, then <var>upper</var> may possibly be less than
@@ -235,7 +235,7 @@ public interface Envelope {
      * median = ({@linkplain #getMinimum(int) getMinimum}(dimension) + {@linkplain #getMaximum(int) getMaximum}(dimension)) / 2;
      * </code></blockquote>
      *
-     * <h4>Spanning the anti-meridian of a geographic CRS</h4>
+     * <h4>Crossing the anti-meridian of a geographic CRS</h4>
      * If this envelope supports the {@linkplain #getLowerCorner() lower} and
      * {@linkplain #getUpperCorner() upper} corners extended interpretation, and if the axis
      * range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND}, then a special cases occurs
@@ -269,7 +269,7 @@ public interface Envelope {
      * span = {@linkplain #getMaximum(int) getMaximum}(dimension) - {@linkplain #getMinimum(int) getMinimum}(dimension);
      * </code></blockquote>
      *
-     * <h4>Spanning the anti-meridian of a geographic CRS</h4>
+     * <h4>Crossing the anti-meridian of a geographic CRS</h4>
      * If this envelope supports the {@linkplain #getLowerCorner() lower} and
      * {@linkplain #getUpperCorner() upper} corners extended interpretation, and if the axis
      * range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND}, then a special cases occurs

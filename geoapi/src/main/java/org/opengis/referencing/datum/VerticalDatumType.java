@@ -52,11 +52,9 @@ import static org.opengis.annotation.Specification.*;
  * implementers can get a suitable vertical datum type using {@code VerticalDatumType.valueOf("ELLIPSOIDAL")}.
  * Implementers are encouraged to not expose that datum type in public API however.</div>
  *
- * @departure historic
- *   This code list was defined in the specification published in 2003, but removed from the 2007
- *   revision of ISO 19111. However GeoAPI keep this code list for historical reasons, and because
- *   it provides some of the <cite>anchor definition</cite> information in a programmatic way more
- *   suitable to coordinate transformation engines.
+ * @todo
+ *   This code list was named {@code VerticalDatumType} in an OGC specification published in 2003,
+ *   removed in the ISO 19111:2007 standard, then become {@code RealizationMethod} in ISO 19111:2019.
  *
  * @see VerticalDatum#getVerticalDatumType()
  *

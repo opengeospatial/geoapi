@@ -1,4 +1,15 @@
 /*
+ * Main text.
+ */
+:not(td) > div.block {
+  text-align: justify;
+}
+
+p.right-note {
+  text-align: right;
+}
+
+/*
  * Table without vertical space between rows, a little bit of space between columns,
  * a light background color and a header with a darker background color. The header
  * also have a little bit more space, and a border is drawn around the table.
@@ -32,6 +43,10 @@ table.ogc tr td {
   vertical-align: text-top;
 }
 
+table.ogc tr.coordinates {
+  text-align: right;
+}
+
 /*
  * Optionally add a line or column separator.
  */
@@ -59,12 +74,47 @@ table.ogc tr td.sep {
 }
 
 /*
- * Table providing description of GIGS tests.
+ * Table providing description of GIGS tests. It currently applies only to the
+ * org.opengis.test.referencing.gigs package. Note: JDK 13 seems to include any
+ * CSS file in doc-files directory for the package that contains it, but I have
+ * not found a documentation saying if this is officially supported. If yes, we
+ * could move the GIGS style in that package.
  */
+table.gigs caption {
+  text-align:     left;
+  font-weight:    bold;
+  padding-bottom: 9px;
+}
+
+table.gigs {
+  border-color:     gray;
+  border-style:     solid;
+  border-width:     1px;
+  border-spacing:   15px 2px;
+  margin:           15px 0px;
+  padding:          9px;
+}
+
 table.gigs th {
   text-align: left;
   vertical-align: top;
   white-space: nowrap;
+}
+
+/*
+ * Layout two or more elements horizontally.
+ */
+div.horizontal-flow {
+  display:       flex;
+  margin-left:   28px;
+  margin-top:    12px;
+  margin-bottom: 12px;
+}
+
+div.horizontal-flow > table,
+div.horizontal-flow > div {
+  margin-left:  24px;
+  margin-right: 24px;
 }
 
 /*

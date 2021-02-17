@@ -138,7 +138,39 @@ public enum TestData {
      *
      * If this file, all global attribute for numeric values use the {@code float} type.
      */
-    NETCDF_4D_PROJECTED("Cube4D_projected_float.nc", 14544);
+    NETCDF_4D_PROJECTED("Cube4D_projected_float.nc", 14544),
+
+    /**
+     * Trajectory of 3 features with 6, 4 and 3 points respectively, followed by two intentionally empty features.
+     * This is a small extract of {@code "JaPOPPO.csv"} file encoded as specified in
+     * <a href="http://docs.opengeospatial.org/bp/16-114r3/16-114r3.html">OGC 16-114</a> best practice paper.
+     * The two trailing empty features are for testing implementation capability to ignore them.
+     * Coordinates are latitude, longitude and time as minutes elapsed since 2014-11-29 midnight UTC.
+     * Features contain one property named "stations" defined as an enumeration:
+     *
+     * <pre>short stations(points):
+     *    stations:flag_values = 11s, 12s, 13s, 14s, 15s, 16s, 21s, 22s, 23s, 24s, 31s, 32s
+     *    stations:flag_meanings = "Yokohama Kawasaki Shinagawa Shinbashi Yurakucho Tokyo "
+     *                             "Shinjuku Yotsuya Ochanomizu Akihabara Koenji Nakano"</pre>
+     *
+     * <table class="ogc">
+     *   <caption>Global attributes</caption>
+     *   <tr><th>Name</th><th>Value</th></tr>
+     *   <tr><td>{@code Conventions}</td><td>CF-1.6</td></tr>
+     *   <tr><td>{@code featureType}</td><td>trajectory</td></tr>
+     *   <tr><td>{@code title}</td><td>Small moving features file</td></tr>
+     *   <tr><td>{@code purpose}</td><td>GeoAPI conformance tests</td></tr>
+     *   <tr><td>{@code source}</td><td>Extracts from JaPOPPO.csv</td></tr>
+     *   <tr><td>{@code geospatial_lat_min}</td><td>30</td></tr>
+     *   <tr><td>{@code geospatial_lat_max}</td><td>40</td></tr>
+     *   <tr><td>{@code geospatial_lon_min}</td><td>130</td></tr>
+     *   <tr><td>{@code geospatial_lon_max}</td><td>150</td></tr>
+     *   <tr><td>{@code time_coverage_start}</td><td>2014-11-29T00:00:00Z</td></tr>
+     *   <tr><td>{@code time_coverage_end}</td><td>2014-12-05T23:59:59Z</td></tr>
+     *   <tr><td>{@code comment}</td><td>Intentionally contains two empty features for testing robustness.</td></tr>
+     * </table>
+     */
+    MOVING_FEATURES("MovingFeatures.nc", 1932);
 
     /**
      * Name of the test file, located in the same directory (after JAR packaging) than the {@code TestData.class} file.

@@ -19,7 +19,7 @@ import org.opengis.example.util.SimpleNameFactory;
 
 /**
  * Runs all supported tests from the
- * <code><a href="http://www.geoapi.org/geoapi-conformance/index.html">geoapi-conformance</a></code>
+ * <code><a href="http://www.geoapi.org/conformance/index.html">geoapi-conformance</a></code>
  * module.
  *
  * @author  Martin Desruisseaux (Geomatys)

@@ -52,7 +52,9 @@ import static org.junit.Assert.*;
 /**
  * Verifies that the software allows correct definition of a user-defined prime meridian.
  *
- * <table class="gigs" summary="Test description"><tr>
+ * <table class="gigs">
+ * <caption>Test description</caption>
+ * <tr>
  *   <th>Test method:</th>
  *   <td>Create user-defined prime meridian for each of several different prime meridians.</td>
  * </tr><tr>

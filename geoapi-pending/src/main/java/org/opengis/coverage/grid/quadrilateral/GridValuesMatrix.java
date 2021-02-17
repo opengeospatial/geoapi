@@ -63,7 +63,8 @@ public interface GridValuesMatrix {
      * @todo Comment (Wim): Both extracting an image for display and operation chaining require
      *       memory efficient and fast access to the data. How should the data be structured per
      *       record? Some use cases:
-     *       <table border="1" summary="Use cases">
+     *       <table class="ogc">
+     *         <caption>Use cases</caption>
      *         <tr><td>DTM<td>double<td>List&lt;double&gt;
      *         <tr><td>TM image<td>7 bytes<td>
      *         <tr><td>Landuse map<td>string<td>{@code List<double>} with look up table for the strings
