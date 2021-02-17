@@ -57,7 +57,7 @@ enum Dependency {
         @Override
         public String[] pathInMavenRepository(final Version geoapiVersion) {
             return new String[] {
-                "junit/junit/4.12/junit-4.12.jar",
+                "junit/junit/4.13.2/junit-4.13.2.jar",
                 "org/hamcrest/hamcrest-core/1.3/hamcrest-core-1.3.jar"
             };
         }
