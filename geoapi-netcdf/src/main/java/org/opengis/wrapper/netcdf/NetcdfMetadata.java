@@ -99,8 +99,6 @@ import org.opengis.util.InternationalString;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
  * @since   3.1
- *
- * @see <a href="http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/metadata/DataDiscoveryAttConvention.html">NetCDF Attribute Convention for Dataset Discovery</a>
  */
 public class NetcdfMetadata implements Metadata, DataIdentification, Identifier, Citation, CitationDate,
         OnlineResource, Address, Extent, GeographicBoundingBox     // Do not implement Party because can be Individual or Organisation.

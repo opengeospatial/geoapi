@@ -463,7 +463,7 @@ public interface Coverage {
     /**
      * Returns 2D view of this coverage as a renderable image.
      * This optional operation allows interoperability with
-     * <a href="http://java.sun.com/products/java-media/2D/">Java2D</a>.
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/2d/">Java2D</a>.
      * If this coverage is a {@link org.opengis.coverage.grid.GridCoverage} backed
      * by a {@link java.awt.image.RenderedImage}, the underlying image can be obtained
      * with:
