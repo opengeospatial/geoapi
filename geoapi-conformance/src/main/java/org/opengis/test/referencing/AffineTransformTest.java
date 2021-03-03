@@ -438,8 +438,8 @@ public strictfp class AffineTransformTest extends TransformTestCase {
             verifyTransform(source, target);
             /*
              * Inverse the transform (this is the interesting part of this test) and try again.
-             * The ordinates at index 1 and 3 (they are the index of columns were all elements
-             * are 0 in the above matrix) are expected to be NaN.
+             * The coordinates at index 1 and 3 (indices of columns were all elements are 0 in
+             * the above matrix) are expected to be NaN.
              */
             if (inverseSupported) {
                 configurationTip = Configuration.Key.isInverseTransformSupported;

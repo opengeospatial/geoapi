@@ -36,17 +36,17 @@ public class SimpleGridEnvelope implements GridEnvelope, Serializable {
     private static final long serialVersionUID = 1487728226944612950L;
 
     /**
-     * Minimum and maximum grid ordinates. The first half contains minimum ordinates (inclusive),
-     * while the last half contains maximum ordinates (<strong>inclusive</strong>).
+     * Minimum and maximum grid coordinates. The first half contains minimum coordinates (inclusive),
+     * while the last half contains maximum coordinates (<strong>inclusive</strong>).
      */
     private final long[] index;
 
     /**
-     * Checks if ordinate values in the minimum index are less than or
-     * equal to the corresponding ordinate value in the maximum index.
+     * Checks if coordinate values in the minimum index are less than or
+     * equal to the corresponding coordinate value in the maximum index.
      *
-     * @throws IllegalArgumentException if an ordinate value in the minimum index is not
-     *         less than or equal to the corresponding ordinate value in the maximum index.
+     * @throws IllegalArgumentException if an coordinate value in the minimum index is not
+     *         less than or equal to the corresponding coordinate value in the maximum index.
      */
     private static void checkCoherence(final long[] index) throws IllegalArgumentException {
         final int dimension = index.length >>> 1;

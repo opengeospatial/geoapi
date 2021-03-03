@@ -94,10 +94,10 @@ public class GeometryValidator extends Validator {
      * <ul>
      *   <li>Envelope and corners dimension shall be the same.</li>
      *   <li>Envelope and corners CRS shall be the same, ignoring {@code null} values.</li>
-     *   <li>Lower, upper and median ordinate values shall be inside the [minimum … maximum] range.</li>
-     *   <li>Lower &gt; upper ordinate values are allowed only on axis having wraparound range meaning.</li>
+     *   <li>Lower, upper and median coordinate values shall be inside the [minimum … maximum] range.</li>
+     *   <li>Lower &gt; upper coordinate values are allowed only on axis having wraparound range meaning.</li>
      *   <li>For the usual lower &lt; upper case, compares the minimum, maximum, median and span values
-     *       against values computed from the lower and upper ordinates.</li>
+     *       against values computed from the lower and upper coordinates.</li>
      * </ul>
      *
      * @param  object  the object to validate, or {@code null}.
@@ -168,20 +168,20 @@ public class GeometryValidator extends Validator {
             if (!isNaN(minimum) && !isNaN(maximum)) {
                 if (lower <= upper && !isPositiveToNegativeZero(lower, upper)) { // Do not accept NaN in this block.
                     final double eps = (upper - lower) * tolerance;
-                    assertEquals("Envelope: minimum value shall be equal to the lower corner ordinate.", lower, minimum, eps);
-                    assertEquals("Envelope: maximum value shall be equal to the upper corner ordinate.", upper, maximum, eps);
+                    assertEquals("Envelope: minimum value shall be equal to the lower corner coordinate.", lower, minimum, eps);
+                    assertEquals("Envelope: maximum value shall be equal to the upper corner coordinate.", upper, maximum, eps);
                     assertEquals("Envelope: unexpected span value.",   (maximum - minimum),   span,   eps);
                     assertEquals("Envelope: unexpected median value.", (maximum + minimum)/2, median, eps);
                 } else if (RangeMeaning.EXACT.equals(meaning)) {
                     // assertBetween(…) tolerates NaN values, which is what we want.
                     assertValidRange("Envelope: invalid minimum or maximum.", minimum, maximum);
-                    assertBetween   ("Envelope: invalid lower ordinate.",     minimum, maximum, lower);
-                    assertBetween   ("Envelope: invalid upper ordinate.",     minimum, maximum, upper);
-                    assertBetween   ("Envelope: invalid median ordinate.",    minimum, maximum, median);
+                    assertBetween   ("Envelope: invalid lower coordinate.",     minimum, maximum, lower);
+                    assertBetween   ("Envelope: invalid upper coordinate.",     minimum, maximum, upper);
+                    assertBetween   ("Envelope: invalid median coordinate.",    minimum, maximum, median);
                 }
             }
             if (meaning != null && (lower > upper || isPositiveToNegativeZero(lower, upper))) {
-                assertEquals("Envelope: lower ordinate value may be greater than upper ordinate value "
+                assertEquals("Envelope: lower coordinate value may be greater than upper coordinate value "
                         + "only on axis having wrappround range.", RangeMeaning.WRAPAROUND, meaning);
             }
         }
@@ -197,7 +197,7 @@ public class GeometryValidator extends Validator {
      *   <li>Length of {@link DirectPosition#getCoordinate()} must be equals to the number of dimensions.</li>
      *   <li>Values of above array must be equals to values returned by {@link DirectPosition#getOrdinate(int)}.</li>
      *   <li>If the position is associated to a CRS and the axis range meaning is {@link RangeMeaning#EXACT},
-     *       then the ordinate values must be between the minimum and maximum axis value.</li>
+     *       then the coordinate values must be between the minimum and maximum axis value.</li>
      * </ul>
      *
      * @param  object  the object to validate, or {@code null}.
@@ -211,14 +211,14 @@ public class GeometryValidator extends Validator {
          */
         final int dimension = object.getDimension();
         assertPositive("DirectPosition: dimension can not be negative.", dimension);
-        final double[] coordinate = object.getCoordinate();
-        mandatory("DirectPosition: coordinate array can not be null.", coordinate);
-        if (coordinate != null) {
+        final double[] coordinates = object.getCoordinate();
+        mandatory("DirectPosition: coordinate array can not be null.", coordinates);
+        if (coordinates != null) {
             assertEquals("DirectPosition: coordinate array length shall be equal to the dimension.",
-                    dimension, coordinate.length);
+                    dimension, coordinates.length);
             for (int i=0; i<dimension; i++) {
                 assertEquals("DirectPosition: getOrdinate(i) shall be the same than coordinate[i].",
-                        coordinate[i], object.getOrdinate(i), 0.0);         // No tolerance - we want exact match.
+                        coordinates[i], object.getOrdinate(i), 0.0);         // No tolerance - we want exact match.
             }
         }
         /*
@@ -235,10 +235,10 @@ public class GeometryValidator extends Validator {
                 for (int i=0; i<dimension; i++) {
                     final CoordinateSystemAxis axis = cs.getAxis(i);                    // Assume already validated.
                     if (axis != null && RangeMeaning.EXACT.equals(axis.getRangeMeaning())) {
-                        final double ordinate = coordinate[i];
+                        final double coordinate = coordinates[i];
                         final double minimum  = axis.getMinimumValue();
                         final double maximum  = axis.getMaximumValue();
-                        assertBetween("DirectPosition: ordinate out of axis bounds.", minimum, maximum, ordinate);
+                        assertBetween("DirectPosition: coordinate out of axis bounds.", minimum, maximum, coordinate);
                     }
                 }
             }
@@ -248,7 +248,7 @@ public class GeometryValidator extends Validator {
          * Tests hash code values. It must be compliant to DirectPosition.hashCode()
          * contract stated in the javadoc.
          */
-        hashCode += Arrays.hashCode(coordinate);
+        hashCode += Arrays.hashCode(coordinates);
         assertEquals("DirectPosition: hashCode shall be compliant to the contract given in javadoc.",
                 hashCode, object.hashCode());
         assertTrue("DirectPosition: shall be equal to itself.", object.equals(object));
@@ -256,8 +256,8 @@ public class GeometryValidator extends Validator {
          * Ensures that the array returned by DirectPosition.getCoordinate() is a clone.
          */
         for (int i=0; i<dimension; i++) {
-            final double oldValue = coordinate[i];
-            coordinate[i] *= 2;
+            final double oldValue = coordinates[i];
+            coordinates[i] *= 2;
             assertEquals("DirectPosition: coordinate array shall be cloned.",
                     oldValue, object.getOrdinate(i), 0.0);                      // No tolerance - we want exact match.
         }

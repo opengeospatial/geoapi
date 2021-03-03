@@ -63,7 +63,7 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
     }
 
     /**
-     * A {@link DirectPosition} method returning hard-coded ordinate values,
+     * A {@link DirectPosition} method returning hard-coded coordinate values,
      * to be tested with the above {@linkplain #tolerance} values.
      */
     @Override
@@ -77,7 +77,7 @@ public strictfp class ToleranceModifiersTest implements DirectPosition {
     }
 
     /**
-     * {@link ToleranceModifier} shall not attempt to modify the ordinate values.
+     * {@link ToleranceModifier} shall not attempt to modify the coordinate values.
      * Attempting to do so will cause a JUnit failure.
      */
     @Override

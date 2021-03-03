@@ -493,15 +493,15 @@ public strictfp class Assert extends org.junit.Assert {
      *       For each iteration step:<ol>
      *       <li>Invokes {@link PathIterator#currentSegment(double[])}.</li>
      *       <li>Ensures that the segment type (one of the {@code SEG_*} constants) is the same.</li>
-     *       <li>Ensures that the ordinate values are equal, up to the given tolerance thresholds.</li>
+     *       <li>Ensures that the coordinate values are equal, up to the given tolerance thresholds.</li>
      *   </ol></li>
      * </ol>
      *
      * @param message     header of the exception message in case of failure, or {@code null} if none.
      * @param expected    the expected shape, which may be {@code null}.
      * @param actual      the actual shape, or {@code null}.
-     * @param toleranceX  the tolerance threshold for <var>x</var> ordinate values.
-     * @param toleranceY  the tolerance threshold for <var>y</var> ordinate values.
+     * @param toleranceX  the tolerance threshold for <var>x</var> coordinate values.
+     * @param toleranceY  the tolerance threshold for <var>y</var> coordinate values.
      *
      * @since 3.1
      */
@@ -531,7 +531,7 @@ public strictfp class Assert extends org.junit.Assert {
      *       For each iteration step:<ol>
      *       <li>Invokes {@link PathIterator#currentSegment(double[])}.</li>
      *       <li>Ensures that the segment type (one of the {@code SEG_*} constants) is the same.</li>
-     *       <li>Ensures that the ordinate values are equal, up to the given tolerance thresholds.</li>
+     *       <li>Ensures that the coordinate values are equal, up to the given tolerance thresholds.</li>
      *   </ol></li>
      * </ol>
      *
@@ -543,8 +543,8 @@ public strictfp class Assert extends org.junit.Assert {
      * @param message     header of the exception message in case of failure, or {@code null} if none.
      * @param expected    the expected path, which may be {@code null}.
      * @param actual      the actual path, or {@code null}.
-     * @param toleranceX  the tolerance threshold for <var>x</var> ordinate values.
-     * @param toleranceY  the tolerance threshold for <var>y</var> ordinate values.
+     * @param toleranceX  the tolerance threshold for <var>x</var> coordinate values.
+     * @param toleranceY  the tolerance threshold for <var>y</var> coordinate values.
      *
      * @since 3.1
      */
@@ -556,8 +556,8 @@ public strictfp class Assert extends org.junit.Assert {
         }
         assertEquals(concat(message, "Mismatched winding rule."), expected.getWindingRule(), actual.getWindingRule());
         final String   mismatchedType = concat(message, "Mismatched path segment type.");
-        final String   mismatchedX    = concat(message, "Mismatched X ordinate value.");
-        final String   mismatchedY    = concat(message, "Mismatched Y ordinate value.");
+        final String   mismatchedX    = concat(message, "Mismatched X coordinate value.");
+        final String   mismatchedY    = concat(message, "Mismatched Y coordinate value.");
         final String   endOfPath      = concat(message, "Premature end of path.");
         final double[] expectedCoords = new double[6];
         final double[] actualCoords   = new double[6];

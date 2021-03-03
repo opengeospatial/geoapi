@@ -397,23 +397,23 @@ final class SamplePoints {
     }
 
     /**
-     * Swap the (λ,φ) or (x,y) ordinate values in the given array.
+     * Swap the (λ,φ) or (x,y) coordinate values in the given array.
      * The coordinate points are assumed two-dimensional.
      */
-    static void swap(final double[] ordinates) {
-        for (int i=0; i<ordinates.length; i++) {
-            final double t = ordinates[i];
-            ordinates[i] = ordinates[++i];
-            ordinates[i] = t;
+    static void swap(final double[] coordinates) {
+        for (int i=0; i<coordinates.length; i++) {
+            final double t = coordinates[i];
+            coordinates[i] = coordinates[++i];
+            coordinates[i] = t;
         }
     }
 
     /**
-     * Reverses the sign of all ordinate values in the given array.
+     * Reverses the sign of all coordinate values in the given array.
      */
-    static void flip(final double[] ordinates) {
-        for (int i=0; i<ordinates.length; i++) {
-            ordinates[i] = -ordinates[i];
+    static void flip(final double[] coordinates) {
+        for (int i=0; i<coordinates.length; i++) {
+            coordinates[i] = -coordinates[i];
         }
     }
 

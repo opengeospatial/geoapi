@@ -455,7 +455,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>110°E<br>0°N</td>
@@ -505,7 +505,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>51°E<br>0°N</td>
@@ -558,7 +558,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>51°E<br>42°N</td>
@@ -623,7 +623,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>0°E<br>0°N</td>
@@ -677,7 +677,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>0°E<br>0°N</td>
@@ -726,7 +726,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>0°E<br>0°N</td>
@@ -777,7 +777,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>115°E<br>4°N</td>
@@ -828,7 +828,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>2°W<br>49°N</td>
@@ -879,7 +879,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>20°E<br>0°S</td>
@@ -947,7 +947,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>61°20'00"W<br>10°26'30"N</td>
@@ -998,7 +998,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>16°15'00"S<br>179°20'00"E</td>
@@ -1050,7 +1050,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>77°W<br>18°N</td>
@@ -1102,7 +1102,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>99°00'W<br>27°30'N</td>
@@ -1155,7 +1155,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>4°21'24.983"E<br>90°00'00.000"N</td>
@@ -1207,7 +1207,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>84°20'W<br>43°19'N</td>
@@ -1256,7 +1256,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>10°E<br>52°N</td>
@@ -1307,7 +1307,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>0°E<br>90°N</td>
@@ -1348,7 +1348,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>CRS characteristics</caption>
      *     <tr><th>Parameter</th>                     <th>Value</th></tr>
-     *     <tr><th>Source ordinates</th>              <th>Expected results</th></tr>
+     *     <tr><th>Source coordinates</th>              <th>Expected results</th></tr>
      *     <tr><td>semi-major axis</td>               <td>6378137.0 m</td></tr>
      *     <tr><td>semi-minor axis</td>               <td>6356752.314247833 m</td></tr>
      *     <tr><td>Latitude of standard parallel</td> <td>-71.0°</td></tr>
@@ -1359,7 +1359,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>70°E<br>90°S</td>
@@ -1399,7 +1399,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>CRS characteristics</caption>
      *     <tr><th>Parameter</th>                     <th>Value</th></tr>
-     *     <tr><th>Source ordinates</th>              <th>Expected results</th></tr>
+     *     <tr><th>Source coordinates</th>              <th>Expected results</th></tr>
      *     <tr><td>semi-major axis</td>               <td>6378388.0 m</td></tr>
      *     <tr><td>semi-minor axis</td>               <td>6356911.9461279465 m</td></tr>
      *     <tr><td>Latitude of standard parallel</td> <td>-67°</td></tr>
@@ -1410,7 +1410,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>67°E<br>90°S</td>
@@ -1461,7 +1461,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>5°23'15.500"E<br>52°09'22.178"N</td>
@@ -1511,7 +1511,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>See source</td>
@@ -1560,7 +1560,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>16°50'59.179"E<br>50°12'32.442"N</td>
@@ -1607,7 +1607,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>2°07'46.38"E<br>53°48'33.82"N</td>
@@ -1652,7 +1652,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>138°11'34.908"E<br>9°35'47.493"N</td>
@@ -1699,7 +1699,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *   <table class="ogc">
      *     <caption>Test points</caption>
      *     <tr>
-     *       <th>Source ordinates</th>
+     *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
      *       <td>2°7'46.380"E<br>53°48'33.820"N<br>73.000 m</td>

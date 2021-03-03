@@ -68,9 +68,9 @@ import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
  *
  * <p>Many {@link ProjectedCRS} instances tested in this class use the same projections than the
  * {@link MathTransform} instances tested in {@link ParameterizedTransformTest}. However the later
- * test class expects (λ,φ) input ordinates in degrees and (<var>x</var>,<var>y</var>)
- * output ordinates in metres, while this {@code AuthorityFactoryTest} class expects input and
- * output ordinates in CRS-dependent units and axis order.</p>
+ * test class expects (λ,φ) input coordinates in degrees and (<var>x</var>,<var>y</var>)
+ * output coordinates in metres, while this {@code AuthorityFactoryTest} class expects
+ * input and output coordinates in CRS-dependent units and axis order.</p>
  *
  * <div class="note"><b>Usage example:</b>
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
@@ -146,7 +146,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     protected boolean swapxy = false;
 
     /**
-     * {@code true} if the sign of ordinate values shall be reversed in both projected axes.
+     * {@code true} if the sign of coordinate values shall be reversed in both projected axes.
      * This flag applies only to projected coordinates. This flag is set to {@code true} for
      * <cite>South Oriented</cite> {@link ProjectedCRS}.
      *
@@ -436,7 +436,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
                 test.transform = projection;
                 validators.validate(projection);
                 /*
-                 * Get the sample points and swap ordinate values if needed.
+                 * Get the sample points and swap coordinate values if needed.
                  * Finally apply a unit conversion if the CRS doesn't use the usual units.
                  */
                 final SamplePoints sample = SamplePoints.forCRS(code);
@@ -515,10 +515,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Mercator (variant A)</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * <tr><td>Projection method:</td>   <td>Mercator (variant A)</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Greenwich</td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.
@@ -536,10 +536,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Mercator (variant B)</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
+     * <tr><td>Projection method:</td>   <td>Mercator (variant B)</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Greenwich</td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.
@@ -558,10 +558,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Mercator Popular Visualisation Pseudo Mercator</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * <tr><td>Projection method:</td>   <td>Mercator Popular Visualisation Pseudo Mercator</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Greenwich</td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.
@@ -579,10 +579,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Hotine Oblique Mercator (variant B)</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * <tr><td>Projection method:</td>   <td>Hotine Oblique Mercator (variant B)</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Greenwich</td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.
@@ -600,10 +600,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Transverse Mercator</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * <tr><td>Projection method:</td>   <td>Transverse Mercator</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Greenwich</td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.
@@ -621,10 +621,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Cassini-Soldner</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in Clarke's foot - <strong>note the units!</strong></td></tr>
+     * <tr><td>Projection method:</td>   <td>Cassini-Soldner</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Greenwich</td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>x</var>,<var>y</var>) in Clarke's foot - <strong>note the units!</strong></td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.
@@ -651,10 +651,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Hyperbolic Cassini-Soldner</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in links - <strong>note the units!</strong></td></tr>
+     * <tr><td>Projection method:</td>   <td>Hyperbolic Cassini-Soldner</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Greenwich</td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>x</var>,<var>y</var>) in links - <strong>note the units!</strong></td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.
@@ -674,10 +674,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Lambert Conic Conformal (1SP)</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * <tr><td>Projection method:</td>   <td>Lambert Conic Conformal (1SP)</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Greenwich</td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.
@@ -695,10 +695,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Lambert Conic Conformal (2SP)</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in US feet - <strong>note the units!</strong></td></tr>
+     * <tr><td>Projection method:</td>   <td>Lambert Conic Conformal (2SP)</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Greenwich</td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>x</var>,<var>y</var>) in US feet - <strong>note the units!</strong></td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.
@@ -717,10 +717,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * <tr><td>Projection method:</td>   <td>Lambert Conic Conformal (2SP Belgium)</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Greenwich</td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.
@@ -738,10 +738,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Lambert Azimuthal Equal Area</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
+     * <tr><td>Projection method:</td>   <td>Lambert Azimuthal Equal Area</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Greenwich</td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.
@@ -760,10 +760,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Polar Stereographic (variant A)</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * <tr><td>Projection method:</td>   <td>Polar Stereographic (variant A)</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Greenwich</td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.
@@ -783,10 +783,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Polar Stereographic (variant A)</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
+     * <tr><td>Projection method:</td>   <td>Polar Stereographic (variant A)</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Greenwich</td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres - <strong>note the axis order!</strong></td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.
@@ -806,10 +806,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Polar Stereographic (variant B)</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * <tr><td>Projection method:</td>   <td>Polar Stereographic (variant B)</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Greenwich</td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.
@@ -828,10 +828,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Oblique Stereographic</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Greenwich</td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
+     * <tr><td>Projection method:</td>   <td>Oblique Stereographic</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Greenwich</td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>x</var>,<var>y</var>) in metres</td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.
@@ -849,10 +849,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <table class="ogc">
      * <caption>CRS characteristics</caption>
-     * <tr><td>Projection method:</td> <td>Krovak</td></tr>
-     * <tr><td>Prime meridian:</td>    <td>Ferro <strong>(17°40'W from Greenwich)</strong></td></tr>
-     * <tr><td>Source ordinates:</td>  <td>(φ,λ) in degrees</td></tr>
-     * <tr><td>Output ordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres, <strong>south oriented (S,W)</strong></td></tr>
+     * <tr><td>Projection method:</td>   <td>Krovak</td></tr>
+     * <tr><td>Prime meridian:</td>      <td>Ferro <strong>(17°40'W from Greenwich)</strong></td></tr>
+     * <tr><td>Source coordinates:</td>  <td>(φ,λ) in degrees</td></tr>
+     * <tr><td>Output coordinates:</td>  <td>(<var>y</var>,<var>x</var>) in metres, <strong>south oriented (S,W)</strong></td></tr>
      * </table>
      *
      * @throws FactoryException if the math transform can not be created.

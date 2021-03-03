@@ -155,7 +155,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      *   <li>The source array and the target array are the same array (note that it can never be
      *       the case if the arrays are not of the same type)</li>
      *   <li>Each source coordinate is read atomically, and each target coordinate is written atomically
-     *       (i.e. no target ordinate is written before the source ordinates are fully read)</li>
+     *       (i.e. no target coordinate is written before the source coordinates are fully read)</li>
      *   <li>The coordinates are read and written in increasing array index order.</li>
      * </ul>
      *
@@ -208,9 +208,9 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
             srcOff = 0;
         }
         while (--numPts >= 0) {
-            System.arraycopy(srcPts, srcOff, ptSrc.ordinates, 0, srcDim);
+            System.arraycopy(srcPts, srcOff, ptSrc.coordinates, 0, srcDim);
             transform(ptSrc, ptDst);
-            System.arraycopy(ptDst.ordinates, 0, dstPts, dstOff, dstDim);
+            System.arraycopy(ptDst.coordinates, 0, dstPts, dstOff, dstDim);
             srcOff += srcDim;
             dstOff += dstDim;
         }
@@ -239,9 +239,9 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
             srcOff = 0;
         }
         while (--numPts >= 0) {
-            arraycopy(srcPts, srcOff, ptSrc.ordinates, 0, srcDim);
+            arraycopy(srcPts, srcOff, ptSrc.coordinates, 0, srcDim);
             transform(ptSrc, ptDst);
-            arraycopy(ptDst.ordinates, 0, dstPts, dstOff, dstDim);
+            arraycopy(ptDst.coordinates, 0, dstPts, dstOff, dstDim);
             srcOff += srcDim;
             dstOff += dstDim;
         }
@@ -266,9 +266,9 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
         final SimpleDirectPosition ptSrc = new SimpleDirectPosition(srcDim);
         final SimpleDirectPosition ptDst = new SimpleDirectPosition(dstDim);
         while (--numPts >= 0) {
-            arraycopy(srcPts, srcOff, ptSrc.ordinates, 0, srcDim);
+            arraycopy(srcPts, srcOff, ptSrc.coordinates, 0, srcDim);
             transform(ptSrc, ptDst);
-            System.arraycopy(ptDst.ordinates, 0, dstPts, dstOff, dstDim);
+            System.arraycopy(ptDst.coordinates, 0, dstPts, dstOff, dstDim);
             srcOff += srcDim;
             dstOff += dstDim;
         }
@@ -293,9 +293,9 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
         final SimpleDirectPosition ptSrc = new SimpleDirectPosition(srcDim);
         final SimpleDirectPosition ptDst = new SimpleDirectPosition(dstDim);
         while (--numPts >= 0) {
-            System.arraycopy(srcPts, srcOff, ptSrc.ordinates, 0, srcDim);
+            System.arraycopy(srcPts, srcOff, ptSrc.coordinates, 0, srcDim);
             transform(ptSrc, ptDst);
-            arraycopy(ptDst.ordinates, 0, dstPts, dstOff, dstDim);
+            arraycopy(ptDst.coordinates, 0, dstPts, dstOff, dstDim);
             srcOff += srcDim;
             dstOff += dstDim;
         }

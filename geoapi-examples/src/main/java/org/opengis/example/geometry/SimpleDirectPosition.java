@@ -17,7 +17,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
 /**
- * A {@link DirectPosition} implementation which store ordinate values in a {@code double[]} array.
+ * A {@link DirectPosition} implementation which store coordinate values in a {@code double[]} array.
  * This implementation can store an optional reference to an existing
  * {@linkplain CoordinateReferenceSystem Coordinate Reference System}.
  *
@@ -32,16 +32,16 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     private static final long serialVersionUID = 5075669833975740957L;
 
     /**
-     * The ordinate values. The length of this array is the {@linkplain #getDimension() dimension}
+     * The coordinate values. The length of this array is the {@linkplain #getDimension() dimension}
      * of this direct position.
      *
-     * <p>This array is public for allowing more efficient ordinates operations, for example using
+     * <p>This array is public for allowing more efficient coordinates operations, for example using
      * the {@link java.util.Arrays} methods. However we encourage to use only the methods from
      * the {@link DirectPosition} interface in most cases.</p>
      *
      * @see #getCoordinate()
      */
-    public final double[] ordinates;
+    public final double[] coordinates;
 
     /**
      * The coordinate reference system associated to this direct position,
@@ -58,59 +58,59 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     /**
      * Creates a new direct position of the given dimension.
      * The Coordinate Reference System is left unspecified.
-     * All ordinate values are initialized to zero.
+     * All coordinate values are initialized to zero.
      *
      * @param  dimension  the dimension.
      */
     public SimpleDirectPosition(final int dimension) {
-        ordinates = new double[dimension];
+        coordinates = new double[dimension];
     }
 
     /**
      * Creates a new direct position associated to the given coordinate reference system.
      * The {@linkplain #getDimension() dimension} of the new direct position is the
-     * dimension of the given CRS. All ordinate values are initialized to zero.
+     * dimension of the given CRS. All coordinate values are initialized to zero.
      *
      * @param crs  the coordinate reference system to associate to the new direct position.
      */
     public SimpleDirectPosition(final CoordinateReferenceSystem crs) {
-        ordinates = new double[crs.getCoordinateSystem().getDimension()];
+        coordinates = new double[crs.getCoordinateSystem().getDimension()];
         this.crs = crs;
     }
 
     /**
-     * Creates a new direct position initialized to the given ordinate values.
+     * Creates a new direct position initialized to the given coordinate values.
      * If the given CRS is non-null, then its dimension shall be equal to the
-     * length of the given {@code ordinates} array.
+     * length of the given {@code coordinates} array.
      *
      * <p>This constructor assigns the given array directly (without clone) to the
-     * {@link #ordinates} field, because that field is public anyway. Defensive
+     * {@link #coordinates} field, because that field is public anyway. Defensive
      * copy would not protect the state of this object.</p>
      *
      * @param  crs        the coordinate reference system, or {@code null}.
-     * @param  ordinates  the ordinate values. This array is <strong>not</strong> cloned.
+     * @param  coordinates  the coordinate values. This array is <strong>not</strong> cloned.
      * @throws MismatchedDimensionException if the given CRS is not null and its dimension
-     *         is not equals to the length of the {@code ordinates} array.
+     *         is not equals to the length of the {@code coordinates} array.
      */
-    public SimpleDirectPosition(final CoordinateReferenceSystem crs, final double... ordinates)
+    public SimpleDirectPosition(final CoordinateReferenceSystem crs, final double... coordinates)
             throws MismatchedDimensionException
     {
-        Objects.requireNonNull(ordinates);
-        if (crs != null && crs.getCoordinateSystem().getDimension() != ordinates.length) {
+        Objects.requireNonNull(coordinates);
+        if (crs != null && crs.getCoordinateSystem().getDimension() != coordinates.length) {
             throw new MismatchedDimensionException();
         }
-        this.ordinates = ordinates;
+        this.coordinates = coordinates;
         this.crs = crs;
     }
 
     /**
-     * Creates a new direct position initialized to the CRS and ordinate values
+     * Creates a new direct position initialized to the CRS and coordinate values
      * of the given direct position. This is a copy constructor.
      *
-     * @param position  the direct position from which to copy the CRS and ordinate values.
+     * @param position  the direct position from which to copy the CRS and coordinate values.
      */
     public SimpleDirectPosition(final DirectPosition position) {
-        ordinates = position.getCoordinate();           // Array shall be a copy according DirectPosition contract.
+        coordinates = position.getCoordinate();           // Array shall be a copy according DirectPosition contract.
         crs = position.getCoordinateReferenceSystem();
     }
 
@@ -128,49 +128,49 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     }
 
     /**
-     * The length of {@linkplain #ordinates coordinate sequence} (the number of entries).
+     * The length of {@linkplain #coordinates coordinate sequence} (the number of entries).
      *
-     * @return the length of the {@link #ordinates} array.
+     * @return the length of the {@link #coordinates} array.
      */
     @Override
     public int getDimension() {
-        return ordinates.length;
+        return coordinates.length;
     }
 
     /**
-     * Returns a <em>copy</em> of the {@linkplain #ordinates} array.
+     * Returns a <em>copy</em> of the {@linkplain #coordinates} array.
      *
-     * @return a clone of the {@link #ordinates} array.
+     * @return a clone of the {@link #coordinates} array.
      */
     @Override
     public double[] getCoordinate() {
-        return ordinates.clone();
+        return coordinates.clone();
     }
 
     /**
-     * Returns the ordinate at the specified dimension.
+     * Returns the coordinate at the specified dimension.
      *
      * @param  dimension  the dimension in the range 0 to {@linkplain #getDimension dimension}-1.
-     * @return the value in the {@link #ordinates} array at the given index.
+     * @return the value in the {@link #coordinates} array at the given index.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() position dimension}.
      */
     @Override
     public double getOrdinate(final int dimension) throws IndexOutOfBoundsException {
-        return ordinates[dimension];
+        return coordinates[dimension];
     }
 
     /**
-     * Sets the ordinate value along the specified dimension.
+     * Sets the coordinate value along the specified dimension.
      *
-     * @param  dimension  the dimension for the ordinate of interest.
-     * @param  value      the ordinate value of interest.
+     * @param  dimension  the dimension for the coordinate of interest.
+     * @param  value      the coordinate value of interest.
      * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
      *         than the {@linkplain #getDimension() position dimension}.
      */
     @Override
     public void setOrdinate(final int dimension, final double value) throws IndexOutOfBoundsException {
-        ordinates[dimension] = value;
+        coordinates[dimension] = value;
     }
 
     /**
@@ -194,7 +194,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     public boolean equals(final Object object) {
         if (object instanceof DirectPosition) {
             final DirectPosition other = (DirectPosition) object;
-            return Arrays.equals(ordinates, other.getCoordinate()) &&
+            return Arrays.equals(coordinates, other.getCoordinate()) &&
                    Objects.equals(crs, other.getCoordinateReferenceSystem());
         }
         return false;
@@ -210,7 +210,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
      */
     @Override
     public int hashCode() {
-        return Arrays.hashCode(ordinates) + Objects.hashCode(crs);
+        return Arrays.hashCode(coordinates) + Objects.hashCode(crs);
     }
 
     /**
@@ -224,8 +224,8 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
     public String toString() {
         final StringBuilder buffer = new StringBuilder("POINT");
         char separator = '(';
-        for (final double ordinate : ordinates) {
-            buffer.append(separator).append(ordinate);
+        for (final double coordinate : coordinates) {
+            buffer.append(separator).append(coordinate);
             separator = ' ';
         }
         return buffer.append(')').toString();

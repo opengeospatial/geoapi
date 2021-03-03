@@ -69,10 +69,10 @@ public interface ToleranceModifier {
     /**
      * Converts λ and φ tolerance values from metres to degrees before comparing
      * geographic coordinates. The tolerance for the longitude (λ) and latitude (φ)
-     * ordinate values are converted from metres to degrees using the standard length of one
+     * coordinate values are converted from metres to degrees using the standard length of one
      * nautical mile ({@value org.opengis.test.ToleranceModifiers#NAUTICAL_MILE} metres per
      * minute of angle). Next, the λ tolerance is adjusted according the distance of
-     * the φ ordinate value to the pole. In the extreme case where the coordinate to compare
+     * the φ coordinate value to the pole. In the extreme case where the coordinate to compare
      * is located at a pole, then the tolerance is 360° in longitude values.
      *
      * <p>This modifier assumes that geographic coordinates are expressed in decimal degrees in
@@ -120,13 +120,13 @@ public interface ToleranceModifier {
     ToleranceModifier PROJECTION_FROM_φλ = new ToleranceModifiers.Projection(1, 0);
 
     /**
-     * Makes the tolerance values relative to the ordinate values being compared. For each
-     * dimension, this modifier multiplies the tolerance threshold by the ordinate value and
+     * Makes the tolerance values relative to the coordinate values being compared. For each
+     * dimension, this modifier multiplies the tolerance threshold by the coordinate value and
      * ensure that the result is not lower than the original threshold (in order to allow
      * comparisons of values close to zero):
      *
      * <blockquote><var>tolerance</var>[i] = max(<var>tolerance</var>[i],
-     * <var>tolerance</var>[i] × <var>ordinate</var>[i])</blockquote>
+     * <var>tolerance</var>[i] × <var>coordinate</var>[i])</blockquote>
      */
     ToleranceModifier RELATIVE = new ToleranceModifiers.Relative();
 

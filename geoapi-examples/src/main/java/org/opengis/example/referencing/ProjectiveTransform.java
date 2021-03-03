@@ -113,7 +113,7 @@ public class ProjectiveTransform extends SimpleTransform {
      * │  w  │     │      │ │  1  │
      * └     ┘     └      ┘ └     ┘</pre></blockquote>
      * <p>
-     * Then, the destination ordinate values are divided by <var>w</var>. Note that in the
+     * Then, the destination coordinate values are divided by <var>w</var>. Note that in the
      * common case where the transform is affine, <var>w</var> = 1.
      */
     @Override

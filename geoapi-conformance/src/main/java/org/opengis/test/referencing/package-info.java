@@ -39,7 +39,7 @@
  * with methods for testing {@link org.opengis.referencing.operation.MathTransform} instances.
  * The various {@code TransformTestCase} fields control different aspects of the test to be run,
  * like the {@linkplain org.opengis.test.referencing.TransformTestCase#tolerance tolerance}
- * threshold for comparing ordinate values or whether
+ * threshold for comparing coordinate values or whether
  * {@linkplain org.opengis.test.referencing.TransformTestCase#isDerivativeSupported math transform
  * derivatives are supported}. Implementers can extend this class in order to define their own
  * tests.</p>

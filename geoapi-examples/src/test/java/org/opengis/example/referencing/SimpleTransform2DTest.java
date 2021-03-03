@@ -70,8 +70,8 @@ public strictfp class SimpleTransform2DTest extends TransformTestCase {
     @Test
     public void testConsistency() throws TransformException {
         validators.validate(transform);
-        verifyInDomain(new double[] {-100, -100}, // Minimal ordinate values to test.
-                       new double[] {+100, +100}, // Maximal ordinate values to test.
+        verifyInDomain(new double[] {-100, -100}, // Minimal coordinate values to test.
+                       new double[] {+100, +100}, // Maximal coordinate values to test.
                        new int[]    { 100,  100}, // Number of points to test.
                        new Random(216919106));
     }

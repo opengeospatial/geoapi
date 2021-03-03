@@ -50,17 +50,17 @@ import static org.junit.Assert.*;
  */
 final class SimpleDirectPosition implements DirectPosition {
     /**
-     * The ordinates.
+     * The coordinates.
      */
-    protected final double[] ordinates;
+    protected final double[] coordinates;
 
     /**
      * {@code true} to freeze this position. If {@code true}, then any attempts to invoke
      * a {@link #setOrdinate(int, double)} method will cause a JUnit test failure.
      *
      * <p>Note that setting this field to {@code true} does not prevent {@link TransformTestCase}
-     * to write directly in the {@link #ordinates} array. But since this class is package-private,
-     * the code writing directly in the ordinates array should know what they are doing.</p>
+     * to write directly in the {@link #coordinates} array. But since this class is package-private,
+     * the code writing directly in the coordinates array should know what they are doing.</p>
      */
     boolean unmodifiable;
 
@@ -70,26 +70,26 @@ final class SimpleDirectPosition implements DirectPosition {
      * @param  dimension  the dimension.
      */
     public SimpleDirectPosition(final int dimension) {
-        ordinates = new double[dimension];
+        coordinates = new double[dimension];
     }
 
     /**
-     * Creates a new direct position initialized to the given ordinate values.
+     * Creates a new direct position initialized to the given coordinate values.
      *
-     * @param ordinates  the ordinate values. This array is <strong>not</strong> cloned.
+     * @param coordinates  the coordinate values. This array is <strong>not</strong> cloned.
      *
      * @since 3.1
      */
-    public SimpleDirectPosition(final double[] ordinates) {
-        assertNotNull("Array of ordinate values shall not be null.", ordinates);
-        this.ordinates = ordinates;
+    public SimpleDirectPosition(final double[] coordinates) {
+        assertNotNull("Array of coordinate values shall not be null.", coordinates);
+        this.coordinates = coordinates;
     }
 
     /**
      * Creates a new two-dimensional direct position initialized to the given point.
      */
     public SimpleDirectPosition(final Point2D point) {
-        ordinates = new double[] {
+        coordinates = new double[] {
             point.getX(),
             point.getY()
         };
@@ -109,7 +109,7 @@ final class SimpleDirectPosition implements DirectPosition {
      */
     @Override
     public int getDimension() {
-        return ordinates.length;
+        return coordinates.length;
     }
 
     /**
@@ -117,37 +117,37 @@ final class SimpleDirectPosition implements DirectPosition {
      */
     @Override
     public double[] getCoordinate() {
-        return ordinates.clone();
+        return coordinates.clone();
     }
 
     /**
-     * Sets all ordinate values. The array length must be equal to the number of dimensions.
+     * Sets all coordinate values. The array length must be equal to the number of dimensions.
      *
      * @since 3.1
      */
-    public void setCoordinate(final double... ordinates) {
+    public void setCoordinate(final double... coordinates) {
         assertFalse("This DirectPosition shall not be modified.", unmodifiable);
-        assertEquals("Unexpected dimension.", this.ordinates.length, ordinates.length);
-        System.arraycopy(ordinates, 0, this.ordinates, 0, ordinates.length);
+        assertEquals("Unexpected dimension.", this.coordinates.length, coordinates.length);
+        System.arraycopy(coordinates, 0, this.coordinates, 0, coordinates.length);
     }
 
     /**
-     * Sets all ordinate values starting at the given offset in the given array.
+     * Sets all coordinate values starting at the given offset in the given array.
      * This method is for internal usage by {@link TransformTestCase} only.
      *
      * @param array      the {@code float[]} or {@code double[]} array.
      * @param offset     index of the first element to copy from the given array.
      * @param useDouble  if {@code false}, cast the values to floats.
      */
-    final void setCoordinate(final Object ordinates, int offset, final boolean useDouble) {
+    final void setCoordinate(final Object coordinates, int offset, final boolean useDouble) {
         assertFalse("This DirectPosition shall not be modified.", unmodifiable);
-        final int dimension = this.ordinates.length;
+        final int dimension = this.coordinates.length;
         for (int i=0; i<dimension; i++) {
-            double ordinate = Array.getDouble(ordinates, offset++);
+            double coordinate = Array.getDouble(coordinates, offset++);
             if (!useDouble) {
-                ordinate = (float) ordinate;
+                coordinate = (float) coordinate;
             }
-            this.ordinates[i] = ordinate;
+            this.coordinates[i] = coordinate;
         }
     }
 
@@ -156,7 +156,7 @@ final class SimpleDirectPosition implements DirectPosition {
      */
     @Override
     public double getOrdinate(int dimension) throws IndexOutOfBoundsException {
-        return ordinates[dimension];
+        return coordinates[dimension];
     }
 
     /**
@@ -165,7 +165,7 @@ final class SimpleDirectPosition implements DirectPosition {
     @Override
     public void setOrdinate(int dimension, double value) throws IndexOutOfBoundsException {
         assertFalse("This DirectPosition shall not be modified.", unmodifiable);
-        ordinates[dimension] = value;
+        coordinates[dimension] = value;
     }
 
     /**
@@ -184,7 +184,7 @@ final class SimpleDirectPosition implements DirectPosition {
         if (object instanceof DirectPosition) {
             final DirectPosition other = (DirectPosition) object;
             if (other.getCoordinateReferenceSystem() == null) {
-                return Arrays.equals(ordinates, other.getCoordinate());
+                return Arrays.equals(coordinates, other.getCoordinate());
             }
         }
         return false;
@@ -195,7 +195,7 @@ final class SimpleDirectPosition implements DirectPosition {
      */
     @Override
     public int hashCode() {
-        return Arrays.hashCode(ordinates);
+        return Arrays.hashCode(coordinates);
     }
 
     /**
@@ -204,22 +204,22 @@ final class SimpleDirectPosition implements DirectPosition {
     @Override
     public String toString() {
         boolean castToFloats = true;
-        for (final double ordinate : ordinates) {
-            if (Double.doubleToLongBits(ordinate) != Double.doubleToLongBits((float) ordinate)) {
+        for (final double coordinate : coordinates) {
+            if (Double.doubleToLongBits(coordinate) != Double.doubleToLongBits((float) coordinate)) {
                 castToFloats = false;
                 break;
             }
         }
         final StringBuilder buffer = new StringBuilder("POINT(");
-        for (int i=0; i<ordinates.length; i++) {
+        for (int i=0; i<coordinates.length; i++) {
             if (i != 0) {
                 buffer.append(' ');
             }
-            final double ordinate = ordinates[i];
+            final double coordinate = coordinates[i];
             if (castToFloats) {
-                buffer.append((float) ordinate);
+                buffer.append((float) coordinate);
             } else {
-                buffer.append(ordinate);
+                buffer.append(coordinate);
             }
         }
         return buffer.append(')').toString();
