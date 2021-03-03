@@ -23,8 +23,6 @@ GeoAPI build tools
       conformance}} JAR file together with its dependencies (<<<geoapi-pending>>>, JUnit and Unit
       of measurement).
 
-    * <<<geoapi-proj4.jar>>> for testing the conformance tests application.
-
     * <<<LICENSE.txt>>> and <<<README.txt>>> files.
 
   The bundle is created by a shell script rather than an Ant script

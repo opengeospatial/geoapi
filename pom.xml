@@ -6,7 +6,7 @@
          Build specification only:      mvn pre-site -N
          Build development snapshot:    mvn clean install
          Build also Python wheel:       mvn install -Ppython
-         Build with Proj.4 tests:       mvn install -DskipNativeLibraryTests=false
+         Build with Python tests:       mvn install -DskipNativeLibraryTests=false
          Publish a release:             mvn clean install deploy -Pgeoapi-release
      ============================================================================================= -->
 
@@ -96,7 +96,7 @@
 
                mvn clean install deploy -Pgeoapi-release
 
-           Optionally, if the Proj.4 native library is installed on the local machine,
+           Optionally, if the GDAL and Python native libraries are installed on the local machine,
            then GeoAPI can be built with the "-DskipNativeLibraryTests=false" option.
        =========================================================================================== -->
   <properties>
@@ -602,7 +602,6 @@
     <module>geoapi-pending</module>
     <module>geoapi-conformance</module>
     <module>geoapi-examples</module>
-    <module>geoapi-proj4</module>
     <module>geoapi-gdal</module>
     <module>geoapi-netcdf</module>
     <module>geoapi-java-python</module>

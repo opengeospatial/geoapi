@@ -33,9 +33,8 @@ jar -cmf META-INF/MANIFEST.MF geoapi-conformance.jar javax junit org
 pack200 --strip-debug --no-keep-file-order --segment-limit=-1 --effort=9 geoapi-conformance.pack.gz geoapi-conformance.jar
 
 # Create the zip file to download.
-# The zip file will include the Proj.4 wrappers as an example.
 ln ../../tools/src/main/shell/resources/README/conformance.txt README.txt
-zip -j -9 -q ../geoapi-conformance.zip geoapi-conformance.pack.gz ../../geoapi-proj4/target/geoapi-proj4-$GEOAPI_VERSION.jar ../../LICENSE.txt README.txt
+zip -j -9 -q ../geoapi-conformance.zip geoapi-conformance.pack.gz ../../LICENSE.txt README.txt
 
 # Cleanup.
 cd ..
