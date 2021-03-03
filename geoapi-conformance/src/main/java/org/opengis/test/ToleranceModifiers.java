@@ -121,14 +121,14 @@ public strictfp final class ToleranceModifiers {
     /**
      * Converts λ and φ tolerance values from metres to degrees before comparing
      * geographic coordinates. The tolerance for the longitude (λ) and latitude (φ)
-     * ordinate values are converted from metres to degrees using the standard length of one
+     * coordinate values are converted from metres to degrees using the standard length of one
      * nautical mile ({@value #NAUTICAL_MILE} metres per minute of angle). Next, the λ
-     * tolerance is adjusted according the distance of the φ ordinate value to the pole.
+     * tolerance is adjusted according the distance of the φ coordinate value to the pole.
      * In the extreme case where the coordinate to compare is located at a pole, then the
      * tolerance is 360° in longitude values.
      *
-     * @param  λDimension  the dimension of longitude ordinate values (typically 0 or 1).
-     * @param  φDimension  the dimension of latitude ordinate values (typically 0 or 1).
+     * @param  λDimension  the dimension of longitude coordinate values (typically 0 or 1).
+     * @param  φDimension  the dimension of latitude coordinate values (typically 0 or 1).
      * @return a tolerance modifier suitable for comparing geographic coordinates.
      *
      * @see ToleranceModifier#GEOGRAPHIC
@@ -212,8 +212,8 @@ public strictfp final class ToleranceModifiers {
      * the {@link CalculationType} is {@link CalculationType#INVERSE_TRANSFORM INVERSE_TRANSFORM}.
      * For all other cases, the modifier does nothing.</p>
      *
-     * @param  λDimension  the dimension of longitude ordinate values (typically 0 or 1).
-     * @param  φDimension  the dimension of latitude ordinate values (typically 0 or 1).
+     * @param  λDimension  the dimension of longitude coordinate values (typically 0 or 1).
+     * @param  φDimension  the dimension of latitude coordinate values (typically 0 or 1).
      * @return a tolerance modifier suitable for comparing projected coordinates.
      *
      * @see ToleranceModifier#PROJECTION

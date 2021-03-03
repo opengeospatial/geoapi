@@ -123,7 +123,7 @@ public class SimpleTransformFactory implements MathTransformFactory {
      * Creates an affine transform from a matrix. If the transform's input dimension is {@code M},
      * and output dimension is {@code N}, then the matrix will have size {@code [N+1][M+1]}.
      * The +1 in the matrix dimensions allows the matrix to do a shift, as well as a rotation.
-     * The {@code [M][j]} element of the matrix will be the <var>j</var>'th ordinate of the moved
+     * The {@code [M][j]} element of the matrix will be the <var>j</var>'th coordinate of the moved
      * origin. The {@code [i][N]} element of the matrix will be 0 for <var>i</var> less than
      * {@code M}, and 1 for <var>i</var> equals {@code M}.
      *
@@ -159,7 +159,7 @@ public class SimpleTransformFactory implements MathTransformFactory {
     }
 
     /**
-     * Creates a transform which passes through a subset of ordinates to another transform.
+     * Creates a transform which passes through a subset of coordinates to another transform.
      * The default implementation throws an exception in all cases since pass through transforms
      * are not implemented by this simple factory.
      */

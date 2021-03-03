@@ -136,7 +136,7 @@ public enum TestData {
      *   <tr><td>{@code comment}</td><td>For testing purpose only.</td></tr>
      * </table>
      *
-     * If this file, all global attribute for numeric values use the {@code float} type.
+     * In this file, all global attributes for numeric values use the {@code float} type.
      */
     NETCDF_4D_PROJECTED("Cube4D_projected_float.nc", 14544),
 

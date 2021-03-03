@@ -79,7 +79,7 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
 
     /**
      * The abbreviation used for this coordinate system axes. This abbreviation is also
-     * used to identify the ordinates in coordinate tuple. Examples are "<var>X</var>"
+     * used to identify the coordinates in coordinate tuple. Examples are "<var>X</var>"
      * and "<var>Y</var>".
      *
      * @see #getAbbreviation()
@@ -170,7 +170,7 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
 
     /**
      * The abbreviation used for this coordinate system axes. This abbreviation is also
-     * used to identify the ordinates in coordinate tuple. Examples are "<var>X</var>"
+     * used to identify the coordinates in coordinate tuple. Examples are "<var>X</var>"
      * and "<var>Y</var>".
      */
     @Override

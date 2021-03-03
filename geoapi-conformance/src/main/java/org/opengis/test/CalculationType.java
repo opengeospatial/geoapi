@@ -58,19 +58,19 @@ import org.opengis.test.referencing.TransformTestCase;
  */
 public enum CalculationType {
     /**
-     * The ordinate values to compare are the result of an identity operation (a plain copy).
-     * Ordinate values are checked for strict equality.
+     * The coordinate values to compare are the result of an identity operation (a plain copy).
+     * Coordinate values are checked for strict equality.
      */
     IDENTITY,
 
     /**
-     * The ordinate values to compare are the result of a direct operation performed by the
+     * The coordinate values to compare are the result of a direct operation performed by the
      * {@linkplain TransformTestCase#transform transform to test}.
      */
     DIRECT_TRANSFORM,
 
     /**
-     * The ordinate values to compare are the result of an
+     * The coordinate values to compare are the result of an
      * {@linkplain MathTransform#inverse() inverse transform}.
      */
     INVERSE_TRANSFORM,
@@ -78,8 +78,8 @@ public enum CalculationType {
     /**
      * The numbers to compare is a column of a {@linkplain MathTransform#derivative(DirectPosition)
      * transform derivative}. Each column of the derivative matrix is the displacement in the
-     * <em>target</em> CRS when an ordinate value in the source CRS is increased by one. Those
-     * derivative values are comparable to the target ordinate values: they use the same units
+     * <em>target</em> CRS when an coordinate value in the source CRS is increased by one. Those
+     * derivative values are comparable to the target coordinate values: they use the same units
      * in the same order. Consequently in case of doubt, implementers can use the same policy
      * than for {@link #DIRECT_TRANSFORM}.
      */

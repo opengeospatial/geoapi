@@ -121,7 +121,7 @@ public strictfp class TransformCaseTest extends TransformTestCase {
             assertTrue("Wrong or missing coordinate values in the error message.",
                     message.contains("Expected POINT(20.0 300.125) but got POINT(20.0 300.0)"));
             assertTrue("Wrong or missing delta value in the error message.",
-                    message.contains("The delta at ordinate 1 is 0.125"));
+                    message.contains("The delta at coordinate 1 is 0.125"));
         }
     }
 

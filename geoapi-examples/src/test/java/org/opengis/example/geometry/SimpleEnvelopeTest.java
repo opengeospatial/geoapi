@@ -50,8 +50,8 @@ public class SimpleEnvelopeTest {
     }
 
     /**
-     * Tests the creation of a {@code SimpleEnvelope} with invalid ordinate values.
-     * In this test, the invalid ordinate values is in the last dimension.
+     * Tests the creation of a {@code SimpleEnvelope} with invalid coordinate values.
+     * In this test, the invalid coordinate values is in the last dimension.
      */
     @Test(expected = IllegalArgumentException.class)
     public void testInvalidOrdinateValues() {

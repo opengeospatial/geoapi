@@ -8,13 +8,6 @@ GeoAPI examples
   can be used as a starting point for implementors. Since every files in this module are placed
   into the Public Domain, anyone is free to do whatever they wish with those files.
 
-    * {{{./apidocs/index.html}Browse the javadoc}}.
-      Links to the source code are provided in the javadoc.
-
-    * See also the {{{../geoapi-proj4/index.html}Proj.4 bindings}}
-      and {{{../geoapi-netcdf/index.html}NetCDF bindings}}
-      for more examples in the public domain.
-
 
 * Metadata
 
