@@ -15,6 +15,7 @@
 :source-highlighter:  coderay
 :supported-languages: Java and Python
 :icons:               font
+:imagesdir:           images
 :attribute-missing:   warn
 :appendix-caption:    Annex
 :description: A set of types and methods which can be used for the manipulation of geographic \

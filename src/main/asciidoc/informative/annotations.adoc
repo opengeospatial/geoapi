@@ -14,7 +14,7 @@ GeoAPI defines two annotations in the Java language (no annotation in Python):
 Those annotations are shown in the figure below:
 
 .Annotations reflecting UML elements used by GeoAPI
-image::annotations.svg[]
+image::annotations.svg[UML of GeoAPI annotations]
 
 Those annotations are related to the ISO 19115-1 Metadata standard in the following way:
 above `Obligation` enumeration is the `MD_ObligationCode` enumeration defined by ISO 19115,

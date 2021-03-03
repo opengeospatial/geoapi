@@ -10,7 +10,7 @@ The structure of the GeoAPI library mirrors the packaging and separation of the 
 by grouping different types and functionality in separated {supported-languages} language packages.
 
 .ISO specifications and GeoAPI packages mapping
-image::packages.svg[]
+image::packages.svg[GeoAPI packages]
 
 The `opengis.annotation` package provides the annotation system
 used to document the origin and obligation level of all methods and types in GeoAPI.

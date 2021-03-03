@@ -33,7 +33,7 @@ for referencing a type (for example a class) and a member (for example a propert
 The `NameFactory` is an extension of the GeoAPI project designed to allow the construction of instances of these name types.
 
 .Generic names derived from ISO 19103
-image::names.svg[]
+image::names.svg[UML of name objects]
 
 GeoAPI extends the ISO 19103 model by adding a (_path_, _tip_) pair in complement to the (_head_, _tail_) pair.
 While the _head_ and _tip_ properties carry non-trivial information only inside `ScopedName`,
