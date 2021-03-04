@@ -24,5 +24,4 @@ NOTE: `Record` and `RecordType` have some similarities with `Feature` and `Featu
       If we push the comparison with features further,
       record `Field` and `FieldType` are similar to feature `Attribute` and `AttributeType` respectively.
 
-TODO: add UML diagram (show how `Field` is replaced by `Map<type,value>`).
-Resolve https://github.com/opengeospatial/geoapi/issues/17
+[red yellow-background]#TODO: add UML diagram (show how `Field` is replaced by `Map<type,value>`). Resolve https://github.com/opengeospatial/geoapi/issues/17 #

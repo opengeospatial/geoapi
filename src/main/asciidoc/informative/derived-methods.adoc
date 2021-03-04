@@ -3,7 +3,7 @@
 
 GeoAPI may define additional methods not explicitly specified in OGC/ISO abstract models,
 when the values returned by those methods can be derived from the values provided by standard OGC/ISO properties.
-Those extensions are enabled by a GeoAPI restriction in the way properties are handled.
+Those extensions are enabled by the way properties are handled.
 In OGC/ISO abstract models each property could have its value stored verbatim,
 for example as a column in a database table, an XML element in a file or a field in a class.
 For enabling efficient use of OGS/ISO models in relational databases or XML files,

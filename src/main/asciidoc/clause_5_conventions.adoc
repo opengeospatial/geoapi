@@ -69,7 +69,7 @@ The following symbols and abbreviated terms are used in this specification:
 === Identifiers
 The normative provisions in this specification are denoted by the URI:
 
-http://www.opengis.net/spec/geoapi/{m.n} (TODO)
+http://www.opengis.net/spec/geoapi/{m.n}/ [red yellow-background]#(TODO: put numbers)#
 
 All requirements and conformance tests that appear in this document are denoted by partial URIs which are relative to this base.
 
@@ -78,7 +78,7 @@ All requirements and conformance tests that appear in this document are denoted 
 ==== Package namespaces
 
 This specification uses `opengis` in the text for denoting a package or module in OGC namespace,
-but the exact spelling depends on the programming language.
+but the fully qualified name depends on the programming language.
 For example the metadata package is spelled `org.opengis.metadata` in Java
 but only `opengis.metadata` (without `org` prefix) in Python.
 Except in language-specific notes, this specification uses the shorter form in the text

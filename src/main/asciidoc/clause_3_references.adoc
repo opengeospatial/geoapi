@@ -3,39 +3,17 @@
 The following normative documents contain provisions that, through reference in this text, constitute provisions of this document,
 except for any departures from the listed specifications which are explicitly mentioned in this text.
 For dated references, subsequent amendments to, or revisions of, any of these publications do not apply.
-However, parties to agreements based on this specification are encouraged to investigate the possibility
-of applying the most recent editions of the normative documents indicated below.
 For undated references, the latest edition of the normative document referred to applies.
 
-[NOTE]
-===================================================================================================================
 [.bibliography]
-ISO / TC 211: ISO 19103:2015,    Geographic information — Conceptual schema language (2015)
-
-[.bibliography]
-ISO / TC 211: ISO 19107:2003,    Geographic information — Spatial schema (2003)
-
-[.bibliography]
-ISO / TC 211: ISO 19109:2015,    Geographic information — Rules for application schema (2015)
-
-[.bibliography]
-ISO / TC 211: ISO 19111:2007,    Geographic information — Spatial referencing by coordinates (2007)
-
-[.bibliography]
-ISO / TC 211: ISO 19115-1:2014,  Geographic information — Metadata — Fundamentals (2014)
-
-[.bibliography]
-ISO / TC 211: ISO 19115-2:2009,  Geographic information — Metadata — Extensions for imagery and gridded data (2009)
-
-[.bibliography]
-ISO / TC 211: ISO 19141:2008,    Geographic information — Schema for moving features (2008)
-
-[.bibliography]
-OGC: OGC 01‑009, OpenGIS® Implementation Specification: Coordinate Transformation Services, revision 1.00 (2001)
-
-[.bibliography]
-OGC: OGC 14-083, OGC® Moving Features Encoding Part I: XML Core (2015)
-
-[.bibliography]
-James Gosling, Bill Joy, Guy Steele, Gilad Bracha, Oracle: The Java Language Specification
-===================================================================================================================
+* ISO 19103:2015,    Geographic information — Conceptual schema language (2015)
+* ISO 19107:2003,    Geographic information — Spatial schema (2003)
+* ISO 19109:2015,    Geographic information — Rules for application schema (2015)
+* ISO 19111:2007,    Geographic information — Spatial referencing by coordinates (2007)
+* ISO 19115-1:2014,  Geographic information — Metadata — Fundamentals (2014)
+* ISO 19115-2:2019,  Geographic information — Metadata — Extensions for acquisition and processing (2019)
+* ISO 19141:2008,    Geographic information — Schema for moving features (2008)
+* OGC 01‑009, OpenGIS® Implementation Specification: Coordinate Transformation Services, revision 1.00 (2001)
+* OGC 14-083, OGC® Moving Features Encoding Part I: XML Core (2015)
+* James Gosling, Bill Joy, Guy Steele, Gilad Bracha, Oracle: The Java Language Specification
+* Python Software Foundation: The Python Language Reference

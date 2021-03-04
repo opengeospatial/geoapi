@@ -17,7 +17,7 @@ h4 {
 h5 {
   font-weight: bold;
 }
-div.term h3 {
+h3.discrete {
   margin-top:    9px;
   margin-bottom: 6px;
   font-size:     large;
@@ -80,7 +80,7 @@ pre, pre code {
  * Reduce the space between items in lists.
  * Instead, we try to keep lines short.
  */
-ul > li p {
+div.compact ul > li p {
   margin-top: 0;
   margin-bottom: 0;
 }

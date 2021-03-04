@@ -2,8 +2,6 @@
 [[bibliography]]
 == Bibliography
 
-[NOTE]
-==================================================================
 [.bibliography]
 [1] OGC: 16-019r4, OGC® Open Geospatial APIs - White Paper (2016)
 
@@ -12,4 +10,3 @@
 
 [.bibliography]
 [3] The Unified Code for Units of Measure, http://unitsofmeasure.org/
-==================================================================

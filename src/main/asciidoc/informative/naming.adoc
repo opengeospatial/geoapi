@@ -14,24 +14,25 @@ The camel cases convention (for example `CoordinateSystemAxis`) is kept unchange
 The two-letter prefixes are dropped in the same way than for interfaces.
 Then if the type name ends with the `Code` suffix, that suffix is dropped too in strongly-typed languages like Java.
 For example the ISO 19115 `TopicCategoryCode` code list is named `TopicCategory` in Java classes.
-This renaming is not applied to more dynamic languages like Python,
+The `Code` suffix drop is not applied to more dynamic languages like Python,
 because the naming convention can be a compensation for the absence of compile-time type checks.
 
 ===== Properties
-The name changes depend on the target programming language and on the multiplicity.
+The name adaptations depend on the target programming language and on the multiplicity.
 In Java, accessor methods start with the `get` prefix and are followed by their property name in camel cases.
-For example the ISO 19111 `coordinateSystem` property become a method named `getCoordinateSystem()` in Java.
-But in Python, no prefix is added and the camel cases convention is replaced by the snake cases convention.
-For example ISO 19111 `coordinateSystem` property become a property named `coordinate_system` in Python.
-In all languages, if a property allows more than one value, then the plural form of its noun may be used.
+But in Python, no prefix is added and the camel cases convention is replaced by the snake cases convention
+(see the `coordinateSystem` example below).
+If a property allows more than one value, then the plural form of its noun may be used.
 The plural form hints the developers that they may need to use indexes or iterators for accessing elements.
 
-.Example of entity name changes
+.Example of name adaptations in programming elements
 [.compact, options="header"]
-|================================================================================
-|ISO entity                       |Name in Java           |Name in Python
-|`CI_Citation` interface          |`Citation`             |`Citation`
-|`CoordinateSystemAxis` interface |`CoordinateSystemAxis` |`CoordinateSystemAxis`
-|`TopicCategoryCode` code list    |`TopicCategory`        |`TopicCategoryCode`
-|`coordinateSystem` property      |`getCoordinateSystem()`|`coordinate_system`
-|================================================================================
+|======================================================================================
+|Metatype       |Name in OGC/ISO        |Name in Java           |Name in Python
+|Interface      |`CoordinateSystemAxis` |`CoordinateSystemAxis` |`CoordinateSystemAxis`
+|Interface      |`CI_Citation`          |`Citation`             |`Citation`
+|Code list      |`CI_TelephoneTypeCode` |`TelephoneType`        |`TelephoneTypeCode`
+|Enumeration    |`MD_TopicCategoryCode` |`TopicCategory`        |`TopicCategoryCode`
+|Property [0…1] |`coordinateSystem`     |`getCoordinateSystem()`|`coordinate_system`
+|Property [0…∞] |`alternateTitle`       |`getAlternateTitles()` |`alternate_title`
+|======================================================================================

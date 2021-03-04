@@ -7,7 +7,7 @@ Redistributed modules in OGC namespace shall contain the exact same set of types
 as listed in the API documentation published by OGC at the following locations: {set:cellbgcolor:#FFFFFF}
 
 Java: http://www.geoapi.org/4.0/javadoc +
-Python: TODO
+Python: [red yellow-background]#TODO#
 |===
 
 Note that this requirement does not mean that vendors must implement all types and methods,
@@ -21,3 +21,6 @@ Vendors can also add new types and methods, provided that those additions are in
 different than `org.opengis` and `opengis`.
 Finally, this requirement apply only to libraries redistributed for use by other developers.
 Final applications are free to remove any unused types or methods if such removal is invisible to other developers.
+
+[red yellow-background]#TODO: write a Java program verifying signature of all classes and methods in the `org.opengis` namespace.
+This verification would be done for the "libraries" target type only, not the "applications" target type.#

@@ -15,16 +15,14 @@ is available at the URLs listed below:
 |Online version: |http://www.geoapi.org/snapshot/javadoc/ |http://www.geoapi.org/snapshot/python/
 |========================================================================================================
 
-[WARNING]
-====
-The `snapshot` elements in above URLs will be replaced by `3.1` and `4.0` after release (TODO).
-====
+[red yellow-background]#TODO: The `snapshot` elements in above URLs will be replaced by `3.1` and `4.0` after release.#
 
-This specification makes certain requirements of libraries implementing this API and defines several conformance classes
+This specification defines several conformance classes
 for implementations covering different packages of the API or providing different levels of complexity in their implementations.
 GeoAPI provides a test suite through which to establish conformance of GeoAPI implementations.
 Requirements for 2 standardization target types are considered:
 
+[role="compact"]
 * *Libraries* which provide software components for building geospatial applications.
 * *Applications* which use the above-cited software components.
 
@@ -36,7 +34,6 @@ The framework, concepts, and methodology for testing, and the criteria to be ach
 OGC Compliance Testing Policies and Procedures and the OGC Compliance Testing web site.
 In order to conform to this OGC® interface standard, a software implementation shall choose to implement:
 
+[role="compact"]
 * Any one of the conformance levels specified in <<conformance-levels,Annex B (normative)>>.
 * Any one of the Distributed Computing Platform profiles specified in <<java,Annexes C>> through <<python,D>> (normative).
-
-All requirements-classes and conformance-classes described in this document are owned by the standard(s) identified.

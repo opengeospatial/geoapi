@@ -10,8 +10,8 @@
 ==== Requirement 1
 [cols=">20h,<80d",width="100%"]
 |============================================
-|Test id:      | /conf/conf-class-a/req-name-1
-|Requirement:  | /req/req-class-a/req-name-1
+|Test id:      | conf/conf-class-a/req-name-1
+|Requirement:  | req/req-class-a/req-name-1
 |Test purpose: | Verify that all types and properties in OGC namespace are as published.
-|Test method:  | TODO
+|Test method:  | [red yellow-background]#TODO#
 |============================================

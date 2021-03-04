@@ -3,8 +3,8 @@
 
 The GeoAPI metadata packages use the `org.opengis.metadata` namespace
 and implement the types defined in the specification from the International Organization for Standardization
-ISO 19115-1:2014 – _Metadata part 1: fundamentals_ along with the modifications of Technical Corrigendum 1 from 2016 (TODO: verify).
-They are completed or merged with the types defined in ISO 19115-2:2009 – _Extensions for imagery and gridded data_ (TODO: verify).
+ISO 19115-1:2014 – _Metadata part 1: fundamentals_ along with the modifications of Technical Corrigendum 1 from 2016 [red yellow-background]#(TODO: verify)#.
+They are completed or merged with the types defined in ISO 19115-2:2009 – _Extensions for imagery and gridded data_ [red yellow-background]#(TODO: verify)#.
 
 The metadata packages of GeoAPI provide container types for descriptive elements which may be related to data sets or components.
 All of these data structures are essentially containers for strings, dates or numbers,

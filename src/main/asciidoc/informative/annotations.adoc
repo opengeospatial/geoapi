@@ -16,21 +16,19 @@ Those annotations are shown in the figure below:
 .Annotations reflecting UML elements used by GeoAPI
 image::annotations.svg[UML of GeoAPI annotations]
 
-Those annotations are related to the ISO 19115-1 Metadata standard in the following way:
-above `Obligation` enumeration is the `MD_ObligationCode` enumeration defined by ISO 19115,
-moved into the `opengis.annotation` package for making it closer to other UML-related types.
-A `forbidden` value has been added for handling the cases where a property defined in a parent
-interface is inapplicable to a sub-interface
-(those cases are declared in ISO standards with the maximum number of occurrence set to zero).
-Above `Stereotype` enumeration is a copy of the `MD_DatatypeCode` code list defined by ISO 19115,
-retaining only the values relevant to GeoAPI.
-This duplication exists because the ISO 19115 standard defines a code list, while Java annotations require enumerations.
+[red yellow-background]#TODO: update the list of specifications.#
 
-++++
-<details>
-<summary>Annotations in Java source code</summary>
-++++
-include::../code/java/annotation.adoc[]
-++++
-</details>
-++++
+[NOTE]
+========================================
+Those annotations are related to the ISO 19115-1 Metadata standard in the following way:
+the GeoAPI `Obligation` is the ISO `MD_ObligationCode` enumeration
+moved into the annotation package for use with other UML-related types.
+A `forbidden` enumeration value has been added for handling the cases where a property defined in a parent
+interface is inapplicable to a sub-interface ([0…0] multiplicity in abstract models).
+The GeoAPI `Stereotype` enumeration is a copy of the ISO `MD_DatatypeCode` code list
+retaining only the values relevant to annotation of GeoAPI programming elements.
+This duplication exists because the ISO 19115 standard defines a code list, while Java annotations require enumerations.
+========================================
+
+<<UML-introspection,An example in annex>> shows how these annotations are applied in the Java language
+and how they are available at runtime by introspection.

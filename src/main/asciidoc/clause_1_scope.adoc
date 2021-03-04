@@ -1,7 +1,5 @@
 [[scope]]
 == Scope
-[NOTE]
-====
 GeoAPI contains a series of interfaces and classes in several packages which interpret into some programming languages
 (currently {supported-languages}) the data model and UML types of the ISO and OGC standards documents.
 The interfaces includes documentation which complement the injunctions of the OGC/ISO specifications by explaining
@@ -11,6 +9,7 @@ or standard patterns of behavior expected by the community of a programming lang
 This document explains GeoAPI interfaces and defines its use by library code implementing the API and by client code calling the API.
 Jointly with the interface definitions, this work aims to provide:
 
+[role="compact"]
 * a carefully considered interpretation of the OGC specifications for {supported-languages} languages,
 * a base structure to facilitate the creation of software libraries which implement OGC standards,
 * a well defined, full documented binding reducing the programming effort of using the OGC abstract model,
@@ -30,4 +29,3 @@ This version of the standard covers the specifications ISO 19103, ISO 19115, I
 ISO 19109 and four elements from ISO 19107 necessary to the implementation of ISO 19111.
 Future versions of this specification are expected to expand this set of interfaces to cover more models
 of the OGC Abstract Specification series, including notably geometry data structures.
-====

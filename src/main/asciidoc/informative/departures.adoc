@@ -4,6 +4,7 @@
 
 GeoAPI differs from ISO 19103 in the following ways:
 
+[role="compact"]
 * Replace some ISO 19103 types by equivalent standard types of the target platform when they exist.
 * Introduction of a `ControlledVocabulary` type as a common parent for code lists and enumerations.
 * Use of `InternationalString` for holding a separate `String` for every locale to handle.

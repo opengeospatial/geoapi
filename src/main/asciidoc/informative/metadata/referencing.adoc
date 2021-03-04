@@ -17,7 +17,7 @@ GeoAPI inserts this interface between `IdentifiedObject` and `CoordinateReferenc
 |`GCPCollection`    |`coordinateReferenceSystem` |`ReferenceSystem`
 |==================================================================
 
-TODO: replace above table by UML diagram showing `IdentifiedObject` and `ReferenceSystem`.
+[red yellow-background]#TODO: replace above table by UML diagram showing `IdentifiedObject` and `ReferenceSystem`.#
 
 The reference system identifier can be obtained by `ReferenceSystem.identifier`.
 The reference system type (geographic, projected, compound, _etc._) can be determined

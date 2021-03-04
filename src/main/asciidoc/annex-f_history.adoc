@@ -32,7 +32,7 @@ GeoAPI 3.0.0 has been released in 2011 and GeoAPI 3.0.1 in 2017.
 |2010-02-11 |3.0.0-Draft-r2 |Martin Desruisseaux |8.1.1, 10.1, annex F     |Clarifications
 |===============================================================================================
 
-TODO: update references in above table:
+[red yellow-background]#TODO: update references in above table:#
 
 * 8.1.1:   Primitive types
 * 10.1:    Geometry packages - Defined types
@@ -40,6 +40,7 @@ TODO: update references in above table:
 * annex F: Comparison with legacy OGC specifications
 
 [[future-work]]
+[discrete]
 === Future work
 
 This version of the standard does not propose a complete set of interfaces covering the entire set of OGC/ISO abstract standards,
