@@ -2,14 +2,15 @@
 [[examples]]
 == Examples
 
-[[UML-introspection]]
-=== UML at runtime
+This appendix provides code snippets in the {supported-languages} programming languages
+for aspects discussed in the <<overview,Geospatial API overview>> section.
 
-The <<annotations,annotations in API>> are available at runtime by introspection.
-This is useful, for example, when code needs to marshall data using the name defined by the ISO standard rather than the GeoAPI name.
+[[examples-java]]
+=== Java examples
 
-
-[[UML-java]]
-==== Java example
+This section provides code snippets in the Java programming languages
+for aspects discussed in the <<overview,Geospatial API overview>> section.
 
 include::code/java/annotation.adoc[]
+
+include::code/java/code-list.adoc[]

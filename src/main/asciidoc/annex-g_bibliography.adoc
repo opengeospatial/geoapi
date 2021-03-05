@@ -2,11 +2,12 @@
 [[bibliography]]
 == Bibliography
 
-[.bibliography]
-[1] OGC: 16-019r4, OGC® Open Geospatial APIs - White Paper (2016)
+Additional information and definitions were taken from the following sources.
 
 [.bibliography]
-[2] The Junit framework, http://junit.org/
-
-[.bibliography]
-[3] The Unified Code for Units of Measure, http://unitsofmeasure.org/
+* Features and geometry — Part 1: Feature models (2020),
+  https://docs.ogc.org/as/17-087r13/17-087r13.html[OGC 17-087r13]
+* OGC® Open Geospatial APIs — White Paper (2016),
+  https://docs.opengeospatial.org/wp/16-019r4/16-019r4.html[OGC 16-019r4]
+* The Junit framework, https://junit.org/
+* The Unified Code for Units of Measure, https://unitsofmeasure.org/

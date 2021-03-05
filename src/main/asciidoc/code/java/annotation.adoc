@@ -1,3 +1,9 @@
+[[UML-introspection]]
+==== UML at runtime
+
+The <<annotations,annotations in API>> are available at runtime by introspection.
+This is useful, for example, when code needs to marshall data using the names
+defined by the ISO standard rather than the GeoAPI names.
 In the following example, the top-level annotations indicate that the `ProjectedCRS` interface
 was derived from a type also named `ProjectedCRS` in the ISO 19111 standard.
 The enclosed annotation indicates that the `getCoordinateSystem()` method

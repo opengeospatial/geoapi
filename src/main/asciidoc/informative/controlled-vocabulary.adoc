@@ -2,16 +2,27 @@
 ==== Controlled vocabulary
 [.reference]_From ISO 19103:2015 §6.5_
 
-GeoAPI distinguishes between two enumerated types depending on whether the complete set of literal types is known
-when the code is originally created, or if the list may be extended at run time.
-Many language provides an `enum` construct for the former case and
-GeoAPI defines the `CodeList` abstract class in Java for the later case.
+The <<bibliography,feature models abstract specification>> defines controlled vocabulary as an
+established list of standardized terminology (names, words or phrases) with associated definitions
+for use to identify, describe, index or retrieve information.
+A simple implementation of controlled vocabulary commonly found in programming languages is enumeration.
+
+GeoAPI distinguishes two different types of controlled vocabularies:
+enumerations are _closed_ controlled vocabularies:
+it is not possible to add new members (except by releasing new GeoAPI versions).
+By contrast, code lists are _open_ vocabularies:
+they provide a basic set of members defined at compile-time,
+but users are free to add new members at runtime.
+
+Closed vocabularies are modeled as Enumeration elements within UML models.
+Many languages provide an `enum` construct for the closed case and
+GeoAPI defines the `CodeList` abstract class in Java for the open case.
 
 .Enumerated types mapping
 [.compact, options="header"]
 |========================================================
 |ISO 19103 type |Java type                   |Python type
-|CodeList       |`org.opengis.util.CodeList` |
+|CodeList       |`org.opengis.util.CodeList` |`Enum`
 |Enumeration    |`java.lang.Enum`            |`Enum`
 |`Bit`          |unimplemented               |
 |`Digit`        |unimplemented               |
@@ -23,12 +34,6 @@ Some other specifications (for example ISO 19111) do not use any particular suff
 The mapping to programmatic API may uniformize those type names to a single convention, depending on the target language.
 For the Java API, `Code` suffixes are omitted in class names.
 For the Python API, class names are left unchanged.
+See <<naming,Naming conventions>> for examples.
 
-++++
-<details>
-<summary>Code lists in Java</summary>
-++++
-include::../code/java/code-list.adoc[]
-++++
-</details>
-++++
+<<CodeList-introspection,An example in annex>> shows how code list are used in the Java language.
