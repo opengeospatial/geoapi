@@ -22,7 +22,7 @@ complemented by the mathematical operator types from the OGC 01-009 _Coordinate
 The packages in the `opengis.geometry` namespace cover the types defined in the ISO 19107 _Spatial Schema_ specification,
 although version 4.0 of the library only defines the elements from that specification needed by the geo-referencing types.
 Finally the `opengis.feature` package covers the meta-classes defined in the ISO 19109 _Rules for application schema_ specification,
-completed by the dynamic attributes defined in OGC 14-083 _Moving Features_ specification.
+completed by the dynamic attributes defined in OGC 18-075 _Moving Features_ specification.
 The feature package is not needed for dynamic languages like Python.
 
 

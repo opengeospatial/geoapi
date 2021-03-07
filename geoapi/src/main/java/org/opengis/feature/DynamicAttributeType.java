@@ -35,7 +35,7 @@ import org.opengis.annotation.UML;
 import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.Classifier;
 
-import static org.opengis.annotation.Specification.OGC_14083;
+import static org.opengis.annotation.Specification.OGC_MOVING_FEATURE;
 
 
 /**
@@ -58,7 +58,7 @@ import static org.opengis.annotation.Specification.OGC_14083;
  * @see AttributeType
  */
 @Classifier(Stereotype.METACLASS)
-@UML(identifier="AttributeType", specification=OGC_14083)
+@UML(identifier="AttributeType", specification=OGC_MOVING_FEATURE)
 public interface DynamicAttributeType<V> extends AttributeType<V> {
     /**
      * Creates a new attribute instance of this type.

@@ -16,8 +16,6 @@ Those annotations are shown in the figure below:
 .Annotations reflecting UML elements used by GeoAPI
 image::annotations.svg[UML of GeoAPI annotations]
 
-[red yellow-background]#TODO: update the list of specifications.#
-
 [NOTE]
 ========================================
 Those annotations are related to the ISO 19115-1 Metadata standard in the following way:

@@ -37,7 +37,7 @@ import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
-import static org.opengis.annotation.Specification.OGC_02059;
+import static org.opengis.annotation.Specification.OGC_FILTER;
 
 
 /**
@@ -66,7 +66,7 @@ public final class SortOrder extends CodeList<SortOrder> {
      * with the Filter 1.1 specification.
      * </p>
      */
-    @UML(identifier="ASC", obligation=CONDITIONAL, specification=OGC_02059)
+    @UML(identifier="ASC", obligation=CONDITIONAL, specification=OGC_FILTER)
     public static final SortOrder ASCENDING  = new SortOrder("ASCENDING", "ASC");
 
     /**
@@ -76,7 +76,7 @@ public final class SortOrder extends CodeList<SortOrder> {
      * with the Filter 1.1 specification.
      * </p>
      */
-    @UML(identifier="DESC", obligation=CONDITIONAL, specification=OGC_02059)
+    @UML(identifier="DESC", obligation=CONDITIONAL, specification=OGC_FILTER)
     public static final SortOrder DESCENDING = new SortOrder("DESCENDING", "DESC");
 
     /**

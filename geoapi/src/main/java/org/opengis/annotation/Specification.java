@@ -221,6 +221,9 @@ public enum Specification {
      * @see <a href="https://www.iso.org/fr/standard/44075.html">ISO 19111-2:2009 on standards catalogue</a>
      *
      * @since 3.1
+     *
+     * @todo Remove after we upgraded to ISO 19111:2019.
+     *       This enumeration was not present in GeoAPI 3.0.1, so it is safe to remove.
      */
     ISO_19111_2((short) 2009),
 
@@ -249,6 +252,8 @@ public enum Specification {
      *
      * @see <a href="https://www.iso.org/standard/26017.html">ISO 19112:2003 on standards catalogue</a>
      * @see <a href="https://portal.opengeospatial.org/files/?artifact_id=46964">OGC 11-122r1 Gazetteer Service — Profile of the Web Feature Service</a>
+     *
+     * @since 3.1
      */
     ISO_19112((short) 2003),
 
@@ -295,7 +300,7 @@ public enum Specification {
     ISO_19115((short) 2014),
 
     /**
-     * ISO 19115-2, Metadata part 2: extensions for imagery and gridded data.
+     * ISO 19115-2, Metadata part 2: Extensions for acquisition and processing.
      * This is the specification for package {@link org.opengis.metadata} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
@@ -532,7 +537,10 @@ public enum Specification {
      * </ul>
      *
      * @see <a href="http://www.opengeospatial.org/standards/go">Download from OGC</a>
+     *
+     * @deprecated This specification has been retired.
      */
+    @Deprecated
     OGC_03064((short) 10),
 
     /**
@@ -572,71 +580,51 @@ public enum Specification {
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
-     *   <li><b>3:</b> OGC 14-083r3   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>1:</b> OGC 18-075   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
      * @see #ISO_19109
-     * @see <a href="http://docs.opengeospatial.org/is/14-083r2/14-083r2.html">Browse on OGC web site</a>
+     * @see <a href="http://docs.opengeospatial.org/is/18-075/18-075.html">Browse on OGC web site</a>
      *
-     * @todo update URL after the revision has been publish.
+     * @since 3.1
      */
-    OGC_14083((short) 3),
+    OGC_MOVING_FEATURE((short) 1),
 
     /**
      * Filter encoding implementation specification.
      * This is the specification for package {@link org.opengis.filter} and sub-packages.
      *
+     * <p><b>Version numbers used in GeoAPI:</b></p>
+     * <ul>
+     *   <li><b>1:</b> OGC 02-059</li>
+     *   <li><b>2:</b> OGC 09-026   ({@linkplain #defaultVersion() default version})</li>
+     * </ul>
+     *
      * @see <a href="http://www.opengeospatial.org/standards/filter">Download from OGC</a>
      *
-     * @deprecated To be replaced by {@code OGC 09-026}.
+     * @since 3.1
      */
-    @Deprecated
-    OGC_02059((short) 1),
-
-    /**
-     * Styled Layer Descriptor (SLD) implementation specification.
-     * This is the specification for package {@link org.opengis.sld} and sub-packages.
-     *
-     * @see <a href="http://www.opengeospatial.org/standards/sld">Download from OGC</a>
-     *
-     * @deprecated To be replaced by {@code OGC 05-078}.
-     */
-    @Deprecated
-    OGC_02070((short) 1),
-
-    /**
-     * Web Feature Service implementation specification.
-     * This is the specification for package {@link org.opengis.feature} and sub-packages.
-     *
-     * @see <a href="http://www.opengeospatial.org/standards/wfs">Download from OGC</a>
-     *
-     * @deprecated To be replaced by {@code OGC 09-025}.
-     */
-    @Deprecated
-    OGC_04094((short) 1),
+    OGC_FILTER((short) 2),
 
     /**
      * Observations and Measurements, part 1.
      * This is the specification for package {@link org.opengis.observation}.
      *
      * @deprecated To be replaced by Topic 20: Observations and Measurements
+     * @todo Remove before release, since it was not part of GeoAPI 3.0.1.
+     *
+     * @since 3.1
      */
     @Deprecated
     OGC_07022((short) 1),
 
     /**
-     * Observations and Measurements, part 2: Sampling Features.
-     * This is the specification for package {@link org.opengis.observation.sampling}.
-     *
-     * @deprecated To be replaced by Topic 20: Observations and Measurements
-     */
-    @Deprecated
-    OGC_07002((short) 1),
-
-    /**
      * Specification not yet determined. This is a temporary enumeration
      * for the processing of API submitted by some contributors.
+     *
+     * @deprecated To be removed.
      */
+    @Deprecated
     UNSPECIFIED((short) 1);
 
     /**
