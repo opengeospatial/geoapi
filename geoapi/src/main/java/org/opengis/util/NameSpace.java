@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A domain in which {@linkplain GenericName names} given by character strings are defined.
+ * A domain in which {@linkplain GenericName names} are defined.
  * Every {@link GenericName} must be valid in a namespace. For a {@link LocalName}, this means
  * that the name must exist in the current namespace. For a {@link ScopedName}, this means:
  *

@@ -2,10 +2,30 @@
 ==== Name types
 [.reference]_From ISO 19103:2015 §7.5_
 
-A name is a sequence of identifiers rooted within the context of a namespace.
-`NameSpace` defines a domain in which "names" given by character strings can be mapped to objects.
-For example a class forms a namespace for the properties that the class contains.
+A `GenericName` is a sequence of identifiers rooted within the context of a namespace.
+`NameSpace` defines a domain in which names can be mapped to objects.
+For example names could be primary keys in a database table,
+in which case the namespace is materialized by the table.
+Each storage (XML, shapefiles, netCDF, …) may have their own constraints for names in their namespaces.
 
+.Generic names derived from ISO 19103
+image::names.svg[UML of name objects]
+
+`GenericName` is the base interface for all names in a `NameSpace`.
+A generic name can be either a `LocalName`, or a `ScopedName` which is an aggregate of
+a `LocalName` (the _head_) for locating another `NameSpace` and
+a `GenericName` (the _tail_) valid in that name space.
+For example if `"urn:​ogc:​def:​crs:​EPSG:​10:​4326"` is a `ScopedName`,
+then `"urn"` is the _head_ and `"ogc:​def:​crs:​EPSG:​10:​4326"` is the _tail_.
+GeoAPI extends the model by allowing navigation in the opposite direction,
+with `"urn:​ogc:​def:​crs:​EPSG:​10"` as the _path_ and `"4326"` as the _tip_.
+
+.Components of a generic name
+image::path-components.svg["urn:​ogc:​def:​crs:​EPSG:​10" components]
+
+`TypeName` and `MemberName` are subtypes of `LocalName`
+for referencing a type (for example a class) and a member (for example a property in a class) respectively.
+All those types are mapped to {supported-languages} classes as below:
 
 .Name types mapping
 [.compact, options="header"]
@@ -20,43 +40,29 @@ For example a class forms a namespace for the properties that the class contains
 |`MemberName`        |`org.opengis.util.MemberName`  |
 |=================================================================
 
-`GenericName` is the base interface for all names in a `NameSpace`.
-A generic name can be either a `LocalName`, or a `ScopedName` which is a composite of
-a `LocalName` (the _head_) for locating another `NameSpace` and a `GenericName` (the _tail_) valid in that name space.
-For example if `"urn:​ogc:​def:​crs:​EPSG:​9.5:​4326"` is a `ScopedName`,
-then `"urn"` is the _head_ and `"ogc:​def:​crs:​EPSG:​9.5:​4326"` is the _tail_.
-GeoAPI extends the model by allowing navigation in the opposite direction,
-with `"urn:​ogc:​def:​crs:​EPSG:​9.5"` as the _path_ and `"4326"` as the _tip_.
 
-`TypeName` and `MemberName` are subtypes of `LocalName`
-for referencing a type (for example a class) and a member (for example a property in a class) respectively.
-The `NameFactory` is an extension of the GeoAPI project designed to allow the construction of instances of these name types.
-
-.Generic names derived from ISO 19103
-image::names.svg[UML of name objects]
+[[generic-name-departure]]
+===== Departures from ISO model
 
 GeoAPI extends the ISO 19103 model by adding a (_path_, _tip_) pair in complement to the (_head_, _tail_) pair.
 While the _head_ and _tip_ properties carry non-trivial information only inside `ScopedName`,
-GeoAPI nevertheless makes them available from the `GenericName` interface (not shown in above diagram)
+GeoAPI nevertheless makes them available from the parent `GenericName` interface (not shown in above UML diagram)
 with the restriction that they shall return `this` (Java) or `self` (Python) when the name is an instance of `LocalName`.
 This generalization makes common operations simpler without the need to check for the exact name interface.
 
-The ISO 19103 `aName` property appears as `toString` in above UML diagram,
+The ISO 19103 `GenericName.aName` property appears as `toString` in above UML diagram,
 but this property should be mapped to the standard mechanism for representing an arbitrary object
 as a character string in the target programming language.
 In Java this is the `toString()` method;
 in Python this is `+__str__+` or `+__repr__+`.
 This specification uses the Java method name as it is more readable, but other languages should adapt.
+The `aName` and `scopedName` properties in sub-interfaces are replaced by inheritance of `toString`.
 
-The ISO 19103 `NameSpace` interface defines also mapping functions from a name to the object identified by that name.
-But this functionality does not appear in the GeoAPI `NameSpace` interface;
-instead we left these mappings to other frameworks (for example _Java Naming and Directory Interface_).
+ISO 19103 defines mapping functions from a name to the object identified by that name:
+`getObject()` in `GenericName` and numerous functions in `NameSpace`.
+Those functions are not included in GeoAPI interfaces.
+Instead we left these mappings to other frameworks, for example _Java Naming and Directory Interface_ (JNDI).
+<<JNDI,An example in annex>> shows how some omitted functions can be implemented by JNDI in the Java language.
 
-++++
-<details>
-<summary>Mapping to Java Naming and Directory Interface™ (JNDI)</summary>
-++++
-include::../code/java/JNDI.adoc[]
-++++
-</details>
-++++
+The `NameFactory` is an extension to allow the construction of instances of these name types.
+In GeoAPI, factories are realizations of constructors.

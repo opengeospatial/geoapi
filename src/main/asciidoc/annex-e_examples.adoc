@@ -14,3 +14,5 @@ for aspects discussed in the <<overview,Geospatial API overview>> section.
 include::code/java/annotation.adoc[]
 
 include::code/java/code-list.adoc[]
+
+include::code/java/JNDI.adoc[]

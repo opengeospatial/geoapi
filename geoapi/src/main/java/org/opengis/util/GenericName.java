@@ -42,17 +42,68 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A sequence of identifiers rooted within the context of a {@linkplain NameSpace namespace}.
- * This interface is similar to a file path in a file system relative to a default directory.
- * All generic names:
+ * The job of a "name" is to associate that name with an {@link java.lang.Object}.
+ * For example {@code GenericName} instances could be keys in a {@link java.util.HashMap},
+ * in which case the namespace is materialized by the {@code HashMap}.
+ * Names are often used in the context of reading data from various formats such as XML, shapefiles or netCDF,
+ * which have different constraints for names in their namespaces. When reading data from a file,
+ * names are often used for identifying attributes in records. In such case, specialized types are used:
  *
  * <ul>
- *   <li>carry an association with their {@linkplain #scope() scope} in which they are considered local;</li>
- *   <li>have the ability to provide a {@linkplain #getParsedNames() parsed} version of themselves.</li>
+ *   <li>{@link TypeName} is the name of a {@link RecordType}.</li>
+ *   <li>{@link MemberName} is the name of an attribute in a {@link Record} or {@link RecordType}.</li>
  * </ul>
  *
  * Names can be {@linkplain #toFullyQualifiedName() fully qualified} (e.g. {@code "urn:ogc:def:crs:EPSG::4326"}) or
- * they may be relative to a {@linkplain #scope() scope} (e.g. {@code "EPSG::4326"} in the {@code "urn:ogc:def:crs"}
- * namespace). This can be compared to the standard {@link java.nio.file.Path} interface in the JDK:
+ * relative to a {@linkplain #scope() scope} (e.g. {@code "EPSG::4326"} in the {@code "urn:ogc:def:crs"} namespace).
+ * All names have the ability to provide a {@linkplain #getParsedNames() parsed} version of themselves.
+ * In the following illustration, each line is one possible construction for {@code "urn:crs:epsg:4326"}
+ * (taken as an abridged form of above URN for this example only). For each construction:
+ *
+ * <ul>
+ *   <li>the part without colored background is the {@link #scope()} and is invisible to all other methods
+ *       except {@code toFullyQualifiedName()};</li>
+ *   <li>the first column shows the visible part of the name in a green background;</li>
+ *   <li>the second and third columns show the
+ *       ({@linkplain #head() head}:{@linkplain ScopedName#tail() tail}) and
+ *       ({@linkplain ScopedName#path() path}:{@linkplain #tip() tip}) components, respectively.</li>
+ * </ul>
+ *
+ * <blockquote>
+ * <table class="ogc" style="margin-top:21px; margin-bottom:45px; border-spacing:40px 0">
+ *   <caption>Various representations of a generic name</caption>
+ *   <tr>
+ *     <th style="background-color:inherit">scope:<span style="background:LawnGreen">name</span></th>
+ *     <th style="background-color:inherit"><span style="background:LightSkyBlue">head</span>:<span style="background:Yellow">tail</span></th>
+ *     <th style="background-color:inherit"><span style="background:LightSkyBlue">path</span>:<span style="background:Yellow">tip</span></th>
+ *     <th style="background-color:inherit">Type</th>
+ *   </tr><tr>
+ *     <td><code><span style="background:LawnGreen">urn:crs:epsg:4326</span></code></td>
+ *     <td><code><span style="background:LightSkyBlue">urn:</span><span style="background:Yellow">crs:epsg:4326</span></code></td>
+ *     <td><code><span style="background:LightSkyBlue">urn:crs:epsg:</span><span style="background:Yellow">4326</span></code></td>
+ *     <td>{@link org.opengis.util.ScopedName} with {@linkplain org.opengis.util.NameSpace#isGlobal() global namespace}</td>
+ *   </tr><tr>
+ *     <td><code>urn:<span style="background:LawnGreen">crs:epsg:4326</span></code></td>
+ *     <td><code>urn:<span style="background:LightSkyBlue">crs:</span><span style="background:Yellow">epsg:4326</span></code></td>
+ *     <td><code>urn:<span style="background:LightSkyBlue">crs:epsg:</span><span style="background:Yellow">4326</span></code></td>
+ *     <td>{@link org.opengis.util.ScopedName}</td>
+ *   </tr><tr>
+ *     <td><code>urn:crs:<span style="background:LawnGreen">epsg:4326</span></code></td>
+ *     <td><code>urn:crs:<span style="background:LightSkyBlue">epsg:</span><span style="background:Yellow">4326</span></code></td>
+ *     <td><code>urn:crs:<span style="background:LightSkyBlue">epsg:</span><span style="background:Yellow">4326</span></code></td>
+ *     <td>{@link org.opengis.util.ScopedName}</td>
+ *   </tr><tr>
+ *     <td><code>urn:crs:epsg:<span style="background:LawnGreen">4326</span></code></td>
+ *     <td><code>urn:crs:epsg:<span style="background:LightSkyBlue">4326</span></code></td>
+ *     <td><code>urn:crs:epsg:<span style="background:Yellow">4326</span></code></td>
+ *     <td>{@link org.opengis.util.LocalName}</td>
+ *   </tr>
+ * </table>
+ * </blockquote>
+ *
+ * <h2>Comparison with files in a filesystem</h2>
+ * This {@code GenericName} interface is similar to a file path in a file system relative to a default directory.
+ * It can be compared to the standard {@link java.nio.file.Path} interface in the JDK:
  *
  * <blockquote><table class="ogc" style="white-space: nowrap">
  *   <caption>Equivalence between {@code GenericName} and {@code java.nio.file.Path}</caption>
@@ -85,53 +136,6 @@ import static org.opengis.annotation.Specification.*;
  *     <td>{@link java.nio.file.Path#toString() Path.toString()}</td>
  *   </tr>
  * </table></blockquote>
- *
- * <h2>Example</h2>
- * In the following illustration, each line is one possible construction for {@code "urn:crs:epsg:4326"}
- * (taken as an abridged form of above URN for this example only). For each construction:
- *
- * <ul>
- *   <li>the part without colored background is the {@link #scope()} and is invisible to all other methods
- *       except {@code toFullyQualifiedName()};</li>
- *   <li>the first column shows the visible part of <span style="background:LawnGreen">this</span> name
- *       in a green background;</li>
- *   <li>the second and third columns show the
- *       (<span style="background:LightSkyBlue"><var>head</var></span>.<span style="background:Yellow"><var>tail</var></span>) and
- *       (<span style="background:LightSkyBlue"><var>path</var></span>.<span style="background:Yellow"><var>tip</var></span>)
- *       components, respectively.</li>
- * </ul>
- *
- * <blockquote>
- * <table class="ogc" style="margin-top:21px; margin-bottom:45px; border-spacing:40px 0">
- *   <caption>Various representations of a generic name</caption>
- *   <tr>
- *     <th style="background-color:inherit">{@linkplain #scope() scope}.this</th>
- *     <th style="background-color:inherit">{@linkplain #head() head}.{@linkplain ScopedName#tail() tail}</th>
- *     <th style="background-color:inherit">{@linkplain ScopedName#path() path}.{@linkplain #tip() tip}</th>
- *     <th style="background-color:inherit">Type</th>
- *   </tr><tr>
- *     <td><code><span style="background:LawnGreen">urn:crs:epsg:4326</span></code></td>
- *     <td><code><span style="background:LightSkyBlue">urn:</span><span style="background:Yellow">crs:epsg:4326</span></code></td>
- *     <td><code><span style="background:LightSkyBlue">urn:crs:epsg:</span><span style="background:Yellow">4326</span></code></td>
- *     <td>{@link org.opengis.util.ScopedName} with {@linkplain org.opengis.util.NameSpace#isGlobal() global namespace}</td>
- *   </tr><tr>
- *     <td><code>urn:<span style="background:LawnGreen">crs:epsg:4326</span></code></td>
- *     <td><code>urn:<span style="background:LightSkyBlue">crs:</span><span style="background:Yellow">epsg:4326</span></code></td>
- *     <td><code>urn:<span style="background:LightSkyBlue">crs:epsg:</span><span style="background:Yellow">4326</span></code></td>
- *     <td>{@link org.opengis.util.ScopedName}</td>
- *   </tr><tr>
- *     <td><code>urn:crs:<span style="background:LawnGreen">epsg:4326</span></code></td>
- *     <td><code>urn:crs:<span style="background:LightSkyBlue">epsg:</span><span style="background:Yellow">4326</span></code></td>
- *     <td><code>urn:crs:<span style="background:LightSkyBlue">epsg:</span><span style="background:Yellow">4326</span></code></td>
- *     <td>{@link org.opengis.util.ScopedName}</td>
- *   </tr><tr>
- *     <td><code>urn:crs:epsg:<span style="background:LawnGreen">4326</span></code></td>
- *     <td><code>urn:crs:epsg:<span style="background:LightSkyBlue">4326</span></code></td>
- *     <td><code>urn:crs:epsg:<span style="background:Yellow">4326</span></code></td>
- *     <td>{@link org.opengis.util.LocalName}</td>
- *   </tr>
- * </table>
- * </blockquote>
  *
  * <h2>Comparison with Java Content Repository (JCR) names</h2>
  * In the Java standard {@link javax.xml.namespace.QName} class and in the Java Content Repository (JCR) specification,
@@ -174,25 +178,22 @@ import static org.opengis.annotation.Specification.*;
  * @see javax.naming.Name
  * @see NameFactory#createGenericName(NameSpace, CharSequence[])
  * @see NameFactory#parseGenericName(NameSpace, CharSequence)
- *
- * @todo change this discussion: a {@code NameSpace} is like a combination of {@code java.util.Map<LocalName,Object>}
- *       with a special handling for {@code ScopedName} keys: the head of the scope identifies a new namespace
- *       (or a sub-context in JNDI), and the tail is the name of the object to lookup in that namespace.
- *       If the tail is itself a {@code ScopedName}, the process is repeated recursively until we reach the local name.
  */
 @Classifier(Stereotype.ABSTRACT)                            // This is said in the text (not the UML) of ISO 19103.
 @UML(identifier="GenericName", specification=ISO_19103)
 public interface GenericName extends Comparable<GenericName> {
     /**
-     * Returns the scope (name space) in which this name is local. The scope of a name
-     * determines where a name starts. The scope is set on creation and is not modifiable.
+     * Returns the scope (name space) in which this name is local.
+     * All names carry an association with their scope in which they are considered local,
+     * but the scope can be the {@linkplain NameSpace#isGlobal() global namespace}.
+     * The scope of a name determines where a name starts.
+     * The scope is set on creation and is not modifiable.
      *
      * <p>In the {@linkplain GenericName overview illustration},
      * the scopes are the blue elements in the <var>scope</var>.<var>this</var> column.</p>
      *
      * <div class="note"><b>Example:</b>
-     * for a {@linkplain #toFullyQualifiedName() fully qualified name} (a name having a
-     * {@linkplain NameSpace#isGlobal() global namespace}) {@code "org.opengis.util.Record"},
+     * for a {@linkplain #toFullyQualifiedName() fully qualified name} {@code "org.opengis.util.Record"},
      * if this instance is the {@code "util.Record"} name, then the scope of this instance
      * has the {@code "org.opengis"} {@linkplain NameSpace#name() name}.
      * </div>

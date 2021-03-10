@@ -10,9 +10,10 @@ which manipulates normalized data structures of geographic information based on 
 and the library code able both to instantiate and operate on these data structures
 according to the rules required by the published API and by the ISO and OGC standards.
 
-This standard complements existing OGC standards by defining language specific layers of normalization.
-This standard does not replace the core standards developing the OGC/ISO abstract model but complements those documents
-for developers by documenting the mapping of types and methods from the abstract model into some programming languages,
+This standard is a _realization_ of OGC/ISO abstract specifications: it defines a language specific layers of normalization.
+By comparison, the Geographic Markup Language (GML) is another realization of the same abstract specifications
+(ignoring version numbers) but targeting a different language (XML).
+GeoAPI documents the mapping of types and methods from the abstract model into {supported-languages} programming languages,
 providing standard interfaces in the `org.opengis` or `opengis` namespaces and explaining the use of GeoAPI interfaces.
 
 

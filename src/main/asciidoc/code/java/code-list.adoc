@@ -1,5 +1,5 @@
 [[CodeList-introspection]]
-==== Code list elements at runtime
+==== Code list at runtime
 
 <<controlled-vocabulary,Controlled vocabulary>> can take the form of enumerations or code lists.
 Those two types are implemented by `java.lang.Enum` and `org.opengis.util.CodeList` respectively.

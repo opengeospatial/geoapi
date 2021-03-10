@@ -5,7 +5,7 @@
 The <<bibliography,feature models abstract specification>> defines controlled vocabulary as an
 established list of standardized terminology (names, words or phrases) with associated definitions
 for use to identify, describe, index or retrieve information.
-A simple implementation of controlled vocabulary commonly found in programming languages is enumeration.
+A controlled vocabulary implementation commonly found in many programming languages is enumeration.
 
 GeoAPI distinguishes two different types of controlled vocabularies:
 enumerations are _closed_ controlled vocabularies:
@@ -13,21 +13,28 @@ it is not possible to add new members (except by releasing new GeoAPI versions).
 By contrast, code lists are _open_ vocabularies:
 they provide a basic set of members defined at compile-time,
 but users are free to add new members at runtime.
-
-Closed vocabularies are modeled as Enumeration elements within UML models.
-Many languages provide an `enum` construct for the closed case and
-GeoAPI defines the `CodeList` abstract class in Java for the open case.
+Many programming languages provide an `enum` construct for the closed case.
+For the opened case, GeoAPI defines the `CodeList` abstract class in Java.
 
 .Enumerated types mapping
 [.compact, options="header"]
 |========================================================
 |ISO 19103 type |Java type                   |Python type
-|CodeList       |`org.opengis.util.CodeList` |`Enum`
+|CodeList       |`org.opengis.util.CodeList` |`Enum` ^(1)^
 |Enumeration    |`java.lang.Enum`            |`Enum`
 |`Bit`          |unimplemented               |
 |`Digit`        |unimplemented               |
 |`Sign`         |unimplemented               |
 |========================================================
+
+[small]#(1) GeoAPI does not yet provide an extensible implementation of code list in the Python language,
+but this limitation may be addressed in a future version.# +
+
+Code lists can be extended by calls to `valueOf(String)` methods in the Java language.
+Extensions should follow ISO 19103 recommendation:
+_Extensions of a code list use the existing code list values and merely add additional unique values.
+These additional values should not replace an existing code by changing the name or definition,
+or have the same definition as an existing value._
 
 In some specifications (for example ISO 19115), code list and enumeration names end with the `Code` suffix.
 Some other specifications (for example ISO 19111) do not use any particular suffix.
@@ -36,4 +43,8 @@ For the Java API, `Code` suffixes are omitted in class names.
 For the Python API, class names are left unchanged.
 See <<naming,Naming conventions>> for examples.
 
+The figure below shows one closed (on the left side) and one opened (on the right side) enumeration derived from ISO 19115.
 <<CodeList-introspection,An example in annex>> shows how code list are used in the Java language.
+
+.Closed and opened enumeration examples
+image::enumeration-examples.svg[Enumeration and CodeList examples]

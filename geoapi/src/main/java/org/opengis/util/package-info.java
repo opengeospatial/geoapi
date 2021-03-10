@@ -67,18 +67,12 @@
  * </td></tr></table>
  *
  * <h2>Names and Namespaces</h2>
- * <p>The job of a "name" in the context of ISO 19103 is to associate that name with an {@link java.lang.Object}.
- * A use of the namespace structure defined in 19103 is the translation of given names into specific storage formats.
- * XML has different naming rules than shapefiles, and both are different than netCDF.
- * Specialized names are mapped to data as below:</p>
- *
- * <ul>
- *   <li>{@link org.opengis.util.TypeName} is the name of a {@link org.opengis.util.RecordType}.</li>
- *   <li>{@link org.opengis.util.MemberName} is the name of an attribute in a {@link org.opengis.util.Record}
- *       or {@link org.opengis.util.RecordType}.</li>
- * </ul>
- *
- * The {@link org.opengis.util.GenericName} javadoc provides more details about name structure.
+ * <p>The job of a "name" is to associate that name with an {@link java.lang.Object} within the context of a
+ * {@link org.opengis.util.NameSpace}. For example {@link org.opengis.util.GenericName} instances could be
+ * keys in a {@link java.util.HashMap}, in which case the namespace is materialized by the {@code HashMap}.
+ * Names are often used in the context of reading data from various formats such as XML, shapefiles or netCDF,
+ * which have different constraints for names in their namespaces.
+ * The {@link org.opengis.util.GenericName} javadoc provides more details about name structure.</p>
  *
  * <h2>Records and Schemas</h2>
  * <p>A {@link org.opengis.util.RecordType} is similar to a {@code struct} declaration in C/C++, a table definition

@@ -19,6 +19,13 @@ can be found in the <<type-terminology,conventions>> section.
 a formally defined set of types and methods which establish a contract between client code which uses the API
 and implementation code which provides the API
 
+[[term-cardinality]]
+[discrete]
+=== cardinality
+number of elements in a set +
+[small]#Note 1 to entry: Contrast with _multiplicity_, which is the range of possible cardinalities a set can hold.# +
+ [source: ISO 19103]
+
 [[term-conceptual-model]]
 [discrete]
 === conceptual model
@@ -172,6 +179,15 @@ facet or attribute of an object referenced by a name +
 === Python
 an interpreted high-level programming language for general-purpose programming +
  [source: Wikipedia]
+
+[[term-realization]]
+[discrete]
+=== realization
+specialized abstraction relationship between two sets of model elements, one representing
+a specification (the supplier) and the other representing an implementation of the latter (the client) +
+[small]#Note 1 to entry: Realization indicates inheritance of behaviour without inheritance of structure.# +
+[small]#Note 2 to entry: GeoAPI and GML are two realizations of OGC/ISO abstract specifications.# +
+ [source: ISO 19103] (except note 2)
 
 [[term-trajectory]]
 [discrete]
