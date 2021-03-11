@@ -40,20 +40,13 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A list of logically related elements as (<var>name</var>, <var>value</var>) pairs in a dictionary.
+ * A list of logically related fields as (<var>name</var>, <var>value</var>) pairs in a dictionary.
  * {@code Records} are similar to an attribute-only {@code class} in Java if it were stripped of all
  * notions of inheritance.
- * A {@code Record} may be used as an implementation representation for features.
- *
- * <div class="note"><b>Comparison with Java reflection:</b>
- * if we think about {@code Record}s as equivalent to {@code Object} instances, then the descriptions
- * of those records ({@link RecordType}) can be though as equivalent to Java {@link Class} instances,
- * and the set of members in a {@code Record} can be though as the equivalent of {@link Class#getFields()}.
- * </div>
  *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.1
  *
  * @see RecordType
@@ -61,12 +54,12 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="Record", specification=ISO_19103)
 public interface Record {
     /**
-     * Returns the type definition of record. All attributes named in this record must be defined
+     * Returns the type definition of record. All fields named in this record must be defined
      * in the returned record type. In other words, the following assertion must holds:
      *
-     * <blockquote><pre> Set&lt;MemberName&gt; members    = getRecordType().{@linkplain RecordType#getMembers() getMembers()};
-     * Set&lt;MemberName&gt; attributes = {@linkplain #getAttributes()}.{@linkplain Map#keySet() keySet()};
-     * assert members.{@linkplain Set#containsAll containsAll}(attributes);</pre></blockquote>
+     * <blockquote><pre> Set&lt;MemberName&gt; members = getRecordType().{@linkplain RecordType#getMembers() getMembers()};
+     * Set&lt;MemberName&gt; fields  = {@linkplain #getFields()}.{@linkplain Map#keySet() keySet()};
+     * assert members.{@linkplain Set#containsAll containsAll}(fields);</pre></blockquote>
      *
      * <div class="note"><b>Comparison with Java reflection:</b>
      * if we think about this {@code Record} as equivalent to an {@code Object} instance, then
@@ -75,53 +68,76 @@ public interface Record {
      *
      * @return the type definition of this record, or {@code null}.
      */
-    @UML(identifier="recordType", obligation=OPTIONAL, specification=ISO_19103)
+    @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19103)
     RecordType getRecordType();
 
     /**
      * Returns the dictionary of all (<var>name</var>, <var>value</var>) pairs in this record.
-     * The returned map shall not allows key addition. It may allows the replacement of values
-     * for existing keys only.
+     * The returned map should not allows entry addition or removal.
+     * It may allows the replacement of values for existing keys only.
+     *
+     * @return the dictionary of all (<var>name</var>, <var>value</var>) pairs in this record.
+     *
+     * @see RecordType#getFieldTypes()
+     */
+    @UML(identifier="field", obligation=MANDATORY, specification=ISO_19103)
+    Map<MemberName, Object> getFields();
+
+    /**
+     * Returns the dictionary of all (<var>name</var>, <var>value</var>) pairs in this record.
+     * The returned map should not allows key addition or removal.
+     * It may allows the replacement of values for existing keys only.
      *
      * @return the dictionary of all (<var>name</var>, <var>value</var>) pairs in this record.
      *
      * @see RecordType#getMemberTypes()
      *
-     * @departure generalization
-     *   Figure 15 in ISO 19103:2005 specifies a multiplicity of 1. However, this seems to contradict
-     *   the semantics of the {@code locate(name)} and {@code RecordType.getMemberTypes()} methods.
+     * @deprecated Renamed {@link #getFields()}.
      */
-    @UML(identifier="memberValue", obligation=MANDATORY, specification=ISO_19103)
-    Map<MemberName, Object> getAttributes();
+    @Deprecated
+    @UML(identifier="memberValue", obligation=MANDATORY, specification=ISO_19103, version=2005)
+    default Map<MemberName, Object> getAttributes() {
+        return getFields();
+    }
 
     /**
-     * Returns the value for an attribute of the specified name. This is functionally equivalent
-     * to <code>{@linkplain #getAttributes()}.{@linkplain Map#get get}(name)</code>.
+     * Returns the value for a field of the specified name.
+     * This is functionally equivalent to <code>{@linkplain #getFields()}.{@linkplain Map#get get}(name)</code>.
      * The type of the returned object is given by
-     * <code>{@linkplain #getRecordType()}.{@linkplain RecordType#getMemberTypes()
-     * getMemberTypes()}.get(name)</code>.
+     * <code>{@linkplain #getRecordType()}.{@linkplain RecordType#locate locate}(name)</code>.
      *
-     * @param  name  the name of the attribute to lookup.
-     * @return the value of the attribute for the given name.
+     * @param  name  the name of the field to lookup.
+     * @return the value of the field for the given name.
      *
      * @see RecordType#locate(MemberName)
+     *
+     * @deprecated This method has been removed in ISO 19103:2015. The same functionality is available with
+     *             <code>{@linkplain #getFields()}.{@linkplain Map#get get}(name)</code>.
      */
-    @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103)
-    Object locate(MemberName name);
+    @Deprecated
+    @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103, version=2005)
+    default Object locate(MemberName name) {
+        return getFields().get(name);
+    }
 
     /**
-     * Sets the value for the attribute of the specified name. This is functionally equivalent
-     * to <code>{@linkplain #getAttributes()}.{@linkplain Map#put put}(name,value)</code>.
+     * Sets the value for the field of the specified name. This is functionally equivalent
+     * to <code>{@linkplain #getFields()}.{@linkplain Map#put put}(name, value)</code>.
      * Remind that {@code name} keys are constrained to {@linkplain RecordType#getMembers()
      * record type members} only.
      *
-     * @param  name   the name of the attribute to modify.
-     * @param  value  the new value for the attribute.
+     * @param  name   the name of the field to modify.
+     * @param  value  the new value for the field.
      * @throws UnsupportedOperationException if this record is not modifiable.
      *
      * @departure easeOfUse
      *   This method provides no additional functionality compared to the ISO standard methods,
      *   but is declared in GeoAPI as a convenient shortcut.
+     *
+     * @deprecated Use <code>{@linkplain #getFields()}.{@linkplain Map#put put}(name, value)</code> instead.
      */
-    void set(MemberName name, Object value) throws UnsupportedOperationException;
+    @Deprecated
+    default void set(MemberName name, Object value) throws UnsupportedOperationException {
+        getFields().put(name, value);
+    }
 }

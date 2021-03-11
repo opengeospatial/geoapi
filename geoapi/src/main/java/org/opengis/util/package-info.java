@@ -77,64 +77,13 @@
  * <h2>Records and Schemas</h2>
  * <p>A {@link org.opengis.util.RecordType} is similar to a {@code struct} declaration in C/C++, a table definition
  * in SQL, a {@code RECORD} in Pascal, or an attribute-only {@code class} declaration in Java if it were stripped of
- * all notions of inheritance.
- * {@code RecordType}s can be organized into a named collection called {@link org.opengis.util.RecordSchema},
- * which is similar to a schema in SQL or a package in Java. Both records and schemas behave as dictionaries
- * for their members.</p>
- *
- * <p>A {@link org.opengis.util.Record} is an instance of {@code RecordType} containing the actual attribute values.
- * If we think about {@code RecordType} as equivalent to a simple feature (ISO 19109) or a Java {@code class},
- * then we can establish the following equivalence table:</p>
- *
- * <table class="ogc">
- *   <caption>Equivalences between records, features and Java constructs</caption>
- *   <tr>
- *     <th>ISO 19103</th>
- *     <th>ISO 19109</th>
- *     <th>Java equivalent</th>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.Record}</td>
- *     <td>{@link org.opengis.feature.Feature}</td>
- *     <td>{@link java.lang.Object}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.Record#getRecordType()}</td>
- *     <td>{@link org.opengis.feature.Feature#getType()}</td>
- *     <td>{@link java.lang.Object#getClass()}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.RecordType}</td>
- *     <td>{@link org.opengis.feature.FeatureType}</td>
- *     <td>{@link java.lang.Class}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.RecordType#getTypeName()}</td>
- *     <td>{@link org.opengis.feature.FeatureType#getName()}</td>
- *     <td>{@link java.lang.Class#getName()}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.RecordType#getContainer()}</td>
- *     <td></td>
- *     <td>{@link java.lang.Class#getPackage()}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.RecordType#getMembers()}</td>
- *     <td>{@link org.opengis.feature.FeatureType#getProperties(boolean)}</td>
- *     <td>{@link java.lang.Class#getFields()}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.RecordType#locate RecordType.locate(MemberName)}</td>
- *     <td>{@link org.opengis.feature.FeatureType#getProperty getProperty(String)}</td>
- *     <td>{@link java.lang.Class#getField Class.getField(String)}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.RecordType#isInstance RecordType.isInstance(Record)}</td>
- *     <td></td>
- *     <td>{@link java.lang.Class#isInstance Class.isInstance(Object)}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.RecordSchema}</td>
- *     <td></td>
- *     <td>{@link java.lang.Package}</td>
- *   </tr>
- * </table>
+ * all notions of inheritance. Contrarily to those language structures, {@code RecordType}s are dynamically constructed.
+ * A {@link org.opengis.util.Record} is an instance of {@code RecordType} containing the actual field values.
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Jesse Crossley (SYS Technologies)
  * @author  Bryce Nordgren (USDA)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  */
 package org.opengis.util;

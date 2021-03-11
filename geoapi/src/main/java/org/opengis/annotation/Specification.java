@@ -66,22 +66,22 @@ public enum Specification {
      * <p><b>ISO abstract:</b></p>
      * <div class="note">
      * <p>Provides rules and guidelines for the use of a conceptual schema language
-     * within the ISO geographic information standards.
+     * within the context of geographic information.
      * The chosen conceptual schema language is the Unified Modeling Language (UML).</p>
      *
-     * <p>ISO TS 19103 provides a profile of UML for use with geographic information.
-     * In addition, it provides guidelines on how UML should be used to create
-     * standardized geographic information and service models.</p>
+     * <p>ISO 19103 provides a profile of UML for use with geographic information.
+     * The standardization target type of this standard is UML schemas describing geographic information.</p>
      * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
-     *   <li><b>2005:</b> ISO/TS 19103:2005   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2005:</b> ISO 19103:2005</li>
+     *   <li><b>2015:</b> ISO 19103:2015   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
-     * @see <a href="https://www.iso.org/standard/37800.html">ISO/TS 19103:2005 on standards catalogue</a>
+     * @see <a href="https://www.iso.org/standard/56734.html">ISO 19103:2015 on standards catalogue</a>
      */
-    ISO_19103((short) 2005),
+    ISO_19103((short) 2015),
 
     /**
      * ISO 19107, Feature Geometry

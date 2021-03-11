@@ -109,20 +109,6 @@ class MemberName(LocalName):
 
 
 
-class RecordSchema(ABC):
-
-    @property
-    @abstractmethod
-    def schema_name(self) -> LocalName:
-        pass
-
-    @property
-    @abstractmethod
-    def description(self):
-        pass
-
-
-
 class RecordType(Type):
 
     @property
@@ -132,12 +118,7 @@ class RecordType(Type):
 
     @property
     @abstractmethod
-    def schema(self) -> RecordSchema:
-        pass
-
-    @property
-    @abstractmethod
-    def member_types(self):
+    def field_type(self):
         pass
 
 
@@ -145,10 +126,10 @@ class RecordType(Type):
 class Record(ABC):
 
     @property
-    def record_type(self) -> RecordType:
+    def type(self) -> RecordType:
         return None
 
     @property
     @abstractmethod
-    def member_value(self):
+    def field(self):
         pass

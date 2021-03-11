@@ -2,26 +2,33 @@
 ==== Record types
 [.reference]_From ISO 19103:2015 §7.7_
 
-Records define new data type as an heterogeneous aggregation of component data types.
-Each data component is identified by a `MemberName` and has exactly one value per record.
+Records define new data type as an heterogeneous aggregation of component data types (the fields).
+A `RecordType` defines dynamically constructed data type.
+It is identified by a `TypeName` and contains an arbitrary amount of fields as (_name_, _type_) pairs.
+A `Record` is an instance of `RecordType` containing the actual field values.
+
+.Records derived and extended from ISO 19103
+image::records.svg[UML of record objects]
+
+The GeoAPI interfaces keep some types, properties that were defined in the older ISO 19103:2005 standard,
+namely `Type` and `typeName`.
+The `isInstance(…)` function is a GeoAPI extension.
+The ISO 19103 `Field` and `FieldType` interfaces are omitted because the same functionality is achieved
+with `Dictionary<MemberName, Type>` and `Dictionary<MemberName, Any>` respectively.
+The following table gives the mapping from UML to programming languages:
 
 .Record types mapping
 [.compact, options="header"]
 |===================================================================
 |ISO 19103 interface |Java class or interface          |Python class
-|`Schema`            | Unimplemented                   |
 |`Any`               | `java.lang.Object`              |
 |`Type`              | `org.opengis.util.Type`         |
-|`RecordSchema`      | `org.opengis.util.RecordSchema` |
 |`Record`            | `org.opengis.util.Record`       |
 |`RecordType`        | `org.opengis.util.RecordType`   |
-|`Field`             |                                 |
-|`FieldType`         |                                 |
+|`Field`             | `Map.Entry<MemberName, Type>`   |
+|`FieldType`         | `Map.Entry<MemberName, Object>` |
 |===================================================================
 
 NOTE: `Record` and `RecordType` have some similarities with `Feature` and `FeatureType` respectively
       but without multi-occurrence, associations, operations and type inheritance.
-      If we push the comparison with features further,
-      record `Field` and `FieldType` are similar to feature `Attribute` and `AttributeType` respectively.
-
-[red yellow-background]#TODO: add UML diagram (show how `Field` is replaced by `Map<type,value>`). Resolve https://github.com/opengeospatial/geoapi/issues/17 #
+      Record `Field` and `FieldType` are similar to feature `Attribute` and `AttributeType` respectively.

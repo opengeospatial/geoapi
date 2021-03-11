@@ -56,8 +56,11 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.1
+ *
+ * @deprecated The {@code RecordSchema} interface has been removed in the 2015 revision of ISO 19103 standard.
  */
-@UML(identifier="RecordSchema", specification=ISO_19103)
+@Deprecated
+@UML(identifier="RecordSchema", specification=ISO_19103, version=2005)
 public interface RecordSchema {
     /**
      * Returns the schema name. The {@linkplain LocalName#scope scope} of the schema name is
@@ -66,7 +69,7 @@ public interface RecordSchema {
      *
      * @return the schema name.
      */
-    @UML(identifier="schemaName", obligation=MANDATORY, specification=ISO_19103)
+    @UML(identifier="schemaName", obligation=MANDATORY, specification=ISO_19103, version=2005)
     LocalName getSchemaName();
 
     /**
@@ -75,7 +78,7 @@ public interface RecordSchema {
      *
      * @return all (<var>name</var>, <var>record type</var>) pairs in this schema.
      */
-    @UML(identifier="description", obligation=MANDATORY, specification=ISO_19103)
+    @UML(identifier="description", obligation=MANDATORY, specification=ISO_19103, version=2005)
     Map<TypeName, RecordType> getDescription();
 
     /**
@@ -86,6 +89,6 @@ public interface RecordSchema {
      * @param  name  the name of the type to lookup.
      * @return the type for the given name, or {@code null} if none.
      */
-    @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103)
+    @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103, version=2005)
     RecordType locate(TypeName name);
 }

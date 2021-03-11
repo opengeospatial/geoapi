@@ -38,17 +38,15 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The type definition. Every {@code Type} is {@linkplain #getTypeName identified} by a
- * {@link TypeName}.
- *
- * <p>This class can be think as the equivalent of the Java {@link Class} class.</p>
+ * The type definition.
+ * Every {@code Type} is {@linkplain #getTypeName identified} by a {@link TypeName}.
  *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
  * @since   2.3
  */
-@UML(identifier="Type", specification=ISO_19103)
+@UML(identifier="Type", specification=ISO_19103, version=2005)
 public interface Type {
     /**
      * Returns the name that identifies this type.
@@ -56,6 +54,6 @@ public interface Type {
      *
      * @return the name that identifies this type.
      */
-    @UML(identifier="typeName", obligation=MANDATORY, specification=ISO_19103)
+    @UML(identifier="typeName", obligation=MANDATORY, specification=ISO_19103, version=2005)
     TypeName getTypeName();
 }

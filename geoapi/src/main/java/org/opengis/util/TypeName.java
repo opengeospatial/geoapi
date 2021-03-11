@@ -38,8 +38,7 @@ import static org.opengis.annotation.Obligation.MANDATORY;
 
 
 /**
- * A {@linkplain LocalName local name} that references a {@linkplain RecordType record type}
- * in a {@linkplain RecordSchema record schema}.
+ * A {@linkplain LocalName local name} that references a {@linkplain RecordType record type}.
  * Can also be used as the name of a <cite>feature type</cite>.
  *
  * <p>{@code TypeName}s are returned by the following methods:</p>
