@@ -75,10 +75,12 @@
  * The {@link org.opengis.util.GenericName} javadoc provides more details about name structure.</p>
  *
  * <h2>Records and Schemas</h2>
- * <p>A {@link org.opengis.util.RecordType} is similar to a {@code struct} declaration in C/C++, a table definition
- * in SQL, a {@code RECORD} in Pascal, or an attribute-only {@code class} declaration in Java if it were stripped of
- * all notions of inheritance. Contrarily to those language structures, {@code RecordType}s are dynamically constructed.
- * A {@link org.opengis.util.Record} is an instance of {@code RecordType} containing the actual field values.
+ * <p>{@link org.opengis.util.Record} and {@link org.opengis.util.RecordType} are lookup mechanisms
+ * that associate field names to <var>values</var> and <var>value types</var> respectively.
+ * Field names are locally mapped, and field types are most often primitives.
+ * Because the {@code RecordType} describes the structure of a set of records,
+ * it is essentially a metaclass for that set of records viewed as a class.
+ * A {@code Record} is an instance of {@code RecordType} containing the actual field values.</p>
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Jesse Crossley (SYS Technologies)

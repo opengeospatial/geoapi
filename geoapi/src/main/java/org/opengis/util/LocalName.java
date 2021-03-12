@@ -60,6 +60,7 @@ public interface LocalName extends GenericName {
      * @return always 1 for a local name.
      */
     @Override
+    @UML(identifier="depth", obligation=MANDATORY, specification=ISO_19103)
     default int depth() {
         return 1;
     }

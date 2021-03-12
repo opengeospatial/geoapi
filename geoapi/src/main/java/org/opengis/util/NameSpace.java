@@ -75,7 +75,7 @@ public interface NameSpace {
     boolean isGlobal();
 
     /**
-     * Represents the identifier of this namespace. Namespace identifiers shall be
+     * Returns the identifier of this namespace. Namespace identifiers shall be
      * {@linkplain GenericName#toFullyQualifiedName() fully-qualified names} where:
      *
      * <blockquote><code>

@@ -9,18 +9,22 @@
  */
 h2 {margin-top: 80px;}
 h3 {margin-top: 40px;}
+h3.discrete {
+  margin-top:    9px;
+  margin-bottom: 6px;
+  font-size:     large;
+}
 h4 {
   margin-top:  40px;
   font-weight: bold;
   font-size:   large;
 }
 h5 {
+  font-size:   large;
   font-weight: bold;
 }
-h3.discrete {
-  margin-top:    9px;
-  margin-bottom: 6px;
-  font-size:     large;
+h6 {
+  font-weight: bold;
 }
 div.imageblock div.title {
   margin-top: 9px;

@@ -350,17 +350,16 @@ public interface GenericName extends Comparable<GenericName> {
      *
      * <ul>
      *   <li><code>push(</code><var>foo</var><code> : LocalName).{@linkplain #head()}</code>
-     *       &nbsp;&nbsp; {@linkplain Object#equals equals} &nbsp;&nbsp; <var>foo</var></li>
+     *       &nbsp;&nbsp; = &nbsp;&nbsp; <var>foo</var></li>
      *
      *   <li><code>push(</code><var>foo</var><code> : LocalName).{@linkplain ScopedName#tail() tail()}</code>
-     *       &nbsp;&nbsp; {@linkplain Object#equals equals} &nbsp;&nbsp; <var>this</var></li>
+     *       &nbsp;&nbsp; = &nbsp;&nbsp; <var>this</var></li>
      *
      *   <li><code>push(</code><var>foo</var><code> : GenericName).{@linkplain #scope()}</code>
-     *       &nbsp;&nbsp; {@linkplain Object#equals equals} &nbsp;&nbsp; <var>foo</var>.{@link #scope()}</li>
+     *       &nbsp;&nbsp; = &nbsp;&nbsp; <var>foo</var>.{@link #scope()}</li>
      *
      *   <li><code>push(</code><var>foo</var><code> : GenericName).{@linkplain #getParsedNames()}</code>
-     *       &nbsp;&nbsp; {@linkplain List#equals equals} &nbsp;&nbsp; <var>foo</var>.<code>getParsedNames().{@linkplain
-     *       List#addAll addAll}(</code><var>this</var>.<code>getParsedNames())</code></li>
+     *       &nbsp;&nbsp; = &nbsp;&nbsp; <var>foo</var>.<code>getParsedNames().addAll(</code><var>this</var>.<code>getParsedNames())</code></li>
      * </ul>
      *
      * <div class="note"><b>Example:</b>

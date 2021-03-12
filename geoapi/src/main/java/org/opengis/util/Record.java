@@ -41,8 +41,8 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A list of logically related fields as (<var>name</var>, <var>value</var>) pairs in a dictionary.
- * {@code Records} are similar to an attribute-only {@code class} in Java if it were stripped of all
- * notions of inheritance.
+ * A {@code Record} is an instance of an {@link RecordType}.
+ * For example, a {@code Record} may be a row in a table described by a {@code RecordType}.
  *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
@@ -54,19 +54,22 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="Record", specification=ISO_19103)
 public interface Record {
     /**
-     * Returns the type definition of record. All fields named in this record must be defined
+     * Returns the type definition of this record. All fields named in this record must be defined
      * in the returned record type. In other words, the following assertion must holds:
      *
      * <blockquote><pre> Set&lt;MemberName&gt; members = getRecordType().{@linkplain RecordType#getMembers() getMembers()};
      * Set&lt;MemberName&gt; fields  = {@linkplain #getFields()}.{@linkplain Map#keySet() keySet()};
      * assert members.{@linkplain Set#containsAll containsAll}(fields);</pre></blockquote>
      *
+     * This association is optional according ISO 19103.
+     * But implementers are encouraged to provide a value in all cases.
+     *
      * <div class="note"><b>Comparison with Java reflection:</b>
      * if we think about this {@code Record} as equivalent to an {@code Object} instance, then
      * this method can be though as the equivalent of the Java {@link Object#getClass()} method.
      * </div>
      *
-     * @return the type definition of this record, or {@code null}.
+     * @return the type definition of this record. May be {@code null}.
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19103)
     RecordType getRecordType();
@@ -79,6 +82,8 @@ public interface Record {
      * @return the dictionary of all (<var>name</var>, <var>value</var>) pairs in this record.
      *
      * @see RecordType#getFieldTypes()
+     *
+     * @since 3.1
      */
     @UML(identifier="field", obligation=MANDATORY, specification=ISO_19103)
     Map<MemberName, Object> getFields();

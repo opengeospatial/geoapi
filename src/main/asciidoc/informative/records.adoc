@@ -10,25 +10,34 @@ A `Record` is an instance of `RecordType` containing the actual field values.
 .Records derived and extended from ISO 19103
 image::records.svg[UML of record objects]
 
-The GeoAPI interfaces keep some types, properties that were defined in the older ISO 19103:2005 standard,
-namely `Type` and `typeName`.
-The `isInstance(…)` function is a GeoAPI extension.
-The ISO 19103 `Field` and `FieldType` interfaces are omitted because the same functionality is achieved
-with `Dictionary<MemberName, Type>` and `Dictionary<MemberName, Any>` respectively.
-The following table gives the mapping from UML to programming languages:
+`Record` and `RecordType` are lookup mechanisms that associate field names to _values_ and _value types_ respectively.
+Field names are locally mapped, and field types are most often primitives.
+Because the `RecordType` describes the structure of a set of records,
+it is essentially a metaclass for that set of records viewed as a class.
+In dynamic languages such as Python, the `Record` and `RecordType` interfaces are not really needed
+because those languages can handle dynamically constructed data types natively,
+but they can nevertheless be useful as marker interfaces.
 
 .Record types mapping
 [.compact, options="header"]
-|===================================================================
-|ISO 19103 interface |Java class or interface          |Python class
-|`Any`               | `java.lang.Object`              |
-|`Type`              | `org.opengis.util.Type`         |
-|`Record`            | `org.opengis.util.Record`       |
-|`RecordType`        | `org.opengis.util.RecordType`   |
-|`Field`             | `Map.Entry<MemberName, Type>`   |
-|`FieldType`         | `Map.Entry<MemberName, Object>` |
-|===================================================================
+|==========================================================================================
+|ISO 19103 interface |Java class or interface         |Python class
+|`Any`               |`java.lang.Object`              |
+|`Type`              |`org.opengis.util.Type`         |
+|`Record`            |`org.opengis.util.Record`       |`opengis.metadata.naming.Record`
+|`RecordType`        |`org.opengis.util.RecordType`   |`opengis.metadata.naming.RecordType`
+|`Field`             |`Map.Entry<MemberName, Type>`   |
+|`FieldType`         |`Map.Entry<MemberName, Object>` |
+|==========================================================================================
+[small]#`Map.Entry` in above table means `java.util.Map.Entry`.# +
 
-NOTE: `Record` and `RecordType` have some similarities with `Feature` and `FeatureType` respectively
-      but without multi-occurrence, associations, operations and type inheritance.
-      Record `Field` and `FieldType` are similar to feature `Attribute` and `AttributeType` respectively.
+===== Departures from ISO model
+
+====== Additions
+The `Type` interface and `typeName` property were defined in the older ISO 19103:2005 standard
+and are kept by GeoAPI despite their removal from ISO 19103:2015.
+The `isInstance(…)` function is a GeoAPI extension.
+
+====== Omissions
+The ISO 19103 `Field` and `FieldType` interfaces are omitted because the same functionality is achieved
+with `Dictionary<MemberName, Type>` and `Dictionary<MemberName, Any>` respectively.

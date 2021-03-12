@@ -38,7 +38,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The type definition.
+ * Base interface of type definitions.
  * Every {@code Type} is {@linkplain #getTypeName identified} by a {@link TypeName}.
  *
  * @author  Bryce Nordgren (USDA)

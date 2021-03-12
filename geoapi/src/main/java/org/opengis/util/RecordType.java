@@ -44,11 +44,10 @@ import static org.opengis.annotation.Specification.*;
  * A {@code RecordType} defines dynamically constructed data type.
  * It is identified by a {@linkplain #getTypeName() type name}
  * and contains an arbitrary amount of {@linkplain #getFieldTypes() fields}.
- * Fields are (<var>name</var>, <var>type</var>) pairs.
- * A {@code RecordType} may contain another {@code RecordType} as a field.
- *
- * <p>This interface has methods for data access, but no methods to dynamically add or remove fields.
- * This approach ensures that once a {@code RecordType} is constructed, it is immutable.</p>
+ * Fields are (<var>name</var>, <var>type</var>) pairs where the type is often the wrapper
+ * for a primitive type or a {@link String}, but can also be another {@code RecordType}.
+ * Field values can be read and written but can not be added or removed.
+ * This approach ensures that once a {@code RecordType} is constructed, it is immutable.
  *
  * <h2>Comparison with features and Java reflection</h2>
  * If we think about {@code RecordType} as equivalent to a simple feature (ISO 19109) or a Java {@link Class},

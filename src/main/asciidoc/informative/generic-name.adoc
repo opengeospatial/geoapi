@@ -29,40 +29,46 @@ All those types are mapped to {supported-languages} classes as below:
 
 .Name types mapping
 [.compact, options="header"]
-|=================================================================
+|=========================================================================================
 |ISO 19103 interface |Java interface                 |Python class
 |(constructors)      |`org.opengis.util.NameFactory` |
-|`NameSpace`         |`org.opengis.util.NameSpace`   |
-|`GenericName`       |`org.opengis.util.GenericName` |
-|`ScopedName`        |`org.opengis.util.ScopedName`  |
-|`LocalName`         |`org.opengis.util.LocalName`   |
-|`TypeName`          |`org.opengis.util.TypeName`    |
-|`MemberName`        |`org.opengis.util.MemberName`  |
-|=================================================================
+|`NameSpace`         |`org.opengis.util.NameSpace`   |`opengis.metadata.naming.NameSpace`
+|`GenericName`       |`org.opengis.util.GenericName` |`opengis.metadata.naming.GenericName`
+|`ScopedName`        |`org.opengis.util.ScopedName`  |`opengis.metadata.naming.ScopedName`
+|`LocalName`         |`org.opengis.util.LocalName`   |`opengis.metadata.naming.LocalName`
+|`TypeName`          |`org.opengis.util.TypeName`    |`opengis.metadata.naming.TypeName`
+|`MemberName`        |`org.opengis.util.MemberName`  |`opengis.metadata.naming.MemberName`
+|=========================================================================================
 
 
 [[generic-name-departure]]
 ===== Departures from ISO model
 
+====== Generalization
 GeoAPI extends the ISO 19103 model by adding a (_path_, _tip_) pair in complement to the (_head_, _tail_) pair.
 While the _head_ and _tip_ properties carry non-trivial information only inside `ScopedName`,
 GeoAPI nevertheless makes them available from the parent `GenericName` interface (not shown in above UML diagram)
 with the restriction that they shall return `this` (Java) or `self` (Python) when the name is an instance of `LocalName`.
 This generalization makes common operations simpler without the need to check for the exact name interface.
 
+====== Renaming
 The ISO 19103 `GenericName.aName` property appears as `toString` in above UML diagram,
 but this property should be mapped to the standard mechanism for representing an arbitrary object
 as a character string in the target programming language.
 In Java this is the `toString()` method;
 in Python this is `+__str__+` or `+__repr__+`.
 This specification uses the Java method name as it is more readable, but other languages should adapt.
-The `aName` and `scopedName` properties in sub-interfaces are replaced by inheritance of `toString`.
+The `aName` and `scopedName` properties in sub-interfaces are replaced by inheritance of `toString` in above UML.
 
+====== Omissions
 ISO 19103 defines mapping functions from a name to the object identified by that name:
 `getObject()` in `GenericName` and numerous functions in `NameSpace`.
 Those functions are not included in GeoAPI interfaces.
 Instead we left these mappings to other frameworks, for example _Java Naming and Directory Interface_ (JNDI).
 <<JNDI,An example in annex>> shows how some omitted functions can be implemented by JNDI in the Java language.
 
-The `NameFactory` is an extension to allow the construction of instances of these name types.
-In GeoAPI, factories are realizations of constructors.
+====== Additions
+The `NameFactory` is an extension to allow the construction of instances of these name types
+(in GeoAPI, factories are realizations of constructors).
+The `GenericName.toFullyQualifiedName()` method is an addition for developer convenience.
+All GeoAPI additions on name types carry no new information compared to ISO model.

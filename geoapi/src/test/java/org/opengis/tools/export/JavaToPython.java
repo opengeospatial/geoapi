@@ -321,7 +321,7 @@ strictfp class JavaToPython extends SourceGenerator {
                             // TODO
                         }
                     }
-                    final PythonProperty p = new PythonProperty(def, name, elementType, typeName, importFrom);
+                    final PythonProperty p = new PythonProperty(property, def, name, elementType, typeName, importFrom);
                     if (properties.put(name, p) != null) switch (name) {
                         /*
                          * If the same property appears twice, this is theoretically an error.

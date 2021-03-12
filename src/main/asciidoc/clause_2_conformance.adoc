@@ -17,6 +17,11 @@ is available at the URLs listed below:
 
 [red yellow-background]#TODO: The `snapshot` elements in above URLs will be replaced by `3.1` and `4.0` after release.#
 
+Contrarily to other OGC/ISO standards, the UML diagrams in this specification are only informative.
+The reason is because those diagrams show only a small subset of all interfaces and properties provided by GeoAPI,
+and details such as <<naming,naming conventions>> differ in the materialization to {supported-languages} languages.
+The complete and normative UML diagrams are provided by the abstract specifications listed in <<references,references>>.
+
 This specification defines several conformance classes
 for implementations covering different packages of the API or providing different levels of complexity in their implementations.
 GeoAPI provides a test suite through which to establish conformance of GeoAPI implementations.

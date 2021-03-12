@@ -32,9 +32,11 @@
 package org.opengis.tools.export;
 
 import java.util.Map;
+import java.lang.reflect.Method;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Obligation;
 import org.opengis.geoapi.SchemaInformation;
+import org.opengis.util.GenericName;
 
 
 /**
@@ -45,6 +47,11 @@ import org.opengis.geoapi.SchemaInformation;
  * @version 4.0
  */
 final class PythonProperty implements Comparable<PythonProperty> {
+    /**
+     * Comment added at the end of line where an implementation needs to be provided.
+     */
+    static final String IMPLEMENTATION_PROVIDED = "# TODO: put an implementation here.";
+
     /**
      * The OGC/ISO name (can not be null).
      */
@@ -71,6 +78,12 @@ final class PythonProperty implements Comparable<PythonProperty> {
     private final boolean mandatory;
 
     /**
+     * {@code true} if this property overrides a property in a parent class
+     * with a method containing a default implementation.
+     */
+    private boolean overrideWithDefault;
+
+    /**
      * Declaration order, to be set later. We will sort properties
      * in the order of their declaration in the XSD file.
      */
@@ -78,14 +91,53 @@ final class PythonProperty implements Comparable<PythonProperty> {
 
     /**
      * Creates a new set of information about a Python property.
+     *
+     * @param  property    the Java method defining the property.
+     * @param  def         the {@link UML} annotation on the Java method.
+     * @param  name        the OGC/ISO name (can not be null).
+     * @param  javaType    the Java type, or null if none.
+     * @param  pythonType  the python type, or null if none.
+     * @param  importFrom  module from which to import type.
      */
-    PythonProperty(final UML def, final String name, final Class<?> javaType, final String pythonType, final String importFrom) {
-        this.name       = name;
+    PythonProperty(final Method property, final UML def, final String name,
+            final Class<?> javaType, final String pythonType, final String importFrom)
+    {
+        this.name       = rename(property.getDeclaringClass(), name);
         this.javaType   = javaType;
         this.pythonType = pythonType;
         this.importFrom = importFrom;
         this.mandatory  = def.obligation() == Obligation.MANDATORY;
         this.position   = Integer.MAX_VALUE / 2;
+        /*
+         * Verify this this property override a property of the same name and parameters in a parent class.
+         * If this is the case, we will assume that the default implementation (if any) is doing something
+         * different than just returning "None".
+         */
+        if (property.isDefault()) {
+            for (final Class<?> parent : property.getDeclaringClass().getInterfaces()) try {
+                parent.getMethod(property.getName(), property.getParameterTypes());
+                overrideWithDefault = true;
+                return;
+            } catch (NoSuchMethodException e) {
+                // Ignore.
+            }
+        }
+    }
+
+    /**
+     * Rename properties that can be mapped to a standard Python function name.
+     *
+     * @param  declaringClass  the Java class declaring the property.
+     * @param  name            the OGC/ISO name of the property.
+     * @return the name to use in Python code (without conversion from camel case to snake case).
+     */
+    private static String rename(final Class<?> declaringClass, final String name) {
+        if (GenericName.class.isAssignableFrom(declaringClass)) {
+            if (name.equals("aName") || name.equals("scopedName")) {
+                return "__str__";
+            }
+        }
+        return name;
     }
 
     /**
@@ -122,7 +174,7 @@ final class PythonProperty implements Comparable<PythonProperty> {
         }
         JavaToPython.indent(appendTo, 1).append("@property").append(lineSeparator);
         String implementation = "pass";
-        if (mandatory) {
+        if (mandatory & !overrideWithDefault) {
             JavaToPython.indent(appendTo, 1).append("@abstractmethod").append(lineSeparator);
         } else if (!Void.TYPE.equals(javaType)) {
             implementation = "return None";
@@ -135,7 +187,11 @@ final class PythonProperty implements Comparable<PythonProperty> {
         if (definition != null) {
             JavaToPython.appendDocumentation(definition.get(name), 2, appendTo, lineSeparator);
         }
-        JavaToPython.indent(appendTo, 2).append(implementation).append(lineSeparator);
+        JavaToPython.indent(appendTo, 2).append(implementation);
+        if (overrideWithDefault) {
+            appendTo.append("    ").append(IMPLEMENTATION_PROVIDED);
+        }
+        appendTo.append(lineSeparator);
     }
 
     /**

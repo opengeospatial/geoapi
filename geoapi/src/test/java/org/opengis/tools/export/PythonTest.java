@@ -176,6 +176,9 @@ public final strictfp class PythonTest extends JavaToPython {
         if (expected.startsWith(COPYRIGHT)) {
             return actual.startsWith(COPYRIGHT);
         }
+        if (expected.endsWith(PythonProperty.IMPLEMENTATION_PROVIDED)) {
+            return true;
+        }
         /*
          * If the actual line contains a type but the expected line did not, then
          * the actual line is more accurate maybe because it has been edited by hand.
