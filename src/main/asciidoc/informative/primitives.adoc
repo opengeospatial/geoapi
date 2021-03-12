@@ -10,20 +10,23 @@ The following table shows the mapping used by GeoAPI to represent the primitive 
 
 .Primitive types mapping
 [.compact, options="header"]
-|===================================================================
-|ISO 19103 interface   |Java type                       |Python type
-|`Boolean`             |`boolean`                 ^(1)^ |`int`
-|`Number`              |`java.lang.Number`              |`int` or `float`
-|`Integer`             |`int`                  ^(1)(2)^ |`int`
-|`Real`                |`double`                  ^(1)^ |`float`
-|`Decimal` ^(3)^       |`java.math.BigDecimal`          |`float`
-|`Vector`              |unimplemented                   |unimplemented
-|`CharacterString`     |`java.lang.String`        ^(4)^ |`str`
-|`Sequence<Character>` |`java.lang.CharSequence`        |`str`
-|`CharacterSetCode`    |`java.nio.charset.Charset`      |
-|===================================================================
+|================================================================================
+|ISO 19103 interface    |Java type                              |Python type
+|`Boolean`              |`boolean`                        ^(1)^ |`int`
+|`Number`               |`java.lang.Number`                     |`int` or `float`
+|`Integer`              |`int`                         ^(1)(2)^ |`int`
+|`Real`                 |`double`                         ^(1)^ |`float`
+|`Decimal` ^(3)^        |`java.math.BigDecimal`                 |`float`
+|`Vector`               |unimplemented                          |unimplemented
+|`CharacterString`      |`java.lang.String`               ^(4)^ |`str`
+|`Sequence<Character>`  |`java.lang.CharSequence`               |`str`
+|`LanguageString` ^(5)^ |`org.opengis.util.InternationalString` |`str`
+|`LanguageCode`   ^(5)^ |`java.util.Locale`                     |
+|`CharacterSetCode`     |`java.nio.charset.Charset`             |
+|================================================================================
 
 [small]#(1) Wrapper types such as `java.lang.Integer` or `java.util.OptionalInt` may be used where appropriate.# +
 [small]#(2) Sometime substituted by `long` or `java.lang.Long` where the value may exceed 2^32^.# +
 [small]#(3) `Decimal` differs from `Real`, as `Decimal` is exact in base 10 while `Real` may not.# +
 [small]#(4) Substituted by `org.opengis.util.InternationalString` where the string representation depends on the locale.# +
+[small]#(5) Actually an _extension data type_ defined in ISO 19103 annex C.2.# +

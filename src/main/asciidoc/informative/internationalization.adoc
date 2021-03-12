@@ -1,5 +1,5 @@
 [[internationalization]]
-=== Internationalization
+==== Internationalization
 [.reference]_From ISO 19103:2015 §C.2_
 
 The `InternationalString` interface is defined by GeoAPI to handle textual sequences
@@ -12,7 +12,15 @@ while `InternationalString` can be a collection of character strings in differen
 This is useful, for example, when an implementation is operating on a server that serves multiple languages simultaneously,
 to allow sending string representations in the locale of the client rather than the locale of the server running the GeoAPI implementation.
 
-[small]#Note: `InternationalString` is inspired by JSR-150 (Internationalization Service for J2EE) with support for different timezones omitted.#
+.Cultural and linguistic adaptability
+image::localization.svg[UML of InternationalString]
+
+[NOTE]
+======
+`InternationalString` is inspired by JSR-150 (Internationalization Service for J2EE) with support for different timezones omitted.
+======
+
+Most types needed for internationalization are provided by the standard library of target language.
 
 .Linguistic types mapping
 [.compact, options="header"]
@@ -23,11 +31,18 @@ to allow sending string representations in the locale of the client rather than 
 |`LanguageCode`        |`java.util.Locale`                     |
 |===========================================================================
 
-++++
-<details>
-<summary>Internationalization in Java</summary>
-++++
-include::../code/java/internationalization.adoc[]
-++++
-</details>
-++++
+An <<InternationalString,example in annex>> shows the use of `InternationalString` in the Java language.
+
+
+===== Departures from ISO model
+
+====== Renaming
+All GeoAPI linguistic types have names and properties different than the ISO 19103 types.
+This is either because the ISO types are mapped to types provided by the target language standard library
+or because the GeoAPI type is inspired by a similar effort in the target language ecosystem.
+
+====== Harmonization
+`InternationalString` as defined by GeoAPI provides the same functionality than ISO 19115 `PT_FreeText`.
+It can be applied to all ISO 19115 elements who's data type is `CharacterString` and domain is “free text”.
+Consequently GeoAPI uses the single `InternationalString` interface for the two ISO types
+`LanguageCode` (from ISO 19103) and `PT_FreeText` (from ISO 19115).

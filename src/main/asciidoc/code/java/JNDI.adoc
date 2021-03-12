@@ -1,7 +1,7 @@
 [[JNDI]]
 ==== Names in JNDI context
 
-The <<generic-name,ISO 19103 NameSpace>> interfaces defines mapping functions from a name to the object identified by that name.
+The <<generic-name,ISO 19103 name types>> define mapping functions from a name to the object identified by that name.
 But the mapping functions defined by ISO 19103 are not part of the `NameSpace` interface defined by GeoAPI.
 Instead, GeoAPI leaves that functionality to frameworks such as the Java Naming and Directory Interface™ (JNDI).
 Java applications which need such mapping may use the methods in the `javax.naming.Context` interface:
@@ -15,7 +15,7 @@ Java applications which need such mapping may use the methods in the `javax.nami
 |`generateID(Any)`              |                             |
 |`locate(LocalName)`            |                             |`lookup(Name)`
 |`name`                         |`name()`                     |`getNameInNamespace()`
-|`registerID(LocalName, Any)`   |                             |`bind​(Name, Object)`
+|`registerID(LocalName, Any)`   |                             |`bind​(Name, Object)`
 |`select(GenericName)`          |                             |`lookup(Name)`
-|`unregisterID(LocalName, Any)` |                             |`unbind​(Name)`
+|`unregisterID(LocalName, Any)` |                             |`unbind​(Name)`
 |====================================================================================

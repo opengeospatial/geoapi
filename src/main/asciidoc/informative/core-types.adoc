@@ -29,6 +29,8 @@ include::generic-name.adoc[]
 
 include::records.adoc[]
 
+include::web-types.adoc[]
+
 include::internationalization.adoc[]
 
 include::units.adoc[]

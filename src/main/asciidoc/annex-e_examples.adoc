@@ -16,3 +16,5 @@ include::code/java/annotation.adoc[]
 include::code/java/code-list.adoc[]
 
 include::code/java/JNDI.adoc[]
+
+include::code/java/internationalization.adoc[]
