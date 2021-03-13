@@ -61,11 +61,11 @@ This specification uses the Java method name as it is more readable, but other l
 The `aName` and `scopedName` properties in sub-interfaces are replaced by inheritance of `toString` in above UML.
 
 ====== Omissions
-ISO 19103 defines mapping functions from a name to the object identified by that name:
-`getObject()` in `GenericName` and numerous functions in `NameSpace`.
-Those functions are not included in GeoAPI interfaces.
+ISO 19103 defines mapping methods from a name to the object identified by that name:
+`getObject()` in `GenericName` and numerous methods in `NameSpace`.
+Those methods are not included in GeoAPI interfaces.
 Instead we left these mappings to other frameworks, for example _Java Naming and Directory Interface_ (JNDI).
-<<JNDI,An example in annex>> shows how some omitted functions can be implemented by JNDI in the Java language.
+<<JNDI,An example in annex>> shows how some omitted methods can be implemented by JNDI in the Java language.
 
 ====== Additions
 The `NameFactory` is an extension to allow the construction of instances of these name types

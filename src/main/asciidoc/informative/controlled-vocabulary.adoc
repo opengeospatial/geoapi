@@ -36,15 +36,30 @@ _Extensions of a code list use the existing code list values and merely add addi
 These additional values should not replace an existing code by changing the name or definition,
 or have the same definition as an existing value._
 
+The figure below shows one closed (on the left side) and one opened (on the right side) enumeration derived from ISO 19115.
+The `ControlledVocabulary` parent interface is a GeoAPI addition. Its indirect inheritance by `PixelOrientation` is because
+the `Enum` class is defined by programming language standard library and can not be modified directly.
+<<CodeList-introspection,An example in annex>> shows how code lists are used in the Java language.
+
+.Closed and opened enumeration examples
+image::enumeration-examples.svg[Enumeration and CodeList examples]
+
+
+===== Departures from ISO model
+
+====== Harmonization
+GeoAPI introduces a `ControlledVocabulary` interface as the parent type of enumerations and code lists.
+It provides methods for accessing properties common to both enumerated types:
+the name used in the target programming language (e.g. `"UPPER_LEFT"`),
+the identifier used in OGC/ISO specification (e.g. `"upperLeft"`),
+and its position (ordinal) in the enumeration.
+Note that the ordinal values may change in any future specification if new enumeration values are added,
+but this is not necessarily a problem because not all algorithms need stable values (e.g. hash tables).
+
+====== Renaming
 In some specifications (for example ISO 19115), code list and enumeration names end with the `Code` suffix.
 Some other specifications (for example ISO 19111) do not use any particular suffix.
 The mapping to programmatic API may uniformize those type names to a single convention, depending on the target language.
 For the Java API, `Code` suffixes are omitted in class names.
 For the Python API, class names are left unchanged.
 See <<naming,Naming conventions>> for examples.
-
-The figure below shows one closed (on the left side) and one opened (on the right side) enumeration derived from ISO 19115.
-<<CodeList-introspection,An example in annex>> shows how code list are used in the Java language.
-
-.Closed and opened enumeration examples
-image::enumeration-examples.svg[Enumeration and CodeList examples]

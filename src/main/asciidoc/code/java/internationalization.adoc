@@ -2,7 +2,7 @@
 ==== Multilingual string
 
 <<internationalization,Internationalization>> is handled using objects provided by the standard Java library
-such as `java​.util​.Locale` and `java​.nio​.charset​.Charset`, with the addition of one GeoAPI interface.
+such as `java​.util​.Locale`, with the addition of one GeoAPI interface.
 The `org​.opengis​.util​.InternationalString` interface provides a container for multiple versions of the same text,
 each for a specific `Locale` — the identifier used in Java for a specific language, possibly in a named territory.
 

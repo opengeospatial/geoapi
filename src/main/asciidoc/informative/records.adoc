@@ -36,8 +36,12 @@ but they can nevertheless be useful as marker interfaces.
 ====== Additions
 The `Type` interface and `typeName` property were defined in the older ISO 19103:2005 standard
 and are kept by GeoAPI despite their removal from ISO 19103:2015.
-The `isInstance(…)` function is a GeoAPI extension.
+The `isInstance(…)` method is a GeoAPI extension.
 
 ====== Omissions
 The ISO 19103 `Field` and `FieldType` interfaces are omitted because the same functionality is achieved
 with `Dictionary<MemberName, Type>` and `Dictionary<MemberName, Any>` respectively.
+Dictionaries are realized by language-specific types such as `java.util.Map` (see <<collections,collections>>) which offer more flexibility.
+In particular dictionaries provide functionality equivalent to the ISO 19103:2005 `locate(name : MemberName)` method.
+That method was defined in older ISO standard but removed in ISO 19103:2015 revision.
+The use of dictionaries allows GeoAPI to keep the `locate` functionality despite the method removal.

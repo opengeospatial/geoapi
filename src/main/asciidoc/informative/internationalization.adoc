@@ -20,18 +20,29 @@ image::localization.svg[UML of InternationalString]
 `InternationalString` is inspired by JSR-150 (Internationalization Service for J2EE) with support for different timezones omitted.
 ======
 
-Most types needed for internationalization are provided by the standard library of target language.
+The `toString()` method (`+__str__+` in Python) returns the text in a language at implementer's choice.
+The `toString(Locale)` method tries to return the text in the specified language if available,
+and otherwise fallbacks on a language at implementer's choice.
+This specification makes no recommendation about the default or fallback languages
+because some programming languages provide their own mechanism
+(e.g. using _Language Range_ as defined by https://tools.ietf.org/html/rfc4647[RFC 4647 Matching of Language Tags]).
+Consequently GeoAPI delegates most internationalization types to the target language standard library, as shown in the following table.
+An <<InternationalString,example in annex>> shows the use of `InternationalString` in the Java language.
 
 .Linguistic types mapping
 [.compact, options="header"]
-|===========================================================================
-|ISO 19103 interface   |Java class or interface                |Python class
-|`CharacterString`     |`java.lang.String`                     |`str`
-|`LanguageString`      |`org.opengis.util.InternationalString` |
-|`LanguageCode`        |`java.util.Locale`                     |
-|===========================================================================
+|=================================================================================
+|ISO 19103 interface         |Java class or interface                |Python class
+|`CharacterString`           |`java.lang.String`               ^(1)^ |`str`
+|`LanguageString`            |`org.opengis.util.InternationalString` |`str`
+|`LanguageCode`              |`java.util.Locale`                     |
+|Currency in free text ^(2)^ |`java.util.Currency`                   |
+|`CharacterSetCode` ^(3)^    |`java.nio.charset.Charset`             |
+|=================================================================================
 
-An <<InternationalString,example in annex>> shows the use of `InternationalString` in the Java language.
+[small]#(1) Sometime substituted by `CharSequence` or `InternationalString`.# +
+[small]#(2) Not formally defined, but appears implicitly in ISO 19115.# +
+[small]#(3) From ISO 19103 §7.2.10 (<<primitives,primitive types>>).# +
 
 
 ===== Departures from ISO model
