@@ -30,6 +30,6 @@ include::informative/general.adoc[]
 
 include::informative/core-types.adoc[]
 
-include::informative/departures.adoc[]
-
 include::informative/metadata/index.adoc[]
+
+include::informative/feature/index.adoc[]

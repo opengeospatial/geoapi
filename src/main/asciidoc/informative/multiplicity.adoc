@@ -24,3 +24,8 @@ Even when used in other contexts, the ellipsoid is optional but still recommende
 Consequently GeoAPI does not use the `Optional` construct for the `ellipsoid` property
 in order to keep the most common usages simpler, but robust applications should be prepared to handle a null value.
 Developers should refer to the API documentation for the policy on null values.
+
+When the multiplicity is [0 … ∞], the property type is a collection such as a list.
+In such case an absent property is represented by an empty collection, not a null value.
+When the multiplicity is [1 … ∞] the collection shall never be empty,
+but there is no language construct in {supported-languages} for enforcing that requirement.
