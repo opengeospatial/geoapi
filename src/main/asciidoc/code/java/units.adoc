@@ -1,23 +1,37 @@
-[NOTE]
-====
-The ISO 19103 `Measure` type is represented by the `Quantity` interface in the Java API defined by JSR-363.
-The Java standard defines various quantity subtypes in the same way than ISO 19103 does,
-often with the same names (`Angle`, `Length`, `Area`, `Volume` and `Time`).
-But contrarily to ISO 19103, JSR-363 does not define a parallel set of subtypes for units of measurement.
-Instead, it defines only one unit type, `javax.measure.Unit<? extends Quantity>`, which is parametrized by the quantity type.
-For example instead of defining a `UomLength` subtype,
-developers use `Unit<Length>` to qualify the type of Unit or Measure being used.
-Units of the same parametrized type can be used in unit conversions like below
+[[parameterized-units]]
+==== Parameterized units
+
+Units of measurement are represented in Java by JSR-363 parameterized interfaces
+(see the <<jsr-uom,Java profile>> for an overview).
+Units of the same parameterized type can be used in unit conversions like below
 (the `Units` class must be provided by a JSR-363 implementation):
 
 [source,java]
-----
-Unit<Length> sourceUnit = Units.MILE;
-Unit<Length> targetUnit = Units.KILOMETRE;
+-------------
+Unit<Length> source = Units.NAUTICAL_MILE;
+Unit<Length> target = Units.KILOMETRE;
 UnitConverter converter = source.getConverterTo(target);
-double source = 123.2;
-double target = converter.convert(source);
-----
+double distance = converter.convert(124);
+System.out.println(distance);               // Prints 229.648
+-------------
 
 where the initial calls define units of length and then a converter is used to obtain the equivalent length in a new unit.
-====
+The next example below creates a "kPa" unit of measurement from the "Pa" unit.
+
+[source,java]
+-------------
+Unit<Pressure> kPa = Units.PASCAL.multiply(1000);
+System.out.println( kPa );      // May print "kPa" or "1000*Pa" depending on implementation.
+-------------
+
+The next example creates a new quantity derived from the operand types.
+It may print "8 mW" – the exact number and unit shown depend on the implementation:
+
+[source,java]
+-------------
+Force  f = Quantities.create(4, Units.NEWTON);
+Length d = Quantities.create(6, Units.MILLIMETRE);
+Time   t = Quantities.create(3, Units.SECOND);
+Quantity<?> e = f.multiply(d).divide(t);
+System.out.println(e);
+-------------

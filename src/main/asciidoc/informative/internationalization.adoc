@@ -31,17 +31,17 @@ An <<InternationalString,example in annex>> shows the use of `InternationalStrin
 
 .Linguistic types mapping
 [.compact, options="header"]
-|=================================================================================
-|ISO 19103 interface         |Java class or interface                |Python class
-|`CharacterString`           |`java.lang.String`               ^(1)^ |`str`
-|`LanguageString`            |`org.opengis.util.InternationalString` |`str`
-|`LanguageCode`              |`java.util.Locale`                     |
-|Currency in free text ^(2)^ |`java.util.Currency`                   |
-|`CharacterSetCode` ^(3)^    |`java.nio.charset.Charset`             |
-|=================================================================================
+|==============================================================================
+|ISO 19103 interface      |Java class or interface                |Python class
+|`CharacterString`        |`java.lang.String`               ^(1)^ |`str`
+|`LanguageString`         |`org.opengis.util.InternationalString` |`str`
+|`LanguageCode`           |`java.util.Locale`                     |
+|`Currency`         ^(2)^ |`java.util.Currency`                   |
+|`CharacterSetCode` ^(3)^ |`java.nio.charset.Charset`             |
+|==============================================================================
 
 [small]#(1) Sometime substituted by `CharSequence` or `InternationalString`.# +
-[small]#(2) Not formally defined, but appears implicitly in ISO 19115.# +
+[small]#(2) Defined as a unit of measurement in ISO 19103 §C.4.24.# +
 [small]#(3) From ISO 19103 §7.2.10 (<<primitives,primitive types>>).# +
 
 
