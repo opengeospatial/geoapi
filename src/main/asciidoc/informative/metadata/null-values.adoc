@@ -1,0 +1,14 @@
+[[metadata-null-values]]
+==== Null values
+
+The GeoAPI rules of method return values have been relaxed for the metadata packages.
+Elsewhere in GeoAPI, methods which have a mandatory obligation in the specification
+must return an instance of the return type and cannot return the Java `null` or Python `None` reference.
+However, in the metadata package this rule is relaxed because data sets are encountered so frequently
+which have not correctly followed the requirements of the specification.
+In the GeoAPI metadata packages, methods for mandatory properties should return a valid instance,
+but users should be prepared to receive `null` (Java), `None` (Python) or an empty collection.
+This modification has been adopted to allow implementations sufficient latitude
+to handle metadata records which do not correctly conform to the specification.
+Nonetheless, sophisticated implementations can determine if a metadata record conforms with the specification
+by <<UML-introspection,inspecting the annotations at runtime>>.

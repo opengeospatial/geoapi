@@ -20,3 +20,5 @@ include::code/java/JNDI.adoc[]
 include::code/java/internationalization.adoc[]
 
 include::code/java/units.adoc[]
+
+include::code/java/metadata.adoc[]

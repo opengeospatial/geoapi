@@ -1,0 +1,35 @@
+[[metadata-java]]
+==== Metadata
+
+The interfaces in the GeoAPI <<metadata,metadata packages>> are primarily containers of primitive types and other metadata types.
+Metadata elements will be encountered for example from interfaces in the referencing packages.
+The metadata interfaces enable users to decompose a given element into smaller elements.
+As an example, the following code prints a list of all individuals (ignoring organizations)
+for a document starting with a `Citation` element:
+
+[source,java]
+----
+Citation citation = ...;    // We assume this instance is already available
+
+for (Responsibility rp : citation.getCitedResponsibleParties()) {
+    if (rp.getRole() == Role.AUTHOR) {
+        for (Party party : rp.getParties()) {
+            if (party instanceof Individual) {
+                InternationalString author = rp.getName();
+                System.out.println(author);
+            }
+        }
+    }
+}
+----
+
+The remainder of the metadata packages work in similar ways,
+where client code must decompose an instance to obtain the elements needed.
+
+
+===== Write operations
+The GeoAPI metadata interfaces provide no methods to set the values of the types.
+Furthermore, because the way that wildcards for Java Generics have been used in the interfaces,
+the collection instances are constrained to be read only.
+Implementers are free to provide a fully mutable implementation of GeoAPI interfaces,
+but users may need to cast to the implementation classes in order to modify a metadata.

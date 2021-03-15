@@ -66,11 +66,15 @@ import static org.opengis.annotation.Specification.*;
  *       (e.g. “<cite>Euro-centric view of world excluding polar areas</cite>”).</li>
  * </ul>
  *
- * @departure historic
- *    This type was defined in ISO 19115:2003 and removed in ISO 19115:2014.
- *    But GeoAPI kept it as a common parent for
+ * @departure harmonization
+ *    The type defined in ISO 19115 has no relationship with ISO 19111.
+ *    GeoAPI redefines this type as a subtype of {@link IdentifiedObject}
+ *    and the common parent for
  *    {@link org.opengis.referencing.crs.CoordinateReferenceSystem} and
  *    {@link org.opengis.referencing.gazetteer.ReferenceSystemUsingIdentifiers}.
+ *    This change makes this interface closer to the legacy
+ *    ISO 19115:2003 {@code RS_ReferenceSystem} than to
+ *    ISO 19115:2015 {@code MD_ReferenceSystem}.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
