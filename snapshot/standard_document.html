@@ -2197,7 +2197,7 @@ p {
 <ul class="sectlevel3">
 <li><a href="#metadata-mapping">6.3.1. Package mapping</a></li>
 <li><a href="#metadata-reference-system">6.3.2. Reference systems</a></li>
-<li><a href="#metadata-usage">6.3.3. How to use</a></li>
+<li><a href="#metadata-null-values">6.3.3. Null values</a></li>
 <li><a href="#metadata-departures">6.3.4. Departures from ISO 19115</a></li>
 </ul>
 </li>
@@ -2238,6 +2238,7 @@ p {
 <li><a href="#JNDI">E.1.3. Names in JNDI context</a></li>
 <li><a href="#InternationalString">E.1.4. Multilingual string</a></li>
 <li><a href="#parameterized-units">E.1.5. Parameterized units</a></li>
+<li><a href="#metadata-java">E.1.6. Metadata</a></li>
 </ul>
 </li>
 </ul>
@@ -2686,13 +2687,22 @@ For undated references, the latest edition of the normative document referred to
 <p>ISO 19115-1:2014,  Geographic information — Metadata — Fundamentals (2014)</p>
 </li>
 <li>
+<p>ISO 19115-1:2014/Amd 1:2018,  Metadata — Fundamentals — Amendment 1 (2018)</p>
+</li>
+<li>
+<p>ISO 19115-1:2014/Amd 1:2020,  Metadata — Fundamentals — Amendment 2 (2020)</p>
+</li>
+<li>
 <p>ISO 19115-2:2019,  Geographic information — Metadata — Extensions for acquisition and processing (2019)</p>
 </li>
 <li>
 <p>ISO 19141:2008,    Geographic information — Schema for moving features (2008)</p>
 </li>
 <li>
-<p>OGC 01‑009, OpenGIS® Implementation Specification: Coordinate Transformation Services, revision 1.00 (2001)</p>
+<p>ISO 19157:2013,    Geographic information — Data quality (2013)</p>
+</li>
+<li>
+<p>OGC 01‑009, OpenGIS® Implementation Specification: Coordinate Transformation Services (2001)</p>
 </li>
 <li>
 <p>OGC 18-075, OGC® Moving Features Encoding Part I: XML Core (2019)</p>
@@ -4077,48 +4087,36 @@ See the <a href="#jsr-uom">Java profile</a> or the <a href="#parameterized-units
 <div class="sect2">
 <h3 id="metadata"><a class="anchor" href="#metadata"></a>6.3. Metadata packages</h3>
 <div class="paragraph">
-<p>The GeoAPI metadata packages use the <code>org.opengis.metadata</code> namespace
-and implement the types defined in the specification from the International Organization for Standardization
-ISO 19115-1:2014 – <em>Metadata part 1: fundamentals</em> along with the modifications of Technical Corrigendum 1 from 2016 <span class="red yellow-background">(TODO: verify)</span>.
-They are completed or merged with the types defined in ISO 19115-2:2009 – <em>Extensions for imagery and gridded data</em> <span class="red yellow-background">(TODO: verify)</span>.</p>
+<p>The GeoAPI metadata packages use the <code>org.opengis.metadata</code> namespace and implement the types defined
+in the ISO 19115-1:2014 – <em>Metadata part 1: Fundamentals</em> specification along with the modifications
+of Amendments 1 and 2 from 2018 and 2020. They are completed or merged with the types defined in
+ISO 19115-2:2019 – <em>Metadata part 2: Extensions for acquisition and processing</em> specification.</p>
 </div>
 <div class="paragraph">
 <p>The metadata packages of GeoAPI provide container types for descriptive elements which may be related to data sets or components.
 All of these data structures are essentially containers for strings, dates or numbers,
-and the interfaces consist almost exclusively of methods which provide access to those types or a container.
-The API defines no methods which manipulate or modify the data structures.</p>
-</div>
-<div class="sidebarblock">
-<div class="content">
-<div class="title">Write access to metadata in Java</div>
-<div class="paragraph">
-<p>The metadata packages of GeoAPI have been built primarily in support of the geodetic types
-defined in the referencing packages and therefore consider primarily read access to the data structure contents.
-The GeoAPI metadata interfaces provide no methods to set the values of the types.
-Furthermore, because the way that wildcards for Java Generics have been used in the interfaces,
-the collection instances are constrained to be read only.
-Implementors are free to provide a fully mutable implementation of GeoAPI interfaces,
+and the interfaces consist almost exclusively of methods which provide read access to those types or a container.
+The API defines no methods which manipulate or modify the data structures.
+Implementers are free to provide a fully mutable implementation of GeoAPI interfaces,
 but users may need to cast to the implementation classes in order to modify a metadata.</p>
 </div>
-</div>
-</div>
 <div class="paragraph">
-<p>The GeoAPI rules of method return values have been relaxed for the metadata packages.
-Elsewhere in GeoAPI, methods which have a mandatory obligation in the specification
-must return an instance of the return type and cannot return the Java <code>null</code> or Python <code>None</code> reference.
-However, in the metadata package this rule is relaxed because data sets are encountered so frequently
-which have not correctly followed the requirements of the specification.
-In the GeoAPI metadata packages, methods for mandatory properties should return a valid instance,
-but users should be prepared to receive <code>null</code> (Java), <code>None</code> (Python) or an empty collection.
-This modification has been adopted to allow implementations sufficient latitude
-to handle metadata records which do not correctly conform to the specification.
-Nonetheless, sophisticated implementations can determine if a metadata record conforms with the specification
-by <a href="#UML-introspection">inspecting the annotations at runtime</a>.</p>
+<p>There is almost 500 properties in more than 150 metadata interfaces. This specification does not describe them;
+see ISO 19115 together with GeoAPI <a href="#conformance">Javadoc or Python-doc</a> for a description of each property.
+Implementers can support a subset of their choice.
+The following UML example shows a few frequently used interfaces with some of their properties.
+An <a href="#metadata-java">example in annex</a> show how to extract the individual name from a <code>Citation</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/metadata.svg" alt="Partial UML for a few metadata types">
+</div>
+<div class="title">Figure 8. Example of a few metadata interfaces with a subset of their properties</div>
 </div>
 <div class="sect3">
 <h4 id="metadata-mapping"><a class="anchor" href="#metadata-mapping"></a>6.3.1. Package mapping</h4>
 <div class="paragraph">
-<p><em class="reference">From ISO 19115-1:2014 §6.5.[2…14]; ISO 19115-1 §6.6; ISO 19157</em></p>
+<p><em class="reference">From ISO 19115-1:2014 §6.5.[2…14] and §6.6; ISO 19157:2013</em></p>
 </div>
 <div class="paragraph">
 <p>The mapping of ISO packages to GeoAPI packages follows a parallel naming scheme, shown in the table below.
@@ -4175,7 +4173,7 @@ and <em>Reference system</em> which has been replaced by the ISO 19111 interface
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Reference system</p></td>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.referencing.*</code></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>opengis.referencing.*</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Content</p></td>
@@ -4208,11 +4206,14 @@ and <em>Reference system</em> which has been replaced by the ISO 19111 interface
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>opengis.metadata.identification</code></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Extent, Citation and Common</p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.metadata.extent</code><br>
-<code>org.opengis.metadata.citation</code></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>opengis.metadata.extent</code><br>
-<code>opengis.metadata.citation</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Extent</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.metadata.extent</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>opengis.metadata.extent</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Citation and party</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.metadata.citation</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>opengis.metadata.citation</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Data quality</p></td>
@@ -4225,11 +4226,33 @@ and <em>Reference system</em> which has been replaced by the ISO 19111 interface
 <div class="sect3">
 <h4 id="metadata-reference-system"><a class="anchor" href="#metadata-reference-system"></a>6.3.2. Reference systems</h4>
 <div class="paragraph">
-<p>Coordinate Reference Systems (CRS) are defined in details by the ISO 19111 interfaces in GeoAPI <code>referencing</code> packages.
+<p><em class="reference">Derived from ISO 19115-1:2014 §6.5.8</em></p>
+</div>
+<div class="paragraph">
+<p>The way GeoAPI handles reference systems in metadata differs significantly from ISO 19115.
+Coordinate Reference Systems (CRS) are defined in details by the ISO 19111 standard.
+But the ISO 19115 metadata standards do not reference those CRS interfaces directly
+(except in one case), at the cost of some overlaps.
+By contrast GeoAPI does not enforce such separation between standards when a bidirectional dependency can bring harmonization.
+A bidirectional dependency does not imply that implementers have to support both ISO standards.</p>
+</div>
+<div class="paragraph">
+<p>Coordinate Reference Systems (CRS) interfaces are provided in GeoAPI <code>referencing</code> packages.
 A Reference System may also use geographic identifiers (ISO 19112) instead of coordinates.
-The common parent interface of <em>Coordinate Reference System</em> and <em>Reference System by Geographic Identifier</em> is <code>ReferenceSystem</code>.
-GeoAPI inserts this interface between <code>IdentifiedObject</code> and <code>CoordinateReferenceSystem</code> in ISO 19111 interface hierarchy
-(this is a <a href="#metadata-departures">departure from ISO standards</a>). Usages are shown below:</p>
+GeoAPI supports both cases by defining <code>ReferenceSystem</code> as the common parent of
+<em>Coordinate Reference System</em> and <em>Reference System using Geographic Identifier</em>.
+This is done by inserting the ISO 19115 <code>ReferenceSystem</code> interface between
+<code>IdentifiedObject</code> and <code>CoordinateReferenceSystem</code> in ISO 19111 type hierarchy as shown below
+(note: this diagram does not show all types, properties and associations for brevity reasons):</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/metadata-referencing.svg" alt="Partial UML of ReferenceSystem">
+</div>
+<div class="title">Figure 9. Location of <code>ReferenceSystem</code> in the hierarchy of ISO 19111 types</div>
+</div>
+<div class="paragraph">
+<p>The following table lists all association to a reference system from the metadata packages:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch compact">
 <caption class="title">Table 13. Associations from a metadata object to a reference system</caption>
@@ -4268,55 +4291,32 @@ GeoAPI inserts this interface between <code>IdentifiedObject</code> and <code>Co
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><span class="red yellow-background">TODO: replace above table by UML diagram showing <code>IdentifiedObject</code> and <code>ReferenceSystem</code>.</span></p>
-</div>
-<div class="paragraph">
-<p>The reference system identifier can be obtained by <code>ReferenceSystem.identifier</code>.
-The reference system type (geographic, projected, compound, <em>etc.</em>) can be determined
-using language-specific instructions, for example <code>instanceof</code> in Java.
-If a metadata instance does not have the full reference system definition but only its identifier,
-then the implementation can use a custom <code>ReferenceSystem</code> instance.</p>
-</div>
 </div>
 <div class="sect3">
-<h4 id="metadata-usage"><a class="anchor" href="#metadata-usage"></a>6.3.3. How to use</h4>
+<h4 id="metadata-null-values"><a class="anchor" href="#metadata-null-values"></a>6.3.3. Null values</h4>
 <div class="paragraph">
-<p>The interfaces in the GeoAPI metadata packages are primarily containers of primitive types and other metadata types.
-Metadata elements will be encountered in the data types from the referencing packages and the interfaces enable
-users to obtain the elements of the data type.
-As an example, we want to print a list of all the individuals (ignoring organizations)
-for a document starting with a <code>Citation</code> element:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="CodeRay highlight"><code data-lang="java">Citation citation = ...;    <span class="comment">// We assume this instance is already available</span>
-
-<span class="keyword">for</span> (Responsibility rp : citation.getCitedResponsibleParties()) {
-    <span class="keyword">if</span> (rp.getRole() == <span class="predefined-type">Role</span>.AUTHOR) {
-        <span class="keyword">for</span> (Party party : rp.getParties()) {
-            <span class="keyword">if</span> (party <span class="keyword">instanceof</span> Individual) {
-                InternationalString author = rp.getName();
-                <span class="predefined-type">System</span>.out.println(author);
-            }
-        }
-    }
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The remainder of the metadata packages work in similar ways,
-where client code must disaggregate an instance to obtain the elements needed.</p>
+<p>The GeoAPI rules of method return values have been relaxed for the metadata packages.
+Elsewhere in GeoAPI, methods which have a mandatory obligation in the specification
+must return an instance of the return type and cannot return the Java <code>null</code> or Python <code>None</code> reference.
+However, in the metadata package this rule is relaxed because data sets are encountered so frequently
+which have not correctly followed the requirements of the specification.
+In the GeoAPI metadata packages, methods for mandatory properties should return a valid instance,
+but users should be prepared to receive <code>null</code> (Java), <code>None</code> (Python) or an empty collection.
+This modification has been adopted to allow implementations sufficient latitude
+to handle metadata records which do not correctly conform to the specification.
+Nonetheless, sophisticated implementations can determine if a metadata record conforms with the specification
+by <a href="#UML-introspection">inspecting the annotations at runtime</a>.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="metadata-departures"><a class="anchor" href="#metadata-departures"></a>6.3.4. Departures from ISO 19115</h4>
+<div class="sect4">
+<h5>Harmonization with ISO 19115-2</h5>
 <div class="paragraph">
 <p>A departure in the GeoAPI metadata packages from the published ISO 19115 standard is in the way GeoAPI metadata package
-added the types and properties defined in the specification ISO 19115-2 – <em>Extensions for imagery and gridded data</em>.
-The latter was forced to create a number of interfaces to hold elements which naturally could occur directly in the interfaces
-defined by ISO 19115. We integrated such interfaces directly into the existing interfaces rather than adding complexity to the API
-which exists by historical accident.
+added the types and properties defined in the specification ISO 19115-2 – <em>Extensions for acquisition and processing</em>.
+The latter was forced to create a number of interfaces to hold elements which naturally could occur directly in the interfaces defined by ISO 19115-1.
+We integrated such interfaces directly into the existing interfaces rather than adding complexity to the API which exists by historical accident.
 For example ISO 19115-2 defines a <code>MI_Band</code> interface which extends the <code>MD_Band</code> interface defined by ISO 19115-1,
 with the addition of a <code>transferFunctionType</code> property (among others) for completing the <code>scaleFactor</code> and
 <code>offset</code> properties defined by ISO 19115-1. GeoAPI merges those two interfaces together,
@@ -4370,86 +4370,28 @@ The metadata interfaces merged in such way are:</p>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>Another departure come from GeoAPI replacing the <code>MD_ReferenceSystem</code> interface by <code>RS_ReferenceSystem</code>.
-Coordinate Reference Systems (CRS) are defined in details by the ISO 19111 interfaces in GeoAPI <code>referencing</code> packages.
-But the ISO 19115 metadata standards do not reference those CRS interfaces directly (except in one case).
-Instead the metadata standards reference CRS by their identifier (for example an EPSG code),
-optionally accompanied by a code telling whether the CRS type is geographic, projected, temporal, a compound of the above, <em>etc</em>.
-The ISO 19115 standard combines those two information in a <code>MD_ReferenceSystem</code> interface.
-The following table lists the associations to referencing systems as defined by the metadata standards:</p>
 </div>
-<table class="tableblock frame-all grid-all stretch compact">
-<caption class="title">Table 15. Associations to a Reference Systems defined by ISO 19115</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top" style="background-color: #FFFFFF;">ISO 19115 interface</th>
-<th class="tableblock halign-left valign-top" style="background-color: #FFFFFF;">Association to <code>MD_ReferenceSystem</code></th>
-<th class="tableblock halign-left valign-top" style="background-color: #FFFFFF;">Association to ISO 19111</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>MD_Metadata</code></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>referenceSystemInfo</code></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>LI_Source</code></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>sourceReferenceSystem</code></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>EX_VerticalExtent</code></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>verticalCRSId</code></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>verticalCRS</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>MI_GCPCollection</code></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>coordinateReferenceSystem</code></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"></td>
-</tr>
-</tbody>
-</table>
+<div class="sect4">
+<h5>Harmonization with ISO 19111</h5>
+<div class="paragraph">
+<p>Coordinate Reference Systems (CRS) are defined in details by the ISO 19111 standard.
+But the ISO 19115 metadata standards do not reference those CRS interfaces directly (except <code>VerticalCRS</code>).
+Instead the metadata standards reference CRS by their identifier (for example an EPSG code),
+optionally accompanied by a code telling whether the CRS type is geographic, projected, temporal, a compound of the above, a geographic identifier, <em>etc</em>.
+The ISO 19115 standard combines those two information in a <code>ReferenceSystem</code> interface.</p>
+</div>
 <div class="paragraph">
 <p>In order to have a more uniform way to handle reference systems,
 GeoAPI replaces (<em>identifier</em>, <em>type code</em>) tuples by associations to the actual <em>Reference System</em> objects.
-GeoAPI does that by omitting the <code>MD_ReferenceSystem</code> and <code>MD_ReferenceSystemTypeCode</code> interfaces,
-replacing them by associations to <code>RS_ReferenceSystem</code> instead as shown in the <a href="#metadata-reference-system">reference system</a> section.
-The <code>RS_ReferenceSystem</code> interface is a common parent for <em>Referencing by Coordinate</em> (ISO 19111) and <em>Referencing by Geographic Identifier</em> (ISO 19112).
-The functionalities can by mapped as below:</p>
+The ISO 19115 <code>ReferenceSystem</code> type is redefined as a subtype of ISO 19111 <code>IdentifiedObject</code> (see <a href="#metadata-reference-system">UML</a>).
+The <code>reference​System​Identifier</code> property defined by ISO 19115 is replaced by inheritance of <code>identifier</code> property from <code>IdentifiedObject</code>.
+The <code>reference​System​Type</code> property value (geographic, projected, compound, geographic identifier, <em>etc.</em>)
+can be determined using language-specific instructions such as <code>instanceof</code> in Java.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch compact">
-<caption class="title">Table 16. Mapping from ISO properties to GeoAPI replacements</caption>
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top" style="background-color: #FFFFFF;">ISO 19115 interface and property</th>
-<th class="tableblock halign-left valign-top" style="background-color: #FFFFFF;">GeoAPI replacement</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>MD_ReferenceSystem.referenceSystemIdentifier</code></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>RS_ReferenceSystem.identifier</code></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>MD_ReferenceSystem.referenceSystemType</code></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Type of the <code>RS_ReferenceSystem</code> instance</p></td>
-</tr>
-</tbody>
-</table>
 <div class="paragraph">
 <p>As a side-effect of this replacement, <code>verticalCRSId</code> becomes redundant with <code>verticalCRS</code>.
 Consequently the former is omitted from GeoAPI interfaces.</p>
+</div>
 </div>
 </div>
 </div>
@@ -4457,7 +4399,7 @@ Consequently the former is omitted from GeoAPI interfaces.</p>
 <h3 id="features"><a class="anchor" href="#features"></a>6.4. Features packages</h3>
 <div class="paragraph">
 <p>The GeoAPI feature package uses the <code>org.opengis.feature</code> namespace
-and implements the types defined in ISO 19109:2015 – <em>Rules for application schema</em>.
+and implements the types defined in the ISO 19109:2015 – <em>Rules for application schema</em> specification.
 The main UML materialized by GeoAPI is ISO 19109 figure 5 <span class="red yellow-background">(TODO: verify)</span>.
 That figure is also reproduced in ISO 19103:2015 figure E.6.</p>
 </div>
@@ -4652,7 +4594,7 @@ Unless otherwise specified, all Java types listed below are in the
 <code>javax.​measure</code> or <code>javax.​measure.​quantity</code> package.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch compact">
-<caption class="title">Table 17. Units of measurement mapping</caption>
+<caption class="title">Table 15. Units of measurement mapping</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -4914,7 +4856,7 @@ Instead, GeoAPI leaves that functionality to frameworks such as the Java Naming 
 Java applications which need such mapping may use the methods in the <code>javax.naming.Context</code> interface:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch compact">
-<caption class="title">Table 18. Java Naming and Directory Interface equivalences</caption>
+<caption class="title">Table 16. Java Naming and Directory Interface equivalences</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -5036,7 +4978,47 @@ Quantity&lt;?&gt; e = f.multiply(d).divide(t);
 <span class="predefined-type">System</span>.out.println(e);</code></pre>
 </div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="metadata-java"><a class="anchor" href="#metadata-java"></a>E.1.6. Metadata</h4>
+<div class="paragraph">
+<p>The interfaces in the GeoAPI <a href="#metadata">metadata packages</a> are primarily containers of primitive types and other metadata types.
+Metadata elements will be encountered for example from interfaces in the referencing packages.
+The metadata interfaces enable users to decompose a given element into smaller elements.
+As an example, the following code prints a list of all individuals (ignoring organizations)
+for a document starting with a <code>Citation</code> element:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">Citation citation = ...;    <span class="comment">// We assume this instance is already available</span>
+
+<span class="keyword">for</span> (Responsibility rp : citation.getCitedResponsibleParties()) {
+    <span class="keyword">if</span> (rp.getRole() == <span class="predefined-type">Role</span>.AUTHOR) {
+        <span class="keyword">for</span> (Party party : rp.getParties()) {
+            <span class="keyword">if</span> (party <span class="keyword">instanceof</span> Individual) {
+                InternationalString author = rp.getName();
+                <span class="predefined-type">System</span>.out.println(author);
+            }
+        }
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The remainder of the metadata packages work in similar ways,
+where client code must decompose an instance to obtain the elements needed.</p>
+</div>
+<div class="sect4">
+<h5>Write operations</h5>
+<div class="paragraph">
+<p>The GeoAPI metadata interfaces provide no methods to set the values of the types.
+Furthermore, because the way that wildcards for Java Generics have been used in the interfaces,
+the collection instances are constrained to be read only.
+Implementers are free to provide a fully mutable implementation of GeoAPI interfaces,
+but users may need to cast to the implementation classes in order to modify a metadata.</p>
+</div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 </div>
