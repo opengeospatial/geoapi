@@ -484,7 +484,6 @@
               <relativeBaseDir>true</relativeBaseDir>
               <backend>html</backend>
               <attributes>
-                <data-uri>true</data-uri>               <!-- Should be false if the backend is pdf.-->
                 <toc-placement>true</toc-placement>     <!-- Should be false if the backend is pdf.-->
               </attributes>
             </configuration>
