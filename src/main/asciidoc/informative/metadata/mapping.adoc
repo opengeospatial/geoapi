@@ -6,7 +6,7 @@ The mapping of ISO packages to GeoAPI packages follows a parallel naming scheme
 Some minor packages (for example _Portrayal catalogue_ which contains only one interface) have been aggregated into another package.
 All packages are defined by ISO 19115 except
 _Data quality_ which is defined by ISO 19157 but considered by GeoAPI as metadata for historical reasons,
-and _Reference system_ which has been replaced by the ISO 19111 interfaces from the referencing package.
+and _Reference system_ which has been retrofitted in the ISO 19111 interfaces from the referencing package.
 
 .Metadata package mapping
 [.compact, options="header"]
@@ -18,7 +18,7 @@ and _Reference system_ which has been replaced by the ISO 19111 interfaces from 
 |Lineage                |`org.opengis.metadata.lineage`        |`opengis.metadata.lineage`
 |Maintenance            |`org.opengis.metadata.maintenance`    |`opengis.metadata.maintenance`
 |Spatial representation |`org.opengis.metadata.spatial`        |`opengis.metadata.representation`
-|Reference system       |`org.opengis.referencing.*`           |`opengis.referencing.*`
+|Reference system       |`org.opengis.referencing`             |`opengis.referencing.crs`
 |Content                |`org.opengis.metadata.content`        |`opengis.metadata.content`
 |Portrayal catalogue    |`org.opengis.metadata`                |`opengis.metadata.base`
 |Distribution           |`org.opengis.metadata.distribution`   |`opengis.metadata.distribution`
