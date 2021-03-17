@@ -1,0 +1,38 @@
+[[geometry]]
+=== Geometry packages
+
+The GeoAPI geometry packages use the `opengis.geometry` namespace
+and are placeholder for types defined in the ISO 19107:2003 - _Spatial schema_ specification.
+[red yellow-background]#TODO: upgrade to ISO 19107:2019.#
+The geometry specification provides a vector based spatial representation of elements.
+The geometry types defined in GeoAPI include only the two simplest types from ISO specification
+along with their abstract parent interfaces.
+Those types are defined because they are needed by the referencing package.
+Other types are expected to be added in future GeoAPI versions.
+
+.Mapping of types from the geometry package
+[.compact, options="header"]
+|============================================================================
+|ISO 19107 interface |Java type                                  |Python type
+|`GM_Position`       |`org.opengis.geometry.coordinate.Position` |
+|`DirectPosition`    |`org.opengis.geometry.DirectPostion`       |
+|`GM_Envelope`       |`org.opengis.geometry.Envelope`            |
+|============================================================================
+
+The `DirectPosition` type represents a single location in the coordinate space defined by a `Coordinate​Reference​System`.
+The `Envelope` type represents the lower and upper extreme values along each axis.
+This type is frequently conflated with a bounding rectilinear box but the two types differ conceptually.
+The `Envelope` type in ISO 19107 provides methods to obtain the "corners" of the envelope as `DirectPosition` instances.
+However, users should note that these positions might not have any meaning in physical space.
+For example the corners could be outside the Coordinate Reference System (CRS) domain of validity
+even if the feature itself is fully inside that domain.
+The corner `DirectPosition` instances are acting, for convenience,
+as data containers for tuples of coordinates but not as representations of an actual position.
+
+[[geometry-departures]]
+==== Departures from ISO 19107
+
+===== Convenience
+GeoAPI has moved the `DirectPosition` and `Envelope` types from the coordinate sub-package
+where they are defined in the ISO 19107 specification up to the `opengis.geometry` package
+due to their importance and frequency of use.

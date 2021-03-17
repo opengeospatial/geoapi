@@ -32,4 +32,6 @@ include::informative/core-types.adoc[]
 
 include::informative/metadata/index.adoc[]
 
+include::informative/geometry/index.adoc[]
+
 include::informative/feature/index.adoc[]
