@@ -43,7 +43,6 @@
     <copy todir="${build.test.classes.dir}">
       <fileset dir="${project.root}/geoapi-conformance/src/main/resources"/>
       <fileset dir="${project.root}/geoapi-conformance/src/test/resources"> <exclude name="META-INF/*"/> </fileset>
-      <fileset dir="${project.root}/geoapi-netcdf/src/test/resources">      <exclude name="META-INF/*"/> </fileset>
       <fileset dir="${project.root}/geoapi-examples/src/test/resources">    <exclude name="META-INF/**"/> </fileset>
     </copy>
   </target>

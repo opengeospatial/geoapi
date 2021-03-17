@@ -423,7 +423,7 @@ public class OperationParametersReport extends Report {
     /**
      * Returns the HTML text to use as a column header for each
      * {@linkplain Identifier#getCodeSpace() code spaces} or
-     * {@linkplain GenericName#scope() scopes}. The columns will be show in iteration order.
+     * {@linkplain GenericName#scope() scopes}. The columns will be shown in iteration order.
      *
      * @return the name of all code spaces or scopes. Some typical values are {@code "EPSG"},
      *         {@code "OGC"}, {@code "ESRI"}, {@code "GeoTIFF"} or {@code "NetCDF"}.
