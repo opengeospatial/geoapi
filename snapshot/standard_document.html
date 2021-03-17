@@ -2197,11 +2197,16 @@ p {
 <ul class="sectlevel3">
 <li><a href="#metadata-mapping">6.3.1. Package mapping</a></li>
 <li><a href="#metadata-reference-system">6.3.2. Reference systems</a></li>
-<li><a href="#metadata-null-values">6.3.3. Null values</a></li>
+<li><a href="#nil-values">6.3.3. Nil values</a></li>
 <li><a href="#metadata-departures">6.3.4. Departures from ISO 19115</a></li>
 </ul>
 </li>
-<li><a href="#features">6.4. Features packages</a></li>
+<li><a href="#geometry">6.4. Geometry packages</a>
+<ul class="sectlevel3">
+<li><a href="#geometry-departures">6.4.1. Departures from ISO 19107</a></li>
+</ul>
+</li>
+<li><a href="#feature">6.5. Feature packages</a></li>
 </ul>
 </li>
 <li><a href="#requirements">7. Requirements</a>
@@ -3538,7 +3543,7 @@ A <code>Sequence</code> is similar to a <code>Bag</code> except that elements ar
 </table>
 <div class="paragraph">
 <p>Unless otherwise required by the semantic of a property, GeoAPI preferably uses the <code>Collection</code> type in Java method signatures.
-This allows implementors to choose their preferred subtypes, usually <code>Set</code> or <code>Sequence</code>.
+This allows implementers to choose their preferred subtypes, usually <code>Set</code> or <code>Sequence</code>.
 The <code>Set</code> type is not the default type because enforcing element uniqueness may constraint implementations to use hash tables
 or similar algorithms, which is not always practical.</p>
 </div>
@@ -4087,7 +4092,7 @@ See the <a href="#jsr-uom">Java profile</a> or the <a href="#parameterized-units
 <div class="sect2">
 <h3 id="metadata"><a class="anchor" href="#metadata"></a>6.3. Metadata packages</h3>
 <div class="paragraph">
-<p>The GeoAPI metadata packages use the <code>org.opengis.metadata</code> namespace and implement the types defined
+<p>The GeoAPI metadata packages use the <code>opengis.metadata</code> namespace and implement the types defined
 in the ISO 19115-1:2014 – <em>Metadata part 1: Fundamentals</em> specification along with the modifications
 of Amendments 1 and 2 from 2018 and 2020. They are completed or merged with the types defined in
 ISO 19115-2:2019 – <em>Metadata part 2: Extensions for acquisition and processing</em> specification.</p>
@@ -4123,7 +4128,7 @@ An <a href="#metadata-java">example in annex</a> show how to extract the individ
 Some minor packages (for example <em>Portrayal catalogue</em> which contains only one interface) have been aggregated into another package.
 All packages are defined by ISO 19115 except
 <em>Data quality</em> which is defined by ISO 19157 but considered by GeoAPI as metadata for historical reasons,
-and <em>Reference system</em> which has been replaced by the ISO 19111 interfaces from the referencing package.</p>
+and <em>Reference system</em> which has been retrofitted in the ISO 19111 interfaces from the referencing package.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch compact">
 <caption class="title">Table 12. Metadata package mapping</caption>
@@ -4172,8 +4177,8 @@ and <em>Reference system</em> which has been replaced by the ISO 19111 interface
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Reference system</p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.referencing.*</code></p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>opengis.referencing.*</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.referencing</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>opengis.referencing.crs</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Content</p></td>
@@ -4237,8 +4242,9 @@ By contrast GeoAPI does not enforce such separation between standards when a bid
 A bidirectional dependency does not imply that implementers have to support both ISO standards.</p>
 </div>
 <div class="paragraph">
-<p>Coordinate Reference Systems (CRS) interfaces are provided in GeoAPI <code>referencing</code> packages.
-A Reference System may also use geographic identifiers (ISO 19112) instead of coordinates.
+<p>Reference Systems interfaces are defined in GeoAPI <code>referencing</code> packages.
+A Reference System may be a Coordinate Reference System (ISO 19111)
+or may use geographic identifiers (ISO 19112).
 GeoAPI supports both cases by defining <code>ReferenceSystem</code> as the common parent of
 <em>Coordinate Reference System</em> and <em>Reference System using Geographic Identifier</em>.
 This is done by inserting the ISO 19115 <code>ReferenceSystem</code> interface between
@@ -4293,19 +4299,45 @@ This is done by inserting the ISO 19115 <code>ReferenceSystem</code> interface b
 </table>
 </div>
 <div class="sect3">
-<h4 id="metadata-null-values"><a class="anchor" href="#metadata-null-values"></a>6.3.3. Null values</h4>
+<h4 id="nil-values"><a class="anchor" href="#nil-values"></a>6.3.3. Nil values</h4>
 <div class="paragraph">
-<p>The GeoAPI rules of method return values have been relaxed for the metadata packages.
+<p>ISO 19115-3 – <em>XML schema implementation for fundamental concepts</em> allows property values to be nil
+even when the property is declared mandatory by ISO 19115-1 standard.
+In such case, ISO 19115-3 requires to specify why the property is nil.
+Nil reasons can be:</p>
+</div>
+<div class="ulist compact">
+<ul>
+<li>
+<p><strong>Template:</strong>     the metadata is only a template with values to be provided later.</p>
+</li>
+<li>
+<p><strong>Withheld:</strong>     the value is not divulged.</p>
+</li>
+<li>
+<p><strong>Unknown:</strong>      a correct value probably exists but is not known and not computable.</p>
+</li>
+<li>
+<p><strong>Missing:</strong>      the correct value is not readily available and may not exist.</p>
+</li>
+<li>
+<p><strong>Inapplicable:</strong> there is no value.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>GeoAPI does not provide a mechanism for specifying the reason why a property is nil.
+Instead, the GeoAPI rules of method return values have been relaxed for the metadata packages.
 Elsewhere in GeoAPI, methods which have a mandatory obligation in the specification
 must return an instance of the return type and cannot return the Java <code>null</code> or Python <code>None</code> reference.
 However, in the metadata package this rule is relaxed because data sets are encountered so frequently
-which have not correctly followed the requirements of the specification.
+which have nil values for any of above-cited reasons.
 In the GeoAPI metadata packages, methods for mandatory properties should return a valid instance,
 but users should be prepared to receive <code>null</code> (Java), <code>None</code> (Python) or an empty collection.
 This modification has been adopted to allow implementations sufficient latitude
-to handle metadata records which do not correctly conform to the specification.
-Nonetheless, sophisticated implementations can determine if a metadata record conforms with the specification
-by <a href="#UML-introspection">inspecting the annotations at runtime</a>.</p>
+about how to handle metadata records with nil values.
+Nonetheless, sophisticated implementations can determine if a metadata record conforms with
+the ISO 19115-1 specification by <a href="#UML-introspection">inspecting the annotations at runtime</a>.</p>
 </div>
 </div>
 <div class="sect3">
@@ -4389,19 +4421,88 @@ The <code>reference​System​Type</code> property value (geographic, projected
 can be determined using language-specific instructions such as <code>instanceof</code> in Java.</p>
 </div>
 <div class="paragraph">
-<p>As a side-effect of this replacement, <code>verticalCRSId</code> becomes redundant with <code>verticalCRS</code>.
-Consequently the former is omitted from GeoAPI interfaces.</p>
+<p>In the same spirit than above replacement, <code>verticalCRSId</code> is omitted because redundant with <code>verticalCRS</code>.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="features"><a class="anchor" href="#features"></a>6.4. Features packages</h3>
+<h3 id="geometry"><a class="anchor" href="#geometry"></a>6.4. Geometry packages</h3>
 <div class="paragraph">
-<p>The GeoAPI feature package uses the <code>org.opengis.feature</code> namespace
+<p>The GeoAPI geometry packages use the <code>opengis.geometry</code> namespace
+and are placeholder for types defined in the ISO 19107:2003 - <em>Spatial schema</em> specification.
+<span class="red yellow-background">TODO: upgrade to ISO 19107:2019.</span>
+The geometry specification provides a vector based spatial representation of elements.
+The geometry types defined in GeoAPI include only the two simplest types from ISO specification
+along with their abstract parent interfaces.
+Those types are defined because they are needed by the referencing package.
+Other types are expected to be added in future GeoAPI versions.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch compact">
+<caption class="title">Table 15. Mapping of types from the geometry package</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top" style="background-color: #FFFFFF;">ISO 19107 interface</th>
+<th class="tableblock halign-left valign-top" style="background-color: #FFFFFF;">Java type</th>
+<th class="tableblock halign-left valign-top" style="background-color: #FFFFFF;">Python type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>GM_Position</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.geometry.coordinate.Position</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>DirectPosition</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.geometry.DirectPostion</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>GM_Envelope</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.geometry.Envelope</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The <code>DirectPosition</code> type represents a single location in the coordinate space defined by a <code>Coordinate​Reference​System</code>.
+The <code>Envelope</code> type represents the lower and upper extreme values along each axis.
+This type is frequently conflated with a bounding rectilinear box but the two types differ conceptually.
+The <code>Envelope</code> type in ISO 19107 provides methods to obtain the "corners" of the envelope as <code>DirectPosition</code> instances.
+However, users should note that these positions might not have any meaning in physical space.
+For example the corners could be outside the Coordinate Reference System (CRS) domain of validity
+even if the feature itself is fully inside that domain.
+The corner <code>DirectPosition</code> instances are acting, for convenience,
+as data containers for tuples of coordinates but not as representations of an actual position.</p>
+</div>
+<div class="sect3">
+<h4 id="geometry-departures"><a class="anchor" href="#geometry-departures"></a>6.4.1. Departures from ISO 19107</h4>
+<div class="sect4">
+<h5>Convenience</h5>
+<div class="paragraph">
+<p>GeoAPI has moved the <code>DirectPosition</code> and <code>Envelope</code> types from the coordinate sub-package
+where they are defined in the ISO 19107 specification up to the <code>opengis.geometry</code> package
+due to their importance and frequency of use.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="feature"><a class="anchor" href="#feature"></a>6.5. Feature packages</h3>
+<div class="paragraph">
+<p>The GeoAPI feature package uses the <code>opengis.feature</code> namespace
 and implements the types defined in the ISO 19109:2015 – <em>Rules for application schema</em> specification.
 The main UML materialized by GeoAPI is ISO 19109 figure 5 <span class="red yellow-background">(TODO: verify)</span>.
 That figure is also reproduced in ISO 19103:2015 figure E.6.</p>
+</div>
+<div class="paragraph">
+<p><span class="red yellow-background">TODO: provide UML and explain the mapping.</span></p>
 </div>
 </div>
 </div>
@@ -4594,7 +4695,7 @@ Unless otherwise specified, all Java types listed below are in the
 <code>javax.​measure</code> or <code>javax.​measure.​quantity</code> package.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch compact">
-<caption class="title">Table 15. Units of measurement mapping</caption>
+<caption class="title">Table 16. Units of measurement mapping</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -4856,7 +4957,7 @@ Instead, GeoAPI leaves that functionality to frameworks such as the Java Naming 
 Java applications which need such mapping may use the methods in the <code>javax.naming.Context</code> interface:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch compact">
-<caption class="title">Table 16. Java Naming and Directory Interface equivalences</caption>
+<caption class="title">Table 17. Java Naming and Directory Interface equivalences</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -5091,9 +5192,11 @@ GeoAPI 3.0.0 has been released in 2011 and GeoAPI 3.0.1 in 2017.</p>
 </tbody>
 </table>
 <div class="paragraph">
-<p><span class="red yellow-background">TODO: update references in above table:</span></p>
+<p><span class="red yellow-background">TODO: update references in above table.
+The old sections are listed below.
+They need to be replaced by new section numbers.</span></p>
 </div>
-<div class="ulist">
+<div class="ulist compact">
 <ul>
 <li>
 <p>8.1.1:   Primitive types</p>
@@ -5135,6 +5238,9 @@ but the interfaces must first have been implemented, ideally several times, and 
 <a href="https://docs.ogc.org/as/17-087r13/17-087r13.html">OGC 17-087r13</a></p>
 </li>
 <li>
+<p>ISO 19115-3:2016, Metadata — XML schema implementation for fundamental concepts (2016)</p>
+</li>
+<li>
 <p>OGC® Open Geospatial APIs — White Paper (2016),
 <a href="https://docs.opengeospatial.org/wp/16-019r4/16-019r4.html">OGC 16-019r4</a></p>
 </li>
@@ -5151,7 +5257,7 @@ but the interfaces must first have been implemented, ideally several times, and 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-03-04 13:57:08 +0100
+Last updated 2021-03-17 15:59:11 +0100
 </div>
 </div>
 <style>
