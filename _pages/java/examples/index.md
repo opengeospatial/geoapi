@@ -29,13 +29,11 @@ title: "GeoAPI examples in Java"
 <h2>Wrappers to existing libraries</h2>
 
 <p>
-  The following wrappers are provided as "proof of concept" implementations of GeoAPI.
-  They are not committed deliverable of GeoAPI project and may change or be removed at any time.
-  Developers interested in those wrappers are encouraged to copy this code (if useful) in new projects.
+  The following projects provide GeoAPI implementations as wrappers around independent libraries.
 </p>
 
 <ul>
   <li><a href="gdal/index.html">GDAL wrapper</a> using Java and Python bindings to the GDAL library.</li>
-  <li><a href="netcdf/index.html">NetCDF wrapper</a> in Java for the <abbr>UCAR</abbr> netCDF library.</li>
+  <li><a href="https://github.com/Unidata/geoapi-netcdf-java">NetCDF wrapper</a> in Java for the <abbr>UCAR</abbr> netCDF library.</li>
   <li><a href="https://github.com/Kortforsyningen/PROJ-JNI">Proj.6 wrapper</a> in Java for version 6 or later of the PROJ library.</li>
 </ul>
