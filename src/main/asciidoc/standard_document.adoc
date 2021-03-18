@@ -73,7 +73,7 @@ Around words:
 [cols = "^", frame = "none", grid = "none"]
 |==============================================================================
 |*Copyright notice*
-|Copyright © 2009-2018 Open Geospatial Consortium
+|Copyright © 2009-2021 Open Geospatial Consortium
 |To obtain additional rights of use, visit http://www.opengeospatial.org/legal/
 |==============================================================================
 
