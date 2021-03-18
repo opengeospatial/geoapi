@@ -8,7 +8,6 @@
                 <root id="src.core.dir" name="GeoAPI"/>
                 <root id="src.pending.dir" name="Pending"/>
                 <root id="src.python.dir" name="Python"/>
-                <root id="src.gdal.dir" name="Wrapper for GDAL"/>
                 <root id="src.examples.dir" name="Examples"/>
                 <root id="src.tools.dir" name="Tools"/>
             </source-roots>
@@ -19,7 +18,6 @@
                 <root id="rsc.validators.dir" name="Conformance resources"/>
                 <root id="test.validators.dir" name="Tests conformance"/>
                 <root id="test.python.dir" name="Tests Python"/>
-                <root id="test.gdal.dir" name="Tests wrapper for GDAL"/>
                 <root id="test.examples.dir" name="Tests examples"/>
                 <root id="test.tools.dir" name="Tests tools"/>
             </test-roots>

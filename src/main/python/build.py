@@ -81,7 +81,6 @@ copyPythonFiles('geoapi',             'opengis/referencing')
 copyPythonFiles('geoapi',             'opengis/geometry')
 copyPythonFiles('geoapi-java-python', 'opengis/bridge')
 copyPythonFiles('geoapi-java-python', 'opengis/bridge/java')
-copyPythonFiles('geoapi-gdal',        'opengis/wrapper')
 
 
 ##########################################################

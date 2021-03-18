@@ -1,2 +1,0 @@
-This module does not yet declare a module-info.java file because it
-depends on JAR files that are not yet available as Java 9 modules.

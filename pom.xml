@@ -96,7 +96,7 @@
 
                mvn clean install deploy -Pgeoapi-release
 
-           Optionally, if the GDAL and Python native libraries are installed on the local machine,
+           Optionally, if the Python native libraries are installed on the local machine,
            then GeoAPI can be built with the "-DskipNativeLibraryTests=false" option.
        =========================================================================================== -->
   <properties>
@@ -600,7 +600,6 @@
     <module>geoapi-pending</module>
     <module>geoapi-conformance</module>
     <module>geoapi-examples</module>
-    <module>geoapi-gdal</module>
     <module>geoapi-java-python</module>
     <module>tools</module>
   </modules>
