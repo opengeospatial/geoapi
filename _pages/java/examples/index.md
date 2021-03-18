@@ -33,7 +33,7 @@ title: "GeoAPI examples in Java"
 </p>
 
 <ul>
-  <li><a href="gdal/index.html">GDAL wrapper</a> using Java and Python bindings to the GDAL library.</li>
   <li><a href="https://github.com/Unidata/geoapi-netcdf-java">NetCDF wrapper</a> in Java for the <abbr>UCAR</abbr> netCDF library.</li>
   <li><a href="https://github.com/Kortforsyningen/PROJ-JNI">Proj.6 wrapper</a> in Java for version 6 or later of the PROJ library.</li>
+  <li><a href="https://github.com/Geomatys/geoapi-gdal">GDAL wrapper</a> using Java and Python bindings to the GDAL library.</li>
 </ul>

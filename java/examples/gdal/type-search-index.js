@@ -1,1 +1,0 @@
-typeSearchIndex = [{"l":"All Classes","url":"allclasses-index.html"},{"p":"org.opengis.wrapper.gdal","l":"DataSet"},{"p":"org.opengis.wrapper.gdal","l":"GDALException"}]
