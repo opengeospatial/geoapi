@@ -12,8 +12,7 @@ import java.net.URI;
 import javax.measure.Unit;
 import javax.measure.IncommensurableException;
 import javax.measure.quantity.Angle;
-import tec.units.ri.AbstractUnit;
-import tec.units.ri.unit.Units;
+import tech.uom.seshat.Units;
 
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
@@ -107,7 +106,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
         /**
          * Scale as dimensionless number in the [0 … ∞] range.
          */
-        SCALE(AbstractUnit.ONE, LENGTH.minimum, null);
+        SCALE(Units.UNITY, LENGTH.minimum, null);
 
         /** Value to be returned by {@link SimpleParameter#getUnit()}. */
         final Unit<?> unit;

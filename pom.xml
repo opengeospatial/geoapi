@@ -232,9 +232,9 @@
         <version>${unit.api.version}</version>
       </dependency>
       <dependency>
-        <groupId>tec.units</groupId>
-        <artifactId>unit-ri</artifactId>
-        <version>1.0.3</version>
+        <groupId>tech.uom</groupId>
+        <artifactId>seshat</artifactId>
+        <version>1.0</version>
         <scope>test</scope>
       </dependency>
       <dependency>

@@ -10,7 +10,7 @@ package org.opengis.example.referencing;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
-import tec.units.ri.unit.Units;
+import tech.uom.seshat.Units;
 
 import org.opengis.metadata.citation.Citation;
 import org.opengis.example.metadata.SimpleCitation;
