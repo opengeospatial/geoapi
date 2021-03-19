@@ -1,0 +1,8 @@
+[[referencing]]
+=== Referencing packages
+
+The GeoAPI referencing packages use the `opengis.referencing` and `opengis.parameter` namespaces
+and implement the types defined in the ISO 19111:2007 - _Referencing by coordinates_ specification.
+[red yellow-background]#TODO: upgrade to ISO 19111:2019.#
+The referencing package also includes the types describing object factories and mathematical transformation operators
+defined in the legacy standard OGC 01-009 - _Coordinate Transformation Services_ from 2003.
