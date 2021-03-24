@@ -2,11 +2,25 @@
 ==== Departures from ISO 19111
 
 ===== Coordinate system association
-ISO 19111 defines the `coordinateSystem` association for `SingleCRS` only.
+In the ISO 19111 specification, only `SingleCRS` has an association to `coordinateSystem`.
 GeoAPI moves this association to the `Coordinate­Reference­System` parent interface for user convenience,
-because coordinate system dimension and axes are commonly requested information and will always be available,
-directly or indirectly, even for `CompoundCRS`.
-[red yellow-background]#TODO: develop CS as computed property.#
+because coordinate system (CS) dimension and axes are frequently requested information
+and will always be available, directly or indirectly, even for `CompoundCRS`.
+However only coordinate systems associated to `SingleCRS` can be instances of ISO 19111 concrete subtypes
+(`CartesianCS`, `SphericalCS`, `VerticalCS`, _etc._);
+it is not possible to assign a standard concrete type to the coordinate system of a `CompoundCRS`.
+For the later case, users see only the abstract `CoordinateSystem` type which serves merely as an axis container.
+The concrete CS subtype can be hidden in implementation details.
+
+.Rational
+[NOTE]
+======
+This generalization would not be appropriate for a database schema or for formats such as _Well Known Text_
+because axes listed with a `CompoundCRS` would be redundant with axes listed with each CRS component.
+But this consideration does not apply to programming languages: the axes do not need to be repeated
+because each method such as `CoordinateSystem.getAxis(int)` contains code, not necessarily data structure.
+Implementations can redirect requests for `CoordinateSystem` axes to corresponding `CompoundCRS` elements.
+======
 
 ===== Naming
 The ISO 19111 `CRS` type name has been expanded to the `Coordinate­Reference­System` name in GeoAPI

@@ -9,9 +9,30 @@ defined in the legacy standard OGC 01-009 - _Coordinate Transformation Services_
 Those types can be used to define various datums, define various coordinate systems,
 and combine those to define the coordinate referencing systems (CRS) generally encountered in geospatial science.
 The UML below (incomplete for brevity) shows a few commonly used GeoAPI types.
-Differences compared to ISO 19111 are discussed in the <<referencing-departures,departures section>>.
+Differences compared to ISO 19111
+(notably the location of `coordinateSystem` association and the inclusion of `MathTransform` interface)
+are discussed in following sections and in the <<referencing-departures,departures section>>.
 
 .Subset of interfaces derived from ISO 19111 and other standards
 image::referencing.svg[Partial UML of Coordinate Reference Systems]
+
+The mapping of ISO 19111 packages to GeoAPI packages is as below:
+
+.Referencing package mapping
+[.compact, options="header"]
+|===================================================================================================
+|ISO package                 |Java package                          |Python module
+|Identified Object           |`org.opengis.referencing`             |`opengis.referencing.datum`
+|Reference System            |`org.opengis.referencing`             |`opengis.referencing.crs`
+|Coordinate Reference System |`org.opengis.referencing.crs`         |`opengis.referencing.crs`
+|Coordinate System           |`org.opengis.referencing.cs`          |`opengis.referencing.cs`
+|Datum                       |`org.opengis.referencing.datum`       |`opengis.referencing.datum`
+|Coordinate Operation        |`org.opengis.referencing.operation`   |`opengis.referencing.operation`
+|Coordinate Operation        |`org.opengis.referencing.parameter`   |`opengis.parameter`
+|===================================================================================================
+
+include::coordinate-system.adoc[]
+
+include::factory.adoc[]
 
 include::departures.adoc[]

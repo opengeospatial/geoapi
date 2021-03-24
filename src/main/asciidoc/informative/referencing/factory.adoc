@@ -1,0 +1,10 @@
+[[referencing-factory]]
+==== Factory
+[.reference]_From OGC 01-009_
+
+The referencing packages include factory types defined originally in the OGC 01-009 specification.
+These object factories define a normalized approach to object instantiation and come in two forms:
+subtypes of `ObjectFactory` which instantiate objects by assembling types passed as arguments and
+subtypes of `AuthorityFactory` which instantiate objects based on the values of some third party database,
+notably those in the EPSG geodetic dataset assembled by the Surveying & Positioning Committee
+of the International Association of Oil & Gas producers.
