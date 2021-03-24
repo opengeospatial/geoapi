@@ -2206,7 +2206,14 @@ p {
 <li><a href="#geometry-departures">6.4.1. Departures from ISO 19107</a></li>
 </ul>
 </li>
-<li><a href="#feature">6.5. Feature packages</a></li>
+<li><a href="#referencing">6.5. Referencing packages</a>
+<ul class="sectlevel3">
+<li><a href="#coordinate-system">6.5.1. Coordinate system</a></li>
+<li><a href="#referencing-factory">6.5.2. Factory</a></li>
+<li><a href="#referencing-departures">6.5.3. Departures from ISO 19111</a></li>
+</ul>
+</li>
+<li><a href="#feature">6.6. Feature packages</a></li>
 </ul>
 </li>
 <li><a href="#requirements">7. Requirements</a>
@@ -2313,7 +2320,7 @@ p {
 <td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><strong>Copyright notice</strong></p></td>
 </tr>
 <tr>
-<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Copyright © 2009-2018 Open Geospatial Consortium</p></td>
+<td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Copyright © 2009-2021 Open Geospatial Consortium</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-center valign-top" style="background-color: #FFFFFF;"><p class="tableblock">To obtain additional rights of use, visit <a href="http://www.opengeospatial.org/legal/" class="bare">http://www.opengeospatial.org/legal/</a></p></td>
@@ -4494,7 +4501,225 @@ due to their importance and frequency of use.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="feature"><a class="anchor" href="#feature"></a>6.5. Feature packages</h3>
+<h3 id="referencing"><a class="anchor" href="#referencing"></a>6.5. Referencing packages</h3>
+<div class="paragraph">
+<p>The GeoAPI referencing packages use the <code>opengis.referencing</code> and <code>opengis.parameter</code> namespaces
+and implement the types defined in the ISO 19111:2007 - <em>Referencing by coordinates</em> specification.
+<span class="red yellow-background">TODO: upgrade to ISO 19111:2019.</span>
+The referencing package also includes the types describing object factories and mathematical transformation operators
+defined in the legacy standard OGC 01-009 - <em>Coordinate Transformation Services</em> from 2003.
+Those types can be used to define various datums, define various coordinate systems,
+and combine those to define the coordinate referencing systems (CRS) generally encountered in geospatial science.
+The UML below (incomplete for brevity) shows a few commonly used GeoAPI types.
+Differences compared to ISO 19111
+(notably the location of <code>coordinateSystem</code> association and the inclusion of <code>MathTransform</code> interface)
+are discussed in following sections and in the <a href="#referencing-departures">departures section</a>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/referencing.svg" alt="Partial UML of Coordinate Reference Systems">
+</div>
+<div class="title">Figure 10. Subset of interfaces derived from ISO 19111 and other standards</div>
+</div>
+<div class="paragraph">
+<p>The mapping of ISO 19111 packages to GeoAPI packages is as below:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch compact">
+<caption class="title">Table 16. Referencing package mapping</caption>
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top" style="background-color: #FFFFFF;">ISO package</th>
+<th class="tableblock halign-left valign-top" style="background-color: #FFFFFF;">Java package</th>
+<th class="tableblock halign-left valign-top" style="background-color: #FFFFFF;">Python module</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Identified Object</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.referencing</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>opengis.referencing.datum</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Reference System</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.referencing</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>opengis.referencing.crs</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Coordinate Reference System</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.referencing.crs</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>opengis.referencing.crs</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Coordinate System</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.referencing.cs</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>opengis.referencing.cs</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Datum</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.referencing.datum</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>opengis.referencing.datum</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Coordinate Operation</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.referencing.operation</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>opengis.referencing.operation</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Coordinate Operation</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>org.opengis.referencing.parameter</code></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><code>opengis.parameter</code></p></td>
+</tr>
+</tbody>
+</table>
+<div class="sect3">
+<h4 id="coordinate-system"><a class="anchor" href="#coordinate-system"></a>6.5.1. Coordinate system</h4>
+<div class="paragraph">
+<p><em class="reference">From ISO 19111:2019 §10</em></p>
+</div>
+<div class="paragraph">
+<p>A Coordinate System (CS) contains the set of axes that spans a given coordinate space.
+Each axis defines an approximate direction (north, south, east, west, up, down, port, starboard, past, future, <em>etc.</em>),
+units of measurement, minimal and maximal values, and what happen after reaching those extremum.
+For example in longitude case, after +180° the coordinate values continue at −180°.</p>
+</div>
+<div class="paragraph">
+<p>In addition to axis definitions, another important coordinate system characteristic is their type (<code>CartesianCS</code>, <code>SphericalCS</code>, <em>etc.</em>).
+The CS type implies the set of mathematical rules for calculating geometric quantities such as angles, distances and surfaces.
+Usually the various CS subtypes do not define any new programmatic methods compared to the parent type, but are nevertheless important for type safety.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Example</div>
+<div class="paragraph">
+<p>Many calculations or associations are legal only when all axes are perpendicular to each other.
+In such case the coordinate system type is restricted to <code>CartesianCS</code> in method signatures.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The coordinate system associated to a <code>SingleCRS</code> shall be an instance of one <code>Coordinate­System</code> subtype.
+It should be a subtype defined by ISO 19111 when possible, or a user-defined subtype when no standard type describes the space geometry.
+The standard coordinate system types are Cartesian, affine, spherical, cylindrical, polar, ellipsoidal, vertical, temporal, ordinal and parametric.</p>
+</div>
+<div class="paragraph">
+<p>The coordinate system associated to a <code>CompoundCRS</code> is of unspecified type.
+None of the standard types describe the space geometry, and implementers do not need to define a public type.
+The <code>Coordinate­System</code> in this context is only a list of axes defined as the concatenation of the list of axes of all components,
+without saying anything about space geometry.
+Requesting elements in that list can be thought as redirection.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Example</div>
+<div class="paragraph">
+<p>An implementation may know that the third coordinate system axis of a <code>CompoundCRS</code>
+is the first axis of the second CRS component, and redirects axis information requests to that component.
+In this scenario the <code>Coordinate­System</code> implementations does the work that users would need to do themselves
+if they wanted information about axes, but in a more convenient and potentially more efficient way.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Since some form of coordinate system is defined for both <code>SingleCRS</code> and <code>CompoundCRS</code> interfaces,
+GeoAPI provides the <code>coordinate­System</code> association in the <code>Coordinate­Reference­System</code> (CRS) parent interface.
+It makes easy for users to get information about the coordinate system axes of any CRS,
+with automatic redirection to <code>CompoundCRS</code> components when needed.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="referencing-factory"><a class="anchor" href="#referencing-factory"></a>6.5.2. Factory</h4>
+<div class="paragraph">
+<p><em class="reference">From OGC 01-009</em></p>
+</div>
+<div class="paragraph">
+<p>The referencing packages include factory types defined originally in the OGC 01-009 specification.
+These object factories define a normalized approach to object instantiation and come in two forms:
+subtypes of <code>ObjectFactory</code> which instantiate objects by assembling types passed as arguments and
+subtypes of <code>AuthorityFactory</code> which instantiate objects based on the values of some third party database,
+notably those in the EPSG geodetic dataset assembled by the Surveying &amp; Positioning Committee
+of the International Association of Oil &amp; Gas producers.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="referencing-departures"><a class="anchor" href="#referencing-departures"></a>6.5.3. Departures from ISO 19111</h4>
+<div class="sect4">
+<h5>Coordinate system association</h5>
+<div class="paragraph">
+<p>In the ISO 19111 specification, only <code>SingleCRS</code> has an association to <code>coordinateSystem</code>.
+GeoAPI moves this association to the <code>Coordinate­Reference­System</code> parent interface for user convenience,
+because coordinate system (CS) dimension and axes are frequently requested information
+and will always be available, directly or indirectly, even for <code>CompoundCRS</code>.
+However only coordinate systems associated to <code>SingleCRS</code> can be instances of ISO 19111 concrete subtypes
+(<code>CartesianCS</code>, <code>SphericalCS</code>, <code>VerticalCS</code>, <em>etc.</em>);
+it is not possible to assign a standard concrete type to the coordinate system of a <code>CompoundCRS</code>.
+For the later case, users see only the abstract <code>CoordinateSystem</code> type which serves merely as an axis container.
+The concrete CS subtype can be hidden in implementation details.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Rational</div>
+<div class="paragraph">
+<p>This generalization would not be appropriate for a database schema or for formats such as <em>Well Known Text</em>
+because axes listed with a <code>CompoundCRS</code> would be redundant with axes listed with each CRS component.
+But this consideration does not apply to programming languages: the axes do not need to be repeated
+because each method such as <code>CoordinateSystem.getAxis(int)</code> contains code, not necessarily data structure.
+Implementations can redirect requests for <code>CoordinateSystem</code> axes to corresponding <code>CompoundCRS</code> elements.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect4">
+<h5>Naming</h5>
+<div class="paragraph">
+<p>The ISO 19111 <code>CRS</code> type name has been expanded to the <code>Coordinate­Reference­System</code> name in GeoAPI
+for compatibility with previous GeoAPI versions.
+It is also common practice in Java language to avoid abbreviations.</p>
+</div>
+<div class="paragraph">
+<p>In the <code>General­Derived­CRS</code> interface, the <code>conversion</code> association to <code>Conversion</code>
+has been renamed <code>conversion­From­Base</code> for making clear that the source CRS is the <code>baseCRS</code>.
+This naming is similar to the one used in OGC 01-009 with direction reversed.</p>
+</div>
+</div>
+<div class="sect4">
+<h5>Elements from legacy OGC 01-009</h5>
+<div class="paragraph">
+<p>A departure of GeoAPI from the ISO 19111 standard comes from the inclusion, directly in the <code>Coordinate­Operation</code> type,
+of a method providing access to the <code>Math­Transform</code> interface from the older OGC 01-009 specification.
+That interface actually calculates the coordinates in target CRS from the coordinates in source CRS.
+<span class="red yellow-background">TODO: Explain why it is a separated interface.</span></p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="feature"><a class="anchor" href="#feature"></a>6.6. Feature packages</h3>
 <div class="paragraph">
 <p>The GeoAPI feature package uses the <code>opengis.feature</code> namespace
 and implements the types defined in the ISO 19109:2015 – <em>Rules for application schema</em> specification.
@@ -4695,7 +4920,7 @@ Unless otherwise specified, all Java types listed below are in the
 <code>javax.​measure</code> or <code>javax.​measure.​quantity</code> package.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch compact">
-<caption class="title">Table 16. Units of measurement mapping</caption>
+<caption class="title">Table 17. Units of measurement mapping</caption>
 <colgroup>
 <col style="width: 25%;">
 <col style="width: 25%;">
@@ -4957,7 +5182,7 @@ Instead, GeoAPI leaves that functionality to frameworks such as the Java Naming 
 Java applications which need such mapping may use the methods in the <code>javax.naming.Context</code> interface:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch compact">
-<caption class="title">Table 17. Java Naming and Directory Interface equivalences</caption>
+<caption class="title">Table 18. Java Naming and Directory Interface equivalences</caption>
 <colgroup>
 <col style="width: 33.3333%;">
 <col style="width: 33.3333%;">
@@ -5257,7 +5482,7 @@ but the interfaces must first have been implemented, ideally several times, and 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-03-17 15:59:11 +0100
+Last updated 2021-03-24 16:51:05 +0100
 </div>
 </div>
 <style>
