@@ -6,3 +6,12 @@ and implement the types defined in the ISO 19111:2007 - _Referencing by coordina
 [red yellow-background]#TODO: upgrade to ISO 19111:2019.#
 The referencing package also includes the types describing object factories and mathematical transformation operators
 defined in the legacy standard OGC 01-009 - _Coordinate Transformation Services_ from 2003.
+Those types can be used to define various datums, define various coordinate systems,
+and combine those to define the coordinate referencing systems (CRS) generally encountered in geospatial science.
+The UML below (incomplete for brevity) shows a few commonly used GeoAPI types.
+Differences compared to ISO 19111 are discussed in the <<referencing-departures,departures section>>.
+
+.Subset of interfaces derived from ISO 19111 and other standards
+image::referencing.svg[Partial UML of Coordinate Reference Systems]
+
+include::departures.adoc[]

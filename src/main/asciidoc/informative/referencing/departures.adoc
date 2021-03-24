@@ -1,0 +1,24 @@
+[[referencing-departures]]
+==== Departures from ISO 19111
+
+===== Coordinate system association
+ISO 19111 defines the `coordinateSystem` association for `SingleCRS` only.
+GeoAPI moves this association to the `Coordinate­Reference­System` parent interface for user convenience,
+because coordinate system dimension and axes are commonly requested information and will always be available,
+directly or indirectly, even for `CompoundCRS`.
+[red yellow-background]#TODO: develop CS as computed property.#
+
+===== Naming
+The ISO 19111 `CRS` type name has been expanded to the `Coordinate­Reference­System` name in GeoAPI
+for compatibility with previous GeoAPI versions.
+It is also common practice in Java language to avoid abbreviations.
+
+In the `General­Derived­CRS` interface, the `conversion` association to `Conversion`
+has been renamed `conversion­From­Base` for making clear that the source CRS is the `baseCRS`.
+This naming is similar to the one used in OGC 01-009 with direction reversed.
+
+===== Elements from legacy OGC 01-009
+A departure of GeoAPI from the ISO 19111 standard comes from the inclusion, directly in the `Coordinate­Operation` type,
+of a method providing access to the `Math­Transform` interface from the older OGC 01-009 specification.
+That interface actually calculates the coordinates in target CRS from the coordinates in source CRS.
+[red yellow-background]#TODO: Explain why it is a separated interface.#
