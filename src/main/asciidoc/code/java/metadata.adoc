@@ -8,7 +8,7 @@ As an example, the following code prints a list of all individuals (ignoring org
 for a document starting with a `Citation` element:
 
 [source,java]
-----
+---------------------------------------------------------------------------
 Citation citation = ...;    // We assume this instance is already available
 
 for (Responsibility rp : citation.getCitedResponsibleParties()) {
@@ -21,7 +21,7 @@ for (Responsibility rp : citation.getCitedResponsibleParties()) {
         }
     }
 }
-----
+---------------------------------------------------------------------------
 
 The remainder of the metadata packages work in similar ways,
 where client code must decompose an instance to obtain the elements needed.

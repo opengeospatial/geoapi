@@ -10,13 +10,13 @@ Those types can be used to define various datums, define various coordinate syst
 and combine those to define the coordinate referencing systems (CRS) generally encountered in geospatial science.
 The UML below (incomplete for brevity) shows a few commonly used GeoAPI types.
 Differences compared to ISO 19111
-(notably the location of `coordinateSystem` association and the inclusion of `MathTransform` interface)
+(notably inheritance from `ReferenceSystem` type, location of `coordinateSystem` association and inclusion of `MathTransform` interface)
 are discussed in following sections and in the <<referencing-departures,departures section>>.
 
 .Subset of interfaces derived from ISO 19111 and other standards
 image::referencing.svg[Partial UML of Coordinate Reference Systems]
 
-The mapping of ISO 19111 packages to GeoAPI packages is as below:
+The mapping from ISO 19111 packages to GeoAPI packages is shown below:
 
 .Referencing package mapping
 [.compact, options="header"]
@@ -34,5 +34,7 @@ The mapping of ISO 19111 packages to GeoAPI packages is as below:
 include::coordinate-system.adoc[]
 
 include::factory.adoc[]
+
+include::operations.adoc[]
 
 include::departures.adoc[]

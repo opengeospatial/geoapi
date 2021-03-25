@@ -1,0 +1,70 @@
+[[ProjectedCRS-java]]
+==== Coordinate reference system
+
+A <<referencing,Coordinate Reference System>> (CRS) can be constructed on its own or can be derived from other systems.
+This example mixes both cases by creating a `ProjectedCRS` derived from a `GeographicCRS` with the Mercator projection.
+Here we use an authority which has already defined the geographic CRS, the coordinate system and the projection method
+that we need for this example. Then the example creates a _defining conversion_ from the parameter values and combines
+it with above-cited predefined components for creating the projected CRS.
+
+[red yellow-background]#TODO: Get factories from `ServiceLoader`.#
+
+[source,java]
+---------------------------------------------------------------------------
+/*
+ * Factories for obtaining predefined components from a geodetic registry
+ * (in this example, from EPSG geodetic dataset).
+ */
+CSAuthorityFactory csRegistry = ...;
+CRSAuthorityFactory crsRegistry = ...;
+CoordinateOperationAuthorityFactory opRegistry = ...;
+/*
+ * Factories for creating objects from programmatic parameters.
+ */
+CRSFactory crsFactory = ...;
+CoordinateOperationFactory opFactory = ...;
+/*
+ * Predefined components used in this example:
+ *
+ *   - EPSG::4326   —   WGS 84
+ *   - EPSG::4440   —   Cartesian 2D. Orientations: east, north. UoM: m
+ *   - EPSG::9804   —   Mercator (variant A)
+ */
+GeographicCRS   baseCRS = crsRegistry.createGeographicCRS  ("EPSG::4326");
+CartesianCS     projCS  =  csRegistry.createCartesianCS    ("EPSG::4400");
+OperationMethod method  =  opRegistry.createOperationMethod("EPSG::9804");
+/*
+ * Get the parameters initialized to their default values,
+ * then set parameter values.
+ */
+ParameterValueGroup pg = method.getParameters().createValue();
+pg.parameter("Latitude of natural origin").setValue(0.0);
+pg.parameter("Longitude of natural origin").setValue(110.0);
+pg.parameter("Scale factor at natural origin").setValue(0.997);
+pg.parameter("False easting").setValue(3900000.0);
+pg.parameter("False northing").setValue(900000.0);
+/*
+ * Create the defining conversion from above parameters.
+ */
+Conversion definition = opFactory.createDefiningConversion(
+        Map.of(Conversion.NAME_KEY, "Makassar / NEIEZ"), method, pg);
+/*
+ * Create the projected CRS using conversion defined by parameters
+ * and predefined components fetched from EPSG geodetic dataset.
+ */
+ProjectedCRS makassar = crsFactory.createProjectedCRS(
+        Map.of(Conversion.NAME_KEY, "Makassar / NEIEZ"),
+        baseCRS, definition, projCS);
+---------------------------------------------------------------------------
+
+Above example created the "Makassar / NEIEZ" coordinate reference system in a hard way for showing the use of factories.
+But when an authority code is available (which is the case of above example),
+the use of an authority factory is recommended not only because it is easier,
+but also because it generally provides more metadata information such as scope and domain of validity.
+The following example creates the same CRS than above example:
+
+[source,java]
+---------------------------------------------------------------------------
+CRSAuthorityFactory crsRegistry = ...;
+ProjectedCRS makassar = crsRegistry.createProjectedCRS("EPSG::3002");
+---------------------------------------------------------------------------

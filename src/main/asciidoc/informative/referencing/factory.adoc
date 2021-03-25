@@ -1,10 +1,24 @@
 [[referencing-factory]]
-==== Factory
-[.reference]_From OGC 01-009_
+==== Factories
+[.reference]_From OGC 01-009 §12.3.[6…7]_
 
 The referencing packages include factory types defined originally in the OGC 01-009 specification.
-These object factories define a normalized approach to object instantiation and come in two forms:
-subtypes of `ObjectFactory` which instantiate objects by assembling types passed as arguments and
-subtypes of `AuthorityFactory` which instantiate objects based on the values of some third party database,
+These factories define a normalized approach to object instantiation.
+Subtypes of `ObjectFactory` instantiate objects by assembling types passed as arguments and
+subtypes of `AuthorityFactory` instantiate objects based on identifiers in some third party database,
 notably those in the EPSG geodetic dataset assembled by the Surveying & Positioning Committee
 of the International Association of Oil & Gas producers.
+
+.Factory interfaces partially derived from OGC 01-009
+image::factories.svg[UML of factories]
+
+[red yellow-background]#TODO: Some methods of `CRSAuthorityFactory` and
+`CoordinateOperationAuthorityFactory` to be replaced by ISO 19111:2019 `RegisterOperations`.#
+
+Code that needs to instantiate one of the objects defined in GeoAPI referencing packages
+should first obtain a reference to the factory in some platform dependent manner
+and then use the factory methods to instantiate the desired object instances.
+These instances can then be used through the interfaces defined in the GeoAPI library.
+
+In Java, factory implementations are discovered by `java.util.ServiceLoader`.
+In Python, GeoAPI does not have a recommended mechanism yet.

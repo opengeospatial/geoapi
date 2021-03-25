@@ -22,3 +22,7 @@ include::code/java/internationalization.adoc[]
 include::code/java/units.adoc[]
 
 include::code/java/metadata.adoc[]
+
+include::code/java/create-crs.adoc[]
+
+include::code/java/coordinate-operation.adoc[]

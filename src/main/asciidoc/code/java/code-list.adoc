@@ -9,12 +9,12 @@ Considering, for example, `org.​opengis.​referencing.​cs.​AxisDirection`
 the following codes could be used:
 
 [source,java]
-----
+---------------------------------------------------------------------------------------------
 AxisDirection north;
 north = AxisDirection.NORTH;                                // Compile-time value (safest).
 north = AxisDirection.valueOf("NORTH");                     // Runtime value (more dynamic).
 north = CodeList.valueOf(AxisDirection.class, "NORTH");     // Runtime type and value.
-----
+---------------------------------------------------------------------------------------------
 
 where the second and third locutions will create a new value if it does not exist.
 Special care should be taken to keep such calls consistent throughout the code
@@ -22,6 +22,6 @@ since the `CodeList` will create a new element if there are any difference in th
 The list of all elements (including new elements created by `valueOf(…)`) can be obtained as below:
 
 [source,java]
-----
+--------------------------------------------------
 AxisDirection[] elements = AxisDirection.values();
-----
+--------------------------------------------------

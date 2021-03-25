@@ -12,7 +12,7 @@ and that a non-null value must be provided by every `ProjectedCRS` instance:
 
 
 [source,java]
-----
+------------------------------------------------------------
 @Classifier(Stereotype.TYPE)
 @UML(identifier = "ProjectedCRS", specification = ISO_19111)
 public interface ProjectedCRS extends GeneralDerivedCRS {
@@ -24,20 +24,20 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
          specification = ISO_19111)
     CartesianCS getCoordinateSystem();
 }
-----
+------------------------------------------------------------
 
 At runtime, the annotation of a reference to a GeoAPI interface can be obtained as follows,
 taking as an example the method `getCoordinateSystem()` in the `ProjectedCRS` interface:
 
 [source,java]
-----
+---------------------------------------------------------------------------------------
 Class<?>      type          = ProjectedCRS.class;
 Method        method        = type.getMethod("getCoordinateSystem");
 UML           annotation    = method.getAnnotation(UML.class);
 String        identifier    = annotation.identifier();          // = "coordinateSystem"
 Specification specification = annotation.specification();       // = ISO 19111
 Obligation    obligation    = annotation.obligation();          // = mandatory
-----
+---------------------------------------------------------------------------------------
 
 Java provides a class instance like the `ProjectedCRS.class` instance used here for every type, either interface or class, defined in the runtime.
 The `getMethod(…)` call uses introspection to obtain a reference to the method from which the annotation can then be obtained.

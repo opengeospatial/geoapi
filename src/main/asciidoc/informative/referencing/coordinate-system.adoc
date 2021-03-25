@@ -1,6 +1,6 @@
 [[coordinate-system]]
 ==== Coordinate system
-[.reference]_From ISO 19111:2019 §10_
+[.reference]_From ISO 19111:2019 §10 and §C.3_
 
 A Coordinate System (CS) contains the set of axes that spans a given coordinate space.
 Each axis defines an approximate direction (north, south, east, west, up, down, port, starboard, past, future, _etc._),
@@ -23,10 +23,10 @@ It should be a subtype defined by ISO 19111 when possible, or a user-defined sub
 The standard coordinate system types are Cartesian, affine, spherical, cylindrical, polar, ellipsoidal, vertical, temporal, ordinal and parametric.
 
 The coordinate system associated to a `CompoundCRS` is of unspecified type.
-None of the standard types describe the space geometry, and implementers do not need to define a public type.
+None of the standard types describe the full space geometry, and implementers do not need to define a public type.
 The `Coordinate­System` in this context is only a list of axes defined as the concatenation of the list of axes of all components,
 without saying anything about space geometry.
-Requesting elements in that list can be thought as redirection.
+Requesting elements in that list can be thought as redirection to the coordinate system of a CRS component.
 
 .Example
 [NOTE]
@@ -37,7 +37,7 @@ In this scenario the `Coordinate­System` implementations does the work that use
 if they wanted information about axes, but in a more convenient and potentially more efficient way.
 ======
 
-Since some form of coordinate system is defined for both `SingleCRS` and `CompoundCRS` interfaces,
+Since above paragraphs define coordinate system for both `SingleCRS` and `CompoundCRS` interfaces,
 GeoAPI provides the `coordinate­System` association in the `Coordinate­Reference­System` (CRS) parent interface.
 It makes easy for users to get information about the coordinate system axes of any CRS,
 with automatic redirection to `CompoundCRS` components when needed.
