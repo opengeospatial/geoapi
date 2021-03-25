@@ -2209,8 +2209,9 @@ p {
 <li><a href="#referencing">6.5. Referencing packages</a>
 <ul class="sectlevel3">
 <li><a href="#coordinate-system">6.5.1. Coordinate system</a></li>
-<li><a href="#referencing-factory">6.5.2. Factory</a></li>
-<li><a href="#referencing-departures">6.5.3. Departures from ISO 19111</a></li>
+<li><a href="#referencing-factory">6.5.2. Factories</a></li>
+<li><a href="#coordinate-operation">6.5.3. Coordinate operation</a></li>
+<li><a href="#referencing-departures">6.5.4. Departures from ISO 19111</a></li>
 </ul>
 </li>
 <li><a href="#feature">6.6. Feature packages</a></li>
@@ -2251,6 +2252,8 @@ p {
 <li><a href="#InternationalString">E.1.4. Multilingual string</a></li>
 <li><a href="#parameterized-units">E.1.5. Parameterized units</a></li>
 <li><a href="#metadata-java">E.1.6. Metadata</a></li>
+<li><a href="#ProjectedCRS-java">E.1.7. Coordinate reference system</a></li>
+<li><a href="#CoordinateOperation-java">E.1.8. Coordinate operation</a></li>
 </ul>
 </li>
 </ul>
@@ -4512,7 +4515,7 @@ Those types can be used to define various datums, define various coordinate syst
 and combine those to define the coordinate referencing systems (CRS) generally encountered in geospatial science.
 The UML below (incomplete for brevity) shows a few commonly used GeoAPI types.
 Differences compared to ISO 19111
-(notably the location of <code>coordinateSystem</code> association and the inclusion of <code>MathTransform</code> interface)
+(notably inheritance from <code>ReferenceSystem</code> type, location of <code>coordinateSystem</code> association and inclusion of <code>MathTransform</code> interface)
 are discussed in following sections and in the <a href="#referencing-departures">departures section</a>.</p>
 </div>
 <div class="imageblock">
@@ -4522,7 +4525,7 @@ are discussed in following sections and in the <a href="#referencing-departures"
 <div class="title">Figure 10. Subset of interfaces derived from ISO 19111 and other standards</div>
 </div>
 <div class="paragraph">
-<p>The mapping of ISO 19111 packages to GeoAPI packages is as below:</p>
+<p>The mapping from ISO 19111 packages to GeoAPI packages is shown below:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch compact">
 <caption class="title">Table 16. Referencing package mapping</caption>
@@ -4579,7 +4582,7 @@ are discussed in following sections and in the <a href="#referencing-departures"
 <div class="sect3">
 <h4 id="coordinate-system"><a class="anchor" href="#coordinate-system"></a>6.5.1. Coordinate system</h4>
 <div class="paragraph">
-<p><em class="reference">From ISO 19111:2019 §10</em></p>
+<p><em class="reference">From ISO 19111:2019 §10 and §C.3</em></p>
 </div>
 <div class="paragraph">
 <p>A Coordinate System (CS) contains the set of axes that spans a given coordinate space.
@@ -4615,10 +4618,10 @@ The standard coordinate system types are Cartesian, affine, spherical, cylindric
 </div>
 <div class="paragraph">
 <p>The coordinate system associated to a <code>CompoundCRS</code> is of unspecified type.
-None of the standard types describe the space geometry, and implementers do not need to define a public type.
+None of the standard types describe the full space geometry, and implementers do not need to define a public type.
 The <code>Coordinate­System</code> in this context is only a list of axes defined as the concatenation of the list of axes of all components,
 without saying anything about space geometry.
-Requesting elements in that list can be thought as redirection.</p>
+Requesting elements in that list can be thought as redirection to the coordinate system of a CRS component.</p>
 </div>
 <div class="admonitionblock note">
 <table>
@@ -4639,28 +4642,113 @@ if they wanted information about axes, but in a more convenient and potentially 
 </table>
 </div>
 <div class="paragraph">
-<p>Since some form of coordinate system is defined for both <code>SingleCRS</code> and <code>CompoundCRS</code> interfaces,
+<p>Since above paragraphs define coordinate system for both <code>SingleCRS</code> and <code>CompoundCRS</code> interfaces,
 GeoAPI provides the <code>coordinate­System</code> association in the <code>Coordinate­Reference­System</code> (CRS) parent interface.
 It makes easy for users to get information about the coordinate system axes of any CRS,
 with automatic redirection to <code>CompoundCRS</code> components when needed.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="referencing-factory"><a class="anchor" href="#referencing-factory"></a>6.5.2. Factory</h4>
+<h4 id="referencing-factory"><a class="anchor" href="#referencing-factory"></a>6.5.2. Factories</h4>
 <div class="paragraph">
-<p><em class="reference">From OGC 01-009</em></p>
+<p><em class="reference">From OGC 01-009 §12.3.[6…7]</em></p>
 </div>
 <div class="paragraph">
 <p>The referencing packages include factory types defined originally in the OGC 01-009 specification.
-These object factories define a normalized approach to object instantiation and come in two forms:
-subtypes of <code>ObjectFactory</code> which instantiate objects by assembling types passed as arguments and
-subtypes of <code>AuthorityFactory</code> which instantiate objects based on the values of some third party database,
+These factories define a normalized approach to object instantiation.
+Subtypes of <code>ObjectFactory</code> instantiate objects by assembling types passed as arguments and
+subtypes of <code>AuthorityFactory</code> instantiate objects based on identifiers in some third party database,
 notably those in the EPSG geodetic dataset assembled by the Surveying &amp; Positioning Committee
 of the International Association of Oil &amp; Gas producers.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="images/factories.svg" alt="UML of factories">
+</div>
+<div class="title">Figure 11. Factory interfaces partially derived from OGC 01-009</div>
+</div>
+<div class="paragraph">
+<p><span class="red yellow-background">TODO: Some methods of <code>CRSAuthorityFactory</code> and
+<code>CoordinateOperationAuthorityFactory</code> to be replaced by ISO 19111:2019 <code>RegisterOperations</code>.</span></p>
+</div>
+<div class="paragraph">
+<p>Code that needs to instantiate one of the objects defined in GeoAPI referencing packages
+should first obtain a reference to the factory in some platform dependent manner
+and then use the factory methods to instantiate the desired object instances.
+These instances can then be used through the interfaces defined in the GeoAPI library.</p>
+</div>
+<div class="paragraph">
+<p>In Java, factory implementations are discovered by <code>java.util.ServiceLoader</code>.
+In Python, GeoAPI does not have a recommended mechanism yet.</p>
+</div>
 </div>
 <div class="sect3">
-<h4 id="referencing-departures"><a class="anchor" href="#referencing-departures"></a>6.5.3. Departures from ISO 19111</h4>
+<h4 id="coordinate-operation"><a class="anchor" href="#coordinate-operation"></a>6.5.3. Coordinate operation</h4>
+<div class="paragraph">
+<p><em class="reference">From ISO 19111:2019 §12 and §C.5</em></p>
+</div>
+<div class="paragraph">
+<p>A Coordinate Operation can <em>transform</em> or <em>convert</em> coordinate tuples from one Coordinate Reference System (CRS) to another CRS.
+There is four kinds of coordinate operations in GeoAPI:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <em>coordinate conversion</em> is the implementation of some mathematical formulas without empirically derived parameters.
+Conversions can be as accurate as floating point computations allow.
+Map projections are kinds of coordinate conversions.</p>
+</li>
+<li>
+<p>A <em>coordinate transformation</em> involves empirically derived parameters.
+Because those parameters have observational error
+and because the transformation method is only an estimation of a complex reality,
+the result of applying a coordinate transformation contain errors
+with a magnitude estimated by the <code>coordinate­Operation­Accuracy</code> property.
+Several different transformation may exist for the same pair of coordinate reference systems,
+differing in their method, parameter values and accuracy characteristics.</p>
+</li>
+<li>
+<p><span class="red yellow-background">TODO: Point motion operation.</span></p>
+</li>
+<li>
+<p>A <em>concatenated operation</em> is a sequential execution of any of above operations.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>GeoAPI provides three ways to create a coordinate operation:</p>
+</div>
+<div class="sect4">
+<h5>From a pair of CRS</h5>
+<div class="paragraph">
+<p>Given a source coordinate reference system (CRS) in which existing coordinate values are expressed,
+and a target coordinate reference system in which coordinate values are desired,
+<code>Coordinate­Operation­Factory</code> can provide a coordinate operation performing the conversion or transformation work.
+An <a href="#CoordinateOperation-java">example in Java</a> is provided in annex.</p>
+</div>
+</div>
+<div class="sect4">
+<h5>From an authority code</h5>
+<div class="paragraph">
+<p>Above method leaves some flexibility to implementations for choosing a coordinate operation when several possibilities exist.
+If a specific operation is needed and if that operation is identified by an authority code,
+it can be provided by <code>Coordinate­Operation­Authority­Factory</code>.</p>
+</div>
+</div>
+<div class="sect4">
+<h5>From a parameter values</h5>
+<div class="paragraph">
+<p>The <code>Parameter­Value</code> interface provides methods to set the value of the parameter.
+In the general use pattern for these types, a <code>Parameter­Value­Group</code> containing all the named parameters
+for an operation method is first obtained from the <code>Operation­Method</code> or the <code>Math­Transform­Factory</code>,
+and then each <code>Parameter­Value</code> instance is obtained in turn and its value set.
+This use pattern ensures that all the needed parameters for an operation method can be obtained as a single block.
+An example is given in annex for the <a href="#ProjectedCRS-java">Java</a> language.</p>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="referencing-departures"><a class="anchor" href="#referencing-departures"></a>6.5.4. Departures from ISO 19111</h4>
 <div class="sect4">
 <h5>Coordinate system association</h5>
 <div class="paragraph">
@@ -5343,8 +5431,102 @@ the collection instances are constrained to be read only.
 Implementers are free to provide a fully mutable implementation of GeoAPI interfaces,
 but users may need to cast to the implementation classes in order to modify a metadata.</p>
 </div>
-<div style="page-break-after: always;"></div>
 </div>
+</div>
+<div class="sect3">
+<h4 id="ProjectedCRS-java"><a class="anchor" href="#ProjectedCRS-java"></a>E.1.7. Coordinate reference system</h4>
+<div class="paragraph">
+<p>A <a href="#referencing">Coordinate Reference System</a> (CRS) can be constructed on its own or can be derived from other systems.
+This example mixes both cases by creating a <code>ProjectedCRS</code> derived from a <code>GeographicCRS</code> with the Mercator projection.
+Here we use an authority which has already defined the geographic CRS, the coordinate system and the projection method
+that we need for this example. Then the example creates a <em>defining conversion</em> from the parameter values and combines
+it with above-cited predefined components for creating the projected CRS.</p>
+</div>
+<div class="paragraph">
+<p><span class="red yellow-background">TODO: Get factories from <code>ServiceLoader</code>.</span></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">/*
+ * Factories for obtaining predefined components from a geodetic registry
+ * (in this example, from EPSG geodetic dataset).
+ */</span>
+CSAuthorityFactory csRegistry = ...;
+CRSAuthorityFactory crsRegistry = ...;
+CoordinateOperationAuthorityFactory opRegistry = ...;
+<span class="comment">/*
+ * Factories for creating objects from programmatic parameters.
+ */</span>
+CRSFactory crsFactory = ...;
+CoordinateOperationFactory opFactory = ...;
+<span class="comment">/*
+ * Predefined components used in this example:
+ *
+ *   - EPSG::4326   —   WGS 84
+ *   - EPSG::4440   —   Cartesian 2D. Orientations: east, north. UoM: m
+ *   - EPSG::9804   —   Mercator (variant A)
+ */</span>
+GeographicCRS   baseCRS = crsRegistry.createGeographicCRS  (<span class="string"><span class="delimiter">&quot;</span><span class="content">EPSG::4326</span><span class="delimiter">&quot;</span></span>);
+CartesianCS     projCS  =  csRegistry.createCartesianCS    (<span class="string"><span class="delimiter">&quot;</span><span class="content">EPSG::4400</span><span class="delimiter">&quot;</span></span>);
+OperationMethod method  =  opRegistry.createOperationMethod(<span class="string"><span class="delimiter">&quot;</span><span class="content">EPSG::9804</span><span class="delimiter">&quot;</span></span>);
+<span class="comment">/*
+ * Get the parameters initialized to their default values,
+ * then set parameter values.
+ */</span>
+ParameterValueGroup pg = method.getParameters().createValue();
+pg.parameter(<span class="string"><span class="delimiter">&quot;</span><span class="content">Latitude of natural origin</span><span class="delimiter">&quot;</span></span>).setValue(<span class="float">0.0</span>);
+pg.parameter(<span class="string"><span class="delimiter">&quot;</span><span class="content">Longitude of natural origin</span><span class="delimiter">&quot;</span></span>).setValue(<span class="float">110.0</span>);
+pg.parameter(<span class="string"><span class="delimiter">&quot;</span><span class="content">Scale factor at natural origin</span><span class="delimiter">&quot;</span></span>).setValue(<span class="float">0.997</span>);
+pg.parameter(<span class="string"><span class="delimiter">&quot;</span><span class="content">False easting</span><span class="delimiter">&quot;</span></span>).setValue(<span class="float">3900000.0</span>);
+pg.parameter(<span class="string"><span class="delimiter">&quot;</span><span class="content">False northing</span><span class="delimiter">&quot;</span></span>).setValue(<span class="float">900000.0</span>);
+<span class="comment">/*
+ * Create the defining conversion from above parameters.
+ */</span>
+Conversion definition = opFactory.createDefiningConversion(
+        <span class="predefined-type">Map</span>.of(Conversion.NAME_KEY, <span class="string"><span class="delimiter">&quot;</span><span class="content">Makassar / NEIEZ</span><span class="delimiter">&quot;</span></span>), method, pg);
+<span class="comment">/*
+ * Create the projected CRS using conversion defined by parameters
+ * and predefined components fetched from EPSG geodetic dataset.
+ */</span>
+ProjectedCRS makassar = crsFactory.createProjectedCRS(
+        <span class="predefined-type">Map</span>.of(Conversion.NAME_KEY, <span class="string"><span class="delimiter">&quot;</span><span class="content">Makassar / NEIEZ</span><span class="delimiter">&quot;</span></span>),
+        baseCRS, definition, projCS);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Above example created the "Makassar / NEIEZ" coordinate reference system in a hard way for showing the use of factories.
+But when an authority code is available (which is the case of above example),
+the use of an authority factory is recommended not only because it is easier,
+but also because it generally provides more metadata information such as scope and domain of validity.
+The following example creates the same CRS than above example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">CRSAuthorityFactory crsRegistry = ...;
+ProjectedCRS makassar = crsRegistry.createProjectedCRS(<span class="string"><span class="delimiter">&quot;</span><span class="content">EPSG::3002</span><span class="delimiter">&quot;</span></span>);</code></pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="CoordinateOperation-java"><a class="anchor" href="#CoordinateOperation-java"></a>E.1.8. Coordinate operation</h4>
+<div class="paragraph">
+<p>This usage examples lets implementation infers a <a href="#coordinate-operation">coordinate operation</a>
+for a pair of coordinate reference systems.
+The <code>Coordinate­Operation­Factory</code> does all the work of establishing
+which parameters should be used and correctly instantiating the operation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">// We assume these instances are already available.</span>
+CoordinateReferenceSystem sourceCRS = ...;
+CoordinateReferenceSystem targetCRS = ...;
+
+<span class="comment">// Implementation infers an operation.</span>
+CoordinateOperationFactory opFactory = ...;
+CoordinateOperation op = opFactory.createOperation(sourceCRS, targetCRS);</code></pre>
+</div>
+</div>
+<div style="page-break-after: always;"></div>
 </div>
 </div>
 </div>
@@ -5482,7 +5664,7 @@ but the interfaces must first have been implemented, ideally several times, and 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-03-24 16:51:05 +0100
+Last updated 2021-03-25 17:06:21 +0100
 </div>
 </div>
 <style>
