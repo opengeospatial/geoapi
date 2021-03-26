@@ -11,7 +11,7 @@ and combine those to define the coordinate referencing systems (CRS) generally e
 The UML below (incomplete for brevity) shows a few commonly used GeoAPI types.
 Differences compared to ISO 19111
 (notably inheritance from `ReferenceSystem` type, location of `coordinateSystem` association and inclusion of `MathTransform` interface)
-are discussed in following sections and in the <<referencing-departures,departures section>>.
+are discussed in following sections and in the departures section (<<referencing-departures>>).
 
 .Subset of interfaces derived from ISO 19111 and other standards
 image::referencing.svg[Partial UML of Coordinate Reference Systems]

@@ -3,7 +3,7 @@
 
 The UML diagrams may specify arbitrary multiplicities (minimum and maximum number of occurrences) for each property.
 But GeoAPI recognizes only the following four multiplicities,
-materialized in the API <<annotations,as annotations>> and in the method signatures.
+materialized in the API as annotations (<<annotations>>) and in the method signatures.
 If a different multiplicity is needed, then [0 … ∞] should be used
 with a restriction documented in the text attached to the property.
 

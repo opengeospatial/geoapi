@@ -7,7 +7,7 @@ Those annotations encode the source document, stereotype, original name, and obl
 of the various types, properties and operations published by GeoAPI.
 The source document may be completed by a version number when the GeoAPI construct
 is based on a different edition of a normative document than the dated references
-listed in the <<references,references clause>>.
+listed in <<references>>.
 GeoAPI defines two annotations in the Java language (no annotation in Python):
 `@UML` which is applied on types and properties (fields or methods), and
 `@Classifier` which can be applied only on types.
@@ -28,5 +28,5 @@ retaining only the values relevant to annotation of GeoAPI programming elements.
 This duplication exists because the ISO 19115 standard defines a code list, while Java annotations require enumerations.
 ========================================
 
-<<UML-introspection,An example in annex>> shows how these annotations are applied in the Java language
+An example in <<UML-introspection>> shows how these annotations are applied in the Java language
 and how they are available at runtime by introspection.

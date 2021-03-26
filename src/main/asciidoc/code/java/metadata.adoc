@@ -1,7 +1,7 @@
 [[metadata-java]]
 ==== Metadata
 
-The interfaces in the GeoAPI <<metadata,metadata packages>> are primarily containers of primitive types and other metadata types.
+The interfaces in the GeoAPI metadata packages (<<metadata>>) are primarily containers of primitive types and other metadata types.
 Metadata elements will be encountered for example from interfaces in the referencing packages.
 The metadata interfaces enable users to decompose a given element into smaller elements.
 As an example, the following code prints a list of all individuals (ignoring organizations)

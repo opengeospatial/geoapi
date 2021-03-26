@@ -65,7 +65,7 @@ ISO 19103 defines mapping methods from a name to the object identified by that n
 `getObject()` in `GenericName` and numerous methods in `NameSpace`.
 Those methods are not included in GeoAPI interfaces.
 Instead we left these mappings to other frameworks, for example _Java Naming and Directory Interface_ (JNDI).
-<<JNDI,An example in annex>> shows how some omitted methods can be implemented by JNDI in the Java language.
+An example in <<JNDI>> shows how some omitted methods can be implemented by JNDI in the Java language.
 
 ====== Additions
 The `NameFactory` is an extension to allow the construction of instances of these name types

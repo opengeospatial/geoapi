@@ -11,6 +11,9 @@
 :sectnums:
 :sectanchors:
 :xrefstyle:           short
+:chapter-refsig:      section
+:section-refsig:      §
+:appendix-refsig:     annex
 :stylesheet:          standard.css
 :source-highlighter:  coderay
 :supported-languages: Java and Python

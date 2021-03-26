@@ -29,4 +29,4 @@ The following table shows the mapping used by GeoAPI to represent the primitive 
 [small]#(2) Sometime substituted by `long` or `java.lang.Long` where the value may exceed 2^32^.# +
 [small]#(3) `Decimal` differs from `Real`, as `Decimal` is exact in base 10 while `Real` may not.# +
 [small]#(4) Substituted by `org.opengis.util.InternationalString` where the string representation depends on the locale.# +
-[small]#(5) Actually an _extension data type_ defined in ISO 19103 annex C.2. See <<internationalization,Internationalization>>.# +
+[small]#(5) Actually an _extension data type_ defined in ISO 19103 annex C.2. See _internationalization_ in <<internationalization>>.# +

@@ -9,7 +9,7 @@ We integrated such interfaces directly into the existing interfaces rather than 
 For example ISO 19115-2 defines a `MI_Band` interface which extends the `MD_Band` interface defined by ISO 19115-1,
 with the addition of a `transferFunctionType` property (among others) for completing the `scaleFactor` and
 `offset` properties defined by ISO 19115-1. GeoAPI merges those two interfaces together,
-with <<annotations,annotations>> on each property for declaring the originating standard.
+with annotations (<<annotations>>) on each property for declaring the originating standard.
 The metadata interfaces merged in such way are:
 
 .Metadata ISO 19115-2 interfaces merged with ISO 19115-1 parent interfaces
@@ -36,7 +36,7 @@ The ISO 19115 standard combines those two information in a `ReferenceSystem` int
 
 In order to have a more uniform way to handle reference systems,
 GeoAPI replaces (_identifier_, _type code_) tuples by associations to the actual _Reference System_ objects.
-The ISO 19115 `ReferenceSystem` type is redefined as a subtype of ISO 19111 `IdentifiedObject` (see <<metadata-reference-system,UML>>).
+The ISO 19115 `ReferenceSystem` type is redefined as a subtype of ISO 19111 `IdentifiedObject` (see UML in <<metadata-reference-system>>).
 The `reference​System​Identifier` property defined by ISO 19115 is replaced by inheritance of `identifier` property from `IdentifiedObject`.
 The `reference​System​Type` property value (geographic, projected, compound, geographic identifier, _etc._)
 can be determined using language-specific instructions such as `instanceof` in Java.

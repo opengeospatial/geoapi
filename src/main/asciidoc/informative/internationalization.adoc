@@ -27,7 +27,7 @@ This specification makes no recommendation about the default or fallback languag
 because some programming languages provide their own mechanism
 (e.g. using _Language Range_ as defined by https://tools.ietf.org/html/rfc4647[RFC 4647 Matching of Language Tags]).
 Consequently GeoAPI delegates most internationalization types to the target language standard library, as shown in the following table.
-An <<InternationalString,example in annex>> shows the use of `InternationalString` in the Java language.
+An example in <<InternationalString>> shows the use of `InternationalString` in the Java language.
 
 .Linguistic types mapping
 [.compact, options="header"]

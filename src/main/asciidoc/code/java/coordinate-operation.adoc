@@ -1,7 +1,7 @@
 [[CoordinateOperation-java]]
 ==== Coordinate operation
 
-This usage examples lets implementation infers a <<coordinate-operation,coordinate operation>>
+This usage examples lets implementation infers a coordinate operation (<<coordinate-operation>>)
 for a pair of coordinate reference systems.
 The `Coordinate­Operation­Factory` does all the work of establishing
 which parameters should be used and correctly instantiating the operation.

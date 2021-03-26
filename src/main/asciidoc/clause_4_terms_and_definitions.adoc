@@ -11,7 +11,7 @@ In particular:
 
 For the purposes of this document, the following additional terms and definitions apply.
 Further discussion about _type_, _class_, _interface_, _property_, _attribute_ and _implementation_ terms
-can be found in the <<type-terminology,conventions>> section.
+can be found in convention section (<<type-terminology>>).
 
 [[term-API]]
 [discrete]

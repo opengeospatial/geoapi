@@ -3,13 +3,13 @@
 == Examples
 
 This appendix provides code snippets in the {supported-languages} programming languages
-for aspects discussed in the <<overview,Geospatial API overview>> section.
+for aspects discussed in the Geospatial API overview (<<overview>>).
 
 [[examples-java]]
 === Java examples
 
 This section provides code snippets in the Java programming languages
-for aspects discussed in the <<overview,Geospatial API overview>> section.
+for aspects discussed in the Geospatial API overview (<<overview>>).
 
 include::code/java/annotation.adoc[]
 

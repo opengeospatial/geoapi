@@ -19,8 +19,8 @@ is available at the URLs listed below:
 
 Contrarily to other OGC/ISO standards, the UML diagrams in this specification are only informative.
 The reason is because those diagrams show only a small subset of all interfaces and properties provided by GeoAPI,
-and details such as <<naming,naming conventions>> differ in the materialization to {supported-languages} languages.
-The complete and normative UML diagrams are provided by the abstract specifications listed in <<references,references>>.
+and details such as naming conventions (<<naming>>) differ in the materialization to {supported-languages} languages.
+The complete and normative UML diagrams are provided by the abstract specifications listed in <<references>>.
 
 This specification defines several conformance classes
 for implementations covering different packages of the API or providing different levels of complexity in their implementations.
@@ -34,11 +34,11 @@ Requirements for 2 standardization target types are considered:
 The second target type (applications) leaves more freedom than the first target type (libraries).
 In particular, applications are free to delete any types, methods or functionalities that they do not use.
 
-Conformance with this standard shall be checked using all the relevant tests specified in <<conformance-tests,Annex A (normative)>> of this document.
+Conformance with this standard shall be checked using all the relevant tests specified in <<conformance-tests>> of this document.
 The framework, concepts, and methodology for testing, and the criteria to be achieved to claim conformance are specified in the
 OGC Compliance Testing Policies and Procedures and the OGC Compliance Testing web site.
 In order to conform to this OGC® interface standard, a software implementation shall choose to implement:
 
 [role="compact"]
-* Any one of the conformance levels specified in <<conformance-levels,Annex B (normative)>>.
-* Any one of the Distributed Computing Platform profiles specified in <<java,Annexes C>> through <<python,D>> (normative).
+* Any one of the conformance levels specified in <<conformance-levels>>.
+* Any one of the Distributed Computing Platform profiles specified in <<java>> through <<python>> (normative).
