@@ -41,7 +41,7 @@ All those types are mapped to {supported-languages} classes as below:
 |=========================================================================================
 
 
-[[generic-name-departure]]
+[[generic_name_departures]]
 ===== Departures from ISO model
 
 ====== Generalization

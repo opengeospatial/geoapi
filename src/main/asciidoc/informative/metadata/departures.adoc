@@ -1,4 +1,4 @@
-[[metadata-departures]]
+[[metadata_departures]]
 ==== Departures from ISO 19115
 
 ===== Harmonization with ISO 19115-2

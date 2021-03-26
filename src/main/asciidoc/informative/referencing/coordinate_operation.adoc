@@ -1,5 +1,5 @@
-[[coordinate-operation]]
-==== Coordinate operation
+[[coordinate_operation]]
+==== Coordinate operations
 [.reference]_From ISO 19111:2019 §12 and §C.5_
 
 A Coordinate Operation can _transform_ or _convert_ coordinate tuples from one Coordinate Reference System (CRS) to another CRS.
@@ -10,13 +10,12 @@ There is four kinds of coordinate operations in GeoAPI:
   Map projections are kinds of coordinate conversions.
 * A _coordinate transformation_ involves empirically derived parameters.
   Because those parameters have observational error
-  and because the transformation method is only an estimation of a complex reality,
-  the result of applying a coordinate transformation contain errors
-  with a magnitude estimated by the `coordinate­Operation­Accuracy` property.
-  Several different transformation may exist for the same pair of coordinate reference systems,
-  differing in their method, parameter values and accuracy characteristics.
+  and because transformation methods are only approximations of a complex reality,
+  the coordinate transformation results also have errors.
+  Furthermore several transformations may exist for the same pair of coordinate reference systems,
+  differing in their method, parameter values, domain of validity and accuracy characteristics.
 * [red yellow-background]#TODO: Point motion operation.#
-* A _concatenated operation_ is a sequential execution of any of above operations.
+* A _concatenated operation_ defines a sequential execution of any of above operations.
 
 GeoAPI provides three ways to create a coordinate operation:
 
@@ -26,13 +25,22 @@ and a target coordinate reference system in which coordinate values are desired,
 `Coordinate­Operation­Factory` can provide a coordinate operation performing the conversion or transformation work.
 An example is given in <<CoordinateOperation-java>> for the Java language.
 
-===== From an authority code
-Above method leaves some flexibility to implementations for choosing a coordinate operation when several possibilities exist.
-If a specific operation is needed and if that operation is identified by an authority code,
-it can be provided by `Coordinate­Operation­Authority­Factory`.
+Note that when several possibilities exist for the same pair of CRS,
+the selected transformation is implementation-dependent.
+Implementations should select the "best" transformation based on criterion
+such as accuracy and domain of validity, but GeoAPI does not specify any rule.
+Users are encouraged to verify which transformation has been selected by invoking
+the `CoordinateOperation.toWKT()` method.
 
-===== From a parameter values
-The `Parameter­Value` interface provides methods to set the value of the parameter.
+[red yellow-background]#TODO: `RegisterOperations` returns a set of all operations.#
+
+===== From an authority code
+If a determinist operation is required and if that operation is identified by an authority code,
+then that operation can be obtained with `Coordinate­Operation­Authority­Factory`.
+This approach avoids the implementation-dependent variability of the approach described in previous paragraph.
+
+===== From operation parameter values
+The `Parameter­Value` interface provides methods to set the value of the operation parameter.
 In the general use pattern for these types, a `Parameter­Value­Group` containing all the named parameters
 for an operation method is first obtained from the `Operation­Method` or the `Math­Transform­Factory`,
 and then each `Parameter­Value` instance is obtained in turn and its value set.

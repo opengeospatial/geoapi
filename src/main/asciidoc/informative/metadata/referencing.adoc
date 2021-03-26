@@ -21,6 +21,8 @@ This is done by inserting the ISO 19115 `ReferenceSystem` interface between
 .Location of `ReferenceSystem` in the hierarchy of ISO 19111 types
 image::metadata-referencing.svg[Partial UML of ReferenceSystem]
 
+More information about the `CoordinateReferenceSystem` interface is given
+in the _Referencing packages_ section (<<referencing>>).
 The following table lists all association to a reference system from the metadata packages:
 
 .Associations from a metadata object to a reference system

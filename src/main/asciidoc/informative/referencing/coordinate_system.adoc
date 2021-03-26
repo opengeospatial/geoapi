@@ -1,5 +1,5 @@
-[[coordinate-system]]
-==== Coordinate system
+[[coordinate_system]]
+==== Coordinate systems
 [.reference]_From ISO 19111:2019 §10 and §C.3_
 
 A Coordinate System (CS) contains the set of axes that spans a given coordinate space.
@@ -10,14 +10,10 @@ For example in longitude case, after +180° the coordinate values continue at �
 In addition to axis definitions, another important coordinate system characteristic is their type (`CartesianCS`, `SphericalCS`, _etc._).
 The CS type implies the set of mathematical rules for calculating geometric quantities such as angles, distances and surfaces.
 Usually the various CS subtypes do not define any new programmatic methods compared to the parent type, but are nevertheless important for type safety.
-
-.Example
-[NOTE]
-======
-Many calculations or associations are legal only when all axes are perpendicular to each other.
+For example many calculations or associations are legal only when all axes are perpendicular to each other.
 In such case the coordinate system type is restricted to `CartesianCS` in method signatures.
-======
 
+===== Associations with CRS
 The coordinate system associated to a `SingleCRS` shall be an instance of one `Coordinate­System` subtype.
 It should be a subtype defined by ISO 19111 when possible, or a user-defined subtype when no standard type describes the space geometry.
 The standard coordinate system types are Cartesian, affine, spherical, cylindrical, polar, ellipsoidal, vertical, temporal, ordinal and parametric.

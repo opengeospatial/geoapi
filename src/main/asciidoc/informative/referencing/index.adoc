@@ -11,11 +11,13 @@ and combine those to define the coordinate referencing systems (CRS) generally e
 The UML below (incomplete for brevity) shows a few commonly used GeoAPI types.
 Differences compared to ISO 19111
 (notably inheritance from `ReferenceSystem` type, location of `coordinateSystem` association and inclusion of `MathTransform` interface)
-are discussed in following sections and in the departures section (<<referencing-departures>>).
+are discussed in following sections and in the departures section (<<referencing_departures>>).
 
 .Subset of interfaces derived from ISO 19111 and other standards
 image::referencing.svg[Partial UML of Coordinate Reference Systems]
 
+More information about the `ReferenceSystem` parent interface
+is given in the _Metadata packages_ section (<<metadata-reference-system>>).
 The mapping from ISO 19111 packages to GeoAPI packages is shown below:
 
 .Referencing package mapping
@@ -31,10 +33,12 @@ The mapping from ISO 19111 packages to GeoAPI packages is shown below:
 |Coordinate Operation        |`org.opengis.referencing.parameter`   |`opengis.parameter`
 |===================================================================================================
 
-include::coordinate-system.adoc[]
+include::coordinate_system.adoc[]
 
 include::factory.adoc[]
 
-include::operations.adoc[]
+include::coordinate_operation.adoc[]
+
+include::math_transform.adoc[]
 
 include::departures.adoc[]

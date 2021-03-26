@@ -1,5 +1,18 @@
-[[referencing-departures]]
+[[referencing_departures]]
 ==== Departures from ISO 19111
+
+===== Elements from legacy OGC 01-009
+A major extension of GeoAPI compared the ISO 19111 standard comes from the inclusion,
+directly in the `Coordinate­Operation` interface,
+of a method providing access to the `Math­Transform` interface from the older OGC 01-009 specification.
+That interface performs the actual computation of coordinates in target CRS from the coordinates in source CRS.
+This separation between a type providing metadata about coordinate operation and a type doing the actual work
+existed in OGC 01-009 and has been kept by GeoAPI for giving to developers more flexibility regarding optimizations.
+The operations really executed by `Math­Transform` can be very different than the operations described by `Coordinate­Operation`
+as long as they are mathematically equivalent.
+
+Since the 2019 revision of ISO 19111 specification, the `Coordinate­Operation` interface has a `transform(…)` method.
+But that new method can be implemented as a convenience method redirecting the work to `Math­Transform`.
 
 ===== Coordinate system association
 In the ISO 19111 specification, only `SingleCRS` has an association to `coordinateSystem`.
@@ -22,7 +35,7 @@ because each method such as `CoordinateSystem.getAxis(int)` contains code, not n
 Implementations can redirect requests for `CoordinateSystem` axes to corresponding `CompoundCRS` elements.
 ======
 
-===== Naming
+===== Type and property names
 The ISO 19111 `CRS` type name has been expanded to the `Coordinate­Reference­System` name in GeoAPI
 for compatibility with previous GeoAPI versions.
 It is also common practice in Java language to avoid abbreviations.
@@ -30,9 +43,3 @@ It is also common practice in Java language to avoid abbreviations.
 In the `General­Derived­CRS` interface, the `conversion` association to `Conversion`
 has been renamed `conversion­From­Base` for making clear that the source CRS is the `baseCRS`.
 This naming is similar to the one used in OGC 01-009 with direction reversed.
-
-===== Elements from legacy OGC 01-009
-A departure of GeoAPI from the ISO 19111 standard comes from the inclusion, directly in the `Coordinate­Operation` type,
-of a method providing access to the `Math­Transform` interface from the older OGC 01-009 specification.
-That interface actually calculates the coordinates in target CRS from the coordinates in source CRS.
-[red yellow-background]#TODO: Explain why it is a separated interface.#

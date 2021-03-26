@@ -29,7 +29,7 @@ even if the feature itself is fully inside that domain.
 The corner `DirectPosition` instances are acting, for convenience,
 as data containers for tuples of coordinates but not as representations of an actual position.
 
-[[geometry-departures]]
+[[geometry_departures]]
 ==== Departures from ISO 19107
 
 ===== Convenience
