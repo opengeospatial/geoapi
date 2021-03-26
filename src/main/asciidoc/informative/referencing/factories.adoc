@@ -1,4 +1,4 @@
-[[referencing-factory]]
+[[factories]]
 ==== Factories
 [.reference]_From OGC 01-009 §12.3.[6…7] and §12.4.6_
 

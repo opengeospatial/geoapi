@@ -1,4 +1,4 @@
-[[UML-introspection]]
+[[UML_introspection]]
 ==== UML at runtime
 
 The annotations in API (<<annotations>>) are available at runtime by introspection.

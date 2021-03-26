@@ -1,7 +1,7 @@
-[[jsr-uom]]
+[[uom_jsr]]
 === Units of measurement
 
-The Java profile of GeoAPI does not materialize any of the units of measurement types (<<uom>>) defined by ISO 19103.
+The Java profile of GeoAPI does not materialize any of the units of measurement types (<<units>>) defined by ISO 19103.
 Instead, unit modeling is entirely delegated to the Java Specification Request JSR-363 [red yellow-background]#(TODO: upgrade to JSR-385)#.
 The ISO 19103 `Measure` type is represented by the JSR-363 `Quantity` interface.
 The Java standard defines various quantity subtypes in the same way than ISO 19103 does,
@@ -11,7 +11,7 @@ Instead, it defines only one unit type, `javax.measure.Unit<Q extends Quantity<Q
 which is parameterized by the quantity type `Q`.
 For example instead of defining a `UomLength` subtype,
 developers use `Unit<Length>` to qualify the type of Unit or Measure being used.
-More examples are given in <<parameterized-units>>.
+More examples are given in <<parameterized_units>>.
 
 The mapping for ISO 19103 measurement types is shown below.
 Unless otherwise specified, all Java types listed below are in the

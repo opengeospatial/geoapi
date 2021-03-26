@@ -1,8 +1,8 @@
-[[parameterized-units]]
+[[parameterized_units]]
 ==== Parameterized units
 
 Units of measurement are represented in Java by JSR-363 parameterized interfaces
-(see <<jsr-uom>> for an overview).
+(see <<uom_jsr>> for an overview).
 Units of the same parameterized type can be used in unit conversions like below
 (the `Units` class must be provided by a JSR-363 implementation):
 

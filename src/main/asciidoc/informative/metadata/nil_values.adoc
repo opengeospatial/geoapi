@@ -1,4 +1,4 @@
-[[nil-values]]
+[[nil_values]]
 ==== Nil values
 
 ISO 19115-3 – _XML schema implementation for fundamental concepts_ allows property values to be nil
@@ -24,4 +24,4 @@ but users should be prepared to receive `null` (Java), `None` (Python) or an emp
 This modification has been adopted to allow implementations sufficient latitude
 about how to handle metadata records with nil values.
 Nonetheless, sophisticated implementations can determine if a metadata record conforms with
-the ISO 19115-1 specification by inspecting the annotations at runtime (<<UML-introspection>>).
+the ISO 19115-1 specification by inspecting the annotations at runtime (<<UML_introspection>>).

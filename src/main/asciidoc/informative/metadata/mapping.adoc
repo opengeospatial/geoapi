@@ -1,4 +1,4 @@
-[[metadata-mapping]]
+[[metadata_mapping]]
 ==== Package mapping
 [.reference]_From ISO 19115-1:2014 §6.5.[2…14] and §6.6; ISO 19157:2013_
 

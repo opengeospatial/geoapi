@@ -42,7 +42,7 @@ They need to be replaced by new section numbers.#
 * annex E: list of departures
 * annex F: Comparison with legacy OGC specifications
 
-[[future-work]]
+[[future_work]]
 [discrete]
 === Future work
 

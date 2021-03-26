@@ -1,12 +1,12 @@
 [appendix]
-[[conformance-tests]]
+[[conformance_tests]]
 :appendix-caption: Annex
 == Conformance Class Test Suite (Normative)
 
-[[tests-A]]
+[[tests_A]]
 === Conformance Class A
 
-[[test-01]]
+[[test_01]]
 ==== Requirement 1
 [cols=">20h,<80d",width="100%"]
 |============================================

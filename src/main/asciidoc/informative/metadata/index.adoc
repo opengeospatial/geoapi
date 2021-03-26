@@ -17,7 +17,7 @@ There is almost 500 properties in more than 150 metadata interfaces. This specif
 see ISO 19115 together with GeoAPI Javadoc or Python-doc (<<conformance>>) for a description of each property.
 Implementers can support a subset of their choice.
 The following UML example shows a few frequently used interfaces with some of their properties.
-An example in <<metadata-java>> shows how to extract the individual name from a `Citation` in the Java language.
+An example in <<java_metadata>> shows how to extract the individual name from a `Citation` in the Java language.
 
 .Example of a few metadata interfaces with a subset of their properties
 image::metadata.svg[Partial UML for a few metadata types]
@@ -25,8 +25,8 @@ image::metadata.svg[Partial UML for a few metadata types]
 
 include::mapping.adoc[]
 
-include::referencing.adoc[]
+include::reference_system.adoc[]
 
-include::nil-values.adoc[]
+include::nil_values.adoc[]
 
 include::departures.adoc[]

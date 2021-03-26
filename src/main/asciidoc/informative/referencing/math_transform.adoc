@@ -20,7 +20,7 @@ and returning a `DirectPosition` (the coordinates in target CRS) in output.
 But `MathTransform` provides also various methods operating on an arbitrary amount of coordinate tuples
 packed in arrays of `float` or `double` types. If there is many points to transform,
 the methods operating on arrays will generally be much more efficient than the method operating on `DirectPosition`.
-The example in <<CoordinateOperation-java>> shows how to transform in Java the coordinates of 6 cities.
+The example in <<java_coordinate_operation>> shows how to transform in Java the coordinates of 6 cities.
 
 
 ===== Partial derivatives

@@ -36,7 +36,7 @@ The ISO 19115 standard combines those two information in a `ReferenceSystem` int
 
 In order to have a more uniform way to handle reference systems,
 GeoAPI replaces (_identifier_, _type code_) tuples by associations to the actual _Reference System_ objects.
-The ISO 19115 `ReferenceSystem` type is redefined as a subtype of ISO 19111 `IdentifiedObject` (see UML in <<metadata-reference-system>>).
+The ISO 19115 `ReferenceSystem` type is redefined as a subtype of ISO 19111 `IdentifiedObject` (see UML in <<reference_system>>).
 The `reference​System​Identifier` property defined by ISO 19115 is replaced by inheritance of `identifier` property from `IdentifiedObject`.
 The `reference​System​Type` property value (geographic, projected, compound, geographic identifier, _etc._)
 can be determined using language-specific instructions such as `instanceof` in Java.

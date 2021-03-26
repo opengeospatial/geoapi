@@ -1,4 +1,4 @@
-[[generic-name]]
+[[generic_name]]
 ==== Name types
 [.reference]_From ISO 19103:2015 §7.5_
 

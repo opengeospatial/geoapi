@@ -17,7 +17,7 @@ are discussed in following sections and in the departures section (<<referencing
 image::referencing.svg[Partial UML of Coordinate Reference Systems]
 
 More information about the `ReferenceSystem` parent interface
-is given in the _Metadata packages_ section (<<metadata-reference-system>>).
+is given in the _Metadata packages_ section (<<reference_system>>).
 The mapping from ISO 19111 packages to GeoAPI packages is shown below:
 
 .Referencing package mapping
@@ -35,7 +35,7 @@ The mapping from ISO 19111 packages to GeoAPI packages is shown below:
 
 include::coordinate_system.adoc[]
 
-include::factory.adoc[]
+include::factories.adoc[]
 
 include::coordinate_operation.adoc[]
 

@@ -23,7 +23,7 @@ GeoAPI provides three ways to create a coordinate operation:
 Given a source coordinate reference system (CRS) in which existing coordinate values are expressed,
 and a target coordinate reference system in which coordinate values are desired,
 `Coordinate­Operation­Factory` can provide a coordinate operation performing the conversion or transformation work.
-An example is given in <<CoordinateOperation-java>> for the Java language.
+An example is given in <<java_coordinate_operation>> for the Java language.
 
 Note that when several possibilities exist for the same pair of CRS,
 the selected transformation is implementation-dependent.
@@ -45,4 +45,4 @@ In the general use pattern for these types, a `Parameter­Value­Group` containi
 for an operation method is first obtained from the `Operation­Method` or the `Math­Transform­Factory`,
 and then each `Parameter­Value` instance is obtained in turn and its value set.
 This use pattern ensures that all the needed parameters for an operation method can be obtained as a single block.
-An example is given in <<ProjectedCRS-java>> for the Java language.
+An example is given in <<java_create_crs>> for the Java language.

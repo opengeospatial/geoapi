@@ -1,4 +1,4 @@
-[[general-mapping]]
+[[mapping_rules]]
 === General mapping rules
 
 This section gives high-level guidance in the mapping from UML to {supported-languages} API applying to all GeoAPI types.
@@ -12,4 +12,4 @@ include::multiplicity.adoc[]
 
 include::annotations.adoc[]
 
-include::derived-methods.adoc[]
+include::derived_properties.adoc[]

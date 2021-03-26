@@ -1,4 +1,4 @@
-[[metadata-reference-system]]
+[[reference_system]]
 ==== Reference systems
 [.reference]_Derived from ISO 19115-1:2014 §6.5.8_
 

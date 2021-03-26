@@ -1,4 +1,4 @@
-[[metadata-java]]
+[[java_metadata]]
 ==== Metadata
 
 The interfaces in the GeoAPI metadata packages (<<metadata>>) are primarily containers of primitive types and other metadata types.

@@ -1,4 +1,4 @@
-[[derived-properties]]
+[[derived_properties]]
 ==== Derived methods
 
 GeoAPI may define additional methods not explicitly specified in OGC/ISO abstract models,

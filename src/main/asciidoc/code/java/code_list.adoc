@@ -1,7 +1,7 @@
-[[CodeList-introspection]]
+[[java_code_list]]
 ==== Code list at runtime
 
-Controlled vocabulary (<<controlled-vocabulary>>) can take the form of enumerations or code lists.
+Controlled vocabulary (<<controlled_vocabulary>>) can take the form of enumerations or code lists.
 Those two types are implemented by `java.lang.Enum` and `org.opengis.util.CodeList` respectively.
 The use of `CodeList` classes includes accessing statically defined elements,
 defining new elements and retrieving any element defined for the code list.

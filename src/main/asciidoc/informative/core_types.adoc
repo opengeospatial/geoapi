@@ -1,4 +1,4 @@
-[[core-types]]
+[[core_types]]
 === Core data types mapping
 
 The ISO 19103 specification (_Geographic Information – Conceptual schema language_) defines types
@@ -23,13 +23,13 @@ include::datetime.adoc[]
 
 include::collections.adoc[]
 
-include::controlled-vocabulary.adoc[]
+include::controlled_vocabulary.adoc[]
 
-include::generic-name.adoc[]
+include::generic_name.adoc[]
 
 include::records.adoc[]
 
-include::web-types.adoc[]
+include::web_types.adoc[]
 
 include::internationalization.adoc[]
 

@@ -26,9 +26,9 @@ completed by the dynamic attributes defined in OGC 18-075 _Moving Features_ spec
 The feature package is not needed for dynamic languages like Python.
 
 
-include::informative/general.adoc[]
+include::informative/mapping_rules.adoc[]
 
-include::informative/core-types.adoc[]
+include::informative/core_types.adoc[]
 
 include::informative/metadata/index.adoc[]
 

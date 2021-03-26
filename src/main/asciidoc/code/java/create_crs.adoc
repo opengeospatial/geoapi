@@ -1,4 +1,4 @@
-[[ProjectedCRS-java]]
+[[java_create_crs]]
 ==== Coordinate reference system
 
 A Coordinate Reference System (<<referencing>>) can be constructed on its own or can be derived from other systems.

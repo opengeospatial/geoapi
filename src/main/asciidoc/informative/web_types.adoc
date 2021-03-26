@@ -1,4 +1,4 @@
-[[web-types]]
+[[web_types]]
 ==== Web types
 [.reference]_From ISO 19103:2015 §C.3_
 

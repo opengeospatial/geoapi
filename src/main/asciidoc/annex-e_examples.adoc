@@ -5,7 +5,7 @@
 This appendix provides code snippets in the {supported-languages} programming languages
 for aspects discussed in the Geospatial API overview (<<overview>>).
 
-[[examples-java]]
+[[java_examples]]
 === Java examples
 
 This section provides code snippets in the Java programming languages
@@ -13,16 +13,16 @@ for aspects discussed in the Geospatial API overview (<<overview>>).
 
 include::code/java/annotation.adoc[]
 
-include::code/java/code-list.adoc[]
+include::code/java/code_list.adoc[]
 
 include::code/java/JNDI.adoc[]
 
 include::code/java/internationalization.adoc[]
 
-include::code/java/units.adoc[]
+include::code/java/parameterized_units.adoc[]
 
 include::code/java/metadata.adoc[]
 
-include::code/java/create-crs.adoc[]
+include::code/java/create_crs.adoc[]
 
-include::code/java/coordinate-operation.adoc[]
+include::code/java/coordinate_operation.adoc[]

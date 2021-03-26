@@ -34,11 +34,11 @@ Requirements for 2 standardization target types are considered:
 The second target type (applications) leaves more freedom than the first target type (libraries).
 In particular, applications are free to delete any types, methods or functionalities that they do not use.
 
-Conformance with this standard shall be checked using all the relevant tests specified in <<conformance-tests>> of this document.
+Conformance with this standard shall be checked using all the relevant tests specified in <<conformance_tests>> of this document.
 The framework, concepts, and methodology for testing, and the criteria to be achieved to claim conformance are specified in the
 OGC Compliance Testing Policies and Procedures and the OGC Compliance Testing web site.
 In order to conform to this OGC® interface standard, a software implementation shall choose to implement:
 
 [role="compact"]
-* Any one of the conformance levels specified in <<conformance-levels>>.
+* Any one of the conformance levels specified in <<conformance_levels>>.
 * Any one of the Distributed Computing Platform profiles specified in <<java>> through <<python>> (normative).
