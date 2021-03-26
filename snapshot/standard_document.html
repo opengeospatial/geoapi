@@ -2198,20 +2198,21 @@ p {
 <li><a href="#metadata-mapping">6.3.1. Package mapping</a></li>
 <li><a href="#metadata-reference-system">6.3.2. Reference systems</a></li>
 <li><a href="#nil-values">6.3.3. Nil values</a></li>
-<li><a href="#metadata-departures">6.3.4. Departures from ISO 19115</a></li>
+<li><a href="#metadata_departures">6.3.4. Departures from ISO 19115</a></li>
 </ul>
 </li>
 <li><a href="#geometry">6.4. Geometry packages</a>
 <ul class="sectlevel3">
-<li><a href="#geometry-departures">6.4.1. Departures from ISO 19107</a></li>
+<li><a href="#geometry_departures">6.4.1. Departures from ISO 19107</a></li>
 </ul>
 </li>
 <li><a href="#referencing">6.5. Referencing packages</a>
 <ul class="sectlevel3">
-<li><a href="#coordinate-system">6.5.1. Coordinate system</a></li>
+<li><a href="#coordinate_system">6.5.1. Coordinate systems</a></li>
 <li><a href="#referencing-factory">6.5.2. Factories</a></li>
-<li><a href="#coordinate-operation">6.5.3. Coordinate operation</a></li>
-<li><a href="#referencing-departures">6.5.4. Departures from ISO 19111</a></li>
+<li><a href="#coordinate_operation">6.5.3. Coordinate operations</a></li>
+<li><a href="#math_transform">6.5.4. Math transforms</a></li>
+<li><a href="#referencing_departures">6.5.5. Departures from ISO 19111</a></li>
 </ul>
 </li>
 <li><a href="#feature">6.6. Feature packages</a></li>
@@ -2634,8 +2635,8 @@ is available at the URLs listed below:</p>
 <div class="paragraph">
 <p>Contrarily to other OGC/ISO standards, the UML diagrams in this specification are only informative.
 The reason is because those diagrams show only a small subset of all interfaces and properties provided by GeoAPI,
-and details such as <a href="#naming">naming conventions</a> differ in the materialization to Java and Python languages.
-The complete and normative UML diagrams are provided by the abstract specifications listed in <a href="#references">references</a>.</p>
+and details such as naming conventions (<a href="#naming">§ 6.1.1</a>) differ in the materialization to Java and Python languages.
+The complete and normative UML diagrams are provided by the abstract specifications listed in <a href="#references">section 3</a>.</p>
 </div>
 <div class="paragraph">
 <p>This specification defines several conformance classes
@@ -2658,7 +2659,7 @@ Requirements for 2 standardization target types are considered:</p>
 In particular, applications are free to delete any types, methods or functionalities that they do not use.</p>
 </div>
 <div class="paragraph">
-<p>Conformance with this standard shall be checked using all the relevant tests specified in <a href="#conformance-tests">Annex A (normative)</a> of this document.
+<p>Conformance with this standard shall be checked using all the relevant tests specified in <a href="#conformance-tests">annex A</a> of this document.
 The framework, concepts, and methodology for testing, and the criteria to be achieved to claim conformance are specified in the
 OGC Compliance Testing Policies and Procedures and the OGC Compliance Testing web site.
 In order to conform to this OGC® interface standard, a software implementation shall choose to implement:</p>
@@ -2666,10 +2667,10 @@ In order to conform to this OGC® interface standard, a software implementation 
 <div class="ulist compact">
 <ul>
 <li>
-<p>Any one of the conformance levels specified in <a href="#conformance-levels">Annex B (normative)</a>.</p>
+<p>Any one of the conformance levels specified in <a href="#conformance-levels">annex B</a>.</p>
 </li>
 <li>
-<p>Any one of the Distributed Computing Platform profiles specified in <a href="#java">Annexes C</a> through <a href="#python">D</a> (normative).</p>
+<p>Any one of the Distributed Computing Platform profiles specified in <a href="#java">annex C</a> through <a href="#python">annex D</a> (normative).</p>
 </li>
 </ul>
 </div>
@@ -2759,7 +2760,7 @@ In particular:</p>
 <div class="paragraph">
 <p>For the purposes of this document, the following additional terms and definitions apply.
 Further discussion about <em>type</em>, <em>class</em>, <em>interface</em>, <em>property</em>, <em>attribute</em> and <em>implementation</em> terms
-can be found in the <a href="#type-terminology">conventions</a> section.</p>
+can be found in convention section (<a href="#type-terminology">§ 5.2</a>).</p>
 </div>
 <h3 id="term-API" class="discrete">Application Programming Interface (API)</h3>
 <div class="paragraph">
@@ -3202,7 +3203,7 @@ The plural form hints the developers that they may need to use indexes or iterat
 <div class="paragraph">
 <p>The UML diagrams may specify arbitrary multiplicities (minimum and maximum number of occurrences) for each property.
 But GeoAPI recognizes only the following four multiplicities,
-materialized in the API <a href="#annotations">as annotations</a> and in the method signatures.
+materialized in the API as annotations (<a href="#annotations">§ 6.1.3</a>) and in the method signatures.
 If a different multiplicity is needed, then [0 … ∞] should be used
 with a restriction documented in the text attached to the property.</p>
 </div>
@@ -3251,7 +3252,7 @@ Those annotations encode the source document, stereotype, original name, and obl
 of the various types, properties and operations published by GeoAPI.
 The source document may be completed by a version number when the GeoAPI construct
 is based on a different edition of a normative document than the dated references
-listed in the <a href="#references">references clause</a>.
+listed in <a href="#references">section 3</a>.
 GeoAPI defines two annotations in the Java language (no annotation in Python):
 <code>@UML</code> which is applied on types and properties (fields or methods), and
 <code>@Classifier</code> which can be applied only on types.
@@ -3285,7 +3286,7 @@ This duplication exists because the ISO 19115 standard defines a code list, whil
 </table>
 </div>
 <div class="paragraph">
-<p><a href="#UML-introspection">An example in annex</a> shows how these annotations are applied in the Java language
+<p>An example in <a href="#UML-introspection">§ E.1.1</a> shows how these annotations are applied in the Java language
 and how they are available at runtime by introspection.</p>
 </div>
 </div>
@@ -3423,7 +3424,7 @@ The following table shows the mapping used by GeoAPI to represent the primitive 
 <span class="small">(2) Sometime substituted by <code>long</code> or <code>java.lang.Long</code> where the value may exceed 2<sup>32</sup>.</span><br>
 <span class="small">(3) <code>Decimal</code> differs from <code>Real</code>, as <code>Decimal</code> is exact in base 10 while <code>Real</code> may not.</span><br>
 <span class="small">(4) Substituted by <code>org.opengis.util.InternationalString</code> where the string representation depends on the locale.</span><br>
-<span class="small">(5) Actually an <em>extension data type</em> defined in ISO 19103 annex C.2. See <a href="#internationalization">Internationalization</a>.</span><br></p>
+<span class="small">(5) Actually an <em>extension data type</em> defined in ISO 19103 annex C.2. See <em>internationalization</em> in <a href="#internationalization">§ 6.2.8</a>.</span><br></p>
 </div>
 </div>
 <div class="sect3">
@@ -3564,7 +3565,7 @@ or similar algorithms, which is not always practical.</p>
 <p><em class="reference">From ISO 19103:2015 §6.5</em></p>
 </div>
 <div class="paragraph">
-<p>The <a href="#bibliography">feature models abstract specification</a> defines controlled vocabulary as an
+<p>The feature models abstract specification (<a href="#bibliography">annex G</a>) defines controlled vocabulary as an
 established list of standardized terminology (names, words or phrases) with associated definitions
 for use to identify, describe, index or retrieve information.
 A controlled vocabulary implementation commonly found in many programming languages is enumeration.</p>
@@ -3636,7 +3637,7 @@ or have the same definition as an existing value.</em></p>
 <p>The figure below shows one closed (on the left side) and one opened (on the right side) enumeration derived from ISO 19115.
 The <code>ControlledVocabulary</code> parent interface is a GeoAPI addition. Its indirect inheritance by <code>PixelOrientation</code> is because
 the <code>Enum</code> class is defined by programming language standard library and can not be modified directly.
-<a href="#CodeList-introspection">An example in annex</a> shows how code lists are used in the Java language.</p>
+An example in <a href="#CodeList-introspection">§ E.1.2</a> shows how code lists are used in the Java language.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -3665,8 +3666,8 @@ but this is not necessarily a problem because not all algorithms need stable val
 Some other specifications (for example ISO 19111) do not use any particular suffix.
 The mapping to programmatic API may uniformize those type names to a single convention, depending on the target language.
 For the Java API, <code>Code</code> suffixes are omitted in class names.
-For the Python API, class names are left unchanged.
-See <a href="#naming">Naming conventions</a> for examples.</p>
+But for the Python API, class names are left unchanged.
+See naming conventions in <a href="#naming">§ 6.1.1</a> for examples in both languages.</p>
 </div>
 </div>
 </div>
@@ -3763,7 +3764,7 @@ All those types are mapped to Java and Python classes as below:</p>
 </tbody>
 </table>
 <div class="sect4">
-<h5 id="generic-name-departure"><a class="anchor" href="#generic-name-departure"></a>Departures from ISO model</h5>
+<h5 id="generic_name_departures"><a class="anchor" href="#generic_name_departures"></a>Departures from ISO model</h5>
 <div class="sect5">
 <h6>Generalization</h6>
 <div class="paragraph">
@@ -3793,7 +3794,7 @@ The <code>aName</code> and <code>scopedName</code> properties in sub-interfaces 
 <code>getObject()</code> in <code>GenericName</code> and numerous methods in <code>NameSpace</code>.
 Those methods are not included in GeoAPI interfaces.
 Instead we left these mappings to other frameworks, for example <em>Java Naming and Directory Interface</em> (JNDI).
-<a href="#JNDI">An example in annex</a> shows how some omitted methods can be implemented by JNDI in the Java language.</p>
+An example in <a href="#JNDI">§ E.1.3</a> shows how some omitted methods can be implemented by JNDI in the Java language.</p>
 </div>
 </div>
 <div class="sect5">
@@ -3898,7 +3899,8 @@ The <code>isInstance(…)</code> method is a GeoAPI extension.</p>
 <div class="paragraph">
 <p>The ISO 19103 <code>Field</code> and <code>FieldType</code> interfaces are omitted because the same functionality is achieved
 with <code>Dictionary&lt;MemberName, Type&gt;</code> and <code>Dictionary&lt;MemberName, Any&gt;</code> respectively.
-Dictionaries are realized by language-specific types such as <code>java.util.Map</code> (see <a href="#collections">collections</a>) which offer more flexibility.
+Dictionaries are realized by language-specific types such as <code>java.util.Map</code>
+(see collection types in <a href="#collections">§ 6.2.3</a>) which offer more flexibility.
 In particular dictionaries provide functionality equivalent to the ISO 19103:2005 <code>locate(name : MemberName)</code> method.
 That method was defined in older ISO standard but removed in ISO 19103:2015 revision.
 The use of dictionaries allows GeoAPI to keep the <code>locate</code> functionality despite the method removal.</p>
@@ -4006,7 +4008,7 @@ This specification makes no recommendation about the default or fallback languag
 because some programming languages provide their own mechanism
 (e.g. using <em>Language Range</em> as defined by <a href="https://tools.ietf.org/html/rfc4647">RFC 4647 Matching of Language Tags</a>).
 Consequently GeoAPI delegates most internationalization types to the target language standard library, as shown in the following table.
-An <a href="#InternationalString">example in annex</a> shows the use of <code>InternationalString</code> in the Java language.</p>
+An example in <a href="#InternationalString">§ E.1.4</a> shows the use of <code>InternationalString</code> in the Java language.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch compact">
 <caption class="title">Table 11. Linguistic types mapping</caption>
@@ -4095,7 +4097,7 @@ Likewise <code>Area</code> is accompanied with <code>UomArea</code>, <code>Time<
 because Java and Python already have their own library for units of measurement.
 For example Java has standardized a set of quantity interfaces in the Java Specification Request JSR-363 <span class="red yellow-background">(TODO: upgrade to JSR-385)</span>.
 When such language-specific standard exists and provides equivalent functionality to ISO 19103, that external standard is used.
-See the <a href="#jsr-uom">Java profile</a> or the <a href="#parameterized-units">Java example code</a> for more information.</p>
+See Java profile (<a href="#jsr-uom">§ C.1</a>) or Java example code (<a href="#parameterized-units">§ E.1.5</a>) for more information.</p>
 </div>
 </div>
 </div>
@@ -4117,10 +4119,10 @@ but users may need to cast to the implementation classes in order to modify a me
 </div>
 <div class="paragraph">
 <p>There is almost 500 properties in more than 150 metadata interfaces. This specification does not describe them;
-see ISO 19115 together with GeoAPI <a href="#conformance">Javadoc or Python-doc</a> for a description of each property.
+see ISO 19115 together with GeoAPI Javadoc or Python-doc (<a href="#conformance">section 2</a>) for a description of each property.
 Implementers can support a subset of their choice.
 The following UML example shows a few frequently used interfaces with some of their properties.
-An <a href="#metadata-java">example in annex</a> show how to extract the individual name from a <code>Citation</code>.</p>
+An example in <a href="#metadata-java">§ E.1.6</a> shows how to extract the individual name from a <code>Citation</code> in the Java language.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -4268,7 +4270,9 @@ This is done by inserting the ISO 19115 <code>ReferenceSystem</code> interface b
 <div class="title">Figure 9. Location of <code>ReferenceSystem</code> in the hierarchy of ISO 19111 types</div>
 </div>
 <div class="paragraph">
-<p>The following table lists all association to a reference system from the metadata packages:</p>
+<p>More information about the <code>CoordinateReferenceSystem</code> interface is given
+in the <em>Referencing packages</em> section (<a href="#referencing">§ 6.5</a>).
+The following table lists all association to a reference system from the metadata packages:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch compact">
 <caption class="title">Table 13. Associations from a metadata object to a reference system</caption>
@@ -4347,11 +4351,11 @@ but users should be prepared to receive <code>null</code> (Java), <code>None</co
 This modification has been adopted to allow implementations sufficient latitude
 about how to handle metadata records with nil values.
 Nonetheless, sophisticated implementations can determine if a metadata record conforms with
-the ISO 19115-1 specification by <a href="#UML-introspection">inspecting the annotations at runtime</a>.</p>
+the ISO 19115-1 specification by inspecting the annotations at runtime (<a href="#UML-introspection">§ E.1.1</a>).</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="metadata-departures"><a class="anchor" href="#metadata-departures"></a>6.3.4. Departures from ISO 19115</h4>
+<h4 id="metadata_departures"><a class="anchor" href="#metadata_departures"></a>6.3.4. Departures from ISO 19115</h4>
 <div class="sect4">
 <h5>Harmonization with ISO 19115-2</h5>
 <div class="paragraph">
@@ -4362,7 +4366,7 @@ We integrated such interfaces directly into the existing interfaces rather than 
 For example ISO 19115-2 defines a <code>MI_Band</code> interface which extends the <code>MD_Band</code> interface defined by ISO 19115-1,
 with the addition of a <code>transferFunctionType</code> property (among others) for completing the <code>scaleFactor</code> and
 <code>offset</code> properties defined by ISO 19115-1. GeoAPI merges those two interfaces together,
-with <a href="#annotations">annotations</a> on each property for declaring the originating standard.
+with annotations (<a href="#annotations">§ 6.1.3</a>) on each property for declaring the originating standard.
 The metadata interfaces merged in such way are:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch compact">
@@ -4425,7 +4429,7 @@ The ISO 19115 standard combines those two information in a <code>ReferenceSystem
 <div class="paragraph">
 <p>In order to have a more uniform way to handle reference systems,
 GeoAPI replaces (<em>identifier</em>, <em>type code</em>) tuples by associations to the actual <em>Reference System</em> objects.
-The ISO 19115 <code>ReferenceSystem</code> type is redefined as a subtype of ISO 19111 <code>IdentifiedObject</code> (see <a href="#metadata-reference-system">UML</a>).
+The ISO 19115 <code>ReferenceSystem</code> type is redefined as a subtype of ISO 19111 <code>IdentifiedObject</code> (see UML in <a href="#metadata-reference-system">§ 6.3.2</a>).
 The <code>reference​System​Identifier</code> property defined by ISO 19115 is replaced by inheritance of <code>identifier</code> property from <code>IdentifiedObject</code>.
 The <code>reference​System​Type</code> property value (geographic, projected, compound, geographic identifier, <em>etc.</em>)
 can be determined using language-specific instructions such as <code>instanceof</code> in Java.</p>
@@ -4492,7 +4496,7 @@ The corner <code>DirectPosition</code> instances are acting, for convenience,
 as data containers for tuples of coordinates but not as representations of an actual position.</p>
 </div>
 <div class="sect3">
-<h4 id="geometry-departures"><a class="anchor" href="#geometry-departures"></a>6.4.1. Departures from ISO 19107</h4>
+<h4 id="geometry_departures"><a class="anchor" href="#geometry_departures"></a>6.4.1. Departures from ISO 19107</h4>
 <div class="sect4">
 <h5>Convenience</h5>
 <div class="paragraph">
@@ -4516,7 +4520,7 @@ and combine those to define the coordinate referencing systems (CRS) generally e
 The UML below (incomplete for brevity) shows a few commonly used GeoAPI types.
 Differences compared to ISO 19111
 (notably inheritance from <code>ReferenceSystem</code> type, location of <code>coordinateSystem</code> association and inclusion of <code>MathTransform</code> interface)
-are discussed in following sections and in the <a href="#referencing-departures">departures section</a>.</p>
+are discussed in following sections and in the departures section (<a href="#referencing_departures">§ 6.5.5</a>).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -4525,7 +4529,9 @@ are discussed in following sections and in the <a href="#referencing-departures"
 <div class="title">Figure 10. Subset of interfaces derived from ISO 19111 and other standards</div>
 </div>
 <div class="paragraph">
-<p>The mapping from ISO 19111 packages to GeoAPI packages is shown below:</p>
+<p>More information about the <code>ReferenceSystem</code> parent interface
+is given in the <em>Metadata packages</em> section (<a href="#metadata-reference-system">§ 6.3.2</a>).
+The mapping from ISO 19111 packages to GeoAPI packages is shown below:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch compact">
 <caption class="title">Table 16. Referencing package mapping</caption>
@@ -4580,7 +4586,7 @@ are discussed in following sections and in the <a href="#referencing-departures"
 </tbody>
 </table>
 <div class="sect3">
-<h4 id="coordinate-system"><a class="anchor" href="#coordinate-system"></a>6.5.1. Coordinate system</h4>
+<h4 id="coordinate_system"><a class="anchor" href="#coordinate_system"></a>6.5.1. Coordinate systems</h4>
 <div class="paragraph">
 <p><em class="reference">From ISO 19111:2019 §10 and §C.3</em></p>
 </div>
@@ -4593,24 +4599,12 @@ For example in longitude case, after +180° the coordinate values continue at �
 <div class="paragraph">
 <p>In addition to axis definitions, another important coordinate system characteristic is their type (<code>CartesianCS</code>, <code>SphericalCS</code>, <em>etc.</em>).
 The CS type implies the set of mathematical rules for calculating geometric quantities such as angles, distances and surfaces.
-Usually the various CS subtypes do not define any new programmatic methods compared to the parent type, but are nevertheless important for type safety.</p>
-</div>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-<div class="title">Example</div>
-<div class="paragraph">
-<p>Many calculations or associations are legal only when all axes are perpendicular to each other.
+Usually the various CS subtypes do not define any new programmatic methods compared to the parent type, but are nevertheless important for type safety.
+For example many calculations or associations are legal only when all axes are perpendicular to each other.
 In such case the coordinate system type is restricted to <code>CartesianCS</code> in method signatures.</p>
 </div>
-</td>
-</tr>
-</table>
-</div>
+<div class="sect4">
+<h5>Associations with CRS</h5>
 <div class="paragraph">
 <p>The coordinate system associated to a <code>SingleCRS</code> shall be an instance of one <code>Coordinate­System</code> subtype.
 It should be a subtype defined by ISO 19111 when possible, or a user-defined subtype when no standard type describes the space geometry.
@@ -4648,18 +4642,19 @@ It makes easy for users to get information about the coordinate system axes of a
 with automatic redirection to <code>CompoundCRS</code> components when needed.</p>
 </div>
 </div>
+</div>
 <div class="sect3">
 <h4 id="referencing-factory"><a class="anchor" href="#referencing-factory"></a>6.5.2. Factories</h4>
 <div class="paragraph">
-<p><em class="reference">From OGC 01-009 §12.3.[6…7]</em></p>
+<p><em class="reference">From OGC 01-009 §12.3.[6…7] and §12.4.6</em></p>
 </div>
 <div class="paragraph">
 <p>The referencing packages include factory types defined originally in the OGC 01-009 specification.
-These factories define a normalized approach to object instantiation.
-Subtypes of <code>ObjectFactory</code> instantiate objects by assembling types passed as arguments and
+These factories define a normalized approach to object instantiation and,
+if used exclusively, simplify the work of switching between implementations.
+Subtypes of <code>ObjectFactory</code> instantiate objects by assembling components passed as arguments and
 subtypes of <code>AuthorityFactory</code> instantiate objects based on identifiers in some third party database,
-notably those in the EPSG geodetic dataset assembled by the Surveying &amp; Positioning Committee
-of the International Association of Oil &amp; Gas producers.</p>
+notably those in the EPSG geodetic dataset.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -4673,7 +4668,7 @@ of the International Association of Oil &amp; Gas producers.</p>
 </div>
 <div class="paragraph">
 <p>Code that needs to instantiate one of the objects defined in GeoAPI referencing packages
-should first obtain a reference to the factory in some platform dependent manner
+should first obtain the factory in some platform dependent manner
 and then use the factory methods to instantiate the desired object instances.
 These instances can then be used through the interfaces defined in the GeoAPI library.</p>
 </div>
@@ -4681,9 +4676,26 @@ These instances can then be used through the interfaces defined in the GeoAPI li
 <p>In Java, factory implementations are discovered by <code>java.util.ServiceLoader</code>.
 In Python, GeoAPI does not have a recommended mechanism yet.</p>
 </div>
+<div class="sect4">
+<h5>Axis order</h5>
+<div class="paragraph">
+<p>The order of coordinate system axes in every objects obtained from an <code>AuthorityFactory</code> shall be as defined by the authority.
+The order depends on the Coordinate Reference System (CRS) type and the country defining the CRS.
+In the case of geographic CRS, this is often – but not always – the (<em>latitude</em>, <em>longitude</em>) axis order.
+In particular the following method call:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java">GeographicCRS WGS84 = crsAuthorityFactory.createGeographicCRS(<span class="string"><span class="delimiter">&quot;</span><span class="content">EPSG::4326</span><span class="delimiter">&quot;</span></span>);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>shall return a coordinate reference system with (<em>latitude</em>, <em>longitude</em>) axis order, not (<em>longitude</em>, <em>latitude</em>).</p>
+</div>
+</div>
 </div>
 <div class="sect3">
-<h4 id="coordinate-operation"><a class="anchor" href="#coordinate-operation"></a>6.5.3. Coordinate operation</h4>
+<h4 id="coordinate_operation"><a class="anchor" href="#coordinate_operation"></a>6.5.3. Coordinate operations</h4>
 <div class="paragraph">
 <p><em class="reference">From ISO 19111:2019 §12 and §C.5</em></p>
 </div>
@@ -4701,17 +4713,16 @@ Map projections are kinds of coordinate conversions.</p>
 <li>
 <p>A <em>coordinate transformation</em> involves empirically derived parameters.
 Because those parameters have observational error
-and because the transformation method is only an estimation of a complex reality,
-the result of applying a coordinate transformation contain errors
-with a magnitude estimated by the <code>coordinate­Operation­Accuracy</code> property.
-Several different transformation may exist for the same pair of coordinate reference systems,
-differing in their method, parameter values and accuracy characteristics.</p>
+and because transformation methods are only approximations of a complex reality,
+the coordinate transformation results also have errors.
+Furthermore several transformations may exist for the same pair of coordinate reference systems,
+differing in their method, parameter values, domain of validity and accuracy characteristics.</p>
 </li>
 <li>
 <p><span class="red yellow-background">TODO: Point motion operation.</span></p>
 </li>
 <li>
-<p>A <em>concatenated operation</em> is a sequential execution of any of above operations.</p>
+<p>A <em>concatenated operation</em> defines a sequential execution of any of above operations.</p>
 </li>
 </ul>
 </div>
@@ -4724,31 +4735,117 @@ differing in their method, parameter values and accuracy characteristics.</p>
 <p>Given a source coordinate reference system (CRS) in which existing coordinate values are expressed,
 and a target coordinate reference system in which coordinate values are desired,
 <code>Coordinate­Operation­Factory</code> can provide a coordinate operation performing the conversion or transformation work.
-An <a href="#CoordinateOperation-java">example in Java</a> is provided in annex.</p>
+An example is given in <a href="#CoordinateOperation-java">§ E.1.8</a> for the Java language.</p>
+</div>
+<div class="paragraph">
+<p>Note that when several possibilities exist for the same pair of CRS,
+the selected transformation is implementation-dependent.
+Implementations should select the "best" transformation based on criterion
+such as accuracy and domain of validity, but GeoAPI does not specify any rule.
+Users are encouraged to verify which transformation has been selected by invoking
+the <code>CoordinateOperation.toWKT()</code> method.</p>
+</div>
+<div class="paragraph">
+<p><span class="red yellow-background">TODO: <code>RegisterOperations</code> returns a set of all operations.</span></p>
 </div>
 </div>
 <div class="sect4">
 <h5>From an authority code</h5>
 <div class="paragraph">
-<p>Above method leaves some flexibility to implementations for choosing a coordinate operation when several possibilities exist.
-If a specific operation is needed and if that operation is identified by an authority code,
-it can be provided by <code>Coordinate­Operation­Authority­Factory</code>.</p>
+<p>If a determinist operation is required and if that operation is identified by an authority code,
+then that operation can be obtained with <code>Coordinate­Operation­Authority­Factory</code>.
+This approach avoids the implementation-dependent variability of the approach described in previous paragraph.</p>
 </div>
 </div>
 <div class="sect4">
-<h5>From a parameter values</h5>
+<h5>From operation parameter values</h5>
 <div class="paragraph">
-<p>The <code>Parameter­Value</code> interface provides methods to set the value of the parameter.
+<p>The <code>Parameter­Value</code> interface provides methods to set the value of the operation parameter.
 In the general use pattern for these types, a <code>Parameter­Value­Group</code> containing all the named parameters
 for an operation method is first obtained from the <code>Operation­Method</code> or the <code>Math­Transform­Factory</code>,
 and then each <code>Parameter­Value</code> instance is obtained in turn and its value set.
 This use pattern ensures that all the needed parameters for an operation method can be obtained as a single block.
-An example is given in annex for the <a href="#ProjectedCRS-java">Java</a> language.</p>
+An example is given in <a href="#ProjectedCRS-java">§ E.1.7</a> for the Java language.</p>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="referencing-departures"><a class="anchor" href="#referencing-departures"></a>6.5.4. Departures from ISO 19111</h4>
+<h4 id="math_transform"><a class="anchor" href="#math_transform"></a>6.5.4. Math transforms</h4>
+<div class="paragraph">
+<p><em class="reference">From OGC 01-009 §12.4.5</em></p>
+</div>
+<div class="paragraph">
+<p>The <code>Coordinate­Operation</code> object introduced in previous section provides high-level information
+(source and target CRS, domain of validity, positional accuracy, operation parameter values, <em>etc</em>).
+The actual mathematical work is performed by a separated object obtained by a call to <code>get­MathTransform()</code>.
+At the difference of <code>Coordinate­Operation</code> instances, <code>Math­Transform</code> instances do not carry any metadata.
+They are kind of black box which know nothing about the source and target CRS, the domain or the accuracy
+(actually the same <code>Math­Transform</code> can be used for different pairs of CRS if the mathematical work is the same),
+Furthermore <code>Math­Transform</code> may be implemented in a very different way than what <code>Coordinate­Operation</code> said.
+In particular many conceptually different coordinate operations such as unit conversions, axis swapping, <em>etc.</em>
+can be implemented by <code>Math­Transform</code> as affine transforms and concatenated for efficiency.
+The result may be a <code>MathTransform</code> doing in a single step a calculation
+described by <code>Coordinate­Operation</code> as a chain of distinct operations.
+Having <code>MathTransform</code> separated from <code>CoordinateOperation</code> gives more flexibility to implementers for optimizations.</p>
+</div>
+<div class="paragraph">
+<p><code>MathTransform</code> has a method taking a <code>DirectPosition</code> (the coordinates in source CRS) in input
+and returning a <code>DirectPosition</code> (the coordinates in target CRS) in output.
+But <code>MathTransform</code> provides also various methods operating on an arbitrary amount of coordinate tuples
+packed in arrays of <code>float</code> or <code>double</code> types. If there is many points to transform,
+the methods operating on arrays will generally be much more efficient than the method operating on <code>DirectPosition</code>.
+The example in <a href="#CoordinateOperation-java">§ E.1.8</a> shows how to transform in Java the coordinates of 6 cities.</p>
+</div>
+<div class="sect4">
+<h5>Partial derivatives</h5>
+<div class="paragraph">
+<p><code>MathTransform</code> can also provide the derivative of the transform function at a point.
+The derivative is the matrix of the non-translating portion of the approximate affine map at the point.
+For example if <em>P</em> is a map projection converting degrees of latitude and longitude (<em>φ</em>, <em>λ</em>)
+into projected coordinates (<em>x</em>, <em>y</em>) in metres,
+then the derivative <em>P′</em> can be represented by a Jacobian matrix as below:</p>
+</div>
+<math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="MathML capable browser required">
+  <msup><mi>P</mi><mo>′</mo></msup><mo>(</mo><mi>φ</mi><mo>,</mo><mi>λ</mi><mo>)</mo>
+  <mo>=</mo>
+  <mrow>
+    <mo>[</mo>
+    <mrow>
+      <mtable>
+        <mtr>
+          <mtd><mfrac><mrow><mo>∂</mo><mi>x</mi></mrow><mrow><mo>∂</mo><mi>φ</mi></mrow></mfrac></mtd>
+          <mtd><mfrac><mrow><mo>∂</mo><mi>x</mi></mrow><mrow><mo>∂</mo><mi>λ</mi></mrow></mfrac></mtd>
+        </mtr>
+        <mtr>
+          <mtd><mfrac><mrow><mo>∂</mo><mi>y</mi></mrow><mrow><mo>∂</mo><mi>φ</mi></mrow></mfrac></mtd>
+          <mtd><mfrac><mrow><mo>∂</mo><mi>y</mi></mrow><mrow><mo>∂</mo><mi>λ</mi></mrow></mfrac></mtd>
+        </mtr>
+      </mtable>
+    </mrow>
+    <mo>]</mo>
+  </mrow>
+</math>
+</div>
+</div>
+<div class="sect3">
+<h4 id="referencing_departures"><a class="anchor" href="#referencing_departures"></a>6.5.5. Departures from ISO 19111</h4>
+<div class="sect4">
+<h5>Elements from legacy OGC 01-009</h5>
+<div class="paragraph">
+<p>A major extension of GeoAPI compared the ISO 19111 standard comes from the inclusion,
+directly in the <code>Coordinate­Operation</code> interface,
+of a method providing access to the <code>Math­Transform</code> interface from the older OGC 01-009 specification.
+That interface performs the actual computation of coordinates in target CRS from the coordinates in source CRS.
+This separation between a type providing metadata about coordinate operation and a type doing the actual work
+existed in OGC 01-009 and has been kept by GeoAPI for giving to developers more flexibility regarding optimizations.
+The operations really executed by <code>Math­Transform</code> can be very different than the operations described by <code>Coordinate­Operation</code>
+as long as they are mathematically equivalent.</p>
+</div>
+<div class="paragraph">
+<p>Since the 2019 revision of ISO 19111 specification, the <code>Coordinate­Operation</code> interface has a <code>transform(…)</code> method.
+But that new method can be implemented as a convenience method redirecting the work to <code>Math­Transform</code>.</p>
+</div>
+</div>
 <div class="sect4">
 <h5>Coordinate system association</h5>
 <div class="paragraph">
@@ -4783,7 +4880,7 @@ Implementations can redirect requests for <code>CoordinateSystem</code> axes to 
 </div>
 </div>
 <div class="sect4">
-<h5>Naming</h5>
+<h5>Type and property names</h5>
 <div class="paragraph">
 <p>The ISO 19111 <code>CRS</code> type name has been expanded to the <code>Coordinate­Reference­System</code> name in GeoAPI
 for compatibility with previous GeoAPI versions.
@@ -4793,15 +4890,6 @@ It is also common practice in Java language to avoid abbreviations.</p>
 <p>In the <code>General­Derived­CRS</code> interface, the <code>conversion</code> association to <code>Conversion</code>
 has been renamed <code>conversion­From­Base</code> for making clear that the source CRS is the <code>baseCRS</code>.
 This naming is similar to the one used in OGC 01-009 with direction reversed.</p>
-</div>
-</div>
-<div class="sect4">
-<h5>Elements from legacy OGC 01-009</h5>
-<div class="paragraph">
-<p>A departure of GeoAPI from the ISO 19111 standard comes from the inclusion, directly in the <code>Coordinate­Operation</code> type,
-of a method providing access to the <code>Math­Transform</code> interface from the older OGC 01-009 specification.
-That interface actually calculates the coordinates in target CRS from the coordinates in source CRS.
-<span class="red yellow-background">TODO: Explain why it is a separated interface.</span></p>
 </div>
 </div>
 </div>
@@ -4990,7 +5078,7 @@ The contract for each interface and each method is specified in the javadoc.</p>
 <div class="sect2">
 <h3 id="jsr-uom"><a class="anchor" href="#jsr-uom"></a>C.1. Units of measurement</h3>
 <div class="paragraph">
-<p>The Java profile of GeoAPI does not materialize any of the <a href="#uom">units of measurement</a> types defined by ISO 19103.
+<p>The Java profile of GeoAPI does not materialize any of the units of measurement types (<a href="#uom">§ 6.2.9</a>) defined by ISO 19103.
 Instead, unit modeling is entirely delegated to the Java Specification Request JSR-363 <span class="red yellow-background">(TODO: upgrade to JSR-385)</span>.
 The ISO 19103 <code>Measure</code> type is represented by the JSR-363 <code>Quantity</code> interface.
 The Java standard defines various quantity subtypes in the same way than ISO 19103 does,
@@ -5000,7 +5088,7 @@ Instead, it defines only one unit type, <code>javax.measure.Unit&lt;Q extends Qu
 which is parameterized by the quantity type <code>Q</code>.
 For example instead of defining a <code>UomLength</code> subtype,
 developers use <code>Unit&lt;Length&gt;</code> to qualify the type of Unit or Measure being used.
-More examples are given in <a href="#parameterized-units">appendix E</a>.</p>
+More examples are given in <a href="#parameterized-units">§ E.1.5</a>.</p>
 </div>
 <div class="paragraph">
 <p>The mapping for ISO 19103 measurement types is shown below.
@@ -5176,18 +5264,18 @@ But it still possible to represent their unit of measurement.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p>This appendix provides code snippets in the Java and Python programming languages
-for aspects discussed in the <a href="#overview">Geospatial API overview</a> section.</p>
+for aspects discussed in the Geospatial API overview (<a href="#overview">section 6</a>).</p>
 </div>
 <div class="sect2">
 <h3 id="examples-java"><a class="anchor" href="#examples-java"></a>E.1. Java examples</h3>
 <div class="paragraph">
 <p>This section provides code snippets in the Java programming languages
-for aspects discussed in the <a href="#overview">Geospatial API overview</a> section.</p>
+for aspects discussed in the Geospatial API overview (<a href="#overview">section 6</a>).</p>
 </div>
 <div class="sect3">
 <h4 id="UML-introspection"><a class="anchor" href="#UML-introspection"></a>E.1.1. UML at runtime</h4>
 <div class="paragraph">
-<p>The <a href="#annotations">annotations in API</a> are available at runtime by introspection.
+<p>The annotations in API (<a href="#annotations">§ 6.1.3</a>) are available at runtime by introspection.
 This is useful, for example, when code needs to marshall data using the names
 defined by the ISO standard rather than the GeoAPI names.
 In the following example, the top-level annotations indicate that the <code>ProjectedCRS</code> interface
@@ -5234,7 +5322,7 @@ The annotation system therefore provides access, at runtime, to the original def
 <div class="sect3">
 <h4 id="CodeList-introspection"><a class="anchor" href="#CodeList-introspection"></a>E.1.2. Code list at runtime</h4>
 <div class="paragraph">
-<p><a href="#controlled-vocabulary">Controlled vocabulary</a> can take the form of enumerations or code lists.
+<p>Controlled vocabulary (<a href="#controlled-vocabulary">§ 6.2.4</a>) can take the form of enumerations or code lists.
 Those two types are implemented by <code>java.lang.Enum</code> and <code>org.opengis.util.CodeList</code> respectively.
 The use of <code>CodeList</code> classes includes accessing statically defined elements,
 defining new elements and retrieving any element defined for the code list.
@@ -5264,7 +5352,7 @@ The list of all elements (including new elements created by <code>valueOf(…)</
 <div class="sect3">
 <h4 id="JNDI"><a class="anchor" href="#JNDI"></a>E.1.3. Names in JNDI context</h4>
 <div class="paragraph">
-<p>The <a href="#generic-name">ISO 19103 name types</a> define mapping methods from a name to the object identified by that name.
+<p>The ISO 19103 name types (<a href="#generic-name">§ 6.2.5</a>) define mapping methods from a name to the object identified by that name.
 But the mapping methods defined by ISO 19103 are not part of the <code>NameSpace</code> interface defined by GeoAPI.
 Instead, GeoAPI leaves that functionality to frameworks such as the Java Naming and Directory Interface™ (JNDI).
 Java applications which need such mapping may use the methods in the <code>javax.naming.Context</code> interface:</p>
@@ -5330,7 +5418,7 @@ Java applications which need such mapping may use the methods in the <code>javax
 <div class="sect3">
 <h4 id="InternationalString"><a class="anchor" href="#InternationalString"></a>E.1.4. Multilingual string</h4>
 <div class="paragraph">
-<p><a href="#internationalization">Internationalization</a> is handled using objects provided by the standard Java library
+<p>Internationalization (<a href="#internationalization">§ 6.2.8</a>) is handled using objects provided by the standard Java library
 such as <code>java​.util​.Locale</code>, with the addition of one GeoAPI interface.
 The <code>org​.opengis​.util​.InternationalString</code> interface provides a container for multiple versions of the same text,
 each for a specific <code>Locale</code> — the identifier used in Java for a specific language, possibly in a named territory.</p>
@@ -5356,7 +5444,7 @@ without parameters will depend on the implementation.</p>
 <h4 id="parameterized-units"><a class="anchor" href="#parameterized-units"></a>E.1.5. Parameterized units</h4>
 <div class="paragraph">
 <p>Units of measurement are represented in Java by JSR-363 parameterized interfaces
-(see the <a href="#jsr-uom">Java profile</a> for an overview).
+(see <a href="#jsr-uom">§ C.1</a> for an overview).
 Units of the same parameterized type can be used in unit conversions like below
 (the <code>Units</code> class must be provided by a JSR-363 implementation):</p>
 </div>
@@ -5396,7 +5484,7 @@ Quantity&lt;?&gt; e = f.multiply(d).divide(t);
 <div class="sect3">
 <h4 id="metadata-java"><a class="anchor" href="#metadata-java"></a>E.1.6. Metadata</h4>
 <div class="paragraph">
-<p>The interfaces in the GeoAPI <a href="#metadata">metadata packages</a> are primarily containers of primitive types and other metadata types.
+<p>The interfaces in the GeoAPI metadata packages (<a href="#metadata">§ 6.3</a>) are primarily containers of primitive types and other metadata types.
 Metadata elements will be encountered for example from interfaces in the referencing packages.
 The metadata interfaces enable users to decompose a given element into smaller elements.
 As an example, the following code prints a list of all individuals (ignoring organizations)
@@ -5436,7 +5524,7 @@ but users may need to cast to the implementation classes in order to modify a me
 <div class="sect3">
 <h4 id="ProjectedCRS-java"><a class="anchor" href="#ProjectedCRS-java"></a>E.1.7. Coordinate reference system</h4>
 <div class="paragraph">
-<p>A <a href="#referencing">Coordinate Reference System</a> (CRS) can be constructed on its own or can be derived from other systems.
+<p>A Coordinate Reference System (<a href="#referencing">§ 6.5</a>) can be constructed on its own or can be derived from other systems.
 This example mixes both cases by creating a <code>ProjectedCRS</code> derived from a <code>GeographicCRS</code> with the Mercator projection.
 Here we use an authority which has already defined the geographic CRS, the coordinate system and the projection method
 that we need for this example. Then the example creates a <em>defining conversion</em> from the parameter values and combines
@@ -5510,7 +5598,7 @@ ProjectedCRS makassar = crsRegistry.createProjectedCRS(<span class="string"><spa
 <div class="sect3">
 <h4 id="CoordinateOperation-java"><a class="anchor" href="#CoordinateOperation-java"></a>E.1.8. Coordinate operation</h4>
 <div class="paragraph">
-<p>This usage examples lets implementation infers a <a href="#coordinate-operation">coordinate operation</a>
+<p>This usage examples lets implementation infers a coordinate operation (<a href="#coordinate-operation">[coordinate-operation]</a>)
 for a pair of coordinate reference systems.
 The <code>Coordinate­Operation­Factory</code> does all the work of establishing
 which parameters should be used and correctly instantiating the operation.</p>
@@ -5524,6 +5612,33 @@ CoordinateReferenceSystem targetCRS = ...;
 <span class="comment">// Implementation infers an operation.</span>
 CoordinateOperationFactory opFactory = ...;
 CoordinateOperation op = opFactory.createOperation(sourceCRS, targetCRS);</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The following example uses the operation we just created for transforming coordinate tuples.
+It is possible to transform <code>DirectPosition</code> instances, but if there is many points to transform
+then packing them in a single array is generally more efficient.
+For simplicity reasons, this example performs the coordinate operation in-place
+(i.e. transformed coordinates overwrite source coordinates)
+and assumes that both source and target CRS are two-dimensional.
+But GeoAPI is not restricted to these assumptions.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="comment">// We assume this instance is already available.</span>
+CoordinateOperation op = ...;
+
+<span class="comment">// We assume that the source CRS is geographic.</span>
+<span class="type">double</span><span class="type">[]</span> coordinates = {
+    <span class="float">49.250</span>, -<span class="float">123.100</span>,           <span class="comment">// Vancouver</span>
+    <span class="float">37.783</span>, -<span class="float">122.417</span>,           <span class="comment">// San-Francisco</span>
+    <span class="float">45.500</span>,  -<span class="float">73.567</span>,           <span class="comment">// Montreal</span>
+    <span class="float">40.713</span>,  -<span class="float">74.006</span>,           <span class="comment">// New-York</span>
+    <span class="float">48.801</span>,    <span class="float">2.351</span>,           <span class="comment">// Paris</span>
+    <span class="float">35.666</span>,  <span class="float">139.772</span>};          <span class="comment">// Tokyo</span>
+
+MathTransform mt = op.getMathTransform();
+mt.transform(coordinates, <span class="integer">0</span>, coordinates, <span class="integer">0</span>, <span class="integer">6</span>);    <span class="comment">// 6 is the number of points.</span></code></pre>
 </div>
 </div>
 <div style="page-break-after: always;"></div>
@@ -5641,21 +5756,24 @@ but the interfaces must first have been implemented, ideally several times, and 
 <div class="ulist bibliography">
 <ul>
 <li>
-<p>Features and geometry — Part 1: Feature models (2020),
-<a href="https://docs.ogc.org/as/17-087r13/17-087r13.html">OGC 17-087r13</a></p>
+<p>IOGP. The EPSG Geodetic Parameter Dataset, <a href="https://epsg.org/" class="bare">https://epsg.org/</a></p>
 </li>
 <li>
 <p>ISO 19115-3:2016, Metadata — XML schema implementation for fundamental concepts (2016)</p>
 </li>
 <li>
-<p>OGC® Open Geospatial APIs — White Paper (2016),
+<p>JUnit team. The Junit framework, <a href="https://junit.org/" class="bare">https://junit.org/</a></p>
+</li>
+<li>
+<p>OGC.  Features and geometry — Part 1: Feature models (2020),
+<a href="https://docs.ogc.org/as/17-087r13/17-087r13.html">OGC 17-087r13</a></p>
+</li>
+<li>
+<p>OGC.  Open Geospatial APIs — White Paper (2016),
 <a href="https://docs.opengeospatial.org/wp/16-019r4/16-019r4.html">OGC 16-019r4</a></p>
 </li>
 <li>
-<p>The Junit framework, <a href="https://junit.org/" class="bare">https://junit.org/</a></p>
-</li>
-<li>
-<p>The Unified Code for Units of Measure, <a href="https://unitsofmeasure.org/" class="bare">https://unitsofmeasure.org/</a></p>
+<p>UCUM. The Unified Code for Units of Measure, <a href="https://unitsofmeasure.org/" class="bare">https://unitsofmeasure.org/</a></p>
 </li>
 </ul>
 </div>
@@ -5664,7 +5782,7 @@ but the interfaces must first have been implemented, ideally several times, and 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-03-25 17:06:21 +0100
+Last updated 2021-03-26 17:10:16 +0100
 </div>
 </div>
 <style>

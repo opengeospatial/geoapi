@@ -51,7 +51,9 @@ em.reference {
 /*
  * Main content.
  */
-div.paragraph:not(.text-right) > p {
+div.paragraph:not(.text-right) > p,
+div.ulist > ul > li > p
+{
   text-align: justify;
 }
 
@@ -109,4 +111,11 @@ p.tableblock code {
 div.bibliography p {
   margin-top:    4px;
   margin-bottom: 4px;
+}
+
+/*
+ * Formulas rendered with MathML.
+ */
+math {
+  font-size: 150%
 }
