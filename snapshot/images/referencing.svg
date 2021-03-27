@@ -420,7 +420,7 @@
     <path fill="none" stroke="rgb(0,0,0)" d="M 12687,12350 L 16720,12350"/>
     <path fill="rgb(0,0,0)" stroke="none" d="M 12300,12350 L 12500,12250 12700,12350 12500,12450 12300,12350 Z M 12330,12350 L 12500,12435 12670,12350 12500,12265 12330,12350 Z"/>
     <path fill="rgb(0,0,0)" stroke="none" d="M 17000,12350 L 16721,12500 16700,12500 16700,12489 16939,12360 16700,12360 16700,12340 16939,12340 16700,12211 16700,12200 16721,12200 17000,12350 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="12980" y="12198"><tspan fill="rgb(0,0,0)" stroke="none">+conversionFromBase</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="16409" y="12721"><tspan fill="rgb(0,0,0)" stroke="none">1</tspan></tspan></tspan></text>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="12699" y="12198"><tspan fill="rgb(0,0,0)" stroke="none">+conversionFromBase</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="16409" y="12721"><tspan fill="rgb(0,0,0)" stroke="none">1</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.CustomShape">
