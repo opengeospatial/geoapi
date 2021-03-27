@@ -15,6 +15,9 @@ The result may be a `MathTransform` doing in a single step a calculation
 described by `Coordinate­Operation` as a chain of distinct operations.
 Having `MathTransform` separated from `CoordinateOperation` gives more flexibility to implementers for optimizations.
 
+.Association between Coordinate Operation and Math Transform
+image::math_transform.svg["urn:​ogc:​def:​crs:​EPSG:​10" Partial UML of MathTransform]
+
 `MathTransform` has a method taking a `DirectPosition` (the coordinates in source CRS) in input
 and returning a `DirectPosition` (the coordinates in target CRS) in output.
 But `MathTransform` provides also various methods operating on an arbitrary amount of coordinate tuples

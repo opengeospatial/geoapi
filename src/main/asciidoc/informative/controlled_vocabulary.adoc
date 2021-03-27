@@ -42,7 +42,7 @@ the `Enum` class is defined by programming language standard library and can not
 An example in <<java_code_list>> shows how code lists are used in the Java language.
 
 .Closed and opened enumeration examples
-image::enumeration-examples.svg[Enumeration and CodeList examples]
+image::enumeration_examples.svg[Enumeration and CodeList examples]
 
 
 ===== Departures from ISO model

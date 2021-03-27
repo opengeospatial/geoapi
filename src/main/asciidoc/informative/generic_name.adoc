@@ -21,7 +21,7 @@ GeoAPI extends the model by allowing navigation in the opposite direction,
 with `"urn:​ogc:​def:​crs:​EPSG:​10"` as the _path_ and `"4326"` as the _tip_.
 
 .Components of a generic name
-image::path-components.svg["urn:​ogc:​def:​crs:​EPSG:​10" components]
+image::path_components.svg["urn:​ogc:​def:​crs:​EPSG:​10" components]
 
 `TypeName` and `MemberName` are subtypes of `LocalName`
 for referencing a type (for example a class) and a member (for example a property in a class) respectively.
