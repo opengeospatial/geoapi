@@ -166,7 +166,7 @@
     <path fill="none" stroke="rgb(0,0,0)" d="M 8813,2500 L 6880,2500"/>
     <path fill="rgb(0,0,0)" stroke="none" d="M 9200,2500 L 9000,2600 8800,2500 9000,2400 9200,2500 Z M 9170,2500 L 9000,2415 8830,2500 9000,2585 9170,2500 Z"/>
     <path fill="rgb(0,0,0)" stroke="none" d="M 6600,2500 L 6879,2350 6900,2350 6900,2361 6661,2490 6900,2490 6900,2510 6661,2510 6900,2639 6900,2650 6879,2650 6600,2500 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="7000" y="2348"><tspan fill="rgb(0,0,0)" stroke="none">+scope</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="7000" y="2871"><tspan fill="rgb(0,0,0)" stroke="none">1</tspan></tspan></tspan></text>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="7657" y="2348"><tspan fill="rgb(0,0,0)" stroke="none">+scope</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6999" y="2871"><tspan fill="rgb(0,0,0)" stroke="none">1</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.CustomShape">
@@ -273,7 +273,7 @@
     <path fill="none" stroke="rgb(0,0,0)" d="M 13913,10800 L 10330,10800"/>
     <path fill="rgb(0,0,0)" stroke="none" d="M 14300,10800 L 14100,10900 13900,10800 14100,10700 14300,10800 Z M 14270,10800 L 14100,10715 13930,10800 14100,10885 14270,10800 Z"/>
     <path fill="rgb(0,0,0)" stroke="none" d="M 10050,10800 L 10329,10650 10350,10650 10350,10661 10111,10790 10350,10790 10350,10810 10111,10810 10350,10939 10350,10950 10329,10950 10050,10800 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="10450" y="10648"><tspan fill="rgb(0,0,0)" stroke="none">+attributeType</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="10450" y="11171"><tspan fill="rgb(0,0,0)" stroke="none">1</tspan></tspan></tspan></text>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11233" y="10648"><tspan fill="rgb(0,0,0)" stroke="none">+attributeType</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="10449" y="11171"><tspan fill="rgb(0,0,0)" stroke="none">1</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.ConnectorShape">

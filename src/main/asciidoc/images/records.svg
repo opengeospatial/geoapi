@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.2" width="190.38mm" height="101.31mm" viewBox="978 1485 19038 10131" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:presentation="http://sun.com/xmlns/staroffice/presentation" xmlns:smil="http://www.w3.org/2001/SMIL20/" xmlns:anim="urn:oasis:names:tc:opendocument:xmlns:animation:1.0" xml:space="preserve">
+<svg version="1.2" width="190.38mm" height="99.31mm" viewBox="978 1485 19038 9931" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:presentation="http://sun.com/xmlns/staroffice/presentation" xmlns:smil="http://www.w3.org/2001/SMIL20/" xmlns:anim="urn:oasis:names:tc:opendocument:xmlns:animation:1.0" xml:space="preserve">
  <defs>
   <font id="EmbeddedFont_1" horiz-adv-x="2048">
    <font-face font-family="DejaVu Sans embedded" units-per-em="2048" font-weight="normal" font-style="normal" ascent="1879" descent="476"/>
@@ -168,7 +168,7 @@
     <path fill="none" stroke="rgb(0,0,0)" d="M 12963,2475 L 7780,2475"/>
     <path fill="rgb(0,0,0)" stroke="none" d="M 13350,2475 L 13150,2575 12950,2475 13150,2375 13350,2475 Z M 13320,2475 L 13150,2390 12980,2475 13150,2560 13320,2475 Z"/>
     <path fill="rgb(0,0,0)" stroke="none" d="M 7500,2475 L 7779,2325 7800,2325 7800,2336 7561,2465 7800,2465 7800,2485 7561,2485 7800,2614 7800,2625 7779,2625 7500,2475 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="7900" y="2323"><tspan fill="rgb(0,0,0)" stroke="none">+typeName</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="7900" y="2846"><tspan fill="rgb(0,0,0)" stroke="none">1</tspan></tspan></tspan></text>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11236" y="2323"><tspan fill="rgb(0,0,0)" stroke="none">+typeName</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="7900" y="2846"><tspan fill="rgb(0,0,0)" stroke="none">1</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.CustomShape">
@@ -200,31 +200,31 @@
   </g>
   <g class="com.sun.star.drawing.CustomShape">
    <g id="id14">
-    <rect class="BoundingBox" stroke="none" fill="none" x="9700" y="9600" width="10301" height="1001"/>
-    <path fill="rgb(255,255,153)" stroke="none" d="M 14850,10600 L 9700,10600 9700,9600 20000,9600 20000,10600 14850,10600 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="400"><tspan class="TextPosition" x="13885" y="10004"><tspan fill="rgb(0,0,0)" stroke="none">« interface »</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="353px" font-weight="700"><tspan class="TextPosition" x="14160" y="10407"><tspan fill="rgb(0,0,0)" stroke="none">Record</tspan></tspan></tspan></text>
+    <rect class="BoundingBox" stroke="none" fill="none" x="9700" y="9400" width="10301" height="1001"/>
+    <path fill="rgb(255,255,153)" stroke="none" d="M 14850,10400 L 9700,10400 9700,9400 20000,9400 20000,10400 14850,10400 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="400"><tspan class="TextPosition" x="13885" y="9804"><tspan fill="rgb(0,0,0)" stroke="none">« interface »</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="353px" font-weight="700"><tspan class="TextPosition" x="14160" y="10207"><tspan fill="rgb(0,0,0)" stroke="none">Record</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.CustomShape">
    <g id="id15">
-    <rect class="BoundingBox" stroke="none" fill="none" x="9685" y="9585" width="10331" height="2031"/>
-    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 14850,11600 L 9700,11600 9700,9600 20000,9600 20000,11600 14850,11600 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="10200" y="11196"><tspan fill="rgb(0,0,0)" stroke="none">+ fields : Dictionary&lt;MemberName, Any&gt;</tspan></tspan></tspan></text>
+    <rect class="BoundingBox" stroke="none" fill="none" x="9685" y="9385" width="10331" height="2031"/>
+    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 14850,11400 L 9700,11400 9700,9400 20000,9400 20000,11400 14850,11400 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="10200" y="10996"><tspan fill="rgb(0,0,0)" stroke="none">+ fields : Dictionary&lt;MemberName, Any&gt;</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.LineShape">
    <g id="id16">
-    <rect class="BoundingBox" stroke="none" fill="none" x="9699" y="10599" width="10303" height="3"/>
-    <path fill="none" stroke="rgb(0,0,0)" d="M 9700,10600 L 20000,10600"/>
+    <rect class="BoundingBox" stroke="none" fill="none" x="9699" y="10399" width="10303" height="3"/>
+    <path fill="none" stroke="rgb(0,0,0)" d="M 9700,10400 L 20000,10400"/>
    </g>
   </g>
   <g class="com.sun.star.drawing.ConnectorShape">
    <g id="id17">
-    <rect class="BoundingBox" stroke="none" fill="none" x="14538" y="7500" width="2641" height="2101"/>
-    <path fill="none" stroke="rgb(0,0,0)" d="M 14850,9213 L 14850,7780"/>
-    <path fill="rgb(0,0,0)" stroke="none" d="M 14850,9600 L 14750,9400 14850,9200 14950,9400 14850,9600 Z M 14850,9570 L 14935,9400 14850,9230 14765,9400 14850,9570 Z"/>
+    <rect class="BoundingBox" stroke="none" fill="none" x="14500" y="7500" width="2680" height="1901"/>
+    <path fill="none" stroke="rgb(0,0,0)" d="M 14850,9013 L 14850,7780"/>
+    <path fill="rgb(0,0,0)" stroke="none" d="M 14850,9400 L 14750,9200 14850,9000 14950,9200 14850,9400 Z M 14850,9370 L 14935,9200 14850,9030 14765,9200 14850,9370 Z"/>
     <path fill="rgb(0,0,0)" stroke="none" d="M 14850,7500 L 15000,7779 15000,7800 14989,7800 14860,7561 14860,7800 14840,7800 14840,7561 14711,7800 14700,7800 14700,7779 14850,7500 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="14500" y="8046"><tspan fill="rgb(0,0,0)" stroke="none">1  +recordType</tspan></tspan></tspan></text>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="14500" y="8046"><tspan fill="rgb(0,0,0)" stroke="none">1</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="14500" y="9092"><tspan fill="rgb(0,0,0)" stroke="none">   </tspan><tspan fill="rgb(0,0,0)" stroke="none">+recordType</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.CustomShape">
@@ -253,16 +253,16 @@
     <path fill="none" stroke="rgb(0,0,0)" d="M 9313,6296 L 7773,6278"/>
     <path fill="rgb(0,0,0)" stroke="none" d="M 9700,6300 L 9499,6398 9300,6295 9501,6198 9700,6300 Z M 9670,6300 L 9501,6213 9330,6296 9499,6383 9670,6300 Z"/>
     <path fill="rgb(0,0,0)" stroke="none" d="M 7493,6275 L 7774,6128 7795,6128 7795,6140 7554,6266 7793,6268 7793,6288 7554,6286 7791,6417 7791,6428 7770,6428 7493,6275 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="7893" y="6136"><tspan fill="rgb(0,0,0)" stroke="none">+member</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="7893" y="6659"><tspan fill="rgb(0,0,0)" stroke="none">1..*</tspan></tspan></tspan></text>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="8217" y="6136"><tspan fill="rgb(0,0,0)" stroke="none">+member</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="7893" y="6659"><tspan fill="rgb(0,0,0)" stroke="none">1..*</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.ConnectorShape">
    <g id="id22">
-    <rect class="BoundingBox" stroke="none" fill="none" x="3931" y="3450" width="3213" height="1851"/>
+    <rect class="BoundingBox" stroke="none" fill="none" x="3893" y="3450" width="3251" height="1851"/>
     <path fill="none" stroke="rgb(0,0,0)" d="M 4244,4913 L 4249,3730"/>
     <path fill="rgb(0,0,0)" stroke="none" d="M 4243,5300 L 4144,5100 4245,4900 4344,5100 4243,5300 Z M 4243,5270 L 4329,5100 4244,4930 4159,5100 4243,5270 Z"/>
     <path fill="rgb(0,0,0)" stroke="none" d="M 4250,3450 L 4399,3729 4399,3751 4387,3751 4260,3511 4259,3750 4239,3750 4240,3511 4110,3749 4099,3749 4099,3728 4250,3450 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="3893" y="3996"><tspan fill="rgb(0,0,0)" stroke="none">1  +attributeType</tspan></tspan></tspan></text>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="3893" y="3996"><tspan fill="rgb(0,0,0)" stroke="none">1</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="3893" y="5042"><tspan fill="rgb(0,0,0)" stroke="none">   </tspan><tspan fill="rgb(0,0,0)" stroke="none">+attributeType</tspan></tspan></tspan></text>
    </g>
   </g>
  </g>
