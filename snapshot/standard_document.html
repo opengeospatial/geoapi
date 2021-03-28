@@ -2212,10 +2212,15 @@ p {
 <li><a href="#factories">6.5.2. Factories</a></li>
 <li><a href="#coordinate_operation">6.5.3. Coordinate operations</a></li>
 <li><a href="#math_transform">6.5.4. Math transforms</a></li>
-<li><a href="#referencing_departures">6.5.5. Departures from ISO 19111</a></li>
+<li><a href="#referencing_wkt">6.5.5. Well-Known Text (WKT)</a></li>
+<li><a href="#referencing_departures">6.5.6. Departures from ISO 19111</a></li>
 </ul>
 </li>
-<li><a href="#feature">6.6. Feature packages</a></li>
+<li><a href="#feature">6.6. Feature packages</a>
+<ul class="sectlevel3">
+<li><a href="#moving_feature">6.6.1. Moving feature</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#requirements">7. Requirements</a>
@@ -2716,6 +2721,9 @@ For undated references, the latest edition of the normative document referred to
 </li>
 <li>
 <p>ISO 19157:2013,    Geographic information — Data quality (2013)</p>
+</li>
+<li>
+<p>ISO 19162,         Geographic information — Well-known text representation of coordinate reference systems (2019)</p>
 </li>
 <li>
 <p>OGC 01‑009, OpenGIS® Implementation Specification: Coordinate Transformation Services (2001)</p>
@@ -4520,7 +4528,7 @@ and combine those to define the coordinate referencing systems (CRS) generally e
 The UML below (incomplete for brevity) shows a few commonly used GeoAPI types.
 Differences compared to ISO 19111
 (notably inheritance from <code>ReferenceSystem</code> type, location of <code>coordinateSystem</code> association and inclusion of <code>MathTransform</code> interface)
-are discussed in following sections and in the departures section (<a href="#referencing_departures">§ 6.5.5</a>).</p>
+are discussed in following sections and in the departures section (<a href="#referencing_departures">§ 6.5.6</a>).</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -4805,6 +4813,9 @@ The example in <a href="#java_coordinate_operation">§ E.1.8</a> shows how to tr
 <div class="sect4">
 <h5>Partial derivatives</h5>
 <div class="paragraph">
+<p><em class="reference">From OGC 01-009 §12.4.5.6</em></p>
+</div>
+<div class="paragraph">
 <p><code>MathTransform</code> can also provide the derivative of the transform function at a point.
 The derivative is the matrix of the non-translating portion of the approximate affine map at the point.
 For example if <em>P</em> is a map projection converting degrees of latitude and longitude (<em>φ</em>, <em>λ</em>)
@@ -4834,26 +4845,105 @@ then the derivative <em>P′</em> can be represented by a Jacobian matrix as bel
 </div>
 </div>
 <div class="sect3">
-<h4 id="referencing_departures"><a class="anchor" href="#referencing_departures"></a>6.5.5. Departures from ISO 19111</h4>
+<h4 id="referencing_wkt"><a class="anchor" href="#referencing_wkt"></a>6.5.5. Well-Known Text (WKT)</h4>
+<div class="paragraph">
+<p><em class="reference">From ISO 19162 and OGC 01-009 §7.1</em></p>
+</div>
+<div class="paragraph">
+<p>Most objects in the <code>opengis.referencing</code> packages can be imported and exported in <em>Well-Known Text</em> (WKT) format.
+This format allows the exchange of CRS definitions with implementations of other OGC standards such as web services.
+GeoAPI provides two <code>toWKT()</code> methods for producing a WKT representation of an object:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>One method is defined in the <code>Identified­Object</code> parent interface and is inherited notably by <code>Coordinate­Reference­System</code>.
+But that method can also be used with <code>Coordinate­Operation</code> and various components such as <code>Datum</code>.
+Well Known Text (WKT) character strings produced by that method shall be compliant with the format defined
+in the ISO 19162 standard.</p>
+</li>
+<li>
+<p>A second <code>toWKT()</code> method is defined in the <code>Math­Transform</code> interface, which is not an object defined by ISO standards.
+Character strings produced by that method shall be compliant with the format defined in OGC 01-009 §7.1.
+Other sections such as OGC 01-009 §7.2 should be ignored since they are replaced by ISO 19162.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Difference between the two WKT representations is illustrated below.
+For a very simple operation doing only a swapping of latitude and longitude axes,
+the ISO 19162 representation of the <code>Coordinate­Operation</code> object can be as below:</p>
+</div>
+<div class="listingblock">
+<pre>COORDINATEOPERATION["Axis order change (2D)",
+  SOURCECRS[GEODCRS["RGF93", <span class="wkt-omitted">...definition omitted for brevity...</span>, ID["EPSG", 4171]]],
+  TARGETCRS[GEODCRS["RGF93 (lon-lat)", <span class="wkt-omitted">...definition omitted for brevity...</span>, ID["EPSG", 7084]]],
+  METHOD["Axis Order Reversal (2D)", ID["EPSG", 9843]],
+  AREA["World."], BBOX[-90.00, -180.00, 90.00, 180.00]]</pre>
+</div>
+<div class="paragraph">
+<p>The OGC 01-009 §7.1 representation of the <code>Math­Transform</code> associated to above coordinate operation can be as below.
+All metadata information (source and target CRS, domain of validity, <em>etc.</em>) are lost, and the human-readable
+<em>"Axis Order Reversal"</em> operation is replaced by a more mathematical <em>"Affine parametric transformation"</em> operation.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code>PARAM_MT[&quot;Affine&quot;,
+  PARAMETER[&quot;num_row&quot;, 3],
+  PARAMETER[&quot;num_col&quot;, 3],
+  PARAMETER[&quot;elt_0_0&quot;, 0.0],
+  PARAMETER[&quot;elt_0_1&quot;, 1.0],
+  PARAMETER[&quot;elt_1_0&quot;, 1.0],
+  PARAMETER[&quot;elt_1_1&quot;, 0.0]]</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Those two representations are complementary.
+<code>Coordinate­Operation.toWKT()</code> provides high-level information about the operation
+together with metadata for understanding the context.
+<code>Math­Transform.toWKT()</code> said more information about how the operation is implemented,
+which is useful for analyzing the validity of transformation results.</p>
+</div>
+<div class="paragraph">
+<p>The converse operation – creating an object from a WKT definition – is done by <code>create­FromWKT(…)</code> methods
+defined in <code>CRSFactory</code> and <code>Math­Transform­Factory</code> interface.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="referencing_departures"><a class="anchor" href="#referencing_departures"></a>6.5.6. Departures from ISO 19111</h4>
+<div class="paragraph">
+<p>The main departures of GeoAPI from the ISO 19111 standards are inspired by the legacy OGC 01-009 standard published in 2001.
+That legacy standard included COM, CORBA and Java profiles. In support for those profiles, some aspects of the legacy model
+were better suited to programming languages compared to the more web-focused standards published the following years.
+GeoAPI retains some OGC 01-009 aspects when appropriate and adapt them to the ISO 19111 interfaces.
+References to OGC 01-009 clauses are given in sub-sections below.</p>
+</div>
 <div class="sect4">
-<h5>Elements from legacy OGC 01-009</h5>
+<h5>Separation between coordinate operation metadata and execution</h5>
+<div class="paragraph">
+<p><em class="reference">From OGC 01-009 §12.4.[1,5] and figure 11</em></p>
+</div>
 <div class="paragraph">
 <p>A major extension of GeoAPI compared the ISO 19111 standard comes from the inclusion,
 directly in the <code>Coordinate­Operation</code> interface,
 of a method providing access to the <code>Math­Transform</code> interface from the older OGC 01-009 specification.
 That interface performs the actual computation of coordinates in target CRS from the coordinates in source CRS.
-This separation between a type providing metadata about coordinate operation and a type doing the actual work
+This separation – between a type providing operation metadata and a type doing the actual work –
 existed in OGC 01-009 and has been kept by GeoAPI for giving to developers more flexibility regarding optimizations.
-The operations really executed by <code>Math­Transform</code> can be very different than the operations described by <code>Coordinate­Operation</code>
-as long as they are mathematically equivalent.</p>
+The operations that are really executed by <code>Math­Transform</code> may be very different than the operations described by
+<code>Coordinate­Operation</code>, provided that they are mathematically equivalent.
+An example is given in <a href="#referencing_wkt">§ 6.5.5</a>.</p>
 </div>
 <div class="paragraph">
-<p>Since the 2019 revision of ISO 19111 specification, the <code>Coordinate­Operation</code> interface has a <code>transform(…)</code> method.
+<p>Since the 2019 revision of ISO 19111 specification, the <code>Coordinate­Operation</code> interface has a <code>transform(…)</code> method too.
 But that new method can be implemented as a convenience method redirecting the work to <code>Math­Transform</code>.</p>
 </div>
 </div>
 <div class="sect4">
 <h5>Coordinate system association</h5>
+<div class="paragraph">
+<p><em class="reference">From OGC 01-009 §12.3.5.3 and figure 7</em></p>
+</div>
 <div class="paragraph">
 <p>In the ISO 19111 specification, only <code>SingleCRS</code> has an association to <code>coordinateSystem</code>.
 GeoAPI moves this association to the <code>Coordinate­Reference­System</code> parent interface for user convenience,
@@ -4888,6 +4978,9 @@ Implementations can redirect requests for <code>CoordinateSystem</code> axes to 
 <div class="sect4">
 <h5>Type and property names</h5>
 <div class="paragraph">
+<p><em class="reference">From OGC 01-009 §12.3.11.2</em></p>
+</div>
+<div class="paragraph">
 <p>The ISO 19111 <code>CRS</code> type name has been expanded to the <code>Coordinate­Reference­System</code> name in GeoAPI
 for compatibility with previous GeoAPI versions.
 It is also common practice in Java language to avoid abbreviations.</p>
@@ -4910,6 +5003,20 @@ That figure is also reproduced in ISO 19103:2015 figure E.6.</p>
 </div>
 <div class="paragraph">
 <p><span class="red yellow-background">TODO: provide UML and explain the mapping.</span></p>
+</div>
+<div class="sect3">
+<h4 id="moving_feature"><a class="anchor" href="#moving_feature"></a>6.6.1. Moving feature</h4>
+<div class="paragraph">
+<p><em class="reference">From OGC 18-075 figure 3</em></p>
+</div>
+<div class="paragraph">
+<p>Features often have an attribute of type <code>Geometry</code> (ISO 19107).
+A sub-type of <code>Geometry</code> is <code>Trajectory</code> (ISO 19141).
+A feature where the geometry is a trajectory is a moving feature.
+In addition of time-dependent positions defined by the trajectory,
+a moving feature may also have time-dependent attribute values.
+Those attributes are represented by the <code>DynamicAttribute</code> sub-type.</p>
+</div>
 </div>
 </div>
 </div>
@@ -5765,7 +5872,7 @@ but the interfaces must first have been implemented, ideally several times, and 
 <p>IOGP. The EPSG Geodetic Parameter Dataset, <a href="https://epsg.org/" class="bare">https://epsg.org/</a></p>
 </li>
 <li>
-<p>ISO 19115-3:2016, Metadata — XML schema implementation for fundamental concepts (2016)</p>
+<p>ISO 19115-3, Metadata — XML schema implementation for fundamental concepts (2016)</p>
 </li>
 <li>
 <p>JUnit team. The Junit framework, <a href="https://junit.org/" class="bare">https://junit.org/</a></p>
@@ -5788,7 +5895,7 @@ but the interfaces must first have been implemented, ideally several times, and 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-03-27 12:15:28 +0100
+Last updated 2021-03-28 22:24:51 +0200
 </div>
 </div>
 <style>

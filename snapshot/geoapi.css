@@ -7,23 +7,25 @@
 /*
  * Add more space before headers or titles.
  */
-h2 {margin-top: 80px;}
-h3 {margin-top: 40px;}
+h2 {margin-top: 120px;}
+h3 {margin-top:  80px;}
 h3.discrete {
   margin-top:    9px;
   margin-bottom: 6px;
   font-size:     large;
 }
 h4 {
-  margin-top:  40px;
+  margin-top:  60px;
   font-weight: bold;
   font-size:   large;
 }
 h5 {
+  margin-top:  46px;
   font-size:   large;
   font-weight: bold;
 }
 h6 {
+  margin-top:  40px;
   font-weight: bold;
 }
 div.imageblock div.title {
@@ -114,8 +116,13 @@ div.bibliography p {
 }
 
 /*
- * Formulas rendered with MathML.
+ * CSS used in raw HTML, such as formulas rendered with MathML.
  */
 math {
   font-size: 150%
+}
+
+span.wkt-omitted {
+  font-family: sans-serif;
+  font-style:  italic;
 }
