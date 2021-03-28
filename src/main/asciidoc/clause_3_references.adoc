@@ -16,6 +16,7 @@ For undated references, the latest edition of the normative document referred to
 * ISO 19115-2:2019,  Geographic information — Metadata — Extensions for acquisition and processing (2019)
 * ISO 19141:2008,    Geographic information — Schema for moving features (2008)
 * ISO 19157:2013,    Geographic information — Data quality (2013)
+* ISO 19162,         Geographic information — Well-known text representation of coordinate reference systems (2019)
 * OGC 01‑009, OpenGIS® Implementation Specification: Coordinate Transformation Services (2001)
 * OGC 18-075, OGC® Moving Features Encoding Part I: XML Core (2019)
 * James Gosling, Bill Joy, Guy Steele, Gilad Bracha, Oracle: The Java Language Specification

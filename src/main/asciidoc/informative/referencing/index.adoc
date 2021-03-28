@@ -41,4 +41,6 @@ include::coordinate_operation.adoc[]
 
 include::math_transform.adoc[]
 
+include::wkt.adoc[]
+
 include::departures.adoc[]

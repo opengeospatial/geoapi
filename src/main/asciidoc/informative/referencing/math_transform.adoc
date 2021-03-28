@@ -27,6 +27,8 @@ The example in <<java_coordinate_operation>> shows how to transform in Java the 
 
 
 ===== Partial derivatives
+[.reference]_From OGC 01-009 §12.4.5.6_
+
 `MathTransform` can also provide the derivative of the transform function at a point.
 The derivative is the matrix of the non-translating portion of the approximate affine map at the point.
 For example if _P_ is a map projection converting degrees of latitude and longitude (_φ_, _λ_)
