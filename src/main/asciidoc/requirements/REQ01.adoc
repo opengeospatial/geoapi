@@ -2,12 +2,12 @@
 |===
 |*Requirement 1* {set:cellbgcolor:#CACCCE}|/req/req-class-a/req-name-1 +
  +
-
+{set:cellbgcolor:#FFFFFF}
 Redistributed modules in OGC namespace shall contain the exact same set of types, methods and properties
-as listed in the API documentation published by OGC at the following locations: {set:cellbgcolor:#FFFFFF}
+as listed in the API documentation published by OGC at the following locations:
 
-Java: http://www.geoapi.org/4.0/javadoc +
-Python: [red yellow-background]#TODO#
+Java: http://www.geoapi.org/snapshot/javadoc/ [red yellow-background]#TODO: update URL.# +
+Python: http://www.geoapi.org/snapshot/python/
 |===
 
 Note that this requirement does not mean that vendors must implement all types and methods,

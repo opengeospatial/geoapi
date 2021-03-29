@@ -1,0 +1,9 @@
+[width="90%",cols="2,6"]
+|===
+|*Requirement 3* {set:cellbgcolor:#CACCCE}|/req/req-class-a/req-name-3 +
+ +
+{set:cellbgcolor:#FFFFFF}
+Methods which generate new instances, such as `Factory` methods,
+shall return the desired value or to throw the exception documented in the API,
+such as `Factory­Exception` or a sub-type.
+|===

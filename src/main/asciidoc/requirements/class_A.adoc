@@ -1,18 +1,45 @@
 [cols="1,4",width="90%"]
 |===
-2+|*Requirements Class* {set:cellbgcolor:#CACCCE}
+2+|*Requirements Class: Library* {set:cellbgcolor:#CACCCE}
 2+|http://www.opengis.net/spec/ABCD/m.n/req/req-class-a {set:cellbgcolor:#FFFFFF}
-|Target type |Token
-|Dependency  |http://www.example.org/req/blah
-|Dependency  |urn:iso:ts:iso:19139:clause:6
-|*Requirement 1* {set:cellbgcolor:#CACCCE} |http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-1 +
-requirement description {set:cellbgcolor:#FFFFFF}
-|*Requirement 2* {set:cellbgcolor:#CACCCE} |http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-2 +
-requirement description {set:cellbgcolor:#FFFFFF}
-
-|*Requirement 3* {set:cellbgcolor:#CACCCE} |http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-3 +
-requirement description
+|Target type | Library
+|Dependency  | [red yellow-background]#TODO: Application target type#
+|*Requirement 1* {set:cellbgcolor:#CACCCE} |<<requirement-01,http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-1>> +
+Source and binary compatibility {set:cellbgcolor:#FFFFFF}
+|*Requirement 2* {set:cellbgcolor:#CACCCE} |<<requirement-02,http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-2>> +
+Behavioral compatibility {set:cellbgcolor:#FFFFFF}
+|*Requirement 3* {set:cellbgcolor:#CACCCE} |<<requirement-03,http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-3>> +
+Factory exception {set:cellbgcolor:#FFFFFF}
+|*Requirement 4* {set:cellbgcolor:#CACCCE} |<<requirement-04,http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-4>> +
+Setter methods {set:cellbgcolor:#FFFFFF}
+|*Requirement 5* {set:cellbgcolor:#CACCCE} |<<requirement-05,http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-5>> +
+Mandatory getter methods {set:cellbgcolor:#FFFFFF}
+|*Requirement 6* {set:cellbgcolor:#CACCCE} |<<requirement-06,http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-6>> +
+Optional getter methods {set:cellbgcolor:#FFFFFF}
 {set:cellbgcolor:#FFFFFF}
 |===
 
-[red yellow-background]#TODO#
+
+[[requirement-01]]
+==== Source and binary compatibility
+include::REQ01.adoc[]
+
+[[requirement-02]]
+==== Behavioral compatibility
+include::REQ02.adoc[]
+
+[[requirement-03]]
+==== Factory exception
+include::REQ03.adoc[]
+
+[[requirement-04]]
+==== Setter methods
+include::REQ04.adoc[]
+
+[[requirement-05]]
+==== Mandatory getter methods
+include::REQ05.adoc[]
+
+[[requirement-06]]
+==== Optional getter methods
+include::REQ06.adoc[]
