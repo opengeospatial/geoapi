@@ -1,6 +1,6 @@
 [width="90%",cols="2,6"]
 |===
-|*Requirement 1* {set:cellbgcolor:#CACCCE}|/req/req-class-a/req-name-1 +
+|*Requirement 1* {set:cellbgcolor:#CACCCE}|/req/req-class-a/req-signatures +
  +
 {set:cellbgcolor:#FFFFFF}
 Redistributed modules in OGC namespace shall contain the exact same set of types, methods and properties
@@ -21,6 +21,3 @@ Vendors can also add new types and methods, provided that those additions are in
 different than `org.opengis` and `opengis`.
 Finally, this requirement apply only to libraries redistributed for use by other developers.
 Final applications are free to remove any unused types or methods if such removal is invisible to other developers.
-
-[red yellow-background]#TODO: write a Java program verifying signature of all classes and methods in the `org.opengis` namespace.
-This verification would be done for the "libraries" target type only, not the "applications" target type.#

@@ -1,6 +1,6 @@
 [width="90%",cols="2,6"]
 |===
-|*Requirement 5* {set:cellbgcolor:#CACCCE}|/req/req-class-a/req-name-5 +
+|*Requirement 5* {set:cellbgcolor:#CACCCE}|/req/req-class-a/req-getter-mandatory +
  +
 {set:cellbgcolor:#FFFFFF}
 Unless otherwise specified in this specification or in the API documentation,
@@ -8,7 +8,7 @@ mandatory "getter" methods shall return the requested value unless the value
 is missing in which case they shall throw an exception such as `Illegal­State­Exception`.
 |===
 
-"Getter" methods, methods which obtain a value from an object,
+"Getter" methods (methods which obtain a value from an object)
 are documented through annotations in the Javadoc as mandatory or optional.
 Mandatory "getter" methods are expected to return the requested value
 unless the value is missing in which case they shall throw an exception.

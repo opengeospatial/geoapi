@@ -2,8 +2,8 @@
 == Requirements
 
 This specification defines requirements for two target types: _libraries_ and _applications_.
-A library is any software which exposes the types in `opengis` packages for use by independent parties.
-An application is any software which encapsulates the types in `opengis` packages for its internal working,
+A library is a software that exposes the `opengis` packages for use by independent parties.
+An application is a software that encapsulates the `opengis` packages for its internal working,
 but without exposing them to end users.
 Applications have less requirements than libraries.
 
@@ -11,14 +11,14 @@ Applications have less requirements than libraries.
 ======
 For example compliant libraries shall obey to method signatures declared in published OGC interfaces,
 otherwise other developers could not base their developments on a common set of API.
-However applications are free to modify, add or remove methods as it sees fit;
-if the GeoAPI of the application not invoked by any external user,
+However applications are free to modify, add or remove methods as they see fit;
+if the `opengis` API of the application is not invoked by any external user,
 then changes to that API has no impact on inter-operability.
 ======
 
 
-[[requirements-A]]
-=== Library
+[[requirements-library]]
+=== Library requirements
 
 This section describes requirements for ensuring source compatibility or binary compatibility
 (when applicable) of libraries compliant with this specification.
@@ -26,3 +26,13 @@ Those requirements apply to the _libraries_ made available for use by other deve
 The requirements usually do not apply to applications distributed to end users.
 
 include::requirements/class_A.adoc[]
+
+
+[[requirements-application]]
+=== Application requirements
+
+This section describes requirements for applications implementing GeoAPI.
+Those requirements apply also to libraries (<<requirements-library>>)
+since applications are built from libraries.
+
+include::requirements/class_B.adoc[]

@@ -6,12 +6,28 @@
 [[tests_A]]
 === Conformance Class A
 
-[[test_01]]
-==== Requirement 1
+[[test-signatures]]
+==== Types and method signatures
 [cols=">20h,<80d",width="100%"]
 |============================================
-|Test id:      | conf/conf-class-a/req-name-1
-|Requirement:  | req/req-class-a/req-name-1
+|Test id:      | conf/conf-class-a/req-signatures
+|Requirement:  | <<req-signatures,req/req-class-a/req-signatures>>
 |Test purpose: | Verify that all types and properties in OGC namespace are as published.
-|Test method:  | [red yellow-background]#TODO#
+|Test method:  | [red yellow-background]#TODO: see below.#
 |============================================
+
+[red yellow-background]#TODO: write a Java program verifying signature of all classes and methods in the `org.opengis` namespace.
+This verification would be done for the "libraries" target type only, not the "applications" target type.#
+
+[[test-invariants]]
+==== Object invariants
+[cols=">20h,<80d",width="100%"]
+|============================================
+|Test id:      | conf/conf-class-a/req-invariants
+|Requirement:  | <<req-behavior,req/req-class-a/req-behavior>>
+|Test purpose: | All the instances of GeoAPI interfaces shall be valid according to the test validator, whenever a validator exists for the instance type.
+|Test method:  | [red yellow-background]#TODO: describe validators.#
+|============================================
+
+This does not require that all instances be tested but merely that if the instances were tested,
+they would validate.

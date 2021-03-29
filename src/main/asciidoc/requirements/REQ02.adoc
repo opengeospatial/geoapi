@@ -1,6 +1,6 @@
 [width="90%",cols="2,6"]
 |===
-|*Requirement 2* {set:cellbgcolor:#CACCCE}|/req/req-class-a/req-name-2 +
+|*Requirement 2* {set:cellbgcolor:#CACCCE}|/req/req-class-a/req-behavior +
  +
 {set:cellbgcolor:#FFFFFF}
 Libraries which provide code implementations of the GeoAPI interfaces shall follow
