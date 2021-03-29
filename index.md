@@ -21,7 +21,7 @@ for inter-operability which comes from using a well defined, standardized data m
 from having a pre-defined set of well considered, formal boundaries to modularize their development work.</p>
 
 <p class="text-justify tracking-normal subpixel-antialiased my-6">The GeoAPI interfaces provide a layer which separates
-client code, which call the API, from library code, which implements the API. This follows a similar pattern to 
+client code, which call the API, from library code, which implements the API. This follows a similar pattern to
 the well known <abbr title="Java Database Connectivity">JDBC</abbr> or
 <abbr title="Open Database Connectivity">ODBC</abbr> API which provides a standardized interface to databases.
 Clients can use the API without concern for the particular implementation which they will use.</p>
@@ -31,6 +31,6 @@ Clients can use the API without concern for the particular implementation which 
 </div>
 
 <p>In order to use GeoAPI, developers must select a third-party implementation. Examples about how to use
-GeoAPI with some third-party libraries are available in <a href="{{ '/java/examples/usage.html' | relative_url }}">Java</a> and
+GeoAPI with some third-party libraries are available in <a href="{{ '/java/examples/index.html' | relative_url }}">Java</a> and
 <a href="{{ '/python/examples/index.html' | relative_url }}">Python</a>. There is also some more examples about how to
 <a href="{{ '/java/examples/index.html' | relative_url }}">implement and test</a> a new GeoAPI implementation.</p>

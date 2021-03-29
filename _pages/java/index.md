@@ -24,7 +24,7 @@ title: "GeoAPI for Java"
 </p>
 
 <p>
-  The <a href="examples/usage.html">usage examples</a> provide starting points
+  The <a href="examples/index.html">usage examples</a> provide starting points
   for applying coordinate operations (e.g. map projections) and for fetching some metadata.
 </p>
 
