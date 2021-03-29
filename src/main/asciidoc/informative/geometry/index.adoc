@@ -29,10 +29,5 @@ even if the feature itself is fully inside that domain.
 The corner `DirectPosition` instances are acting, for convenience,
 as data containers for tuples of coordinates but not as representations of an actual position.
 
-[[geometry_departures]]
-==== Departures from ISO 19107
 
-===== Convenience
-GeoAPI has moved the `DirectPosition` and `Envelope` types from the coordinate sub-package
-where they are defined in the ISO 19107 specification up to the `opengis.geometry` package
-due to their importance and frequency of use.
+include::departures.adoc[]

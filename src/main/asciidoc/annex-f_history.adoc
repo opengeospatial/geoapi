@@ -30,6 +30,8 @@ GeoAPI 3.0.0 has been released in 2011 and GeoAPI 3.0.1 in 2017.
 |2009-04-08 |3.0.0-Draft    |Adrian Custer       |All                      |Initial public draft
 |2009-09-06 |3.0.0-Draft-r1 |Martin Desruisseaux |Annex E                  |List of departures
 |2010-02-11 |3.0.0-Draft-r2 |Martin Desruisseaux |8.1.1, 10.1, annex F     |Clarifications
+|2016-11-07 |3.0.1          |Martin Desruisseaux |3, 8.1.6, 8.2, annex G   |Replaced JSR-275 by JSR-363
+|2021-XX-XX |3.1 / 4.0      |Martin Desruisseaux |All                      |Rewrite
 |===============================================================================================
 
 [red yellow-background]#TODO: update references in above table.
@@ -37,10 +39,14 @@ The old sections are listed below.
 They need to be replaced by new section numbers.#
 
 [role="compact"]
-* 8.1.1:   Primitive types
-* 10.1:    Geometry packages - Defined types
+* 3:       Normative references
+* 8.1.1:   Primitive types (numeric, text, date & time, boolean, enumeration)
+* 8.1.6:   Derived types (units of measurement)
+* 8.2:     Use of the utility types (examples with NameFactory and unit conversion)
+* 10.1:    Geometry packages - Defined types (Position, DirectPosition, Envelope).
 * annex E: list of departures
 * annex F: Comparison with legacy OGC specifications
+* annex G: Reference implementation
 
 [[future_work]]
 [discrete]
