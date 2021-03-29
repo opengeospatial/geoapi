@@ -2225,26 +2225,39 @@ p {
 </li>
 <li><a href="#requirements">7. Requirements</a>
 <ul class="sectlevel2">
-<li><a href="#requirements-A">7.1. Requirement class A</a>
+<li><a href="#requirements-library">7.1. Library requirements</a>
 <ul class="sectlevel3">
-<li><a href="#requirement-01">7.1.1. Requirement 1</a></li>
+<li><a href="#req-signatures">7.1.1. Source and binary compatibility</a></li>
+<li><a href="#req-behavior">7.1.2. Behavioral compatibility</a></li>
+<li><a href="#req-factory-methods">7.1.3. Factory exception</a></li>
+<li><a href="#req-setters">7.1.4. Setter methods</a></li>
+<li><a href="#req-getter-mandatory">7.1.5. Mandatory getter methods</a></li>
+<li><a href="#req-getter-optional">7.1.6. Optional getter methods</a></li>
 </ul>
 </li>
+<li><a href="#requirements-application">7.2. Application requirements</a></li>
 </ul>
 </li>
 <li><a href="#conformance_tests">Annex A: Conformance Class Test Suite (Normative)</a>
 <ul class="sectlevel2">
 <li><a href="#tests_A">A.1. Conformance Class A</a>
 <ul class="sectlevel3">
-<li><a href="#test_01">A.1.1. Requirement 1</a></li>
+<li><a href="#test-signatures">A.1.1. Types and method signatures</a></li>
+<li><a href="#test-invariants">A.1.2. Object invariants</a></li>
 </ul>
 </li>
 </ul>
 </li>
-<li><a href="#conformance_levels">Annex B: Conformance Level (Normative)</a></li>
+<li><a href="#conformance_levels">Annex B: Conformance Level (Normative)</a>
+<ul class="sectlevel2">
+<li><a href="#conformance-A">B.1. Level A: referencing base</a></li>
+<li><a href="#conformance-B">B.2. Level B: referencing from components</a></li>
+</ul>
+</li>
 <li><a href="#java">Annex C: Java Profile (Normative)</a>
 <ul class="sectlevel2">
 <li><a href="#uom_jsr">C.1. Units of measurement</a></li>
+<li><a href="#tests_java">C.2. Tests suite</a></li>
 </ul>
 </li>
 <li><a href="#python">Annex D: Python Profile (Normative)</a></li>
@@ -2661,7 +2674,8 @@ Requirements for 2 standardization target types are considered:</p>
 </div>
 <div class="paragraph">
 <p>The second target type (applications) leaves more freedom than the first target type (libraries).
-In particular, applications are free to delete any types, methods or functionalities that they do not use.</p>
+In particular, applications are free to delete any types, methods or functionalities that they do not use.
+Requirements for those two target types are given in <a href="#requirements">section 7</a>.</p>
 </div>
 <div class="paragraph">
 <p>Conformance with this standard shall be checked using all the relevant tests specified in <a href="#conformance_tests">annex A</a> of this document.
@@ -4513,6 +4527,24 @@ where they are defined in the ISO 19107 specification up to the <code>opengis.ge
 due to their importance and frequency of use.</p>
 </div>
 </div>
+<div class="sect4">
+<h5>Union replacement</h5>
+<div class="paragraph">
+<p>ISO 19107 defines <code>Position</code> as the union of <code>DirectPosition</code> and <code>Point</code>.
+But unions are not allowed in Java.
+Instead, GeoAPI defines <code>Position</code> as the base interface of both types
+so a similar functionality can be achieved with an <em>"is instance of"</em> check.</p>
+</div>
+</div>
+<div class="sect4">
+<h5>Efficiency</h5>
+<div class="paragraph">
+<p>GeoAPI adds the following shortcut methods in the <code>Envelope</code> interface.
+They are frequently requested information that implementers can often provide
+in a more efficient way than forcing users to compute them from lower and upper corners:
+<code>dimension</code>, <code>minimum</code>, <code>maximum</code>, <code>median</code> and <code>span</code>.</p>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -4991,6 +5023,60 @@ has been renamed <code>conversion­From­Base</code> for making clear that the s
 This naming is similar to the one used in OGC 01-009 with direction reversed.</p>
 </div>
 </div>
+<div class="sect4">
+<h5>Ellipsoid second defining parameter</h5>
+<div class="paragraph">
+<p><em class="reference">From OGC 01-009 §12.3.10</em></p>
+</div>
+<div class="paragraph">
+<p>ISO 19111 defines the union named <code>Second­Defining­Parameter</code> as being either <code>semi­Minor­Axis</code> or <code>inverse­Flattening</code>.
+The union construct (defined in some languages like C/C++) does not exist in Java.
+GeoAPI changed the interface to require both ellipsoidal parameters
+(in addition to the <code>semiMajorAxis</code> parameter which is mandatory in any case), as was done in OGC 01-009.
+However, implementors could readily permit users to only provide one of the two parameters
+by creating a class which calculates the second parameter from the first.
+For precision, GeoAPI imports the <code>isIvfDefinitive</code> boolean property from OGC 01-009
+to enable the user to establish which of the two parameters was used to define the instance.</p>
+</div>
+</div>
+<div class="sect4">
+<h5>Omitted unions</h5>
+<div class="paragraph">
+<p>ISO 19111 defines <code>GeodeticCS</code>, <code>EngineeringCS</code> and <code>DerivedProjectedCS</code> unions for type safety.
+For example the <code>GeodeticCS</code> union ensures that a <code>GeodeticCRS</code> can only be associated to a
+<code>CartesianCS</code>, an <code>EllipsoidalCS</code> or a <code>SphericalCS</code>.
+Those unions have been omitted from GeoAPI because unions are not supported in Java language,
+and the Python language does not enforce type safety.</p>
+</div>
+</div>
+<div class="sect4">
+<h5>Shared parameters</h5>
+<div class="paragraph">
+<p>ISO 19111 defines seven types for representing coordinate operation parameters,
+but those types are generic enough for use in other contexts.
+GeoAPI moves those types in a separated <code>parameter</code> package
+and rename <code>OperationParameter</code> as <code>ParameterDescriptor</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The removal of the "Operation" prefix is for extending the use of these parameter interfaces
+to a more general use rather than only for referencing operation types.
+The addition of the "Descriptor" suffix is for making more apparent that
+this type is an abstract definition of parameters - not their actual values.
+It is also consistent with usage in other libraries
+(e.g. <code>Parameter­List­Descriptor</code> in <em>Java Advanced Imaging</em>).</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -5025,18 +5111,38 @@ Those attributes are represented by the <code>DynamicAttribute</code> sub-type.<
 <h2 id="requirements"><a class="anchor" href="#requirements"></a>7. Requirements</h2>
 <div class="sectionbody">
 <div class="paragraph">
+<p>This specification defines requirements for two target types: <em>libraries</em> and <em>applications</em>.
+A library is a software that exposes the <code>opengis</code> packages for use by independent parties.
+An application is a software that encapsulates the <code>opengis</code> packages for its internal working,
+but without exposing them to end users.
+Applications have less requirements than libraries.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>For example compliant libraries shall obey to method signatures declared in published OGC interfaces,
+otherwise other developers could not base their developments on a common set of API.
+However applications are free to modify, add or remove methods as they see fit;
+if the <code>opengis</code> API of the application is not invoked by any external user,
+then changes to that API has no impact on inter-operability.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="requirements-library"><a class="anchor" href="#requirements-library"></a>7.1. Library requirements</h3>
+<div class="paragraph">
 <p>This section describes requirements for ensuring source compatibility or binary compatibility
 (when applicable) of libraries compliant with this specification.
 Those requirements apply to the <em>libraries</em> made available for use by other developers.
-The requirements usually do not apply to final products distributed to end users.
-For example compliant libraries shall obey to method signatures declared in published OGC interfaces,
-otherwise other developers could not base their developments on a common set of API.
-However the final product is free to modify, add or remove methods as it sees fit;
-if the GeoAPI of the final product is not invoked by any external application,
-then changes to that API has no impact on inter-operability.</p>
+The requirements usually do not apply to applications distributed to end users.</p>
 </div>
-<div class="sect2">
-<h3 id="requirements-A"><a class="anchor" href="#requirements-A"></a>7.1. Requirement class A</h3>
 <table class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 20%;">
@@ -5044,45 +5150,53 @@ then changes to that API has no impact on inter-operability.</p>
 </colgroup>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top" colspan="2" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirements Class</strong> </p></td>
+<td class="tableblock halign-left valign-top" colspan="2" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirements Class: Library</strong> </p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" colspan="2" style="background-color: #FFFFFF;"><p class="tableblock"><a href="http://www.opengis.net/spec/ABCD/m.n/req/req-class-a" class="bare">http://www.opengis.net/spec/ABCD/m.n/req/req-class-a</a> </p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Target type</p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Token</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Library</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Dependency</p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><a href="http://www.example.org/req/blah" class="bare">http://www.example.org/req/blah</a></p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Dependency</p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">urn:iso:ts:iso:19139:clause:6</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><a href="#requirements-application">Requirements class B: Application</a></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirement 1</strong> </p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><a href="http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-1" class="bare">http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-1</a><br>
-requirement description </p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><a href="#req-signatures">http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-signatures</a><br>
+Source and binary compatibility </p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirement 2</strong> </p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><a href="http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-2" class="bare">http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-2</a><br>
-requirement description </p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><a href="#req-behavior">http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-behavior</a><br>
+Behavioral compatibility </p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirement 3</strong> </p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><a href="http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-3" class="bare">http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-3</a><br>
-requirement description</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><a href="#req-factory-methods">http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-factory-methods</a><br>
+Factory exception </p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirement 4</strong> </p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><a href="#req-setters">http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-setters</a><br>
+Setter methods </p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirement 5</strong> </p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><a href="#req-getter-mandatory">http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-getter-mandatory</a><br>
+Mandatory getter methods </p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirement 6</strong> </p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><a href="#req-getter-optional">http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-getter-optional</a><br>
+Optional getter methods </p></td>
 </tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p><span class="red yellow-background">TODO</span></p>
-</div>
 <div class="sect3">
-<h4 id="requirement-01"><a class="anchor" href="#requirement-01"></a>7.1.1. Requirement 1</h4>
+<h4 id="req-signatures"><a class="anchor" href="#req-signatures"></a>7.1.1. Source and binary compatibility</h4>
 <table class="tableblock frame-all grid-all" style="width: 90%;">
 <colgroup>
 <col style="width: 25%;">
@@ -5091,12 +5205,12 @@ requirement description</p></td>
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirement 1</strong> </p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">/req/req-class-a/req-name-1<br>
-<br></p>
-<p class="tableblock">Redistributed modules in OGC namespace shall contain the exact same set of types, methods and properties
-as listed in the API documentation published by OGC at the following locations: </p>
-<p class="tableblock">Java: <a href="http://www.geoapi.org/4.0/javadoc" class="bare">http://www.geoapi.org/4.0/javadoc</a><br>
-Python: <span class="red yellow-background">TODO</span></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">/req/req-class-a/req-signatures<br>
+<br>
+Redistributed modules in OGC namespace shall contain the exact same set of types, methods and properties
+as listed in the API documentation published by OGC at the following locations:</p>
+<p class="tableblock">Java: <a href="http://www.geoapi.org/snapshot/javadoc/" class="bare">http://www.geoapi.org/snapshot/javadoc/</a> <span class="red yellow-background">TODO: update URL.</span><br>
+Python: <a href="http://www.geoapi.org/snapshot/python/" class="bare">http://www.geoapi.org/snapshot/python/</a></p></td>
 </tr>
 </tbody>
 </table>
@@ -5113,12 +5227,191 @@ different than <code>org.opengis</code> and <code>opengis</code>.
 Finally, this requirement apply only to libraries redistributed for use by other developers.
 Final applications are free to remove any unused types or methods if such removal is invisible to other developers.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="req-behavior"><a class="anchor" href="#req-behavior"></a>7.1.2. Behavioral compatibility</h4>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirement 2</strong> </p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">/req/req-class-a/req-behavior<br>
+<br>
+Libraries which provide code implementations of the GeoAPI interfaces shall follow
+the dictates of the Java or Python API documentation.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="req-factory-methods"><a class="anchor" href="#req-factory-methods"></a>7.1.3. Factory exception</h4>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirement 3</strong> </p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">/req/req-class-a/req-factory-methods<br>
+<br>
+Methods which create new instances, such as <code>Factory</code> methods,
+shall return the desired value or throw the exception documented in the API,
+such as <code>Factory­Exception</code> or a sub-type.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect3">
+<h4 id="req-setters"><a class="anchor" href="#req-setters"></a>7.1.4. Setter methods</h4>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirement 4</strong> </p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">/req/req-class-a/req-setters<br>
+<br>
+"Setter" methods (methods which set the value of an object)
+shall either succeed or throw an exception such as
+<code>Unsupported­Operation­Exception</code> if the method is not implemented,
+<code>Illegal­Argument­Exception</code> if the value is illegal in that implementation, or
+<code>Illegal­State­Exception</code> if some context makes the use of that method illegal.
+This list of exception types is not exclusive.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="title">Example</div>
 <div class="paragraph">
-<p><span class="red yellow-background">TODO: write a Java program verifying signature of all classes and methods in the <code>org.opengis</code> namespace.
-This verification would be done for the "libraries" target type only, not the "applications" target type.</span></p>
+<p>A call to <code>parameter.setValue(-10.25)</code> may have the first of following results which is applicable:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The method is supported and the -10.25 value is valid:<br>
+The setter method returns silently.</p>
+</li>
+<li>
+<p>The method is not implemented by the library:<br>
+<code>Unsupported­Operation­Exception</code> is thrown.</p>
+</li>
+<li>
+<p>Values for that parameter are restricted to positive numbers:<br>
+<code>Illegal­Argument­Exception</code> is thrown.</p>
+</li>
+<li>
+<p>The <code>Parameter­Value</code> instance has been declared unmodifiable:<br>
+<code>Illegal­State­Exception</code> or <code>Unsupported­Operation­Exception</code> is thrown.</p>
+</li>
+</ul>
+</div>
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="req-getter-mandatory"><a class="anchor" href="#req-getter-mandatory"></a>7.1.5. Mandatory getter methods</h4>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirement 5</strong> </p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">/req/req-class-a/req-getter-mandatory<br>
+<br>
+Unless otherwise specified in this specification or in the API documentation,
+mandatory "getter" methods shall return the requested value unless the value
+is missing in which case they shall throw an exception such as <code>Illegal­State­Exception</code>.</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>"Getter" methods (methods which obtain a value from an object)
+are documented through annotations in the Javadoc as mandatory or optional.
+Mandatory "getter" methods are expected to return the requested value
+unless the value is missing in which case they shall throw an exception.
+An exception is made to this requirement in the metadata packages
+because of the extensive existence of incomplete metadata (<a href="#nil_values">§ 6.3.3</a>).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="req-getter-optional"><a class="anchor" href="#req-getter-optional"></a>7.1.6. Optional getter methods</h4>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 25%;">
+<col style="width: 75%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirement 6</strong> </p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">/req/req-class-a/req-getter-optional<br>
+<br>
+Optional "getter" methods shall return the requested value unless the value
+is missing or the method is not implemented in which case they shall return
+an empty collection if possible, or <code>null</code> or <code>None</code> otherwise.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="requirements-application"><a class="anchor" href="#requirements-application"></a>7.2. Application requirements</h3>
+<div class="paragraph">
+<p>This section describes requirements for applications implementing GeoAPI.
+Those requirements apply also to libraries (<a href="#requirements-library">§ 7.1</a>)
+since applications are built from libraries.</p>
+</div>
+<table class="tableblock frame-all grid-all" style="width: 90%;">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirements Class: Application</strong> </p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" colspan="2" style="background-color: #FFFFFF;"><p class="tableblock"><a href="http://www.opengis.net/spec/ABCD/m.n/req/req-class-b" class="bare">http://www.opengis.net/spec/ABCD/m.n/req/req-class-b</a> </p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Target type</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Application</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Dependency</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirement 1</strong> </p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><a href="http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-authority" class="bare">http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-authority</a><br>
+Conformance with authority definitions </p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #CACCCE;"><p class="tableblock"><strong>Requirement 2</strong> </p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><a href="http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-wkt" class="bare">http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-wkt</a><br>
+Conformance with WKT syntax </p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p><span class="red yellow-background">TODO: Describe requirements.</span></p>
 </div>
 <div style="page-break-after: always;"></div>
-</div>
 </div>
 </div>
 </div>
@@ -5128,7 +5421,7 @@ This verification would be done for the "libraries" target type only, not the "a
 <div class="sect2">
 <h3 id="tests_A"><a class="anchor" href="#tests_A"></a>A.1. Conformance Class A</h3>
 <div class="sect3">
-<h4 id="test_01"><a class="anchor" href="#test_01"></a>A.1.1. Requirement 1</h4>
+<h4 id="test-signatures"><a class="anchor" href="#test-signatures"></a>A.1.1. Types and method signatures</h4>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
 <col style="width: 20%;">
@@ -5137,11 +5430,11 @@ This verification would be done for the "libraries" target type only, not the "a
 <tbody>
 <tr>
 <th class="tableblock halign-right valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Test id:</p></th>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">conf/conf-class-a/req-name-1</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">conf/conf-class-a/req-signatures</p></td>
 </tr>
 <tr>
 <th class="tableblock halign-right valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Requirement:</p></th>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">req/req-class-a/req-name-1</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><a href="#req-signatures">req/req-class-a/req-signatures</a></p></td>
 </tr>
 <tr>
 <th class="tableblock halign-right valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Test purpose:</p></th>
@@ -5149,10 +5442,45 @@ This verification would be done for the "libraries" target type only, not the "a
 </tr>
 <tr>
 <th class="tableblock halign-right valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Test method:</p></th>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><span class="red yellow-background">TODO</span></p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><span class="red yellow-background">TODO: see below.</span></p></td>
 </tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p><span class="red yellow-background">TODO: write a Java program verifying signature of all classes and methods in the <code>org.opengis</code> namespace.
+This verification would be done for the "libraries" target type only, not the "applications" target type.</span></p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="test-invariants"><a class="anchor" href="#test-invariants"></a>A.1.2. Object invariants</h4>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 20%;">
+<col style="width: 80%;">
+</colgroup>
+<tbody>
+<tr>
+<th class="tableblock halign-right valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Test id:</p></th>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">conf/conf-class-a/req-invariants</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-right valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Requirement:</p></th>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><a href="#req-behavior">req/req-class-a/req-behavior</a></p></td>
+</tr>
+<tr>
+<th class="tableblock halign-right valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Test purpose:</p></th>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">All the instances of GeoAPI interfaces shall be valid according to the test validator, whenever a validator exists for the instance type.</p></td>
+</tr>
+<tr>
+<th class="tableblock halign-right valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Test method:</p></th>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock"><span class="red yellow-background">TODO: describe validators.</span></p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>This does not require that all instances be tested but merely that if the instances were tested,
+they would validate.</p>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -5161,7 +5489,49 @@ This verification would be done for the "libraries" target type only, not the "a
 <div class="sect1">
 <h2 id="conformance_levels"><a class="anchor" href="#conformance_levels"></a>Annex B: Conformance Level (Normative)</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p>This standard provides several levels of conformance for libraries.
+The levels are determined mostly by the capabilities of <code>referencing</code> or <code>feature</code> packages.
+This standard does not define conformance level for the <code>util</code> and <code>metadata</code> packages
+because those interfaces are typically implemented on a case-by-case basis in support of other packages.</p>
+</div>
+<div class="paragraph">
+<p>All implementations must necessarily provide a fully functional implementation of the
+two-dimensional case of the <code>GeographicCRS</code> interface for the WGS84 ensemble of reference frames.
+"Fully functional" means that the implementation must support all mandatory properties of geographic CRS,
+notably <code>Geodetic­Reference­Frame</code>, <code>Ellipsoid</code>, <code>Prime­Meridian</code>, <code>EllipsoidalCS</code> and <code>Coordinate­System­Axis</code>
+together with the "degree" and "metre" units of measurement. Optional properties can be omitted.</p>
+</div>
+<div class="sect2">
+<h3 id="conformance-A"><a class="anchor" href="#conformance-A"></a>B.1. Level A: referencing base</h3>
+<div class="paragraph">
+<p>The first level identifies implementations capable to provide coordinate reference systems
+of various types (geographic, projected, vertical, temporal, compound…) identified by authority codes.
+This standard does not define which CRS types and which authority codes should be supported;
+the only requirement is that an implementation of the <code>Register­Operations</code> interface shall be provided,
+potentially completed by a <code>CRSAuthority­Factory</code> for each supported authority.
+Implementations at this level are not required to support CRS that are not declared on their list of supported authority codes.</p>
+</div>
+<div class="paragraph">
+<p>Coordinate operations for (source, target) pairs of CRS may be listed in a database such as the EPSG geodetic dataset.
+Implementations at this level are not required to support coordinate operations for (source, target) CRS pairs that are not in their database.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="conformance-B"><a class="anchor" href="#conformance-B"></a>B.2. Level B: referencing from components</h3>
+<div class="paragraph">
+<p>The second level identifies implementations capable to create coordinate reference systems from their components
+(datum, axes, projection parameters…).
+Implementations at this level shall be able to create a CRS from a Well-Known Text (WKT) character string,
+a GML document or from CRS components provided in a programmatic way.
+It generally implies the support of <code>CRSFactory</code>, <code>CSFactory</code> and <code>DatumFactory</code> interfaces.</p>
+</div>
+<div class="paragraph">
+<p>Implementations at this level should be able to create <code>Coordinate­Operation</code> instances for arbitrary pairs of source and target CRS.
+A database may be used for known pairs of CRS, but implementations should be prepared to handle CRS not defined in the database.</p>
+</div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -5173,11 +5543,11 @@ That file can be downloaded using the following Maven coordinates:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="CodeRay highlight"><code>&lt;dependency&gt;
-  &lt;groupId&gt;org.opengis&lt;/groupId&gt;
-  &lt;artifactId&gt;geoapi&lt;/artifactId&gt;
-  &lt;version&gt;SNAPSHOT&lt;/version&gt;
-&lt;/dependency&gt;</code></pre>
+<pre class="CodeRay highlight"><code data-lang="xml"><span class="tag">&lt;dependency&gt;</span>
+  <span class="tag">&lt;groupId&gt;</span>org.opengis<span class="tag">&lt;/groupId&gt;</span>
+  <span class="tag">&lt;artifactId&gt;</span>geoapi<span class="tag">&lt;/artifactId&gt;</span>
+  <span class="tag">&lt;version&gt;</span>SNAPSHOT<span class="tag">&lt;/version&gt;</span>
+<span class="tag">&lt;/dependency&gt;</span></code></pre>
 </div>
 </div>
 <div class="paragraph">
@@ -5362,6 +5732,38 @@ But it still possible to represent their unit of measurement.</p>
 </tr>
 </table>
 </div>
+</div>
+<div class="sect2">
+<h3 id="tests_java"><a class="anchor" href="#tests_java"></a>C.2. Tests suite</h3>
+<div class="paragraph">
+<p>The <code>geoapi-conformance</code> module contains a number of validators which can be used
+in JUnit test cases to test compliance of the objects created in an implementation.
+The GeoAPI validators can establish that certain instances are invalid and therefore
+can readily be integrated into the test suite of any implementation library.
+The following code demonstrates an example which uses the validators to evaluate
+an instance object created by the implementation within a unit test.
+This test requires the JUnit library, version 4 or later, on the Java Classpath.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="CodeRay highlight"><code data-lang="java"><span class="keyword">import</span> <span class="include">static</span> <span class="include">org.opengis.test.Validators</span>.*;
+
+<span class="directive">public</span> <span class="type">class</span> <span class="class">ValidationTests</span> {
+    <span class="annotation">@Test</span>
+    <span class="directive">public</span> <span class="type">void</span> testCRS() {
+        <span class="comment">// The implementation would build this CRS</span>
+        CoordinateReferenceSystem crs = ...;
+        validate(crs);
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If the validation fails, the JUnit library would throw an <code>Assertion­Error</code>.</p>
+</div>
+<div class="paragraph">
+<p><span class="red yellow-background">TODO: explain coordinate operation tests, GIGS tests.</span></p>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -5369,6 +5771,9 @@ But it still possible to represent their unit of measurement.</p>
 <div class="sect1">
 <h2 id="python"><a class="anchor" href="#python"></a>Annex D: Python Profile (Normative)</h2>
 <div class="sectionbody">
+<div class="paragraph">
+<p><span class="red yellow-background">TODO</span></p>
+</div>
 <div style="page-break-after: always;"></div>
 </div>
 </div>
@@ -5824,6 +6229,20 @@ GeoAPI 3.0.0 has been released in 2011 and GeoAPI 3.0.1 in 2017.</p>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">8.1.1, 10.1, annex F</p></td>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Clarifications</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">2016-11-07</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">3.0.1</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Martin Desruisseaux</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">3, 8.1.6, 8.2, annex G</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Replaced JSR-275 by JSR-363</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">2021-XX-XX</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">3.1 / 4.0</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Martin Desruisseaux</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">All</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Rewrite</p></td>
+</tr>
 </tbody>
 </table>
 <div class="paragraph">
@@ -5834,16 +6253,28 @@ They need to be replaced by new section numbers.</span></p>
 <div class="ulist compact">
 <ul>
 <li>
-<p>8.1.1:   Primitive types</p>
+<p>3:       Normative references</p>
 </li>
 <li>
-<p>10.1:    Geometry packages - Defined types</p>
+<p>8.1.1:   Primitive types (numeric, text, date &amp; time, boolean, enumeration)</p>
+</li>
+<li>
+<p>8.1.6:   Derived types (units of measurement)</p>
+</li>
+<li>
+<p>8.2:     Use of the utility types (examples with NameFactory and unit conversion)</p>
+</li>
+<li>
+<p>10.1:    Geometry packages - Defined types (Position, DirectPosition, Envelope).</p>
 </li>
 <li>
 <p>annex E: list of departures</p>
 </li>
 <li>
 <p>annex F: Comparison with legacy OGC specifications</p>
+</li>
+<li>
+<p>annex G: Reference implementation</p>
 </li>
 </ul>
 </div>
@@ -5872,6 +6303,12 @@ but the interfaces must first have been implemented, ideally several times, and 
 <p>IOGP. The EPSG Geodetic Parameter Dataset, <a href="https://epsg.org/" class="bare">https://epsg.org/</a></p>
 </li>
 <li>
+<p>ISO 31, Quantities and units (1992)</p>
+</li>
+<li>
+<p>ISO 1000, SI units and recommendations for the use of their multiples and of certain other units (1992)</p>
+</li>
+<li>
 <p>ISO 19115-3, Metadata — XML schema implementation for fundamental concepts (2016)</p>
 </li>
 <li>
@@ -5895,7 +6332,7 @@ but the interfaces must first have been implemented, ideally several times, and 
 </div>
 <div id="footer">
 <div id="footer-text">
-Last updated 2021-03-28 22:24:51 +0200
+Last updated 2021-03-29 23:47:12 +0200
 </div>
 </div>
 <style>
