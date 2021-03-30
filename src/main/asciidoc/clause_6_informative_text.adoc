@@ -37,3 +37,5 @@ include::informative/geometry/index.adoc[]
 include::informative/referencing/index.adoc[]
 
 include::informative/feature/index.adoc[]
+
+include::informative/filter/index.adoc[]

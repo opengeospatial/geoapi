@@ -31,8 +31,6 @@
  */
 package org.opengis.style;
 
-import org.opengis.filter.expression.ExpressionVisitor;
-
 /**
  * An interface for classes that want to perform operations on a Style
  * hierarchy. It forms part of a GoF Visitor Pattern implementation.
@@ -47,10 +45,6 @@ import org.opengis.filter.expression.ExpressionVisitor;
  * Finally a a style visitor is often used (in conjunction with a factory) in the production of a
  * copy; or slightly modified copy of the original style.</p>
  *
- * <p>It is common practice for a StyleVisitor to also implement an ExpressionVisitor in
- * order to traverse both data structures.</p>
- *
- * @see ExpressionVisitor
  * @see StyleFactory
  * @author Open Geospatial Consortium
  * @author James Macgill

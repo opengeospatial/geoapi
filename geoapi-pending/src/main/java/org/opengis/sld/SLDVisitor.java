@@ -31,7 +31,6 @@
  */
 package org.opengis.sld;
 
-import org.opengis.filter.expression.ExpressionVisitor;
 import org.opengis.style.Style;
 import org.opengis.style.StyleFactory;
 import org.opengis.style.StyleVisitor;
@@ -49,11 +48,7 @@ import org.opengis.style.StyleVisitor;
  * Alternatively it may be to extract specific information from the SLD structure, for example a list of all fills.
  * Finally a a sld visitor is often used (in conjunction with a factory) in the production of a
  * copy; or slightly modified copy of the original sld.
- * <p>
- * It is common practice for a SLDVisitor to also implement a StyleVisitor and ExpressionVisitor in
- * order to traverse all data structures.
  *
- * @see ExpressionVisitor
  * @see StyleVisitor
  * @see StyleFactory
  * @author Open Geospatial Consortium

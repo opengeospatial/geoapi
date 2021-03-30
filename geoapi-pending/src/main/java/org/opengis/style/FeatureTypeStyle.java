@@ -37,7 +37,7 @@ import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
 
 import org.opengis.util.GenericName;
-import org.opengis.filter.Id;
+import org.opengis.filter.ResourceId;
 import org.opengis.metadata.citation.OnlineResource;
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -84,7 +84,7 @@ public interface FeatureTypeStyle {
      * </p>
      */
     @UML(identifier="definedForInst", obligation=OPTIONAL, specification=ISO_19117)
-    Id getFeatureInstanceIDs();
+    ResourceId getFeatureInstanceIDs();
 
     /**
      * Returns the names of the feature type that this style is meant to act

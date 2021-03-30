@@ -162,6 +162,8 @@ public final class NameSpaces {
                         switch (type.getPackage().getName()) {
                             case "org.opengis.util":    prefix = "gco"; break;
                             case "org.opengis.feature": prefix = "GF";  break;
+                            case "org.opengis.filter":
+                            case "org.opengis.filter.capability": return null;
                             default: {
                                 switch (typeName) {
                                     case "DirectPosition": prefix = "GM"; break;

@@ -214,7 +214,8 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
                                 default: throw new AssertionError(uml);
                             }
                             /*
-                             * Special case for methods withoud default despite declared optional.
+                             * Special cases for methods withoud default despite declared optional,
+                             * or conversely (with default despite declared mandatory).
                              */
                             if (c == org.opengis.referencing.operation.Conversion.class) {
                                 switch (m.getName()) {
@@ -233,8 +234,14 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
                                     case "getProperties": isOptional = false;
                                 }
                             }
+                            if (c == org.opengis.filter.BetweenComparisonOperator.class) {
+                                switch (m.getName()) {
+                                    case "getLowerBoundary":
+                                    case "getUpperBoundary": isOptional = true;
+                                }
+                            }
                         }
-                        if (m.isDefault() != isOptional) {
+                        if (m.isDefault() != isOptional && m.getReturnType() != Boolean.TYPE) {
                             fail(c.getSimpleName() + '.' + m.getName() + ": " + (isOptional
                                     ? "expected a default method."
                                     : "should not have default method."));

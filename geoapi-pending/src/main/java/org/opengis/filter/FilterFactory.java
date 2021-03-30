@@ -33,60 +33,8 @@ package org.opengis.filter;
 
 import java.util.List;
 import java.util.Set;
-
-import org.opengis.filter.capability.ArithmeticOperators;
-import org.opengis.filter.capability.ComparisonOperators;
-import org.opengis.filter.capability.FilterCapabilities;
-import org.opengis.filter.capability.FunctionName;
-import org.opengis.filter.capability.Functions;
-import org.opengis.filter.capability.GeometryOperand;
-import org.opengis.filter.capability.IdCapabilities;
-import org.opengis.filter.capability.Operator;
-import org.opengis.filter.capability.ScalarCapabilities;
-import org.opengis.filter.capability.SpatialCapabilities;
-import org.opengis.filter.capability.SpatialOperator;
-import org.opengis.filter.capability.SpatialOperators;
-import org.opengis.filter.capability.TemporalCapabilities;
-import org.opengis.filter.capability.TemporalOperand;
-import org.opengis.filter.capability.TemporalOperators;
-import org.opengis.filter.expression.Add;
-import org.opengis.filter.expression.Divide;
-import org.opengis.filter.expression.Expression;
-import org.opengis.filter.expression.Function;
-import org.opengis.filter.expression.Literal;
-import org.opengis.filter.expression.Multiply;
-import org.opengis.filter.expression.PropertyName;
-import org.opengis.filter.expression.Subtract;
-import org.opengis.filter.identity.FeatureId;
-import org.opengis.filter.identity.GmlObjectId;
-import org.opengis.filter.identity.Identifier;
-import org.opengis.filter.sort.SortBy;
-import org.opengis.filter.sort.SortOrder;
-import org.opengis.filter.spatial.BBOX;
-import org.opengis.filter.spatial.Beyond;
-import org.opengis.filter.spatial.Contains;
-import org.opengis.filter.spatial.Crosses;
-import org.opengis.filter.spatial.DWithin;
-import org.opengis.filter.spatial.Disjoint;
-import org.opengis.filter.spatial.Equals;
-import org.opengis.filter.spatial.Intersects;
-import org.opengis.filter.spatial.Overlaps;
-import org.opengis.filter.spatial.Touches;
-import org.opengis.filter.spatial.Within;
-import org.opengis.filter.temporal.After;
-import org.opengis.filter.temporal.AnyInteracts;
-import org.opengis.filter.temporal.Before;
-import org.opengis.filter.temporal.Begins;
-import org.opengis.filter.temporal.BegunBy;
-import org.opengis.filter.temporal.During;
-import org.opengis.filter.temporal.EndedBy;
-import org.opengis.filter.temporal.Ends;
-import org.opengis.filter.temporal.Meets;
-import org.opengis.filter.temporal.MetBy;
-import org.opengis.filter.temporal.OverlappedBy;
-import org.opengis.filter.temporal.TContains;
-import org.opengis.filter.temporal.TEquals;
-import org.opengis.filter.temporal.TOverlaps;
+import org.opengis.geometry.Envelope;
+import org.opengis.util.GenericName;
 import org.opengis.geometry.Geometry;
 
 
@@ -97,6 +45,7 @@ import org.opengis.geometry.Geometry;
  * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
  * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
  * @author Chris Dillard (SYS Technologies)
+ * @author Jody Garnett (Refractions Research Inc.)
  * @author Johann Sorel (Geomatys)
  * @since GeoAPI 2.0
  */
@@ -116,10 +65,10 @@ public interface FilterFactory {
 //
 ////////////////////////////////////////////////////////////////////////////////
     /** Creates a new feautre id from a string */
-    FeatureId featureId(String id);
+    ResourceId featureId(String id);
 
     /** Creates a new gml object id from a string */
-    GmlObjectId gmlObjectId(String id);
+    ResourceId gmlObjectId(String id);
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -128,39 +77,42 @@ public interface FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
 
     /** {@code AND} filter between two filters. */
-    And and(Filter f, Filter g);
+    BinaryLogicOperator and(Filter f, Filter g);
 
     /** {@code AND} filter between a list of filters. */
-    And and(List<Filter> f);
+    BinaryLogicOperator and(List<Filter> f);
 
     /** {@code OR} filter between two filters. */
-    Or or(Filter f, Filter g);
+    BinaryLogicOperator or(Filter f, Filter g);
 
     /** {@code OR} filter between a list of filters. */
-    Or or (List<Filter> f);
+    BinaryLogicOperator or (List<Filter> f);
 
     /** Reverses the logical value of a filter. */
-    Not not(Filter f);
+    UnaryLogicOperator not(Filter f);
 
     /** Passes only for objects that have one of the IDs given to this object. */
-    Id id(Set<? extends Identifier> ids);
+    ResourceId id(Set<? extends ResourceId> ids);
 
     /** Retrieves the value of a {@linkplain org.opengis.feature.Feature feature}'s property. */
-    PropertyName property(String name);
+    ValueReference property(String name);
+
+    /** Retrieves the value of a {@linkplain org.opengis.feature.Feature feature}'s property. */
+    ValueReference property(GenericName name);
 
     /** A compact way of encoding a range check. */
-    PropertyIsBetween between(Expression expr, Expression lower, Expression upper);
+    BetweenComparisonOperator between(Expression expr, Expression lower, Expression upper);
 
     /** Compares that two sub-expressions are equal to each other.
      * @todo should be equal (so equals can refer to geometry)
      */
-    PropertyIsEqualTo equals(Expression expr1, Expression expr2);
+    BinaryComparisonOperator equals(Expression expr1, Expression expr2);
 
     /** Compares that two sub-expressions are equal to eacher other */
-    PropertyIsEqualTo equal(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
+    BinaryComparisonOperator equal(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
 
     /** Checks that the first sub-expression is not equal to the second subexpression. */
-    PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2 );
+    BinaryComparisonOperator notEqual(Expression expr1, Expression expr2 );
 
     /**
      * Checks that the first sub-expression is not equal to the second subexpression.
@@ -170,10 +122,10 @@ public interface FilterFactory {
      * @param matchCase true if the comparison should be case sensitive
      * @return evaluates to true of expr1 not equal to expr2
      */
-    PropertyIsNotEqualTo notEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
+    BinaryComparisonOperator notEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
 
     /** Checks that the first sub-expression is greater than the second subexpression. */
-    PropertyIsGreaterThan greater(Expression expr1, Expression expr2);
+    BinaryComparisonOperator greater(Expression expr1, Expression expr2);
 
     /**
      * Checks that the first sub-expression is greater than the second subexpression.
@@ -183,38 +135,38 @@ public interface FilterFactory {
      * @param matchCase true if the comparison should be case sensitive
      * @return evaluates to true of expr1 is greater than expr2
      */
-    PropertyIsGreaterThan greater(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
+    BinaryComparisonOperator greater(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
 
     /** Checks that the first sub-expression is greater or equal to the second subexpression. */
-    PropertyIsGreaterThanOrEqualTo greaterOrEqual(Expression expr1, Expression expr2);
+    BinaryComparisonOperator greaterOrEqual(Expression expr1, Expression expr2);
 
     /** Checks that the first sub-expression is greater or equal to the second subexpression. */
-    PropertyIsGreaterThanOrEqualTo greaterOrEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
+    BinaryComparisonOperator greaterOrEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
 
     /** Checks that its first sub-expression is less than its second subexpression. */
-    PropertyIsLessThan less(Expression expr1, Expression expr2);
+    BinaryComparisonOperator less(Expression expr1, Expression expr2);
 
-    PropertyIsLessThan less(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
+    BinaryComparisonOperator less(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
 
     /** Checks that its first sub-expression is less than or equal to its second subexpression. */
-    PropertyIsLessThanOrEqualTo lessOrEqual(Expression expr1, Expression expr2);
+    BinaryComparisonOperator lessOrEqual(Expression expr1, Expression expr2);
 
-    PropertyIsLessThanOrEqualTo lessOrEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
+    BinaryComparisonOperator lessOrEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
 
     /** Character string comparison operator with pattern matching and default wildcards. */
-    PropertyIsLike like(Expression expr, String pattern);
+    LikeOperator like(Expression expr, String pattern);
 
     /** Character string comparison operator with pattern matching and specified wildcards. */
-    PropertyIsLike like(Expression expr, String pattern, String wildcard, String singleChar, String escape);
+    LikeOperator like(Expression expr, String pattern, String wildcard, String singleChar, String escape);
 
     /** Character string comparison operator with pattern matching and specified wildcards. */
-    PropertyIsLike like(Expression expr, String pattern, String wildcard, String singleChar, String escape, boolean matchCase);
+    LikeOperator like(Expression expr, String pattern, String wildcard, String singleChar, String escape, boolean matchCase);
 
     /** Checks if an expression's value is {@code null}. */
-    PropertyIsNull isNull(Expression expr);
+    NullOperator isNull(Expression expr);
 
     /** Checks if an expression's value is nil. */
-    PropertyIsNil isNil(Expression expr);
+    NilOperator isNil(Expression expr);
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -225,7 +177,7 @@ public interface FilterFactory {
     /**
      * Creates an operator that checks if the bounding box of the feature's geometry overlaps the given bounding box.
      *
-     * @param  propertyName  name of geometry property (for a {@link PropertyName} to access a feature's Geometry).
+     * @param  propertyName  name of geometry property (for a {@link ValueReference} to access a feature's Geometry).
      * @param  minx          minimum "x" value (for a literal envelope).
      * @param  miny          minimum "y" value (for a literal envelope).
      * @param  maxx          maximum "x" value (for a literal envelope).
@@ -236,48 +188,93 @@ public interface FilterFactory {
      *
      * @see FilterFactory2#bbox(Expression, Envelope)
      */
-    BBOX bbox(String propertyName, double minx, double miny, double maxx, double maxy, String srs);
+    BinarySpatialOperator bbox(String propertyName, double minx, double miny, double maxx, double maxy, String srs);
+
+    /** Checks if the geometry expression overlaps the specified bounding box. */
+    BinarySpatialOperator bbox(Expression geometry, double minx, double miny, double maxx, double maxy, String srs);
+
+    /**
+     * Checks if the bounding box of the feature's geometry overlaps the indicated bounds.
+     * This method does not strictly confirm to the the Filter 1.0 specification, you may
+     * use it to check expressions other than ValueReference.
+     *
+     * @param geometry  expression used to access a Geometry, in order to check for interaction with bounds
+     * @param bounds    indicates the bounds to check geometry against
+     */
+    BinarySpatialOperator bbox(Expression geometry, Envelope bounds);
 
     /**
      * Creates an operator that checks if all of a feature's geometry is more distant than the given distance
      * from the given geometry.
      *
-     * @param  propertyName  name of geometry property (for a {@link PropertyName} to access a feature's Geometry).
+     * @param  propertyName  name of geometry property (for a {@link ValueReference} to access a feature's Geometry).
      * @param  geometry      the geometry from which to evaluate the distance.
      * @param  distance      minimal distance for evaluating the expression as {@code true}.
      * @param  units         units of the given {@code distance}.
      * @return operator that evaluates to {@code true} when all of a feature's geometry is more distant than
      *         the given distance from the given geometry.
      */
-    Beyond beyond(String propertyName, Geometry geometry, double distance, String units);
+    DistanceOperator beyond(String propertyName, Geometry geometry, double distance, String units);
+
+    /** Check if all of a geometry is more distant than the given distance from this object's geometry. */
+    DistanceOperator beyond(Expression geometry1, Expression geometry2, double distance, String units);
 
     /** Checks if the the first geometric operand contains the second. */
-    Contains    contains(String propertyName, Geometry geometry);
+    BinarySpatialOperator contains(String propertyName, Geometry geometry);
+
+    /** Checks if the the first geometric operand contains the second. */
+    BinarySpatialOperator contains(Expression geometry1, Expression geometry2);
 
     /** Checks if the first geometric operand crosses the second. */
-    Crosses     crosses(String propertyName, Geometry geometry);
+    BinarySpatialOperator crosses(String propertyName, Geometry geometry);
+
+    /** Checks if the first geometric operand crosses the second. */
+    BinarySpatialOperator crosses(Expression geometry1, Expression geometry2);
 
     /** Checks if the first operand is disjoint from the second. */
-    Disjoint    disjoint(String propertyName, Geometry geometry);
+    BinarySpatialOperator disjoint(String propertyName, Geometry geometry);
+
+    /** Checks if the first operand is disjoint from the second. */
+    BinarySpatialOperator disjoint(Expression geometry1, Expression geometry2);
 
     /** Checks if any part of the first geometry lies within the given distance of the second geometry. */
-    DWithin     dwithin(String propertyName, Geometry geometry, double distance, String units);
+    DistanceOperator dwithin(String propertyName, Geometry geometry, double distance, String units);
+
+    /** Checks if any part of the first geometry lies within the given distance of the second geometry. */
+    DistanceOperator dwithin(Expression geometry1, Expression geometry2, double distance, String units);
 
     /** Checks if the geometry of the two operands are equal. */
-    Equals      equals(String propertyName, Geometry geometry);
+    BinarySpatialOperator equals(String propertyName, Geometry geometry);
+
+    /**
+     * Checks if the geometry of the two operands are equal.
+     * @todo should be equal, resolve conflict with BinaryComparisonOperator equals( Expression, Expression )
+     */
+    BinarySpatialOperator equal(Expression geometry1, Expression geometry2);
 
     /** Checks if the two geometric operands intersect. */
-    Intersects  intersects(String propertyName, Geometry geometry);
+    BinarySpatialOperator intersects(String propertyName, Geometry geometry);
+
+    /** Checks if the two geometric operands intersect. */
+    BinarySpatialOperator intersects(Expression geometry1, Expression geometry2);
 
     /** Checks if the interior of the first geometry somewhere overlaps the interior of the second geometry. */
-    Overlaps    overlaps(String propertyName, Geometry geometry);
+    BinarySpatialOperator overlaps(String propertyName, Geometry geometry);
+
+    /** Checks if the interior of the first geometry somewhere overlaps the interior of the second geometry. */
+    BinarySpatialOperator overlaps(Expression geometry1, Expression geometry2);
 
     /** Checks if the feature's geometry touches, but does not overlap with the geometry held by this object. */
-    Touches     touches(String propertyName, Geometry geometry);
+    BinarySpatialOperator touches(String propertyName, Geometry geometry);
+
+    /** Checks if the feature's geometry touches, but does not overlap with the geometry held by this object. */
+    BinarySpatialOperator touches(Expression propertyName1, Expression geometry2);
 
     /** Checks if the feature's geometry is completely contained by the specified constant geometry. */
-    Within      within(String propertyName, Geometry geometry);
+    BinarySpatialOperator within(String propertyName, Geometry geometry);
 
+    /** Checks if the feature's geometry is completely contained by the specified constant geometry. */
+    BinarySpatialOperator within(Expression geometry1, Expression geometry2);
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -286,46 +283,46 @@ public interface FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
 
     /** Check if first expression is after the second. */
-    After       after(Expression expr1, Expression expr2);
+    TemporalOperator after(Expression expr1, Expression expr2);
 
     /** Sortcut filter for NOT (Before OR Meets OR MetBy OR After). */
-    AnyInteracts anyInteracts(Expression expr1, Expression expr2);
+    TemporalOperator anyInteracts(Expression expr1, Expression expr2);
 
     /** Check if first expression is before the second. */
-    Before      before(Expression expr1, Expression expr2);
+    TemporalOperator before(Expression expr1, Expression expr2);
 
     /** Check if first expression begins at the second. */
-    Begins      begins(Expression expr1, Expression expr2);
+    TemporalOperator begins(Expression expr1, Expression expr2);
 
     /** Check if first expression begun by the second. */
-    BegunBy     begunBy(Expression expr1, Expression expr2);
+    TemporalOperator begunBy(Expression expr1, Expression expr2);
 
     /** Check if first expression is during the second. */
-    During      during(Expression expr1, Expression expr2);
+    TemporalOperator during(Expression expr1, Expression expr2);
 
     /** Check if first expression ends by the second. */
-    Ends        ends(Expression expr1, Expression expr2);
+    TemporalOperator ends(Expression expr1, Expression expr2);
 
     /** Check if first expression is ended by the second. */
-    EndedBy     endedBy(Expression expr1, Expression expr2);
+    TemporalOperator endedBy(Expression expr1, Expression expr2);
 
     /** Check if first expression meets the second. */
-    Meets       meets(Expression expr1, Expression expr2);
+    TemporalOperator meets(Expression expr1, Expression expr2);
 
     /** Check if first expression is met by the second. */
-    MetBy       metBy(Expression expr1, Expression expr2);
+    TemporalOperator metBy(Expression expr1, Expression expr2);
 
     /** Check if first expression is overlapped by the second. */
-    OverlappedBy overlappedBy(Expression expr1, Expression expr2);
+    TemporalOperator overlappedBy(Expression expr1, Expression expr2);
 
     /** Check if first expression iscontained in the second. */
-    TContains    tcontains(Expression expr1, Expression expr2);
+    TemporalOperator tcontains(Expression expr1, Expression expr2);
 
     /** Check if first expression equal to the second. */
-    TEquals      tequals(Expression expr1, Expression expr2);
+    TemporalOperator tequals(Expression expr1, Expression expr2);
 
     /** Check if first expression overlaps the second. */
-    TOverlaps     toverlaps(Expression expr1, Expression expr2);
+    TemporalOperator toverlaps(Expression expr1, Expression expr2);
 
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -335,19 +332,19 @@ public interface FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
 
     /** Computes the numeric addition of the first and second operand. */
-    Add       add(Expression expr1, Expression expr2);
+    Expression add(Expression expr1, Expression expr2);
 
     /** Computes the numeric quotient resulting from dividing the first operand by the second. */
-    Divide    divide(Expression expr1, Expression expr2);
+    Expression divide(Expression expr1, Expression expr2);
 
     /** Computes the numeric product of their first and second operand. */
-    Multiply  multiply(Expression expr1, Expression expr2);
+    Expression multiply(Expression expr1, Expression expr2);
 
     /** Computes the numeric difference between the first and second operand. */
-    Subtract  subtract(Expression expr1, Expression expr2);
+    Expression subtract(Expression expr1, Expression expr2);
 
     /** Call into some implementation-specific function. */
-    Function  function(String name, Expression ... args);
+    Expression function(String name, Expression ... args);
 
     /** A constant, literal value that can be used in expressions. */
     Literal  literal(Object obj);
@@ -382,50 +379,5 @@ public interface FilterFactory {
     //
     //////////////////////////////////////////////////////////////////////////////    //
     /** Indicates an property by which contents should be sorted, along with intended order. */
-    SortBy sort(String propertyName, SortOrder order);
-
-    ////////////////////////////////////////////////////////////////////////////////
-    //
-    //  CAPABILITIES
-    //
-    ////////////////////////////////////////////////////////////////////////////////
-    /** operators */
-    Operator operator(String name);
-
-    /** spatial operator */
-    SpatialOperator spatialOperator(String name, GeometryOperand[] geometryOperands);
-
-    /** function name */
-    FunctionName functionName(String name, int nargs);
-
-    /** functions */
-    Functions functions(FunctionName[] functionNames);
-
-    /** spatial operators */
-    SpatialOperators spatialOperators(SpatialOperator[] spatialOperators);
-
-    /** comparison operators */
-    ComparisonOperators comparisonOperators(Operator[] comparisonOperators);
-
-    /** arithmetic operators */
-    ArithmeticOperators arithmeticOperators(boolean simple, Functions functions);
-
-    /** scalar capabilities */
-    ScalarCapabilities scalarCapabilities(ComparisonOperators comparison,
-        ArithmeticOperators arithmetic, boolean logical);
-
-    /** spatial capabilities */
-    SpatialCapabilities spatialCapabilities(GeometryOperand[] geometryOperands,
-        SpatialOperators spatial);
-
-    /** temporal capabilities */
-    TemporalCapabilities temporalCapabilities(TemporalOperand[] temporalOperands,
-        TemporalOperators temporal);
-
-    /** id capabilities */
-    IdCapabilities idCapabilities(boolean eid, boolean fid);
-
-    /** filter capabilities */
-    FilterCapabilities capabilities(String version, ScalarCapabilities scalar,
-        SpatialCapabilities spatial, TemporalCapabilities temporal, IdCapabilities id);
+    SortProperty sort(String propertyName, SortOrder order);
 }

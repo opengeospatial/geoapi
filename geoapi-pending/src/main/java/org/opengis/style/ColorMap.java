@@ -32,7 +32,7 @@
 package org.opengis.style;
 
 import org.opengis.annotation.XmlElement;
-import org.opengis.filter.expression.Function;
+import org.opengis.filter.Expression;
 
 
 /**
@@ -62,7 +62,7 @@ public interface ColorMap {
      *
      * @return Interpolate or Categorize function
      */
-    Function getFunction();
+    Expression getFunction();
 
     /**
      * calls the visit method of a StyleVisitor

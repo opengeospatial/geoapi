@@ -466,6 +466,29 @@ public enum Specification {
     ISO_19139((short) 2007),
 
     /**
+     * ISO 19143, Filter encoding.
+     * This is the specification for package {@link org.opengis.filter} and sub-packages.
+     *
+     * <p><b>ISO abstract:</b></p>
+     * <div class="note">
+     * A fundamental operation performed on a set of data or resources is that of querying
+     * in order to obtain a subset of the data which contains certain desired information
+     * that satisfies some query criteria and which is also, perhaps, sorted in some specified manner.
+     * </div>
+     *
+     * <p><b>Version numbers used in GeoAPI:</b></p>
+     * <ul>
+     *   <li><b>2010:</b> ISO 19143:2010   ({@linkplain #defaultVersion() default version})</li>
+     * </ul>
+     *
+     * @see <a href="https://www.iso.org/standard/42137.html">ISO 19143:2010 on standards catalogue</a>
+     * @see <a href="http://docs.opengeospatial.org/is/09-026r2/09-026r2.html">OGC 09-026 on OGC Public Document Repository</a>
+     *
+     * @since 3.1
+     */
+    ISO_19143((short) 2010),
+
+    /**
      * ISO 19157, Data quality.
      * This is the specification for package {@link org.opengis.metadata.quality} and sub-packages.
      *
@@ -589,22 +612,6 @@ public enum Specification {
      * @since 3.1
      */
     OGC_MOVING_FEATURE((short) 1),
-
-    /**
-     * Filter encoding implementation specification.
-     * This is the specification for package {@link org.opengis.filter} and sub-packages.
-     *
-     * <p><b>Version numbers used in GeoAPI:</b></p>
-     * <ul>
-     *   <li><b>1:</b> OGC 02-059</li>
-     *   <li><b>2:</b> OGC 09-026   ({@linkplain #defaultVersion() default version})</li>
-     * </ul>
-     *
-     * @see <a href="http://www.opengeospatial.org/standards/filter">Download from OGC</a>
-     *
-     * @since 3.1
-     */
-    OGC_FILTER((short) 2),
 
     /**
      * Observations and Measurements, part 1.

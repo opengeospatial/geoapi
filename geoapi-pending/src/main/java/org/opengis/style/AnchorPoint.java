@@ -32,7 +32,7 @@
 package org.opengis.style;
 
 import org.opengis.annotation.XmlElement;
-import org.opengis.filter.expression.Expression;
+import org.opengis.filter.Expression;
 
 /**
  * An AnchorPoint identifies the location inside a textlabel to use as an

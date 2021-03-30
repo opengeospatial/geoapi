@@ -112,6 +112,12 @@ Feature attribute type or feature attribute instance is used when only one is me
 operation that every instance of a feature type may perform +
  [source: ISO 19109]
 
+[[term_function]]
+[discrete]
+=== function
+rule that associates each element from a domain (source, or domain of the function) to a unique element in another domain (target, co-domain, or range) +
+ [source: ISO 19107:2003]
+
 [[term_geographic_feature]]
 [discrete]
 === geographic feature
@@ -139,6 +145,13 @@ which can impose ordering restrictions on interactions through the interface.# +
 === Java
 trademark of Oracle used to refer to an object oriented, single inheritance programming language
 whose syntax derives from the C programming language and which is defined by the Java Language Specification
+
+[[term_literal_value]]
+[discrete]
+=== literal value
+constant, explicitly specified value +
+[small]#Note 1 to entry: This contrasts with a value that is determined by resolving a chain of substitution (e.g. a variable).# +
+ [source: ISO 19143]
 
 [[term_metadata]]
 [discrete]
