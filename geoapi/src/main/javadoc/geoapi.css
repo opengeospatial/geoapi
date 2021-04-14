@@ -171,12 +171,11 @@ div.note:before {
 /*
  * The note about departures from OGC/ISO specifications.
  */
-div.departure {
-  color:    slategray;
-  margin-left:   40px;
-  margin-right:  40px;
-  margin-top:     9px;
-  margin-bottom:  9px;
+dl > dt.departure {
+  color: #839192;
+}
+dl > dd.departure {
+  color:      #839192;
   text-align: justify;
 }
 
