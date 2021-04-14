@@ -1,0 +1,9 @@
+[width="90%",cols="2,6"]
+|===
+|*Requirement 6* {set:cellbgcolor:#CACCCE}|/req/req-class-a/req-getter-optional +
+ +
+{set:cellbgcolor:#FFFFFF}
+Optional "getter" methods shall return the requested value unless the value
+is missing or the method is not implemented in which case they shall return
+an empty collection if possible, or `null` or `None` otherwise.
+|===

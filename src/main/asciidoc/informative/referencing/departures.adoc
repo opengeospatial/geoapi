@@ -1,0 +1,101 @@
+[[referencing_departures]]
+==== Departures from ISO 19111
+
+The main departures of GeoAPI from the ISO 19111 standards are inspired by the legacy OGC 01-009 standard published in 2001.
+That legacy standard included COM, CORBA and Java profiles. In support for those profiles, some aspects of the legacy model
+were better suited to programming languages compared to the more web-focused standards published the following years.
+GeoAPI retains some OGC 01-009 aspects when appropriate and adapt them to the ISO 19111 interfaces.
+References to OGC 01-009 clauses are given in sub-sections below.
+
+
+===== Separation between coordinate operation metadata and execution
+[.reference]_From OGC 01-009 §12.4.[1,5] and figure 11_
+
+A major extension of GeoAPI compared the ISO 19111 standard comes from the inclusion,
+directly in the `Coordinate­Operation` interface,
+of a method providing access to the `Math­Transform` interface from the older OGC 01-009 specification.
+That interface performs the actual computation of coordinates in target CRS from the coordinates in source CRS.
+This separation – between a type providing operation metadata and a type doing the actual work –
+existed in OGC 01-009 and has been kept by GeoAPI for giving to developers more flexibility regarding optimizations.
+The operations that are really executed by `Math­Transform` may be very different than the operations described by
+`Coordinate­Operation`, provided that they are mathematically equivalent.
+An example is given in <<referencing_wkt>>.
+
+Since the 2019 revision of ISO 19111 specification, the `Coordinate­Operation` interface has a `transform(…)` method too.
+But that new method can be implemented as a convenience method redirecting the work to `Math­Transform`.
+
+
+===== Coordinate system association
+[.reference]_From OGC 01-009 §12.3.5.3 and figure 7_
+
+In the ISO 19111 specification, only `SingleCRS` has an association to `coordinateSystem`.
+GeoAPI moves this association to the `Coordinate­Reference­System` parent interface for user convenience,
+because coordinate system (CS) dimension and axes are frequently requested information
+and will always be available, directly or indirectly, even for `CompoundCRS`.
+However only coordinate systems associated to `SingleCRS` can be instances of ISO 19111 concrete subtypes
+(`CartesianCS`, `SphericalCS`, `VerticalCS`, _etc._);
+it is not possible to assign a standard concrete type to the coordinate system of a `CompoundCRS`.
+For the later case, users see only the abstract `CoordinateSystem` type which serves merely as an axis container.
+The concrete CS subtype can be hidden in implementation details.
+
+.Rational
+[NOTE]
+======
+This generalization would not be appropriate for a database schema or for formats such as _Well Known Text_
+because axes listed with a `CompoundCRS` would be redundant with axes listed with each CRS component.
+But this consideration does not apply to programming languages: the axes do not need to be repeated
+because each method such as `CoordinateSystem.getAxis(int)` contains code, not necessarily data structure.
+Implementations can redirect requests for `CoordinateSystem` axes to corresponding `CompoundCRS` elements.
+======
+
+
+===== Type and property names
+[.reference]_From OGC 01-009 §12.3.11.2_
+
+The ISO 19111 `CRS` type name has been expanded to the `Coordinate­Reference­System` name in GeoAPI
+for compatibility with previous GeoAPI versions.
+It is also common practice in Java language to avoid abbreviations.
+
+In the `General­Derived­CRS` interface, the `conversion` association to `Conversion`
+has been renamed `conversion­From­Base` for making clear that the source CRS is the `baseCRS`.
+This naming is similar to the one used in OGC 01-009 with direction reversed.
+
+
+===== Ellipsoid second defining parameter
+[.reference]_From OGC 01-009 §12.3.10_
+
+ISO 19111 defines the union named `Second­Defining­Parameter` as being either `semi­Minor­Axis` or `inverse­Flattening`.
+The union construct (defined in some languages like C/C++) does not exist in Java.
+GeoAPI changed the interface to require both ellipsoidal parameters
+(in addition to the `semiMajorAxis` parameter which is mandatory in any case), as was done in OGC 01-009.
+However, implementors could readily permit users to only provide one of the two parameters
+by creating a class which calculates the second parameter from the first.
+For precision, GeoAPI imports the `isIvfDefinitive` boolean property from OGC 01-009
+to enable the user to establish which of the two parameters was used to define the instance.
+
+
+===== Omitted unions
+
+ISO 19111 defines `GeodeticCS`, `EngineeringCS` and `DerivedProjectedCS` unions for type safety.
+For example the `GeodeticCS` union ensures that a `GeodeticCRS` can only be associated to a
+`CartesianCS`, an `EllipsoidalCS` or a `SphericalCS`.
+Those unions have been omitted from GeoAPI because unions are not supported in Java language,
+and the Python language does not enforce type safety.
+
+
+===== Shared parameters
+
+ISO 19111 defines seven types for representing coordinate operation parameters,
+but those types are generic enough for use in other contexts.
+GeoAPI moves those types in a separated `parameter` package
+and rename `OperationParameter` as `ParameterDescriptor`.
+
+[NOTE]
+======
+The removal of the "Operation" prefix is for extending the use of these parameter interfaces
+to a more general use rather than only for referencing operation types.
+The addition of the "Descriptor" suffix is for making more apparent that
+this type is an abstract definition of parameters - not their actual values.
+It is also consistent with usage in other libraries
+(e.g. `Parameter­List­Descriptor` in _Java Advanced Imaging_).
+======

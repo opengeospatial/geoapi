@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -51,7 +51,7 @@ import static org.opengis.annotation.Specification.*;
  *   <li>Java Advanced Imaging (JAI): {@link javax.media.jai.PerspectiveTransform}</li>
  *   <li>Java3D: {@link javax.media.j3d.Transform3D}, {@link javax.vecmath.GMatrix},
  *       {@link javax.vecmath.Matrix4d}, {@link javax.vecmath.Matrix3d}</li>
- *   <li>Other: <a href="http://math.nist.gov/javanumerics/jama/">Jama matrix</a></li>
+ *   <li>Other: <a href="https://math.nist.gov/javanumerics/jama/">Jama matrix</a></li>
  * </ul>
  * </div>
  *

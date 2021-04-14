@@ -1,18 +1,45 @@
 [cols="1,4",width="90%"]
 |===
-2+|*Requirements Class* {set:cellbgcolor:#CACCCE}
+2+|*Requirements Class: Library* {set:cellbgcolor:#CACCCE}
 2+|http://www.opengis.net/spec/ABCD/m.n/req/req-class-a {set:cellbgcolor:#FFFFFF}
-|Target type |Token
-|Dependency  |http://www.example.org/req/blah
-|Dependency  |urn:iso:ts:iso:19139:clause:6
-|*Requirement 1* {set:cellbgcolor:#CACCCE} |http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-1 +
-requirement description {set:cellbgcolor:#FFFFFF}
-|*Requirement 2* {set:cellbgcolor:#CACCCE} |http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-2 +
-requirement description {set:cellbgcolor:#FFFFFF}
-
-|*Requirement 3* {set:cellbgcolor:#CACCCE} |http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-name-3 +
-requirement description
+|Target type | Library
+|Dependency  | <<requirements-application,Requirements class B: Application>>
+|*Requirement 1* {set:cellbgcolor:#CACCCE} |<<req-signatures,http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-signatures>> +
+Source and binary compatibility {set:cellbgcolor:#FFFFFF}
+|*Requirement 2* {set:cellbgcolor:#CACCCE} |<<req-behavior,http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-behavior>> +
+Behavioral compatibility {set:cellbgcolor:#FFFFFF}
+|*Requirement 3* {set:cellbgcolor:#CACCCE} |<<req-factory-methods,http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-factory-methods>> +
+Factory exception {set:cellbgcolor:#FFFFFF}
+|*Requirement 4* {set:cellbgcolor:#CACCCE} |<<req-setters,http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-setters>> +
+Setter methods {set:cellbgcolor:#FFFFFF}
+|*Requirement 5* {set:cellbgcolor:#CACCCE} |<<req-getter-mandatory,http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-getter-mandatory>> +
+Mandatory getter methods {set:cellbgcolor:#FFFFFF}
+|*Requirement 6* {set:cellbgcolor:#CACCCE} |<<req-getter-optional,http://www.opengis.net/spec/ABCD/m.n/req/req-class-a/req-getter-optional>> +
+Optional getter methods {set:cellbgcolor:#FFFFFF}
 {set:cellbgcolor:#FFFFFF}
 |===
 
-TODO
+
+[[req-signatures]]
+==== Source and binary compatibility
+include::REQ01.adoc[]
+
+[[req-behavior]]
+==== Behavioral compatibility
+include::REQ02.adoc[]
+
+[[req-factory-methods]]
+==== Factory exception
+include::REQ03.adoc[]
+
+[[req-setters]]
+==== Setter methods
+include::REQ04.adoc[]
+
+[[req-getter-mandatory]]
+==== Mandatory getter methods
+include::REQ05.adoc[]
+
+[[req-getter-optional]]
+==== Optional getter methods
+include::REQ06.adoc[]

@@ -11,10 +11,14 @@
 :sectnums:
 :sectanchors:
 :xrefstyle:           short
+:chapter-refsig:      section
+:section-refsig:      §
+:appendix-refsig:     annex
 :stylesheet:          standard.css
 :source-highlighter:  coderay
 :supported-languages: Java and Python
 :icons:               font
+:imagesdir:           images
 :attribute-missing:   warn
 :appendix-caption:    Annex
 :description: A set of types and methods which can be used for the manipulation of geographic \
@@ -57,7 +61,7 @@ Around words:
 |Submission Date: <yyyy-mm-dd>
 |Approval Date:   <yyyy-mm-dd>
 |Publication Date:   <yyyy-mm-dd>
-|External identifier of this OGC^®^ document: http://www.opengis.net/doc/is/geoapi/{m.n} (TODO)
+|External identifier of this OGC^®^ document: http://www.opengis.net/doc/is/geoapi/{m.n} [red yellow-background]#(TODO: put numbers)#
 |Internal reference number of this OGC^®^ document:    YY-nnnrx
 |Version: n.n
 |Category: OGC^®^ Implementation Specification
@@ -72,7 +76,7 @@ Around words:
 [cols = "^", frame = "none", grid = "none"]
 |==============================================================================
 |*Copyright notice*
-|Copyright © 2009-2018 Open Geospatial Consortium
+|Copyright © 2009-2021 Open Geospatial Consortium
 |To obtain additional rights of use, visit http://www.opengeospatial.org/legal/
 |==============================================================================
 

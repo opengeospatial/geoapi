@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2005-2019 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2005-2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -463,7 +463,7 @@ public interface Coverage {
     /**
      * Returns 2D view of this coverage as a renderable image.
      * This optional operation allows interoperability with
-     * <a href="http://java.sun.com/products/java-media/2D/">Java2D</a>.
+     * <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/2d/">Java2D</a>.
      * If this coverage is a {@link org.opengis.coverage.grid.GridCoverage} backed
      * by a {@link java.awt.image.RenderedImage}, the underlying image can be obtained
      * with:

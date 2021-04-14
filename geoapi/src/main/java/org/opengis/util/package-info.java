@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2003-2019 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2003-2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -67,80 +67,25 @@
  * </td></tr></table>
  *
  * <h2>Names and Namespaces</h2>
- * <p>The job of a "name" in the context of ISO 19103 is to associate that name with an {@link java.lang.Object}.
- * A use of the namespace structure defined in 19103 is the translation of given names into specific storage formats.
- * XML has different naming rules than shapefiles, and both are different than netCDF.
- * Specialized names are mapped to data as below:</p>
- *
- * <ul>
- *   <li>{@link org.opengis.util.TypeName} is the name of a {@link org.opengis.util.RecordType}.</li>
- *   <li>{@link org.opengis.util.MemberName} is the name of an attribute in a {@link org.opengis.util.Record}
- *       or {@link org.opengis.util.RecordType}.</li>
- * </ul>
- *
- * The {@link org.opengis.util.GenericName} javadoc provides more details about name structure.
+ * <p>The job of a "name" is to associate that name with an {@link java.lang.Object} within the context of a
+ * {@link org.opengis.util.NameSpace}. For example {@link org.opengis.util.GenericName} instances could be
+ * keys in a {@link java.util.HashMap}, in which case the namespace is materialized by the {@code HashMap}.
+ * Names are often used in the context of reading data from various formats such as XML, shapefiles or netCDF,
+ * which have different constraints for names in their namespaces.
+ * The {@link org.opengis.util.GenericName} javadoc provides more details about name structure.</p>
  *
  * <h2>Records and Schemas</h2>
- * <p>A {@link org.opengis.util.RecordType} is similar to a {@code struct} declaration in C/C++, a table definition
- * in SQL, a {@code RECORD} in Pascal, or an attribute-only {@code class} declaration in Java if it were stripped of
- * all notions of inheritance.
- * {@code RecordType}s can be organized into a named collection called {@link org.opengis.util.RecordSchema},
- * which is similar to a schema in SQL or a package in Java. Both records and schemas behave as dictionaries
- * for their members.</p>
- *
- * <p>A {@link org.opengis.util.Record} is an instance of {@code RecordType} containing the actual attribute values.
- * If we think about {@code RecordType} as equivalent to a simple feature (ISO 19109) or a Java {@code class},
- * then we can establish the following equivalence table:</p>
- *
- * <table class="ogc">
- *   <caption>Equivalences between records, features and Java constructs</caption>
- *   <tr>
- *     <th>ISO 19103</th>
- *     <th>ISO 19109</th>
- *     <th>Java equivalent</th>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.Record}</td>
- *     <td>{@link org.opengis.feature.Feature}</td>
- *     <td>{@link java.lang.Object}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.Record#getRecordType()}</td>
- *     <td>{@link org.opengis.feature.Feature#getType()}</td>
- *     <td>{@link java.lang.Object#getClass()}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.RecordType}</td>
- *     <td>{@link org.opengis.feature.FeatureType}</td>
- *     <td>{@link java.lang.Class}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.RecordType#getTypeName()}</td>
- *     <td>{@link org.opengis.feature.FeatureType#getName()}</td>
- *     <td>{@link java.lang.Class#getName()}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.RecordType#getContainer()}</td>
- *     <td></td>
- *     <td>{@link java.lang.Class#getPackage()}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.RecordType#getMembers()}</td>
- *     <td>{@link org.opengis.feature.FeatureType#getProperties(boolean)}</td>
- *     <td>{@link java.lang.Class#getFields()}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.RecordType#locate RecordType.locate(MemberName)}</td>
- *     <td>{@link org.opengis.feature.FeatureType#getProperty getProperty(String)}</td>
- *     <td>{@link java.lang.Class#getField Class.getField(String)}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.RecordType#isInstance RecordType.isInstance(Record)}</td>
- *     <td></td>
- *     <td>{@link java.lang.Class#isInstance Class.isInstance(Object)}</td>
- *   </tr><tr>
- *     <td>{@link org.opengis.util.RecordSchema}</td>
- *     <td></td>
- *     <td>{@link java.lang.Package}</td>
- *   </tr>
- * </table>
+ * <p>{@link org.opengis.util.Record} and {@link org.opengis.util.RecordType} are lookup mechanisms
+ * that associate field names to <var>values</var> and <var>value types</var> respectively.
+ * Field names are locally mapped, and field types are most often primitives.
+ * Because the {@code RecordType} describes the structure of a set of records,
+ * it is essentially a metaclass for that set of records viewed as a class.
+ * A {@code Record} is an instance of {@code RecordType} containing the actual field values.</p>
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Jesse Crossley (SYS Technologies)
  * @author  Bryce Nordgren (USDA)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  */
 package org.opengis.util;

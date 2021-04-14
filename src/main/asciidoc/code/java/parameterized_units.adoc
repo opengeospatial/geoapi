@@ -1,0 +1,37 @@
+[[parameterized_units]]
+==== Parameterized units
+
+Units of measurement are represented in Java by JSR-363 parameterized interfaces
+(see <<uom_jsr>> for an overview).
+Units of the same parameterized type can be used in unit conversions like below
+(the `Units` class must be provided by a JSR-363 implementation):
+
+[source,java]
+--------------------------------------------------------------
+Unit<Length> source = Units.NAUTICAL_MILE;
+Unit<Length> target = Units.KILOMETRE;
+UnitConverter converter = source.getConverterTo(target);
+double distance = converter.convert(124);
+System.out.println(distance);               // Prints 229.648
+--------------------------------------------------------------
+
+where the initial calls define units of length and then a converter is used to obtain the equivalent length in a new unit.
+The next example below creates a "kPa" unit of measurement from the "Pa" unit.
+
+[source,java]
+--------------------------------------------------------------------------------------------
+Unit<Pressure> kPa = Units.PASCAL.multiply(1000);
+System.out.println( kPa );      // May print "kPa" or "1000*Pa" depending on implementation.
+--------------------------------------------------------------------------------------------
+
+The next example creates a new quantity derived from the operand types.
+It may print "8 mW" – the exact number and unit shown depend on the implementation:
+
+[source,java]
+--------------------------------------------------
+Force  f = Quantities.create(4, Units.NEWTON);
+Length d = Quantities.create(6, Units.MILLIMETRE);
+Time   t = Quantities.create(3, Units.SECOND);
+Quantity<?> e = f.multiply(d).divide(t);
+System.out.println(e);
+--------------------------------------------------

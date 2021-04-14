@@ -1,35 +1,44 @@
-[NOTE]
-====
-All classes, interfaces and enumeration types in GeoAPI which are based on a published standard
-shall have an `@UML` annotation documenting the standard in which is defined the type,
-the original name of the element, and the version of the standard if different than the dated normative reference.
-As an example, the annotation label for the `ProjectedCRS` interface appears in the source code as below
-(except the classifier which is implicit):
+[[UML_introspection]]
+==== UML at runtime
+
+The annotations in API (<<annotations>>) are available at runtime by introspection.
+This is useful, for example, when code needs to marshall data using the names
+defined by the ISO standard rather than the GeoAPI names.
+In the following example, the top-level annotations indicate that the `ProjectedCRS` interface
+was derived from a type also named `ProjectedCRS` in the ISO 19111 standard.
+The enclosed annotation indicates that the `getCoordinateSystem()` method
+was derived from a property named `coordinateSystem` in the ISO 19111 standard,
+and that a non-null value must be provided by every `ProjectedCRS` instance:
+
 
 [source,java]
-----
+------------------------------------------------------------
 @Classifier(Stereotype.TYPE)
 @UML(identifier = "ProjectedCRS", specification = ISO_19111)
 public interface ProjectedCRS extends GeneralDerivedCRS {
-    ...
+    /**
+     * Returns the coordinate system.
+     */
+    @UML(identifier    = "coordinateSystem",
+         obligation    = MANDATORY,
+         specification = ISO_19111)
+    CartesianCS getCoordinateSystem();
 }
-----
+------------------------------------------------------------
 
-which specifies that the type was defined in ISO 19111 standard as a type also named `ProjectedCRS`.
-The `@Classifier` annotation is omitted when the value is `Stereotype.TYPE`, which is the most common case.
-In addition, that interface contains the method `getCoordinateSystem()` with the following annotation:
+At runtime, the annotation of a reference to a GeoAPI interface can be obtained as follows,
+taking as an example the method `getCoordinateSystem()` in the `ProjectedCRS` interface:
 
 [source,java]
-----
-@UML(identifier    = "coordinateSystem",
-     obligation    = MANDATORY,
-     specification = ISO_19111)
-CartesianCS getCoordinateSystem();
-----
+---------------------------------------------------------------------------------------
+Class<?>      type          = ProjectedCRS.class;
+Method        method        = type.getMethod("getCoordinateSystem");
+UML           annotation    = method.getAnnotation(UML.class);
+String        identifier    = annotation.identifier();          // = "coordinateSystem"
+Specification specification = annotation.specification();       // = ISO 19111
+Obligation    obligation    = annotation.obligation();          // = mandatory
+---------------------------------------------------------------------------------------
 
-which indicates that the method was defined in the same ISO 19111 specification
-but had the name `coordinateSystem` in the standard rather than the `getCoordinateSystem` name used by GeoAPI,
-and that a non-null value must be provided by every `ProjectedCRS` instance.
-
-<<UML-introspection,An example in annex>> shows how these annotations are available at runtime by introspection.
-====
+Java provides a class instance like the `ProjectedCRS.class` instance used here for every type, either interface or class, defined in the runtime.
+The `getMethod(…)` call uses introspection to obtain a reference to the method from which the annotation can then be obtained.
+The annotation system therefore provides access, at runtime, to the original definition of the element.

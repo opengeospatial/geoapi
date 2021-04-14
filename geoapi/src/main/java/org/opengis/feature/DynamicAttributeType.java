@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -35,7 +35,7 @@ import org.opengis.annotation.UML;
 import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.Classifier;
 
-import static org.opengis.annotation.Specification.OGC_14083;
+import static org.opengis.annotation.Specification.OGC_MOVING_FEATURE;
 
 
 /**
@@ -58,7 +58,7 @@ import static org.opengis.annotation.Specification.OGC_14083;
  * @see AttributeType
  */
 @Classifier(Stereotype.METACLASS)
-@UML(identifier="AttributeType", specification=OGC_14083)
+@UML(identifier="DynamicAttributeType", specification=OGC_MOVING_FEATURE)
 public interface DynamicAttributeType<V> extends AttributeType<V> {
     /**
      * Creates a new attribute instance of this type.

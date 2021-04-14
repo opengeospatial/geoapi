@@ -10,9 +10,10 @@ which manipulates normalized data structures of geographic information based on 
 and the library code able both to instantiate and operate on these data structures
 according to the rules required by the published API and by the ISO and OGC standards.
 
-This standard complements existing OGC standards by defining language specific layers of normalization.
-This standard does not replace the core standards developing the OGC/ISO abstract model but complements those documents
-for developers by documenting the mapping of types and methods from the abstract model into some programming languages,
+This standard is a _realization_ of OGC/ISO abstract specifications: it defines a language specific layers of normalization.
+By comparison, the Geographic Markup Language (GML) is another realization of the same abstract specifications
+(ignoring version numbers) but targeting a different language (XML).
+GeoAPI documents the mapping of types and methods from the abstract model into {supported-languages} programming languages,
 providing standard interfaces in the `org.opengis` or `opengis` namespaces and explaining the use of GeoAPI interfaces.
 
 
@@ -23,11 +24,9 @@ The following are keywords to be used by search engines and document catalogues.
 ogcdoc, OGC document, GeoAPI, programming, Java, Python, interface, geospatial, metadata, referencing, feature
 
 
+[[preface]]
 [big]*iii.   Preface*
 
-[NOTE]
-[[preface]]
-====
 There is various libraries for helping developers to process geospatial data from programming languages like {supported-languages}.
 But the proliferation of API variations degrade interoperability.
 Since each library defines its own Application Programming Interface (API),
@@ -39,28 +38,6 @@ which call the API, from library code, which implements the API.
 This follows a similar pattern to the well known JDBC (in Java language) or ODBC (in C/C++ language) API
 which provides standardized interfaces to databases.
 Clients can use those APIs without concern for the particular implementation which they will use.
-
-This GeoAPI standard evolved from an effort at the Open Geospatial Consortium (OGC) and in the free software community
-focused on developing a library of interfaces defining a coherent data model for the manipulation of geospatial data
-based on the data model defined in the OGC Abstract Specifications.
-GeoAPI interfaces originates with the publication in January 2001 of the implementation specification
-OGC 01-009 _Coordinate Transformation Services_ Revision 1.00 (Martin Daly, ed.)
-which included a set of interfaces written in different programming languages and in the `org.opengis` namespace.
-The GeoAPI project started in 2003 as an effort from several contributors to develop a set of Java language interfaces
-which could be shared between several projects.
-The GeoAPI project subsequently considered the interfaces of OGC 01-009 as version 0.1 of GeoAPI
-and started working on GeoAPI 1.0 in collaboration with developers writing the OGC specification _Geographic Objects_.
-Subsequently, the Open Geospatial Consortium jettisoned its own Abstract Specifications and adopted,
-as the basis for further work, the standards developed by the Technical Committee 211 of the
-International Organization for Standardization (ISO) in its ISO 19100 series.
-The GeoAPI project therefore realigned its interfaces with those standards.
-In 2003, version 1.0 of GeoAPI interfaces was released to match the release of the first public draft
-of the implementation specification OGC 03-064 _GO-1 Application Objects_ Version 1.0 (Greg Reynolds, ed.).
-The standardization effort of GO-1 took a couple of years during which extensive work was made on GeoAPI interfaces.
-Release 2.0 of GeoAPI was made at the time of the final publication of the GO-1 specification in 2005.
-GO-1 has been retired later, but a new working group has been formed in 2009 for continuing GeoAPI development
-with a more restricted scope: to provide interfaces for existing OGC standards only, without defining new conceptual models.
-GeoAPI 3.0.0 has been released in 2011 and GeoAPI 3.0.1 in 2017.
 
 GeoAPI interfaces are derived from OGC/ISO conceptual models described by Unified Modeling Language (UML) diagrams.
 The XML schemas are generally not used (except when there is no UML diagrams describing the model)
@@ -77,7 +54,6 @@ The Open Geospatial Consortium shall not be held responsible for identifying any
 Recipients of this document are requested to submit, with their comments, notification of any relevant patent claims
 or other intellectual property rights of which they may be aware that might be infringed by any implementation of the
 standard set forth in this document, and to provide supporting documentation.
-====
 
 
 [big]*iv.    Submitting organizations*
@@ -88,7 +64,7 @@ The following organizations submitted this Document to the Open Geospatial Conso
 |===================================
 |Organization name(s)
 |Geomatys
-|TODO
+|[red yellow-background]#TODO#
 |===================================
 
 

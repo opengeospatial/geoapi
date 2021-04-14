@@ -1,3 +1,41 @@
 [appendix]
-[[conformance-levels]]
+[[conformance_levels]]
 == Conformance Level (Normative)
+
+This standard provides several levels of conformance for libraries.
+The levels are determined mostly by the capabilities of `referencing` or `feature` packages.
+This standard does not define conformance level for the `util` and `metadata` packages
+because those interfaces are typically implemented on a case-by-case basis in support of other packages.
+
+All implementations must necessarily provide a fully functional implementation of the
+two-dimensional case of the `GeographicCRS` interface for the WGS84 ensemble of reference frames.
+"Fully functional" means that the implementation must support all mandatory properties of geographic CRS,
+notably `Geodetic­Reference­Frame`, `Ellipsoid`, `Prime­Meridian`, `EllipsoidalCS` and `Coordinate­System­Axis`
+together with the "degree" and "metre" units of measurement. Optional properties can be omitted.
+
+
+[[conformance-A]]
+=== Level A: referencing base
+
+The first level identifies implementations capable to provide coordinate reference systems
+of various types (geographic, projected, vertical, temporal, compound…) identified by authority codes.
+This standard does not define which CRS types and which authority codes should be supported;
+the only requirement is that an implementation of the `Register­Operations` interface shall be provided,
+potentially completed by a `CRSAuthority­Factory` for each supported authority.
+Implementations at this level are not required to support CRS that are not declared on their list of supported authority codes.
+
+Coordinate operations for (source, target) pairs of CRS may be listed in a database such as the EPSG geodetic dataset.
+Implementations at this level are not required to support coordinate operations for (source, target) CRS pairs that are not in their database.
+
+
+[[conformance-B]]
+=== Level B: referencing from components
+
+The second level identifies implementations capable to create coordinate reference systems from their components
+(datum, axes, projection parameters…).
+Implementations at this level shall be able to create a CRS from a Well-Known Text (WKT) character string,
+a GML document or from CRS components provided in a programmatic way.
+It generally implies the support of `CRSFactory`, `CSFactory` and `DatumFactory` interfaces.
+
+Implementations at this level should be able to create `Coordinate­Operation` instances for arbitrary pairs of source and target CRS.
+A database may be used for known pairs of CRS, but implementations should be prepared to handle CRS not defined in the database.

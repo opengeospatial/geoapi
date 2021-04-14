@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2011-2019 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2011-2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -423,7 +423,7 @@ public class OperationParametersReport extends Report {
     /**
      * Returns the HTML text to use as a column header for each
      * {@linkplain Identifier#getCodeSpace() code spaces} or
-     * {@linkplain GenericName#scope() scopes}. The columns will be show in iteration order.
+     * {@linkplain GenericName#scope() scopes}. The columns will be shown in iteration order.
      *
      * @return the name of all code spaces or scopes. Some typical values are {@code "EPSG"},
      *         {@code "OGC"}, {@code "ESRI"}, {@code "GeoTIFF"} or {@code "NetCDF"}.

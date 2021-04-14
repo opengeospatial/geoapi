@@ -1,0 +1,19 @@
+[[geometry_departures]]
+==== Departures from ISO 19107
+
+===== Convenience
+GeoAPI has moved the `DirectPosition` and `Envelope` types from the coordinate sub-package
+where they are defined in the ISO 19107 specification up to the `opengis.geometry` package
+due to their importance and frequency of use.
+
+===== Union replacement
+ISO 19107 defines `Position` as the union of `DirectPosition` and `Point`.
+But unions are not allowed in Java.
+Instead, GeoAPI defines `Position` as the base interface of both types
+so a similar functionality can be achieved with an _"is instance of"_ check.
+
+===== Efficiency
+GeoAPI adds the following shortcut methods in the `Envelope` interface.
+They are frequently requested information that implementers can often provide
+in a more efficient way than forcing users to compute them from lower and upper corners:
+`dimension`, `minimum`, `maximum`, `median` and `span`.

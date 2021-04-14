@@ -5,7 +5,6 @@
 
          Build specification only:      mvn pre-site -N
          Build development snapshot:    mvn clean install
-         Build with GDAL tests:         mvn install -DskipNativeLibraryTests=false
          Publish a release:             mvn clean install deploy -Pgeoapi-release
      ============================================================================================= -->
 
@@ -95,7 +94,7 @@
 
                mvn clean install deploy -Pgeoapi-release
 
-           Optionally, if the GDAL and Python native libraries are installed on the local machine,
+           Optionally, if the Python native libraries are installed on the local machine,
            then GeoAPI can be built with the "-DskipNativeLibraryTests=false" option.
        =========================================================================================== -->
   <properties>
@@ -201,9 +200,9 @@
         <version>${unit.api.version}</version>
       </dependency>
       <dependency>
-        <groupId>tec.units</groupId>
-        <artifactId>unit-ri</artifactId>
-        <version>1.0.3</version>
+        <groupId>tech.uom</groupId>
+        <artifactId>seshat</artifactId>
+        <version>1.0</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -453,7 +452,6 @@
               <relativeBaseDir>true</relativeBaseDir>
               <backend>html</backend>
               <attributes>
-                <data-uri>true</data-uri>               <!-- Should be false if the backend is pdf.-->
                 <toc-placement>true</toc-placement>     <!-- Should be false if the backend is pdf.-->
               </attributes>
             </configuration>
@@ -467,7 +465,7 @@
            ============================================================================================ -->
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.1.1</version>
+        <version>3.2.0</version>
         <configuration>
           <top>
             <!-- Remove this notice for the final GeoAPI release! -->
@@ -535,13 +533,12 @@
                documentation of external referenced classes. -->
           <detectJavaApiLink>false</detectJavaApiLink>
           <links>
-            <link>http://docs.oracle.com/javase/8/docs/api/</link>
-            <link>http://docs.oracle.com/javaee/7/api/</link>                                       <!-- For InternationalString link. -->
-            <link>http://download.java.net/media/java3d/javadoc/1.5.2/</link>
-            <link>http://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/</link>
-            <link>http://junit.org/junit4/javadoc/latest/</link>
-            <link>http://www.unidata.ucar.edu/software/thredds/current/netcdf-java/javadoc/</link>  <!-- Used by example code. -->
-            <link>http://www.geoapi.org/snapshot/javadoc/</link>                                    <!-- For modules that depend on GeoAPI. -->
+            <link>https://docs.oracle.com/javase/8/docs/api/</link>
+            <link>https://docs.oracle.com/javaee/7/api/</link>                          <!-- For InternationalString link. -->
+            <link>https://download.java.net/media/java3d/javadoc/1.5.2/</link>
+            <link>https://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/</link>
+            <link>https://junit.org/junit4/javadoc/latest/</link>
+            <link>https://www.geoapi.org/snapshot/javadoc/</link>                       <!-- For modules that depend on GeoAPI. -->
           </links>
         </configuration>
       </plugin>
@@ -571,8 +568,6 @@
     <module>geoapi-pending</module>
     <module>geoapi-conformance</module>
     <module>geoapi-examples</module>
-    <module>geoapi-gdal</module>
-    <module>geoapi-netcdf</module>
     <module>tools</module>
   </modules>
 </project>

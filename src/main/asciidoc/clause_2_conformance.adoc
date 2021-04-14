@@ -15,28 +15,31 @@ is available at the URLs listed below:
 |Online version: |http://www.geoapi.org/snapshot/javadoc/ |http://www.geoapi.org/snapshot/python/
 |========================================================================================================
 
-[WARNING]
-====
-The `snapshot` elements in above URLs will be replaced by `3.1` and `4.0` after release (TODO).
-====
+[red yellow-background]#TODO: The `snapshot` elements in above URLs will be replaced by `3.1` and `4.0` after release.#
 
-This specification makes certain requirements of libraries implementing this API and defines several conformance classes
+Contrarily to other OGC/ISO standards, the UML diagrams in this specification are only informative.
+The reason is because those diagrams show only a small subset of all interfaces and properties provided by GeoAPI,
+and details such as naming conventions (<<naming>>) differ in the materialization to {supported-languages} languages.
+The complete and normative UML diagrams are provided by the abstract specifications listed in <<references>>.
+
+This specification defines several conformance classes
 for implementations covering different packages of the API or providing different levels of complexity in their implementations.
 GeoAPI provides a test suite through which to establish conformance of GeoAPI implementations.
 Requirements for 2 standardization target types are considered:
 
+[role="compact"]
 * *Libraries* which provide software components for building geospatial applications.
 * *Applications* which use the above-cited software components.
 
 The second target type (applications) leaves more freedom than the first target type (libraries).
 In particular, applications are free to delete any types, methods or functionalities that they do not use.
+Requirements for those two target types are given in <<requirements>>.
 
-Conformance with this standard shall be checked using all the relevant tests specified in <<conformance-tests,Annex A (normative)>> of this document.
+Conformance with this standard shall be checked using all the relevant tests specified in <<conformance_tests>> of this document.
 The framework, concepts, and methodology for testing, and the criteria to be achieved to claim conformance are specified in the
 OGC Compliance Testing Policies and Procedures and the OGC Compliance Testing web site.
 In order to conform to this OGC® interface standard, a software implementation shall choose to implement:
 
-* Any one of the conformance levels specified in <<conformance-levels,Annex B (normative)>>.
-* Any one of the Distributed Computing Platform profiles specified in <<java,Annexes C>> through <<python,D>> (normative).
-
-All requirements-classes and conformance-classes described in this document are owned by the standard(s) identified.
+[role="compact"]
+* Any one of the conformance levels specified in <<conformance_levels>>.
+* Any one of the Distributed Computing Platform profiles specified in <<java>> through <<python>> (normative).

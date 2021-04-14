@@ -2,29 +2,27 @@
 [[examples]]
 == Examples
 
-[[UML-introspection]]
-=== UML at runtime
+This appendix provides code snippets in the {supported-languages} programming languages
+for aspects discussed in the Geospatial API overview (<<overview>>).
 
-The <<annotations,annotations in API>> are available at runtime by introspection.
-This is useful, for example, when code needs to marshall data using the name defined by the ISO standard rather than the GeoAPI name.
+[[java_examples]]
+=== Java examples
 
+This section provides code snippets in the Java programming languages
+for aspects discussed in the Geospatial API overview (<<overview>>).
 
-[[UML-java]]
-==== Java example
+include::code/java/annotation.adoc[]
 
-At runtime, the annotation of a reference to a GeoAPI interface can be obtained as follows,
-taking as an example the method `getTitle()` in the `Citation` interface:
+include::code/java/code_list.adoc[]
 
-[source,java]
-----
-Class<?>      type          = Citation.class;
-Method        method        = type.getMethod("getTitle");
-UML           annotation    = method.getAnnotation(UML.class);
-String        identifier    = annotation.identifier();          // = "title"
-Specification specification = annotation.specification();       // = ISO 19115-1
-Obligation    obligation    = annotation.obligation();          // = mandatory
-----
+include::code/java/JNDI.adoc[]
 
-Java provides a class instance like the `Citation.class` instance used here for every type, either interface or class, defined in the runtime.
-The `getMethod(…)` call uses introspection to obtain a reference to the method from which the annotation can then be obtained.
-The annotation system therefore provides access, at runtime, to the original definition of the element.
+include::code/java/internationalization.adoc[]
+
+include::code/java/parameterized_units.adoc[]
+
+include::code/java/metadata.adoc[]
+
+include::code/java/create_crs.adoc[]
+
+include::code/java/coordinate_operation.adoc[]

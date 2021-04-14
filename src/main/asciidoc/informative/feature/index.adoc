@@ -1,0 +1,11 @@
+[[feature]]
+=== Feature packages
+
+The GeoAPI feature package uses the `opengis.feature` namespace
+and implements the types defined in the ISO 19109:2015 – _Rules for application schema_ specification.
+The main UML materialized by GeoAPI is ISO 19109 figure 5 [red yellow-background]#(TODO: verify)#.
+That figure is also reproduced in ISO 19103:2015 figure E.6.
+
+[red yellow-background]#TODO: provide UML and explain the mapping.#
+
+include::moving.adoc[]

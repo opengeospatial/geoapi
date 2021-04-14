@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2019 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -79,14 +79,14 @@ public final class Departure extends BlockTaglet implements Flushable {
      * {@link #summary}.
      */
     private static final Map<String,String> CATEGORIES = Map.of(
-            "constraint",     "Departures due to constraints of the Java language",
-            "historic",       "Departures due to historical reasons",
-            "harmonization",  "Departures for harmonization between the different specifications",
-            "integration",    "Departures for closer integration with the Java environment",
-            "rename",         "Changes of name without change in functionality",
-            "generalization", "Generalizations due to relaxation of ISO/OGC restrictions",
-            "extension",      "Addition of elements not in the ISO/OGC specifications",
-            "easeOfUse",      "Extensions for convenience, without introduction of new functionality");
+            "constraint",     "Departure due to constraint of the Java language",
+            "historic",       "Departure for historical reason",
+            "harmonization",  "Departure for harmonization between different specifications",
+            "integration",    "Departure for closer integration with the Java environment",
+            "rename",         "Change of name without change in functionality",
+            "generalization", "Generalization by relaxation of ISO/OGC restriction",
+            "extension",      "Addition of element not in the ISO/OGC specification",
+            "easeOfUse",      "Extension for convenience without introduction of new functionality");
 
     /**
      * All departures declared in javadoc tags. The keys are the category, and the value
@@ -140,6 +140,8 @@ public final class Departure extends BlockTaglet implements Flushable {
             return "";
         }
         final StringBuilder buffer = new StringBuilder();
+        final String lineSeparator = System.getProperty("line.separator", "\n");
+        buffer.append("<dt class=\"departure\">Departure from OGC/ISO abstract specification:</dt>").append(lineSeparator);
         for (final DocTree tag : tags) {
             String text = text(element, tag);
             String category = "";
@@ -155,7 +157,8 @@ public final class Departure extends BlockTaglet implements Flushable {
                 }
                 i += Character.charCount(c);
             }
-            if (!CATEGORIES.containsKey(category)) {
+            String summary = CATEGORIES.get(category);
+            if (summary == null) {
                 final String message;
                 if (category.isEmpty()) {
                     message = "No category has been specified for @departure tag.";
@@ -163,6 +166,7 @@ public final class Departure extends BlockTaglet implements Flushable {
                     message = "Unknown @departure category: ".concat(category);
                 }
                 print(Diagnostic.Kind.WARNING, element, message);
+                summary = "Details";
             }
             /*
              * Adds the current departure to the collection of departures.
@@ -174,8 +178,9 @@ public final class Departure extends BlockTaglet implements Flushable {
             /*
              * Now copies the text.
              */
-            buffer.append("<div class=\"departure\"><b>Departure from OGC/ISO specification:</b><br>")
-                  .append(text).append("</div>");
+            buffer.append("<dd class=\"departure\"><details>").append(lineSeparator)
+                  .append("<summary>").append(summary).append("</summary>").append(lineSeparator)
+                  .append(text).append(lineSeparator).append("</details></dd>");
         }
         return buffer.toString();
     }
@@ -201,6 +206,7 @@ public final class Departure extends BlockTaglet implements Flushable {
             out.write("  <head>"); out.newLine();
             out.write("    <title>Departures from the ISO/OGC specifications</title>"); out.newLine();
             out.write("    <meta http-equiv=\"Content-Type\" content=\"text/html; charset=UTF-8\">"); out.newLine();
+            out.write("    <link rel=\"stylesheet\" type=\"text/css\" href=\"departure.css\"/>"); out.newLine();
             out.write("  </head>"); out.newLine();
             out.write("  <body>"); out.newLine();
             out.write("  <h1>Departures from the ISO/OGC specifications</h1>"); out.newLine();
@@ -245,6 +251,7 @@ public final class Departure extends BlockTaglet implements Flushable {
                  *   Position
                  *     ISO 19107 defines Position as a C/C++ union (etc...)
                  */
+                out.write("  <section class=\"categories\">"); out.newLine();
                 for (final String category : categories) {
                     final List<DepartureElement> elements = departures.get(category);
                     if (elements == null) {
@@ -255,13 +262,11 @@ public final class Departure extends BlockTaglet implements Flushable {
                     if (description == null) {
                         description = category;
                     }
-                    out.newLine(); out.newLine();
-                    out.write("  <p>&nbsp;</p><hr><p>&nbsp;</p>"); out.newLine();
-                    out.write("  <h2 id=\""); out.write(category); out.write("\">");
+                    out.write("    <h2 id=\""); out.write(category); out.write("\">");
                     out.write(description); out.write("</h2>"); out.newLine();
-                    out.write("  <blockquote>"); out.newLine();
+                    out.write("    <section class=\"types\">"); out.newLine();
                     Name lastName = null;
-                    boolean isBlockquote = false;
+                    boolean isMemberSectionOpen = false;
                     /*
                      * Write the departure of all classes, interfaces, methods and fields for the
                      * current section. The following code really needs to evaluate elements.size()
@@ -281,16 +286,16 @@ public final class Departure extends BlockTaglet implements Flushable {
                             /*
                              * New class or interface. Formats its name in a header. If the previous
                              * class or interface had a list of methods or fields, we need to close
-                             * the previous blockquote.
+                             * the previous section.
                              */
-                            if (isBlockquote) {
-                                out.write("  </blockquote>");
+                            if (isMemberSectionOpen) {
+                                out.write("      </section>");
                                 out.newLine();
-                                isBlockquote = false;
+                                isMemberSectionOpen = false;
                             }
                             lastName = name;
                             out.newLine();
-                            out.write("  <h3>");
+                            out.write("      <h3>");
                             element.writeClassName(out);
                             /*
                              * If this class or interface do not have any member to document for
@@ -325,12 +330,12 @@ public final class Departure extends BlockTaglet implements Flushable {
                          * level if the text was not already indented.
                          */
                         if (element.isMember) {
-                            if (!isBlockquote) {
-                                out.write("  <blockquote>");
+                            if (!isMemberSectionOpen) {
+                                out.write("      <section class=\"members\">");
                                 out.newLine();
-                                isBlockquote = true;
+                                isMemberSectionOpen = true;
                             }
-                            out.write("    <h4>");
+                            out.write("        <h4>");
                             element.writeFieldName(out);
                             /*
                              * If there is more elements in the same file with exactly the same
@@ -352,17 +357,20 @@ public final class Departure extends BlockTaglet implements Flushable {
                         /*
                          * Formats the text for either interface, class, method or field.
                          */
-                        out.write("    <blockquote>");
+                        out.write("        <div class=\"desc\">");
                         out.write(element.text);
-                        out.write("</blockquote>");
+                        out.write("</div>");
                         out.newLine();
                     }
-                    out.write("  </blockquote>");
-                    if (isBlockquote) {
-                        out.write("</blockquote>");
+                    if (isMemberSectionOpen) {
+                        out.write("      </section>");
+                        out.newLine();
                     }
+                    out.write("    </section>");
                     out.newLine();
                 }
+                out.write("  </section>");
+                out.newLine();
             }
             out.write("  </body>"); out.newLine();
             out.write("</html>"); out.newLine();

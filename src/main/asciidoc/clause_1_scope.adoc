@@ -1,7 +1,5 @@
 [[scope]]
 == Scope
-[NOTE]
-====
 GeoAPI contains a series of interfaces and classes in several packages which interpret into some programming languages
 (currently {supported-languages}) the data model and UML types of the ISO and OGC standards documents.
 The interfaces includes documentation which complement the injunctions of the OGC/ISO specifications by explaining
@@ -11,6 +9,7 @@ or standard patterns of behavior expected by the community of a programming lang
 This document explains GeoAPI interfaces and defines its use by library code implementing the API and by client code calling the API.
 Jointly with the interface definitions, this work aims to provide:
 
+[role="compact"]
 * a carefully considered interpretation of the OGC specifications for {supported-languages} languages,
 * a base structure to facilitate the creation of software libraries which implement OGC standards,
 * a well defined, full documented binding reducing the programming effort of using the OGC abstract model,
@@ -21,14 +20,6 @@ to implement softwares which follow the design and intents of the OGC/ISO specif
 The creators of the GeoAPI interfaces consider this approach as an effective compromise between the OGC specifications,
 the requirements of above-cited programming languages, and the tradition of the core libraries of those languages.
 
-This version of the standard does not propose a complete set of interfaces covering the entire set of OGC/ISO abstract standards,
-but focuses on an initial group of interfaces only.
-This initial group of interfaces covers enough of the abstract model to permit the description of geospatial metadata,
-the definition of coordinate reference systems and to enable operations on coordinate tuples between different reference systems.
-The work writing interfaces matching other OGC specifications is done in the “pending” directory of the GeoAPI project.
-It is expected that these other interfaces will be proposed for standardization in subsequent revisions of this specification
-but the interfaces must first have been implemented, ideally several times, and then tested extensively by use.
-
 Version 3.1 and 4.0 of GeoAPI covers the base of the OGC/ISO Abstract Model for geographic information.
 GeoAPI provides utilities, base types, metadata structures, geo-referencing and a feature model.
 The geo-referencing data elements enable the creation of reference systems for spatial coordinates
@@ -37,6 +28,4 @@ This version of the standard covers the specifications ISO 19103, ISO 19115, I
 (completed by some elements from the closely related OGC™ specification OGC 01-009),
 ISO 19109 and four elements from ISO 19107 necessary to the implementation of ISO 19111.
 Future versions of this specification are expected to expand this set of interfaces to cover more models
-of the OGC Abstract Specification series, including notably geometry data structures,
-with the “pending” portion of the GeoAPI project already exploring these new areas.
-====
+of the OGC Abstract Specification series, including notably geometry data structures.

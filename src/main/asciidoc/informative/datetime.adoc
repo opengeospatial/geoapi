@@ -22,17 +22,17 @@ GeoAPI generally includes timezone information, but this policy may be adjusted 
 |ISO 19103 interface   |Java class                      |Python type
 |`Date`                |`java.time.LocalDate`     ^(1)^ |
 |`Time`                |`java.time.OffsetTime`          |
-|`DateTime`            |`java.time.ZonedDateTime` ^(1)^ |`datetime`
+|`DateTime`            |`java.time.ZonedDateTime` ^(1)^ |`datetime`
 |(none)                |`java.time.Instant`       ^(1)^ |
 |===================================================================
 
 [small]#(1) Some properties defined in GeoAPI 3._x_ use the legacy `java.util.Date` class for historical reasons.# +
 
-*Note:* `DateTime` is distinct from `Instant`.
+`DateTime` is distinct from `Instant`.
 The former is expressed in the proleptic Gregorian calendar as described in ISO 8601,
 while the later is an instantaneous point on the selected time scale, astronomical or atomic.
-An `Instant` does not have year, month or day components
-(it is instead a duration elapsed since an epoch),
+An `Instant` does not have year, month or day components.
+It is instead a duration elapsed since an epoch,
 and its conversion to a `DateTime` may be complicated.
 In GeoAPI, temporal objects in metadata are typically `DateTime`
 while coordinates in a temporal coordinate reference system are typically `Instant`.

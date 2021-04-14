@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2003-2019 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2003-2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -34,6 +34,11 @@ package org.opengis.util;
 
 /**
  * Common interface of all {@linkplain Enum enumerations} and {@linkplain CodeList code lists} defined in GeoAPI.
+ * Enumerations are <em>closed</em> controlled vocabularies: it is not possible to add new members
+ * (except by releasing new versions of the library).
+ * By contrast, code lists are <em>open</em> vocabularies:
+ * they provide a basic set of members defined at compile-time,
+ * but users are free to add new members at runtime.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

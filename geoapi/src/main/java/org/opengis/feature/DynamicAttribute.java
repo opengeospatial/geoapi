@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -32,10 +32,7 @@
 package org.opengis.feature;
 
 import java.util.Collection;
-import org.opengis.annotation.UML;
 import org.opengis.temporal.TemporalPosition;
-
-import static org.opengis.annotation.Specification.OGC_14083;
 
 
 /**
@@ -72,7 +69,6 @@ import static org.opengis.annotation.Specification.OGC_14083;
  * @see DynamicAttributeType
  * @see Attribute
  */
-@UML(identifier="AttributeType", specification=OGC_14083)
 public interface DynamicAttribute<V> extends Attribute<V> {
     /**
      * Returns information about the dynamic attribute (base Java class, domain of values, <i>etc.</i>).
@@ -115,6 +111,5 @@ public interface DynamicAttribute<V> extends Attribute<V> {
      * @return the attribute values.
      * @throws OutOfTemporalDomainException if the given temporal time is outside the period of validity.
      */
-    @UML(identifier="valueAt", specification=OGC_14083)
     Collection<V> valuesAt(TemporalPosition time) throws OutOfTemporalDomainException;
 }

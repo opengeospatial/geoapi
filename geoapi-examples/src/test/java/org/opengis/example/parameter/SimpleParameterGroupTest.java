@@ -10,7 +10,7 @@ package org.opengis.example.parameter;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.example.metadata.SimpleCitation;
-import tec.units.ri.unit.Units;
+import tech.uom.seshat.Units;
 
 import org.junit.Test;
 import static org.junit.Assert.*;

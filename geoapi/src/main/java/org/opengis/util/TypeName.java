@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -38,8 +38,7 @@ import static org.opengis.annotation.Obligation.MANDATORY;
 
 
 /**
- * A {@linkplain LocalName local name} that references a {@linkplain RecordType record type}
- * in a {@linkplain RecordSchema record schema}.
+ * A {@linkplain LocalName local name} that references a {@linkplain RecordType record type}.
  * Can also be used as the name of a <cite>feature type</cite>.
  *
  * <p>{@code TypeName}s are returned by the following methods:</p>

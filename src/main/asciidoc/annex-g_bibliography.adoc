@@ -2,14 +2,16 @@
 [[bibliography]]
 == Bibliography
 
-[NOTE]
-==================================================================
-[.bibliography]
-[1] OGC: 16-019r4, OGC® Open Geospatial APIs - White Paper (2016)
+Additional information and definitions were taken from the following sources.
 
 [.bibliography]
-[2] The Junit framework, http://junit.org/
-
-[.bibliography]
-[3] The Unified Code for Units of Measure, http://unitsofmeasure.org/
-==================================================================
+* IOGP. The EPSG Geodetic Parameter Dataset, https://epsg.org/
+* ISO 31, Quantities and units (1992)
+* ISO 1000, SI units and recommendations for the use of their multiples and of certain other units (1992)
+* ISO 19115-3, Metadata — XML schema implementation for fundamental concepts (2016)
+* JUnit team. The Junit framework, https://junit.org/
+* OGC.  Features and geometry — Part 1: Feature models (2020),
+  https://docs.ogc.org/as/17-087r13/17-087r13.html[OGC 17-087r13]
+* OGC.  Open Geospatial APIs — White Paper (2016),
+  https://docs.opengeospatial.org/wp/16-019r4/16-019r4.html[OGC 16-019r4]
+* UCUM. The Unified Code for Units of Measure, https://unitsofmeasure.org/

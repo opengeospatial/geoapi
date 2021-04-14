@@ -7,8 +7,6 @@
             <source-roots>
                 <root id="src.core.dir" name="GeoAPI"/>
                 <root id="src.pending.dir" name="Pending"/>
-                <root id="src.gdal.dir" name="Wrapper for GDAL"/>
-                <root id="src.netcdf.dir" name="Wrapper for netCDF"/>
                 <root id="src.examples.dir" name="Examples"/>
                 <root id="src.tools.dir" name="Tools"/>
             </source-roots>
@@ -18,8 +16,6 @@
                 <root id="src.validators.dir" name="Conformance"/>
                 <root id="rsc.validators.dir" name="Conformance resources"/>
                 <root id="test.validators.dir" name="Tests conformance"/>
-                <root id="test.gdal.dir" name="Tests wrapper for GDAL"/>
-                <root id="test.netcdf.dir" name="Tests wrapper for netCDF"/>
                 <root id="test.examples.dir" name="Tests examples"/>
                 <root id="test.tools.dir" name="Tests tools"/>
             </test-roots>

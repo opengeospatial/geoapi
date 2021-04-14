@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A domain in which {@linkplain GenericName names} given by character strings are defined.
+ * A domain in which {@linkplain GenericName names} are defined.
  * Every {@link GenericName} must be valid in a namespace. For a {@link LocalName}, this means
  * that the name must exist in the current namespace. For a {@link ScopedName}, this means:
  *
@@ -75,7 +75,7 @@ public interface NameSpace {
     boolean isGlobal();
 
     /**
-     * Represents the identifier of this namespace. Namespace identifiers shall be
+     * Returns the identifier of this namespace. Namespace identifiers shall be
      * {@linkplain GenericName#toFullyQualifiedName() fully-qualified names} where:
      *
      * <blockquote><code>

@@ -11,8 +11,7 @@ import java.util.Objects;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.IncommensurableException;
-import tec.units.ri.unit.Units;
-import tec.units.ri.AbstractUnit;
+import tech.uom.seshat.Units;
 
 import org.opengis.metadata.citation.Citation;
 import org.opengis.example.metadata.SimpleCitation;
@@ -132,10 +131,10 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
         }
         switch (abbreviation) {
             case 'λ': case 'Ω':
-            case 'φ': case 'Θ': unit = DEGREE;           break;
-            case 'i': case 'j': unit = AbstractUnit.ONE; break;
-            case 't':           unit = Units.SECOND;     break;
-            default:            unit = Units.METRE;      break;
+            case 'φ': case 'Θ': unit = DEGREE;       break;
+            case 'i': case 'j': unit = Units.UNITY;  break;
+            case 't':           unit = Units.SECOND; break;
+            default:            unit = Units.METRE;  break;
         }
     }
 

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2019 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2004-2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -40,7 +40,7 @@ import java.awt.geom.AffineTransform;
  * Transforms two-dimensional coordinate points. {@link CoordinateOperation#getMathTransform()} may
  * returns instance of this interface when source and destination coordinate systems are both two
  * dimensional. {@code MathTransform2D} extends {@link MathTransform} by adding some methods for
- * easier inter-operability with <a href="http://java.sun.com/products/java-media/2D/">Java2D</a>.
+ * easier inter-operability with <a href="https://docs.oracle.com/javase/8/docs/technotes/guides/2d/">Java2D</a>.
  *
  * @departure integration
  *   This interface is not part of OGC specification. It has been added in GeoAPI for

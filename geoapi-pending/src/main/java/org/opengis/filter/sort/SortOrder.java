@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -37,7 +37,7 @@ import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
-import static org.opengis.annotation.Specification.OGC_02059;
+import static org.opengis.annotation.Specification.OGC_FILTER;
 
 
 /**
@@ -66,7 +66,7 @@ public final class SortOrder extends CodeList<SortOrder> {
      * with the Filter 1.1 specification.
      * </p>
      */
-    @UML(identifier="ASC", obligation=CONDITIONAL, specification=OGC_02059)
+    @UML(identifier="ASC", obligation=CONDITIONAL, specification=OGC_FILTER)
     public static final SortOrder ASCENDING  = new SortOrder("ASCENDING", "ASC");
 
     /**
@@ -76,7 +76,7 @@ public final class SortOrder extends CodeList<SortOrder> {
      * with the Filter 1.1 specification.
      * </p>
      */
-    @UML(identifier="DESC", obligation=CONDITIONAL, specification=OGC_02059)
+    @UML(identifier="DESC", obligation=CONDITIONAL, specification=OGC_FILTER)
     public static final SortOrder DESCENDING = new SortOrder("DESCENDING", "DESC");
 
     /**

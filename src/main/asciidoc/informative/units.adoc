@@ -1,51 +1,17 @@
-[[uom]]
-=== Units of measurement
+[[units]]
+==== Units of measurement
 [.reference]_From ISO 19103:2015 §C.4_
 
-Measurements and their units are represented by two base interfaces defined in ISO 19103:
+ISO 19103 represents measurements and their units by two base interfaces:
 `Measure` for the result from performing the act of ascertaining the value of a characteristic of some entity,
 and `UnitOfMeasure` as a quantity adopted as a standard of measurement for other quantities of the same kind.
-Those two base interfaces have a parallel set of subtypes:
-`Length` (a `Measure` specialization for distances) is accompanied by `UomLength`
-(a `UnitOfMeasure` specialization for length units),
-`Area` is accompanied with `UomArea`, _etc._
+Those two base interfaces have a parallel set of subtypes.
+For example `Length` as a `Measure` specialization for distances,
+accompanied by `UomLength` as an `UnitOfMeasure` specialization for length units.
+Likewise `Area` is accompanied with `UomArea`, `Time` is accompanied with `UomTime`, _etc._
 
-Some languages have a standard library for units of measurement.
-For example Java has standardized a set of quantity interfaces in the JSR-363 standard.
+GeoAPI does not define any interface for the ISO 19103 `Measure` and `UnitOfMeasure` types
+because {supported-languages} already have their own library for units of measurement.
+For example Java has standardized a set of quantity interfaces in the Java Specification Request JSR-363 [red yellow-background]#(TODO: upgrade to JSR-385)#.
 When such language-specific standard exists and provides equivalent functionality to ISO 19103, that external standard is used.
-Otherwise new types are defined following ISO 19103 definitions of units of measurement.
-
-.Units of measurement mapping
-[.compact, options="header"]
-|==========================================================================
-|ISO 19103 interface  |Java interface                         |Python class
-|`Measure`            |`javax.measure.Quantity`               |
-|`DirectedMeasure`    |Unimplemented                          |
-|`UnitOfMeasure`      |`javax.measure.Unit<?>`                |
-|`Area`               |`javax.measure.quantity.Area`          |
-|`UomArea`            |`javax.measure.Unit<Area>`             |
-|`Length`             |`javax.measure.quantity.Length`        |
-|`Distance`           |`javax.measure.quantity.Length`        |
-|`UomLength`          |`javax.measure.Unit<Length>`           |
-|`Angle`              |`javax.measure.quantity.Angle`         |
-|`UomAngle`           |`javax.measure.Unit<Angle>`            |
-|`Scale`              |`javax.measure.quantity.Dimensionless` |
-|`UomScale`           |`javax.measure.Unit<Dimensionless>`    |
-|`Time`               |`javax.measure.quantity.Time`          |
-|`UomTime`            |`javax.measure.Unit<Time>`             |
-|`Volume`             |`javax.measure.quantity.Volume`        |
-|`UomVolume`          |`javax.measure.Unit<Volume>`           |
-|`Velocity`           |`javax.measure.quantity.Speed`         |
-|`UomVelocity`        |`javax.measure.Unit<Speed>`            |
-|`AngularVelocity`    |Unimplemented                          |
-|`UomAngularVelocity` |Unimplemented                          |
-|==========================================================================
-
-++++
-<details>
-<summary>Parameterized units in Java</summary>
-++++
-include::../code/java/units.adoc[]
-++++
-</details>
-++++
+See Java profile (<<uom_jsr>>) or Java example code (<<parameterized_units>>) for more information.

@@ -1,44 +1,32 @@
 [[metadata]]
 === Metadata packages
 
-The GeoAPI metadata packages use the `org.opengis.metadata` namespace
-and implement the types defined in the specification from the International Organization for Standardization
-ISO 19115-1:2014 – _Metadata part 1: fundamentals_ along with the modifications of Technical Corrigendum 1 from 2016 (TODO: verify).
-They are completed or merged with the types defined in ISO 19115-2:2009 – _Extensions for imagery and gridded data_ (TODO: verify).
+The GeoAPI metadata packages use the `opengis.metadata` namespace and implement the types defined
+in the ISO 19115-1:2014 – _Metadata part 1: Fundamentals_ specification along with the modifications
+of Amendments 1 and 2 from 2018 and 2020. They are completed or merged with the types defined in
+ISO 19115-2:2019 – _Metadata part 2: Extensions for acquisition and processing_ specification.
 
 The metadata packages of GeoAPI provide container types for descriptive elements which may be related to data sets or components.
 All of these data structures are essentially containers for strings, dates or numbers,
-and the interfaces consist almost exclusively of methods which provide access to those types or a container.
+and the interfaces consist almost exclusively of methods which provide read access to those types or a container.
 The API defines no methods which manipulate or modify the data structures.
-
-.Write access to metadata in Java
-****
-The metadata packages of GeoAPI have been built primarily in support of the geodetic types
-defined in the referencing packages and therefore consider primarily read access to the data structure contents.
-The GeoAPI metadata interfaces provide no methods to set the values of the types.
-Furthermore, because the way that wildcards for Java Generics have been used in the interfaces,
-the collection instances are constrained to be read only.
-Implementors are free to provide a fully mutable implementation of GeoAPI interfaces,
+Implementers are free to provide a fully mutable implementation of GeoAPI interfaces,
 but users may need to cast to the implementation classes in order to modify a metadata.
-****
 
-The GeoAPI rules of method return values have been relaxed for the metadata packages.
-Elsewhere in GeoAPI, methods which have a mandatory obligation in the specification
-must return an instance of the return type and cannot return the Java `null` or Python `None` reference.
-However, in the metadata package this rule is relaxed because data sets are encountered so frequently
-which have not correctly followed the requirements of the specification.
-In the GeoAPI metadata packages, methods for mandatory properties should return a valid instance,
-but users should be prepared to receive `null` (Java), `None` (Python) or an empty collection.
-This modification has been adopted to allow implementations sufficient latitude
-to handle metadata records which do not correctly conform to the specification.
-Nonetheless, sophisticated implementations can determine if a metadata record conforms with the specification
-by <<UML-introspection,inspecting the annotations at runtime>>.
+There is almost 500 properties in more than 150 metadata interfaces. This specification does not describe them;
+see ISO 19115 together with GeoAPI Javadoc or Python-doc (<<conformance>>) for a description of each property.
+Implementers can support a subset of their choice.
+The following UML example shows a few frequently used interfaces with some of their properties.
+An example in <<java_metadata>> shows how to extract the individual name from a `Citation` in the Java language.
+
+.Example of a few metadata interfaces with a subset of their properties
+image::metadata.svg[Partial UML for a few metadata types]
 
 
 include::mapping.adoc[]
 
-include::referencing.adoc[]
+include::reference_system.adoc[]
 
-include::usage.adoc[]
+include::nil_values.adoc[]
 
 include::departures.adoc[]

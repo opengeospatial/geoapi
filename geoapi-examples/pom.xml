@@ -71,8 +71,8 @@
       <scope>test</scope>
     </dependency>
     <dependency>
-      <groupId>tec.units</groupId>
-      <artifactId>unit-ri</artifactId>
+      <groupId>tech.uom</groupId>
+      <artifactId>seshat</artifactId>
       <scope>compile</scope>
     </dependency>
     <dependency>

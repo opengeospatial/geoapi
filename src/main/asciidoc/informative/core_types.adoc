@@ -1,0 +1,36 @@
+[[core_types]]
+=== Core data types mapping
+
+The ISO 19103 specification (_Geographic Information – Conceptual schema language_) defines types
+which are used as building blocks by the other standards in the 19100 series.
+ISO 19103:2015 defines Primitive types (§7.2 of that standard), Collection types (§7.3), Enumerated types (§7.4),
+Name types (§7.5), Record types (§7.7) and Unit of Measure types (§C.4).
+GeoAPI maps these types either to existing types from the {supported-languages} standard libraries or, when needed,
+to types defined in the `opengis.util` package.
+That utility package is used by GeoAPI for types defined in the ISO 19103 specification
+for which no equivalence is already present in the {supported-languages} standard libraries.
+
+For various practical reasons the mapping from ISO types to programming language types is not a one-to-one relationship.
+The mapping actually used is explained below.
+Furthermore not all of the types in ISO 19103 have a mapping defined because the need for these types has not yet appeared,
+since they have not yet appeared in any other specification for which GeoAPI defines interfaces.
+Such types are listed as "unimplemented" in the tables below.
+
+
+include::primitives.adoc[]
+
+include::datetime.adoc[]
+
+include::collections.adoc[]
+
+include::controlled_vocabulary.adoc[]
+
+include::generic_name.adoc[]
+
+include::records.adoc[]
+
+include::web_types.adoc[]
+
+include::internationalization.adoc[]
+
+include::units.adoc[]

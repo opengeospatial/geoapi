@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2019 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2006-2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -38,7 +38,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The name to identify a member of a {@linkplain Record record}.
+ * A name that references either an attribute slot in a record, an attribute, operation,
+ * or association role in an object instance or a type description in some schema.
  * In a {@code Record} containing an arbitrary amount of attributes:
  *
  * <ul>
@@ -55,9 +56,9 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="MemberName", specification=ISO_19103)
 public interface MemberName extends LocalName {
     /**
-     * Returns the type of the data associated with the record member.
+     * Returns the type of the data associated with the member or record field.
      *
-     * @return the type of the data associated with the record member.
+     * @return the type of the data associated with the member.
      */
     @UML(identifier="attributeType", obligation=MANDATORY, specification=ISO_19103)
     TypeName getAttributeType();

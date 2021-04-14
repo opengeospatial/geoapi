@@ -1,0 +1,15 @@
+[[mapping_rules]]
+=== General mapping rules
+
+This section gives high-level guidance in the mapping from UML to {supported-languages} API applying to all GeoAPI types.
+Other sections after this one will focus on specific type subsets (metadata, referencing, _etc_).
+Those guidance are not strict rules; departures exist on a case-by-case basis when the semantic justify them.
+
+
+include::naming.adoc[]
+
+include::multiplicity.adoc[]
+
+include::annotations.adoc[]
+
+include::derived_properties.adoc[]
