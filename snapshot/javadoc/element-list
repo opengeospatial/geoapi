@@ -1,6 +1,8 @@
 org.opengis.annotation
 org.opengis.feature
 org.opengis.feature.type
+org.opengis.filter
+org.opengis.filter.capability
 org.opengis.geometry
 org.opengis.geometry.coordinate
 org.opengis.geometry.primitive
