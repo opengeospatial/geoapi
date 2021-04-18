@@ -42,14 +42,14 @@ import static org.opengis.annotation.Specification.ISO_19143;
 
 /**
  * Nature of the logic operation between two or more filters.
- * The standard set of comparison operators is {@code AND} and {@code OR}.
+ * The standard set of comparison operators is {@code AND}, {@code OR} and {@code NOT}.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-@UML(identifier="BinaryLogicType", specification=ISO_19143)
-public final class BinaryLogicType extends CodeList<BinaryLogicType> {
+@UML(identifier="BinaryLogicType, UnaryLogicType", specification=ISO_19143)
+public final class LogicalOperatorName extends CodeList<LogicalOperatorName> {
     /**
      * Serial number for compatibility with different versions.
      */
@@ -59,19 +59,25 @@ public final class BinaryLogicType extends CodeList<BinaryLogicType> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<BinaryLogicType> VALUES = new ArrayList<>(2);
+    private static final List<LogicalOperatorName> VALUES = new ArrayList<>(3);
 
     /**
      * Operator evaluates to {@code true} if all the combined filters evaluate to {@code true}.
      */
     @UML(identifier="And", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final BinaryLogicType AND = new BinaryLogicType("AND");
+    public static final LogicalOperatorName AND = new LogicalOperatorName("AND");
 
     /**
      * Operator evaluates to {@code true} if any of the combined filters evaluate to {@code true}.
      */
     @UML(identifier="Or", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final BinaryLogicType OR = new BinaryLogicType("OR");
+    public static final LogicalOperatorName OR = new LogicalOperatorName("OR");
+
+    /**
+     * Operator reverses the logical value of a filter.
+     */
+    @UML(identifier="Not", obligation=CONDITIONAL, specification=ISO_19143)
+    public static final LogicalOperatorName NOT = new LogicalOperatorName("NOT");
 
     /**
      * Constructs an element of the given name. The new element is
@@ -79,18 +85,18 @@ public final class BinaryLogicType extends CodeList<BinaryLogicType> {
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
-    private BinaryLogicType(final String name) {
+    private LogicalOperatorName(final String name) {
         super(name, VALUES);
     }
 
     /**
-     * Returns the list of {@code BinaryLogicType}s.
+     * Returns the list of {@code LogicalOperatorName}s.
      *
      * @return the list of codes declared in the current JVM.
      */
-    public static BinaryLogicType[] values() {
+    public static LogicalOperatorName[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new BinaryLogicType[VALUES.size()]);
+            return VALUES.toArray(new LogicalOperatorName[VALUES.size()]);
         }
     }
 
@@ -102,7 +108,7 @@ public final class BinaryLogicType extends CodeList<BinaryLogicType> {
      * @return all code {@linkplain #values() values} for this code list.
      */
     @Override
-    public BinaryLogicType[] family() {
+    public LogicalOperatorName[] family() {
         return values();
     }
 
@@ -115,7 +121,7 @@ public final class BinaryLogicType extends CodeList<BinaryLogicType> {
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
-    public static BinaryLogicType valueOf(String code) {
-        return valueOf(BinaryLogicType.class, code);
+    public static LogicalOperatorName valueOf(String code) {
+        return valueOf(LogicalOperatorName.class, code);
     }
 }

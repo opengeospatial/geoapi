@@ -32,11 +32,11 @@
 package org.opengis.filter;
 
 import java.util.List;
-import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 
+import static org.opengis.annotation.Obligation.MANDATORY;
 import static org.opengis.annotation.Specification.ISO_19143;
 
 
@@ -45,6 +45,11 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * The logical operator AND evaluates to {@code true} if all the combined expressions evaluate to true.
  * The operator OR evaluates to {@code true} is any of the combined expressions evaluate to true.
  * The NOT operator reverses the logical value of an expression.
+ *
+ * <p>The arity is determined the length of the {@linkplain #getOperands() operands} list.
+ * If 1, this operator is an <cite>unary logic operator</cite>.
+ * If 2 or more, this operator is a <cite>binary logic operator</cite>.
+ * The length may be more than 2 if the AND or OR operation is repeated for all operands.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -56,13 +61,13 @@ import static org.opengis.annotation.Specification.ISO_19143;
 @UML(identifier="LogicalOperator", specification=ISO_19143)
 public interface LogicalOperator<T> extends Filter<T> {
     /**
-     * Returns the nature of the operator. The code list can be {@link UnaryLogicType}
-     * or {@link BinaryLogicType}, depending on the sub-interface.
+     * Returns the nature of the operator.
      *
      * @return the nature of the operator.
      */
     @Override
-    CodeList<?> getOperatorType();
+    @UML(identifier="UnaryLogicOperator.operatorType, BinaryLogicOperator.operatorType", obligation=MANDATORY, specification=ISO_19143)
+    LogicalOperatorName getOperatorType();
 
     /**
      * Returns a view of filter operands as expressions having {@code Boolean} return values.
@@ -89,5 +94,6 @@ public interface LogicalOperator<T> extends Filter<T> {
      *
      * @return all child filters used as operands.
      */
+    @UML(identifier="UnaryLogicOperator.operands, BinaryLogicOperator.operands", obligation=MANDATORY, specification=ISO_19143)
     List<Filter<? super T>> getOperands();
 }

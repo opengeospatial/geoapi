@@ -77,19 +77,19 @@ public interface FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
 
     /** {@code AND} filter between two filters. */
-    BinaryLogicOperator and(Filter f, Filter g);
+    LogicalOperator and(Filter f, Filter g);
 
     /** {@code AND} filter between a list of filters. */
-    BinaryLogicOperator and(List<Filter> f);
+    LogicalOperator and(List<Filter> f);
 
     /** {@code OR} filter between two filters. */
-    BinaryLogicOperator or(Filter f, Filter g);
+    LogicalOperator or(Filter f, Filter g);
 
     /** {@code OR} filter between a list of filters. */
-    BinaryLogicOperator or (List<Filter> f);
+    LogicalOperator or (List<Filter> f);
 
     /** Reverses the logical value of a filter. */
-    UnaryLogicOperator not(Filter f);
+    LogicalOperator not(Filter f);
 
     /** Passes only for objects that have one of the IDs given to this object. */
     ResourceId id(Set<? extends ResourceId> ids);

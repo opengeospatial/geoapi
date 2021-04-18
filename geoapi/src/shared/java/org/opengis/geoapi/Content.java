@@ -296,8 +296,6 @@ public enum Content {
                org.opengis.filter                  .DistanceOperator                    .class,
                org.opengis.filter                  .TemporalOperator                    .class,
                org.opengis.filter                  .LogicalOperator                     .class,
-               org.opengis.filter                  .UnaryLogicOperator                  .class,
-               org.opengis.filter                  .BinaryLogicOperator                 .class,
                org.opengis.filter                  .Version                             .class,
                org.opengis.filter                  .ResourceId                          .class,
                org.opengis.filter                  .SortProperty                        .class,
@@ -363,8 +361,7 @@ public enum Content {
             org.opengis.filter                  .SpatialOperatorName          .class,
             org.opengis.filter                  .DistanceOperatorName         .class,
             org.opengis.filter                  .TemporalOperatorName         .class,
-            org.opengis.filter                  .UnaryLogicType               .class,
-            org.opengis.filter                  .BinaryLogicType              .class),
+            org.opengis.filter                  .LogicalOperatorName          .class),
 
     /**
      * All enumeration classes.

@@ -115,15 +115,15 @@ public interface Filter<T> extends Predicate<T> {
     }
 
     /**
-     * Returns the nature of the operator. The code list can be {@link UnaryLogicType}
-     * {@link BinaryLogicType}, {@link SpatialOperatorName}, {@link DistanceOperatorName}
-     * or {@link TemporalOperatorName} depending on the {@code Filter} sub-interface.
+     * Returns the nature of the operator. The code list can be {@link LogicalOperatorName},
+     * {@link SpatialOperatorName}, {@link DistanceOperatorName} or {@link TemporalOperatorName}
+     * depending on the {@code Filter} sub-interface.
      *
      * @return the nature of this operator.
      *
      * @departure generalization
-     *   The ISO/OGC standard defines an {@code operatorType} property in {@link UnaryLogicOperator},
-     *   {@link BinaryLogicOperator}, {@link BinaryComparisonOperator}, {@link BinarySpatialOperator}
+     *   The ISO/OGC standard defines an {@code operatorType} property in {@code UnaryLogicOperator},
+     *   {@code BinaryLogicOperator}, {@link BinaryComparisonOperator}, {@link BinarySpatialOperator}
      *   and {@link DistanceOperator}. This method has been added for providing a single access point
      *   for that information without the need to check for each sub-type.
      */

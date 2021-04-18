@@ -25,6 +25,13 @@ This approach avoid an indirection level.
 GeoAPI generally avoids interfaces with definition of the kind _“is not…”_.
 Users should extend directly the most appropriate interface instead.
 
+`UnaryLogicOperator` and `BinaryLogicOperator` interfaces are omitted for simplicity.
+The `LogicalOperator` parent interface can handle both cases,
+with arity determined by the length of the operands list.
+If 1, the operator is an `UnaryLogicOperator`.
+If 2 or more, the operator is a `BinaryLogicOperator`.
+The length may be more than 2 if the AND or OR operation is repeated for all operands.
+
 `Spatial­Description` and `Temporal­Operand` unions are omitted for language constraint reasons.
 Unions are not supported in Java and not really needed in Python.
 They are replaced by recommendations in the API documentation.
