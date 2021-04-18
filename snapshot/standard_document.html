@@ -2221,6 +2221,14 @@ p {
 <li><a href="#moving_feature">6.6.1. Moving feature</a></li>
 </ul>
 </li>
+<li><a href="#filtering">6.7. Filter packages</a>
+<ul class="sectlevel3">
+<li><a href="#expression">6.7.1. Expression</a></li>
+<li><a href="#filter">6.7.2. Filter</a></li>
+<li><a href="#filter_capabilities">6.7.3. Capabilities</a></li>
+<li><a href="#filter_departures">6.7.4. Departures from ISO 19143</a></li>
+</ul>
+</li>
 </ul>
 </li>
 <li><a href="#requirements">7. Requirements</a>
@@ -2869,6 +2877,11 @@ Feature attribute type or feature attribute instance is used when only one is me
 <p>operation that every instance of a feature type may perform<br>
  [source: ISO 19109]</p>
 </div>
+<h3 id="term_function" class="discrete">function</h3>
+<div class="paragraph">
+<p>rule that associates each element from a domain (source, or domain of the function) to a unique element in another domain (target, co-domain, or range)<br>
+ [source: ISO 19107:2003]</p>
+</div>
 <h3 id="term_geographic_feature" class="discrete">geographic feature</h3>
 <div class="paragraph">
 <p>representation of real world phenomenon associated with a location relative to the Earth<br>
@@ -2892,6 +2905,12 @@ which can impose ordering restrictions on interactions through the interface.</s
 <div class="paragraph">
 <p>trademark of Oracle used to refer to an object oriented, single inheritance programming language
 whose syntax derives from the C programming language and which is defined by the Java Language Specification</p>
+</div>
+<h3 id="term_literal_value" class="discrete">literal value</h3>
+<div class="paragraph">
+<p>constant, explicitly specified value<br>
+<span class="small">Note 1 to entry: This contrasts with a value that is determined by resolving a chain of substitution (e.g. a variable).</span><br>
+ [source: ISO 19143]</p>
 </div>
 <h3 id="term_metadata" class="discrete">metadata</h3>
 <div class="paragraph">
@@ -3006,6 +3025,10 @@ while the concrete classes provided by vendors are said to be an implementations
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">BBOX</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Bounding Box</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">CRS</p></td>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Coordinate Reference System</p></td>
 </tr>
@@ -3026,12 +3049,16 @@ while the concrete classes provided by vendors are said to be an implementations
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Uniform Resource Identifiers</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">UTC</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Coordinated Universal Time</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">WKT</p></td>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Well Known Text</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">XML</p></td>
-<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">eXtended Markup Language</p></td>
+<td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">Extensible Markup Language</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top" style="background-color: #FFFFFF;"><p class="tableblock">XSD</p></td>
@@ -5102,6 +5129,243 @@ A feature where the geometry is a trajectory is a moving feature.
 In addition of time-dependent positions defined by the trajectory,
 a moving feature may also have time-dependent attribute values.
 Those attributes are represented by the <code>DynamicAttribute</code> sub-type.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="filtering"><a class="anchor" href="#filtering"></a>6.7. Filter packages</h3>
+<div class="paragraph">
+<p>The GeoAPI filter packages use the <code>opengis.filter</code> namespace
+and implement the types defined in the ISO 19143:2010 - <em>Filter encoding</em> specification.
+GeoAPI ignores the XML encoding aspects and retains only the types defined in UML diagrams.</p>
+</div>
+<div class="paragraph">
+<p>The two most fundamental types are <code>Expression</code> and <code>Filter</code>, shown in next sections.
+All expressions are identified by a <code>ScopedName</code> and all filters are identified by a <code>CodeList</code>.
+This is an extension to ISO 19143 specification where only some specific sub-types have those identifications.
+This generalization allows, in some cases, to execute generic code without the need to check the filter or expression sub-types.</p>
+</div>
+<div class="sect3">
+<h4 id="expression"><a class="anchor" href="#expression"></a>6.7.1. Expression</h4>
+<div class="paragraph">
+<p><em class="reference">From ISO 19143:2010 §7.[3…6]</em></p>
+</div>
+<div class="paragraph">
+<p>An expression is a function that receives a resource (typically a <code>Feature</code>) in input
+and produces a value (typically a character string, a number or a geometry) in output.
+The output is restricted to <code>Boolean</code> if the expression is used as an operand of a <code>LogicalOperator</code> (<a href="#filter">§ 6.7.2</a>).</p>
+</div>
+<div class="paragraph">
+<p>Expressions extend the mechanism provided by the target platform for defining functions.
+For example in the Java language, <code>Expression</code> extends the <code>java.util.function.Function</code> interface.</p>
+</div>
+<div class="paragraph">
+<p>An expression can be a literal, a reference to the values of a particular property in resources,
+or a named procedure (for example arithmetic operations between the results of two sub-expressions).
+An expression can have zero or more parameters and generates a single result.
+The parameters themselves are in-turn expressions and shall appear in the order in which
+they are defined in the <code>FilterCapabilities</code> (<a href="#filter_capabilities">§ 6.7.3</a>).</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/expression.svg" alt="Expression UML">
+</div>
+<div class="title">Figure 13. Partial UML of expressions</div>
+</div>
+<div class="paragraph">
+<p><code>ValueReference</code> is an expression whose value is computed by retrieving the value indicated
+by a name or a XPath in a resource (typically a property in <code>Feature</code> instances),
+and <code>Literal</code> is an expression whose value is a constant.</p>
+</div>
+<div class="paragraph">
+<p>Parameters are specified at <code>Expression</code> creation time.
+For example an expression computing <em>x</em>+1 where <em>x</em> is the value of a <code>Feature</code> property
+can be created with two parameters:
+a <code>ValueReference</code> retrieving the <em>x</em> value for each feature
+and a <code>Literal</code> whose value is the integer 1.
+When <code>apply(f)</code> is invoked on that "Add" expression where <em>f</em> is a <code>Feature</code> instance,
+the "Add" expression invokes in turn <code>apply(f)</code> on the two above-cited parameters.
+The values computed by those parameters are added, then returned by the "Add" expression.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="filter"><a class="anchor" href="#filter"></a>6.7.2. Filter</h4>
+<div class="paragraph">
+<p><em class="reference">From ISO 19143:2010 §7.[7…11]</em></p>
+</div>
+<div class="paragraph">
+<p>A filter is a predicate that identifies a subset of resources from a collection of resources.
+Each resource instance is evaluated against a filter, which always evaluates to <code>true</code> or <code>false</code>.
+If the filter evaluates to <code>true</code>, the resource instance is included in the result set.
+If the filter evaluates to <code>false</code>, the resource instance is ignored.
+Roughly speaking, a filter encodes the information present in the <code>WHERE</code> clause of a SQL statement.</p>
+</div>
+<div class="paragraph">
+<p>There are various sub-interfaces of this interface that represent many types of filters,
+such as simple property comparisons or spatial queries.
+The following diagram shows the 4 basic types of filters
+together with the code lists identifying which operation is applied.
+More specialized sub-types such as <code>Binary­Comparison­Operator</code> and <code>Distance­Operator</code> are not shown in this diagram.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/filter.svg" alt="Filter UML">
+</div>
+<div class="title">Figure 14. Partial UML of filters</div>
+</div>
+<div class="paragraph">
+<p>Filter operands are expressions.
+For example a filter named "Property­Is­Equal­To" uses two expressions.
+The first expression may be a <code>Value­Reference</code> fetching the value of a property
+and the second expression may be a <code>Literal</code> with the desired value.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="filter_capabilities"><a class="anchor" href="#filter_capabilities"></a>6.7.3. Capabilities</h4>
+<div class="paragraph">
+<p><em class="reference">From ISO 19143:2010 §7.13</em></p>
+</div>
+<div class="paragraph">
+<p><code>Filter­Capabilities</code> is the entry point for listing which expressions and filter operators are available.
+It capabilities are separated in the following categories:</p>
+</div>
+<div class="ulist compact">
+<ul>
+<li>
+<p><code>Id­Capabilities</code> lists names that represent the resource identifier elements that the service supports.</p>
+</li>
+<li>
+<p><code>Scalar­Capabilities</code> advertises which logical, comparison and arithmetic operators the service supports.</p>
+</li>
+<li>
+<p><code>Spatial­Capabilities</code> advertises which spatial operators and geometric operands the service supports.</p>
+</li>
+<li>
+<p><code>Temporal­Capabilities</code> advertises which temporal operators and temporal operands the service supports.</p>
+</li>
+<li>
+<p><code>Available­Function</code> describes functions that may be used in filter expressions.</p>
+</li>
+<li>
+<p><code>Extended­Capabilities</code> advertises any additional operators added to the filter syntax.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The enumeration of scalar, spatial and temporal capabilities use de code lists shown in <a href="#filter">§ 6.7.2</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="filter_departures"><a class="anchor" href="#filter_departures"></a>6.7.4. Departures from ISO 19143</h4>
+<div class="paragraph">
+<p>The ISO 19143 model is slightly modified in GeoAPI for retrofitting with existing interfaces in Java and Python.
+Some modifications are also applied for generalization when non-encoded property values can be computed.
+The aim is to facilitate computational operations without preventing the encoding of ISO 19143 compliant XML documents,
+as omitted types (for example) can be inferred.</p>
+</div>
+<div class="sect4">
+<h5>Omissions relative to expressions</h5>
+<div class="paragraph">
+<p><code>Function</code> interface is omitted (actually retrofitted into the base <code>Expression</code> interface) for avoiding confusion with
+function interfaces provided natively by target platforms (such as the <code>java.​util.​function</code> package).
+Instead the <code>Function</code> properties are moved into the <code>Expression</code> parent interface because from a programming
+language point of view, all expressions – including <code>Literal</code> – can be viewed as a kind of function.
+The following partial UML diagrams illustrate the difference.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="images/filter_function.svg" alt="Partial UML for ISO and GeoAPI filter function">
+</div>
+<div class="title">Figure 15. Role of function interface in ISO versus GeoAPI model</div>
+</div>
+</div>
+<div class="sect4">
+<h5>Omissions relative to filters</h5>
+<div class="paragraph">
+<p><code>Operator</code> interface is omitted for simplicity reason.
+Instead operators defined by GeoAPI extends directly the <code>Filter</code> interface.
+This approach avoid an indirection level.</p>
+</div>
+<div class="paragraph">
+<p><code>Non­Id­Operator</code> and <code>Extension­Operator</code> interfaces are omitted for semantic reasons.
+GeoAPI generally avoids interfaces with definition of the kind <em>“is not…”</em>.
+Users should extend directly the most appropriate interface instead.</p>
+</div>
+<div class="paragraph">
+<p><code>UnaryLogicOperator</code> and <code>BinaryLogicOperator</code> interfaces are omitted for simplicity.
+The <code>LogicalOperator</code> parent interface can handle both cases,
+with arity determined by the length of the operands list.
+If 1, the operator is an <code>UnaryLogicOperator</code>.
+If 2 or more, the operator is a <code>BinaryLogicOperator</code>.
+The length may be more than 2 if the AND or OR operation is repeated over all operands.</p>
+</div>
+<div class="paragraph">
+<p><code>Spatial­Description</code> and <code>Temporal­Operand</code> unions are omitted for language constraint reasons.
+Unions are not supported in Java and not really needed in Python.
+They are replaced by recommendations in the API documentation.</p>
+</div>
+</div>
+<div class="sect4">
+<h5>Omissions relative to capabilities</h5>
+<div class="paragraph">
+<p><code>Spatial­Operator­Description</code> and <code>Temporal­Operator­Description</code> in the capabilities section are omitted.
+The are replaced by the dictionary of target platforms (for example <code>Map.Entry</code> in Java).
+It reduces the number of GeoAPI defined interfaces by leveraging platform API
+and also makes easier to get the operands for a specific operator.</p>
+</div>
+</div>
+<div class="sect4">
+<h5>Renaming</h5>
+<div class="ulist">
+<ul>
+<li>
+<p>The <code>expression</code> association in <code>Function</code> is renamed <code>parameter</code> for making clearer that they are function inputs.</p>
+</li>
+<li>
+<p>The <code>name</code> property in <code>Function</code> is renamed <code>function­Name</code> for making its purpose clearer,
+since GeoAPI declares that property in the <code>Expression</code> parent interface.</p>
+</li>
+<li>
+<p>The <code>BinaryComparisonName</code> type is renamed <code>ComparisonOperatorName</code> for consistency with other operator names
+and for making possible to name other kinds of comparison than binary operators.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect4">
+<h5>Generalization of filter metadata</h5>
+<div class="paragraph">
+<p>The ISO 19143 specification identifies <em>some</em> filters by a code list.
+That identification is provided by an <code>operator­Type</code> property defined in
+<code>Unary­Logic­Operator</code>, <code>Binary­Logic­Operator</code>, <code>Binary­Comparison­Operator</code>,
+<code>Binary­Spatial­Operator</code> and <code>Distance­Operator</code> interfaces.
+GeoAPI generalizes by declaring a <code>get­Operator­Type()</code> method in the base <code>Filter</code> interface.
+It provides a single access point for type information without the need to check for each specialized interface.</p>
+</div>
+<div class="paragraph">
+<p>Likewise ISO 19143 specification provides different properties for getting the expressions used by a filter.
+Those properties have different names depending on the sub-type:
+<code>expression</code> (with a cardinality of 1, 2 or unlimited), <code>operand1</code>, <code>operand2</code>, or <code>value­Reference</code>.
+GeoAPI provides a <code>get­Expressions()</code> method in the parent <code>Filter</code> interface
+as a way to access those expressions without the need to make special cases for each sub-interfaces.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<div class="paragraph">
+<p>The operand names vary in ISO 19143 specification because their types vary.
+But those types are often unions, which are materialized only by documentation in GeoAPI.
+Consequently the base <code>Expression</code> type is used almost everywhere,
+which make less useful to have heterogynous properties in sub-interfaces.</p>
+</div>
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 </div>
