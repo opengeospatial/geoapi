@@ -56,6 +56,17 @@ import static org.opengis.annotation.Specification.ISO_19143;
 @UML(identifier="NilOperator", specification=ISO_19143)
 public interface NilOperator<T> extends ComparisonOperator<T> {
     /**
+     * Returns the nature of the comparison.
+     * The default implementation returns {@code PROPERTY_IS_NIL}.
+     *
+     * @return the nature of the comparison.
+     */
+    @Override
+    default ComparisonOperatorName getOperatorType() {
+        return ComparisonOperatorName.PROPERTY_IS_NIL;
+    }
+
+    /**
      * Returns the expression whose value will be checked for nil.
      *
      * @return a list of size 1 containing the expression to test for nil value.

@@ -53,6 +53,17 @@ import static org.opengis.annotation.Specification.ISO_19143;
 @UML(identifier="BetweenComparisonOperator", specification=ISO_19143)
 public interface BetweenComparisonOperator<T> extends ComparisonOperator<T> {
     /**
+     * Returns the nature of the comparison.
+     * The default implementation returns {@code PROPERTY_IS_BETWEEN}.
+     *
+     * @return the nature of the comparison.
+     */
+    @Override
+    default ComparisonOperatorName getOperatorType() {
+        return ComparisonOperatorName.PROPERTY_IS_BETWEEN;
+    }
+
+    /**
      * Returns the expression to be compared by this operator, together with boundaries.
      * The expressions can be of any kind.
      *

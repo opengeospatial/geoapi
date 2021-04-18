@@ -59,16 +59,6 @@ import static org.opengis.annotation.Specification.ISO_19143;
 @UML(identifier="BinaryComparisonOperator", specification=ISO_19143)
 public interface BinaryComparisonOperator<T> extends ComparisonOperator<T> {
     /**
-     * Returns the nature of the comparison. A standard set of comparison operators is equal to,
-     * less than, greater than, less than or equal to, greater than or equal to and not equal to.
-     *
-     * @return the nature of the comparison.
-     */
-    @Override
-    @UML(identifier="operatorType", obligation=MANDATORY, specification=ISO_19143)
-    BinaryComparisonName getOperatorType();
-
-    /**
      * Returns the two expressions to be compared by this operator.
      * The expressions can be of any kind.
      *

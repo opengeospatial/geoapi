@@ -33,7 +33,7 @@ package org.opengis.filter.capability;
 
 import java.util.Set;
 import java.util.Collections;
-import org.opengis.filter.BinaryComparisonName;
+import org.opengis.filter.ComparisonOperatorName;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.OPTIONAL;
@@ -74,7 +74,7 @@ public interface ScalarCapabilities {
      * @return comparison operators supported by the service.
      */
     @UML(identifier="comparisonOperator", obligation=OPTIONAL, specification=ISO_19143)
-    default Set<BinaryComparisonName> getComparisonOperators() {
+    default Set<ComparisonOperatorName> getComparisonOperators() {
         return Collections.emptySet();
     }
 }

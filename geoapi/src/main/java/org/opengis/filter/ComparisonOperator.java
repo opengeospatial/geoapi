@@ -35,6 +35,7 @@ import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 
+import static org.opengis.annotation.Obligation.MANDATORY;
 import static org.opengis.annotation.Specification.ISO_19143;
 
 
@@ -61,4 +62,13 @@ import static org.opengis.annotation.Specification.ISO_19143;
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="ComparisonOperator", specification=ISO_19143)
 public interface ComparisonOperator<T> extends Filter<T> {
+    /**
+     * Returns the nature of the comparison. A standard set of comparison operators is equal to,
+     * less than, greater than, less than or equal to, greater than or equal to and not equal to.
+     *
+     * @return the nature of the comparison.
+     */
+    @Override
+    @UML(identifier="BinaryComparisonOperator.operatorType", obligation=MANDATORY, specification=ISO_19143)
+    ComparisonOperatorName getOperatorType();
 }

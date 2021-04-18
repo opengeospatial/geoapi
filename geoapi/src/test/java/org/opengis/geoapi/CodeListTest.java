@@ -46,6 +46,7 @@ import org.opengis.util.CodeList;
 import org.opengis.util.ControlledVocabulary;
 import org.opengis.metadata.constraint.Restriction;
 import org.opengis.metadata.identification.CharacterSet;
+import org.opengis.annotation.UML;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -128,14 +129,19 @@ public final strictfp class CodeListTest {
             /*
              * Tests every CodeList instances returned by values().
              * Every field should be public, static and final.
+             * We allow field to be non-public if not declared by an OGC/ISO standard.
              */
             for (final ControlledVocabulary value : values) {
                 final String valueName = value.name();
                 final String fullName  = className + '.' + valueName;
                 assertTrue(fullName + " is of unexpected type.", codeClass.isInstance(value));
-                final Field field = codeClass.getField(valueName);
+                final Field field = codeClass.getDeclaredField(valueName);
                 final int modifiers = field.getModifiers();
-                assertTrue  (fullName + " is not public.", Modifier.isPublic(modifiers));
+                if (field.isAnnotationPresent(UML.class)) {
+                    assertTrue(fullName + " is not public.", Modifier.isPublic(modifiers));
+                } else {
+                    field.setAccessible(true);
+                }
                 assertTrue  (fullName + " is not static.", Modifier.isStatic(modifiers));
                 assertTrue  (fullName + " is not final.",  Modifier.isFinal (modifiers));
                 assertEquals(fullName + " name mismatch.", valueName, field.getName());

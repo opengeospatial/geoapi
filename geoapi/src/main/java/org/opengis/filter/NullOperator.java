@@ -53,6 +53,17 @@ import static org.opengis.annotation.Specification.ISO_19143;
 @UML(identifier="NullOperator", specification=ISO_19143)
 public interface NullOperator<T> extends ComparisonOperator<T> {
     /**
+     * Returns the nature of the comparison.
+     * The default implementation returns {@code PROPERTY_IS_NULL}.
+     *
+     * @return the nature of the comparison.
+     */
+    @Override
+    default ComparisonOperatorName getOperatorType() {
+        return ComparisonOperatorName.PROPERTY_IS_NULL;
+    }
+
+    /**
      * Returns the expression whose value will be checked for {@code null}.
      *
      * @return a list of size 1 containing the expression to test for null value.

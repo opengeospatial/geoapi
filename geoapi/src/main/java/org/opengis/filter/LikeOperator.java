@@ -58,6 +58,17 @@ import static org.opengis.annotation.Specification.ISO_19143;
 @UML(identifier="LikeOperator", specification=ISO_19143)
 public interface LikeOperator<T> extends ComparisonOperator<T> {
     /**
+     * Returns the nature of the comparison.
+     * The default implementation returns {@code PROPERTY_IS_LIKE}.
+     *
+     * @return the nature of the comparison.
+     */
+    @Override
+    default ComparisonOperatorName getOperatorType() {
+        return ComparisonOperatorName.PROPERTY_IS_LIKE;
+    }
+
+    /**
      * Returns the expression to be compared by this operator, together with the pattern.
      * The list content is as below:
      *

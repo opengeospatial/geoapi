@@ -82,7 +82,7 @@ final class FilterLiteral implements Filter<Object>, Serializable {
      */
     @Override
     public CodeList<?> getOperatorType() {
-        throw new UnsupportedOperationException();      // TODO
+        return value ? ComparisonOperatorName.INCLUDE : ComparisonOperatorName.EXCLUDE;
     }
 
     /**

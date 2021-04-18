@@ -39,6 +39,8 @@ and also makes easier to get the operands for a specific operator.
 * The `expression` association in `Function` is renamed `parameter` for making clearer that they are function inputs.
 * The `name` property in `Function` is renamed `function­Name` for making its purpose clearer,
   since GeoAPI declares that property in the `Expression` parent interface.
+* The `BinaryComparisonName` type is renamed `ComparisonOperatorName` for consistency with other operator names
+  and for making possible to name other kinds of comparison than binary operators.
 
 ===== Generalization of filter metadata
 The ISO 19143 specification identifies _some_ filters by a code list.
