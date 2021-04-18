@@ -335,44 +335,35 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      */
     @Override
     public String identifier() {
-        // Save the field in a local variable for protection against concurrent change (this
-        // operation is guaranteed atomic according Java specification). We don't synchronize
-        // since it is not a problem if this method is executed twice in concurrent threads.
-        String identifier = this.identifier;
-        if (identifier == null) {
-            @SuppressWarnings("rawtypes")
-            final Class<? extends CodeList> codeType = getClass();
-            Field field;
+        /*
+         * Save the field in a local variable for protection against concurrent change (this
+         * operation is guaranteed atomic according Java specification). We don't synchronize
+         * since it is not a problem if this method is executed twice in concurrent threads.
+         */
+        String id = identifier;
+        if (id == null) {
+            id = "";
             try {
-                field = codeType.getField(name);
+                final Field field = getClass().getField(name);
+                if (Modifier.isStatic(field.getModifiers())) {
+                    final Object value = field.get(null);
+                    if (equals(value)) {
+                        final UML annotation = field.getAnnotation(UML.class);
+                        if (annotation != null) {
+                            id = annotation.identifier().intern();
+                        }
+                    }
+                }
             } catch (NoSuchFieldException e) {
                 // There is no field for a code of this name. It may be normal, since the user
                 // may have created a custom CodeList without declaring it as a constant.
-                field = null;
+            } catch (IllegalAccessException e) {
+                // Should never happen since getField(String) returns only public fields.
+                throw new AssertionError(e);
             }
-            if (field != null && Modifier.isStatic(field.getModifiers())) {
-                final Object value;
-                try {
-                    value = field.get(null);
-                } catch (IllegalAccessException e) {
-                    // Should never happen since getField(String) returns only public fields.
-                    throw new AssertionError(e);
-                }
-                if (equals(value)) {
-                    final UML annotation = field.getAnnotation(UML.class);
-                    if (annotation != null) {
-                        identifier = annotation.identifier();
-                    }
-                }
-            }
-            if (identifier == null) {
-                identifier = "";
-            } else {
-                identifier = identifier.intern();
-            }
-            this.identifier = identifier;
+            identifier = id;
         }
-        return identifier.length() != 0 ? identifier : null;
+        return id.isEmpty() ? null : id;
     }
 
     /**
