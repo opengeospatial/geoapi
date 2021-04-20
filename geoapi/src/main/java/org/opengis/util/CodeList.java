@@ -57,7 +57,7 @@ import static org.opengis.annotation.Specification.*;
  * will automatically add the newly created {@code CodeList} element in the array to be returned
  * by {@code values()}.</p>
  *
- * @param <E> The type of this code list.
+ * @param  <E>  the type of this code list.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 4.0

@@ -51,10 +51,10 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  *
- * @param  <T>  the type of inputs to filter.
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to filter.
  */
 @UML(identifier="NilOperator", specification=ISO_19143)
-public interface NilOperator<T> extends ComparisonOperator<T> {
+public interface NilOperator<R> extends ComparisonOperator<R> {
     /**
      * Returns the nature of the comparison.
      * The default implementation returns {@code PROPERTY_IS_NIL}.
@@ -73,7 +73,7 @@ public interface NilOperator<T> extends ComparisonOperator<T> {
      */
     @Override
     @UML(identifier="expression", obligation=MANDATORY, specification=ISO_19143)
-    List<Expression<? super T, ?>> getExpressions();
+    List<Expression<? super R, ?>> getExpressions();
 
     /**
      * Returns the reason why the value is nil.

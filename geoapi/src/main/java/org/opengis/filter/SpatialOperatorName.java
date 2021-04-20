@@ -86,8 +86,8 @@ public final class SpatialOperatorName extends CodeList<SpatialOperatorName> {
     public static final SpatialOperatorName EQUALS = new SpatialOperatorName("EQUALS");
 
     /**
-     * Operator evaluates to {@code true} if the first operand is disjoint from the second
-     * (in the sense defined in the OGC Simple Features specification).
+     * Operator evaluates to {@code true} if the first operand is disjoint from the second.
+     * "Disjoint" shall be interpreted in the sense defined in the OGC Simple Features specification.
      */
     @UML(identifier="Disjoint", obligation=CONDITIONAL, specification=ISO_19143)
     public static final SpatialOperatorName DISJOINT = new SpatialOperatorName("DISJOINT");
@@ -99,22 +99,21 @@ public final class SpatialOperatorName extends CodeList<SpatialOperatorName> {
     public static final SpatialOperatorName INTERSECTS = new SpatialOperatorName("INTERSECTS");
 
     /**
-     * Operator evaluates to {@code true} if the feature's geometry touches,
-     * but does not overlap with the geometry held by this object.
+     * Operator evaluates to {@code true} if the two geometric operands touch, but do not overlap.
      */
     @UML(identifier="Touches", obligation=CONDITIONAL, specification=ISO_19143)
     public static final SpatialOperatorName TOUCHES = new SpatialOperatorName("TOUCHES");
 
     /**
-     * Operator evaluates to {@code true} if the first geometric operand crosses
-     * the second (in the sense defined by the OGC Simple Features specification).
+     * Operator evaluates to {@code true} if the first geometric operand crosses the second.
+     * "Cross" shall be interpreted in the sense defined by the OGC Simple Features specification.
      */
     @UML(identifier="Crosses", obligation=CONDITIONAL, specification=ISO_19143)
     public static final SpatialOperatorName CROSSES = new SpatialOperatorName("CROSSES");
 
     /**
-     * Operator evaluates to {@code true} if the feature's geometry is completely
-     * contained by the constant geometry held by this object.
+     * Operator evaluates to {@code true} if the first geometric operand is completely
+     * contained by the constant geometric operand.
      */
     @UML(identifier="Within", obligation=CONDITIONAL, specification=ISO_19143)
     public static final SpatialOperatorName WITHIN = new SpatialOperatorName("WITHIN");
@@ -126,8 +125,8 @@ public final class SpatialOperatorName extends CodeList<SpatialOperatorName> {
     public static final SpatialOperatorName CONTAINS = new SpatialOperatorName("CONTAINS");
 
     /**
-     * Operator evaluates to {@code true} if the interior of the first geometry
-     * somewhere overlaps the interior of the second geometry.
+     * Operator evaluates to {@code true} if the interior of the first geometric operand
+     * somewhere overlaps the interior of the second geometric operand.
      */
     @UML(identifier="Overlaps", obligation=CONDITIONAL, specification=ISO_19143)
     public static final SpatialOperatorName OVERLAPS = new SpatialOperatorName("OVERLAPS");

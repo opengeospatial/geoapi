@@ -53,13 +53,13 @@ public enum SortOrder implements ControlledVocabulary {
      * This is the {@link SortProperty} default value.
      */
     @UML(identifier="ascending", obligation=CONDITIONAL, specification=ISO_19143)
-    ASCENDING("ascending"),
+    ASCENDING("ascending", "ASC"),
 
     /**
      * Indicates that a descending sort, in the collation sequence of the filter expression processor, is performed.
      */
     @UML(identifier="descending", obligation=CONDITIONAL, specification=ISO_19143)
-    DESCENDING("descending");
+    DESCENDING("descending", "DESC");
 
     /**
      * The UML identifier.
@@ -67,10 +67,16 @@ public enum SortOrder implements ControlledVocabulary {
     private final String identifier;
 
     /**
+     * The name used in SQL statements.
+     */
+    private final String sql;
+
+    /**
      * Creates a new constant with the given UML identifier.
      */
-    private SortOrder(final String identifier) {
+    private SortOrder(final String identifier, final String sql) {
         this.identifier = identifier;
+        this.sql = sql;
     }
 
     /**
@@ -82,11 +88,22 @@ public enum SortOrder implements ControlledVocabulary {
     }
 
     /**
-     * Returns the programmatic name of this constant together with its {@linkplain #identifier() identifier}.
+     * Returns the name used in SQL statements.
+     * This is {@code "ASC"} or {@code "DESC"}.
+     *
+     * @return name used in SQL statements.
+     */
+    public String toSQL() {
+        return sql;
+    }
+
+    /**
+     * Returns the programmatic name of this constant together with its {@linkplain #identifier() identifier}
+     * and SQL name.
      */
     @Override
     public String[] names() {
-        return new String[] {name(), identifier};
+        return new String[] {name(), identifier, sql};
     }
 
     /**

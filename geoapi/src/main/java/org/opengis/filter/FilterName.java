@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2006-2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -32,87 +32,70 @@
 package org.opengis.filter;
 
 import java.util.List;
-import java.util.Collections;
-import java.io.Serializable;
-import java.io.ObjectStreamException;
+import java.util.ArrayList;
 import org.opengis.util.CodeList;
 
 
 /**
- * A filter that produces a constant {@code true} or {@code false} value.
- * This is a placeholder filter intended to be used in data structuring definition.
+ * Nature of filter for operations other than the public code lists.
  *
- * @author  Jody Garnett (Refractions Research, Inc.)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-final class FilterLiteral implements Filter<Object>, Serializable {
+final class FilterName extends CodeList<FilterName> {
     /**
-     * For cross-version compatibility.
+     * Serial number for compatibility with different versions.
      */
-    private static final long serialVersionUID = -8211972295113356707L;
+    private static final long serialVersionUID = -320789665042646602L;
 
     /**
-     * The constant returned by {@link Filter#include()}.
+     * List of all enumerations of this type.
+     * Must be declared before any enum declaration.
      */
-    @SuppressWarnings("rawtypes")
-    static final Filter INCLUDE = new FilterLiteral(true);
+    private static final List<FilterName> VALUES = new ArrayList<>(3);
 
     /**
-     * The constant returned by {@link Filter#exclude()}.
+     * Default value for {@link ResourceId#getOperatorType()}.
      */
-    @SuppressWarnings("rawtypes")
-    static final Filter EXCLUDE = new FilterLiteral(false);
+    static final FilterName RESOURCE_ID = new FilterName("RESOURCE_ID");
 
     /**
-     * The constant evaluation result.
+     * Possible value for {@link FilterLiteral#getOperatorType()}.
      */
-    private final boolean value;
+    static final FilterName INCLUDE = new FilterName("INCLUDE"),
+                            EXCLUDE = new FilterName("EXCLUDE");
 
     /**
-     * Creates a new filter.
+     * Constructs an element of the given name. The new element is
+     * automatically added to the list returned by {@link #values()}.
+     *
+     * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
-    private FilterLiteral(final boolean value) {
-        this.value = value;
+    private FilterName(final String name) {
+        super(name, VALUES);
     }
 
     /**
-     * Returns an identification of this operator.
+     * Returns the list of {@code FilterName}s.
+     *
+     * @return the list of codes declared in the current JVM.
+     */
+    public static FilterName[] values() {
+        synchronized (VALUES) {
+            return VALUES.toArray(new FilterName[VALUES.size()]);
+        }
+    }
+
+    /**
+     * Returns the list of codes of the same kind than this code list element.
+     * Invoking this method is equivalent to invoking {@link #values()}, except that
+     * this method can be invoked on an instance of the parent {@code CodeList} class.
+     *
+     * @return all code {@linkplain #values() values} for this code list.
      */
     @Override
-    public CodeList<?> getOperatorType() {
-        return value ? FilterName.INCLUDE : FilterName.EXCLUDE;
-    }
-
-    /**
-     * Returns an empty list since this literal depends on no expression.
-     */
-    @Override
-    public List<Expression<? super Object, ?>> getExpressions() {
-        return Collections.emptyList();
-    }
-
-    /**
-     * Returns the constant value.
-     */
-    @Override
-    public boolean test(Object object) {
-        return value;
-    }
-
-    /**
-     * Returns a string representation of this filter.
-     */
-    @Override
-    public String toString() {
-        return "Filter." + (value ? "INCLUDE" : "EXCLUDE");
-    }
-
-    /**
-     * Returns the canonical instance on deserialization.
-     */
-    private Object readResolve() throws ObjectStreamException {
-        return value ? INCLUDE : EXCLUDE;
+    public FilterName[] family() {
+        return values();
     }
 }

@@ -48,20 +48,20 @@ import org.opengis.util.ScopedName;
  * @version 3.1
  * @since   3.1
  *
- * @param  <T>  the type of inputs to filter.
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to filter.
  */
-final class FilterExpressions<T> extends AbstractList<Expression<? super T, ?>> {
+final class FilterExpressions<R> extends AbstractList<Expression<? super R, ?>> {
     /**
      * The filters to view as expressions.
      *
      * @see LogicalOperator#getOperands()
      */
-    private final List<Filter<? super T>> filters;
+    private final List<Filter<? super R>> filters;
 
     /**
      * Creates a new list of expression wrapping the given list of expressions.
      */
-    FilterExpressions(final List<Filter<? super T>> filters) {
+    FilterExpressions(final List<Filter<? super R>> filters) {
         this.filters = Objects.requireNonNull(filters);
     }
 
@@ -85,23 +85,23 @@ final class FilterExpressions<T> extends AbstractList<Expression<? super T, ?>> 
      * Returns the expression wrapper for the filter at the given index.
      */
     @Override
-    public Expression<? super T, ?> get(final int index) {
+    public Expression<? super R, ?> get(final int index) {
         return new Element<>(filters.get(index));
     }
 
     /**
      * A filter viewed as an expression having a {@code Boolean} return value.
      */
-    private static final class Element<T> implements Expression<T,Boolean> {
+    private static final class Element<R> implements Expression<R,Boolean> {
         /**
          * The filter to view as expression.
          */
-        private final Filter<T> filter;
+        private final Filter<R> filter;
 
         /**
          * Creates a new expression wrapping the given filter.
          */
-        Element(final Filter<T> filter) {
+        Element(final Filter<R> filter) {
             this.filter = Objects.requireNonNull(filter);
         }
 
@@ -123,7 +123,7 @@ final class FilterExpressions<T> extends AbstractList<Expression<? super T, ?>> 
          * Returns the expressions used as arguments for the wrapped filter.
          */
         @Override
-        public List<Expression<? super T, ?>> getParameters() {
+        public List<Expression<? super R, ?>> getParameters() {
             return filter.getExpressions();
         }
 
@@ -131,8 +131,18 @@ final class FilterExpressions<T> extends AbstractList<Expression<? super T, ?>> 
          * Given an object, determines if the test(s) represented by the wrapped filter are passed.
          */
         @Override
-        public Boolean apply(final T input) throws InvalidFilterValueException {
+        public Boolean apply(final R input) throws InvalidFilterValueException {
             return filter.test(input);
+        }
+
+        /**
+         * Returns {@code this} if compatible with specified type, or throws an exception otherwise.
+         */
+        @Override
+        @SuppressWarnings("unchecked")
+        public <N> Expression<R,N> toValueType(final Class<N> type) {
+            if (type.isAssignableFrom(Boolean.class)) return (Expression<R,N>) this;
+            else throw new ClassCastException();
         }
 
         /**

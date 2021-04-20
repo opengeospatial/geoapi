@@ -48,10 +48,10 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  *
- * @param  <T>  the type of inputs to filter.
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to filter.
  */
 @UML(identifier="BetweenComparisonOperator", specification=ISO_19143)
-public interface BetweenComparisonOperator<T> extends ComparisonOperator<T> {
+public interface BetweenComparisonOperator<R> extends ComparisonOperator<R> {
     /**
      * Returns the nature of the comparison.
      * The default implementation returns {@code PROPERTY_IS_BETWEEN}.
@@ -69,34 +69,40 @@ public interface BetweenComparisonOperator<T> extends ComparisonOperator<T> {
      *
      * @return a list of size 3 containing the expression to be compared,
      *         the lower boundary and the upper boundary in that order.
-     *
-     * @departure generalization
-     *   This is defined as a singleton in the ISO standard. GeoAPI completes with lower
-     *   and upper bounds for compliance with {@link Filter#getExpressions()} contract.
      */
     @Override
+    List<Expression<? super R, ?>> getExpressions();
+
+    /**
+     * Returns the expression to be compared by this operator.
+     * This is the element at index 0 in the {@linkplain #getExpressions() expressions} list.
+     *
+     * @return the expression to be compared.
+     */
     @UML(identifier="expression", obligation=MANDATORY, specification=ISO_19143)
-    List<Expression<? super T, ?>> getExpressions();
+    default Expression<? super R, ?> getExpression() {
+        return getExpressions().get(0);
+    }
 
     /**
      * Returns the lower bound (inclusive) an an expression.
-     * This is element at index 1 in the {@linkplain #getExpressions() expressions} list.
+     * This is the element at index 1 in the {@linkplain #getExpressions() expressions} list.
      *
      * @return the lower bound, inclusive.
      */
     @UML(identifier="lowerBoundary", obligation=MANDATORY, specification=ISO_19143)
-    default Expression<? super T, ?> getLowerBoundary() {
+    default Expression<? super R, ?> getLowerBoundary() {
         return getExpressions().get(1);
     }
 
     /**
      * Returns the upper bound (inclusive) as an expression.
-     * This is element at index 2 in the {@linkplain #getExpressions() expressions} list.
+     * This is the element at index 2 in the {@linkplain #getExpressions() expressions} list.
      *
      * @return the upper bound, inclusive.
      */
     @UML(identifier="upperBoundary", obligation=MANDATORY, specification=ISO_19143)
-    default Expression<? super T, ?> getUpperBoundary() {
+    default Expression<? super R, ?> getUpperBoundary() {
         return getExpressions().get(2);
     }
 }

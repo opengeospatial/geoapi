@@ -234,10 +234,26 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
                                     case "getProperties": isOptional = false;
                                 }
                             }
+                            if (c == org.opengis.filter.BinarySpatialOperator.class ||
+                                c == org.opengis.filter.BinaryComparisonOperator.class)
+                            {
+                                switch (m.getName()) {
+                                    case "getOperand1":
+                                    case "getOperand2": isOptional = true;
+                                }
+                            }
                             if (c == org.opengis.filter.BetweenComparisonOperator.class) {
                                 switch (m.getName()) {
+                                    case "getExpression":
                                     case "getLowerBoundary":
                                     case "getUpperBoundary": isOptional = true;
+                                }
+                            }
+                            if (c == org.opengis.filter.LikeOperator.class) {
+                                switch (m.getName()) {
+                                    case "getWildCard":
+                                    case "getSingleChar":
+                                    case "getEscapeChar": isOptional = true;
                                 }
                             }
                         }

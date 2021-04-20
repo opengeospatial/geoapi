@@ -59,7 +59,7 @@ public final class ComparisonOperatorName extends CodeList<ComparisonOperatorNam
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<ComparisonOperatorName> VALUES = new ArrayList<>(12);
+    private static final List<ComparisonOperatorName> VALUES = new ArrayList<>(10);
 
     /**
      * Filter operator that compares that its two sub-expressions are equal to each other.
@@ -116,12 +116,6 @@ public final class ComparisonOperatorName extends CodeList<ComparisonOperatorNam
      * Default value for {@link NilOperator#getOperatorType()}.
      */
     static final ComparisonOperatorName PROPERTY_IS_NIL = new ComparisonOperatorName("PROPERTY_IS_NIL");
-
-    /**
-     * Possible value for {@link FilterLiteral#getOperatorType()}.
-     */
-    static final ComparisonOperatorName INCLUDE = new ComparisonOperatorName("INCLUDE"),
-                                        EXCLUDE = new ComparisonOperatorName("EXCLUDE");
 
     /**
      * Constructs an element of the given name. The new element is

@@ -52,10 +52,10 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  *
- * @param  <T>  the type of inputs to filter.
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to filter.
  */
 @UML(identifier="TemporalOperator", specification=ISO_19143)
-public interface TemporalOperator<T> extends Filter<T> {
+public interface TemporalOperator<R> extends Filter<R> {
     /**
      * Returns the nature of the operator.
      *
@@ -88,5 +88,5 @@ public interface TemporalOperator<T> extends Filter<T> {
      */
     @Override
     @UML(identifier="operand1, operand2", obligation=MANDATORY, specification=ISO_19143)
-    List<Expression<? super T, ?>> getExpressions();
+    List<Expression<? super R, ?>> getExpressions();
 }

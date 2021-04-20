@@ -31,142 +31,460 @@
  */
 package org.opengis.filter;
 
-import java.util.List;
-import java.util.Set;
-import org.opengis.geometry.Envelope;
-import org.opengis.util.GenericName;
+import java.time.Instant;
+import java.util.Arrays;
+import java.util.Objects;
+import java.util.Collection;
+import javax.measure.Quantity;
+import javax.measure.quantity.Length;
+import org.opengis.util.Factory;
 import org.opengis.geometry.Geometry;
+import org.opengis.geometry.Envelope;
+import org.opengis.filter.capability.FilterCapabilities;
 
 
 /**
- * Interface whose methods allow the caller to create instances of the various
- * {@link Filter} and {@link Expression} subclasses.
+ * Factory of instances of the various {@link Filter} and {@link Expression} subclasses.
  *
- * @version <A HREF="http://www.opengis.org/docs/02-059.pdf">Implementation specification 1.0</A>
- * @version <A HREF="http://portal.opengeospatial.org/files/?artifact_id=39968">Implementation specification 2.0</A>
- * @author Chris Dillard (SYS Technologies)
- * @author Jody Garnett (Refractions Research Inc.)
- * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.0
+ * <p><b>WARNING:</b> this interface is a first draft. Its API may change at any time.
+ * In particular different strategies may be tried regarding the parameterized types.</p>
+ *
+ * @author  Chris Dillard (SYS Technologies)
+ * @author  Jody Garnett (Refractions Research Inc.)
+ * @author  Johann Sorel (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 3.1
+ *
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to use as inputs.
+ * @param  <G>  base class of geometry objects. The implementation-neutral type is GeoAPI {@link Geometry},
+ *              but this factory allows the use of other implementations such as JTS
+ *              {@link org.locationtech.jts.geom.Geometry} or ESRI {@link com.esri.core.geometry.Geometry}.
+ * @param  <T>  base class of temporal objects.
+ *
+ * @since 3.1
  */
-public interface FilterFactory {
+public interface FilterFactory<R,G,T> extends Factory {
     /**
-     * The FilterCapabilities data structure is used to describe the abilities of
-     * this FilterFactory, it includes restrictions on the available spatial operations,
-     * scalar operations, lists the supported functions, and describes what geometry
-     * literals are understood.
-     * @return FilterCapabilities describing the abilities of this FilterFactory
-     */
-    // FilterCapabilities getCapabilities();
-
-////////////////////////////////////////////////////////////////////////////////
-//
-//  IDENTIFIERS
-//
-////////////////////////////////////////////////////////////////////////////////
-    /** Creates a new feautre id from a string */
-    ResourceId featureId(String id);
-
-    /** Creates a new gml object id from a string */
-    ResourceId gmlObjectId(String id);
-
-////////////////////////////////////////////////////////////////////////////////
-//
-//  FILTERS
-//
-////////////////////////////////////////////////////////////////////////////////
-
-    /** {@code AND} filter between two filters. */
-    LogicalOperator and(Filter f, Filter g);
-
-    /** {@code AND} filter between a list of filters. */
-    LogicalOperator and(List<Filter> f);
-
-    /** {@code OR} filter between two filters. */
-    LogicalOperator or(Filter f, Filter g);
-
-    /** {@code OR} filter between a list of filters. */
-    LogicalOperator or (List<Filter> f);
-
-    /** Reverses the logical value of a filter. */
-    LogicalOperator not(Filter f);
-
-    /** Passes only for objects that have one of the IDs given to this object. */
-    ResourceId id(Set<? extends ResourceId> ids);
-
-    /** Retrieves the value of a {@linkplain org.opengis.feature.Feature feature}'s property. */
-    ValueReference property(String name);
-
-    /** Retrieves the value of a {@linkplain org.opengis.feature.Feature feature}'s property. */
-    ValueReference property(GenericName name);
-
-    /** A compact way of encoding a range check. */
-    BetweenComparisonOperator between(Expression expr, Expression lower, Expression upper);
-
-    /** Compares that two sub-expressions are equal to each other.
-     * @todo should be equal (so equals can refer to geometry)
-     */
-    BinaryComparisonOperator equals(Expression expr1, Expression expr2);
-
-    /** Compares that two sub-expressions are equal to eacher other */
-    BinaryComparisonOperator equal(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
-
-    /** Checks that the first sub-expression is not equal to the second subexpression. */
-    BinaryComparisonOperator notEqual(Expression expr1, Expression expr2 );
-
-    /**
-     * Checks that the first sub-expression is not equal to the second subexpression.
+     * Describes the abilities of this factory. The description includes restrictions
+     * on the available spatial operations, scalar operations, lists of supported functions,
+     * and description of which geometry literals are understood.
      *
-     * @param expr1 first expression
-     * @param expr2 second expression
-     * @param matchCase true if the comparison should be case sensitive
-     * @return evaluates to true of expr1 not equal to expr2
+     * @return description of the abilities of this factory.
      */
-    BinaryComparisonOperator notEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
-
-    /** Checks that the first sub-expression is greater than the second subexpression. */
-    BinaryComparisonOperator greater(Expression expr1, Expression expr2);
+    FilterCapabilities getCapabilities();
 
     /**
-     * Checks that the first sub-expression is greater than the second subexpression.
+     * Creates a predicate to identify an identifiable resource within a filter expression.
+     * The predicate uses no versioning and no time range.
      *
-     * @param expr1 first expression
-     * @param expr2 second expression
-     * @param matchCase true if the comparison should be case sensitive
-     * @return evaluates to true of expr1 is greater than expr2
+     * @param  rid  identifier of the resource that shall be selected by the predicate.
+     * @return the predicate.
      */
-    BinaryComparisonOperator greater(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
+    default ResourceId<R> resourceId(final String rid) {
+        return resourceId(rid, null, null, null);
+    }
 
-    /** Checks that the first sub-expression is greater or equal to the second subexpression. */
-    BinaryComparisonOperator greaterOrEqual(Expression expr1, Expression expr2);
+    /**
+     * Creates a predicate to identify an identifiable resource within a filter expression.
+     * If {@code startTime} and {@code endTime} are non-null, the filter will select all versions
+     * of a resource between the specified dates.
+     *
+     * @param  rid        identifier of the resource that shall be selected by the predicate.
+     * @param  version    version of the resource shall be selected, or {@code null} for any version.
+     * @param  startTime  start time of the resource to select, or {@code null} if none.
+     * @param  endTime    end time of the resource to select, or {@code null} if none.
+     * @return the predicate.
+     */
+    ResourceId<R> resourceId(String rid, Version version, Instant startTime, Instant endTime);
 
-    /** Checks that the first sub-expression is greater or equal to the second subexpression. */
-    BinaryComparisonOperator greaterOrEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
+    /**
+     * Creates an expression whose value is computed by retrieving the value indicated by a path in a resource.
+     * If all characters in the path are {@linkplain Character#isUnicodeIdentifierPart(int) Unicode identifier parts},
+     * then the XPath expression is simply a property name.
+     *
+     * @param  xpath  the path to the property whose value will be returned by the {@code apply(R)} method.
+     * @return an expression evaluating the referenced property value.
+     */
+    default ValueReference<R,?> property(String xpath) {
+        return property(xpath, Object.class);
+    }
 
-    /** Checks that its first sub-expression is less than its second subexpression. */
-    BinaryComparisonOperator less(Expression expr1, Expression expr2);
+    /**
+     * Creates an expression retrieving the value as an instance of the specified class.
+     * The {@code xpath} argument follows the rule described in {@link #property(String)}.
+     *
+     * <p>The desired type of property values can be specified. For example if the property values should be numbers,
+     * then {@code type} can be <code>{@linkplain Number}.class</code>. If property values can be of any type with no
+     * conversion desired, then {@code type} should be {@code Object.class}.</p>
+     *
+     * @param  <V>    the type of the values to be fetched (compile-time value of {@code type}).
+     * @param  xpath  the path to the property whose value will be returned by the {@code apply(R)} method.
+     * @param  type   the type of the values to be fetched (run-time value of {@code <V>}).
+     * @return an expression evaluating the referenced property value.
+     */
+    <V> ValueReference<R,V> property(String xpath, Class<V> type);
 
-    BinaryComparisonOperator less(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
+    /**
+     * Creates a constant, literal value that can be used in expressions.
+     *
+     * <h4>Recommended restriction</h4>
+     * The given value may be persisted with XML based technologies.
+     * As an example a {@link Geometry} may be written out using GML.
+     * Consequently the value should be data objects such as strings, numbers, dates or geometries.
+     * It should not be state of operations.
+     *
+     * @param  <V>    the type of the value of the literal.
+     * @param  value  the literal value. May be {@code null}.
+     * @return a literal for the given value.
+     */
+    <V> Literal<R,V> literal(V value);
 
-    /** Checks that its first sub-expression is less than or equal to its second subexpression. */
-    BinaryComparisonOperator lessOrEqual(Expression expr1, Expression expr2);
+    /**
+     * Filter operator that compares that its two sub-expressions are equal to each other.
+     * The comparison is case-sensitive and evaluates to {@code true} if {@linkplain MatchAction#ANY Any}
+     * of the value in the collection can satisfy the predicate.
+     *
+     * @param  expression1  the first of the two expressions to be used by this comparator.
+     * @param  expression2  the second of the two expressions to be used by this comparator.
+     * @return a filter evaluating {@code expression1} = {@code expression2}.
+     *
+     * @see ComparisonOperatorName#PROPERTY_IS_EQUAL_TO
+     */
+    default BinaryComparisonOperator<R> equal(Expression<? super R, ?> expression1,
+                                              Expression<? super R, ?> expression2)
+    {
+        return equal(Objects.requireNonNull(expression1),
+                     Objects.requireNonNull(expression2),
+                     true, MatchAction.ANY);
+    }
 
-    BinaryComparisonOperator lessOrEqual(Expression expr1, Expression expr2, boolean matchCase, MatchAction matchAction);
+    /**
+     * Filter operator that compares that its two sub-expressions are equal to each other.
+     *
+     * @param  expression1     the first of the two expressions to be used by this comparator.
+     * @param  expression2     the second of the two expressions to be used by this comparator.
+     * @param  isMatchingCase  specifies whether comparisons are case sensitive.
+     * @param  matchAction     specifies how the comparisons shall be evaluated for a collection of values.
+     * @return a filter evaluating {@code expression1} = {@code expression2}.
+     *
+     * @see ComparisonOperatorName#PROPERTY_IS_EQUAL_TO
+     */
+    BinaryComparisonOperator<R> equal(Expression<? super R, ?> expression1,
+                                      Expression<? super R, ?> expression2,
+                                      boolean isMatchingCase, MatchAction matchAction);
 
-    /** Character string comparison operator with pattern matching and default wildcards. */
-    LikeOperator like(Expression expr, String pattern);
+    /**
+     * Filter operator that compares that its two sub-expressions are not equal to each other.
+     * The comparison is case-sensitive and evaluates to {@code true} if {@linkplain MatchAction#ANY Any}
+     * of the value in the collection can satisfy the predicate.
+     *
+     * @param  expression1  the first of the two expressions to be used by this comparator.
+     * @param  expression2  the second of the two expressions to be used by this comparator.
+     * @return a filter evaluating {@code expression1} ≠ {@code expression2}.
+     *
+     * @see ComparisonOperatorName#PROPERTY_IS_NOT_EQUAL_TO
+     */
+    default BinaryComparisonOperator<R> notEqual(Expression<? super R, ?> expression1,
+                                                 Expression<? super R, ?> expression2)
+    {
+        return notEqual(Objects.requireNonNull(expression1),
+                        Objects.requireNonNull(expression2),
+                        true, MatchAction.ANY);
+    }
 
-    /** Character string comparison operator with pattern matching and specified wildcards. */
-    LikeOperator like(Expression expr, String pattern, String wildcard, String singleChar, String escape);
+    /**
+     * Filter operator that compares that its two sub-expressions are not equal to each other.
+     *
+     * @param  expression1     the first of the two expressions to be used by this comparator.
+     * @param  expression2     the second of the two expressions to be used by this comparator.
+     * @param  isMatchingCase  specifies whether comparisons are case sensitive.
+     * @param  matchAction     specifies how the comparisons shall be evaluated for a collection of values.
+     * @return a filter evaluating {@code expression1} ≠ {@code expression2}.
+     *
+     * @see ComparisonOperatorName#PROPERTY_IS_NOT_EQUAL_TO
+     */
+    BinaryComparisonOperator<R> notEqual(Expression<? super R, ?> expression1,
+                                         Expression<? super R, ?> expression2,
+                                         boolean isMatchingCase, MatchAction matchAction);
 
-    /** Character string comparison operator with pattern matching and specified wildcards. */
-    LikeOperator like(Expression expr, String pattern, String wildcard, String singleChar, String escape, boolean matchCase);
+    /**
+     * Filter operator that checks that its first sub-expression is less than its second sub-expression.
+     * The comparison is case-sensitive and evaluates to {@code true} if {@linkplain MatchAction#ANY Any}
+     * of the value in the collection can satisfy the predicate.
+     *
+     * @param  expression1  the first of the two expressions to be used by this comparator.
+     * @param  expression2  the second of the two expressions to be used by this comparator.
+     * @return a filter evaluating {@code expression1} &lt; {@code expression2}.
+     *
+     * @see ComparisonOperatorName#PROPERTY_IS_LESS_THAN
+     * @todo Revisit if we can be more specific on the second parameterized type in expressions.
+     */
+    default BinaryComparisonOperator<R> less(Expression<? super R, ?> expression1,
+                                             Expression<? super R, ?> expression2)
+    {
+        return less(Objects.requireNonNull(expression1),
+                    Objects.requireNonNull(expression2),
+                    true, MatchAction.ANY);
+    }
 
-    /** Checks if an expression's value is {@code null}. */
-    NullOperator isNull(Expression expr);
+    /**
+     * Filter operator that checks that its first sub-expression is less than its second sub-expression.
+     *
+     * @param  expression1     the first of the two expressions to be used by this comparator.
+     * @param  expression2     the second of the two expressions to be used by this comparator.
+     * @param  isMatchingCase  specifies whether comparisons are case sensitive.
+     * @param  matchAction     specifies how the comparisons shall be evaluated for a collection of values.
+     * @return a filter evaluating {@code expression1} &lt; {@code expression2}.
+     *
+     * @see ComparisonOperatorName#PROPERTY_IS_LESS_THAN
+     * @todo Revisit if we can be more specific on the second parameterized type in expressions.
+     */
+    BinaryComparisonOperator<R> less(Expression<? super R, ?> expression1,
+                                     Expression<? super R, ?> expression2,
+                                     boolean isMatchingCase, MatchAction matchAction);
 
-    /** Checks if an expression's value is nil. */
-    NilOperator isNil(Expression expr);
+    /**
+     * Filter operator that checks that its first sub-expression is greater than its second sub-expression.
+     * The comparison is case-sensitive and evaluates to {@code true} if {@linkplain MatchAction#ANY Any}
+     * of the value in the collection can satisfy the predicate.
+     *
+     * @param  expression1  the first of the two expressions to be used by this comparator.
+     * @param  expression2  the second of the two expressions to be used by this comparator.
+     * @return a filter evaluating {@code expression1} &gt; {@code expression2}.
+     *
+     * @see ComparisonOperatorName#PROPERTY_IS_GREATER_THAN
+     * @todo Revisit if we can be more specific on the second parameterized type in expressions.
+     */
+    default BinaryComparisonOperator<R> greater(Expression<? super R, ?> expression1,
+                                                Expression<? super R, ?> expression2)
+    {
+        return greater(Objects.requireNonNull(expression1),
+                       Objects.requireNonNull(expression2),
+                       true, MatchAction.ANY);
+    }
+
+    /**
+     * Filter operator that checks that its first sub-expression is greater than its second sub-expression.
+     *
+     * @param  expression1     the first of the two expressions to be used by this comparator.
+     * @param  expression2     the second of the two expressions to be used by this comparator.
+     * @param  isMatchingCase  specifies whether comparisons are case sensitive.
+     * @param  matchAction     specifies how the comparisons shall be evaluated for a collection of values.
+     * @return a filter evaluating {@code expression1} &gt; {@code expression2}.
+     *
+     * @see ComparisonOperatorName#PROPERTY_IS_GREATER_THAN
+     * @todo Revisit if we can be more specific on the second parameterized type in expressions.
+     */
+    BinaryComparisonOperator<R> greater(Expression<? super R, ?> expression1,
+                                        Expression<? super R, ?> expression2,
+                                        boolean isMatchingCase, MatchAction matchAction);
+
+    /**
+     * Filter operator that checks that its first sub-expression is less than or equal to its second sub-expression.
+     * The comparison is case-sensitive and evaluates to {@code true} if {@linkplain MatchAction#ANY Any}
+     * of the value in the collection can satisfy the predicate.
+     *
+     * @param  expression1  the first of the two expressions to be used by this comparator.
+     * @param  expression2  the second of the two expressions to be used by this comparator.
+     * @return a filter evaluating {@code expression1} ≤ {@code expression2}.
+     *
+     * @see ComparisonOperatorName#PROPERTY_IS_LESS_THAN_OR_EQUAL_TO
+     * @todo Revisit if we can be more specific on the second parameterized type in expressions.
+     */
+    default BinaryComparisonOperator<R> lessOrEqual(Expression<? super R, ?> expression1,
+                                                    Expression<? super R, ?> expression2)
+    {
+        return lessOrEqual(Objects.requireNonNull(expression1),
+                           Objects.requireNonNull(expression2),
+                           true, MatchAction.ANY);
+    }
+
+    /**
+     * Filter operator that checks that its first sub-expression is less than or equal to its second sub-expression.
+     *
+     * @param  expression1     the first of the two expressions to be used by this comparator.
+     * @param  expression2     the second of the two expressions to be used by this comparator.
+     * @param  isMatchingCase  specifies whether comparisons are case sensitive.
+     * @param  matchAction     specifies how the comparisons shall be evaluated for a collection of values.
+     * @return a filter evaluating {@code expression1} ≤ {@code expression2}.
+     *
+     * @see ComparisonOperatorName#PROPERTY_IS_LESS_THAN_OR_EQUAL_TO
+     * @todo Revisit if we can be more specific on the second parameterized type in expressions.
+     */
+    BinaryComparisonOperator<R> lessOrEqual(Expression<? super R, ?> expression1,
+                                            Expression<? super R, ?> expression2,
+                                            boolean isMatchingCase, MatchAction matchAction);
+
+    /**
+     * Filter operator that checks that its first sub-expression is greater than its second sub-expression.
+     * The comparison is case-sensitive and evaluates to {@code true} if {@linkplain MatchAction#ANY Any}
+     * of the value in the collection can satisfy the predicate.
+     *
+     * @param  expression1  the first of the two expressions to be used by this comparator.
+     * @param  expression2  the second of the two expressions to be used by this comparator.
+     * @return a filter evaluating {@code expression1} ≥ {@code expression2}.
+     *
+     * @see ComparisonOperatorName#PROPERTY_IS_GREATER_THAN_OR_EQUAL_TO
+     * @todo Revisit if we can be more specific on the second parameterized type in expressions.
+     */
+    default BinaryComparisonOperator<R> greaterOrEqual(Expression<? super R, ?> expression1,
+                                                       Expression<? super R, ?> expression2)
+    {
+        return greaterOrEqual(Objects.requireNonNull(expression1),
+                              Objects.requireNonNull(expression2),
+                              true, MatchAction.ANY);
+    }
+
+    /**
+     * Filter operator that checks that its first sub-expression is greater than its second sub-expression.
+     *
+     * @param  expression1     the first of the two expressions to be used by this comparator.
+     * @param  expression2     the second of the two expressions to be used by this comparator.
+     * @param  isMatchingCase  specifies whether comparisons are case sensitive.
+     * @param  matchAction     specifies how the comparisons shall be evaluated for a collection of values.
+     * @return a filter evaluating {@code expression1} ≥ {@code expression2}.
+     *
+     * @see ComparisonOperatorName#PROPERTY_IS_GREATER_THAN_OR_EQUAL_TO
+     * @todo Revisit if we can be more specific on the second parameterized type in expressions.
+     */
+    BinaryComparisonOperator<R> greaterOrEqual(Expression<? super R, ?> expression1,
+                                               Expression<? super R, ?> expression2,
+                                               boolean isMatchingCase, MatchAction matchAction);
+
+    /**
+     * Filter operation for a range check.
+     * The lower and upper boundary values are inclusive.
+     *
+     * @param  expression     the expression to be compared by this comparator.
+     * @param  lowerBoundary  the lower bound (inclusive) as an expression.
+     * @param  upperBoundary  the upper bound (inclusive) as an expression.
+     * @return a filter evaluating ({@code expression} ≥ {@code lowerBoundary})
+     *                       &amp; ({@code expression} ≤ {@code upperBoundary}).
+     */
+    BetweenComparisonOperator<R> between(Expression<? super R, ?> expression,
+                                         Expression<? super R, ?> lowerBoundary,
+                                         Expression<? super R, ?> upperBoundary);
+
+    /**
+     * Character string comparison operator with pattern matching and default wildcards.
+     * The wildcard character is {@code '%'}, the single character is {@code '_'} and
+     * the escape character is {@code '\\'}. The comparison is case-sensitive.
+     *
+     * @param  expression  source of values to compare against the pattern.
+     * @param  pattern     pattern to match against expression values.
+     * @return a character string comparison operator with pattern matching.
+     */
+    default LikeOperator<R> like(Expression<? super R, ?> expression, String pattern) {
+        return like(Objects.requireNonNull(expression), Objects.requireNonNull(pattern), '%', '_', '\\', true);
+    }
+
+    /**
+     * Character string comparison operator with pattern matching and specified wildcards.
+     *
+     * @param  expression      source of values to compare against the pattern.
+     * @param  pattern         pattern to match against expression values.
+     * @param  wildcard        pattern character for matching any sequence of characters.
+     * @param  singleChar      pattern character for matching exactly one character.
+     * @param  escape          pattern character for indicating that the next character should be matched literally.
+     * @param  isMatchingCase  specifies how a filter expression processor should perform string comparisons.
+     * @return a character string comparison operator with pattern matching.
+     */
+    LikeOperator<R> like(Expression<? super R, ?> expression, String pattern,
+            char wildcard, char singleChar, char escape, boolean isMatchingCase);
+
+    /**
+     * An operator that tests if an expression's value is {@code null}.
+     * This corresponds to checking whether the property exists in the real-world.
+     *
+     * @param  expression  source of values to compare against {@code null}.
+     * @return a filter that checks if an expression's value is {@code null}.
+     */
+    NullOperator<R> isNull(Expression<? super R, ?> expression);
+
+    /**
+     * An operator that tests if an expression's value is nil.
+     * The difference with {@link NullOperator} is that a value should exist
+     * but can not be provided for the reason given by {@code nilReason}.
+     * Possible reasons are:
+     *
+     * <ul>
+     *   <li><b>inapplicable</b> — there is no value.</li>
+     *   <li><b>template</b>     — the value will be available later.</li>
+     *   <li><b>missing</b>      — the correct value is not readily available to the sender of this data.
+     *                             Furthermore, a correct value may not exist.</li>
+     *   <li><b>unknown</b>      — the correct value is not known to, and not computable by, the sender of this data.
+     *                             However, a correct value probably exists..</li>
+     *   <li><b>withheld</b>     — the value is not divulged.</li>
+     *   <li>Other strings at implementation choice.</li>
+     * </ul>
+     *
+     * @param  expression  source of values to compare against nil values.
+     * @param  nilReason   the reason why the value is nil, or {@code null} for accepting any reason.
+     * @return a filter that checks if an expression's value is nil for the specified reason.
+     */
+    NilOperator<R> isNil(Expression<? super R, ?> expression, String nilReason);
+
+    /**
+     * Creates a {@code AND} filter between two filters.
+     *
+     * @param  operand1  the first operand of the AND operation.
+     * @param  operand2  the second operand of the AND operation.
+     * @return a filter evaluating {@code operand1 AND operand2}.
+     *
+     * @see LogicalOperatorName#AND
+     */
+    default LogicalOperator<R> and(Filter<? super R> operand1, Filter<? super R> operand2) {
+        // TODO: use List.of(…) with JDK9.
+        return and(Arrays.<Filter<? super R>>asList(Objects.requireNonNull(operand1),
+                                                    Objects.requireNonNull(operand2)));
+    }
+
+    /**
+     * Creates a {@code AND} filter between two or more filters.
+     *
+     * @param  operands  a collection of at least 2 operands.
+     * @return a filter evaluating {@code operand1 AND operand2 AND operand3}…
+     * @throws IllegalArgumentException if the given collection contains less than 2 elements.
+     *
+     * @see LogicalOperatorName#AND
+     */
+    LogicalOperator<R> and(Collection<? extends Filter<? super R>> operands);
+
+    /**
+     * Creates a {@code OR} filter between two filters.
+     *
+     * @param  operand1  the first operand of the OR operation.
+     * @param  operand2  the second operand of the OR operation.
+     * @return a filter evaluating {@code operand1 OR operand2}.
+     *
+     * @see LogicalOperatorName#OR
+     */
+    default LogicalOperator<R> or(Filter<? super R> operand1, Filter<? super R> operand2) {
+        // TODO: use List.of(…) with JDK9.
+        return or(Arrays.<Filter<? super R>>asList(Objects.requireNonNull(operand1),
+                                                   Objects.requireNonNull(operand2)));
+    }
+
+    /**
+     * Creates a {@code OR} filter between two or more filters.
+     *
+     * @param  operands  a collection of at least 2 operands.
+     * @return a filter evaluating {@code operand1 OR operand2 OR operand3}…
+     * @throws IllegalArgumentException if the given collection contains less than 2 elements.
+     *
+     * @see LogicalOperatorName#OR
+     */
+    LogicalOperator<R> or(Collection<? extends Filter<? super R>> operands);
+
+    /**
+     * Creates a {@code NOT} filter for the given filter.
+     *
+     * @param  operand  the operand of the NOT operation.
+     * @return a filter evaluating {@code NOT operand}.
+     *
+     * @see LogicalOperatorName#NOT
+     */
+    LogicalOperator<R> not(Filter<? super R> operand);
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -175,106 +493,148 @@ public interface FilterFactory {
 ////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Creates an operator that checks if the bounding box of the feature's geometry overlaps the given bounding box.
+     * Creates an operator that checks if the bounding box of the feature's geometry interacts
+     * with the bounding box provided in the filter properties.
      *
-     * @param  propertyName  name of geometry property (for a {@link ValueReference} to access a feature's Geometry).
-     * @param  minx          minimum "x" value (for a literal envelope).
-     * @param  miny          minimum "y" value (for a literal envelope).
-     * @param  maxx          maximum "x" value (for a literal envelope).
-     * @param  maxy          maximum "y" value (for a literal envelope).
-     * @param  srs           identifier of the Coordinate Reference System to use for a literal envelope.
-     * @return operator that evaluates to {@code true} when the bounding box of the feature's geometry overlaps
-     *         the bounding box provided in arguments to this method.
+     * @param  geometry  expression fetching the geometry to check for interaction with bounds.
+     * @param  bounds    the bounds to check geometry against.
+     * @return a filter checking for any interactions between the bounding boxes.
      *
-     * @see FilterFactory2#bbox(Expression, Envelope)
+     * @see SpatialOperatorName#BBOX
      */
-    BinarySpatialOperator bbox(String propertyName, double minx, double miny, double maxx, double maxy, String srs);
-
-    /** Checks if the geometry expression overlaps the specified bounding box. */
-    BinarySpatialOperator bbox(Expression geometry, double minx, double miny, double maxx, double maxy, String srs);
+    BinarySpatialOperator<R> bbox(Expression<? super R, ? extends G> geometry, Envelope bounds);
 
     /**
-     * Checks if the bounding box of the feature's geometry overlaps the indicated bounds.
-     * This method does not strictly confirm to the the Filter 1.0 specification, you may
-     * use it to check expressions other than ValueReference.
+     * Creates an operator that checks if the geometry of the two operands are equal.
      *
-     * @param geometry  expression used to access a Geometry, in order to check for interaction with bounds
-     * @param bounds    indicates the bounds to check geometry against
+     * @param  geometry1  expression fetching the first geometry of the binary operator.
+     * @param  geometry2  expression fetching the second geometry of the binary operator.
+     * @return a filter for the "Equals" operator between the two geometries.
+     *
+     * @see SpatialOperatorName#EQUALS
+     *
+     * @todo Rename {@code equal}.
      */
-    BinarySpatialOperator bbox(Expression geometry, Envelope bounds);
+    BinarySpatialOperator<R> equals(Expression<? super R, ? extends G> geometry1,
+                                    Expression<? super R, ? extends G> geometry2);
 
     /**
-     * Creates an operator that checks if all of a feature's geometry is more distant than the given distance
-     * from the given geometry.
+     * Creates an operator that checks if the first operand is disjoint from the second.
      *
-     * @param  propertyName  name of geometry property (for a {@link ValueReference} to access a feature's Geometry).
-     * @param  geometry      the geometry from which to evaluate the distance.
-     * @param  distance      minimal distance for evaluating the expression as {@code true}.
-     * @param  units         units of the given {@code distance}.
-     * @return operator that evaluates to {@code true} when all of a feature's geometry is more distant than
-     *         the given distance from the given geometry.
+     * @param  geometry1  expression fetching the first geometry of the binary operator.
+     * @param  geometry2  expression fetching the second geometry of the binary operator.
+     * @return a filter for the "Disjoint" operator between the two geometries.
+     *
+     * @see SpatialOperatorName#DISJOINT
      */
-    DistanceOperator beyond(String propertyName, Geometry geometry, double distance, String units);
-
-    /** Check if all of a geometry is more distant than the given distance from this object's geometry. */
-    DistanceOperator beyond(Expression geometry1, Expression geometry2, double distance, String units);
-
-    /** Checks if the the first geometric operand contains the second. */
-    BinarySpatialOperator contains(String propertyName, Geometry geometry);
-
-    /** Checks if the the first geometric operand contains the second. */
-    BinarySpatialOperator contains(Expression geometry1, Expression geometry2);
-
-    /** Checks if the first geometric operand crosses the second. */
-    BinarySpatialOperator crosses(String propertyName, Geometry geometry);
-
-    /** Checks if the first geometric operand crosses the second. */
-    BinarySpatialOperator crosses(Expression geometry1, Expression geometry2);
-
-    /** Checks if the first operand is disjoint from the second. */
-    BinarySpatialOperator disjoint(String propertyName, Geometry geometry);
-
-    /** Checks if the first operand is disjoint from the second. */
-    BinarySpatialOperator disjoint(Expression geometry1, Expression geometry2);
-
-    /** Checks if any part of the first geometry lies within the given distance of the second geometry. */
-    DistanceOperator dwithin(String propertyName, Geometry geometry, double distance, String units);
-
-    /** Checks if any part of the first geometry lies within the given distance of the second geometry. */
-    DistanceOperator dwithin(Expression geometry1, Expression geometry2, double distance, String units);
-
-    /** Checks if the geometry of the two operands are equal. */
-    BinarySpatialOperator equals(String propertyName, Geometry geometry);
+    BinarySpatialOperator<R> disjoint(Expression<? super R, ? extends G> geometry1,
+                                      Expression<? super R, ? extends G> geometry2);
 
     /**
-     * Checks if the geometry of the two operands are equal.
-     * @todo should be equal, resolve conflict with BinaryComparisonOperator equals( Expression, Expression )
+     * Creates an operator that checks if the two geometric operands intersect.
+     *
+     * @param  geometry1  expression fetching the first geometry of the binary operator.
+     * @param  geometry2  expression fetching the second geometry of the binary operator.
+     * @return a filter for the "Intersects" operator between the two geometries.
+     *
+     * @see SpatialOperatorName#INTERSECTS
      */
-    BinarySpatialOperator equal(Expression geometry1, Expression geometry2);
+    BinarySpatialOperator<R> intersects(Expression<? super R, ? extends G> geometry1,
+                                        Expression<? super R, ? extends G> geometry2);
 
-    /** Checks if the two geometric operands intersect. */
-    BinarySpatialOperator intersects(String propertyName, Geometry geometry);
+    /**
+     * Creates an operator that checks if the two geometric operands touch each other, but do not overlap.
+     *
+     * @param  geometry1  expression fetching the first geometry of the binary operator.
+     * @param  geometry2  expression fetching the second geometry of the binary operator.
+     * @return a filter for the "Touches" operator between the two geometries.
+     *
+     * @see SpatialOperatorName#TOUCHES
+     */
+    BinarySpatialOperator<R> touches(Expression<? super R, ? extends G> geometry1,
+                                     Expression<? super R, ? extends G> geometry2);
 
-    /** Checks if the two geometric operands intersect. */
-    BinarySpatialOperator intersects(Expression geometry1, Expression geometry2);
+    /**
+     * Creates an operator that checks if the first geometric operand crosses the second.
+     *
+     * @param  geometry1  expression fetching the first geometry of the binary operator.
+     * @param  geometry2  expression fetching the second geometry of the binary operator.
+     * @return a filter for the "Crosses" operator between the two geometries.
+     *
+     * @see SpatialOperatorName#CROSSES
+     */
+    BinarySpatialOperator<R> crosses(Expression<? super R, ? extends G> geometry1,
+                                     Expression<? super R, ? extends G> geometry2);
 
-    /** Checks if the interior of the first geometry somewhere overlaps the interior of the second geometry. */
-    BinarySpatialOperator overlaps(String propertyName, Geometry geometry);
+    /**
+     * Creates an operator that checks if the first geometric operand is completely
+     * contained by the constant geometric operand.
+     *
+     * @param  geometry1  expression fetching the first geometry of the binary operator.
+     * @param  geometry2  expression fetching the second geometry of the binary operator.
+     * @return a filter for the "Within" operator between the two geometries.
+     *
+     * @see SpatialOperatorName#WITHIN
+     */
+    BinarySpatialOperator<R> within(Expression<? super R, ? extends G> geometry1,
+                                    Expression<? super R, ? extends G> geometry2);
 
-    /** Checks if the interior of the first geometry somewhere overlaps the interior of the second geometry. */
-    BinarySpatialOperator overlaps(Expression geometry1, Expression geometry2);
+    /**
+     * Creates an operator that checks if the first geometric operand contains the second.
+     *
+     * @param  geometry1  expression fetching the first geometry of the binary operator.
+     * @param  geometry2  expression fetching the second geometry of the binary operator.
+     * @return a filter for the "Contains" operator between the two geometries.
+     *
+     * @see SpatialOperatorName#CONTAINS
+     */
+    BinarySpatialOperator<R> contains(Expression<? super R, ? extends G> geometry1,
+                                      Expression<? super R, ? extends G> geometry2);
 
-    /** Checks if the feature's geometry touches, but does not overlap with the geometry held by this object. */
-    BinarySpatialOperator touches(String propertyName, Geometry geometry);
+    /**
+     * Creates an operator that checks if the interior of the first geometric operand
+     * somewhere overlaps the interior of the second geometric operand.
+     *
+     * @param  geometry1  expression fetching the first geometry of the binary operator.
+     * @param  geometry2  expression fetching the second geometry of the binary operator.
+     * @return a filter for the "Overlaps" operator between the two geometries.
+     *
+     * @see SpatialOperatorName#OVERLAPS
+     */
+    BinarySpatialOperator<R>  overlaps(Expression<? super R, ? extends G> geometry1,
+                                       Expression<? super R, ? extends G> geometry2);
 
-    /** Checks if the feature's geometry touches, but does not overlap with the geometry held by this object. */
-    BinarySpatialOperator touches(Expression propertyName1, Expression geometry2);
+    /**
+     * Creates an operator that checks if all of a feature's geometry is more distant
+     * than the given distance from the given geometry.
+     *
+     * @param  geometry1  expression fetching the first geometry of the binary operator.
+     * @param  geometry2  expression fetching the second geometry of the binary operator.
+     * @param  distance   minimal distance for evaluating the expression as {@code true}.
+     * @return operator that evaluates to {@code true} when all of a feature's geometry
+     *         is more distant than the given distance from the second geometry.
+     *
+     * @see DistanceOperatorName#BEYOND
+     */
+    DistanceOperator<R> beyond(Expression<? super R, ? extends G> geometry1,
+                               Expression<? super R, ? extends G> geometry2,
+                               Quantity<Length> distance);
 
-    /** Checks if the feature's geometry is completely contained by the specified constant geometry. */
-    BinarySpatialOperator within(String propertyName, Geometry geometry);
-
-    /** Checks if the feature's geometry is completely contained by the specified constant geometry. */
-    BinarySpatialOperator within(Expression geometry1, Expression geometry2);
+    /**
+     * Creates an operator that checks if any part of the first geometry lies within
+     * the given distance of the second geometry.
+     *
+     * @param  geometry1  expression fetching the first geometry of the binary operator.
+     * @param  geometry2  expression fetching the second geometry of the binary operator.
+     * @param  distance   maximal distance for evaluating the expression as {@code true}.
+     * @return operator that evaluates to {@code true} when any part of the feature's geometry
+     *         lies within the given distance of the second geometry.
+     *
+     * @see DistanceOperatorName#WITHIN
+     */
+    DistanceOperator<R> within(Expression<? super R, ? extends G> geometry1,
+                               Expression<? super R, ? extends G> geometry2,
+                               Quantity<Length> distance);
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -282,102 +642,275 @@ public interface FilterFactory {
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-    /** Check if first expression is after the second. */
-    TemporalOperator after(Expression expr1, Expression expr2);
+    /**
+     * Creates an operator that checks if first temporal operand is after the second.
+     *
+     * @param  time1  expression fetching the first temporal value.
+     * @param  time2  expression fetching the second temporal value.
+     * @return a filter for the "After" operator between the two temporal values.
+     *
+     * @see TemporalOperatorName#AFTER
+     */
+    TemporalOperator<R> after(Expression<? super R, ? extends T> time1,
+                              Expression<? super R, ? extends T> time2);
 
-    /** Sortcut filter for NOT (Before OR Meets OR MetBy OR After). */
-    TemporalOperator anyInteracts(Expression expr1, Expression expr2);
+    /**
+     * Creates an operator that checks if first temporal operand is before the second.
+     *
+     * @param  time1  expression fetching the first temporal value.
+     * @param  time2  expression fetching the second temporal value.
+     * @return a filter for the "Before" operator between the two temporal values.
+     *
+     * @see TemporalOperatorName#BEFORE
+     */
+    TemporalOperator<R> before(Expression<? super R, ? extends T> time1,
+                               Expression<? super R, ? extends T> time2);
 
-    /** Check if first expression is before the second. */
-    TemporalOperator before(Expression expr1, Expression expr2);
+    /**
+     * Creates an operator that checks if first temporal operand begins at the second.
+     *
+     * @param  time1  expression fetching the first temporal value.
+     * @param  time2  expression fetching the second temporal value.
+     * @return a filter for the "Begins" operator between the two temporal values.
+     *
+     * @see TemporalOperatorName#BEGINS
+     */
+    TemporalOperator<R> begins(Expression<? super R, ? extends T> time1,
+                               Expression<? super R, ? extends T> time2);
 
-    /** Check if first expression begins at the second. */
-    TemporalOperator begins(Expression expr1, Expression expr2);
+    /**
+     * Creates an operator that checks if first temporal operand begun by the second.
+     *
+     * @param  time1  expression fetching the first temporal value.
+     * @param  time2  expression fetching the second temporal value.
+     * @return a filter for the "BegunBy" operator between the two temporal values.
+     *
+     * @see TemporalOperatorName#BEGUN_BY
+     */
+    TemporalOperator<R> begunBy(Expression<? super R, ? extends T> time1,
+                                Expression<? super R, ? extends T> time2);
 
-    /** Check if first expression begun by the second. */
-    TemporalOperator begunBy(Expression expr1, Expression expr2);
+    /**
+     * Creates an operator that checks if first temporal operand is contained by the second.
+     *
+     * @param  time1  expression fetching the first temporal value.
+     * @param  time2  expression fetching the second temporal value.
+     * @return a filter for the "TContains" operator between the two temporal values.
+     *
+     * @see TemporalOperatorName#CONTAINS
+     */
+    TemporalOperator<R> tcontains(Expression<? super R, ? extends T> time1,
+                                  Expression<? super R, ? extends T> time2);
 
-    /** Check if first expression is during the second. */
-    TemporalOperator during(Expression expr1, Expression expr2);
+    /**
+     * Creates an operator that checks if first temporal operand is during the second.
+     *
+     * @param  time1  expression fetching the first temporal value.
+     * @param  time2  expression fetching the second temporal value.
+     * @return a filter for the "During" operator between the two temporal values.
+     *
+     * @see TemporalOperatorName#DURING
+     */
+    TemporalOperator<R> during(Expression<? super R, ? extends T> time1,
+                               Expression<? super R, ? extends T> time2);
 
-    /** Check if first expression ends by the second. */
-    TemporalOperator ends(Expression expr1, Expression expr2);
+    /**
+     * Creates an operator that checks if first temporal operand is equals to the second.
+     *
+     * @param  time1  expression fetching the first temporal value.
+     * @param  time2  expression fetching the second temporal value.
+     * @return a filter for the "TEquals" operator between the two temporal values.
+     *
+     * @see TemporalOperatorName#EQUALS
+     */
+    TemporalOperator<R> tequals(Expression<? super R, ? extends T> time1,
+                                Expression<? super R, ? extends T> time2);
 
-    /** Check if first expression is ended by the second. */
-    TemporalOperator endedBy(Expression expr1, Expression expr2);
+    /**
+     * Creates an operator that checks if first temporal operand overlaps the second.
+     *
+     * @param  time1  expression fetching the first temporal value.
+     * @param  time2  expression fetching the second temporal value.
+     * @return a filter for the "TOverlaps" operator between the two temporal values.
+     *
+     * @see TemporalOperatorName#OVERLAPS
+     */
+    TemporalOperator<R> toverlaps(Expression<? super R, ? extends T> time1,
+                                  Expression<? super R, ? extends T> time2);
 
-    /** Check if first expression meets the second. */
-    TemporalOperator meets(Expression expr1, Expression expr2);
+    /**
+     * Creates an operator that checks if first temporal operand meets the second.
+     *
+     * @param  time1  expression fetching the first temporal value.
+     * @param  time2  expression fetching the second temporal value.
+     * @return a filter for the "Meets" operator between the two temporal values.
+     *
+     * @see TemporalOperatorName#MEETS
+     */
+    TemporalOperator<R> meets(Expression<? super R, ? extends T> time1,
+                              Expression<? super R, ? extends T> time2);
 
-    /** Check if first expression is met by the second. */
-    TemporalOperator metBy(Expression expr1, Expression expr2);
+    /**
+     * Creates an operator that checks if first temporal operand ends at the second.
+     *
+     * @param  time1  expression fetching the first temporal value.
+     * @param  time2  expression fetching the second temporal value.
+     * @return a filter for the "Ends" operator between the two temporal values.
+     *
+     * @see TemporalOperatorName#ENDS
+     */
+    TemporalOperator<R> ends(Expression<? super R, ? extends T> time1,
+                             Expression<? super R, ? extends T> time2);
 
-    /** Check if first expression is overlapped by the second. */
-    TemporalOperator overlappedBy(Expression expr1, Expression expr2);
+    /**
+     * Creates an operator that checks if first temporal operand is overlapped by the second.
+     *
+     * @param  time1  expression fetching the first temporal value.
+     * @param  time2  expression fetching the second temporal value.
+     * @return a filter for the "OverlappedBy" operator between the two temporal values.
+     *
+     * @see TemporalOperatorName#OVERLAPPED_BY
+     */
+    TemporalOperator<R> overlappedBy(Expression<? super R, ? extends T> time1,
+                                     Expression<? super R, ? extends T> time2);
 
-    /** Check if first expression iscontained in the second. */
-    TemporalOperator tcontains(Expression expr1, Expression expr2);
+    /**
+     * Creates an operator that checks if first temporal operand is met by the second.
+     *
+     * @param  time1  expression fetching the first temporal value.
+     * @param  time2  expression fetching the second temporal value.
+     * @return a filter for the "MetBy" operator between the two temporal values.
+     *
+     * @see TemporalOperatorName#MET_BY
+     */
+    TemporalOperator<R> metBy(Expression<? super R, ? extends T> time1,
+                              Expression<? super R, ? extends T> time2);
 
-    /** Check if first expression equal to the second. */
-    TemporalOperator tequals(Expression expr1, Expression expr2);
+    /**
+     * Creates an operator that checks if first temporal operand is ended by the second.
+     *
+     * @param  time1  expression fetching the first temporal value.
+     * @param  time2  expression fetching the second temporal value.
+     * @return a filter for the "EndedBy" operator between the two temporal values.
+     *
+     * @see TemporalOperatorName#ENDED_BY
+     */
+    TemporalOperator<R> endedBy(Expression<? super R, ? extends T> time1,
+                                Expression<? super R, ? extends T> time2);
 
-    /** Check if first expression overlaps the second. */
-    TemporalOperator toverlaps(Expression expr1, Expression expr2);
-
+    /**
+     * Creates a shortcut operator semantically equivalent to NOT (Before OR Meets OR MetBy OR After).
+     * This is applicable to periods only.
+     *
+     * @param  time1  expression fetching the first temporal value.
+     * @param  time2  expression fetching the second temporal value.
+     * @return a filter for the "AnyInteracts" operator between the two temporal values.
+     *
+     * @see TemporalOperatorName#ANY_INTERACTS
+     */
+    TemporalOperator<R> anyInteracts(Expression<? super R, ? extends T> time1,
+                                     Expression<? super R, ? extends T> time2);
 
 ////////////////////////////////////////////////////////////////////////////////
 //
-//  EXPRESSIONS
+//  MISCELLANEOUS
 //
 ////////////////////////////////////////////////////////////////////////////////
 
-    /** Computes the numeric addition of the first and second operand. */
-    Expression add(Expression expr1, Expression expr2);
+    /**
+     * Creates a function computing the numeric addition of the first and second operand.
+     *
+     * @param  operand1  expression fetching the first number.
+     * @param  operand2  expression fetching the second number.
+     * @return an expression for the "Add" function between the two numerical values.
+     */
+    Expression<R,Number> add(Expression<? super R, ? extends Number> operand1,
+                             Expression<? super R, ? extends Number> operand2);
 
-    /** Computes the numeric quotient resulting from dividing the first operand by the second. */
-    Expression divide(Expression expr1, Expression expr2);
+    /**
+     * Creates a function computing the numeric difference between the first and second operand.
+     *
+     * @param  operand1  expression fetching the first number.
+     * @param  operand2  expression fetching the second number.
+     * @return an expression for the "Subtract" function between the two numerical values.
+     */
+    Expression<R,Number> subtract(Expression<? super R, ? extends Number> operand1,
+                                  Expression<? super R, ? extends Number> operand2);
 
-    /** Computes the numeric product of their first and second operand. */
-    Expression multiply(Expression expr1, Expression expr2);
+    /**
+     * Creates a function computing the numeric product of their first and second operand.
+     *
+     * @param  operand1  expression fetching the first number.
+     * @param  operand2  expression fetching the second number.
+     * @return an expression for the "Multiply" function between the two numerical values.
+     */
+    Expression<R,Number> multiply(Expression<? super R, ? extends Number> operand1,
+                                  Expression<? super R, ? extends Number> operand2);
 
-    /** Computes the numeric difference between the first and second operand. */
-    Expression subtract(Expression expr1, Expression expr2);
+    /**
+     * Creates a function computing the numeric quotient resulting from dividing the first operand by the second.
+     *
+     * @param  operand1  expression fetching the first number.
+     * @param  operand2  expression fetching the second number.
+     * @return an expression for the "Divide" function between the two numerical values.
+     */
+    Expression<R,Number> divide(Expression<? super R, ? extends Number> operand1,
+                                Expression<? super R, ? extends Number> operand2);
 
-    /** Call into some implementation-specific function. */
-    Expression function(String name, Expression ... args);
+    /**
+     * Creates an implementation-specific function with a single parameter.
+     * The names of available functions is given by {@link #getCapabilities()}.
+     *
+     * @param  name       name of the function to call.
+     * @param  parameter  expression providing values for the function argument.
+     * @return an expression which will call the specified function.
+     * @throws IllegalArgumentException if the given name is not recognized,
+     *         or if the argument is illegal for the specified function.
+     */
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    default Expression<R,?> function(String name, Expression<? super R, ?> parameter) {
+        return function(name, new Expression[] {
+            Objects.requireNonNull(parameter)
+        });
+    }
 
-    /** A constant, literal value that can be used in expressions. */
-    Literal  literal(Object obj);
+    /**
+     * Creates an implementation-specific function with two parameters.
+     * The names of available functions is given by {@link #getCapabilities()}.
+     *
+     * @param  name    name of the function to call.
+     * @param  param1  expression providing values for the first function argument.
+     * @param  param2  expression providing values for the second function argument.
+     * @return an expression which will call the specified function.
+     * @throws IllegalArgumentException if the given name is not recognized,
+     *         or if the arguments are illegal for the specified function.
+     */
+    @SuppressWarnings({"unchecked", "rawtypes"})
+    default Expression<R,?> function(String name, Expression<? super R, ?> param1, Expression<? super R, ?> param2) {
+        return function(name, new Expression[] {
+            Objects.requireNonNull(param1),
+            Objects.requireNonNull(param2)
+        });
+    }
 
-    /** A constant, literal {@link Byte} value that can be used in expressions. */
-    Literal  literal(byte b);
+    /**
+     * Creates an implementation-specific function with an arbitrary number of parameters.
+     * The names of available functions is given by {@link #getCapabilities()}.
+     *
+     * @param  name        name of the function to call.
+     * @param  parameters  expressions providing values for the function arguments.
+     * @return an expression which will call the specified function.
+     * @throws IllegalArgumentException if the given name is not recognized,
+     *         or if the arguments are illegal for the specified function.
+     */
+    Expression<R,?> function(String name, Expression<? super R, ?>[] parameters);
 
-    /** A constant, literal {@link Short} value that can be used in expressions. */
-    Literal  literal(short s);
-
-    /** A constant, literal {@link Integer} value that can be used in expressions. */
-    Literal  literal(int i);
-
-    /** A constant, literal {@link Long} value that can be used in expressions. */
-    Literal  literal(long l);
-
-    /** A constant, literal {@link Float} value that can be used in expressions. */
-    Literal  literal(float f);
-
-    /** A constant, literal {@link Double} value that can be used in expressions. */
-    Literal  literal(double d);
-
-    /** A constant, literal {@link Character} value that can be used in expressions. */
-    Literal  literal(char c);
-
-    /** A constant, literal {@link Boolean} value that can be used in expressions. */
-    Literal  literal(boolean b);
-
-    ////////////////////////////////////////////////////////////////////////////////
-    //
-    //  SORT BY
-    //
-    //////////////////////////////////////////////////////////////////////////////    //
-    /** Indicates an property by which contents should be sorted, along with intended order. */
-    SortProperty sort(String propertyName, SortOrder order);
+    /**
+     * Indicates a property by which contents should be sorted, along with intended order.
+     *
+     * @param  property  the property to sort by.
+     * @param  order     the sorting order, ascending or descending.
+     * @return definition of sort order of a property.
+     */
+    SortProperty sort(ValueReference<? super R, ?> property, SortOrder order);
 }

@@ -43,10 +43,14 @@ import static org.opengis.annotation.Specification.ISO_19143;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ *
+ * @see Filter#test(Object)
+ * @see Expression#apply(Object)
+ *
+ * @since 3.1
  */
 @UML(identifier="InvalidParameterValue", specification=ISO_19143)
-public class InvalidFilterValueException extends RuntimeException {
+public class InvalidFilterValueException extends IllegalArgumentException {
     /**
      * Serial number for inter-operability with different versions.
      */
@@ -66,6 +70,15 @@ public class InvalidFilterValueException extends RuntimeException {
      */
     public InvalidFilterValueException(final String message) {
         super(message);
+    }
+
+    /**
+     * Creates an exception with the specified cause.
+     *
+     * @param cause  the cause, saved for later retrieval by the {@link #getCause()} method.
+     */
+    public InvalidFilterValueException(final Throwable cause) {
+        super(cause);
     }
 
     /**

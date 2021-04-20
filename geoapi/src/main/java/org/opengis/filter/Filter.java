@@ -63,7 +63,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  *
- * @param  <T>  the type of inputs to filter. This is often {@link Feature}.
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to filter.
  *
  * @departure easeOfUse
  *   In ISO specification, {@code Filter} contains a "filter" property of type {@code Operator}.
@@ -72,7 +72,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="Filter", specification=ISO_19143)
-public interface Filter<T> extends Predicate<T> {
+public interface Filter<R> extends Predicate<R> {
     /**
      * A filter that always evaluates to {@code true}.
      * This is a placeholder for meaning "no filtering".
@@ -86,11 +86,11 @@ public interface Filter<T> extends Predicate<T> {
      *   <tr><td>not {@code INCLUDE}</td> <td>{@link #exclude EXCLUDE}</td></tr>
      * </table>
      *
-     * @param  <T>  the type of inputs to filter.
+     * @param  <R>  the type of resources to filter.
      * @return the "no filtering" filter.
      */
     @SuppressWarnings("unchecked")
-    static <T> Filter<T> include() {
+    static <R> Filter<R> include() {
         return FilterLiteral.INCLUDE;
     }
 
@@ -106,11 +106,11 @@ public interface Filter<T> extends Predicate<T> {
      *   <tr><td>not {@code EXCLUDE}</td> <td>{@link #include INCLUDE}</td></tr>
      * </table>
      *
-     * @param  <T>  the type of inputs to filter.
+     * @param  <R>  the type of resources to filter.
      * @return the "exclude all" filter.
      */
     @SuppressWarnings("unchecked")
-    static <T> Filter<T> exclude() {
+    static <R> Filter<R> exclude() {
         return FilterLiteral.EXCLUDE;
     }
 
@@ -144,7 +144,7 @@ public interface Filter<T> extends Predicate<T> {
      *   {@code valueReference}. This method provides a way to access those expressions without the need to
      *   make special cases for each sub-type.
      */
-    List<Expression<? super T, ?>> getExpressions();
+    List<Expression<? super R, ?>> getExpressions();
 
     /**
      * Given an object, determines if the test(s) represented by this filter are passed.
@@ -157,5 +157,5 @@ public interface Filter<T> extends Predicate<T> {
      * @throws InvalidFilterValueException if the filter can not be applied on the given object.
      */
     @Override
-    boolean test(T object) throws InvalidFilterValueException;
+    boolean test(R object) throws InvalidFilterValueException;
 }

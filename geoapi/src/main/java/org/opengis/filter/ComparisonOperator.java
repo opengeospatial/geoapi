@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * <p>The arguments are given as {@linkplain #getExpressions() expressions}.
  * The number of expressions depends on the sub-type:</p>
  * <ul>
- *   <li>{@link NullOperator} and {@link NilOperator} except one expression.</li>
+ *   <li>{@link NullOperator} and {@link NilOperator} expect one expression.</li>
  *   <li>{@link BinaryComparisonOperator} and {@link LikeOperator} expect two expressions.</li>
  *   <li>{@link BetweenComparisonOperator} expects three expressions.</li>
  * </ul>
@@ -57,11 +57,11 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  *
- * @param  <T>  the type of inputs to filter.
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to filter.
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="ComparisonOperator", specification=ISO_19143)
-public interface ComparisonOperator<T> extends Filter<T> {
+public interface ComparisonOperator<R> extends Filter<R> {
     /**
      * Returns the nature of the comparison. A standard set of comparison operators is equal to,
      * less than, greater than, less than or equal to, greater than or equal to and not equal to.

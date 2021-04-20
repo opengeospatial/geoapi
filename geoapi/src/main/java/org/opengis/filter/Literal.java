@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
 
 /**
  * A constant value that can be used in expressions.
- * The {@link #apply(T)} method of this class must return the same value as {@link #getValue()}.
+ * The {@link #apply(R)} method of this class must return the same value as {@link #getValue()}.
  *
  * <div class="note"><b>Note:</b>
  * the content of {@link #getValue()} may be persisted with XML based technologies.
@@ -53,13 +53,13 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  *
- * @param  <T>  the type of the input. Ignored by literal.
- * @param  <R>  the type of the value of the literal.
+ * @param  <R>  the type of resources used as inputs. This is ignored by literals.
+ * @param  <V>  the type of the value given by the literal.
  *
  * @since 3.1
  */
 @UML(identifier="Literal", specification=ISO_19143)
-public interface Literal<T,R> extends Expression<T,R> {
+public interface Literal<R,V> extends Expression<R,V> {
     /**
      * Returns the name of the literal function.
      * The default implementation returns {@code "fes:Literal"}.
@@ -77,7 +77,7 @@ public interface Literal<T,R> extends Expression<T,R> {
      * @return an empty list.
      */
     @Override
-    default List<Expression<? super T, ?>> getParameters() {
+    default List<Expression<? super R, ?>> getParameters() {
         return Collections.emptyList();
     }
 
@@ -88,7 +88,7 @@ public interface Literal<T,R> extends Expression<T,R> {
      * @return the literal value. May be {@code null}.
      */
     @UML(identifier="value", specification=ISO_19143)       // Conceptually mandatory even if we allow null.
-    R getValue();
+    V getValue();
 
     /**
      * Evaluates the expression value.
@@ -98,7 +98,15 @@ public interface Literal<T,R> extends Expression<T,R> {
      * @return the literal value.
      */
     @Override
-    default R apply(T input) {
+    default V apply(R input) {
         return getValue();
     }
+
+    /*
+     * NOTE: it would be possible to implement a default `toValueType(Class)` method if we were sure that this
+     * literal has no method expecting a <V> argument (e.g. setter method). This `Literal` interface  does not
+     * define such method, but implementation could. If such methods exist, then the <R,N> parameterized types
+     * would be incorrect and would need to be <R, ? extends N>. Only implementer knows if it is safe to cast,
+     * so we do not provide default implementation for that reason.
+     */
 }

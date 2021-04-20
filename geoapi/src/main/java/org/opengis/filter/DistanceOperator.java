@@ -51,10 +51,10 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  *
- * @param  <T>  the type of inputs to filter.
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to filter.
  */
 @UML(identifier="DistanceOperator", specification=ISO_19143)
-public interface DistanceOperator<T> extends SpatialOperator<T> {
+public interface DistanceOperator<R> extends SpatialOperator<R> {
     /**
      * Returns the nature of the operator. A standard set of spatial operators is within and beyond.
      *
@@ -95,7 +95,7 @@ public interface DistanceOperator<T> extends SpatialOperator<T> {
      */
     @Override
     @UML(identifier="valueReference", obligation=MANDATORY, specification=ISO_19143)
-    List<Expression<? super T, ?>> getExpressions();
+    List<Expression<? super R, ?>> getExpressions();
 
     /**
      * The literal geometry from which distances are measured.

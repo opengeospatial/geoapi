@@ -34,7 +34,6 @@ package org.opengis.filter;
 import java.util.List;
 import org.opengis.feature.Feature;
 import org.opengis.geometry.Envelope;
-import org.opengis.geometry.Geometry;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.MANDATORY;
@@ -57,10 +56,10 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  *
- * @param  <T>  the type of inputs to filter.
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to filter.
  */
 @UML(identifier="BinarySpatialOperator", specification=ISO_19143)
-public interface BinarySpatialOperator<T> extends SpatialOperator<T> {
+public interface BinarySpatialOperator<R> extends SpatialOperator<R> {
     /**
      * Returns the nature of the operator. A standard set of spatial operators is equals,
      * disjoin, touches, within, overlaps, crosses, intersects, contains, beyond and BBOX.
@@ -72,32 +71,61 @@ public interface BinarySpatialOperator<T> extends SpatialOperator<T> {
     SpatialOperatorName getOperatorType();
 
     /**
-     * Returns the two expressions to be evaluated by this operator.
-     * The list content is as below:
+     * Returns the first expression to be evaluated.
+     * This is the element at index 0 in the {@linkplain #getExpressions() expressions} list.
+     * The returned expression <em>should</em> be an instance of {@link ValueReference}.
+     * The {@linkplain Expression#apply expression evaluation} should return one of the following type:
      *
-     * <ol>
-     *   <li>The first expression should be a {@link ValueReference} evaluating to a {@link Geometry}.
-     *     But it may also evaluate to a {@link Feature} if the operator shall be applied
-     *     to the geometric values of all the spatial properties of the resource.
-     *     In this case, the operator evaluates to {@code true} if all tested
-     *     spatial property values fulfill the spatial relationship implied by the operator.
-     *   </li><li>
-     *     The second expression should be a {@link ValueReference} or a {@linkplain Literal literal}
-     *     evaluating to an instance of {@link Geometry} or {@link Envelope}.
-     *   </li>
-     * </ol>
+     * <ul>
+     *   <li>A geometry instance.</li>
+     *   <li>A {@link Feature} instance if the operator shall be applied to the geometric values
+     *       of all the spatial properties of the resource.</li>
+     * </ul>
      *
-     * @return a list of size 2 containing the two expressions to be evaluated.
+     * This {code BinarySpatialOperator} evaluates to {@code true} if all tested spatial property values
+     * fulfill the spatial relationship implied by the operator.
+     *
+     * @return the first expression to be evaluated.
+     *
+     * @departure generalization
+     *   ISO 19143 restricts the type to {@link ValueReference}.
+     *   GeoAPI relaxes this restriction by allowing arbitrary expressions.
+     */
+    @UML(identifier="operand1", obligation=MANDATORY, specification=ISO_19143)
+    default Expression<? super R, ?> getOperand1() {
+        return getExpressions().get(0);
+    }
+
+    /**
+     * Returns the second expression to be evaluated.
+     * This is the element at index 1 in the {@linkplain #getExpressions() expressions} list.
+     * The returned expression should one of the following:
+     *
+     * <ul>
+     *   <li>A {@link ValueReference}.</li>
+     *   <li>A {@link Literal} evaluating to a geometry object.</li>
+     *   <li>A {@link Literal} evaluating to an {@link Envelope}.</li>
+     * </ul>
+     *
+     * @return the second expression to be evaluated.
      *
      * @departure constraint
-     *   ISO 19143 uses two properties, named {@code operand1} and {@code operand2},
-     *   of type {@code ValueReference} and {@code SpatialDescription} respectively.
-     *   The later is an union of {@code Geometry}, {@code Envelope} and {@code ValueReference},
-     *   which has no direct equivalence in Java.
-     *   The union purpose is replaced by documentation in this method.
-     *   The two values are put in a list for retrofitting in {@link Filter#getExpressions()}.
+     *   ISO 19143 restricts the type to {@code SpatialDescription}, which is a union between
+     *   {@code Geometry}, {@code Envelope} and {@code ValueReference}.
+     *   Union has no direct equivalence in Java and is replaced by documentation in this method.
+     */
+    @UML(identifier="operand2", obligation=MANDATORY, specification=ISO_19143)
+    default Expression<? super R, ?> getOperand2() {
+        return getExpressions().get(1);
+    }
+
+    /**
+     * Returns the two expressions to be evaluated by this operator.
+     * The list shall contain {@linkplain #getOperand1() operand 1}
+     * and {@linkplain #getOperand2() operand 2} in that order.
+     *
+     * @return a list of size 2 containing the two expressions to be evaluated.
      */
     @Override
-    @UML(identifier="operand1, operand2", obligation=MANDATORY, specification=ISO_19143)
-    List<Expression<? super T, ?>> getExpressions();
+    List<Expression<? super R, ?>> getExpressions();
 }

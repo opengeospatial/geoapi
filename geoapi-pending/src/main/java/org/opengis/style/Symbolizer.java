@@ -33,13 +33,14 @@ package org.opengis.style;
 
 import javax.measure.Unit;
 import javax.measure.quantity.Length;
-
+import org.opengis.feature.Feature;
+import org.opengis.filter.Expression;
+import org.opengis.filter.ValueReference;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
 
 import static org.opengis.annotation.Specification.*;
-import org.opengis.filter.Expression;
-import org.opengis.filter.ValueReference;
+
 
 /**
  * Abstract superclass of the symbolizers defined by the Symbology Encoding specification.
@@ -108,7 +109,7 @@ public interface Symbolizer {
      *
      * @return Expression used to define a geometry for drawing, or Expression.NIL if the default geometry should be used.
      */
-    Expression getGeometry();
+    Expression<Feature,?> getGeometry();
 
     /**
      * Returns a name for this symbolizer.

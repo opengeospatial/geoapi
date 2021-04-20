@@ -49,12 +49,12 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * The arguments themselves are in-turn expressions and shall appear in the order in which
  * they are defined in the {@code FilterCapabilities}.
  *
- * <p>Expressions are applied on objects of type {@code <T>}.
+ * <p>Expressions are applied on objects of type {@code <R>}.
  * Those objects are typically {@link Feature} instances,
  * but expressions can also be used with other kind of objects
  * such as {@code Coverage}.</p>
  *
- * <p>Expressions return an output of type {@code <R>}.
+ * <p>Expressions return a value of type {@code <V>}.
  * Expressions that can be used as {@link org.opengis.filter.Filter} operators
  * and can thus be combined using logical operations shall return a {@link Boolean} result.</p>
  *
@@ -68,12 +68,12 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  *
- * @param  <T>  the type of the input to the expression.
- * @param  <R>  the type of the result of the expression.
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) used as inputs.
+ * @param  <V>  the type of values computed by the expression.
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="Expression", specification=ISO_19143)
-public interface Expression<T,R> extends Function<T,R> {
+public interface Expression<R,V> extends Function<R,V> {
     /**
      * Returns the name of the function to be called.
      * The {@linkplain ScopedName#head() head} should identify the defining authority and
@@ -97,7 +97,7 @@ public interface Expression<T,R> extends Function<T,R> {
      * @return the sub-expressions to be evaluated, or an empty list if none.
      */
     @UML(identifier="Function.expression", obligation=MANDATORY, specification=ISO_19143)
-    List<Expression<? super T, ?>> getParameters();
+    List<Expression<? super R, ?>> getParameters();
 
     /**
      * Evaluates the expression value based on the content of the given object.
@@ -109,5 +109,33 @@ public interface Expression<T,R> extends Function<T,R> {
      * @throws InvalidFilterValueException if the expression can not be applied on the given object.
      */
     @Override
-    R apply(T input) throws InvalidFilterValueException;
+    V apply(R input) throws InvalidFilterValueException;
+
+    /**
+     * Returns an expression doing the same evaluation than this method, but returning results
+     * as values of the specified type. This method can return {@code this} if this expression
+     * is already guaranteed to provide results of the specified type.
+     * Otherwise this method can either (at implementer choice) return a new expression
+     * which will convert values on-the-fly, or throw a {@link ClassCastException}.
+     * Exceptions should be thrown as early as possible (see below for more details).
+     *
+     * <h4>Use case</h4>
+     * This method is useful when a client needs to narrow the type of values provided by an expression.
+     * For example a method doing spatial operations may accept only expressions returning geometry objects.
+     * A call to {@code expression.toValueType(Geometry.class)} gives a chance to detect early if an expression
+     * is not suitable to spatial operations.
+     *
+     * <h4>Exceptions</h4>
+     * An {@link ClassCastException} should be thrown at this method invocation time if values are known to be
+     * unconvertible to the specified type. But if convertibility can only be determined at {@link #apply(R)}
+     * invocation time, then a {@link ClassCastException} can be thrown at evaluation time.
+     * In this paragraph, "convertible" does not necessarily mean that implementations must be able to copy values
+     * into objects of specified type. It is okay to apply only {@linkplain Class#cast(Object) standard Java casts}.
+     *
+     * @param  <N>   compile-time value of {@code type}.
+     * @param  type  desired type of expression results.
+     * @return expression doing the same operation this this expression but with results of the specified type.
+     * @throws ClassCastException if the specified type is not a target type supported by implementation.
+     */
+    <N> Expression<R,N> toValueType(Class<N> type);
 }

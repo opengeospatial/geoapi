@@ -60,11 +60,11 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  *
- * @param  <T>  the type of inputs to filter.
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to filter.
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="SpatialOperator", specification=ISO_19143)
-public interface SpatialOperator<T> extends Filter<T> {
+public interface SpatialOperator<R> extends Filter<R> {
     /**
      * Returns the nature of the operator. The code list can be {@link SpatialOperatorName}
      * or {@link DistanceOperatorName}, depending on the sub-interface.

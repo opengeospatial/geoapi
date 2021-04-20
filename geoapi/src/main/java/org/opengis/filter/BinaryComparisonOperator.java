@@ -54,10 +54,10 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  *
- * @param  <T>  the type of inputs to filter.
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to filter.
  */
 @UML(identifier="BinaryComparisonOperator", specification=ISO_19143)
-public interface BinaryComparisonOperator<T> extends ComparisonOperator<T> {
+public interface BinaryComparisonOperator<R> extends ComparisonOperator<R> {
     /**
      * Returns the two expressions to be compared by this operator.
      * The expressions can be of any kind.
@@ -66,7 +66,41 @@ public interface BinaryComparisonOperator<T> extends ComparisonOperator<T> {
      */
     @Override
     @UML(identifier="expression", obligation=MANDATORY, specification=ISO_19143)
-    List<Expression<? super T, ?>> getExpressions();
+    List<Expression<? super R, ?>> getExpressions();
+
+    /*
+     * API design note: the major reason for the two following convenience methods is type safety.
+     * Consider the following code (which is valid)!
+     *
+     *     BinaryComparisonOperator<R> operator = ...;
+     *     List<Expression<? super R, ?>> expressions = getExpressions();
+     *
+     * Above code become invalid if the operator type is changed from <R> to <? super R> because
+     * the list type become <? super #CAP1> when #CAP1 can not be expressed as a parametric type.
+     * We can not store a type-safe reference to the list, but accessing individual elements of
+     * that list (as done below) stay legel. Providing methods for that allow implementors to
+     * override those methods with more efficient implementations.
+     */
+
+    /**
+     * Returns the element on the left side of the comparison expression.
+     * This is the element at index 0 in the {@linkplain #getExpressions() list of expressions}.
+     *
+     * @return the first element in the list of expressions.
+     */
+    default Expression<? super R, ?> getOperand1() {
+        return getExpressions().get(0);
+    }
+
+    /**
+     * Returns the element on the right side of the comparison expression.
+     * This is the element at index 1 in the {@linkplain #getExpressions() list of expressions}.
+     *
+     * @return the second element in the list of expressions.
+     */
+    default Expression<? super R, ?> getOperand2() {
+        return getExpressions().get(1);
+    }
 
     /**
      * Specifies how a filter expression processor should perform string comparisons.

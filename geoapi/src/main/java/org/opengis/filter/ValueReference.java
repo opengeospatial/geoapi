@@ -51,13 +51,13 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  *
- * @param  <T>  the type of the input.
- * @param  <R>  the type of the referenced value.
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) used as inputs.
+ * @param  <V>  the type of values fetched by the expression.
  *
  * @since 3.1
  */
 @UML(identifier="ValueReference", specification=ISO_19143)
-public interface ValueReference<T,R> extends Expression<T,R> {
+public interface ValueReference<R,V> extends Expression<R,V> {
     /**
      * Returns the name of the value reference function.
      * The default implementation returns {@code "fes:ValueReference"}.
@@ -75,12 +75,12 @@ public interface ValueReference<T,R> extends Expression<T,R> {
      * @return an empty list.
      */
     @Override
-    default List<Expression<? super T, ?>> getParameters() {
+    default List<Expression<? super R, ?>> getParameters() {
         return Collections.emptyList();
     }
 
     /**
-     * Returns the path to the property whose value will be returned by the {@code apply(T)} method.
+     * Returns the path to the property whose value will be returned by the {@code apply(R)} method.
      * If all characters are {@linkplain Character#isUnicodeIdentifierPart(int) Unicode identifier part},
      * then the XPath expression is simply a property name. Otherwise
      * (i.e. if the returned path contains characters such as {@code `:`}, {@code `/`} or {@code '['}),
@@ -105,7 +105,7 @@ public interface ValueReference<T,R> extends Expression<T,R> {
      *
      * Implementations may support a larger set of XPath rules if desired.
      *
-     * @return path to the property whose value will be returned by the {@code apply(T)} method.
+     * @return path to the property whose value will be returned by the {@code apply(R)} method.
      *
      * @see Feature#getPropertyValue(String)
      */

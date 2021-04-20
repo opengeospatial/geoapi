@@ -33,6 +33,7 @@ package org.opengis.filter;
 
 import java.time.Instant;
 import java.util.Optional;
+import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.MANDATORY;
@@ -56,10 +57,21 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  *
- * @param  <T>  the type of inputs to filter.
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to filter.
  */
 @UML(identifier="SpatialOperator", specification=ISO_19143)
-public interface ResourceId<T> extends Filter<T> {
+public interface ResourceId<R> extends Filter<R> {
+    /**
+     * Returns the nature of this operator.
+     * The default implementation returns {@code RESOURCE_ID}.
+     *
+     * @return the nature of the operator.
+     */
+    @Override
+    default CodeList<?> getOperatorType() {
+        return FilterName.RESOURCE_ID;
+    }
+
     /**
      * Specifies the identifier of the resource that shall be selected by the predicate.
      * If the implementation supports versioning, this identifier is a system generated

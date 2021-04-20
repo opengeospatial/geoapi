@@ -55,11 +55,11 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  *
- * @param  <T>  the type of inputs to filter.
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to filter.
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="LogicalOperator", specification=ISO_19143)
-public interface LogicalOperator<T> extends Filter<T> {
+public interface LogicalOperator<R> extends Filter<R> {
     /**
      * Returns the nature of the operator.
      *
@@ -74,7 +74,7 @@ public interface LogicalOperator<T> extends Filter<T> {
      * The expression list shall have the same size than the {@linkplain #getOperands() operands list}.
      * For each index <var>i</var> valid for the lists, the following relation shall hold:
      *
-     * <blockquote><pre> T any = ...;
+     * <blockquote><pre> R any = ...;
      * Object  e = expressions.get(i).apply(any);
      * Boolean f = filters.get(i).test(any);
      * assert e.equals(f);</pre>
@@ -83,7 +83,7 @@ public interface LogicalOperator<T> extends Filter<T> {
      * @return a view of {@linkplain #getOperands() operands list} as expressions.
      */
     @Override
-    default List<Expression<? super T, ?>> getExpressions() {
+    default List<Expression<? super R, ?>> getExpressions() {
         return new FilterExpressions<>(getOperands());
     }
 
@@ -95,5 +95,5 @@ public interface LogicalOperator<T> extends Filter<T> {
      * @return all child filters used as operands.
      */
     @UML(identifier="UnaryLogicOperator.operands, BinaryLogicOperator.operands", obligation=MANDATORY, specification=ISO_19143)
-    List<Filter<? super T>> getOperands();
+    List<Filter<? super R>> getOperands();
 }

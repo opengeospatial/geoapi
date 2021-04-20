@@ -75,7 +75,7 @@ public interface FeatureTypeStyle {
     Description getDescription();
 
     /**
-     * Returns a collection of Object identifying features object.
+     * Returns an identification of features object.
      *
      * <p>
      * ISO 19117 extends FeatureTypeStyle be providing this method.
