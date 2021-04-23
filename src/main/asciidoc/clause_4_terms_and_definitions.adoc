@@ -63,6 +63,12 @@ coordinate system that is related to an object by a datum +
 In planetary applications, geodetic and vertical reference frames may be applied to other celestial bodies.# +
  [source: ISO 19111]
 
+[[term_covariant]]
+[discrete]
+=== covariant type
+a type that can be replaced by a more specialized type when the property is overridden in a subclass +
+[small]#Note 1 to entry: Some programming languages allow covariant return types in method declarations.# +
+
 [[term_coverage]]
 [discrete]
 === coverage

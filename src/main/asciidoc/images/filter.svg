@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
-<svg version="1.2" width="189.31mm" height="174.31mm" viewBox="985 985 18931 17431" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:presentation="http://sun.com/xmlns/staroffice/presentation" xmlns:smil="http://www.w3.org/2001/SMIL20/" xmlns:anim="urn:oasis:names:tc:opendocument:xmlns:animation:1.0" xml:space="preserve">
+<svg version="1.2" width="198.04mm" height="208.31mm" viewBox="785 985 19804 20831" preserveAspectRatio="xMidYMid" fill-rule="evenodd" stroke-width="28.222" stroke-linejoin="round" xmlns="http://www.w3.org/2000/svg" xmlns:ooo="http://xml.openoffice.org/svg/export" xmlns:xlink="http://www.w3.org/1999/xlink" xmlns:presentation="http://sun.com/xmlns/staroffice/presentation" xmlns:smil="http://www.w3.org/2001/SMIL20/" xmlns:anim="urn:oasis:names:tc:opendocument:xmlns:animation:1.0" xml:space="preserve">
  <defs>
   <font id="EmbeddedFont_1" horiz-adv-x="2048">
    <font-face font-family="DejaVu Sans embedded" units-per-em="2048" font-weight="normal" font-style="normal" ascent="1879" descent="476"/>
@@ -35,6 +35,7 @@
   <font id="EmbeddedFont_2" horiz-adv-x="2048">
    <font-face font-family="DejaVu Sans embedded" units-per-em="2048" font-weight="bold" font-style="normal" ascent="1879" descent="476"/>
    <missing-glyph horiz-adv-x="2048" d="M 0,0 L 2047,0 2047,2047 0,2047 0,0 Z"/>
+   <glyph unicode="y" horiz-adv-x="1297" d="M 25,1120 L 383,1120 684,360 940,1120 1298,1120 827,-106 C 780,-231 725,-318 662,-368 599,-417 515,-442 412,-442 L 205,-442 205,-207 317,-207 C 378,-207 422,-197 450,-178 477,-159 499,-124 514,-74 L 524,-43 25,1120 Z"/>
    <glyph unicode="t" horiz-adv-x="928" d="M 563,1438 L 563,1120 932,1120 932,864 563,864 563,389 C 563,337 573,302 594,284 615,265 656,256 717,256 L 901,256 901,0 594,0 C 453,0 353,30 294,89 235,148 205,248 205,389 L 205,864 27,864 27,1120 205,1120 205,1438 563,1438 Z"/>
    <glyph unicode="s" horiz-adv-x="1060" d="M 1047,1085 L 1047,813 C 970,845 896,869 825,885 754,901 686,909 623,909 555,909 505,901 472,884 439,867 422,840 422,805 422,776 435,754 460,739 485,724 529,712 594,705 L 657,696 C 840,673 964,634 1027,581 1090,528 1122,444 1122,330 1122,211 1078,121 990,61 902,1 771,-29 596,-29 522,-29 446,-23 367,-12 288,0 206,18 123,41 L 123,313 C 194,278 268,252 343,235 418,218 494,209 571,209 641,209 694,219 729,238 764,257 782,286 782,324 782,356 770,380 746,396 721,411 673,423 600,432 L 537,440 C 378,460 266,497 202,551 138,605 106,687 106,797 106,916 147,1004 228,1061 309,1118 434,1147 602,1147 668,1147 737,1142 810,1132 883,1122 962,1106 1047,1085 Z"/>
    <glyph unicode="r" horiz-adv-x="847" d="M 1004,815 C 973,830 942,841 911,848 880,855 848,858 817,858 725,858 654,829 605,770 555,711 530,626 530,516 L 530,0 172,0 172,1120 530,1120 530,936 C 576,1009 629,1062 689,1095 748,1128 820,1145 903,1145 915,1145 928,1145 942,1145 956,1145 976,1143 1003,1139 L 1004,815 Z"/>
@@ -57,13 +58,13 @@
    <glyph unicode="L" horiz-adv-x="1060" d="M 188,1493 L 573,1493 573,291 1249,291 1249,0 188,0 188,1493 Z"/>
    <glyph unicode="F" horiz-adv-x="1060" d="M 188,1493 L 1227,1493 1227,1202 573,1202 573,924 1188,924 1188,633 573,633 573,0 188,0 188,1493 Z"/>
    <glyph unicode="C" horiz-adv-x="1298" d="M 1372,82 C 1301,45 1228,18 1151,-1 1074,-20 994,-29 911,-29 662,-29 465,41 320,180 175,319 102,507 102,745 102,984 175,1173 320,1312 465,1451 662,1520 911,1520 994,1520 1074,1511 1151,1492 1228,1473 1301,1446 1372,1409 L 1372,1100 C 1301,1149 1230,1184 1161,1207 1092,1230 1019,1241 942,1241 805,1241 697,1197 618,1109 539,1021 500,900 500,745 500,591 539,470 618,382 697,294 805,250 942,250 1019,250 1092,261 1161,284 1230,307 1301,342 1372,391 L 1372,82 Z"/>
+   <glyph unicode="B" horiz-adv-x="1245" d="M 786,915 C 847,915 893,928 924,955 955,982 971,1021 971,1073 971,1124 955,1164 924,1191 893,1218 847,1231 786,1231 L 573,1231 573,915 786,915 Z M 799,262 C 876,262 935,278 974,311 1013,344 1032,393 1032,459 1032,524 1013,572 974,605 935,637 877,653 799,653 L 573,653 573,262 799,262 Z M 1157,799 C 1240,775 1304,731 1349,666 1394,601 1417,522 1417,428 1417,284 1368,177 1271,106 1174,35 1026,0 827,0 L 188,0 188,1493 766,1493 C 973,1493 1124,1462 1217,1399 1310,1336 1356,1236 1356,1098 1356,1025 1339,964 1305,913 1271,862 1222,824 1157,799 Z"/>
   </font>
  </defs>
  <defs>
   <font id="EmbeddedFont_3" horiz-adv-x="2048">
    <font-face font-family="DejaVu Sans Mono embedded" units-per-em="2048" font-weight="normal" font-style="normal" ascent="1879" descent="476"/>
    <missing-glyph horiz-adv-x="2048" d="M 0,0 L 2047,0 2047,2047 0,2047 0,0 Z"/>
-   <glyph unicode="…" horiz-adv-x="1086" d="M 80,305 L 332,305 332,0 80,0 80,305 Z M 899,305 L 1151,305 1151,0 899,0 899,305 Z M 489,305 L 741,305 741,0 489,0 489,305 Z"/>
    <glyph unicode="y" horiz-adv-x="1086" d="M 858,360 C 827,282 788,179 741,52 675,-124 631,-231 608,-270 577,-322 539,-361 493,-387 447,-413 393,-426 332,-426 L 184,-426 184,-272 293,-272 C 347,-272 389,-256 420,-225 451,-194 490,-113 537,18 L 104,1120 299,1120 631,244 958,1120 1153,1120 858,360 Z"/>
    <glyph unicode="x" horiz-adv-x="1112" d="M 1118,1120 L 717,584 1157,0 944,0 616,449 289,0 76,0 516,584 115,1120 319,1120 616,715 911,1120 1118,1120 Z"/>
    <glyph unicode="v" horiz-adv-x="1060" d="M 100,1120 L 291,1120 616,180 942,1120 1133,1120 735,0 498,0 100,1120 Z"/>
@@ -103,7 +104,10 @@
    <glyph unicode="B" horiz-adv-x="980" d="M 369,713 L 369,166 608,166 C 725,166 809,187 859,228 909,269 934,336 934,430 934,527 908,599 855,645 802,690 720,713 608,713 L 369,713 Z M 369,1327 L 369,877 604,877 C 701,877 772,896 816,933 859,970 881,1031 881,1114 881,1189 860,1244 817,1277 774,1310 703,1327 604,1327 L 369,1327 Z M 166,1493 L 608,1493 C 761,1493 878,1460 961,1394 1044,1328 1085,1235 1085,1114 1085,1023 1063,951 1020,898 976,845 910,812 823,799 921,784 998,743 1054,674 1109,605 1137,517 1137,410 1137,275 1093,173 1004,104 915,35 783,0 608,0 L 166,0 166,1493 Z"/>
    <glyph unicode="A" horiz-adv-x="1166" d="M 616,1315 L 403,551 829,551 616,1315 Z M 494,1493 L 739,1493 1196,0 987,0 877,389 354,389 246,0 37,0 494,1493 Z"/>
    <glyph unicode=":" horiz-adv-x="266" d="M 489,1063 L 741,1063 741,760 489,760 489,1063 Z M 489,305 L 741,305 741,0 489,0 489,305 Z"/>
+   <glyph unicode="2" horiz-adv-x="927" d="M 373,170 L 1059,170 1059,0 152,0 152,170 C 277,301 386,417 479,518 572,619 637,690 672,731 739,812 784,878 807,929 830,979 842,1030 842,1083 842,1166 818,1232 769,1279 720,1326 652,1350 567,1350 506,1350 443,1339 376,1317 309,1295 239,1262 164,1217 L 164,1421 C 233,1454 300,1478 367,1495 433,1512 498,1520 563,1520 709,1520 827,1481 916,1404 1005,1326 1049,1224 1049,1098 1049,1034 1034,970 1005,906 975,842 927,771 860,694 823,651 769,591 698,514 627,437 518,323 373,170 Z"/>
+   <glyph unicode="1" horiz-adv-x="874" d="M 270,170 L 584,170 584,1311 246,1235 246,1419 582,1493 784,1493 784,170 1094,170 1094,0 270,0 270,170 Z"/>
    <glyph unicode="0" horiz-adv-x="980" d="M 483,750 C 483,787 496,818 522,845 547,872 578,885 614,885 651,885 683,872 710,845 737,818 750,787 750,750 750,713 737,681 711,655 684,629 652,616 614,616 577,616 546,629 521,654 496,679 483,711 483,750 Z M 616,1360 C 522,1360 452,1309 406,1208 359,1107 336,952 336,745 336,538 359,384 406,283 452,182 522,131 616,131 711,131 781,182 828,283 874,384 897,538 897,745 897,952 874,1107 828,1208 781,1309 711,1360 616,1360 Z M 616,1520 C 775,1520 896,1455 978,1324 1059,1193 1100,1000 1100,745 1100,490 1059,298 978,167 896,36 775,-29 616,-29 457,-29 336,36 255,167 174,298 133,490 133,745 133,1000 174,1193 255,1324 336,1455 457,1520 616,1520 Z"/>
+   <glyph unicode="." horiz-adv-x="266" d="M 489,305 L 741,305 741,0 489,0 489,305 Z"/>
    <glyph unicode="+" horiz-adv-x="1086" d="M 700,1171 L 700,727 1145,727 1145,557 700,557 700,113 532,113 532,557 88,557 88,727 532,727 532,1171 700,1171 Z"/>
    <glyph unicode="*" horiz-adv-x="927" d="M 1067,1247 L 709,1053 1067,858 1010,760 674,963 674,586 559,586 559,963 223,760 166,858 524,1053 166,1247 223,1346 559,1143 559,1520 674,1520 674,1143 1010,1346 1067,1247 Z"/>
    <glyph unicode=")" horiz-adv-x="477" d="M 348,1554 L 508,1554 C 609,1397 684,1243 733,1092 782,941 807,792 807,643 807,493 782,343 733,192 684,41 609,-113 508,-270 L 348,-270 C 437,-115 503,38 547,189 590,340 612,492 612,643 612,795 590,947 547,1098 503,1249 437,1401 348,1554 Z"/>
@@ -186,7 +190,7 @@
    <g id="id8">
     <rect class="BoundingBox" stroke="none" fill="none" x="6985" y="4235" width="7031" height="2381"/>
     <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 10500,6600 L 7000,6600 7000,4250 14000,4250 14000,6600 10500,6600 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="7500" y="5846"><tspan fill="rgb(0,0,0)" stroke="none">+ opeatorType : CodeList</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="7500" y="6219"><tspan fill="rgb(0,0,0)" stroke="none">+ expression  : Expression[0…*]</tspan></tspan></tspan></text>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="7500" y="5846"><tspan fill="rgb(0,0,0)" stroke="none">+ operatorType : CodeList</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="7500" y="6219"><tspan fill="rgb(0,0,0)" stroke="none">+ expression   : Expression[0..*]</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.LineShape">
@@ -204,8 +208,9 @@
   </g>
   <g class="com.sun.star.drawing.CustomShape">
    <g id="id11">
-    <rect class="BoundingBox" stroke="none" fill="none" x="10585" y="8985" width="4531" height="1531"/>
-    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 12850,10500 L 10600,10500 10600,9000 15100,9000 15100,10500 12850,10500 Z"/>
+    <rect class="BoundingBox" stroke="none" fill="none" x="10585" y="8985" width="4531" height="1931"/>
+    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 12850,10900 L 10600,10900 10600,9000 15100,9000 15100,10900 12850,10900 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11100" y="10596"><tspan fill="rgb(0,0,0)" stroke="none">+ expression[1..2]</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.LineShape">
@@ -236,8 +241,9 @@
   </g>
   <g class="com.sun.star.drawing.CustomShape">
    <g id="id16">
-    <rect class="BoundingBox" stroke="none" fill="none" x="5785" y="8985" width="4531" height="1531"/>
-    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 8050,10500 L 5800,10500 5800,9000 10300,9000 10300,10500 8050,10500 Z"/>
+    <rect class="BoundingBox" stroke="none" fill="none" x="5785" y="8985" width="4531" height="1931"/>
+    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 8050,10900 L 5800,10900 5800,9000 10300,9000 10300,10900 8050,10900 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="10596"><tspan fill="rgb(0,0,0)" stroke="none">+ expression[2]</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.LineShape">
@@ -288,8 +294,9 @@
   </g>
   <g class="com.sun.star.drawing.CustomShape">
    <g id="id24">
-    <rect class="BoundingBox" stroke="none" fill="none" x="15385" y="8985" width="4531" height="1531"/>
-    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 17650,10500 L 15400,10500 15400,9000 19900,9000 19900,10500 17650,10500 Z"/>
+    <rect class="BoundingBox" stroke="none" fill="none" x="15385" y="8985" width="4531" height="1931"/>
+    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 17650,10900 L 15400,10900 15400,9000 19900,9000 19900,10900 17650,10900 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="15900" y="10596"><tspan fill="rgb(0,0,0)" stroke="none">+ expression[1..*]</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.LineShape">
@@ -314,82 +321,145 @@
   </g>
   <g class="com.sun.star.drawing.CustomShape">
    <g id="id28">
-    <rect class="BoundingBox" stroke="none" fill="none" x="1000" y="11700" width="4501" height="1101"/>
-    <path fill="rgb(255,255,153)" stroke="none" d="M 3250,12800 L 1000,12800 1000,11700 5500,11700 5500,12800 3250,12800 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="400"><tspan class="TextPosition" x="2325" y="12173"><tspan fill="rgb(0,0,0)" stroke="none">« code list »</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="700"><tspan class="TextPosition" x="1297" y="12546"><tspan fill="rgb(0,0,0)" stroke="none">SpatialOperatorName</tspan></tspan></tspan></text>
+    <rect class="BoundingBox" stroke="none" fill="none" x="1000" y="15100" width="4501" height="1101"/>
+    <path fill="rgb(255,255,153)" stroke="none" d="M 3250,16200 L 1000,16200 1000,15100 5500,15100 5500,16200 3250,16200 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="400"><tspan class="TextPosition" x="2325" y="15573"><tspan fill="rgb(0,0,0)" stroke="none">« code list »</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="700"><tspan class="TextPosition" x="1297" y="15946"><tspan fill="rgb(0,0,0)" stroke="none">SpatialOperatorName</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.CustomShape">
    <g id="id29">
-    <rect class="BoundingBox" stroke="none" fill="none" x="985" y="11685" width="4531" height="6731"/>
-    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 3250,18400 L 1000,18400 1000,11700 5500,11700 5500,18400 3250,18400 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="13296"><tspan fill="rgb(0,0,0)" stroke="none">+ BBOX</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="13669"><tspan fill="rgb(0,0,0)" stroke="none">+ Equals</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="14042"><tspan fill="rgb(0,0,0)" stroke="none">+ Disjoint</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="14415"><tspan fill="rgb(0,0,0)" stroke="none">+ Intersects</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="14788"><tspan fill="rgb(0,0,0)" stroke="none">+ Touches</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="15161"><tspan fill="rgb(0,0,0)" stroke="none">+ Crosses</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="15534"><tspan fill="rgb(0,0,0)" stroke="none">+ Within</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="15907"><tspan fill="rgb(0,0,0)" stroke="none">+ Contains</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="16280"><tspan fill="rgb(0,0,0)" stroke="none">+ Overlaps</tspan></tspan></tspan></text>
+    <rect class="BoundingBox" stroke="none" fill="none" x="985" y="15085" width="4531" height="6731"/>
+    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 3250,21800 L 1000,21800 1000,15100 5500,15100 5500,21800 3250,21800 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="16696"><tspan fill="rgb(0,0,0)" stroke="none">+ BBOX</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="17069"><tspan fill="rgb(0,0,0)" stroke="none">+ Equals</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="17442"><tspan fill="rgb(0,0,0)" stroke="none">+ Disjoint</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="17815"><tspan fill="rgb(0,0,0)" stroke="none">+ Intersects</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="18188"><tspan fill="rgb(0,0,0)" stroke="none">+ Touches</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="18561"><tspan fill="rgb(0,0,0)" stroke="none">+ Crosses</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="18934"><tspan fill="rgb(0,0,0)" stroke="none">+ Within</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="19307"><tspan fill="rgb(0,0,0)" stroke="none">+ Contains</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1500" y="19680"><tspan fill="rgb(0,0,0)" stroke="none">+ Overlaps</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.LineShape">
    <g id="id30">
-    <rect class="BoundingBox" stroke="none" fill="none" x="999" y="12799" width="4503" height="3"/>
-    <path fill="none" stroke="rgb(0,0,0)" d="M 1000,12800 L 5500,12800"/>
+    <rect class="BoundingBox" stroke="none" fill="none" x="999" y="16199" width="4503" height="3"/>
+    <path fill="none" stroke="rgb(0,0,0)" d="M 1000,16200 L 5500,16200"/>
    </g>
   </g>
   <g class="com.sun.star.drawing.CustomShape">
    <g id="id31">
-    <rect class="BoundingBox" stroke="none" fill="none" x="5800" y="11700" width="4501" height="1101"/>
-    <path fill="rgb(255,255,153)" stroke="none" d="M 8050,12800 L 5800,12800 5800,11700 10300,11700 10300,12800 8050,12800 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="400"><tspan class="TextPosition" x="7125" y="12173"><tspan fill="rgb(0,0,0)" stroke="none">« code list »</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="700"><tspan class="TextPosition" x="5901" y="12546"><tspan fill="rgb(0,0,0)" stroke="none">TemporalOperatorName</tspan></tspan></tspan></text>
+    <rect class="BoundingBox" stroke="none" fill="none" x="5800" y="15100" width="4501" height="1101"/>
+    <path fill="rgb(255,255,153)" stroke="none" d="M 8050,16200 L 5800,16200 5800,15100 10300,15100 10300,16200 8050,16200 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="400"><tspan class="TextPosition" x="7125" y="15573"><tspan fill="rgb(0,0,0)" stroke="none">« code list »</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="700"><tspan class="TextPosition" x="5901" y="15946"><tspan fill="rgb(0,0,0)" stroke="none">TemporalOperatorName</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.CustomShape">
    <g id="id32">
-    <rect class="BoundingBox" stroke="none" fill="none" x="5785" y="11685" width="4531" height="6731"/>
-    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 8050,18400 L 5800,18400 5800,11700 10300,11700 10300,18400 8050,18400 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="13296"><tspan fill="rgb(0,0,0)" stroke="none">+ After</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="13669"><tspan fill="rgb(0,0,0)" stroke="none">+ Before</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="14042"><tspan fill="rgb(0,0,0)" stroke="none">+ Begins</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="14415"><tspan fill="rgb(0,0,0)" stroke="none">+ BegunBy</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="14788"><tspan fill="rgb(0,0,0)" stroke="none">+ Contains</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="15161"><tspan fill="rgb(0,0,0)" stroke="none">+ During</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="15534"><tspan fill="rgb(0,0,0)" stroke="none">+ Equals</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="15907"><tspan fill="rgb(0,0,0)" stroke="none">+ Overlaps</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="16280"><tspan fill="rgb(0,0,0)" stroke="none">+ Meets</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="16653"><tspan fill="rgb(0,0,0)" stroke="none">+ Ends</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="17026"><tspan fill="rgb(0,0,0)" stroke="none">+ OverlappedBy</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="17399"><tspan fill="rgb(0,0,0)" stroke="none">+ MetBy</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="17772"><tspan fill="rgb(0,0,0)" stroke="none">+ EndedBy</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="18145"><tspan fill="rgb(0,0,0)" stroke="none">+ AnyInteracts</tspan></tspan></tspan></text>
+    <rect class="BoundingBox" stroke="none" fill="none" x="5785" y="15085" width="4531" height="6731"/>
+    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 8050,21800 L 5800,21800 5800,15100 10300,15100 10300,21800 8050,21800 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="16696"><tspan fill="rgb(0,0,0)" stroke="none">+ After</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="17069"><tspan fill="rgb(0,0,0)" stroke="none">+ Before</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="17442"><tspan fill="rgb(0,0,0)" stroke="none">+ Begins</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="17815"><tspan fill="rgb(0,0,0)" stroke="none">+ BegunBy</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="18188"><tspan fill="rgb(0,0,0)" stroke="none">+ Contains</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="18561"><tspan fill="rgb(0,0,0)" stroke="none">+ During</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="18934"><tspan fill="rgb(0,0,0)" stroke="none">+ Equals</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="19307"><tspan fill="rgb(0,0,0)" stroke="none">+ Overlaps</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="19680"><tspan fill="rgb(0,0,0)" stroke="none">+ Meets</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="20053"><tspan fill="rgb(0,0,0)" stroke="none">+ Ends</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="20426"><tspan fill="rgb(0,0,0)" stroke="none">+ OverlappedBy</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="20799"><tspan fill="rgb(0,0,0)" stroke="none">+ MetBy</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="21172"><tspan fill="rgb(0,0,0)" stroke="none">+ EndedBy</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="6300" y="21545"><tspan fill="rgb(0,0,0)" stroke="none">+ AnyInteracts</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.LineShape">
    <g id="id33">
-    <rect class="BoundingBox" stroke="none" fill="none" x="5799" y="12799" width="4503" height="3"/>
-    <path fill="none" stroke="rgb(0,0,0)" d="M 5800,12800 L 10300,12800"/>
+    <rect class="BoundingBox" stroke="none" fill="none" x="5799" y="16199" width="4503" height="3"/>
+    <path fill="none" stroke="rgb(0,0,0)" d="M 5800,16200 L 10300,16200"/>
    </g>
   </g>
   <g class="com.sun.star.drawing.CustomShape">
    <g id="id34">
-    <rect class="BoundingBox" stroke="none" fill="none" x="10600" y="11700" width="6901" height="1101"/>
-    <path fill="rgb(255,255,153)" stroke="none" d="M 14050,12800 L 10600,12800 10600,11700 17500,11700 17500,12800 14050,12800 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="400"><tspan class="TextPosition" x="13125" y="12173"><tspan fill="rgb(0,0,0)" stroke="none">« code list »</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="700"><tspan class="TextPosition" x="11663" y="12546"><tspan fill="rgb(0,0,0)" stroke="none">ComparisonOperatorName</tspan></tspan></tspan></text>
+    <rect class="BoundingBox" stroke="none" fill="none" x="10600" y="15100" width="6901" height="1101"/>
+    <path fill="rgb(255,255,153)" stroke="none" d="M 14050,16200 L 10600,16200 10600,15100 17500,15100 17500,16200 14050,16200 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="400"><tspan class="TextPosition" x="13125" y="15573"><tspan fill="rgb(0,0,0)" stroke="none">« code list »</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="700"><tspan class="TextPosition" x="11663" y="15946"><tspan fill="rgb(0,0,0)" stroke="none">ComparisonOperatorName</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.CustomShape">
    <g id="id35">
-    <rect class="BoundingBox" stroke="none" fill="none" x="10585" y="11685" width="6931" height="3831"/>
-    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 14050,15500 L 10600,15500 10600,11700 17500,11700 17500,15500 14050,15500 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11100" y="13296"><tspan fill="rgb(0,0,0)" stroke="none">+ PropertyIsEqualTo</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11100" y="13669"><tspan fill="rgb(0,0,0)" stroke="none">+ PropertyIsNotEqualTo</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11100" y="14042"><tspan fill="rgb(0,0,0)" stroke="none">+ PropertyIsLessThan</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11100" y="14415"><tspan fill="rgb(0,0,0)" stroke="none">+ PropertyIsGreaterThan</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11100" y="14788"><tspan fill="rgb(0,0,0)" stroke="none">+ PropertyIsLessThanOrEqualTo</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11100" y="15161"><tspan fill="rgb(0,0,0)" stroke="none">+ PropertyIsGreaterThanOrEqualTo</tspan></tspan></tspan></text>
+    <rect class="BoundingBox" stroke="none" fill="none" x="10585" y="15085" width="6931" height="3831"/>
+    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 14050,18900 L 10600,18900 10600,15100 17500,15100 17500,18900 14050,18900 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11100" y="16696"><tspan fill="rgb(0,0,0)" stroke="none">+ PropertyIsEqualTo</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11100" y="17069"><tspan fill="rgb(0,0,0)" stroke="none">+ PropertyIsNotEqualTo</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11100" y="17442"><tspan fill="rgb(0,0,0)" stroke="none">+ PropertyIsLessThan</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11100" y="17815"><tspan fill="rgb(0,0,0)" stroke="none">+ PropertyIsGreaterThan</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11100" y="18188"><tspan fill="rgb(0,0,0)" stroke="none">+ PropertyIsLessThanOrEqualTo</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="11100" y="18561"><tspan fill="rgb(0,0,0)" stroke="none">+ PropertyIsGreaterThanOrEqualTo</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.LineShape">
    <g id="id36">
-    <rect class="BoundingBox" stroke="none" fill="none" x="10599" y="12799" width="6903" height="3"/>
-    <path fill="none" stroke="rgb(0,0,0)" d="M 10600,12800 L 17500,12800"/>
+    <rect class="BoundingBox" stroke="none" fill="none" x="10599" y="16199" width="6903" height="3"/>
+    <path fill="none" stroke="rgb(0,0,0)" d="M 10600,16200 L 17500,16200"/>
    </g>
   </g>
   <g class="com.sun.star.drawing.CustomShape">
    <g id="id37">
-    <rect class="BoundingBox" stroke="none" fill="none" x="15400" y="15900" width="4501" height="1101"/>
-    <path fill="rgb(255,255,153)" stroke="none" d="M 17650,17000 L 15400,17000 15400,15900 19900,15900 19900,17000 17650,17000 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="400"><tspan class="TextPosition" x="16725" y="16373"><tspan fill="rgb(0,0,0)" stroke="none">« code list »</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="700"><tspan class="TextPosition" x="15690" y="16746"><tspan fill="rgb(0,0,0)" stroke="none">LogicalOperatorName</tspan></tspan></tspan></text>
+    <rect class="BoundingBox" stroke="none" fill="none" x="15400" y="19300" width="4501" height="1101"/>
+    <path fill="rgb(255,255,153)" stroke="none" d="M 17650,20400 L 15400,20400 15400,19300 19900,19300 19900,20400 17650,20400 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="400"><tspan class="TextPosition" x="16725" y="19773"><tspan fill="rgb(0,0,0)" stroke="none">« code list »</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="700"><tspan class="TextPosition" x="15690" y="20146"><tspan fill="rgb(0,0,0)" stroke="none">LogicalOperatorName</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.CustomShape">
    <g id="id38">
-    <rect class="BoundingBox" stroke="none" fill="none" x="15385" y="15885" width="4531" height="2531"/>
-    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 17650,18400 L 15400,18400 15400,15900 19900,15900 19900,18400 17650,18400 Z"/>
-    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="15900" y="17496"><tspan fill="rgb(0,0,0)" stroke="none">+ And</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="15900" y="17869"><tspan fill="rgb(0,0,0)" stroke="none">+ Or</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="15900" y="18242"><tspan fill="rgb(0,0,0)" stroke="none">+ Not</tspan></tspan></tspan></text>
+    <rect class="BoundingBox" stroke="none" fill="none" x="15385" y="19285" width="4531" height="2531"/>
+    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 17650,21800 L 15400,21800 15400,19300 19900,19300 19900,21800 17650,21800 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="15900" y="20896"><tspan fill="rgb(0,0,0)" stroke="none">+ And</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="15900" y="21269"><tspan fill="rgb(0,0,0)" stroke="none">+ Or</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="15900" y="21642"><tspan fill="rgb(0,0,0)" stroke="none">+ Not</tspan></tspan></tspan></text>
    </g>
   </g>
   <g class="com.sun.star.drawing.LineShape">
    <g id="id39">
-    <rect class="BoundingBox" stroke="none" fill="none" x="15399" y="16999" width="4503" height="3"/>
-    <path fill="none" stroke="rgb(0,0,0)" d="M 15400,17000 L 19900,17000"/>
+    <rect class="BoundingBox" stroke="none" fill="none" x="15399" y="20399" width="4503" height="3"/>
+    <path fill="none" stroke="rgb(0,0,0)" d="M 15400,20400 L 19900,20400"/>
+   </g>
+  </g>
+  <g class="com.sun.star.drawing.ConnectorShape">
+   <g id="id40">
+    <rect class="BoundingBox" stroke="none" fill="none" x="3100" y="13500" width="2839" height="1601"/>
+    <path fill="none" stroke="rgb(0,0,0)" d="M 3250,13887 L 3250,14820"/>
+    <path fill="rgb(0,0,0)" stroke="none" d="M 3250,13500 L 3350,13700 3250,13900 3150,13700 3250,13500 Z M 3250,13530 L 3165,13700 3250,13870 3335,13700 3250,13530 Z"/>
+    <path fill="rgb(0,0,0)" stroke="none" d="M 3250,15100 L 3100,14821 3100,14800 3111,14800 3240,15039 3240,14800 3260,14800 3260,15039 3389,14800 3400,14800 3400,14821 3250,15100 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="3450" y="13996"><tspan fill="rgb(0,0,0)" stroke="none">+operatorType</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="3450" y="14969"><tspan fill="rgb(0,0,0)" stroke="none">1</tspan></tspan></tspan></text>
+   </g>
+  </g>
+  <g class="com.sun.star.drawing.ConnectorShape">
+   <g id="id41">
+    <rect class="BoundingBox" stroke="none" fill="none" x="7900" y="10900" width="2839" height="4201"/>
+    <path fill="none" stroke="rgb(0,0,0)" d="M 8050,11287 L 8050,14820"/>
+    <path fill="rgb(0,0,0)" stroke="none" d="M 8050,10900 L 8150,11100 8050,11300 7950,11100 8050,10900 Z M 8050,10930 L 7965,11100 8050,11270 8135,11100 8050,10930 Z"/>
+    <path fill="rgb(0,0,0)" stroke="none" d="M 8050,15100 L 7900,14821 7900,14800 7911,14800 8040,15039 8040,14800 8060,14800 8060,15039 8189,14800 8200,14800 8200,14821 8050,15100 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="8250" y="11396"><tspan fill="rgb(0,0,0)" stroke="none">+operatorType</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="8250" y="14969"><tspan fill="rgb(0,0,0)" stroke="none">1</tspan></tspan></tspan></text>
+   </g>
+  </g>
+  <g class="com.sun.star.drawing.ConnectorShape">
+   <g id="id42">
+    <rect class="BoundingBox" stroke="none" fill="none" x="12700" y="10900" width="2839" height="4201"/>
+    <path fill="none" stroke="rgb(0,0,0)" d="M 12850,11287 L 12850,14820"/>
+    <path fill="rgb(0,0,0)" stroke="none" d="M 12850,10900 L 12950,11100 12850,11300 12750,11100 12850,10900 Z M 12850,10930 L 12765,11100 12850,11270 12935,11100 12850,10930 Z"/>
+    <path fill="rgb(0,0,0)" stroke="none" d="M 12850,15100 L 12700,14821 12700,14800 12711,14800 12840,15039 12840,14800 12860,14800 12860,15039 12989,14800 13000,14800 13000,14821 12850,15100 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="13050" y="11396"><tspan fill="rgb(0,0,0)" stroke="none">+operatorType</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="13050" y="14969"><tspan fill="rgb(0,0,0)" stroke="none">1</tspan></tspan></tspan></text>
+   </g>
+  </g>
+  <g class="com.sun.star.drawing.ConnectorShape">
+   <g id="id43">
+    <rect class="BoundingBox" stroke="none" fill="none" x="17750" y="10900" width="2839" height="8401"/>
+    <path fill="none" stroke="rgb(0,0,0)" d="M 17900,11287 L 17900,19020"/>
+    <path fill="rgb(0,0,0)" stroke="none" d="M 17900,10900 L 18000,11100 17900,11300 17800,11100 17900,10900 Z M 17900,10930 L 17815,11100 17900,11270 17985,11100 17900,10930 Z"/>
+    <path fill="rgb(0,0,0)" stroke="none" d="M 17900,19300 L 17750,19021 17750,19000 17761,19000 17890,19239 17890,19000 17910,19000 17910,19239 18039,19000 18050,19000 18050,19021 17900,19300 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="18100" y="11396"><tspan fill="rgb(0,0,0)" stroke="none">+operatorType</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="18100" y="19169"><tspan fill="rgb(0,0,0)" stroke="none">1</tspan></tspan></tspan></text>
+   </g>
+  </g>
+  <g class="com.sun.star.drawing.CustomShape">
+   <g id="id44">
+    <rect class="BoundingBox" stroke="none" fill="none" x="800" y="11600" width="4901" height="1101"/>
+    <path fill="rgb(255,255,153)" stroke="none" d="M 3250,12700 L 800,12700 800,11600 5700,11600 5700,12700 3250,12700 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="318px" font-weight="400"><tspan class="TextPosition" x="2285" y="12054"><tspan fill="rgb(0,0,0)" stroke="none">« interface »</tspan></tspan></tspan><tspan class="TextParagraph" font-family="DejaVu Sans, sans-serif" font-size="353px" font-weight="700"><tspan class="TextPosition" x="1029" y="12457"><tspan fill="rgb(0,0,0)" stroke="none">BinarySpatialOperator</tspan></tspan></tspan></text>
+   </g>
+  </g>
+  <g class="com.sun.star.drawing.CustomShape">
+   <g id="id45">
+    <rect class="BoundingBox" stroke="none" fill="none" x="785" y="11585" width="4931" height="1931"/>
+    <path fill="none" stroke="rgb(0,0,0)" stroke-width="30" stroke-linejoin="round" d="M 3250,13500 L 800,13500 800,11600 5700,11600 5700,13500 3250,13500 Z"/>
+    <text class="TextShape"><tspan class="TextParagraph" font-family="DejaVu Sans Mono, monospace" font-size="318px" font-weight="400"><tspan class="TextPosition" x="1300" y="13196"><tspan fill="rgb(0,0,0)" stroke="none">+ expression[2]</tspan></tspan></tspan></text>
+   </g>
+  </g>
+  <g class="com.sun.star.drawing.LineShape">
+   <g id="id46">
+    <rect class="BoundingBox" stroke="none" fill="none" x="799" y="12699" width="4903" height="3"/>
+    <path fill="none" stroke="rgb(0,0,0)" d="M 800,12700 L 5700,12700"/>
+   </g>
+  </g>
+  <g class="com.sun.star.drawing.ConnectorShape">
+   <g id="id47">
+    <rect class="BoundingBox" stroke="none" fill="none" x="3100" y="10500" width="301" height="1102"/>
+    <path fill="none" stroke="rgb(0,0,0)" d="M 3250,11600 L 3250,10780"/>
+    <path fill="rgb(0,0,0)" stroke="none" d="M 3250,10500 L 3400,10800 3100,10800 3250,10500 Z M 3250,10545 L 3132,10780 3368,10780 3250,10545 Z"/>
    </g>
   </g>
  </g>
