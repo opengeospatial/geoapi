@@ -49,7 +49,6 @@ They need to be replaced by new section numbers.#
 * annex G: Reference implementation
 
 [[future_work]]
-[discrete]
 === Future work
 
 This version of the standard does not propose a complete set of interfaces covering the entire set of OGC/ISO abstract standards,
