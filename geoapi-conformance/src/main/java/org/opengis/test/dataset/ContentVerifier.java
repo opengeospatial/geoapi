@@ -62,8 +62,9 @@ import org.junit.Assert;
 /**
  * Verification operations that compare metadata or CRS properties against the expected values.
  * The metadata or CRS to verify (typically read from a dataset) is specified by a call to one
- * of the {@code addMetadataToVerify(…)} methods. After the actual values have been specified,
- * they can be compared against the expected value by a call to {@code assertMetadataEquals(…)}.
+ * of the {@code addMetadataToVerify(…)} methods. The expected metadata values are specified by
+ * calls to {@code addExpectedValues(…)} methods. After the expected and actual values have been
+ * specified, they can be compared by a call to {@code assertMetadataEquals()}.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
@@ -120,6 +121,11 @@ public class ContentVerifier {
     private final Map<String,Object> metadataValues;
 
     /**
+     * All expected values specified by {@link #addExpectedValue(Map)} method.
+     */
+    private final Map<String,Object> expectedValues;
+
+    /**
      * Paths of properties that were expected but not found.
      */
     private final List<Map.Entry<String,Object>> missings;
@@ -169,6 +175,7 @@ public class ContentVerifier {
         path           = new StringBuilder(80);
         visited        = new HashSet<>();
         metadataValues = new TreeMap<>();
+        expectedValues = new LinkedHashMap<>();
         mismatches     = new ArrayList<>();
         missings       = new ArrayList<>();
         ignore         = new HashMap<>();
@@ -334,7 +341,7 @@ public class ContentVerifier {
                         values = ((Map<?,?>) value).keySet().iterator();
                         if (!values.hasNext()) continue;
                     } else if (Iterable.class.isAssignableFrom(valueType)) {
-                        values = ((Collection<?>) value).iterator();
+                        values = ((Iterable<?>) value).iterator();
                         if (!values.hasNext()) continue;
                     } else {
                         values = null;
@@ -454,7 +461,61 @@ public class ContentVerifier {
     }
 
     /**
-     * Compares actual metadata properties against the expected values given in a map.
+     * Adds the expected metadata value for the given path.
+     * The path is a string like the following examples
+     * ({@code [0]} is the index of an element in lists or collections):
+     *
+     * <ul>
+     *   <li>{@code "identificationInfo[0].citation.identifier[0].code"}</li>
+     *   <li>{@code "spatialRepresentationInfo[0].axisDimensionProperties[0].dimensionSize"}</li>
+     * </ul>
+     *
+     * The {@code expectedValue} argument is the expected values for the properties identified by the path.
+     *
+     * @param  path           path to the property to verify.
+     * @param  expectedValue  the expected values of property identified by the path.
+     * @throws IllegalArgumentException if a different value is already declared for the given path.
+     */
+    public void addExpectedValue(final String path, final Object expectedValue) {
+        final Object previous = expectedValues.putIfAbsent(path, expectedValue);
+        if (previous != null && !previous.equals(expectedValue)) {
+            throw new IllegalArgumentException(String.format("Metadata element \"%s\" is specified twice:"
+                    + "%nValue 1: %s%nValue 2: %s%n", path, previous, expectedValue));
+        }
+    }
+
+    /**
+     * Adds the expected metadata values for the given paths.
+     * The {@code path} argument identifies a metadata element like the following examples
+     * ({@code [0]} is the index of an element in lists or collections):
+     *
+     * <ul>
+     *   <li>{@code "identificationInfo[0].citation.identifier[0].code"}</li>
+     *   <li>{@code "spatialRepresentationInfo[0].axisDimensionProperties[0].dimensionSize"}</li>
+     * </ul>
+     *
+     * The {@code value} argument is the expected value for the property identified by the path.
+     *
+     * @param  path           path of the property to compare.
+     * @param  expectedValue  expected value for the property at the given path.
+     * @param  others         other ({@code path}, {@code expectedValue}) pairs.
+     * @throws ClassCastException if an {@code others} element for a path is not a {@link String} instance.
+     * @throws IllegalArgumentException if a path is already associated to a different value.
+     */
+    public void addExpectedValues(final String path, final Object expectedValue, final Object... others) {
+        addExpectedValue(path, expectedValue);
+        for (int i=0; i<others.length; i++) {
+            final Object key = others[i];
+            if (!(key instanceof String)) {
+                throw new ClassCastException(String.format("others[%d] shall be a String, but given value class is %s.",
+                            i, (key != null) ? key.getClass() : null));
+            }
+            addExpectedValue((String) key, others[++i]);
+        }
+    }
+
+    /**
+     * Adds the expected metadata values for the given paths.
      * For each entry in the map, the key is a path to a metadata element like the following examples
      * ({@code [0]} is the index of an element in lists or collections):
      *
@@ -464,73 +525,37 @@ public class ContentVerifier {
      * </ul>
      *
      * Values in the map are the expected values for the properties identified by the keys.
-     * Comparison result can be viewed after this method call with {@link #toString()}.
      *
      * @param  expected  the expected values of properties identified by the keys.
-     * @return {@code true} if all properties match, with no missing property and no unexpected property.
+     * @throws IllegalArgumentException if a path is already associated to a different value.
      */
-    public boolean compareMetadata(final Map<String,Object> expected) {
-        return filterProperties(new LinkedHashMap<>(expected).entrySet());
+    public void addExpectedValues(final Map<String,?> expected) {
+        for (final Map.Entry<String,?> entry : expected.entrySet()) {
+            addExpectedValue(entry.getKey(), entry.getValue());
+        }
     }
 
     /**
-     * Compares actual metadata properties against the expected values.
-     * The {@code path} argument identifies a metadata element like the following examples
-     * ({@code [0]} is the index of an element in lists or collections):
-     *
-     * <ul>
-     *   <li>{@code "identificationInfo[0].citation.identifier[0].code"}</li>
-     *   <li>{@code "spatialRepresentationInfo[0].axisDimensionProperties[0].dimensionSize"}</li>
-     * </ul>
-     *
-     * The {@code value} argument is the expected value for the property identified by the path.
+     * Compares actual metadata properties against the expected values given in a map.
+     * The {@code addMetadataToVerify(…)} and {@code addExpectedValues(…)} methods
+     * must be invoked before this method.
      * Comparison result can be viewed after this method call with {@link #toString()}.
      *
-     * @param  path           path of the property to compare.
-     * @param  expectedValue  expected value for the property at the given path.
-     * @param  others         other ({@code path}, {@code expectedValue}) pairs.
      * @return {@code true} if all properties match, with no missing property and no unexpected property.
      */
-    public boolean compareMetadata(final String path, final Object expectedValue, final Object... others) {
-        final int length = others.length;
-        final Map<String,Object> m = new LinkedHashMap<>((length - length/2) / 2);
-        m.put(path, expectedValue);
-        for (int i=0; i<length; i++) {
-            final Object key = others[i];
-            if (!(key instanceof String)) {
-                throw new ClassCastException(String.format("others[%d] shall be a String, but given value class is %s.",
-                            i, (key != null) ? key.getClass() : null));
-            }
-            final Object value = others[++i];
-            final Object previous = m.put((String) key, value);
-            if (previous != null) {
-                throw new IllegalStateException(String.format("Metadata element \"%s\" is specified twice:"
-                        + "%nValue 1: %s%nValue 2: %s%n", key, previous, value));
-            }
-        }
-        return filterProperties(m.entrySet());
+    public boolean compareMetadata() {
+        return filterProperties(expectedValues.entrySet());
     }
 
     /**
      * Asserts that actual metadata properties are equal to the expected values.
-     * The {@code path} argument identifies a metadata element like the following examples
-     * ({@code [0]} is the index of an element in lists or collections):
-     *
-     * <ul>
-     *   <li>{@code "identificationInfo[0].citation.identifier[0].code"}</li>
-     *   <li>{@code "spatialRepresentationInfo[0].axisDimensionProperties[0].dimensionSize"}</li>
-     * </ul>
-     *
-     * The {@code value} argument is the expected value for the property identified by the path.
-     * If there is any <em>mismatched</em>, <em>missing</em> or <em>unexpected</em> value, then
-     * the assertion fails with an error message listing all differences found.
-     *
-     * @param  path           path of the property to compare.
-     * @param  expectedValue  expected value for the property at the given path.
-     * @param  others         other ({@code path}, {@code expectedValue}) pairs, in any order.
+     * The {@code addMetadataToVerify(…)} and {@code addExpectedValues(…)} methods
+     * must be invoked before this method.
+     * If there is any <em>mismatched</em>, <em>missing</em> or <em>unexpected</em> value,
+     * then the assertion fails with an error message listing all differences found.
      */
-    public void assertMetadataEquals(final String path, final Object expectedValue, final Object... others) {
-        if (!compareMetadata(path, expectedValue, others)) {
+    public void assertMetadataEquals() {
+        if (!compareMetadata()) {
             Assert.fail(toString());
         }
     }
