@@ -907,10 +907,11 @@ public interface FilterFactory<R,G,T> extends Factory {
 
     /**
      * Indicates a property by which contents should be sorted, along with intended order.
+     * Implementation may require that the given expression evaluates to {@link Comparable} objects.
      *
      * @param  property  the property to sort by.
      * @param  order     the sorting order, ascending or descending.
      * @return definition of sort order of a property.
      */
-    SortProperty sort(ValueReference<? super R, ?> property, SortOrder order);
+    SortProperty<R> sort(ValueReference<? super R, ?> property, SortOrder order);
 }

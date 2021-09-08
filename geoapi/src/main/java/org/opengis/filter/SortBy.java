@@ -32,6 +32,7 @@
 package org.opengis.filter;
 
 import java.util.List;
+import java.util.Comparator;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.MANDATORY;
@@ -46,10 +47,13 @@ import static org.opengis.annotation.Specification.ISO_19143;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ *
+ * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to sort.
+ *
+ * @since 3.1
  */
 @UML(identifier="SortBy", specification=ISO_19143)
-public interface SortBy {
+public interface SortBy<R> extends Comparator<R> {
     /**
      * The properties whose values are used for sorting. The list shall have a minimum of one element.
      * In the event that multiple elements exist, the sequence of the {@code SortProperty} elements
@@ -58,5 +62,41 @@ public interface SortBy {
      * @return properties whose values are used for sorting.
      */
     @UML(identifier="sortProperty", obligation=MANDATORY, specification=ISO_19143)
-    List<? extends SortProperty> getSortProperties();
+    List<? extends SortProperty<R>> getSortProperties();
+
+    /**
+     * Compares two resources for order. Returns a negative number if {@code r1} should be sorted before {@code r2},
+     * a positive number if {@code r2} should be after {@code r1}, or 0 if both resources are equal.
+     * The ordering of null resources or null property values is unspecified.
+     *
+     * <p>The comparison shall be consistent (ignoring unspecified aspects such as null values)
+     * with a comparison done "manually" by the following code:</p>
+     *
+     * <pre>
+     * for (SortProperty&lt;R&gt; p : {@linkplain #getSortProperties()}) {
+     *     int c = p.compare(r1, r2);
+     *     if (c != 0) return c;
+     * }
+     * return 0;</pre>
+     *
+     * <p>In order words, it shall be possible for the users to build their own SQL (or other language) query
+     * using above information and get the same results without invoking this {@code compare(…)} method.</p>
+     *
+     * @param  r1  the first resource to compare.
+     * @param  r2  the second resource to compare.
+     * @return negative if the first resource is before the second, positive for the converse, or 0 if equal.
+     * @throws InvalidFilterValueException if an expression can not be applied on the given resources.
+     * @throws ClassCastException if the types of {@linkplain ValueReference#apply(Object) property values}
+     *         prevent them from being compared by this comparator.
+     *
+     * @see SortProperty#compare(Object, Object)
+     */
+    @Override
+    default int compare(final R r1, final R r2) {
+        for (final SortProperty<R> p : getSortProperties()) {
+            final int c = p.compare(r1, r2);
+            if (c != 0) return c;
+        }
+        return 0;
+    }
 }
