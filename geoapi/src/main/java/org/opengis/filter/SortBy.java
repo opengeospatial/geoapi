@@ -62,7 +62,7 @@ public interface SortBy<R> extends Comparator<R> {
      * @return properties whose values are used for sorting.
      */
     @UML(identifier="sortProperty", obligation=MANDATORY, specification=ISO_19143)
-    List<? extends SortProperty<R>> getSortProperties();
+    List<SortProperty<R>> getSortProperties();
 
     /**
      * Compares two resources for order. Returns a negative number if {@code r1} should be sorted before {@code r2},
