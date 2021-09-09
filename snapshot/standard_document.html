@@ -4,7 +4,7 @@
 <meta charset="utf-8">
 <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<meta name="generator" content="Asciidoctor 2.0.10">
+<meta name="generator" content="Asciidoctor 2.0.15">
 <meta name="description" content="A set of types and methods which can be used for the manipulation of geographic information structured following the specifications adopted by the Technical Committee 211 of the International Organization for Standardization (ISO) and by the Open Geospatial Consortium (OGC).">
 <meta name="keywords" content="GeoAPI, programming, Java, Python, interface, geospatial, metadata, referencing, feature">
 <title>OGC GeoAPI 3.1/4.0</title>
@@ -2146,6 +2146,95 @@ p {
 
 </style>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
+pre.CodeRay{background:#f7f7f8}
+.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
+.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
+.CodeRay .line-numbers strong{color:#000}
+table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
+table.CodeRay td{vertical-align:top;line-height:inherit}
+table.CodeRay td.line-numbers{text-align:right}
+table.CodeRay td.code{padding:0 0 0 .75em}
+.CodeRay .debug{color:#fff !important;background:#000080 !important}
+.CodeRay .annotation{color:#007}
+.CodeRay .attribute-name{color:#000080}
+.CodeRay .attribute-value{color:#700}
+.CodeRay .binary{color:#509}
+.CodeRay .comment{color:#998;font-style:italic}
+.CodeRay .char{color:#04d}
+.CodeRay .char .content{color:#04d}
+.CodeRay .char .delimiter{color:#039}
+.CodeRay .class{color:#458;font-weight:bold}
+.CodeRay .complex{color:#a08}
+.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
+.CodeRay .color{color:#099}
+.CodeRay .class-variable{color:#369}
+.CodeRay .decorator{color:#b0b}
+.CodeRay .definition{color:#099}
+.CodeRay .delimiter{color:#000}
+.CodeRay .doc{color:#970}
+.CodeRay .doctype{color:#34b}
+.CodeRay .doc-string{color:#d42}
+.CodeRay .escape{color:#666}
+.CodeRay .entity{color:#800}
+.CodeRay .error{color:#808}
+.CodeRay .exception{color:inherit}
+.CodeRay .filename{color:#099}
+.CodeRay .function{color:#900;font-weight:bold}
+.CodeRay .global-variable{color:#008080}
+.CodeRay .hex{color:#058}
+.CodeRay .integer,.CodeRay .float{color:#099}
+.CodeRay .include{color:#555}
+.CodeRay .inline{color:#000}
+.CodeRay .inline .inline{background:#ccc}
+.CodeRay .inline .inline .inline{background:#bbb}
+.CodeRay .inline .inline-delimiter{color:#d14}
+.CodeRay .inline-delimiter{color:#d14}
+.CodeRay .important{color:#555;font-weight:bold}
+.CodeRay .interpreted{color:#b2b}
+.CodeRay .instance-variable{color:#008080}
+.CodeRay .label{color:#970}
+.CodeRay .local-variable{color:#963}
+.CodeRay .octal{color:#40e}
+.CodeRay .predefined{color:#369}
+.CodeRay .preprocessor{color:#579}
+.CodeRay .pseudo-class{color:#555}
+.CodeRay .directive{font-weight:bold}
+.CodeRay .type{font-weight:bold}
+.CodeRay .predefined-type{color:inherit}
+.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
+.CodeRay .key{color:#808}
+.CodeRay .key .delimiter{color:#606}
+.CodeRay .key .char{color:#80f}
+.CodeRay .value{color:#088}
+.CodeRay .regexp .delimiter{color:#808}
+.CodeRay .regexp .content{color:#808}
+.CodeRay .regexp .modifier{color:#808}
+.CodeRay .regexp .char{color:#d14}
+.CodeRay .regexp .function{color:#404;font-weight:bold}
+.CodeRay .string{color:#d20}
+.CodeRay .string .string .string{background:#ffd0d0}
+.CodeRay .string .content{color:#d14}
+.CodeRay .string .char{color:#d14}
+.CodeRay .string .delimiter{color:#d14}
+.CodeRay .shell{color:#d14}
+.CodeRay .shell .delimiter{color:#d14}
+.CodeRay .symbol{color:#990073}
+.CodeRay .symbol .content{color:#a60}
+.CodeRay .symbol .delimiter{color:#630}
+.CodeRay .tag{color:#008080}
+.CodeRay .tag-special{color:#d70}
+.CodeRay .variable{color:#036}
+.CodeRay .insert{background:#afa}
+.CodeRay .delete{background:#faa}
+.CodeRay .change{color:#aaf;background:#007}
+.CodeRay .head{color:#f8f;background:#505}
+.CodeRay .insert .insert{color:#080}
+.CodeRay .delete .delete{color:#800}
+.CodeRay .change .change{color:#66f}
+.CodeRay .head .head{color:#f4f}
+</style>
 <link rel="stylesheet" href="geoapi.css">
 </head>
 <body class="book toc2 toc-left">
@@ -2265,7 +2354,8 @@ p {
 <li><a href="#java">Annex C: Java Profile (Normative)</a>
 <ul class="sectlevel2">
 <li><a href="#uom_jsr">C.1. Units of measurement</a></li>
-<li><a href="#tests_java">C.2. Tests suite</a></li>
+<li><a href="#java_filter">C.2. Filters and Java functions</a></li>
+<li><a href="#tests_java">C.3. Tests suite</a></li>
 </ul>
 </li>
 <li><a href="#python">Annex D: Python Profile (Normative)</a></li>
@@ -2285,7 +2375,11 @@ p {
 </li>
 </ul>
 </li>
-<li><a href="#history">Annex F: Revision History</a></li>
+<li><a href="#history">Annex F: Revision History</a>
+<ul class="sectlevel2">
+<li><a href="#future_work">F.1. Future work</a></li>
+</ul>
+</li>
 <li><a href="#bibliography">Annex G: Bibliography</a></li>
 </ul>
 </div>
@@ -2792,172 +2886,293 @@ In particular:</p>
 Further discussion about <em>type</em>, <em>class</em>, <em>interface</em>, <em>property</em>, <em>attribute</em> and <em>implementation</em> terms
 can be found in convention section (<a href="#type_terminology">§ 5.2</a>).</p>
 </div>
-<h3 id="term_API" class="discrete">Application Programming Interface (API)</h3>
-<div class="paragraph">
+<div id="term_API" class="dlist">
+<dl>
+<dt class="hdlist1">application programming interface (API)</dt>
+<dd>
 <p>a formally defined set of types and methods which establish a contract between client code which uses the API
 and implementation code which provides the API</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_cardinality" class="discrete">cardinality</h3>
-<div class="paragraph">
+<div id="term_cardinality" class="dlist">
+<dl>
+<dt class="hdlist1">cardinality</dt>
+<dd>
 <p>number of elements in a set<br>
 <span class="small">Note 1 to entry: Contrast with <em>multiplicity</em>, which is the range of possible cardinalities a set can hold.</span><br>
  [source: ISO 19103]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_conceptual_model" class="discrete">conceptual model</h3>
-<div class="paragraph">
+<div id="term_conceptual_model" class="dlist">
+<dl>
+<dt class="hdlist1">conceptual model</dt>
+<dd>
 <p>model that defines concepts of a universe of discourse<br>
  [source: ISO 19101-1]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_constraint" class="discrete">constraint</h3>
-<div class="paragraph">
+<div id="term_constraint" class="dlist">
+<dl>
+<dt class="hdlist1">constraint</dt>
+<dd>
 <p>UML condition or restriction expressed in natural language text or in a machine readable language
 for the purpose of declaring some of the semantics of an element<br>
  [source: ISO 19103]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_coordinate" class="discrete">coordinate</h3>
-<div class="paragraph">
+<div id="term_coordinate" class="dlist">
+<dl>
+<dt class="hdlist1">coordinate</dt>
+<dd>
 <p>one of a sequence of numbers designating the position of a point<br>
 <span class="small">Note 1 to entry: In a spatial coordinate reference system, the coordinate numbers are qualified by units.</span><br>
  [source: ISO 19111]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_coordinate_operation" class="discrete">coordinate operation</h3>
-<div class="paragraph">
+<div id="term_coordinate_operation" class="dlist">
+<dl>
+<dt class="hdlist1">coordinate operation</dt>
+<dd>
 <p>process using a mathematical model, based on a one-to-one relationship, that changes coordinates in a source coordinate
 reference system to coordinates in a target coordinate reference system, or that changes coordinates at a source coordinate
 epoch to coordinates at a target coordinate epoch within the same coordinate reference system<br>
  [source: ISO 19111]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_crs" class="discrete">coordinate reference system</h3>
-<div class="paragraph">
+<div id="term_crs" class="dlist">
+<dl>
+<dt class="hdlist1">coordinate reference system</dt>
+<dd>
 <p>coordinate system that is related to an object by a datum<br>
 <span class="small">Note 1 to entry: Geodetic and vertical datums are referred to as reference frames.</span><br>
 <span class="small">Note 2 to entry: For geodetic and vertical reference frames, the object will be the Earth.
 In planetary applications, geodetic and vertical reference frames may be applied to other celestial bodies.</span><br>
  [source: ISO 19111]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_coverage" class="discrete">coverage</h3>
-<div class="paragraph">
+<div id="term_covariant" class="dlist">
+<dl>
+<dt class="hdlist1">covariant type</dt>
+<dd>
+<p>a type that can be replaced by a more specialized type when the property is overridden in a subclass<br>
+<span class="small">Note 1 to entry: Some programming languages allow covariant return types in method declarations.</span><br></p>
+</dd>
+</dl>
+</div>
+<div id="term_coverage" class="dlist">
+<dl>
+<dt class="hdlist1">coverage</dt>
+<dd>
 <p>feature that acts as a function to return values from its range for any direct position within its spatial,
 temporal, or spatiotemporal domain<br>
  [source: ISO 19123]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_dataset" class="discrete">dataset</h3>
-<div class="paragraph">
+<div id="term_dataset" class="dlist">
+<dl>
+<dt class="hdlist1">dataset</dt>
+<dd>
 <p>identifiable collection of data<br>
  [source: ISO 19115-1]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_datatype" class="discrete">datatype</h3>
-<div class="paragraph">
+<div id="term_datatype" class="dlist">
+<dl>
+<dt class="hdlist1">datatype</dt>
+<dd>
 <p>specification of a value domain with operations allowed on values in this domain<br>
 <span class="small">Examples: <code>Integer</code>, <code>Real</code>, <code>Boolean</code>, <code>String</code> and <code>Date</code>.</span><br>
 <span class="small">Note 1 to entry: Data types include primitive predefined types and user definable types.</span><br>
  [source: ISO 19103]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_dynamic_attribute" class="discrete">dynamic attribute</h3>
-<div class="paragraph">
+<div id="term_dynamic_attribute" class="dlist">
+<dl>
+<dt class="hdlist1">dynamic attribute</dt>
+<dd>
 <p>characteristic of a feature in which its value varies with time<br>
  [source: OGC 16-140]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_feature" class="discrete">feature</h3>
-<div class="paragraph">
+<div id="term_feature" class="dlist">
+<dl>
+<dt class="hdlist1">feature</dt>
+<dd>
 <p>abstraction of a real world phenomena<br>
 <span class="small">Note 1 to entry: A feature can occur as a type or an instance.
 Feature type or feature instance should be used when only one is meant.</span><br>
  [source: ISO 19109]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_feature_attribute" class="discrete">feature attribute</h3>
-<div class="paragraph">
+<div id="term_feature_attribute" class="dlist">
+<dl>
+<dt class="hdlist1">feature attribute</dt>
+<dd>
 <p>characteristic of a feature<br>
 <span class="small">Note 1 to entry: A feature attribute can occur as a type or an instance.
 Feature attribute type or feature attribute instance is used when only one is meant.</span><br>
  [source: ISO 19109]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_feature_operation" class="discrete">feature operation</h3>
-<div class="paragraph">
+<div id="term_feature_operation" class="dlist">
+<dl>
+<dt class="hdlist1">feature operation</dt>
+<dd>
 <p>operation that every instance of a feature type may perform<br>
  [source: ISO 19109]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_function" class="discrete">function</h3>
-<div class="paragraph">
+<div id="term_function" class="dlist">
+<dl>
+<dt class="hdlist1">function</dt>
+<dd>
 <p>rule that associates each element from a domain (source, or domain of the function) to a unique element in another domain (target, co-domain, or range)<br>
  [source: ISO 19107:2003]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_geographic_feature" class="discrete">geographic feature</h3>
-<div class="paragraph">
+<div id="term_geographic_feature" class="dlist">
+<dl>
+<dt class="hdlist1">geographic feature</dt>
+<dd>
 <p>representation of real world phenomenon associated with a location relative to the Earth<br>
  [source: ISO 19101-2]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_geometric_object" class="discrete">geometric object</h3>
-<div class="paragraph">
+<div id="term_geometric_object" class="dlist">
+<dl>
+<dt class="hdlist1">geometric object</dt>
+<dd>
 <p>spatial object representing a geometric set<br>
  [source: ISO 19107:2003]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_interface" class="discrete">interface</h3>
-<div class="paragraph">
+<div id="term_interface" class="dlist">
+<dl>
+<dt class="hdlist1">interface</dt>
+<dd>
 <p>UML classifier that represents a declaration of a set of coherent public UML features and obligations<br>
 <span class="small">Note 1 to entry: An interface specifies a contract; any classifier that realizes the interface must fulfil that contract.
 The obligations that can be associated with an interface are in the form of various kinds of constraints
 (such as pre- and post-conditions) or protocol specifications,
 which can impose ordering restrictions on interactions through the interface.</span><br>
  [source: UML 2]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_java" class="discrete">Java</h3>
-<div class="paragraph">
+<div id="term_java" class="dlist">
+<dl>
+<dt class="hdlist1">Java</dt>
+<dd>
 <p>trademark of Oracle used to refer to an object oriented, single inheritance programming language
 whose syntax derives from the C programming language and which is defined by the Java Language Specification</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_literal_value" class="discrete">literal value</h3>
-<div class="paragraph">
+<div id="term_literal_value" class="dlist">
+<dl>
+<dt class="hdlist1">literal value</dt>
+<dd>
 <p>constant, explicitly specified value<br>
 <span class="small">Note 1 to entry: This contrasts with a value that is determined by resolving a chain of substitution (e.g. a variable).</span><br>
  [source: ISO 19143]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_metadata" class="discrete">metadata</h3>
-<div class="paragraph">
+<div id="term_metadata" class="dlist">
+<dl>
+<dt class="hdlist1">metadata</dt>
+<dd>
 <p>data about data<br>
  [source: ISO 19115-1]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_moving_feature" class="discrete">moving feature</h3>
-<div class="paragraph">
+<div id="term_moving_feature" class="dlist">
+<dl>
+<dt class="hdlist1">moving feature</dt>
+<dd>
 <p>feature whose location changes over time<br>
 <span class="small">Note 1 to entry: Its base representation uses a local origin and local coordinate vectors
 of a geometric object at a given reference time.</span><br>
 <span class="small">Note 2 to entry: The local origin and ordinate vectors establish an engineering coordinate
 reference system (ISO 19111), also called a local frame or a local Euclidean coordinate system.</span></p>
+</dd>
+</dl>
 </div>
-<h3 id="term_multiplicity" class="discrete">multiplicity</h3>
-<div class="paragraph">
+<div id="term_multiplicity" class="dlist">
+<dl>
+<dt class="hdlist1">multiplicity</dt>
+<dd>
 <p>UML specification of the range of allowable cardinalities that a set may assume<br>
 <span class="small">Note 1 to entry: Contrast with <em>cardinality</em>, which is the number of elements in a set.</span><br>
  [source: ISO 19103]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_package" class="discrete">package</h3>
-<div class="paragraph">
+<div id="term_package" class="dlist">
+<dl>
+<dt class="hdlist1">package</dt>
+<dd>
 <p>UML general purpose mechanism for organizing elements into groups<br>
  [source: ISO 19103]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_property" class="discrete">property</h3>
-<div class="paragraph">
+<div id="term_property" class="dlist">
+<dl>
+<dt class="hdlist1">property</dt>
+<dd>
 <p>facet or attribute of an object referenced by a name<br>
  [source: ISO 19143]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_python" class="discrete">Python</h3>
-<div class="paragraph">
+<div id="term_python" class="dlist">
+<dl>
+<dt class="hdlist1">Python</dt>
+<dd>
 <p>an interpreted high-level programming language for general-purpose programming<br>
  [source: Wikipedia]</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_realization" class="discrete">realization</h3>
-<div class="paragraph">
+<div id="term_realization" class="dlist">
+<dl>
+<dt class="hdlist1">realization</dt>
+<dd>
 <p>specialized abstraction relationship between two sets of model elements, one representing
 a specification (the supplier) and the other representing an implementation of the latter (the client)<br>
 <span class="small">Note 1 to entry: Realization indicates inheritance of behaviour without inheritance of structure.</span><br>
 <span class="small">Note 2 to entry: GeoAPI and GML are two realizations of OGC/ISO abstract specifications.</span><br>
  [source: ISO 19103] (except note 2)</p>
+</dd>
+</dl>
 </div>
-<h3 id="term_trajectory" class="discrete">trajectory</h3>
-<div class="paragraph">
+<div id="term_trajectory" class="dlist">
+<dl>
+<dt class="hdlist1">trajectory</dt>
+<dd>
 <p>path of a moving point described by a one parameter set of points<br>
  [source: ISO 19141]</p>
+</dd>
+</dl>
 </div>
 </div>
 </div>
@@ -5157,7 +5372,8 @@ The output is restricted to <code>Boolean</code> if the expression is used as an
 </div>
 <div class="paragraph">
 <p>Expressions extend the mechanism provided by the target platform for defining functions.
-For example in the Java language, <code>Expression</code> extends the <code>java.util.function.Function</code> interface.</p>
+For example in the Java language, <code>Expression</code> extends the <code>java.util.function.Function</code>
+interface (<a href="#java_filter">§ C.2</a>).</p>
 </div>
 <div class="paragraph">
 <p>An expression can be a literal, a reference to the values of a particular property in resources,
@@ -5212,6 +5428,13 @@ More specialized sub-types such as <code>Binary­Comparison­Operator</code> and
 <img src="images/filter.svg" alt="Filter UML">
 </div>
 <div class="title">Figure 14. Partial UML of filters</div>
+</div>
+<div class="paragraph">
+<p>In above diagram, the <code>operatorType</code> property defined in the <code>Filter</code> parent interface
+is overridden by more specialized types (shown as associations) in each sub-interface.
+This is <a href="#term_covariant">type covariance</a>.
+Likewise <code>expression</code> is defined in parent interface with unconstrained multiplicity,
+but that multiplicity is restrained in sub-interfaces.</p>
 </div>
 <div class="paragraph">
 <p>Filter operands are expressions.
@@ -5998,7 +6221,35 @@ But it still possible to represent their unit of measurement.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="tests_java"><a class="anchor" href="#tests_java"></a>C.2. Tests suite</h3>
+<h3 id="java_filter"><a class="anchor" href="#java_filter"></a>C.2. Filters and Java functions</h3>
+<div class="paragraph">
+<p>Java <code>Stream</code> provides an efficient way to deliver a potentially large amount of features.
+The GeoAPI interfaces for filters and expressions have been designed for working smoothly
+with the <code>java.util.stream</code> interfaces. In particular:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>The GeoAPI <code>Expression</code> interface extends the Java <code>Function</code> interface.
+Consequently expressions can be used with the Java standard <code>Stream.map(Function)</code> method.</p>
+</li>
+<li>
+<p>The GeoAPI <code>Filter</code> interface extends the Java <code>Predicate</code> interface.
+Consequently filters can be used with the Java standard <code>Stream.filter(Predicate)</code> method.</p>
+</li>
+<li>
+<p>The GeoAPI <code>SortBy</code> interface extends the Java <code>Comparator</code> interface.
+Consequently sort order can be used with the Java standard <code>Stream.sorted(Comparator)</code> method.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Note that GeoAPI aims for interoperability with streams, but does not mandate their use.
+implementations are free to ignore streams.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="tests_java"><a class="anchor" href="#tests_java"></a>C.3. Tests suite</h3>
 <div class="paragraph">
 <p>The <code>geoapi-conformance</code> module contains a number of validators which can be used
 in JUnit test cases to test compliance of the objects created in an implementation.
@@ -6542,7 +6793,8 @@ They need to be replaced by new section numbers.</span></p>
 </li>
 </ul>
 </div>
-<h3 id="future_work" class="discrete">Future work</h3>
+<div class="sect2">
+<h3 id="future_work"><a class="anchor" href="#future_work"></a>F.1. Future work</h3>
 <div class="paragraph">
 <p>This version of the standard does not propose a complete set of interfaces covering the entire set of OGC/ISO abstract standards,
 but focuses on an initial group of interfaces only.
@@ -6553,6 +6805,7 @@ It is expected that these other interfaces will be proposed for standardization 
 but the interfaces must first have been implemented, ideally several times, and then tested extensively by use.</p>
 </div>
 <div style="page-break-after: always;"></div>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -6599,94 +6852,5 @@ but the interfaces must first have been implemented, ideally several times, and 
 Last updated 2021-04-22 10:41:08 +0200
 </div>
 </div>
-<style>
-/* Stylesheet for CodeRay to match GitHub theme | MIT License | http://foundation.zurb.com */
-pre.CodeRay{background:#f7f7f8}
-.CodeRay .line-numbers{border-right:1px solid currentColor;opacity:.35;padding:0 .5em 0 0}
-.CodeRay span.line-numbers{display:inline-block;margin-right:.75em}
-.CodeRay .line-numbers strong{color:#000}
-table.CodeRay{border-collapse:separate;border:0;margin-bottom:0;background:none}
-table.CodeRay td{vertical-align:top;line-height:inherit}
-table.CodeRay td.line-numbers{text-align:right}
-table.CodeRay td.code{padding:0 0 0 .75em}
-.CodeRay .debug{color:#fff !important;background:#000080 !important}
-.CodeRay .annotation{color:#007}
-.CodeRay .attribute-name{color:#000080}
-.CodeRay .attribute-value{color:#700}
-.CodeRay .binary{color:#509}
-.CodeRay .comment{color:#998;font-style:italic}
-.CodeRay .char{color:#04d}
-.CodeRay .char .content{color:#04d}
-.CodeRay .char .delimiter{color:#039}
-.CodeRay .class{color:#458;font-weight:bold}
-.CodeRay .complex{color:#a08}
-.CodeRay .constant,.CodeRay .predefined-constant{color:#008080}
-.CodeRay .color{color:#099}
-.CodeRay .class-variable{color:#369}
-.CodeRay .decorator{color:#b0b}
-.CodeRay .definition{color:#099}
-.CodeRay .delimiter{color:#000}
-.CodeRay .doc{color:#970}
-.CodeRay .doctype{color:#34b}
-.CodeRay .doc-string{color:#d42}
-.CodeRay .escape{color:#666}
-.CodeRay .entity{color:#800}
-.CodeRay .error{color:#808}
-.CodeRay .exception{color:inherit}
-.CodeRay .filename{color:#099}
-.CodeRay .function{color:#900;font-weight:bold}
-.CodeRay .global-variable{color:#008080}
-.CodeRay .hex{color:#058}
-.CodeRay .integer,.CodeRay .float{color:#099}
-.CodeRay .include{color:#555}
-.CodeRay .inline{color:#000}
-.CodeRay .inline .inline{background:#ccc}
-.CodeRay .inline .inline .inline{background:#bbb}
-.CodeRay .inline .inline-delimiter{color:#d14}
-.CodeRay .inline-delimiter{color:#d14}
-.CodeRay .important{color:#555;font-weight:bold}
-.CodeRay .interpreted{color:#b2b}
-.CodeRay .instance-variable{color:#008080}
-.CodeRay .label{color:#970}
-.CodeRay .local-variable{color:#963}
-.CodeRay .octal{color:#40e}
-.CodeRay .predefined{color:#369}
-.CodeRay .preprocessor{color:#579}
-.CodeRay .pseudo-class{color:#555}
-.CodeRay .directive{font-weight:bold}
-.CodeRay .type{font-weight:bold}
-.CodeRay .predefined-type{color:inherit}
-.CodeRay .reserved,.CodeRay .keyword {color:#000;font-weight:bold}
-.CodeRay .key{color:#808}
-.CodeRay .key .delimiter{color:#606}
-.CodeRay .key .char{color:#80f}
-.CodeRay .value{color:#088}
-.CodeRay .regexp .delimiter{color:#808}
-.CodeRay .regexp .content{color:#808}
-.CodeRay .regexp .modifier{color:#808}
-.CodeRay .regexp .char{color:#d14}
-.CodeRay .regexp .function{color:#404;font-weight:bold}
-.CodeRay .string{color:#d20}
-.CodeRay .string .string .string{background:#ffd0d0}
-.CodeRay .string .content{color:#d14}
-.CodeRay .string .char{color:#d14}
-.CodeRay .string .delimiter{color:#d14}
-.CodeRay .shell{color:#d14}
-.CodeRay .shell .delimiter{color:#d14}
-.CodeRay .symbol{color:#990073}
-.CodeRay .symbol .content{color:#a60}
-.CodeRay .symbol .delimiter{color:#630}
-.CodeRay .tag{color:#008080}
-.CodeRay .tag-special{color:#d70}
-.CodeRay .variable{color:#036}
-.CodeRay .insert{background:#afa}
-.CodeRay .delete{background:#faa}
-.CodeRay .change{color:#aaf;background:#007}
-.CodeRay .head{color:#f8f;background:#505}
-.CodeRay .insert .insert{color:#080}
-.CodeRay .delete .delete{color:#800}
-.CodeRay .change .change{color:#66f}
-.CodeRay .head .head{color:#f4f}
-</style>
 </body>
 </html>
