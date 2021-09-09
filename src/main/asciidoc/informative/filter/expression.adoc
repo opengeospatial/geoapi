@@ -7,7 +7,8 @@ and produces a value (typically a character string, a number or a geometry) in o
 The output is restricted to `Boolean` if the expression is used as an operand of a `LogicalOperator` (<<filter>>).
 
 Expressions extend the mechanism provided by the target platform for defining functions.
-For example in the Java language, `Expression` extends the `java.util.function.Function` interface.
+For example in the Java language, `Expression` extends the `java.util.function.Function`
+interface (<<java_filter>>).
 
 An expression can be a literal, a reference to the values of a particular property in resources,
 or a named procedure (for example arithmetic operations between the results of two sub-expressions).
