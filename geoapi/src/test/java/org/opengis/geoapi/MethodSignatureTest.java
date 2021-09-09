@@ -217,7 +217,8 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
                                 default: throw new AssertionError(uml);
                             }
                             /*
-                             * Special case for methods withoud default despite declared optional.
+                             * Special cases for methods withoud default despite declared optional,
+                             * or conversely (with default despite declared mandatory).
                              */
                             if (c == org.opengis.referencing.operation.Conversion.class) {
                                 switch (m.getName()) {
@@ -236,8 +237,30 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
                                     case "getProperties": isOptional = false;
                                 }
                             }
+                            if (c == org.opengis.filter.BinarySpatialOperator.class ||
+                                c == org.opengis.filter.BinaryComparisonOperator.class)
+                            {
+                                switch (m.getName()) {
+                                    case "getOperand1":
+                                    case "getOperand2": isOptional = true;
+                                }
+                            }
+                            if (c == org.opengis.filter.BetweenComparisonOperator.class) {
+                                switch (m.getName()) {
+                                    case "getExpression":
+                                    case "getLowerBoundary":
+                                    case "getUpperBoundary": isOptional = true;
+                                }
+                            }
+                            if (c == org.opengis.filter.LikeOperator.class) {
+                                switch (m.getName()) {
+                                    case "getWildCard":
+                                    case "getSingleChar":
+                                    case "getEscapeChar": isOptional = true;
+                                }
+                            }
                         }
-                        if (m.isDefault() != isOptional) {
+                        if (m.isDefault() != isOptional && m.getReturnType() != Boolean.TYPE) {
                             fail(c.getSimpleName() + '.' + m.getName() + ": " + (isOptional
                                     ? "expected a default method."
                                     : "should not have default method."));

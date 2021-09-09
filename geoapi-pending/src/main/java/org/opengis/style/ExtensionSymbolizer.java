@@ -32,7 +32,7 @@
 package org.opengis.style;
 
 import java.util.Map;
-import org.opengis.filter.expression.Expression;
+import org.opengis.filter.Expression;
 
 /**
  * An symbolizer interface for all unnormalized symbolizers,

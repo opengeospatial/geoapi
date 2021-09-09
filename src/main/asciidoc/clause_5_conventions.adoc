@@ -46,23 +46,25 @@ The following symbols and abbreviated terms are used in this specification:
 
 .Abbreviated terms
 [.compact, options="header"]
-|===================================================
-|API |Application Program Interface
-|CRS |Coordinate Reference System
-|ISO |International Organization for Standardization
-|OGC |Open Geospatial Consortium
-|UML |Unified Modeling Language
-|URI |Uniform Resource Identifiers
-|WKT |Well Known Text
-|XML |eXtended Markup Language
-|XSD |XML Schema Definition
-|1D  |One Dimensional
-|2D  |Two Dimensional
-|3D  |Three Dimensional
-|nD  |Multi-Dimensional
-|λ   |Geodetic longitude
-|φ   |Geodetic latitude
-|===================================================
+|====================================================
+|API  |Application Program Interface
+|BBOX |Bounding Box
+|CRS  |Coordinate Reference System
+|ISO  |International Organization for Standardization
+|OGC  |Open Geospatial Consortium
+|UML  |Unified Modeling Language
+|URI  |Uniform Resource Identifiers
+|UTC  |Coordinated Universal Time
+|WKT  |Well Known Text
+|XML  |Extensible Markup Language
+|XSD  |XML Schema Definition
+|1D   |One Dimensional
+|2D   |Two Dimensional
+|3D   |Three Dimensional
+|nD   |Multi-Dimensional
+|λ    |Geodetic longitude
+|φ    |Geodetic latitude
+|====================================================
 
 
 [[identifiers]]

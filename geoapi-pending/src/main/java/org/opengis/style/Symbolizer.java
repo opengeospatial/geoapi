@@ -33,13 +33,14 @@ package org.opengis.style;
 
 import javax.measure.Unit;
 import javax.measure.quantity.Length;
-
+import org.opengis.feature.Feature;
+import org.opengis.filter.Expression;
+import org.opengis.filter.ValueReference;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
 
 import static org.opengis.annotation.Specification.*;
-import org.opengis.filter.expression.Expression;
-import org.opengis.filter.expression.PropertyName;
+
 
 /**
  * Abstract superclass of the symbolizers defined by the Symbology Encoding specification.
@@ -86,7 +87,7 @@ public interface Symbolizer {
     /**
      * Returns the name of the geometry feature attribute to use for drawing.
      * May return null (or Expression.NIL) if this symbol is to use the default geometry attribute,
-     * whatever it may be. Using null in this fashion is similar to a PropertyName using
+     * whatever it may be. Using null in this fashion is similar to a ValueReference using
      * the XPath expression ".".
      *
      * <p>The content of the element gives the property name in XPath syntax. In principle, a fixed geometry
@@ -94,8 +95,8 @@ public interface Symbolizer {
      * from references or literals. However, using a feature property directly is by far the most
      * commonly useful method.</p>
      *
-     * @return Geometry attribute name if geometry expression is a {@link PropertyName},
-     *      or <code>null</code> if geometry expression is not a {@link PropertyName}.
+     * @return Geometry attribute name if geometry expression is a {@link ValueReference},
+     *      or <code>null</code> if geometry expression is not a {@link ValueReference}.
      * @deprecated use {@link Symbolizer#getGeometry()} instead.
      */
     @XmlElement("Geometry")
@@ -104,11 +105,11 @@ public interface Symbolizer {
 
     /**
      * Expression used to define a geometry for drawing. May return null if the default
-     * geometry attribute should be used. This expression is often a PropertyName.
+     * geometry attribute should be used. This expression is often a ValueReference.
      *
      * @return Expression used to define a geometry for drawing, or Expression.NIL if the default geometry should be used.
      */
-    Expression getGeometry();
+    Expression<Feature,?> getGeometry();
 
     /**
      * Returns a name for this symbolizer.

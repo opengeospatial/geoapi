@@ -21,4 +21,6 @@ The contract for each interface and each method is specified in the javadoc.
 
 include::profiles/java/uom_jsr.adoc[]
 
+include::profiles/java/filter.adoc[]
+
 include::profiles/java/tests.adoc[]

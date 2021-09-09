@@ -281,8 +281,36 @@ public enum Content {
                org.opengis.referencing.crs         .CRSAuthorityFactory                 .class,
                org.opengis.referencing.operation   .MathTransformFactory                .class,
                org.opengis.referencing.operation   .CoordinateOperationFactory          .class,
-               org.opengis.referencing.operation   .CoordinateOperationAuthorityFactory .class
-    ),
+               org.opengis.referencing.operation   .CoordinateOperationAuthorityFactory .class,
+               org.opengis.filter                  .Expression                          .class,
+               org.opengis.filter                  .Literal                             .class,
+               org.opengis.filter                  .ValueReference                      .class,
+               org.opengis.filter                  .Filter                              .class,
+               org.opengis.filter                  .ComparisonOperator                  .class,
+               org.opengis.filter                  .BinaryComparisonOperator            .class,
+               org.opengis.filter                  .BetweenComparisonOperator           .class,
+               org.opengis.filter                  .LikeOperator                        .class,
+               org.opengis.filter                  .NullOperator                        .class,
+               org.opengis.filter                  .NilOperator                         .class,
+               org.opengis.filter                  .SpatialOperator                     .class,
+               org.opengis.filter                  .BinarySpatialOperator               .class,
+               org.opengis.filter                  .DistanceOperator                    .class,
+               org.opengis.filter                  .TemporalOperator                    .class,
+               org.opengis.filter                  .LogicalOperator                     .class,
+               org.opengis.filter                  .Version                             .class,
+               org.opengis.filter                  .ResourceId                          .class,
+               org.opengis.filter                  .SortProperty                        .class,
+               org.opengis.filter                  .SortBy                              .class,
+               org.opengis.filter                  .QueryExpression                     .class,
+               org.opengis.filter.capability       .Conformance                         .class,
+               org.opengis.filter.capability       .IdCapabilities                      .class,
+               org.opengis.filter.capability       .ScalarCapabilities                  .class,
+               org.opengis.filter.capability       .SpatialCapabilities                 .class,
+               org.opengis.filter.capability       .TemporalCapabilities                .class,
+               org.opengis.filter.capability       .Argument                            .class,
+               org.opengis.filter.capability       .AvailableFunction                   .class,
+               org.opengis.filter.capability       .ExtendedCapabilities                .class,
+               org.opengis.filter.capability       .FilterCapabilities                  .class),
 
     /**
      * All code list classes.
@@ -331,14 +359,22 @@ public enum Content {
             org.opengis.referencing.cs          .AxisDirection                .class,
             org.opengis.referencing.cs          .RangeMeaning                 .class,
             org.opengis.referencing.datum       .PixelInCell                  .class,
-            org.opengis.referencing.datum       .VerticalDatumType            .class),
+            org.opengis.referencing.datum       .VerticalDatumType            .class,
+            org.opengis.filter                  .ComparisonOperatorName       .class,
+            org.opengis.filter                  .SpatialOperatorName          .class,
+            org.opengis.filter                  .DistanceOperatorName         .class,
+            org.opengis.filter                  .TemporalOperatorName         .class,
+            org.opengis.filter                  .LogicalOperatorName          .class),
 
     /**
      * All enumeration classes.
      */
     ENUMERATIONS(org.opengis.metadata.identification .TopicCategory      .class,
                  org.opengis.metadata.spatial        .PixelOrientation   .class,
-                 org.opengis.parameter               .ParameterDirection .class),
+                 org.opengis.parameter               .ParameterDirection .class,
+                 org.opengis.filter                  .MatchAction        .class,
+                 org.opengis.filter                  .VersionAction      .class,
+                 org.opengis.filter                  .SortOrder          .class),
 
     /**
      * The union of code lists and enumerations.
@@ -366,7 +402,9 @@ public enum Content {
                org.opengis.feature               .PropertyNotFoundException            .class,
                org.opengis.feature               .OutOfTemporalDomainException         .class,
                org.opengis.feature               .InvalidPropertyValueException        .class,
-               org.opengis.feature               .MultiValuedPropertyException         .class),
+               org.opengis.feature               .MultiValuedPropertyException         .class,
+               org.opengis.filter                .InvalidFilterValueException          .class,
+               org.opengis.filter                .DuplicateSortKeyException            .class),
 
     /**
      * All interfaces, code lists, enumerations and exceptions.

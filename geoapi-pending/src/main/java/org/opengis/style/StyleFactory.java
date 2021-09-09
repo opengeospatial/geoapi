@@ -41,8 +41,8 @@ import javax.swing.Icon;
 
 import org.opengis.util.GenericName;
 import org.opengis.filter.Filter;
-import org.opengis.filter.Id;
-import org.opengis.filter.expression.Expression;
+import org.opengis.filter.ResourceId;
+import org.opengis.filter.Expression;
 import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.util.InternationalString;
 
@@ -70,7 +70,7 @@ public interface StyleFactory {
      * <p>
      * The function will be created based on:
      * <ol>
-     * <li>PropertyName; use "Rasterdata" to indicate this is a color map
+     * <li>ValueReference; use "Rasterdata" to indicate this is a color map
      * <li>Literal: lookup value
      * <li>Literal: threshold 1
      * <li>Literal: value 1
@@ -122,7 +122,7 @@ public interface StyleFactory {
      *            May not be null or empty
      */
     FeatureTypeStyle featureTypeStyle(String name,
-            Description description, Id definedFor, Set<GenericName> featureTypeNames,
+            Description description, ResourceId definedFor, Set<GenericName> featureTypeNames,
             Set<SemanticType> types, List<Rule> rules);
 
     Fill fill(GraphicFill fill, Expression color, Expression opacity);
@@ -155,7 +155,7 @@ public interface StyleFactory {
 
     /**
      * @param  name      handle used to refer to this symbolizer (machine readible)
-     * @param  geometry  expression used to produce the Geometry to renderer; often a PropertyName
+     * @param  geometry  expression used to produce the Geometry to renderer; often a ValueReference
      * @param  unit      unit of measure used to define this symbolizer
      * @param  stroke    definition of how to stroke linework
      * @param  offset    offset used to position line relative to original
@@ -175,7 +175,7 @@ public interface StyleFactory {
      * Creation of a PointSymbolizer to describe how geometry can be rendered as a point.
      *
      * @param  name         handle used to refer to this symbolizer (machine readable)
-     * @param  geometry     expression used to extract the Geometry rendered; usually a PropertyName
+     * @param  geometry     expression used to extract the Geometry rendered; usually a ValueReference
      * @param  description  human readable description of symboizer
      * @param  unit         unit of Measure used to interpret symbolizer distances
      * @param  graphic      graphic used to represent the geometry when rendering
@@ -187,7 +187,7 @@ public interface StyleFactory {
     /**
      *
      * @param  name         handle used to refer to this symbolizer (machine readable)
-     * @param  geometry     expression used to extract the Geometry rendered; usually a PropertyName
+     * @param  geometry     expression used to extract the Geometry rendered; usually a ValueReference
      * @param  description  human readable description of symboizer
      * @param  unit         unit of Measure used to interpret symbolizer distances
      */
@@ -198,7 +198,7 @@ public interface StyleFactory {
     /**
      *
      * @param  name         handle used to refer to this symbolizer (machine readable)
-     * @param  geometry     expression used to extract the Geometry rendered; usually a PropertyName
+     * @param  geometry     expression used to extract the Geometry rendered; usually a ValueReference
      * @param  description  human readable description of symboizer
      * @param  unit         unit of Measure used to interpret symbolizer distances
      */
@@ -218,7 +218,7 @@ public interface StyleFactory {
      * @param name
      *            handle used to refer to this symbolizer (machine readible)
      * @param geometry
-     *            geometry expression to renderer; formally a PropertyName
+     *            geometry expression to renderer; formally a ValueReference
      * @param description
      *            description of this symbolizer; human readable
      * @param unit

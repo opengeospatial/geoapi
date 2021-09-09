@@ -31,7 +31,7 @@
  */
 package org.opengis.style;
 
-import org.opengis.filter.expression.Expression;
+import org.opengis.filter.Expression;
 import org.opengis.annotation.XmlElement;
 
 

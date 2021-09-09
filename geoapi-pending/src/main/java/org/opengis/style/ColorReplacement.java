@@ -32,7 +32,7 @@
 package org.opengis.style;
 
 import org.opengis.annotation.XmlElement;
-import org.opengis.filter.expression.Function;
+import org.opengis.filter.Expression;
 
 /**
  * The ColorReplacement element, which may occur multiple times, allows to replace a
@@ -56,7 +56,7 @@ public interface ColorReplacement {
      * arbitrary type. The comparisons are performed checking for identical values.
      */
     @XmlElement("Recode")
-    Function getRecoding();
+    Expression getRecoding();
 
     /**
      * calls the visit method of a StyleVisitor

@@ -67,7 +67,11 @@ import org.opengis.util.CodeList;
  *
  * @author Justin Deoliveira (The Open Planning Project)
  * @author Martin Desruisseaux (Geomatys)
+ *
+ * @deprecated This is replaced by scoped names in
+ * {@link org.opengis.filter.capability.SpatialCapabilities#getGeometryOperands()}.
  */
+@Deprecated
 public final class GeometryOperand extends CodeList<GeometryOperand> {
     /**
      * For cross-version compatibility.
