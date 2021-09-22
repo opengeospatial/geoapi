@@ -38,7 +38,6 @@ import static org.opengis.annotation.Obligation.MANDATORY;
 import static org.opengis.annotation.Specification.ISO_19143;
 
 
-
 /**
  * A character string comparison operator with pattern matching.
  * {@code LikeOperator} performs the equivalent of the SQL "{@code LIKE}" operator on properties of a feature.

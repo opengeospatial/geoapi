@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Thrown when a {@link Coverage#evaluate(DirectPosition, Collection) evaluate} method
+ * Thrown when an {@link Coverage#evaluate(DirectPosition, Collection) evaluate} method
  * is invoked for a location outside the domain of the coverage.
  *
  * @version <A HREF="http://www.opengis.org/docs/01-004.pdf">Grid Coverage specification 1.0</A>

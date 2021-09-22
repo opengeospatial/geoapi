@@ -73,14 +73,14 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  * similar to those of the {@code java.util.Map} interface, with the addition of type-safety.
  * The pre-defined keys are listed below:
  *
- * <table class="ogc">
+ * <table class="ogc" style="td {vertical-align:top}">
  * <caption>Configuration properties</caption>
  * <tr>
  *   <th>Supported features</th>
  *   <th>Factories</th>
  *   <th>Other</th>
  * </tr>
- * <tr><td valign="top">
+ * <tr><td>
  * {@link Key#isMultiLocaleSupported              isMultiLocaleSupported}<br>
  * {@link Key#isMixedNameSyntaxSupported          isMixedNameSyntaxSupported}<br>
  * {@link Key#isStandardNameSupported             isStandardNameSupported}<br>
@@ -95,7 +95,7 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  * {@link Key#isDerivativeSupported               isDerivativeSupported}<br>
  * {@link Key#isNonSquareMatrixSupported          isNonSquareMatrixSupported}<br>
  * {@link Key#isNonBidimensionalSpaceSupported    isNonBidimensionalSpaceSupported}<br>
- * {@link Key#isAxisSwappingSupported             isAxisSwappingSupported}</td><td valign="top">
+ * {@link Key#isAxisSwappingSupported             isAxisSwappingSupported}</td><td>
  * {@link Key#mtFactory                           mtFactory}<br>
  * {@link Key#copFactory                          copFactory}<br>
  * {@link Key#copAuthorityFactory                 copAuthorityFactory}<br>
@@ -105,7 +105,7 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  * {@link Key#csAuthorityFactory                  csAuthorityFactory}<br>
  * {@link Key#datumFactory                        datumFactory}<br>
  * {@link Key#datumAuthorityFactory               datumAuthorityFactory}<br>
- * {@link Key#isFactoryPreservingUserValues       isFactoryPreservingUserValues}</td><td valign="top">
+ * {@link Key#isFactoryPreservingUserValues       isFactoryPreservingUserValues}</td><td>
  * {@link Key#validators                          validators}<br>
  * {@link Key#isValidationEnabled                 isValidationEnabled}<br>
  * {@link Key#isToleranceRelaxed                  isToleranceRelaxed}

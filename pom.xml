@@ -394,7 +394,6 @@
           <compilerArgs>
             <arg>-Xlint:all</arg>
             <arg>-Xdoclint:all,-reference</arg>
-            <arg>--doclint-format</arg> <arg>html5</arg>
           </compilerArgs>
           <excludes>
             <exclude>${future.source}</exclude>
@@ -508,6 +507,7 @@
           <encoding>${project.build.sourceEncoding}</encoding>
           <docencoding>${website.encoding}</docencoding>
           <charset>${website.encoding}</charset>
+          <release>13</release>
           <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
           <version>false</version>        <!-- Includes or not the version text in the generated docs.            -->
           <noqualifier>all</noqualifier>  <!-- Omits qualifying package name from ahead of class names in output. -->
