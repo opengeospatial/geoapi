@@ -698,8 +698,8 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     public void testCamacupa() throws FactoryException {
         important         = true;
         code              = 6220;
-        name              = "Camacupa";
-        crsName           = "Camacupa";
+        name              = "Camacupa 1948";
+        crsName           = "Camacupa 1948";
         ellipsoidName     = "Clarke 1880 (RGS)";
         primeMeridianName = "Greenwich";
         verifyDatum();
@@ -2213,7 +2213,8 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     }
 
     /**
-     * Tests “Padang 1884” geodetic datum creation from the factory.
+     * Tests “Padang 1884” geodetic datum creation from the factory <em>(deprecated)</em>.
+     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}..
      *
      * <ul>
      *   <li>EPSG datum code: <b>6280</b></li>
@@ -2234,12 +2235,14 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
         crsName           = "Padang";
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Greenwich";
+        assumeTrue("Creation of deprecated objects not supported.", isDeprecatedObjectCreationSupported);
         verifyDatum();
         createAndVerifyGeographicCRS(4280, GEOGRAPHIC_2D);
     }
 
     /**
-     * Tests “Padang 1884 (Jakarta)” geodetic datum creation from the factory.
+     * Tests “Padang 1884 (Jakarta)” geodetic datum creation from the factory <em>(deprecated)</em>.
+     * This is test is executed only if {@link #isDeprecatedObjectCreationSupported} is {@code true}..
      *
      * <ul>
      *   <li>EPSG datum code: <b>6808</b></li>
@@ -2260,6 +2263,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
         crsName           = "Padang (Jakarta)";
         ellipsoidName     = "Bessel 1841";
         primeMeridianName = "Jakarta";
+        assumeTrue("Creation of deprecated objects not supported.", isDeprecatedObjectCreationSupported);
         verifyDatum();
         createAndVerifyGeographicCRS(4808, GEOGRAPHIC_2D);
     }
@@ -7394,7 +7398,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
      *   <li>EPSG datum name: <b>Pico de las Nieves 1984</b></li>
      *   <li>Ellipsoid name: <b>International 1924</b></li>
      *   <li>Prime meridian name: <b>Greenwich</b></li>
-     *   <li>CRS using the datum: <b>Pico de las Nieves 1984</b></li>
+     *   <li>CRS using the datum: <b>PN84</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the datum or a CRS from the EPSG code.
@@ -7403,7 +7407,7 @@ public strictfp class GIGS2004 extends AuthorityFactoryTestCase<GeodeticDatum> {
     public void testPicoDeLasNieves() throws FactoryException {
         code              = 6728;
         name              = "Pico de las Nieves 1984";
-        crsName           = "Pico de las Nieves 1984";
+        crsName           = "PN84";
         ellipsoidName     = "International 1924";
         primeMeridianName = "Greenwich";
         verifyDatum();

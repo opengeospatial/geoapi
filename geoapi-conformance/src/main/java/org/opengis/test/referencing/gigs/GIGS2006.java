@@ -508,7 +508,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     @Test
     public void testCamacupa() throws FactoryException {
         important       = true;
-        name            = "Camacupa";
+        name            = "Camacupa 1948";
         projectionNames = new String[] {"TM 11.30 SE", "TM 12 SE", "UTM"};
         datumCode       = 6220;
         createAndVerifyProjectedCRS(22091);
