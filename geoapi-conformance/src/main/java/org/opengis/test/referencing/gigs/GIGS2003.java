@@ -433,7 +433,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
      * <ul>
      *   <li>EPSG prime meridian code: <b>8905</b></li>
      *   <li>EPSG prime meridian name: <b>Madrid</b></li>
-     *   <li>Greenwich longitude: <b>-3°41′16.58″</b></li>
+     *   <li>Greenwich longitude: <b>-3°41′14.55″</b></li>
      * </ul>
      *
      * @throws FactoryException if an error occurred while creating the prime meridian from the EPSG code.
@@ -443,7 +443,7 @@ public strictfp class GIGS2003 extends AuthorityFactoryTestCase<PrimeMeridian> {
         code               = 8905;
         name               = "Madrid";
         aliases            = NONE;
-        greenwichLongitude = -3.687938888888889;
+        greenwichLongitude = -3.687375;
         verifyPrimeMeridian();
     }
 
