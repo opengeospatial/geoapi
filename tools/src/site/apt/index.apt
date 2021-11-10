@@ -14,26 +14,6 @@ GeoAPI build tools
     * {{{./release-instruction.html}Steps for creating a GeoAPI milestone in a Unix environment}}
 
 
-** Creating the GeoAPI bundle
-
-  This module contains a Unix shell script for generating a <<<target/geoapi-conformance.zip>>>
-  file with the following content:
-
-    * <<<geoapi-conformance.pack.gz>>> containing the {{{../geoapi-conformance/index.html}GeoAPI
-      conformance}} JAR file together with its dependencies (<<<geoapi-pending>>>, JUnit and Unit
-      of measurement).
-
-    * <<<LICENSE.txt>>> and <<<README.txt>>> files.
-
-  The bundle is created by a shell script rather than an Ant script
-  because Ant does not yet provide a standard task for <<<pack200>>>.
-  To create the bundle, execute the following command:
-
----------------------------------------------------------------------------------------------
-tools/src/main/shell/pack.sh
----------------------------------------------------------------------------------------------
-
-
 
 
 * Documenting API

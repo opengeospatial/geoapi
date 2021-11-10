@@ -41,7 +41,7 @@ import java.io.IOException;
 
 /**
  * Reports public and protected API changes between two JAR files.
- * Instructions about this command can be found one the <a href="http://www.geoapi.org/tools/index.html">Tools</a> page.
+ * Instructions about this command can be found in the module javadoc.
  * The arguments expected by the main methods are:
  *
  * <table class="ogc">
