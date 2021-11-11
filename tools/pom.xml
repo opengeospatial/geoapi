@@ -13,30 +13,6 @@
     <version>3.0.2-SNAPSHOT</version>
   </parent>
 
-  <!-- ===========================================================
-           Oracle's tools dependency   (from Maven FAQ)
-       =========================================================== -->
-  <profiles>
-    <profile>
-      <id>default-tools.jar</id>
-      <activation>
-        <property>
-          <name>java.vendor</name>
-          <value>Oracle Corporation</value>
-        </property>
-      </activation>
-      <dependencies>
-        <dependency>
-          <groupId>com.sun</groupId>
-          <artifactId>tools</artifactId>
-          <version>1.7</version>
-          <scope>system</scope>
-          <systemPath>${java.home}/../lib/tools.jar</systemPath>
-        </dependency>
-      </dependencies>
-    </profile>
-  </profiles>
-
 
 
   <!-- ====================================================
@@ -86,8 +62,12 @@
 
 
   <!-- ====================================================
-           Plugins configuration: skip deployment
+           Plugins configuration
        ==================================================== -->
+  <properties>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+  </properties>
   <build>
     <plugins>
       <plugin>

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2009-2011 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2009-2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,134 +31,84 @@
  */
 package org.opengis.tools.taglet;
 
-import java.util.Map;
-import com.sun.javadoc.Tag;
-import com.sun.tools.doclets.Taglet;
+import java.util.Set;
+import java.util.EnumSet;
+import java.util.List;
+import javax.lang.model.element.Element;
+import jdk.javadoc.doclet.Taglet;
+import com.sun.source.doctree.DocTree;
+import com.sun.source.doctree.TextTree;
+import com.sun.source.doctree.UnknownInlineTagTree;
 
 
 /**
  * The <code>@note</code> tag for inserting a note in a javadoc comment.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.0.2
  * @since   2.0
  */
 public final class Note implements Taglet {
     /**
-     * Register this taglet.
-     *
-     * @param tagletMap the map to register this tag to.
-     */
-    public static void register(final Map<String,Taglet> tagletMap) {
-       final Note tag = new Note();
-       tagletMap.put(tag.getName(), tag);
-    }
-
-    /**
      * Constructs a default <code>@note</code> taglet.
      */
-    private Note() {
+    public Note() {
         super();
     }
 
     /**
      * Returns the name of this custom tag.
      *
-     * @return The tag name.
+     * @return the tag name.
      */
+    @Override
     public String getName() {
         return "note";
     }
 
     /**
-     * Returns {@code true} since <code>@note</code> can be used in overview.
+     * Returns the set of locations in which this taglet may be used.
      *
-     * @return Always {@code false}.
+     * @return the set of locations in which this taglet may be used.
      */
-    public boolean inOverview() {
-        return true;
-    }
-
-    /**
-     * Returns {@code true} since <code>@note</code> can be used in package documentation.
-     *
-     * @return Always {@code true}.
-     */
-    public boolean inPackage() {
-        return true;
-    }
-
-    /**
-     * Returns {@code true} since <code>@note</code> can be used in type documentation
-     * (classes or interfaces).
-     *
-     * @return Always {@code true}.
-     */
-    public boolean inType() {
-        return true;
-    }
-
-    /**
-     * Returns {@code true} since <code>@note</code> can be used in constructor
-     *
-     * @return Always {@code true}.
-     */
-    public boolean inConstructor() {
-        return true;
-    }
-
-    /**
-     * Returns {@code true} since <code>@note</code> can be used in method documentation.
-     *
-     * @return Always {@code true}.
-     */
-    public boolean inMethod() {
-        return true;
-    }
-
-    /**
-     * Returns {@code true} since <code>@note</code> can be used in field documentation.
-     *
-     * @return Always {@code true}.
-     */
-    public boolean inField() {
-        return true;
+    @Override
+    public Set<Taglet.Location> getAllowedLocations() {
+        return EnumSet.of(Taglet.Location.OVERVIEW,
+                          Taglet.Location.PACKAGE,
+                          Taglet.Location.TYPE,
+                          Taglet.Location.CONSTRUCTOR,
+                          Taglet.Location.METHOD,
+                          Taglet.Location.FIELD);
     }
 
     /**
      * Returns {@code true} since <code>@note</code> is an inline tag.
      *
-     * @return Always {@code true}.
+     * @return always {@code true}.
      */
+    @Override
     public boolean isInlineTag() {
         return true;
     }
 
     /**
-     * Given the <code>Tag</code> representation of this custom tag, return its string representation.
+     * Given a list of {@code DocTree}s representing this custom tag, returns its string representation.
      *
-     * @param tag The tag to format.
-     * @return A string representation of the given tag.
+     * @param  tags     the tags to format.
+     * @param  element  the element to which the enclosing comment belongs.
+     * @return a string representation of the given tags.
      */
-    public String toString(final Tag tag) {
-        final StringBuilder buffer = new StringBuilder("<blockquote><font size=-1><b>Note:</b>\n");
-        buffer.append(tag.text());
-        return buffer.append("</font></blockquote>").toString();
-    }
-
-    /**
-     * Given an array of {@code Tag}s representing this custom tag, return its string
-     * representation. This method should not be called since arrays of inline tags do
-     * not exist. However we define it as a matter of principle.
-     *
-     * @param tags The tags to format.
-     * @return A string representation of the given tags.
-     */
-    public String toString(final Tag[] tags) {
-        final StringBuilder buffer = new StringBuilder();
-        for (int i=0; i<tags.length; i++) {
-            buffer.append(toString(tags[i]));
+    @Override
+    public String toString(final List<? extends DocTree> tags, final Element element) {
+        if (tags == null || tags.isEmpty()) {
+            return "";
         }
-        return buffer.toString();
+        final StringBuilder buffer = new StringBuilder("<blockquote><font size=-1><b>Note:</b>\n");
+        for (final DocTree tag : tags) {
+            for (final DocTree node : ((UnknownInlineTagTree) tag).getContent()) {
+                buffer.append(((TextTree) node).getBody());
+            }
+        }
+        return buffer.append("</font></blockquote>").toString();
     }
 }

@@ -15,6 +15,8 @@
        ==================================================== -->
   <properties>
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>8</maven.compiler.source>
+    <maven.compiler.target>8</maven.compiler.target>
   </properties>
 
   <profiles>
@@ -25,7 +27,7 @@
           <plugin>
             <groupId>org.apache.maven.plugins</groupId>
             <artifactId>maven-gpg-plugin</artifactId>
-            <version>1.6</version>
+            <version>3.0.1</version>
             <executions>
               <execution>
                 <id>sign-artifacts</id>
@@ -147,7 +149,7 @@
       <dependency>
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
-        <version>4.12</version>
+        <version>4.13.2</version>
         <scope>test</scope>
       </dependency>
     </dependencies>
@@ -175,48 +177,43 @@
       <plugins>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-enforcer-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-compiler-plugin</artifactId>
-          <version>3.6.2</version>
+          <version>3.8.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-resources-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>3.2.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
-          <version>3.0.2</version>
+          <version>3.2.0</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-surefire-plugin</artifactId>
-          <version>2.20</version>
+          <version>3.0.0-M5</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-source-plugin</artifactId>
-          <version>3.0.1</version>
+          <version>3.2.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-deploy-plugin</artifactId>
-          <version>2.8.2</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-javadoc-plugin</artifactId>
           <version>3.0.0-M1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-project-info-reports-plugin</artifactId>
-          <version>2.9</version>
-        </plugin>
-        <plugin>
-          <groupId>org.apache.maven.plugins</groupId>
-          <artifactId>maven-surefire-report-plugin</artifactId>
-          <version>2.20</version>
+          <artifactId>maven-javadoc-plugin</artifactId>
+          <version>3.3.1</version>
         </plugin>
         <plugin>
           <groupId>org.apache.felix</groupId>
@@ -226,12 +223,7 @@
         <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
-          <version>3.0.0</version>
-        </plugin>
-        <plugin>
-          <groupId>org.codehaus.mojo</groupId>
-          <artifactId>taglist-maven-plugin</artifactId>
-          <version>2.4</version>
+          <version>3.2.0</version>
         </plugin>
       </plugins>
     </pluginManagement>
@@ -242,6 +234,26 @@
              Compilation
          ==================================================== -->
     <plugins>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-enforcer-plugin</artifactId>
+        <executions>
+          <execution>
+            <id>enforce</id>
+            <configuration>
+              <rules>
+                <requireJavaVersion>
+                  <version>17</version>
+                </requireJavaVersion>
+                <dependencyConvergence/>
+              </rules>
+            </configuration>
+            <goals>
+              <goal>enforce</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-source-plugin</artifactId>
@@ -259,11 +271,13 @@
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
         <configuration>
-          <source>1.7</source>          <!-- Same than the version required by JSR-363.    -->
-          <target>1.7</target>          <!-- Same than the version required by JSR-363.    -->
+          <release>${maven.compiler.source}</release>
           <debug>false</debug>          <!-- Whether to include debugging information.     -->
           <optimize>true</optimize>     <!-- Use the compiler's optimization methods.      -->
           <encoding>UTF-8</encoding>    <!-- The -encoding argument for the Java compiler. -->
+          <showWarnings>true</showWarnings>
+          <showDeprecation>true</showDeprecation>
+          <useIncrementalCompilation>false</useIncrementalCompilation>  <!-- https://issues.apache.org/jira/browse/MCOMPILER-209 -->
         </configuration>
       </plugin>
 
@@ -360,7 +374,7 @@
           <version>false</version>
           <encoding>UTF-8</encoding>
           <charset>UTF-8</charset>
-          <source>1.7</source>
+          <release>8</release>
           <noqualifier>all</noqualifier>
           <quiet>true</quiet>
           <maxmemory>384M</maxmemory>
@@ -369,6 +383,13 @@
           <breakiterator>true</breakiterator>
           <doctitle>${project.name} ${project.version}</doctitle>
           <windowtitle>${project.name} ${project.version}</windowtitle>
+          <additionalOptions>-Xdoclint:none</additionalOptions>
+          <doclet>org.opengis.tools.taglet.FlushableDoclet</doclet>
+          <docletArtifact>
+            <groupId>org.opengis</groupId>
+            <artifactId>tools</artifactId>
+            <version>${project.version}</version>
+          </docletArtifact>
           <taglets>
             <taglet><tagletClass>org.opengis.tools.taglet.Note</tagletClass></taglet>
             <taglet><tagletClass>org.opengis.tools.taglet.Departure</tagletClass></taglet>

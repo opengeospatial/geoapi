@@ -30,12 +30,14 @@
  *    times remain with copyright holders.
  */
 
-
 /**
- * Javadoc taglets for processing custom tags in GeoAPI source code comments.
+ * Javadoc taglets for processing GeoAPI after compilation.
+ * Those tools are used mostly for javadoc generation.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0.2
- * @since   2.0
+ * @since   3.0
  */
-package org.opengis.tools.taglet;
+module org.opengis.geoapi.build {
+    requires jdk.javadoc;
+}
