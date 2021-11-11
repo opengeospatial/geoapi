@@ -82,46 +82,4 @@
     </dependency>
   </dependencies>
 
-
-
-  <!-- ====================================================
-           Web site and Javadoc generation
-       ==================================================== -->
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-site-plugin</artifactId>
-        <configuration>
-          <reportPlugins>
-            <plugin>
-              <groupId>org.apache.maven.plugins</groupId>
-              <artifactId>maven-javadoc-plugin</artifactId>
-              <configuration>
-                <linksource>true</linksource>
-                <author>false</author>          <!-- Specifies whether or not the author text is included.              -->
-                <version>false</version>        <!-- Includes or not the version text in the generated docs.            -->
-                <encoding>UTF-8</encoding>      <!-- Specifies the encoding name of the source files.                   -->
-                <charset>UTF-8</charset>        <!-- Specifies the HTML character set for this document.                -->
-                <source>1.7</source>            <!-- Same version number than the one required by JSR-363.              -->
-                <noqualifier>all</noqualifier>  <!-- Omits qualifying package name from ahead of class names in output. -->
-                <quiet>true</quiet>             <!-- Shuts off non-error and non-warning messages.                      -->
-                <maxmemory>384M</maxmemory>     <!-- The maximum Java heap size to be used when launching the javadoc.  -->
-                <locale>en</locale>             <!-- The locale that javadoc uses when generating documentation.        -->
-                <keywords>true</keywords>       <!-- Adds HTML meta keyword tags to the generated file for each class.  -->
-                <breakiterator>true</breakiterator>
-                <links>
-                  <link>http://download.oracle.com/javase/6/docs/api/</link>
-                  <link>http://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/</link>
-                  <link>http://download.java.net/media/java3d/javadoc/1.5.1/</link>
-                  <link>http://jscience.org/api/</link>
-                </links>
-              </configuration>
-            </plugin>
-          </reportPlugins>
-        </configuration>
-      </plugin>
-    </plugins>
-  </build>
-
 </project>
