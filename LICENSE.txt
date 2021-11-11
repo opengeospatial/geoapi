@@ -1,7 +1,7 @@
 GeoAPI - Java interfaces for OGC/ISO standards
 http://www.geoapi.org
 
-Copyright (C) 2003-2011 Open Geospatial Consortium, Inc.
+Copyright (C) 2003-2021 Open Geospatial Consortium, Inc.
 All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 
 This OGC work (including software, documents, or other related items) is being

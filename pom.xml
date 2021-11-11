@@ -89,18 +89,18 @@
     <url>https://github.com/opengeospatial/geoapi</url>
   </scm>
 
-  <ciManagement>
-    <system>jenkins</system>
-    <url>http://jenkins.geotoolkit.org/job/GeoAPI/</url>
-  </ciManagement>
+  <issueManagement>
+    <system>GitHub</system>
+    <url>https://github.com/opengeospatial/geoapi/issues</url>
+  </issueManagement>
 
   <mailingLists>
     <mailingList>
       <name>GeoAPI Standard Working Group (OGC)</name>
-      <subscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi-3.0.swg</subscribe>
-      <unsubscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi-3.0.swg</unsubscribe>
-      <post>geoapi-3.0.swg@lists.opengeospatial.org</post>
-      <archive>https://lists.opengeospatial.org/mailman/private/geoapi-3.0.swg</archive>
+      <subscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</subscribe>
+      <unsubscribe>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</unsubscribe>
+      <post>geoapi.swg@lists.opengeospatial.org</post>
+      <archive>https://lists.opengeospatial.org/mailman/listinfo/geoapi.swg</archive>
     </mailingList>
   </mailingLists>
 
@@ -118,7 +118,7 @@
       </roles>
     </developer>
     <developer>
-      <name>GeoAPI 3.0 Standard Working Group</name>
+      <name>GeoAPI Standard Working Group</name>
       <organization>Open Geospatial Consortium</organization>
       <organizationUrl>http://www.opengeospatial.org/</organizationUrl>
       <roles>
@@ -387,10 +387,11 @@
             <tag><name>navassoc</name>  <placement>X</placement>    <head>Associated to:</head></tag>
           </tags>
           <links>
-            <link>http://docs.oracle.com/javase/8/docs/api/</link>
-            <link>http://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/</link>
-            <link>http://download.java.net/media/java3d/javadoc/1.5.1/</link>
-            <link>http://jscience.org/api/</link>
+            <link>https://docs.oracle.com/javase/8/docs/api/</link>
+            <link>https://docs.oracle.com/javaee/7/api/</link>                          <!-- For InternationalString link. -->
+            <link>https://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/</link>
+            <link>https://download.java.net/media/java3d/javadoc/1.5.2/</link>
+            <link>https://junit.org/junit4/javadoc/latest/</link>
           </links>
           <groups>
             <group>
