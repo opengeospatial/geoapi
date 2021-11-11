@@ -55,7 +55,7 @@
   <groupId>org.opengis</groupId>
   <artifactId>geoapi-parent</artifactId>
   <packaging>pom</packaging>
-  <version>3.0.1</version>
+  <version>3.0.2-SNAPSHOT</version>
   <name>GeoAPI</name>
   <url>http://www.geoapi.org/</url>
   <description>
