@@ -217,11 +217,6 @@
           <version>3.3.1</version>
         </plugin>
         <plugin>
-          <groupId>org.apache.felix</groupId>
-          <artifactId>maven-bundle-plugin</artifactId>
-          <version>3.3.0</version>
-        </plugin>
-        <plugin>
           <groupId>org.codehaus.mojo</groupId>
           <artifactId>build-helper-maven-plugin</artifactId>
           <version>3.2.0</version>
@@ -336,29 +331,18 @@
         <artifactId>maven-jar-plugin</artifactId>
         <configuration>
           <archive>
-            <index>true</index>
             <manifest>
               <addClasspath>true</addClasspath>
-              <addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
             </manifest>
+            <manifestEntries>
+              <Specification-Title>GeoAPI</Specification-Title>
+              <Specification-Version>${project.version}</Specification-Version>
+              <Specification-Vendor>${project.organization.name}</Specification-Vendor>
+              <Implementation-Vendor>The GeoAPI project</Implementation-Vendor>
+              <Implementation-URL>http://www.geoapi.org/</Implementation-URL>
+            </manifestEntries>
           </archive>
-        </configuration>
-      </plugin>
-
-      <plugin>
-        <groupId>org.apache.felix</groupId>
-        <artifactId>maven-bundle-plugin</artifactId>
-        <extensions>true</extensions>
-        <configuration>
-          <instructions>
-            <Bundle-Name>${project.groupId}.${project.artifactId}</Bundle-Name>
-            <Bundle-DocURL>http://www.geoapi.org</Bundle-DocURL>
-            <Specification-Title>GeoAPI</Specification-Title>
-            <Specification-Version>${project.version}</Specification-Version>
-            <Specification-Vendor>${project.organization.name}</Specification-Vendor>
-            <Implementation-Vendor>The GeoAPI project</Implementation-Vendor>
-            <Implementation-URL>http://www.geoapi.org</Implementation-URL>
-          </instructions>
+          <skipIfEmpty>true</skipIfEmpty>
         </configuration>
       </plugin>
 
