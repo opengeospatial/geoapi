@@ -51,6 +51,6 @@
  * @version 4.0
  * @since   3.0
  */
-module org.opengis.geoapi {
+module org.opengis.geoapi.build {
     requires jdk.javadoc;
 }

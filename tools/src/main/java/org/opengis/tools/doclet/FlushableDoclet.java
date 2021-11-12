@@ -33,8 +33,8 @@ package org.opengis.tools.doclet;
 
 import java.util.LinkedHashSet;
 import java.util.List;
-import java.util.Locale;
 import java.util.Set;
+import java.util.function.Consumer;
 import java.io.Flushable;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -48,20 +48,24 @@ import java.nio.file.StandardCopyOption;
 import java.nio.file.attribute.BasicFileAttributes;
 import javax.tools.Diagnostic;
 import jdk.javadoc.doclet.Reporter;
-import jdk.javadoc.doclet.Doclet.Option;
 import jdk.javadoc.doclet.DocletEnvironment;
 import jdk.javadoc.doclet.StandardDoclet;
 
 
 /**
  * A doclet which delegates the work to the standard doclet and completes by copying resources and generating
- * the list of departures.
+ * the list of departures after all Javadoc pages have been generated.
+ *
+ * <p>The {@code Consumer<Flushable>} interface is used as a callback mechanism for taglet initialization.
+ * Taglets can not invoke {@code FlushableDoclet} methods directly because the doclet initialized by Javadoc
+ * tools does not use the same class loader than taglet. {@link BlockTaglet} instances can communicate with
+ * the {@code FlushableDoclet} instance only using objects from the standard Java library.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @since   3.1
  * @version 3.1
  */
-public final class Doclet extends StandardDoclet {
+public final class FlushableDoclet extends StandardDoclet implements Consumer<Flushable> {
     /**
      * Files to excludes when copying {@code src/main/javadoc} resources.
      */
@@ -73,25 +77,15 @@ public final class Doclet extends StandardDoclet {
     private String outputDirectory;
 
     /**
-     * Where to report warnings, or {@code null} if unknown.
-     *
-     * Have to be static for now because we did not found a better way to transfer this information to the taglet.
-     */
-    private static Reporter reporter;
-
-    /**
      * Process to execute after the Javadoc generation has been completed.
      * This is used for writing summary tables.
-     *
-     * <p>Has to be public static for now as a workaround for
-     * <a href="https://bugs.openjdk.java.net/browse/JDK-8201817">JDK-8201817</a>.</p>
      */
-    public static Flushable postProcess;
+    private Flushable postProcess;
 
     /**
      * Invoked by the Javadoc tools for instantiating the custom doclet.
      */
-    public Doclet() {
+    public FlushableDoclet() {
     }
 
     /**
@@ -105,25 +99,16 @@ public final class Doclet extends StandardDoclet {
     }
 
     /**
-     * Invoked by the Javadoc tools for initializing the doclet.
+     * Registers an action to execute after doclet finished to generate Javadoc.
+     * This initialization is done through an interface of the standard Java API ({@link Flushable})
+     * because custom methods can not be invoked at taglet initialization time, because of different
+     * class loaders.
      *
-     * @param locale    the locale to use for formatting HTML content.
-     * @param reporter  where to report warnings and errors.
+     * @param  finisher  action to execute at the end of javadoc generation.
      */
     @Override
-    public void init(final Locale locale, final Reporter reporter) {
-        super.init(locale, reporter);
-        Doclet.reporter = reporter;
-    }
-
-    /**
-     * Returns the object to use for reporting warnings, or {@code null} if unknown. Has to be public static
-     * for now as a workaround for <a href="https://bugs.openjdk.java.net/browse/JDK-8201817">JDK-8201817</a>.
-     *
-     * @return where to report warnings, or {@code null} if unknown.
-     */
-    public static Reporter reporter() {
-        return reporter;
+    public void accept(final Flushable finisher) {
+        postProcess = finisher;
     }
 
     /**
@@ -197,6 +182,7 @@ public final class Doclet extends StandardDoclet {
                 postProcess.flush();
             }
         } catch (IOException e) {
+            final Reporter reporter = getReporter();
             if (reporter != null) {
                 final StringWriter buffer = new StringWriter();
                 final PrintWriter p = new PrintWriter(buffer);
@@ -254,7 +240,8 @@ public final class Doclet extends StandardDoclet {
      * Prints an error message.
      */
     @SuppressWarnings("UseOfSystemOutOrSystemErr")
-    private static void printError(final String message) {
+    private void printError(final String message) {
+        final Reporter reporter = getReporter();
         if (reporter != null) {
             reporter.print(Diagnostic.Kind.ERROR, message);
         } else {

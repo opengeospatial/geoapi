@@ -90,7 +90,7 @@ public interface FilterFactory<R,G,T> extends Factory {
      * of a resource between the specified dates.
      *
      * @param  rid        identifier of the resource that shall be selected by the predicate.
-     * @param  version    version of the resource shall be selected, or {@code null} for any version.
+     * @param  version    version of the resource to select, or {@code null} for any version.
      * @param  startTime  start time of the resource to select, or {@code null} if none.
      * @param  endTime    end time of the resource to select, or {@code null} if none.
      * @return the predicate.

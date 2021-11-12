@@ -86,8 +86,8 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
     /**
      * Creates a test case initialized to default values.
      *
-     * @param factories  the factories to be used by the test. Those factories passed verbatim
-     *                   to the {@linkplain TestCase#TestCase(Factory[]) super-class constructor}.
+     * @param factories  the factories to be used by the test. Those factories are passed to
+     *                   the {@linkplain TestCase#TestCase(Factory[]) super-class constructor}.
      */
     @SuppressWarnings("unchecked")
     protected ReferencingTestCase(final Factory... factories) {

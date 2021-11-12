@@ -132,7 +132,7 @@ public strictfp abstract class AuthorityFactoryTestCase<T> extends GIGSTestCase 
     /**
      * Creates a new test which will use the given factories to execute.
      *
-     * @param factories  the factories to be used by the test. Those factories passed verbatim to the
+     * @param factories  the factories to be used by the test. Those factories are passed to the
      *        {@linkplain ReferencingTestCase#ReferencingTestCase(Factory[]) super-class constructor}.
      */
     protected AuthorityFactoryTestCase(final AuthorityFactory... factories) {

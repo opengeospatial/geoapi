@@ -38,6 +38,8 @@ import javax.lang.model.element.Element;
 import javax.lang.model.element.TypeElement;
 import jdk.javadoc.doclet.Taglet;
 import jdk.javadoc.doclet.Reporter;
+import jdk.javadoc.doclet.Doclet;
+import jdk.javadoc.doclet.StandardDoclet;
 import jdk.javadoc.doclet.DocletEnvironment;
 import com.sun.source.doctree.DocTree;
 import com.sun.source.doctree.EndElementTree;
@@ -69,44 +71,19 @@ abstract class BlockTaglet implements Taglet {
     }
 
     /**
-     * Invoked on taglet initialization.
-     * Current implementation delegates to {@link #init(Class)} with the {@link Doclet} class loader.
-     *
-     * <h2>Note:</h2>
-     * <p>the doclet given in argument to this method can not be used
-     * because as of JDK 10, this is a JDK internal doclet rather than {@link Doclet}.
-     * See <a href="https://bugs.openjdk.java.net/browse/JDK-8201817">JDK-8201817</a>.</p>
-     *
-     * <p>We can not access {@link Doclet} static fields directly because {@link Doclet} and {@link Taglet}s
-     * are not loaded by the same class loader. Any static field modified by a taglet will not be seen by the
-     * doclet.</p>
+     * Invoked when the doclet initializes this taglet. The {@code doclet} argument is the {@link FlushableDoclet}
+     * class loaded by the doclet class loader. This is <strong>not</strong> the same than {@code FlushableDoclet}
+     * seen from this taglet, because of different class loaders. Consequently we can not access fields directly;
+     * we have to use interfaces and methods defined by the standard Java library.
      *
      * @param env     the environment in which the doclet and taglet are running.
      * @param doclet  the doclet that instantiated this taglet.
      */
     @Override
-    public void init(final DocletEnvironment env, final jdk.javadoc.doclet.Doclet doclet) {
-        StackWalker.getInstance(StackWalker.Option.RETAIN_CLASS_REFERENCE).walk(stream ->
-                stream.filter(frame -> frame.getClassName().equals("org.opengis.tools.doclet.Doclet"))
-                      .map(frame -> frame.getDeclaringClass()).findFirst()).ifPresent(c -> init(c));
-    }
-
-    /**
-     * Invoked when the doclet initializes this taglet. The {@code doclet} argument is the {@link Doclet} class
-     * loaded by the doclet class loader. This is <strong>not</strong> the same than {@code Doclet.class} executed
-     * from this taglet, because of different class loaders. It is currently not possible to have a reference to the
-     * doclet instance because of <a href="https://bugs.openjdk.java.net/browse/JDK-8201817">JDK-8201817</a>.
-     * The doclet class is currently the best we can provide.
-     *
-     * @param  doclet  the class of the {@link Doclet} initializing this taglet.
-     *
-     * @todo Remove this hack after JDK11 has been released.
-     */
-    protected void init(final Class<?> doclet) {
+    public void init(final DocletEnvironment env, final Doclet doclet) {
         try {
-            // Can not access Doclet.reporter directly because of different ClassLoaders.
-            reporter = (Reporter) doclet.getMethod("reporter").invoke(this);
-        } catch (ReflectiveOperationException e) {
+            reporter = ((StandardDoclet) doclet).getReporter();
+        } catch (ClassCastException e) {
             print(Diagnostic.Kind.ERROR, null, e.toString());
             // Leave the reporter to null.
         }
