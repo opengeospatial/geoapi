@@ -104,8 +104,8 @@ public final class Departure extends BlockTaglet implements Flushable {
     }
 
     /**
-     * Invoked when the doclet initializes this taglet. This method register this taglet for execution of the
-     * {@link #flush()} method after the doclet finished to generate all the javadoc.
+     * Invoked when the doclet initializes this taglet. This method registers this taglet for execution
+     * of the {@link #flush()} method after the doclet finished to generate all the javadoc.
      */
     @Override
     @SuppressWarnings("unchecked")

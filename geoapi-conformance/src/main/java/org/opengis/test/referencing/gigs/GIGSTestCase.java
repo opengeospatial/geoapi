@@ -66,7 +66,7 @@ strictfp abstract class GIGSTestCase extends ReferencingTestCase {
     /**
      * Creates a new test which will use the given factories to execute.
      *
-     * @param factories  the factories to be used by the test. Those factories passed verbatim to the
+     * @param factories  the factories to be used by the test. Those factories are passed to the
      *        {@linkplain ReferencingTestCase#ReferencingTestCase(Factory[]) super-class constructor}.
      */
     protected GIGSTestCase(final Factory... factories) {

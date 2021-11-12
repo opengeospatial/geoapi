@@ -607,7 +607,7 @@ public enum Specification {
      * </ul>
      *
      * @see #ISO_19109
-     * @see <a href="http://docs.opengeospatial.org/is/18-075/18-075.html">Browse on OGC web site</a>
+     * @see <a href="http://docs.opengeospatial.org/is/18-075/18-075.html">OGC 18-075 on OGC Public Document Repository</a>
      *
      * @since 3.1
      */
