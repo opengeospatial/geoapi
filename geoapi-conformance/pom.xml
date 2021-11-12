@@ -71,8 +71,8 @@
       <version>${project.version}</version>
     </dependency>
     <dependency>
-      <groupId>tec.units</groupId>
-      <artifactId>unit-ri</artifactId>
+      <groupId>tech.units</groupId>
+      <artifactId>indriya</artifactId>
       <scope>test</scope>
     </dependency>
     <dependency>
