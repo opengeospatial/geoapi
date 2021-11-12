@@ -496,7 +496,7 @@
            ============================================================================================ -->
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
-        <version>3.2.0</version>
+        <version>3.3.1</version>
         <configuration>
           <top>
             <!-- Remove this notice for the final GeoAPI release! -->
@@ -530,8 +530,8 @@
           <doctitle>${project.name} ${project.version}</doctitle>
           <windowtitle>${project.name} ${project.version}</windowtitle>
 
-          <!-- Doclet for special processing of CSS files. -->
-          <doclet>org.opengis.tools.doclet.Doclet</doclet>
+          <!-- Doclet for special processing of departure tables. -->
+          <doclet>org.opengis.tools.doclet.FlushableDoclet</doclet>
           <docletArtifact>
             <groupId>org.opengis</groupId>
             <artifactId>tools</artifactId>

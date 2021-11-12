@@ -38,10 +38,13 @@ import java.util.Set;
 import java.util.HashMap;
 import java.util.LinkedHashSet;
 import java.util.Collections;
+import java.util.function.Consumer;
 import java.io.Flushable;
 import java.io.FileWriter;
 import java.io.BufferedWriter;
 import java.io.IOException;
+import jdk.javadoc.doclet.Doclet;
+import jdk.javadoc.doclet.DocletEnvironment;
 import com.sun.source.doctree.DocTree;
 import javax.lang.model.element.Name;
 import javax.lang.model.element.Element;
@@ -102,17 +105,16 @@ public final class Departure extends BlockTaglet implements Flushable {
 
     /**
      * Invoked when the doclet initializes this taglet. This method register this taglet for execution of the
-     * {@link #run()} method after the doclet finished to generate all the javadoc.
-     *
-     * @param  doclet  the class of the {@link Doclet} initializing this taglet.
+     * {@link #flush()} method after the doclet finished to generate all the javadoc.
      */
     @Override
-    protected void init(final Class<?> doclet) {
-        super.init(doclet);
+    @SuppressWarnings("unchecked")
+    public void init(final DocletEnvironment env, final Doclet doclet) {
+        super.init(env, doclet);
         try {
-            // Can not access Doclet.postProcess directly because of different ClassLoaders.
-            doclet.getField("postProcess").set(null, this);
-        } catch (ReflectiveOperationException e) {
+            // Can not access FlushableDoclet.postProcess directly because of different ClassLoaders.
+            ((Consumer<Flushable>) doclet).accept(this);
+        } catch (ClassCastException e) {
             print(Diagnostic.Kind.ERROR, null, e.toString());
         }
     }
