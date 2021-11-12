@@ -193,6 +193,11 @@
         </plugin>
         <plugin>
           <groupId>org.apache.maven.plugins</groupId>
+          <artifactId>maven-antrun-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+        <plugin>
+          <groupId>org.apache.maven.plugins</groupId>
           <artifactId>maven-jar-plugin</artifactId>
           <version>3.2.0</version>
         </plugin>
@@ -262,7 +267,6 @@
           </execution>
         </executions>
       </plugin>
-
       <plugin>
         <groupId>org.apache.maven.plugins</groupId>
         <artifactId>maven-compiler-plugin</artifactId>
@@ -340,6 +344,7 @@
               <Specification-Vendor>${project.organization.name}</Specification-Vendor>
               <Implementation-Vendor>The GeoAPI project</Implementation-Vendor>
               <Implementation-URL>http://www.geoapi.org/</Implementation-URL>
+              <Multi-Release>true</Multi-Release>
             </manifestEntries>
           </archive>
           <skipIfEmpty>true</skipIfEmpty>
