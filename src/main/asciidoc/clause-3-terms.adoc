@@ -16,6 +16,10 @@ and perfunctory changes such as changes in version numbers.
 === critical change
 A critical change is a change that alters requirements in a way that is known to cause reverse compatibility issues.
 
+=== Jigsaw
+Jigsaw is the name of the OpenJDK project that provided modularization in Java 9+.
+Module information are written in a new kind of source file: `module-info.java`.
+
 === substantive change
 A substantive change is a change that alters requirements in a way that
 is not deemed to have a high risk for causing reverse compatibility issues.

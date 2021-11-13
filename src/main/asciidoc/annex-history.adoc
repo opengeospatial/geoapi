@@ -2,8 +2,8 @@
 = Revision History
 
 .Revision History
-[width="90%",options="header"]
+[cols="3a,2a,4a,6a,6a",options="header"]
 |====================
-|Date |Release |Editor | Primary clauses modified |Descriptions
-|2012/11/13 |r1 |Martin Desruisseaux |All |First version of corrigendum
+|Date |Release |Editor | Primary clauses modified |Description
+|2021/11/13 |r1 |Martin Desruisseaux |All |Initial draft
 |====================

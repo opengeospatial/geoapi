@@ -3,8 +3,13 @@
 === Scope
 
 The scope of GeoAPI 3.0.1 is to provide Java interfaces derived from ISO 19103, ISO 19115 and ISO 19111 standards.
-The goal of this corrigendum is to make GeoAPI compatible with Jigsaw modules introduced with Java 9.
+The goal of this corrigendum is to make GeoAPI compatible with Jigsaw modules introduced with Java 9 in 2017.
 This goal implies an upgrade of "Units of measurement" dependency from JSR-363 to JSR-385.
+The JSR upgrade itself implies an upgrade of minimal runtime environment from Java 7 to Java 8.
+
+Supports for Jigsaw modularization is added in GeoAPI 3.0.2 using multi-releases JAR files:
+the module information is visible only by Java 9 or later and ignored on Java 8 environments.
+Consequently GeoAPI 3.0.2 is compatible with both Java 8 and Java 9+.
 
 === Document contributor contact points
 

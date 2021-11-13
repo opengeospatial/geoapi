@@ -2,3 +2,6 @@
 == Description of Critical Changes
 
 There are no critical changes in this release.
+Unnamed Java modules using GeoAPI 3.0.1 should be able to use GeoAPI 3.0.2 with no change.
+Named Java modules using GeoAPI 3.0.2 should only need to add a `requires org.opengis.geoapi;`
+statement in their `module-info.java` file.

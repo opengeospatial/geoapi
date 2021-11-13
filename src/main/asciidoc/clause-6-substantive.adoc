@@ -1,19 +1,53 @@
 [[Clause_Substantive]]
 == Description of Substantive Changes
 
-=== Upgrade units API
+
+=== Increment version number
+The new Maven coordinates are as below
+(the change is `3.0.1` which become `3.0.2`):
+
+```xml
+<groupId>org.opengis</groupId>
+<artifactId>geoapi</artifactId>
+<version>3.0.2</version>
+```
+
+
+=== Upgrade Java runtime requirement
+Java 7 as reached its end of life.
+The oldest supported Java version at the time of writing is Java 8,
+which is also the version required by the Units API upgrade.
+Consequently the minimum requirement for using GeoAPI is upgraded from Java 7 to Java 8.
+
+[NOTE]
+======
+The build system requires Java 17, but this is only for building GeoAPI, not for using it.
+Developers who download GeoAPI binary from Maven central repository can safely ignore.
+======
+
+
+=== Upgrade units API dependency
 The JSR-363 dependency (Units of Measurement API) is replaced by JSR-385 (Units of Measurement API 2.0).
 This is a compatible change: JSR-385 adds some new methods but does not modify existing ones.
+The specific change is the replacement of previous Maven coordinates by the coordinates shown below
+in GeoAPI 3.0.2 `pom.xml` file (the previous value was `<version>1.0</version>`):
 
-TODO: list new methods.
+```xml
+<dependency>
+  <groupId>javax.measure</groupId>
+  <artifactId>unit-api</artifactId>
+  <version>2.1.3</version>
+</dependency>
+```
 
-The module name of JSR-385 is `java.measure`.
-JSR-363 had no module name.
+The Jigsaw module name of JSR-385 is `java.measure` (note the absence of "x" letter).
+JSR-363 had no Jigsaw module name.
 
 
-=== Add module-info
-A `module-info` entry has been added in the `geoapi.jar` file.
-Its content is as below:
+<<<
+=== Add module-info.java
+A `module-info.class` file has been added in the `geoapi.jar` file.
+It has been compiled from a `module-info.java` source file with the following content:
 
 ```java
 module org.opengis.geoapi {
@@ -54,8 +88,11 @@ module org.opengis.geoapi {
 }
 ```
 
-A `module-info` entry has been added in the `geoapi-conformance.jar` file.
-Its content is as below:
+<<<
+A `module-info.class` entry has also been added in the `geoapi-conformance.jar` file.
+It has been compiled from a `module-info.java` source file with the following content.
+Note that this is used only for testing GeoAPI implementations;
+end-user applications do not have those dependencies.
 
 ```java
 module org.opengis.geoapi.conformance {
@@ -73,17 +110,15 @@ module org.opengis.geoapi.conformance {
 }
 ```
 
-Both JAR files are packaged as multi-releases JAR files:
-the module information are read only by Java 9 or later
-and ignored by Java 8.
-Consequently GeoAPI stay compatible with Java 8.
+Those module definitions are added in the `META-INF/releases/9/` directory of multi-releases JAR files.
+This directory is ignored by Java 8, making GeoAPI compatible with this older environment.
 
 
 === Remove OSGi
 Before Java 9 release, OSGi was a way to modularize Java applications.
 While OSGi still have more functionalities than Java modules even today,
 none of these functionalities are used by GeoAPI, which makes OSGi fully redundant.
-Furthermore OSGi support were provided in GeoAPI 3.0.1 on a "best effort" basis
+Furthermore OSGi support was provided in GeoAPI 3.0.1 on a "best effort" basis
 but has never been tested at our knowledge.
 
 The change consists in replacing `<packaging>bundle<packaging>` declarations

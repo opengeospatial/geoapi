@@ -3,40 +3,46 @@
 
 === KEY
 
-* Source:
-** Editor - The document editor
+* *Source:*
+** _Editor:_ the document editor.
 
-* Identifier: Issue number and pull request/commit in GitHub
+* *Identifier:* issue number and pull request/commit in GitHub.
+* *Type:*
+** _A_=Administrative
+** _S_=Substantive (see <<Clause_Substantive>> for more information)
+** _C_=Critical (see <<Clause_Critical>> for more information)
 
-* Type:
-** A=Administrative
-** S=Substantive
-** C=Critical
-
-See <<Clause_Critical>> for more information on critical changes and
-<<Clause_Substantive>> for more information on substantive changes.
-
-* Section: Section number in the updated document
-* Description: Brief text describing the change
-* Purpose: the reason for the change:
-** Integration with Java modules
-** Compatibility with latest Java versions
-** Obsolete (not used or not supported anymore)
+* *Section:* section number in the updated document.
+* *Description:* brief text describing the change.
+* *Purpose:* the reason for the change:
+** _Integration_ with Java modules (Jigsaw)
+** _Administration_ (web site, build system)
+** _Obsolete_ (not used or not supported anymore)
+** _Deployment_ on public repositories (Maven Central)
 
 === Change Table
 [[table_change_log]]
 .Change Log
-[cols="1a,3a,1a,3a,3a,2a",options="header"]
+[cols="1a,3a,1a,2a,3a,2a",options="header"]
 |=======================================================
 |Source |Identifier |Type |Section |Description |Purpose
 |Editor
+|(https://github.com/opengeospatial/geoapi/commit/9ff7cfe44a403dda73eb4125ef30c20c90558652[commit])
+|S |Annex B |Set version to 3.0.2 |Deployment
+|Editor
+|(https://github.com/opengeospatial/geoapi/commit/411dc0253a4c584fd51fd3015ddbc355902ee9e7[commit])
+|A | |Java 17 for build |Administration
+|Editor
+|(https://github.com/opengeospatial/geoapi/commit/411dc0253a4c584fd51fd3015ddbc355902ee9e7[same commit])
+|S | |Java 8 for runtime |Integration
+|Editor
 |https://github.com/opengeospatial/geoapi/issues/66[Issue #66]
  (https://github.com/opengeospatial/geoapi/commit/2d899e247986c8111df3f55ba5f132ec041a16be[commit])
-|S |§3, 8.1.6, 8.2, A.2 |Upgrade units API |Integration
+|S |3, 8.1.6, 8.2, A.2 |Upgrade units API |Integration
 |Editor
 |https://github.com/opengeospatial/geoapi/issues/70[Issue #70]
  (https://github.com/opengeospatial/geoapi/commit/77cfbd7f804d6cde6345edc169e33f120f45d5b1[commit])
-|S | |Add module-info |Integration
+|S | |Add module-info.java |Integration
 |Editor
 |https://github.com/opengeospatial/geoapi/issues/71[Issue #71]
  (https://github.com/opengeospatial/geoapi/commit/a0a27f2763cfe6d4bcbe827394dda3adcfae8ff8[commit])
@@ -47,11 +53,5 @@ See <<Clause_Critical>> for more information on critical changes and
 |A | |Remove PACK200 |Obsolete
 |Editor
 |(https://github.com/opengeospatial/geoapi/commit/ca8a54e97bbf4a7687c849ce652b57e2b5170d3a[commit])
-|A | |Remove Maven site |Obsolete
-|Editor
-|(https://github.com/opengeospatial/geoapi/commit/411dc0253a4c584fd51fd3015ddbc355902ee9e7[commit])
-|A | |Build configuration |Compatibility
-|Editor
-|(https://github.com/opengeospatial/geoapi/commit/9ff7cfe44a403dda73eb4125ef30c20c90558652[commit])
-|A |§B |Set version to 3.0.2 |
+|A | |Remove Maven site |Administration
 |=======================================================
