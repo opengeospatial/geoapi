@@ -1,0 +1,18 @@
+== Introduction
+
+=== Scope
+
+The scope of GeoAPI 3.0.1 is to provide Java interfaces derived from ISO 19103, ISO 19115 and ISO 19111 standards.
+The goal of this corrigendum is to make GeoAPI compatible with Jigsaw modules introduced with Java 9.
+This goal implies an upgrade of "Units of measurement" dependency from JSR-363 to JSR-385.
+
+=== Document contributor contact points
+
+All questions regarding this document should be directed to the contacts provided below or the referenced Standard editor(s).
+
+.Contacts
+[width="80%",options="header"]
+|=================================
+|Name                |Organization
+|Martin Desruisseaux | Geomatys
+|=================================

@@ -1,0 +1,10 @@
+[[Clause_FutureWork]]
+== Future Work
+
+All Java interfaces in GeoAPI 3.0.2 are identical to GeoAPI 3.0.1,
+with only the addition of `module-info` and the upgrade of JSR dependency.
+Future GeoAPI versions (3.1 and 4.0) will contain upgrade to latest revisions
+of ISO 19103, ISO 19115, ISO 19111 standards,
+together with the addition of interfaces for ISO 19109 and 19143 standards.
+Addition of Python abstract classes are also explored.
+Progress are reported on the https://github.com/opengeospatial/geoapi/projects[projects page on GitHub].

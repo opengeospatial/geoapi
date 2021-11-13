@@ -1,0 +1,9 @@
+[[references]]
+== References
+
+The following normative documents are new or updated references in the Standard to which these Release Notes apply.
+
+* Java Community Process: JSR 385 — Units of Measurement API 2.0. https://jcp.org/en/jsr/detail?id=385
+
+Above reference replaces JSR 363 — Units of Measurement API.
+This is a compatible upgrade with only a few additions to the units API.

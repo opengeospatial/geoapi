@@ -1,0 +1,91 @@
+[[Clause_Substantive]]
+== Description of Substantive Changes
+
+=== Upgrade units API
+The JSR-363 dependency (Units of Measurement API) is replaced by JSR-385 (Units of Measurement API 2.0).
+This is a compatible change: JSR-385 adds some new methods but does not modify existing ones.
+
+TODO: list new methods.
+
+The module name of JSR-385 is `java.measure`.
+JSR-363 had no module name.
+
+
+=== Add module-info
+A `module-info` entry has been added in the `geoapi.jar` file.
+Its content is as below:
+
+```java
+module org.opengis.geoapi {
+    requires transitive java.measure;
+    /*
+     * The only java.desktop dependency is the java.awt.geom.Point2D class used in
+     * org.opengis.referencing.operation.MathTransform2D.  Since that interface is
+     * not directly referenced anywhere, it can easily be ignored by implementers.
+     */
+    requires transitive static java.desktop;
+
+    exports org.opengis.annotation;
+    exports org.opengis.util;
+    exports org.opengis.metadata;
+    exports org.opengis.metadata.acquisition;
+    exports org.opengis.metadata.citation;
+    exports org.opengis.metadata.constraint;
+    exports org.opengis.metadata.content;
+    exports org.opengis.metadata.distribution;
+    exports org.opengis.metadata.extent;
+    exports org.opengis.metadata.identification;
+    exports org.opengis.metadata.lineage;
+    exports org.opengis.metadata.maintenance;
+    exports org.opengis.metadata.quality;
+    exports org.opengis.metadata.spatial;
+    exports org.opengis.parameter;
+    exports org.opengis.referencing;
+    exports org.opengis.referencing.datum;
+    exports org.opengis.referencing.cs;
+    exports org.opengis.referencing.crs;
+    exports org.opengis.referencing.operation;
+    exports org.opengis.geometry;
+    exports org.opengis.geometry.coordinate;
+    exports org.opengis.feature.type;
+
+    exports org.opengis.temporal;
+    exports org.opengis.geometry.primitive;
+}
+```
+
+A `module-info` entry has been added in the `geoapi-conformance.jar` file.
+Its content is as below:
+
+```java
+module org.opengis.geoapi.conformance {
+    requires java.prefs;
+    requires java.logging;
+    requires transitive java.measure;
+    requires transitive org.opengis.geoapi;
+    requires junit;
+
+    exports org.opengis.test;
+    exports org.opengis.test.util;
+    exports org.opengis.test.metadata;
+    exports org.opengis.test.referencing;
+    exports org.opengis.test.geometry;
+}
+```
+
+Both JAR files are packaged as multi-releases JAR files:
+the module information are read only by Java 9 or later
+and ignored by Java 8.
+Consequently GeoAPI stay compatible with Java 8.
+
+
+=== Remove OSGi
+Before Java 9 release, OSGi was a way to modularize Java applications.
+While OSGi still have more functionalities than Java modules even today,
+none of these functionalities are used by GeoAPI, which makes OSGi fully redundant.
+Furthermore OSGi support were provided in GeoAPI 3.0.1 on a "best effort" basis
+but has never been tested at our knowledge.
+
+The change consists in replacing `<packaging>bundle<packaging>` declarations
+in Maven `pom.xml` files by `<packaging>jar<packaging>`, which is the default value.
+It has no impact on developers who does not use OSGi.

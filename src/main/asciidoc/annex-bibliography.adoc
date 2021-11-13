@@ -1,0 +1,5 @@
+[appendix]
+[[Bibliography]]
+= Bibliography
+
+* Reinhold, Mark: Project Jigsaw: Complete!, https://mreinhold.org/blog/jigsaw-complete (2017)
