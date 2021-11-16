@@ -7,3 +7,6 @@ a shell with this directory as the current directory:
 ```
 asciidoctor-pdf --safe -o corrigendum.pdf rn.adoc
 ```
+
+The status of this corrigendum is shown on the
+[project page](https://github.com/opengeospatial/geoapi/projects/1).
