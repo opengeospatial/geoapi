@@ -140,8 +140,8 @@ final class FilterExpressions<R> extends AbstractList<Expression<? super R, ?>> 
          */
         @Override
         @SuppressWarnings("unchecked")
-        public <N> Expression<R,N> toValueType(final Class<N> type) {
-            if (type.isAssignableFrom(Boolean.class)) return (Expression<R,N>) this;
+        public <N> Expression<R,N> toValueType(final Class<N> target) {
+            if (target.isAssignableFrom(Boolean.class)) return (Expression<R,N>) this;
             else throw new ClassCastException();
         }
 

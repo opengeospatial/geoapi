@@ -132,10 +132,10 @@ public interface Expression<R,V> extends Function<R,V> {
      * In this paragraph, "convertible" does not necessarily mean that implementations must be able to copy values
      * into objects of specified type. It is okay to apply only {@linkplain Class#cast(Object) standard Java casts}.
      *
-     * @param  <N>   compile-time value of {@code type}.
-     * @param  type  desired type of expression results.
+     * @param  <N>     compile-time value of {@code target} type.
+     * @param  target  desired type of expression results.
      * @return expression doing the same operation this this expression but with results of the specified type.
      * @throws ClassCastException if the specified type is not a target type supported by implementation.
      */
-    <N> Expression<R,N> toValueType(Class<N> type);
+    <N> Expression<R,N> toValueType(Class<N> target);
 }
