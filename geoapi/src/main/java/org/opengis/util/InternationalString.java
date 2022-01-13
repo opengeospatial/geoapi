@@ -65,6 +65,9 @@ public interface InternationalString extends CharSequence, Comparable<Internatio
      * then some fallback locale is used. The fallback locale is implementation-dependent, and
      * is not necessarily the same than the default locale used by the {@link #toString()} method.
      *
+     * <p>If the application is running on a server, the {@code locale} argument should be
+     * determined from the HTTP request headers instead of the platform default locale.</p>
+     *
      * @param  locale  the desired locale for the string to be returned.
      * @return the string in the given locale if available, or in an
      *         implementation-dependent fallback locale otherwise.
