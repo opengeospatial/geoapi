@@ -37,12 +37,14 @@ import org.opengis.parameter.ParameterValueGroup;  // For javadoc
 
 /**
  * Thrown when an identifier provided to a factory method can not be found.
- * The identifier is often provided by {@link Identifier#getCode()}.
+ * The identifier may be provided by {@link org.opengis.referencing.IdentifiedObject#getName()}.
+ * In the common case where the identifier is an "authority:code" pair,
+ * the {@link org.opengis.referencing.NoSuchAuthorityCodeException} specialization should be used.
  *
  * <p><b>Example:</b> This exception is thrown when a
  * {@linkplain org.opengis.referencing.operation.MathTransform math transform} has been requested
  * with an unknown {@linkplain org.opengis.referencing.operation.OperationMethod operation method}
- * identifier.</p>
+ * name.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

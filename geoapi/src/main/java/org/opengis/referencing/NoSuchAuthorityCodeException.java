@@ -35,8 +35,9 @@ import org.opengis.util.NoSuchIdentifierException;
 
 
 /**
- * Thrown when an {@linkplain AuthorityFactory authority factory} can not find
- * the requested authority code.
+ * Thrown when an {@linkplain AuthorityFactory authority factory} can not find the requested authority code.
+ * This is a specialization of {@link NoSuchIdentifierException} with the identifier separated in its authority
+ * and code components.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -54,11 +55,15 @@ public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
 
     /**
      * The authority.
+     *
+     * @see #getAuthority()
      */
     private final String authority;
 
     /**
      * The invalid authority code.
+     *
+     * @see #getAuthorityCode()
      */
     private final String code;
 

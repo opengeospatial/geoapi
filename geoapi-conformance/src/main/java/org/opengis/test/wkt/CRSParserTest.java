@@ -1057,7 +1057,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      *    DATUM[“WGS 84”,
      *      ELLIPSOID[“WGS 84”,6378137,298.2572236,LENGTHUNIT[“metre”,1.0]]]],
      *  DERIVINGCONVERSION[“Atlantic pole”,
-     *    METHOD[“Pole rotation”,ID[“Authority”,1234]],
+     *    METHOD[“North pole rotation”,ID[“Authority”,1234]],
      *    PARAMETER[“Latitude of rotated pole”,52.0,
      *      ANGLEUNIT[“degree”,0.0174532925199433]],
      *    PARAMETER[“Longitude of rotated pole”,-30.0,
@@ -1081,7 +1081,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
                 "    DATUM[“WGS 84”,\n" +
                 "      ELLIPSOID[“WGS 84”, 6378137, 298.2572236, LENGTHUNIT[“metre”,1.0]]]],\n" +
                 "  DERIVINGCONVERSION[“Atlantic pole”,\n" +
-                "    METHOD[“Pole rotation”,ID[“Authority”,1234]],\n" +
+                "    METHOD[“North pole rotation”,ID[“Authority”,1234]],\n" +
                 "    PARAMETER[“Latitude of rotated pole”,52.0,\n" +
                 "      ANGLEUNIT[“degree”,0.0174532925199433]],\n" +
                 "    PARAMETER[“Longitude of rotated pole”,-30.0,\n" +

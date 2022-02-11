@@ -149,20 +149,20 @@ public interface ParameterValueGroup extends GeneralParameterValue {
 
     /**
      * Returns all subgroups with the specified name.
+     * Groups are listed in the order they were added by calls to {@link #addGroup(String)}.
      *
-     * <p>This method do not create new groups: if the requested group is optional (i.e.
+     * <p>This method does not create new groups: if the requested group is optional (i.e.
      * <code>{@linkplain ParameterDescriptor#getMinimumOccurs() minimumOccurs} == 0</code>)
      * and no value were defined previously, then this method returns an empty list.</p>
      *
      * @param  name  the case insensitive {@linkplain Identifier#getCode() identifier code}
      *               of the parameter group to search for.
-     * @return the set of all parameter group for the given identifier code.
+     * @return the list of all parameter group for the given identifier code, in insertion order.
      * @throws ParameterNotFoundException if no {@linkplain ParameterDescriptorGroup descriptor}
      *         was found for the given name.
      *
      * @departure easeOfUse
-     *   This method is not part of the ISO specification. It has been added in an attempt to make
-     *   this interface easier to use.
+     *   This method is not part of the ISO specification. It has been added for ease of use.
      */
     List<ParameterValueGroup> groups(String name) throws ParameterNotFoundException;
 
@@ -171,9 +171,9 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * The specified name shall be the {@linkplain Identifier#getCode() identifier code} of
      * a {@linkplain ParameterDescriptorGroup descriptor group} which is a child of this group.
      *
-     * <p>There is no {@code removeGroup(String)} method. To remove a group, users shall inspect the
-     * {@link #values()} list, decide which occurrences to remove if there is many of them for the
-     * same name, and whether to iterate recursively into sub-groups or not.</p>
+     * <p>There is no {@code removeGroup(String)} method. To remove a group, users can inspect
+     * the {@link #groups(String)} or {@link #values()} list, decide which occurrences to remove
+     * if there is many of them for the same name, and whether to iterate recursively into sub-groups or not.</p>
      *
      * @param  name  the case insensitive {@linkplain Identifier#getCode() identifier code} of the
      *               parameter group to create.
@@ -186,8 +186,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @throws IllegalStateException if the group can not be added for an other reason.
      *
      * @departure easeOfUse
-     *   This method is not part of the ISO specification. It has been added in an attempt to make
-     *   this interface easier to use.
+     *   This method is not part of the ISO specification. It has been added for ease of use.
      */
     ParameterValueGroup addGroup(String name) throws ParameterNotFoundException,
             InvalidParameterCardinalityException, IllegalStateException;
