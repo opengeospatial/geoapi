@@ -70,7 +70,7 @@ public strictfp abstract class TestCase {
     private static final Factory[] NO_FACTORY = new Factory[0];
 
     /**
-     * The factories specified explicitely by the implementers, or the {@link ServiceLoader}
+     * The factories specified explicitly by the implementers, or the {@link ServiceLoader}
      * to use for loading those factories.
      *
      * <p>Accesses to this field must be synchronized on itself.</p>
@@ -212,9 +212,8 @@ public strictfp abstract class TestCase {
         }
 
         /**
-         * Invoked when a test fails. If the failure occurred in an optional part of
-         * the set, logs an information message for helping the developer to disable
-         * that test if he wish.
+         * Invoked when a test fails. If the failure occurred in an optional part of the test,
+         * logs an information message for helping the developer to disable that test if (s)he wishes.
          */
         @Override
         protected void failed(final Throwable exception, final Description description) {
@@ -261,7 +260,7 @@ public strictfp abstract class TestCase {
      * {@link javax.measure.Unit} instances compatible with the units created by the {@link Factory}
      * instances to be tested. Those {@code Unit<?>} instances depend on the Unit of Measurement (JSR-373)
      * implementation used by the factories.
-     * If no units were {@linkplain org.opengis.test.Configuration.Key#units explicitely specified},
+     * If no units were {@linkplain org.opengis.test.Configuration.Key#units explicitly specified},
      * then the {@linkplain Units#getDefault() default units} are used.
      *
      * @since 3.1
@@ -270,7 +269,7 @@ public strictfp abstract class TestCase {
 
     /**
      * The set of {@link Validator} instances to use for verifying objects conformance (never {@code null}).
-     * If no validators were {@linkplain org.opengis.test.Configuration.Key#validators explicitely specified},
+     * If no validators were {@linkplain org.opengis.test.Configuration.Key#validators explicitly specified},
      * then the {@linkplain Validators#DEFAULT default validators} are used.
      *
      * @since 3.1
@@ -377,8 +376,8 @@ public strictfp abstract class TestCase {
      *{A1, B2}
      *{A2, B2}</pre></blockquote>
      *
-     * The current implementation first checks the factories explicitely specified by calls to the
-     * {@link TestSuite#setFactories(Class, Factory[])} method. In no factories were explicitely
+     * The current implementation first checks the factories explicitly specified by calls to the
+     * {@link TestSuite#setFactories(Class, Factory[])} method. In no factories were explicitly
      * specified, then this method searches the classpath using {@link ServiceLoader}.
      *
      * @param  types  the kind of factories to fetch.

@@ -179,7 +179,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @param  codeType   the type of code list.
      * @param  filter     the criterion for the code to obtain.
      * @param  nameIfNew  the name to use if a new code list needs to be created,
-     *                     or {@code null} for not creating any new code list.
+     *                    or {@code null} for not creating any new code list.
      * @return a code matching the given criterion, or {@code null} if none and {@code nameIfNew} is null.
      *
      * @since 3.1

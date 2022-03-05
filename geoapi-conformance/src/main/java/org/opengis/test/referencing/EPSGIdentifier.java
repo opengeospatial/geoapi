@@ -59,6 +59,8 @@ final strictfp class EPSGIdentifier implements Identifier {
 
     /**
      * Returns the code given at construction time.
+     *
+     * @return string representation of the code given at construction time.
      */
     @Override
     public String getCode() {
@@ -67,6 +69,8 @@ final strictfp class EPSGIdentifier implements Identifier {
 
     /**
      * Returns the code space, which is fixed to {@code "EPSG"}.
+     *
+     * @return {@code "EPSG"}.
      */
     @Override
     public String getCodeSpace() {
