@@ -70,7 +70,7 @@ import org.opengis.referencing.operation.MathTransform;
  * </ul>
  *
  * This {@code TestSuite} class provides also some static methods for {@linkplain #setFactories specifying
- * explicitely which factories to use} or {@linkplain #addTestListener being notified of test results}.
+ * explicitly which factories to use} or {@linkplain #addTestListener being notified of test results}.
  * Those methods take effect even if the {@link TestCase} are run outside of a {@code TestSuite} context.
  *
  * <h2>How implementations are discovered</h2>
@@ -185,7 +185,7 @@ public strictfp class TestSuite {
     }
 
     /**
-     * Returns the factory implementations explicitely given by the last call to
+     * Returns the factory implementations explicitly given by the last call to
      * {@link #setFactories(Class, Factory[])} for the given interface.
      * This method does not scan the {@code META-INF/services/<T>} entries.
      *

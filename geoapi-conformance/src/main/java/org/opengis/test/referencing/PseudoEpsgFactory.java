@@ -186,13 +186,14 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * Creates the exception to be thrown when the given code has not been recognized.
      *
-     * @param  code  the code which has been requested.
+     * @param  code   the code as a numerical value.
+     * @param  given  the code as given by the user.
      * @return the exception to throw.
      */
-    private static NoSuchAuthorityCodeException noSuchAuthorityCode(final int id, final String code) {
-        final String idAsText = String.valueOf(id);
-        return new NoSuchAuthorityCodeException("No case implemented for EPSG:" + idAsText,
-                "EPSG", idAsText, code);
+    private static NoSuchAuthorityCodeException noSuchAuthorityCode(final int code, final String given) {
+        final String codeAsText = String.valueOf(code);
+        return new NoSuchAuthorityCodeException("No case implemented for EPSG:" + codeAsText,
+                "EPSG", codeAsText, given);
     }
 
     /**
@@ -1033,6 +1034,11 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * Implementation of the above {@link #createParameters(int)} method,
      * as a static method for direct access by {@link ParameterizedTransformTest}.
+     *
+     * @param  factory  the factory to use for creating the parameters.
+     * @param  code     authority code of the parameter to create.
+     * @return parameter for the given authority code.
+     * @throws FactoryException if the given EPSG code is unknown to this factory.
      */
     static ParameterValueGroup createParameters(final MathTransformFactory factory, final int code)
             throws FactoryException
@@ -1109,7 +1115,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 /*
                  * Values used below are those published in IOGP Publication 373-7-2 §3.2.2 — September 2019.
                  * They differ from values in EPSG geodetic dataset 9.8.11 in following aspects: geodetic dataset
-                 * uses Clarke's foot units instead than foot and link units, with same values for ellipsoid axis
+                 * uses Clarke's foot units instead of foot and link units, with same values for ellipsoid axis
                  * lengths (before conversion) but different values for false easting and northing parameters.
                  * The differences in easting/northing parameters is up to 0.8 metre. We keep the values published
                  * in IOGP 373-7-2 because the sample point tested in map projection is computed with those values.

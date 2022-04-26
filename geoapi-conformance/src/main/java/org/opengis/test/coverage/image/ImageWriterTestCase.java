@@ -105,7 +105,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     /**
      * The reader to use for verifying the writer output. By default, this field is {@code null}
      * until a reader is first needed, in which case the field is assigned to a reader instance
-     * created by {@link ImageIO#getImageReader(ImageWriter)}. Subclasses can set explicitely a
+     * created by {@link ImageIO#getImageReader(ImageWriter)}. Subclasses can set explicitly a
      * value to this field if they need the tests to use an other reader instead.
      *
      * <p>{@code ImageWriterTestCase} will use only the {@link ImageReader#read(int)} method.
@@ -139,7 +139,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      *
      * <p>If the {@code optionallySetOutput} argument is {@code true}, then subclasses can optionally
      * {@linkplain ImageWriter#setOutput(Object) set the output} to a temporary file or other object
-     * suitable to the writer. This operation is optional: if no output has been explicitely set,
+     * suitable to the writer. This operation is optional: if no output has been explicitly set,
      * {@code ImageWriterTestCase} will automatically set the output to an in-memory stream or to
      * a temporary file.</p>
      *

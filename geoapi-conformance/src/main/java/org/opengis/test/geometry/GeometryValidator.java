@@ -175,9 +175,9 @@ public class GeometryValidator extends Validator {
                 } else if (RangeMeaning.EXACT.equals(meaning)) {
                     // assertBetween(…) tolerates NaN values, which is what we want.
                     assertValidRange("Envelope: invalid minimum or maximum.", minimum, maximum);
-                    assertBetween   ("Envelope: invalid lower coordinate.",     minimum, maximum, lower);
-                    assertBetween   ("Envelope: invalid upper coordinate.",     minimum, maximum, upper);
-                    assertBetween   ("Envelope: invalid median coordinate.",    minimum, maximum, median);
+                    assertBetween   ("Envelope: invalid lower coordinate.",   minimum, maximum, lower);
+                    assertBetween   ("Envelope: invalid upper coordinate.",   minimum, maximum, upper);
+                    assertBetween   ("Envelope: invalid median coordinate.",  minimum, maximum, median);
                 }
             }
             if (meaning != null && (lower > upper || isPositiveToNegativeZero(lower, upper))) {

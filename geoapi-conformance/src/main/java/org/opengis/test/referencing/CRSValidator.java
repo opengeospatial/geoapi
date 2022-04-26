@@ -88,7 +88,7 @@ public class CRSValidator extends ReferencingValidator {
      * standard. For example the ISO 19111 standard constraints the {@link GeographicCRS} axis names
      * to <cite>"geodetic latitude"</cite>, <cite>"geodetic longitude"</cite> and <cite>"ellipsoidal
      * height"</cite> (if 3D) names. Those axis names will be verified by this validator, unless
-     * this fields is explicitely set to {@code false}.
+     * this fields is explicitly set to {@code false}.
      *
      * @see #validate(GeocentricCRS)
      * @see #validate(GeographicCRS)

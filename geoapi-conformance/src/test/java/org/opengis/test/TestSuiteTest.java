@@ -52,7 +52,7 @@ import static org.junit.Assert.*;
  */
 public strictfp class TestSuiteTest {
     /**
-     * Before to run any test, ensures that their is no factories explicitely
+     * Before to run any test, ensures that their is no factories explicitly
      * registered in the {@link TestSuite}.
      */
     @Before
