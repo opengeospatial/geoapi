@@ -38,8 +38,6 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Modifier;
 import java.util.function.Predicate;
-import java.security.AccessController;
-import java.security.PrivilegedAction;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
@@ -222,7 +220,8 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
     }
 
     /**
-     * Returns the code of the given type that matches the given criterion, or potentially a new code if there is no match.
+     * Returns the code of the given type that matches the given criterion,
+     * or optionally creates a new code if there is no match.
      * More specifically, this methods returns the first element (in declaration order) of the given
      * class where <code>filter.{@linkplain Predicate#test test}(code)</code> returns {@code true}.
      * If no such element is found, then there is a choice:
@@ -277,7 +276,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
         /*
          * At this point we got the list of all code list values. Now search for a value matching
          * the filter specified to this method. The search and, eventually, the code creation are
-         * done in the same synchronized block for making sure that the came code is nit created
+         * done in the same synchronized block for making sure that the same code is not created
          * twice concurrently.
          */
         synchronized (values) {
@@ -290,31 +289,13 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                 return null;
             }
             /*
-             * No value value found, but the caller allows us to create a new value. We need access to the constructor,
-             * which may not be public. But requesting access to private constructor is a security-sensitive operation.
-             * As a conservative approach, we will request for a privileged action only for code lists in "org.opengis"
-             * packages. Note that it still possible for users to instantiate code lists from other packages, but they
-             * will need to configure their security file for granting access from their own application in addition
-             * to GeoAPI. The "doPriviliged" block is for allowing users to grant access to GeoAPI only if they wish.
-             *
-             * TODO: the check for package name may still not sufficient on a security point of view.
-             *       We should also check if the package is sealed, and maybe check if it is signed by OGC.
-             *       Revisit with JDK9 modularization.
+             * No value value found, but the caller allows us to create a new value.
+             * We need access to the constructor, which may not be public.
              */
             try {
                 final Constructor<T> constructor = codeType.getDeclaredConstructor(CONSTRUCTOR_PARAMETERS);
                 if (!Modifier.isPublic(constructor.getModifiers())) {
-                    final Package pkg = codeType.getPackage();
-                    if (pkg != null && pkg.getName().startsWith("org.opengis.")) {
-                        AccessController.doPrivileged(new PrivilegedAction<Void>() {
-                            @Override public Void run() {
-                               constructor.setAccessible(true);
-                               return null;
-                            }
-                        });
-                    } else {
-                        constructor.setAccessible(true);
-                    }
+                    constructor.setAccessible(true);
                 }
                 return constructor.newInstance(nameIfNew);
             } catch (ReflectiveOperationException exception) {
