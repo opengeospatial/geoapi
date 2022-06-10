@@ -600,7 +600,7 @@
     <module>geoapi-pending</module>
     <module>geoapi-conformance</module>
     <module>geoapi-examples</module>
-    <module>geoapi-java-python</module>
+    <!-- module>geoapi-java-python</module -->
     <module>tools</module>
   </modules>
 </project>
