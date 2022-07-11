@@ -159,6 +159,8 @@ public interface CoordinateOperation extends IdentifiedObject {
      * Area or region or timeframe in which this coordinate operation is valid.
      *
      * @return the coordinate operation valid domain, or {@code null} if not available.
+     *
+     * @see CoordinateReferenceSystem#getDomainOfValidity()
      */
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
     default Extent getDomainOfValidity() {

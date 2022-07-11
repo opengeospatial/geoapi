@@ -82,9 +82,9 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CT_MathTransform", specification=OGC_01009)
 public interface MathTransform {
     /**
-     * Gets the dimension of input points.
+     * Returns the number of dimensions of input points.
      *
-     * @return the dimension of input points.
+     * @return the number of dimensions of input points.
      *
      * @see OperationMethod#getSourceDimensions()
      */
@@ -92,9 +92,9 @@ public interface MathTransform {
     int getSourceDimensions();
 
     /**
-     * Gets the dimension of output points.
+     * Returns the number of dimensions of output points.
      *
-     * @return the dimension of output points.
+     * @return the number of dimensions of output points.
      *
      * @see OperationMethod#getTargetDimensions()
      */
