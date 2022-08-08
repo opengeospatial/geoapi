@@ -1733,18 +1733,61 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         createMathTransform(Transformation.class, sample);
         setTolerance(ToleranceModifier.GEOGRAPHIC);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
-        final Rectangle2D areaOfValidity = sample.areaOfValidity;
-        verifyInDomain(new double[] {
-            areaOfValidity.getMinX(),
-            areaOfValidity.getMinY(),
-            -1000
-        }, new double[] {
-            areaOfValidity.getMaxX(),
-            areaOfValidity.getMaxY(),
-            +1000
-        }, new int[] {
-            10, 10, 10
-        }, new Random());
+        verifyInDomain3D(sample.areaOfValidity, -1000, +1000);
+    }
+
+    /**
+     * Tests the <cite>"Geocentric/topocentric conversions"</cite> (EPSG:9836).
+     * This method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>Conversion characteristics</caption>
+     *     <tr><th>Parameter</th>                          <th>Value</th></tr>
+     *     <tr><td>semi_major</td>                         <td>6378137.0 m</td></tr>
+     *     <tr><td>semi_minor</td>                         <td>6356752.314245179 m</td></tr>
+     *     <tr><td>Geocentric X of topocentric origin</td> <td>3652755.3058 m</td></tr>
+     *     <tr><td>Geocentric Y of topocentric origin</td> <td> 319574.6799 m</td></tr>
+     *     <tr><td>Geocentric Z of topocentric origin</td> <td>5201547.3536 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source coordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>3771793.968 m<br> 140253.342 m<br>5124304.349 m</td>
+     *       <td>–189013.869 m<br>–128642.040 m<br>  –4220.171 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>3652755.3058 m<br>319574.6799 m<br>5201547.3536 m</td>
+     *       <td>0 m<br>0 m<br>0 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
+     *
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
+     */
+    @Test
+    public void testGeocentricTopocentric() throws FactoryException, TransformException {
+        description = "EPSG topocentric example B";
+        final SamplePoints sample = SamplePoints.forCRS(5820);
+        createMathTransform(Transformation.class, sample);
+        setTolerance(null);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomain3D(sample.areaOfValidity, -100, +100);
+    }
+
+    /**
+     * Executes {@link #verifyInDomain(double[], double[], int[], Random)} using a three-dimensional domain.
+     */
+    private void verifyInDomain3D(final Rectangle2D areaOfValidity, final double zmin, final double zmax) throws TransformException {
+        verifyInDomain(new double[] {areaOfValidity.getMinX(), areaOfValidity.getMinY(), zmin},
+                       new double[] {areaOfValidity.getMaxX(), areaOfValidity.getMaxY(), zmax},
+                       new int[] {10, 10, 10}, new Random());
     }
 
     /**

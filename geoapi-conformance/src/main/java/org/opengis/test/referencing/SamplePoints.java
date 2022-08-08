@@ -355,10 +355,10 @@ final class SamplePoints {
                 targetPoints = new double[] {e, n};
                 break;
             }
-            //
-            // END OF PROJECTION CODES - now testing datum shifts
-            //
-            case 4230: {  // "ED50" (a GeographicCRS for testing Abridged Molodensky)
+            // ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+            // END OF PROJECTION CODES - now testing datum shifts or other operations.
+            // ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+            case 4230: {                            // "ED50" (a GeographicCRS for testing Abridged Molodensky)
                 operation = 9605;
                 λ0 = φ0 = λ = φ = Double.NaN;
                 fe = fn = e = n = Double.NaN;
@@ -374,6 +374,16 @@ final class SamplePoints {
                 };
                 λmin = -180; φmin = -80;
                 λmax = +180; φmax = +80;
+                break;
+            }
+            case 5820: {                            // "EPSG topocentric example B"
+                operation = 15595;
+                λ0 = φ0 = λ = φ = Double.NaN;
+                fe = fn = e = n = Double.NaN;
+                sourcePoints = new double[] {3771793.968,  140253.342, 5124304.349};
+                targetPoints = new double[] {-189013.869, -128642.040,   -4220.171};
+                λmin = φmin = -100;     // Actually X,Y (not latitude/longitude).
+                λmax = φmax = +100;
                 break;
             }
             default: throw new IllegalArgumentException("No sample points for EPSG:" + crs);
