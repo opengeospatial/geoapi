@@ -1737,11 +1737,58 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
+     * Tests the <cite>"Geographic/topocentric conversions"</cite> (EPSG:9837).
+     * This method transforms the point given in the <cite>Example</cite> section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     *
+     * <p>A CRS using this method is "EPSG topocentric example A" (EPSG:5819)".
+     * The math transform parameters and the sample coordinates are:</p>
+     *
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>Conversion characteristics</caption>
+     *     <tr><th>Parameter</th>                                <th>Value</th></tr>
+     *     <tr><td>semi_major</td>                               <td>6378137.0 m</td></tr>
+     *     <tr><td>semi_minor</td>                               <td>6356752.314245179 m</td></tr>
+     *     <tr><td>Latitude of topocentric origin</td>           <td>55°00'00.000"N</td></tr>
+     *     <tr><td>Longitude of topocentric origin</td>          <td>5°00'00.000"E</td></tr>
+     *     <tr><td>Ellipsoidal height of topocentric origin</td> <td>200 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source coordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>2°07'46.38"E<br>53°48'33.82"N<br>73.0 m</td>
+     *       <td>–189013.869 m<br>–128642.040 m<br>–4220.171 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>5°00'00.000"E<br>55°00'00.000"N<br>200 m</td>
+     *       <td>0 m<br>0 m<br>0 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
+     *
+     * @throws FactoryException if the math transform can not be created.
+     * @throws TransformException if the example point can not be transformed.
+     */
+    @Test
+    public void testGeographicTopocentric() throws FactoryException, TransformException {
+        description = "EPSG topocentric example A";
+        final SamplePoints sample = SamplePoints.forCRS(5819);
+        createMathTransform(Transformation.class, sample);
+        setTolerance(null);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomain3D(sample.areaOfValidity, -100, +100);
+    }
+
+    /**
      * Tests the <cite>"Geocentric/topocentric conversions"</cite> (EPSG:9836).
      * This method transforms the point given in the <cite>Example</cite> section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      *
-     * <p>The math transform parameters and the sample coordinates are:</p>
+     * <p>A CRS using this method is "EPSG topocentric example B" (EPSG:5820)".
+     * The math transform parameters and the sample coordinates are:</p>
      *
      * <div class="horizontal-flow">
      *   <table class="ogc">
@@ -1778,7 +1825,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         createMathTransform(Transformation.class, sample);
         setTolerance(null);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
-        verifyInDomain3D(sample.areaOfValidity, -100, +100);
+        verifyInDomain3D(sample.areaOfValidity, 5000000, 5200000);
     }
 
     /**

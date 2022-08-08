@@ -1293,7 +1293,16 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("Flattening difference").setValue(1.41927E-05);
                 break;
             }
-            case 15595: {
+            case 15594: {       // EPSG topocentric example A
+                parameters = factory.getDefaultParameters("Geographic/topocentric conversions");
+                parameters.parameter("semi_major").setValue(6378137.0);                               // WGS84
+                parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
+                parameters.parameter("Latitude of topocentric origin").setValue(55);
+                parameters.parameter("Longitude of topocentric origin").setValue(5);
+                parameters.parameter("Ellipsoidal height of topocentric origin").setValue(200);
+                break;
+            }
+            case 15595: {       // EPSG topocentric example B
                 parameters = factory.getDefaultParameters("Geocentric/topocentric conversions");
                 parameters.parameter("semi_major").setValue(6378137.0);                               // WGS84
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));

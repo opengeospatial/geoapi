@@ -376,14 +376,28 @@ final class SamplePoints {
                 λmax = +180; φmax = +80;
                 break;
             }
+            case 5819: {                            // "EPSG topocentric example A"
+                operation = 15594;
+                λ0 = φ0 = λ = φ = Double.NaN;
+                fe = fn = e = n = Double.NaN;
+                sourcePoints = new double[] {
+                     2 + ( 7 + 46.38/60)/60,        // Longitude
+                    53 + (48 + 33.82/60)/60,        // Latitude
+                    73.0                            // Height (m)
+                };
+                targetPoints = new double[] {-189013.869, -128642.040, -4220.171};
+                λmin = 1; φmin = 50;
+                λmax = 4; φmax = 60;
+                break;
+            }
             case 5820: {                            // "EPSG topocentric example B"
                 operation = 15595;
                 λ0 = φ0 = λ = φ = Double.NaN;
                 fe = fn = e = n = Double.NaN;
                 sourcePoints = new double[] {3771793.968,  140253.342, 5124304.349};
                 targetPoints = new double[] {-189013.869, -128642.040,   -4220.171};
-                λmin = φmin = -100;     // Actually X,Y (not latitude/longitude).
-                λmax = φmax = +100;
+                λmin = 3700000; φmin = 120000;      // Actually X,Y (not latitude/longitude).
+                λmax = 3900000; φmax = 160000;
                 break;
             }
             default: throw new IllegalArgumentException("No sample points for EPSG:" + crs);
