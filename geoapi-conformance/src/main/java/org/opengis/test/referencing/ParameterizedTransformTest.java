@@ -187,12 +187,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
 
     /**
      * The parameters of the math transform being tested. This field is set, together with the
-     * {@link #transform transform} field, after the execution of every {@code testFoo()} method
+     * {@link #transform transform} field, during the execution of every {@code testFoo()} method
      * in this class.
      *
-     * <p>If this field is non-null before a test is run, then those parameters will be used
-     * directly. This allow implementers to alter the parameters before to run the test one
-     * more time.</p>
+     * <p>If this field is non-null before a test is run, then those parameters will be used directly.
+     * This allow implementers to alter the parameters before to run the test one more time.</p>
      */
     protected ParameterValueGroup parameters;
 
@@ -308,23 +307,6 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * The set of allowed codes is documented in second column of the
      * {@link PseudoEpsgFactory#createParameters(int)} method.
      *
-     * <p>This method shall also set the {@linkplain TransformTestCase#tolerance tolerance} threshold
-     * in units of the target CRS (typically <var>metres</var> for map projections), and the
-     * {@linkplain #derivativeDeltas derivative deltas} in units of the source CRS (typically
-     * <var>degrees</var> for map projections). The current implementation sets the following values:</p>
-     *
-     * <ul>
-     *   <li><p>{@link #tolerance} is sets to {@link #TRANSFORM_TOLERANCE}, unless a greater
-     *       tolerance threshold is already set in which case the existing value is left
-     *       unchanged.</p></li>
-     *   <li><p>{@link #derivativeDeltas} is set to a value in degrees corresponding to
-     *       approximately 1 metre on Earth (calculated using the standard nautical mile length).
-     *       A finer value can lead to more accurate derivative approximation by the
-     *       {@link #verifyDerivative(double[]) verifyDerivative(double...)} method,
-     *       at the expense of more sensitivity to the accuracy of the
-     *       {@link MathTransform#transform MathTransform.transform(…)} method being tested.</p></li>
-     * </ul>
-     *
      * @param  type  either {@code Projection.class} or {@code Transformation.class}.
      * @throws FactoryException if the math transform can not be created.
      */
@@ -363,22 +345,29 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
             }
             assumeNoException(message, e);              // Will mark the test as "ignored".
         }
-        /*
-         * Set the tolerance after we have set the transform,
-         * because we need to know the number of dimensions.
-         */
-        if (type == Projection.class) {
-            setTolerance(ToleranceModifier.PROJECTION);
-        } else if (type == Transformation.class) {
-            setTolerance(ToleranceModifier.GEOGRAPHIC);
-        } else {
-            throw new IllegalArgumentException("Illegal type: " + type);
-        }
     }
 
     /**
-     * Initializes the tolerance thresholds to their default values if the user did not
-     * specified her/his own thresholds.
+     * Initializes the tolerance thresholds to their default values if the user did not specified custom thresholds.
+     * This method sets the {@linkplain TransformTestCase#tolerance tolerance} threshold in units of the target CRS
+     * (typically <var>metres</var> for map projections), and the {@linkplain #derivativeDeltas derivative deltas}
+     * in units of the source CRS (typically <var>degrees</var> for map projections).
+     * The current implementation sets the following values:
+     *
+     * <ul>
+     *   <li>{@link #tolerance} is sets to {@link #TRANSFORM_TOLERANCE}, unless a greater
+     *       tolerance threshold is already set in which case the existing value is left
+     *       unchanged.</li>
+     *   <li>{@link #derivativeDeltas} is set to a value in degrees corresponding to
+     *       approximately 1 metre on Earth (calculated using the standard nautical mile length).
+     *       A finer value can lead to more accurate derivative approximation by the
+     *       {@link #verifyDerivative(double[]) verifyDerivative(double...)} method,
+     *       at the expense of more sensitivity to the accuracy of the
+     *       {@link MathTransform#transform MathTransform.transform(…)} method being tested.</li>
+     * </ul>
+     *
+     * This method should be invoked <strong>after</strong> {@link #createMathTransform(Class, SamplePoints)}
+     * because because it needs to know the number of dimensions.
      */
     final void setTolerance(final ToleranceModifier modifier) {
         if (toleranceModifier == null) {
@@ -458,11 +447,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>110°E<br>0°N</td>
-     *       <td>3900000.00 m<br>900000.00 m</td>
-     *     </tr><tr class="coordinates">
      *       <td>120°E<br>3°S</td>
      *       <td>5009726.58 m<br>569150.82 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>110°E<br>0°N</td>
+     *       <td>3900000.00 m<br>900000.00 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -477,6 +466,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "Makassar / NEIEZ";
         final SamplePoints sample = SamplePoints.forCRS(3002);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -508,11 +498,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>51°E<br>0°N</td>
-     *       <td>0.00 m<br>0.00 m</td>
-     *     </tr><tr class="coordinates">
      *       <td>53°E<br>53°N</td>
      *       <td>165704.29 m<br>5171848.07 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>51°E<br>0°N</td>
+     *       <td>0.00 m<br>0.00 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -527,6 +517,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "Pulkovo 1942 / Caspian Sea Mercator";
         final SamplePoints sample = SamplePoints.forCRS(3388);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -561,10 +552,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
+     *       <td>53°E<br>53°N</td>
+     *       <td>165704.29 m<br>1351950.22 m</td>
+     *     </tr><tr class="coordinates">
      *       <td>51°E<br>42°N</td>
      *       <td>0.00 m<br>0.00 m</td>
-     *     </tr><tr class="coordinates"><td>53°E<br>53°N</td>
-     *       <td>165704.29 m<br>1351950.22 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -576,8 +568,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testMercatorVariantC() throws FactoryException, TransformException {
         description = "Pulkovo 1942 / Caspian Sea Mercator";
         final SamplePoints sample = SamplePoints.forCRS(3388);
-        sample.sourcePoints[1] = 42;            // New latitude where we expect a northing of 0 m.
-        sample.targetPoints[3] = 1351950.22;    // New Northing value for 53°N.
+        sample.targetPoints[1] = 1351950.22;    // New Northing value for 53°N.
+        sample.sourcePoints[3] = 42;            // New latitude where we expect a northing of 0 m.
         /*
          * Following is basically a copy-and-paste of PseudoEpsgFactory.createParameters(mtFactory, 3388)
          * with a different projection ("variant C" instead of "variant B") and one more parameter value
@@ -594,6 +586,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
          * Following is common to all tests in this class.
          */
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -626,11 +619,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>0°E<br>0°N</td>
-     *       <td>0.00 m<br>0.00 m</td>
-     *     </tr><tr class="coordinates">
      *       <td>100°20'00.000"W<br>24°22'54.433"N</td>
      *       <td>-11156569.90 m<br>2796869.94 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>0°E<br>0°N</td>
+     *       <td>0.00 m<br>0.00 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -642,13 +635,14 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testMercatorSpherical() throws FactoryException, TransformException {
         description = "World Spherical Mercator";
         final SamplePoints sample = SamplePoints.forCRS(3857);
-        sample.targetPoints[2] = -11156569.90;    // New Easting value.
-        sample.targetPoints[3] =   2796869.94;    // New Northing value.
+        sample.targetPoints[0] = -11156569.90;    // New Easting value.
+        sample.targetPoints[1] =   2796869.94;    // New Northing value.
         createParameters("Mercator (Spherical)");
         parameters.parameter("semi_major").setValue(6371007.0);
         parameters.parameter("semi_minor").setValue(6371007.0);
         validators.validate(parameters);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -680,11 +674,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>0°E<br>0°N</td>
-     *       <td>0.00 m<br>0.00 m</td>
-     *     </tr><tr class="coordinates">
      *       <td>100°20'00.000"W<br>24°22'54.433"N</td>
      *       <td>-11169055.58 m<br>2800000.00 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>0°E<br>0°N</td>
+     *       <td>0.00 m<br>0.00 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -699,6 +693,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "WGS 84 / Pseudo-Mercator";
         final SamplePoints sample = SamplePoints.forCRS(3857);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -729,11 +724,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>0°E<br>0°N</td>
-     *       <td>0.00 m<br>0.00 m</td>
-     *     </tr><tr class="coordinates">
      *       <td>2.478917°E<br>48.805639°N</td>
      *       <td>275951.78 m<br>5910061.78 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>0°E<br>0°N</td>
+     *       <td>0.00 m<br>0.00 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -746,6 +741,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "IGNF:MILLER";
         final SamplePoints sample = SamplePoints.forCRS(310642901);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -780,11 +776,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>115°E<br>4°N</td>
-     *       <td>590476.87 m<br>442857.65 m</td>
-     *     </tr><tr class="coordinates">
      *       <td>115°48'19.8196"E<br>5°23'14.1129"N</td>
      *       <td>679245.73 m<br>596562.78 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>115°E<br>4°N</td>
+     *       <td>590476.87 m<br>442857.65 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -799,6 +795,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "Timbalai 1948 / RSO Borneo (m)";
         final SamplePoints sample = SamplePoints.forCRS(29873);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -831,11 +828,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>2°W<br>49°N</td>
-     *       <td>400000.00 m<br>-100000.00 m</td>
-     *     </tr><tr class="coordinates">
      *       <td>00°30'E<br>50°30'N</td>
      *       <td>577274.98 m<br>69740.49 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>2°W<br>49°N</td>
+     *       <td>400000.00 m<br>-100000.00 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -850,6 +847,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "OSGB 1936 / British National Grid";
         final SamplePoints sample = SamplePoints.forCRS(27700);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -882,11 +880,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>20°E<br>0°S</td>
-     *       <td>0 m<br>0 m</td>
-     *     </tr><tr class="coordinates">
      *       <td>28°16'57.479"E<br>25°43'55.302"S</td>
      *       <td>71984.48 m<br>2847342.74 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>20°E<br>0°S</td>
+     *       <td>0 m<br>0 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -899,6 +897,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "Hartebeesthoek94 / Lo29";
         final SamplePoints sample = SamplePoints.forCRS(2053);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         /*
          * In this particular case we have a conflict between the change of axis direction performed by the
          * "Transverse Mercator (South Orientated)" operation method  and the (east, north) axis directions
@@ -950,11 +949,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>61°20'00"W<br>10°26'30"N</td>
-     *       <td>430000.00 links<br>325000.00 links</td>
-     *     </tr><tr class="coordinates">
      *       <td>60°00'00"W<br>10°00'00"N</td>
      *       <td>66644.94 links<br>82536.22 links</td>
+     *     </tr><tr class="coordinates">
+     *       <td>61°20'00"W<br>10°26'30"N</td>
+     *       <td>430000.00 links<br>325000.00 links</td>
      *     </tr>
      *   </table>
      *   <p class="right-note">1 link = 0.66 feet<br>1 feet = 0.3048 metre</p>
@@ -970,6 +969,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "Trinidad 1903 / Trinidad Grid";
         final SamplePoints sample = SamplePoints.forCRS(2314);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -1001,11 +1001,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>16°15'00"S<br>179°20'00"E</td>
-     *       <td>41251331.8 links<br>1662888.5 links</td>
-     *     </tr><tr class="coordinates">
      *       <td>179°59′39.6115″E<br>16°50′29.2435″S</td>
      *       <td>1601528.90 links<br>1336966.01 links</td>
+     *     </tr><tr class="coordinates">
+     *       <td>16°15'00"S<br>179°20'00"E</td>
+     *       <td>41251331.8 links<br>1662888.5 links</td>
      *     </tr>
      *   </table>
      *   <p class="right-note">1 link = 0.66 feet<br>1 feet = 0.3048 metre</p>
@@ -1021,6 +1021,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "Vanua Levu 1915 / Vanua Levu Grid";
         final SamplePoints sample = SamplePoints.forCRS(3139);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -1053,11 +1054,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>77°W<br>18°N</td>
-     *       <td>250000.00 m<br>150000.00 m</td>
-     *     </tr><tr class="coordinates">
      *       <td>76°56'37.26"W<br>17°55'55.80"N</td>
      *       <td>255966.58 m<br>142493.51 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>77°W<br>18°N</td>
+     *       <td>250000.00 m<br>150000.00 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -1072,6 +1073,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "JAD69 / Jamaica National Grid";
         final SamplePoints sample = SamplePoints.forCRS(24200);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -1105,11 +1107,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>99°00'W<br>27°30'N</td>
-     *        <td>2000000.00 US feet<br>0 US feet</td>
-     *     </tr><tr class="coordinates">
      *       <td>96°00'W<br>28°30'N</td>
      *       <td>2963503.91 US feet<br>254759.80 US feet</td>
+     *     </tr><tr class="coordinates">
+     *       <td>99°00'W<br>27°30'N</td>
+     *        <td>2000000.00 US feet<br>0 US feet</td>
      *     </tr>
      *   </table>
      *   <p class="right-note">1 metre = 3.2808333… US feet</p>
@@ -1125,6 +1127,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "NAD27 / Texas South Central";
         final SamplePoints sample = SamplePoints.forCRS(32040);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -1158,11 +1161,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>4°21'24.983"E<br>90°00'00.000"N</td>
-     *       <td>150000.01 m<br>5400088.44 m</td>
-     *     </tr><tr class="coordinates">
      *       <td>5°48'26.533"E<br>50°40'46.461"N</td>
      *       <td>251763.20 m<br>153034.13 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>4°21'24.983"E<br>90°00'00.000"N</td>
+     *       <td>150000.01 m<br>5400088.44 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -1177,6 +1180,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "Belge 1972 / Belge Lambert 72";
         final SamplePoints sample = SamplePoints.forCRS(31300);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -1210,11 +1214,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>84°20'W<br>43°19'N</td>
-     *       <td>2000000.00 US feet<br>0 US feet</td>
-     *     </tr><tr class="coordinates">
      *       <td>83°10"W<br>43°45'N</td>
      *       <td>2308335.75 US feet<br>160210.48 US feet</td>
+     *     </tr><tr class="coordinates">
+     *       <td>84°20'W<br>43°19'N</td>
+     *       <td>2000000.00 US feet<br>0 US feet</td>
      *     </tr>
      *   </table>
      *   <p class="right-note">1 metre = 3.2808333… US feet</p>
@@ -1228,6 +1232,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "NAD27 / Michigan Central";
         final SamplePoints sample = SamplePoints.forCRS(6201);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -1259,11 +1264,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>10°E<br>52°N</td>
-     *       <td>4321000.00 m<br>3210000.00 m</td>
-     *     </tr><tr class="coordinates">
      *       <td>5°E<br>50°N</td>
      *       <td>3962799.45 m<br>2999718.85 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>10°E<br>52°N</td>
+     *       <td>4321000.00 m<br>3210000.00 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -1278,6 +1283,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "ETRS89 / LAEA Europe";
         final SamplePoints sample = SamplePoints.forCRS(3035);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -1310,11 +1316,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>0°E<br>90°N</td>
-     *       <td>2000000.00 m<br>2000000.00 m</td>
-     *     </tr><tr class="coordinates">
      *       <td>44°E<br>73°N</td>
      *       <td>3320416.75 m<br>632668.43 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>0°E<br>90°N</td>
+     *       <td>2000000.00 m<br>2000000.00 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -1330,6 +1336,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "WGS 84 / UPS North (E,N)";
         final SamplePoints sample = SamplePoints.forCRS(5041);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -1362,11 +1369,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>70°E<br>90°S</td>
-     *       <td>6000000.00 m<br>6000000.00 m</td>
-     *     </tr><tr class="coordinates">
      *       <td>120°E<br>75°S</td>
      *       <td>7255380.79 m<br>7053389.56 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>70°E<br>90°S</td>
+     *       <td>6000000.00 m<br>6000000.00 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -1381,6 +1388,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "Australian Antarctic Polar Stereographic";
         final SamplePoints sample = SamplePoints.forCRS(3032);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -1413,11 +1421,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>67°E<br>90°S</td>
-     *       <td>300000.00 m<br>200000.00 m</td>
-     *     </tr><tr class="coordinates">
      *       <td>140°04'17.040"E<br>66°36'18.820"S</td>
      *       <td>303169.52 m<br>244055.72 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>67°E<br>90°S</td>
+     *       <td>300000.00 m<br>200000.00 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -1432,6 +1440,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "Petrels 1972 / Terre Adelie Polar Stereographic";
         final SamplePoints sample = SamplePoints.forCRS(2985);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -1464,11 +1473,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *       <th>Source coordinates</th>
      *       <th>Expected results</th>
      *     </tr><tr class="coordinates">
-     *       <td>5°23'15.500"E<br>52°09'22.178"N</td>
-     *       <td>155000.000 m<br>463000.000 m</td>
-     *     </tr><tr class="coordinates">
      *       <td>6°E<br>53°N</td>
      *       <td>196105.283 m<br>557057.739 m</td>
+     *     </tr><tr class="coordinates">
+     *       <td>5°23'15.500"E<br>52°09'22.178"N</td>
+     *       <td>155000.000 m<br>463000.000 m</td>
      *     </tr>
      *   </table>
      * </div>
@@ -1483,6 +1492,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "Amersfoort / RD New";
         final SamplePoints sample = SamplePoints.forCRS(28992);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -1529,6 +1539,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "American Polyconic";
         final SamplePoints sample = SamplePoints.forCRS(9818);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -1579,6 +1590,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "CRS S-JTSK (Ferro) / Krovak";
         final SamplePoints sample = SamplePoints.forCRS(2065);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -1624,6 +1636,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "WGS 84 / Orthographic";
         final SamplePoints sample = SamplePoints.forCRS(9840);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -1669,6 +1682,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "Guam 1963 / Yap Islands";
         final SamplePoints sample = SamplePoints.forCRS(3295);
         createMathTransform(Projection.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
     }
@@ -1685,7 +1699,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <div class="horizontal-flow">
      *   <table class="ogc">
-     *     <caption>CRS characteristics</caption>
+     *     <caption>Conversion characteristics</caption>
      *     <tr><th>Parameter</th>                         <th>Value</th></tr>
      *     <tr><td>dim</td>                               <td>3</td></tr>
      *     <tr><td>src_semi_major</td>                    <td>6378137.0 m</td></tr>
@@ -1717,6 +1731,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         description = "WGS84 to ED50";
         final SamplePoints sample = SamplePoints.forCRS(4230);
         createMathTransform(Transformation.class, sample);
+        setTolerance(ToleranceModifier.GEOGRAPHIC);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         final Rectangle2D areaOfValidity = sample.areaOfValidity;
         verifyInDomain(new double[] {

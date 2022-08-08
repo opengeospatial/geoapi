@@ -378,8 +378,8 @@ final class SamplePoints {
             }
             default: throw new IllegalArgumentException("No sample points for EPSG:" + crs);
         }
-        if (sourcePoints == null) sourcePoints = new double[] {λ0, φ0, λ, φ};
-        if (targetPoints == null) targetPoints = new double[] {fe, fn, e, n};
+        if (sourcePoints == null) sourcePoints = new double[] {λ, φ, λ0, φ0};
+        if (targetPoints == null) targetPoints = new double[] {e, n, fe, fn};
         return new SamplePoints(crs, operation, sourcePoints, targetPoints,
                 new Rectangle2D.Double(λmin, φmin, λmax - λmin, φmax - φmin));
     }
