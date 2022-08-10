@@ -1016,6 +1016,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>15399</td> <td>3295</td>  <td>Guam 1963 / Yap Islands</td>                         <td>Modified Azimuthal Equidistant</td></tr>
      *   <tr><td>19952</td> <td>2065</td>  <td>CRS S-JTSK (Ferro) / Krovak</td>                     <td>Krovak</td></tr>
      *   <tr><td><i>9605</i></td> <td>4230</td> <td>ED50 to WGS 84</td>                             <td>Abridged Molodensky</td></tr>
+     *   <tr><td>15595</td> <td>5820</td>  <td>EPSG topocentric example B</td>                      <td>Geocentric/topocentric conversions</td></tr>
      * </table>
      *
      * @param  code  the EPSG code of the {@linkplain CoordinateOperation coordinate operation} to create.
@@ -1290,6 +1291,24 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
                 parameters.parameter("Z-axis translation").setValue(116.95);
                 parameters.parameter("Semi-major axis length difference").setValue(251);
                 parameters.parameter("Flattening difference").setValue(1.41927E-05);
+                break;
+            }
+            case 15594: {       // EPSG topocentric example A
+                parameters = factory.getDefaultParameters("Geographic/topocentric conversions");
+                parameters.parameter("semi_major").setValue(6378137.0);                               // WGS84
+                parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
+                parameters.parameter("Latitude of topocentric origin").setValue(55);
+                parameters.parameter("Longitude of topocentric origin").setValue(5);
+                parameters.parameter("Ellipsoidal height of topocentric origin").setValue(200);
+                break;
+            }
+            case 15595: {       // EPSG topocentric example B
+                parameters = factory.getDefaultParameters("Geocentric/topocentric conversions");
+                parameters.parameter("semi_major").setValue(6378137.0);                               // WGS84
+                parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
+                parameters.parameter("Geocentric X of topocentric origin").setValue(3652755.3058);
+                parameters.parameter("Geocentric Y of topocentric origin").setValue( 319574.6799);
+                parameters.parameter("Geocentric Z of topocentric origin").setValue(5201547.3536);
                 break;
             }
             default: {

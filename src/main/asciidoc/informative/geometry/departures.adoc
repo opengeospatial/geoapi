@@ -1,6 +1,11 @@
 [[geometry_departures]]
 ==== Departures from ISO 19107
 
+==== Renaming
+The parent class of all geometries is called `GM_Object` in the ISO 19107 standard.
+GeoAPI interfaces use the `Geometry` name instead,
+as the omission of the `GM_ prefix` would leave a name too similar to Java’s `Object` class.
+
 ===== Convenience
 GeoAPI has moved the `DirectPosition` and `Envelope` types from the coordinate sub-package
 where they are defined in the ISO 19107 specification up to the `opengis.geometry` package

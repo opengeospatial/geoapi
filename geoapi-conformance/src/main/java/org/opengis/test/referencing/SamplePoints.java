@@ -355,10 +355,10 @@ final class SamplePoints {
                 targetPoints = new double[] {e, n};
                 break;
             }
-            //
-            // END OF PROJECTION CODES - now testing datum shifts
-            //
-            case 4230: {  // "ED50" (a GeographicCRS for testing Abridged Molodensky)
+            // ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+            // END OF PROJECTION CODES - now testing datum shifts or other operations.
+            // ―――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――――
+            case 4230: {                            // "ED50" (a GeographicCRS for testing Abridged Molodensky)
                 operation = 9605;
                 λ0 = φ0 = λ = φ = Double.NaN;
                 fe = fn = e = n = Double.NaN;
@@ -376,10 +376,34 @@ final class SamplePoints {
                 λmax = +180; φmax = +80;
                 break;
             }
+            case 5819: {                            // "EPSG topocentric example A"
+                operation = 15594;
+                λ0 = φ0 = λ = φ = Double.NaN;
+                fe = fn = e = n = Double.NaN;
+                sourcePoints = new double[] {
+                     2 + ( 7 + 46.38/60)/60,        // Longitude
+                    53 + (48 + 33.82/60)/60,        // Latitude
+                    73.0                            // Height (m)
+                };
+                targetPoints = new double[] {-189013.869, -128642.040, -4220.171};
+                λmin = 1; φmin = 50;
+                λmax = 4; φmax = 60;
+                break;
+            }
+            case 5820: {                            // "EPSG topocentric example B"
+                operation = 15595;
+                λ0 = φ0 = λ = φ = Double.NaN;
+                fe = fn = e = n = Double.NaN;
+                sourcePoints = new double[] {3771793.968,  140253.342, 5124304.349};
+                targetPoints = new double[] {-189013.869, -128642.040,   -4220.171};
+                λmin = 3700000; φmin = 120000;      // Actually X,Y (not latitude/longitude).
+                λmax = 3900000; φmax = 160000;
+                break;
+            }
             default: throw new IllegalArgumentException("No sample points for EPSG:" + crs);
         }
-        if (sourcePoints == null) sourcePoints = new double[] {λ0, φ0, λ, φ};
-        if (targetPoints == null) targetPoints = new double[] {fe, fn, e, n};
+        if (sourcePoints == null) sourcePoints = new double[] {λ, φ, λ0, φ0};
+        if (targetPoints == null) targetPoints = new double[] {e, n, fe, fn};
         return new SamplePoints(crs, operation, sourcePoints, targetPoints,
                 new Rectangle2D.Double(λmin, φmin, λmax - λmin, φmax - φmin));
     }
