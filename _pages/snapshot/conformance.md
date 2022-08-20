@@ -72,7 +72,7 @@ public class GeoapiTest extends TestSuite {
   the above class can implements the
   <a href="../conformance/java/org/opengis/test/ImplementationDetails.html">ImplementationDetails</a> interface.
   The following example declares that the tolerance factor for <code>MyProjection</code> needs to be
-  relaxed by a factor 10 during inverse projections, and that the derivative functions of math transforms
+  relaxed by a factor 10 during reverse projections, and that the derivative functions of math transforms
   are not yet implemented.
 </p>
 
@@ -88,7 +88,7 @@ import java.util.Properties;
 /**
 * Executes all GeoAPI tests using the factories registered in the META-INF/services directory.
 * All MathTransform.derivative(DirectPosition) tests are skipped, and the tolerance threshold
-* for MyProjection latitude values is relaxed by a factor of 10 during inverse projections.
+* for MyProjection latitude values is relaxed by a factor of 10 during reverse projections.
 */
 public class GeoapiTest extends TestSuite implements ImplementationDetails {
     private static final Configuration CONFIGURATION = new Configuration();
@@ -146,7 +146,7 @@ public class MyTests {
     public void testMyCRS() {
         CoordinateReferenceSystem crs = ...
         validate(crs);
-      
+
         MathTransform transform = ...
         validate(transform);
     }
