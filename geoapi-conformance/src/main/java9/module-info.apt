@@ -60,7 +60,7 @@ public class GeoapiTest extends TestSuite {
   (skip some tests, relax some tolerance thresholds, <etc.>), the above class can implements the
   {{{./apidocs/org/opengis/test/ImplementationDetails.html}ImplementationDetails}} interface.
   The following example declares that the tolerance factor for <<<MyProjection>>> needs to be
-  relaxed by a factor 10 during inverse projections, and that the derivative functions of math
+  relaxed by a factor 10 during reverse projections, and that the derivative functions of math
   transforms are not yet implemented.
 
 
@@ -75,7 +75,7 @@ import java.util.Properties;
 /**
  * Executes all GeoAPI tests using the factories registered in the META-INF/services directory.
  * All MathTransform.derivative(DirectPosition) tests are skipped, and the tolerance threshold
- * for MyProjection latitude values is relaxed by a factor of 10 during inverse projections.
+ * for MyProjection latitude values is relaxed by a factor of 10 during reverse projections.
  */
 public class GeoapiTest extends TestSuite implements ImplementationDetails {
     private static final Configuration CONFIGURATION = new Configuration();

@@ -205,7 +205,7 @@ public strictfp final class ToleranceModifiers {
 
     /**
      * Converts λ and φ tolerance values from metres to degrees before comparing
-     * the result of an <cite>inverse projection</cite>. For <cite>forward projections</cite>
+     * the result of an <cite>reverse projection</cite>. For <cite>forward projections</cite>
      * and all other calculations, the tolerance values are left unchanged.
      *
      * <p>The modifier performs the work documented in {@link #geographic(int, int)} if and only if

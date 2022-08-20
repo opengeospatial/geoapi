@@ -49,7 +49,7 @@ import org.opengis.test.referencing.TransformTestCase;
  *
  * For example if a precision of 10 centimetres is requested for a map projection, then that
  * tolerance threshold must be converted from metres to decimal degrees (approximately 1E-6°)
- * when testing the inverse projection. This enumeration allows {@link ToleranceModifier}
+ * when testing the reverse projection. This enumeration allows {@link ToleranceModifier}
  * implementations to know when such conversion is needed.
  *
  * @author  Martin Desruisseaux (Geomatys)
