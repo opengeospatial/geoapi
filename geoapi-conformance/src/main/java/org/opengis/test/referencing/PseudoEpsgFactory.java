@@ -227,7 +227,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
-     * Builds a map of properties for a referencing object to be build. The map shall contains
+     * Builds a map of properties for a referencing object to be built. The map shall contain
      * at least the {@link IdentifiedObject#NAME_KEY} identifier associated to the given value.
      * Subclasses can override this method in order to provide more information if they wish.
      *

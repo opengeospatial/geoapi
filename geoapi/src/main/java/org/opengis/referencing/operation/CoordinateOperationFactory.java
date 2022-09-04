@@ -184,7 +184,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   </tr>
      * </table>
      *
-     * @param  properties  set of properties. Shall contains at least {@code "name"}.
+     * @param  properties  set of properties. Shall contain at least {@code "name"}.
      * @param  method      the operation method. A value can be obtained by {@link #getOperationMethod(String)}.
      * @param  parameters  the parameter values. A default set of parameters can be obtained by
      *         {@code method.getParameters().createValue()} and modified before to be given to this constructor.
@@ -228,7 +228,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   </tr>
      * </table>
      *
-     * @param  properties       set of properties. Shall contains at least {@code "name"}.
+     * @param  properties       set of properties. Shall contain at least {@code "name"}.
      * @param  sourceDimension  number of dimensions in the source CRS of the operation method, or {@code null}.
      * @param  targetDimension  number of dimensions in the target CRS of the operation method, or {@code null}.
      * @param  parameters       a description of the parameters for the operation method.

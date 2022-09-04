@@ -170,7 +170,7 @@ public final class ChangeReport {
 
     /**
      * Writes the given set of API elements to the given writer.
-     * The given set shall contains only API differences (new or removed elements).
+     * The given set shall contain only API differences (new or removed elements).
      *
      * @param  elements The elements to write.
      * @param  out      Where to write the differences.

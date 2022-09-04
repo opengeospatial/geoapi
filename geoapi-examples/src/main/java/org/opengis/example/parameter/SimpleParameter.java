@@ -27,10 +27,9 @@ import org.opengis.example.referencing.SimpleIdentifiedObject;
 
 /**
  * A {@link ParameterValue} implementation for {@code double} values.
- * In order to keep the conceptual model simpler, this parameter value is also its own
- * descriptor. This is not quite a recommended practice (such descriptors are less suitable
- * for use in {@link java.util.HashMap}), but allow us to keep the amount of classes smaller
- * and closely related interfaces together.
+ * In order to keep the conceptual model simpler, this parameter value is also its own descriptor.
+ * This is not quite a recommended practice (such descriptors are less suitable for use in {@link java.util.HashMap}),
+ * but allows us to keep the amount of classes smaller and closely related interfaces together.
  *
  * <p>For keeping things yet simpler, the {@linkplain #getValueClass() value class} is hard-coded as
  * {@link Double}, the {@linkplain #getUnit() units of measurement} are constrained to standard
@@ -180,6 +179,8 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * {@linkplain ParameterValue value} and the {@linkplain ParameterDescriptor descriptor}
      * interfaces, this method returns {@code this}. However more sophisticated libraries are
      * likely to return a different object.
+     *
+     * @return {@code this} descriptor.
      */
     @Override
     public ParameterDescriptor<Double> getDescriptor() {
@@ -607,10 +608,10 @@ public class SimpleParameter extends SimpleIdentifiedObject
      */
     @Override
     public int hashCode() {
-        long code = Double.doubleToLongBits(value);
+        long hash = Double.doubleToLongBits(value);
         if (type != null) {
-            code += 31 * type.hashCode();
+            hash += 31 * type.hashCode();
         }
-        return (int) code + (int) (code >>> Integer.SIZE) + 37*super.hashCode();
+        return (int) hash + (int) (hash >>> Integer.SIZE) + 37*super.hashCode();
     }
 }

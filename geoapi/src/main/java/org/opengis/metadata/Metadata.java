@@ -344,7 +344,7 @@ public interface Metadata {
 
     /**
      * Date(s) associated with the metadata.
-     * The collection shall contains at least an element for {@link DateType#CREATION}.
+     * The collection shall contain at least an element for {@link DateType#CREATION}.
      *
      * @return date(s) associated with the metadata.
      *
