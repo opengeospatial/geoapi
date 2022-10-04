@@ -43,46 +43,61 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Information about the value (or set of values) obtained from applying a data quality measure.
+ * The values or information about the value(s) (or set of values) obtained
+ * from applying a data quality measure.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
+ * @author  Alexis Gaillard (Geomatys)
  * @version 3.1
  * @since   2.0
  */
-@UML(identifier="DQ_QuantitativeResult", specification=ISO_19115, version=2003)
+@UML(identifier="DQ_QuantitativeResult", specification=ISO_19157)
 public interface QuantitativeResult extends Result {
     /**
      * Quantitative value or values, content determined by the evaluation procedure used.
+     * This is determined accordingly with the value type and value structure defined for the measure.
      *
      * @return quantitative value or values.
      */
-    @UML(identifier="value", obligation=MANDATORY, specification=ISO_19115, version=2003)
+    @UML(identifier="value", obligation=MANDATORY, specification=ISO_19157)
     Collection<? extends Record> getValues();
 
     /**
-     * Value type for reporting a data quality result, or {@code null} if none.
+     * Value unit for reporting a data quality result.
      *
-     * @return value type for reporting a data quality result, or {@code null}.
+     * @return value unit for reporting a data quality result, or {@code null}.
      */
-    @UML(identifier="valueType", obligation=OPTIONAL, specification=ISO_19115, version=2003)
+    @UML(identifier="valueUnit", obligation=OPTIONAL, specification=ISO_19157)
+    default Unit<?> getValueUnit() {
+        return null;
+    }
+
+    /**
+     * Value type for reporting a data quality result.
+     * Depends of the implementation.
+     *
+     * @return value type for reporting a data quality result, or {@code null} if none.
+     *
+     * @departure rename
+     *   Renamed from {@code "valueRecordType"} to {@code "valueType"} for compatibility with ISO 19115:2003
+     *   and because the return object type does not need to be repeated in Java method name.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="valueRecordType", obligation=OPTIONAL, specification=ISO_19157)
     default RecordType getValueType() {
         return null;
     }
 
     /**
-     * Value unit for reporting a data quality result, or {@code null} if none.
+     * Statistical method used to determine the value,
      *
-     * @return value unit for reporting a data quality result, or {@code null}.
-     */
-    @UML(identifier="valueUnit", obligation=MANDATORY, specification=ISO_19115, version=2003)
-    Unit<?> getValueUnit();
-
-    /**
-     * Statistical method used to determine the value, or {@code null} if none.
+     * @return statistical method used to determine the value.
      *
-     * @return statistical method used to determine the value, or {@code null}.
+     * @deprecated Removed from ISO 19157:2013.
      */
+    @Deprecated
     @UML(identifier="errorStatistic", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default InternationalString getErrorStatistic() {
         return null;

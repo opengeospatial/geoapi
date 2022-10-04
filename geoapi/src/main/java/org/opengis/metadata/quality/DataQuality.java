@@ -46,27 +46,26 @@ import static org.opengis.annotation.Specification.*;
  * shall be provided.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @author  Alexis Gaillard (Geomatys)
  * @version 3.1
  * @since   2.0
  */
-@UML(identifier="DQ_DataQuality", specification=ISO_19115, version=2003)
+@UML(identifier="DQ_DataQuality", specification=ISO_19157)
 public interface DataQuality {
     /**
      * The specific data to which the data quality information applies.
      *
      * @return the specific data to which the data quality information applies.
      */
-    @UML(identifier="scope", obligation=MANDATORY, specification=ISO_19115, version=2003)
+    @UML(identifier="scope", obligation=MANDATORY, specification=ISO_19157)
     Scope getScope();
 
     /**
-     * Quantitative quality information for the data specified by the scope.
+     * Quality information for the data specified by the scope.
      *
-     * @return quantitative quality information for the data.
-     *
-     * @condition Mandatory if the {@linkplain #getLineage() lineage} is not provided.
+     * @return quality information for the data specified by the scope.
      */
-    @UML(identifier="report", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
+    @UML(identifier="report", obligation=MANDATORY, specification=ISO_19157)
     Collection<? extends Element> getReports();
 
     /**
@@ -75,8 +74,24 @@ public interface DataQuality {
      * @return non-quantitative quality information about the lineage of the data specified,
      *         or {@code null}.
      *
-     * @condition Mandatory if the {@linkplain #getReports() report} is not provided.
+     * @deprecated Removed from ISO 19157:2013.
      */
+    @Deprecated
     @UML(identifier="lineage", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
-    Lineage getLineage();
+    default Lineage getLineage() {
+        return null;
+    }
+
+    /**
+     * Reference to an external standalone quality report.
+     * Can be used for providing more details than reported as standard metadata.
+     *
+     * @return reference to an external standalone quality report, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="standaloneQualityReport", obligation=OPTIONAL, specification=ISO_19157)
+    default StandaloneQualityReportInformation getStandaloneQualityReport() {
+        return null;
+    }
 }

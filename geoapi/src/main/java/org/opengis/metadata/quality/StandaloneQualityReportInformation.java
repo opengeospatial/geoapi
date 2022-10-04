@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -32,18 +32,39 @@
 package org.opengis.metadata.quality;
 
 import org.opengis.annotation.UML;
+import org.opengis.metadata.citation.Citation;
+import org.opengis.util.InternationalString;
 
+import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Closeness of reported coordinate values to values accepted as or being true.
+ * Reference to an external standalone quality report.
+ * In order to provide more details than reported as metadata,
+ * a standalone quality report may additionally be created.
+ * Its structure is free. However, the standalone quality report shall not replace the metadata.
  *
- * @author  Martin Desruisseaux (IRD)
- * @author  Alexis Gaillard (Geomatys)
+ * @author  Alexis Gaillard (IRD)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since   3.1
  */
-@UML(identifier="DQ_AbsoluteExternalPositionalAccuracy", specification=ISO_19157)
-public interface AbsoluteExternalPositionalAccuracy extends PositionalAccuracy {
+@UML(identifier="DQ_StandaloneQualityReportInformation", specification=ISO_19157)
+public interface StandaloneQualityReportInformation {
+     /**
+     * Reference to the associated standalone quality report.
+     *
+     * @return reference of the standalone quality report.
+     */
+    @UML(identifier="reportReference", obligation=MANDATORY, specification=ISO_19157)
+    Citation getReportReference();
+
+    /**
+     * Abstract for the associated standalone quality report.
+     *
+     * @return abstract of the standalone quality report.
+     */
+    @UML(identifier="abstract", obligation=MANDATORY, specification=ISO_19157)
+    InternationalString getAbstract();
 }

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,19 +31,39 @@
  */
 package org.opengis.metadata.quality;
 
+import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
+import org.opengis.metadata.identification.BrowseGraphic;
 
+import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Closeness of reported coordinate values to values accepted as or being true.
+ * Data quality measure description.
  *
- * @author  Martin Desruisseaux (IRD)
  * @author  Alexis Gaillard (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since   3.1
  */
-@UML(identifier="DQ_AbsoluteExternalPositionalAccuracy", specification=ISO_19157)
-public interface AbsoluteExternalPositionalAccuracy extends PositionalAccuracy {
+@UML(identifier="DQM_Description", specification=ISO_19157)
+public interface Description {
+    /**
+     * Text description.
+     *
+     * @return text description.
+     */
+    @UML(identifier="textDescription", obligation=MANDATORY, specification=ISO_19157)
+    InternationalString getTextDescription();
+
+    /**
+     * Illustration.
+     *
+     * @return illustration, or {@code null} if none.
+     */
+    @UML(identifier="extendedDescription", obligation=OPTIONAL, specification=ISO_19157)
+    default BrowseGraphic getExtendedDescription() {
+        return null;
+    }
 }

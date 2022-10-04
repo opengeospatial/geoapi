@@ -32,6 +32,7 @@
 package org.opengis.metadata.quality;
 
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Specification.*;
 
 
@@ -39,9 +40,13 @@ import static org.opengis.annotation.Specification.*;
  * Accuracy of quantitative attributes.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
- * @since   2.0
+ * @author  Alexis Gaillard (Geomatys)
+ * @version 3.1
+ *
+ * @see NonQuantitativeAttributeCorrectness
+ *
+ * @since 2.0
  */
-@UML(identifier="DQ_QuantitativeAttributeAccuracy", specification=ISO_19115, version=2003)
+@UML(identifier="DQ_QuantitativeAttributeAccuracy", specification=ISO_19157)
 public interface QuantitativeAttributeAccuracy extends ThematicAccuracy {
 }

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,19 +31,38 @@
  */
 package org.opengis.metadata.quality;
 
+import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 
+import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Closeness of reported coordinate values to values accepted as or being true.
+ * Test based on external knowledge or experience of the data product.
+ * This external knowledge may include, but is not limited to, one or more non-quantitative quality information usage,
+ * lineage and purpose or other data quality reports on the data set or data used to produce the data set.
+ * Indirect evaluation can be subjective.
  *
- * @author  Martin Desruisseaux (IRD)
+ * <p>In some cases it might not be possible to report indirectly evaluated data quality as quantitative results.
+ * In those cases the data quality may be described in textual form using a descriptive result.</p>
+ *
  * @author  Alexis Gaillard (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.0
+ *
+ * @see FullInspection
+ * @see SampleBasedInspection
+ *
+ * @since 3.1
  */
-@UML(identifier="DQ_AbsoluteExternalPositionalAccuracy", specification=ISO_19157)
-public interface AbsoluteExternalPositionalAccuracy extends PositionalAccuracy {
+@UML(identifier="DQ_IndirectEvaluation", specification=ISO_19157)
+public interface IndirectEvaluation extends DataEvaluation {
+    /**
+     * Information on which data are used as sources in deductive evaluation method.
+     *
+     * @return information on which data are used.
+     */
+    @UML(identifier="deductiveSource", obligation=MANDATORY, specification=ISO_19157)
+    InternationalString getDeductiveSource();
 }

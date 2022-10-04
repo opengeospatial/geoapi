@@ -40,12 +40,14 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Presence and absence of features, their attributes and their relationships.
+ * Instances should be one of {@link CompletenessOmission} or {@link CompletenessCommission} subtypes.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @author  Alexis Gaillard (Geomatys)
  * @version 3.1
  * @since   2.0
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="DQ_Completeness", specification=ISO_19115, version=2003)
+@UML(identifier="DQ_Completeness", specification=ISO_19157)
 public interface Completeness extends Element {
 }

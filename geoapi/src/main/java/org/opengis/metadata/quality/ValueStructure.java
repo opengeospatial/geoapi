@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -33,7 +33,6 @@ package org.opengis.metadata.quality;
 
 import java.util.List;
 import java.util.ArrayList;
-
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -42,44 +41,62 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Type of method for evaluating an identified data quality measure.
+ * Structure for reporting a complex data quality result.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Alexis Gaillard (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since   3.1
  */
-@UML(identifier="DQ_EvaluationMethodTypeCode", specification=ISO_19157)
-public final class EvaluationMethodType extends CodeList<EvaluationMethodType> {
+@UML(identifier="DQ_ValueStructure", specification=ISO_19157)
+public final class ValueStructure extends CodeList<ValueStructure> {
     /**
      * Serial number for compatibility with different versions.
      */
-    private static final long serialVersionUID = -2481257874205996202L;
+    private static final long serialVersionUID = 455647811714853262L;
 
     /**
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<EvaluationMethodType> VALUES = new ArrayList<>(3);
+    private static final List<ValueStructure> VALUES = new ArrayList<>(6);
 
     /**
-     * Method of evaluating the quality of a data set based on inspection of items within
-     * the data set, where all data required is internal to the data set being evaluated.
+     * Finite, unordered collection of related items that may be repeated.
      */
-    @UML(identifier="directInternal", obligation=CONDITIONAL, specification=ISO_19157)
-    public static final EvaluationMethodType DIRECT_INTERNAL = new EvaluationMethodType("DIRECT_INTERNAL");
+    @UML(identifier="bag", obligation=CONDITIONAL, specification=ISO_19157)
+    public static final ValueStructure BAG = new ValueStructure("BAG");
 
     /**
-     * Method of evaluating the quality of a data set based on inspection of items within
-     * the data set, where reference data external to the data set being evaluated is required.
+     * Unordered collection of related items with no repetition.
      */
-    @UML(identifier="directExternal", obligation=CONDITIONAL, specification=ISO_19157)
-    public static final EvaluationMethodType DIRECT_EXTERNAL = new EvaluationMethodType("DIRECT_EXTERNAL");
+    @UML(identifier="set", obligation=CONDITIONAL, specification=ISO_19157)
+    public static final ValueStructure SET = new ValueStructure("SET");
 
     /**
-     * Method of evaluating the quality of a data set based on external knowledge.
+     * Finite, ordered collection of related items that may be repeated.
      */
-    @UML(identifier="indirect", obligation=CONDITIONAL, specification=ISO_19157)
-    public static final EvaluationMethodType INDIRECT = new EvaluationMethodType("INDIRECT");
+    @UML(identifier="sequence", obligation=CONDITIONAL, specification=ISO_19157)
+    public static final ValueStructure SEQUENCE = new ValueStructure("SEQUENCE");
+
+    /**
+     * An arrangement of data in which each item may be identified by means of arguments or keys.
+     */
+    @UML(identifier="table", obligation=CONDITIONAL, specification=ISO_19157)
+    public static final ValueStructure TABLE = new ValueStructure("TABLE");
+
+    /**
+     * Rectangular array of numbers.
+     */
+    @UML(identifier="matrix", obligation=CONDITIONAL, specification=ISO_19157)
+    public static final ValueStructure MATRIX = new ValueStructure("MATRIX");
+
+    /**
+     * Feature that acts as a function to return values from its range
+     * for any direct position within its spatial, temporal or spatiotemporal domain.
+     */
+    @UML(identifier="coverage", obligation=CONDITIONAL, specification=ISO_19157)
+    public static final ValueStructure COVERAGE = new ValueStructure("COVERAGE");
 
     /**
      * Constructs an element of the given name. The new element is
@@ -87,18 +104,18 @@ public final class EvaluationMethodType extends CodeList<EvaluationMethodType> {
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
-    private EvaluationMethodType(final String name) {
+    private ValueStructure(final String name){
         super(name, VALUES);
     }
 
     /**
-     * Returns the list of {@code EvaluationMethodType}s.
+     * Returns the list of {@code ValueStructure}s.
      *
      * @return the list of codes declared in the current JVM.
      */
-    public static EvaluationMethodType[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(new EvaluationMethodType[VALUES.size()]);
+    public static ValueStructure[] values() {
+        synchronized (VALUES){
+            return VALUES.toArray(new ValueStructure[VALUES.size()]);
         }
     }
 
@@ -110,21 +127,20 @@ public final class EvaluationMethodType extends CodeList<EvaluationMethodType> {
      * @return all code {@linkplain #values() values} for this code list.
      */
     @Override
-    public EvaluationMethodType[] family() {
+    public ValueStructure[] family(){
         return values();
     }
 
     /**
-     * Returns the evaluation method type that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the structure that matches the given string, or returns a new one if none match it.
+     * More specifically, this methods returns the first instance for which
+     * <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code> returns {@code true}.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
-    public static EvaluationMethodType valueOf(String code) {
-        return valueOf(EvaluationMethodType.class, code);
+    public static ValueStructure valueOf(String code){
+        return valueOf(ValueStructure.class, code);
     }
 }

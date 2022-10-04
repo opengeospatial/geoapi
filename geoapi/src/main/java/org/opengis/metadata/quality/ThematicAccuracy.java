@@ -39,14 +39,24 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Accuracy of quantitative attributes and the correctness of non-quantitative attributes
- * and of the classifications of features and their relationships.
+ * Accuracy and correctness of attributes and classification of features.
+ * More specifically:
+ *
+ * <ul>
+ *   <li>accuracy of quantitative attributes,</li>
+ *   <li>correctness of non-quantitative attributes,</li>
+ *   <li>correctness of the classifications of features and their relationships.</li>
+ * </ul>
+ *
+ * Instances should be one of {@link QuantitativeAttributeAccuracy}, {@link NonQuantitativeAttributeCorrectness}
+ * or {@link ThematicClassificationCorrectness} subtypes.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @author  Alexis Gaillard (Geomatys)
  * @version 3.1
  * @since   2.0
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="DQ_ThematicAccuracy", specification=ISO_19115, version=2003)
+@UML(identifier="DQ_ThematicAccuracy", specification=ISO_19157)
 public interface ThematicAccuracy extends Element {
 }

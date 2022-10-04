@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,19 +31,56 @@
  */
 package org.opengis.metadata.quality;
 
+import java.util.Collection;
+import java.util.Collections;
+import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
+import org.opengis.metadata.Identifier;
 
+import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Closeness of reported coordinate values to values accepted as or being true.
+ * Reference to the measure used.
+ * At least one of {@linkplain #getMeasureIdentification() measure identification}
+ * and {@linkplain #getNamesOfMeasure() measure names} shall be provided.
  *
- * @author  Martin Desruisseaux (IRD)
  * @author  Alexis Gaillard (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since   3.1
  */
-@UML(identifier="DQ_AbsoluteExternalPositionalAccuracy", specification=ISO_19157)
-public interface AbsoluteExternalPositionalAccuracy extends PositionalAccuracy {
+@UML(identifier="DQ_MeasureReference", specification=ISO_19157)
+public interface MeasureReference {
+    /**
+     * Identifier of the measure, value uniquely identifying the measure within a namespace.
+     *
+     * @return code identifying a registered standard procedure, or {@code null} if none.
+     */
+    @UML(identifier="measureIdentification", obligation=OPTIONAL, specification=ISO_19157)
+    default Identifier getMeasureIdentification() {
+        return null;
+    }
+
+    /**
+     * Name of the test applied to the data.
+     * Mandatory if {@linkplain #getMeasureIdentification() measure identification} is not provided.
+     *
+     * @return name of the test applied to the data.
+     */
+    @UML(identifier="nameOfMeasure", obligation=CONDITIONAL, specification=ISO_19157)
+    default Collection<? extends InternationalString> getNamesOfMeasure() {
+        return Collections.emptyList();
+    }
+
+    /**
+     * Description of the measure.
+     *
+     * @return description of the measure being determined.
+     */
+    @UML(identifier="measureDescription", obligation=OPTIONAL, specification=ISO_19157)
+    default InternationalString getMeasureDescription() {
+        return null;
+    }
 }

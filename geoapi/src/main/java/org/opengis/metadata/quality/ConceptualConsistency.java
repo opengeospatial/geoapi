@@ -32,6 +32,7 @@
 package org.opengis.metadata.quality;
 
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Specification.*;
 
 
@@ -39,9 +40,10 @@ import static org.opengis.annotation.Specification.*;
  * Adherence to rules of the conceptual schema.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Alexis Gaillard (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
-@UML(identifier="DQ_ConceptualConsistency", specification=ISO_19115, version=2003)
+@UML(identifier="DQ_ConceptualConsistency", specification=ISO_19157)
 public interface ConceptualConsistency extends LogicalConsistency {
 }

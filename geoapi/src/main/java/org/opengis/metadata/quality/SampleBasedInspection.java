@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,19 +31,48 @@
  */
 package org.opengis.metadata.quality;
 
+import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 
+import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Closeness of reported coordinate values to values accepted as or being true.
+ * Test performed on a subset of the geographic data defined by the data quality scope.
  *
- * @author  Martin Desruisseaux (IRD)
  * @author  Alexis Gaillard (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.0
+ *
+ * @see FullInspection
+ * @see IndirectEvaluation
+ *
+ * @since 3.1
  */
-@UML(identifier="DQ_AbsoluteExternalPositionalAccuracy", specification=ISO_19157)
-public interface AbsoluteExternalPositionalAccuracy extends PositionalAccuracy {
+@UML(identifier="DQ_SampleBasedInspection", specification=ISO_19157)
+public interface SampleBasedInspection extends DataEvaluation {
+    /**
+     * Information of the type of sampling scheme and description of the sampling procedure.
+     *
+     * @return sampling scheme and sampling procedure.
+     */
+    @UML(identifier="samplingScheme", obligation=MANDATORY, specification=ISO_19157)
+    InternationalString getSamplingScheme();
+
+    /**
+     * Information of how lots are defined.
+     *
+     * @return information on lots.
+     */
+    @UML(identifier="lotDescription", obligation=MANDATORY, specification=ISO_19157)
+    InternationalString getLotDescription();
+
+    /**
+     * Information on how many samples on average are extracted for inspection from each lot of population.
+     *
+     * @return average number of samples extracted for inspection.
+     */
+    @UML(identifier="sampleRatio", obligation=MANDATORY, specification=ISO_19157)
+    InternationalString getSampleRatio();
 }

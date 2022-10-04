@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,19 +31,55 @@
  */
 package org.opengis.metadata.quality;
 
+import org.opengis.util.InternationalString;
+import org.opengis.util.TypeName;
 import org.opengis.annotation.UML;
 
+import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Closeness of reported coordinate values to values accepted as or being true.
+ * Data quality basic measure.
  *
- * @author  Martin Desruisseaux (IRD)
  * @author  Alexis Gaillard (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since   3.1
  */
-@UML(identifier="DQ_AbsoluteExternalPositionalAccuracy", specification=ISO_19157)
-public interface AbsoluteExternalPositionalAccuracy extends PositionalAccuracy {
+@UML(identifier="DQM_BasicMeasure", specification=ISO_19157)
+public interface BasicMeasure {
+    /**
+     * Name of the data quality basic measure applied to the data.
+     *
+     * @return name of the data quality basic measure.
+     */
+    @UML(identifier="name", obligation=MANDATORY, specification=ISO_19157)
+    InternationalString getName();
+
+    /**
+     * Definition of the data quality basic measure.
+     *
+     * @return definition of the data quality basic measure.
+     */
+    @UML(identifier="definition", obligation=MANDATORY, specification=ISO_19157)
+    InternationalString getDefinition();
+
+    /**
+     * Illustration of the use of a data quality measure.
+     *
+     * @return usage example, or {@code null} if none.
+     */
+    @UML(identifier="example", obligation=OPTIONAL, specification=ISO_19157)
+    default Description getExample() {
+        return null;
+    }
+
+    /**
+     * Value type for the result of the basic measure.
+     *
+     * @return value type of the result for the basic measure.
+     */
+    @UML(identifier="valueType", obligation=MANDATORY, specification=ISO_19157)
+    TypeName getValueType();
 }

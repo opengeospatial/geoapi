@@ -43,7 +43,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Result of a data quality measure organising the measured values as a coverage.
+ * Result of a data quality measure organizing the measured values as a coverage.
  *
  * @author  Cédric Briançon (Geomatys)
  * @version 3.1
@@ -68,8 +68,8 @@ public interface CoverageResult extends Result {
     SpatialRepresentation getResultSpatialRepresentation();
 
     /**
-     * Provides the description of the content of the result coverage, i.e. semantic definition
-     * of the data quality measures.
+     * Provides the description of the content of the result coverage.
+     * This is the semantic definition of the data quality measures.
      *
      * @return description of the content of the result coverage.
      */

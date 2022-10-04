@@ -42,35 +42,41 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Information about the outcome of evaluating the obtained value (or set of values) against
  * a specified acceptable conformance quality level.
+ * Conformance result is often derived from a {@linkplain QuantitativeResult quantitative result}.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @author  Alexis Gaillard (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
-@UML(identifier="DQ_ConformanceResult", specification=ISO_19115, version=2003)
+@UML(identifier="DQ_ConformanceResult", specification=ISO_19157)
 public interface ConformanceResult extends Result {
     /**
-     * Citation of product specification or user requirement against which data is being evaluated.
+     * Citation of data product specification or user requirement against which data are being evaluated.
      *
      * @return citation of product specification or user requirement.
      */
-    @UML(identifier="specification", obligation=MANDATORY, specification=ISO_19115, version=2003)
+    @UML(identifier="specification", obligation=MANDATORY, specification=ISO_19157)
     Citation getSpecification();
 
     /**
      * Explanation of the meaning of conformance for this result.
      *
-     * @return explanation of the meaning of conformance.
+     * @return explanation of the meaning of conformance, or {@code null} if none.
+     *
+     * @condition Optional if the {@linkplain #getResultScope() result scope} is not provided.
      */
-    @UML(identifier="explanation", obligation=MANDATORY, specification=ISO_19115, version=2003)
-    InternationalString getExplanation();
+    @UML(identifier="explanation", obligation=OPTIONAL, specification=ISO_19157)
+    default InternationalString getExplanation() {
+        return null;
+    }
 
     /**
-     * Indication of the conformance result.
+     * Indication of the conformance result where {@code false} = fail and {@code true} = pass.
      *
      * @return indication of the conformance result.
      */
-    @UML(identifier="pass", obligation=MANDATORY, specification=ISO_19115, version=2003)
+    @UML(identifier="pass", obligation=MANDATORY, specification=ISO_19157)
     Boolean pass();
 }

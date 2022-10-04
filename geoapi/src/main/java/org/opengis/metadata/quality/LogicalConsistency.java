@@ -41,12 +41,15 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Degree of adherence to logical rules of data structure, attribution and relationships.
  * Data structure can be conceptual, logical or physical.
+ * Instances should be one of {@link ConceptualConsistency}, {@link DomainConsistency},
+ * {@link FormatConsistency} or {@link TopologicalConsistency} subtypes.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @author  Alexis Gaillard (Geomatys)
  * @version 3.1
  * @since   2.0
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="DQ_LogicalConsistency", specification=ISO_19115, version=2003)
+@UML(identifier="DQ_LogicalConsistency", specification=ISO_19157)
 public interface LogicalConsistency extends Element {
 }

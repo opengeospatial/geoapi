@@ -32,18 +32,20 @@
 package org.opengis.metadata.quality;
 
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Degree to which data is stored in accordance with the physical structure of
- * the dataset, as described by the scope.
+ * Degree to which data are stored in accordance with the physical structure of
+ * the data set, as described by the scope.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @author  Alexis Gaillard (Geomatys)
+ * @version 3.1
  * @since   2.1
  */
-@UML(identifier="DQ_FormatConsistency", specification=ISO_19115, version=2003)
+@UML(identifier="DQ_FormatConsistency", specification=ISO_19157)
 public interface FormatConsistency extends LogicalConsistency {
 }

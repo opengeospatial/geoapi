@@ -46,74 +46,138 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Type of test applied to the data specified by a data quality scope.
+ * Aspect of quantitative quality information.
+ * Instances should be one of {@link Completeness}, {@link LogicalConsistency}, {@link PositionalAccuracy},
+ * {@link TemporalQuality}, {@link ThematicAccuracy}, {@link UsabilityElement} or {@link Metaquality} subtypes.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
+ * @author  Alexis Gaillard (Geomatys)
  * @version 3.1
  * @since   2.0
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="DQ_Element", specification=ISO_19115, version=2003)
+@UML(identifier="DQ_Element", specification=ISO_19157)
 public interface Element {
+    /**
+     * Clause in the standalone quality report where this data quality element is described.
+     * May apply to any related data quality element (original results in case of derivation or aggregation).
+     *
+     * @return clause where this data quality element is described, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="standaloneQualityReportDetails", obligation=OPTIONAL, specification=ISO_19157)
+    default InternationalString getStandaloneQualityReportDetails() {
+        return null;
+    }
+
+    /**
+     * Reference to measure used.
+     *
+     * @return reference to the measure used, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="measure", obligation=OPTIONAL, specification=ISO_19157)
+    default MeasureReference getMeasure() {
+        return null;
+    }
+
     /**
      * Name of the test applied to the data.
      *
      * @return name of the test applied to the data.
+     *
+     * @deprecated Replaced by {@link MeasureReference#getNamesOfMeasure()}.
      */
+    @Deprecated
     @UML(identifier="nameOfMeasure", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends InternationalString> getNamesOfMeasure() {
-        return Collections.emptyList();
+        final MeasureReference ref = getMeasure();
+        return (ref != null) ? ref.getNamesOfMeasure() : Collections.emptyList();
+    }
+
+    /**
+     * Evaluation information.
+     *
+     * @return information about the evaluation method, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="evaluationMethod", obligation=OPTIONAL, specification=ISO_19157)
+    default EvaluationMethod getEvaluationMethod() {
+        return null;
     }
 
     /**
      * Code identifying a registered standard procedure, or {@code null} if none.
      *
      * @return code identifying a registered standard procedure, or {@code null}.
+     *
+     * @deprecated Replaced by {@link MeasureReference#getMeasureIdentification()}.
      */
+    @Deprecated
     @UML(identifier="measureIdentification", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Identifier getMeasureIdentification() {
-        return null;
+        final MeasureReference ref = getMeasure();
+        return (ref != null) ? ref.getMeasureIdentification() : null;
     }
 
     /**
      * Description of the measure being determined.
      *
      * @return description of the measure being determined, or {@code null}.
+     *
+     * @deprecated Replaced by {@link MeasureReference#getMeasureDescription()}.
      */
+    @Deprecated
     @UML(identifier="measureDescription", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default InternationalString getMeasureDescription() {
-        return null;
+        final MeasureReference ref = getMeasure();
+        return (ref != null) ? ref.getMeasureDescription() : null;
     }
 
     /**
      * Type of method used to evaluate quality of the dataset.
      *
      * @return type of method used to evaluate quality, or {@code null}.
+     *
+     * @deprecated Replaced by {@link EvaluationMethod#getEvaluationMethodType()}.
      */
+    @Deprecated
     @UML(identifier="evaluationMethodType", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default EvaluationMethodType getEvaluationMethodType() {
-        return null;
+        final EvaluationMethod ref = getEvaluationMethod();
+        return (ref != null) ? ref.getEvaluationMethodType() : null;
     }
 
     /**
      * Description of the evaluation method.
      *
      * @return description of the evaluation method, or {@code null}.
+     *
+     * @deprecated Replaced by {@link EvaluationMethod#getEvaluationMethodDescrition()}.
      */
+    @Deprecated
     @UML(identifier="evaluationMethodDescription", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default InternationalString getEvaluationMethodDescription() {
-        return null;
+        final EvaluationMethod ref = getEvaluationMethod();
+        return (ref != null) ? ref.getEvaluationMethodDescription() : null;
     }
 
     /**
      * Reference to the procedure information, or {@code null} if none.
      *
      * @return reference to the procedure information, or {@code null}.
+     *
+     * @deprecated Replaced by {@link EvaluationMethod#getEvaluationProcedure()}.
      */
+    @Deprecated
     @UML(identifier="evaluationProcedure", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Citation getEvaluationProcedure() {
-        return null;
+        final EvaluationMethod ref = getEvaluationMethod();
+        return (ref != null) ? ref.getEvaluationProcedure() : null;
     }
 
     /**
@@ -121,25 +185,36 @@ public interface Element {
      * The collection size is 1 for a single date, or 2 for a range.
      * Returns an empty collection if this information is not available.
      *
-     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The element type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
-     * </div>
-     *
      * @return date or range of dates on which a data quality measure was applied.
+     *
+     * @deprecated Replaced by {@link EvaluationMethod#getDates()}.
      */
+    @Deprecated
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends Date> getDates() {
-        return Collections.emptyList();
+        final EvaluationMethod ref = getEvaluationMethod();
+        return (ref != Collections.emptyList()) ? ref.getDates() : Collections.emptyList();
     }
 
     /**
-     * Value (or set of values) obtained from applying a data quality measure or the out
-     * come of evaluating the obtained value (or set of values) against a specified
-     * acceptable conformance quality level.
+     * Value (or set of values) obtained from applying a data quality measure.
+     * May be an outcome of evaluating the obtained value (or set of values)
+     * against a specified acceptable conformance quality level.
      *
      * @return set of values obtained from applying a data quality measure.
      */
-    @UML(identifier="result", obligation=MANDATORY, specification=ISO_19115, version=2003)
+    @UML(identifier="result", obligation=MANDATORY, specification=ISO_19157)
     Collection<? extends Result> getResults();
+
+    /**
+     * In case of aggregation or derivation, indicates the original element.
+     *
+     * @return original element when there is an aggregation or derivation.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="derivedElement", obligation=OPTIONAL, specification=ISO_19157)
+    default Collection<? extends Element> getDerivedElements() {
+        return Collections.emptyList();
+    }
 }

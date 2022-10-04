@@ -31,21 +31,50 @@
  */
 package org.opengis.metadata.quality;
 
+import java.util.Date;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
+import org.opengis.metadata.maintenance.Scope;
 
+import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
  * Base interface of more specific result classes.
+ * Instances should be one of {@link ConformanceResult},
+ * {@link QuantitativeResult} or {@link DescriptiveResult} subtypes.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @author  Alexis Gaillard (Geomatys)
  * @version 3.1
  * @since   2.0
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="DQ_Result", specification=ISO_19115, version=2003)
+@UML(identifier="DQ_Result", specification=ISO_19157)
 public interface Result {
+    /**
+     * Scope of the result.
+     *
+     * @return scope of the result, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="resultScope", obligation=OPTIONAL, specification=ISO_19157)
+    default Scope getResultScope() {
+        return null;
+    }
+
+    /**
+     * Date when the result was generated.
+     *
+     * @return date of the result, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19157)
+    default Date getDateTime() {
+        return null;
+    }
 }

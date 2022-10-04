@@ -32,16 +32,21 @@
 package org.opengis.metadata.quality;
 
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Data absent from the dataset, as described by the scope.
+ * Data absent from the data set, as described by the scope.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
- * @since   2.0
+ * @author  Alexis Gaillard (Geomatys)
+ * @version 3.1
+ *
+ * @see CompletenessCommission
+ *
+ * @since 2.0
  */
-@UML(identifier="DQ_CompletenessOmission", specification=ISO_19115, version=2003)
+@UML(identifier="DQ_CompletenessOmission", specification=ISO_19157)
 public interface CompletenessOmission extends Completeness {
 }

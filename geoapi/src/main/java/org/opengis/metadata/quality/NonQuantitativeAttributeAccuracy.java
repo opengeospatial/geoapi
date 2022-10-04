@@ -32,6 +32,7 @@
 package org.opengis.metadata.quality;
 
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Specification.*;
 
 
@@ -40,9 +41,13 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
- * @version 3.0
+ * @author  Alexis Gaillard (Geomatys)
+ * @version 3.1
  * @since   2.1
+ *
+ * @deprecated Renamed {@link NonQuantitativeAttributeCorrectness}.
  */
+@Deprecated
 @UML(identifier="DQ_NonQuantitativeAttributeAccuracy", specification=ISO_19115, version=2003)
-public interface NonQuantitativeAttributeAccuracy extends ThematicAccuracy {
+public interface NonQuantitativeAttributeAccuracy extends NonQuantitativeAttributeCorrectness {
 }

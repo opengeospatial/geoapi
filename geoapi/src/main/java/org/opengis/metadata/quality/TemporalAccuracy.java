@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2004-2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,9 +31,9 @@
  */
 package org.opengis.metadata.quality;
 
-import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
+import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
 
@@ -42,10 +42,14 @@ import static org.opengis.annotation.Specification.*;
  * Accuracy of the temporal attributes and temporal relationships of features.
  *
  * @author  Martin Desruisseaux (IRD)
+ * @author  Alexis Gaillard (Geomatys)
  * @version 3.1
  * @since   2.0
+ *
+ * @deprecated Renamed {@link TemporalQuality}.
  */
+@Deprecated
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="DQ_TemporalAccuracy", specification=ISO_19115, version=2003)
-public interface TemporalAccuracy extends Element {
+public interface TemporalAccuracy extends TemporalQuality {
 }
