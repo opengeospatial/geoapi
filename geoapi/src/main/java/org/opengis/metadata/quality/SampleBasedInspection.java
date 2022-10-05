@@ -70,6 +70,7 @@ public interface SampleBasedInspection extends DataEvaluation {
 
     /**
      * Information on how many samples on average are extracted for inspection from each lot of population.
+     * A lot is the minimum unit for which quality may be evaluated.
      *
      * @return average number of samples extracted for inspection.
      */

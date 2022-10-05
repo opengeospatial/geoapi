@@ -40,7 +40,11 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Presence and absence of features, their attributes and their relationships.
- * Instances should be one of {@link CompletenessOmission} or {@link CompletenessCommission} subtypes.
+ * Instances should be one of the following subtypes:
+ * <ul>
+ *   <li>{@link CompletenessOmission}: excess data present in a data set;</li>
+ *   <li>{@link CompletenessCommission}: data absent from a data set.</li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Alexis Gaillard (Geomatys)

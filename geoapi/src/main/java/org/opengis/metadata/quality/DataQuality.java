@@ -54,6 +54,21 @@ import static org.opengis.annotation.Specification.*;
 public interface DataQuality {
     /**
      * The specific data to which the data quality information applies.
+     * The scope specifies the extent, spatial and/or temporal, and/or common characteristic(s)
+     * that identify the data on which data quality is to be evaluated.
+     * Examples:
+     * <ul>
+     *   <li>a data set series;</li>
+     *   <li>a data set;</li>
+     *   <li>a subset of data defined by one or more of the following characteristics:
+     *     <ul>
+     *       <li>types of items (sets of feature types);</li>
+     *       <li>specific items (sets of feature instances);</li>
+     *       <li>geographic extent;</li>
+     *       <li>temporal extent.</li>
+     *     </ul>
+     *   </li>
+     * </ul>
      *
      * @return the specific data to which the data quality information applies.
      */
@@ -62,6 +77,11 @@ public interface DataQuality {
 
     /**
      * Quality information for the data specified by the scope.
+     * The quality of a data set can be measured using a variety of methods;
+     * a single data quality measure might be insufficient for fully evaluating
+     * the quality of the data specified by the {@linkplain #getScope() scope}.
+     * Therefore multiple data quality measures may be reported.
+     * The data quality report should then include one instance of {@link Element} for each measure applied.
      *
      * @return quality information for the data specified by the scope.
      */

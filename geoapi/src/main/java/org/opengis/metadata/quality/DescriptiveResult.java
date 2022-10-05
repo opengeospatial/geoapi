@@ -40,6 +40,11 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Data quality descriptive result.
+ * In some cases, it is not possible to produce a {@linkplain QuantitativeResult quantitative result}
+ * for a {@linkplain Element data quality element}. A subjective evaluation of an element can then be
+ * expressed with a textual statement as a data quality descriptive result.
+ * This descriptive result can also be used to provide a short synthetic description of the result
+ * of the data quality evaluation, to accompany the complete quantitative result.
  *
  * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

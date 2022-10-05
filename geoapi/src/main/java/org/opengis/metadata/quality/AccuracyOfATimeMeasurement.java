@@ -31,6 +31,7 @@
  */
 package org.opengis.metadata.quality;
 
+import javax.measure.Quantity;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
@@ -38,6 +39,64 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Correctness of the temporal references of an item (reporting of error in time measurement).
+ *
+ * <h2>Standardized values</h2>
+ * In order to achieve well defined and comparable quality information, it is recommended to
+ * report data quality using {@linkplain Measure quality measures} listed in ISO 19157 annex.
+ * The following table provides a summary adapted to GeoAPI objects;
+ * see ISO 19157 for more complete descriptions and formulas.
+ * All identifiers should be in "ISO 19157" namespace.
+ *
+ * <table class="ogc">
+ *   <caption>Standardized values derived from ISO 19157</caption>
+ *   <tr>
+ *     <th>{@linkplain MeasureReference#getMeasureIdentification() Identifier}</th>
+ *     <th>{@linkplain MeasureReference#getNamesOfMeasure() Name of measure}</th>
+ *     <th>{@linkplain Measure#getBasicMeasure() Basic measure}</th>
+ *     <th>{@linkplain Measure#getValueType() Value type}</th>
+ *   </tr><tr>
+ *     <td>54</td>
+ *     <td>time accuracy at 68.3% significance level</td>
+ *     <td>LE68.3 or LE68.3(r)</td>
+ *     <td>{@link Quantity}</td>
+ *   </tr><tr>
+ *     <td>55</td>
+ *     <td>time accuracy at 50% significance level</td>
+ *     <td>LE50 or LE50(r)</td>
+ *     <td>{@link Quantity}</td>
+ *   </tr><tr>
+ *     <td>56</td>
+ *     <td>time accuracy at 90% significance level</td>
+ *     <td>LE90 or LE90(r)</td>
+ *     <td>{@link Quantity}</td>
+ *   </tr><tr>
+ *     <td>57</td>
+ *     <td>time accuracy at 95% significance level</td>
+ *     <td>LE95 or LE95(r)</td>
+ *     <td>{@link Quantity}</td>
+ *   </tr><tr>
+ *     <td>58</td>
+ *     <td>time accuracy at 99% significance level</td>
+ *     <td>LE99 or LE99(r)</td>
+ *     <td>{@link Quantity}</td>
+ *   </tr><tr>
+ *     <td>59</td>
+ *     <td>time accuracy at 99.8% significance level</td>
+ *     <td>LE99.8 or LE99.8(r)</td>
+ *     <td>{@link Quantity}</td>
+ *   </tr>
+ * </table>
+ *
+ * <p>{@linkplain Measure#getDefinition() Definitions}:</p>
+ * <ol start="54">
+ *   <li>Half length of the interval defined by an upper and a lower limit, in which the true value for the time instance lies with probability 68.3%.</li>
+ *   <li>Half length of the interval defined by an upper and a lower limit, in which the true value for the time instance lies with probability 50%.</li>
+ *   <li>Half length of the interval defined by an upper and a lower limit, in which the true value for the time instance lies with probability 90%.</li>
+ *   <li>Half length of the interval defined by an upper and a lower limit, in which the true value for the time instance lies with probability 95%.</li>
+ *   <li>Half length of the interval defined by an upper and a lower limit, in which the true value for the time instance lies with probability 99%.</li>
+ *   <li>Half length of the interval defined by an upper and a lower limit, in which the true value for the time instance lies with probability 99.8%.</li>
+ *   <li></li>
+ * </ol>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Alexis Gaillard (Geomatys)

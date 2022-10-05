@@ -39,6 +39,11 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Validity of data specified by the scope with respect to time.
  *
+ * <h2>Standardized values</h2>
+ * In order to achieve well defined and comparable quality information, it is recommended to
+ * report data quality using {@linkplain Measure quality measures} listed in ISO 19157 annex.
+ * The temporal validity may be treated with the same data quality measures as for {@link DomainConsistency}.
+ *
  * @author  Martin Desruisseaux (IRD)
  * @author  Alexis Gaillard (Geomatys)
  * @version 3.1

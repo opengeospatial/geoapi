@@ -40,8 +40,13 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Accuracy of the temporal attributes and temporal relationships of features.
- * Instances should be one of {@link AccuracyOfATimeMeasurement}, {@link TemporalConsistency}
- * or {@link TemporalValidity} subtypes.
+ * Time measurement can be either a defined point in time or a period.
+ * Instances should be one of the following subtypes:
+ * <ul>
+ *   <li>{@link AccuracyOfATimeMeasurement}: closeness of reported time measurements to values accepted as or known to be true;</li>
+ *   <li>{@link TemporalConsistency}: correctness of the order of events;</li>
+ *   <li>{@link TemporalValidity}: validity of data with respect to time.</li>
+ * </ul>
  *
  * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

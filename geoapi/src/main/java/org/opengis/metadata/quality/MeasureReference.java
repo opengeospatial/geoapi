@@ -42,14 +42,19 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Reference to the measure used.
+ * Identifier of a measure fully described elsewhere.
  * At least one of {@linkplain #getMeasureIdentification() measure identification}
  * and {@linkplain #getNamesOfMeasure() measure names} shall be provided.
+ * The whole description can be found within a measure register or catalogue.
  *
  * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ *
+ * @see Element#getMeasure()
+ * @see Measure
+ *
+ * @since 3.1
  */
 @UML(identifier="DQ_MeasureReference", specification=ISO_19157)
 public interface MeasureReference {
@@ -57,6 +62,8 @@ public interface MeasureReference {
      * Identifier of the measure, value uniquely identifying the measure within a namespace.
      *
      * @return code identifying a registered standard procedure, or {@code null} if none.
+     *
+     * @see Measure#getMeasureIdentifier()
      */
     @UML(identifier="measureIdentification", obligation=OPTIONAL, specification=ISO_19157)
     default Identifier getMeasureIdentification() {
@@ -68,6 +75,8 @@ public interface MeasureReference {
      * Mandatory if {@linkplain #getMeasureIdentification() measure identification} is not provided.
      *
      * @return name of the test applied to the data.
+     *
+     * @see Measure#getName()
      */
     @UML(identifier="nameOfMeasure", obligation=CONDITIONAL, specification=ISO_19157)
     default Collection<? extends InternationalString> getNamesOfMeasure() {
@@ -77,7 +86,9 @@ public interface MeasureReference {
     /**
      * Description of the measure.
      *
-     * @return description of the measure being determined.
+     * @return description of the measure being determined, or {@code null} if none.
+     *
+     * @see Measure#getDescription()
      */
     @UML(identifier="measureDescription", obligation=OPTIONAL, specification=ISO_19157)
     default InternationalString getMeasureDescription() {

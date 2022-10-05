@@ -48,8 +48,12 @@ import static org.opengis.annotation.Specification.*;
  *   <li>correctness of the classifications of features and their relationships.</li>
  * </ul>
  *
- * Instances should be one of {@link QuantitativeAttributeAccuracy}, {@link NonQuantitativeAttributeCorrectness}
- * or {@link ThematicClassificationCorrectness} subtypes.
+ * Instances should be one of the following subtypes:
+ * <ul>
+ *   <li>{@link ThematicClassificationCorrectness}: comparison of the classes assigned to features or their attributes to a universe of discourse;</li>
+ *   <li>{@link NonQuantitativeAttributeCorrectness}: measure of whether a non-quantitative attribute is correct or incorrect;</li>
+ *   <li>{@link QuantitativeAttributeAccuracy}: closeness of the value of a quantitative attribute to a value accepted as being true.</li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Alexis Gaillard (Geomatys)

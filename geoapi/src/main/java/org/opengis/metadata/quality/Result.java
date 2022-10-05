@@ -43,21 +43,34 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Base interface of more specific result classes.
- * Instances should be one of {@link ConformanceResult},
- * {@link QuantitativeResult} or {@link DescriptiveResult} subtypes.
+ * At least one data quality result shall be provided for each {@linkplain Element data quality element}.
+ * Different types of results can be provided for the same data quality elements. This could be
+ * a {@linkplain QuantitativeResult quantitative result},
+ * a {@linkplain ConformanceResult conformance result},
+ * a {@linkplain DescriptiveResult descriptive result} or
+ * a {@linkplain CoverageResult coverage result}.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Alexis Gaillard (Geomatys)
  * @version 3.1
- * @since   2.0
+ *
+ * @see Element#getResults()
+ *
+ * @since 2.0
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="DQ_Result", specification=ISO_19157)
 public interface Result {
     /**
      * Scope of the result.
+     * Quality frequently differs between various parts of the data set for which quality is evaluated.
+     * Therefore several evaluations may be applied for the same {@linkplain Element data quality element}.
+     * To avoid repeating the measure and evaluation procedure descriptions in several instances of {@link Element},
+     * several results with individual result scopes can be used.
      *
-     * @return scope of the result, or {@code null} if none.
+     * @return scope of the result, or {@code null} if unspecified.
+     *
+     * @see DataQuality#getScope()
      *
      * @since 3.1
      */

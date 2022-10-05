@@ -44,11 +44,17 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Data quality measure.
+ * Measures are not referenced directly by {@link Element}.
+ * Instead {@link Measure}s may be stored in a measure register or catalogue,
+ * and referenced only indirectly with {@link MeasureReference}.
  *
  * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ *
+ * @see Element#getMeasure()
+ *
+ * @since 3.1
  */
 @UML(identifier="DQM_Measure", specification=ISO_19157)
 public interface Measure {
@@ -57,6 +63,8 @@ public interface Measure {
      * This identifier enables references to the data quality measure within the data quality elements.
      *
      * @return value uniquely identifying the measure within a namespace.
+     *
+     * @see MeasureReference#getMeasureIdentification()
      */
     @UML(identifier="measureIdentifier", obligation=MANDATORY, specification=ISO_19157)
     Identifier getMeasureIdentifier();
@@ -67,6 +75,8 @@ public interface Measure {
      * If no name exists, a name should be chosen that reflects the nature of the measure.
      *
      * @return name of the data quality measure applied to the data.
+     *
+     * @see MeasureReference#getNamesOfMeasure()
      */
     @UML(identifier="Name", obligation=MANDATORY, specification=ISO_19157)
     InternationalString getName();
@@ -134,6 +144,8 @@ public interface Measure {
      *            for the understanding of the data quality measure concept.
      *
      * @return description of data quality measure, or {@code null} if none.
+     *
+     * @see MeasureReference#getMeasureDescription()
      */
     @UML(identifier="description", obligation=CONDITIONAL, specification=ISO_19157)
     Description getDescription();

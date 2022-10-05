@@ -31,8 +31,9 @@
  */
 
 /**
- * {@linkplain org.opengis.metadata.quality.DataQuality Data quality} and
- * {@linkplain org.opengis.metadata.quality.PositionalAccuracy positional accuracy}.
+ * Description of the quality of geographic data.
+ * A data quality evaluation can be applied to data set or a subset of data
+ * sharing common characteristics so that its quality can be evaluated.
  *
  * <p>Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
  * OpenGIS® Metadata (Topic 11)} specification. The following table shows the class hierarchy,

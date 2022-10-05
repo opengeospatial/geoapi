@@ -40,8 +40,13 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Accuracy of the position of features.
- * Instances should be one of {@link AbsoluteExternalPositionalAccuracy}, {@link RelativeInternalPositionalAccuracy}
- * or {@link GriddedDataPositionalAccuracy} subtypes.
+ * Instances should be one of the following subtypes:
+ * <ul>
+ *   <li>{@link AbsoluteExternalPositionalAccuracy}: closeness of reported coordinate values to values accepted as being true;</li>
+ *   <li>{@link RelativeInternalPositionalAccuracy}: closeness of the relative positions of features in a data set
+ *       to their respective relative positions accepted as being true;</li>
+ *   <li>{@link GriddedDataPositionalAccuracy}: closeness of gridded data spatial position values to values accepted as being true.</li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Alexis Gaillard (Geomatys)

@@ -41,8 +41,13 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Degree of adherence to logical rules of data structure, attribution and relationships.
  * Data structure can be conceptual, logical or physical.
- * Instances should be one of {@link ConceptualConsistency}, {@link DomainConsistency},
- * {@link FormatConsistency} or {@link TopologicalConsistency} subtypes.
+ * Instances should be one of the following subtypes:
+ * <ul>
+ *   <li>{@link ConceptualConsistency}: adherence to rules of the conceptual schema;</li>
+ *   <li>{@link DomainConsistency}: adherence of values to the value domains;</li>
+ *   <li>{@link FormatConsistency}: degree to which data are stored in accordance with the physical structure of the data set;</li>
+ *   <li>{@link TopologicalConsistency}: correctness of the explicitly encoded topological characteristics of a data set.</li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Alexis Gaillard (Geomatys)

@@ -43,8 +43,9 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * The values or information about the value(s) (or set of values) obtained
- * from applying a data quality measure.
+ * The values or information about the value(s) (or set of values) obtained from applying a data quality measure.
+ * Quantitative result may be a single value or multiple values, depending on the {@linkplain #getValueType() value type}
+ * and {@linkplain Measure#getValueStructure() value structure} defined in the description of the measure applied.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
@@ -75,15 +76,27 @@ public interface QuantitativeResult extends Result {
 
     /**
      * Value type for reporting a data quality result.
-     * Depends of the implementation.
+     * It describes how the {@linkplain Measure#getValueType() value type} and
+     * {@linkplain Measure#getValueStructure() value structure} defined in the
+     * measure are implemented to provide the value of the quantitative result.
+     *
+     * <div class="note"><b>Example:</b>
+     * Within the description of the measure, the {@linkplain Measure#getValueType() value type} is an integer,
+     * the {@linkplain Measure#getValueStructure() value structure} is matrix (<var>n</var> × <var>n</var>).
+     * The value attribute of the quantitative result provides the result matrix itself,
+     * within a numeric encoding using a particular XML type called {@code MatrixType} (for example).
+     * This attribute {@code valueRecordType} provides the description of the type {@code MatrixType} in XML.
+     * If another encoding is used, the attribute {@code valueRecordType} will change to provide the description
+     * of the type matrix in the other encoding, and the implementation of the attribute value will change accordingly,
+     * but the value itself will not change.</div>
      *
      * @return value type for reporting a data quality result, or {@code null} if none.
      *
-     * @departure rename
+     * @see Measure#getValueType()
+     *
+     * @departure historic
      *   Renamed from {@code "valueRecordType"} to {@code "valueType"} for compatibility with ISO 19115:2003
      *   and because the return object type does not need to be repeated in Java method name.
-     *
-     * @since 3.1
      */
     @UML(identifier="valueRecordType", obligation=OPTIONAL, specification=ISO_19157)
     default RecordType getValueType() {

@@ -47,8 +47,17 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Aspect of quantitative quality information.
- * Instances should be one of {@link Completeness}, {@link LogicalConsistency}, {@link PositionalAccuracy},
- * {@link TemporalQuality}, {@link ThematicAccuracy}, {@link UsabilityElement} or {@link Metaquality} subtypes.
+ * A data quality element is a component describing a certain aspect of the quality of geographic data.
+ * An evaluation of a data quality element is described by the following:
+ * <ul>
+ *   <li>{@linkplain #getMeasure() Measure}: the type of evaluation;</li>
+ *   <li>{@linkplain #getEvaluationMethod() Evaluation method}: the procedure used to evaluate the measure;</li>
+ *   <li>{@linkplain #getResults() Result:} the output of the evaluation.</li>
+ * </ul>
+ *
+ * Elements are organized into different categories, which are identified by the following subtypes:
+ * {@link Completeness}, {@link LogicalConsistency}, {@link PositionalAccuracy}, {@link TemporalQuality},
+ * {@link ThematicAccuracy}, {@link UsabilityElement} or {@link Metaquality}.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
@@ -73,7 +82,8 @@ public interface Element {
     }
 
     /**
-     * Reference to measure used.
+     * Identifier of a measure fully described elsewhere.
+     * The whole description can be found within a measure register or catalogue.
      *
      * @return reference to the measure used, or {@code null} if none.
      *
