@@ -42,8 +42,6 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Quality information for the data specified by a data quality scope.
- * At least one of the {@linkplain #getReports() report} and {@linkplain #getLineage() lineage}
- * shall be provided.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Alexis Gaillard (Geomatys)

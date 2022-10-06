@@ -73,9 +73,9 @@ public interface ConformanceResult extends Result {
     }
 
     /**
-     * Indication of the conformance result where {@code false} = fail and {@code true} = pass.
+     * Indication of the conformance result.
      *
-     * @return indication of the conformance result.
+     * @return {@code true} = pass, {@code false} = fail.
      */
     @UML(identifier="pass", obligation=MANDATORY, specification=ISO_19157)
     Boolean pass();

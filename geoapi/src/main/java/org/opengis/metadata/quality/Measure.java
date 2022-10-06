@@ -52,6 +52,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  *
+ * @see MeasureReference
  * @see Element#getMeasure()
  *
  * @since 3.1
@@ -183,11 +184,11 @@ public interface Measure {
     }
 
     /**
-     * Auxiliary variable used by the data quality measure.
+     * Auxiliary variable(s) used by the data quality measure.
      * It shall include its name, definition and value type.
      * More than one measure parameter may be provided.
      *
-     * @return auxiliary variable used by data quality measure.
+     * @return auxiliary variable(s) used by data quality measure.
      */
     @UML(identifier="parameter", obligation=CONDITIONAL, specification=ISO_19157)
     default Collection<? extends Parameter> getParameters() {

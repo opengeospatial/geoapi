@@ -38,6 +38,10 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Expected or tested uniformity of the results obtained for a data quality evaluation.
+ * Homogeneity consists in comparing the evaluation results of several segments of a global data set.
+ * This comparison can be expressed using root mean square errors for example.
+ * These tests are often conducted when data has been captured by different operators,
+ * depending on the acquisition zone or the acquisition date.
  *
  * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

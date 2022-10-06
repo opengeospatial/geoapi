@@ -81,11 +81,11 @@ public interface QuantitativeResult extends Result {
      * measure are implemented to provide the value of the quantitative result.
      *
      * <div class="note"><b>Example:</b>
-     * Within the description of the measure, the {@linkplain Measure#getValueType() value type} is an integer,
+     * Within the description of the <cite>misclassification matrix</cite> measure,
+     * the {@linkplain Measure#getValueType() value type} may be an integer and
      * the {@linkplain Measure#getValueStructure() value structure} is matrix (<var>n</var> × <var>n</var>).
-     * The value attribute of the quantitative result provides the result matrix itself,
-     * within a numeric encoding using a particular XML type called {@code MatrixType} (for example).
-     * This attribute {@code valueRecordType} provides the description of the type {@code MatrixType} in XML.
+     * The value attribute of the {@code QuantitativeResult} provides the result matrix itself.
+     * This attribute {@code valueRecordType} provides the description of the matrix type.
      * If another encoding is used, the attribute {@code valueRecordType} will change to provide the description
      * of the type matrix in the other encoding, and the implementation of the attribute value will change accordingly,
      * but the value itself will not change.</div>

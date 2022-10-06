@@ -42,7 +42,15 @@ import static org.opengis.annotation.Obligation.*;
 
 /**
  * Information about the reliability of data quality results.
- * Instances should be one of {@link Confidence}, {@link Representativity} or {@link Homogeneity} subtypes.
+ * The knowledge about the suitability of the quality evaluation method
+ * may be of the same importance as the result itself.
+ * Instances should be one of the following subtypes:
+ * <ul>
+ *   <li>{@link Confidence}: trustworthiness of a data quality result;</li>
+ *   <li>{@link Representativity}: degree to which the sample used has produced
+ *       a result which is representative of the data within the data quality scope;</li>
+ *   <li>{@link Homogeneity}: expected or tested uniformity of the results obtained for a data quality evaluation.</li>
+ * </ul>
  *
  * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

@@ -38,6 +38,8 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Trustworthiness of a data quality result.
+ * Quantitative figures for confidence can be obtained by statistical parameters
+ * such as standard deviation or a confidence interval on a given confidence level.
  *
  * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

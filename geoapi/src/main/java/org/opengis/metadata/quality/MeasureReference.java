@@ -47,6 +47,16 @@ import static org.opengis.annotation.Specification.*;
  * and {@linkplain #getNamesOfMeasure() measure names} shall be provided.
  * The whole description can be found within a measure register or catalogue.
  *
+ * <h2>Catalogue of data quality measures</h2>
+ * Catalogues of data quality measures may be available online to fully describe
+ * the measures referenced in the data quality report of the data evaluated.
+ * The catalogue may contain the set of measures used in one or several data quality reports.
+ * The catalogue (as a register) enables the user to describe the measure,
+ * and store the information in order to be able to refer to it each time needed,
+ * instead of re-describing the measure within a data quality report.
+ * This {@code MeasureReference} represents a reference to a measure in a catalogue.
+ * The full measure description is given by {@link Measure}.
+ *
  * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

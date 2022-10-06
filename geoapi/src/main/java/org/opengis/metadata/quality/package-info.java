@@ -35,7 +35,7 @@
  * A data quality evaluation can be applied to data set or a subset of data
  * sharing common characteristics so that its quality can be evaluated.
  *
- * <p>Metadata object are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
+ * <p>Metadata objects are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
  * OpenGIS® Metadata (Topic 11)} specification. The following table shows the class hierarchy,
  * together with a partial view of aggregation hierarchy:</p>
  *
@@ -60,50 +60,54 @@
  *  │   │   ├─ {@linkplain org.opengis.metadata.quality.AbsoluteExternalPositionalAccuracy}
  *  │   │   ├─ {@linkplain org.opengis.metadata.quality.RelativeInternalPositionalAccuracy}
  *  │   │   └─ {@linkplain org.opengis.metadata.quality.GriddedDataPositionalAccuracy}
- *  │   ├─ {@linkplain org.opengis.metadata.quality.TemporalAccuracy} «abstract»
+ *  │   ├─ {@linkplain org.opengis.metadata.quality.TemporalQuality} «abstract»
  *  │   │   ├─ {@linkplain org.opengis.metadata.quality.AccuracyOfATimeMeasurement}
  *  │   │   ├─ {@linkplain org.opengis.metadata.quality.TemporalConsistency}
  *  │   │   └─ {@linkplain org.opengis.metadata.quality.TemporalValidity}
  *  │   ├─ {@linkplain org.opengis.metadata.quality.ThematicAccuracy} «abstract»
- *  │   │   ├─ {@linkplain org.opengis.metadata.quality.QuantitativeAttributeAccuracy}
- *  │   │   ├─ {@linkplain org.opengis.metadata.quality.NonQuantitativeAttributeAccuracy}
- *  │   │   └─ {@linkplain org.opengis.metadata.quality.ThematicClassificationCorrectness}
- *  │   └─ {@linkplain org.opengis.metadata.quality.Usability}
+ *  │   │   ├─ {@linkplain org.opengis.metadata.quality.ThematicClassificationCorrectness}
+ *  │   │   ├─ {@linkplain org.opengis.metadata.quality.NonQuantitativeAttributeCorrectness}
+ *  │   │   └─ {@linkplain org.opengis.metadata.quality.QuantitativeAttributeAccuracy}
+ *  │   ├─ {@linkplain org.opengis.metadata.quality.UsabilityElement}
+ *  │   └─ {@linkplain org.opengis.metadata.quality.Metaquality} «abstract»
+ *  │       ├─ {@linkplain org.opengis.metadata.quality.Confidence}
+ *  │       ├─ {@linkplain org.opengis.metadata.quality.Representativity}
+ *  │       └─ {@linkplain org.opengis.metadata.quality.Homogeneity}
+ *  ├─ {@linkplain org.opengis.metadata.quality.EvaluationMethod}
+ *  │   ├─ {@linkplain org.opengis.metadata.quality.DataEvaluation}
+ *  │   │   │─ {@linkplain org.opengis.metadata.quality.IndirectEvaluation}
+ *  │   │   │─ {@linkplain org.opengis.metadata.quality.SampleBasedInspection}
+ *  │   │   └─ {@linkplain org.opengis.metadata.quality.FullInspection}
+ *  │   └─ {@linkplain org.opengis.metadata.quality.AggregationDerivation}
+ *  ├─ {@linkplain org.opengis.metadata.quality.Measure}
+ *  ├─ {@linkplain org.opengis.metadata.quality.BasicMeasure}
+ *  ├─ {@linkplain org.opengis.metadata.quality.MeasureReference}
+ *  ├─ {@linkplain org.opengis.metadata.quality.Description}
  *  └─ {@linkplain org.opengis.metadata.quality.Result} «abstract»
- *      ├─ {@linkplain org.opengis.metadata.quality.ConformanceResult}
  *      ├─ {@linkplain org.opengis.metadata.quality.QuantitativeResult}
+ *      ├─ {@linkplain org.opengis.metadata.quality.ConformanceResult}
+ *      ├─ {@linkplain org.opengis.metadata.quality.DescriptiveResult}
  *      └─ {@linkplain org.opengis.metadata.quality.CoverageResult}
  * {@linkplain org.opengis.util.CodeList}
  *  └─ {@linkplain org.opengis.metadata.quality.EvaluationMethodType}</pre>
  * </td><td class="sep hierarchy">
  * <pre> {@linkplain org.opengis.metadata.quality.DataQuality}
- *  └─ {@linkplain org.opengis.metadata.quality.Element} «abstract»
- *      ├─ {@linkplain org.opengis.metadata.quality.EvaluationMethodType} «code list»
- *      └─ {@linkplain org.opengis.metadata.quality.Result} «abstract»
- * {@linkplain org.opengis.metadata.quality.Completeness} «abstract»
- * {@linkplain org.opengis.metadata.quality.CompletenessCommission}
- * {@linkplain org.opengis.metadata.quality.CompletenessOmission}
- * {@linkplain org.opengis.metadata.quality.LogicalConsistency} «abstract»
- * {@linkplain org.opengis.metadata.quality.ConceptualConsistency}
- * {@linkplain org.opengis.metadata.quality.DomainConsistency}
- * {@linkplain org.opengis.metadata.quality.FormatConsistency}
- * {@linkplain org.opengis.metadata.quality.TopologicalConsistency}
- * {@linkplain org.opengis.metadata.quality.PositionalAccuracy} «abstract»
- * {@linkplain org.opengis.metadata.quality.AbsoluteExternalPositionalAccuracy}
- * {@linkplain org.opengis.metadata.quality.RelativeInternalPositionalAccuracy}
- * {@linkplain org.opengis.metadata.quality.GriddedDataPositionalAccuracy}
- * {@linkplain org.opengis.metadata.quality.TemporalAccuracy} «abstract»
- * {@linkplain org.opengis.metadata.quality.AccuracyOfATimeMeasurement}
- * {@linkplain org.opengis.metadata.quality.TemporalConsistency}
- * {@linkplain org.opengis.metadata.quality.TemporalValidity}
- * {@linkplain org.opengis.metadata.quality.ThematicAccuracy} «abstract»
- * {@linkplain org.opengis.metadata.quality.QuantitativeAttributeAccuracy}
- * {@linkplain org.opengis.metadata.quality.NonQuantitativeAttributeAccuracy}
- * {@linkplain org.opengis.metadata.quality.ThematicClassificationCorrectness}
- * {@linkplain org.opengis.metadata.quality.Usability}
- * {@linkplain org.opengis.metadata.quality.ConformanceResult}
- * {@linkplain org.opengis.metadata.quality.QuantitativeResult}
- * {@linkplain org.opengis.metadata.quality.CoverageResult}</pre>
+ *  ├─ {@linkplain org.opengis.metadata.maintenance.Scope}
+ *  ├─ {@linkplain org.opengis.metadata.quality.Element} «abstract»
+ *  │   ├─ {@linkplain org.opengis.metadata.quality.MeasureReference}
+ *  │   ├─ {@linkplain org.opengis.metadata.quality.EvaluationMethod}
+ *  │   │   └─ {@linkplain org.opengis.metadata.quality.EvaluationMethodType} «code list»
+ *  │   └─ {@linkplain org.opengis.metadata.quality.Result} «abstract»
+ *  │       └─ {@linkplain org.opengis.metadata.maintenance.Scope}
+ *  └─ {@linkplain org.opengis.metadata.quality.StandaloneQualityReportInformation}
+ *
+ * {@linkplain org.opengis.metadata.quality.Measure}
+ *  ├─ {@linkplain org.opengis.metadata.quality.BasicMeasure}
+ *  │   └─ {@linkplain org.opengis.metadata.quality.Description}
+ *  ├─ {@linkplain org.opengis.metadata.quality.Description}
+ *  ├─ {@linkplain org.opengis.metadata.quality.SourceReference}
+ *  ├─ {@linkplain org.opengis.metadata.quality.Parameter}
+ *  └─ {@linkplain org.opengis.metadata.quality.ValueStructure}</pre>
  * </td></tr></table>
  *
  * @author  Martin Desruisseaux (IRD)
