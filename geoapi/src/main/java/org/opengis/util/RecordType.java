@@ -33,6 +33,8 @@ package org.opengis.util;
 
 import java.util.Map;
 import java.util.Set;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -105,6 +107,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see Record#getRecordType()
  */
+@Classifier(Stereotype.METACLASS)
 @UML(identifier="RecordType", specification=ISO_19103)
 public interface RecordType extends Type {
     /**
