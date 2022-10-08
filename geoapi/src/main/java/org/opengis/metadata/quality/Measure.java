@@ -44,9 +44,17 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Data quality measure.
- * Measures are not referenced directly by {@link Element}.
- * Instead {@link Measure}s may be stored in a measure register or catalogue,
- * and referenced only indirectly with {@link MeasureReference}.
+ *
+ * <h2>Where measures are stored</h2>
+ * Measures may be verbose and may not be of interest when only the {@linkplain Element#getResults() result}
+ * of data quality measures is desired. For allowing more compact {@link Element}s, ISO 19157 does not store
+ * {@code Measure} instance directly into {@link Element}, but instead stores {@link MeasureReference} which
+ * can be used for fetching full {@link Measure} description from a measure register or catalogue if desired.
+ *
+ * <p>GeoAPI extends the ISO 19157 model by allowing {@link Element} to provide directly a {@link Measure} instance.
+ * This optional feature gives access to full measure description without forcing users to connect to a catalogue or
+ * measure registry. Implementers can fetch the measure description only when first requested, for example by
+ * connecting themselves to a catalogue when {@link Element#getMeasure()} is first invoked.</p>
  *
  * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

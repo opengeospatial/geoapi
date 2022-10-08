@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
  * A data quality element is a component describing a certain aspect of the quality of geographic data.
  * An evaluation of a data quality element is described by the following:
  * <ul>
- *   <li>{@linkplain #getMeasure() Measure}: the type of evaluation;</li>
+ *   <li>{@linkplain #getMeasureReference() Measure}: the type of evaluation;</li>
  *   <li>{@linkplain #getEvaluationMethod() Evaluation method}: the procedure used to evaluate the measure;</li>
  *   <li>{@linkplain #getResults() Result:} the output of the evaluation.</li>
  * </ul>
@@ -82,16 +82,51 @@ public interface Element {
     }
 
     /**
+     * Full description of a data quality measure.
+     *
+     * @departure easeOfUse
+     *   This method is not part of ISO 19157 specification.
+     *   Instead, the standard provides only a {@link MeasureReference}
+     *   that clients can use for finding the full measure description in a measure register or catalogue.
+     *   Because Java interfaces can execute code (as opposed to static data encoded in XML or JSON documents),
+     *   implementers are free to do themselves the work of fetching this information from an external source
+     *   when {@code getMeasure()} is invoked. This method is added in the {@link Element} interface for making
+     *   that feature possible. This is an optional feature; implementers can ignore this method and implement
+     *   only the {@link #getMeasureReference()} method.
+     *
+     * @return a measure of data quality, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    default Measure getMeasure() {
+        return null;
+    }
+
+    /**
      * Identifier of a measure fully described elsewhere.
-     * The whole description can be found within a measure register or catalogue.
+     * The full description is given by {@link #getMeasure()},
+     * but that description may not be available to this {@code Element}.
+     * Instead the whole description may be found within a measure register or catalogue,
+     * in which case this reference can be used for finding the whole description.
+     *
+     * <p>If a full measure is {@linkplain #getMeasure() contained in this element},
+     * then by default this method returns the {@linkplain Measure#getName() name},
+     * {@linkplain Measure#getMeasureIdentifier() identifier} and
+     * {@linkplain Measure#getDefinition() definition} of that measure.</p>
+     *
+     * @departure rename
+     *   The ISO 19157 property name is {@code measure}.
+     *   This is renamed {@code measureReference} in GeoAPI for reflecting the return type
+     *   and for making room for a {@code measure} property for the full {@link Measure} description.
      *
      * @return reference to the measure used, or {@code null} if none.
      *
      * @since 3.1
      */
     @UML(identifier="measure", obligation=OPTIONAL, specification=ISO_19157)
-    default MeasureReference getMeasure() {
-        return null;
+    default MeasureReference getMeasureReference() {
+        final Measure measure = getMeasure();
+        return (measure == null) ? null : new MeasureInstanceReference(measure);
     }
 
     /**
@@ -104,7 +139,7 @@ public interface Element {
     @Deprecated
     @UML(identifier="nameOfMeasure", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends InternationalString> getNamesOfMeasure() {
-        final MeasureReference ref = getMeasure();
+        final MeasureReference ref = getMeasureReference();
         return (ref != null) ? ref.getNamesOfMeasure() : Collections.emptyList();
     }
 
@@ -130,7 +165,7 @@ public interface Element {
     @Deprecated
     @UML(identifier="measureIdentification", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Identifier getMeasureIdentification() {
-        final MeasureReference ref = getMeasure();
+        final MeasureReference ref = getMeasureReference();
         return (ref != null) ? ref.getMeasureIdentification() : null;
     }
 
@@ -144,7 +179,7 @@ public interface Element {
     @Deprecated
     @UML(identifier="measureDescription", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default InternationalString getMeasureDescription() {
-        final MeasureReference ref = getMeasure();
+        final MeasureReference ref = getMeasureReference();
         return (ref != null) ? ref.getMeasureDescription() : null;
     }
 
@@ -167,7 +202,7 @@ public interface Element {
      *
      * @return description of the evaluation method, or {@code null}.
      *
-     * @deprecated Replaced by {@link EvaluationMethod#getEvaluationMethodDescrition()}.
+     * @deprecated Replaced by {@link EvaluationMethod#getEvaluationMethodDescription()}.
      */
     @Deprecated
     @UML(identifier="evaluationMethodDescription", obligation=OPTIONAL, specification=ISO_19115, version=2003)

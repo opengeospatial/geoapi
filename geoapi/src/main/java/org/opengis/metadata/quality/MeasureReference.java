@@ -61,7 +61,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  *
- * @see Element#getMeasure()
+ * @see Element#getMeasureReference()
  * @see Measure
  *
  * @since 3.1
@@ -71,7 +71,7 @@ public interface MeasureReference {
     /**
      * Identifier of the measure, value uniquely identifying the measure within a namespace.
      *
-     * @return code identifying a registered standard procedure, or {@code null} if none.
+     * @return code identifying a registered measure, or {@code null} if none.
      *
      * @see Measure#getMeasureIdentifier()
      */
@@ -98,7 +98,7 @@ public interface MeasureReference {
      *
      * @return description of the measure being determined, or {@code null} if none.
      *
-     * @see Measure#getDescription()
+     * @see Measure#getDefinition()
      */
     @UML(identifier="measureDescription", obligation=OPTIONAL, specification=ISO_19157)
     default InternationalString getMeasureDescription() {
