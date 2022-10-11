@@ -81,7 +81,7 @@ public interface MeasureReference {
     }
 
     /**
-     * Name of the test applied to the data.
+     * Name(s) of the test applied to the data.
      * Mandatory if {@linkplain #getMeasureIdentification() measure identification} is not provided.
      *
      * @return name of the test applied to the data.

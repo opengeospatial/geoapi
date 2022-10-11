@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * Data quality evaluation method should be included for each applied {@linkplain Element data quality measure}.
  * It describes, or references documentation describing, the methodology used to apply a data quality measure
  * to the data specified by a {@linkplain DataQuality#getScope() data quality scope}.
- * {@code EvaluationMethod} be specialized with {@link DataEvaluation} or {@link AggregationDerivation} subtypes.
+ * {@code EvaluationMethod} can be specialized with {@link DataEvaluation} or {@link AggregationDerivation} subtypes.
  *
  * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

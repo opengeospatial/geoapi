@@ -87,7 +87,7 @@ public interface Measure {
      *
      * @see MeasureReference#getNamesOfMeasure()
      */
-    @UML(identifier="Name", obligation=MANDATORY, specification=ISO_19157)
+    @UML(identifier="name", obligation=MANDATORY, specification=ISO_19157)
     InternationalString getName();
 
     /**
@@ -184,7 +184,7 @@ public interface Measure {
      * A result may consist of multiple values.
      * In such cases, the result shall be structured using the value structure.
      *
-     * @return structure for reporting a complex data quality result.
+     * @return structure for reporting a complex data quality result, or {@code null} if none.
      */
     @UML(identifier="valueStructure", obligation=OPTIONAL, specification=ISO_19157)
     default ValueStructure getValueStructure() {

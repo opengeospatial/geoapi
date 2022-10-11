@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   3.1
  */
-@UML(identifier="DQ_ValueStructure", specification=ISO_19157)
+@UML(identifier="DQM_ValueStructure", specification=ISO_19157)
 public final class ValueStructure extends CodeList<ValueStructure> {
     /**
      * Serial number for compatibility with different versions.

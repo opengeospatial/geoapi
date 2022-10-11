@@ -60,7 +60,7 @@ public interface Description {
     /**
      * Illustration.
      *
-     * @return illustration, or {@code null} if none.
+     * @return description illustration, or {@code null} if none.
      */
     @UML(identifier="extendedDescription", obligation=OPTIONAL, specification=ISO_19157)
     default BrowseGraphic getExtendedDescription() {

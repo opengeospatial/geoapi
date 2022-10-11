@@ -40,12 +40,12 @@ import static org.opengis.annotation.Specification.*;
  * Degree of adherence of a dataset to a specific set of user requirements.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  *
  * @deprecated Renamed {@link UsabilityElement}.
  */
 @Deprecated
 @UML(identifier="QE_Usability", specification=ISO_19115_2, version=2009)
-public interface Usability extends Element {
+public interface Usability extends UsabilityElement {
 }

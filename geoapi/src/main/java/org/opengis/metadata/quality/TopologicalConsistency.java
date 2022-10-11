@@ -37,8 +37,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Correctness of the explicitly encoded topological characteristics of the data set as
- * described by the scope.
+ * Correctness of the explicitly encoded topological characteristics of the data set.
+ * The data set is described by the {@linkplain DataQuality#getScope() scope}.
  *
  * <h2>Standardized values</h2>
  * In order to achieve well defined and comparable quality information, it is recommended to

@@ -300,6 +300,7 @@ public class SchemaInformation {
                 "19115/-3/mrc/1.0/mrc.xsd",         // Metadata for resource content
                 "19115/-3/mrl/1.0/mrl.xsd",         // Metadata for resource lineage
                 "19157/-2/mdq/1.0/mdq.xsd",         // Metadata for data quality
+                "19157/-2/dqm/1.0/dqm.xsd",         // Metadata for data quality measure
                 "19115/-3/mrs/1.0/mrs.xsd",         // Metadata for reference system
                 "19115/-3/msr/1.0/msr.xsd",         // Metadata for spatial representation
                 "19115/-3/mas/1.0/mas.xsd",         // Metadata for application schema

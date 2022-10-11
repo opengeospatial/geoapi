@@ -37,8 +37,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Degree to which data are stored in accordance with the physical structure of
- * the data set, as described by the scope.
+ * Degree to which data are stored in accordance with the physical structure of the data set.
+ * The data set is described by the {@linkplain DataQuality#getScope() scope}.
  *
  * <h2>Standardized values</h2>
  * In order to achieve well defined and comparable quality information, it is recommended to

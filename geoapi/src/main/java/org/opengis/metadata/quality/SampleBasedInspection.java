@@ -74,6 +74,6 @@ public interface SampleBasedInspection extends DataEvaluation {
      *
      * @return average number of samples extracted for inspection.
      */
-    @UML(identifier="sampleRatio", obligation=MANDATORY, specification=ISO_19157)
-    InternationalString getSampleRatio();
+    @UML(identifier="samplingRatio", obligation=MANDATORY, specification=ISO_19157)
+    InternationalString getSamplingRatio();
 }

@@ -61,7 +61,7 @@ import static org.opengis.annotation.Obligation.*;
 @UML(identifier="DQ_Metaquality", specification=ISO_19157)
 public interface Metaquality extends Element {
     /**
-     * Derived element.
+     * Derived element (mandatory).
      * The returned collection shall contain exactly 1 element.
      *
      * @return the element that is derived.

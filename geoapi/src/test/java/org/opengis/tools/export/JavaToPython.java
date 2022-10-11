@@ -192,6 +192,7 @@ strictfp class JavaToPython extends SourceGenerator {
 
         namespaces = new NameSpaces();
         namespaces.exclude("lan");          // Because it defines only "FreeText", which is not used here.
+        namespaces.exclude("dqm");          // Because merged with "dqc".
         namespaces.exclude("IO", "CD", "CS", "RS", "SC", "PT", "CT", "CC", "TM", "GM", "DQ", "DQM", "GF");      // Not yet supported.
         schema = new SchemaInformation(schemaRootDirectory, new Departures(), DocumentationStyle.SENTENCE);
         schema.loadDefaultSchemas();

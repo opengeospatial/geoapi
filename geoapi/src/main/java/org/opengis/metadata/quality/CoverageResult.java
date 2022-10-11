@@ -118,7 +118,7 @@ public interface CoverageResult extends Result {
      *
      * @condition Mandatory if {@linkplain #getResultContent() result content} is not provided.
      */
-    @UML(identifier="resultFile", obligation=CONDITIONAL, specification=ISO_19115_3)
+    @UML(identifier="resultFile", obligation=CONDITIONAL, specification=ISO_19157)
     default DataFile getResultFile() {
         return null;
     }

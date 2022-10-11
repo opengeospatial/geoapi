@@ -37,7 +37,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Excess data present in the data set, as described by the scope.
+ * Excess data present in the data set.
+ * The data set is described by the {@linkplain DataQuality#getScope() scope}.
  *
  * <h2>Standardized values</h2>
  * In order to achieve well defined and comparable quality information, it is recommended to

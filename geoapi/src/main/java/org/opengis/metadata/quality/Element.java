@@ -144,18 +144,6 @@ public interface Element {
     }
 
     /**
-     * Evaluation information.
-     *
-     * @return information about the evaluation method, or {@code null} if none.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="evaluationMethod", obligation=OPTIONAL, specification=ISO_19157)
-    default EvaluationMethod getEvaluationMethod() {
-        return null;
-    }
-
-    /**
      * Code identifying a registered standard procedure, or {@code null} if none.
      *
      * @return code identifying a registered standard procedure, or {@code null}.
@@ -181,6 +169,18 @@ public interface Element {
     default InternationalString getMeasureDescription() {
         final MeasureReference ref = getMeasureReference();
         return (ref != null) ? ref.getMeasureDescription() : null;
+    }
+
+    /**
+     * Evaluation information.
+     *
+     * @return information about the evaluation method, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="evaluationMethod", obligation=OPTIONAL, specification=ISO_19157)
+    default EvaluationMethod getEvaluationMethod() {
+        return null;
     }
 
     /**
@@ -252,9 +252,9 @@ public interface Element {
     Collection<? extends Result> getResults();
 
     /**
-     * In case of aggregation or derivation, indicates the original element.
+     * In case of aggregation or derivation, indicates the original elements.
      *
-     * @return original element when there is an aggregation or derivation.
+     * @return original element(s) when there is an aggregation or derivation.
      *
      * @since 3.1
      */
