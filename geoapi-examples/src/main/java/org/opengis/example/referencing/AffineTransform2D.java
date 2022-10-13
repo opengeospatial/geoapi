@@ -74,7 +74,7 @@ public class AffineTransform2D extends AffineTransform implements MathTransform2
 
     /**
      * Creates a new transform initialized to the values of the given matrix.
-     * The matrix size must be 3×3 and the last row shall contains [0 0 1].
+     * The matrix size must be 3×3 and the last row shall contain [0 0 1].
      * The conditions are not verified by this constructor since they were already
      * verified by the {@link SimpleTransformFactory#createAffineTransform(Matrix)}
      * method.
@@ -92,8 +92,7 @@ public class AffineTransform2D extends AffineTransform implements MathTransform2
 
     /**
      * Sets this affine transform to the values of the given matrix.
-     * The matrix size must be 3×3 and the last row shall contains
-     * the [0 0 1] values.
+     * The matrix size must be 3×3 and the last row shall contain the [0 0 1] values.
      *
      * @param  matrix  the matrix to copy in this affine transform.
      * @throws IllegalArgumentException if the matrix size is not 3×3, or the transform is not affine.

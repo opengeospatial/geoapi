@@ -18,8 +18,8 @@ import org.opengis.referencing.ReferenceIdentifier;
 
 
 /**
- * An {@link IdentifiedObject} abstract base class, which contain only the {@linkplain #getName() name}
- * attribute. All other {@code IdentifiedObject} attributes are {@code null} or empty collections.
+ * An {@code IdentifiedObject} abstract base class, which contain only the {@linkplain #getName() name} attribute.
+ * All other {@code IdentifiedObject} attributes are {@code null} or empty collections.
  *
  * <p>Since the {@linkplain #getName() name} is the only identifier contained by this class,
  * {@code SimpleIdentifiedObject} implements directly the {@link Identifier} interface.
@@ -36,13 +36,13 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
     private static final long serialVersionUID = -6322393597086660764L;
 
     /**
-     * Returns the organization or party responsible for definition and maintenance of the
-     * {@linkplain #code}. The {@linkplain Citation#getTitle() citation title} will be used
-     * as {@linkplain #getCodeSpace() code space}.
+     * The organization or party responsible for definition and maintenance of the {@linkplain #code}.
+     * The {@linkplain Citation#getTitle() citation title} will be used as {@linkplain #getCodeSpace() code space}.
      *
      * @see #getAuthority()
      * @see #getCodeSpace()
      */
+    @SuppressWarnings("serial")         // Not statically typed as Serializable.
     protected final Citation authority;
 
     /**
@@ -65,9 +65,8 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
     }
 
     /**
-     * Returns the name of this identified object, which is represented directly by {@code this}
-     * implementation class. This is the only {@link IdentifiedObject} method in this class
-     * returning a non-null and non-empty value.
+     * Returns the name of this identified object,
+     * which is represented directly by {@code this} implementation class.
      */
     @Override
     public ReferenceIdentifier getName() {
