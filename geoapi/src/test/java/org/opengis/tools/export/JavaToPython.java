@@ -148,7 +148,7 @@ strictfp class JavaToPython extends SourceGenerator {
      * Creates a new Python classes writer or verifier. If the computer contains a local copy of ISO schemas,
      * then the {@code schemaRootDirectory} argument can be set to that directory for faster schema loadings.
      * If non-null, that directory should contain the same files than
-     * <a href="https://standards.iso.org/iso/">https://standards.iso.org/iso/</a> (not necessarily with
+     * <a href="https://schemas.isotc211.org/">https://schemas.isotc211.org/</a> (not necessarily with
      * all sub-directories). In particular, that directory should contain an {@code 19115} sub-directory.
      *
      * @param  schemaRootDirectory  path to local copy of ISO schemas, or {@code null} if none.

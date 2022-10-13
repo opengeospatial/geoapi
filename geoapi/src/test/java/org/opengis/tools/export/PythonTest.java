@@ -52,7 +52,7 @@ import static org.junit.Assert.*;
  *
  * <ul>
  *   <li>The {@code "ISO_SCHEMAS_DIR"} environment variable is set to the path of a directory containing a copy of
- *       <a href="https://standards.iso.org/iso/">https://standards.iso.org/iso/</a> files (not necessarily with all
+ *       <a href="https://schemas.isotc211.org/">https://schemas.isotc211.org/</a> files (not necessarily with all
  *       sub-directories). In particular, that directory shall contain an {@code 19115} sub-directory.</li>
  *   <li>The {@code "org.opengis.extensiveTesting"} Java property is set to {@code true}. In such case, the test
  *       will download the XSD files from the network, which may be slow.</li>

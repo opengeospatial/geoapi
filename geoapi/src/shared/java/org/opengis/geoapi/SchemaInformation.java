@@ -55,7 +55,7 @@ import org.opengis.annotation.Stereotype;
 
 /**
  * Information about types and properties declared in OGC/ISO schemas. This class requires a connection
- * to <a href="https://standards.iso.org/iso/19115/-3/">https://standards.iso.org/iso/19115/-3/</a>
+ * to <a href="https://schemas.isotc211.org/19115/">https://schemas.isotc211.org/19115/</a>
  * or a local copy of those files.
  *
  * <p><b>Limitations:</b></p>
@@ -79,11 +79,11 @@ public class SchemaInformation {
      * The URL from where to download ISO schema. The complete URL is formed by taking a namespace,
      * replace the {@value #ROOT_NAMESPACE} by this {@value} value, then append {@code ".xsd"} suffix.
      */
-    public static final String SCHEMA_ROOT_URL = "https://standards.iso.org/iso/";
+    public static final String SCHEMA_ROOT_URL = "https://schemas.isotc211.org/19115/";
 
     /**
-     * The root of ISO namespaces, which is {@value}. This is identical to {@link #SCHEMA_ROOT_URL}
-     * but with {@code "http"} protocol instead of {@code "https"} for historical reasons.
+     * The root of ISO namespaces, which is {@value}. Not used for connections.
+     * It differs from {@link #SCHEMA_ROOT_URL} for historical reasons.
      */
     private static final String ROOT_NAMESPACE = "http://standards.iso.org/iso/";
 
@@ -253,7 +253,7 @@ public class SchemaInformation {
     /**
      * Creates a new verifier. If the computer contains a local copy of ISO schemas, then the {@code schemaRootDirectory}
      * argument can be set to that directory for faster schema loadings. If non-null, that directory should contain the
-     * same files than <a href="https://standards.iso.org/iso/">https://standards.iso.org/iso/</a> (not necessarily with
+     * same files than <a href="https://schemas.isotc211.org/">https://schemas.isotc211.org/</a> (not necessarily with
      * all sub-directories). In particular, that directory should contain an {@code 19115} sub-directory.
      *
      * <p>The {@link Departures#mergedTypes} entries will be {@linkplain Map#remove removed} as they are found.
