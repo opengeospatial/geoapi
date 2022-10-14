@@ -55,8 +55,7 @@ import org.opengis.annotation.Stereotype;
 
 /**
  * Information about types and properties declared in OGC/ISO schemas. This class requires a connection
- * to <a href="https://schemas.isotc211.org/19115/">https://schemas.isotc211.org/19115/</a>
- * or a local copy of those files.
+ * to <a href="https://schemas.isotc211.org/">https://schemas.isotc211.org/</a> or a local copy of those files.
  *
  * <p><b>Limitations:</b></p>
  * Current implementation ignores the XML prefix (e.g. {@code "cit:"} in {@code "cit:CI_Citation"}).
@@ -79,13 +78,13 @@ public class SchemaInformation {
      * The URL from where to download ISO schema. The complete URL is formed by taking a namespace,
      * replace the {@value #ROOT_NAMESPACE} by this {@value} value, then append {@code ".xsd"} suffix.
      */
-    public static final String SCHEMA_ROOT_URL = "https://schemas.isotc211.org/19115/";
+    public static final String SCHEMA_ROOT_URL = "https://schemas.isotc211.org/";
 
     /**
-     * The root of ISO namespaces, which is {@value}. Not used for connections.
-     * It differs from {@link #SCHEMA_ROOT_URL} for historical reasons.
+     * The root of ISO namespaces, which is {@value}. Not used for downloading XSD files.
+     * This URL differs from {@link #SCHEMA_ROOT_URL} for historical reasons.
      */
-    private static final String ROOT_NAMESPACE = "http://standards.iso.org/iso/";
+    public static final String ROOT_NAMESPACE = "http://standards.iso.org/iso/";
 
     /**
      * The prefix of XML type names for properties. In ISO/OGC schemas, this prefix does not appear
