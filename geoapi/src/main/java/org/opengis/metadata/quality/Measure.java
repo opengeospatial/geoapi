@@ -85,6 +85,7 @@ public interface Measure {
      *
      * @return name of the data quality measure applied to the data.
      *
+     * @see BasicMeasure#getName()
      * @see MeasureReference#getNamesOfMeasure()
      */
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19157)
@@ -137,6 +138,8 @@ public interface Measure {
      * the definition is based on the basic measure definition and specialized for this measure.
      *
      * @return definition of the fundamental concept for the data quality measure.
+     *
+     * @see BasicMeasure#getDefinition()
      */
     @UML(identifier="definition", obligation=MANDATORY, specification=ISO_19157)
     InternationalString getDefinition();
@@ -175,6 +178,8 @@ public interface Measure {
      * Value type for reporting a data quality result.
      *
      * @return value type for reporting a data quality result.
+     *
+     * @see BasicMeasure#getValueType()
      */
     @UML(identifier="valueType", obligation=MANDATORY, specification=ISO_19157)
     TypeName getValueType();
@@ -208,6 +213,8 @@ public interface Measure {
      * More than one example may be provided.
      *
      * @return examples of applying the measure or the result obtained for the measure.
+     *
+     * @see BasicMeasure#getExample()
      */
     @UML(identifier="example", obligation=OPTIONAL, specification=ISO_19157)
     default Collection<? extends Description> getExamples() {

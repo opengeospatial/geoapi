@@ -60,6 +60,9 @@ public interface QuantitativeResult extends Result {
      * This is determined accordingly with the value type and value structure defined for the measure.
      *
      * @return quantitative value or values.
+     *
+     * @see #getValueType()
+     * @see #getValueUnit()
      */
     @UML(identifier="value", obligation=MANDATORY, specification=ISO_19157)
     Collection<? extends Record> getValues();
@@ -92,6 +95,7 @@ public interface QuantitativeResult extends Result {
      *
      * @return value type for reporting a data quality result, or {@code null} if none.
      *
+     * @see #getValues()
      * @see Measure#getValueType()
      *
      * @departure historic
