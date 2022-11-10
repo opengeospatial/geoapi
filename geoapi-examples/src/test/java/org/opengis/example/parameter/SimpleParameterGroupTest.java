@@ -43,9 +43,9 @@ public strictfp class SimpleParameterGroupTest {
                 new SimpleParameter(authority, "False easting",                  SimpleParameter.Type.LINEAR),
                 new SimpleParameter(authority, "False northing",                 SimpleParameter.Type.LINEAR));
 
-        assertEquals(SimpleParameter.DEGREE, group.parameter("Longitude of natural origin").getUnit());
-        assertEquals(Units.METRE,            group.parameter("False easting")              .getUnit());
-        assertEquals(0.0,                    group.parameter("Latitude of natural origin") .doubleValue(), STRICT);
+        assertEquals(Units.DEGREE, group.parameter("Longitude of natural origin").getUnit());
+        assertEquals(Units.METRE,  group.parameter("False easting")              .getUnit());
+        assertEquals(0.0,          group.parameter("Latitude of natural origin") .doubleValue(), STRICT);
 
         final ParameterValueGroup clone = group.clone();
         assertNotSame(clone, group);

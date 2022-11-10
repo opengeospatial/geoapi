@@ -31,6 +31,8 @@
  */
 package org.opengis.util;
 
+import java.util.Optional;
+import java.lang.reflect.Type;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
@@ -70,13 +72,14 @@ import static org.opengis.annotation.Obligation.MANDATORY;
  * </table>
  *
  * Implementations may use a different mapping.
+ * The {@link #toJavaType()} method allows a more deterministic mapping to Java classes.
  *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.1
  *
- * @see Type#getTypeName()
+ * @see org.opengis.util.Type#getTypeName()
  * @see RecordType#getTypeName()
  * @see NameFactory#createTypeName(NameSpace, CharSequence)
  */
@@ -84,13 +87,36 @@ import static org.opengis.annotation.Obligation.MANDATORY;
 public interface TypeName extends LocalName {
     /**
      * Returns the local name of the type as a {@code String}.
-     * Type names typically use a {@code '.'} or {@code ':'} navigation separator, so that their
-     * {@linkplain #toFullyQualifiedName() fully qualified name} is of the form {@code "[package].[class]"}
-     * or {@code "[schema]:[type]"}.
+     * The local name is the name without namespace, for example {@code "Integer"}.
+     *
+     * <h4>Fully qualified name</h4>
+     * The {@linkplain #toFullyQualifiedName() fully qualified name} may use different separator between path
+     * components depending what the name represents. For example if this {@code TypeName} is part of an URN,
+     * then it will use the {@code ':'} separator as in {@code "[schema]:[type]"}.
+     * But if this {@code TypeName} is the name of a class,
+     * then the fully qualified name will use the {@code '.'} separator as in {@code "[package].[class]"}.
      *
      * @return the local name of the type.
      */
     @Override
     @UML(identifier="aName", obligation=MANDATORY, specification=ISO_19103)
     String toString();
+
+    /**
+     * Returns the Java type represented by this name.
+     * For example the {@code "OGC:Integer"} type name may be mapped to the {@link Integer} Java class.
+     * The mapping may be defined by the convention documented in class javadoc, but not necessarily.
+     * Implementations can use their own convention.
+     *
+     * @departure integration
+     *   Added for allowing implementations to define their own mapping
+     *   to a class in the Java programming language.
+     *
+     * @return the Java type (usually a {@link Class}) for this type name.
+     *
+     * @since 3.1
+     */
+    default Optional<Type> toJavaType() {
+        return Optional.empty();
+    }
 }

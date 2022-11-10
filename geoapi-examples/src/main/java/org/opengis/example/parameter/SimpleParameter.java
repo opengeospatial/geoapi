@@ -11,9 +11,9 @@ import java.net.URI;
 
 import javax.measure.Unit;
 import javax.measure.IncommensurableException;
-import javax.measure.quantity.Angle;
 import tech.uom.seshat.Units;
 
+import org.opengis.util.TypeName;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.parameter.InvalidParameterValueException;
@@ -22,6 +22,7 @@ import org.opengis.parameter.ParameterDescriptor;
 import org.opengis.parameter.ParameterDirection;
 import org.opengis.parameter.ParameterValue;
 
+import org.opengis.example.util.SimpleName;
 import org.opengis.example.referencing.SimpleIdentifiedObject;
 
 
@@ -60,18 +61,6 @@ public class SimpleParameter extends SimpleIdentifiedObject
         implements ParameterValue<Double>, ParameterDescriptor<Double>, Cloneable
 {
     /**
-     * The unit of measurement for degrees of angle. Will be removed in a future GeoAPI version
-     * if a future Unit of Measurement implementation provides a pre-defined constant for this unit.
-     */
-    static final Unit<Angle> DEGREE = Units.RADIAN.multiply(Math.PI/180);
-
-    /**
-     * The unit of measurement for grads of angle. Will be removed in a future GeoAPI version
-     * if a future Unit of Measurement implementation provides a pre-defined constant for this unit.
-     */
-    static final Unit<Angle> GRAD = Units.RADIAN.multiply(Math.PI/200);
-
-    /**
      * Determines the range of values and the unit of measurement of a parameter.
      * This enum is stored in the {@link SimpleParameter#type} field, and used in
      * order to determine the values returned by the methods implementing the
@@ -85,12 +74,12 @@ public class SimpleParameter extends SimpleIdentifiedObject
         /**
          * Longitude as decimal degrees in the [-180° … +180°] range.
          */
-        LONGITUDE(DEGREE, -180.0, +180.0),
+        LONGITUDE(Units.DEGREE, -180.0, +180.0),
 
         /**
          * Latitude as decimal degrees in the [-90° … +90°] range.
          */
-        LATITUDE(DEGREE, -90.0, +90.0),
+        LATITUDE(Units.DEGREE, -90.0, +90.0),
 
         /**
          * Any linear value as metres, unbounded.
@@ -204,6 +193,15 @@ public class SimpleParameter extends SimpleIdentifiedObject
     @Override
     public ParameterDirection getDirection() {
         return ParameterDirection.IN;
+    }
+
+    /**
+     * Unconditionally returns {@code "OGC:Read"}, which is the hard-coded type of values
+     * in this parameter implementation.
+     */
+    @Override
+    public final TypeName getValueType() {
+        return SimpleName.Type.REAL;
     }
 
     /**

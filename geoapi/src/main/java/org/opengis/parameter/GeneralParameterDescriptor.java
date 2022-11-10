@@ -162,7 +162,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *
      * @since 3.1
      */
-    @UML(identifier="direction", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="SV_Parameter.direction", obligation=OPTIONAL, specification=ISO_19115)
     default ParameterDirection getDirection() {
         return null;
     }
@@ -177,7 +177,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * @see #getName()
      * @see #getRemarks()
      */
-    @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="SV_Parameter.description", obligation=OPTIONAL, specification=ISO_19115)
     default InternationalString getDescription() {
         return null;
     }

@@ -33,6 +33,7 @@ package org.opengis.parameter;
 
 import java.util.Set;
 import javax.measure.Unit;
+import org.opengis.util.TypeName;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 
@@ -43,8 +44,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * The definition of a parameter used by an operation method.
  * Most parameter values are numeric, but other types of parameter values are possible.
- *
- * <p>A parameter descriptor contains the following properties:</p>
+ * A parameter descriptor contains the following properties:
  * <ul>
  *   <li>The parameter {@linkplain #getName() name}.</li>
  *   <li>The {@linkplain #getValueClass() class of values}. This is usually {@link Double}, {@code double[]},
@@ -73,9 +73,29 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CC_OperationParameter", specification=ISO_19111)
 public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
     /**
+     * Returns the name that describes the type of parameter values.
+     * This is closely related to the {@link Class} returned by {@link #getValueClass()}:
+     *
+     * <ul>
+     *   <li>If the value class is a collection ({@link java.util.Map}, {@link Set}, {@link java.util.List} or array),
+     *       then this method returns the type of <em>elements</em> in the collection.</li>
+     *   <li>Otherwise this method returns the value class using the mapping documented in {@link TypeName} javadoc
+     *       or using an implementation-dependent mapping.</li>
+     * </ul>
+     *
+     * @return value type of the parameter.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="DQM_Parameter.valueType", obligation=MANDATORY, specification=ISO_19157)
+    TypeName getValueType();
+
+    /**
      * Returns the class that describes the type of parameter values.
-     * This is usually (but not restricted to) {@link Double}, {@code double[]}, {@link Integer}, {@code int[]},
-     * {@link Boolean}, {@link String} or {@link java.net.URI}.
+     * This is usually (but not restricted to) {@link Boolean}, {@link Integer}, {@link Double}, {@link String}
+     * or {@link java.net.URI} when the parameter contains a single value.
+     * If the parameter can contain multiple values, then the class may be {@code int[]}, {@code double[]},
+     * {@link java.util.List}, {@link Set} or {@link java.util.Map}.
      *
      * @return the type of parameter values.
      */
