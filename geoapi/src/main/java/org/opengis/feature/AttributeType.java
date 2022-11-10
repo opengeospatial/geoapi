@@ -152,7 +152,7 @@ public interface AttributeType<V> extends PropertyType {
     V getDefaultValue();
 
     /**
-     * Other attribute types that describes this attribute type.
+     * Other attribute types that describe this attribute type.
      * See <cite>"Attribute characterization"</cite> in class Javadoc for more information.
      *
      * <div class="note"><b>Example:</b>
@@ -163,7 +163,7 @@ public interface AttributeType<V> extends PropertyType {
      * The {@linkplain Map#keySet() map keys} are the {@code String} representations of
      * characteristics {@linkplain #getName() name}, for more convenient lookups.
      *
-     * @return other attribute types that describes this attribute type, or an empty map if none.
+     * @return other attribute types that describe this attribute type, or an empty map if none.
      *
      * @see Attribute#characteristics()
      */

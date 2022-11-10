@@ -263,9 +263,9 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     URI valueFile() throws IllegalStateException;
 
     /**
-     * Returns the parameter value as an object. The object type is typically a {@link Double},
-     * {@link Integer}, {@link Boolean}, {@link String}, {@link URI}, {@code double[]} or
-     * {@code int[]}. If no value has been set, then this method returns the
+     * Returns the parameter value as an object. The object type is typically (but not restricted to)
+     * {@link Double}, {@link Integer}, {@link Boolean}, {@link String}, {@link URI}, {@code double[]} or {@code int[]}.
+     * If no value has been set, then this method returns the
      * {@linkplain ParameterDescriptor#getDefaultValue() default value} (which may be null).
      *
      * @return the parameter value as an object, or {@code null} if no value has been set and
@@ -335,9 +335,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     void setValue(boolean value) throws InvalidParameterValueException;
 
     /**
-     * Sets the parameter value as an object. The object type is typically a {@link Double},
-     * {@link Integer}, {@link Boolean}, {@link String}, {@link URI}, {@code double[]}
-     * or {@code int[]}.
+     * Sets the parameter value as an object. The object type is typically (but not restricted to)
+     * {@link Double}, {@link Integer}, {@link Boolean}, {@link String}, {@link URI}, {@code double[]} or {@code int[]}.
      *
      * <p>The argument is not restricted to the parameterized type {@code T} because the type
      * is typically unknown (as in <code>group.{@linkplain ParameterValueGroup#parameter(String)

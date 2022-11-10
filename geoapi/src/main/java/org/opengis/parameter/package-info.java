@@ -36,8 +36,8 @@
  * <p>Parameters are described extensively in the {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS®
  * Spatial Referencing by Coordinates (Topic 2)} specification, but appear also in other specifications like Metadata
  * and Web Processing Services. This GeoAPI package is derived mostly from the referencing model (ISO 19111),
- * augmented with some properties from the metadata model (ISO 19115)
- * in order to provide a unified framework for both standards.</p>
+ * augmented with some properties from the metadata model (ISO 19115 and ISO 19157)
+ * in order to provide a unified framework for all standards.</p>
  *
  * <p>Interfaces in this package can be grouped in two categories:</p>
  * <ul>

@@ -154,7 +154,7 @@ public interface Attribute<V> extends Property {
     void setValues(Collection<? extends V> values) throws InvalidPropertyValueException;
 
     /**
-     * Other attributes that describes this attribute. For example if this attribute carries a measurement,
+     * Other attributes that describe this attribute. For example if this attribute carries a measurement,
      * then a characteristic of this attribute could be the measurement accuracy.
      * See <cite>"Attribute characterization"</cite> in {@link AttributeType} Javadoc for more information.
      *
@@ -167,7 +167,7 @@ public interface Attribute<V> extends Property {
      * The {@linkplain Map#keySet() map keys} are the {@code String} representations of
      * characteristics {@linkplain AttributeType#getName() name}, for more convenient lookups.</p>
      *
-     * @return other attribute types that describes this attribute type, or an empty map if none.
+     * @return other attribute types that describe this attribute type, or an empty map if none.
      *
      * @see AttributeType#characteristics()
      */
