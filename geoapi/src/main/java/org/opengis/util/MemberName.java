@@ -58,6 +58,11 @@ public interface MemberName extends LocalName {
     /**
      * Returns the type of the data associated with the member or record field.
      *
+     * <h4>Comparison with the Java language</h4>
+     * {@code MemberName} is similar to the name of a field in a Java class,
+     * while the returned {@code TypeName} is similar to the name of the
+     * Java {@link Class} used for representing a value in this field.
+     *
      * @return the type of the data associated with the member.
      */
     @UML(identifier="attributeType", obligation=MANDATORY, specification=ISO_19103)
