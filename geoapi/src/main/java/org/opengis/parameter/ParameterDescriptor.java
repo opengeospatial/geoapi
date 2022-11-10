@@ -78,7 +78,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      *
      * @return the type of parameter values.
      */
-    @UML(identifier="GC_ParameterInfo.type", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="GC_ParameterInfo.type", obligation=MANDATORY, specification=OGC_01004)
     Class<T> getValueClass();
 
     /**
@@ -107,7 +107,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      *
      * @return the minimum parameter value (often an instance of {@link Double}), or {@code null}.
      */
-    @UML(identifier="GC_ParameterInfo.minimumValue", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="GC_ParameterInfo.minimumValue", obligation=OPTIONAL, specification=OGC_01004)
     default Comparable<T> getMinimumValue() {
         return null;
     }
@@ -119,7 +119,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      *
      * @return the maximum parameter value (often an instance of {@link Double}), or {@code null}.
      */
-    @UML(identifier="GC_ParameterInfo.maximumValue", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="GC_ParameterInfo.maximumValue", obligation=OPTIONAL, specification=OGC_01004)
     default Comparable<T> getMaximumValue() {
         return null;
     }
@@ -130,7 +130,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      *
      * @return the default value, or {@code null} in none.
      */
-    @UML(identifier="GC_ParameterInfo.defaultValue", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="GC_ParameterInfo.defaultValue", obligation=OPTIONAL, specification=OGC_01004)
     default T getDefaultValue() {
         return null;
     }
