@@ -59,7 +59,8 @@ import org.opengis.util.GenericName;
  *
  * <p>{@code Attribute} can be instantiated by calls to {@link AttributeType#newInstance()}.</p>
  *
- * @param <V> the type of attribute values.
+ * @param <V> the type of attribute values. If the attribute supports multi-occurrences,
+ *            then this is the type of elements (not the collection type).
  *
  * @author  Jody Garnett (Refractions Research, Inc.)
  * @author  Justin Deoliveira (The Open Planning Project)

@@ -77,13 +77,16 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      * This is closely related to the {@link Class} returned by {@link #getValueClass()}:
      *
      * <ul>
-     *   <li>If the value class is a collection ({@link java.util.Map}, {@link Set}, {@link java.util.List} or array),
+     *   <li>If the value class is a collection (e.g. {@link java.util.List} or array),
      *       then this method returns the type of <em>elements</em> in the collection.</li>
      *   <li>Otherwise this method returns the value class using the mapping documented in {@link TypeName} javadoc
      *       or using an implementation-dependent mapping.</li>
      * </ul>
      *
-     * @return value type of the parameter.
+     * {@code TypeName} is used for encoding parameters in XML or JSON documents,
+     * while {@link #getValueClass()} is used for programmatic purposes.
+     *
+     * @return the type name of value component(s) in this parameter.
      *
      * @since 3.1
      */

@@ -76,7 +76,8 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * the constant can be given by the characteristic {@linkplain #getDefaultValue() default value} and
  * {@code Attribute.characteristics()} may return an empty map (at implementation choice).</p>
  *
- * @param <V> the type of attribute values.
+ * @param <V> the type of attribute values. If the attribute supports multi-occurrences,
+ *            then this is the type of elements (not the collection type).
  *
  * @author  Jody Garnett (Refractions Research)
  * @author  Justin Deoliveira (The Open Planning Project)

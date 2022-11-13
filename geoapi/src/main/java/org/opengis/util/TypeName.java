@@ -47,8 +47,8 @@ import static org.opengis.annotation.Obligation.MANDATORY;
  * or the {@linkplain MemberName#getAttributeType() name of a field (or member) type} among other usages.
  *
  * <h2>Mapping to classes in the Java language</h2>
- * It is sometime useful to establish a mapping between {@code TypeName} and Java {@link Class}.
- * For types defined by an OGC/ISO standard, the type name may be the
+ * It is sometime useful to establish a bidirectional mapping between {@code TypeName} and Java {@link Class}.
+ * For types defined by an OGC/ISO standard, the type name should be the
  * {@linkplain org.opengis.annotation.UML#identifier() UML identifier}
  * in the "OGC" {@linkplain #scope() namespace}.
  * That namespace is consistent with the
@@ -71,8 +71,8 @@ import static org.opengis.annotation.Obligation.MANDATORY;
  *   <tr><td>{@link org.opengis.metadata.Metadata}</td>        <td>{@code OGC:MD_Metadata}</td>     <td class="sep"></td></tr>
  * </table>
  *
- * Implementations may use a different mapping.
- * The {@link #toJavaType()} method allows a more deterministic mapping to Java classes.
+ * Implementation should define explicitly the mapping to Java classes by overriding the {@link #toJavaType()} method.
+ * It avoids the need to assume any particular convention.
  *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
@@ -113,6 +113,8 @@ public interface TypeName extends LocalName {
      *   to a class in the Java programming language.
      *
      * @return the Java type (usually a {@link Class}) for this type name.
+     *
+     * @see org.opengis.util.Type#toJavaType()
      *
      * @since 3.1
      */
