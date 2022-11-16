@@ -170,7 +170,6 @@ public enum Content {
                org.opengis.metadata.quality        .EvaluationMethod                    .class,
                org.opengis.metadata.quality        .SourceReference                     .class,
                org.opengis.metadata.quality        .Description                         .class,
-               org.opengis.metadata.quality        .Parameter                           .class,
                org.opengis.metadata.quality        .BasicMeasure                        .class,
                org.opengis.metadata.quality        .Measure                             .class,
                org.opengis.metadata.quality        .MeasureReference                    .class,

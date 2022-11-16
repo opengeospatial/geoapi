@@ -31,7 +31,7 @@
  */
 
 /**
- * Description and storage of {@linkplain org.opengis.parameter.ParameterValue parameter values}.
+ * Description and storage of parameter values.
  *
  * <p>Parameters are described extensively in the {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS®
  * Spatial Referencing by Coordinates (Topic 2)} specification, but appear also in other specifications like Metadata
@@ -100,6 +100,16 @@
  * However in order to provide a unified parameter API, GeoAPI omits the metadata parameter class
  * and instead defines a mapping from metadata properties to GeoAPI properties.
  * The mapping is documented in {@link org.opengis.metadata.identification.OperationMetadata#getParameters()}
+ * and in {@link org.opengis.parameter.GeneralParameterDescriptor} javadoc.</p>
+ *
+ *
+ *
+ * <h2>Data quality measure parameters</h2>
+ * <p>The data quality standard uses a simple parameter class ({@code DQM_Parameter}) with only {@code name},
+ * {@code definition}, {@code description}, {@code valueType}, and {@code valueStructure} properties.
+ * However in order to provide a unified parameter API, GeoAPI omits the metadata parameter class
+ * and instead defines a mapping from metadata properties to GeoAPI properties.
+ * The mapping is documented in {@link org.opengis.metadata.quality.Measure#getParameters()}
  * and in {@link org.opengis.parameter.GeneralParameterDescriptor} javadoc.</p>
  *
  *

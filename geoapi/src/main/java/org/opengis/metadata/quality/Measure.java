@@ -37,6 +37,7 @@ import org.opengis.util.InternationalString;
 import org.opengis.util.TypeName;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
+import org.opengis.parameter.ParameterDescriptor;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -176,6 +177,9 @@ public interface Measure {
 
     /**
      * Value type for reporting a data quality result.
+     * If a {@linkplain #getValueStructure() value structure} is used, then this method returns
+     * the type of components in the value structure. For example if the value structure is
+     * {@link ValueStructure#MATRIX matrix}, then the value type is typically {@code "Real"}.
      *
      * @return value type for reporting a data quality result.
      *
@@ -188,6 +192,18 @@ public interface Measure {
      * Structure for reporting a complex data quality result.
      * A result may consist of multiple values.
      * In such cases, the result shall be structured using the value structure.
+     * Common value structures are listed below.
+     *
+     * <table class="ogc">
+     *   <caption>Mapping from {@code ValueStructure} to Java type</caption>
+     *   <tr><th>Code list</th>        <th>Java or GeoAPI type</th>                              <th>Description</th></tr>
+     *   <tr><td>{@code bag}</td>      <td>{@link java.util.Collection}</td>                     <td>Finite, unordered collection of related items that may be repeated.</td></tr>
+     *   <tr><td>{@code set}</td>      <td>{@link java.util.Set}</td>                            <td>Unordered collection of related items with no repetition.</td></tr>
+     *   <tr><td>{@code sequence}</td> <td>{@link java.util.List}</td>                           <td>Finite, ordered collection of related items that may be repeated.</td></tr>
+     *   <tr><td>{@code table}</td>    <td>{@link java.util.Map}</td>                            <td>An arrangement of data in which each item is identified by means of keys.</td></tr>
+     *   <tr><td>{@code matrix}</td>   <td>{@link org.opengis.referencing.operation.Matrix}</td> <td>Rectangular array of numbers.</td></tr>
+     *   <tr><td>{@code coverage}</td> <td>{@link org.opengis.coverage.Coverage}</td>            <td>Function to return values for any direct position within its domain.</td></tr>
+     * </table>
      *
      * @return structure for reporting a complex data quality result, or {@code null} if none.
      */
@@ -201,10 +217,56 @@ public interface Measure {
      * It shall include its name, definition and value type.
      * More than one measure parameter may be provided.
      *
-     * @return auxiliary variable(s) used by data quality measure.
+     * <h4>Unified parameter API</h4>
+     * In GeoAPI, the {@code DQM_Parameter} type defined by ISO 19157 is replaced by {@link ParameterDescriptor}
+     * in order to provide a single parameter API (see {@link org.opengis.parameter} for more information).
+     * The mapping from ISO 19115 to GeoAPI is defined as bellow:
+     *
+     * <table class="ogc">
+     *   <caption>Quality metadata properties mapped to GeoAPI</caption>
+     *   <tr>
+     *     <th>{@code DQM_Parameter} property</th>
+     *     <th>{@code ParameterDescriptor} property</th>
+     *     <th>Remarks</th>
+     *   </tr><tr>
+     *     <td>{@code name}</td>
+     *     <td><code>{@linkplain ParameterDescriptor#getName() name}.{@linkplain Identifier#getCode() code}</code></td>
+     *     <td>Value retrofitted in an {@link Identifier} object.</td>
+     *   </tr><tr>
+     *     <td>{@code definition}</td>
+     *     <td><code>{@linkplain ParameterDescriptor#getName() name}.{@linkplain Identifier#getDescription() description}</code></td>
+     *     <td>Value retrofitted in an {@link Identifier} object.</td>
+     *   </tr><tr>
+     *     <td>{@code description.textDescription}</td>
+     *     <td>{@link ParameterDescriptor#getDescription() description}</td>
+     *     <td></td>
+     *   </tr><tr>
+     *     <td>{@code description.extendedDescription}</td>
+     *     <td>(none)</td>
+     *     <td></td>
+     *   </tr><tr>
+     *     <td>{@code valueType}</td>
+     *     <td>{@link ParameterDescriptor#getValueType() valueType}</td>
+     *     <td></td>
+     *   </tr><tr>
+     *     <td>{@code valueStructure}</td>
+     *     <td>{@link ParameterDescriptor#getValueClass() valueClass}</td>
+     *     <td>See {@link ValueStructure#valueOf(Class)} for the mapping.</td>
+     *   </tr>
+     * </table>
+     *
+     * @departure harmonization
+     *   Usage of the ISO 19157 {@code DQM_Parameter} type has been replaced by usage of the ISO 19111
+     *   {@code CC_OperationParameter} type, completed with some new {@code DQM_Parameter} properties,
+     *   in order to provide a unified parameter API. Note that {@code CC_OperationParameter} is named
+     *   {@code ParameterDescriptor} in GeoAPI to reflect its extended scope.
+     *
+     * @return auxiliary variable(s) used by data quality measure, or an empty collection if none.
+     *
+     * @see org.opengis.parameter.GeneralParameterDescriptor
      */
     @UML(identifier="parameter", obligation=CONDITIONAL, specification=ISO_19157)
-    default Collection<? extends Parameter> getParameters() {
+    default Collection<? extends ParameterDescriptor<?>> getParameters() {
         return Collections.emptyList();
     }
 

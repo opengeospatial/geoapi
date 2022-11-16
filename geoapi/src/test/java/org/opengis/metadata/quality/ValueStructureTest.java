@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2022 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,65 +31,37 @@
  */
 package org.opengis.metadata.quality;
 
-import org.opengis.util.InternationalString;
-import org.opengis.util.TypeName;
-import org.opengis.annotation.UML;
+import java.util.Set;
+import java.util.List;
+import java.util.SortedMap;
+import java.util.ArrayList;
+import java.util.Collection;
+import org.opengis.referencing.operation.Matrix;
+import org.junit.Test;
 
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import static org.junit.Assert.*;
 
 
 /**
- * Data quality parameter.
+ * Tests {@link ValueStructure}.
  *
- * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-@UML(identifier="DQM_Parameter", specification=ISO_19157)
-public interface Parameter {
+public final strictfp class ValueStructureTest {
     /**
-     * Name of the data quality parameter.
-     *
-     * @return name of the data quality parameter.
+     * Tests {@link ValueStructure#valueOf(Class)}.
      */
-    @UML(identifier="name", obligation=MANDATORY, specification=ISO_19157)
-    InternationalString getName();
-
-    /**
-     * Definition of the data quality parameter.
-     *
-     * @return definition of the data quality parameter.
-     */
-    @UML(identifier="definition", obligation=MANDATORY, specification=ISO_19157)
-    InternationalString getDefinition();
-
-    /**
-     * Description of the data quality parameter.
-     *
-     * @return description of the data quality parameter, or {@code null} if none.
-     */
-    @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19157)
-    default Description getDescription() {
-        return null;
-    }
-
-    /**
-     * Value type of the data quality parameter.
-     *
-     * @return value type of the data quality parameter.
-     */
-    @UML(identifier="valueType", obligation=MANDATORY, specification=ISO_19157)
-    TypeName getValueType();
-
-    /**
-     * Structure of the data quality parameter.
-     *
-     * @return structure of the data quality parameter, or {@code null} if none.
-     */
-    @UML(identifier="valueStructure", obligation=OPTIONAL, specification=ISO_19157)
-    default ValueStructure getValueStructure() {
-        return null;
+    @Test
+    public void testValueOfClass() {
+        assertEquals(ValueStructure.BAG,      ValueStructure.valueOf(Collection.class).get());
+        assertEquals(ValueStructure.SET,      ValueStructure.valueOf(Set.class).get());
+        assertEquals(ValueStructure.TABLE,    ValueStructure.valueOf(SortedMap.class).get());
+        assertEquals(ValueStructure.SEQUENCE, ValueStructure.valueOf(List.class).get());
+        assertEquals(ValueStructure.SEQUENCE, ValueStructure.valueOf(ArrayList.class).get());
+        assertEquals(ValueStructure.MATRIX,   ValueStructure.valueOf(Matrix.class).get());
+        assertFalse(ValueStructure.valueOf(Integer.class).isPresent());
+        assertFalse(ValueStructure.valueOf(Object.class).isPresent());
     }
 }

@@ -106,7 +106,6 @@
  *  │   └─ {@linkplain org.opengis.metadata.quality.Description}
  *  ├─ {@linkplain org.opengis.metadata.quality.Description}
  *  ├─ {@linkplain org.opengis.metadata.quality.SourceReference}
- *  ├─ {@linkplain org.opengis.metadata.quality.Parameter}
  *  └─ {@linkplain org.opengis.metadata.quality.ValueStructure}</pre>
  * </td></tr></table>
  *

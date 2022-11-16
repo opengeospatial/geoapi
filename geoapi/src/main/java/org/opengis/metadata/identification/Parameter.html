@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>SV_Parameter replacement</title>
+    <meta charset="UTF-8">
+    <style>
+      p, code, pre {
+        font-size: 18px;
+      }
+      table {
+        border: 1px solid;
+      }
+      table tr th {
+        border-bottom: 1px solid;
+        padding: 6px;
+      }
+      table tr td {
+        padding-left:  12px;
+        padding-right: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>SV_Parameter replacement</h1>
+    <p>The <code>SV_Parameter</code> class defined in ISO 19115 is omitted for unifying parameter handling
+       with the <code>org.opengis.parameter</code> package.
+       The following table maps <code>SV_Parameter</code> properties to their replacements.</p>
+
+    <table>
+      <caption>Mapping from <code>SV_Parameter</code> properties to <code>ParameterDescriptor</code> properties</caption>
+      <tr><th><code>SV_Parameter</code></th>       <th><code>ParameterDescriptor</code></th></tr>
+      <tr><td><code>name</code></td>               <td><code>getName()</code></td></tr>
+      <tr><td><code>name.attributeType</code></td> <td><code>getValueClass()</code></td></tr>
+      <tr><td><code>direction</code></td>          <td><code>getDirection()</code></td></tr>
+      <tr><td><code>description</code></td>        <td><code>getDescription()</code></td></tr>
+      <tr><td><code>optionality</code></td>        <td><code>getMinimumOccurs()</code> &gt; 0</td></tr>
+      <tr><td><code>repeatability</code></td>      <td><code>getMaximumOccurs()</code> &gt; 1</td></tr>
+    </table>
+  </body>
+</html>

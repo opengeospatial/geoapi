@@ -87,7 +87,7 @@ public interface QuantitativeResult extends Result {
      * Within the description of the <cite>misclassification matrix</cite> measure,
      * the {@linkplain Measure#getValueType() value type} may be an integer and
      * the {@linkplain Measure#getValueStructure() value structure} is matrix (<var>n</var> × <var>n</var>).
-     * The value attribute of the {@code QuantitativeResult} provides the result matrix itself.
+     * The {@link #getValues() value} attribute of the {@code QuantitativeResult} provides the result matrix itself.
      * This attribute {@code valueRecordType} provides the description of the matrix type.
      * If another encoding is used, the attribute {@code valueRecordType} will change to provide the description
      * of the type matrix in the other encoding, and the implementation of the attribute value will change accordingly,

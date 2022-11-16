@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>DQM_Parameter replacement</title>
+    <meta charset="UTF-8">
+    <style>
+      p, code, pre {
+        font-size: 18px;
+      }
+      table {
+        border: 1px solid;
+      }
+      table tr th {
+        border-bottom: 1px solid;
+        padding: 6px;
+      }
+      table tr td {
+        padding-left:  12px;
+        padding-right: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>DQM_Parameter replacement</h1>
+    <p>The <code>DQM_Parameter</code> class defined in ISO 19157 is omitted for unifying parameter handling
+       with the <code>org.opengis.parameter</code> package.
+       The following table maps <code>DQM_Parameter</code> properties to their replacements.</p>
+
+    <table>
+      <caption>Mapping from <code>DQM_Parameter</code> properties to <code>ParameterDescriptor</code> properties</caption>
+      <tr><th><code>DQM_Parameter</code></th>  <th><code>ParameterDescriptor</code></th>                  <th>Old type</th>                         <th>New type</th></tr>
+      <tr><td><code>name</code></td>           <td><code>getName()</code></td>                            <td><code>InternationalString</code></td> <td><code>Identifier</code></td></tr>
+      <tr><td><code>definition</code></td>     <td><code>getName().getDescription()</code></td>           <td><code>InternationalString</code></td> <td><code>InternationalString</code></td></tr>
+      <tr><td><code>description</code></td>    <td><code>getDescription()</code></td>                     <td><code>Description</code></td>         <td><code>InternationalString</code></td></tr>
+      <tr><td><code>valueType</code></td>      <td><code>getValueClass()</code></td>                      <td><code>RecordType</code></td>          <td><code>Class&lt;?&gt;</code></td></tr>
+      <tr><td><code>valueStructure</code></td> <td>See replacement listed below</td> <td></td></tr>
+    </table>
+
+    <p>The <code>Description</code> type had only two properties:</p>
+    <ul>
+      <li><code>textDescription</code> which is mapped to <code>getDescription()</code> (same type),</li>
+      <li><code>extendedDescription</code> (a <code>BrowseGraphic</code>) which currently has no replacement.</li>
+    </ul>
+    <p>See <a href="https://github.com/opengeospatial/geoapi/issues/74">GitHub issue #74: Harmonize ISO 19157 parameter class</a>.</p>
+
+    <h1>DQM_ValueStructure replacement</h1>
+    <p>The <code>DQM_ValueStructure</code> code list defined in ISO 19157 is omitted in <code>ParameterDescriptor</code>
+       because in an object-oriented language, we rather expect this information to be provided by the object type.
+       The following table maps <code>DQM_ValueStructure</code> code list values to Java or GeoAPI types.</p>
+
+    <table>
+      <caption>Mapping from code list values to Java types</caption>
+      <tr><th>Code list</th>             <th>Java or GeoAPI type</th>                                   <th>Description</th></tr>
+      <tr><td><code>bag</code></td>      <td><code>java.util.Collection</code></td>                     <td>Finite, unordered collection of related items that may be repeated.</td></tr>
+      <tr><td><code>set</code></td>      <td><code>java.util.Set</code></td>                            <td>Unordered collection of related items with no repetition.</td></tr>
+      <tr><td><code>sequence</code></td> <td><code>java.util.List</code></td>                           <td>Finite, ordered collection of related items that may be repeated.</td></tr>
+      <tr><td><code>table</code></td>    <td><code>java.util.Map</code></td>                            <td>An arrangement of data in which each item is identified by means of keys.</td></tr>
+      <tr><td><code>matrix</code></td>   <td><code>org.opengis.referencing.operation.Matrix</code></td> <td>Rectangular array of numbers.</td></tr>
+      <tr><td><code>coverage</code></td> <td><code>org.opengis.coverage.Coverage</code></td>            <td>Function to return values for any direct position within its domain.</td></tr>
+    </table>
+  </body>
+</html>

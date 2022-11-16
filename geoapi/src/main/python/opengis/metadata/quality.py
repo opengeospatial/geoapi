@@ -189,39 +189,6 @@ class Description(ABC):
 
 from org.opengis.util import TypeName
 
-class Parameter(ABC):
-    """Data quality measure."""
-
-    @property
-    @abstractmethod
-    def name(self) -> str:
-        """Name of the data quality parameter."""
-        pass
-
-    @property
-    @abstractmethod
-    def definition(self) -> str:
-        """Definition of the data quality parameter."""
-        pass
-
-    @property
-    def description(self) -> Description:
-        """Description of the data quality parameter."""
-        return None
-
-    @property
-    @abstractmethod
-    def value_type(self) -> TypeName:
-        """Value type of the data quality parameter (shall be one of the data types defined in ISO/TS 19103:2005)."""
-        pass
-
-    @property
-    def value_structure(self) -> ValueStructure:
-        """Structure of the data quality parameter."""
-        return None
-
-
-
 class SourceReference(ABC):
     """Reference to the source of the data quality measure."""
 
@@ -327,7 +294,7 @@ class Measure(ABC):
         return None
 
     @property
-    def parameter(self) -> Sequence[Parameter]:
+    def parameter(self):
         """Reference to the source of an item that has been adopted from an external source."""
         return None
 

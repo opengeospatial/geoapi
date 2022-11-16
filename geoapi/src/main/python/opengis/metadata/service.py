@@ -75,10 +75,12 @@ class OperationMetadata(ABC):
 
     @property
     def parameter(self):
+        """The parameters that are required for this interface."""
         return None
 
     @property
     def depends_on(self) -> Sequence['OperationMetadata']:
+        """List of operation that must be completed immediately before current operation is invoked."""
         return None
 
 
