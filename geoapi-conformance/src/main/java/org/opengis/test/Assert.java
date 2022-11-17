@@ -204,7 +204,7 @@ public strictfp class Assert extends org.junit.Assert {
      * @param maximum  the upper bound of the range to test.
      */
     public static void assertValidRange(final String message, final double minimum, final double maximum) {
-        if (!(minimum <= maximum)) { // Use '!' for catching NaN.
+        if (!(minimum <= maximum)) {                            // Use '!' for catching NaN.
             fail(nonNull(message) + "Range found is [" + minimum + " ... " + maximum + "].");
         }
     }

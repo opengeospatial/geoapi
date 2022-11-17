@@ -253,7 +253,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      */
     private float[] verifyInternalConsistency(final long seed) throws TransformException {
         validators.validate(transform);
-        if (!(tolerance >= TRANSFORM_TOLERANCE)) { // !(a>=b) instead of (a<b) in order to catch NaN.
+        if (!(tolerance >= TRANSFORM_TOLERANCE)) {      // !(a >= b) instead of (a < b) in order to catch NaN.
             tolerance = TRANSFORM_TOLERANCE;
         }
         final int dimension = transform.getSourceDimensions();

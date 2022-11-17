@@ -289,7 +289,7 @@ final class ResultEntry {
                 }
                 if (toLowerCase && nc == 1) {
                     final int lowerCase = Character.toLowerCase(c);
-                    if (Character.charCount(lowerCase) == 1) { // Paranoiac check.
+                    if (Character.charCount(lowerCase) == 1) {              // Paranoiac check.
                         buffer.setCharAt(i, (char) lowerCase);
                     }
                 }

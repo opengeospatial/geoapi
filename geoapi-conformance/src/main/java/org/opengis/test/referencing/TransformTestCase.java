@@ -662,7 +662,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
         for (int i=0; i<sourceDoubles.length; i++) {
             sourceDoubles[i] = sourceFloats[i];
         }
-        if (true) { // MathTransform.transform(DirectPosition) is not optional in this test.
+        if (true) {         // MathTransform.transform(DirectPosition) is not optional in this test.
             final SimpleDirectPosition sourcePosition = new SimpleDirectPosition(sourceDimension);
             DirectPosition targetPosition = null;
             int targetOffset = 0;

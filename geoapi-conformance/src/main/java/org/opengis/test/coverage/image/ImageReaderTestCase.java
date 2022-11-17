@@ -251,7 +251,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * @return the user object of the given type, or {@code null} if not found.
      */
     private static <T> T getMetadata(final Class<T> type, final Node node) {
-        if (node == null) { // Because IIOMetadata.getAsTree(String) may return null.
+        if (node == null) {             // Because IIOMetadata.getAsTree(String) may return null.
             return null;
         }
         if (node instanceof IIOMetadataNode) {

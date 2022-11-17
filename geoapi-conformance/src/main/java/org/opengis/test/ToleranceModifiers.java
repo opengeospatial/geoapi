@@ -268,7 +268,7 @@ public strictfp final class ToleranceModifiers {
         int upper = 0;
         for (int i=0; i<factors.length;) {
             final double factor = factors[i];
-            if (!(factor >= 0)) { // !(a>=0) instead of (a<0) for catching NaN.
+            if (!(factor >= 0)) {                   // !(a >= 0) instead of (a < 0) for catching NaN.
                 throw new IllegalArgumentException("Illegal scale: factors[" + i + "] = " + factor);
             }
             i++;

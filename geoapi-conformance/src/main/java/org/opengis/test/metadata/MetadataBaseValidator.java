@@ -134,7 +134,7 @@ public class MetadataBaseValidator extends MetadataValidator {
         }
         mandatory("Identifier: shall have a code.", object.getCode());
         final Citation citation = object.getAuthority();
-        if (citation != this) { // Avoid never ending loop (TODO: find a better way).
+        if (citation != this) {                 // Avoid never ending loop.
             container.validate(citation);
         }
     }
