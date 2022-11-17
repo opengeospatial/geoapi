@@ -7,7 +7,7 @@ which may potentially need to be translated for users of different locales.
 Conceptually this act as a `CharacterString` but may, depending on the implementation,
 provide access to locale specific representations of that string.
 GeoAPI `InternationalString` is closely related, but not identical, to ISO 19103 `LanguageString`.
-The main difference is that the later is a character string in one specific language,
+The main difference is that the latter is a character string in one specific language,
 while `InternationalString` can be a collection of character strings in different locales.
 This is useful, for example, when an implementation is operating on a server that serves multiple languages simultaneously,
 to allow sending string representations in the locale of the client rather than the locale of the server running the GeoAPI implementation.

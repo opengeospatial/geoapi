@@ -104,7 +104,7 @@ public interface CanvasState {
 
     /**
      * Returns the transform from {@linkplain #getObjectiveCRS objective} to
-     * {@linkplain #getDisplayCRS display} CRS. If the later is implemented as
+     * {@linkplain #getDisplayCRS display} CRS. If the latter is implemented as
      * a {@linkplain DerivedCRS derived CRS}, then this transform shall be equal
      * to the following:
      *

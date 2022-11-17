@@ -93,7 +93,7 @@ public interface GridEnvelope {
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.
      * @return the low coordinate value at the given dimension, inclusive.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() grid dimension}.
      */
     long getLow(int dimension) throws IndexOutOfBoundsException;
@@ -108,14 +108,14 @@ public interface GridEnvelope {
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.
      * @return the high coordinate value at the given dimension, <strong>inclusive</strong>.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() grid dimension}.
      */
     long getHigh(int dimension) throws IndexOutOfBoundsException;
 
     /**
      * Returns the number of integer grid coordinates along the specified dimension.
-     * This is equals to:
+     * This is equal to:
      *
      * <blockquote><code>
      * {@linkplain #getHigh getHigh}(dimension) - {@linkplain #getLow getLow}(dimension) + 1
@@ -123,7 +123,7 @@ public interface GridEnvelope {
      *
      * @param  dimension  the dimension for which to obtain the size.
      * @return the number of integer grid coordinates along the given dimension.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() grid dimension}.
      * @throws ArithmeticException if the size is too large for the {@code long} primitive type.
      *

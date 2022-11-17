@@ -152,7 +152,7 @@ public class Departures {
 
         /**
          * Whether we will need to reorder properties. Reordering will be needed if the properties of
-         * parent type are retrofitted into the properties of the child type instead than the converse.
+         * parent type are retrofitted into the properties of the child type instead of the converse.
          * We identifies this situation by the {@code "Abstract"} prefix in type to retrofit.
          */
         private final boolean needToReorderProperties;

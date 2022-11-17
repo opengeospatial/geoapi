@@ -41,7 +41,7 @@ import org.opengis.test.referencing.PseudoEpsgFactory;
 /**
  * Provides data for geodetic objects defined by the EPSG dataset but not present in the GIGS files.
  * This class is used when a test case needs some dependencies, and those dependencies are expected
- * to be defined in the EPSG dataset instead than in a previous test case.
+ * to be defined in the EPSG dataset instead of in a previous test case.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

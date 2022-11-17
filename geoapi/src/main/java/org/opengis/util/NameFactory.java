@@ -104,21 +104,21 @@ public interface NameFactory extends Factory {
      * Creates a type name from the given character sequence. The character sequence shall
      * complies to the same restriction than {@link #createLocalName createLocalName}.
      *
-     * @param  scope  the {@linkplain GenericName#scope() scope} of the type name to be created,
+     * @param  scope  the {@linkplain GenericName#scope() scope} of the type name to create,
      *                or {@code null} for a global namespace.
      * @param  name   the type name as a string or an international string.
-     * @return the type name for the given character sequence.
+     * @return the type name for the given scope and character sequence.
      */
     TypeName createTypeName(NameSpace scope, CharSequence name);
 
     /**
      * Creates a member name from the given character sequence and attribute type.
      *
-     * @param  scope  the {@linkplain GenericName#scope() scope} of the member name to be created,
+     * @param  scope  the {@linkplain GenericName#scope() scope} of the member name to create,
      *                or {@code null} for a global namespace.
      * @param  name   the member name as a string or an international string.
      * @param  attributeType  the type of the data associated with the record member.
-     * @return the member name for the given character sequence.
+     * @return the member name for the given scope, character sequence and type name.
      *
      * @since 3.1
      */
@@ -126,20 +126,20 @@ public interface NameFactory extends Factory {
 
     /**
      * Creates a local name from the given character sequence. The character sequence can be either
-     * a {@link String} or an {@link InternationalString} instance. In the later case, implementations
+     * a {@link String} or an {@link InternationalString} instance. In the latter case, implementations
      * can use an arbitrary locale (typically {@link Locale#ROOT}) for the unlocalized string to be
      * returned by {@link LocalName#toString()}.
      *
-     * @param  scope  the {@linkplain GenericName#scope() scope} of the local name to be created,
+     * @param  scope  the {@linkplain GenericName#scope() scope} of the local name to create,
      *                or {@code null} for a global namespace.
      * @param  name   the local name as a string or an international string.
-     * @return the local name for the given character sequence.
+     * @return the local name for the given scope and character sequence.
      */
     LocalName createLocalName(NameSpace scope, CharSequence name);
 
     /**
      * Creates a local or scoped name from an array of parsed names. The array elements can be either
-     * {@link String} or {@link InternationalString} instances. In the later case, implementations
+     * {@link String} or {@link InternationalString} instances. In the latter case, implementations
      * can use an arbitrary locale (typically {@link Locale#ROOT}) for the unlocalized string to be
      * returned by {@link LocalName#toString()}.
      *
@@ -147,7 +147,7 @@ public interface NameFactory extends Factory {
      * of {@link LocalName}. If the length is 2 or more, then this method returns an instance of
      * {@link ScopedName}.</p>
      *
-     * @param  scope        the {@linkplain GenericName#scope() scope} of the generic name to be created,
+     * @param  scope        the {@linkplain GenericName#scope() scope} of the generic name to create,
      *                      or {@code null} for a global namespace.
      * @param  parsedNames  the local names as an array of strings or international strings.
      *                      This array must contains at least one element.
@@ -167,7 +167,7 @@ public interface NameFactory extends Factory {
      * of {@linkplain GenericName#getParsedNames parsed names} ({@code "crs"}, {@code "epsg"},
      * {@code "4326"}).</p>
      *
-     * @param  scope  the {@linkplain GenericName#scope() scope} of the generic name to be created,
+     * @param  scope  the {@linkplain GenericName#scope() scope} of the generic name to create,
      *                or {@code null} for a global namespace.
      * @param  name   the qualified name, as a sequence of names separated by a scope-dependent separator.
      * @return a name parsed from the given string.

@@ -103,24 +103,23 @@ public interface OperationMetadata {
      * Returns an empty collection if none.
      *
      * <h4>Unified parameter API</h4>
-     * In GeoAPI, the {@code SV_Parameter} type defined by ISO 19115 is replaced by {@code ParameterDescriptor}
+     * In GeoAPI, the {@code SV_Parameter} type defined by ISO 19115 is replaced by {@link ParameterDescriptor}
      * in order to provide a single parameter API (see {@link org.opengis.parameter} for more information).
-     * The mapping from ISO 19115 to GeoAPI is defined as bellow:
+     * The mapping from ISO 19115 to GeoAPI is defined in the following table.
+     * The equivalences are straightforward except for the {@code name} property, which is mapped to
+     * an {@link org.opengis.metadata.Identifier} instead of {@link org.opengis.util.MemberName}
+     * ({@linkplain ParameterDescriptor#getName() more information on the mapping of names}).
      *
      * <table class="ogc">
      *   <caption>Service metadata properties mapped to GeoAPI</caption>
-     *   <tr><th>Metadata property</th>          <th>GeoAPI equivalence</th></tr>
-     *   <tr><td>{@code name}</td>               <td>{@link ParameterDescriptor#getName()}</td></tr>
-     *   <tr><td>{@code name.attributeType}</td> <td>{@link ParameterDescriptor#getValueClass()}</td></tr>
-     *   <tr><td>{@code direction}</td>          <td>{@link ParameterDescriptor#getDirection()}</td></tr>
-     *   <tr><td>{@code description}</td>        <td>{@link ParameterDescriptor#getDescription()}</td></tr>
-     *   <tr><td>{@code optionality}</td>        <td><code>{@linkplain ParameterDescriptor#getMinimumOccurs()} &gt; 0</code></td></tr>
-     *   <tr><td>{@code repeatability}</td>      <td><code>{@linkplain ParameterDescriptor#getMaximumOccurs()} &gt; 1</code></td></tr>
+     *   <tr><th>{@code SV_Parameter} property</th> <th>{@code ParameterDescriptor} property</th></tr>
+     *   <tr><td>{@code name}</td>                  <td>{@link ParameterDescriptor#getName()          name}</td></tr>
+     *   <tr><td>{@code name.attributeType}</td>    <td>{@link ParameterDescriptor#getValueClass()    valueClass}</td></tr>
+     *   <tr><td>{@code direction}</td>             <td>{@link ParameterDescriptor#getDirection()     direction}</td></tr>
+     *   <tr><td>{@code description}</td>           <td>{@link ParameterDescriptor#getDescription()   description}</td></tr>
+     *   <tr><td>{@code optionality}</td>           <td>{@link ParameterDescriptor#getMinimumOccurs() minimumOccurs} &gt; 0</td></tr>
+     *   <tr><td>{@code repeatability}</td>         <td>{@link ParameterDescriptor#getMaximumOccurs() maximumOccurs} &gt; 1</td></tr>
      * </table>
-     *
-     * The equivalences are straightforward except for the {@code name} property, which is mapped to
-     * an {@link org.opengis.metadata.Identifier} instead than {@link org.opengis.util.MemberName}.
-     * The {@link ParameterDescriptor#getName()} javadoc gives more information on the mapping of names.
      *
      * @departure harmonization
      *   Usage of the ISO 19115 {@code SV_Parameter} type has been replaced by usage of the ISO 19111

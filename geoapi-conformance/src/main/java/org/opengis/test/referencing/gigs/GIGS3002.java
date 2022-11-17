@@ -145,7 +145,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
+     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead of
      * subclassed by the implementer. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
@@ -192,7 +192,7 @@ public strictfp class GIGS3002 extends UserObjectFactoryTestCase<Ellipsoid> {
 
     /**
      * Sets the ellipsoid instance to verify. This method is invoked only by other test classes which need to
-     * verify the ellipsoid contained in a geodetic datum instead than the ellipsoid immediately after creation.
+     * verify the ellipsoid contained in a geodetic datum instead of the ellipsoid immediately after creation.
      */
     final void setIdentifiedObject(final Ellipsoid instance) {
         ellipsoid = instance;

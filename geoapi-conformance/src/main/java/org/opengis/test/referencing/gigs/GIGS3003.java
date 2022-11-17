@@ -121,7 +121,7 @@ public strictfp class GIGS3003 extends UserObjectFactoryTestCase<PrimeMeridian> 
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
+     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead of
      * subclassed by the implementer. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
@@ -168,7 +168,7 @@ public strictfp class GIGS3003 extends UserObjectFactoryTestCase<PrimeMeridian> 
 
     /**
      * Sets the prime meridian instance to verify. This method is invoked only by other test classes
-     * which need to verify the prime meridian contained in a geodetic datum instead than the prime
+     * which need to verify the prime meridian contained in a geodetic datum instead of the prime
      * meridian immediately after creation.
      */
     final void setIdentifiedObject(final PrimeMeridian instance) {

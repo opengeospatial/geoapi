@@ -31,9 +31,12 @@
  */
 package org.opengis.metadata.quality;
 
+import java.util.Collection;
+import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.distribution.Format;
 import org.opengis.metadata.distribution.DataFile;
+import org.opengis.metadata.content.RangeDimension;
 import org.opengis.metadata.content.CoverageDescription;
 import org.opengis.metadata.spatial.SpatialRepresentation;
 import org.opengis.metadata.spatial.SpatialRepresentationType;
@@ -43,20 +46,21 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Result of a data quality measure organising the measured values as a coverage.
+ * Result of a data quality measure organizing the measured values as a coverage.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.1
+ * @author  Martin Desruisseaux (Geomatys)
+ * @version 4.0
  * @since   2.3
  */
-@UML(identifier="QE_CoverageResult", specification=ISO_19115_2)
+@UML(identifier="DQ_CoverageResult", specification=ISO_19157)
 public interface CoverageResult extends Result {
     /**
      * Method used to spatially represent the coverage result.
      *
      * @return spatial representation of the coverage result.
      */
-    @UML(identifier="spatialRepresentationType", obligation=MANDATORY, specification=ISO_19115_2)
+    @UML(identifier="spatialRepresentationType", obligation=MANDATORY, specification=ISO_19157)
     SpatialRepresentationType getSpatialRepresentationType();
 
     /**
@@ -64,31 +68,58 @@ public interface CoverageResult extends Result {
      *
      * @return digital representation of data quality measures composing the coverage result.
      */
-    @UML(identifier="resultSpatialRepresentation", obligation=MANDATORY, specification=ISO_19115_2)
+    @UML(identifier="resultSpatialRepresentation", obligation=MANDATORY, specification=ISO_19157)
     SpatialRepresentation getResultSpatialRepresentation();
 
     /**
-     * Provides the description of the content of the result coverage, i.e. semantic definition
-     * of the data quality measures.
+     * Provides the description of the content of the result coverage.
+     * This is the semantic definition of the data quality measures.
      *
      * @return description of the content of the result coverage.
+     *
+     * @deprecated Replaced by {@link #getResultContent()}.
      */
-    @UML(identifier="resultContentDescription", obligation=MANDATORY, specification=ISO_19115_2)
-    CoverageDescription getResultContentDescription();
+    @Deprecated
+    @UML(identifier="resultContentDescription", obligation=MANDATORY, specification=ISO_19115_2, version=2009)
+    default CoverageDescription getResultContentDescription() {
+        return null;
+    }
+
+    /**
+     * Provides the description of the content of the result coverage.
+     * This is the semantic definition of the data quality measures.
+     *
+     * @return description of the content of the result coverage.
+     *
+     * @condition Mandatory if {@linkplain #getResultFormat() result format}
+     *            and {@link #getResultFile() result file} are not provided.
+     */
+    @UML(identifier="resultContent", obligation=CONDITIONAL, specification=ISO_19157)
+    default Collection<? extends RangeDimension> getResultContent() {
+        return Collections.emptyList();
+    }
 
     /**
      * Provides information about the format of the result coverage data.
      *
      * @return format of the result coverage data.
+     *
+     * @condition Mandatory if {@linkplain #getResultContent() result content} is not provided.
      */
-    @UML(identifier="resultFormat", obligation=MANDATORY, specification=ISO_19115_2)
-    Format getResultFormat();
+    @UML(identifier="resultFormat", obligation=CONDITIONAL, specification=ISO_19157)
+    default Format getResultFormat() {
+        return null;
+    }
 
     /**
      * Provides information about the data file containing the result coverage data.
      *
      * @return data file containing the result coverage data.
+     *
+     * @condition Mandatory if {@linkplain #getResultContent() result content} is not provided.
      */
-    @UML(identifier="resultFile", obligation=MANDATORY, specification=ISO_19115_3)
-    DataFile getResultFile();
+    @UML(identifier="resultFile", obligation=CONDITIONAL, specification=ISO_19157)
+    default DataFile getResultFile() {
+        return null;
+    }
 }

@@ -715,7 +715,7 @@ public interface FilterFactory<R,G,T> extends Factory {
                                Expression<? super R, ? extends T> time2);
 
     /**
-     * Creates an operator that checks if first temporal operand is equals to the second.
+     * Creates an operator that checks if first temporal operand is equal to the second.
      *
      * @param  time1  expression fetching the first temporal value.
      * @param  time2  expression fetching the second temporal value.

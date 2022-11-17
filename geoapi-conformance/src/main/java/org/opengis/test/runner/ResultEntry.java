@@ -271,7 +271,7 @@ final class ResultEntry {
                  * If we have a lower case letter followed by an upper case letter, unconditionally
                  * insert a space between them. If we have 2 consecutive upper case letters (actually
                  * anything except a space and a lower case letter, followed by an upper case letter),
-                 * insert a space only if the next character is lower case. The later rule is an
+                 * insert a space only if the next character is lower case. The latler rule is an
                  * attempt to handle abbreviations, like "URLEncoding" to "URL Encoding".
                  */
                 final int cb = name.codePointBefore(i);
@@ -289,7 +289,7 @@ final class ResultEntry {
                 }
                 if (toLowerCase && nc == 1) {
                     final int lowerCase = Character.toLowerCase(c);
-                    if (Character.charCount(lowerCase) == 1) { // Paranoiac check.
+                    if (Character.charCount(lowerCase) == 1) {              // Paranoiac check.
                         buffer.setCharAt(i, (char) lowerCase);
                     }
                 }

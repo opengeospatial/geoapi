@@ -214,7 +214,7 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
      * Compares this datum with the given object for equality.
      *
      * @param  object The object to compare with this {@code SimpleDatum}.
-     * @return {@code true} if the given object is equals to this object.
+     * @return {@code true} if the given object is equal to this object.
      */
     @Override
     public boolean equals(final Object object) {

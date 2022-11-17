@@ -61,6 +61,16 @@ public class SimpleName implements GenericName, Serializable {
         private static final long serialVersionUID = -8971196012273803431L;
 
         /**
+         * The "OGC:Real" type name.
+         */
+        public static final TypeName REAL;
+        static {
+            final SimpleNameFactory f = SimpleNameFactory.DEFAULT;
+            final NameSpace OGC = f.createNameSpace(f.createLocalName(null, "OGC"), null);
+            REAL = f.createTypeName(OGC, "Real");
+        }
+
+        /**
          * Creates a new instance backed by the given JNDI name. This constructor does not clone the
          * given JNDI name. While this implementation is robust to change in the wrapped object, it is
          * a better practice to keep the JNDI name unmodified after {@code SimpleName} construction.

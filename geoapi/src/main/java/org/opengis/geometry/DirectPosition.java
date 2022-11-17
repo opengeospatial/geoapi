@@ -134,7 +134,7 @@ public interface DirectPosition extends Position {
      *
      * @param  dimension  the dimension in the range 0 to {@linkplain #getDimension dimension}-1.
      * @return the coordinate at the specified dimension.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() position dimension}.
      *
      * @todo needs to be renamed {@code getCoordinate(int)}.
@@ -146,7 +146,7 @@ public interface DirectPosition extends Position {
      *
      * @param  dimension  the dimension for the coordinate of interest.
      * @param  value      the coordinate value of interest.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() position dimension}.
      * @throws UnsupportedOperationException if this direct position is immutable.
      *
@@ -173,7 +173,7 @@ public interface DirectPosition extends Position {
      * </ul>
      *
      * @param  object  the object to compare with this direct position for equality.
-     * @return {@code true} if the given object is equals to this direct position.
+     * @return {@code true} if the given object is equal to this direct position.
      */
     @Override
     boolean equals(Object object);

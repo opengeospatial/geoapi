@@ -48,52 +48,66 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Abstract definition of a parameter or group of parameters used by an operation method.
  * This interface combines information provided by Referencing by Coordinates (ISO 19111),
- * Service Metadata (ISO 19115) and Web Processing Services (WPS) standards.
+ * Service Metadata (ISO 19115), Data Quality (ISO 19157)
+ * and Web Processing Services (WPS) standards.
  * The main information are:
  *
  * <table class="ogc">
- *   <caption>Main parameter properties</caption>
+ *   <caption>Main parameter properties and their mapping to other standards</caption>
  *   <tr>
  *     <th>Getter method</th>
  *     <th class="sep">ISO 19111</th>
- *     <th class="sep">WPS</th>
  *     <th class="sep">ISO 19115</th>
+ *     <th class="sep">ISO 19157</th>
+ *     <th class="sep">WPS</th>
  *     <th class="sep">Remarks</th>
  *   </tr>
  *   <tr>
  *     <td>{@link #getName()}</td>
  *     <td class="sep">{@code name}</td>
- *     <td class="sep">{@code Identifier}</td>
  *     <td class="sep">{@code name}</td>
+ *     <td class="sep">{@code name}</td>
+ *     <td class="sep">{@code Identifier}</td>
  *     <td class="sep">See {@linkplain #getName() method javadoc} for {@code MemberName} ↔ {@code Identifier} mapping.</td>
+ *   <tr>
+ *     <td><code>{@linkplain #getName()}.{@linkplain Identifier#getDescription() getDescription()}</code></td>
+ *     <td class="sep"></td>
+ *     <td class="sep"></td>
+ *     <td class="sep">{@code definition}</td>
+ *     <td class="sep"></td>
+ *     <td class="sep">Should be a short sentence.</td>
  *   </tr>
  *   <!-- "Title" (WPS) equivalent to "designation" (Feature), but not yet provided. -->
  *   <tr>
  *     <td>{@link #getDescription()}</td>
  *     <td class="sep"></td>
- *     <td class="sep">{@code Abstract}</td>
  *     <td class="sep">{@code description}</td>
- *     <td class="sep">Also known as “definition”.</td>
+ *     <td class="sep">{@code description}</td>
+ *     <td class="sep">{@code Abstract}</td>
+ *     <td class="sep">More detailed explanation.</td>
  *   </tr>
  *   <tr>
  *     <td>{@link #getDirection()}</td>
  *     <td class="sep"></td>
- *     <td class="sep"></td>
  *     <td class="sep">{@code direction}</td>
+ *     <td class="sep"></td>
+ *     <td class="sep"></td>
  *     <td class="sep">Tells if the parameter is a WPS {@code Input} or {@code Output} structure.</td>
  *   </tr>
  *   <tr>
  *     <td>{@link #getMinimumOccurs()}</td>
  *     <td class="sep">{@code minimumOccurs}</td>
  *     <td class="sep">{@code MinOccurs}</td>
+ *     <td class="sep"></td>
  *     <td class="sep">{@code optionality}</td>
  *     <td class="sep">{@code optionality   = (minimumOccurs > 0)}</td>
  *   </tr>
  *   <tr>
  *     <td>{@link #getMaximumOccurs()}</td>
  *     <td class="sep">{@code maximumOccurs}</td>
- *     <td class="sep">{@code MaxOccurs}</td>
  *     <td class="sep">{@code repeatability}</td>
+ *     <td class="sep"></td>
+ *     <td class="sep">{@code MaxOccurs}</td>
  *     <td class="sep">{@code repeatability = (maximumOccurs > 1)}</td>
  *   </tr>
  * </table>
@@ -115,38 +129,33 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
     /**
      * The name, as used by the service or operation for this parameter.
      *
-     * <div class="note"><b>Note on Service Metadata name:</b>
-     * the metadata standard ({@linkplain Specification#ISO_19111 ISO 19115}) defines the {@code name}
-     * property as of type {@link MemberName} instead than {@code Identifier}. The details of mapping
-     * the former to the later are left to implementers, but the following can be used as guidelines:
+     * <h4>Unified parameter API</h4>
+     * The metadata standard ({@linkplain Specification#ISO_19115 ISO 19115}) defines the
+     * {@code name} property as of type {@link MemberName} instead of {@code Identifier}.
+     * The details of mapping the former to the latter are left to implementers,
+     * but the following table can be used as guidelines.
+     * This table proposes also a mapping for data quality standard
+     * ({@linkplain Specification#ISO_19157 ISO 19157}).
      *
      * <table class="ogc">
-     *   <caption>Suggested mapping from {@code MemberName} to {@code Identifier}</caption>
+     *   <caption>Mapping from ISO abstract models to unified parameter API</caption>
      *   <tr>
-     *     <th>Member name property</th>
-     *     <th>Equivalence</th>
-     *     <th>Remarks</th>
-     *   </tr>
-     *   <tr>
-     *     <td><code>{@linkplain MemberName#scope()}.name().toString()</code></td>
+     *     <th>Property in ISO abstract model</th>
+     *     <th>Property in unified parameter API</th>
+     *   </tr><tr>
+     *     <td><code>{@linkplain MemberName#scope() MemberName.scope()}.name().toString()</code></td>
      *     <td>{@link Identifier#getCodeSpace()}</td>
-     *     <td></td>
-     *   </tr>
-     *   <tr>
+     *   </tr><tr>
      *     <td>{@link MemberName#toString()}</td>
      *     <td>{@link Identifier#getCode()}</td>
-     *     <td></td>
-     *   </tr>
-     *   <tr>
+     *   </tr><tr>
      *     <td>{@link MemberName#getAttributeType()}</td>
-     *     <td>{@link ParameterDescriptor#getValueClass()}</td>
-     *     <td>See {@link org.opengis.util.TypeName} for a suggested mapping to {@link java.lang.Class}.</td>
+     *     <td>{@link ParameterDescriptor#getValueType()}</td>
+     *   </tr><tr>
+     *     <td>{@code DQM_Parameter.definition}</td>
+     *     <td>{@link Identifier#getDescription()}</td>
      *   </tr>
      * </table>
-     *
-     * Some implementations may allow the {@code Identifier} to be casted to {@link MemberName}.
-     * Alternatively, the member type can also be specified in the {@linkplain #getAlias() aliases} list.
-     * </div>
      *
      * <div class="warning"><b>Upcoming API change — generalization</b><br>
      * As of ISO 19115:2014, {@code ReferenceIdentifier} has been merged with its {@link Identifier} parent interface.
@@ -168,7 +177,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *
      * @since 3.1
      */
-    @UML(identifier="direction", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="SV_Parameter.direction", obligation=OPTIONAL, specification=ISO_19115)
     default ParameterDirection getDirection() {
         return null;
     }
@@ -183,7 +192,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * @see #getName()
      * @see #getRemarks()
      */
-    @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="SV_Parameter.description", obligation=OPTIONAL, specification=ISO_19115)
     default InternationalString getDescription() {
         return null;
     }

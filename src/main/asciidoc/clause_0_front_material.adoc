@@ -44,7 +44,7 @@ The XML schemas are generally not used (except when there is no UML diagrams des
 because they carry XML-specific constraints that do not apply to programming languages.
 For example querying the coordinate system associated to a Coordinate Reference System (CRS) is a single method call in GeoAPI.
 But this single operation would have required more than 50 lines of code if the API was generated
-from Geographic Markup Language (GML) schema instead than from the UML diagrams of abstract models.
+from Geographic Markup Language (GML) schema instead of from the UML diagrams of abstract models.
 
 The interfaces described in this standard follow closely, without introducing new concepts,
 from the previously published standards of the Open Geospatial Consortium and the International Organization for Standardization.

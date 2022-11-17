@@ -32,16 +32,26 @@
 package org.opengis.metadata.quality;
 
 import org.opengis.annotation.UML;
+
 import static org.opengis.annotation.Specification.*;
 
 
 /**
  * Closeness of gridded data position values to values accepted as or being true.
  *
+ * <h2>Standardized values</h2>
+ * In order to achieve well defined and comparable quality information, it is recommended to
+ * report data quality using {@linkplain Measure quality measures} listed in ISO 19157 annex.
+ * The accuracy of gridded data may be described using the same data quality measures as for
+ * the horizontal positional uncertainty, as specified in {@link AbsoluteExternalPositionalAccuracy}.
+ * The band values in rasters may be described using the quantitative attribute accuracy as specified
+ * in {@link QuantitativeAttributeAccuracy}.
+ *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Alexis Gaillard (Geomatys)
+ * @version 3.1
  * @since   2.0
  */
-@UML(identifier="DQ_GriddedDataPositionalAccuracy", specification=ISO_19115, version=2003)
+@UML(identifier="DQ_GriddedDataPositionalAccuracy", specification=ISO_19157)
 public interface GriddedDataPositionalAccuracy extends PositionalAccuracy {
 }

@@ -148,7 +148,7 @@ public enum Classification {
      *   <li><b>Correctness:</b><ul>
      *     <li>EPSG data model has been implemented.</li>
      *     <li>Functionality for following deprecation trail is present.</li>
-     *     <li>(Semi-) automatic synchronisation with new releases of EPSG dataset.</li>
+     *     <li>(Semi-) automatic synchronization with new releases of EPSG dataset.</li>
      *   </ul></li>
      *   <li><b>Verifiability:</b><ul>
      *     <li>Extensive audit trail available to user enabling verification of Original CRS of

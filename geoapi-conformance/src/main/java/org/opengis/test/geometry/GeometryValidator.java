@@ -155,7 +155,7 @@ public class GeometryValidator extends Validator {
             RangeMeaning meaning = null;
             if (cs != null) {
                 final CoordinateSystemAxis axis = cs.getAxis(i);
-                if (axis != null) { // Should never be null, but this is not this test's job to ensure that.
+                if (axis != null) {         // Should never be null, but it is not this test's job to ensure that.
                     meaning = axis.getRangeMeaning();
                 }
             }
@@ -166,7 +166,7 @@ public class GeometryValidator extends Validator {
             final double median  = object.getMedian (i);
             final double span    = object.getSpan   (i);
             if (!isNaN(minimum) && !isNaN(maximum)) {
-                if (lower <= upper && !isPositiveToNegativeZero(lower, upper)) { // Do not accept NaN in this block.
+                if (lower <= upper && !isPositiveToNegativeZero(lower, upper)) {            // Do not accept NaN in this block.
                     final double eps = (upper - lower) * tolerance;
                     assertEquals("Envelope: minimum value shall be equal to the lower corner coordinate.", lower, minimum, eps);
                     assertEquals("Envelope: maximum value shall be equal to the upper corner coordinate.", upper, maximum, eps);

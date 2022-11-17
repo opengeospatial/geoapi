@@ -31,13 +31,13 @@
  */
 
 /**
- * Description and storage of {@linkplain org.opengis.parameter.ParameterValue parameter values}.
+ * Description and storage of parameter values.
  *
  * <p>Parameters are described extensively in the {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS®
  * Spatial Referencing by Coordinates (Topic 2)} specification, but appear also in other specifications like Metadata
  * and Web Processing Services. This GeoAPI package is derived mostly from the referencing model (ISO 19111),
- * augmented with some properties from the metadata model (ISO 19115)
- * in order to provide a unified framework for both standards.</p>
+ * augmented with some properties from the metadata model (ISO 19115 and ISO 19157)
+ * in order to provide a unified framework for all standards.</p>
  *
  * <p>Interfaces in this package can be grouped in two categories:</p>
  * <ul>
@@ -100,6 +100,16 @@
  * However in order to provide a unified parameter API, GeoAPI omits the metadata parameter class
  * and instead defines a mapping from metadata properties to GeoAPI properties.
  * The mapping is documented in {@link org.opengis.metadata.identification.OperationMetadata#getParameters()}
+ * and in {@link org.opengis.parameter.GeneralParameterDescriptor} javadoc.</p>
+ *
+ *
+ *
+ * <h2>Data quality measure parameters</h2>
+ * <p>The data quality standard uses a simple parameter class ({@code DQM_Parameter}) with only {@code name},
+ * {@code definition}, {@code description}, {@code valueType}, and {@code valueStructure} properties.
+ * However in order to provide a unified parameter API, GeoAPI omits the metadata parameter class
+ * and instead defines a mapping from metadata properties to GeoAPI properties.
+ * The mapping is documented in {@link org.opengis.metadata.quality.Measure#getParameters()}
  * and in {@link org.opengis.parameter.GeneralParameterDescriptor} javadoc.</p>
  *
  *

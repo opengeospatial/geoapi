@@ -136,7 +136,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
+     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead of
      * sub-classed by the implementer. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
@@ -253,7 +253,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      */
     private float[] verifyInternalConsistency(final long seed) throws TransformException {
         validators.validate(transform);
-        if (!(tolerance >= TRANSFORM_TOLERANCE)) { // !(a>=b) instead than (a<b) in order to catch NaN.
+        if (!(tolerance >= TRANSFORM_TOLERANCE)) {      // !(a >= b) instead of (a < b) in order to catch NaN.
             tolerance = TRANSFORM_TOLERANCE;
         }
         final int dimension = transform.getSourceDimensions();

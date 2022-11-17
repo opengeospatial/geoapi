@@ -107,7 +107,7 @@ public interface RectifiedGrid extends ReferenceableGrid {
      * @departure rename
      *   A <code>"convertCoordinates"</code> method name would match better the ISO identifier.
      *   However since <code>RectifiedGrid</code> extends <code>ReferenceableGrid</code> in GeoAPI,
-     *   we have to use the same method names than the later. Here, <cite>transform</cite> is to be
+     *   we have to use the same method names than the latter. Here, <cite>transform</cite> is to be
      *   understood as a term encompassing both <cite>transformation</cite> and <cite>conversion</cite>.
      *   This is similar to the <code>MathTransform</code> name policy.
      */
@@ -133,7 +133,7 @@ public interface RectifiedGrid extends ReferenceableGrid {
      * @departure rename
      *   A <code>"inverseConvertCoordinates"</code> method name would match better the ISO identifier.
      *   However since <code>RectifiedGrid</code> extends <code>ReferenceableGrid</code> in GeoAPI,
-     *   we have to use the same method names than the later. Here, <cite>transform</cite> is to be
+     *   we have to use the same method names than the latter. Here, <cite>transform</cite> is to be
      *   understood as a term encompassing both <cite>transformation</cite> and <cite>conversion</cite>.
      *   This is similar to the <code>MathTransform</code> name policy.
      */

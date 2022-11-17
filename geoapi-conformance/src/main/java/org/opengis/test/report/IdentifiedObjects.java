@@ -159,7 +159,7 @@ final class IdentifiedObjects {
 
     /**
      * Replaces {@code null} value by an empty set. While implementations should always
-     * return an empty collection instead than null, we nevertheless stay lenient since
+     * return an empty collection instead of null, we nevertheless stay lenient since
      * the report generators are not validators; we just want to show what we have.
      */
     static <E> Collection<E> nullSafe(final Collection<E> c) {

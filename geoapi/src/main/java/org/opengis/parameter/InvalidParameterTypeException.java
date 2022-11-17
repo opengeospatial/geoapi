@@ -38,7 +38,7 @@ package org.opengis.parameter;
  * is invoked but the value is not convertible to a {@code double}.
  *
  * <div class="note"><b>Note:</b>
- * this exception is of kind {@code IllegalStateException} instead than {@code IllegalArgumentException}
+ * this exception is of kind {@code IllegalStateException} instead of {@code IllegalArgumentException}
  * because it is not caused by a bad argument. It is rather a consequence of a zero-argument method invoked
  * in a context where it is not allowed.</div>
  *

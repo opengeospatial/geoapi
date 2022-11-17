@@ -152,7 +152,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
      *
      * @param  dimension  the dimension in the range 0 to {@linkplain #getDimension dimension}-1.
      * @return the value in the {@link #coordinates} array at the given index.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() position dimension}.
      */
     @Override
@@ -165,7 +165,7 @@ public class SimpleDirectPosition implements DirectPosition, Serializable {
      *
      * @param  dimension  the dimension for the coordinate of interest.
      * @param  value      the coordinate value of interest.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() position dimension}.
      */
     @Override

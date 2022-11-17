@@ -34,6 +34,7 @@ import org.opengis.example.metadata.SimpleCitation;
 public class SimpleNameFactory implements NameFactory {
     /**
      * The default factory instance.
+     * This factory uses the {@code ":"} separator between name components.
      */
     public static final SimpleNameFactory DEFAULT = new SimpleNameFactory();
 

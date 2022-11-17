@@ -94,7 +94,7 @@ public strictfp class FactoryFilterTest implements AuthorityFactory, Citation, I
     @Override public int          compareTo(InternationalString o) {return authority.compareTo(o.toString());}
 
     /*
-     * Non-interresting methods for this test.
+     * Non-interesting methods for this test.
      */
     @Override public Citation                     getVendor()                              {return null;}
     @Override public InternationalString          getDescriptionText(String code)          {return null;}

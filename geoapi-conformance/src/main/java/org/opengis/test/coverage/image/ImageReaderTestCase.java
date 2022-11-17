@@ -251,7 +251,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * @return the user object of the given type, or {@code null} if not found.
      */
     private static <T> T getMetadata(final Class<T> type, final Node node) {
-        if (node == null) { // Because IIOMetadata.getAsTree(String) may return null.
+        if (node == null) {             // Because IIOMetadata.getAsTree(String) may return null.
             return null;
         }
         if (node instanceof IIOMetadataNode) {
@@ -327,8 +327,8 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      *       the spatial extent, if any.</li>
      *   <li>{@link Grid#getExtent()}<ul>
      *     <li>{@link GridEnvelope}: Verify that the {@linkplain GridEnvelope#getSize(int) span}
-     *         in at least one dimension is equals to the {@linkplain ImageReader#getWidth(int)
-     *         image width}, and a span in another dimension is equals to the
+     *         in at least one dimension is equal to the {@linkplain ImageReader#getWidth(int)
+     *         image width}, and a span in another dimension is equal to the
      *         {@linkplain ImageReader#getHeight(int) image height}.</li>
      *   </ul></li>
      * </ul>
@@ -469,7 +469,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
     /**
      * Tests the {@link ImageReader#readAsRenderedImage(int, ImageReadParam) ImageReader.readAsRenderedImage} method.
      * This method performs the same test than {@link #testReadAsBufferedImage()}, except that the
-     * {@link ImageReader#readAsRenderedImage(int, ImageReadParam)} method is invoked instead than
+     * {@link ImageReader#readAsRenderedImage(int, ImageReadParam)} method is invoked instead of
      * {@code ImageReader.read(int, ImageReadParam)}.
      *
      * @throws IOException if an error occurred while reading the image.
@@ -482,7 +482,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
     /**
      * Tests the {@link ImageReader#readRaster(int, ImageReadParam) ImageReader.readRaster} method.
      * This method performs the same test than {@link #testReadAsBufferedImage()}, except that the
-     * {@link ImageReader#readRaster(int, ImageReadParam)} method is invoked instead than
+     * {@link ImageReader#readRaster(int, ImageReadParam)} method is invoked instead of
      * {@code ImageReader.read(int, ImageReadParam)}.
      *
      * <p>This test is ignored if {@link ImageReader#canReadRaster()} returns {@code false}.</p>

@@ -108,7 +108,7 @@ public final strictfp class ClassIndexTest extends SourceGenerator {
         assertNull(merged.put("MD_ImageDescription",    "MI_ImageDescription"));
         assertNull(merged.put("MD_Metadata",            "MI_Metadata"));
 
-        final String index = createIndex(EnumSet.of(ISO_19115, ISO_19115_2, ISO_19111), merged);
+        final String index = createIndex(EnumSet.of(ISO_19115, ISO_19115_2, ISO_19157, ISO_19111), merged);
         final InputStream in = UML.class.getResourceAsStream(INDEX_FILENAME);
         if (in != null) {
             final String actual = load(in);

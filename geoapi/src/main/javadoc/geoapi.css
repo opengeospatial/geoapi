@@ -15,27 +15,27 @@ p.right-note {
  * also have a little bit more space, and a border is drawn around the table.
  */
 table.ogc caption {
-  color:          steelblue;
+  color:          #2471a3;
   font-weight:    bold;
   padding-bottom: 4px;
 }
 
 table.ogc {
-  background-color: ghostwhite;
   border-color:     gray;
   border-style:     solid;
-  border-width:     1px;
+  border-width:     2px;
   border-spacing:   0;
-  margin:           15px 40px;
+  margin:           21px 0px;
   width:            auto;
 }
 
 table.ogc tr th {
-  background-color:    lightsteelblue;
-  border-bottom-color: steelblue;
+  background-color:    #d4e6f1;
+  border-bottom-color: #2980b9;
   border-bottom-style: solid;
-  border-bottom-width: 1px;
-  padding:             3px;
+  border-bottom-width: 2px;
+  padding:             6px;
+  text-align:          center;
 }
 
 table.ogc tr td {
@@ -50,27 +50,18 @@ table.ogc tr.coordinates {
 /*
  * Optionally add a line or column separator.
  */
-table.ogc tr th.hsep {
+table.ogc tr th.hsep,
+table.ogc tr td.hsep {
   border-top-width: 1px;
   border-top-style: solid;
+  border-top-color: #2980b9;
 }
 
-table.ogc tr td.hsep {
-  border-top-width:  1px;
-  border-top-style:  solid;
-  border-left-color: steelblue;
-}
-
-table.ogc tr th.sep {
-  border-left-width: 1px;
-  border-left-style: solid;
-  border-left-color: steelblue;
-}
-
+table.ogc tr th.sep,
 table.ogc tr td.sep {
   border-left-width: 1px;
   border-left-style: solid;
-  border-left-color: steelblue;
+  border-left-color: #2980b9;
 }
 
 /*

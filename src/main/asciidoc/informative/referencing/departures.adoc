@@ -35,7 +35,7 @@ and will always be available, directly or indirectly, even for `CompoundCRS`.
 However only coordinate systems associated to `SingleCRS` can be instances of ISO 19111 concrete subtypes
 (`CartesianCS`, `SphericalCS`, `VerticalCS`, _etc._);
 it is not possible to assign a standard concrete type to the coordinate system of a `CompoundCRS`.
-For the later case, users see only the abstract `CoordinateSystem` type which serves merely as an axis container.
+For the latter case, users see only the abstract `CoordinateSystem` type which serves merely as an axis container.
 The concrete CS subtype can be hidden in implementation details.
 
 .Rational

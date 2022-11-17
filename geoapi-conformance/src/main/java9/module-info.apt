@@ -115,7 +115,7 @@ public class GeoapiTest extends TestSuite implements ImplementationDetails {
 * Writing custom tests
 
   Implementors can either write their own JUnit tests, or extend some of the existing
-  {{{TestCase}}} implementations. With the later approach, implementors can override
+  {{{TestCase}}} implementations. With the latter approach, implementors can override
   the existing test methods for finer control on the tests being executed.
 
   In every cases, implementors can use the {{{Validators}}} static methods for testing
@@ -144,6 +144,6 @@ public class MyTests {
   Validators are thread-safe except for the configuration phase (which is optional and usually
   executed only once before the tests begin). Validators test the logical consistency of their argument.
   For example if given a chain of concatenated transforms, <<<validate(object)>>> will ensure that
-  the source dimension of a transformation step is equals to the target dimension of the previous
+  the source dimension of a transformation step is equal to the target dimension of the previous
   step. Dependencies are traversed recursively, for example validating a <<<CoordinateReferenceSystem>>>
   object implies validating its <<<CoordinateSystem>>> and <<<Datum>>> attributes.

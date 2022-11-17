@@ -34,7 +34,7 @@ package org.opengis.geoapi;
 
 /**
  * Style of the documentation to store. Documentation in XSD files are not sentence;
- * they begin with a lower-case letter instead than an upper-case one and do not finish
+ * they begin with a lower-case letter instead of an upper-case one and do not finish
  * with a period. Those documentation can be read verbatim, or transformed into sentences.
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -72,7 +72,7 @@ public enum DocumentationStyle {
     private static final String[] IGNORE = {
         "FGDC:",
         "Position:",
-        "Postion:",         // Type found in some XSD.
+        "Postion:",         // Typo found in some XSD.
         "shortName:",
         "Conditional",
         "NITF_ACFTA:",
@@ -182,17 +182,18 @@ public enum DocumentationStyle {
      */
     private static int beforeAnnexes(final String doc) {
         int stopAt = doc.length();
-nextLn: for (int eol = stopAt; --eol >= 0;) {
-            final int c = doc.charAt(eol);
-            if (c == '\r' || c == '\n') {
-                final int lineStart = skipLeadingWhitespaces(doc, eol);
+nextLn: for (int pos = stopAt; --pos >= 0;) {
+            final int c = doc.charAt(pos);
+            final boolean isEOL = (c == '\r' || c == '\n');
+            if (isEOL || Character.isWhitespace(c)) {
+                final int lineStart = skipLeadingWhitespaces(doc, pos);
                 for (final String header : IGNORE) {
                     if (doc.regionMatches(true, lineStart, header, 0, header.length())) {
-                        stopAt = eol = skipTrailingWhitespaces(doc, eol);
+                        stopAt = pos = skipTrailingWhitespaces(doc, pos);
                         continue nextLn;
                     }
                 }
-                break;
+                if (isEOL) break;
             }
         }
         return skipTrailingWhitespaces(doc, stopAt);

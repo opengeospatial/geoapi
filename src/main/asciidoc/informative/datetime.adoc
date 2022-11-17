@@ -12,7 +12,7 @@ information or not since the choices are represented by different types
 The timezone information is often desired for geospatial data
 (for example in the acquisition time of a remote sensing image),
 but may be undesired for some other cases like office opening hours.
-In the later case, the decision to include timezone or not depends if the opening hours apply to one specific office
+In the latter case, the decision to include timezone or not depends if the opening hours apply to one specific office
 or to all offices spanning the multiple timezones of a country.
 GeoAPI generally includes timezone information, but this policy may be adjusted on a case-by-case basis.
 
@@ -30,7 +30,7 @@ GeoAPI generally includes timezone information, but this policy may be adjusted 
 
 `DateTime` is distinct from `Instant`.
 The former is expressed in the proleptic Gregorian calendar as described in ISO 8601,
-while the later is an instantaneous point on the selected time scale, astronomical or atomic.
+while the latter is an instantaneous point on the selected time scale, astronomical or atomic.
 An `Instant` does not have year, month or day components.
 It is instead a duration elapsed since an epoch,
 and its conversion to a `DateTime` may be complicated.

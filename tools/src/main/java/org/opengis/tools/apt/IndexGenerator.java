@@ -403,7 +403,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
 
     /**
      * Changes the first character from an upper-case letter to an lower case one,
-     * except if the second character is upper case as well. In this later case,
+     * except if the second character is upper case as well. In this latter case,
      * we assume that the name contains an upper-case acronym.
      */
     private static String firstCharAsLowerCase(final String name) {

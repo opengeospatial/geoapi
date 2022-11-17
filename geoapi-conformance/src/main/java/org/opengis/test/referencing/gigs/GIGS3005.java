@@ -134,7 +134,7 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
+     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead of
      * subclassed by the implementer. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
@@ -198,7 +198,7 @@ public strictfp class GIGS3005 extends UserObjectFactoryTestCase<Conversion> {
          *  - The number of target dimensions
          *
          * We currently do not verify the name because libraries often have their own
-         * hard-coded implementations of operation methods instead than creating new
+         * hard-coded implementations of operation methods instead of creating new
          * instances from the given properties.
          */
         try {

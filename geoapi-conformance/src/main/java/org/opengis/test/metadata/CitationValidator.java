@@ -139,7 +139,7 @@ public class CitationValidator extends MetadataValidator {
     }
 
     /**
-     * Asserts that the date {@code d2} is equals or after {@code d1}.
+     * Asserts that the date {@code d2} is equal or after {@code d1}.
      */
     private static void assertOrdered(final DateType t1, final Date d1, final DateType t2, final Date d2) {
         if (d1 != null && d2.before(d1)) {

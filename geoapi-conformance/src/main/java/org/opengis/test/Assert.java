@@ -204,7 +204,7 @@ public strictfp class Assert extends org.junit.Assert {
      * @param maximum  the upper bound of the range to test.
      */
     public static void assertValidRange(final String message, final double minimum, final double maximum) {
-        if (!(minimum <= maximum)) { // Use '!' for catching NaN.
+        if (!(minimum <= maximum)) {                            // Use '!' for catching NaN.
             fail(nonNull(message) + "Range found is [" + minimum + " ... " + maximum + "].");
         }
     }
@@ -318,7 +318,7 @@ public strictfp class Assert extends org.junit.Assert {
     }
 
     /**
-     * Asserts that the given identifier is equals to the given authority, code space, version and code.
+     * Asserts that the given identifier is equal to the given authority, code space, version and code.
      * If any of the above-cited properties is {@code ""##unrestricted"}, then it will not be verified.
      * This flexibility is useful in the common case where a test accepts any {@code version} value.
      *
@@ -450,7 +450,7 @@ public strictfp class Assert extends org.junit.Assert {
     }
 
     /**
-     * Asserts that the given matrix is equals to the expected one, up to the given tolerance value.
+     * Asserts that the given matrix is equal to the expected one, up to the given tolerance value.
      *
      * @param message    header of the exception message in case of failure, or {@code null} if none.
      * @param expected   the expected matrix, which may be {@code null}.

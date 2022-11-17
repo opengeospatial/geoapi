@@ -67,7 +67,7 @@ import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
  * factories} given at construction time.
  *
  * <p>Many {@link ProjectedCRS} instances tested in this class use the same projections than the
- * {@link MathTransform} instances tested in {@link ParameterizedTransformTest}. However the later
+ * {@link MathTransform} instances tested in {@link ParameterizedTransformTest}. However the latter
  * test class expects (λ,φ) input coordinates in degrees and (<var>x</var>,<var>y</var>)
  * output coordinates in metres, while this {@code AuthorityFactoryTest} class expects
  * input and output coordinates in CRS-dependent units and axis order.</p>
@@ -159,7 +159,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     /**
      * {@code true} if the {@linkplain CoordinateReferenceSystem Coordinate Reference System} being
      * tested is a polar CRS. Such CRS have axis orientation like <cite>"South along 90°E"</cite>
-     * instead than {@linkplain AxisDirection#EAST East} or {@linkplain AxisDirection#NORTH North}.
+     * instead of {@linkplain AxisDirection#EAST East} or {@linkplain AxisDirection#NORTH North}.
      *
      * <p><b>Default value:</b> {@code false}.</p>
      *
@@ -223,7 +223,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
+     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead of
      * subclassed by the implementer. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *

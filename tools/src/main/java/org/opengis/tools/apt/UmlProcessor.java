@@ -202,7 +202,7 @@ abstract class UmlProcessor extends AbstractProcessor {
     /**
      * Returns {@code true} if the given element is a class or an interface.
      * This is used as a substitute to {@code (e instanceof ElementType)}
-     * since the later is documented as non-reliable in JDK javadoc.
+     * since the latter is documented as non-reliable in JDK javadoc.
      */
     private static boolean isTypeElement(final Element e) {
         final ElementKind kind = e.getKind();
