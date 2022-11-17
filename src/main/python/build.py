@@ -48,7 +48,7 @@ buildDir = 'target/python/'
 
 def link(sourceFile, targetFile):
     """
-    "Copies" a file using hard-link instead than a real copy.
+    "Copies" a file using hard-link instead of a real copy.
     If the target file exists, it will be removed before to be relinked.
     """
     if os.path.exists(targetFile):

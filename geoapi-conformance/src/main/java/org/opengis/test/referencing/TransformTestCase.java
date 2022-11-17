@@ -436,7 +436,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
-     * Transforms the given coordinates and verifies that the result is equals (within a positive
+     * Transforms the given coordinates and verifies that the result is equal (within a positive
      * delta) to the expected ones. If the difference between an expected and actual coordinate value
      * is greater than the {@linkplain #tolerance tolerance} threshold (after optional
      * {@linkplain #toleranceModifier tolerance modification}), then the assertion fails.
@@ -621,7 +621,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * Other transform methods (operating on arrays) will be compared against that reference,
      * unless their checks were disabled (see class javadoc for details).
      *
-     * <p>This method expects an array of {@code float} values instead than {@code double}
+     * <p>This method expects an array of {@code float} values instead of {@code double}
      * for making sure that the {@code MathTransform.transform(float[], …)} and
      * {@code MathTransform.transform(double[], …)} methods produces the same numerical values.
      * The {@code double} values may show extra digits when formatted in base 10, but this is not
@@ -808,7 +808,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * </ul>
      *
      * Those information are then passed to the {@link #assertMatrixEquals(String, Matrix, Matrix,
-     * Matrix)} method. Implementers can override the later method, for example in order to overwrite
+     * Matrix)} method. Implementers can override the latter method, for example in order to overwrite
      * the tolerance values.
      *
      * @param  coordinates  the point where to compute the derivative, in units of the source CRS.
@@ -1226,7 +1226,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 final double a = actual  .getOrdinate(mismatch);
                 final double e = expected.getOrdinate(mismatch);
                 /*
-                 * This method uses !(a <= b) expressions instead than (a > b) for catching NaN.
+                 * This method uses !(a <= b) expressions instead of (a > b) for catching NaN.
                  * The next condition working on bit patterns is for NaN and Infinity values.
                  */
                 final double delta = abs(e - a);
@@ -1464,7 +1464,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
-     * Asserts that a matrix of derivatives is equals to the expected ones within a positive delta.
+     * Asserts that a matrix of derivatives is equal to the expected ones within a positive delta.
      * If the comparison fails, the given message is completed with the expected and actual matrixes
      * values.
      *

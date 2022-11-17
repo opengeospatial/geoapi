@@ -164,7 +164,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
+     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead of
      * subclassed by the implementer. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
@@ -293,7 +293,7 @@ public strictfp class GIGS2002 extends AuthorityFactoryTestCase<Ellipsoid> {
          * Get the axis lengths and their unit. Null units are assumed to mean metres
          * (whether we accept null unit or not is determined by the validators).
          * If the implementation uses metre units but the EPSG definition expected
-         * another unit, convert the axis lengths from the later units to metre units.
+         * another unit, convert the axis lengths from the latter units to metre units.
          */
         final Unit<Length> unit = ellipsoid.getAxisUnit();
         final boolean inMetres = toMetres != 1 && (unit == null || unit.equals(units.metre()));

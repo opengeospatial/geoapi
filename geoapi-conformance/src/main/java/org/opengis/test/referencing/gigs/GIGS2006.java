@@ -112,19 +112,19 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
 
     /**
      * {@code true} if the expected axis directions are ({@link AxisDirection#NORTH NORTH},
-     * {@link AxisDirection#EAST EAST}) instead than the usual ({@code EAST}, {@code NORTH}).
+     * {@link AxisDirection#EAST EAST}) instead of the usual ({@code EAST}, {@code NORTH}).
      */
     public boolean isNorthAxisFirst;
 
     /**
      * {@code true} if the <var>x</var> values are increasing toward {@link AxisDirection#WEST WEST}
-     * instead than {@link AxisDirection#EAST EAST}.
+     * instead of {@link AxisDirection#EAST EAST}.
      */
     public boolean isWestOrientated;
 
     /**
      * {@code true} if the <var>y</var> values are increasing toward {@link AxisDirection#SOUTH SOUTH}
-     * instead than {@link AxisDirection#NORTH NORTH}.
+     * instead of {@link AxisDirection#NORTH NORTH}.
      */
     public boolean isSouthOrientated;
 
@@ -144,7 +144,7 @@ public strictfp class GIGS2006 extends AuthorityFactoryTestCase<ProjectedCRS> {
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
+     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead of
      * subclassed by the implementer. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *

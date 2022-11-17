@@ -179,7 +179,7 @@ public interface Envelope {
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.
      * @return the minimal coordinate at the given dimension.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() envelope dimension}.
      *
      * @departure easeOfUse
@@ -214,7 +214,7 @@ public interface Envelope {
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.
      * @return the maximal coordinate at the given dimension.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() envelope dimension}.
      *
      * @departure easeOfUse
@@ -229,7 +229,7 @@ public interface Envelope {
 
     /**
      * Returns the median coordinate along the specified dimension.
-     * In most cases, the result is equals (minus rounding error) to:
+     * In most cases, the result is equal (minus rounding error) to:
      *
      * <blockquote><code>
      * median = ({@linkplain #getMinimum(int) getMinimum}(dimension) + {@linkplain #getMaximum(int) getMaximum}(dimension)) / 2;
@@ -240,7 +240,7 @@ public interface Envelope {
      * {@linkplain #getUpperCorner() upper} corners extended interpretation, and if the axis
      * range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND}, then a special cases occurs
      * when <var>upper</var> &lt; <var>lower</var>. In such cases, the coordinate values from the
-     * lower and upper corner may be used instead than the minimum and maximum values, with the
+     * lower and upper corner may be used instead of the minimum and maximum values, with the
      * periodicity (360° for longitudes) added to the upper value before to perform the median calculation.
      * Implementations are free to use variants of the above algorithm. For example some
      * libraries may add different multiples of the periodicity in order to ensure that the
@@ -248,7 +248,7 @@ public interface Envelope {
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.
      * @return the median coordinate at the given dimension.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() envelope dimension}.
      *
      * @departure easeOfUse
@@ -263,7 +263,7 @@ public interface Envelope {
 
     /**
      * Returns the envelope span (typically width or height) along the specified dimension.
-     * In most cases, the result is equals (minus rounding error) to:
+     * In most cases, the result is equal (minus rounding error) to:
      *
      * <blockquote><code>
      * span = {@linkplain #getMaximum(int) getMaximum}(dimension) - {@linkplain #getMinimum(int) getMinimum}(dimension);
@@ -274,14 +274,14 @@ public interface Envelope {
      * {@linkplain #getUpperCorner() upper} corners extended interpretation, and if the axis
      * range meaning is {@link RangeMeaning#WRAPAROUND WRAPAROUND}, then a special cases occurs
      * when <var>upper</var> &lt; <var>lower</var>. In such cases, the coordinate values from the
-     * lower and upper corner may be used instead than the minimum and maximum values, with the
+     * lower and upper corner may be used instead of the minimum and maximum values, with the
      * periodicity (360° for longitudes) added to the upper value before to perform the span calculation.
      * Implementations are free to use variants of the above algorithm. For example some
      * libraries may add different multiples of the periodicity.
      *
      * @param  dimension  the dimension for which to obtain the span.
      * @return the span (typically width or height) at the given dimension.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() envelope dimension}.
      *
      * @departure easeOfUse

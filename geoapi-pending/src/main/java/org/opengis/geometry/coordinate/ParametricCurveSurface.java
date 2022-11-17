@@ -61,7 +61,7 @@ import static org.opengis.annotation.Specification.*;
  * </blockquote>
  *
  * <p>The functions on {@code ParametricCurveSurface} shall expose these two families of curves. The
- * first gives us the "horizontal" cross sections c<sub>t</sub>(<var>s</var>), the later the
+ * first gives us the "horizontal" cross sections c<sub>t</sub>(<var>s</var>), the latter the
  * "vertical" cross sections c<sub>s</sub>(<var>t</var>). The terms "horizontal" and "vertical"
  * refer to the parameter space and need not be either horizontal or vertical curves in the coordinate
  * reference system. The table below lists some possible pairs of types for these surface curves

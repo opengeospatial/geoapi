@@ -127,7 +127,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
+     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead of
      * sub-classed by the implementer. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *

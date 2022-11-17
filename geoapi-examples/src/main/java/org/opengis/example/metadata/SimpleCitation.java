@@ -164,7 +164,7 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
      * equals to this title.
      *
      * @param  object  the object to compare with this {@code SimpleCitation}, or {@code null}.
-     * @return {@code true} if the given object is equals to this {@code SimpleCitation}.
+     * @return {@code true} if the given object is equal to this {@code SimpleCitation}.
      */
     @Override
     public boolean equals(final Object object) {

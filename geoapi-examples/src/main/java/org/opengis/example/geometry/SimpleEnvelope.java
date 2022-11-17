@@ -173,7 +173,7 @@ public class SimpleEnvelope implements Envelope, Serializable {
     }
 
     /**
-     * Ensures that the given dimension is equals or greater than zero and lower than the
+     * Ensures that the given dimension is equal or greater than zero and lower than the
      * number of dimensions in this envelope.
      *
      * @param  dimension  the dimension to check.
@@ -195,7 +195,7 @@ public class SimpleEnvelope implements Envelope, Serializable {
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.
      * @return the minimal coordinate at the given dimension.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() envelope dimension}.
      */
     @Override
@@ -213,7 +213,7 @@ public class SimpleEnvelope implements Envelope, Serializable {
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.
      * @return the maximal coordinate at the given dimension.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() envelope dimension}.
      */
     @Override

@@ -149,7 +149,7 @@ final class SimpleMatrix implements Matrix, Cloneable {
     }
 
     /**
-     * Returns {@code true} if this matrix is equals to the given object.
+     * Returns {@code true} if this matrix is equal to the given object.
      */
     @Override
     public boolean equals(final Object object) {

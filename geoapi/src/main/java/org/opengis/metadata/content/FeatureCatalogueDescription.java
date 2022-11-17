@@ -126,7 +126,7 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      *   <ol>
      *     <li>Avoid name collision with the ISO 19115:2003 definition of "{@code featureTypes}".</li>
      *     <li>Avoid confusion between {@code FeatureTypeInfo} and {@code org.opengis.feature.FeatureType}.
-     *         A {@code getFeatureTypes()} method name would suggest that the collection contains the later.</li>
+     *         A {@code getFeatureTypes()} method name would suggest that the collection contains the latter.</li>
      *   </ol>
      *
      * @since 3.1

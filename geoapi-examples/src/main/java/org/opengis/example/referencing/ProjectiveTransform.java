@@ -86,7 +86,7 @@ public class ProjectiveTransform extends SimpleTransform {
     }
 
     /**
-     * Gets the dimension of input points. This is equals to the
+     * Gets the dimension of input points. This is equal to the
      * {@linkplain Matrix#getNumCol() number of columns} in the matrix minus one.
      */
     @Override
@@ -95,7 +95,7 @@ public class ProjectiveTransform extends SimpleTransform {
     }
 
     /**
-     * Gets the dimension of target points. This is equals to the
+     * Gets the dimension of target points. This is equal to the
      * {@linkplain Matrix#getNumRow() number of rows} in the matrix minus one.
      */
     @Override

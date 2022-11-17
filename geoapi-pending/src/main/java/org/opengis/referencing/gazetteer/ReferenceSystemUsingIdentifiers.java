@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Spatial reference system using geographic identifiers instead than coordinates for describing locations.
+ * Spatial reference system using geographic identifiers instead of coordinates for describing locations.
  * A spatial reference system using geographic identifiers shall comprise at least one location types.
  * Each location instance shall be uniquely identified by means of a geographic identifier.
  * A spatial reference system using geographic identifiers shall be minimally described by the following attributes:

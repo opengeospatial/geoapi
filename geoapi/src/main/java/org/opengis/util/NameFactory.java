@@ -126,7 +126,7 @@ public interface NameFactory extends Factory {
 
     /**
      * Creates a local name from the given character sequence. The character sequence can be either
-     * a {@link String} or an {@link InternationalString} instance. In the later case, implementations
+     * a {@link String} or an {@link InternationalString} instance. In the latter case, implementations
      * can use an arbitrary locale (typically {@link Locale#ROOT}) for the unlocalized string to be
      * returned by {@link LocalName#toString()}.
      *
@@ -139,7 +139,7 @@ public interface NameFactory extends Factory {
 
     /**
      * Creates a local or scoped name from an array of parsed names. The array elements can be either
-     * {@link String} or {@link InternationalString} instances. In the later case, implementations
+     * {@link String} or {@link InternationalString} instances. In the latter case, implementations
      * can use an arbitrary locale (typically {@link Locale#ROOT}) for the unlocalized string to be
      * returned by {@link LocalName#toString()}.
      *

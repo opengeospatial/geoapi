@@ -49,7 +49,7 @@ import org.opengis.util.InternationalString;
  * {@link Measure} object. This approach makes XML documents smaller, but is not needed for Java interfaces.
  * GeoAPI extends ISO 19157 by allowing implementers to provide {@link Measure} objects directly.
  * This {@code MeasureReferenceToInstance} class makes the ask easier for implementers who choose to provide a
- * {@link Measure} instead of a {@link MeasureReference}, by inferring automatically the later from the former.
+ * {@link Measure} instead of a {@link MeasureReference}, by inferring automatically the latter from the former.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

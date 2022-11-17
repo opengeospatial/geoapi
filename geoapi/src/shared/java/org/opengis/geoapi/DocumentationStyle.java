@@ -34,7 +34,7 @@ package org.opengis.geoapi;
 
 /**
  * Style of the documentation to store. Documentation in XSD files are not sentence;
- * they begin with a lower-case letter instead than an upper-case one and do not finish
+ * they begin with a lower-case letter instead of an upper-case one and do not finish
  * with a period. Those documentation can be read verbatim, or transformed into sentences.
  *
  * @author  Martin Desruisseaux (Geomatys)

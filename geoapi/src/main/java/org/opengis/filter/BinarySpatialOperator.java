@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * Operator that tests whether two expressions that evaluate to geometric values satisfy
  * the spatial relationship implied by the operator.
  * The nature of the comparison is dependent on the {@linkplain #getOperatorType() operator type}.
- * A standard set of spatial operators is equals, disjoin, touches, within, overlaps, crosses,
+ * A standard set of spatial operators is equal, disjoin, touches, within, overlaps, crosses,
  * intersects, contains, beyond and BBOX.
  *
  * <div class="note"><b>Example:</b>
@@ -61,7 +61,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
 @UML(identifier="BinarySpatialOperator", specification=ISO_19143)
 public interface BinarySpatialOperator<R> extends SpatialOperator<R> {
     /**
-     * Returns the nature of the operator. A standard set of spatial operators is equals,
+     * Returns the nature of the operator. A standard set of spatial operators is equal,
      * disjoin, touches, within, overlaps, crosses, intersects, contains, beyond and BBOX.
      *
      * @return the nature of the operator.

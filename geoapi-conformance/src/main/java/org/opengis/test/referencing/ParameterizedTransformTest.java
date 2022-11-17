@@ -212,7 +212,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     /**
      * Returns a default set of factories to use for running the tests. Those factories are given
      * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead than
+     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead of
      * subclassed by the implementer. The factories are fetched as documented in the
      * {@link #factories(Class[])} javadoc.
      *
@@ -373,7 +373,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         if (toleranceModifier == null) {
             toleranceModifier = modifier;
         }
-        if (!(tolerance >= TRANSFORM_TOLERANCE)) {      // !(a >= b) instead than (a < b) in order to catch NaN.
+        if (!(tolerance >= TRANSFORM_TOLERANCE)) {      // !(a >= b) instead of (a < b) in order to catch NaN.
             tolerance = TRANSFORM_TOLERANCE;
         }
         if (derivativeDeltas == null) {
@@ -1838,7 +1838,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Asserts that a matrix of derivatives is equals to the expected ones within a positive delta.
+     * Asserts that a matrix of derivatives is equal to the expected ones within a positive delta.
      */
     @Override
     protected void assertMatrixEquals(final String message, final Matrix expected, final Matrix actual, final Matrix tolmat)

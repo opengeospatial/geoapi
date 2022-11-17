@@ -37,7 +37,7 @@ extensions = [
 # Since GeoAPI is for many languages, require explicit "py:" prefix for Python.
 primary_domain = None
 
-# Show (for instance) "org.metadata.citation" under "c" instead than "o".
+# Show (for instance) "org.metadata.citation" under "c" instead of "o".
 modindex_common_prefix = ["opengis.metadata.", "opengis.referencing."]
 
 # The master toctree document.

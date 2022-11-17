@@ -98,7 +98,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
     public static final TemporalOperatorName DURING = new TemporalOperatorName("DURING");
 
     /**
-     * Operator evaluates to {@code true} if the first expression is equals to the second.
+     * Operator evaluates to {@code true} if the first expression is equal to the second.
      */
     @UML(identifier="TEquals", obligation=CONDITIONAL, specification=ISO_19143)
     public static final TemporalOperatorName EQUALS = new TemporalOperatorName("EQUALS");

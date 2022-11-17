@@ -278,7 +278,7 @@ strictfp class JavaToPython extends SourceGenerator {
                     /*
                      * If the property type is a type not yet declared, we can not reference that type directly.
                      * This situation happen with circular dependencies. For example Responsibility.extent is of
-                     * type Extent. But the later can not be defined at the time Responsibility type is defined.
+                     * type Extent. But the latter can not be defined at the time Responsibility type is defined.
                      * Consequently we have to put the Extent type between quotes, like 'Extent'.
                      */
                     String importFrom = null;
@@ -396,7 +396,7 @@ strictfp class JavaToPython extends SourceGenerator {
                 }
             }
             /*
-             * If we find a "from module import" statement, add the type to that line instead than adding a new import statement.
+             * If we find a "from module import" statement, add the type to that line instead of adding a new import statement.
              * We do that way because Python reads the whole file on the first "import module" statement, so deferring the other
              * types from the same imported module will not help the circular dependencies issue.
              */
@@ -503,7 +503,7 @@ strictfp class JavaToPython extends SourceGenerator {
                 }
                 /*
                  * Create a Python class with all properties defined in the Java interface. We use UML annotations
-                 * in Java interfaces instead than elements in XSD file because the latter contains a few misspellings
+                 * in Java interfaces instead of elements in XSD file because the latter contains a few misspellings
                  * (e.g. "satisifiedPlan" instead of "satisfiedPlan") or extra properties not in abstract specification.
                  */
                 case INTERFACES: {

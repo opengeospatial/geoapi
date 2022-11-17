@@ -103,11 +103,11 @@ public interface OperationMetadata {
      * Returns an empty collection if none.
      *
      * <h4>Unified parameter API</h4>
-     * In GeoAPI, the {@code SV_Parameter} type defined by ISO 19115 is replaced by {@code ParameterDescriptor}
+     * In GeoAPI, the {@code SV_Parameter} type defined by ISO 19115 is replaced by {@link ParameterDescriptor}
      * in order to provide a single parameter API (see {@link org.opengis.parameter} for more information).
      * The mapping from ISO 19115 to GeoAPI is defined in the following table.
      * The equivalences are straightforward except for the {@code name} property, which is mapped to
-     * an {@link org.opengis.metadata.Identifier} instead than {@link org.opengis.util.MemberName}
+     * an {@link org.opengis.metadata.Identifier} instead of {@link org.opengis.util.MemberName}
      * ({@linkplain ParameterDescriptor#getName() more information on the mapping of names}).
      *
      * <table class="ogc">

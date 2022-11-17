@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * <div class="note"><b>Note:</b>
  * this code list is similar to {@link org.opengis.metadata.spatial.PixelOrientation}
- * except that the later is more clearly restricted to the two-dimensional case.</div>
+ * except that the latter is more clearly restricted to the two-dimensional case.</div>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

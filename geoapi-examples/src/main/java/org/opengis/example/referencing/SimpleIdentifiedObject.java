@@ -160,7 +160,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, Identifier, Ser
      * Compares this identifier with the given object for equality.
      *
      * @param  object  the object to compare with this {@code SimpleIdentifiedObject}.
-     * @return {@code true} if the given object is equals to this object.
+     * @return {@code true} if the given object is equal to this object.
      */
     @Override
     public boolean equals(final Object object) {

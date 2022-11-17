@@ -114,7 +114,7 @@ public interface FactoryFilter {
         }
 
         /**
-         * Returns {@code true} if the given {@link InternationalString} is equals to the
+         * Returns {@code true} if the given {@link InternationalString} is equal to the
          * {@link #name}. Only the US locale and the default locale string are compared.
          */
         private boolean isValid(final InternationalString i18n) {

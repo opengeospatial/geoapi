@@ -131,7 +131,7 @@ public class ContentVerifier {
     private final List<Map.Entry<String,Object>> missings;
 
     /**
-     * Metadata values that do not match the expected values. We use a {@code List} instead than a {@code Map}
+     * Metadata values that do not match the expected values. We use a {@code List} instead of a {@code Map}
      * because the same key may appear more than once if the user invokes {@code addMetadataToVerify(…)} and
      * {@code compareMetadata(…)} many times.
      */

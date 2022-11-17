@@ -47,7 +47,7 @@ package org.opengis.parameter;
  * which is the range of possible cardinalities a set can hold.</div>
  *
  * <div class="note"><b>Note 2:</b>
- * this exception is of kind {@code IllegalStateException} instead than {@code IllegalArgumentException}
+ * this exception is of kind {@code IllegalStateException} instead of {@code IllegalArgumentException}
  * because it is not caused by a bad argument. It is rather a consequence of an {@link ParameterValueGroup}
  * being "full".</div>
  *

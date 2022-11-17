@@ -140,7 +140,7 @@ public interface MathTransform {
      * @param  numPts the number of point objects to be transformed.
      * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
      *         wile some other implementations will fill the untransformable points with {@linkplain Double#NaN} values,
-     *         continue and throw the exception only at end. Implementations that fall in the later case should set the
+     *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
      * @see AffineTransform#transform(double[], int, double[], int, int)
@@ -167,7 +167,7 @@ public interface MathTransform {
      * @param  numPts the number of point objects to be transformed.
      * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
      *         wile some other implementations will fill the untransformable points with {@linkplain Float#NaN} values,
-     *         continue and throw the exception only at end. Implementations that fall in the later case should set the
+     *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
      * @see AffineTransform#transform(float[], int, float[], int, int)
@@ -192,7 +192,7 @@ public interface MathTransform {
      * @param  numPts the number of point objects to be transformed.
      * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
      *         wile some other implementations will fill the untransformable points with {@linkplain Double#NaN} values,
-     *         continue and throw the exception only at end. Implementations that fall in the later case should set the
+     *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
      * @see AffineTransform#transform(float[], int, double[], int, int)
@@ -218,7 +218,7 @@ public interface MathTransform {
      * @param  numPts the number of point objects to be transformed.
      * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
      *         wile some other implementations will fill the untransformable points with {@linkplain Float#NaN} values,
-     *         continue and throw the exception only at end. Implementations that fall in the later case should set the
+     *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
      * @see AffineTransform#transform(double[], int, float[], int, int)
