@@ -192,6 +192,21 @@
    <code>InternationalString</code> name for historical reasons and for consistency with similar object in
    <a>JSR-150</a> <cite>(Internationalization Service for J2EE)</cite>.</div>
 
+      <h3>Interface <a href="org/opengis/metadata/quality/Element.html">Element</a></h3>
+      <section class="members">
+        <h4>Method getMeasureReference</h4>
+        <div class="desc">The ISO 19157 property name is <code>measure</code>.
+   This is renamed <code>measureReference</code> in GeoAPI for reflecting the return type
+   and for making room for a <code>measure</code> property for the full <code>Measure</code> description.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/metadata/quality/EvaluationMethod.html">EvaluationMethod</a></h3>
+      <section class="members">
+        <h4>Method getReferenceDocuments</h4>
+        <div class="desc">Renamed from <code>"referenceDoc"</code> to <code>"referenceDocument"</code>
+   for avoiding abbreviation (a Java usage).</div>
+      </section>
+
       <h3>Interface <a href="org/opengis/metadata/content/FeatureCatalogueDescription.html">FeatureCatalogueDescription</a></h3>
       <section class="members">
         <h4>Method getFeatureTypeInfo</h4>
@@ -199,7 +214,7 @@
    <ol>
      <li>Avoid name collision with the ISO 19115:2003 definition of "<code>featureTypes</code>".</li>
      <li>Avoid confusion between <code>FeatureTypeInfo</code> and <code>org.opengis.feature.FeatureType</code>.
-         A <code>getFeatureTypes()</code> method name would suggest that the collection contains the later.</li>
+         A <code>getFeatureTypes()</code> method name would suggest that the collection contains the latter.</li>
    </ol></div>
       </section>
 
@@ -303,6 +318,13 @@
         <div class="desc">This attribute is inherited from an older OGC specification.
    In ISO 19111, <code>greenwichLongitude</code> is a property of type <code>Angle</code>
    rather than <code>double</code>, and the unit of measure is part of the <code>Angle</code> value.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/metadata/quality/QuantitativeResult.html">QuantitativeResult</a></h3>
+      <section class="members">
+        <h4>Method getValueType</h4>
+        <div class="desc">Renamed from <code>"valueRecordType"</code> to <code>"valueType"</code> for compatibility with ISO 19115:2003
+   and because the return object type does not need to be repeated in Java method name.</div>
       </section>
 
       <h3>Interface <a href="org/opengis/referencing/ReferenceSystem.html">ReferenceSystem</a></h3>
@@ -434,8 +456,8 @@
         <div class="desc">This method is not part of ISO specification. It is provided as a complement of information.</div>
 
         <h4>Method createValue</h4>
-        <div class="desc">This method is not part of the ISO specification. It is provided in GeoAPI as a kind of
-   factory method.</div>
+        <div class="desc">This method is not part of the ISO specification.
+   It is provided in GeoAPI as a kind of factory method.</div>
       </section>
 
       <h3>Interface <a href="org/opengis/parameter/ParameterDescriptorGroup.html">ParameterDescriptorGroup</a></h3>
@@ -492,6 +514,15 @@
    to all parameters in a more generic wayFilter#getExpressions().</div>
       </section>
 
+      <h3>Interface <a href="org/opengis/metadata/quality/Measure.html">Measure</a></h3>
+      <section class="members">
+        <h4>Method getParameters</h4>
+        <div class="desc">Usage of the ISO 19157 <code>DQM_Parameter</code> type has been replaced by usage of the ISO 19111
+   <code>CC_OperationParameter</code> type, completed with some new <code>DQM_Parameter</code> properties,
+   in order to provide a unified parameter API. Note that <code>CC_OperationParameter</code> is named
+   <code>ParameterDescriptor</code> in GeoAPI to reflect its extended scope.</div>
+      </section>
+
       <h3>Interface <a href="org/opengis/metadata/identification/OperationMetadata.html">OperationMetadata</a></h3>
       <section class="members">
         <h4>Method getParameters</h4>
@@ -533,6 +564,19 @@
         <div class="desc">This method has been added in order to free the user from choosing whether he should
    get the operation method from <code>CoordinateOperationAuthorityFactory</code>, or from
    <code>MathTransformFactory</code>, or creating it himself.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/metadata/quality/Element.html">Element</a></h3>
+      <section class="members">
+        <h4>Method getMeasure</h4>
+        <div class="desc">This method is not part of ISO 19157 specification.
+   Instead, the standard provides only a <code>MeasureReference</code>
+   that clients can use for finding the full measure description in a measure register or catalogue.
+   Because Java interfaces can execute code (as opposed to static data encoded in XML or JSON documents),
+   implementers are free to do themselves the work of fetching this information from an external source
+   when <code>getMeasure()</code> is invoked. This method is added in the <code>Element</code> interface for making
+   that feature possible. This is an optional feature; implementers can ignore this method and implement
+   only the <code>#getMeasureReference()</code> method.</div>
       </section>
 
       <h3>Interface <a href="org/opengis/geometry/Envelope.html">Envelope</a></h3>
@@ -583,9 +627,12 @@
 
       <h3>Interface <a href="org/opengis/parameter/ParameterValueGroup.html">ParameterValueGroup</a></h3>
       <section class="members">
-        <h4>Method parameter,<br>Method groups,<br>Method addGroup</h4>
+        <h4>Method parameter</h4>
         <div class="desc">This method is not part of the ISO specification. It has been added in an attempt to make
    this interface easier to use.</div>
+
+        <h4>Method groups,<br>Method addGroup</h4>
+        <div class="desc">This method is not part of the ISO specification. It has been added for ease of use.</div>
       </section>
 
       <h3>Interface <a href="org/opengis/util/Record.html">Record</a></h3>
@@ -740,6 +787,25 @@
         <h4>Method getCurrency</h4>
         <div class="desc">This method is not part of ISO specification. It has been added in GeoAPI for
    integration with the standard JDK library.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/util/Type.html">Type</a></h3>
+      <section class="members">
+        <h4>Method toJavaType</h4>
+        <div class="desc">Added for integration with the Java language.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/util/TypeName.html">TypeName</a></h3>
+      <section class="members">
+        <h4>Method toJavaType</h4>
+        <div class="desc">Added for allowing implementations to define their own mapping
+   to a class in the Java programming language.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/metadata/quality/ValueStructure.html">ValueStructure</a></h3>
+      <section class="members">
+        <h4>Method toJavaType</h4>
+        <div class="desc">Added for integration with the Java language.</div>
       </section>
     </section>
   </section>
