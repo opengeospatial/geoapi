@@ -35,8 +35,9 @@
  * A data quality evaluation can be applied to data set or a subset of data
  * sharing common characteristics so that its quality can be evaluated.
  *
- * <p>Metadata objects are described in the {@linkplain org.opengis.annotation.Specification#ISO_19115
- * OpenGIS® Metadata (Topic 11)} specification. The following table shows the class hierarchy,
+ * <p>Data quality objects are described in the
+ * {@linkplain org.opengis.annotation.Specification#ISO_19157 ISO 19157} specification.
+ * The following table shows the class hierarchy,
  * together with a partial view of aggregation hierarchy:</p>
  *
  * <table class="ogc">

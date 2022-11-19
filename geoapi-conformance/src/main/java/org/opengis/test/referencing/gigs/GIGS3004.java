@@ -64,7 +64,7 @@ import static org.junit.Assert.*;
 /**
  * Verifies that the software allows correct definition of a user-defined geodetic datum and geodetic CRS.
  * Each test method in this class instantiate exactly one {@link GeodeticDatum}, but
- * may instantiate an arbitrary amount of {@link GeodeticCRS} using that datum.
+ * may instantiate an arbitrary number of {@link GeodeticCRS} using that datum.
  *
  * <table class="gigs">
  * <caption>Test description</caption>

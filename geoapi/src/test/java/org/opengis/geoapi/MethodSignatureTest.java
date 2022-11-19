@@ -95,7 +95,7 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
             /*
              * As a policy, we do not declare version numbers which are equal to the default version.
              * This make easier for users to identify methods derived from older standards.
-             * We make an exception for deprecated interfaces, when the version number is sometime
+             * We make an exception for deprecated interfaces, when the version number is sometimes
              * added in anticipation to a future upgrade.
              */
             final short version = uml.version();

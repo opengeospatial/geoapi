@@ -76,10 +76,10 @@ public strictfp abstract class ImageIOTestCase extends ImageBackendTestCase {
     /**
      * {@code true} if the reader or writer takes in account the parameter value given to
      * {@link IIOParam#setSourceBands(int[])}. The default value is {@code true}.
-     * Subclasses can set this flag to {@code false} if this feature can not be tested for
+     * Subclasses can set this flag to {@code false} if this feature cannot be tested for
      * the current implementation.
      *
-     * <p>Note that this feature can not be tested with some standard readers like PNG, because
+     * <p>Note that this feature cannot be tested with some standard readers like PNG, because
      * those readers require an explicit destination image to be specified if the number of bands
      * to read differs from the number of bands in the source image.</p>
      */

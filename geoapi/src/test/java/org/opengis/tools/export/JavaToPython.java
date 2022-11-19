@@ -152,10 +152,10 @@ strictfp class JavaToPython extends SourceGenerator {
      * all sub-directories). In particular, that directory should contain an {@code 19115} sub-directory.
      *
      * @param  schemaRootDirectory  path to local copy of ISO schemas, or {@code null} if none.
-     * @throws ParserConfigurationException if the XML parser can not be created.
+     * @throws ParserConfigurationException if the XML parser cannot be created.
      * @throws IOException     if an I/O error occurred while reading a file.
-     * @throws SAXException    if a file can not be parsed as a XML document.
-     * @throws SchemaException if a XML document can not be interpreted as an OGC/ISO schema.
+     * @throws SAXException    if a file cannot be parsed as a XML document.
+     * @throws SchemaException if a XML document cannot be interpreted as an OGC/ISO schema.
      */
     JavaToPython(final Path schemaRootDirectory)
             throws ParserConfigurationException, IOException, SAXException, SchemaException
@@ -276,9 +276,9 @@ strictfp class JavaToPython extends SourceGenerator {
                     final Class<?> elementType = Content.typeOf(property);
                     String typeName = nameOfClass(elementType);
                     /*
-                     * If the property type is a type not yet declared, we can not reference that type directly.
+                     * If the property type is a type not yet declared, we cannot reference that type directly.
                      * This situation happen with circular dependencies. For example Responsibility.extent is of
-                     * type Extent. But the latter can not be defined at the time Responsibility type is defined.
+                     * type Extent. But the latter cannot be defined at the time Responsibility type is defined.
                      * Consequently we have to put the Extent type between quotes, like 'Extent'.
                      */
                     String importFrom = null;
@@ -451,7 +451,7 @@ strictfp class JavaToPython extends SourceGenerator {
             final String typeName = qn.getLocalPart();
             final String module = qn.getNamespaceURI();
             if (module.isEmpty()) {
-                throw new CanNotExportException("Can not choose a module for " + typeName);
+                throw new CanNotExportException("Cannot choose a module for " + typeName);
             }
             /*
              * For Python language, we create one file per module. Note that OGC/ISO/Java packages

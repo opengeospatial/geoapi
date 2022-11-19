@@ -54,7 +54,7 @@ public interface MathTransform1D extends MathTransform {
      *
      * @param  value  the value to transform.
      * @return the transformed value.
-     * @throws TransformException if the value can not be transformed.
+     * @throws TransformException if the value cannot be transformed.
      */
     double transform(double value) throws TransformException;
 
@@ -65,7 +65,7 @@ public interface MathTransform1D extends MathTransform {
      *
      * @param  value  the value where to evaluate the derivative.
      * @return the derivative at the specified point.
-     * @throws TransformException if the derivative can not be evaluated at the specified point.
+     * @throws TransformException if the derivative cannot be evaluated at the specified point.
      */
     double derivative(double value) throws TransformException;
 
@@ -73,7 +73,7 @@ public interface MathTransform1D extends MathTransform {
      * Creates the inverse transform of this object.
      *
      * @return the inverse transform.
-     * @throws NoninvertibleTransformException if the transform can not be inverted.
+     * @throws NoninvertibleTransformException if the transform cannot be inverted.
      */
     @Override
     MathTransform1D inverse() throws NoninvertibleTransformException;

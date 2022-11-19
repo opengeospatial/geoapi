@@ -117,7 +117,7 @@ public class AffineTransform2D extends AffineTransform implements MathTransform2
 
     /**
      * Returns the source dimension, which is 2.
-     * This number of dimensions can not be changed.
+     * This number of dimensions cannot be changed.
      */
     @Override
     public final int getSourceDimensions() {
@@ -126,7 +126,7 @@ public class AffineTransform2D extends AffineTransform implements MathTransform2
 
     /**
      * Returns the target dimension, which is 2.
-     * This number of dimensions can not be changed.
+     * This number of dimensions cannot be changed.
      */
     @Override
     public final int getTargetDimensions() {

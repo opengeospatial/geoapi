@@ -50,7 +50,7 @@ public final strictfp class LegacyCodesTest {
     /**
      * Tests the content of {@code "2003/charset-codes.properties"}.
      *
-     * @throws IOException if the properties file can not be read.
+     * @throws IOException if the properties file cannot be read.
      */
     @Test
     public void testCharsetCodes() throws IOException {

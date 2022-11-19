@@ -78,7 +78,7 @@ final class JavaElementChanges {
     private String oldObligation, newObligation;
 
     /**
-     * If examination of UML identifiers suggests that the UML annotation moved to an other member,
+     * If examination of UML identifiers suggests that the UML annotation moved to another member,
      * the member where the annotation moved. Otherwise, or {@code null}.
      *
      * <p>If non null, then {@link #oldName} and {@link #oldObligation} shall be non-null while
@@ -101,7 +101,7 @@ final class JavaElementChanges {
     /**
      * Creates a new set of changes between the two given elements.
      *
-     * @param oldElement The old element (can not be null).
+     * @param oldElement The old element (cannot be null).
      * @param newElement The new element, or {@code null} if the element has been removed.
      */
     JavaElementChanges(final JavaElement oldElement, final JavaElement newElement) {

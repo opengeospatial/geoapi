@@ -60,7 +60,7 @@ public interface GridValueCell extends ValueObject {
      *
      * @departure constraint
      *   ISO defines this method as a specialization of <code>getGeometry()</code>. We
-     *   can not reflect this association in Java because of incompatible return type.
+     *   cannot reflect this association in Java because of incompatible return type.
      *
      * @return the structure of grid points.
      */

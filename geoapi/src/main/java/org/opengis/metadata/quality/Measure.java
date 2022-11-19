@@ -196,7 +196,7 @@ public interface Measure {
      *
      * <table class="ogc">
      *   <caption>Mapping from {@code ValueStructure} to Java type</caption>
-     *   <tr><th>Code list</th>        <th>Java or GeoAPI type</th>                              <th>Description</th></tr>
+     *   <tr><th>Code list value</th>  <th>Java or GeoAPI type</th>                              <th>Description</th></tr>
      *   <tr><td>{@code bag}</td>      <td>{@link java.util.Collection}</td>                     <td>Finite, unordered collection of related items that may be repeated.</td></tr>
      *   <tr><td>{@code set}</td>      <td>{@link java.util.Set}</td>                            <td>Unordered collection of related items with no repetition.</td></tr>
      *   <tr><td>{@code sequence}</td> <td>{@link java.util.List}</td>                           <td>Finite, ordered collection of related items that may be repeated.</td></tr>

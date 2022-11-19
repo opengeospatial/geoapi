@@ -33,7 +33,7 @@ package org.opengis.feature;
 
 
 /**
- * Thrown when {@link FeatureType#newInstance()} is invoked but the feature can not be instantiated.
+ * Thrown when {@link FeatureType#newInstance()} is invoked but the feature cannot be instantiated.
  * The instantiation can fail for a variety of reasons including but not limited to:
  *
  * <ul>

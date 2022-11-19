@@ -361,10 +361,10 @@ public abstract class Interfacing extends CodeList<Interfacing> {
         }
 
         /**
-         * Builds the error message for a file that we can not load or use.
+         * Builds the error message for a file that we cannot load or use.
          */
         private static String error(final String filename, final boolean loading) {
-            return (loading ? "Can not load the \"" : "Outdated \"") + filename + "\" resource.";
+            return (loading ? "Cannot load the \"" : "Outdated \"") + filename + "\" resource.";
         }
 
         /**

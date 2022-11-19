@@ -405,7 +405,7 @@ public class ContentVerifier {
                 }
             }
         }
-        throw new IllegalArgumentException("Can not find the parameterized type of " + type);
+        throw new IllegalArgumentException("Cannot find the parameterized type of " + type);
     }
 
     /**

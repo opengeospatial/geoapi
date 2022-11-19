@@ -35,7 +35,7 @@ import org.opengis.util.NoSuchIdentifierException;
 
 
 /**
- * Thrown when an {@linkplain AuthorityFactory authority factory} can not find the requested authority code.
+ * Thrown when an {@linkplain AuthorityFactory authority factory} cannot find the requested authority code.
  * This is a specialization of {@link NoSuchIdentifierException} with the identifier separated in its authority
  * and code components.
  *

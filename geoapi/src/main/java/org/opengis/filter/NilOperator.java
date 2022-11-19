@@ -43,7 +43,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
 /**
  * An operator that evaluates if the value of an expression is nil.
  * The difference with {@link NullOperator} is that a value should exist
- * but can not be provided for the reason given by {@link #getNilReason()}.
+ * but cannot be provided for the reason given by {@link #getNilReason()}.
  * A nil value is not necessarily {@code null}; implementations are free to use placeholders.
  *
  * @author  Johann Sorel (Geomatys)

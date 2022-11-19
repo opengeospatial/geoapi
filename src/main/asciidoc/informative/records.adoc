@@ -4,7 +4,7 @@
 
 Records define new data type as an heterogeneous aggregation of component data types (the fields).
 A `RecordType` defines dynamically constructed data type.
-It is identified by a `TypeName` and contains an arbitrary amount of fields as (_name_, _type_) pairs.
+It is identified by a `TypeName` and contains an arbitrary number of fields as (_name_, _type_) pairs.
 A `Record` is an instance of `RecordType` containing the actual field values.
 
 .Records derived and extended from ISO 19103

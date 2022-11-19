@@ -177,7 +177,7 @@ public strictfp class TestSuite {
      */
     @SafeVarargs
     public static <T extends Factory> void setFactories(final Class<T> type, final T... factory) {
-        Objects.requireNonNull(type, "Given 'type' can not be null");
+        Objects.requireNonNull(type, "Given 'type' cannot be null");
         final Iterable<? extends Factory> list = Arrays.asList(factory.clone());
         synchronized (TestCase.FACTORIES) {
             TestCase.FACTORIES.put(type, list);
@@ -195,7 +195,7 @@ public strictfp class TestSuite {
      */
     @SuppressWarnings("unchecked")
     public static <T extends Factory> T[] getFactories(final Class<T> type) {
-        Objects.requireNonNull(type, "Given 'type' can not be null");
+        Objects.requireNonNull(type, "Given 'type' cannot be null");
         final Iterable<? extends Factory> factories;
         synchronized (TestCase.FACTORIES) {
             factories = TestCase.FACTORIES.get(type);

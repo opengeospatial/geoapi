@@ -144,7 +144,7 @@ public interface Location {
      *   This method has been added because <code>getGeographicExtent()</code> does not provide an easy
      *   way to get the spatial extent in location "native" coordinate reference system (CRS) if that
      *   CRS is not geographic. For example if the location provides coordinates in a projected CRS,
-     *   then its envelope can not be represented directly in a <code>GeographicBoundingBox</code>.
+     *   then its envelope cannot be represented directly in a <code>GeographicBoundingBox</code>.
      */
     Envelope getEnvelope();
 

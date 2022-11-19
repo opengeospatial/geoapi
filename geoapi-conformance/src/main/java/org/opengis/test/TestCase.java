@@ -313,7 +313,7 @@ public strictfp abstract class TestCase {
      * @since 3.1
      */
     protected TestCase(final Factory... factories) {
-        Objects.requireNonNull(factories, "Given 'factories' array can not be null.");
+        Objects.requireNonNull(factories, "Given 'factories' array cannot be null.");
         this.factories = factories;
         Units units = null;
         ValidatorContainer validators = null;
@@ -421,7 +421,7 @@ public strictfp abstract class TestCase {
                 if (!factories(filter, types, factories)) {
                     // The user has invoked TestSuite.setFactories(…), for example inside
                     // his FactoryFilter.filter(…) method. Let be lenient and try again.
-                    // If the second try fails for the same raison, we will give up.
+                    // If the second try fails for the same reason, we will give up.
                     factories.clear();
                     if (!factories(filter, types, factories)) {
                         throw new ServiceConfigurationError("TestSuite.setFactories(…) has been invoked "

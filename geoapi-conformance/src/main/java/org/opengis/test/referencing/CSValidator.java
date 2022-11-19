@@ -306,7 +306,7 @@ public class CSValidator extends ReferencingValidator {
      * invoked by {@code validate} methods after they have determined the type of their
      * argument.
      *
-     * @param  object  the object to validate (can not be null).
+     * @param  object  the object to validate (cannot be null).
      */
     private void validateAxes(final CoordinateSystem object) {
         final int dimension = object.getDimension();

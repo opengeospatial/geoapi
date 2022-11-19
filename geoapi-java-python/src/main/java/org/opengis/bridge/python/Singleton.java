@@ -134,7 +134,7 @@ final class Singleton implements InvocationHandler {
             }
         }
         /*
-         * If there is arguments, convert all of them from Java to Python objects. If some argument can not
+         * If there is arguments, convert all of them from Java to Python objects. If some argument cannot
          * be converted, they will be left as-is. They may cause an exception to be thrown at callMethod(…)
          * execution time, depending on JPY implementation.
          */

@@ -32,7 +32,7 @@
 
 /**
  * A set of base types from {@linkplain org.opengis.annotation.Specification#ISO_19103 ISO 19103}
- * which can not be mapped directly from Java, plus utilities.
+ * which cannot be mapped directly from Java, plus utilities.
  * Type hierarchy is as below:
  *
  * <table class="ogc">

@@ -121,7 +121,7 @@ public abstract class ReferencingValidator extends Validator {
      * invoked by {@code validate} methods after they have determined the type of their
      * argument.
      *
-     * @param  object  the object to validate (can not be null).
+     * @param  object  the object to validate (cannot be null).
      */
     final void validateReferenceSystem(final ReferenceSystem object) {
         validateIdentifiedObject(object);
@@ -134,7 +134,7 @@ public abstract class ReferencingValidator extends Validator {
      * invoked by {@code validate} methods after they have determined the type of their
      * argument.
      *
-     * @param  object  the object to validate (can not be null).
+     * @param  object  the object to validate (cannot be null).
      */
     final void validateIdentifiedObject(final IdentifiedObject object) {
         validate(object.getName());
@@ -142,7 +142,7 @@ public abstract class ReferencingValidator extends Validator {
         if (identifiers != null) {
             validate(identifiers);
             for (final Identifier id : identifiers) {
-                assertNotNull("IdentifiedObject: getIdentifiers() can not contain null element.", id);
+                assertNotNull("IdentifiedObject: getIdentifiers() cannot contain null element.", id);
                 validate(id);
             }
         }
@@ -150,7 +150,7 @@ public abstract class ReferencingValidator extends Validator {
         if (alias != null) {
             validate(alias);
             for (final GenericName name : alias) {
-                assertNotNull("IdentifiedObject: getAlias() can not contain null element.", alias);
+                assertNotNull("IdentifiedObject: getAlias() cannot contain null element.", alias);
                 container.validate(name);
             }
         }

@@ -812,7 +812,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * the tolerance values.
      *
      * @param  coordinates  the point where to compute the derivative, in units of the source CRS.
-     * @throws TransformException if the derivative can not be computed, or a point can not be transformed.
+     * @throws TransformException if the derivative cannot be computed, or a point cannot be transformed.
      *
      * @see MathTransform#derivative(DirectPosition)
      * @see #assertMatrixEquals(String, Matrix, Matrix, Matrix)
@@ -921,7 +921,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param  numOrdinates     the number of points along each dimension.
      * @param  randomGenerator  an optional random number generator, or {@code null} for testing using a regular grid.
      * @return the generated random coordinates inside the given domain of validity.
-     * @throws TransformException if a transform or a derivative can not be computed.
+     * @throws TransformException if a transform or a derivative cannot be computed.
      *
      * @since 3.1
      */
@@ -1526,7 +1526,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * additional information.
      *
      * @param buffer   the buffer in which to append the header.
-     * @param message  user-supplied message to append, or {@code null}.
+     * @param message  user supplied message to append, or {@code null}.
      */
     void appendErrorHeader(final StringBuilder buffer, final String message) {
         if (message != null) {

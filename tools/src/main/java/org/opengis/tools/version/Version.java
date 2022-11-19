@@ -103,7 +103,7 @@ public final class Version implements Comparable<Version> {
      * Parses the given version string.
      *
      * @param  version The version to parse (e.g. {@code "3.0.1"} or {@code "3.1-M07"}).
-     * @throws NumberFormatException If the version can not be parsed.
+     * @throws NumberFormatException If the version cannot be parsed.
      */
     public Version(final String version) throws NumberFormatException {
         int indexOfMilestone = version.indexOf('-');

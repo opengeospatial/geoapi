@@ -83,7 +83,7 @@ public interface FeatureAssociation extends Property {
      * <div class="note"><b>Note on validation</b>:
      * the verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
-     * and offer an other method for performing more extensive validation.
+     * and offer another method for performing more extensive validation.
      * Implementations should document their validation process.</div>
      *
      * @param  value  the new value, or {@code null}.
@@ -118,7 +118,7 @@ public interface FeatureAssociation extends Property {
      * <div class="note"><b>Note on validation</b>:
      * the verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
-     * and offer an other method for performing more extensive validation.
+     * and offer another method for performing more extensive validation.
      * Implementations should document their validation process.</div>
      *
      * @param  values  the new values.

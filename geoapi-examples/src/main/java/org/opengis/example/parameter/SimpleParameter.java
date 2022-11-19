@@ -296,7 +296,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * information. In all other cases an exception is thrown.
      *
      * @return the numeric value represented by this parameter after conversion to type {@code int}.
-     * @throws InvalidParameterTypeException if the value can not be casted to an integer type.
+     * @throws InvalidParameterTypeException if the value cannot be casted to an integer type.
      */
     @Override
     public int intValue() throws InvalidParameterTypeException {
@@ -320,7 +320,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * </ul>
      *
      * @return the boolean value represented by this parameter.
-     * @throws InvalidParameterTypeException if the value can not be converted to a boolean.
+     * @throws InvalidParameterTypeException if the value cannot be converted to a boolean.
      */
     @Override
     public boolean booleanValue() throws InvalidParameterTypeException {
@@ -337,7 +337,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * as a string and appends the units of measurement, if any.
      *
      * @return the numeric value and its units of measurement as a string.
-     * @throws InvalidParameterTypeException if the value can not be converted to a string.
+     * @throws InvalidParameterTypeException if the value cannot be converted to a string.
      *
      * @see #toString()
      */
@@ -376,7 +376,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      *
      * @throws IllegalArgumentException if the specified unit is invalid for this parameter.
      * @throws IllegalStateException if there is no unit associated to this parameter value.
-     * @throws InvalidParameterTypeException if the value can not be converted to an array.
+     * @throws InvalidParameterTypeException if the value cannot be converted to an array.
      */
     @Override
     public double[] doubleValueList(final Unit<?> unit) throws IllegalArgumentException, IllegalStateException {
@@ -392,7 +392,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * this method returns {@link #doubleValue()} in an array of length 1.
      *
      * @return the sequence of values represented by this parameter.
-     * @throws InvalidParameterTypeException if the value can not be converted to an array.
+     * @throws InvalidParameterTypeException if the value cannot be converted to an array.
      */
     @Override
     public double[] doubleValueList() throws InvalidParameterTypeException {
@@ -408,7 +408,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * in an array of length 1.
      *
      * @return the sequence of values represented by this parameter.
-     * @throws InvalidParameterTypeException if the value can not be converted to an array.
+     * @throws InvalidParameterTypeException if the value cannot be converted to an array.
      */
     @Override
     public int[] intValueList() throws InvalidParameterTypeException {
@@ -419,7 +419,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
-     * Thrown unconditionally the exception, since this parameter implementation can not
+     * Thrown unconditionally the exception, since this parameter implementation cannot
      * represent URI.
      *
      * @return never returned.
@@ -437,7 +437,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      *
      * @param  value  the parameter value.
      * @param  unit   the unit for the specified value.
-     * @throws InvalidParameterValueException if this parameter can not be set to the given value.
+     * @throws InvalidParameterValueException if this parameter cannot be set to the given value.
      */
     @Override
     public void setValue(final double value, final Unit<?> unit) throws InvalidParameterValueException {
@@ -481,7 +481,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      *
      * @param  values  the parameter values.
      * @param  unit    the unit for the specified values.
-     * @throws InvalidParameterValueException if this parameter can not be set to the given value.
+     * @throws InvalidParameterValueException if this parameter cannot be set to the given value.
      */
     @Override
     public void setValue(final double[] values, final Unit<?> unit) throws InvalidParameterValueException {
@@ -496,7 +496,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * Sets the parameter value as an integer. If {@linkplain #LENIENT lenient},
      * this method delegates to {@link #setValue(double)}.
      *
-     * @throws InvalidParameterValueException if this parameter can not be set to the given value.
+     * @throws InvalidParameterValueException if this parameter cannot be set to the given value.
      */
     @Override
     public void setValue(final int value) throws InvalidParameterValueException {
@@ -512,7 +512,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * {@code true} is stored as the numeric value 1 and the boolean value {@code false} is stored
      * as the numeric value 0.
      *
-     * @throws InvalidParameterValueException if this parameter can not be set to the given value.
+     * @throws InvalidParameterValueException if this parameter cannot be set to the given value.
      */
     @Override
     public void setValue(final boolean value) throws InvalidParameterValueException {
@@ -529,7 +529,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * number. If not lenient, then the type must be restricted to {@link Double}.
      *
      * @param  value  the parameter value.
-     * @throws InvalidParameterValueException if the value can not be stored as a {@code double}.
+     * @throws InvalidParameterValueException if the value cannot be stored as a {@code double}.
      */
     @Override
     public void setValue(final Object value) throws InvalidParameterValueException {

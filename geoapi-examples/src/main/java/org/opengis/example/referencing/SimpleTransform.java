@@ -141,7 +141,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * @return the coordinate point after transforming {@code ptSrc} and storing the result in {@code ptDst},
      *         or a newly created point if {@code ptDst} was null.
      * @throws MismatchedDimensionException if {@code ptSrc} or {@code ptDst} does not have the expected dimension.
-     * @throws TransformException if the point can not be transformed.
+     * @throws TransformException if the point cannot be transformed.
      */
     @Override
     public abstract DirectPosition transform(DirectPosition ptSrc, DirectPosition ptDst)
@@ -193,7 +193,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same than {@code srcPts}.
      * @param  dstOff  the offset to the location of the first transformed point that is stored in the destination array.
      * @param  numPts  the number of point objects to be transformed.
-     * @throws TransformException if a point can not be transformed.
+     * @throws TransformException if a point cannot be transformed.
      */
     @Override
     public void transform(double[] srcPts, int srcOff, final double[] dstPts, int dstOff, int numPts)
@@ -224,7 +224,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same than {@code srcPts}.
      * @param  dstOff  the offset to the location of the first transformed point that is stored in the destination array.
      * @param  numPts  the number of point objects to be transformed.
-     * @throws TransformException if a point can not be transformed.
+     * @throws TransformException if a point cannot be transformed.
      */
     @Override
     public void transform(float[] srcPts, int srcOff, final float[] dstPts, int dstOff, int numPts)
@@ -255,7 +255,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same than {@code srcPts}.
      * @param  dstOff  the offset to the location of the first transformed point that is stored in the destination array.
      * @param  numPts  the number of point objects to be transformed.
-     * @throws TransformException if a point can not be transformed.
+     * @throws TransformException if a point cannot be transformed.
      */
     @Override
     public void transform(final float[] srcPts, int srcOff, final double[] dstPts, int dstOff, int numPts)
@@ -282,7 +282,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same than {@code srcPts}.
      * @param  dstOff  the offset to the location of the first transformed point that is stored in the destination array.
      * @param  numPts  the number of point objects to be transformed.
-     * @throws TransformException if a point can not be transformed.
+     * @throws TransformException if a point cannot be transformed.
      */
     @Override
     public void transform(final double[] srcPts, int srcOff, final float[] dstPts, int dstOff, int numPts)
@@ -327,7 +327,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      *
      * @param  point  the coordinate point where to evaluate the derivative.
      * @return the derivative at the specified point (never {@code null}).
-     * @throws TransformException if the derivative can not be evaluated at the specified point.
+     * @throws TransformException if the derivative cannot be evaluated at the specified point.
      */
     @Override
     public Matrix derivative(final DirectPosition point) throws TransformException {
@@ -339,7 +339,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      * an exception in all cases.
      *
      * @return the inverse transform.
-     * @throws NoninvertibleTransformException if the transform can not be inverted.
+     * @throws NoninvertibleTransformException if the transform cannot be inverted.
      */
     @Override
     public MathTransform inverse() throws NoninvertibleTransformException {

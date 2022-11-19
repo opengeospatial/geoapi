@@ -111,7 +111,7 @@ public final class SemanticType extends CodeList<SemanticType> {
      * automatically added to the list returned by {@link #values()}.
      *
      * @param  name  the name of the new element.
-     *        This name must not be in use by an other element of this type.
+     *        This name must not be in use by another element of this type.
      */
     private SemanticType(final String name) {
         super(name, VALUES);

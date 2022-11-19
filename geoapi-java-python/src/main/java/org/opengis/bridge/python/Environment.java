@@ -88,7 +88,7 @@ public class Environment {
             return null;
         }
         if (Iterable.class.isAssignableFrom(type)) {
-            throw new UnconvertibleTypeException("Can not convert to a collection. Use the asList method instead.");
+            throw new UnconvertibleTypeException("Cannot convert to a collection. Use the asList method instead.");
         } else {
             return Converter.verifiedInstance(this, type).apply(object);
         }

@@ -364,7 +364,7 @@ public strictfp final class ToleranceModifiers {
             case 1:  return modifiers[0];
         }
         /*
-         * If any element of the given modifiers array is an other instance of the
+         * If any element of the given modifiers array is another instance of the
          * 'Maximum' modifier, concatenate all modifier arrays into a single array.
          */
         ToleranceModifier[] expanded = new ToleranceModifier[length];

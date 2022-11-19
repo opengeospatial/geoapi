@@ -85,7 +85,7 @@ public interface SortBy<R> extends Comparator<R> {
      * @param  r1  the first resource to compare.
      * @param  r2  the second resource to compare.
      * @return negative if the first resource is before the second, positive for the converse, or 0 if equal.
-     * @throws InvalidFilterValueException if an expression can not be applied on the given resources.
+     * @throws InvalidFilterValueException if an expression cannot be applied on the given resources.
      * @throws ClassCastException if the types of {@linkplain ValueReference#apply(Object) property values}
      *         prevent them from being compared by this comparator.
      *

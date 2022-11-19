@@ -41,7 +41,7 @@ import org.jpy.PyObject;
 
 /**
  * Converter from Python objects to Java objects.
- * A single converter is built once-for-all before to convert an arbitrary amount of objects.
+ * A single converter is built once-for-all before to convert an arbitrary number of objects.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0

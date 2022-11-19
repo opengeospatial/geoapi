@@ -92,7 +92,7 @@ import static org.junit.Assume.*;
 public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase implements Closeable {
     /**
      * The prefix used for temporary files that may be created by this test case.
-     * Those files are created only if a writer can not write in an image output stream.
+     * Those files are created only if a writer cannot write in an image output stream.
      */
     private static final String TEMPORARY_FILE_PREFIX = "geoapi";
 
@@ -106,7 +106,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * The reader to use for verifying the writer output. By default, this field is {@code null}
      * until a reader is first needed, in which case the field is assigned to a reader instance
      * created by {@link ImageIO#getImageReader(ImageWriter)}. Subclasses can set explicitly a
-     * value to this field if they need the tests to use an other reader instead.
+     * value to this field if they need the tests to use another reader instead.
      *
      * <p>{@code ImageWriterTestCase} will use only the {@link ImageReader#read(int)} method.
      * Consequently, this reader doesn't need to support {@code ImageReadParam} usage.</p>

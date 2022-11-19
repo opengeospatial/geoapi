@@ -237,7 +237,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                 }
                 return constructor.newInstance(nameIfNew);
             } catch (ReflectiveOperationException exception) {
-                throw new IllegalArgumentException("Can not create code of type " + codeType.getSimpleName(), exception);
+                throw new IllegalArgumentException("Cannot create code of type " + codeType.getSimpleName(), exception);
             }
         }
     }

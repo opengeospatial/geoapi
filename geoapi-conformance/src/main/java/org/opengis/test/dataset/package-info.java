@@ -33,7 +33,7 @@
 /**
  * Provides small test data files together with verification methods for applications reading those data.
  * The test files are less than 15 kilobytes since their purpose is not to test implementation scalability.
- * The test files are intentionally simple, sometime with only a subset of the metadata found in the field,
+ * The test files are intentionally simple, sometimes with only a subset of the metadata found in the field,
  * for making easier for application developers to use them in a debugging session.
  *
  * @author  Martin Desruisseaux (Geomatys)

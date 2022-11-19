@@ -68,10 +68,10 @@ public final strictfp class PythonTest extends JavaToPython {
     /**
      * Creates a new Python classes writer or verifier.
      *
-     * @throws ParserConfigurationException if the XML parser can not be created.
+     * @throws ParserConfigurationException if the XML parser cannot be created.
      * @throws IOException     if an I/O error occurred while reading a file.
-     * @throws SAXException    if a file can not be parsed as a XML document.
-     * @throws SchemaException if a XML document can not be interpreted as an OGC/ISO schema.
+     * @throws SAXException    if a file cannot be parsed as a XML document.
+     * @throws SchemaException if a XML document cannot be interpreted as an OGC/ISO schema.
      */
     public PythonTest() throws ParserConfigurationException, IOException, SAXException, SchemaException {
         super(cacheDirectory());
@@ -91,7 +91,7 @@ public final strictfp class PythonTest extends JavaToPython {
             return Paths.get(dir);
         }
         assumeTrue("\n" +
-                   "Can not execute the test because XML schemas are not available.\n" +
+                   "Cannot execute the test because XML schemas are not available.\n" +
                    "To enable this test, apply one of the following configurations:\n" +
                    "\n" +
                    "  • Set the ISO_SCHEMAS_DIR environment variable to the path of\n" +

@@ -33,7 +33,7 @@ package org.opengis.referencing.operation;
 
 
 /**
- * Thrown when {@link MathTransform#inverse()} is invoked but the transform can not be inverted.
+ * Thrown when {@link MathTransform#inverse()} is invoked but the transform cannot be inverted.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
@@ -75,7 +75,7 @@ public class NoninvertibleTransformException extends TransformException {
 
     /**
      * Construct an exception with the specified detail message and cause. The cause
-     * is typically an other {@link java.awt.geom.NoninvertibleTransformException}
+     * is typically another {@link java.awt.geom.NoninvertibleTransformException}
      * emitted by Java2D.
      *
      * @param message  the detail message, saved for later retrieval by the {@link #getMessage()} method.

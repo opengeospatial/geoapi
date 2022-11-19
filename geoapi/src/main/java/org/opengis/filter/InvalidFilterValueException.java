@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
 
 
 /**
- * Thrown if a filter or an expression can not be evaluated for a given parameter.
+ * Thrown if a filter or an expression cannot be evaluated for a given parameter.
  * It may be because an expression contains a reference to a value which is not defined
  * in an instance being evaluated.
  *

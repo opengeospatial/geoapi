@@ -188,7 +188,7 @@ public final class ValueStructure extends CodeList<ValueStructure> {
      *
      * <table class="ogc">
      *   <caption>Mapping from Java type to {@code ValueStructure}</caption>
-     *   <tr><th>Java or GeoAPI type</th>                              <th>Code list</th></tr>
+     *   <tr><th>Java or GeoAPI type</th>                              <th>Code list value</th></tr>
      *   <tr><td>{@link java.util.Collection}</td>                     <td>{@link #BAG}</td></tr>
      *   <tr><td>{@link java.util.Set}</td>                            <td>{@link #SET}</td></tr>
      *   <tr><td>{@link java.util.List}</td>                           <td>{@link #SEQUENCE}</td></tr>

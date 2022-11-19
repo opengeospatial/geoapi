@@ -61,7 +61,7 @@ import static org.opengis.annotation.Specification.*;
  *     <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)}</li>
  *     <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod)}</li>
  *   </ul></li>
- *   <li>Creating new instances from user-supplied parameters:<ul>
+ *   <li>Creating new instances from user supplied parameters:<ul>
  *     <li>{@link #createOperationMethod(Map, Integer, Integer, ParameterDescriptorGroup)}</li>
  *     <li>{@link #createDefiningConversion(Map, OperationMethod, ParameterValueGroup)}</li>
  *     <li>{@link #createConcatenatedOperation(Map, CoordinateOperation[])}</li>

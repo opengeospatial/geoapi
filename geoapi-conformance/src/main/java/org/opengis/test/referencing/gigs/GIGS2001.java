@@ -222,7 +222,7 @@ public strictfp class GIGS2001 extends AuthorityFactoryTestCase<Unit<?>> {
         try {
             converter = unit.getConverterToAny(baseUnit);
         } catch (IncommensurableException e) {
-            throw new AssertionError("Can not convert “" + name + "” from “" + unit + "” to “" + baseUnit + "”.", e);
+            throw new AssertionError("Cannot convert “" + name + "” from “" + unit + "” to “" + baseUnit + "”.", e);
         }
         return converter;
     }

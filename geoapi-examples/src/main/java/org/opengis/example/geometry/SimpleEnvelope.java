@@ -106,7 +106,7 @@ public class SimpleEnvelope implements Envelope, Serializable {
             final double upper = upperCorner.getOrdinate(i);
             if (lower > upper) {
                 throw new IllegalArgumentException("Coordinate value in the lower corner at dimension "
-                        + i + ", which is " + lower + ", can not be greater than the corresponding "
+                        + i + ", which is " + lower + ", cannot be greater than the corresponding "
                         + "coordinate value in the upper corner, which is " + upper + '.');
             }
             coordinates[i            ] = lower;

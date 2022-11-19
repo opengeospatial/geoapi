@@ -275,12 +275,12 @@ public class SchemaInformation {
 
     /**
      * Loads the default set of XSD files. This method invokes {@link #loadSchema(String)}
-     * for a pre-defined set of metadata schemas, in approximate dependency order.
+     * for a predefined set of metadata schemas, in approximate dependency order.
      *
-     * @throws ParserConfigurationException if the XML parser can not be created.
+     * @throws ParserConfigurationException if the XML parser cannot be created.
      * @throws IOException     if an I/O error occurred while reading a file.
-     * @throws SAXException    if a file can not be parsed as a XML document.
-     * @throws SchemaException if a XML document can not be interpreted as an OGC/ISO schema.
+     * @throws SAXException    if a file cannot be parsed as a XML document.
+     * @throws SchemaException if a XML document cannot be interpreted as an OGC/ISO schema.
      */
     public void loadDefaultSchemas() throws ParserConfigurationException, IOException, SAXException, SchemaException {
         for (final String p : new String[] {
@@ -311,7 +311,7 @@ public class SchemaInformation {
         }
         /*
          * Hard-coded information from "19115/-3/gco/1.0/gco.xsd". We apply this workaround because current SchemaInformation
-         * implementation can not parse most of gco.xsd file because it does not follow the usual pattern found in other files.
+         * implementation cannot parse most of gco.xsd file because it does not follow the usual pattern found in other files.
          */
         final String namespace = ROOT_NAMESPACE + "19115/-3/gco/1.0";
         addHardCoded("NameSpace",     namespace,
@@ -350,7 +350,7 @@ public class SchemaInformation {
     }
 
     /**
-     * Adds a hard coded property. Used only for XSD file that we can not parse.
+     * Adds a hard coded property. Used only for XSD file that we cannot parse.
      *
      * @param  type        name of the type.
      * @param  namespace   namespace of all properties.
@@ -375,10 +375,10 @@ public class SchemaInformation {
      * This method may be invoked recursively if the XSD contains {@code <xs:include>} elements.
      *
      * @param  location  complete URL to the XSD file to load.
-     * @throws ParserConfigurationException if the XML parser can not be created.
+     * @throws ParserConfigurationException if the XML parser cannot be created.
      * @throws IOException     if an I/O error occurred while reading the specified file.
-     * @throws SAXException    if the specified file can not be parsed as a XML document.
-     * @throws SchemaException if the XML document can not be interpreted as an OGC/ISO schema.
+     * @throws SAXException    if the specified file cannot be parsed as a XML document.
+     * @throws SchemaException if the XML document cannot be interpreted as an OGC/ISO schema.
      */
     public void loadSchema(String location)
             throws ParserConfigurationException, IOException, SAXException, SchemaException

@@ -125,7 +125,7 @@ public interface FeatureTypeStyle {
     /**
      * Returns the list of rules contained by this style.
      *
-     * @return the list of rules. can not be null but can be empty.
+     * @return the list of rules. cannot be null but can be empty.
      */
     @XmlElement("Rule")
     @UML(identifier="portrayalRule", obligation=MANDATORY, specification=ISO_19117)

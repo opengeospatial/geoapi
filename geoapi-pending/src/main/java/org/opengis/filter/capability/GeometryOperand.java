@@ -144,7 +144,7 @@ public final class GeometryOperand extends CodeList<GeometryOperand> {
     /**
      * Creates an operand in the {@code "http://www.opengis.net/gml"} namespace.
      *
-     * @param  name  the name of the new element. This name must not be in use by an other element of this type.
+     * @param  name  the name of the new element. This name must not be in use by another element of this type.
      */
     private GeometryOperand(final String name) {
         super(name, VALUES);

@@ -308,7 +308,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
             desktop.browse(currentReport.getJavadocURL());
         } catch (IOException e) {
             JOptionPane.showMessageDialog(MainFrame.this, e.toString(),
-                    "Can not open the browser", JOptionPane.ERROR_MESSAGE);
+                    "Cannot open the browser", JOptionPane.ERROR_MESSAGE);
         }
     }
 
@@ -352,7 +352,7 @@ final class MainFrame extends JFrame implements Runnable, ActionListener, ListSe
             } catch (ExecutionException e) {
                 JOptionPane.showMessageDialog(MainFrame.this,
                         "An error occurred while processing the JAR files: " + e.getCause(),
-                        "Can not use the JAR files", JOptionPane.ERROR_MESSAGE);
+                        "Cannot use the JAR files", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

@@ -53,7 +53,7 @@ final class PythonProperty implements Comparable<PythonProperty> {
     static final String IMPLEMENTATION_PROVIDED = "# TODO: put an implementation here.";
 
     /**
-     * The OGC/ISO name (can not be null).
+     * The OGC/ISO name (cannot be null).
      */
     private final String name;
 
@@ -94,7 +94,7 @@ final class PythonProperty implements Comparable<PythonProperty> {
      *
      * @param  property    the Java method defining the property.
      * @param  def         the {@link UML} annotation on the Java method.
-     * @param  name        the OGC/ISO name (can not be null).
+     * @param  name        the OGC/ISO name (cannot be null).
      * @param  javaType    the Java type, or null if none.
      * @param  pythonType  the python type, or null if none.
      * @param  importFrom  module from which to import type.

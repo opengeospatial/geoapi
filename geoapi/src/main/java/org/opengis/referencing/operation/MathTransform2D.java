@@ -65,7 +65,7 @@ public interface MathTransform2D extends MathTransform {
      *         or {@code null} if a new point shall be created.
      * @return the coordinate point after transforming {@code ptSrc} and storing the result
      *         in {@code ptDst} or in a new point if {@code ptDst} was null.
-     * @throws TransformException if the point can not be transformed.
+     * @throws TransformException if the point cannot be transformed.
      *
      * @see AffineTransform#transform(Point2D, Point2D)
      */
@@ -100,7 +100,7 @@ public interface MathTransform2D extends MathTransform {
      *         state of this math transform.
      * @throws NullPointerException if the derivative dependents on coordinate
      *         and {@code point} is {@code null}.
-     * @throws TransformException if the derivative can not be evaluated at the specified point.
+     * @throws TransformException if the derivative cannot be evaluated at the specified point.
      */
     Matrix derivative(final Point2D point) throws TransformException;
 
@@ -108,7 +108,7 @@ public interface MathTransform2D extends MathTransform {
      * Creates the inverse transform of this object.
      *
      * @return the inverse transform.
-     * @throws NoninvertibleTransformException if the transform can not be inverted.
+     * @throws NoninvertibleTransformException if the transform cannot be inverted.
      *
      * @see AffineTransform#createInverse()
      */

@@ -33,7 +33,7 @@ package org.opengis.tools.export;
 
 
 /**
- * Thrown when a Java element can not be exported to the target language.
+ * Thrown when a Java element cannot be exported to the target language.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

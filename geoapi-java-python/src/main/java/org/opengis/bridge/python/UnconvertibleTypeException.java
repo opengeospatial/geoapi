@@ -35,7 +35,7 @@ import java.lang.reflect.Type;
 
 
 /**
- * Thrown when a Java object can not be converted to a Python object.
+ * Thrown when a Java object cannot be converted to a Python object.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
@@ -62,6 +62,6 @@ public class UnconvertibleTypeException extends ClassCastException {
      * @param type  the unconvertible class.
      */
     UnconvertibleTypeException(final Type type) {
-        super("Can not get converter to " + type);
+        super("Cannot get converter to " + type);
     }
 }

@@ -106,7 +106,7 @@ public interface Expression<R,V> extends Function<R,V> {
      *         Can be {@code null} if this expression allows null values.
      * @return value computed by the expression.
      * @throws NullPointerException if {@code input} is null and this expression requires non-null values.
-     * @throws InvalidFilterValueException if the expression can not be applied on the given object.
+     * @throws InvalidFilterValueException if the expression cannot be applied on the given object.
      */
     @Override
     V apply(R input) throws InvalidFilterValueException;

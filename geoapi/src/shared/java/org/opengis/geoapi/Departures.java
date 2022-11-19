@@ -141,8 +141,8 @@ public class Departures {
     /**
      * Information about a type that may have been retrofitted into another type.
      * For example ISO 19115-2 defines {@code MI_Band} as an extension of ISO 19115-1 {@code MD_Band},
-     * but GeoAPI merges those two types in a single interface for simplicity. Sometime the merge also
-     * implies to change properties order.
+     * but GeoAPI merges those two types in a single interface for simplicity.
+     * Sometimes the merge also implies to change properties order.
      */
     static final class MergeInfo {
         /**

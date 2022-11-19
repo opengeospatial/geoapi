@@ -154,7 +154,7 @@ public interface Filter<R> extends Predicate<R> {
      * @param  object  the object (often a {@link Feature} instance) to evaluate.
      * @return {@code true} if the test(s) are passed for the provided object.
      * @throws NullPointerException if {@code object} is null.
-     * @throws InvalidFilterValueException if the filter can not be applied on the given object.
+     * @throws InvalidFilterValueException if the filter cannot be applied on the given object.
      */
     @Override
     boolean test(R object) throws InvalidFilterValueException;

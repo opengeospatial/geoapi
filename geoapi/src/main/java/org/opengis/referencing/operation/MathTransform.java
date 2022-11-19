@@ -116,7 +116,7 @@ public interface MathTransform {
      *         in {@code ptDst}, or a newly created point if {@code ptDst} was null.
      * @throws MismatchedDimensionException if {@code ptSrc} or
      *         {@code ptDst} doesn't have the expected dimension.
-     * @throws TransformException if the point can not be transformed.
+     * @throws TransformException if the point cannot be transformed.
      */
     @UML(identifier="transform", specification=OGC_01009)
     DirectPosition transform(DirectPosition ptSrc, DirectPosition ptDst)
@@ -138,7 +138,7 @@ public interface MathTransform {
      *                May be the same than {@code srcPts}.
      * @param  dstOff the offset to the location of the first transformed point that is stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
+     * @throws TransformException if a point cannot be transformed. Some implementations will stop at the first failure,
      *         wile some other implementations will fill the untransformable points with {@linkplain Double#NaN} values,
      *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
@@ -165,7 +165,7 @@ public interface MathTransform {
      *                May be the same than {@code srcPts}.
      * @param  dstOff the offset to the location of the first transformed point that is stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
+     * @throws TransformException if a point cannot be transformed. Some implementations will stop at the first failure,
      *         wile some other implementations will fill the untransformable points with {@linkplain Float#NaN} values,
      *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
@@ -190,7 +190,7 @@ public interface MathTransform {
      * @param  dstPts the array into which the transformed point coordinates are returned.
      * @param  dstOff the offset to the location of the first transformed point that is stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
+     * @throws TransformException if a point cannot be transformed. Some implementations will stop at the first failure,
      *         wile some other implementations will fill the untransformable points with {@linkplain Double#NaN} values,
      *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
@@ -216,7 +216,7 @@ public interface MathTransform {
      * @param  dstOff the offset to the location of the first transformed point that is
      *                stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can not be transformed. Some implementations will stop at the first failure,
+     * @throws TransformException if a point cannot be transformed. Some implementations will stop at the first failure,
      *         wile some other implementations will fill the untransformable points with {@linkplain Float#NaN} values,
      *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
@@ -268,7 +268,7 @@ public interface MathTransform {
      *         will not change the state of this math transform.
      * @throws NullPointerException if the derivative depends on coordinate and {@code point} is {@code null}.
      * @throws MismatchedDimensionException if {@code point} does not have the expected dimension.
-     * @throws TransformException if the derivative can not be evaluated at the specified point.
+     * @throws TransformException if the derivative cannot be evaluated at the specified point.
      */
     @UML(identifier="derivative", specification=OGC_01009)
     Matrix derivative(final DirectPosition point)
@@ -283,7 +283,7 @@ public interface MathTransform {
      * all cartographic projections should succeed.
      *
      * @return the inverse transform.
-     * @throws NoninvertibleTransformException if the transform can not be inverted.
+     * @throws NoninvertibleTransformException if the transform cannot be inverted.
      *
      * @see AffineTransform#createInverse()
      */
@@ -307,7 +307,7 @@ public interface MathTransform {
      * This operation may fail if unsupported or if this instance contains elements that do not have WKT representation.
      *
      * @return the <cite>Well-Known Text</cite> (WKT) for this object.
-     * @throws UnsupportedOperationException if this object can not be formatted as WKT.
+     * @throws UnsupportedOperationException if this object cannot be formatted as WKT.
      *
      * @see MathTransformFactory#createFromWKT(String)
      */

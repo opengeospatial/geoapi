@@ -145,7 +145,7 @@ final class ReportsPanel extends JPanel implements ActionListener {
 
     /**
      * Vendor and product information extracted from the {@code META-INF/MANIFEST.MF} file.
-     * The reports can not be generated before this field is set.
+     * The reports cannot be generated before this field is set.
      */
     private ImplementationManifest manifest;
 
@@ -398,7 +398,7 @@ final class ReportsPanel extends JPanel implements ActionListener {
             } catch (Exception exception) {
                 Runner.LOGGER.log(Level.WARNING, exception.toString(), exception);
                 JOptionPane.showMessageDialog(ReportsPanel.this, exception.toString(),
-                        "Can not write or show the reports", JOptionPane.ERROR_MESSAGE);
+                        "Cannot write or show the reports", JOptionPane.ERROR_MESSAGE);
             }
         }
     }

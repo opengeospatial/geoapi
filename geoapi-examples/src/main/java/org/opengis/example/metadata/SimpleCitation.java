@@ -122,7 +122,7 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
 
     /**
      * Returns the {@linkplain #getTitle() title}, ignoring the given locale. For localization
-     * support, an other class (or a subclass of this {@code SimpleCitation} class) is required.
+     * support, another class (or a subclass of this {@code SimpleCitation} class) is required.
      *
      * @param  locale  ignored by the {@code SimpleCitation} implementation.
      * @return the string given to the constructor, localized if supported by the implementation.

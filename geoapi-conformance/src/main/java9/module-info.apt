@@ -32,7 +32,7 @@ Conformance tests
 
 
 
-* Running all pre-defined tests
+* Running all predefined tests
 
   The easiest way to test an implementation is to add the following class in the implementation
   test package. There is nothing else needed if all factories are registered in the

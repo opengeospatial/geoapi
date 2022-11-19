@@ -40,7 +40,7 @@ An example in <<InternationalString>> shows the use of `InternationalString` in 
 |`CharacterSetCode` ^(3)^ |`java.nio.charset.Charset`             |
 |==============================================================================
 
-[small]#(1) Sometime substituted by `CharSequence` or `InternationalString`.# +
+[small]#(1) Sometimes substituted by `CharSequence` or `InternationalString`.# +
 [small]#(2) Defined as a unit of measurement in ISO 19103 §C.4.24.# +
 [small]#(3) From ISO 19103 §7.2.10 (<<primitives,primitive types>>).# +
 

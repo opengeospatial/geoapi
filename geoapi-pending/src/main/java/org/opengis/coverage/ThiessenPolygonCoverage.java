@@ -118,7 +118,7 @@ public interface ThiessenPolygonCoverage extends ContinuousCoverage {
      * Thiessen value polygons.
      *
      * @throws PointOutsideCoverageException if the point is outside the coverage domain.
-     * @throws CannotEvaluateException if the point can not be evaluated for some other reason.
+     * @throws CannotEvaluateException if the point cannot be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
     Set<Record> evaluate(DirectPosition p, Collection<String> list) throws CannotEvaluateException;

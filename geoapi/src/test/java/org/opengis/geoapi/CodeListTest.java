@@ -74,7 +74,7 @@ public final strictfp class CodeListTest {
      * @param  codeList  the code list for which to verify the initial capacity.
      * @return the declared initial capacity.
      * @throws IOException if an error occurred while reading the source file.
-     * @throws NumberFormatException if the initial capacity can not be parsed.
+     * @throws NumberFormatException if the initial capacity cannot be parsed.
      */
     private int getDeclaredCapacity(final Class<?> codeList) throws IOException {
         String line;
@@ -97,14 +97,14 @@ public final strictfp class CodeListTest {
                 return Integer.parseInt(line.substring(start, end));
             }
         }
-        throw new NumberFormatException("Can not parse ArrayList initial capacity in following Java code line:\n" + line);
+        throw new NumberFormatException("Cannot parse ArrayList initial capacity in following Java code line:\n" + line);
     }
 
     /**
      * Tests the common methods in every code lists. This method ensures that the a {@code values()} and {@code family()}
      * methods are defined for each code list, and verifies each declared code lists.
      *
-     * @throws NoSuchFieldException      if a {@code CodeList} or an {@code Enum} constant can not be found.
+     * @throws NoSuchFieldException      if a {@code CodeList} or an {@code Enum} constant cannot be found.
      * @throws NoSuchMethodException     if a {@code values()} or {@code valueOf(String)} method is not found.
      * @throws IllegalAccessException    if a {@code values()} or {@code valueOf(String)} method is not public.
      * @throws InvocationTargetException if an error occurred while invoking {@code values()} or {@code valueOf(String)}.

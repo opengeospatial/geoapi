@@ -224,7 +224,7 @@ public class OperationParametersReport extends Report {
          *
          * @param  o  the other row to compare with this row.
          * @return -1 if {@code this} should appears before {@code o}, -1 for the converse,
-         *         or 0 if this method can not determine an ordering for the given object.
+         *         or 0 if this method cannot determine an ordering for the given object.
          */
         @Override
         public int compareTo(final Row o) {
@@ -348,7 +348,7 @@ public class OperationParametersReport extends Report {
      * <ul>
      *   <li>Get the set of all code spaces or scopes found in the given {@code operation}.</li>
      *   <li>Delegates to {@link #createRow createRow(…)} with the above set. This means that
-     *       any parameter names defined in an other scope will be ignored.</li>
+     *       any parameter names defined in another scope will be ignored.</li>
      *   <li>Add the new row to the {@linkplain #rows} list if non-null.</li>
      * </ul>
      *
