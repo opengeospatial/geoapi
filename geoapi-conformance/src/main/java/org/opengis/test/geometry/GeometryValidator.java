@@ -107,7 +107,7 @@ public class GeometryValidator extends Validator {
             return;
         }
         final int dimension = object.getDimension();
-        assertPositive("Envelope: dimension can not be negative.", dimension);
+        assertPositive("Envelope: dimension cannot be negative.", dimension);
         final CoordinateReferenceSystem crs = object.getCoordinateReferenceSystem();
         container.validate(crs);                                                            // May be null.
         CoordinateSystem cs = null;
@@ -192,7 +192,7 @@ public class GeometryValidator extends Validator {
      * This method ensures that the following hold:
      *
      * <ul>
-     *   <li>The number of dimension can not be negative.</li>
+     *   <li>The number of dimension cannot be negative.</li>
      *   <li>If the position is associated to a CRS, then their number of dimensions must be equal.</li>
      *   <li>Length of {@link DirectPosition#getCoordinate()} must be equals to the number of dimensions.</li>
      *   <li>Values of above array must be equals to values returned by {@link DirectPosition#getOrdinate(int)}.</li>
@@ -210,9 +210,9 @@ public class GeometryValidator extends Validator {
          * Checks coordinate consistency.
          */
         final int dimension = object.getDimension();
-        assertPositive("DirectPosition: dimension can not be negative.", dimension);
+        assertPositive("DirectPosition: dimension cannot be negative.", dimension);
         final double[] coordinates = object.getCoordinate();
-        mandatory("DirectPosition: coordinate array can not be null.", coordinates);
+        mandatory("DirectPosition: coordinate array cannot be null.", coordinates);
         if (coordinates != null) {
             assertEquals("DirectPosition: coordinate array length shall be equal to the dimension.",
                     dimension, coordinates.length);

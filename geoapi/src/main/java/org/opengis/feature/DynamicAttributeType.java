@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.OGC_MOVING_FEATURE;
  * Definition of a dynamic attribute in a moving feature type.
  * Dynamic attributes describe attributes of a feature in which the values vary with time and/or location.
  * A {@link Feature} having dynamic attributes is a moving feature.
- * A moving feature can have an arbitrary amount of time-varying attributes,
+ * A moving feature can have an arbitrary number of time-varying attributes,
  * such as the velocity of vehicles or the wind speed of hurricanes.
  *
  * <p>Dynamic attributes are used for non-spatial attribute.

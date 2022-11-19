@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  *   Renamed from "{@code DCPList}" to "{@code DistributedComputingPlatform}" for the following reasons:
  *   <ol>
  *     <li>GeoAPI avoids the "{@code List}" suffix because instances of this class are not list.
- *         The concept of list rather applies to the list of pre-defined static constants in this class.</li>
+ *         The concept of list rather applies to the list of predefined static constants in this class.</li>
  *     <li>"{@code DCP}" is an abbreviation, and Java usage is to avoid abbreviations unless they are well known.</li>
  *   </ol>
  *

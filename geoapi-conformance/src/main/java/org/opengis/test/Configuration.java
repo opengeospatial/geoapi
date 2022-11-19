@@ -71,7 +71,7 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  *
  * This class provides {@link #get get}, {@link #put put} and {@link #remove remove} methods
  * similar to those of the {@code java.util.Map} interface, with the addition of type-safety.
- * The pre-defined keys are listed below:
+ * The predefined keys are listed below:
  *
  * <table class="ogc" style="td {vertical-align:top}">
  * <caption>Configuration properties</caption>

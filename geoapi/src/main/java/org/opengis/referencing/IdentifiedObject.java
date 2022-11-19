@@ -187,7 +187,7 @@ public interface IdentifiedObject {
      * WKT representation.
      *
      * @return the Well-Known Text (WKT) for this object.
-     * @throws UnsupportedOperationException if this object can not be formatted as WKT.
+     * @throws UnsupportedOperationException if this object cannot be formatted as WKT.
      *
      * @departure extension
      *   This method is not part of the OGC specification. It has been added in order to provide the

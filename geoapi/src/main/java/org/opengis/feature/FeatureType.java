@@ -98,7 +98,7 @@ public interface FeatureType extends IdentifiedType {
 
     /**
      * Returns {@code true} if the feature type acts as an abstract super-type.
-     * Abstract types can not be {@linkplain #newInstance() instantiated}.
+     * Abstract types cannot be {@linkplain #newInstance() instantiated}.
      *
      * @return {@code true} if the feature type acts as an abstract super-type.
      */
@@ -189,7 +189,7 @@ public interface FeatureType extends IdentifiedType {
      *
      * @return a new feature instance.
      * @throws FeatureInstantiationException if this feature type {@linkplain #isAbstract() is abstract}
-     *         or can not be instantiated for some other reason.
+     *         or cannot be instantiated for some other reason.
      * @throws UnsupportedOperationException if this type does not support new instance creation.
      */
     Feature newInstance() throws FeatureInstantiationException, UnsupportedOperationException;

@@ -112,7 +112,7 @@ final class JavaElementCollector {
         for (int i=0; i<jarURLs.length; i++) {
             final File file = jarFiles.get(i);
             if (!file.isFile() || !file.canRead()) {
-                throw new FileNotFoundException("File \"" + file + "\" not found or can not be read.");
+                throw new FileNotFoundException("File \"" + file + "\" not found or cannot be read.");
             }
             jarURLs[i] = file.toURI().toURL();
         }
@@ -281,7 +281,7 @@ mark:   for (final Iterator<JavaElement> it = oldAPI.iterator(); it.hasNext();) 
         /*
          * Scans the list of changes for changes that are identified as removal of the UML annotation.
          * There is not many of such removal, and most of them are actually the UML annotation moving
-         * to an other method. Thi block tries to find where the UML annotation moved.
+         * to another method. Thi block tries to find where the UML annotation moved.
          */
         for (final JavaElement element : newAPI) {
             if (element.kind.isMember) {

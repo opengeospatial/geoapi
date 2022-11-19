@@ -33,7 +33,7 @@ package org.opengis.util;
 
 
 /**
- * Thrown when a {@linkplain Factory factory} can not create an instance of the requested object.
+ * Thrown when a {@linkplain Factory factory} cannot create an instance of the requested object.
  *
  * <p>If the failure is caused by an illegal authority code, then the actual exception should
  * be {@link org.opengis.referencing.NoSuchAuthorityCodeException}. Otherwise, if the failure

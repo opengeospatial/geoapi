@@ -71,7 +71,7 @@ final class IdentifiedObjects {
      * @param  o1  the first operation method to compare, or {@code null}.
      * @param  o2  the second operation method to compare, or {@code null}.
      * @return -1 if {@code o1} should appears before {@code o2}, -1 for the converse,
-     *         or 0 if this method can not determine an ordering for the given object.
+     *         or 0 if this method cannot determine an ordering for the given object.
      */
     public static int compare(final Identifier n1, final Identifier n2) {
         if (n1 == n2)   return  0;
@@ -104,7 +104,7 @@ final class IdentifiedObjects {
         if (s2 == null) return -1;
         /*
          * The ASCII value of the underscore character is greater than 'Z' but lower than 'a',
-         * which sometime produce unexpected sort results. For example "Foo_bar" is sorted
+         * which sometimes produce unexpected sort results. For example "Foo_bar" is sorted
          * between "FooBar" and "Foobar". The space character produces more consistent sort
          * results because its ASCII value is less than any printable character.
          */

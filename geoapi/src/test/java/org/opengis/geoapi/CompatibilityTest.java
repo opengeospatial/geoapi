@@ -216,7 +216,7 @@ public final class CompatibilityTest implements Closeable {
             /*
              * At this point we have a class from the previous GeoAPI release (oldClass) and its new version.
              * Now compare all public methods. We skip protected methods for simplicity, since we perform our
-             * checks using Class.getMethod (we can not use Class.getDeclaredMethod because we want to search
+             * checks using Class.getMethod (we cannot use Class.getDeclaredMethod because we want to search
              * in parent classes if needed). Note that arguments and return values which are GeoAPI types are
              * represented by different Class instances between the two GeoAPI version, so we need to convert
              * them using their class name.
@@ -248,7 +248,7 @@ public final class CompatibilityTest implements Closeable {
                     }
                 }
                 /*
-                 * Compare generic return type, with a tolerance for a pre-defined set of incompatible changes.
+                 * Compare generic return type, with a tolerance for a predefined set of incompatible changes.
                  * Any change not listed in the collection of accepted incompatible changes will be considered
                  * as an error.
                  */

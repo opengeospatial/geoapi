@@ -275,7 +275,7 @@ public interface Coverage {
      * @param  list The field of interest, or {@code null} for every fields.
      * @return the feature attributes.
      * @throws PointOutsideCoverageException if the point is outside the coverage domain.
-     * @throws CannotEvaluateException if the point can not be evaluated for some other reason.
+     * @throws CannotEvaluateException if the point cannot be evaluated for some other reason.
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=ISO_19123)
     Set<Record> evaluate(DirectPosition p, Collection<String> list)
@@ -300,7 +300,7 @@ public interface Coverage {
      * @return the value vector for a given point in the coverage.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException if the point can not be evaluated for some other reason.
+     * @throws CannotEvaluateException if the point cannot be evaluated for some other reason.
      * @see Raster#getDataElements(int, int, Object)
      */
     @UML(identifier="evaluate", obligation=MANDATORY, specification=OGC_01004)
@@ -323,7 +323,7 @@ public interface Coverage {
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException if the point can not be evaluated for some othe reason.
+     * @throws CannotEvaluateException if the point cannot be evaluated for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      */
@@ -348,7 +348,7 @@ public interface Coverage {
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException if the point can not be evaluated for some othe reason.
+     * @throws CannotEvaluateException if the point cannot be evaluated for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      */
@@ -373,7 +373,7 @@ public interface Coverage {
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException if the point can not be evaluated for some othe reason.
+     * @throws CannotEvaluateException if the point cannot be evaluated for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
@@ -400,7 +400,7 @@ public interface Coverage {
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException if the point can not be evaluated for some othe reason.
+     * @throws CannotEvaluateException if the point cannot be evaluated for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *
@@ -431,7 +431,7 @@ public interface Coverage {
      *         Otherwise, a new array is allocated and returned.
      * @throws PointOutsideCoverageException if the point is outside the coverage
      *         {@linkplain #getEnvelope envelope}.
-     * @throws CannotEvaluateException if the point can not be evaluated for some othe reason.
+     * @throws CannotEvaluateException if the point cannot be evaluated for some othe reason.
      * @throws ArrayIndexOutOfBoundsException if the {@code destination} array is not null
      *         and too small to hold the output.
      *

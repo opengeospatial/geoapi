@@ -380,7 +380,7 @@ public interface GenericName extends Comparable<GenericName> {
     ScopedName push(GenericName scope);
 
     /**
-     * Compares this name with an other name for order.
+     * Compares this name with another name for order.
      * The recommended ordering for generic names is to {@linkplain String#compareTo(String) compare lexicographically}
      * each element in the {@linkplain #getParsedNames() list of parsed names}.
      * Specific attributes of the name, such as how it treats case, may affect the ordering.

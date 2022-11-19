@@ -227,8 +227,8 @@ public class NameValidator extends Validator {
         if (parsedNames != null) {
             boolean global = (scope != null) && scope.isGlobal();
             for (final LocalName name : parsedNames) {
-                assertNotNull("ScopedName: getParsedNames() can not contain null element.", name);
-                assertNotSame("ScopedName: the enclosing scoped name can not be in any parsed name.", object, name);
+                assertNotNull("ScopedName: getParsedNames() cannot contain null element.", name);
+                assertNotSame("ScopedName: the enclosing scoped name cannot be in any parsed name.", object, name);
                 assertEquals("ScopedName: inconsistent value of isGlobal().", global, name.scope().isGlobal());
                 global = false;         // Only the first name may be global.
                 validate(name);

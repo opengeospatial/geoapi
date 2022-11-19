@@ -112,7 +112,7 @@ public abstract class SimpleTransform2D extends SimpleTransform implements MathT
      *                or {@code null} if a new point shall be created.
      * @return the coordinate point after transforming {@code ptSrc} and storing the result
      *         in {@code ptDst} or in a new point if {@code ptDst} was null.
-     * @throws TransformException if the point can not be transformed.
+     * @throws TransformException if the point cannot be transformed.
      */
     @Override
     public abstract Point2D transform(Point2D ptSrc, Point2D ptDst) throws TransformException;
@@ -151,7 +151,7 @@ public abstract class SimpleTransform2D extends SimpleTransform implements MathT
      *
      * @param  point  the coordinate point where to evaluate the derivative.
      * @return the derivative at the specified point (never {@code null}).
-     * @throws TransformException if the derivative can not be evaluated at the specified point.
+     * @throws TransformException if the derivative cannot be evaluated at the specified point.
      */
     @Override
     public Matrix derivative(final DirectPosition point) throws TransformException {
@@ -165,7 +165,7 @@ public abstract class SimpleTransform2D extends SimpleTransform implements MathT
      *
      * @param  point  the coordinate point where to evaluate the derivative.
      * @return the derivative at the specified point (never {@code null}).
-     * @throws TransformException if the derivative can not be evaluated at the specified point.
+     * @throws TransformException if the derivative cannot be evaluated at the specified point.
      */
     @Override
     public Matrix derivative(final Point2D point) throws TransformException {

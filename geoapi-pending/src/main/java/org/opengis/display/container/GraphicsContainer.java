@@ -41,7 +41,7 @@ import org.opengis.geometry.Envelope;
  * Holds a collection of {@linkplain Graphic graphics} to be drawn in a {@linkplain Canvas canvas}.
  * The GraphicsContainer implementation typically depends on the canvas implementation. For example an AWT
  * canvas may be associated to a GraphicsContainer using a {@link java.awt.Graphics2D} handler for drawing,
- * while a SWT canvas may be associated to an other GraphicsContainer implementation using a different
+ * while a SWT canvas may be associated to another GraphicsContainer implementation using a different
  * drawing toolkit.
  * <p>
  * Graphics can be {@linkplain Collection#add added} or {@linkplain Collection#remove removed} with

@@ -249,7 +249,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      *
      * @param  seed  the random seed. We recommend a constant value for each transform or CRS to be tested.
      * @return the generated random coordinates inside the arbitrary domain.
-     * @throws TransformException if a point can not be transformed.
+     * @throws TransformException if a point cannot be transformed.
      */
     private float[] verifyInternalConsistency(final long seed) throws TransformException {
         validators.validate(transform);

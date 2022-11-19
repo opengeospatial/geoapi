@@ -5,6 +5,6 @@ Files in this directory are shared by two modules:
 
 Conceptually those files are part of `geoapi-conformance`.
 But they are needed for testing the `geoapi` module, which
-can not be done without introducing a circular dependency.
+cannot be done without introducing a circular dependency.
 This `shared` directory make easier to provide a copy of
 those files to `geoapi/test`

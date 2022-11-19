@@ -71,7 +71,7 @@ public interface PositionFactory {
             throws MismatchedDimensionException;
 
     /**
-     * Constructs a position from an other position by copying the coordinate values of the
+     * Constructs a position from another position by copying the coordinate values of the
      * position. There will be no further reference to the position instance.
      *
      * @param position A position.

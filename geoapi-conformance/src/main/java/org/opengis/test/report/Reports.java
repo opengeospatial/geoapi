@@ -188,7 +188,7 @@ public class Reports extends Report {
                  * delegate the calls to 'ProgressListener.progress(int,int)' to the 'progress'
                  * method in this class. All other listeners will be chained before this one.
                  *
-                 * We need to wrap the "delegator" listener into an other listener in order to
+                 * We need to wrap the "delegator" listener into another listener in order to
                  * allow all future listeners to be inserted between the two: the "delegator"
                  * listener must always be last, and the listener associated to the first report
                  * must stay first.
@@ -226,7 +226,7 @@ public class Reports extends Report {
         try {
             return type.cast(type.getConstructor(Properties.class).newInstance(properties));
         } catch (ReflectiveOperationException e) {
-            throw new IllegalArgumentException("Can not instantiate report of type " + type.getSimpleName(), e);
+            throw new IllegalArgumentException("Cannot instantiate report of type " + type.getSimpleName(), e);
         }
     }
 

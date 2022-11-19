@@ -115,7 +115,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *         {@code double} and conversion to {@code unit}.
      * @throws IllegalArgumentException if the specified unit is invalid for this parameter.
      * @throws InvalidParameterTypeException if the value is not a numeric type.
-     * @throws IllegalStateException if the value can not be returned for an other reason.
+     * @throws IllegalStateException if the value cannot be returned for another reason.
      *
      * @see #getUnit()
      * @see #setValue(double,Unit)
@@ -129,7 +129,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return the numeric value represented by this parameter after conversion to type {@code double}.
      * @throws InvalidParameterTypeException if the value is not a numeric type.
-     * @throws IllegalStateException if the value can not be returned for an other reason.
+     * @throws IllegalStateException if the value cannot be returned for another reason.
      * @unitof Measure
      *
      * @departure rename
@@ -150,7 +150,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return the numeric value represented by this parameter after conversion to type {@code int}.
      * @throws InvalidParameterTypeException if the value is not an integer type.
-     * @throws IllegalStateException if the value can not be returned for an other reason.
+     * @throws IllegalStateException if the value cannot be returned for another reason.
      *
      * @departure rename
      *   Renamed the method from "{@code integerValue}" to "{@code intValue}" for
@@ -168,7 +168,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return the boolean value represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not a boolean type.
-     * @throws IllegalStateException if the value can not be returned for an other reason.
+     * @throws IllegalStateException if the value cannot be returned for another reason.
      *
      * @see #setValue(boolean)
      */
@@ -181,7 +181,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return the string value represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not a string.
-     * @throws IllegalStateException if the value can not be returned for an other reason.
+     * @throws IllegalStateException if the value cannot be returned for another reason.
      *
      * @see #getValue()
      * @see #setValue(Object)
@@ -198,7 +198,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *         {@code double} and conversion to {@code unit}.
      * @throws IllegalArgumentException if the specified unit is invalid for this parameter.
      * @throws InvalidParameterTypeException if the value is not an array of {@code double}s.
-     * @throws IllegalStateException if the value can not be returned for an other reason.
+     * @throws IllegalStateException if the value cannot be returned for another reason.
      *
      * @see #getUnit()
      * @see #setValue(double[],Unit)
@@ -212,7 +212,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return the sequence of values represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not an array of {@code double}s.
-     * @throws IllegalStateException if the value can not be returned for an other reason.
+     * @throws IllegalStateException if the value cannot be returned for another reason.
      * @unitof Measure
      *
      * @departure rename
@@ -234,7 +234,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return the sequence of values represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not an array of {@code int}s.
-     * @throws IllegalStateException if the value can not be returned for an other reason.
+     * @throws IllegalStateException if the value cannot be returned for another reason.
      *
      * @departure rename
      *   Renamed the attribute from "{@code integerValueList}" to "{@code intValueList}"
@@ -254,7 +254,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @return the reference to a file containing parameter values.
      * @throws InvalidParameterTypeException if the value is not a reference to a file or a URI.
-     * @throws IllegalStateException if the value can not be returned for an other reason.
+     * @throws IllegalStateException if the value cannot be returned for another reason.
      *
      * @see #getValue()
      * @see #setValue(Object)

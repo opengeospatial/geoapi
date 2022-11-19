@@ -77,7 +77,7 @@ public enum Obligation implements ControlledVocabulary {
      * An example is {@link org.opengis.referencing.datum.TemporalDatum#getAnchorPoint()}.
      *
      * @departure constraint
-     *   ISO specifications sometime override a parent method with a comment saying that the method
+     *   ISO specifications sometimes override a parent method with a comment saying that the method
      *   is not allowed for a particular class. Since there is no construct in Java for expressing
      *   this constraint in the method signature, GeoAPI defines a {@code FORBIDDEN} obligation
      *   (not in original ISO specifications) to be used with the {@code @UML} annotation and

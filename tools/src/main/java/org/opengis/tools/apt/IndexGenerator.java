@@ -147,7 +147,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
                 notes.load(in);
             } catch (IOException e) {
                 processingEnv.getMessager().printMessage(Diagnostic.Kind.ERROR,
-                        "Can not read the \"" + notesList + "\" file:" + lineSeparator + e);
+                        "Cannot read the \"" + notesList + "\" file:" + lineSeparator + e);
             }
         }
     }
@@ -212,7 +212,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
             writeLine("     More significant name changes are emphasized by italics.</p>");
             writeLine("  <p id=\"notes\">The “Note” column can contain the following values:</p>");
             writeLine("  <table>");
-            writeLine("    <tr><td>(N)</td>  <td>for new methods added in GeoAPI " + VERSION + " (sometime merely renaming of older methods).</td></tr>");
+            writeLine("    <tr><td>(N)</td>  <td>for new methods added in GeoAPI " + VERSION + " (sometimes merely renaming of older methods).</td></tr>");
             writeLine("    <tr><td>(I)</td>  <td>for incompatible changes compared to the previous GeoAPI release (should be very rare in minor releases).</td></tr>");
             writeLine("    <tr><td>(MC)</td> <td>for methods that may change in an incompatible way in the next major release.");
             writeLine("    Those changes are <em>not</em> applied in this release, but are flagged for allowing developers to anticipate.</td></tr>");
@@ -442,7 +442,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
             }
             /*
              * For CodeList, the "Code" suffix is usually omitted
-             * (except if there is a name clash with an other class).
+             * (except if there is a name clash with another class).
              */
             if (isSubtype(element.asType(), Classes.CODE_LIST)) {
                 if (geoapi.equals(ogc)) {

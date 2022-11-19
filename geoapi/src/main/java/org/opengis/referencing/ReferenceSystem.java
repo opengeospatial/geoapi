@@ -56,7 +56,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * <ul>
  *   <li>A {@linkplain #getName() name} (e.g. “<cite>WGS 84 / World Mercator</cite>”).</li>
- *   <li>Alternative names or {@linkplain #getAlias() aliases}, sometime used for abbreviations.</li>
+ *   <li>Alternative names or {@linkplain #getAlias() aliases}, sometimes used for abbreviations.</li>
  *   <li>{@linkplain #getIdentifiers() Identifiers} allocated by authorities (e.g. “EPSG:3395”).</li>
  *   <li>The {@linkplain #getDomainOfValidity() domain of validity} in which this reference system is valid
  *       (e.g. “<cite>World - between 80°S and 84°N</cite>”).</li>

@@ -38,7 +38,7 @@ or have the same definition as an existing value._
 
 The figure below shows one closed (on the left side) and one opened (on the right side) enumeration derived from ISO 19115.
 The `ControlledVocabulary` parent interface is a GeoAPI addition. Its indirect inheritance by `PixelOrientation` is because
-the `Enum` class is defined by programming language standard library and can not be modified directly.
+the `Enum` class is defined by programming language standard library and cannot be modified directly.
 An example in <<java_code_list>> shows how code lists are used in the Java language.
 
 .Closed and opened enumeration examples

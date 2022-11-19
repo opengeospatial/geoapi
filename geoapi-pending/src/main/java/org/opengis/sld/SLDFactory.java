@@ -66,7 +66,7 @@ public interface SLDFactory {
     /**
      * Create an SLD library, an SLD library holds a online
      * reference to a SLD file.
-     * @param online : OnlineResource, can not be null.
+     * @param online : OnlineResource, cannot be null.
      */
     SLDLibrary createSLDLibrary(OnlineResource online);
 
@@ -93,8 +93,8 @@ public interface SLDFactory {
 
     /**
      * Create a RemoteOWS information object.
-     * @param service : can not be null
-     * @param online : can not be null
+     * @param service : cannot be null
+     * @param online : cannot be null
      */
     RemoteOWS createRemoteOWS(String service, OnlineResource online);
 
@@ -117,7 +117,7 @@ public interface SLDFactory {
     /**
      * Create a coverage constraint.
      *
-     * @param name : can not be null
+     * @param name : cannot be null
      * @param extent : can be null
      */
     CoverageConstraint createCoverageConstraint(String name, CoverageExtent extent);
@@ -134,7 +134,7 @@ public interface SLDFactory {
     /**
      * Create a coverage extent.
      *
-     * @param timeperiod : can not be null
+     * @param timeperiod : cannot be null
      */
     CoverageExtent createCoverageExtent(String timeperiod);
 
@@ -148,16 +148,16 @@ public interface SLDFactory {
     /**
      * Create a feature extent.
      *
-     * @param name : can not be null
-     * @param value : can not be null
+     * @param name : cannot be null
+     * @param value : cannot be null
      */
     Extent createExtent(String name, String value);
 
     /**
      * Create a Range axis.
      *
-     * @param name : can not be null
-     * @param value : can not be null
+     * @param name : cannot be null
+     * @param value : cannot be null
      */
     RangeAxis createRangeAxis(String name, String value);
 

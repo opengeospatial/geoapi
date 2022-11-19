@@ -101,7 +101,7 @@ public enum TestData {
     /**
      * A four-dimensional netCDF file using a projected CRS with elevation and time.
      * The file contains <cite>Current Icing Product</cite> data without missing values.
-     * The coordinate reference system contains also an height axis and a time axis.
+     * The coordinate reference system also contains an height axis and a time axis.
      *
      * <ul>
      *   <li><b>Data type:</b> 32 bits floating point numbers</li>

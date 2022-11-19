@@ -127,7 +127,7 @@ public abstract strictfp class SourceGenerator {
         try {
             dir = Paths.get(url.toURI());
         } catch (URISyntaxException e) {
-            fail("Can not create a URI for the " + pathname + " class:\n" + e);
+            fail("Cannot create a URI for the " + pathname + " class:\n" + e);
             return null;
         }
         for (;;) {                                                          // Break condition is in the middle of the loop.

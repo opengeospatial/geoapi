@@ -114,7 +114,7 @@ public interface Feature {
      * @param  property  the property to set.
      * @throws PropertyNotFoundException if the name of the given property is not a property name of this feature.
      * @throws InvalidPropertyValueException if the value of the given property is not valid.
-     * @throws IllegalArgumentException if the property can not be set for another reason
+     * @throws IllegalArgumentException if the property cannot be set for another reason
      *         (e.g. a library may accept only some specific property instances).
      *
      * @see #setPropertyValue(String, Object)

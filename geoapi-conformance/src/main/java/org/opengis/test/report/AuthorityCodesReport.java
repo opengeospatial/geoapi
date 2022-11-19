@@ -205,7 +205,7 @@ public class AuthorityCodesReport extends Report {
          * {@linkplain String#split(String) splits} the code spaces (or scopes) from the
          * codes using the {@code ":"} separator, then compares each elements. This method tries
          * to compare the elements as numeric values if possible (i.e. 4326 is less than 27561).
-         * If the codes can not be compared as numerical values, then they are compared as strings
+         * If the codes cannot be compared as numerical values, then they are compared as strings
          * using a {@linkplain String#CASE_INSENSITIVE_ORDER case-insensitive comparator}.
          *
          * <p>Subclasses can override this method if they want a different rows ordering.</p>

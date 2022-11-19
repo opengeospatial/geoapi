@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A name that references either an attribute slot in a record, an attribute, operation,
  * or association role in an object instance or a type description in some schema.
- * In a {@code Record} containing an arbitrary amount of attributes:
+ * In a {@code Record} containing an arbitrary number of attributes:
  *
  * <ul>
  *   <li>{@code MemberName} is the name of an attribute. It is similar the name of a field in a Java class.</li>

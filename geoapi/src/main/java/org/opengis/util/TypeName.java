@@ -47,7 +47,7 @@ import static org.opengis.annotation.Obligation.MANDATORY;
  * or the {@linkplain MemberName#getAttributeType() name of a field (or member) type} among other usages.
  *
  * <h2>Mapping to classes in the Java language</h2>
- * It is sometime useful to establish a bidirectional mapping between {@code TypeName} and Java {@link Class}.
+ * It is sometimes useful to establish a bidirectional mapping between {@code TypeName} and Java {@link Class}.
  * For types defined by an OGC/ISO standard, the type name should be the
  * {@linkplain org.opengis.annotation.UML#identifier() UML identifier}
  * in the "OGC" {@linkplain #scope() namespace}.

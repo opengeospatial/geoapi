@@ -90,7 +90,7 @@ public interface GridValuesMatrix extends Grid {
     GridCoordinates getStartSequence();
 
     /**
-     * Returns the limits of a section of the grid. This envelope can not be empty.
+     * Returns the limits of a section of the grid. This envelope cannot be empty.
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19123)
     GridEnvelope getExtent();

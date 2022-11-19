@@ -113,7 +113,7 @@ public strictfp class CRSTest extends ReferencingTestCase {
      * EPSG code.
      *
      * @throws NoSuchAuthorityCodeException if the specified code is not found among the ones present in the database.
-     * @throws FactoryException if the creation of the {@link CoordinateReferenceSystem} failed for an other raison.
+     * @throws FactoryException if the creation of the {@link CoordinateReferenceSystem} failed for another reason.
      */
     @Test
     public void testCRSAuthorityCreation() throws NoSuchAuthorityCodeException, FactoryException {

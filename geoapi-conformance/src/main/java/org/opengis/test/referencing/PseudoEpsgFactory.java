@@ -92,7 +92,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     static final double LINKS = 0.66 * FEET;
 
     /**
-     * Provider of pre-defined {@link Unit} instances (degree, metre, second, <i>etc</i>).
+     * Provider of predefined {@link Unit} instances (degree, metre, second, <i>etc</i>).
      */
     protected final Units units;
 
@@ -129,14 +129,14 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * Creates a new pseudo-factory which will use the given factories.
      *
-     * @param  units         provider of pre-defined {@link Unit} instances.
+     * @param  units         provider of predefined {@link Unit} instances.
      * @param  datumFactory  factory for creating {@link Datum} instances.
      * @param  csFactory     factory for creating {@link CoordinateSystem} instances.
      * @param  crsFactory    factory for creating {@link CoordinateReferenceSystem} instances.
      * @param  copFactory    factory for creating {@link Conversion} instances.
      * @param  mtFactory     factory for creating {@link MathTransform} instances.
      * @param  validators    the set of validators to use for verifying objects conformance,
-     *                       Can not be {@code null}; if there is no particular validators,
+     *                       Cannot be {@code null}; if there is no particular validators,
      *                       use {@link org.opengis.test.Validators#DEFAULT}.
      */
     public PseudoEpsgFactory(
@@ -148,13 +148,13 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             final MathTransformFactory        mtFactory,
             final ValidatorContainer         validators)
     {
-        this.units        = Objects.requireNonNull(units, "The units can not be null. Do you mean Units.getDefault()?");
+        this.units        = Objects.requireNonNull(units, "The units cannot be null. Do you mean Units.getDefault()?");
         this.datumFactory = datumFactory;
         this.csFactory    = csFactory;
         this.crsFactory   = crsFactory;
         this.copFactory   = copFactory;
         this.mtFactory    = mtFactory;
-        this.validators   = Objects.requireNonNull(validators, "The validators can not be null. Do you mean Validators.DEFAULT?");
+        this.validators   = Objects.requireNonNull(validators, "The validators cannot be null. Do you mean Validators.DEFAULT?");
     }
 
     /**
@@ -162,7 +162,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *
      * @param  code  the EPSG code to parse.
      * @return the EPSG code as an integer.
-     * @throws NoSuchAuthorityCodeException if the given code can not be parsed as an integer.
+     * @throws NoSuchAuthorityCodeException if the given code cannot be parsed as an integer.
      */
     private static int parseCode(String code) throws NoSuchAuthorityCodeException {
         final int s = code.lastIndexOf(':');
@@ -207,7 +207,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation returns an empty set.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      *
      * @todo Needs to be implemented.
      */
@@ -219,7 +219,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation returns {@code null}.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public InternationalString getDescriptionText(final String code) throws FactoryException {
@@ -302,7 +302,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public EngineeringDatum createEngineeringDatum(String code) throws FactoryException {
@@ -315,7 +315,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public ImageDatum createImageDatum(String code) throws FactoryException {
@@ -328,7 +328,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public VerticalDatum createVerticalDatum(String code) throws FactoryException {
@@ -341,7 +341,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public TemporalDatum createTemporalDatum(String code) throws FactoryException {
@@ -354,7 +354,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public ParametricDatum createParametricDatum(String code) throws FactoryException {
@@ -566,7 +566,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public PolarCS createPolarCS(final String code) throws FactoryException {
@@ -579,7 +579,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public CylindricalCS createCylindricalCS(final String code) throws FactoryException {
@@ -592,7 +592,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public SphericalCS createSphericalCS(final String code) throws FactoryException {
@@ -679,7 +679,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public VerticalCS createVerticalCS(final String code) throws FactoryException {
@@ -692,7 +692,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public TimeCS createTimeCS(final String code) throws FactoryException {
@@ -705,7 +705,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public ParametricCS createParametricCS(String code) throws FactoryException {
@@ -824,7 +824,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public CompoundCRS createCompoundCRS(String code) throws FactoryException {
@@ -837,7 +837,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public DerivedCRS createDerivedCRS(String code) throws FactoryException {
@@ -850,7 +850,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public EngineeringCRS createEngineeringCRS(String code) throws FactoryException {
@@ -896,7 +896,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public GeocentricCRS createGeocentricCRS(String code) throws FactoryException {
@@ -909,7 +909,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public ImageCRS createImageCRS(String code) throws FactoryException {
@@ -922,7 +922,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public ProjectedCRS createProjectedCRS(String code) throws FactoryException {
@@ -935,7 +935,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public TemporalCRS createTemporalCRS(String code) throws FactoryException {
@@ -948,7 +948,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public VerticalCRS createVerticalCRS(String code) throws FactoryException {
@@ -961,7 +961,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     /**
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
-     * @throws FactoryException if this method can not provide the requested information.
+     * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
     public ParametricCRS createParametricCRS(String code) throws FactoryException {

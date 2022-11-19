@@ -35,7 +35,7 @@ public strictfp class ProjectiveTransformTest extends AffineTransformTest {
     /**
      * The expected class of the {@link #transform} instance.
      * The default value is {@code ProjectiveTransform.class}.
-     * Subclasses can change this value if they expect an other
+     * Subclasses can change this value if they expect another
      * kind of transform to be created by the factory.
      */
     protected Class<? extends MathTransform> expectedTransformClass;
@@ -64,7 +64,7 @@ public strictfp class ProjectiveTransformTest extends AffineTransformTest {
     }
 
     /**
-     * Declares that our implementation can not invert such transform before to delegate to the parent class.
+     * Declares that our implementation cannot invert such transform before to delegate to the parent class.
      */
     @Test
     @Override

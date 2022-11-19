@@ -117,7 +117,7 @@ public final strictfp class ClassIndexTest extends SourceGenerator {
         } else {
             final String reason = save(index);
             if (reason != null) {
-                System.out.println("Can not write the index because " + reason +
+                System.out.println("Cannot write the index because " + reason +
                                    " The index is printed below:\n" + index);
             }
         }
@@ -143,10 +143,10 @@ public final strictfp class ClassIndexTest extends SourceGenerator {
     }
 
     /**
-     * Writes the given index if possible, or returns the reason why the index can not be written.
+     * Writes the given index if possible, or returns the reason why the index cannot be written.
      *
      * @param  index  the full index content to write.
-     * @return {@code null} on success, or the reason why this method can not write the index otherwise.
+     * @return {@code null} on success, or the reason why this method cannot write the index otherwise.
      * @throws IOException if an I/O error occurred while writing the index.
      */
     private String save(final String index) throws IOException {

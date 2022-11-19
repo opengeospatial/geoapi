@@ -60,7 +60,7 @@ import static org.opengis.test.Assert.*;
 /**
  * Verifies reference geodetic datums and CRSs bundled with the geoscience software.
  * Each test method in this class instantiate exactly one {@link GeodeticDatum}, but
- * may instantiate an arbitrary amount of {@link GeodeticCRS} using that datum.
+ * may instantiate an arbitrary number of {@link GeodeticCRS} using that datum.
  *
  * <table class="gigs">
  * <caption>Test description</caption>
@@ -74,7 +74,7 @@ import static org.opengis.test.Assert.*;
  *       and EPSG Dataset.
  *       Tests for component logical consistency: for example, if a higher-level library-defined component
  *       such as ED50 datum is selected it should then not be possible to change any of its lower-level
- *       components such as the ellipsoid from the pre-defined value (in this example International 1924).</td>
+ *       components such as the ellipsoid from the predefined value (in this example International 1924).</td>
  * </tr><tr>
  *   <th>Tested API:</th>
  *   <td>{@link DatumAuthorityFactory#createGeodeticDatum(String)},<br>

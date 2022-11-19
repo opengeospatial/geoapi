@@ -184,7 +184,7 @@ abstract class UmlProcessor extends AbstractProcessor {
      *
      * @param  relativePath The path of the file to create, relative to the current directory.
      * @return the writer.
-     * @throws IOException if the writer can not be created.
+     * @throws IOException if the writer cannot be created.
      */
     static Writer openWriter(final String relativePath) throws IOException {
         return new OutputStreamWriter(new FileOutputStream(relativePath), "UTF-8");

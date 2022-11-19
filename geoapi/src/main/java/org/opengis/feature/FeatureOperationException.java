@@ -35,7 +35,7 @@ import org.opengis.parameter.ParameterValueGroup;
 
 
 /**
- * Thrown when {@link Operation#apply Operation.apply(…)} is invoked but the operation can not complete.
+ * Thrown when {@link Operation#apply Operation.apply(…)} is invoked but the operation cannot complete.
  * The operation can fail for a variety of reasons including but not limited to:
  *
  * <ul>

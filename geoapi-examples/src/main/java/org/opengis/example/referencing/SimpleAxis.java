@@ -60,7 +60,7 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
 
     /**
      * The unit of measurement for degrees of angle. Will be removed in a future GeoAPI version
-     * if a future Unit of Measurement implementation provides a pre-defined constant for this unit.
+     * if a future Unit of Measurement implementation provides a predefined constant for this unit.
      */
     static final Unit<Angle> DEGREE = Units.RADIAN.multiply(Math.PI/180);
 

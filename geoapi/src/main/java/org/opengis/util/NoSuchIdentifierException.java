@@ -36,7 +36,7 @@ import org.opengis.parameter.ParameterValueGroup;  // For javadoc
 
 
 /**
- * Thrown when an identifier provided to a factory method can not be found.
+ * Thrown when an identifier provided to a factory method cannot be found.
  * The identifier may be provided by {@link org.opengis.referencing.IdentifiedObject#getName()}.
  * In the common case where the identifier is an "authority:code" pair,
  * the {@link org.opengis.referencing.NoSuchAuthorityCodeException} specialization should be used.

@@ -76,7 +76,7 @@ final class MetadataHandler implements InvocationHandler {
             if (value == null) {
                 final Class<?> rt = method.getReturnType();
                 if (rt.isPrimitive()) {
-                    // We can not return null value for primitive types, so default to NaN or 0.
+                    // We cannot return null value for primitive types, so default to NaN or 0.
                     // Note: we ignore the name clash between "byte" and "boolean" because the
                     // current GeoAPI interfaces for ISO 19115 don't have byte return values.
                     switch (rt.getName().charAt(0)) {
