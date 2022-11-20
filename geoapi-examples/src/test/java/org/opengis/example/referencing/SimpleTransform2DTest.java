@@ -30,7 +30,7 @@ import static org.opengis.test.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class SimpleTransform2DTest extends TransformTestCase {
+public class SimpleTransform2DTest extends TransformTestCase {
     /**
      * The affine transform coefficients used in this test.
      */

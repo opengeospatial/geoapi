@@ -53,7 +53,7 @@ import static org.junit.Assert.*;
  * @since   2.2
  */
 @SuppressWarnings("serial")
-strictfp class AffineTransform2D extends AffineTransform implements MathTransform2D {
+class AffineTransform2D extends AffineTransform implements MathTransform2D {
     /**
      * The inverse of this transform. Will be computed when first needed on the assumption that
      * this transform will not be modified anymore at the time {@link #inverse()} is invoked.

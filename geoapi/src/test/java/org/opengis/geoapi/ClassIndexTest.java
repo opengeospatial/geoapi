@@ -67,7 +67,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   3.1
  */
-public final strictfp class ClassIndexTest extends SourceGenerator {
+public final class ClassIndexTest extends SourceGenerator {
     /**
      * The name of the index file to read or generate. This file will be located in the
      * "{@code org/opengis/annotation}" directory.

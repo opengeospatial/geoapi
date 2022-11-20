@@ -24,7 +24,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class SimpleTest {
+public class SimpleTest {
     /**
      * Tests the {@link SimpleDatum#WGS84} constant.
      */

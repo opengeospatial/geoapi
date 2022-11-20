@@ -20,7 +20,7 @@ import static org.opengis.test.Validators.*;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class SimpleDirectPositionTest {
+public class SimpleDirectPositionTest {
     /**
      * Tests the creation of a {@code SimpleDirectPosition} and verifies the
      * values returned by {@link SimpleDirectPosition#getOrdinate(int)}.

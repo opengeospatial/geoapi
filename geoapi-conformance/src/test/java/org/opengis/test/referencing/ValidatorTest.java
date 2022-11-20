@@ -47,7 +47,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * @version 3.1
  * @since   2.2
  */
-public strictfp class ValidatorTest {
+public class ValidatorTest {
     /**
      * Tests the content of the {@link CSValidator#ORIENTATIONS} array.
      * We expect orientations in the [0…360]° range.

@@ -46,7 +46,7 @@ import static org.junit.Assert.*;
  * @version 3.0
  * @since   2.3
  */
-public final strictfp class KeyConstantsTest {
+public final class KeyConstantsTest {
     /**
      * Ensures that the key that are expected to be the same are really the same.
      * We use {@code assertSame} instead of {@code assertEquals} because we

@@ -45,7 +45,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class ValidatorTest {
+public class ValidatorTest {
     /**
      * The validator to use for testing purpose.
      */

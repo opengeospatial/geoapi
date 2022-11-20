@@ -59,7 +59,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   2.0
  */
-public final strictfp class CodeListTest {
+public final class CodeListTest {
     /**
      * The root directory of Java source code, or {@code null} if unspecified.
      */

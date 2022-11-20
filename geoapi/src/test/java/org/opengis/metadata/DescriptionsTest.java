@@ -56,7 +56,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   2.3
  */
-public final strictfp class DescriptionsTest {
+public final class DescriptionsTest {
     /**
      * Whether to test the given type.
      */

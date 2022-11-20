@@ -60,7 +60,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public final strictfp class ContentTest implements FileVisitor<Path> {
+public final class ContentTest implements FileVisitor<Path> {
     /**
      * Suffix of {@code package-info} and {@code module-info} classes.
      */

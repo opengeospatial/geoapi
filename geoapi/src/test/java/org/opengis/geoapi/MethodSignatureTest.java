@@ -54,7 +54,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public final strictfp class MethodSignatureTest extends SourceGenerator {
+public final class MethodSignatureTest extends SourceGenerator {
     /**
      * Returns {@code true} if the given field or method is public from a GeoAPI point of view.
      */

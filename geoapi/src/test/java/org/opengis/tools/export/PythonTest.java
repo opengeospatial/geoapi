@@ -64,7 +64,7 @@ import static org.junit.Assert.*;
  * @since   4.0
  * @version 4.0
  */
-public final strictfp class PythonTest extends JavaToPython {
+public final class PythonTest extends JavaToPython {
     /**
      * Creates a new Python classes writer or verifier.
      *

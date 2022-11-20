@@ -42,7 +42,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public final strictfp class NameTest {
+public final class NameTest {
     /**
      * Verifies the name for {@code "fes:Literal"}.
      */

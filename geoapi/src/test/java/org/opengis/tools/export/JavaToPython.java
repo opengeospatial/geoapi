@@ -76,7 +76,7 @@ import static org.junit.Assert.*;
  * @since   4.0
  * @version 4.0
  */
-strictfp class JavaToPython extends SourceGenerator {
+class JavaToPython extends SourceGenerator {
     /**
      * Suffix of Python files.
      */

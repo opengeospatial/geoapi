@@ -49,7 +49,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public abstract strictfp class SourceGenerator {
+public abstract class SourceGenerator {
     /**
      * Suffix of compiled class files.
      */

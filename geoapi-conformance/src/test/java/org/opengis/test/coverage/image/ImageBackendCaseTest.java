@@ -46,7 +46,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class ImageBackendCaseTest {
+public class ImageBackendCaseTest {
     /**
      * Tests the {@link ImageBackendTestCase#createImage(int, int, int, int)} method
      * with a single band.

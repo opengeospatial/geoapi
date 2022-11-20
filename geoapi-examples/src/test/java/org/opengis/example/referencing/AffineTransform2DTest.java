@@ -25,7 +25,7 @@ import org.opengis.referencing.operation.TransformException;
  * @since   3.1
  */
 @RunWith(JUnit4.class)
-public strictfp class AffineTransform2DTest extends ProjectiveTransformTest {
+public class AffineTransform2DTest extends ProjectiveTransformTest {
     /**
      * Creates a new test case.
      */

@@ -45,7 +45,7 @@ import static org.junit.Assert.*;
  * @version 3.0
  * @since   2.2
  */
-public strictfp class ValidatorContainerTest {
+public class ValidatorContainerTest {
     /**
      * Ensures that {@link ValidatorContainer#all} contains no duplicated value.
      * Also ensures that the declared list size is the expected one.

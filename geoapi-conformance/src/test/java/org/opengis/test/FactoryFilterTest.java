@@ -51,7 +51,7 @@ import static org.opengis.test.FactoryFilter.ByAuthority.EPSG;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class FactoryFilterTest implements AuthorityFactory, Citation, InternationalString {
+public class FactoryFilterTest implements AuthorityFactory, Citation, InternationalString {
     /**
      * The authority name of the dummy factory to use for testing purpose.
      */

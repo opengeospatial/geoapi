@@ -46,7 +46,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public final strictfp class LegacyCodesTest {
+public final class LegacyCodesTest {
     /**
      * Tests the content of {@code "2003/charset-codes.properties"}.
      *

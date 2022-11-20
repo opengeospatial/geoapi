@@ -47,7 +47,7 @@ import org.opengis.referencing.operation.NoninvertibleTransformException;
  * @since   2.2
  */
 @SuppressWarnings("serial")
-final strictfp class BogusAffineTransform2D extends AffineTransform2D {
+final class BogusAffineTransform2D extends AffineTransform2D {
     /**
      * {@code true} to cause this class to produces erroneous value in
      * {@link #transform(float[],int,float[],int,int)}.

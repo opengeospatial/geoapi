@@ -52,7 +52,7 @@ import static org.junit.Assert.*;
  * @version 4.0
  * @since   4.0
  */
-public final strictfp class InterfacingTest {
+public final class InterfacingTest {
     /**
      * The {@link Interfacing#GEOAPI} constant cast to its implementation type.
      */
