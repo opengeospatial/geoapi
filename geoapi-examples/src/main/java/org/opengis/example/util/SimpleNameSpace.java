@@ -8,7 +8,6 @@
 package org.opengis.example.util;
 
 import java.util.Objects;
-import java.io.Serializable;
 import javax.naming.Name;
 import javax.naming.CompoundName;
 import javax.naming.InvalidNameException;
@@ -22,12 +21,7 @@ import org.opengis.util.GenericName;
  *
  * @author Martin Desruisseaux
  */
-public class SimpleNameSpace implements NameSpace, Serializable {
-    /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = -8425839143904105087L;
-
+public class SimpleNameSpace implements NameSpace {
     /**
      * The root namespace.
      */
@@ -46,7 +40,6 @@ public class SimpleNameSpace implements NameSpace, Serializable {
     /**
      * Creates the {@link #ROOT} namespace with an empty name.
      */
-    @SuppressWarnings("serial")
     private SimpleNameSpace() {
         factory = SimpleNameFactory.DEFAULT;
         try {
@@ -173,6 +166,6 @@ public class SimpleNameSpace implements NameSpace, Serializable {
      */
     @Override
     public int hashCode() {
-        return name.hashCode() ^ (int) serialVersionUID;
+        return name.hashCode() ^ -904105087;
     }
 }

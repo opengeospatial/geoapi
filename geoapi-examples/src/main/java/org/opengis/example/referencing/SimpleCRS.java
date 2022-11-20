@@ -40,11 +40,6 @@ import org.opengis.referencing.datum.VerticalDatumType;
  */
 public abstract class SimpleCRS extends SimpleIdentifiedObject implements SingleCRS, CoordinateSystem {
     /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = 4203423453709225243L;
-
-    /**
      * The coordinate system axes. The length of this array is the coordinate system dimension.
      *
      * @see #getDimension()
@@ -120,11 +115,6 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
      * @since   3.1
      */
     public static class Geographic extends SimpleCRS implements GeographicCRS, EllipsoidalCS {
-        /**
-         * For cross-version compatibility.
-         */
-        private static final long serialVersionUID = -3574562964980541886L;
-
         /**
          * The WGS84 CRS, as defined by EPSG:4326. The axis order is (φ,λ).
          */
@@ -210,11 +200,6 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
      */
     public static class Vertical extends SimpleCRS implements VerticalCRS, VerticalCS, VerticalDatum {
         /**
-         * For cross-version compatibility.
-         */
-        private static final long serialVersionUID = -2188245601933449264L;
-
-        /**
          * The type of this vertical datum.
          */
         private final VerticalDatumType type;
@@ -276,11 +261,6 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
      * @since   3.1
      */
     public static class Temporal extends SimpleCRS implements TemporalCRS, TimeCS, TemporalDatum {
-        /**
-         * For cross-version compatibility.
-         */
-        private static final long serialVersionUID = -6447295405309137301L;
-
         /**
          * The date and time origin of this temporal datum.
          */

@@ -111,11 +111,6 @@ public class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = -127301955366750847L;
-
-    /**
      * Controls whatever this implementation can convert values between the {@code double} type
      * and other types. If {@code false}, methods {@link #intValue()}, {@link #intValueList()},
      * {@link #doubleValueList()}, {@link #booleanValue()} and {@link #stringValue()} - together

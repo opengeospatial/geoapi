@@ -48,11 +48,6 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
         implements ParameterValueGroup, ParameterDescriptorGroup, Cloneable
 {
     /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = -6759063712059101098L;
-
-    /**
      * The list of parameters included in this group. This simple group implementation
      * supports only {@link SimpleParameter} instances, which are used both as
      * {@linkplain ParameterDescriptor parameter descriptor} and
@@ -61,7 +56,6 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * <p>This list is <cite>live</cite>: changes to this list will be reflected immediately
      * in the {@link #descriptors()} and {@link #values()} views.</p>
      */
-    @SuppressWarnings("serial")         // Not statically typed as Serializable.
     protected final List<SimpleParameter> parameters;
 
     /**
@@ -69,7 +63,6 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * returned by the {@link #descriptors()} and {@link #values()} methods. We
      * have to make it unmodifiable for type safety reason.
      */
-    @SuppressWarnings("serial")         // Not statically typed as Serializable.
     private List<SimpleParameter> unmodifiable;
 
     /**

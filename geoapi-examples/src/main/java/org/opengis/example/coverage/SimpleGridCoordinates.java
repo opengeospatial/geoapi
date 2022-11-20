@@ -8,7 +8,6 @@
 package org.opengis.example.coverage;
 
 import java.util.Arrays;
-import java.io.Serializable;
 
 import org.opengis.coverage.grid.Grid;
 import org.opengis.coverage.grid.GridPoint;
@@ -25,12 +24,7 @@ import org.opengis.coverage.grid.GridCoordinates;
  *
  * @since 3.1
  */
-public class SimpleGridCoordinates implements GridCoordinates, Serializable {
-    /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = -302106481917990479L;
-
+public class SimpleGridCoordinates implements GridCoordinates {
     /**
      * The grid coordinates.
      */
@@ -140,7 +134,7 @@ public class SimpleGridCoordinates implements GridCoordinates, Serializable {
      */
     @Override
     public int hashCode() {
-        return Arrays.hashCode(coordinates) ^ (int) serialVersionUID;
+        return Arrays.hashCode(coordinates) ^ -1917990479;
     }
 
     /**

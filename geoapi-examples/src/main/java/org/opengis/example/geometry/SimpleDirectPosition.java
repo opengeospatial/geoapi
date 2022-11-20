@@ -9,7 +9,6 @@ package org.opengis.example.geometry;
 
 import java.util.Arrays;
 import java.util.Objects;
-import java.io.Serializable;
 
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
@@ -25,12 +24,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @version 3.1
  * @since   3.1
  */
-public class SimpleDirectPosition implements DirectPosition, Serializable {
-    /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = 5075669833975740957L;
-
+public class SimpleDirectPosition implements DirectPosition {
     /**
      * The coordinate values. The length of this array is the {@linkplain #getDimension() dimension}
      * of this direct position.

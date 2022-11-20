@@ -38,11 +38,6 @@ import org.opengis.example.geometry.SimpleDirectPosition;
  */
 public abstract class SimpleTransform extends SimpleIdentifiedObject implements CoordinateOperation, MathTransform {
     /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = -234616434441874739L;
-
-    /**
      * The source CRS, which determine the number of source dimensions.
      *
      * @see #getSourceCRS()

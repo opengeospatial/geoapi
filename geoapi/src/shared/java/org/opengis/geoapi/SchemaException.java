@@ -40,8 +40,12 @@ package org.opengis.geoapi;
  * @since   3.1
  * @version 3.1
  */
-@SuppressWarnings("serial")
 public class SchemaException extends Exception {
+    /**
+     * Serial number for inter-operability with different versions.
+     */
+    private static final long serialVersionUID = -4421595503088915919L;
+
     /**
      * Creates an exception with the specified details message.
      *

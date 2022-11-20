@@ -42,7 +42,6 @@ public class SimpleTransform2DTest extends TransformTestCase {
      * {@link SimpleTransform2D}. The {@linkplain #transform transform} is a
      * hard-coded affine transform.
      */
-    @SuppressWarnings("serial")
     public SimpleTransform2DTest() {
         transform = new SimpleTransform2D(null, "Test", null, null) {
             @Override

@@ -12,7 +12,6 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Objects;
-import java.io.Serializable;
 import javax.naming.Name;
 import javax.naming.InvalidNameException;
 
@@ -40,12 +39,7 @@ import org.opengis.example.metadata.SimpleCitation;
  *
  * @see #jndiName()
  */
-public class SimpleName implements GenericName, Serializable {
-    /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = 5767162955069918493L;
-
+public class SimpleName implements GenericName {
     /**
      * A {@link TypeName} specialization of {@link Local}. The JNDI name wrapped by this
      * class shall contain exactly one component. In such case the {@linkplain #head() head},
@@ -55,11 +49,6 @@ public class SimpleName implements GenericName, Serializable {
      * @author Martin Desruisseaux
      */
     public static class Type extends Local implements TypeName {
-        /**
-         * For cross-version compatibility.
-         */
-        private static final long serialVersionUID = -8971196012273803431L;
-
         /**
          * The "OGC:Real" type name.
          */
@@ -93,11 +82,6 @@ public class SimpleName implements GenericName, Serializable {
      * @author Martin Desruisseaux
      */
     public static class Member extends Local implements MemberName {
-        /**
-         * For cross-version compatibility.
-         */
-        private static final long serialVersionUID = -3171497526465359628L;
-
         /**
          * The type of the data associated with the record member.
          */
@@ -148,11 +132,6 @@ public class SimpleName implements GenericName, Serializable {
      * @author Martin Desruisseaux
      */
     public static class Local extends SimpleName implements LocalName {
-        /**
-         * For cross-version compatibility.
-         */
-        private static final long serialVersionUID = 7289656986139657450L;
-
         /**
          * Creates a new instance without namespace. This constructor shall be used only for the
          * creation of the root {@link NameSpace}.
@@ -233,11 +212,6 @@ public class SimpleName implements GenericName, Serializable {
      * @author Martin Desruisseaux
      */
     public static class Scoped extends SimpleName implements ScopedName {
-        /**
-         * For cross-version compatibility.
-         */
-        private static final long serialVersionUID = -8174256917494442466L;
-
         /**
          * Creates a new instance backed by the given JNDI name. This constructor does not clone the
          * given JNDI name. While this implementation is robust to change in the wrapped object, it is
@@ -528,7 +502,7 @@ public class SimpleName implements GenericName, Serializable {
      */
     @Override
     public int hashCode() {
-        int code = name.hashCode() ^ (int) serialVersionUID;
+        int code = name.hashCode() ^ 69918493;
         if (scope != null) {
             code += 31*scope.hashCode();
         }

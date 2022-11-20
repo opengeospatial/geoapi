@@ -46,11 +46,6 @@ import org.opengis.example.geometry.SimpleDirectPosition;
  */
 public class ProjectiveTransform extends SimpleTransform {
     /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = -6681647845536764717L;
-
-    /**
      * The matrix used for performing the coordinate conversions.
      */
     protected final SimpleMatrix matrix;
