@@ -53,8 +53,7 @@ import static org.opengis.test.referencing.Utilities.*;
  * @since   2.2
  *
  * @todo Add checks for Unit of Measurement depending on the coordinate system type.
- *       For example {@link EllipsoidalCS} expects two angular values and one linear
- *       value (if 3D).
+ *       For example, {@link EllipsoidalCS} expects two angular values and one linear value (if 3D).
  */
 public class CSValidator extends ReferencingValidator {
     /**

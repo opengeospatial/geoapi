@@ -12,7 +12,7 @@ for which no equivalence is already present in the {supported-languages} standar
 
 For various practical reasons the mapping from ISO types to programming language types is not a one-to-one relationship.
 The mapping actually used is explained below.
-Furthermore not all of the types in ISO 19103 have a mapping defined because the need for these types has not yet appeared,
+Furthermore, not all of the types in ISO 19103 have a mapping defined because the need for these types has not yet appeared,
 since they have not yet appeared in any other specification for which GeoAPI defines interfaces.
 Such types are listed as "unimplemented" in the tables below.
 

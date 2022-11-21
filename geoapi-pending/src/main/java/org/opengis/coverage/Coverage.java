@@ -57,7 +57,7 @@ import static org.opengis.annotation.Specification.*;
  * The essential property of coverage is to be able to generate a value for any point
  * within its domain. How coverage is represented internally is not a concern.
  *
- * For example consider the following different internal representations of coverage:<br>
+ * For example, consider the following different internal representations of coverage:<br>
  *  <ul>
  *    <li>A coverage may be represented by a set of polygons which exhaustively
  *        tile a plane (that is each point on the plane falls in precisely one polygon).

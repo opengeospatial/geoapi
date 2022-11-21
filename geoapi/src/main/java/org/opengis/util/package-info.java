@@ -68,7 +68,7 @@
  *
  * <h2>Names and Namespaces</h2>
  * <p>The job of a "name" is to associate that name with an {@link java.lang.Object} within the context of a
- * {@link org.opengis.util.NameSpace}. For example {@link org.opengis.util.GenericName} instances could be
+ * {@link org.opengis.util.NameSpace}. For example, {@link org.opengis.util.GenericName} instances could be
  * keys in a {@link java.util.HashMap}, in which case the namespace is materialized by the {@code HashMap}.
  * Names are often used in the context of reading data from various formats such as XML, shapefiles or netCDF,
  * which have different constraints for names in their namespaces.

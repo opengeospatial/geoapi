@@ -8,7 +8,7 @@ The actual mathematical work is performed by a separated object obtained by a ca
 At the difference of `Coordinate­Operation` instances, `Math­Transform` instances do not carry any metadata.
 They are kind of black box which know nothing about the source and target CRS, the domain or the accuracy
 (actually the same `Math­Transform` can be used for different pairs of CRS if the mathematical work is the same),
-Furthermore `Math­Transform` may be implemented in a very different way than what `Coordinate­Operation` said.
+Furthermore, `Math­Transform` may be implemented in a very different way than what `Coordinate­Operation` said.
 In particular many conceptually different coordinate operations such as unit conversions, axis swapping, _etc._
 can be implemented by `Math­Transform` as affine transforms and concatenated for efficiency.
 The result may be a `MathTransform` doing in a single step a calculation
@@ -31,7 +31,7 @@ The example in <<java_coordinate_operation>> shows how to transform in Java the 
 
 `MathTransform` can also provide the derivative of the transform function at a point.
 The derivative is the matrix of the non-translating portion of the approximate affine map at the point.
-For example if _P_ is a map projection converting degrees of latitude and longitude (_φ_, _λ_)
+For example, if _P_ is a map projection converting degrees of latitude and longitude (_φ_, _λ_)
 into projected coordinates (_x_, _y_) in metres,
 then the derivative _P′_ can be represented by a Jacobian matrix as below:
 

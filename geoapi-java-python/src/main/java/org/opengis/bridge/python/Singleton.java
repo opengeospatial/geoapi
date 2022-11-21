@@ -187,7 +187,7 @@ final class Singleton implements InvocationHandler {
     }
 
     /**
-     * Returns the upper bounds of the parameterized type. For example if a method returns {@code Collection<String>},
+     * Returns the upper bounds of the parameterized type. For example, if a method returns {@code Collection<String>},
      * then {@code boundOfParameterizedProperty(method.getGenericReturnType())} should return {@code String.class}.
      */
     private static Class<?> boundOfParameterizedProperty(Type type) {

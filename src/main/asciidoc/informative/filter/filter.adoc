@@ -24,6 +24,6 @@ Likewise `expression` is defined in parent interface with unconstrained multipli
 but that multiplicity is restrained in sub-interfaces.
 
 Filter operands are expressions.
-For example a filter named "Property­Is­Equal­To" uses two expressions.
+For example, a filter named "Property­Is­Equal­To" uses two expressions.
 The first expression may be a `Value­Reference` fetching the value of a property
 and the second expression may be a `Literal` with the desired value.

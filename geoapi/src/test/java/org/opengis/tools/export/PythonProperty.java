@@ -143,7 +143,7 @@ final class PythonProperty implements Comparable<PythonProperty> {
     /**
      * Writes the property, including its type annotation if possible and its documentation if available.
      *
-     * @param  replacements   map of properties to rename. For example when writing Python properties,
+     * @param  replacements   map of properties to rename. For example, when writing Python properties,
      *                        we need to replace the {@code "pass"} property by something else because
      *                        {@code "pass"} is a Python keyword.
      * @param  definition     information about types and properties declared in OGC/ISO schema.

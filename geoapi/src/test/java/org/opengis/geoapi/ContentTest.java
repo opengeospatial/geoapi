@@ -84,12 +84,12 @@ public final class ContentTest implements FileVisitor<Path> {
 
     /**
      * Dependencies to ignore because of circularity. Keys are the dependents (the class having a circular dependency)
-     * and values are the dependencies. For example ({@code BoundingPolygon.class}, {@code Geometry.class}) means that
+     * and values are the dependencies. For example, ({@code BoundingPolygon.class}, {@code Geometry.class}) means that
      * the {@code BoundingPolygon} interface has a dependency toward {@code Geometry}, but we want to allow having the
      * geometry interface defined only later.
      *
      * <p>Most circular dependencies do not need to be declared in this map because {@code ContentTest} already has a
-     * mechanism for detecting circular dependencies. However in some cases the mechanism is not sufficient or we want
+     * mechanism for detecting circular dependencies. However, in some cases the mechanism is not sufficient or we want
      * a different order.</p>
      */
     private final Map<Class<?>,Class<?>> skipDependencies;

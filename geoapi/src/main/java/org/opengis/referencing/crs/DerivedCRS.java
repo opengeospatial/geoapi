@@ -64,7 +64,7 @@ import static org.opengis.annotation.Specification.*;
  *   GeoAPI follows a similar path by <strong>not</strong> providing a {@code DerivedCRSType} code list.
  *   Instead, we recommend to implement the corresponding interface as documented in the above table.
  *   Then, Java expressions like {@code (baseCRS instanceof FooCRS)} provides the same capability
- *   than the code list with more flexibility. For example it allows to use a derived CRS of type “vertical”
+ *   than the code list with more flexibility. For example, it allows to use a derived CRS of type “vertical”
  *   with API expecting an instance of {@code VerticalCRS}.
  *
  * @author  Martin Desruisseaux (IRD)

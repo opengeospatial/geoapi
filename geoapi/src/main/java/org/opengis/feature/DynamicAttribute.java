@@ -104,7 +104,7 @@ public interface DynamicAttribute<V> extends Attribute<V> {
      *   <li>The collection may be <cite>live</cite> (changes in the collection are reflected in this attribute, and vis-versa).</li>
      * </ul>
      * This method does not mandate a particular approach.
-     * However implementations should document which policy they choose.
+     * However, implementations should document which policy they choose.
      * </div>
      *
      * @param  time  the date, Julian day or other means to represent a position in time.

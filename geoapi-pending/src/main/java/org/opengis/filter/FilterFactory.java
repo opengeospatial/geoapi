@@ -130,7 +130,7 @@ public interface FilterFactory<R,G,T> extends Factory {
      * <h4>Recommended restriction</h4>
      * The given value may be persisted with XML based technologies.
      * As an example a {@link Geometry} may be written out using GML.
-     * Consequently the value should be data objects such as strings, numbers, dates or geometries.
+     * Consequently, the value should be data objects such as strings, numbers, dates, or geometries.
      * It should not be state of operations.
      *
      * @param  <V>    the type of the value of the literal.

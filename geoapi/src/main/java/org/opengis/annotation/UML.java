@@ -82,7 +82,7 @@ public @interface UML {
      * <p><b>When older standard versions are used:</b></p>
      * The vast majority of non-deprecated GeoAPI methods leave {@code UML.version()} to its default value,
      * meaning that the {@code Specification} default version (usually latest OGC/ISO version) is used.
-     * However there is a few exceptions when an older version of an OGC or ISO standard is preferred.
+     * However, there is a few exceptions when an older version of an OGC or ISO standard is preferred.
      * Examples:
      *
      * <ul>

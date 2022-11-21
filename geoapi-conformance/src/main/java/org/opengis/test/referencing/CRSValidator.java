@@ -71,8 +71,8 @@ public class CRSValidator extends ReferencingValidator {
             VERTICAL_AXIS_NAME   = {"depth", "gravity-related height", "gravity-related depth"};
     /*
      * Note: the ISO table does not mention "gravity-related depth" as a standard name.
-     * However this name is used in the EPSG database and seems a natural complement to
-     * the "gravity-related height" standard name.
+     * However, this name is used in the EPSG database and seems a natural complement
+     * to the "gravity-related height" standard name.
      */
 
     /**
@@ -85,7 +85,7 @@ public class CRSValidator extends ReferencingValidator {
 
     /**
      * {@code true} if standard names shall be enforced when such names are defined by an OGC/ISO
-     * standard. For example the ISO 19111 standard constraints the {@link GeographicCRS} axis names
+     * standard. For example, the ISO 19111 standard constraints the {@link GeographicCRS} axis names
      * to <cite>"geodetic latitude"</cite>, <cite>"geodetic longitude"</cite> and <cite>"ellipsoidal
      * height"</cite> (if 3D) names. Those axis names will be verified by this validator, unless
      * this fields is explicitly set to {@code false}.

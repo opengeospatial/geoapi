@@ -67,7 +67,7 @@ import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
  * factories} given at construction time.
  *
  * <p>Many {@link ProjectedCRS} instances tested in this class use the same projections than the
- * {@link MathTransform} instances tested in {@link ParameterizedTransformTest}. However the latter
+ * {@link MathTransform} instances tested in {@link ParameterizedTransformTest}. However, the latter
  * test class expects (λ,φ) input coordinates in degrees and (<var>x</var>,<var>y</var>)
  * output coordinates in metres, while this {@code AuthorityFactoryTest} class expects
  * input and output coordinates in CRS-dependent units and axis order.</p>
@@ -318,8 +318,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
         verifyIdentification(crs, "WGS 84", null);
         /*
          * Coordinate system validation. In theory, the coordinate system is mandatory.
-         * This is verified by the above call to validate(crs). However the user could
-         * have set the Validator.requireMandatoryAttributes to 'false', in which case
+         * This is verified by the above call to validate(crs). However, the user could
+         * have set the Validator.requireMandatoryAttributes to `false`, in which case
          * we need to be lenient as the user wish.
          */
         final EllipsoidalCS cs = crs.getCoordinateSystem();
@@ -333,7 +333,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
             verifyIdentification(cs.getAxis(1), "Geodetic longitude", null);
         }
         /*
-         * Datum validation. Same rational about 'null' value as for the coordinate system.
+         * Datum validation. Same rational about `null` value as for the coordinate system.
          */
         final GeodeticDatum datum = crs.getDatum();
         if (datum != null) {
@@ -404,8 +404,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
         validators.validate(crs);
         /*
          * Coordinate system validation. In theory, the coordinate system is mandatory.
-         * This is verified by the above call to validate(crs). However the user could
-         * have set the Validator.requireMandatoryAttributes to 'false', in which case
+         * This is verified by the above call to validate(crs). However, the user could
+         * have set the Validator.requireMandatoryAttributes to `false`, in which case
          * we need to be lenient as the user wishes.
          */
         final GeographicCRS baseCRS = crs.getBaseCRS();

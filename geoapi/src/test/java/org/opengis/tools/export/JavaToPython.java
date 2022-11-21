@@ -279,7 +279,7 @@ class JavaToPython extends SourceGenerator {
                      * If the property type is a type not yet declared, we cannot reference that type directly.
                      * This situation happen with circular dependencies. For example Responsibility.extent is of
                      * type Extent. But the latter cannot be defined at the time Responsibility type is defined.
-                     * Consequently we have to put the Extent type between quotes, like 'Extent'.
+                     * Consequently, we have to put the Extent type between quotes, like `Extent`.
                      */
                     String importFrom = null;
                     if (typeName != null) {

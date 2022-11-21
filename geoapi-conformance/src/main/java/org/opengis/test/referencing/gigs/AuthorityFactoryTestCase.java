@@ -223,7 +223,7 @@ public strictfp abstract class AuthorityFactoryTestCase<T> extends GIGSTestCase 
     /**
      * Compares the given generic names with the given set of expected aliases.
      * This method verifies that the given collection contains at least the expected aliases.
-     * However the collection may contain additional aliases, which will be ignored.
+     * However, the collection may contain additional aliases, which will be ignored.
      *
      * @param message   the prefix of the message to show in case of failure.
      * @param expected  the expected aliases.

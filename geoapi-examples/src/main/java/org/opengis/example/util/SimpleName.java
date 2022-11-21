@@ -269,7 +269,7 @@ public class SimpleName implements GenericName {
 
     /**
      * The JNDI name wrapped by this {@code SimpleName}. While JNDI names are mutable,
-     * {@code GenericName} are expected to be immutable. Consequently users are advised
+     * {@code GenericName} are expected to be immutable. Consequently, users are advised
      * to not modify this object.
      *
      * @see #jndiName()

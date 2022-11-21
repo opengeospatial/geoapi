@@ -86,8 +86,8 @@ public class SimpleEnvelope implements Envelope {
 
     /**
      * Sets the coordinate values to the given corners. This method does not verify the corners CRS
-     * neither their dimensions; they must have been checked by the caller. However this method
-     * verifies that the lower values are not greater than upper values, since this simple class
+     * neither their dimensions; they must have been checked by the caller. However, this method
+     * verifies that the lower values are not greater than upper values, because this simple class
      * does not support envelopes crossing the anti-meridian.
      */
     private static void setCorners(final double[] coordinates,

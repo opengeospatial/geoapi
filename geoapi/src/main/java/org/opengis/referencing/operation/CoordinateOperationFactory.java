@@ -206,10 +206,9 @@ public interface CoordinateOperationFactory extends ObjectFactory {
 
     /**
      * Creates an operation method from a set of properties and a descriptor group.
-     * This factory method allows the creation of arbitrary {@code OperationMethod}
-     * instances. However some implementations may have a collection of build-in
-     * operation methods. For obtaining such build-in instance, see
-     * {@link #getOperationMethod(String)} instead.
+     * This factory method allows the creation of arbitrary {@code OperationMethod} instances.
+     * However, some implementations may have a collection of build-in operation methods.
+     * For obtaining such build-in instance, see {@link #getOperationMethod(String)} instead.
      *
      * <p>Some available properties are {@linkplain ObjectFactory listed there}.
      * Additionally, the following properties are understood by this constructor:</p>

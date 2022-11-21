@@ -193,7 +193,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * <var>H</var> (gravity-related height).
      *
      * <p>The GeoAPI conformance tests invoke this method only for abbreviations that should not need transliteration.
-     * For example the GeoAPI tests do not invoke this method for geodetic latitude and longitude axes, because some
+     * For example, the GeoAPI tests do not invoke this method for geodetic latitude and longitude axes, because some
      * implementations may keep the Greek letters φ and λ as specified in ISO 19111 while other implementations may
      * transliterate those Greek letters to the <var>P</var> and <var>L</var> Latin letters.</p>
      *

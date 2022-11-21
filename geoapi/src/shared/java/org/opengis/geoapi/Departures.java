@@ -46,7 +46,7 @@ import java.util.HashMap;
  */
 public class Departures {
     /**
-     * ISO 19115-2 classes merged with ISO 19115-1 classes. For example ISO 19115-2 defines {@code MI_Band}
+     * ISO 19115-2 classes merged with ISO 19115-1 classes. For example, ISO 19115-2 defines {@code MI_Band}
      * as an extension of ISO 19115-1 {@code MD_Band}, but GeoAPI merges those two types in a single interface
      * for simplicity.
      *
@@ -92,7 +92,7 @@ public class Departures {
     }
 
     /**
-     * Adds a class to be retrofitted into another class. For example ISO 19115-2 defines {@code MI_Band} as
+     * Adds a class to be retrofitted into another class. For example, ISO 19115-2 defines {@code MI_Band} as
      * an extension of ISO 19115-1 {@code MD_Band}, but GeoAPI merges those two types in a single interface
      * for simplicity.
      *
@@ -121,7 +121,7 @@ public class Departures {
 
     /**
      * Returns the name of a class merging the given class and its (usually) parent class.
-     * For example {@code "MI_Band_Type"} is renamed as {@code "MD_Band_Type"}.
+     * For example, {@code "MI_Band_Type"} is renamed as {@code "MD_Band_Type"}.
      * We do that because we use only one class for representing those two distinct ISO types.
      * Note that not all ISO 19115-2 types extend an ISO 19115-1 type, so we need to apply a case-by-case approach.
      * If there is no merge to apply, then this method returns the given name unchanged.
@@ -140,7 +140,7 @@ public class Departures {
 
     /**
      * Information about a type that may have been retrofitted into another type.
-     * For example ISO 19115-2 defines {@code MI_Band} as an extension of ISO 19115-1 {@code MD_Band},
+     * For example, ISO 19115-2 defines {@code MI_Band} as an extension of ISO 19115-1 {@code MD_Band},
      * but GeoAPI merges those two types in a single interface for simplicity.
      * Sometimes the merge also implies to change properties order.
      */

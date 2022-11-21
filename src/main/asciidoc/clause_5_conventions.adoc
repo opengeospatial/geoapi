@@ -81,7 +81,7 @@ All requirements and conformance tests that appear in this document are denoted 
 
 This specification uses `opengis` in the text for denoting a package or module in OGC namespace,
 but the fully qualified name depends on the programming language.
-For example the metadata package is spelled `org.opengis.metadata` in Java
+For example, the metadata package is spelled `org.opengis.metadata` in Java
 but only `opengis.metadata` (without `org` prefix) in Python.
 Except in language-specific notes, this specification uses the shorter form in the text
 and lets readers adapt to their programming language of interest.

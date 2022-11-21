@@ -121,7 +121,7 @@ public interface Expression<R,V> extends Function<R,V> {
      *
      * <h4>Use case</h4>
      * This method is useful when a client needs to narrow the type of values provided by an expression.
-     * For example a method doing spatial operations may accept only expressions returning geometry objects.
+     * For example, a method doing spatial operations may accept only expressions returning geometry objects.
      * A call to {@code expression.toValueType(Geometry.class)} gives a chance to detect early if an expression
      * is not suitable to spatial operations.
      *

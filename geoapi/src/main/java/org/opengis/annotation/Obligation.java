@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
 public enum Obligation implements ControlledVocabulary {
     /*
      * Implementation note: Enum or CodeList elements are usually declared with
-     * Obligation.CONDITIONAL.  However such declaration in the Obligation enum
+     * Obligation.CONDITIONAL. However, such declaration in the Obligation enum
      * causes a recursive dependency. Some compilers (like Oracle javac) accept
      * this recursive dependency while some other (Eclipse, Scala...) reject it.
      * For better portability, we have to omit the Obligation declarations here.

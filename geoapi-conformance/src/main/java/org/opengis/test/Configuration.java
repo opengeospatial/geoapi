@@ -64,9 +64,9 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  *
  * <ul>
  *   <li>Before each test is executed, {@link ImplementationDetails} can provide configuration information.
- *       For example an implementation can declare that it does not support the calculation of transform derivative.</li>
+ *       For example, an implementation can declare that it does not support the calculation of transform derivative.</li>
  *   <li>After each test is executed, {@link TestListener} can obtain the actual configuration used by the test.
- *       For example listeners can know which {@link Factory} instances were used.</li>
+ *       For example, listeners can know which {@link Factory} instances were used.</li>
  * </ul>
  *
  * This class provides {@link #get get}, {@link #put put} and {@link #remove remove} methods
@@ -456,7 +456,7 @@ public class Configuration implements Serializable {
          * <div class="note"><b>Example:</b>
          * ISO 19111 (the <cite>referencing by coordinates</cite> abstract model) specifies that the name of
          * the latitude axis in a geographic CRS shall be <cite>"Geodetic latitude"</cite> while ISO 19162
-         * (a.k.a <cite>Well Known Text 2</cite>) specifies <cite>"Latitude"</cite>. Consequently the GeoAPI
+         * (a.k.a <cite>Well Known Text 2</cite>) specifies <cite>"Latitude"</cite>. Consequently, the GeoAPI
          * conformance module allows implementer to disable the check for ISO 19111 conformance if their WKT
          * parser does not adapt the parsed CRS objects to the ISO 19111 axis naming.</div>
          *

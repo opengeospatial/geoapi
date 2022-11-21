@@ -26,7 +26,7 @@ and otherwise fallbacks on a language at implementer's choice.
 This specification makes no recommendation about the default or fallback languages
 because some programming languages provide their own mechanism
 (e.g. using _Language Range_ as defined by https://tools.ietf.org/html/rfc4647[RFC 4647 Matching of Language Tags]).
-Consequently GeoAPI delegates most internationalization types to the target language standard library, as shown in the following table.
+Consequently, GeoAPI delegates most internationalization types to the target language standard library, as shown in the following table.
 An example in <<InternationalString>> shows the use of `InternationalString` in the Java language.
 
 .Linguistic types mapping
@@ -55,5 +55,5 @@ or because the GeoAPI type is inspired by a similar effort in the target languag
 ====== Harmonization
 `InternationalString` as defined by GeoAPI provides the same functionality than ISO 19115 `PT_FreeText`.
 It can be applied to all ISO 19115 elements who's data type is `CharacterString` and domain is “free text”.
-Consequently GeoAPI uses the single `InternationalString` interface for the two ISO types
+Consequently, GeoAPI uses the single `InternationalString` interface for the two ISO types
 `LanguageCode` (from ISO 19103) and `PT_FreeText` (from ISO 19115).

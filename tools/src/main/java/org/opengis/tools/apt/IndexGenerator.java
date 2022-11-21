@@ -554,7 +554,7 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
                     if (separateWords) {
                         /*
                          * At this point we have detected that we may need to separate a word from numbers
-                         * (or conversely) as in "ISO_9660".  However we need to make an exception for the
+                         * (or conversely) as in "ISO_9660". However, we need to make an exception for the
                          * "1D", "2D" or "3D" suffixes, as in "COMPOUND_GEOGRAPHIC2D_VERTICAL".  Note that
                          * the "2D" suffix may or may not be at the end of the name, but we will insert an
                          * underscore only if the suffix is at the end of the name.

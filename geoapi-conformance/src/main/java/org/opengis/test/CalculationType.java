@@ -47,7 +47,7 @@ import org.opengis.test.referencing.TransformTestCase;
  *   <li>{@link ToleranceModifier#adjust(double[], DirectPosition, CalculationType)}</li>
  * </ul>
  *
- * For example if a precision of 10 centimetres is requested for a map projection, then that
+ * For example, if a precision of 10 centimetres is requested for a map projection, then that
  * tolerance threshold must be converted from metres to decimal degrees (approximately 1E-6°)
  * when testing the reverse projection. This enumeration allows {@link ToleranceModifier}
  * implementations to know when such conversion is needed.

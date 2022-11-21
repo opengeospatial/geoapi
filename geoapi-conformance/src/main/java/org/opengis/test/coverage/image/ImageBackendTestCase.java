@@ -50,7 +50,7 @@ import org.opengis.test.TestCase;
 /**
  * Base class for all tests defined in the {@code org.opengis.test.coverage.image} package.
  * This class is abstract for now because it does not yet define public API, and only
- * {@link ImageIOTestCase} extends it. However we may make it public in a future version
+ * {@link ImageIOTestCase} extends it. However, we may make it public in a future version
  * if we add tests for other kind of operations than Image I/O.
  *
  * @author  Martin Desruisseaux (Geomatys)

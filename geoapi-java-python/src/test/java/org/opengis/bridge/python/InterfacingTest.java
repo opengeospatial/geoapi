@@ -88,7 +88,7 @@ public final class InterfacingTest {
         }
         /*
          * Create a map of Python type names to Java classes. In this process, we are going to have name collisions
-         * as a result of prefix removal. For example "MD_Identifier" and "RS_Identifier" both become "Identifier".
+         * as a result of prefix removal. For example, "MD_Identifier" and "RS_Identifier" both become "Identifier".
          * However in such case, one of the types is deprecated. The 'deprecated' set will contain those deprecated
          * types that we need to omit for avoiding name collisions.
          */
@@ -190,7 +190,7 @@ public final class InterfacingTest {
      *
      * <p>The same calculation can be used for {@link java.util.LinkedHashMap} and
      * {@link java.util.HashSet} as well, which are built on top of {@code HashMap}.
-     * However it is not needed for {@link java.util.IdentityHashMap}.</p>
+     * However, it is not needed for {@link java.util.IdentityHashMap}.</p>
      *
      * @param  count  the number of elements to be put into the hash map or hash set.
      * @return the minimal initial capacity to be given to the hash map constructor.

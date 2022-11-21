@@ -37,7 +37,7 @@ import org.opengis.metadata.citation.Citation;
 
 /**
  * Base class of pseudo-factories that simulate a subset of the capabilities of a "real"
- * factory. For example a pseudo EPSG factory can be provided for running the tests with
+ * factory. For example, a pseudo EPSG factory can be provided for running the tests with
  * an implementation that do not support the creation of referencing objects from an EPSG
  * code.
  *

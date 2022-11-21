@@ -63,7 +63,7 @@
  *
  * <p>ISO 19111 defines three coordinate system <em>unions</em> in addition to the coordinate system <em>types</em>.
  * Each union enumerates the coordinate system types that can be associated to a CRS type.
- * However the {@code union} construct found in some languages like C/C++ is not available in Java.
+ * However, the {@code union} construct found in some languages like C/C++ is not available in Java.
  * GeoAPI workarounds this limitation in different ways:</p>
  *
  * <table class="ogc">
@@ -103,7 +103,7 @@
  *
  * @departure constraint
  *   ISO 19111 defines {@code GeodeticCS}, {@code EngineeringCS} and {@code ImageCS} unions.
- *   However the {@code union} construct found in some languages like C/C++ is not available in Java.
+ *   However, the {@code union} construct found in some languages like C/C++ is not available in Java.
  *   For each union, a different approach has been applied and documented in the {@code org.opengis.referencing.cs}
  *   package. In the particular case of {@code ImageCS}, the same type-safety objective can be obtained
  *   through a slight change in the interface hierarchy.

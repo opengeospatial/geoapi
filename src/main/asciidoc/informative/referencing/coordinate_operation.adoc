@@ -12,7 +12,7 @@ There is four kinds of coordinate operations in GeoAPI:
   Because those parameters have observational error
   and because transformation methods are only approximations of a complex reality,
   the coordinate transformation results also have errors.
-  Furthermore several transformations may exist for the same pair of coordinate reference systems,
+  Furthermore, several transformations may exist for the same pair of coordinate reference systems,
   differing in their method, parameter values, domain of validity and accuracy characteristics.
 * [red yellow-background]#TODO: Point motion operation.#
 * A _concatenated operation_ defines a sequential execution of any of above operations.

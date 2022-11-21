@@ -9,7 +9,7 @@ as omitted types (for example) can be inferred.
 ===== Omissions relative to expressions
 `Function` interface is omitted (actually retrofitted into the base `Expression` interface) for avoiding confusion with
 function interfaces provided natively by target platforms (such as the `java.​util.​function` package).
-Instead the `Function` properties are moved into the `Expression` parent interface because from a programming
+Instead, the `Function` properties are moved into the `Expression` parent interface because from a programming
 language point of view, all expressions – including `Literal` – can be viewed as a kind of function.
 The following partial UML diagrams illustrate the difference.
 
@@ -18,7 +18,7 @@ image::filter_function.svg[Partial UML for ISO and GeoAPI filter function]
 
 ===== Omissions relative to filters
 `Operator` interface is omitted for simplicity reason.
-Instead operators defined by GeoAPI extends directly the `Filter` interface.
+Instead, operators defined by GeoAPI extends directly the `Filter` interface.
 This approach avoid an indirection level.
 
 `Non­Id­Operator` and `Extension­Operator` interfaces are omitted for semantic reasons.
@@ -67,6 +67,6 @@ as a way to access those expressions without the need to make special cases for 
 ======
 The operand names vary in ISO 19143 specification because their types vary.
 But those types are often unions, which are materialized only by documentation in GeoAPI.
-Consequently the base `Expression` type is used almost everywhere,
+Consequently, the base `Expression` type is used almost everywhere,
 which make less useful to have heterogynous properties in sub-interfaces.
 ======

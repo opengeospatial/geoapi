@@ -90,7 +90,7 @@ public class ContentVerifier {
      * a safe implementation and because it would produce false positives anyway.
      *
      * <p>We take in account the type, not only the value instance, because implementations are free to implement
-     * more than one interface with the same class. For example the same {@code value} instance could implement
+     * more than one interface with the same class. For example, the same {@code value} instance could implement
      * both {@code Metadata} and {@code DataIdentification} interfaces.</p>
      */
     private static final class Element {
@@ -271,7 +271,7 @@ public class ContentVerifier {
     }
 
     /**
-     * Returns the sub-interfaces implemented by the given implementation class. For example is a property type
+     * Returns the sub-interfaces implemented by the given implementation class. For example if a property type
      * is {@code CoordinateReferenceSystem}, a given instance could implement the {@code GeographicCRS} subtype.
      *
      * @param  baseType        the property type.

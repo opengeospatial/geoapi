@@ -64,7 +64,7 @@ import org.opengis.annotation.Stereotype;
  * an exception will be thrown.
  *
  * <p>Current implementation assumes that XML element name, type name, property name and property type
- * name follow some naming convention. For example type names are suffixed with {@code "_Type"} in OGC
+ * name follow some naming convention. For example, type names are suffixed with {@code "_Type"} in OGC
  * schemas, while property type names are suffixed with {@code "_PropertyType"}.  This class throws an
  * exception if a type does not follow the expected naming convention. This requirement makes
  * implementation easier, by reducing the amount of {@link Map}s that we need to manage.</p>
@@ -468,7 +468,7 @@ public class SchemaInformation {
                     } else {
                         /*
                          * In the case of "(…)_Type", we will replace some ISO 19115-2 types by ISO 19115-1 types.
-                         * For example "MI_Band_Type" is renamed as "MD_Band_Type". We do that because we use only
+                         * For example, "MI_Band_Type" is renamed as "MD_Band_Type". We do that because we use only
                          * one class for representing those two distinct ISO types. Note that not all ISO 19115-2
                          * types extend an ISO 19115-1 type, so we need to apply a case-by-case approach.
                          */
@@ -689,7 +689,7 @@ public class SchemaInformation {
      * The map contains an entry associated to the {@code null} key for the class containing those properties.
      *
      * <p>The given {@code typeName} shall be the XML name, not the OGC/ISO name. They differ for abstract classes.
-     * For example the {@link org.opengis.metadata.citation.Party} type is named {@code "CI_Party"} is OGC/ISO models
+     * For example, the {@link org.opengis.metadata.citation.Party} type is named {@code "CI_Party"} is OGC/ISO models
      * but {@code "AbstractCI_Party"} in XML schemas.</p>
      *
      * @param  typeName  XML name of a type (e.g. {@code "MD_Metadata"}), or {@code null}.

@@ -190,7 +190,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
      *
      * <p>In order to keep the model simpler, this vertical CRS is also its own datum. Merging the CRS
      * and datum interfaces is usually not a recommended practice since many vertical CRS can have
-     * the same datum. However this particular class takes this approach because the {@code geoapi-examples}
+     * the same datum. However, this particular class takes this approach because the {@code geoapi-examples}
      * module is only a demonstration of how GeoAPI can be implemented in a few simple cases.
      * More complex applications are encouraged to store the datum in a separated object.</p>
      *
@@ -252,7 +252,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
      *
      * <p>In order to keep the model simpler, this temporal CRS is also its own datum. Merging the CRS
      * and datum interfaces is usually not a recommended practice since many temporal CRS can have
-     * the same datum. However this particular class takes this approach because the {@code geoapi-examples}
+     * the same datum. However, this particular class takes this approach because the {@code geoapi-examples}
      * module is only a demonstration of how GeoAPI can be implemented in a few simple cases.
      * More complex applications are encouraged to store the datum in a separated object.</p>
      *

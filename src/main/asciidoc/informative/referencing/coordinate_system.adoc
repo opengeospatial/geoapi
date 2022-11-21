@@ -5,12 +5,12 @@
 A Coordinate System (CS) contains the set of axes that spans a given coordinate space.
 Each axis defines an approximate direction (north, south, east, west, up, down, port, starboard, past, future, _etc._),
 units of measurement, minimal and maximal values, and what happen after reaching those extremum.
-For example in longitude case, after +180° the coordinate values continue at −180°.
+For example, in longitude case, after +180° the coordinate values continue at −180°.
 
 In addition to axis definitions, another important coordinate system characteristic is their type (`CartesianCS`, `SphericalCS`, _etc._).
 The CS type implies the set of mathematical rules for calculating geometric quantities such as angles, distances and surfaces.
 Usually the various CS subtypes do not define any new programmatic methods compared to the parent type, but are nevertheless important for type safety.
-For example many calculations or associations are legal only when all axes are perpendicular to each other.
+For example, many calculations or associations are legal only when all axes are perpendicular to each other.
 In such case the coordinate system type is restricted to `CartesianCS` in method signatures.
 
 ===== Associations with CRS

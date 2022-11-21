@@ -29,8 +29,8 @@ import org.opengis.example.geometry.SimpleDirectPosition;
  * implement the two interfaces by the same class.
  *
  * <p>Subclasses must implement the {@link #transform(DirectPosition, DirectPosition)} method.
- * All other transform methods are defined in terms of the above-cited method. However the
- * other {@code transform} methods may be overridden for performances reasons.</p>
+ * All other transform methods are defined in terms of the above-cited method.
+ * However, the other {@code transform} methods may be overridden for performances reasons.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

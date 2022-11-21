@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * <div class="note"><b>Note:</b>
  * the content of {@link #getValue()} may be persisted with XML based technologies.
  * As an example a {@link org.opengis.geometry.Geometry} may be written out using GML.
- * Consequently the value should be data objects such as strings, numbers, dates or geometries.
+ * Consequently, the value should be data objects such as strings, numbers, dates, or geometries.
  * It should not be state of operations.</div>
  *
  * @author  Chris Dillard (SYS Technologies)

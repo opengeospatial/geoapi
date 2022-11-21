@@ -77,7 +77,7 @@ import static org.opengis.annotation.Specification.*;
  *   workaround for introducing a base type for the {@code name}, {@code identifier}, {@code alias}
  *   and {@code remarks} properties without changing the {@code RS_ReferenceSystem} definition inherited
  *   from ISO 19115. Since GeoAPI replaces ISO 19115 CRS definitions by the ISO 19111 ones for providing a unified
- *   model, it does not need this workaround. Consequently GeoAPI merges {@code IO_IdentifiedObjectBase} and
+ *   model, it does not need this workaround. Consequently, GeoAPI merges {@code IO_IdentifiedObjectBase} and
  *   {@code IO_IdentifiedObject} into this single interface.
  *
  * @author  Martin Desruisseaux (IRD)
@@ -143,7 +143,7 @@ public interface IdentifiedObject {
 
     /**
      * An identifier which references elsewhere the object's defining information.
-     * Alternatively an identifier by which this object can be referenced.
+     * Alternatively, an identifier by which this object can be referenced.
      *
      * @return this object identifiers, or an empty collection if there is none.
      */

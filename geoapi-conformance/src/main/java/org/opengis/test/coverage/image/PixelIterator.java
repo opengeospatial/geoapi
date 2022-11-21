@@ -373,7 +373,7 @@ public strictfp class PixelIterator {
      * thrown with a detailed error message.
      *
      * <p>This method does not verify the image sizes, number of tiles, number of bands, color
-     * model or datatype. Consequently this method is robust to the following differences:</p>
+     * model or datatype. Consequently, this method is robust to the following differences:</p>
      *
      * <ul>
      *   <li>Differences in the ({@linkplain RenderedImage#getMinX() x},

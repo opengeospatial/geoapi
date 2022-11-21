@@ -21,4 +21,4 @@ GeoAPI maps the ISO types to standard types of the target languages without intr
 
 All ISO 19103 web types extend `CharacterString`.
 But it is not the case of equivalent objects provided by the standard Java library.
-Consequently a character string cannot easily be substituted by an anchor, file name or URI in GeoAPI for Java.
+Consequently, a character string cannot easily be substituted by an anchor, file name or URI in GeoAPI for Java.

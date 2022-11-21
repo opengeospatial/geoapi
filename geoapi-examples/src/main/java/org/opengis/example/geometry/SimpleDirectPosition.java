@@ -30,7 +30,7 @@ public class SimpleDirectPosition implements DirectPosition {
      * of this direct position.
      *
      * <p>This array is public for allowing more efficient coordinates operations, for example using
-     * the {@link java.util.Arrays} methods. However we encourage to use only the methods from
+     * the {@link java.util.Arrays} methods. However, we encourage to use only the methods from
      * the {@link DirectPosition} interface in most cases.</p>
      *
      * @see #getCoordinate()
