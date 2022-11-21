@@ -56,7 +56,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   2.3
  */
-public final strictfp class DescriptionsTest {
+public final class DescriptionsTest {
     /**
      * Whether to test the given type.
      */
@@ -92,7 +92,7 @@ public final strictfp class DescriptionsTest {
     /**
      * Ensures that every metadata interfaces have a description, and that there is no extra definitions.
      * This test is theoretically locale-sensitive since we search for the resources in the current locale.
-     * However it should works for every locales since the English locale is used as a fallback.
+     * However, it should works for every locales since the English locale is used as a fallback.
      */
     @Test
     public void testAll() {

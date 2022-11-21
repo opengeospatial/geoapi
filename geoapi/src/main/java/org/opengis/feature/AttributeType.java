@@ -65,14 +65,14 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * </table>
  *
  * <h2>Attribute characterization</h2>
- * An {@code Attribute} can be characterized by other attributes. For example an attribute that carries a measurement
+ * An {@code Attribute} can be characterized by other attributes. For example, an attribute that carries a measurement
  * (e.g. air temperature) may have another attribute that holds the measurement accuracy (e.g. ±0.1°C).
  * Such accuracy can be stored as a <cite>characteristic</cite> of the measurement attribute.
  *
  * <p>The {@link #characteristics()} method in this {@code AttributeType} interface returns a description of all
  * characteristics that attributes of this type may have. The actual characteristics values can be stored on a
  * record-by-record basis in the {@link Attribute#characteristics()} map.
- * However in the common case of characteristics having a constant value for all records in a dataset,
+ * However, in the common case of characteristics having a constant value for all records in a dataset,
  * the constant can be given by the characteristic {@linkplain #getDefaultValue() default value} and
  * {@code Attribute.characteristics()} may return an empty map (at implementation choice).</p>
  *

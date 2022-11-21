@@ -142,7 +142,7 @@
  * thus have integer coordinate values. In that case the attribute "pixel in cell"
  * will have the value "cell centre".</p>
  *
- * <p>Alternatively the image grid may be defined such that the
+ * <p>Alternatively, the image grid may be defined such that the
  * grid lines associate with the cell or pixel corners rather than the cell centres.
  * The cell centres will thus have noninteger coordinate values, the fractional parts
  * always being 0.5. ISO CD 19123 calls the grid points in this latter case "posts"
@@ -173,7 +173,7 @@
  * when a Geocentric CRS is used, e.g., in the calculation of satellite orbit and
  * ground positions from satellite observations. Although use of a Geocentric CRS
  * apparently obviates the need of an ellipsoid, the ellipsoid usually played a role
- * in the determination of the associated geodetic datum. Furthermore one or more
+ * in the determination of the associated geodetic datum. Furthermore, one or more
  * Geographic CRSs may be based on the same geodetic datum, which requires the correct
  * ellipsoid the associated with any given geodetic datum.</p>
  *

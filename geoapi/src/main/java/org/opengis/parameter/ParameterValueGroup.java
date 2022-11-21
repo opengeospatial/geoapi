@@ -119,7 +119,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * </ul>
      *
      * <p>This convenience method provides a way to get and set parameter values by name.
-     * For example the following idiom fetches a floating point value for the {@code "False northing"} parameter:</p>
+     * For example, the following idiom fetches a floating point value for the {@code "False northing"} parameter:</p>
      *
      * <blockquote><code>
      * double northing = <b>parameter</b>("False northing").{@linkplain ParameterValue#doubleValue() doubleValue}();

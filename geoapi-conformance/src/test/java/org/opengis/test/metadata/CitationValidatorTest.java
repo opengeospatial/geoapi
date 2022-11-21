@@ -46,7 +46,7 @@ import static org.opengis.test.Validators.validate;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class CitationValidatorTest {
+public class CitationValidatorTest {
     /**
      * Tests {@link CitationValidator#validate(CitationDate...)}.
      */

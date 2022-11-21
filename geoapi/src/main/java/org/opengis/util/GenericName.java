@@ -43,7 +43,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A sequence of identifiers rooted within the context of a {@linkplain NameSpace namespace}.
  * The job of a "name" is to associate that name with an {@link java.lang.Object}.
- * For example {@code GenericName} instances could be keys in a {@link java.util.HashMap},
+ * For example, {@code GenericName} instances could be keys in a {@link java.util.HashMap},
  * in which case the namespace is materialized by the {@code HashMap}.
  * Names are often used in the context of reading data from various formats such as XML, shapefiles or netCDF,
  * which have different constraints for names in their namespaces. When reading data from a file,

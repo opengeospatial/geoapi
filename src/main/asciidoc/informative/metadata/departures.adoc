@@ -6,7 +6,7 @@ A departure in the GeoAPI metadata packages from the published ISO 19115 standa
 added the types and properties defined in the specification ISO 19115-2 – _Extensions for acquisition and processing_.
 The latter was forced to create a number of interfaces to hold elements which naturally could occur directly in the interfaces defined by ISO 19115-1.
 We integrated such interfaces directly into the existing interfaces rather than adding complexity to the API which exists by historical accident.
-For example ISO 19115-2 defines a `MI_Band` interface which extends the `MD_Band` interface defined by ISO 19115-1,
+For example, ISO 19115-2 defines a `MI_Band` interface which extends the `MD_Band` interface defined by ISO 19115-1,
 with the addition of a `transferFunctionType` property (among others) for completing the `scaleFactor` and
 `offset` properties defined by ISO 19115-1. GeoAPI merges those two interfaces together,
 with annotations (<<annotations>>) on each property for declaring the originating standard.
@@ -30,7 +30,7 @@ The metadata interfaces merged in such way are:
 ===== Harmonization with ISO 19111
 Coordinate Reference Systems (CRS) are defined in details by the ISO 19111 standard.
 But the ISO 19115 metadata standards do not reference those CRS interfaces directly (except `VerticalCRS`).
-Instead the metadata standards reference CRS by their identifier (for example an EPSG code),
+Instead, the metadata standards reference CRS by their identifier (for example an EPSG code),
 optionally accompanied by a code telling whether the CRS type is geographic, projected, temporal, a compound of the above, a geographic identifier, _etc_.
 The ISO 19115 standard combines those two information in a `ReferenceSystem` interface.
 

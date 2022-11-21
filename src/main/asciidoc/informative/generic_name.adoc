@@ -4,7 +4,7 @@
 
 A `GenericName` is a sequence of identifiers rooted within the context of a namespace.
 `NameSpace` defines a domain in which names can be mapped to objects.
-For example names could be primary keys in a database table,
+For example, names could be primary keys in a database table,
 in which case the namespace is materialized by the table.
 Each storage (XML, shapefiles, netCDF, …) may have their own constraints for names in their namespaces.
 
@@ -98,7 +98,7 @@ The `aName` and `scopedName` properties in sub-interfaces are replaced by inheri
 ISO 19103 defines mapping methods from a name to the object identified by that name:
 `getObject()` in `GenericName` and numerous methods in `NameSpace`.
 Those methods are not included in GeoAPI interfaces.
-Instead we left these mappings to other frameworks, for example _Java Naming and Directory Interface_ (JNDI).
+Instead, we left these mappings to other frameworks, for example _Java Naming and Directory Interface_ (JNDI).
 An example in <<JNDI>> shows how some omitted methods can be implemented by JNDI in the Java language.
 
 ====== Additions

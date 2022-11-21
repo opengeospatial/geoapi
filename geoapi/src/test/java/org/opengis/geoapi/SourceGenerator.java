@@ -49,7 +49,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public abstract strictfp class SourceGenerator {
+public abstract class SourceGenerator {
     /**
      * Suffix of compiled class files.
      */
@@ -157,7 +157,7 @@ public abstract strictfp class SourceGenerator {
     }
 
     /**
-     * Returns the GeoAPI source directory for the given language. For example if the given language is {@code "java"},
+     * Returns the GeoAPI source directory for the given language. For example, if the given language is {@code "java"},
      * then this method returns the {@code "geoapi/src/main/java"} directory. An absolute path may be returned in order
      * to have a valid directory even if the default directory is not the root of the Maven project.
      *

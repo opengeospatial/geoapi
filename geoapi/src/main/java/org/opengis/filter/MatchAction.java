@@ -65,7 +65,7 @@ public enum MatchAction implements ControlledVocabulary {
     /**
      * One of the values in the collection shall satisfy the predicate.
      * Additional context may specify which value in the collection should satisfy the predicate.
-     * For example the index may be a parameter in an expression.
+     * For example, the index may be a parameter in an expression.
      */
     @UML(identifier="one", obligation=CONDITIONAL, specification=ISO_19143)
     ONE("one");

@@ -43,7 +43,7 @@ import static org.opengis.test.report.IdentifiedObjects.SEPARATOR;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class IdentifiedObjectsTest {
+public class IdentifiedObjectsTest {
     /**
      * Tests {@link IdentifiedObjects#compare(String[], String[])}.
      */

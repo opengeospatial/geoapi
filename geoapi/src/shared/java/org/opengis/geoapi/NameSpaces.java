@@ -43,7 +43,7 @@ import org.opengis.annotation.UML;
 /**
  * Mapping from XML prefixes or Java types to programmatic namespaces (modules or packages).
  * There is not necessarily a one-to-one relationship between XML namespaces, Java packages
- * or Python modules. For example we may merge some XML namespaces in a single programmatic
+ * or Python modules. For example, we may merge some XML namespaces in a single programmatic
  * namespace if keeping them separated would result in modules or packages with few classes.
  *
  * @author  Martin Desruisseaux (Geomatys)

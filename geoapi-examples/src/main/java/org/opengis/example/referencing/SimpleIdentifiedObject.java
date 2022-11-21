@@ -8,7 +8,6 @@
 package org.opengis.example.referencing;
 
 import java.util.Objects;
-import java.io.Serializable;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
@@ -23,18 +22,13 @@ import org.opengis.referencing.ReferenceIdentifier;
  *
  * <p>Since the {@linkplain #getName() name} is the only identifier contained by this class,
  * {@code SimpleIdentifiedObject} implements directly the {@link Identifier} interface.
- * Consequently this class can also be used as an {@code Identifier} implementation.</p>
+ * Consequently, this class can also be used as an {@code Identifier} implementation.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdentifier, Serializable {
-    /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = -6322393597086660764L;
-
+public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdentifier {
     /**
      * The organization or party responsible for definition and maintenance of the {@linkplain #code}.
      * The {@linkplain Citation#getTitle() citation title} will be used as {@linkplain #getCodeSpace() code space}.
@@ -42,7 +36,6 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * @see #getAuthority()
      * @see #getCodeSpace()
      */
-    @SuppressWarnings("serial")         // Not statically typed as Serializable.
     protected final Citation authority;
 
     /**
@@ -150,7 +143,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      */
     @Override
     public int hashCode() {
-        int hash = code.hashCode() ^ (int) serialVersionUID;
+        int hash = code.hashCode() ^ -86660764;
         if (authority != null) {
             hash += authority.hashCode() * 31;
         }

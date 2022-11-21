@@ -9,7 +9,6 @@ package org.opengis.example.metadata;
 
 import java.util.Locale;
 import java.util.Objects;
-import java.io.Serializable;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
@@ -28,12 +27,7 @@ import org.opengis.util.InternationalString;
  * @version 3.1
  * @since   3.1
  */
-public class SimpleCitation implements Citation, InternationalString, Serializable {
-    /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = 5270363538303937381L;
-
+public class SimpleCitation implements Citation, InternationalString {
     /**
      * The <cite>Open Geospatial Consortium</cite> authority.
      *
@@ -179,6 +173,6 @@ public class SimpleCitation implements Citation, InternationalString, Serializab
      */
     @Override
     public int hashCode() {
-        return title.hashCode() ^ (int) serialVersionUID;
+        return title.hashCode() ^ 303937381;
     }
 }

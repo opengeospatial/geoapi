@@ -164,7 +164,7 @@ public interface LocationType {
 
     /**
      * Parent location types (location types of which this location type is a sub-division).
-     * A location type can have more than one possible parent. For example the parent of a
+     * A location type can have more than one possible parent. For example, the parent of a
      * location type named <cite>“street”</cite> could be <cite>“locality”</cite>, <cite>“town”</cite>
      * or <cite>“administrative area”</cite>.
      *

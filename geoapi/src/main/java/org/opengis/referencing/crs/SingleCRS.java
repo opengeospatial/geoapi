@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  * and {@linkplain org.opengis.referencing.datum.VerticalDatum vertical} datums, the object will be the Earth.
  *
  * <p>The valid coordinate system type and the datum type are constrained by the CRS type.
- * For example {@code GeographicCRS} can be associated only to {@code EllipsoidalCS} and
+ * For example, {@code GeographicCRS} can be associated only to {@code EllipsoidalCS} and
  * {@code GeodeticDatum}.</p>
  *
  * @author  Martin Desruisseaux (IRD)

@@ -44,7 +44,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class ConfigurationTest {
+public class ConfigurationTest {
     /**
      * The {@link org.opengis.test.runner} package requires that all key names related to
      * enabling / disabling tests begin with {@code "is"} and end with {@code "Supported"}.

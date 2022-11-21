@@ -9,7 +9,6 @@ package org.opengis.example.geometry;
 
 import java.util.Arrays;
 import java.util.Objects;
-import java.io.Serializable;
 import org.opengis.geometry.Envelope;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.geometry.MismatchedDimensionException;
@@ -30,12 +29,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @version 3.1
  * @since   3.1
  */
-public class SimpleEnvelope implements Envelope, Serializable {
-    /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = -6248863166463143789L;
-
+public class SimpleEnvelope implements Envelope {
     /**
      * Coordinate values of lower and upper corners. The length of this array is twice the
      * number of dimensions. The first half contains the lower corner, while the second
@@ -92,8 +86,8 @@ public class SimpleEnvelope implements Envelope, Serializable {
 
     /**
      * Sets the coordinate values to the given corners. This method does not verify the corners CRS
-     * neither their dimensions; they must have been checked by the caller. However this method
-     * verifies that the lower values are not greater than upper values, since this simple class
+     * neither their dimensions; they must have been checked by the caller. However, this method
+     * verifies that the lower values are not greater than upper values, because this simple class
      * does not support envelopes crossing the anti-meridian.
      */
     private static void setCorners(final double[] coordinates,

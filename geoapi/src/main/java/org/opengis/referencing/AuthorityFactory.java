@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * that maintains definitions of authority codes. An <cite>authority code</cite> is a compact
  * string defined by an authority to reference a particular spatial reference object.
  *
- * <p>For example the <a href="http://www.epsg.org">European Petroleum Survey Group (EPSG)</a> maintains
+ * <p>For example, the <a href="http://www.epsg.org">European Petroleum Survey Group (EPSG)</a> maintains
  * a database of coordinate systems, and other spatial referencing objects, where each object has a code
  * number ID. For example, the EPSG code for a WGS84 Lat/Lon coordinate system is “4326”.</p>
  *
@@ -113,7 +113,7 @@ public interface AuthorityFactory extends Factory {
      * {@link org.opengis.referencing.ReferenceSystem} or {@link org.opengis.referencing.operation.CoordinateOperation}.
      *
      * <p>If the object type is known at compile time, then it is recommended to invoke the
-     * most precise method instead of this one. For example it is usually better to invoke
+     * most precise method instead of this one. For example, it is usually better to invoke
      * <code>{@linkplain org.opengis.referencing.crs.CRSAuthorityFactory#createCoordinateReferenceSystem
      * createCoordinateReferenceSystem}(code)</code> instead of {@code createObject(code)}
      * if the requested object is known to be a {@code CoordinateReferenceSystem} instance.</p>

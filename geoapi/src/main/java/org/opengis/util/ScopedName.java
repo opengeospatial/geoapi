@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A composite of a {@code LocalName} (as head) for locating another name space,
  * and a {@code GenericName} (as tail) valid in that name space.
- * For example if this name is {@code "org.opengis.util.Record"},
+ * For example, if this name is {@code "org.opengis.util.Record"},
  * then the {@linkplain #head() head} and {@linkplain #tail() tail} components are as below.
  * The {@linkplain #path() path} and {@linkplain #tip()} are also shown for completeness:
  *

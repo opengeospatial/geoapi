@@ -49,7 +49,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public final strictfp class ValueStructureTest {
+public final class ValueStructureTest {
     /**
      * Tests {@link ValueStructure#valueOf(Class)}.
      */

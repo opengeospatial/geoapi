@@ -31,7 +31,7 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 @RunWith(JUnit4.class)
-public strictfp class ProjectiveTransformTest extends AffineTransformTest {
+public class ProjectiveTransformTest extends AffineTransformTest {
     /**
      * The expected class of the {@link #transform} instance.
      * The default value is {@code ProjectiveTransform.class}.

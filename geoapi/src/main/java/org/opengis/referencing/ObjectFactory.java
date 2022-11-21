@@ -135,7 +135,7 @@ import org.opengis.util.GenericName;
  * <h2>Localization</h2>
  * Localizable attributes like {@code "remarks"} can be specified either as a single {@code InternationalString},
  * or as one or many {@code String}s associated to keys suffixed by a language and country code.
- * For example the {@code "remarks_fr"} key stands for remarks in {@linkplain Locale#FRENCH French} and the
+ * For example, the {@code "remarks_fr"} key stands for remarks in {@linkplain Locale#FRENCH French} and the
  * {@code "remarks_fr_CA"} key stands for remarks in {@linkplain Locale#CANADA_FRENCH French Canadian}.
  *
  * @departure harmonization

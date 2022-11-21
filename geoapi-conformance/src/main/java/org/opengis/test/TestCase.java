@@ -512,7 +512,7 @@ public strictfp abstract class TestCase {
 
     /**
      * Returns booleans indicating whether the given operations are enabled. By default, every
-     * operations are enabled. However if any {@link ImplementationDetails} instance found on the
+     * operations are enabled. However, if any {@link ImplementationDetails} instance found on the
      * classpath returns a {@linkplain ImplementationDetails#configuration configuration} map
      * having the value {@link Boolean#FALSE} for a given key, then the boolean value corresponding
      * to that key is set to {@code false}.

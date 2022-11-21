@@ -39,7 +39,7 @@ package org.opengis.annotation;
  *
  * <p>This enumeration is closely related to the ISO 19115 {@link org.opengis.metadata.Datatype} code list,
  * but not identical since ISO 19115 specifies <cite>datatype</cite> and <cite>stereotype</cite> as two
- * distinct information. Furthermore {@code Stereotype} needs to be defined as an {@code Enum} for
+ * distinct information. Furthermore, {@code Stereotype} needs to be defined as an {@code Enum} for
  * allowing usages in Java annotations</p>
  *
  * <p>This enumeration does not include the <cite>code list</cite> and <cite>enumeration</cite>

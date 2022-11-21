@@ -54,11 +54,6 @@ import org.opengis.referencing.cs.RangeMeaning;
  */
 public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSystemAxis {
     /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = 3541182320484949668L;
-
-    /**
      * The unit of measurement for degrees of angle. Will be removed in a future GeoAPI version
      * if a future Unit of Measurement implementation provides a predefined constant for this unit.
      */

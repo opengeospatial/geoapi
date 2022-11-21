@@ -156,7 +156,7 @@ public interface Metadata {
      *   code lists by equivalent objects from the standard Java library. The {@code PT_Locale} class, which is a
      *   container for above code-lists, is replaced by {@link Map} entries in order to avoid to introduce a new class
      *   and because the character set information is not as relevant in Java than in XML documents.
-     *   For example the character encoding information is irrelevant to {@code InternationalString}
+     *   For example, the character encoding information is irrelevant to {@code InternationalString}
      *   because the Java language fixes the encoding of all {@code String} instances to UTF-16.
      *
      *   <p>In addition ISO 19115:2014 defines {@code defaultLocale} and {@code otherLocale(s)} as separated attributes,

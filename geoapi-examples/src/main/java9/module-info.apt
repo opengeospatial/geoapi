@@ -12,7 +12,7 @@ GeoAPI examples
 * Metadata
 
   The <<<org.opengis.metadata>>> package and sub-packages contain a large amount of interfaces,
-  which may give the impression that implementing metadata is very tedious. However the
+  which may give the impression that implementing metadata is very tedious. However, the
   <<<java.lang.reflect.Proxy>>> class can provide dynamically generated implementations.
   The metadata example in this module shows how to implement every metadata interfaces
   with only two small classes.
@@ -21,7 +21,7 @@ GeoAPI examples
 * Referencing
 
   The ISO 19111 model contains lot of details, some of them being ignored by existing libraries.
-  For example some libraries make no distinction between:
+  For example, some libraries make no distinction between:
 
     * <Ellipsoid> and <Geodetic Datum>
 

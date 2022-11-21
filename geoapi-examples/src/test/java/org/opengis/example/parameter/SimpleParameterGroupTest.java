@@ -23,7 +23,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class SimpleParameterGroupTest {
+public class SimpleParameterGroupTest {
     /**
      * Tolerance factor for comparison of floating point numbers
      * that are expected to be strictly equal.

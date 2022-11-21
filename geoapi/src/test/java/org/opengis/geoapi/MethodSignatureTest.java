@@ -54,7 +54,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public final strictfp class MethodSignatureTest extends SourceGenerator {
+public final class MethodSignatureTest extends SourceGenerator {
     /**
      * Returns {@code true} if the given field or method is public from a GeoAPI point of view.
      */
@@ -107,7 +107,7 @@ public final strictfp class MethodSignatureTest extends SourceGenerator {
             } else if (!identifier.equals("MD_CharacterSetCode")) {
                 /*
                  * We expect deprecated methods to be legacy from older standards.
-                 * Consequently their version number shall not be the default one
+                 * Consequently, their version number shall not be the default one
                  * (except if we have only one version, as in old OGC documents).
                  *
                  * We skip MD_CharacterSetCode because that code list has not been

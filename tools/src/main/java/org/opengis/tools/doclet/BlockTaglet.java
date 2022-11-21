@@ -73,8 +73,8 @@ abstract class BlockTaglet implements Taglet {
     /**
      * Invoked when the doclet initializes this taglet. The {@code doclet} argument is the {@link FlushableDoclet}
      * class loaded by the doclet class loader. This is <strong>not</strong> the same than {@code FlushableDoclet}
-     * seen from this taglet, because of different class loaders. Consequently we cannot access fields directly;
-     * we have to use interfaces and methods defined by the standard Java library.
+     * seen from this taglet, because of different class loaders. Consequently, we cannot access fields directly.
+     * We have to use interfaces and methods defined by the standard Java library.
      *
      * @param env     the environment in which the doclet and taglet are running.
      * @param doclet  the doclet that instantiated this taglet.

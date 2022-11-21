@@ -40,11 +40,6 @@ import org.opengis.referencing.datum.VerticalDatumType;
  */
 public abstract class SimpleCRS extends SimpleIdentifiedObject implements SingleCRS, CoordinateSystem {
     /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = 4203423453709225243L;
-
-    /**
      * The coordinate system axes. The length of this array is the coordinate system dimension.
      *
      * @see #getDimension()
@@ -121,11 +116,6 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
      */
     public static class Geographic extends SimpleCRS implements GeographicCRS, EllipsoidalCS {
         /**
-         * For cross-version compatibility.
-         */
-        private static final long serialVersionUID = -3574562964980541886L;
-
-        /**
          * The WGS84 CRS, as defined by EPSG:4326. The axis order is (φ,λ).
          */
         public static final GeographicCRS WGS84 = new Geographic(SimpleCitation.EPSG, "WGS 84",
@@ -200,7 +190,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
      *
      * <p>In order to keep the model simpler, this vertical CRS is also its own datum. Merging the CRS
      * and datum interfaces is usually not a recommended practice since many vertical CRS can have
-     * the same datum. However this particular class takes this approach because the {@code geoapi-examples}
+     * the same datum. However, this particular class takes this approach because the {@code geoapi-examples}
      * module is only a demonstration of how GeoAPI can be implemented in a few simple cases.
      * More complex applications are encouraged to store the datum in a separated object.</p>
      *
@@ -209,11 +199,6 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
      * @since   3.1
      */
     public static class Vertical extends SimpleCRS implements VerticalCRS, VerticalCS, VerticalDatum {
-        /**
-         * For cross-version compatibility.
-         */
-        private static final long serialVersionUID = -2188245601933449264L;
-
         /**
          * The type of this vertical datum.
          */
@@ -267,7 +252,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
      *
      * <p>In order to keep the model simpler, this temporal CRS is also its own datum. Merging the CRS
      * and datum interfaces is usually not a recommended practice since many temporal CRS can have
-     * the same datum. However this particular class takes this approach because the {@code geoapi-examples}
+     * the same datum. However, this particular class takes this approach because the {@code geoapi-examples}
      * module is only a demonstration of how GeoAPI can be implemented in a few simple cases.
      * More complex applications are encouraged to store the datum in a separated object.</p>
      *
@@ -276,11 +261,6 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
      * @since   3.1
      */
     public static class Temporal extends SimpleCRS implements TemporalCRS, TimeCS, TemporalDatum {
-        /**
-         * For cross-version compatibility.
-         */
-        private static final long serialVersionUID = -6447295405309137301L;
-
         /**
          * The date and time origin of this temporal datum.
          */

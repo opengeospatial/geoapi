@@ -50,8 +50,8 @@ import org.opengis.example.referencing.SimpleIdentifiedObject;
  *
  * Other methods can be ignored, since they are metadata or methods designed for parameter values
  * of other kind than {@code double}. To be strict, all methods working with any value type other
- * than {@code double} should throw an {@link InvalidParameterTypeException}. However this
- * implementation is {@linkplain #LENIENT lenient}.
+ * than {@code double} should throw an {@link InvalidParameterTypeException}.
+ * However, this implementation is {@linkplain #LENIENT lenient}.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -111,11 +111,6 @@ public class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = -127301955366750847L;
-
-    /**
      * Controls whatever this implementation can convert values between the {@code double} type
      * and other types. If {@code false}, methods {@link #intValue()}, {@link #intValueList()},
      * {@link #doubleValueList()}, {@link #booleanValue()} and {@link #stringValue()} - together
@@ -166,7 +161,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
     /**
      * Returns the descriptor of the parameter value. Since this simple class implements both the
      * {@linkplain ParameterValue value} and the {@linkplain ParameterDescriptor descriptor}
-     * interfaces, this method returns {@code this}. However more sophisticated libraries are
+     * interfaces, this method returns {@code this}. However, more sophisticated libraries are
      * likely to return a different object.
      *
      * @return {@code this} descriptor.
@@ -556,7 +551,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * <div class="note"><b>Implementation note:</b>
      * since this simple class implements both the {@linkplain ParameterValue value} and the
      * {@linkplain ParameterDescriptor descriptor} interfaces, this method is very similar to
-     * the {@link #clone()} method. However in more sophisticated libraries, the
+     * the {@link #clone()} method. However, in more sophisticated libraries, the
      * {@link ParameterDescriptor#createValue()} and {@link ParameterValue#clone()}
      * methods are likely to be defined in different objects.</div>
      *

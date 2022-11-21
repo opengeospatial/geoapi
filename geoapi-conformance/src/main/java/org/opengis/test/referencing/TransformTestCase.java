@@ -80,7 +80,7 @@ import static org.opengis.test.Assert.*;
  *       the {@code TransformTestCase} object.</li>
  *   <li>The methods in this class do not {@linkplain org.opengis.test.Validators#validate(MathTransform)
  *       validate} the transform. It is caller responsibility to validate the transform if wanted.</li>
- *   <li>Unless otherwise indicated, every {@code verify} methods are independent. For example invoking
+ *   <li>Unless otherwise indicated, every {@code verify} methods are independent. For example, invoking
  *       {@link #verifyConsistency(float[])} does not imply a call to {@link #verifyInverse(float[])}
  *       or {@link #verifyDerivative(double[])}. The later methods must be invoked explicitly if wanted.</li>
  * </ul>
@@ -515,7 +515,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
              * which contain the result of the transform performed by the application under testing.
              * Nevertheless we overwrite the 'target' point with the 'expected' coordinate provided
              * in argument to this method. It is not necessarily more accurate since the expected
-             * coordinates are often provided with limited precision. However this allow more
+             * coordinates are often provided with limited precision. However, this allow more
              * consistent behavior.
              */
             if (inverse != null) {
@@ -1544,7 +1544,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * Invoked by all {@code assertCoordinateEqual(…)} methods before two positions are compared.
      * This method allows subclasses to replace some equivalent coordinate values by a unique value.
-     * For example implementations may ensure that longitude values are contained in the ±180°
+     * For example, implementations may ensure that longitude values are contained in the ±180°
      * range, applying 360° shifts if needed.
      *
      * <p>The default implementation does nothing. Subclasses can modify the {@code actual} coordinate

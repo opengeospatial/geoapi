@@ -160,7 +160,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * The tolerance threshold for comparing the derivative coefficients. In each column of the
      * derivative matrix of a map projection, there is typically one value greater than 100000
      * (100 km - same order of magnitude than the transformed coordinate values) and all other
-     * values are close to zero. However we cannot use the {@link #TRANSFORM_TOLERANCE} value
+     * values are close to zero. However, we cannot use the {@link #TRANSFORM_TOLERANCE} value
      * in every cases because the expected derivative coefficients are computed using a numerical
      * approximation. Some empirical tests have show that the difference between <cite>forward
      * difference</cite> and <cite>backward difference</cite> can be close to 0.25, so we must

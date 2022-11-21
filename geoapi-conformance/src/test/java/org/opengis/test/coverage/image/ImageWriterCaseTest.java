@@ -49,7 +49,7 @@ import static org.junit.Assume.*;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class ImageWriterCaseTest extends ImageWriterTestCase {
+public class ImageWriterCaseTest extends ImageWriterTestCase {
     /**
      * Creates a new test case.
      */

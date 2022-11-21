@@ -245,7 +245,7 @@ public interface GenericCurve {
      *
      * @departure draft
      *   In the ISO 19107:2003 specification, the arguments were
-     *   {@link org.opengis.geometry.coordinate.Position} objects. However in the ISO 19107:2008
+     *   {@link org.opengis.geometry.coordinate.Position} objects. However, in the ISO 19107:2008
      *   draft specification, the type has been changed to {@link DirectPosition}.
      *
      * @param point1 The first point, or {@code null} for the

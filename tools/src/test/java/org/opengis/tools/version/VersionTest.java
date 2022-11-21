@@ -42,7 +42,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public final strictfp class VersionTest {
+public final class VersionTest {
     /**
      * Tests the version numbers having the documented pattern.
      * This is by contrast with informal pattern that we could

@@ -42,7 +42,7 @@ import org.junit.*;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class ValidatorTest {
+public class ValidatorTest {
     /**
      * Verifies that {@link NameValidator#validate(InternationalString)} doesn't throw
      * unexpected exceptions.

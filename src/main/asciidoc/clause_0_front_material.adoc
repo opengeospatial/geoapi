@@ -31,7 +31,7 @@ There is various libraries for helping developers to process geospatial data fro
 But the proliferation of API variations degrade interoperability.
 Since each library defines its own Application Programming Interface (API),
 the choice of a particular library result in a vendor lock-in situation even with open-source softwares.
-For example it is difficult for a Web Map Service (WMS) implementation to replace its map projection engine
+For example, it is difficult for a Web Map Service (WMS) implementation to replace its map projection engine
 if all available engines use incompatible APIs.
 Standard API in programmatic language can reduce such vendor lock-in by providing a layer which separates client code,
 which call the API, from library code, which implements the API.
@@ -42,7 +42,7 @@ Clients can use those APIs without concern for the particular implementation whi
 GeoAPI interfaces are derived from OGC/ISO conceptual models described by Unified Modeling Language (UML) diagrams.
 The XML schemas are generally not used (except when there is no UML diagrams describing the model)
 because they carry XML-specific constraints that do not apply to programming languages.
-For example querying the coordinate system associated to a Coordinate Reference System (CRS) is a single method call in GeoAPI.
+For example, querying the coordinate system associated to a Coordinate Reference System (CRS) is a single method call in GeoAPI.
 But this single operation would have required more than 50 lines of code if the API was generated
 from Geographic Markup Language (GML) schema instead of from the UML diagrams of abstract models.
 

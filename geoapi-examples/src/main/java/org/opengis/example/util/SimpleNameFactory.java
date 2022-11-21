@@ -92,7 +92,7 @@ public class SimpleNameFactory implements NameFactory {
 
     /**
      * Creates an international string. The simple implementations in the {@code org.opengis.example}
-     * packages accept only one locale. Consequently this factory method will select only one string
+     * packages accept only one locale. Consequently, this factory method will select only one string
      * in the given map: the one which is associated to the closest match of this
      * {@linkplain #locale factory locale}.
      */

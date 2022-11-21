@@ -34,9 +34,9 @@ import org.opengis.example.geometry.SimpleDirectPosition;
  * </ul>
  *
  * <b>Performance note:</b>
- * This implementation is known to be slow. However the intent is to be pedagogic, not to be
- * efficient. Performance enhancements are left to implementers (<i>Tip:</i> override all
- * {@code transform} methods expecting array arguments).
+ * This implementation is known to be slow. However, the intent is to be pedagogic, not to be efficient.
+ * Performance enhancements are left to implementers
+ * (<i>Tip:</i> override all {@code transform} methods expecting array arguments).
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -45,11 +45,6 @@ import org.opengis.example.geometry.SimpleDirectPosition;
  * @see SimpleTransformFactory#createAffineTransform(Matrix)
  */
 public class ProjectiveTransform extends SimpleTransform {
-    /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = -6681647845536764717L;
-
     /**
      * The matrix used for performing the coordinate conversions.
      */
@@ -157,7 +152,7 @@ public class ProjectiveTransform extends SimpleTransform {
 
     /**
      * Gets the derivative of this transform. In the particular case of linear transforms,
-     * the derivative is the same at every points. Consequently the {@code point} argument
+     * the derivative is the same at every points. Consequently, the {@code point} argument
      * is ignored.
      *
      * @param  point  ignored for a linear transform.

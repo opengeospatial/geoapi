@@ -41,7 +41,7 @@ package org.opengis.style;
  * Visitor pattern).</p>
  *
  * <p>A typical use would be to transcribe a style into a specific format, e.g. XML or SQL.
- * Alternatively it may be to extract specific information from the Style structure, for example a list of all fills.
+ * Alternatively, it may be to extract specific information from the Style structure, for example a list of all fills.
  * Finally a a style visitor is often used (in conjunction with a factory) in the production of a
  * copy; or slightly modified copy of the original style.</p>
  *

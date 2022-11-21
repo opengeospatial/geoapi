@@ -43,7 +43,7 @@ import static org.opengis.annotation.Specification.*;
  * Transforms multi-dimensional coordinate points. A {@code MathTransform} is an object
  * that actually does the work of applying a {@linkplain Formula formula} to coordinate values.
  * The math transform does not know or care how the coordinates relate to positions in the real world.
- * For example the affine transform applies a matrix to the coordinates without knowing how what it is doing
+ * For example, the affine transform applies a matrix to the coordinates without knowing how what it is doing
  * relates to the real world. So if the matrix scales <var>z</var> values by a factor of 1000,
  * then it could be converting metres into millimetres, or it could be converting kilometres into metres.
  *
@@ -260,9 +260,9 @@ public interface MathTransform {
      *
      * @param  point the coordinate point where to evaluate the derivative. Null
      *         value is accepted only if the derivative is the same everywhere.
-     *         For example affine transform accept null value since they produces
-     *         identical derivative no matter the coordinate value. But most map
-     *         projection will requires a non-null value.
+     *         For example, affine transform accept null value since they produces
+     *         identical derivative no matter the coordinate value.
+     *         But most map projection will requires a non-null value.
      * @return the derivative at the specified point (never {@code null}).
      *         This method never returns an internal object: changing the matrix
      *         will not change the state of this math transform.

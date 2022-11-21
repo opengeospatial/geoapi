@@ -35,7 +35,7 @@ package org.opengis.geometry;
 /**
  * Indicates that an operation cannot be completed properly because
  * of a mismatch in the dimensions of an argument given to a method.
- * For example this exception may be thrown if a method expects a two-dimensional {@link DirectPosition},
+ * For example, this exception may be thrown if a method expects a two-dimensional {@link DirectPosition}
  * but the {@linkplain DirectPosition#getDimension() dimension} of a given position is 3.
  *
  * @author  Martin Desruisseaux (IRD)

@@ -89,7 +89,7 @@ public interface CanvasState {
      * Returns the Coordinate Reference System associated with the
      * display of the {@linkplain Canvas canvas}. The display CRS
      * {@linkplain CoordinateReferenceSystem#getCoordinateSystem has a Coordinate System}
-     * corresponding to the geometry of the display device. For example flat video monitors
+     * corresponding to the geometry of the display device. For example, flat video monitors
      * are associated to {@linkplain CartesianCS cartesian CS} while planetarium may be
      * associated to {@linkplain SphericalCS spherical CS}. Axis units are typically (but
      * are not restricted to) some linear units like 1/72 of inch.

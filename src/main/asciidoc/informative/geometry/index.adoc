@@ -24,7 +24,7 @@ The `Envelope` type represents the lower and upper extreme values along each axi
 This type is frequently conflated with a bounding rectilinear box but the two types differ conceptually.
 The `Envelope` type in ISO 19107 provides methods to obtain the "corners" of the envelope as `DirectPosition` instances.
 However, users should note that these positions might not have any meaning in physical space.
-For example the corners could be outside the Coordinate Reference System (CRS) domain of validity
+For example, the corners could be outside the Coordinate Reference System (CRS) domain of validity
 even if the feature itself is fully inside that domain.
 The corner `DirectPosition` instances are acting, for convenience,
 as data containers for tuples of coordinates but not as representations of an actual position.

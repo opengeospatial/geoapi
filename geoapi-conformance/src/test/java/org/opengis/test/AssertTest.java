@@ -46,7 +46,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class AssertTest {
+public class AssertTest {
     /**
      * Tests {@link Assert#assertUnicodeIdentifierEquals(String, CharSequence, CharSequence, boolean)}.
      */

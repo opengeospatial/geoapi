@@ -8,7 +8,6 @@
 package org.opengis.example.coverage;
 
 import java.util.Arrays;
-import java.io.Serializable;
 import java.awt.Rectangle;
 
 import org.opengis.coverage.grid.GridEnvelope;
@@ -29,12 +28,7 @@ import org.opengis.coverage.grid.GridCoordinates;
  *
  * @since 3.1
  */
-public class SimpleGridEnvelope implements GridEnvelope, Serializable {
-    /**
-     * Serial number for inter-operability with different versions.
-     */
-    private static final long serialVersionUID = 1487728226944612950L;
-
+public class SimpleGridEnvelope implements GridEnvelope {
     /**
      * Minimum and maximum grid coordinates. The first half contains minimum coordinates (inclusive),
      * while the last half contains maximum coordinates (<strong>inclusive</strong>).
@@ -163,7 +157,7 @@ public class SimpleGridEnvelope implements GridEnvelope, Serializable {
      */
     @Override
     public int hashCode() {
-        return Arrays.hashCode(index) ^ (int) serialVersionUID;
+        return Arrays.hashCode(index) ^ 944612950;
     }
 
     /**

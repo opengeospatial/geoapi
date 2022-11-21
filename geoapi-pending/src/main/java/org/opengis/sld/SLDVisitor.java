@@ -45,7 +45,7 @@ import org.opengis.style.StyleVisitor;
  * Visitor pattern).
  * <p>
  * A typical use would be to transcribe a sld into a specific format, e.g. XML or SQL.
- * Alternatively it may be to extract specific information from the SLD structure, for example a list of all fills.
+ * Alternatively, it may be to extract specific information from the SLD structure, for example a list of all fills.
  * Finally a a sld visitor is often used (in conjunction with a factory) in the production of a
  * copy; or slightly modified copy of the original sld.
  *

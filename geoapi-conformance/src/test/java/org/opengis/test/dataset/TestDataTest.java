@@ -44,7 +44,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public final strictfp class TestDataTest {
+public final class TestDataTest {
     /**
      * Tests {@link TestData#content()} on all enumeration values.
      * If a file does not have the expected length, an exception will be thrown here.

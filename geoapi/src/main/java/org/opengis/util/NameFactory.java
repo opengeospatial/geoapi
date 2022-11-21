@@ -160,7 +160,7 @@ public interface NameFactory extends Factory {
      * separator inferred from the given scope, or an implementation-dependent default separator if
      * the given scope is null.
      *
-     * <p>For example if the {@code scope} argument is the namespace {@code "urn:ogc:def"}
+     * <p>For example, if the {@code scope} argument is the namespace {@code "urn:ogc:def"}
      * with {@code ":"} as the separator, and if the {@code name} argument is the string
      * {@code "crs:epsg:4326"}, then the result is a {@linkplain ScopedName scoped name}
      * having a {@linkplain GenericName#depth depth} of 3, which is the length of the list

@@ -104,7 +104,7 @@ final class IdentifiedObjects {
         if (s2 == null) return -1;
         /*
          * The ASCII value of the underscore character is greater than 'Z' but lower than 'a',
-         * which sometimes produce unexpected sort results. For example "Foo_bar" is sorted
+         * which sometimes produce unexpected sort results. For example, "Foo_bar" is sorted
          * between "FooBar" and "Foobar". The space character produces more consistent sort
          * results because its ASCII value is less than any printable character.
          */

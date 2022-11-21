@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Thrown when an unexpected parameter was found in a {@linkplain ParameterDescriptorGroup parameter group}.
- * For example this exception may be thrown at construction time if the same parameter name is used twice.
+ * For example, this exception may be thrown at construction time if the same parameter name is used twice.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0

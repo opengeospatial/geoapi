@@ -48,7 +48,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class ImageReaderCaseTest extends ImageReaderTestCase {
+public class ImageReaderCaseTest extends ImageReaderTestCase {
     /**
      * Creates a new test case.
      */

@@ -32,7 +32,7 @@ In the ISO 19111 specification, only `SingleCRS` has an association to `coordina
 GeoAPI moves this association to the `Coordinate­Reference­System` parent interface for user convenience,
 because coordinate system (CS) dimension and axes are frequently requested information
 and will always be available, directly or indirectly, even for `CompoundCRS`.
-However only coordinate systems associated to `SingleCRS` can be instances of ISO 19111 concrete subtypes
+However, only coordinate systems associated to `SingleCRS` can be instances of ISO 19111 concrete subtypes
 (`CartesianCS`, `SphericalCS`, `VerticalCS`, _etc._);
 it is not possible to assign a standard concrete type to the coordinate system of a `CompoundCRS`.
 For the latter case, users see only the abstract `CoordinateSystem` type which serves merely as an axis container.
@@ -77,7 +77,7 @@ to enable the user to establish which of the two parameters was used to define t
 ===== Omitted unions
 
 ISO 19111 defines `GeodeticCS`, `EngineeringCS` and `DerivedProjectedCS` unions for type safety.
-For example the `GeodeticCS` union ensures that a `GeodeticCRS` can only be associated to a
+For example, the `GeodeticCS` union ensures that a `GeodeticCRS` can only be associated to a
 `CartesianCS`, an `EllipsoidalCS` or a `SphericalCS`.
 Those unions have been omitted from GeoAPI because unions are not supported in Java language,
 and the Python language does not enforce type safety.

@@ -57,10 +57,10 @@ import static org.junit.Assume.*;
 /**
  * Base class for testing {@link ImageReader} implementations. This test reads different regions and
  * bands of an image at different sub-sampling levels, and compares the results with the complete image.
- * If the image reader can also provide GeoAPI metadata objects, then this class will verify
- * the consistency of some basic attributes. For example it will verify that the {@linkplain
- * GridEnvelope grid envelope} (if any) is consistent with the image
- * {@linkplain ImageReader#getWidth(int) width} and {@linkplain ImageReader#getHeight(int) height}.
+ * If the image reader can also provide GeoAPI metadata objects,
+ * then this class will verify the consistency of some basic attributes.
+ * For example, it will verify that the {@linkplain GridEnvelope grid envelope} (if any) is consistent with
+ * the image {@linkplain ImageReader#getWidth(int) width} and {@linkplain ImageReader#getHeight(int) height}.
  *
  * <p>To use this test, subclasses need to set the {@link #reader} field to a non-null value in the
  * {@link #prepareImageReader(boolean)} method. The {@linkplain ImageReader#getInput() reader input}

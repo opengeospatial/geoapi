@@ -106,7 +106,7 @@ public interface Element {
      * Identifier of a measure fully described elsewhere.
      * The full description is given by {@link #getMeasure()},
      * but that description may not be available to this {@code Element}.
-     * Instead the whole description may be found within a measure register or catalogue,
+     * Instead, the whole description may be found within a measure register or catalogue,
      * in which case this reference can be used for finding the whole description.
      *
      * <p>If a full measure is {@linkplain #getMeasure() contained in this element},

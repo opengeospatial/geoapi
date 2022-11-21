@@ -18,10 +18,10 @@ This construct is used where appropriate, but shall be considered only as a hint
 It may appear in a mandatory property if that property was optional in the parent interface.
 Conversely, absence of `Optional` construct is not a guarantee that the value will never be null.
 Some properties fall in gray area, where they are _usually_ not null but may be null in some rare situations.
-For example the `ellipsoid` property of a Geodetic Reference Frame is mandatory when used in the context of
+For example, the `ellipsoid` property of a Geodetic Reference Frame is mandatory when used in the context of
 geographic or projected coordinate reference systems, which are by far the most common cases.
 Even when used in other contexts, the ellipsoid is optional but still recommended.
-Consequently GeoAPI does not use the `Optional` construct for the `ellipsoid` property
+Consequently, GeoAPI does not use the `Optional` construct for the `ellipsoid` property
 in order to keep the most common usages simpler, but robust applications should be prepared to handle a null value.
 Developers should refer to the API documentation for the policy on null values.
 

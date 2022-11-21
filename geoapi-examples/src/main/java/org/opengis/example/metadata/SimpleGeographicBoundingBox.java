@@ -9,7 +9,6 @@ package org.opengis.example.metadata;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.io.Serializable;
 import java.awt.geom.Rectangle2D;
 
 import org.opengis.metadata.extent.Extent;
@@ -26,12 +25,7 @@ import org.opengis.metadata.extent.GeographicBoundingBox;
  * @version 3.1
  * @since   3.1
  */
-public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent, Serializable {
-    /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = -1903587394190508333L;
-
+public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent {
     /**
      * An extent and a bounding box ranging from 180°W to 180°E and 90°S to 90°N.
      */
@@ -224,7 +218,7 @@ public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Exten
      */
     @Override
     public int hashCode() {
-        long code = serialVersionUID ^
+        long code = -190508333 ^
                (Double.doubleToLongBits(westBoundLongitude) + 31*
                (Double.doubleToLongBits(eastBoundLongitude) + 31*
                (Double.doubleToLongBits(southBoundLatitude) + 31*

@@ -104,7 +104,7 @@ public interface TypeName extends LocalName {
 
     /**
      * Returns the Java type represented by this name.
-     * For example the {@code "OGC:Integer"} type name may be mapped to the {@link Integer} Java class.
+     * For example, the {@code "OGC:Integer"} type name may be mapped to the {@link Integer} Java class.
      * The mapping may be defined by the convention documented in class javadoc, but not necessarily.
      * Implementations can use their own convention.
      *

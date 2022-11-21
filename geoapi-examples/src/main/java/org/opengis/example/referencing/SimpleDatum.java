@@ -32,20 +32,10 @@ import static java.lang.Double.doubleToLongBits;
  */
 public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum, Ellipsoid {
     /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = 1548319018204619632L;
-
-    /**
      * The Greenwich prime meridian, implemented as a separated class because ISO 19111
      * requires the name to be <cite>"Greenwich"</cite>.
      */
     private static final class Greenwich extends SimpleIdentifiedObject implements PrimeMeridian {
-        /**
-         * For cross-version compatibility.
-         */
-        private static final long serialVersionUID = 243025976398939425L;
-
         /**
          * The unique instance of the Greenwich class.
          */

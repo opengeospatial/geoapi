@@ -48,7 +48,7 @@ import static org.opengis.test.Assert.*;
  * @version 3.1
  * @since   2.2
  */
-public strictfp class TransformCaseTest extends TransformTestCase {
+public class TransformCaseTest extends TransformTestCase {
     /**
      * The rotation angle to apply on the affine transform. Incremented
      * in order to get different transforms for each test.

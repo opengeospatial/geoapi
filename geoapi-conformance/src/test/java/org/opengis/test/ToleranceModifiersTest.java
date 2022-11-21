@@ -47,7 +47,7 @@ import static org.opengis.test.ToleranceModifier.*;
  * @version 3.1
  * @since   3.1
  */
-public strictfp class ToleranceModifiersTest implements DirectPosition {
+public class ToleranceModifiersTest implements DirectPosition {
     /**
      * A sample tolerance array used by all tests.
      */

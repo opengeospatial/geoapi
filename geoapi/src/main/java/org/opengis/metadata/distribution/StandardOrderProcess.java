@@ -70,7 +70,7 @@ public interface StandardOrderProcess {
      * <p><b>Constraints:</b><br>
      * For ISO 19115 compatibility reasons, this method is <strong>not</strong> required to return
      * a non-null value even if the text returned by {@link #getFees()} contains a currency units.
-     * However if this method returns a non-null value, then that value is required to be consistent
+     * However, if this method returns a non-null value, then that value is required to be consistent
      * with the fees text.</p>
      *
      * @departure integration

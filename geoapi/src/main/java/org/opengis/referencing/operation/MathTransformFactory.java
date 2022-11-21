@@ -58,7 +58,7 @@ import static org.opengis.annotation.Specification.*;
  * This lack of semantics makes implementing {@code MathTransformFactory} significantly easier
  * than it would be otherwise.</p>
  *
- * <p>For example the affine transform applies a matrix to the coordinates
+ * <p>For example, the affine transform applies a matrix to the coordinates
  * without knowing how what it is doing relates to the real world.
  * So if the matrix scales <var>z</var> values by a factor of 1000, then it could be
  * converting metres into millimetres, or it could be converting kilometres into metres.</p>
@@ -127,7 +127,7 @@ public interface MathTransformFactory extends Factory {
      * or {@code null} if not applicable.
      *
      * <p>Implementers should document how their implementation behave in a multi-threads environment.
-     * For example some implementations use {@linkplain java.lang.ThreadLocal thread local variables},
+     * For example, some implementations use {@linkplain java.lang.ThreadLocal thread local variables},
      * while other can choose to returns {@code null} in all cases since {@code getLastMethodUsed()}
      * is optional.</p>
      *
@@ -295,7 +295,7 @@ public interface MathTransformFactory extends Factory {
 
     /**
      * Creates a transform which passes through a subset of coordinates to another transform.
-     * This allows transforms to operate on a subset of coordinates. For example giving
+     * This allows transforms to operate on a subset of coordinates. For example, giving
      * (<var>latitude</var>, <var>longitude</var>, <var>height</var>) coordinates, a pass
      * through transform can convert the height values from meters to feet without affecting
      * the (<var>latitude</var>, <var>longitude</var>) values.

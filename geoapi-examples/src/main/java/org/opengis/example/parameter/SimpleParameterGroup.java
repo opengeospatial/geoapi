@@ -48,11 +48,6 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
         implements ParameterValueGroup, ParameterDescriptorGroup, Cloneable
 {
     /**
-     * For cross-version compatibility.
-     */
-    private static final long serialVersionUID = -6759063712059101098L;
-
-    /**
      * The list of parameters included in this group. This simple group implementation
      * supports only {@link SimpleParameter} instances, which are used both as
      * {@linkplain ParameterDescriptor parameter descriptor} and
@@ -61,7 +56,6 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * <p>This list is <cite>live</cite>: changes to this list will be reflected immediately
      * in the {@link #descriptors()} and {@link #values()} views.</p>
      */
-    @SuppressWarnings("serial")         // Not statically typed as Serializable.
     protected final List<SimpleParameter> parameters;
 
     /**
@@ -69,7 +63,6 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * returned by the {@link #descriptors()} and {@link #values()} methods. We
      * have to make it unmodifiable for type safety reason.
      */
-    @SuppressWarnings("serial")         // Not statically typed as Serializable.
     private List<SimpleParameter> unmodifiable;
 
     /**
@@ -88,7 +81,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
     /**
      * Returns the descriptor of the parameter group. Since this simple class implements both the
      * {@linkplain ParameterValueGroup value} and {@linkplain ParameterDescriptorGroup descriptor}
-     * interfaces, this method returns {@code this}. However more sophisticated libraries are
+     * interfaces, this method returns {@code this}. However, more sophisticated libraries are
      * likely to return a different object.
      *
      * @return {@code this} descriptor.
@@ -125,7 +118,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * since the simple classes in this package implement both the {@linkplain GeneralParameterValue value}
      * and the {@linkplain GeneralParameterDescriptor descriptor} interfaces, this method returns the same
      * list than the {@link #values()} methods.
-     * However more sophisticated libraries are likely to return a distinct list.</div>
+     * However, more sophisticated libraries are likely to return a distinct list.</div>
      *
      * @return the parameter descriptors in this group as an unmodifiable list.
      */
@@ -143,7 +136,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * since the simple classes in this package implement both the {@linkplain GeneralParameterValue value}
      * and the {@linkplain GeneralParameterDescriptor descriptor} interfaces, this method returns the same
      * list than the {@link #descriptors()} methods.
-     * However more sophisticated libraries are likely to return a distinct list.</div>
+     * However, more sophisticated libraries are likely to return a distinct list.</div>
      *
      * @return the parameter values in this group as an unmodifiable list.
      */
@@ -161,7 +154,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * since the simple classes in this package implement both the {@linkplain GeneralParameterValue value}
      * and the {@linkplain GeneralParameterDescriptor descriptor} interfaces, this method is synonymous to
      * {@link #parameter(String)}.
-     * However more sophisticated libraries are likely to return a distinct object.</div>
+     * However, more sophisticated libraries are likely to return a distinct object.</div>
      *
      * @param  name  the case insensitive {@linkplain Identifier#getCode() identifier code}
      *               of the parameter to search for.
@@ -181,7 +174,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
     /**
      * Returns the value in this group for the specified {@linkplain Identifier#getCode() identifier code}.
      * This convenience method provides a way to get and set parameter values by name.
-     * For example the following idiom fetches a floating point value for the {@code "false_easting"} parameter:
+     * For example, the following idiom fetches a floating point value for the {@code "false_easting"} parameter:
      *
      * <blockquote><code>
      * double value = <b>parameter</b>("false_easting").{@linkplain ParameterValue#doubleValue() doubleValue}();
@@ -196,7 +189,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * <div class="note"><b>Implementation note:</b>
      * since the simple classes in this package implement both the {@linkplain GeneralParameterValue
      * value} and the {@linkplain GeneralParameterDescriptor descriptor} interfaces, this method is
-     * essentially synonymous to {@link #descriptor(String)}. However more sophisticated libraries
+     * essentially synonymous to {@link #descriptor(String)}. However, more sophisticated libraries
      * are likely to return a distinct object.</div>
      *
      * @param  name  the case insensitive {@linkplain Identifier#getCode() identifier code}
@@ -252,7 +245,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * <div class="note"><b>Implementation note:</b>
      * since this simple class implements both the {@linkplain ParameterValueGroup value} and the
      * {@linkplain ParameterDescriptorGroup descriptor} interfaces, this method is very similar to
-     * the {@link #clone()} method. However in more sophisticated libraries, the
+     * the {@link #clone()} method. However, in more sophisticated libraries, the
      * {@link ParameterDescriptorGroup#createValue()} and {@link ParameterValueGroup#clone()}
      * methods are likely to be defined in different objects.</div>
      *

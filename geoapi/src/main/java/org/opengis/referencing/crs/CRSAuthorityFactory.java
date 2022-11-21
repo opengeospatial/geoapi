@@ -59,7 +59,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * Returns an arbitrary coordinate reference system from a code.
      *
      * <p>If the coordinate reference system type is known at compile time, then it is recommended
-     * to invoke the most precise method instead of this one. For example it is usually better to
+     * to invoke the most precise method instead of this one. For example, it is usually better to
      * invoke <code>{@linkplain #createGeographicCRS createGeographicCRS}(code)</code> instead of
      * {@code createCoordinateReferenceSystem(code)} if the requested object is known to be a
      * {@code GeographicCRS} instance.</p>
