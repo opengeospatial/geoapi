@@ -44,6 +44,18 @@ import static org.opengis.annotation.Specification.*;
  * A {@code Record} is an instance of an {@link RecordType}.
  * For example, a {@code Record} may be a row in a table described by a {@code RecordType}.
  *
+ * <h2>Relationship with Java {@code Record} class</h2>
+ * This interface serves a purpose similar to the {@link java.lang.Record} abstract class
+ * provided by the standard Java platform, but is used in a different context.
+ * The standard Java {@code Record} class provides static records (i.e., with structure defined at compile time),
+ * while this GeoAPI {@code Record} interfaces provides dynamic records.
+ * The former is more convenient, efficient and type-safe,
+ * while the latter is the only option when the record structure is not known in advance,
+ * for example when it is determined by the content of a data file being read.
+ * If interoperability between the two models is desired,
+ * a GeoAPI {@code Record} implementation could delegate all operations
+ * to a wrapped Java {@code Record} using {@link java.lang.reflect.RecordComponent}.
+ *
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
