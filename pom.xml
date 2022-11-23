@@ -21,7 +21,7 @@
 
   <profiles>
     <profile>
-      <id>geoapi-release</id>
+      <id>sign-artifacts</id>
       <build>
         <plugins>
           <plugin>
@@ -41,7 +41,7 @@
       </build>
       <distributionManagement>
         <repository>
-          <id>ossrh</id>
+          <id>sonatype-nexus-staging</id>
           <name>Open Source Software Repository Hosting</name>
           <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
