@@ -189,15 +189,15 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
     /**
      * Indication if the parameter is an input to the service, an output or both.
      * This information applies mostly to <cite>service metadata</cite>.
+     * The default value is {@link ParameterDirection#IN}.
      *
-     * @return indication if the parameter is an input to the service, an output or both,
-     *         or {@code null} if unspecified.
+     * @return indication if the parameter is an input to the service, an output or both.
      *
      * @since 3.1
      */
-    @UML(identifier="SV_Parameter.direction", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="SV_Parameter.direction", obligation=MANDATORY, specification=ISO_19115)
     default ParameterDirection getDirection() {
-        return null;
+        return ParameterDirection.IN;
     }
 
     /**

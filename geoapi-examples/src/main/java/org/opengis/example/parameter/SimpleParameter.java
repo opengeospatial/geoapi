@@ -19,7 +19,6 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.parameter.InvalidParameterValueException;
 import org.opengis.parameter.InvalidParameterTypeException;
 import org.opengis.parameter.ParameterDescriptor;
-import org.opengis.parameter.ParameterDirection;
 import org.opengis.parameter.ParameterValue;
 
 import org.opengis.example.util.SimpleName;
@@ -180,14 +179,6 @@ public class SimpleParameter extends SimpleIdentifiedObject
     @Override
     public InternationalString getDescription() {
         return null;
-    }
-
-    /**
-     * Returns {@code this}, since this simple class is used only as input parameter.
-     */
-    @Override
-    public ParameterDirection getDirection() {
-        return ParameterDirection.IN;
     }
 
     /**
