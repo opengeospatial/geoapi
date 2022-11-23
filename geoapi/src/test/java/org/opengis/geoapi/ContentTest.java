@@ -33,8 +33,10 @@ package org.opengis.geoapi;
 
 import java.util.Map;
 import java.util.Set;
+import java.util.List;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.Arrays;
 import java.io.IOException;
@@ -92,7 +94,7 @@ public final class ContentTest implements FileVisitor<Path> {
      * mechanism for detecting circular dependencies. However, in some cases the mechanism is not sufficient or we want
      * a different order.</p>
      */
-    private final Map<Class<?>,Class<?>> skipDependencies;
+    private final Map<Class<?>, List<Class<?>>> skipDependencies;
 
     /**
      * Creates a new test case.
@@ -109,20 +111,39 @@ public final class ContentTest implements FileVisitor<Path> {
                 org.opengis.annotation.Stereotype.class,
                 org.opengis.util.CodeList.class));
 
-        skipDependencies = new HashMap<>(16);
-        assertNull(skipDependencies.put(org.opengis.metadata.citation.Responsibility.class,        org.opengis.metadata.extent.Extent.class));
-        assertNull(skipDependencies.put(org.opengis.metadata.citation.ResponsibleParty.class,      org.opengis.metadata.extent.Extent.class));
-        assertNull(skipDependencies.put(org.opengis.metadata.extent.BoundingPolygon.class,         org.opengis.geometry.Geometry.class));
-        assertNull(skipDependencies.put(org.opengis.metadata.extent.VerticalExtent.class,          org.opengis.referencing.crs.VerticalCRS.class));
-        assertNull(skipDependencies.put(org.opengis.metadata.citation.Organisation.class,          org.opengis.metadata.identification.BrowseGraphic.class));
-        assertNull(skipDependencies.put(org.opengis.metadata.citation.Citation.class,              org.opengis.metadata.identification.BrowseGraphic.class));
-        assertNull(skipDependencies.put(org.opengis.metadata.constraint.LegalConstraints.class,    org.opengis.metadata.identification.BrowseGraphic.class));
-        assertNull(skipDependencies.put(org.opengis.metadata.constraint.SecurityConstraints.class, org.opengis.metadata.identification.BrowseGraphic.class));
-        assertNull(skipDependencies.put(org.opengis.metadata.quality.CoverageResult.class,         org.opengis.metadata.spatial.SpatialRepresentation.class));
+        skipDependencies = new HashMap<>(20);
+        skipDependency(org.opengis.metadata.citation.Party.class,                 org.opengis.metadata.Identifier.class);
+        skipDependency(org.opengis.metadata.citation.Organisation.class,          org.opengis.metadata.Identifier.class);
+        skipDependency(org.opengis.metadata.citation.Individual.class,            org.opengis.metadata.Identifier.class);
+        skipDependency(org.opengis.metadata.citation.Responsibility.class,        org.opengis.metadata.extent.Extent.class);
+        skipDependency(org.opengis.metadata.citation.ResponsibleParty.class,      org.opengis.metadata.extent.Extent.class);
+        skipDependency(org.opengis.metadata.extent.BoundingPolygon.class,         org.opengis.geometry.Geometry.class);
+        skipDependency(org.opengis.metadata.extent.VerticalExtent.class,          org.opengis.referencing.crs.VerticalCRS.class);
+        skipDependency(org.opengis.metadata.citation.Organisation.class,          org.opengis.metadata.identification.BrowseGraphic.class);
+        skipDependency(org.opengis.metadata.citation.Citation.class,              org.opengis.metadata.identification.BrowseGraphic.class);
+        skipDependency(org.opengis.metadata.constraint.LegalConstraints.class,    org.opengis.metadata.identification.BrowseGraphic.class);
+        skipDependency(org.opengis.metadata.constraint.SecurityConstraints.class, org.opengis.metadata.identification.BrowseGraphic.class);
+        skipDependency(org.opengis.metadata.quality.CoverageResult.class,         org.opengis.metadata.spatial.SpatialRepresentation.class);
         if (SourceGenerator.isPendingModuleIncluded()) {
-            assertNull(skipDependencies.put(org.opengis.geometry.Geometry.class,                   org.opengis.referencing.operation.MathTransform.class));
-            assertNull(skipDependencies.put(org.opengis.geometry.primitive.Point.class,            org.opengis.referencing.operation.MathTransform.class));
+            skipDependency(org.opengis.geometry.Geometry.class,                   org.opengis.referencing.operation.MathTransform.class);
+            skipDependency(org.opengis.geometry.primitive.Point.class,            org.opengis.referencing.operation.MathTransform.class);
         }
+    }
+
+    /**
+     * Adds a dependency to skip.
+     *
+     * @param dependent   interface containing the dependency.
+     * @param dependency  the dependency to skip.
+     */
+    private void skipDependency(final Class<?> dependent, final Class<?> dependency) {
+        skipDependencies.compute(dependent, (k,v) -> {
+            if (v == null) {
+                v = new ArrayList<>(2);
+            }
+            v.add(dependency);
+            return v;
+        });
     }
 
     /**
@@ -152,9 +173,13 @@ public final class ContentTest implements FileVisitor<Path> {
                  * If this test fails, it will override the error message that the previous check may have prepared.
                  */
                 findDependencies(actual, expected, dependencies, false);
-                final Class<?> toIgnore = skipDependencies.remove(actual);
-                if (toIgnore != null && !dependencies.remove(toIgnore)) {
-                    fail("skipDependencies does not need to contain an entry for " + actual + " = " + toIgnore);
+                final List<Class<?>> toIgnoreList = skipDependencies.remove(actual);
+                if (toIgnoreList != null) {
+                    for (final Class<?> toIgnore : toIgnoreList) {
+                        if (!dependencies.remove(toIgnore)) {
+                            fail("skipDependencies does not need to contain an entry for " + actual + " = " + toIgnore);
+                        }
+                    }
                 }
                 if (!dependencies.isEmpty()) {
                     assertTrue(dependencyChecks.add(actual));

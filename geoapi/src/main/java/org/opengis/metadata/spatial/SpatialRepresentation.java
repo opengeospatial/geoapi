@@ -34,18 +34,31 @@ package org.opengis.metadata.spatial;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
+import org.opengis.metadata.maintenance.Scope;
 
 import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.Obligation.OPTIONAL;
 
 
 /**
  * Digital mechanism used to represent spatial information.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   2.0
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="MD_SpatialRepresentation", specification=ISO_19115)
 public interface SpatialRepresentation {
+    /**
+     * Level and extent of the spatial representation.
+     *
+     * @return level and extent of the spatial representation, or {@code null} if none.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19115, version=2018)
+    default Scope getScope() {
+        return null;
+    }
 }

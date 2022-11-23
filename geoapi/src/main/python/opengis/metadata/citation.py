@@ -262,6 +262,11 @@ class Party(ABC):
         """Contact information for the party."""
         return None
 
+    @property
+    def party_identifier(self) -> Sequence['Identifier']:
+        """Identifier of the party."""
+        return None
+
 
 
 class Responsibility(ABC):

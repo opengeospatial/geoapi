@@ -31,6 +31,8 @@
  */
 package org.opengis.metadata.content;
 
+import java.util.Collection;
+import java.util.Collections;
 import javax.measure.Unit;
 import org.opengis.util.Record;
 import org.opengis.util.RecordType;
@@ -176,6 +178,17 @@ public interface SampleDimension extends RangeDimension {
     @UML(identifier="bitsPerValue", obligation=OPTIONAL, specification=ISO_19115)
     default Integer getBitsPerValue() {
         return null;
+    }
+
+    /**
+     * Provides the description and values of the specific range elements of a sample dimension.
+     * Example: missing data.
+     *
+     * @return description and values of the specific range elements.
+     */
+    @UML(identifier="rangeElementDescription", obligation=OPTIONAL, specification=ISO_19115, version=2018)
+    default Collection<? extends RangeElementDescription> getRangeElementDescriptions() {
+        return Collections.emptyList();
     }
 
     /**

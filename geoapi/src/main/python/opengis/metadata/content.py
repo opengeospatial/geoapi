@@ -65,7 +65,31 @@ class TransferFunctionTypeCode(Enum):
 
 
 
-from opengis.metadata.naming import MemberName, RecordType, Record, GenericName
+from opengis.metadata.naming import Record, MemberName, RecordType, GenericName
+
+class RangeElementDescription(ABC):
+    """Description of specific range elements."""
+
+    @property
+    @abstractmethod
+    def name(self) -> str:
+        """Designation associated with a set of range elements."""
+        pass
+
+    @property
+    @abstractmethod
+    def definition(self) -> str:
+        """Description of a set of specific range elements."""
+        pass
+
+    @property
+    @abstractmethod
+    def range_element(self) -> Sequence[Record]:
+        """Specific range elements, i.e. range elements associated with a name and definition defining their meaning."""
+        pass
+
+
+
 from opengis.metadata.citation import Identifier, Citation
 
 class RangeDimension(ABC):
@@ -162,10 +186,17 @@ class SampleDimension(RangeDimension):
 
     @property
     def transfer_function_type(self) -> TransferFunctionTypeCode:
+        """Type of transfer function to be used when scaling a physical value for a given element."""
+        return None
+
+    @property
+    def range_element_description(self) -> Sequence[RangeElementDescription]:
+        """Provides the description and values of the specific range elements of a sample dimension."""
         return None
 
     @property
     def nominal_spatial_resolution(self) -> float:
+        """Smallest distance between which separate points can be distinguished, as specified in instrument design."""
         return None
 
 
@@ -214,29 +245,6 @@ class Band(SampleDimension):
 
 class ContentInformation(ABC):
     """Description of the content of a resource."""
-
-
-
-class RangeElementDescription(ABC):
-    """Description of specific range elements."""
-
-    @property
-    @abstractmethod
-    def name(self) -> str:
-        """Designation associated with a set of range elements."""
-        pass
-
-    @property
-    @abstractmethod
-    def definition(self) -> str:
-        """Description of a set of specific range elements."""
-        pass
-
-    @property
-    @abstractmethod
-    def range_element(self) -> Sequence[Record]:
-        """Specific range elements, i.e. range elements associated with a name and definition defining their meaning."""
-        pass
 
 
 

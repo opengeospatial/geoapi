@@ -204,8 +204,15 @@ class GeometricObjects(ABC):
 
 
 
+from opengis.metadata.maintenance import Scope
+
 class SpatialRepresentation(ABC):
     """Digital mechanism used to represent spatial information."""
+
+    @property
+    def scope(self) -> Scope:
+        """Level and extent of the spatial representation."""
+        return None
 
 
 
