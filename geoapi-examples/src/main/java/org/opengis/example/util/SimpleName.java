@@ -12,6 +12,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Objects;
+import java.util.Optional;
 import javax.naming.Name;
 import javax.naming.InvalidNameException;
 
@@ -56,20 +57,39 @@ public class SimpleName implements GenericName {
         static {
             final SimpleNameFactory f = SimpleNameFactory.DEFAULT;
             final NameSpace OGC = f.createNameSpace(f.createLocalName(null, "OGC"), null);
-            REAL = f.createTypeName(OGC, "Real");
+            REAL = f.createTypeName(OGC, "Real", Double.class);
         }
+
+        /**
+         * The Java type represented by this name, or {@code null} if none.
+         */
+        private final java.lang.reflect.Type javaType;
 
         /**
          * Creates a new instance backed by the given JNDI name. This constructor does not clone the
          * given JNDI name. While this implementation is robust to change in the wrapped object, it is
          * a better practice to keep the JNDI name unmodified after {@code SimpleName} construction.
          *
-         * @param  scope The scope (name space) in which the given name is local, or {@code null}.
-         * @param  name  The JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
+         * @param  scope     the scope (name space) in which the given name is local, or {@code null}.
+         * @param  name      the JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
+         * @param  javaType  Java type represented by this name, or {@code null} if none.
          * @throws IllegalArgumentException if the given name does not have exactly 1 component.
          */
-        public Type(final SimpleNameSpace scope, final Name name) throws IllegalArgumentException {
+        public Type(final SimpleNameSpace scope, final Name name, final java.lang.reflect.Type javaType)
+                throws IllegalArgumentException
+        {
             super(scope, name);
+            this.javaType = javaType;
+        }
+
+        /**
+         * Returns the Java type represented by this name.
+         *
+         * @return the Java type (usually a {@link Class}) for this type name.
+         */
+        @Override
+        public Optional<java.lang.reflect.Type> toJavaType() {
+            return Optional.ofNullable(javaType);
         }
     }
 

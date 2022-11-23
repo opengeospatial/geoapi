@@ -33,6 +33,7 @@ package org.opengis.util;
 
 import java.util.Map;
 import java.util.Locale;
+import java.lang.reflect.Type;
 
 
 /**
@@ -65,22 +66,19 @@ public interface NameFactory extends Factory {
      * The properties can include for example the separator character to be used between the
      * {@linkplain GenericName#getParsedNames() parsed names}.
      *
-     * <p>Implementations are encouraged to recognize at least the properties listed in the following
-     * table. Additional implementation-specific properties can be added. Unknown properties shall
-     * be ignored.</p>
+     * <p>Implementations are encouraged to recognize at least the properties listed in the following table.
+     * Additional implementation-specific properties can be added. Unknown properties shall be ignored.</p>
      *
      * <blockquote><table class="ogc">
      *   <caption>Keys for additional standard properties</caption>
      *   <tr>
      *     <th>Property name</th>
      *     <th>Purpose</th>
-     *   </tr>
-     *   <tr>
+     *   </tr><tr>
      *     <td>{@code "separator"}</td>
      *     <td>The separator to insert between {@linkplain GenericName#getParsedNames() parsed names}
      *         in that namespace.</td>
-     *   </tr>
-     *   <tr>
+     *   </tr><tr>
      *     <td>{@code "separator.head"}</td>
      *     <td>The separator to insert between the namespace and the {@linkplain GenericName#head() head}.<br>
      *         If omitted, then the default is the same value than {@code "separator"}.</td>
@@ -101,8 +99,9 @@ public interface NameFactory extends Factory {
     NameSpace createNameSpace(GenericName name, Map<String,?> properties);
 
     /**
-     * Creates a type name from the given character sequence. The character sequence shall
-     * complies to the same restriction than {@link #createLocalName createLocalName}.
+     * Creates a type name from the given character sequence and automatically inferred Java type.
+     * The character sequence shall complies to the same restriction than
+     * {@link #createLocalName createLocalName(…)}.
      *
      * @param  scope  the {@linkplain GenericName#scope() scope} of the type name to create,
      *                or {@code null} for a global namespace.
@@ -110,6 +109,23 @@ public interface NameFactory extends Factory {
      * @return the type name for the given scope and character sequence.
      */
     TypeName createTypeName(NameSpace scope, CharSequence name);
+
+    /**
+     * Creates a type name from the given character sequence and explicit Java type.
+     * The {@code javaType} argument specifies the value to be returned by
+     * {@link TypeName#toJavaType()}, which may be absent.
+     *
+     * @param  scope     the {@linkplain GenericName#scope() scope} of the type name to create,
+     *                   or {@code null} for a global namespace.
+     * @param  name      the type name as a string or an international string.
+     * @param  javaType  the Java type represented by the name, or {@code null} if none.
+     * @return the type name for the given scope, character sequence and Java type.
+     *
+     * @see TypeName#toJavaType()
+     *
+     * @since 3.1
+     */
+    TypeName createTypeName(NameSpace scope, CharSequence name, Type javaType);
 
     /**
      * Creates a member name from the given character sequence and attribute type.
