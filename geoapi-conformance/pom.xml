@@ -106,7 +106,7 @@
                        modulepath = "${org.opengis:geoapi:jar}:${javax.measure:unit-api:jar}:${junit:junit:jar}"
                        release    = "9"
                        includeAntRuntime = "false">
-                  <compilerarg line = "--patch-module org.opengis.geoapi.conformance=${project.build.directory}/classes"/>
+                  <compilerarg line = "--patch-module org.opengis.geoapi.conformance=${project.build.directory}/classes --module-version ${project.version}"/>
                 </javac>
               </target>
             </configuration>

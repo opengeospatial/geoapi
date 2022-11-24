@@ -162,7 +162,7 @@ The development community in building GIS solutions is sustaining an enormous le
                        modulepath = "${javax.measure:unit-api:jar}"
                        release    = "9"
                        includeAntRuntime = "false">
-                  <compilerarg line = "--patch-module org.opengis.geoapi=${project.build.directory}/classes"/>
+                  <compilerarg line = "--patch-module org.opengis.geoapi=${project.build.directory}/classes --module-version ${project.version}"/>
                 </javac>
               </target>
             </configuration>
