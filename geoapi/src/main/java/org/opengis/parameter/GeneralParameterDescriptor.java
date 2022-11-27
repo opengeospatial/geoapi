@@ -154,27 +154,31 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *
      * <h4>Unified parameter API</h4>
      * The metadata standard ({@linkplain Specification#ISO_19115 ISO 19115}) defines the
-     * {@code name} property as of type {@link MemberName} instead of {@code Identifier}.
-     * The details of mapping the former to the latter are left to implementers,
-     * but the following table can be used as guidelines.
-     * This table also proposes a mapping for data quality standard
-     * ({@linkplain Specification#ISO_19157 ISO 19157}).
+     * {@code name} property as of type {@link MemberName} instead of {@code Identifier},
+     * while the data quality standard ({@linkplain Specification#ISO_19157 ISO 19157})
+     * defines equivalent properties directly in its parameter class.
+     * The following table provides the suggested mapping from ISO models to parameter descriptor.
      *
      * <table class="ogc">
      *   <caption>Mapping from ISO abstract models to unified parameter API</caption>
      *   <tr>
-     *     <th>Property in ISO 19115 (metadata)</th>
+     *     <th>Name used by ISO 19115</th>
+     *     <th>Property in ISO 19157</th>
      *     <th>Property in unified parameter API</th>
      *   </tr><tr>
      *     <td><code>{@linkplain MemberName#scope() MemberName.scope()}.name().toString()</code></td>
+     *     <td></td>
      *     <td>{@link Identifier#getCodeSpace()}</td>
      *   </tr><tr>
      *     <td>{@link MemberName#toString()}</td>
+     *     <td>{@code DQM_Parameter.name}</td>
      *     <td>{@link Identifier#getCode()}</td>
      *   </tr><tr>
      *     <td>{@link MemberName#getAttributeType()}</td>
+     *     <td>{@code DQM_Parameter.valueType}</td>
      *     <td>{@link ParameterDescriptor#getValueType()}</td>
      *   </tr><tr>
+     *     <td></td>
      *     <td>{@code DQM_Parameter.definition}</td>
      *     <td>{@link Identifier#getDescription()}</td>
      *   </tr>
