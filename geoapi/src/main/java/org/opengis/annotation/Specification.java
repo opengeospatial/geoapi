@@ -293,6 +293,8 @@ public enum Specification {
      * <ul>
      *   <li><b>2003:</b> ISO 19115:2003/Cor.1:2006</li>
      *   <li><b>2014:</b> ISO 19115-1:2014   ({@linkplain #defaultVersion() default version})</li>
+     *   <li><b>2018:</b> ISO 19115-1:2014/Amd 1:2018</li>
+     *   <li><b>2020:</b> ISO 19115-1:2014/Amd 2:2020</li>
      * </ul>
      *
      * @see <a href="https://www.iso.org/standard/53798.html">ISO 19115-1:2014 on standards catalogue</a>

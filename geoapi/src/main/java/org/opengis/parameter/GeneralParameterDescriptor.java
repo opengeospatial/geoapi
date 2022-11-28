@@ -61,15 +61,28 @@ import static org.opengis.annotation.Specification.*;
  *     <th class="sep">ISO 19157</th>
  *     <th class="sep">WPS</th>
  *     <th class="sep">Remarks</th>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@link #getName()}</td>
  *     <td class="sep">{@code name}</td>
  *     <td class="sep">{@code name}</td>
  *     <td class="sep">{@code name}</td>
  *     <td class="sep">{@code Identifier}</td>
  *     <td class="sep">See {@linkplain #getName() method javadoc} for {@code MemberName} ↔ {@code Identifier} mapping.</td>
- *   <tr>
+ *   </tr><tr>
+ *     <td>{@link #getAlias() getAlias()}</td>
+ *     <td class="sep">{@code alias}</td>
+ *     <td class="sep"></td>
+ *     <td class="sep"></td>
+ *     <td class="sep"></td>
+ *     <td class="sep"></td>
+ *   </tr><tr>
+ *     <td>{@link #getIdentifiers() getIdentifiers()}</td>
+ *     <td class="sep">{@code identifier}</td>
+ *     <td class="sep"></td>
+ *     <td class="sep"></td>
+ *     <td class="sep"></td>
+ *     <td class="sep">Optional, contrarily to name which is mandatory.</td>
+ *   </tr><tr>
  *     <td><code>{@linkplain #getName()}.{@linkplain Identifier#getDescription() getDescription()}</code></td>
  *     <td class="sep"></td>
  *     <td class="sep"></td>
@@ -84,25 +97,36 @@ import static org.opengis.annotation.Specification.*;
  *     <td class="sep">{@code description}</td>
  *     <td class="sep">{@code description}</td>
  *     <td class="sep">{@code Abstract}</td>
- *     <td class="sep">More detailed explanation.</td>
- *   </tr>
- *   <tr>
+ *     <td class="sep">Explanation more detailed than the definition.</td>
+ *   </tr><tr>
+ *     <td>{@link #getRemarks() getRemarks()}</td>
+ *     <td class="sep">{@code remarks}</td>
+ *     <td class="sep"></td>
+ *     <td class="sep"></td>
+ *     <td class="sep"></td>
+ *     <td class="sep"></td>
+ *   </tr><tr>
+ *     <td>{@link ParameterDescriptor#getValueType() getValueType()}</td>
+ *     <td class="sep"></td>
+ *     <td class="sep"></td>
+ *     <td class="sep">{@code valueType}</td>
+ *     <td class="sep"></td>
+ *     <td class="sep">Name that describes the type of parameter values.</td>
+ *   </tr><tr>
  *     <td>{@link #getDirection()}</td>
  *     <td class="sep"></td>
  *     <td class="sep">{@code direction}</td>
  *     <td class="sep"></td>
  *     <td class="sep"></td>
  *     <td class="sep">Tells if the parameter is a WPS {@code Input} or {@code Output} structure.</td>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@link #getMinimumOccurs()}</td>
  *     <td class="sep">{@code minimumOccurs}</td>
- *     <td class="sep">{@code MinOccurs}</td>
- *     <td class="sep"></td>
  *     <td class="sep">{@code optionality}</td>
+ *     <td class="sep"></td>
+ *     <td class="sep">{@code MinOccurs}</td>
  *     <td class="sep">{@code optionality   = (minimumOccurs > 0)}</td>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@link #getMaximumOccurs()}</td>
  *     <td class="sep">{@code maximumOccurs}</td>
  *     <td class="sep">{@code repeatability}</td>
@@ -131,27 +155,31 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *
      * <h4>Unified parameter API</h4>
      * The metadata standard ({@linkplain Specification#ISO_19115 ISO 19115}) defines the
-     * {@code name} property as of type {@link MemberName} instead of {@code Identifier}.
-     * The details of mapping the former to the latter are left to implementers,
-     * but the following table can be used as guidelines.
-     * This table proposes also a mapping for data quality standard
-     * ({@linkplain Specification#ISO_19157 ISO 19157}).
+     * {@code name} property as of type {@link MemberName} instead of {@code Identifier},
+     * while the data quality standard ({@linkplain Specification#ISO_19157 ISO 19157})
+     * defines equivalent properties directly in its parameter class.
+     * The following table provides the suggested mapping from ISO models to parameter descriptor.
      *
      * <table class="ogc">
      *   <caption>Mapping from ISO abstract models to unified parameter API</caption>
      *   <tr>
-     *     <th>Property in ISO abstract model</th>
+     *     <th>Name used by ISO 19115</th>
+     *     <th>Property in ISO 19157</th>
      *     <th>Property in unified parameter API</th>
      *   </tr><tr>
      *     <td><code>{@linkplain MemberName#scope() MemberName.scope()}.name().toString()</code></td>
+     *     <td></td>
      *     <td>{@link Identifier#getCodeSpace()}</td>
      *   </tr><tr>
      *     <td>{@link MemberName#toString()}</td>
+     *     <td>{@code DQM_Parameter.name}</td>
      *     <td>{@link Identifier#getCode()}</td>
      *   </tr><tr>
      *     <td>{@link MemberName#getAttributeType()}</td>
+     *     <td>{@code DQM_Parameter.valueType}</td>
      *     <td>{@link ParameterDescriptor#getValueType()}</td>
      *   </tr><tr>
+     *     <td></td>
      *     <td>{@code DQM_Parameter.definition}</td>
      *     <td>{@link Identifier#getDescription()}</td>
      *   </tr>
@@ -171,15 +199,15 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
     /**
      * Indication if the parameter is an input to the service, an output or both.
      * This information applies mostly to <cite>service metadata</cite>.
+     * The default value is {@link ParameterDirection#IN}.
      *
-     * @return indication if the parameter is an input to the service, an output or both,
-     *         or {@code null} if unspecified.
+     * @return indication if the parameter is an input to the service, an output or both.
      *
      * @since 3.1
      */
-    @UML(identifier="SV_Parameter.direction", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="SV_Parameter.direction", obligation=MANDATORY, specification=ISO_19115)
     default ParameterDirection getDirection() {
-        return null;
+        return ParameterDirection.IN;
     }
 
     /**

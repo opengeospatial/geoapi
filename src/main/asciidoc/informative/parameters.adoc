@@ -1,0 +1,44 @@
+[[records]]
+==== Parameters
+[.reference]_From ISO 19111:2003 §11.2, ISO 19115:2014 §6.5.12, ISO 19157:2013 §C.2.2.4_
+
+The concept of operation parameters is defined in many OGC/ISO standards:
+
+* ISO 19111 provides `CC_OperationParameter`,
+* ISO 19115 provides `SV_Parameter`,
+* ISO 19157 provides `DQM_Parameter`, and
+* OGC 01-004 (a legacy standard, but still useful to GeoAPI) provided `GC_ParameterInfo`.
+
+GeoAPI provides a unified parameter framework in the `org.opengis.parameter` Java package.
+The ISO 19111 model is adopted as the basis because it provides a clear separation between
+the definition of a parameter (name, aliases, identifier, expected value type and units)
+and the actual parameter value.
+Features defined by other standards and not present in ISO 19111 are retrofitted
+in the GeoAPI parameter framework.
+
+.Main parameter properties and their mapping to ISO standards
+[.compact, options="header"]
+|==========================================================================================================
+|GeoAPI             |ISO 19111       |ISO 19115       |ISO 19157     |Remarks
+|`name`             |`name`          |`name`          |`name`        |
+|`alias`            |`alias`         |                |              |
+|`identifier`       |`identifier`    |                |              |Optional, contrarily to name which is mandatory.
+|`name.description` |                |                |`definition`  |
+|`description`      |                |`description`   |`description` |
+|`remarks`          |`remarks`       |                |              |
+|`valueType`        |                |                |`valueType`   |
+|`direction`        |                |`direction`     |              |
+|`minimumOccurs`    |`minimumOccurs` |`optionality`   |              |`optionality   = (minimumOccurs > 0)`
+|`maximumOccurs`    |`maximumOccurs` |`repeatability` |              |`repeatability = (maximumOccurs > 1)`
+|==========================================================================================================
+
+The result is a parameter framework richer than the parameter class defined by any of above standards taken individually.
+For example ISO 19157:2013 do not provide aliases, while some aliases are used in
+
+
+[[parameter_departures]]
+===== Departures from ISO model
+
+`OperationParameter` has been renamed as `ParameterDescriptor`
+to emphasize that it only describes the parameters without providing values.
+The `Descriptor` suffix is found in other Java libraries such as JavaBeans and Java Advanced Imaging.

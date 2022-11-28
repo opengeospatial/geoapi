@@ -11,6 +11,7 @@ import java.util.Map;
 import java.util.Locale;
 import java.util.Objects;
 import java.util.Properties;
+import java.lang.reflect.Type;
 import javax.naming.Name;
 import javax.naming.CompoundName;
 import javax.naming.InvalidNameException;
@@ -158,8 +159,9 @@ public class SimpleNameFactory implements NameFactory {
     }
 
     /**
-     * Creates a type name from the given character sequence. The character sequence shall
-     * complies to the same restriction than {@link #createLocalName createLocalName}.
+     * Creates a type name from the given character sequence and automatically inferred Java type.
+     * The character sequence shall complies to the same restriction than
+     * {@link #createLocalName createLocalName(…)}.
      *
      * @param  scope  the {@linkplain GenericName#scope() scope} of the type name to be created,
      *                or {@code null} for a global namespace.
@@ -168,8 +170,24 @@ public class SimpleNameFactory implements NameFactory {
      */
     @Override
     public TypeName createTypeName(final NameSpace scope, final CharSequence name) {
+        return createTypeName(scope, name, null);
+    }
+
+    /**
+     * Creates a type name from the given character sequence and explicit Java type.
+     * The {@code javaType} argument specifies the value to be returned by
+     * {@link TypeName#toJavaType()}, which may be absent.
+     *
+     * @param  scope     the {@linkplain GenericName#scope() scope} of the type name to create,
+     *                   or {@code null} for a global namespace.
+     * @param  name      the type name as a string or an international string.
+     * @param  javaType  the Java type represented by the name, or {@code null} if none.
+     * @return the type name for the given scope, character sequence and Java type.
+     */
+    @Override
+    public TypeName createTypeName(NameSpace scope, CharSequence name, Type javaType) {
         final SimpleNameSpace ns = SimpleNameSpace.castOrCopy(scope);
-        return new SimpleName.Type(ns, parse(ns, name));
+        return new SimpleName.Type(ns, parse(ns, name), javaType);
     }
 
     /**

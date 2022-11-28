@@ -60,18 +60,18 @@ The general rule is to use the name used in UML diagrams of OGC/ISO standards.
 [.compact, options="header"]
 |===============================================================================
 |Scoped type name      |Java class                                 |Python class
-|`OGC:Boolean`         |`java.lang.Boolean`                        |#TODO#
-|`OGC:Integer`         |`java.lang.Integer`                        |#TODO#
-|`OGC:Real`            |`java.lang.Double`                         |#TODO#
-|`OGC:Decimal`         |`java.math.BigDecimal`                     |#TODO#
-|`OGC:CharacterString` |`java.lang.String`                         |#TODO#
-|`OGC:FreeText`        |`org.opengis.util.InternationalString`     |#TODO#
-|`OGC:PT_Locale`       |`java.util.Locale`                         |#TODO#
-|`OGC:DateTime`        |`java.time.ZonedDateTime`                  |#TODO#
-|`OGC:URI`             |`java.net.URI`                             |#TODO#
-|`OGC:Matrix`          |`org.opengis.referencing.operation.Matrix` |#TODO#
-|`OGC:Coverage`        |`org.opengis.coverage.Coverage`            |#TODO#
-|`OGC:MD_Metadata`     |`org.opengis.metadata.Metadata`            |#TODO#
+|`OGC:Boolean`         |`java.lang.Boolean`                        |`int`
+|`OGC:Integer`         |`java.lang.Integer`                        |`int`
+|`OGC:Real`            |`java.lang.Double`                         |`float`
+|`OGC:Decimal`         |`java.math.BigDecimal`                     |`float`
+|`OGC:CharacterString` |`java.lang.String`                         |`str`
+|`OGC:FreeText`        |`org.opengis.util.InternationalString`     |`str`
+|`OGC:PT_Locale`       |`java.util.Locale`                         |
+|`OGC:DateTime`        |`java.time.ZonedDateTime`                  |
+|`OGC:URI`             |`java.net.URI`                             |`str`
+|`OGC:Matrix`          |`org.opengis.referencing.operation.Matrix` |`np.ndarray`
+|`OGC:Coverage`        |`org.opengis.coverage.Coverage`            |`Coverage`
+|`OGC:MD_Metadata`     |`org.opengis.metadata.Metadata`            |`Metadata`
 |===============================================================================
 
 

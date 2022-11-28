@@ -19,7 +19,6 @@ import org.opengis.parameter.GeneralParameterDescriptor;
 import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterDescriptor;
 import org.opengis.parameter.ParameterDescriptorGroup;
-import org.opengis.parameter.ParameterDirection;
 import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterNotFoundException;
@@ -100,14 +99,6 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
     @Override
     public InternationalString getDescription() {
         return null;
-    }
-
-    /**
-     * Returns {@code this}, since this simple class is used only as input parameters.
-     */
-    @Override
-    public ParameterDirection getDirection() {
-        return ParameterDirection.IN;
     }
 
     /**

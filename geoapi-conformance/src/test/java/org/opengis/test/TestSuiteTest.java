@@ -33,6 +33,7 @@ package org.opengis.test;
 
 import java.util.Map;
 import java.util.Locale;
+import java.lang.reflect.Type;
 import org.opengis.util.*;
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.metadata.citation.Citation;
@@ -150,6 +151,7 @@ public class TestSuiteTest {
         @Override public InternationalString createInternationalString(Map<Locale, String> strings)            {return null;}
         @Override public NameSpace           createNameSpace  (GenericName name, Map<String, ?> properties)    {return null;}
         @Override public TypeName            createTypeName   (NameSpace scope, CharSequence name)             {return null;}
+        @Override public TypeName            createTypeName   (NameSpace scope, CharSequence name, Type t)     {return null;}
         @Override public MemberName          createMemberName (NameSpace scope, CharSequence name, TypeName t) {return null;}
         @Override public LocalName           createLocalName  (NameSpace scope, CharSequence name)             {return null;}
         @Override public GenericName         createGenericName(NameSpace scope, CharSequence... parsedNames)   {return null;}
