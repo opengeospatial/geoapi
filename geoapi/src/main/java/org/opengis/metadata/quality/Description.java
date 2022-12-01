@@ -41,6 +41,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Data quality measure description.
+ * A description contains a mandatory text and an optional illustration.
  *
  * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
