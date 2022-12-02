@@ -89,6 +89,8 @@ import static org.opengis.annotation.Specification.*;
  * @see CompletenessCommission
  *
  * @since 2.0
+ *
+ * @todo Renamed in 19157:2022: {@code Omission}.
  */
 @UML(identifier="DQ_CompletenessOmission", specification=ISO_19157)
 public interface CompletenessOmission extends Completeness {

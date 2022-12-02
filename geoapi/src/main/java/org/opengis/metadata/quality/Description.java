@@ -47,6 +47,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @todo Renamed in 19157:2022: {@code MeasureDescription}.
  */
 @UML(identifier="DQM_Description", specification=ISO_19157)
 public interface Description {

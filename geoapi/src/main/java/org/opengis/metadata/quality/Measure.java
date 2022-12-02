@@ -65,6 +65,8 @@ import static org.opengis.annotation.Specification.*;
  * @see Element#getMeasure()
  *
  * @since 3.1
+ *
+ * @todo Renamed in 19157:2022: {@code QualityMeasure}.
  */
 @UML(identifier="DQM_Measure", specification=ISO_19157)
 public interface Measure {

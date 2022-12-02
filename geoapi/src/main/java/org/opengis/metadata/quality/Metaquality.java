@@ -65,6 +65,8 @@ public interface Metaquality extends Element {
      * The returned collection shall contain exactly 1 element.
      *
      * @return the element that is derived.
+     *
+     * @todo Renamed in 19157:2022: {@code relatedQualityElement}.
      */
     @Override
     @UML(identifier="derivedElement", obligation=MANDATORY, specification=ISO_19157)

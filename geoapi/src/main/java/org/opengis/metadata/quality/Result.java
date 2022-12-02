@@ -57,6 +57,8 @@ import static org.opengis.annotation.Specification.*;
  * @see Element#getResults()
  *
  * @since 2.0
+ *
+ * @todo Renamed in 19157:2022: {@code QualityResult}.
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="DQ_Result", specification=ISO_19157)

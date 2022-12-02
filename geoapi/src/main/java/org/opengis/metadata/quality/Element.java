@@ -69,6 +69,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Alexis Gaillard (Geomatys)
  * @version 3.1
  * @since   2.0
+ *
+ * @todo Renamed in 19157:2022: {@code QualityElement}.
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="DQ_Element", specification=ISO_19157)
@@ -80,6 +82,8 @@ public interface Element {
      * @return clause where this data quality element is described, or {@code null} if none.
      *
      * @since 3.1
+     *
+     * @todo Renamed in 19157:2022: {@code QualityEvaluationReportDetails}.
      */
     @UML(identifier="standaloneQualityReportDetails", obligation=OPTIONAL, specification=ISO_19157)
     default InternationalString getStandaloneQualityReportDetails() {

@@ -107,6 +107,8 @@ public interface DataQuality {
      * @return reference to an external standalone quality report, or {@code null} if none.
      *
      * @since 3.1
+     *
+     * @todo Renamed in 19157:2022: {@code QualityEvaluationReport}.
      */
     @UML(identifier="standaloneQualityReport", obligation=OPTIONAL, specification=ISO_19157)
     default StandaloneQualityReportInformation getStandaloneQualityReport() {
