@@ -62,7 +62,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * Elements are organized into different categories, which are identified by the following subtypes:
  * {@link Completeness}, {@link LogicalConsistency}, {@link PositionalAccuracy}, {@link TemporalQuality},
- * {@link ThematicAccuracy}, {@link UsabilityElement} or {@link Metaquality}.
+ * {@link ThematicAccuracy}, or {@link Metaquality}.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)

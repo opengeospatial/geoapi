@@ -320,11 +320,6 @@ class Confidence(Metaquality):
 
 
 
-class UsabilityElement(Element):
-    """Degree of adherence of a data set to a specific set of requirements."""
-
-
-
 class Representativity(Metaquality):
     """Trustworthiness of a data quality result."""
 

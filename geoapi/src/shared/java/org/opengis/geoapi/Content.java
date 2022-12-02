@@ -178,7 +178,6 @@ public enum Content {
                org.opengis.metadata.quality        .TemporalQuality                     .class,
                org.opengis.metadata.quality        .Metaquality                         .class,
                org.opengis.metadata.quality        .Confidence                          .class,
-               org.opengis.metadata.quality        .UsabilityElement                    .class,
                org.opengis.metadata.quality        .Usability                           .class,
                org.opengis.metadata.quality        .Representativity                    .class,
                org.opengis.metadata.quality        .DataEvaluation                      .class,
