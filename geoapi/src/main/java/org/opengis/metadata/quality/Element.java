@@ -32,8 +32,13 @@
 package org.opengis.metadata.quality;
 
 import java.util.Date;
+import java.util.Iterator;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.AbstractCollection;
+import java.time.Instant;
+import java.time.temporal.ChronoField;
+import java.time.temporal.Temporal;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
@@ -230,6 +235,10 @@ public interface Element {
      * The collection size is 1 for a single date, or 2 for a range.
      * Returns an empty collection if this information is not available.
      *
+     * <p>The default implementation returns a wrapper around @link EvaluationMethod#getDates()} collection.
+     * Calls to {@link Iterator#next()} may throw {@link java.time.DateTimeException} if the temporal object
+     * can not be converted to a date.</p>
+     *
      * @return date or range of dates on which a data quality measure was applied.
      *
      * @deprecated Replaced by {@link EvaluationMethod#getDates()}.
@@ -237,8 +246,33 @@ public interface Element {
     @Deprecated
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends Date> getDates() {
-        final EvaluationMethod ref = getEvaluationMethod();
-        return (ref != Collections.emptyList()) ? ref.getDates() : Collections.emptyList();
+        return new AbstractCollection<Date>() {
+            @Override public int size() {
+                final EvaluationMethod ref = getEvaluationMethod();
+                return (ref != null) ? ref.getDates().size() : 0;
+            }
+
+            @Override public Iterator<Date> iterator() {
+                final EvaluationMethod ref = getEvaluationMethod();
+                if (ref == null) {
+                    return Collections.emptyIterator();
+                }
+                final Iterator<? extends Temporal> it = ref.getDates().iterator();
+                return new Iterator<Date>() {
+                    @Override public void    remove()  {it.remove();}
+                    @Override public boolean hasNext() {return it.hasNext();}
+                    @Override public Date next() {
+                        final Temporal t = it.next();
+                        if (t == null) return null;
+                        if (t instanceof Instant) {
+                            return Date.from((Instant) t);
+                        }
+                        // Following may throw `DateTimeException` if the temporal does not support the field.
+                        return new Date(Math.multiplyExact(t.getLong(ChronoField.INSTANT_SECONDS), 1000));
+                    }
+                };
+            }
+        };
     }
 
     /**

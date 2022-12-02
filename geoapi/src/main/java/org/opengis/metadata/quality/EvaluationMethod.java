@@ -33,7 +33,7 @@ package org.opengis.metadata.quality;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
+import java.time.temporal.Temporal;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.citation.Citation;
@@ -108,15 +108,10 @@ public interface EvaluationMethod {
      * The collection size is 1 for a single date, or 2 for a range.
      * Returns an empty collection if this information is not available.
      *
-     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The element type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
-     * </div>
-     *
      * @return date or range of dates on which a data quality measure was applied.
      */
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19157)
-    default Collection<? extends Date> getDates() {
+    default Collection<? extends Temporal> getDates() {
         return Collections.emptyList();
     }
 }
