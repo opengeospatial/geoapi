@@ -107,8 +107,8 @@
  * <h2>Data quality measure parameters</h2>
  * <p>The data quality standard uses a simple parameter class ({@code DQM_Parameter}) with only {@code name},
  * {@code definition}, {@code description}, {@code valueType}, and {@code valueStructure} properties.
- * However, in order to provide a unified parameter API, GeoAPI omits the metadata parameter class
- * and instead defines a mapping from metadata properties to GeoAPI properties.
+ * However, in order to provide a unified parameter API, GeoAPI omits the data quality parameter class
+ * and instead defines a mapping from data quality properties to GeoAPI properties.
  * The mapping is documented in {@link org.opengis.metadata.quality.Measure#getParameters()}
  * and in {@link org.opengis.parameter.GeneralParameterDescriptor} javadoc.</p>
  *

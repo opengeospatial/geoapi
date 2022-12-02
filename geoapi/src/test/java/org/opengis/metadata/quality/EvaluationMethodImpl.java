@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2022 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,40 +31,40 @@
  */
 package org.opengis.metadata.quality;
 
-import org.opengis.util.InternationalString;
-import org.opengis.annotation.UML;
-import org.opengis.metadata.identification.BrowseGraphic;
-
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import java.util.Arrays;
+import java.util.Collection;
+import java.time.temporal.Temporal;
 
 
 /**
- * Data quality measure description.
- * A description contains a mandatory text and an optional illustration.
+ * A simple implementation of {@link EvaluationMethod} for testing purposes.
  *
- * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-@UML(identifier="DQM_Description", specification=ISO_19157)
-public interface Description {
+final class EvaluationMethodImpl implements EvaluationMethod {
     /**
-     * Text description.
-     *
-     * @return text description.
+     * Range of dates on which a data quality measure was applied.
      */
-    @UML(identifier="textDescription", obligation=MANDATORY, specification=ISO_19157)
-    InternationalString getTextDescription();
+    private final Temporal startTime, endTime;
 
     /**
-     * Illustration.
+     * Creates a new evaluation method.
      *
-     * @return description illustration, or {@code null} if none.
+     * @param  startTime  start time on which a data quality measure was applied.
+     * @param  endTime    end time on which a data quality measure was applied.
      */
-    @UML(identifier="extendedDescription", obligation=OPTIONAL, specification=ISO_19157)
-    default BrowseGraphic getExtendedDescription() {
-        return null;
+    EvaluationMethodImpl(final Temporal startTime, final Temporal endTime) {
+        this.startTime = startTime;
+        this.endTime   = endTime;
+    }
+
+    /**
+     * Returns the range of dates on which a data quality measure was applied.
+     */
+    @Override
+    public Collection<Temporal> getDates() {
+        return Arrays.asList(startTime, endTime);
     }
 }

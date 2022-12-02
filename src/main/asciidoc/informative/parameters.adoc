@@ -13,8 +13,8 @@ GeoAPI provides a unified parameter framework in the `org.opengis.parameter` Jav
 The ISO 19111 model is adopted as the basis because it provides a clear separation between
 the definition of a parameter (name, aliases, identifier, expected value type and units)
 and the actual parameter value.
-Features defined by other standards and not present in ISO 19111 are retrofitted
-in the GeoAPI parameter framework.
+The parameter properties that are defined by other standards but not present
+in `CC_OperationParameter` are retrofitted in the GeoAPI parameter framework.
 
 .Main parameter properties and their mapping to ISO standards
 [.compact, options="header"]
@@ -22,9 +22,9 @@ in the GeoAPI parameter framework.
 |GeoAPI             |ISO 19111       |ISO 19115       |ISO 19157     |Remarks
 |`name`             |`name`          |`name`          |`name`        |
 |`alias`            |`alias`         |                |              |
-|`identifier`       |`identifier`    |                |              |Optional, contrarily to name which is mandatory.
-|`name.description` |                |                |`definition`  |
-|`description`      |                |`description`   |`description` |
+|`identifier`       |`identifier`    |                |              |Optional, contrarily to `name` which is mandatory.
+|`name.description` |                |                |`definition`  |Should be a short sentence.
+|`description`      |                |`description`   |`description` |`BrowseGraphic` property not explicitly supported.
 |`remarks`          |`remarks`       |                |              |
 |`valueType`        |                |                |`valueType`   |
 |`direction`        |                |`direction`     |              |
@@ -32,8 +32,11 @@ in the GeoAPI parameter framework.
 |`maximumOccurs`    |`maximumOccurs` |`repeatability` |              |`repeatability = (maximumOccurs > 1)`
 |==========================================================================================================
 
-The result is a parameter framework richer than the parameter class defined by any of above standards taken individually.
-For example ISO 19157:2013 do not provide aliases, while some aliases are used in
+ISO 19157 `Description` type contains a mandatory text and an optional illustration.
+Only the text description is explicitly stored in the GeoAPI unified parameter type.
+However, if needed implementations can associate the `description` property to an
+object that implement both the `InternationalString` and `Description` interfaces.
+
 
 
 [[parameter_departures]]

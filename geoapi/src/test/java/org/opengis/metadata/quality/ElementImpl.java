@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2022 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,40 +31,45 @@
  */
 package org.opengis.metadata.quality;
 
-import org.opengis.util.InternationalString;
-import org.opengis.annotation.UML;
-import org.opengis.metadata.identification.BrowseGraphic;
-
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import java.util.Collection;
+import java.util.Collections;
 
 
 /**
- * Data quality measure description.
- * A description contains a mandatory text and an optional illustration.
+ * A simple implementation of {@link Element} for testing purposes.
  *
- * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-@UML(identifier="DQM_Description", specification=ISO_19157)
-public interface Description {
+final class ElementImpl implements Element {
     /**
-     * Text description.
-     *
-     * @return text description.
+     * Information about the evaluation method, or {@code null} if none.
      */
-    @UML(identifier="textDescription", obligation=MANDATORY, specification=ISO_19157)
-    InternationalString getTextDescription();
+    private final EvaluationMethod method;
 
     /**
-     * Illustration.
+     * Creates a new element.
      *
-     * @return description illustration, or {@code null} if none.
+     * @param  method  information about the evaluation method, or {@code null} if none.
      */
-    @UML(identifier="extendedDescription", obligation=OPTIONAL, specification=ISO_19157)
-    default BrowseGraphic getExtendedDescription() {
-        return null;
+    ElementImpl(final EvaluationMethod method) {
+        this.method = method;
+    }
+
+    /**
+     * Returns the evaluation information.
+     */
+    @Override
+    public EvaluationMethod getEvaluationMethod() {
+        return method;
+    }
+
+    /**
+     * No yet implemented.
+     */
+    @Override
+    public Collection<? extends Result> getResults() {
+        return Collections.emptyList();
     }
 }

@@ -2,7 +2,7 @@
  *    GeoAPI - Java interfaces for OGC/ISO standards
  *    http://www.geoapi.org
  *
- *    Copyright (C) 2021 Open Geospatial Consortium, Inc.
+ *    Copyright (C) 2022 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Permission to use, copy, and modify this software and its documentation, with
@@ -31,40 +31,38 @@
  */
 package org.opengis.metadata.quality;
 
-import org.opengis.util.InternationalString;
-import org.opengis.annotation.UML;
-import org.opengis.metadata.identification.BrowseGraphic;
+import java.time.Instant;
+import java.util.Collection;
+import java.util.Iterator;
+import java.util.Date;
+import org.junit.Test;
 
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+import static org.junit.Assert.*;
 
 
 /**
- * Data quality measure description.
- * A description contains a mandatory text and an optional illustration.
+ * Tests {@link Element}.
  *
- * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-@UML(identifier="DQM_Description", specification=ISO_19157)
-public interface Description {
+public final class ElementTest {
     /**
-     * Text description.
-     *
-     * @return text description.
+     * Tests {@link Element#getDates()}.
      */
-    @UML(identifier="textDescription", obligation=MANDATORY, specification=ISO_19157)
-    InternationalString getTextDescription();
+    @Test
+    public void testGetDates() {
+        final Instant   startTime = Instant.parse("2009-05-08T14:10:00Z");
+        final Instant     endTime = Instant.parse("2009-05-12T21:45:00Z");
+        final ElementImpl element = new ElementImpl(new EvaluationMethodImpl(startTime, endTime));
 
-    /**
-     * Illustration.
-     *
-     * @return description illustration, or {@code null} if none.
-     */
-    @UML(identifier="extendedDescription", obligation=OPTIONAL, specification=ISO_19157)
-    default BrowseGraphic getExtendedDescription() {
-        return null;
+        @SuppressWarnings("deprecation")
+        final Collection<? extends Date> dates = element.getDates();
+        assertEquals(2, dates.size());
+        final Iterator<? extends Date> it = dates.iterator();
+        assertEquals(startTime, it.next().toInstant());
+        assertEquals(endTime,   it.next().toInstant());
+        assertFalse (it.hasNext());
     }
 }

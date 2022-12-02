@@ -31,7 +31,7 @@
  */
 package org.opengis.metadata.quality;
 
-import java.util.Date;
+import java.time.temporal.Temporal;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
@@ -81,13 +81,16 @@ public interface Result {
 
     /**
      * Date when the result was generated.
+     * This is typically a {@link java.time.LocalDate}, {@link java.time.LocalDateTime}
+     * or {@link java.time.ZonedDateTime} depending on whether the hour of the day and
+     * the time zone are provided.
      *
      * @return date of the result, or {@code null} if none.
      *
      * @since 3.1
      */
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19157)
-    default Date getDateTime() {
+    default Temporal getDateTime() {
         return null;
     }
 }
