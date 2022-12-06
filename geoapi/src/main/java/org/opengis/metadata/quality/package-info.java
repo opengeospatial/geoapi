@@ -69,7 +69,6 @@
  *  │   │   ├─ {@linkplain org.opengis.metadata.quality.ThematicClassificationCorrectness}
  *  │   │   ├─ {@linkplain org.opengis.metadata.quality.NonQuantitativeAttributeCorrectness}
  *  │   │   └─ {@linkplain org.opengis.metadata.quality.QuantitativeAttributeAccuracy}
- *  │   ├─ {@linkplain org.opengis.metadata.quality.UsabilityElement}
  *  │   └─ {@linkplain org.opengis.metadata.quality.Metaquality} «abstract»
  *  │       ├─ {@linkplain org.opengis.metadata.quality.Confidence}
  *  │       ├─ {@linkplain org.opengis.metadata.quality.Representativity}

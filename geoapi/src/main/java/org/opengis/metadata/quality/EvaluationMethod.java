@@ -99,7 +99,7 @@ public interface EvaluationMethod {
      *   for avoiding abbreviation (a Java usage).
      */
     @UML(identifier="referenceDoc", obligation=OPTIONAL, specification=ISO_19157)
-    default Collection <? extends Citation> getReferenceDocuments() {
+    default Collection<? extends Citation> getReferenceDocuments() {
         return Collections.emptyList();
     }
 

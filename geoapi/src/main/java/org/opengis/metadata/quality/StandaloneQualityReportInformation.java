@@ -49,10 +49,12 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @todo Renamed in 19157:2022: {@code QualityEvaluationReportInformation}.
  */
 @UML(identifier="DQ_StandaloneQualityReportInformation", specification=ISO_19157)
 public interface StandaloneQualityReportInformation {
-     /**
+    /**
      * Reference to the associated standalone quality report.
      *
      * @return reference of the standalone quality report.
