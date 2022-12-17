@@ -37,6 +37,21 @@
               </execution>
             </executions>
           </plugin>
+          <plugin>
+            <artifactId>maven-javadoc-plugin</artifactId>
+            <configuration>
+              <nonavbar>true</nonavbar>         <!-- Navigation bar not used when Javadoc is browsed from IDE. -->
+              <doclint>-reference</doclint>     <!-- Cross-modules references are valid only in aggregated javadoc. -->
+            </configuration>
+            <executions>
+              <execution>
+                <id>attach-javadocs</id>
+                <goals>
+                  <goal>jar</goal>
+                </goals>
+              </execution>
+            </executions>
+          </plugin>
         </plugins>
       </build>
       <distributionManagement>
