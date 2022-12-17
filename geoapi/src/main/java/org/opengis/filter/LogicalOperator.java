@@ -74,11 +74,12 @@ public interface LogicalOperator<R> extends Filter<R> {
      * The expression list shall have the same size than the {@linkplain #getOperands() operands list}.
      * For each index <var>i</var> valid for the lists, the following relation shall hold:
      *
-     * <blockquote><pre> R any = ...;
+     * {@snippet lang="java" :
+     * R any = ...;
      * Object  e = expressions.get(i).apply(any);
      * Boolean f = filters.get(i).test(any);
-     * assert e.equals(f);</pre>
-     * </blockquote>
+     * assert e.equals(f);
+     * }
      *
      * @return a view of {@linkplain #getOperands() operands list} as expressions.
      */

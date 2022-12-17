@@ -72,21 +72,21 @@ import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
  * output coordinates in metres, while this {@code AuthorityFactoryTest} class expects
  * input and output coordinates in CRS-dependent units and axis order.</p>
  *
- * <div class="note"><b>Usage example:</b>
+ * <h2>Usage example:</h2>
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>import org.junit.runner.RunWith;
- *import org.junit.runners.JUnit4;
- *import org.opengis.test.referencing.AuthorityFactoryTest;
+ * {@snippet lang="java" :
+ * import org.junit.runner.RunWith;
+ * import org.junit.runners.JUnit4;
+ * import org.opengis.test.referencing.AuthorityFactoryTest;
  *
- *&#64;RunWith(JUnit4.class)
- *public class MyTest extends AuthorityFactoryTest {
- *    public MyTest() {
- *        super(new MyCRSAuthorityFactory(), new MyCSAuthorityFactory(), new MyDatumAuthorityFactory());
- *    }
- *}</pre></blockquote>
- * </div>
+ * @RunWith(JUnit4.class)
+ * public class MyTest extends AuthorityFactoryTest {
+ *     public MyTest() {
+ *         super(new MyCRSAuthorityFactory(), new MyCSAuthorityFactory(), new MyDatumAuthorityFactory());
+ *     }
+ * }}
  *
  * @see ObjectFactoryTest
  * @see ParameterizedTransformTest

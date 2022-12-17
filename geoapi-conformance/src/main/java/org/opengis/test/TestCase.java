@@ -282,14 +282,15 @@ public strictfp abstract class TestCase {
      * {@link java.util.logging.Level#INFO} for giving some tips to the developer about how he can disable the test.
      *
      * <p><b>Example</b></p>
-     * <blockquote><pre>&#64;Test
-     *public void myTest() {
-     *    if (isDerivativeSupported) {
-     *        configurationTip = Configuration.Key.isDerivativeSupported;
-     *        // Do some tests the require support of math transform derivatives.
-     *    }
-     *    configurationTip = null;
-     *}</pre></blockquote>
+     * {@snippet lang="java" :
+     * @Test
+     * public void myTest() {
+     *     if (isDerivativeSupported) {
+     *         configurationTip = Configuration.Key.isDerivativeSupported;
+     *         // Do some tests the require support of math transform derivatives.
+     *     }
+     *     configurationTip = null;
+     * }}
      *
      * @since 3.1
      */
@@ -356,10 +357,11 @@ public strictfp abstract class TestCase {
      * and {@link org.opengis.referencing.datum.DatumFactory} in that order, then that subclass
      * contains the following method:</p>
      *
-     * <blockquote><pre>&#64;Parameterized.Parameters
-     *public static List&lt;Factory[]&gt; factories() {
-     *    return factories(CRSFactory.class, CSFactory.class, DatumFactory.class);
-     *}</pre></blockquote>
+     * {@snippet lang="java" :
+     * @Parameterized.Parameters
+     * public static List&lt;Factory[]&gt; factories() {
+     *     return factories(CRSFactory.class, CSFactory.class, DatumFactory.class);
+     * }}
      *
      * Note that the arrays may contain null elements if no factory implementation were found
      * for a given interface. All GeoAPI test cases use {@link org.junit.Assume} checks in order

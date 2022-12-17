@@ -206,7 +206,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * the standard nautical mile length ({@value org.opengis.test.ToleranceModifiers#NAUTICAL_MILE}
      * metres by minute of angle) as below:</p>
      *
-     * <blockquote><pre>derivativeDeltas = new double[] {100.0 / (60 * 1852)};      // Approximately 100 metres.</pre></blockquote>
+     * {@snippet lang="java" :
+     * derivativeDeltas = new double[] {100.0 / (60 * 1852)};      // Approximately 100 metres.
+     * }
      *
      * @see #isDerivativeSupported
      * @see #verifyDerivative(double[])

@@ -68,7 +68,9 @@ import org.opengis.test.coverage.image.*;
  * <i>etc.</i>) in the existing instance. The following example alters the existing instance
  * in order to accept non-standard axis names:</p>
  *
- * <blockquote><pre>Validators.DEFAULT.crs.enforceStandardNames = false;</pre></blockquote>
+ * {@snippet lang="java" :
+ * Validators.DEFAULT.crs.enforceStandardNames = false;
+ * }
  *
  * <p>To override some validation process without changing the system-wide setting,
  * vendors can create a new instance of {@link ValidatorContainer} and invoke its
@@ -87,10 +89,12 @@ public class Validators {
      * <p>This field is not final in order to allow vendors to switch easily between
      * different configurations, for example:</p>
      *
-     * <blockquote><pre>ValidatorContainer original = Validators.DEFAULT;
-     *Validators.DEFAULT = myConfig;
-     *... do some tests ...
-     *Validators.DEFAULT = original;</pre></blockquote>
+     * {@snippet lang="java" :
+     * ValidatorContainer original = Validators.DEFAULT;
+     * Validators.DEFAULT = myConfig;
+     * ... do some tests ...
+     * Validators.DEFAULT = original;
+     * }
      */
     public static ValidatorContainer DEFAULT = new ValidatorContainer();
 

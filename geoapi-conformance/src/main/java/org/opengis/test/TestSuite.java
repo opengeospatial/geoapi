@@ -40,7 +40,6 @@ import java.lang.reflect.Array;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.opengis.util.Factory;
-import org.opengis.referencing.operation.MathTransform;
 
 
 /**
@@ -76,31 +75,32 @@ import org.opengis.referencing.operation.MathTransform;
  * the test suite below declares that the tolerance threshold for {@code MyProjection}
  * needs to be relaxed by a factor 10 during reverse projections.
  *
- * <blockquote><pre>package org.myproject;
+ * {@snippet lang="java" :
+ * package org.myproject;
  *
- *import org.opengis.test.TestSuite;
- *import org.opengis.test.CalculationType;
- *import org.opengis.test.ToleranceModifier;
- *import org.opengis.test.ToleranceModifiers;
- *import org.opengis.test.ImplementationDetails;
- *import org.opengis.referencing.operation.MathTransform;
- *import org.opengis.util.Factory;
- *import java.util.Properties;
+ * import org.opengis.test.TestSuite;
+ * import org.opengis.test.CalculationType;
+ * import org.opengis.test.ToleranceModifier;
+ * import org.opengis.test.ToleranceModifiers;
+ * import org.opengis.test.ImplementationDetails;
+ * import org.opengis.referencing.operation.MathTransform;
+ * import org.opengis.util.Factory;
+ * import java.util.Properties;
  *
- *public class AllTests extends TestSuite implements {@linkplain ImplementationDetails} {
- *    &#64;Override
- *    public Properties {@linkplain ImplementationDetails#configuration configuration}({@linkplain Factory}... factories) {
- *        return null;
- *    }
+ * public class AllTests extends TestSuite implements ImplementationDetails {
+ *     @Override
+ *     public Properties configuration(Factory... factories) {
+ *         return null;
+ *     }
  *
- *    &#64;Override
- *    public {@linkplain ToleranceModifier} {@linkplain ImplementationDetails#tolerance tolerance}({@linkplain MathTransform} transform) {
- *        if (transform instanceof <var>MyProjection</var>) {
- *            return {@linkplain ToleranceModifiers#scale ToleranceModifiers.scale}(EnumSet.of({@linkplain CalculationType#INVERSE_TRANSFORM}), 1, 10);
- *        }
- *        return null;
- *    }
- *}</pre></blockquote>
+ *     @Override
+ *     public ToleranceModifier tolerance(MathTransform transform) {
+ *         if (transform instanceof MyProjection) {
+ *             return ToleranceModifiers.scale(EnumSet.of(CalculationType.INVERSE_TRANSFORM), 1, 10);
+ *         }
+ *         return null;
+ *     }
+ * }}
  *
  * The above {@code AllTests} class needs to be registered in the {@code META-INF/services/}
  * directory if the implementation details shall be honored (otherwise the tests will be run,

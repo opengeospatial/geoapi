@@ -48,21 +48,21 @@ import org.junit.runners.Parameterized;
  * from the {@code org.opengis.referencing.crs} package.
  * CRS instances are created using the authority factory given at construction time.
  *
- * <div class="note"><b>Usage example:</b>
+ * <h2>Usage example:</h2>
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>import org.junit.runner.RunWith;
- *import org.junit.runners.JUnit4;
- *import org.opengis.test.referencing.CRSTest;
+ * {@snippet lang="java" :
+ * import org.junit.runner.RunWith;
+ * import org.junit.runners.JUnit4;
+ * import org.opengis.test.referencing.CRSTest;
  *
- *&#64;RunWith(JUnit4.class)
- *public class MyTest extends CRSTest {
- *    public MyTest() {
- *        super(new MyCRSAuthorityFactory());
- *    }
- *}</pre></blockquote>
- * </div>
+ * @RunWith(JUnit4.class)
+ * public class MyTest extends CRSTest {
+ *     public MyTest() {
+ *         super(new MyCRSAuthorityFactory());
+ *     }
+ * }}
  *
  * @author  Cédric Briançon (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

@@ -66,17 +66,18 @@ import static org.junit.Assume.*;
  * {@link #prepareImageReader(boolean)} method. The {@linkplain ImageReader#getInput() reader input}
  * shall be set by the subclass when requested by the caller. Example:</p>
  *
- * <blockquote><pre>public class MyImageReaderTest extends ImageReaderTestCase {
- *    &#64;Override
- *    protected void prepareImageReader(boolean setInput) throws IOException {
- *        if (reader == null) {
- *            reader = new MyImageReader();
- *        }
- *        if (setInput) {
- *            reader.setInput(ImageIO.createImageInputStream(new File("MyTestImage")));
- *        }
- *    }
- *}</pre></blockquote>
+ * {@snippet lang="java" :
+ * public class MyImageReaderTest extends ImageReaderTestCase {
+ *     @Override
+ *     protected void prepareImageReader(boolean setInput) throws IOException {
+ *         if (reader == null) {
+ *             reader = new MyImageReader();
+ *         }
+ *         if (setInput) {
+ *             reader.setInput(ImageIO.createImageInputStream(new File("MyTestImage")));
+ *         }
+ *     }
+ * }}
  *
  * <p>Subclasses inherit the following tests:</p>
  * <table class="ogc">
@@ -182,15 +183,16 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * invoke this method in order to get a fresh {@link javax.imageio.stream.ImageInputStream}.</p>
      *
      * <p><b>Example:</b></p>
-     * <blockquote><pre>&#64;Override
-     *protected void prepareImageReader(boolean setInput) throws IOException {
-     *    if (reader == null) {
-     *        reader = new MyImageReader();
-     *    }
-     *    if (setInput) {
-     *        reader.setInput(ImageIO.createImageInputStream(new File("MyTestImage")));
-     *    }
-     *}</pre></blockquote>
+     * {@snippet lang="java" :
+     * @Override
+     * protected void prepareImageReader(boolean setInput) throws IOException {
+     *     if (reader == null) {
+     *         reader = new MyImageReader();
+     *     }
+     *     if (setInput) {
+     *         reader.setInput(ImageIO.createImageInputStream(new File("MyTestImage")));
+     *     }
+     * }}
      *
      * This method may be invoked with a {@code false} argument value when the methods to be
      * tested don't need an input, for example {@link ImageReader#canReadRaster()}.

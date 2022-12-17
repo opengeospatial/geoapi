@@ -21,9 +21,11 @@ import org.opengis.annotation.UML;
  *
  * <p><b>Example:</b> create an {@code Individual} instance:</p>
  *
- * <blockquote><pre>Map&lt;String,Object&gt; attributes = new HashMap&lt;String,Object&gt;();
- *attributes.put("name", new SimpleInternationalString("Aristotle"));
- *Individual party = factory.create(Individual.class, attributes);</pre></blockquote>
+ * {@snippet lang="java" :
+ * Map<String,Object> attributes = new HashMap<String,Object>();
+ * attributes.put("name", new SimpleInternationalString("Aristotle"));
+ * Individual party = factory.create(Individual.class, attributes);
+ * }
  *
  * The metadata proxy are <cite>live</cite>, i.e. any change to the maps of attributes will
  * be immediately reflected in the values returned by the metadata objects.

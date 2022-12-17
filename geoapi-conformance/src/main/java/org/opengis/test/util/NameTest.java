@@ -53,21 +53,21 @@ import static org.opengis.test.Assert.*;
  * Tests {@linkplain GenericName generic name} and related objects from the {@code org.opengis.util}
  * package. Name instances are created using a {@link NameFactory} given at construction time.
  *
- * <div class="note"><b>Usage example:</b>
+ * <h2>Usage example:</h2>
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>import org.junit.runner.RunWith;
- *import org.junit.runners.JUnit4;
- *import org.opengis.test.util.NameTest;
+ * {@snippet lang="java" :
+ * import org.junit.runner.RunWith;
+ * import org.junit.runners.JUnit4;
+ * import org.opengis.test.util.NameTest;
  *
- *&#64;RunWith(JUnit4.class)
- *public class MyTest extends NameTest {
- *    public MyTest() {
- *        super(new MyNameFactory());
- *    }
- *}</pre></blockquote>
- * </div>
+ * @RunWith(JUnit4.class)
+ * public class MyTest extends NameTest {
+ *     public MyTest() {
+ *         super(new MyNameFactory());
+ *     }
+ * }}
  *
  * @see org.opengis.test.TestSuite
  *

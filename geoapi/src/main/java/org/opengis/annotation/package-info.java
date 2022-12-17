@@ -39,8 +39,9 @@
  * As an example, the annotation for the {@link org.opengis.referencing.crs.ProjectedCRS}
  * interface appears in the source code as:
  *
- * <blockquote><pre>@UML(identifier = "SC_ProjectedCRS",
- *     specification = ISO_19111)</pre></blockquote>
+ * {@snippet lang="java" :
+ * @UML(identifier = "SC_ProjectedCRS", specification = ISO_19111)
+ * }
  *
  * These annotations are available at runtime by Java introspection. This is useful, for example,
  * when code needs to marshall data using the name defined by the ISO standard rather than the

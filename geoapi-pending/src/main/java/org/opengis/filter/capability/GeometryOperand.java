@@ -39,31 +39,31 @@ import org.opengis.util.CodeList;
 /**
  * Enumeration of the different {@code GeometryOperand} types.
  *
- * <pre>
- *  &lt;xsd:simpleType name="GeometryOperandType"&lt;
- *    &lt;xsd:restriction base="xsd:QName"&lt;
- *        &lt;xsd:enumeration value="gml:Envelope"/&lt;
- *        &lt;xsd:enumeration value="gml:Point"/&lt;
- *        &lt;xsd:enumeration value="gml:LineString"/&lt;
- *        &lt;xsd:enumeration value="gml:Polygon"/&lt;
- *        &lt;xsd:enumeration value="gml:ArcByCenterPoint"/&lt;
- *        &lt;xsd:enumeration value="gml:CircleByCenterPoint"/&lt;
- *        &lt;xsd:enumeration value="gml:Arc"/&lt;
- *        &lt;xsd:enumeration value="gml:Circle"/&lt;
- *        &lt;xsd:enumeration value="gml:ArcByBulge"/&lt;
- *        &lt;xsd:enumeration value="gml:Bezier"/&lt;
- *        &lt;xsd:enumeration value="gml:Clothoid"/&lt;
- *        &lt;xsd:enumeration value="gml:CubicSpline"/&lt;
- *        &lt;xsd:enumeration value="gml:Geodesic"/&lt;
- *        &lt;xsd:enumeration value="gml:OffsetCurve"/&lt;
- *        &lt;xsd:enumeration value="gml:Triangle"/&lt;
- *        &lt;xsd:enumeration value="gml:PolyhedralSurface"/&lt;
- *        &lt;xsd:enumeration value="gml:TriangulatedSurface"/&lt;
- *        &lt;xsd:enumeration value="gml:Tin"/&lt;
- *        &lt;xsd:enumeration value="gml:Solid"/&lt;
- *     &lt;/xsd:restriction&lt;
- *  &lt;/xsd:simpleType&lt;
- *  </pre>
+ * {@snippet lang="xml" :
+ * <xsd:simpleType name="GeometryOperandType">
+ *   <xsd:restriction base="xsd:QName">
+ *       <xsd:enumeration value="gml:Envelope"/>
+ *       <xsd:enumeration value="gml:Point"/>
+ *       <xsd:enumeration value="gml:LineString"/>
+ *       <xsd:enumeration value="gml:Polygon"/>
+ *       <xsd:enumeration value="gml:ArcByCenterPoint"/>
+ *       <xsd:enumeration value="gml:CircleByCenterPoint"/>
+ *       <xsd:enumeration value="gml:Arc"/>
+ *       <xsd:enumeration value="gml:Circle"/>
+ *       <xsd:enumeration value="gml:ArcByBulge"/>
+ *       <xsd:enumeration value="gml:Bezier"/>
+ *       <xsd:enumeration value="gml:Clothoid"/>
+ *       <xsd:enumeration value="gml:CubicSpline"/>
+ *       <xsd:enumeration value="gml:Geodesic"/>
+ *       <xsd:enumeration value="gml:OffsetCurve"/>
+ *       <xsd:enumeration value="gml:Triangle"/>
+ *       <xsd:enumeration value="gml:PolyhedralSurface"/>
+ *       <xsd:enumeration value="gml:TriangulatedSurface"/>
+ *       <xsd:enumeration value="gml:Tin"/>
+ *       <xsd:enumeration value="gml:Solid"/>
+ *    </xsd:restriction>
+ * </xsd:simpleType>
+ * }
  *
  * @author Justin Deoliveira (The Open Planning Project)
  * @author Martin Desruisseaux (Geomatys)
