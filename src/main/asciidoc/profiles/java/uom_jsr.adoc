@@ -2,11 +2,11 @@
 === Units of measurement
 
 The Java profile of GeoAPI does not materialize any of the units of measurement types (<<units>>) defined by ISO 19103.
-Instead, unit modeling is entirely delegated to the Java Specification Request JSR-363 [red yellow-background]#(TODO: upgrade to JSR-385)#.
-The ISO 19103 `Measure` type is represented by the JSR-363 `Quantity` interface.
+Instead, unit modeling is entirely delegated to the Java Specification Request JSR-385.
+The ISO 19103 `Measure` type is represented by the JSR-385 `Quantity` interface.
 The Java standard defines various quantity subtypes in the same way than ISO 19103 does,
 often with the same names (`Angle`, `Length`, `Area`, `Volume`, _etc_).
-But contrarily to ISO 19103, JSR-363 does not define a parallel set of subtypes for units of measurement.
+But contrarily to ISO 19103, JSR-385 does not define a parallel set of subtypes for units of measurement.
 Instead, it defines only one unit type, `javax.measure.Unit<Q extends Quantity<Q>>`,
 which is parameterized by the quantity type `Q`.
 For example instead of defining a `UomLength` subtype,
@@ -40,14 +40,14 @@ Unless otherwise specified, all Java types listed below are in the
 |`╴ Velocity`           |`UomVelocity`           |                |`Unit<Speed>`
 |======================================================================================
 
-.Differences between ISO 19103 and JSR-363:
+.Differences between ISO 19103 and JSR-385:
 [NOTE]
 ======
-* Angular speed has no direct mapping to JSR-363,
+* Angular speed has no direct mapping to JSR-385,
   but some implementations may allow the use of generic type `Quantity<?>`.
 * `Currency` is not considered a unit of measurement in this profile.
-* The JSR-363 types do not distinguish `Distance` from `Length`.
-* JSR-363 does not have a type equivalent to `DirectedMeasure`.
+* The JSR-385 types do not distinguish `Distance` from `Length`.
+* JSR-385 does not have a type equivalent to `DirectedMeasure`.
   But it still possible to represent their unit of measurement.
 * `SubUnitsPerUnit`, `UnitsList` and `StandardUnits` defined in ISO 19103 are not materialized in this profile.
 ======
