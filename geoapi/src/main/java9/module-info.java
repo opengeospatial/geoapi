@@ -51,7 +51,7 @@
  * <h2>Requirements</h2>
  * <ul>
  *   <li><a href="http://docs.oracle.com/javase/7/docs/index.html">Java&nbsp;7</a> or later.</li>
- *   <li><a href="https://jcp.org/en/jsr/detail?id=363"><abbr>JSR</abbr>-363</a> units of measurement API.</li>
+ *   <li><a href="https://jcp.org/en/jsr/detail?id=385"><abbr>JSR</abbr>-385</a> units of measurement API.</li>
  * </ul>
  *
  * @version 4.0

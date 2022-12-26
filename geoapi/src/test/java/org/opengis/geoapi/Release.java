@@ -76,8 +76,8 @@ final class Release implements Closeable {
 
     /**
      * Whether the {@linkplain #file JAR file} depends on the legacy JSR-275 API for units of measurement.
-     * If {@code false}, then the JAR depends on JSR-363 instead. This field should always be {@code false}
-     * (meaning that the JAR depends on JSR-363) unless we are comparing archived versions of GeoAPI.
+     * If {@code false}, then the JAR depends on JSR-363 or later. This field should always be {@code false}
+     * (meaning that the JAR depends on JSR-363 or 385) unless we are comparing archived versions of GeoAPI.
      */
     private final boolean isUsingLegacyUnits;
 

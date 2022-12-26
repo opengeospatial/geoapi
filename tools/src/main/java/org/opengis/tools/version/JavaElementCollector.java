@@ -64,7 +64,7 @@ import java.lang.reflect.InvocationTargetException;
  * </code></blockquote>
  *
  * Note that this class indirectly uses hard-coded reference to the Unit API
- * (JSR-275 or JSR-363) determined from the GeoAPI version.
+ * (JSR-275, JSR-363 or JSR-385) determined from the GeoAPI version.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
