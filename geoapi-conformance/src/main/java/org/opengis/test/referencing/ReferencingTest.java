@@ -43,21 +43,21 @@ import org.junit.runners.Parameterized;
  * Tests objects that combine all referencing sub-packages, especially {@code crs}, {@code cs} and
  * {@code datum}. The instances are created using the various factories given at construction time.
  *
- * <div class="note"><b>Usage example:</b>
+ * <h2>Usage example:</h2>
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>import org.junit.runner.RunWith;
- *import org.junit.runners.JUnit4;
- *import org.opengis.test.referencing.ReferencingTest;
+ * {@snippet lang="java" :
+ * import org.junit.runner.RunWith;
+ * import org.junit.runners.JUnit4;
+ * import org.opengis.test.referencing.ReferencingTest;
  *
- *&#64;RunWith(JUnit4.class)
- *public class MyTest extends ReferencingTest {
- *    public MyTest() {
- *        super(new MyCRSFactory(), new MyCSFactory(), new MyDatumFactory());
- *    }
- *}</pre></blockquote>
- * </div>
+ * @RunWith(JUnit4.class)
+ * public class MyTest extends ReferencingTest {
+ *     public MyTest() {
+ *         super(new MyCRSFactory(), new MyCSFactory(), new MyDatumFactory());
+ *     }
+ * }}
  *
  * @author  Cédric Briançon (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

@@ -40,7 +40,6 @@ import java.lang.reflect.Array;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.opengis.util.Factory;
-import org.opengis.referencing.operation.MathTransform;
 
 
 /**
@@ -53,19 +52,6 @@ import org.opengis.referencing.operation.MathTransform;
  *   <li>{@link org.opengis.test.referencing.AffineTransformTest}</li>
  *   <li>{@link org.opengis.test.referencing.ParameterizedTransformTest}</li>
  *   <li>{@link org.opengis.test.referencing.AuthorityFactoryTest}</li>
- *   <li>{@link org.opengis.test.referencing.gigs.GIGS2001}</li>
- *   <li>{@link org.opengis.test.referencing.gigs.GIGS2002}</li>
- *   <li>{@link org.opengis.test.referencing.gigs.GIGS2003}</li>
- *   <li>{@link org.opengis.test.referencing.gigs.GIGS2004}</li>
- *   <li>{@link org.opengis.test.referencing.gigs.GIGS2005}</li>
- *   <li>{@link org.opengis.test.referencing.gigs.GIGS2006}</li>
- *   <li>{@link org.opengis.test.referencing.gigs.GIGS2007}</li>
- *   <li>{@link org.opengis.test.referencing.gigs.GIGS2008}</li>
- *   <li>{@link org.opengis.test.referencing.gigs.GIGS2009}</li>
- *   <li>{@link org.opengis.test.referencing.gigs.GIGS3002}</li>
- *   <li>{@link org.opengis.test.referencing.gigs.GIGS3003}</li>
- *   <li>{@link org.opengis.test.referencing.gigs.GIGS3004}</li>
- *   <li>{@link org.opengis.test.referencing.gigs.GIGS3005}</li>
  *   <li>{@link org.opengis.test.wkt.CRSParserTest}</li>
  * </ul>
  *
@@ -89,31 +75,32 @@ import org.opengis.referencing.operation.MathTransform;
  * the test suite below declares that the tolerance threshold for {@code MyProjection}
  * needs to be relaxed by a factor 10 during reverse projections.
  *
- * <blockquote><pre>package org.myproject;
+ * {@snippet lang="java" :
+ * package org.myproject;
  *
- *import org.opengis.test.TestSuite;
- *import org.opengis.test.CalculationType;
- *import org.opengis.test.ToleranceModifier;
- *import org.opengis.test.ToleranceModifiers;
- *import org.opengis.test.ImplementationDetails;
- *import org.opengis.referencing.operation.MathTransform;
- *import org.opengis.util.Factory;
- *import java.util.Properties;
+ * import org.opengis.test.TestSuite;
+ * import org.opengis.test.CalculationType;
+ * import org.opengis.test.ToleranceModifier;
+ * import org.opengis.test.ToleranceModifiers;
+ * import org.opengis.test.ImplementationDetails;
+ * import org.opengis.referencing.operation.MathTransform;
+ * import org.opengis.util.Factory;
+ * import java.util.Properties;
  *
- *public class AllTests extends TestSuite implements {@linkplain ImplementationDetails} {
- *    &#64;Override
- *    public Properties {@linkplain ImplementationDetails#configuration configuration}({@linkplain Factory}... factories) {
- *        return null;
- *    }
+ * public class AllTests extends TestSuite implements ImplementationDetails {
+ *     @Override
+ *     public Properties configuration(Factory... factories) {
+ *         return null;
+ *     }
  *
- *    &#64;Override
- *    public {@linkplain ToleranceModifier} {@linkplain ImplementationDetails#tolerance tolerance}({@linkplain MathTransform} transform) {
- *        if (transform instanceof <var>MyProjection</var>) {
- *            return {@linkplain ToleranceModifiers#scale ToleranceModifiers.scale}(EnumSet.of({@linkplain CalculationType#INVERSE_TRANSFORM}), 1, 10);
- *        }
- *        return null;
- *    }
- *}</pre></blockquote>
+ *     @Override
+ *     public ToleranceModifier tolerance(MathTransform transform) {
+ *         if (transform instanceof MyProjection) {
+ *             return ToleranceModifiers.scale(EnumSet.of(CalculationType.INVERSE_TRANSFORM), 1, 10);
+ *         }
+ *         return null;
+ *     }
+ * }}
  *
  * The above {@code AllTests} class needs to be registered in the {@code META-INF/services/}
  * directory if the implementation details shall be honored (otherwise the tests will be run,
@@ -135,19 +122,6 @@ import org.opengis.referencing.operation.MathTransform;
   org.opengis.test.referencing.AffineTransformTest.class,
   org.opengis.test.referencing.ParameterizedTransformTest.class,
   org.opengis.test.referencing.AuthorityFactoryTest.class,
-  org.opengis.test.referencing.gigs.GIGS2001.class,
-  org.opengis.test.referencing.gigs.GIGS2002.class,
-  org.opengis.test.referencing.gigs.GIGS2003.class,
-  org.opengis.test.referencing.gigs.GIGS2004.class,
-  org.opengis.test.referencing.gigs.GIGS2005.class,
-  org.opengis.test.referencing.gigs.GIGS2006.class,
-  org.opengis.test.referencing.gigs.GIGS2007.class,
-  org.opengis.test.referencing.gigs.GIGS2008.class,
-  org.opengis.test.referencing.gigs.GIGS2009.class,
-  org.opengis.test.referencing.gigs.GIGS3002.class,
-  org.opengis.test.referencing.gigs.GIGS3003.class,
-  org.opengis.test.referencing.gigs.GIGS3004.class,
-  org.opengis.test.referencing.gigs.GIGS3005.class,
   org.opengis.test.wkt.CRSParserTest.class
 })
 public strictfp class TestSuite {

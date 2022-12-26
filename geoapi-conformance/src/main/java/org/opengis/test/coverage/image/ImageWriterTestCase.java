@@ -66,14 +66,15 @@ import static org.junit.Assume.*;
  * <p>To use this test, subclasses need to set the {@link #writer} field to a non-null value
  * in the {@link #prepareImageWriter(boolean)} method. Example:</p>
  *
- * <blockquote><pre>public class MyImageWriterTest extends ImageWriterTestCase {
- *    &#64;Override
- *    protected void prepareImageWriter(boolean optionallySetOutput) throws IOException {
- *        if (writer == null) {
- *            writer = new MyImageWriter();
- *        }
- *    }
- *}</pre></blockquote>
+ * {@snippet lang="java" :
+ * public class MyImageWriterTest extends ImageWriterTestCase {
+ *     @Override
+ *     protected void prepareImageWriter(boolean optionallySetOutput) throws IOException {
+ *         if (writer == null) {
+ *             writer = new MyImageWriter();
+ *         }
+ *     }
+ * }}
  *
  * The {@linkplain #writer} shall accept at least one of the following
  * {@linkplain ImageWriterSpi#getOutputTypes() output types}, in preference order:
@@ -144,15 +145,16 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * a temporary file.</p>
      *
      * <p><b>Example:</b></p>
-     * <blockquote><pre>&#64;Override
-     *protected void prepareImageWriter(boolean optionallySetOutput) throws IOException {
-     *    if (writer == null) {
-     *        writer = new MyImageWriter();
-     *    }
-     *    if (optionallySetOutput) {
-     *        writer.setOutput(<var>output</var>);                  // Optional operation.
-     *    }
-     *}</pre></blockquote>
+     * {@snippet lang="java" :
+     * @Override
+     * protected void prepareImageWriter(boolean optionallySetOutput) throws IOException {
+     *     if (writer == null) {
+     *         writer = new MyImageWriter();
+     *     }
+     *     if (optionallySetOutput) {
+     *         writer.setOutput(output);                  // Optional operation.
+     *     }
+     * }}
      *
      * This method may be invoked with a {@code false} argument value when the methods to be
      * tested do not need an output, for example {@link ImageWriter#canWriteRasters()}.
@@ -169,16 +171,18 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * are given to the tested image writer, as below:
      *
      * <p><b>For stream metadata:</b></p>
-     * <pre>IIOMetadata metadata = {@linkplain #writer}.{@linkplain ImageWriter#getDefaultStreamMetadata getDefaultStreamMetadata}(param);
-     *if (metadata != null) {
-     *    completeImageMetadata(metadata, null);
-     *}</pre>
+     * {@snippet lang="java" :
+     * IIOMetadata metadata = writer.getDefaultStreamMetadata}(param);
+     * if (metadata != null) {
+     *     completeImageMetadata(metadata, null);
+     * }}
      *
      * <p><b>For image metadata:</b></p>
-     * <pre>IIOMetadata metadata = {@linkplain #writer}.{@linkplain ImageWriter#getDefaultImageMetadata getDefaultImageMetadata}(ImageTypeSpecifier.{@linkplain ImageTypeSpecifier#createFromRenderedImage createFromRenderedImage}(image), param);
-     *if (metadata != null) {
-     *    completeImageMetadata(metadata, image);
-     *}</pre>
+     * {@snippet lang="java" :
+     * IIOMetadata metadata = writer.getDefaultImageMetadata(ImageTypeSpecifier.createFromRenderedImage(image), param);
+     * if (metadata != null) {
+     *     completeImageMetadata(metadata, image);
+     * }}
      *
      * The default implementation does nothing (note: this may change in a future version).
      * Subclasses can override this method for providing custom metadata.

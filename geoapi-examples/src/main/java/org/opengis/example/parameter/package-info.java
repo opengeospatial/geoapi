@@ -15,7 +15,8 @@
  *
  * <p><b><u>Example: Creating parameters for the Mercator projection</u></b></p>
  *
- * <blockquote><pre> public ParameterValueGroup createMercatorParameters() {
+ * {@snippet lang="java" :
+ * public ParameterValueGroup createMercatorParameters() {
  *     final Citation authority = new SimpleCitation("EPSG");
  *     return new SimpleParameterGroup(authority, "Mercator (variant A)",
  *             new SimpleParameter(authority, "Latitude of natural origin",     SimpleParameter.Type.LATITUDE),
@@ -23,15 +24,16 @@
  *             new SimpleParameter(authority, "Scale factor at natural origin", SimpleParameter.Type.SCALE),
  *             new SimpleParameter(authority, "False easting",                  SimpleParameter.Type.LINEAR),
  *             new SimpleParameter(authority, "False northing",                 SimpleParameter.Type.LINEAR));
- * }</pre></blockquote>
+ * }}
  *
  * <p><b><u>Example: Defining values to the Mercator parameters</u></b></p>
  *
- * <blockquote><pre> public ParameterValueGroup createMercatorParameters() {
+ * {@snippet lang="java" :
+ * public ParameterValueGroup createMercatorParameters() {
  *     ParameterValueGroup group = createMercatorParameters();
  *     group.parameter("Latitude of natural origin").setValue(30.0, NonSI.DEGREE_ANGLE);
  *     group.parameter("False easting").setValue(5000.0, SI.METRE);
- * }</pre></blockquote>
+ * }}
  *
  * <p>Every classes in this package are hereby placed into the Public Domain.
  * This means anyone is free to do whatever they wish with those files.</p>

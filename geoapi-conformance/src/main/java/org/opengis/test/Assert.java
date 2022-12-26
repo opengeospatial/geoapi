@@ -52,11 +52,15 @@ import org.opengis.test.coverage.image.PixelIterator;
  * This class inherits all assertion methods from the {@link org.junit.Assert org.junit.Assert} class.
  * Consequently, developers can replace the following statement:
  *
- * <blockquote><pre>import static org.junit.Assert.*;</pre></blockquote>
+ * {@snippet lang="java" :
+ * import static org.junit.Assert.*;
+ * }
  *
  * by
  *
- * <blockquote><pre>import static org.opengis.test.Assert.*;</pre></blockquote>
+ * {@snippet lang="java" :
+ * import static org.opengis.test.Assert.*;
+ * }
  *
  * if they wish to use the assertion methods defined here in addition of JUnit methods.
  *

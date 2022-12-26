@@ -62,21 +62,21 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * Tests the creation of referencing objects from the {@linkplain ObjectFactory object factories}
  * given at construction time.
  *
- * <div class="note"><b>Usage example:</b>
+ * <h2>Usage example:</h2>
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>import org.junit.runner.RunWith;
- *import org.junit.runners.JUnit4;
- *import org.opengis.test.referencing.ObjectFactoryTest;
+ * {@snippet lang="java" :
+ * import org.junit.runner.RunWith;
+ * import org.junit.runners.JUnit4;
+ * import org.opengis.test.referencing.ObjectFactoryTest;
  *
- *&#64;RunWith(JUnit4.class)
- *public class MyTest extends ObjectFactoryTest {
- *    public MyTest() {
- *        super(new MyDatumFactory(), new MyCSFactory(), new MyCRSFactory(), new MyOpFactory());
- *    }
- *}</pre></blockquote>
- * </div>
+ * @RunWith(JUnit4.class)
+ * public class MyTest extends ObjectFactoryTest {
+ *     public MyTest() {
+ *         super(new MyDatumFactory(), new MyCSFactory(), new MyCRSFactory(), new MyOpFactory());
+ *     }
+ * }}
  *
  * @see AuthorityFactoryTest
  * @see org.opengis.test.TestSuite

@@ -45,17 +45,18 @@ import static org.opengis.annotation.Specification.ISO_19115;
  *
  * <p>Implementations are encouraged to extend {@link Number} in a manner equivalent to:</p>
  *
- * <blockquote><pre>class MyFraction extends Number implements RepresentativeFraction {
- *    public double doubleValue() {
- *        return 1.0 / (double) denominator;
- *    }
- *    public float floatValue() {
- *        return 1.0f / (float) denominator;
- *    }
- *    public long longValue() {
- *        return 1 / denominator;       // Result is zero except for denominator = [0,1].
- *    }
- *}</pre></blockquote>
+ * {@snippet lang="java" :
+ * class MyFraction extends Number implements RepresentativeFraction {
+ *     public double doubleValue() {
+ *         return 1.0 / (double) denominator;
+ *     }
+ *     public float floatValue() {
+ *         return 1.0f / (float) denominator;
+ *     }
+ *     public long longValue() {
+ *         return 1 / denominator;       // Result is zero except for denominator = [0,1].
+ *     }
+ * }}
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @version 3.1
@@ -85,13 +86,14 @@ public interface RepresentativeFraction {
      * Compares this representative fraction with the specified object for equality.
      * Implementations should match the following:
      *
-     * <blockquote><pre>public boolean equals(Object object) {
-     *    if (object instanceof RepresentativeFraction) {
-     *        final RepresentativeFraction that = (RepresentativeFraction) object;
-     *        return getDenominator() == that.getDenominator();
-     *    }
-     *    return false;
-     *}</pre></blockquote>
+     * {@snippet lang="java" :
+     * public boolean equals(Object object) {
+     *     if (object instanceof RepresentativeFraction) {
+     *         final RepresentativeFraction that = (RepresentativeFraction) object;
+     *         return getDenominator() == that.getDenominator();
+     *     }
+     *     return false;
+     * }}
      *
      * @param  other  the object to compare with.
      * @return {@code true} if {@code other} is a {@code RepresentedFraction} with the same
@@ -104,9 +106,10 @@ public interface RepresentativeFraction {
      * Returns a hash value for this representative fraction.
      * Implementations should match the following:
      *
-     * <blockquote><pre>public int hashCode() {
-     *    return (int) getDenominator();
-     *}</pre></blockquote>
+     * {@snippet lang="java" :
+     * public int hashCode() {
+     *     return (int) getDenominator();
+     * }}
      *
      * @return a hash code value for this representative fraction.
      */

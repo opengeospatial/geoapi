@@ -60,21 +60,21 @@ import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
  * from the {@code org.opengis.referencing.operation} package. Math transform instances are
  * created using the factory given at construction time.
  *
- * <div class="note"><b>Usage example:</b>
+ * <h2>Usage example:</h2>
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>import org.junit.runner.RunWith;
- *import org.junit.runners.JUnit4;
- *import org.opengis.test.referencing.AffineTransformTest;
+ * {@snippet lang="java" :
+ * import org.junit.runner.RunWith;
+ * import org.junit.runners.JUnit4;
+ * import org.opengis.test.referencing.AffineTransformTest;
  *
- *&#64;RunWith(JUnit4.class)
- *public class MyTest extends AffineTransformTest {
- *    public MyTest() {
- *        super(new MyMathTransformFactory());
- *    }
- *}</pre></blockquote>
- * </div>
+ * @RunWith(JUnit4.class)
+ * public class MyTest extends AffineTransformTest {
+ *     public MyTest() {
+ *         super(new MyMathTransformFactory());
+ *     }
+ * }}
  *
  * @see ParameterizedTransformTest
  * @see org.opengis.test.TestSuite

@@ -82,10 +82,11 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
  * This mapping is provided by GeoAPI in the {@code org/opengis/metadata/2003/charset-codes.properties} file.
  * This file can be read as below:
  *
- * <blockquote><pre> final Properties codes = new Properties();
+ * {@snippet lang="java" :
+ * final Properties codes = new Properties();
  * try (InputStream in = Metadata.class.getResourceAsStream("2003/charset-codes.properties")) {
  *     codes.load(in);
- * }</pre></blockquote>
+ * }}
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @version 3.1

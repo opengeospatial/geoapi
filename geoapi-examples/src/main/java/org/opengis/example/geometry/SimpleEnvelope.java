@@ -185,7 +185,9 @@ public class SimpleEnvelope implements Envelope {
      * Since this simple class does not support envelopes crossing the anti-meridian,
      * this method is equivalent to the following code:
      *
-     * <blockquote><pre>return getLowerCorner().getOrdinate(dimension);</pre></blockquote>
+     * {@snippet lang="java" :
+     * return getLowerCorner().getOrdinate(dimension);
+     * }
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.
      * @return the minimal coordinate at the given dimension.
@@ -203,7 +205,9 @@ public class SimpleEnvelope implements Envelope {
      * Since this simple class does not support envelopes crossing the anti-meridian,
      * this method is equivalent to the following code:
      *
-     * <blockquote><pre>return getUpperCorner().getOrdinate(dimension);</pre></blockquote>
+     * {@snippet lang="java" :
+     * return getUpperCorner().getOrdinate(dimension);
+     * }
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.
      * @return the maximal coordinate at the given dimension.
@@ -221,7 +225,9 @@ public class SimpleEnvelope implements Envelope {
      * Since this simple class does not support envelopes crossing the anti-meridian,
      * this method is equivalent to the following code:
      *
-     * <blockquote><pre>return 0.5*(getMinimum(dimension) + getMaximum(dimension));</pre></blockquote>
+     * {@snippet lang="java" :
+     * return 0.5*(getMinimum(dimension) + getMaximum(dimension));
+     * }
      */
     @Override
     public double getMedian(int dimension) throws IndexOutOfBoundsException {
@@ -234,7 +240,9 @@ public class SimpleEnvelope implements Envelope {
      * Since this simple class does not support envelopes crossing the anti-meridian,
      * this method is equivalent to the following code:
      *
-     * <blockquote><pre>return getMaximum(dimension) - getMinimum(dimension);</pre></blockquote>
+     * {@snippet lang="java" :
+     * return getMaximum(dimension) - getMinimum(dimension);
+     * }
      */
     @Override
     public double getSpan(int dimension) throws IndexOutOfBoundsException {

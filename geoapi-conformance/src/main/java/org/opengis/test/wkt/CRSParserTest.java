@@ -78,21 +78,21 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  *   <li>{@link CoordinateReferenceSystem#getRemarks()} (optional – null allowed)</li>
  * </ul>
  *
- * <div class="note"><b>Usage example:</b>
+ * <h2>Usage example:</h2>
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
- * <blockquote><pre>import org.junit.runner.RunWith;
- *import org.junit.runners.JUnit4;
- *import org.opengis.test.wkt.CRSParserTest;
+ * {@snippet lang="java" :
+ * import org.junit.runner.RunWith;
+ * import org.junit.runners.JUnit4;
+ * import org.opengis.test.wkt.CRSParserTest;
  *
- *&#64;RunWith(JUnit4.class)
- *public class MyTest extends CRSParserTest {
- *    public MyTest() {
- *        super(new MyCRSFactory());
- *    }
- *}</pre></blockquote>
- * </div>
+ * @RunWith(JUnit4.class)
+ * public class MyTest extends CRSParserTest {
+ *     public MyTest() {
+ *         super(new MyCRSFactory());
+ *     }
+ * }}
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Johann Sorel (Geomatys)
@@ -274,14 +274,16 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a three-dimensional geodetic CRS.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>GEODCRS[“WGS 84”,
-     *  DATUM[“World Geodetic System 1984”,
-     *    ELLIPSOID[“WGS 84”, 6378137, 298.257223563,
-     *      LENGTHUNIT[“metre”,1.0]]],
-     *  CS[ellipsoidal,3],
-     *    AXIS[“(lat)”,north,ANGLEUNIT[“degree”,0.0174532925199433]],
-     *    AXIS[“(lon)”,east,ANGLEUNIT[“degree”,0.0174532925199433]],
-     *    AXIS[“ellipsoidal height (h)”,up,LENGTHUNIT[“metre”,1.0]]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * GEODCRS[“WGS 84”,
+     *   DATUM[“World Geodetic System 1984”,
+     *     ELLIPSOID[“WGS 84”, 6378137, 298.257223563,
+     *       LENGTHUNIT[“metre”,1.0]]],
+     *   CS[ellipsoidal,3],
+     *     AXIS[“(lat)”,north,ANGLEUNIT[“degree”,0.0174532925199433]],
+     *     AXIS[“(lon)”,east,ANGLEUNIT[“degree”,0.0174532925199433]],
+     *     AXIS[“ellipsoidal height (h)”,up,LENGTHUNIT[“metre”,1.0]]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -340,15 +342,17 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a geodetic CRS which contain a remark written using non-ASCII characters.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>GEODCRS[“S-95”,
-     *  DATUM[“Pulkovo 1995”,
-     *    ELLIPSOID[“Krassowsky 1940”, 6378245, 298.3,
-     *      LENGTHUNIT[“metre”,1.0]]],
-     *  CS[ellipsoidal,2],
-     *    AXIS[“latitude”,north,ORDER[1]],
-     *    AXIS[“longitude”,east,ORDER[2]],
-     *    ANGLEUNIT[“degree”,0.0174532925199433],
-     *  REMARK[“Система Геодеэических Координвт года 1995(СК-95)”]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * GEODCRS[“S-95”,
+     *   DATUM[“Pulkovo 1995”,
+     *     ELLIPSOID[“Krassowsky 1940”, 6378245, 298.3,
+     *       LENGTHUNIT[“metre”,1.0]]],
+     *   CS[ellipsoidal,2],
+     *     AXIS[“latitude”,north,ORDER[1]],
+     *     AXIS[“longitude”,east,ORDER[2]],
+     *     ANGLEUNIT[“degree”,0.0174532925199433],
+     *   REMARK[“Система Геодеэических Координвт года 1995(СК-95)”]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -388,15 +392,17 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a geodetic CRS which contains a remark and an identifier.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>GEODCRS[“NAD83”,
-     *  DATUM[“North American Datum 1983”,
-     *    ELLIPSOID[“GRS 1980”, 6378137, 298.257222101, LENGTHUNIT[“metre”,1.0]]],
-     *  CS[ellipsoidal,2],
-     *    AXIS[“latitude”,north],
-     *    AXIS[“longitude”,east],
-     *    ANGLEUNIT[“degree”,0.0174532925199433],
-     *  ID[“EPSG”,4269],
-     *  REMARK[“1986 realisation”]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * GEODCRS[“NAD83”,
+     *   DATUM[“North American Datum 1983”,
+     *     ELLIPSOID[“GRS 1980”, 6378137, 298.257222101, LENGTHUNIT[“metre”,1.0]]],
+     *   CS[ellipsoidal,2],
+     *     AXIS[“latitude”,north],
+     *     AXIS[“longitude”,east],
+     *     ANGLEUNIT[“degree”,0.0174532925199433],
+     *   ID[“EPSG”,4269],
+     *   REMARK[“1986 realisation”]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -447,15 +453,17 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a geodetic CRS with a prime meridian other than Greenwich and all angular units in grads.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>GEODCRS[“NTF (Paris)”,
-     *  DATUM[“Nouvelle Triangulation Francaise”,
-     *    ELLIPSOID[“Clarke 1880 (IGN)”, 6378249.2, 293.4660213]],
-     *  PRIMEM[“Paris”,2.5969213],
-     *  CS[ellipsoidal,2],
-     *    AXIS[“latitude”,north,ORDER[1]],
-     *    AXIS[“longitude”,east,ORDER[2]],
-     *    ANGLEUNIT[“grad”,0.015707963267949],
-     *  REMARK[“Nouvelle Triangulation Française”]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * GEODCRS[“NTF (Paris)”,
+     *   DATUM[“Nouvelle Triangulation Francaise”,
+     *     ELLIPSOID[“Clarke 1880 (IGN)”, 6378249.2, 293.4660213]],
+     *   PRIMEM[“Paris”,2.5969213],
+     *   CS[ellipsoidal,2],
+     *     AXIS[“latitude”,north,ORDER[1]],
+     *     AXIS[“longitude”,east,ORDER[2]],
+     *     ANGLEUNIT[“grad”,0.015707963267949],
+     *   REMARK[“Nouvelle Triangulation Française”]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -495,20 +503,22 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a geodetic CRS with Cartesian coordinate system.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>GEODETICCRS[“JGD2000”,
-     *  DATUM[“Japanese Geodetic Datum 2000”,
-     *    ELLIPSOID[“GRS 1980”, 6378137, 298.257222101]],
-     *  CS[Cartesian,3],
-     *    AXIS[“(X)”,geocentricX],
-     *    AXIS[“(Y)”,geocentricY],
-     *    AXIS[“(Z)”,geocentricZ],
-     *    LENGTHUNIT[“metre”,1.0],
-     *  SCOPE[“Geodesy, topographic mapping and cadastre”],
-     *  AREA[“Japan”],
-     *  BBOX[17.09,122.38,46.05,157.64],
-     *  TIMEEXTENT[2002-04-01,2011-10-21],
-     *  ID[“EPSG”,4946,URI[“urn:ogc:def:crs:EPSG::4946”]],
-     *  REMARK[“注：JGD2000ジオセントリックは現在JGD2011に代わりました。”]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * GEODETICCRS[“JGD2000”,
+     *   DATUM[“Japanese Geodetic Datum 2000”,
+     *     ELLIPSOID[“GRS 1980”, 6378137, 298.257222101]],
+     *   CS[Cartesian,3],
+     *     AXIS[“(X)”,geocentricX],
+     *     AXIS[“(Y)”,geocentricY],
+     *     AXIS[“(Z)”,geocentricZ],
+     *     LENGTHUNIT[“metre”,1.0],
+     *   SCOPE[“Geodesy, topographic mapping and cadastre”],
+     *   AREA[“Japan”],
+     *   BBOX[17.09,122.38,46.05,157.64],
+     *   TIMEEXTENT[2002-04-01,2011-10-21],
+     *   ID[“EPSG”,4946,URI[“urn:ogc:def:crs:EPSG::4946”]],
+     *   REMARK[“注：JGD2000ジオセントリックは現在JGD2011に代わりました。”]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -559,23 +569,25 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a projected CRS with linear units in metres and axes in (<var>Y</var>,<var>X</var>) order.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>PROJCRS[“ETRS89 Lambert Azimuthal Equal Area CRS”,
-     *  BASEGEODCRS[“ETRS89”,
-     *    DATUM[“ETRS89”,
-     *      ELLIPSOID[“GRS 80”, 6378137, 298.257222101, LENGTHUNIT[“metre”,1.0]]]],
-     *  CONVERSION[“LAEA”,
-     *    METHOD[“Lambert Azimuthal Equal Area”,ID[“EPSG”,9820]],
-     *    PARAMETER[“Latitude of natural origin”,  52.0, ANGLEUNIT[“degree”,0.0174532925199433]],
-     *    PARAMETER[“Longitude of natural origin”, 10.0, ANGLEUNIT[“degree”,0.0174532925199433]],
-     *    PARAMETER[“False easting”,  4321000.0, LENGTHUNIT[“metre”,1.0]],
-     *    PARAMETER[“False northing”, 3210000.0, LENGTHUNIT[“metre”,1.0]]],
-     *  CS[Cartesian,2],
-     *    AXIS[“(Y)”,north,ORDER[1]],
-     *    AXIS[“(X)”,east,ORDER[2]],
-     *    LENGTHUNIT[“metre”,1.0],
-     *  SCOPE[“Description of a purpose”],
-     *  AREA[“An area description”],
-     *  ID[“EuroGeographics”,“ETRS-LAEA”]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * PROJCRS[“ETRS89 Lambert Azimuthal Equal Area CRS”,
+     *   BASEGEODCRS[“ETRS89”,
+     *     DATUM[“ETRS89”,
+     *       ELLIPSOID[“GRS 80”, 6378137, 298.257222101, LENGTHUNIT[“metre”,1.0]]]],
+     *   CONVERSION[“LAEA”,
+     *     METHOD[“Lambert Azimuthal Equal Area”,ID[“EPSG”,9820]],
+     *     PARAMETER[“Latitude of natural origin”,  52.0, ANGLEUNIT[“degree”,0.0174532925199433]],
+     *     PARAMETER[“Longitude of natural origin”, 10.0, ANGLEUNIT[“degree”,0.0174532925199433]],
+     *     PARAMETER[“False easting”,  4321000.0, LENGTHUNIT[“metre”,1.0]],
+     *     PARAMETER[“False northing”, 3210000.0, LENGTHUNIT[“metre”,1.0]]],
+     *   CS[Cartesian,2],
+     *     AXIS[“(Y)”,north,ORDER[1]],
+     *     AXIS[“(X)”,east,ORDER[2]],
+     *     LENGTHUNIT[“metre”,1.0],
+     *   SCOPE[“Description of a purpose”],
+     *   AREA[“An area description”],
+     *   ID[“EuroGeographics”,“ETRS-LAEA”]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -635,30 +647,32 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a projected CRS with linear units in feet.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>PROJCRS[“NAD27 / Texas South Central”,
-     *  BASEGEODCRS[“NAD27”,
-     *    DATUM[“North American Datum 1927”,
-     *      ELLIPSOID[“Clarke 1866”, 20925832.164, 294.97869821,
-     *        LENGTHUNIT[“US survey foot”,0.304800609601219]]]],
-     *  CONVERSION[“Texas South Central SPCS27”,
-     *    METHOD[“Lambert Conic Conformal (2SP)”,ID[“EPSG”,9802]],
-     *    PARAMETER[“Latitude of false origin”,27.83333333333333,
-     *      ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8821]],
-     *    PARAMETER[“Longitude of false origin”,-99.0,
-     *      ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8822]],
-     *    PARAMETER[“Latitude of 1st standard parallel”,28.383333333333,
-     *      ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8823]],
-     *    PARAMETER[“Latitude of 2nd standard parallel”,30.283333333333,
-     *      ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8824]],
-     *    PARAMETER[“Easting at false origin”,2000000.0,
-     *      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8826]],
-     *    PARAMETER[“Northing at false origin”,0.0,
-     *      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8827]]],
-     *  CS[Cartesian,2],
-     *    AXIS[“(x)”,east],
-     *    AXIS[“(y)”,north],
-     *    LENGTHUNIT[“US survey foot”,0.304800609601219],
-     *  REMARK[“Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686"N, longitude 98°32'30.506"W.”]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * PROJCRS[“NAD27 / Texas South Central”,
+     *   BASEGEODCRS[“NAD27”,
+     *     DATUM[“North American Datum 1927”,
+     *       ELLIPSOID[“Clarke 1866”, 20925832.164, 294.97869821,
+     *         LENGTHUNIT[“US survey foot”,0.304800609601219]]]],
+     *   CONVERSION[“Texas South Central SPCS27”,
+     *     METHOD[“Lambert Conic Conformal (2SP)”,ID[“EPSG”,9802]],
+     *     PARAMETER[“Latitude of false origin”,27.83333333333333,
+     *       ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8821]],
+     *     PARAMETER[“Longitude of false origin”,-99.0,
+     *       ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8822]],
+     *     PARAMETER[“Latitude of 1st standard parallel”,28.383333333333,
+     *       ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8823]],
+     *     PARAMETER[“Latitude of 2nd standard parallel”,30.283333333333,
+     *       ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8824]],
+     *     PARAMETER[“Easting at false origin”,2000000.0,
+     *       LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8826]],
+     *     PARAMETER[“Northing at false origin”,0.0,
+     *       LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8827]]],
+     *   CS[Cartesian,2],
+     *     AXIS[“(x)”,east],
+     *     AXIS[“(y)”,north],
+     *     LENGTHUNIT[“US survey foot”,0.304800609601219],
+     *   REMARK[“Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686"N, longitude 98°32'30.506"W.”]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -739,26 +753,28 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a projected CRS with implicit parameter units.
      * The WKT parsed by this test is (except for quote characters and the line feed in {@code REMARK}):
      *
-     * <blockquote><pre>PROJCRS[“NAD83 UTM 10”,
-     *  BASEGEODCRS[“NAD83(86)”,
-     *    DATUM[“North American Datum 1983”,
-     *      ELLIPSOID[“GRS 1980”,6378137,298.257222101]],
-     *    ANGLEUNIT[“degree”,0.0174532925199433],
-     *    PRIMEM[“Greenwich”,0]],
-     *  CONVERSION[“UTM zone 10N”,ID[“EPSG”,16010],
-     *    METHOD[“Transverse Mercator”],
-     *    PARAMETER[“Latitude of natural origin”,0.0],
-     *    PARAMETER[“Longitude of natural origin”,-123.0],
-     *    PARAMETER[“Scale factor”,0.9996],
-     *    PARAMETER[“False easting”,500000.0],
-     *    PARAMETER[“False northing”,0.0]],
-     *  CS[Cartesian,2],
-     *    AXIS[“(E)”,east,ORDER[1]],
-     *    AXIS[“(N)”,north,ORDER[2]],
-     *    LENGTHUNIT[“metre”,1.0],
-     *  REMARK[“In this example units are implied. This is allowed for backward compatibility.
-     *          It is recommended that units are explicitly given in the string,
-     *          as in the previous two examples.”]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * PROJCRS[“NAD83 UTM 10”,
+     *   BASEGEODCRS[“NAD83(86)”,
+     *     DATUM[“North American Datum 1983”,
+     *       ELLIPSOID[“GRS 1980”,6378137,298.257222101]],
+     *     ANGLEUNIT[“degree”,0.0174532925199433],
+     *     PRIMEM[“Greenwich”,0]],
+     *   CONVERSION[“UTM zone 10N”,ID[“EPSG”,16010],
+     *     METHOD[“Transverse Mercator”],
+     *     PARAMETER[“Latitude of natural origin”,0.0],
+     *     PARAMETER[“Longitude of natural origin”,-123.0],
+     *     PARAMETER[“Scale factor”,0.9996],
+     *     PARAMETER[“False easting”,500000.0],
+     *     PARAMETER[“False northing”,0.0]],
+     *   CS[Cartesian,2],
+     *     AXIS[“(E)”,east,ORDER[1]],
+     *     AXIS[“(N)”,north,ORDER[2]],
+     *     LENGTHUNIT[“metre”,1.0],
+     *   REMARK[“In this example units are implied. This is allowed for backward compatibility.
+     *           It is recommended that units are explicitly given in the string,
+     *           as in the previous two examples.”]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -819,10 +835,12 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a vertical CRS.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>VERTCRS[“NAVD88”,
-     *  VDATUM[“North American Vertical Datum 1988”],
-     *  CS[vertical,1],
-     *    AXIS[“gravity-related height (H)”,up],LENGTHUNIT[“metre”,1.0]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * VERTCRS[“NAVD88”,
+     *   VDATUM[“North American Vertical Datum 1988”],
+     *   CS[vertical,1],
+     *     AXIS[“gravity-related height (H)”,up],LENGTHUNIT[“metre”,1.0]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -860,9 +878,11 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a temporal CRS.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>TIMECRS[“GPS Time”,
+     * {@snippet lang="wkt" :
+     * TIMECRS[“GPS Time”,
      *   TDATUM[“Time origin”,TIMEORIGIN[1980-01-01T00:00:00.0Z]],
-     *   CS[temporal,1],AXIS[“time”,future],TIMEUNIT[“day”,86400.0]]</pre></blockquote>
+     *   CS[temporal,1],AXIS[“time”,future],TIMEUNIT[“day”,86400.0]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -897,11 +917,13 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a parametric CRS.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>PARAMETRICCRS[“WMO standard atmosphere layer 0”,
+     * {@snippet lang="wkt" :
+     * PARAMETRICCRS[“WMO standard atmosphere layer 0”,
      *   PDATUM[“Mean Sea Level”,ANCHOR[“1013.25 hPa at 15°C”]],
      *   CS[parametric,1],
      *   AXIS[“pressure (hPa)”,up],
-     *   PARAMETRICUNIT[“hPa”,100.0]]</pre></blockquote>
+     *   PARAMETRICUNIT[“hPa”,100.0]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -929,13 +951,15 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses an engineering CRS with North and West axis directions.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>ENGINEERINGCRS[“Astra Minas Grid”,
-     *  ENGINEERINGDATUM[“Astra Minas”],
-     *  CS[Cartesian,2],
-     *    AXIS[“northing (X)”,north,ORDER[1]],
-     *    AXIS[“westing (Y)”,west,ORDER[2]],
-     *    LENGTHUNIT[“metre”,1.0],
-     *  ID[“EPSG”,5800]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * ENGINEERINGCRS[“Astra Minas Grid”,
+     *   ENGINEERINGDATUM[“Astra Minas”],
+     *   CS[Cartesian,2],
+     *     AXIS[“northing (X)”,north,ORDER[1]],
+     *     AXIS[“westing (Y)”,west,ORDER[2]],
+     *     LENGTHUNIT[“metre”,1.0],
+     *   ID[“EPSG”,5800]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -970,13 +994,15 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses an engineering CRS with South-West and South-East axis directions.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>ENGCRS[“A construction site CRS”,
-     *  EDATUM[“P1”,ANCHOR[“Peg in south corner”]],
-     *  CS[Cartesian,2],
-     *    AXIS[“site east”,southWest,ORDER[1]],
-     *    AXIS[“site north”,southEast,ORDER[2]],
-     *    LENGTHUNIT[“metre”,1.0],
-     *  TIMEEXTENT[“date/time t1”,“date/time t2”]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * ENGCRS[“A construction site CRS”,
+     *   EDATUM[“P1”,ANCHOR[“Peg in south corner”]],
+     *   CS[Cartesian,2],
+     *     AXIS[“site east”,southWest,ORDER[1]],
+     *     AXIS[“site north”,southEast,ORDER[2]],
+     *     LENGTHUNIT[“metre”,1.0],
+     *   TIMEEXTENT[“date/time t1”,“date/time t2”]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -1010,13 +1036,15 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses an engineering CRS anchored to a ship.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>ENGCRS[“A ship-centred CRS”,
-     *  EDATUM[“Ship reference point”,ANCHOR[“Centre of buoyancy”]],
-     *  CS[Cartesian,3],
-     *    AXIS[“(x)”,forward],
-     *    AXIS[“(y)”,starboard],
-     *    AXIS[“(z)”,down],
-     *    LENGTHUNIT[“metre”,1.0]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * ENGCRS[“A ship-centred CRS”,
+     *   EDATUM[“Ship reference point”,ANCHOR[“Centre of buoyancy”]],
+     *   CS[Cartesian,3],
+     *     AXIS[“(x)”,forward],
+     *     AXIS[“(y)”,starboard],
+     *     AXIS[“(z)”,down],
+     *     LENGTHUNIT[“metre”,1.0]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -1052,22 +1080,24 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a derived geodetic CRS.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>GEODCRS[“ETRS89 Lambert Azimuthal Equal Area CRS”,
-     *  BASEGEODCRS[“WGS 84”,
-     *    DATUM[“WGS 84”,
-     *      ELLIPSOID[“WGS 84”,6378137,298.2572236,LENGTHUNIT[“metre”,1.0]]]],
-     *  DERIVINGCONVERSION[“Atlantic pole”,
-     *    METHOD[“North pole rotation”,ID[“Authority”,1234]],
-     *    PARAMETER[“Latitude of rotated pole”,52.0,
-     *      ANGLEUNIT[“degree”,0.0174532925199433]],
-     *    PARAMETER[“Longitude of rotated pole”,-30.0,
-     *      ANGLEUNIT[“degree”,0.0174532925199433]],
-     *    PARAMETER[“Axis rotation”,-25.0,
-     *      ANGLEUNIT[“degree”,0.0174532925199433]]],
-     *  CS[ellipsoidal,2],
-     *    AXIS[“latitude”,north,ORDER[1]],
-     *    AXIS[“longitude”,east,ORDER[2]],
-     *    ANGLEUNIT[“degree”,0.0174532925199433]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * GEODCRS[“ETRS89 Lambert Azimuthal Equal Area CRS”,
+     *   BASEGEODCRS[“WGS 84”,
+     *     DATUM[“WGS 84”,
+     *       ELLIPSOID[“WGS 84”,6378137,298.2572236,LENGTHUNIT[“metre”,1.0]]]],
+     *   DERIVINGCONVERSION[“Atlantic pole”,
+     *     METHOD[“North pole rotation”,ID[“Authority”,1234]],
+     *     PARAMETER[“Latitude of rotated pole”,52.0,
+     *       ANGLEUNIT[“degree”,0.0174532925199433]],
+     *     PARAMETER[“Longitude of rotated pole”,-30.0,
+     *       ANGLEUNIT[“degree”,0.0174532925199433]],
+     *     PARAMETER[“Axis rotation”,-25.0,
+     *       ANGLEUNIT[“degree”,0.0174532925199433]]],
+     *   CS[ellipsoidal,2],
+     *     AXIS[“latitude”,north,ORDER[1]],
+     *     AXIS[“longitude”,east,ORDER[2]],
+     *     ANGLEUNIT[“degree”,0.0174532925199433]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -1120,23 +1150,25 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a derived engineering CRS having a base geodetic CRS.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>ENGCRS[“Topocentric example A”,
-     *  BASEGEODCRS[“WGS 84”,
-     *    DATUM[“WGS 84”,
-     *      ELLIPSOID[“WGS 84”, 6378137, 298.2572236, LENGTHUNIT[“metre”,1.0]]]],
-     *  DERIVINGCONVERSION[“Topocentric example A”,
-     *    METHOD[“Geographic/topocentric conversions”,ID[“EPSG”,9837]],
-     *    PARAMETER[“Latitude of topocentric origin”,55.0,
-     *      ANGLEUNIT[“degree”,0.0174532925199433]],
-     *    PARAMETER[“Longitude of topocentric origin”,5.0,
-     *      ANGLEUNIT[“degree”,0.0174532925199433]],
-     *    PARAMETER[“Ellipsoidal height of topocentric origin”,0.0,
-     *      LENGTHUNIT[“metre”,1.0]]],
-     *  CS[Cartesian,3],
-     *    AXIS[“Topocentric East (U)”,east,ORDER[1]],
-     *    AXIS[“Topocentric North (V)”,north,ORDER[2]],
-     *    AXIS[“Topocentric height (W)”,up,ORDER[3]],
-     *    LENGTHUNIT[“metre”,1.0]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * ENGCRS[“Topocentric example A”,
+     *   BASEGEODCRS[“WGS 84”,
+     *     DATUM[“WGS 84”,
+     *       ELLIPSOID[“WGS 84”, 6378137, 298.2572236, LENGTHUNIT[“metre”,1.0]]]],
+     *   DERIVINGCONVERSION[“Topocentric example A”,
+     *     METHOD[“Geographic/topocentric conversions”,ID[“EPSG”,9837]],
+     *     PARAMETER[“Latitude of topocentric origin”,55.0,
+     *       ANGLEUNIT[“degree”,0.0174532925199433]],
+     *     PARAMETER[“Longitude of topocentric origin”,5.0,
+     *       ANGLEUNIT[“degree”,0.0174532925199433]],
+     *     PARAMETER[“Ellipsoidal height of topocentric origin”,0.0,
+     *       LENGTHUNIT[“metre”,1.0]]],
+     *   CS[Cartesian,3],
+     *     AXIS[“Topocentric East (U)”,east,ORDER[1]],
+     *     AXIS[“Topocentric North (V)”,north,ORDER[2]],
+     *     AXIS[“Topocentric height (W)”,up,ORDER[3]],
+     *     LENGTHUNIT[“metre”,1.0]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -1191,50 +1223,52 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a derived engineering CRS having a base projected CRS.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>ENGCRS[“Gulf of Mexico speculative seismic survey bin grid”,
-     *  BASEPROJCRS[“NAD27 / Texas South Central”,
-     *    BASEGEODCRS[“NAD27”,
-     *      DATUM[“North American Datum 1927”,
-     *        ELLIPSOID[“Clarke 1866”,20925832.164,294.97869821,
-     *          LENGTHUNIT[“US survey foot”,0.304800609601219]]]],
-     *    CONVERSION[“Texas South CentralSPCS27”,
-     *      METHOD[“Lambert Conic Conformal (2SP)”,ID[“EPSG”,9802]],
-     *      PARAMETER[“Latitude of false origin”,27.83333333333333,
-     *        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8821]],
-     *      PARAMETER[“Longitude of false origin”,-99.0,
-     *        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8822]],
-     *      PARAMETER[“Latitude of 1st standard parallel”,28.383333333333,
-     *        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8823]],
-     *      PARAMETER[“Latitude of 2nd standard parallel”,30.283333333333,
-     *        ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8824]],
-     *      PARAMETER[“Easting at false origin”,2000000.0,
-     *        LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8826]],
-     *      PARAMETER[“Northing at false origin”,0.0,
-     *        LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8827]]]],
-     *  DERIVINGCONVERSION[“Gulf of Mexico speculative survey bin grid”,
-     *    METHOD[“P6 (I = J-90°) seismic bin grid transformation”,ID[“EPSG”,1049]],
-     *    PARAMETER[“Bin grid origin I”,5000,SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8733]],
-     *    PARAMETER[“Bin grid origin J”,0,SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8734]],
-     *    PARAMETER[“Bin grid origin Easting”,871200,
-     *      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8735]],
-     *    PARAMETER[“Bin grid origin Northing”, 10280160,
-     *      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8736]],
-     *    PARAMETER[“Scale factor of bin grid”,1.0,
-     *      SCALEUNIT[“Unity”,1.0],ID[“EPSG”,8737]],
-     *    PARAMETER[“Bin width on I-axis”,82.5,
-     *      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8738]],
-     *    PARAMETER[“Bin width on J-axis”,41.25,
-     *      LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8739]],
-     *    PARAMETER[“Map grid bearing of bin grid J-axis”,340,
-     *      ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8740]],
-     *    PARAMETER[“Bin node increment on I-axis”,1.0,
-     *      SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8741]],
-     *    PARAMETER[“Bin node increment on J-axis”,1.0,
-     *      SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8742]]],
-     *  CS[Cartesian,2],
-     *    AXIS[“(I)”,northNorthWest],
-     *    AXIS[“(J)”,westSouthWest],
-     *    SCALEUNIT[“Bin”,1.0]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * ENGCRS[“Gulf of Mexico speculative seismic survey bin grid”,
+     *   BASEPROJCRS[“NAD27 / Texas South Central”,
+     *     BASEGEODCRS[“NAD27”,
+     *       DATUM[“North American Datum 1927”,
+     *         ELLIPSOID[“Clarke 1866”,20925832.164,294.97869821,
+     *           LENGTHUNIT[“US survey foot”,0.304800609601219]]]],
+     *     CONVERSION[“Texas South CentralSPCS27”,
+     *       METHOD[“Lambert Conic Conformal (2SP)”,ID[“EPSG”,9802]],
+     *       PARAMETER[“Latitude of false origin”,27.83333333333333,
+     *         ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8821]],
+     *       PARAMETER[“Longitude of false origin”,-99.0,
+     *         ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8822]],
+     *       PARAMETER[“Latitude of 1st standard parallel”,28.383333333333,
+     *         ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8823]],
+     *       PARAMETER[“Latitude of 2nd standard parallel”,30.283333333333,
+     *         ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8824]],
+     *       PARAMETER[“Easting at false origin”,2000000.0,
+     *         LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8826]],
+     *       PARAMETER[“Northing at false origin”,0.0,
+     *         LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8827]]]],
+     *   DERIVINGCONVERSION[“Gulf of Mexico speculative survey bin grid”,
+     *     METHOD[“P6 (I = J-90°) seismic bin grid transformation”,ID[“EPSG”,1049]],
+     *     PARAMETER[“Bin grid origin I”,5000,SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8733]],
+     *     PARAMETER[“Bin grid origin J”,0,SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8734]],
+     *     PARAMETER[“Bin grid origin Easting”,871200,
+     *       LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8735]],
+     *     PARAMETER[“Bin grid origin Northing”, 10280160,
+     *       LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8736]],
+     *     PARAMETER[“Scale factor of bin grid”,1.0,
+     *       SCALEUNIT[“Unity”,1.0],ID[“EPSG”,8737]],
+     *     PARAMETER[“Bin width on I-axis”,82.5,
+     *       LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8738]],
+     *     PARAMETER[“Bin width on J-axis”,41.25,
+     *       LENGTHUNIT[“US survey foot”,0.304800609601219],ID[“EPSG”,8739]],
+     *     PARAMETER[“Map grid bearing of bin grid J-axis”,340,
+     *       ANGLEUNIT[“degree”,0.0174532925199433],ID[“EPSG”,8740]],
+     *     PARAMETER[“Bin node increment on I-axis”,1.0,
+     *       SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8741]],
+     *     PARAMETER[“Bin node increment on J-axis”,1.0,
+     *       SCALEUNIT[“Bin”,1.0],ID[“EPSG”,8742]]],
+     *   CS[Cartesian,2],
+     *     AXIS[“(I)”,northNorthWest],
+     *     AXIS[“(J)”,westSouthWest],
+     *     SCALEUNIT[“Bin”,1.0]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -1321,21 +1355,23 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a compound CRS with a vertical component.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>COMPOUNDCRS[“NAD83 + NAVD88”,
-     *  GEODCRS[“NAD83”,
-     *    DATUM[“North American Datum 1983”,
-     *      ELLIPSOID[“GRS 1980”,6378137,298.257222101,
-     *        LENGTHUNIT[“metre”,1.0]]],
-     *      PRIMEMERIDIAN[“Greenwich”,0],
-     *    CS[ellipsoidal,2],
-     *      AXIS[“latitude”,north,ORDER[1]],
-     *      AXIS[“longitude”,east,ORDER[2]],
-     *      ANGLEUNIT[“degree”,0.0174532925199433]],
-     *    VERTCRS[“NAVD88”,
-     *      VDATUM[“North American Vertical Datum 1988”],
-     *      CS[vertical,1],
-     *        AXIS[“gravity-related height (H)”,up],
-     *        LENGTHUNIT[“metre”,1]]]</pre></blockquote>
+     * {@snippet lang="wkt" :
+     * COMPOUNDCRS[“NAD83 + NAVD88”,
+     *   GEODCRS[“NAD83”,
+     *     DATUM[“North American Datum 1983”,
+     *       ELLIPSOID[“GRS 1980”,6378137,298.257222101,
+     *         LENGTHUNIT[“metre”,1.0]]],
+     *       PRIMEMERIDIAN[“Greenwich”,0],
+     *     CS[ellipsoidal,2],
+     *       AXIS[“latitude”,north,ORDER[1]],
+     *       AXIS[“longitude”,east,ORDER[2]],
+     *       ANGLEUNIT[“degree”,0.0174532925199433]],
+     *     VERTCRS[“NAVD88”,
+     *       VDATUM[“North American Vertical Datum 1988”],
+     *       CS[vertical,1],
+     *         AXIS[“gravity-related height (H)”,up],
+     *         LENGTHUNIT[“metre”,1]]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -1381,7 +1417,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a compound CRS with a temporal component.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>COMPOUNDCRS[“GPS position and time”,
+     * {@snippet lang="wkt" :
+     * COMPOUNDCRS[“GPS position and time”,
      *   GEODCRS[“WGS 84”,
      *     DATUM[“World Geodetic System 1984”,
      *       ELLIPSOID[“WGS 84”,6378137,298.257223563]],
@@ -1393,7 +1430,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      *     TIMEDATUM[“Time origin”,TIMEORIGIN[1980-01-01]],
      *     CS[temporal,1],
      *       AXIS[“time (T)”,future],
-     *       TIMEUNIT[“day”,86400]]]</pre></blockquote>
+     *       TIMEUNIT[“day”,86400]]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *
@@ -1437,7 +1475,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Parses a compound CRS with a parametric component.
      * The WKT parsed by this test is (except for quote characters):
      *
-     * <blockquote><pre>COMPOUNDCRS[“ICAO layer 0”,
+     * {@snippet lang="wkt" :
+     * COMPOUNDCRS[“ICAO layer 0”,
      *   GEODETICCRS[“WGS 84”,
      *     DATUM[“World Geodetic System 1984”,
      *       ELLIPSOID[“WGS 84”,6378137,298.257223563,
@@ -1451,7 +1490,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      *       ANCHOR[“Mean Sea Level = 1013.25 hPa”]],
      *         CS[parametric,1],
      *           AXIS[“pressure (P)”,unspecified],
-     *           PARAMETRICUNIT[“hPa”,100]]]</pre></blockquote>
+     *           PARAMETRICUNIT[“hPa”,100]]]
+     * }
      *
      * @throws FactoryException if an error occurred during the WKT parsing.
      *

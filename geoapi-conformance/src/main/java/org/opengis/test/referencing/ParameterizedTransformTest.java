@@ -99,45 +99,45 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  *   <li>Override {@link #assertMatrixEquals(String, Matrix, Matrix, Matrix)}.</li>
  * </ul>
  *
- * <div class="note"><b>Usage example:</b>
+ * <h2>Usage example:</h2>
  * in order to specify their factories and run the tests in a JUnit framework, implementers can define
  * a subclass in their own test suite as in the example below. That example shows also how implementers
  * can alter some tests (here the tolerance value for the <cite>Lambert Azimuthal Equal Area</cite> projection)
  * and add more checks to be executed after every tests (here ensuring that the {@linkplain #transform transform}
  * implements the {@link MathTransform2D} interface):
  *
- * <blockquote><pre>import org.junit.*;
- *import org.junit.runner.RunWith;
- *import org.junit.runners.JUnit4;
- *import org.opengis.test.referencing.ParameterizedTransformTest;
- *import static org.junit.Assert.*;
+ * {@snippet lang="java" :
+ * import org.junit.*;
+ * import org.junit.runner.RunWith;
+ * import org.junit.runners.JUnit4;
+ * import org.opengis.test.referencing.ParameterizedTransformTest;
+ * import static org.junit.Assert.*;
  *
- *&#64;RunWith(JUnit4.class)
- *public class MyTest extends ParameterizedTransformTest {
- *    public MyTest() {
- *        super(new MyMathTransformFactory());
- *    }
+ * @RunWith(JUnit4.class)
+ * public class MyTest extends ParameterizedTransformTest {
+ *     public MyTest() {
+ *         super(new MyMathTransformFactory());
+ *     }
  *
- *    &#64;Test
- *    &#64;Override
- *    public void testLambertAzimuthalEqualArea() throws FactoryException, TransformException {
- *        tolerance = 0.1;                              // Increase the tolerance value to 10 cm.
- *        super.testLambertAzimuthalEqualArea();
- *        // If more tests specific to this projection are wanted, do them here.
- *        // In this example, we replace the ellipsoid by a sphere and test again.
- *        // Note that spherical formulas can have an error up to 30 km compared
- *        // to ellipsoidal formulas, so we have to relax again the tolerance threshold.
- *        parameters.parameter("semi_minor").setValue(parameters.parameter("semi_major").doubleValue());
- *        tolerance = 30000;                            // Increase the tolerance value to 30 km.
- *        super.testLambertAzimuthalEqualArea();
- *    }
+ *     @Test
+ *     @Override
+ *     public void testLambertAzimuthalEqualArea() throws FactoryException, TransformException {
+ *         tolerance = 0.1;                              // Increase the tolerance value to 10 cm.
+ *         super.testLambertAzimuthalEqualArea();
+ *         // If more tests specific to this projection are wanted, do them here.
+ *         // In this example, we replace the ellipsoid by a sphere and test again.
+ *         // Note that spherical formulas can have an error up to 30 km compared
+ *         // to ellipsoidal formulas, so we have to relax again the tolerance threshold.
+ *         parameters.parameter("semi_minor").setValue(parameters.parameter("semi_major").doubleValue());
+ *         tolerance = 30000;                            // Increase the tolerance value to 30 km.
+ *         super.testLambertAzimuthalEqualArea();
+ *     }
  *
- *    &#64;After
- *    public void ensureAllTransformAreMath2D() {
- *        assertTrue(transform instanceof MathTransform2D);
- *    }
- *}</pre></blockquote>
- * </div>
+ *     @After
+ *     public void ensureAllTransformAreMath2D() {
+ *         assertTrue(transform instanceof MathTransform2D);
+ *     }
+ * }}
  *
  * @see AffineTransformTest
  * @see AuthorityFactoryTest

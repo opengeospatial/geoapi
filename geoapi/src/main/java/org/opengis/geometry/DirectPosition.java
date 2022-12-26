@@ -91,18 +91,17 @@ public interface DirectPosition extends Position {
      * another format) so changes to the returned array will not affect the
      * source DirectPosition.
      *
-     * <blockquote><pre>
-     * final int dim = position.{@linkplain #getDimension getDimension}();
+     * {@snippet lang="java" :
+     * final int dim = position.getDimension();
      * for (int i=0; i&lt;dim; i++) {
-     *     position.{@linkplain #getOrdinate getOrdinate}(i);       // no copy overhead
-     * }
-     * </pre></blockquote>
+     *     position.getOrdinate(i);       // no copy overhead
+     * }}
      *
      * To manipulate coordinates, the following idiom can be used:
      *
-     * <blockquote><pre>
-     * position.{@linkplain #setOrdinate setOrdinate}(i, value);    // edit in place
-     * </pre></blockquote>
+     * {@snippet lang="java" :
+     * position.setOrdinate(i, value);    // edit in place
+     * }
      *
      * There are a couple reasons for requesting a copy:
      *

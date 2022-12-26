@@ -52,7 +52,9 @@
  *       validating existing instances of various kinds. Those methods can be conveniently imported in a test class
  *       with the following Java statement:</p>
  *
- *       <blockquote><pre>import static org.opengis.test.Validators.*;</pre></blockquote>
+ *       {@snippet lang="java" :
+ *       import static org.opengis.test.Validators.*;
+ *       }
  *
  *       <p>{@link org.opengis.test.Validator} and {@link org.opengis.test.ValidatorContainer} are support classes for
  *       the above, but usually do not need to be considered unless the validation process needs to be customized.</p></li>

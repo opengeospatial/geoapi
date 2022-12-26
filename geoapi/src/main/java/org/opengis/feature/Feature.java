@@ -105,7 +105,9 @@ public interface Feature {
      *       defined by the feature type for the above name. In other words, the following condition shall hold:</li>
      * </ul>
      *
-     * <blockquote><pre>assert property.getType() == getType().getProperty(property.getName());</pre></blockquote>
+     * {@snippet lang="java" :
+     * assert property.getType() == getType().getProperty(property.getName());
+     * }
      *
      * <div class="note"><b>Note:</b> this method is useful for storing non-default {@code Attribute} or
      * {@code Association} implementations in this feature. When default implementations are sufficient,
@@ -174,12 +176,12 @@ public interface Feature {
      * Returns the value for the property of the given name if that property exists, or a fallback value otherwise.
      * This method is equivalent to the following code, but potentially more efficient when the property does not exist:
      *
-     * <pre>
+     * {@snippet lang="java" :
      * try {
-     *     return {@linkplain #getPropertyValue(String) getPropertyValue}(name);
-     * } catch ({@linkplain PropertyNotFoundException} ignore) {
+     *     return getPropertyValue(name);
+     * } catch (PropertyNotFoundException ignore) {
      *     return missingPropertyFallback
-     * }</pre>
+     * }}
      *
      * Note that if a property of the given name exists but has no value, then this method returns
      * the {@linkplain AttributeType#getDefaultValue() default value} (which may be {@code null}).

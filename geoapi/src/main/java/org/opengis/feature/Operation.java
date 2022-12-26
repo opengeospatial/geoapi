@@ -85,9 +85,11 @@ public interface Operation extends PropertyType {
      * The {@code parameters} argument should be an instance created like below, where
      * the text in italic shall be replaced by operation-specific text:
      *
-     * <blockquote><pre> ParameterValueGroup p = operation.getParameters().createValue();
-     * p.parameter(<i>"a parameter 1"</i>).setValue(<i>aValue1</i>);
-     * p.parameter(<i>"a parameter 2"</i>).setValue(<i>aValue2</i>);</pre></blockquote>
+     * {@snippet lang="java" :
+     * ParameterValueGroup p = operation.getParameters().createValue();
+     * p.parameter("a parameter 1").setValue(aValue1);
+     * p.parameter("a parameter 2").setValue(aValue2);
+     * }
      *
      * The value returned by this method depends on the value returned by {@link #getResult()}:
      * <ul>

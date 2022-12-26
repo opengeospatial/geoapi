@@ -211,10 +211,12 @@ public interface MathTransformFactory extends Factory {
      * Creates a transform from a group of parameters. The {@link OperationMethod} name is inferred from
      * the {@linkplain ParameterDescriptorGroup#getName() parameter group name}. Example:
      *
-     * <blockquote><pre>ParameterValueGroup p = factory.getDefaultParameters("Transverse_Mercator");
+     * {@snippet lang="java" :
+     * ParameterValueGroup p = factory.getDefaultParameters("Transverse_Mercator");
      * p.parameter("semi_major").setValue(6378137.000);
      * p.parameter("semi_minor").setValue(6356752.314);
-     * MathTransform mt = factory.createParameterizedTransform(p);</pre></blockquote>
+     * MathTransform mt = factory.createParameterizedTransform(p);
+     * }
      *
      * <h4>Note on cartographic projections:</h4>
      * Cartographic projection transforms are used by {@linkplain ProjectedCRS projected coordinate reference systems}

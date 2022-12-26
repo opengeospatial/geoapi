@@ -32,7 +32,6 @@
 package org.opengis.util;
 
 import java.util.Map;
-import java.util.Set;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -69,9 +68,11 @@ public interface Record {
      * Returns the type definition of this record. All fields named in this record must be defined
      * in the returned record type. In other words, the following assertion must holds:
      *
-     * <blockquote><pre> Set&lt;MemberName&gt; members = getRecordType().{@linkplain RecordType#getMembers() getMembers()};
-     * Set&lt;MemberName&gt; fields  = {@linkplain #getFields()}.{@linkplain Map#keySet() keySet()};
-     * assert members.{@linkplain Set#containsAll containsAll}(fields);</pre></blockquote>
+     * {@snippet lang="java" :
+     * Set<MemberName> members = getRecordType().getMembers();
+     * Set<MemberName> fields  = getFields().keySet();
+     * assert members.containsAll(fields);
+     * }
      *
      * This association is optional according ISO 19103.
      * But implementers are encouraged to provide a value in all cases.

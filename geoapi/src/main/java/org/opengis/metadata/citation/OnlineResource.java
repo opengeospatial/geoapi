@@ -130,14 +130,15 @@ public interface OnlineResource {
     /**
      * Request used to access the resource depending on the protocol.
      * This is used mainly for POST requests.
+     * Example:
      *
-     * <div class="note"><b>Example:</b>
-     * <pre> &lt;GetFeature service="WFS" version="2.0.0"
+     * {@snippet lang="xml" :
+     * <GetFeature service="WFS" version="2.0.0"
      *             outputFormat="application/gml+xml;version=3.2"
-     *             xmlns="(…snip…)"&gt;
-     *     &lt;Query typeNames="Roads"/&gt;
-     * &lt;/GetFeature&gt;</pre>
-     * </div>
+     *             xmlns="(…snip…)">
+     *     <Query typeNames="Roads"/>
+     * </GetFeature>
+     * }
      *
      * @return request used to access the resource, or {@code null}.
      *

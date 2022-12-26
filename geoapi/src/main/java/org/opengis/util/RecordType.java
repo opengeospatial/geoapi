@@ -225,8 +225,10 @@ public interface RecordType extends Type {
      * This method returns {@code true} if the specified {@code record} argument is non-null
      * and the following minimal condition holds:
      *
-     * <blockquote><pre> Set&lt;MemberName&gt; fieldNames = record.{@linkplain Record#getFields() getFields()}.{@linkplain Map#keySet keySet()};
-     * boolean isInstance = {@linkplain #getMembers()}.{@linkplain Set#containsAll containsAll}(fieldNames);</pre></blockquote>
+     * {@snippet lang="java" :
+     * Set<MemberName> fieldNames = record.getFields().keySet();
+     * boolean isInstance = getMembers().containsAll(fieldNames);
+     * }
      *
      * Vendors can put additional implementation-specific conditions.
      * In particular, implementations are free to require <code>equals({@linkplain Record#getRecordType()})</code>.

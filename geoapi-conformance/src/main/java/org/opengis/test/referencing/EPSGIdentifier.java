@@ -41,8 +41,6 @@ import org.opengis.referencing.ReferenceIdentifier;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
- *
- * @see org.opengis.test.referencing.gigs.GIGSIdentifier
  */
 final strictfp class EPSGIdentifier implements ReferenceIdentifier {
     /**

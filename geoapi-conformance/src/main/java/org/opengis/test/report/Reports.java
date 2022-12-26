@@ -51,12 +51,14 @@ import org.opengis.referencing.operation.MathTransformFactory;
  * A single point for generating every reports implemented in this package.
  * Usage example:
  *
- * <blockquote><pre> Properties props = new Properties();
+ * {@snippet lang="java" :
+ * Properties props = new Properties();
  * props.setProperty("PRODUCT.NAME", "MyProduct");
  * props.setProperty("PRODUCT.URL",  "http://www.myproject.org");
  * Reports reports = new Reports(props);
  * reports.addAll(MathTransformFactory.class);
- * reports.write(new File("my-output-directory"));</pre></blockquote>
+ * reports.write(new File("my-output-directory"));
+ * }
  *
  * @author Martin Desruisseaux (Geomatys)
  * @version 3.1

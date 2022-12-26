@@ -72,12 +72,13 @@ public interface SortBy<R> extends Comparator<R> {
      * <p>The comparison shall be consistent (ignoring unspecified aspects such as null values)
      * with a comparison done "manually" by the following code:</p>
      *
-     * <pre>
-     * for (SortProperty&lt;R&gt; p : {@linkplain #getSortProperties()}) {
+     * {@snippet lang="java" :
+     * for (SortProperty<R> p : getSortProperties()) {
      *     int c = p.compare(r1, r2);
      *     if (c != 0) return c;
      * }
-     * return 0;</pre>
+     * return 0;
+     * }
      *
      * <p>In order words, it shall be possible for the users to build their own SQL (or other language) query
      * using above information and get the same results without invoking this {@code compare(…)} method.</p>

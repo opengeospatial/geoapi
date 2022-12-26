@@ -69,14 +69,15 @@ import org.opengis.test.coverage.image.*;
  * to override the validation of {@link org.opengis.referencing.crs.GeographicCRS} objects, one
  * can do:</p>
  *
- * <blockquote><pre>ValidatorContainer container = new ValidationContainer();
- *container.crs = new {@linkplain org.opengis.test.referencing.CRSValidator}(container) {
- *    &#64;Override
- *    public void validate(GeographicCRS object) {
- *        super.validate(object);
- *        // Perform additional validation here.
- *    }
- *};</pre></blockquote>
+ * {@snippet lang="java" :
+ * ValidatorContainer container = new ValidationContainer();
+ * container.crs = new CRSValidator(container) {
+ *     @Override
+ *     public void validate(GeographicCRS object) {
+ *         super.validate(object);
+ *         // Perform additional validation here.
+ *     }
+ * };}
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -211,9 +212,11 @@ public class ValidatorContainer implements Cloneable {
      * <p>This method is typically used in order to use the default configuration with a few
      * changes, as in the example below:</p>
      *
-     * <blockquote><pre> ValidatorContainer myContainer = Validators.DEFAULT.clone();
+     * {@snippet lang="java" :
+     * ValidatorContainer myContainer = Validators.DEFAULT.clone();
      * myContainer.crs = new CRSValidator();
-     * myContainer.crs.{@linkplain CRSValidator#enforceStandardNames enforceStandardNames} = false;</pre></blockquote>
+     * myContainer.crs.enforceStandardNames = false;
+     * }
      *
      * @return a new {@code ValidatorContainer} instance using the same {@link Validator} instances.
      */

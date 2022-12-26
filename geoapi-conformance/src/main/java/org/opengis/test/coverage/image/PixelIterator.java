@@ -54,11 +54,12 @@ import static org.junit.Assert.*;
  * To use this iterator, invoke the {@link #next()} method in a {@code while} loop
  * as below:</p>
  *
- * <pre>PixelIterator it = new PixelIterator(image);
- *while (it.next()) {
- *    float value = it.getSampleFloat();
- *    // Do some processing with the value here...
- *}</pre>
+ * {@snippet lang="java" :
+ * PixelIterator it = new PixelIterator(image);
+ * while (it.next()) {
+ *     float value = it.getSampleFloat();
+ *     // Do some processing with the value here...
+ * }}
  *
  * @see org.opengis.test.Assert#assertSampleValuesEqual(String, RenderedImage, RenderedImage, double)
  *
