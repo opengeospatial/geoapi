@@ -6,7 +6,7 @@ title: "GeoAPI for Java"
 <h1>Java API</h1>
 
 <p>
-  Java interfaces are provided in <a href="../3.0/index.html">release 3.0.1</a> of GeoAPI, which can be
+  Java interfaces are provided in <a href="../3.0/index.html">release 3.0.2</a> of GeoAPI, which can be
   downloaded from <a class="externalLink" href="https://search.maven.org/">Maven Central Repository</a>
   with the following coordinates:
 </p>
@@ -15,7 +15,7 @@ title: "GeoAPI for Java"
     &lt;dependency&gt;
         &lt;groupId&gt;org.opengis&lt;/groupId&gt;
         &lt;artifactId&gt;geoapi&lt;/artifactId&gt;
-        &lt;version&gt;3.0.1&lt;/version&gt;
+        &lt;version&gt;3.0.2&lt;/version&gt;
     &lt;/dependency&gt;
 &lt;/dependencies&gt;</pre>
 

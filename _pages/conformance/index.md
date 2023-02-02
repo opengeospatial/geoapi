@@ -31,7 +31,7 @@ title: "GeoAPI conformance"
     &lt;dependency&gt;
         &lt;groupId&gt;org.opengis&lt;/groupId&gt;
         &lt;artifactId&gt;geoapi-conformance&lt;/artifactId&gt;
-        &lt;version&gt;3.0.1&lt;/version&gt;
+        &lt;version&gt;3.0.2&lt;/version&gt;
     &lt;/dependency&gt;
 &lt;/dependencies&gt;</pre>
 </details>
@@ -58,7 +58,7 @@ public class MyTests {
     public void testMyCRS() {
         CoordinateReferenceSystem crs = ...
         validate(crs);
-      
+
         MathTransform transform = ...
         validate(transform);
     }

@@ -2591,7 +2591,7 @@ The standardization effort of GO-1 took a couple of years during which extensive
 Release 2.0 of GeoAPI was made at the time of the final publication of the GO-1 specification in 2005.
 GO-1 has been retired later, but a new working group has been formed in 2009 for continuing GeoAPI development
 with a more restricted scope: to provide interfaces for existing OGC standards only, without defining new conceptual models.
-GeoAPI 3.0.0 has been released in 2011 and GeoAPI 3.0.1 in 2017.</p>
+GeoAPI 3.0.0 has been released in 2011, GeoAPI 3.0.1 in 2017 and GeoAPI 3.0.2 in 2023.</p>
 </div>
 <div class="paragraph">
 <p>GeoAPI interfaces are derived from OGC/ISO conceptual models described by Unified Modeling Language (UML) diagrams.

@@ -1,9 +1,9 @@
 ---
 layout: default
 permalink: "/3.0/index.html"
-title: "GeoAPI 3.0.1"
+title: "GeoAPI 3.0.2"
 ---
-<h1>GeoAPI 3.0.1</h1>
+<h1>GeoAPI 3.0.2</h1>
 
 <p>
   Release 3.0 of GeoAPI contains the interfaces developed by the GeoAPI project and accepted
@@ -27,7 +27,7 @@ title: "GeoAPI 3.0.1"
     &lt;dependency&gt;
         &lt;groupId&gt;org.opengis&lt;/groupId&gt;
         &lt;artifactId&gt;geoapi&lt;/artifactId&gt;
-        &lt;version&gt;3.0.1&lt;/version&gt;
+        &lt;version&gt;3.0.2&lt;/version&gt;
     &lt;/dependency&gt;
 &lt;/dependencies&gt;</pre>
   </li>

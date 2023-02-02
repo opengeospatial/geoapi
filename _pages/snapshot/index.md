@@ -8,7 +8,7 @@ title: "GeoAPI development"
 
 <p>
   GeoAPI 3.1-SNAPSHOT and 4.0-SNAPSHOT are unreleased versions currently in development.
-  Developers working on projects who need long term stability should use the released <a href="../3.0/index.html">3.0.1</a>
+  Developers working on projects who need long term stability should use the released <a href="../3.0/index.html">3.0.2</a>
   version of the API rather than the snapshots, formalized with the
   <a class="externalLink" href="http://www.opengeospatial.org/standards/geoapi">OGC 09-083</a> specification document.
   The rest of this page describes how the source code repository is organized
@@ -21,11 +21,11 @@ title: "GeoAPI development"
 
 <ul class="list-disc ml-4">
   <li class="my-1 text-justify">The <cite>master</cite> branch contains GeoAPI version 4.0-SNAPSHOT.
-    This version has some incompatible changes compared to GeoAPI 3.0.1 release.
+    This version has some incompatible changes compared to GeoAPI 3.0.2 release.
     Incompatibilities appear in part because of changes in international standards,
     and sometime because of programming language evolutions.</li>
   <li class="my-1 text-justify">The <cite>3.1.x</cite> branch contains GeoAPI version 3.1-SNAPSHOT.
-    This version is a copy of 4.0-SNAPSHOT modified for preserving backward compatibility with GeoAPI 3.0.1 release,
+    This version is a copy of 4.0-SNAPSHOT modified for preserving backward compatibility with GeoAPI 3.0.2 release,
     sometime at the sacrifice of new functionalities.
     The incompatible changes are replaced by warnings saying that API may change in next GeoAPI version.</li>
 </ul>
@@ -51,7 +51,7 @@ title: "GeoAPI development"
   <li class="my-1 text-justify"><b>Java</b><ul>
     <li class="my-1 text-justify"><a href="javadoc/content.html">Java ↔︎ OGC/ISO mapping</a></li>
     <li class="my-1 text-justify"><a href="javadoc/index.html">Java API for GeoAPI 3.1-SNAPSHOT</a></li>
-    <li class="my-1 text-justify"><a href="../archives/snapshot/change-summary.html">Changes compared to GeoAPI 3.0.1</a></li>
+    <li class="my-1 text-justify"><a href="../archives/snapshot/change-summary.html">Changes compared to GeoAPI 3.0.2</a></li>
     <li class="my-1 text-justify"><a href="../archives/index.html">Changes compared to older milestones</a></li>
   </ul></li>
   <li class="my-1 text-justify"><b>Python</b><ul>
