@@ -223,7 +223,7 @@ public enum Specification {
      * @since 3.1
      *
      * @todo Remove after we upgraded to ISO 19111:2019.
-     *       This enumeration was not present in GeoAPI 3.0.1, so it is safe to remove.
+     *       This enumeration was not present in GeoAPI 3.0.2, so it is safe to remove.
      */
     ISO_19111_2((short) 2009),
 
@@ -620,7 +620,7 @@ public enum Specification {
      * This is the specification for package {@link org.opengis.observation}.
      *
      * @deprecated To be replaced by Topic 20: Observations and Measurements
-     * @todo Remove before release, since it was not part of GeoAPI 3.0.1.
+     * @todo Remove before release, since it was not part of GeoAPI 3.0.2.
      *
      * @since 3.1
      */

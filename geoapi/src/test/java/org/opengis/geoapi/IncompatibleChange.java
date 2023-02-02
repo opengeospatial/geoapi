@@ -70,7 +70,7 @@ final class IncompatibleChange {
     }
 
     /**
-     * Returns the accepted incompatible changes between GeoAPI 3.0.1 and GeoAPI 3.1.
+     * Returns the accepted incompatible changes between GeoAPI 3.0.2 and GeoAPI 3.1.
      */
     static Set<IncompatibleChange> for31() {
         return fill("org.opengis.metadata.content.Band.getUnits",

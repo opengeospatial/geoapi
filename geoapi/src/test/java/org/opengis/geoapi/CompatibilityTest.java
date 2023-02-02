@@ -115,7 +115,7 @@ public final class CompatibilityTest implements Closeable {
      * @throws MalformedURLException if an error occurred while building the URL to the JAR files.
      */
     public CompatibilityTest() throws MalformedURLException {
-        this("3.0.1", "3.1-SNAPSHOT");
+        this("3.0.2", "3.1-SNAPSHOT");
     }
 
     /**

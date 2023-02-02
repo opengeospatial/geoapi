@@ -47,7 +47,7 @@ import java.io.IOException;
  * <table class="ogc">
  * <caption>Command-line arguments</caption>
  * <tr><th>Name</th> <th>Meaning</th> <th>Example</th></tr>
- * <tr><td>{@code oldVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.0.1"}</td></tr>
+ * <tr><td>{@code oldVersion}</td> <td>Old GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.0.2"}</td></tr>
  * <tr><td>{@code newVersion}</td> <td>New GeoAPI version number, as declared in Maven artefact.</td> <td>{@code "3.1-M07"}</td></tr>
  * <tr><td>{@code outputFile}</td> <td>Name of the file to create.</td> <td>{@code "Changes.html"}</td></tr>
  * </table>

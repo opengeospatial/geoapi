@@ -6,9 +6,9 @@ for geographic information system applications. The GeoAPI interfaces closely fo
 and concrete specifications published collaboratively by the International Organization for Standardization (ISO)
 in its 19100 series of documents and the Open Geospatial Consortium (OGC) in its abstract and implementation specifications.
 
-The current release is GeoAPI 3.0.1, published as an
+The current release is GeoAPI 3.0.2, published as an
 [Open Geospatial Consortium standard](http://www.opengeospatial.org/standards/geoapi/) and
-[available on Maven Central](http://search.maven.org/#artifactdetails%7Corg.opengis%7Cgeoapi%7C3.0.1%7Cbundle).
+[available on Maven Central](http://search.maven.org/#artifactdetails%7Corg.opengis%7Cgeoapi%7C3.0.2%7Cbundle).
 Development branches on GitHub are "3.1" for GeoAPI 3.1 (backward compatible with GeoAPI 3.0)
 and "master" for GeoAPI 4.0. The main sub-directories are:
 

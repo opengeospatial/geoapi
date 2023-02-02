@@ -513,7 +513,7 @@
           <top>
             <!-- Remove this notice for the final GeoAPI release! -->
             &lt;div class="snapshot-warning"&gt;&lt;b&gt;This specification is not final and is subject to change.&lt;/b&gt;&lt;br/&gt;
-                For OGC standard, see &lt;a href="http://www.geoapi.org/3.0/javadoc/index.html"&gt;GeoAPI 3.0.1&lt;/a&gt;.
+                For OGC standard, see &lt;a href="http://www.geoapi.org/3.0/javadoc/index.html"&gt;GeoAPI 3.0.2&lt;/a&gt;.
             &lt;/div&gt;
           </top>
           <encoding>${project.build.sourceEncoding}</encoding>
