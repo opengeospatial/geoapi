@@ -17,7 +17,7 @@ title: "GeoAPI 3.0.2"
   <li class="my-1 text-justify"><a href="javadoc/content.html">Table of content</a></li>
   <li class="my-1 text-justify"><a href="javadoc/index.html">Browse javadoc</a></li>
   <li class="my-1 text-justify"><a href="../java/examples/index.html">Usage examples</a></li>
-  <li class="my-1 text-justify"><a class="externalLink" href="https://sourceforge.net/projects/geoapi/files/GeoAPI-3_0_1.zip/download">Download from SourceForge</a></li>
+  <li class="my-1 text-justify"><a class="externalLink" href="https://sourceforge.net/projects/geoapi/files/GeoAPI-3_0_2.zip/download">Download from SourceForge</a></li>
   <li class="my-1 text-justify"><b>Download as Maven dependency:</b>
 <p>
   GeoAPI 3.0 is deployed on the <a class="externalLink" href="https://search.maven.org/">Maven Central Repository</a>
