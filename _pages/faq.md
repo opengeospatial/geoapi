@@ -157,8 +157,8 @@ faqs:
           </svg>.</li>
         <li class="my-1 text-justify">In the list of <a href="3.0/javadoc/departures.html">departures from the <abbr>ISO</abbr>/<abbr>OGC</abbr> specifications</a>
           (also an annex in the GeoAPI specification).</li>
-        <li class="my-1 text-justify">In source code, class files and javadoc using the <a href="3.0/javadoc/org/opengis/annotation/UML.html">UML annotation</a>
-          associated with the <a href="3.0/javadoc/org/opengis/annotation/Specification.html#OGC_01009"><abbr>OGC</abbr> 01-009 specification enum</a>
+        <li class="my-1 text-justify">In source code, class files and javadoc using the <a href="3.0/javadoc/org.opengis.geoapi/org/opengis/annotation/UML.html">UML annotation</a>
+          associated with the <a href="3.0/javadoc/org.opengis.geoapi/org/opengis/annotation/Specification.html#OGC_01009"><abbr>OGC</abbr> 01-009 specification enum</a>
           or an other <abbr>OGC</abbr> enum.</li>
       </ul>
       <p>
