@@ -1,3 +1,4 @@
+module:org.opengis.geoapi
 org.opengis.annotation
 org.opengis.feature.type
 org.opengis.geometry
