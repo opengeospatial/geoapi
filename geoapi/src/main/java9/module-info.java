@@ -36,15 +36,6 @@
  * and <cite><a href="http://www.opengeospatial.org">Open Geospatial Consortium</a></cite> (<abbr>OGC</abbr>).
  * The interfaces were created from UML diagrams found in the <abbr>ISO</abbr> and <abbr>OGC</abbr> specifications.
  *
- * <h2>Links</h2>
- * <ul>
- *   <li><a href="http://www.geoapi.org/">GeoAPI home page</a></li>
- *   <li><a href="http://www.opengeospatial.org/standards/geoapi/"><abbr>OGC</abbr> GeoAPI specification</a></li>
- *   <li><a href="content.html">GeoAPI content (with mapping to <abbr>OGC</abbr>/<abbr>ISO</abbr> <abbr>UML</abbr>)</a></li>
- *   <li><a href="UML-Java.html">Mapping from <abbr>UML</abbr> diagrams to Java interfaces</a></li>
- *   <li><a href="departures.html">Departures in Java interfaces compared to <abbr>UML</abbr> diagrams</a></li>
- * </ul>
- *
  * @version 3.0.2
  * @since 1.0
  */

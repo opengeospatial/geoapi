@@ -17,8 +17,6 @@
     <LI><A HREF="content.html">GeoAPI content (with mapping to OGC/ISO UML)</A></LI>
     <LI><A HREF="UML-Java.html">Mapping from UML diagrams to Java interfaces</A></LI>
     <LI><A HREF="departures.html">Departures in Java interfaces compared to UML diagrams</A></LI>
-    <LI><A HREF="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html"><cite>Well-Known Text 2</cite> (WKT 2) specification</A></LI>
-    <LI><A HREF="org/opengis/referencing/doc-files/WKT.html"><cite>Well-Known Text 1</cite> (WKT 1) specification</A></LI>
   </UL>
 
   <H3>Requirements</H3>
@@ -26,54 +24,5 @@
     <LI><A HREF="http://docs.oracle.com/javase/8/docs/index.html">Java&nbsp;8</A> or later.</LI>
     <LI><A HREF="https://jcp.org/en/jsr/detail?id=385">JSR-385</A> units of measurement API.</LI>
   </UL>
-
-  <H3>Future work</H3>
-  <P>Following interfaces defined in GeoAPI 3.0 are empty place-holders. Their methods are defined
-  in <A HREF="http://www.geoapi.org/snapshot/">GeoAPI-pending</A> and may be
-  integrated in a future release of GeoAPI core:</P>
-  <UL>
-    <LI><CODE><A HREF="org/opengis/feature/type/AttributeType.html">org.opengis.feature.type.AttributeType</A></CODE></LI>
-    <LI><CODE><A HREF="org/opengis/feature/type/FeatureType.html">org.opengis.feature.type.FeatureType</A></CODE></LI>
-    <LI><CODE><A HREF="org/opengis/geometry/Geometry.html">org.opengis.geometry.Geometry</A></CODE></LI>
-    <LI><CODE><A HREF="org/opengis/geometry/primitive/Point.html">org.opengis.geometry.primitive.Point</A></CODE></LI>
-    <LI><CODE><A HREF="org/opengis/temporal/PeriodDuration.html">org.opengis.temporal.PeriodDuration</A></CODE></LI>
-    <LI><CODE><A HREF="org/opengis/temporal/TemporalPrimitive.html">org.opengis.temporal.TemporalPrimitive</A></CODE></LI>
-  </UL>
-  <P>The signature of the following methods may change in a future GeoAPI release,
-  depending on progress of <code>org.opengis.temporal</code> and Units of Measurement API:</P>
-  <TABLE>
-  <TR>
-    <TH>Changes in <CODE>Date</CODE> representation</TH>
-    <TH>Changes in <CITE>Units of Measurement</CITE> representation</TH>
-  </TR><TR valign="top">
-    <TD><UL>
-      <LI><A HREF="org/opengis/metadata/Metadata.html#getDateStamp()"><CODE>Metadata.getDateStamp()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/citation/Citation.html#getEditionDate()"><CODE>Citation.getEditionDate()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/citation/CitationDate.html#getDate()"><CODE>CitationDate.getDate()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/quality/Element.html#getDates()"><CODE>Element.getDates()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/acquisition/Event.html#getTime()"><CODE>Event.getTime()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/lineage/ProcessStep.html#getDate()"><CODE>ProcessStep.getDate()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/acquisition/RequestedDate.html#getLatestAcceptableDate()"><CODE>RequestedDate.getLatestAcceptableDate()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/acquisition/RequestedDate.html#getRequestedDateOfCollection()"><CODE>RequestedDate.getRequestedDateOfCollection()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/acquisition/Requirement.html#getExpiryDate()"><CODE>Requirement.getExpiryDate()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/maintenance/MaintenanceInformation.html#getDateOfNextUpdate()"><CODE>MaintenanceInformation.getDateOfNextUpdate()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/distribution/StandardOrderProcess.html#getPlannedAvailableDateTime()"><CODE>StandardOrderProcess.getPlannedAvailableDateTime()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/identification/Usage.html#getUsageDate()"><CODE>Usage.getUsageDate()</CODE></A>
-      <LI><A HREF="org/opengis/referencing/datum/Datum.html#getRealizationEpoch()"><CODE>Datum.getRealizationEpoch()</CODE></A>
-      <LI><A HREF="org/opengis/referencing/datum/TemporalDatum.html#getRealizationEpoch()"><CODE>TemporalDatum.getRealizationEpoch()</CODE></A>
-      <LI><A HREF="org/opengis/referencing/datum/TemporalDatum.html#getOrigin()"><CODE>TemporalDatum.getOrigin()</CODE></A>
-      <LI><A HREF="org/opengis/referencing/datum/DatumFactory.html#createTemporalDatum(java.util.Map, java.util.Date)"><CODE>DatumFactory.createTemporalDatum(Map, Date)</CODE></A>
-    </UL></TD>
-    <TD><UL>
-      <LI><A HREF="org/opengis/metadata/identification/Resolution.html#getDistance()"><CODE>Resolution.getDistance()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/spatial/Dimension.html#getResolution()"><CODE>Dimension.getResolution()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/lineage/NominalResolution.html#getScanningResolution()"><CODE>NominalResolution.getScanningResolution()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/lineage/NominalResolution.html#getGroundResolution()"><CODE>NominalResolution.getGroundResolution()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/content/Band.html#getNominalSpatialResolution()"><CODE>Band.getNominalSpatialResolution()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/acquisition/EnvironmentalRecord.html#getAverageAirTemperature()"><CODE>EnvironmentalRecord.getAverageAirTemperature()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/acquisition/EnvironmentalRecord.html#getMaxRelativeHumidity()"><CODE>EnvironmentalRecord.getMaxRelativeHumidity()</CODE></A>
-      <LI><A HREF="org/opengis/metadata/acquisition/EnvironmentalRecord.html#getMaxAltitude()"><CODE>EnvironmentalRecord.getMaxAltitude()</CODE></A>
-    </UL></TD>
-  </TR></TABLE>
   </BODY>
 </HTML>

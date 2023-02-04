@@ -338,7 +338,7 @@
                   </excludes>
                 </resource>
               </resources>
-              <outputDirectory>${basedir}/target/apidocs/</outputDirectory>
+              <outputDirectory>${basedir}/target/site/apidocs/</outputDirectory>
             </configuration>
           </execution>
         </executions>
@@ -423,40 +423,6 @@
             <link>https://download.java.net/media/java3d/javadoc/1.5.2/</link>
             <link>https://junit.org/junit4/javadoc/latest/</link>
           </links>
-          <groups>
-            <group>
-              <title>Base package</title>
-              <packages>
-                org.opengis.util*:org.opengis.annotation*
-              </packages>
-            </group>
-            <group>
-              <title>Metadata</title>
-              <packages>
-                org.opengis.metadata*
-              </packages>
-            </group>
-            <group>
-              <title>Spatial Referencing by Coordinates</title>
-              <packages>
-                org.opengis.referencing*:org.opengis.temporal*:org.opengis.parameter*
-              </packages>
-            </group>
-
-            <!-- Pending packages. -->
-            <group>
-              <title>Geometry and Topology</title>
-              <packages>
-                org.opengis.geometry*
-              </packages>
-            </group>
-            <group>
-              <title>Feature and Filter</title>
-              <packages>
-                org.opengis.feature*:org.opengis.filter*
-              </packages>
-            </group>
-          </groups>
         </configuration>
       </plugin>
     </plugins>
