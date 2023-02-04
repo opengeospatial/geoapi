@@ -37,8 +37,6 @@ import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 
 import org.opengis.metadata.identification.CharacterSet;
 
@@ -57,7 +55,7 @@ public final class CodeListTest {
     /**
      * The logger to use.
      */
-    private static final Logger LOGGER = Logger.getLogger("org.opengis");
+    private static final System.Logger LOGGER = System.getLogger("org.opengis");
 
     /**
      * Tests the {@link CharacterSet} code list. At the difference of other code lists,
@@ -98,9 +96,9 @@ public final class CodeListTest {
                 count++;
             }
         }
-        LOGGER.log(Level.FINE, "Found {0} code lists.", count);
+        LOGGER.log(System.Logger.Level.DEBUG, "Found {0} code lists.", count);
         if (count == 0) {
-            LOGGER.warning("No CodeList found.");
+            LOGGER.log(System.Logger.Level.WARNING, "No CodeList found.");
         }
     }
 

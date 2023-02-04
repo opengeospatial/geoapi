@@ -82,38 +82,4 @@
     </dependency>
   </dependencies>
 
-
-
-  <!-- ====================================================
-           Compilation and Packaging
-       ==================================================== -->
-  <build>
-    <plugins>
-      <plugin>
-        <groupId>org.apache.maven.plugins</groupId>
-        <artifactId>maven-antrun-plugin</artifactId>
-        <executions>
-          <execution>
-            <phase>prepare-package</phase>
-            <goals>
-              <goal>run</goal>
-            </goals>
-            <configuration>
-              <target>
-                <mkdir dir        = "${project.build.directory}/classes/META-INF/versions/9"/>
-                <javac destdir    = "${project.build.directory}/classes/META-INF/versions/9"
-                       srcdir     = "${project.basedir}/src/main/java9"
-                       modulepath = "${org.opengis:geoapi:jar}:${javax.measure:unit-api:jar}:${junit:junit:jar}"
-                       release    = "9"
-                       includeAntRuntime = "false">
-                  <compilerarg line = "--patch-module org.opengis.geoapi.conformance=${project.build.directory}/classes --module-version ${project.version}"/>
-                </javac>
-              </target>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-    </plugins>
-  </build>
-
 </project>

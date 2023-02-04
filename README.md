@@ -9,7 +9,7 @@ This is the root directory for the GeoAPI project.
 
 ## How to build
 
-* Download and install Java 8 or above.
+* Download and install Java 11 or above.
 * Download and install Maven 3: http://maven.apache.org
 * Invoke `mvn install` from the command line in this directory.
 
