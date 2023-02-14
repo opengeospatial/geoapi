@@ -18,7 +18,7 @@ Unless otherwise specified, all Java types listed below are in the
 `javax.​measure` or `javax.​measure.​quantity` package.
 
 .Units of measurement mapping
-[.compact, options="header"]
+[options="header"]
 |======================================================================================
 |Measure in ISO 19103   |Unit in ISO 19103       |Measure in Java |Unit in Java
 |`Measure`              |`UnitOfMeasure`         |`Quantity<?>`   |`Unit<?>`
@@ -40,9 +40,7 @@ Unless otherwise specified, all Java types listed below are in the
 |`╴ Velocity`           |`UomVelocity`           |                |`Unit<Speed>`
 |======================================================================================
 
-.Differences between ISO 19103 and JSR-385:
-[NOTE]
-======
+Notes:
 * Angular speed has no direct mapping to JSR-385,
   but some implementations may allow the use of generic type `Quantity<?>`.
 * `Currency` is not considered a unit of measurement in this profile.
@@ -50,4 +48,3 @@ Unless otherwise specified, all Java types listed below are in the
 * JSR-385 does not have a type equivalent to `DirectedMeasure`.
   But it still possible to represent their unit of measurement.
 * `SubUnitsPerUnit`, `UnitsList` and `StandardUnits` defined in ISO 19103 are not materialized in this profile.
-======

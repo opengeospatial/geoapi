@@ -1,6 +1,6 @@
 [[coordinate_operation]]
 ==== Coordinate operations
-[.reference]_From ISO 19111:2019 §12 and §C.5_
+_From <<ISO19111>> §12 and §C.5_
 
 A Coordinate Operation can _transform_ or _convert_ coordinate tuples from one Coordinate Reference System (CRS) to another CRS.
 There is four kinds of coordinate operations in GeoAPI:
@@ -14,11 +14,12 @@ There is four kinds of coordinate operations in GeoAPI:
   the coordinate transformation results also have errors.
   Furthermore, several transformations may exist for the same pair of coordinate reference systems,
   differing in their method, parameter values, domain of validity and accuracy characteristics.
-* [red yellow-background]#TODO: Point motion operation.#
+* #TODO: Point motion operation.#
 * A _concatenated operation_ defines a sequential execution of any of above operations.
 
 GeoAPI provides three ways to create a coordinate operation:
 
+[[coordinate_operation_from_crs_pair]]
 ===== From a pair of CRS
 Given a source coordinate reference system (CRS) in which existing coordinate values are expressed,
 and a target coordinate reference system in which coordinate values are desired,
@@ -32,13 +33,15 @@ such as accuracy and domain of validity, but GeoAPI does not specify any rule.
 Users are encouraged to verify which transformation has been selected by invoking
 the `CoordinateOperation.toWKT()` method.
 
-[red yellow-background]#TODO: `RegisterOperations` returns a set of all operations.#
+#TODO: `RegisterOperations` returns a set of all operations.#
 
+[[coordinate_operation_from_authority_code]]
 ===== From an authority code
 If a determinist operation is required and if that operation is identified by an authority code,
 then that operation can be obtained with `Coordinate­Operation­Authority­Factory`.
 This approach avoids the implementation-dependent variability of the approach described in previous paragraph.
 
+[[coordinate_operation_from_parameters]]
 ===== From operation parameter values
 The `Parameter­Value` interface provides methods to set the value of the operation parameter.
 In the general use pattern for these types, a `Parameter­Value­Group` containing all the named parameters

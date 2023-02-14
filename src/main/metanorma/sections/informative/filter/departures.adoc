@@ -6,6 +6,7 @@ Some modifications are also applied for generalization when non-encoded property
 The aim is to facilitate computational operations without preventing the encoding of ISO 19143 compliant XML documents,
 as omitted types (for example) can be inferred.
 
+[[expression_omissions]]
 ===== Omissions relative to expressions
 `Function` interface is omitted (actually retrofitted into the base `Expression` interface) for avoiding confusion with
 function interfaces provided natively by target platforms (such as the `java.​util.​function` package).
@@ -16,6 +17,7 @@ The following partial UML diagrams illustrate the difference.
 .Role of function interface in ISO versus GeoAPI model
 image::filter_function.svg[Partial UML for ISO and GeoAPI filter function]
 
+[[filter_omissions]]
 ===== Omissions relative to filters
 `Operator` interface is omitted for simplicity reason.
 Instead, operators defined by GeoAPI extends directly the `Filter` interface.
@@ -36,12 +38,14 @@ The length may be more than 2 if the AND or OR operation is repeated for all ope
 Unions are not supported in Java and not really needed in Python.
 They are replaced by recommendations in the API documentation.
 
+[[filter_capability_omissions]]
 ===== Omissions relative to capabilities
 `Spatial­Operator­Description` and `Temporal­Operator­Description` in the capabilities section are omitted.
 The are replaced by the dictionary of target platforms (for example `Map.Entry` in Java).
 It reduces the number of GeoAPI defined interfaces by leveraging platform API
 and also makes easier to get the operands for a specific operator.
 
+[[filter_departures_as_renaming]]
 ===== Renaming
 * The `expression` association in `Function` is renamed `parameter` for making clearer that they are function inputs.
 * The `name` property in `Function` is renamed `function­Name` for making its purpose clearer,
@@ -49,6 +53,7 @@ and also makes easier to get the operands for a specific operator.
 * The `BinaryComparisonName` type is renamed `ComparisonOperatorName` for consistency with other operator names
   and for making possible to name other kinds of comparison than binary operators.
 
+[[filter_departures_as_generalization]]
 ===== Generalization of filter metadata
 The ISO 19143 specification identifies _some_ filters by a code list.
 That identification is provided by an `operator­Type` property defined in

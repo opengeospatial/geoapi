@@ -1,4 +1,4 @@
-[appendix]
+[appendix,obligation="informative"]
 [[history]]
 == Revision History
 
@@ -24,30 +24,15 @@ GO-1 has been retired later, but a new working group has been formed in 2009 for
 with a more restricted scope: to provide interfaces for existing OGC standards only, without defining new conceptual models.
 GeoAPI 3.0.0 has been released in 2011, GeoAPI 3.0.1 in 2017, and GeoAPI 3.0.2 in 2023.
 
-[options="header"]
+[options="header,unnumbered"]
 |===============================================================================================
 |Date       |Release        |Editor              |Clauses modified         |Description
-|2009-04-08 |3.0.0-Draft    |Adrian Custer       |All                      |Initial public draft
-|2009-09-06 |3.0.0-Draft-r1 |Martin Desruisseaux |Annex E                  |List of departures
-|2010-02-11 |3.0.0-Draft-r2 |Martin Desruisseaux |8.1.1, 10.1, annex F     |Clarifications
-|2016-11-07 |3.0.1          |Martin Desruisseaux |3, 8.1.6, 8.2, annex G   |Replaced JSR-275 by JSR-363
-|2022-12-26 |3.0.2          |Martin Desruisseaux |3, 8.1.6, 8.2, annex G   |Replaced JSR-363 by JSR-385
-|2021-XX-XX |3.1 / 4.0      |Martin Desruisseaux |All                      |Rewrite
+|2009-04-08 |3.0.0-draft    |Adrian Custer       |All                      |Initial public draft
+|2010-02-11 |3.0.0          |Martin Desruisseaux |§6.2, 6.4, annexes       |Clarifications & departures
+|2016-11-07 |3.0.1          |Martin Desruisseaux |§3, 6.2.9, annex D       |Replaced JSR-275 by JSR-363
+|2022-12-26 |3.0.2          |Martin Desruisseaux |§3, 6.2.9, annex D       |Replaced JSR-363 by JSR-385
+|2023-XX-XX |3.1 / 4.0      |Martin Desruisseaux |All                      |Rewrite
 |===============================================================================================
-
-[red yellow-background]#TODO: update references in above table.
-The old sections are listed below.
-They need to be replaced by new section numbers.#
-
-[role="compact"]
-* 3:       Normative references
-* 8.1.1:   Primitive types (numeric, text, date & time, boolean, enumeration)
-* 8.1.6:   Derived types (units of measurement)
-* 8.2:     Use of the utility types (examples with NameFactory and unit conversion)
-* 10.1:    Geometry packages - Defined types (Position, DirectPosition, Envelope).
-* annex E: list of departures
-* annex F: Comparison with legacy OGC specifications
-* annex G: Reference implementation
 
 [[future_work]]
 === Future work

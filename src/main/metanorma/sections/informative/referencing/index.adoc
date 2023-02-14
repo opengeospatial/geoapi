@@ -2,10 +2,10 @@
 === Referencing packages
 
 The GeoAPI referencing packages use the `opengis.referencing` and `opengis.parameter` namespaces
-and implement the types defined in the ISO 19111:2007 - _Referencing by coordinates_ specification.
-[red yellow-background]#TODO: upgrade to ISO 19111:2019.#
+and implement the types defined in the <<ISO19111>> - _Referencing by coordinates_ specification.
+#TODO: upgrade to ISO 19111:2019.#
 The referencing package also includes the types describing object factories and mathematical transformation operators
-defined in the legacy standard OGC 01-009 - _Coordinate Transformation Services_ from 2003.
+defined in the legacy standard <<OGC01-009>> - _Coordinate Transformation Services_ from 2003.
 Those types can be used to define various datums, define various coordinate systems,
 and combine those to define the coordinate referencing systems (CRS) generally encountered in geospatial science.
 The UML below (incomplete for brevity) shows a few commonly used GeoAPI types.
@@ -21,7 +21,7 @@ is given in the _Metadata packages_ section (<<reference_system>>).
 The mapping from ISO 19111 packages to GeoAPI packages is shown below:
 
 .Referencing package mapping
-[.compact, options="header"]
+[options="header"]
 |===================================================================================================
 |ISO package                 |Java package                          |Python module
 |Identified Object           |`org.opengis.referencing`             |`opengis.referencing.datum`

@@ -12,6 +12,7 @@
 :received-date:            TBD
 :issued-date:              TBD
 :published-date:           TBD
+:workgroup:                GeoAPI SWG
 :fullname:                 Martin Desruisseaux
 :submitting-organizations: Geomatys
 :keywords:                 ogcdoc, OGC document, GeoAPI, programming, Java, Python, interface, geospatial, metadata, referencing, feature
@@ -22,8 +23,10 @@
 :doc-uri:                  ./document.doc
 :imagesdir:                figures
 :data-uri-image:
-:local-cache-only:
+:local-cache-only:         ../../../target/
 :supported-languages:      Java and Python
+:htmlstylesheet-override: geoapi.css
+// Note: above line needs to be have exactly one space and to be before this comment.
 
 
 // Note: we really need a blank line between `include` statements for avoiding section headers to be misinterpreted.

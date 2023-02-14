@@ -1,11 +1,10 @@
 [[filter_capabilities]]
 ==== Capabilities
-[.reference]_From ISO 19143:2010 §7.13_
+_From <<ISO19143>> §7.13_
 
 `Filter­Capabilities` is the entry point for listing which expressions and filter operators are available.
 It capabilities are separated in the following categories:
 
-[role="compact"]
 * `Id­Capabilities` lists names that represent the resource identifier elements that the service supports.
 * `Scalar­Capabilities` advertises which logical, comparison and arithmetic operators the service supports.
 * `Spatial­Capabilities` advertises which spatial operators and geometric operands the service supports.

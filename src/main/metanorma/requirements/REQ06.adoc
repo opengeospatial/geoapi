@@ -1,9 +1,17 @@
-[width="90%",cols="2,6"]
-|===
-|*Requirement 6* {set:cellbgcolor:#CACCCE}|/req/req-class-a/req-getter-optional +
- +
-{set:cellbgcolor:#FFFFFF}
+[[req_core_getter_optional]]
+[requirement]
+====
+[%metadata]
+label:: /req/req-class-a/req-getter-optional
+[.component,class=conditions]
+--
+. Optional getter methods shall return the value, or null, or throw an exception.
+--
+
+[.component,class=part]
+--
 Optional "getter" methods shall return the requested value unless the value
 is missing or the method is not implemented in which case they shall return
 an empty collection if possible, or `null` or `None` otherwise.
-|===
+--
+====

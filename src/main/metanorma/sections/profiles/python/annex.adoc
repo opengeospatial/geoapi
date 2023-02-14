@@ -1,5 +1,5 @@
-[appendix]
+[appendix,obligation="normative"]
 [[python]]
 == Python Profile (Normative)
 
-[red yellow-background]#TODO#
+#TODO#

@@ -1,6 +1,6 @@
 [[parameters]]
 ==== Parameters
-[.reference]_From ISO 19111:2003 §11.2, ISO 19115:2014 §6.5.12, ISO 19157:2013 §C.2.2.4_
+_From <<ISO19111>> §11.2, <<ISO19115-1>> §6.5.12, <<ISO19157>> §C.2.2.4_
 
 The concept of operation parameters is defined in many OGC/ISO standards:
 
@@ -17,7 +17,7 @@ The parameter properties that are defined by other standards but not present
 in `CC_OperationParameter` are retrofitted in the GeoAPI parameter framework.
 
 .Main parameter properties and their mapping to ISO standards
-[.compact, options="header"]
+[options="header"]
 |==========================================================================================================
 |GeoAPI             |ISO 19111       |ISO 19115       |ISO 19157     |Remarks
 |`name`             |`name`          |`name`          |`name`        |

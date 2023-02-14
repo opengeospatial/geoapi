@@ -1,6 +1,6 @@
 [[internationalization]]
 ==== Internationalization
-[.reference]_From ISO 19103:2015 §C.2_
+_From <<ISO19103>> §C.2_
 
 The `InternationalString` interface is defined by GeoAPI to handle textual sequences
 which may potentially need to be translated for users of different locales.
@@ -12,25 +12,21 @@ while `InternationalString` can be a collection of character strings in differen
 This is useful, for example, when an implementation is operating on a server that serves multiple languages simultaneously,
 to allow sending string representations in the locale of the client rather than the locale of the server running the GeoAPI implementation.
 
+[[internationalization_UML]]
 .Cultural and linguistic adaptability
 image::localization.svg[UML of InternationalString]
-
-[NOTE]
-======
-`InternationalString` is inspired by JSR-150 (Internationalization Service for J2EE) with support for different timezones omitted.
-======
 
 The `toString()` method (`+__str__+` in Python) returns the text in a language at implementer's choice.
 The `toString(Locale)` method tries to return the text in the specified language if available,
 and otherwise fallbacks on a language at implementer's choice.
 This specification makes no recommendation about the default or fallback languages
 because some programming languages provide their own mechanism
-(e.g. using _Language Range_ as defined by https://tools.ietf.org/html/rfc4647[RFC 4647 Matching of Language Tags]).
+(e.g. using _Language Range_ as defined by <<RFC4647>>).
 Consequently, GeoAPI delegates most internationalization types to the target language standard library, as shown in the following table.
 An example in <<InternationalString>> shows the use of `InternationalString` in the Java language.
 
 .Linguistic types mapping
-[.compact, options="header"]
+[options="header"]
 |==============================================================================
 |ISO 19103 interface      |Java class or interface                |Python class
 |`CharacterString`        |`java.lang.String`               ^(1)^ |`str`
@@ -40,18 +36,23 @@ An example in <<InternationalString>> shows the use of `InternationalString` in 
 |`CharacterSetCode` ^(3)^ |`java.nio.charset.Charset`             |
 |==============================================================================
 
-[small]#(1) Sometimes substituted by `CharSequence` or `InternationalString`.# +
-[small]#(2) Defined as a unit of measurement in ISO 19103 §C.4.24.# +
-[small]#(3) From ISO 19103 §7.2.10 (<<primitives,primitive types>>).# +
+Notes:
+
+* (1) Sometimes substituted by `CharSequence` or `InternationalString`.
+* (2) Defined as a unit of measurement in ISO 19103 §C.4.24.
+* (3) From ISO 19103 §7.2.10 (<<primitives,primitive types>>).
 
 
+[[internationalization_departures]]
 ===== Departures from ISO model
 
+[[internationalization_departures_as_renaming]]
 ====== Renaming
 All GeoAPI linguistic types have names and properties different than the ISO 19103 types.
 This is either because the ISO types are mapped to types provided by the target language standard library
 or because the GeoAPI type is inspired by a similar effort in the target language ecosystem.
 
+[[internationalization_departures_for_harmonization]]
 ====== Harmonization
 `InternationalString` as defined by GeoAPI provides the same functionality than ISO 19115 `PT_FreeText`.
 It can be applied to all ISO 19115 elements who's data type is `CharacterString` and domain is “free text”.

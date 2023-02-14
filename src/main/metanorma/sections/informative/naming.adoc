@@ -5,11 +5,13 @@ The interface and property names defined in OGC/ISO standards may be modified
 for compliance with the conventions in use in target programming languages.
 The main changes are described below:
 
+[[naming_interfaces]]
 ===== Interfaces
 The two-letter prefixes are dropped.
 For example, `MD_Metadata` and `CI_Citation` interfaces are named `Metadata` and `Citation` in {supported-languages}.
 The camel cases convention (for example `CoordinateSystemAxis`) is kept unchanged for interfaces.
 
+[[naming_enumerations]]
 ===== Code lists and enumerations
 The two-letter prefixes are dropped in the same way than for interfaces.
 Then if the type name ends with the `Code` suffix, that suffix is dropped too in strongly-typed languages like Java.
@@ -17,6 +19,7 @@ For example, the ISO 19115 `TopicCategoryCode` code list is named `TopicCategory
 The `Code` suffix drop is not applied to more dynamic languages like Python,
 because the naming convention can be a compensation for the absence of compile-time type checks.
 
+[[naming_properties]]
 ===== Properties
 The name adaptations depend on the target programming language and on the multiplicity.
 In Java, accessor methods start with the `get` prefix and are followed by their property name in camel cases.
@@ -26,7 +29,7 @@ If a property allows more than one value, then the plural form of its noun may b
 The plural form hints the developers that they may need to use indexes or iterators for accessing elements.
 
 .Example of name adaptations in programming elements
-[.compact, options="header"]
+[options="header"]
 |======================================================================================
 |Metatype       |Name in OGC/ISO        |Name in Java           |Name in Python
 |Interface      |`CoordinateSystemAxis` |`CoordinateSystemAxis` |`CoordinateSystemAxis`

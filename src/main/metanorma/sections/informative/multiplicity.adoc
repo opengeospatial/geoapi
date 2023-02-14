@@ -7,7 +7,6 @@ materialized in the API as annotations (<<annotations>>) and in the method signa
 If a different multiplicity is needed, then [0 … ∞] should be used
 with a restriction documented in the text attached to the property.
 
-[role="compact"]
 * *[0 … 0]* — the property cannot be set (this happen sometimes in subtypes).
 * *[0 … 1]* — the property is optional or conditional.
 * *[1 … 1]* — the property is mandatory.

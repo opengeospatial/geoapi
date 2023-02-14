@@ -12,4 +12,4 @@ Conformance with WKT syntax {set:cellbgcolor:#FFFFFF}
 {set:cellbgcolor:#FFFFFF}
 |===
 
-[red yellow-background]#TODO: Describe requirements.#
+#TODO: Describe requirements.#

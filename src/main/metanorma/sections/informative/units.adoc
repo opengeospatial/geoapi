@@ -1,6 +1,6 @@
 [[units]]
 ==== Units of measurement
-[.reference]_From ISO 19103:2015 §C.4_
+_From <<ISO19103>> §C.4_
 
 ISO 19103 represents measurements and their units by two base interfaces:
 `Measure` for the result from performing the act of ascertaining the value of a characteristic of some entity,

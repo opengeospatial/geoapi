@@ -1,5 +1,6 @@
-[appendix]
-== Conformance Class Test Suite (Normative)
+[appendix,obligation="normative"]
+[[conformance_tests]]
+== Conformance Class Test Suite
 
 This standard provides several levels of conformance for libraries.
 The levels are determined mostly by the capabilities of `referencing` or `feature` packages.

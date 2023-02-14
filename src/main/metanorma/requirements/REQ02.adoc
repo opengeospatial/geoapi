@@ -1,8 +1,16 @@
-[width="90%",cols="2,6"]
-|===
-|*Requirement 2* {set:cellbgcolor:#CACCCE}|/req/req-class-a/req-behavior +
- +
-{set:cellbgcolor:#FFFFFF}
+[[req_core_behavior]]
+[requirement]
+====
+[%metadata]
+label:: /req/req-class-a/req-behavior
+[.component,class=conditions]
+--
+. Implementations shall follow the dictates of the Java or Python API documentation.
+--
+
+[.component,class=part]
+--
 Libraries which provide code implementations of the GeoAPI interfaces shall follow
 the dictates of the Java or Python API documentation.
-|===
+--
+====

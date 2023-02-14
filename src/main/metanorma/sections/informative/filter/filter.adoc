@@ -1,6 +1,6 @@
 [[filter]]
 ==== Filter
-[.reference]_From ISO 19143:2010 §7.[7…11]_
+_From <<ISO19143>> §7.[7…11]_
 
 A filter is a predicate that identifies a subset of resources from a collection of resources.
 Each resource instance is evaluated against a filter, which always evaluates to `true` or `false`.
@@ -14,6 +14,7 @@ The following diagram shows the 4 basic types of filters
 together with the code lists identifying which operation is applied.
 More specialized sub-types such as `Binary­Comparison­Operator` and `Distance­Operator` are not shown in this diagram.
 
+[[filter_UML]]
 .Partial UML of filters
 image::filter.svg[Filter UML]
 

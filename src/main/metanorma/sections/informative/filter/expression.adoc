@@ -1,6 +1,6 @@
 [[expression]]
 ==== Expression
-[.reference]_From ISO 19143:2010 §7.[3…6]_
+_From <<ISO19143>> §7.[3…6]_
 
 An expression is a function that receives a resource (typically a `Feature`) in input
 and produces a value (typically a character string, a number or a geometry) in output.
@@ -16,6 +16,7 @@ An expression can have zero or more parameters and generates a single result.
 The parameters themselves are in-turn expressions and shall appear in the order in which
 they are defined in the `FilterCapabilities` (<<filter_capabilities>>).
 
+[[expression_UML]]
 .Partial UML of expressions
 image::expression.svg[Expression UML]
 

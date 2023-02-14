@@ -1,12 +1,20 @@
-[width="90%",cols="2,6"]
-|===
-|*Requirement 5* {set:cellbgcolor:#CACCCE}|/req/req-class-a/req-getter-mandatory +
- +
-{set:cellbgcolor:#FFFFFF}
+[[req_core_getters]]
+[requirement]
+====
+[%metadata]
+label:: /req/req-class-a/req-getter-mandatory
+[.component,class=conditions]
+--
+. Getter methods should return a non-null value or throw an exception.
+--
+
+[.component,class=part]
+--
 Unless otherwise specified in this specification or in the API documentation,
-mandatory "getter" methods shall return the requested value unless the value
-is missing in which case they shall throw an exception such as `Illegal­State­Exception`.
-|===
+mandatory "getter" methods should return the requested value unless the value
+is missing in which case they should throw an exception such as `Illegal­State­Exception`.
+--
+====
 
 "Getter" methods (methods which obtain a value from an object)
 are documented through annotations in the Javadoc as mandatory or optional.

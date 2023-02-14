@@ -8,7 +8,7 @@ An online version of the API documentation, which may contain fixes for errata d
 is available at the URLs listed below:
 
 .Distribution formats
-[.compact, options="header", cols="1,3,3"]
+[options="header", cols="1,3,3"]
 |========================================================================================================
 |                |Java                                    |Python
 |Interfaces:     |Java Archive (JAR) binary               |Python source files (.py)
@@ -16,7 +16,7 @@ is available at the URLs listed below:
 |Online version: |http://www.geoapi.org/snapshot/javadoc/ |http://www.geoapi.org/snapshot/python/
 |========================================================================================================
 
-[red yellow-background]#TODO: The `snapshot` elements in above URLs will be replaced by `3.1` and `4.0` after release.#
+#TODO: The `snapshot` elements in above URLs will be replaced by `3.1` and `4.0` after release.#
 
 Contrarily to other OGC/ISO standards, the UML diagrams in this specification are only informative.
 The reason is because those diagrams show only a small subset of all interfaces and properties provided by GeoAPI,
@@ -28,7 +28,6 @@ for implementations covering different packages of the API or providing differen
 GeoAPI provides a test suite through which to establish conformance of GeoAPI implementations.
 Requirements for 2 standardization target types are considered:
 
-[role="compact"]
 * *Libraries* which provide software components for building geospatial applications.
 * *Applications* which use the above-cited software components.
 
@@ -41,6 +40,5 @@ The framework, concepts, and methodology for testing, and the criteria to be ach
 OGC Compliance Testing Policies and Procedures and the OGC Compliance Testing web site.
 In order to conform to this OGC® interface standard, a software implementation shall choose to implement:
 
-[role="compact"]
-* Any one of the conformance levels specified in <<conformance_levels>>.
+* Any one of the conformance levels specified in <<conformance_tests>>.
 * Any one of the Distributed Computing Platform profiles specified in <<java>> through <<python>> (normative).

@@ -1,6 +1,6 @@
 [[math_transform]]
 ==== Math transforms
-[.reference]_From OGC 01-009 §12.4.5_
+_From <<OGC01-009>> §12.4.5_
 
 The `Coordinate­Operation` object introduced in previous section provides high-level information
 (source and target CRS, domain of validity, positional accuracy, operation parameter values, _etc_).
@@ -15,6 +15,7 @@ The result may be a `MathTransform` doing in a single step a calculation
 described by `Coordinate­Operation` as a chain of distinct operations.
 Having `MathTransform` separated from `CoordinateOperation` gives more flexibility to implementers for optimizations.
 
+[[math_transform_UML]]
 .Association between Coordinate Operation and Math Transform
 image::math_transform.svg["urn:​ogc:​def:​crs:​EPSG:​10" Partial UML of MathTransform]
 
@@ -26,8 +27,9 @@ the methods operating on arrays will generally be much more efficient than the m
 The example in <<java_coordinate_operation>> shows how to transform in Java the coordinates of 6 cities.
 
 
+[[math_transform_derivatives]]
 ===== Partial derivatives
-[.reference]_From OGC 01-009 §12.4.5.6_
+_From <<OGC01-009>> §12.4.5.6_
 
 `MathTransform` can also provide the derivative of the transform function at a point.
 The derivative is the matrix of the non-translating portion of the approximate affine map at the point.
@@ -35,25 +37,8 @@ For example, if _P_ is a map projection converting degrees of latitude and longi
 into projected coordinates (_x_, _y_) in metres,
 then the derivative _P′_ can be represented by a Jacobian matrix as below:
 
-++++++++++
-<math xmlns="http://www.w3.org/1998/Math/MathML" display="block" alttext="MathML capable browser required">
-  <msup><mi>P</mi><mo>′</mo></msup><mo>(</mo><mi>φ</mi><mo>,</mo><mi>λ</mi><mo>)</mo>
-  <mo>=</mo>
-  <mrow>
-    <mo>[</mo>
-    <mrow>
-      <mtable>
-        <mtr>
-          <mtd><mfrac><mrow><mo>∂</mo><mi>x</mi></mrow><mrow><mo>∂</mo><mi>φ</mi></mrow></mfrac></mtd>
-          <mtd><mfrac><mrow><mo>∂</mo><mi>x</mi></mrow><mrow><mo>∂</mo><mi>λ</mi></mrow></mfrac></mtd>
-        </mtr>
-        <mtr>
-          <mtd><mfrac><mrow><mo>∂</mo><mi>y</mi></mrow><mrow><mo>∂</mo><mi>φ</mi></mrow></mfrac></mtd>
-          <mtd><mfrac><mrow><mo>∂</mo><mi>y</mi></mrow><mrow><mo>∂</mo><mi>λ</mi></mrow></mfrac></mtd>
-        </mtr>
-      </mtable>
-    </mrow>
-    <mo>]</mo>
-  </mrow>
-</math>
-++++++++++
+[stem]
+++++
+J_P(phi,lambda) = [[(del x) / (del phi), (del x) / (del lambda)],
+                   [(del y) / (del phi), (del y) / (del lambda)]]
+++++

@@ -6,15 +6,11 @@ A library is a software that exposes the `opengis` packages for use by independe
 An application is a software that encapsulates the `opengis` packages for its internal working,
 but without exposing them to end users.
 Applications have less requirements than libraries.
-
-[NOTE]
-======
 For example, compliant libraries shall obey to method signatures declared in published OGC interfaces,
 otherwise other developers could not base their developments on a common set of API.
 However, applications are free to modify, add or remove methods as they see fit.
 If the `opengis` API of the application is not invoked by any external user,
-then changes to that API has no impact on inter-operability.
-======
+then changes to that API has no impact on interoperability.
 
 
 [[requirements-library]]

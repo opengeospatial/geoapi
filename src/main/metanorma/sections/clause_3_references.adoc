@@ -1,23 +1,51 @@
 [bibliography]
+[[references]]
 == References
 
-The following normative documents contain provisions that, through reference in this text, constitute provisions of this document,
-except for any departures from the listed specifications which are explicitly mentioned in this text.
-For dated references, subsequent amendments to, or revisions of, any of these publications do not apply.
-For undated references, the latest edition of the normative document referred to applies.
+* [[[ISO31,ISO 31-0:1992]]], _Quantities and units_
 
-* ISO 19103:2015,    Geographic information — Conceptual schema language (2015)
-* ISO 19107:2003,    Geographic information — Spatial schema (2003)
-* ISO 19109:2015,    Geographic information — Rules for application schema (2015)
-* ISO 19111:2007,    Geographic information — Spatial referencing by coordinates (2007)
-* ISO 19115-1:2014,  Geographic information — Metadata — Fundamentals (2014)
-* ISO 19115-1:2014/Amd 1:2018,  Metadata — Fundamentals — Amendment 1 (2018)
-* ISO 19115-1:2014/Amd 1:2020,  Metadata — Fundamentals — Amendment 2 (2020)
-* ISO 19115-2:2019,  Geographic information — Metadata — Extensions for acquisition and processing (2019)
-* ISO 19141:2008,    Geographic information — Schema for moving features (2008)
-* ISO 19157:2013,    Geographic information — Data quality (2013)
-* ISO 19162,         Geographic information — Well-known text representation of coordinate reference systems (2019)
-* OGC 01‑009, OpenGIS® Implementation Specification: Coordinate Transformation Services (2001)
-* OGC 18-075, OGC® Moving Features Encoding Part I: XML Core (2019)
-* James Gosling, Bill Joy, Guy Steele, Gilad Bracha, Oracle: The Java Language Specification
-* Python Software Foundation: The Python Language Reference
+* [[[ISO1000,ISO 1000:1992]]], _SI units and recommendations for the use of their multiples and of certain other units_
+
+* [[[ISO19101-1,ISO 19101-1:2014]]], _Geographic information — Reference model — Part 1: Fundamentals_
+
+* [[[ISO19101-2,ISO 19101-2:2018]]], _Geographic information — Reference model — Part 2: Imagery_
+
+* [[[ISO19103,ISO 19103:2015]]], _Geographic information — Conceptual schema language_
+
+* [[[ISO19107,ISO 19107:2003]]], _Geographic information — Spatial schema_
+
+* [[[ISO19109,ISO 19109:2015]]], _Geographic information — Rules for application schema_
+
+* [[[ISO19111,ISO 19111:2019]]], _Geographic information — Referencing by coordinates_
+
+* [[[ISO19112,ISO 19112:2019]]], _Geographic information — Spatial referencing by geographic identifiers_
+
+* [[[ISO19115-1,ISO 19115-1:2014]]], _Geographic information — Metadata — Part 1: Fundamentals_
+
+* [[[ISO19115-1A1,ISO 19115-1:2014/Amd 1:2018]]], _Metadata — Fundamentals — Amendment 1_
+
+* [[[ISO19115-1A2,ISO 19115-1:2014/Amd 2:2020]]], _Metadata — Fundamentals — Amendment 2_
+
+* [[[ISO19115-2,ISO 19115-2:2019]]], _Geographic information — Metadata — Extensions for acquisition and processing_
+
+* [[[ISO19115-3,ISO 19115-3:2016]]], _Geographic information — Metadata — XML schema implementation for fundamental concepts_
+
+* [[[ISO19123,ISO 19123:2005]]], _Geographic information — Schema for coverage geometry and functions_
+
+* [[[ISO19141,ISO 19141:2008]]], _Geographic information — Schema for moving features_
+
+* [[[ISO19143,ISO 19143:2010]]], _Geographic information — Filter encoding_
+
+* [[[ISO19157,ISO 19157:2013]]], _Geographic information — Data quality_
+
+* [[[ISO19162,ISO 19162:2019]]], _Geographic information — Well-known text representation of coordinate reference systems_
+
+* [[[OGC01-009,OGC 01-009]]], _OpenGIS® Implementation Specification: Coordinate Transformation Services_
+
+* [[[OGC18-075,OGC 18-075]]], _OGC® Moving Features Encoding Part I: XML Core_
+
+* [[[OGC19-045,OGC 19-045r3]]], _OGC® Moving Features Encoding: JSON_
+
+* [[[JavaSpec,The Java Language Specification]]], James Gosling, Bill Joy, Guy Steele, Gilad Bracha: _The Java Language Specification_
+
+* [[[PythonSpec,The Python Language Reference]]], Python Software Foundation: _The Python Language Reference_

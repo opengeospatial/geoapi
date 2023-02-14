@@ -1,6 +1,7 @@
 [[metadata_departures]]
 ==== Departures from ISO 19115
 
+[[metadata_departures_for_harmonization_with_19115_2]]
 ===== Harmonization with ISO 19115-2
 A departure in the GeoAPI metadata packages from the published ISO 19115 standard is in the way GeoAPI metadata package
 added the types and properties defined in the specification ISO 19115-2 – _Extensions for acquisition and processing_.
@@ -13,7 +14,7 @@ with annotations (<<annotations>>) on each property for declaring the originatin
 The metadata interfaces merged in such way are:
 
 .Metadata ISO 19115-2 interfaces merged with ISO 19115-1 parent interfaces
-[.compact, options="header"]
+[options="header"]
 |=====================================================================
 |ISO 19115-1 parent interface |ISO 19115-2 subclass merged with parent
 |`LI_ProcessStep`             |`LE_ProcessStep`
@@ -27,6 +28,7 @@ The metadata interfaces merged in such way are:
 |=====================================================================
 
 
+[[metadata_departures_for_harmonization_with_19111]]
 ===== Harmonization with ISO 19111
 Coordinate Reference Systems (CRS) are defined in details by the ISO 19111 standard.
 But the ISO 19115 metadata standards do not reference those CRS interfaces directly (except `VerticalCRS`).

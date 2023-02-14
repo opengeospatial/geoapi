@@ -2,8 +2,8 @@
 === Geometry packages
 
 The GeoAPI geometry packages use the `opengis.geometry` namespace
-and are placeholder for types defined in the ISO 19107:2003 - _Spatial schema_ specification.
-[red yellow-background]#TODO: upgrade to ISO 19107:2019.#
+and are placeholder for types defined in the <<ISO19107>> - _Spatial schema_ specification.
+#TODO: upgrade to ISO 19107:2019.#
 The geometry specification provides a vector based spatial representation of elements.
 The geometry types defined in GeoAPI include only the two simplest types from ISO specification
 along with their abstract parent interfaces.
@@ -11,7 +11,7 @@ Those types are defined because they are needed by the referencing package.
 Other types are expected to be added in future GeoAPI versions.
 
 .Mapping of types from the geometry package
-[.compact, options="header"]
+[options="header"]
 |============================================================================
 |ISO 19107 interface |Java type                                  |Python type
 |`GM_Position`       |`org.opengis.geometry.coordinate.Position` |
@@ -29,6 +29,7 @@ even if the feature itself is fully inside that domain.
 The corner `DirectPosition` instances are acting, for convenience,
 as data containers for tuples of coordinates but not as representations of an actual position.
 
+[[geometry_base]]
 ==== Geometry base class
 Each geometric object is considered an infinite set of points (except the `Point` object which contains only itself).
 As a set, their most fundamental operations are of the same nature as the standard operations of Java collections.

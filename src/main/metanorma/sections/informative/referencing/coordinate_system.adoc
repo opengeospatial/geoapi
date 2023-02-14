@@ -1,6 +1,6 @@
 [[coordinate_system]]
 ==== Coordinate systems
-[.reference]_From ISO 19111:2019 §10 and §C.3_
+_From <<ISO19111>> §10 and §C.3_
 
 A Coordinate System (CS) contains the set of axes that spans a given coordinate space.
 Each axis defines an approximate direction (north, south, east, west, up, down, port, starboard, past, future, _etc._),
@@ -13,6 +13,7 @@ Usually the various CS subtypes do not define any new programmatic methods compa
 For example, many calculations or associations are legal only when all axes are perpendicular to each other.
 In such case the coordinate system type is restricted to `CartesianCS` in method signatures.
 
+[[cs_crs_associations]]
 ===== Associations with CRS
 The coordinate system associated to a `SingleCRS` shall be an instance of one `Coordinate­System` subtype.
 It should be a subtype defined by ISO 19111 when possible, or a user-defined subtype when no standard type describes the space geometry.

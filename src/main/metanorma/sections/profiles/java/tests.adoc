@@ -25,4 +25,4 @@ public class ValidationTests {
 
 If the validation fails, the JUnit library would throw an `Assertion­Error`.
 
-[red yellow-background]#TODO: explain coordinate operation tests, GIGS tests.#
+#TODO: explain coordinate operation tests, GIGS tests.#

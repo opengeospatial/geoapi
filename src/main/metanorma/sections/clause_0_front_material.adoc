@@ -1,5 +1,6 @@
 .Preface
 
+[[preface]]
 == Preface
 
 There is various libraries for helping developers to process geospatial data from programming languages like {supported-languages}.
@@ -29,12 +30,12 @@ The interfaces described in this standard follow closely, without introducing ne
 from the previously published standards of the Open Geospatial Consortium and the International Organization for Standardization.
 Nonetheless, attention is drawn to the possibility that some of the elements of this document may be the subject of patent rights.
 The Open Geospatial Consortium shall not be held responsible for identifying any or all such patent rights.
-
 Recipients of this document are requested to submit, with their comments, notification of any relevant patent claims
 or other intellectual property rights of which they may be aware that might be infringed by any implementation of the
 standard set forth in this document, and to provide supporting documentation.
 
 
+[[abstract]]
 [abstract]
 == Abstract
 
@@ -52,19 +53,22 @@ This standard is a _realization_ of OGC/ISO abstract specifications: it defines 
 By comparison, the Geographic Markup Language (GML) is another realization of the same abstract specifications
 (ignoring version numbers) but targeting a different language (XML).
 GeoAPI documents the mapping of types and methods from the abstract model into {supported-languages} programming languages,
-providing standard interfaces in the `org.opengis` or `opengis` namespaces and explaining the use of GeoAPI interfaces.
+providing standard interfaces in the `org.opengis` (Java) or `opengis` (Python) namespaces
+and explaining the use of GeoAPI interfaces.
 
 
+[[security]]
 == Security considerations
 
 No security considerations have been made for this Standard.
 
 
+[[submitters]]
 == Submitters
 
 All questions regarding this submission should be directed to the editor or the submitters:
 
-[.compact, options="header"]
+[options="header,unnumbered"]
 |===================================
 |Name                   |Affiliation
 |Martin Desruisseaux    |Geomatys

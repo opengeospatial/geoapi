@@ -1,13 +1,13 @@
 [[web_types]]
 ==== Web types
-[.reference]_From ISO 19103:2015 §C.3_
+_From <<ISO19103>> §C.3_
 
 ISO 19103 defines the following data types for use in World Wide Web environments.
 Those types are often found in XML documents.
 GeoAPI maps the ISO types to standard types of the target languages without introducing new interfaces.
 
 .Web types mapping
-[.compact, options="header"]
+[options="header"]
 |==========================================================
 |ISO 19103 interface |Java class or interface |Python class
 |`Anchor`            |unimplemented           |
@@ -17,6 +17,7 @@ GeoAPI maps the ISO types to standard types of the target languages without intr
 |==========================================================
 
 
+[[web_types_departures]]
 ===== Departures from ISO model
 
 All ISO 19103 web types extend `CharacterString`.

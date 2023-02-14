@@ -1,6 +1,6 @@
 [[collections]]
 ==== Collections
-[.reference]_From ISO 19103:2015 §7.3_
+_From <<ISO19103>> §7.3_
 
 GeoAPI implements ISO 19103 collection interfaces using the standard Collections Frameworks provided by {supported-languages}.
 A `Set` is a finite collection of objects where each object appears only once.
@@ -9,7 +9,7 @@ The order of elements in a `Set` or a `Bag` is not specified.
 A `Sequence` is similar to a `Bag` except that elements are ordered.
 
 .Collections mapping
-[.compact, options="header"]
+[options="header"]
 |========================================================
 |ISO 19103 interface |Java type              |Python type
 |`Collection`        |`java.util.Collection` |`Sequence`

@@ -1,6 +1,6 @@
 [[records]]
 ==== Record types
-[.reference]_From ISO 19103:2015 §7.7_
+_From <<ISO19103>> §7.7_
 
 Records define new data type as an heterogeneous aggregation of component data types (the fields).
 A `RecordType` defines dynamically constructed data type.
@@ -19,25 +19,27 @@ because those languages can handle dynamically constructed data types natively,
 but they can nevertheless be useful as marker interfaces.
 
 .Record types mapping
-[.compact, options="header"]
-|==========================================================================================
-|ISO 19103 interface |Java class or interface         |Python class
-|`Any`               |`java.lang.Object`              |
-|`Type`              |`org.opengis.util.Type`         |
-|`Record`            |`org.opengis.util.Record`       |`opengis.metadata.naming.Record`
-|`RecordType`        |`org.opengis.util.RecordType`   |`opengis.metadata.naming.RecordType`
-|`Field`             |`Map.Entry<MemberName, Type>`   |
-|`FieldType`         |`Map.Entry<MemberName, Object>` |
-|==========================================================================================
-[small]#`Map.Entry` in above table means `java.util.Map.Entry`.# +
+[options="header"]
+|====================================================================================================
+|ISO 19103 interface |Java class or interface                   |Python class
+|`Any`               |`java.lang.Object`                        |
+|`Type`              |`org.opengis.util.Type`                   |
+|`Record`            |`org.opengis.util.Record`                 |`opengis.metadata.naming.Record`
+|`RecordType`        |`org.opengis.util.RecordType`             |`opengis.metadata.naming.RecordType`
+|`Field`             |`java.util.Map.Entry<MemberName, Type>`   |
+|`FieldType`         |`java.util.Map.Entry<MemberName, Object>` |
+|====================================================================================================
 
+[[records_departures]]
 ===== Departures from ISO model
 
+[[records_additions]]
 ====== Additions
 The `Type` interface and `typeName` property were defined in the older ISO 19103:2005 standard
 and are kept by GeoAPI despite their removal from ISO 19103:2015.
 The `isInstance(…)` method is a GeoAPI extension.
 
+[[records_omissions]]
 ====== Omissions
 The ISO 19103 `Field` and `FieldType` interfaces are omitted because the same functionality is achieved
 with `Dictionary<MemberName, Type>` and `Dictionary<MemberName, Any>` respectively.

@@ -1,6 +1,6 @@
 [[metadata_mapping]]
 ==== Package mapping
-[.reference]_From ISO 19115-1:2014 §6.5.[2…14] and §6.6; ISO 19157:2013_
+_From <<ISO19115-1>> §6.5.[2…14] and §6.6; ISO 19157:2013_
 
 The mapping of ISO packages to GeoAPI packages follows a parallel naming scheme, shown in the table below.
 Some minor packages (for example _Portrayal catalogue_ which contains only one interface) have been aggregated into another package.
@@ -9,7 +9,7 @@ _Data quality_ which is defined by ISO 19157 but considered by GeoAPI as metadat
 and _Reference system_ which has been retrofitted in the ISO 19111 interfaces from the referencing package.
 
 .Metadata package mapping
-[.compact, options="header"]
+[options="header"]
 |================================================================================================
 |ISO package            |Java package                          |Python module
 |Metadata               |`org.opengis.metadata`                |`opengis.metadata.base`

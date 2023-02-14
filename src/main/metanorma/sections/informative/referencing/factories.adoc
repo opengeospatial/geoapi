@@ -1,6 +1,6 @@
 [[factories]]
 ==== Factories
-[.reference]_From OGC 01-009 §12.3.[6…7] and §12.4.6_
+_From <<OGC01-009>> §12.3.[6…7] and §12.4.6_
 
 The referencing packages include factory types defined originally in the OGC 01-009 specification.
 These factories define a normalized approach to object instantiation and,
@@ -12,7 +12,7 @@ notably those in the EPSG geodetic dataset.
 .Factory interfaces partially derived from OGC 01-009
 image::factories.svg[UML of factories]
 
-[red yellow-background]#TODO: Some methods of `CRSAuthorityFactory` and
+#TODO: Some methods of `CRSAuthorityFactory` and
 `CoordinateOperationAuthorityFactory` to be replaced by ISO 19111:2019 `RegisterOperations`.#
 
 Code that needs to instantiate one of the objects defined in GeoAPI referencing packages
@@ -24,6 +24,7 @@ In Java, factory implementations are discovered by `java.util.ServiceLoader`.
 In Python, GeoAPI does not have a recommended mechanism yet.
 
 
+[[axis_order]]
 ===== Axis order
 The order of coordinate system axes in every objects obtained from an `AuthorityFactory` shall be as defined by the authority.
 The order depends on the Coordinate Reference System (CRS) type and the country defining the CRS.
@@ -31,7 +32,7 @@ In the case of geographic CRS, this is often – but not always – the (_latitu
 In particular the following method call:
 
 
-[source,java]
+[source,java,options="unnumbered"]
 ----------------------------------------------------------------------------
 GeographicCRS WGS84 = crsAuthorityFactory.createGeographicCRS("EPSG::4326");
 ----------------------------------------------------------------------------

@@ -7,7 +7,7 @@ Here we use an authority which has already defined the geographic CRS, the coord
 that we need for this example. Then the example creates a _defining conversion_ from the parameter values and combines
 it with above-cited predefined components for creating the projected CRS.
 
-[red yellow-background]#TODO: Get factories from `ServiceLoader`.#
+#TODO: Get factories from `ServiceLoader`.#
 
 [source,java]
 ---------------------------------------------------------------------------

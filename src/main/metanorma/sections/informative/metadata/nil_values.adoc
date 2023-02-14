@@ -1,12 +1,11 @@
 [[nil_values]]
 ==== Nil values
 
-ISO 19115-3 – _XML schema implementation for fundamental concepts_ allows property values to be nil
+<<ISO19115-3>> – _XML schema implementation for fundamental concepts_ allows property values to be nil
 even when the property is declared mandatory by ISO 19115-1 standard.
 In such case, ISO 19115-3 requires to specify why the property is nil.
 Nil reasons can be:
 
-[role="compact"]
 * *Template:*     the metadata is only a template with values to be provided later.
 * *Withheld:*     the value is not divulged.
 * *Unknown:*      a correct value probably exists but is not known and not computable.

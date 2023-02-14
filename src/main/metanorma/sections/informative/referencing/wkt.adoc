@@ -1,6 +1,6 @@
 [[referencing_wkt]]
 ==== Well-Known Text (WKT)
-[.reference]_From ISO 19162 and OGC 01-009 §7.1_
+_From <<ISO19162>> and <<OGC01-009>> §7.1_
 
 Most objects in the `opengis.referencing` packages can be imported and exported in _Well-Known Text_ (WKT) format.
 This format allows the exchange of CRS definitions with implementations of other OGC standards such as web services.
@@ -9,9 +9,9 @@ GeoAPI provides two `toWKT()` methods for producing a WKT representation of an o
 * One method is defined in the `Identified­Object` parent interface and is inherited notably by `Coordinate­Reference­System`.
   But that method can also be used with `Coordinate­Operation` and various components such as `Datum`.
   Well Known Text (WKT) character strings produced by that method shall be compliant with the format defined
-  in the ISO 19162 standard.
+  in the <<ISO19162>> standard.
 * A second `toWKT()` method is defined in the `Math­Transform` interface, which is not an object defined by ISO standards.
-  Character strings produced by that method shall be compliant with the format defined in OGC 01-009 §7.1.
+  Character strings produced by that method shall be compliant with the format defined in <<OGC01-009>> §7.1.
   Other sections such as OGC 01-009 §7.2 should be ignored since they are replaced by ISO 19162.
 
 Difference between the two WKT representations is illustrated below.
@@ -28,7 +28,7 @@ the ISO 19162 representation of the `Coordinate­Operation` object can be as bel
 </div>
 ++++++++++
 
-The OGC 01-009 §7.1 representation of the `Math­Transform` associated to above coordinate operation can be as below.
+The <<OGC01-009>> §7.1 representation of the `Math­Transform` associated to above coordinate operation can be as below.
 All metadata information (source and target CRS, domain of validity, _etc._) are lost, and the human-readable
 _"Axis Order Reversal"_ operation is replaced by a more mathematical _"Affine parametric transformation"_ operation.
 

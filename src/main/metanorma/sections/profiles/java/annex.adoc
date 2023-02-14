@@ -1,4 +1,4 @@
-[appendix]
+[appendix,obligation="normative"]
 [[java]]
 == Java Profile (Normative)
 
@@ -13,7 +13,7 @@ That file can be downloaded using the following Maven coordinates:
   <version>SNAPSHOT</version>
 </dependency>
 -------------
-[red yellow-background]#TODO: replace snapshot by final version number.#
+#TODO: replace snapshot by final version number.#
 
 Libraries shall implement at least some interfaces defined in that archive file.
 It is not required to implement all interfaces.
