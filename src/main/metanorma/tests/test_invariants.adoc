@@ -1,0 +1,24 @@
+[[test-invariants]]
+[abstract_test]
+====
+[%metadata]
+label:: /conf/core/api-definition
+subject:: /req/req-class-library/req-invariants
+test-purpose:: Verify that all methods behave as specified.
+
+[.component,class=test method]
+=====
+[.component,class=step]
+--
+#TODO: describes how to use validators.#
+--
+
+[.component,class=step]
+--
+All the instances of GeoAPI interfaces shall be valid according to the test validator,
+whenever a validator exists for the instance type.
+This does not require that all instances be tested but merely that if the instances were tested,
+they would validate.
+--
+=====
+====

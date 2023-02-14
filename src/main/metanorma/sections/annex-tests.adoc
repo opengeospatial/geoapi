@@ -1,6 +1,5 @@
 [appendix]
-[[conformance_levels]]
-== Conformance Level (Normative)
+== Conformance Class Test Suite (Normative)
 
 This standard provides several levels of conformance for libraries.
 The levels are determined mostly by the capabilities of `referencing` or `feature` packages.
@@ -13,9 +12,14 @@ two-dimensional case of the `GeographicCRS` interface for the WGS84 ensemble of 
 notably `Geodetic­Reference­Frame`, `Ellipsoid`, `Prime­Meridian`, `EllipsoidalCS` and `Coordinate­System­Axis`
 together with the "degree" and "metre" units of measurement. Optional properties can be omitted.
 
-
 [[conformance-A]]
-=== Level A: referencing base
+=== Level A: base
+
+include::../tests/class_A.adoc[]
+
+
+[[conformance-B]]
+=== Level B: referencing base
 
 The first level identifies implementations capable to provide coordinate reference systems
 of various types (geographic, projected, vertical, temporal, compound…) identified by authority codes.
@@ -28,8 +32,8 @@ Coordinate operations for (source, target) pairs of CRS may be listed in a datab
 Implementations at this level are not required to support coordinate operations for (source, target) CRS pairs that are not in their database.
 
 
-[[conformance-B]]
-=== Level B: referencing from components
+[[conformance-C]]
+=== Level C: referencing from components
 
 The second level identifies implementations capable to create coordinate reference systems from their components
 (datum, axes, projection parameters…).

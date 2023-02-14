@@ -1,31 +1,6 @@
-[big]*i.     Abstract*
+.Preface
 
-The GeoAPI Implementation Standard defines application programming interfaces (API) in some programming languages
-(currently {supported-languages}) for geospatial applications.
-The API includes a set of types and methods which can be used for the manipulation of geographic information structured
-following the specifications adopted by the Technical Committee 211 of the International Organization for Standardization (ISO)
-and by the Open Geospatial Consortium (OGC).
-Those interfaces standardize the informatics contract between the client code,
-which manipulates normalized data structures of geographic information based on the published API,
-and the library code able both to instantiate and operate on these data structures
-according to the rules required by the published API and by the ISO and OGC standards.
-
-This standard is a _realization_ of OGC/ISO abstract specifications: it defines a language specific layers of normalization.
-By comparison, the Geographic Markup Language (GML) is another realization of the same abstract specifications
-(ignoring version numbers) but targeting a different language (XML).
-GeoAPI documents the mapping of types and methods from the abstract model into {supported-languages} programming languages,
-providing standard interfaces in the `org.opengis` or `opengis` namespaces and explaining the use of GeoAPI interfaces.
-
-
-[big]*ii.    Keywords*
-
-The following are keywords to be used by search engines and document catalogues.
-
-ogcdoc, OGC document, GeoAPI, programming, Java, Python, interface, geospatial, metadata, referencing, feature
-
-
-[[preface]]
-[big]*iii.   Preface*
+== Preface
 
 There is various libraries for helping developers to process geospatial data from programming languages like {supported-languages}.
 But the proliferation of API variations degrade interoperability.
@@ -46,6 +21,10 @@ For example, querying the coordinate system associated to a Coordinate Reference
 But this single operation would have required more than 50 lines of code if the API was generated
 from Geographic Markup Language (GML) schema instead of from the UML diagrams of abstract models.
 
+////
+OGC Declaration
+////
+
 The interfaces described in this standard follow closely, without introducing new concepts,
 from the previously published standards of the Open Geospatial Consortium and the International Organization for Standardization.
 Nonetheless, attention is drawn to the possibility that some of the elements of this document may be the subject of patent rights.
@@ -56,19 +35,32 @@ or other intellectual property rights of which they may be aware that might be i
 standard set forth in this document, and to provide supporting documentation.
 
 
-[big]*iv.    Submitting organizations*
+[abstract]
+== Abstract
 
-The following organizations submitted this Document to the Open Geospatial Consortium (OGC):
+The GeoAPI Implementation Standard defines application programming interfaces (API) in some programming languages
+(currently {supported-languages}) for geospatial applications.
+The API includes a set of types and methods which can be used for the manipulation of geographic information structured
+following the specifications adopted by the Technical Committee 211 of the International Organization for Standardization (ISO)
+and by the Open Geospatial Consortium (OGC).
+Those interfaces standardize the informatics contract between the client code,
+which manipulates normalized data structures of geographic information based on the published API,
+and the library code able both to instantiate and operate on these data structures
+according to the rules required by the published API and by the ISO and OGC standards.
 
-[.compact, options="header"]
-|===================================
-|Organization name(s)
-|Geomatys
-|[red yellow-background]#TODO#
-|===================================
+This standard is a _realization_ of OGC/ISO abstract specifications: it defines a language specific layers of normalization.
+By comparison, the Geographic Markup Language (GML) is another realization of the same abstract specifications
+(ignoring version numbers) but targeting a different language (XML).
+GeoAPI documents the mapping of types and methods from the abstract model into {supported-languages} programming languages,
+providing standard interfaces in the `org.opengis` or `opengis` namespaces and explaining the use of GeoAPI interfaces.
 
 
-[big]*v.     Submitters*
+== Security considerations
+
+No security considerations have been made for this Standard.
+
+
+== Submitters
 
 All questions regarding this submission should be directed to the editor or the submitters:
 

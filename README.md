@@ -18,7 +18,7 @@ and "master" for GeoAPI 4.0. The main sub-directories are:
   contains experimental interfaces not yet targeted for a release.
 * **[geoapi-conformance](https://github.com/opengeospatial/geoapi/tree/master/geoapi-conformance)**
   contains a test suite for testing vendor implementations.
-* **[src/main/asciidoc](https://github.com/opengeospatial/geoapi/tree/master/src/main/asciidoc)**
+* **[src/main/metanorma](https://github.com/opengeospatial/geoapi/tree/master/src/main/metanorma)**
   contains the GeoAPI specification.
 * Other directories are examples.
 

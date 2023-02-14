@@ -1,0 +1,56 @@
+= OGC GeoAPI
+:doctype:                  standard
+:docsubtype:               implementation
+:encoding:                 utf-8
+:lang:                     en
+:status:                   draft
+:draft:                    1.0
+:edition:                  4.0
+:committee:                technical
+:external-id:              http://www.opengis.net/doc/{doc-type}/{standard}/{m.n}
+:docnumber:                TBD
+:received-date:            TBD
+:issued-date:              TBD
+:published-date:           TBD
+:fullname:                 Martin Desruisseaux
+:submitting-organizations: Geomatys
+:keywords:                 ogcdoc, OGC document, GeoAPI, programming, Java, Python, interface, geospatial, metadata, referencing, feature
+:mn-document-class:        ogc
+:mn-output-extensions:     xml,html,doc,pdf
+:pdf-uri:                  ./document.pdf
+:xml-uri:                  ./document.xml
+:doc-uri:                  ./document.doc
+:imagesdir:                figures
+:data-uri-image:
+:local-cache-only:
+:supported-languages:      Java and Python
+
+
+// Note: we really need a blank line between `include` statements for avoiding section headers to be misinterpreted.
+include::sections/clause_0_front_material.adoc[]
+
+include::sections/clause_1_scope.adoc[]
+
+include::sections/clause_2_conformance.adoc[]
+
+include::sections/clause_3_references.adoc[]
+
+include::sections/clause_4_terms_and_definitions.adoc[]
+
+include::sections/clause_5_conventions.adoc[]
+
+include::sections/clause_6_informative_text.adoc[]
+
+include::sections/clause_7_normative_text.adoc[]
+
+include::sections/annex-tests.adoc[]
+
+include::sections/profiles/java/annex.adoc[]
+
+include::sections/profiles/python/annex.adoc[]
+
+include::sections/annex-code.adoc[]
+
+include::sections/annex-history.adoc[]
+
+include::sections/annex-bibliography.adoc[]

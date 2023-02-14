@@ -25,7 +25,7 @@ This section describes requirements for ensuring source compatibility or binary 
 Those requirements apply to the _libraries_ made available for use by other developers.
 The requirements usually do not apply to applications distributed to end users.
 
-include::requirements/class_A.adoc[]
+include::../requirements/class_A.adoc[]
 
 
 [[requirements-application]]
@@ -35,4 +35,4 @@ This section describes requirements for applications implementing GeoAPI.
 Those requirements apply also to libraries (<<requirements-library>>)
 since applications are built from libraries.
 
-include::requirements/class_B.adoc[]
+include::../requirements/class_B.adoc[]

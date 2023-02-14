@@ -11,18 +11,18 @@ for aspects discussed in the Geospatial API overview (<<overview>>).
 This section provides code snippets in the Java programming languages
 for aspects discussed in the Geospatial API overview (<<overview>>).
 
-include::code/java/annotation.adoc[]
+include::../code/java/annotation.adoc[]
 
-include::code/java/code_list.adoc[]
+include::../code/java/code_list.adoc[]
 
-include::code/java/JNDI.adoc[]
+include::../code/java/JNDI.adoc[]
 
-include::code/java/internationalization.adoc[]
+include::../code/java/internationalization.adoc[]
 
-include::code/java/parameterized_units.adoc[]
+include::../code/java/parameterized_units.adoc[]
 
-include::code/java/metadata.adoc[]
+include::../code/java/metadata.adoc[]
 
-include::code/java/create_crs.adoc[]
+include::../code/java/create_crs.adoc[]
 
-include::code/java/coordinate_operation.adoc[]
+include::../code/java/coordinate_operation.adoc[]

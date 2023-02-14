@@ -1,3 +1,4 @@
+[obligation=informative]
 [[overview]]
 == Geospatial API overview
 

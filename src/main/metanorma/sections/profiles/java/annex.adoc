@@ -19,8 +19,8 @@ Libraries shall implement at least some interfaces defined in that archive file.
 It is not required to implement all interfaces.
 The contract for each interface and each method is specified in the javadoc.
 
-include::profiles/java/uom_jsr.adoc[]
+include::uom_jsr.adoc[]
 
-include::profiles/java/filter.adoc[]
+include::filter.adoc[]
 
-include::profiles/java/tests.adoc[]
+include::tests.adoc[]

@@ -1,7 +1,7 @@
 [[conventions]]
 == Conventions
 This section provides details for conventions used in the document.
-All examples in this document illustrated by the (i) icon are informative only.
+All examples in this document are informative only.
 
 
 [[UML_notation]]

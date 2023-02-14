@@ -1,10 +1,9 @@
-[appendix]
+[bibliography]
 [[bibliography]]
 == Bibliography
 
 Additional information and definitions were taken from the following sources.
 
-[.bibliography]
 * IOGP. The EPSG Geodetic Parameter Dataset, https://epsg.org/
 * ISO 31. Quantities and units (1992)
 * ISO 1000. SI units and recommendations for the use of their multiples and of certain other units (1992)

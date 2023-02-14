@@ -1,0 +1,4 @@
+# Description of conformance tests
+
+This folder contains the Test Suite.
+For each test, there should be a corresponding requirement in the "requirements" folder.

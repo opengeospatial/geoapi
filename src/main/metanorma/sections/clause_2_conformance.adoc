@@ -1,5 +1,6 @@
 [[conformance]]
 == Conformance
+
 This standard defines interfaces in {supported-languages} programming languages.
 The normative publication of the interfaces occurs in the ASCII or binary format specific to each target language.
 The interfaces are distributed in ZIP bundles along with the API documentation.
