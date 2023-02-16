@@ -1,4 +1,4 @@
-[[req_core_signature]]
+[[req_signatures]]
 [requirement]
 ====
 [%metadata]

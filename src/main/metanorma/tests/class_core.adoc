@@ -1,10 +1,10 @@
-[[tests_class_A]]
-[conformance_class_A]
+[[tests_class_core]]
+[conformance_class_core]
 ====
 [%metadata]
 label:: http://www.opengis.net/spec/geoapi/3.1/conf/library
 subject:: Requirements Class "Core"
-classification:: Target Type:API
+classification:: Target Type: library
 ====
 
 ==== Test signature

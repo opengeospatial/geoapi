@@ -13,6 +13,16 @@ If the `opengis` API of the application is not invoked by any external user,
 then changes to that API has no impact on interoperability.
 
 
+[[requirements-application]]
+=== Application requirements
+
+This section describes requirements for applications implementing GeoAPI.
+Those requirements apply also to libraries (<<requirements-library>>)
+since applications are built from libraries.
+
+include::../requirements/class_app.adoc[]
+
+
 [[requirements-library]]
 === Library requirements
 
@@ -21,14 +31,4 @@ This section describes requirements for ensuring source compatibility or binary 
 Those requirements apply to the _libraries_ made available for use by other developers.
 The requirements usually do not apply to applications distributed to end users.
 
-include::../requirements/class_A.adoc[]
-
-
-[[requirements-application]]
-=== Application requirements
-
-This section describes requirements for applications implementing GeoAPI.
-Those requirements apply also to libraries (<<requirements-library>>)
-since applications are built from libraries.
-
-include::../requirements/class_B.adoc[]
+include::../requirements/class_lib.adoc[]

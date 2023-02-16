@@ -1,4 +1,4 @@
-[[req_core_setters]]
+[[req_setters]]
 [requirement]
 ====
 [%metadata]

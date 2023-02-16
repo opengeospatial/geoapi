@@ -1,4 +1,4 @@
-[[req_core_factory_methods]]
+[[req_factory_methods]]
 [requirement]
 ====
 [%metadata]

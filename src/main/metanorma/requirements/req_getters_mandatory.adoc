@@ -1,11 +1,11 @@
-[[req_core_getters]]
+[[req_getters_mandatory]]
 [requirement]
 ====
 [%metadata]
-label:: /req/req-class-a/req-getter-mandatory
+label:: /req/req-class-a/req-getters-mandatory
 [.component,class=conditions]
 --
-. Getter methods should return a non-null value or throw an exception.
+. Mandatory getter methods should return a non-null value or throw an exception.
 --
 
 [.component,class=part]

@@ -1,4 +1,4 @@
-[[req_core_behavior]]
+[[req_behavior]]
 [requirement]
 ====
 [%metadata]

@@ -22,24 +22,24 @@ Optional getter methods {set:cellbgcolor:#FFFFFF}
 
 [[req-signatures]]
 ==== Source and binary compatibility
-include::REQ01.adoc[]
+include::req_signatures.adoc[]
 
 [[req-behavior]]
 ==== Behavioral compatibility
-include::REQ02.adoc[]
+include::req_behavior.adoc[]
 
 [[req-factory-methods]]
-==== Factory exception
-include::REQ03.adoc[]
+==== Factory methods
+include::req_factory_methods.adoc[]
 
 [[req-setters]]
 ==== Setter methods
-include::REQ04.adoc[]
+include::req_setters.adoc[]
 
 [[req-getter-mandatory]]
 ==== Mandatory getter methods
-include::REQ05.adoc[]
+include::req_getters_mandatory.adoc[]
 
 [[req-getter-optional]]
 ==== Optional getter methods
-include::REQ06.adoc[]
+include::req_getters_optional.adoc[]

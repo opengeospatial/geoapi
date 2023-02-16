@@ -16,7 +16,7 @@ together with the "degree" and "metre" units of measurement. Optional properties
 [[conformance-A]]
 === Level A: base
 
-include::../tests/class_A.adoc[]
+include::../tests/class_core.adoc[]
 
 
 [[conformance-B]]
