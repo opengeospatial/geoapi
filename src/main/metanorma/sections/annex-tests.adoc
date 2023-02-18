@@ -24,8 +24,8 @@ include::../tests/class_core.adoc[]
 
 The first level identifies implementations capable to provide coordinate reference systems
 of various types (geographic, projected, vertical, temporal, compound…) identified by authority codes.
-This standard does not define which CRS types and which authority codes should be supported;
-the only requirement is that an implementation of the `Register­Operations` interface shall be provided,
+This standard does not define which CRS types and which authority codes should be supported.
+The only requirement is that an implementation of the `Register­Operations` interface shall be provided,
 potentially completed by a `CRSAuthority­Factory` for each supported authority.
 Implementations at this level are not required to support CRS that are not declared on their list of supported authority codes.
 
@@ -40,7 +40,7 @@ The second level identifies implementations capable to create coordinate referen
 (datum, axes, projection parameters…).
 Implementations at this level shall be able to create a CRS from a Well-Known Text (WKT) character string,
 a GML document or from CRS components provided in a programmatic way.
-It generally implies the support of `CRSFactory`, `CSFactory` and `DatumFactory` interfaces.
+It generally implies the support of `CRSFactory`, `CSFactory` and `Datum­Factory` interfaces.
 
 Implementations at this level should be able to create `Coordinate­Operation` instances for arbitrary pairs of source and target CRS.
 A database may be used for known pairs of CRS, but implementations should be prepared to handle CRS not defined in the database.

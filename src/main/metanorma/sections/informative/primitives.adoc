@@ -27,8 +27,8 @@ The following table shows the mapping used by GeoAPI to represent the primitive 
 
 Notes:
 
-* (1) Wrapper types such as `java.lang.Integer` or `java.util.OptionalInt` may be used where appropriate.
-* (2) Sometimes substituted by `long` or `java.lang.Long` where the value may exceed 2³².
+* (1) Wrapper types such as `java​.lang​.Integer` or `java​.util​.Optional­Int` may be used where appropriate.
+* (2) Sometimes substituted by `long` or `java​.lang​.Long` where the value may exceed 2³².
 * (3) `Decimal` differs from `Real`, as `Decimal` is exact in base 10 while `Real` may not.
-* (4) Substituted by `org.opengis.util.InternationalString` where the string representation depends on the locale.
-* (5) Actually an _extension data type_ defined in ISO 19103 annex C.2. See _internationalization_ in <<internationalization>>.
+* (4) Substituted by `org​.opengis​.util​.International­String` where the string representation depends on the locale.
+* (5) Actually an _extension data type_ defined in <<ISO19103>> annex C.2. See _internationalization_ in <<internationalization>>.

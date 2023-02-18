@@ -6,6 +6,8 @@
 
 * [[[ISO1000,ISO 1000:1992]]], _SI units and recommendations for the use of their multiples and of certain other units_
 
+* [[[ISO8601,ISO 8601-1:2019]]], _Date and time — Representations for information interchange — Part 1: Basic rules_
+
 * [[[ISO19101-1,ISO 19101-1:2014]]], _Geographic information — Reference model — Part 1: Fundamentals_
 
 * [[[ISO19101-2,ISO 19101-2:2018]]], _Geographic information — Reference model — Part 2: Imagery_
@@ -28,7 +30,7 @@
 
 * [[[ISO19115-2,ISO 19115-2:2019]]], _Geographic information — Metadata — Extensions for acquisition and processing_
 
-* [[[ISO19115-3,ISO 19115-3:2016]]], _Geographic information — Metadata — XML schema implementation for fundamental concepts_
+* [[[ISO19115-3,ISO/TS 19115-3:2016]]], _Geographic information — Metadata — XML schema implementation for fundamental concepts_
 
 * [[[ISO19123,ISO 19123:2005]]], _Geographic information — Schema for coverage geometry and functions_
 
@@ -45,6 +47,10 @@
 * [[[OGC18-075,OGC 18-075]]], _OGC® Moving Features Encoding Part I: XML Core_
 
 * [[[OGC19-045,OGC 19-045r3]]], _OGC® Moving Features Encoding: JSON_
+
+* [[[OGC06-121,OGC 06-121r9]]], _OGC® Web Service Common Implementation Specification_
+
+* [[[JSR385,JSR 385]]], _JSR 385: Units of Measurement API 2.0_
 
 * [[[JavaSpec,The Java Language Specification]]], James Gosling, Bill Joy, Guy Steele, Gilad Bracha: _The Java Language Specification_
 

@@ -12,9 +12,9 @@ A bidirectional dependency does not imply that implementers have to support both
 Reference Systems interfaces are defined in GeoAPI `referencing` packages.
 A Reference System may be a Coordinate Reference System (<<ISO19111>>)
 or may use geographic identifiers (<<ISO19112>>).
-GeoAPI supports both cases by defining `ReferenceSystem` as the common parent of
+GeoAPI supports both cases by defining `Reference­System` as the common parent of
 _Coordinate Reference System_ and _Reference System using Geographic Identifier_.
-This is done by inserting the ISO 19115 `ReferenceSystem` interface between
+This is done by inserting the ISO 19115 `Reference­System` interface between
 `IdentifiedObject` and `CoordinateReferenceSystem` in ISO 19111 type hierarchy as shown below
 (note: this diagram does not show all types, properties and associations for brevity reasons):
 
@@ -22,7 +22,7 @@ This is done by inserting the ISO 19115 `ReferenceSystem` interface between
 .Location of `ReferenceSystem` in the hierarchy of ISO 19111 types
 image::metadata_referencing.svg[Partial UML of ReferenceSystem]
 
-More information about the `CoordinateReferenceSystem` interface is given
+More information about the `Coordinate­Reference­System` interface is given
 in the _Referencing packages_ section (<<referencing>>).
 The following table lists all association to a reference system from the metadata packages:
 

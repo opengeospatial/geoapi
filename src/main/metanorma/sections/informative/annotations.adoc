@@ -1,7 +1,7 @@
 [[annotations]]
 ==== Annotated API
 
-The `opengis.annotation` package allows GeoAPI to document the UML elements
+The `opengis​.annotation` package allows GeoAPI to document the UML elements
 from the various specification documents used for defining the {supported-languages} constructs.
 Those annotations encode the source document, stereotype, original name, and obligation level
 of the various types, properties and operations published by GeoAPI.
@@ -25,12 +25,12 @@ and how they are available at runtime by introspection.
 [[annotations_departures]]
 ===== Departures from ISO model
 
-Annotations shown in <<annotations-UML>> are related to the ISO 19115-1 Metadata standard in the following way:
+Annotations shown in <<annotations-UML>> are related to the <<ISO19115-1>> Metadata standard in the following way:
 
-* The GeoAPI `Obligation` is the ISO `MD_ObligationCode` enumeration
+* The GeoAPI `Obligation` is the ISO `MD​_Obligation­Code` enumeration
   moved into the annotation package for use with other UML-related types.
 * A `forbidden` enumeration value has been added for handling the cases where a property defined
   in a parent interface is inapplicable to a sub-interface ([0…0] multiplicity in abstract models).
-* The GeoAPI `Stereotype` enumeration is a copy of the ISO `MD_DatatypeCode` code list
+* The GeoAPI `Stereotype` enumeration is a copy of the ISO `MD​_Datatype­Code` code list
   retaining only the values relevant to annotation of GeoAPI programming elements.
   This duplication exists because the ISO 19115 standard defines a code list, while Java annotations require enumerations.

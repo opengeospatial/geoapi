@@ -2,7 +2,7 @@
 [requirement]
 ====
 [%metadata]
-label:: /req/req-class-a/req-factory-methods
+label:: /req/req-class-lib/req-factory-methods
 [.component,class=conditions]
 --
 . Factory methods shall return object or throw the documented exception.
@@ -13,5 +13,6 @@ label:: /req/req-class-a/req-factory-methods
 Methods which create new instances, such as `Factory` methods,
 shall return the desired value or throw the exception documented in the API,
 such as `Factory­Exception` or a sub-type.
+Returning `null` is not allowed.
 --
 ====

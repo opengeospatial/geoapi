@@ -8,7 +8,7 @@ All examples in this document are informative only.
 === UML notation
 
 Unified Modeling Language (UML) static structure diagrams appearing in this document
-are used as described in Subclause 5.2 of OGC Web Services Common [OGC 06-121r9].
+are used as described in Subclause 5.2 of OGC Web Services Common <<OGC06-121>>.
 
 
 [[type_terminology]]
@@ -47,12 +47,18 @@ The following symbols and abbreviated terms are used in this specification:
 API::  Application Program Interface
 BBOX:: Bounding Box
 CRS::  Coordinate Reference System
+CS::   Coordinate System
+GML::  Geographic Markup Language
 ISO::  International Organization for Standardization
+JDBC:: Java Database Connectivity
+JNDI:: Java Naming and Directory Interface
+ODBC:: Open Database Connectivity
 OGC::  Open Geospatial Consortium
 UML::  Unified Modeling Language
 URI::  Uniform Resource Identifiers
 UTC::  Coordinated Universal Time
 WKT::  Well Known Text
+WMS::  Web Map Service
 XML::  Extensible Markup Language
 XSD::  XML Schema Definition
 1D::   One Dimensional
@@ -67,7 +73,7 @@ nD::   Multi-Dimensional
 === Identifiers
 The normative provisions in this specification are denoted by the URI:
 
-http://www.opengis.net/spec/geoapi/{m.n}/ #(TODO: put numbers)#
+http://www.opengis.net/spec/geoapi/4.0/
 
 All requirements and conformance tests that appear in this document are denoted by partial URIs which are relative to this base.
 
@@ -75,9 +81,9 @@ All requirements and conformance tests that appear in this document are denoted 
 [[package_namespaces]]
 ==== Package namespaces
 
-This specification uses `opengis` in the text for denoting a package or module in OGC namespace,
+This specification uses `"opengis"` in the text for denoting a package or module in OGC namespace,
 but the fully qualified name depends on the programming language.
-For example, the metadata package is spelled `org.opengis.metadata` in Java
-but only `opengis.metadata` (without `org` prefix) in Python.
+For example, the metadata package is spelled `"org.opengis.metadata"` in Java
+but only `"opengis.metadata"` (without `"org"` prefix) in Python.
 Except in language-specific notes, this specification uses the shorter form in the text
 and lets readers adapt to their programming language of interest.

@@ -2,7 +2,7 @@
 [requirement]
 ====
 [%metadata]
-label:: /req/req-class-a/req-behavior
+label:: /req/req-class-lib/req-behavior
 [.component,class=conditions]
 --
 . Implementations shall follow the dictates of the Java or Python API documentation.

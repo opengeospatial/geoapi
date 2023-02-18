@@ -8,9 +8,13 @@ Additional information and definitions were taken from the following sources.
 
 * [[[JUnit,JUnit]]], JUnit team: _The Junit framework._ https://junit.org/
 
-* [[[OGC16-019,OGC 16-019r4]]], _Open Geospatial APIs — White Paper_
+* [[[OGC03-064,OGC 03-064r10]]], Greg Reynolds: OGC 03-064r10, _Application Objects_ (2005)
 
-* [[[OGC17-087,OGC 17-087r13]]], _Features and geometry — Part 1: Feature models_
+* [[[OGC07-092,OGC 07-092r1]]], Arliss Whiteside: OGC 07-092r1, _Definition identifier URNs in OGC namespace_ (2007)
+
+* [[[OGC16-019,OGC 16-019r4]]], George Percivall: OGC 16-019r4, _Open Geospatial APIs — White Paper_
+
+* [[[OGC17-087,OGC 17-087r13]]], John R. Herring: OGC 17-087r13, _Features and geometry — Part 1: Feature models_
 
 * [[[RFC4647,RFC 4647]]], IETF: _Matching of Language Tags_
 

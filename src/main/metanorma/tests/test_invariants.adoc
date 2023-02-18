@@ -3,7 +3,7 @@
 ====
 [%metadata]
 label:: /conf/core/api-definition
-subject:: /req/req-class-library/req-invariants
+subject:: /req/req-class-lib/req-invariants
 test-purpose:: Verify that all methods behave as specified.
 
 [.component,class=test method]

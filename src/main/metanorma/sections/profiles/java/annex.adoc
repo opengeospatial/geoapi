@@ -1,8 +1,8 @@
 [appendix,obligation="normative"]
 [[java]]
-== Java Profile (Normative)
+== Java Profile
 
-In addition to this document, this specification includes the GeoAPI Java Archive file `geoapi.jar`.
+In addition to this document, this specification includes the GeoAPI Java Archive file `geoapi​.jar`.
 That file can be downloaded using the following Maven coordinates:
 
 [source,xml]
@@ -10,7 +10,7 @@ That file can be downloaded using the following Maven coordinates:
 <dependency>
   <groupId>org.opengis</groupId>
   <artifactId>geoapi</artifactId>
-  <version>SNAPSHOT</version>
+  <version>4.0-SNAPSHOT</version>
 </dependency>
 -------------
 #TODO: replace snapshot by final version number.#

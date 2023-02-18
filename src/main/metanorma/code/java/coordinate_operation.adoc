@@ -18,7 +18,7 @@ CoordinateOperation op = opFactory.createOperation(sourceCRS, targetCRS);
 ---------------------------------------------------------------------------
 
 The following example uses the operation we just created for transforming coordinate tuples.
-It is possible to transform `DirectPosition` instances, but if there is many points to transform
+It is possible to transform `Direct­Position` instances, but if there is many points to transform
 then packing them in a single array is generally more efficient.
 For simplicity reasons, this example performs the coordinate operation in-place
 (i.e. transformed coordinates overwrite source coordinates)

@@ -8,6 +8,10 @@ p:not(.NormRef):not(.Biblio):not(div.formula *) {
   text-align: justify;
 }
 
+li {
+  text-align: justify;
+}
+
 div.figure, div.formula {
   background-color: inherit;
 }

@@ -6,8 +6,8 @@ This is useful, for example, when code needs to marshall data using the names
 defined by the ISO standard rather than the GeoAPI names.
 In the following example, the top-level annotations indicate that the `ProjectedCRS` interface
 was derived from a type also named `ProjectedCRS` in the ISO 19111 standard.
-The enclosed annotation indicates that the `getCoordinateSystem()` method
-was derived from a property named `coordinateSystem` in the ISO 19111 standard,
+The enclosed annotation indicates that the `getCoordinate­System()` method
+was derived from a property named `coordinate­System` in the ISO 19111 standard,
 and that a non-null value must be provided by every `ProjectedCRS` instance:
 
 
@@ -27,7 +27,7 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
 ------------------------------------------------------------
 
 At runtime, the annotation of a reference to a GeoAPI interface can be obtained as follows,
-taking as an example the method `getCoordinateSystem()` in the `ProjectedCRS` interface:
+taking as an example the method `getCoordinate­System()` in the `ProjectedCRS` interface:
 
 [source,java]
 ---------------------------------------------------------------------------------------
@@ -39,6 +39,6 @@ Specification specification = annotation.specification();       // = ISO 19111
 Obligation    obligation    = annotation.obligation();          // = mandatory
 ---------------------------------------------------------------------------------------
 
-Java provides a class instance like the `ProjectedCRS.class` instance used here for every type, either interface or class, defined in the runtime.
+Java provides a class instance like the `ProjectedCRS​.class` instance used here for every type, either interface or class, defined in the runtime.
 The `getMethod(…)` call uses introspection to obtain a reference to the method from which the annotation can then be obtained.
 The annotation system therefore provides access, at runtime, to the original definition of the element.

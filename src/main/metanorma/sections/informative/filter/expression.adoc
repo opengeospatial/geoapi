@@ -4,17 +4,17 @@ _From <<ISO19143>> §7.[3…6]_
 
 An expression is a function that receives a resource (typically a `Feature`) in input
 and produces a value (typically a character string, a number or a geometry) in output.
-The output is restricted to `Boolean` if the expression is used as an operand of a `LogicalOperator` (<<filter>>).
+The output is restricted to `Boolean` if the expression is used as an operand of a `Logical­Operator` (<<filter>>).
 
 Expressions extend the mechanism provided by the target platform for defining functions.
-For example, in the Java language, `Expression` extends the `java.util.function.Function`
+For example, in the Java language, `Expression` extends the `java​.util​.function​.Function`
 interface (<<java_filter>>).
 
 An expression can be a literal, a reference to the values of a particular property in resources,
 or a named procedure (for example arithmetic operations between the results of two sub-expressions).
 An expression can have zero or more parameters and generates a single result.
 The parameters themselves are in-turn expressions and shall appear in the order in which
-they are defined in the `FilterCapabilities` (<<filter_capabilities>>).
+they are defined in the `Filter­Capabilities` (<<filter_capabilities>>).
 
 [[expression_UML]]
 .Partial UML of expressions
@@ -27,7 +27,7 @@ and `Literal` is an expression whose value is a constant.
 Parameters are specified at `Expression` creation time.
 For example, an expression computing _x_+1 where _x_ is the value of a `Feature` property
 can be created with two parameters:
-a `ValueReference` retrieving the _x_ value for each feature
+a `Value­Reference` retrieving the _x_ value for each feature
 and a `Literal` whose value is the integer 1.
 When `apply(f)` is invoked on that "Add" expression where _f_ is a `Feature` instance,
 the "Add" expression invokes in turn `apply(f)` on the two above-cited parameters.

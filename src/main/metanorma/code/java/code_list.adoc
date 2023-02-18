@@ -2,10 +2,10 @@
 ==== Code list at runtime
 
 Controlled vocabulary (<<controlled_vocabulary>>) can take the form of enumerations or code lists.
-Those two types are implemented by `java.lang.Enum` and `org.opengis.util.CodeList` respectively.
-The use of `CodeList` classes includes accessing statically defined elements,
+Those two types are implemented by `java​.lang​.Enum` and `org​.opengis​.util​.Code­List` respectively.
+The use of `Code­List` classes includes accessing statically defined elements,
 defining new elements and retrieving any element defined for the code list.
-Considering, for example, `org.​opengis.​referencing.​cs.​AxisDirection`,
+Considering, for example, `org​.opengis​.referencing​.cs​.Axis­Direction`,
 the following codes could be used:
 
 [source,java]
@@ -18,7 +18,7 @@ north = CodeList.valueOf(AxisDirection.class, "NORTH");     // Runtime type and 
 
 where the second and third locutions will create a new value if it does not exist.
 Special care should be taken to keep such calls consistent throughout the code
-since the `CodeList` will create a new element if there are any difference in the `String` parameters.
+since the `Code­List` will create a new element if there are any difference in the `String` parameters.
 The list of all elements (including new elements created by `valueOf(…)`) can be obtained as below:
 
 [source,java]

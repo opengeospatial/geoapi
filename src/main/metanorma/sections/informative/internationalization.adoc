@@ -2,13 +2,13 @@
 ==== Internationalization
 _From <<ISO19103>> §C.2_
 
-The `InternationalString` interface is defined by GeoAPI to handle textual sequences
+The `International­String` interface is defined by GeoAPI to handle textual sequences
 which may potentially need to be translated for users of different locales.
-Conceptually this act as a `CharacterString` but may, depending on the implementation,
+Conceptually this act as a `Character­String` but may, depending on the implementation,
 provide access to locale specific representations of that string.
-GeoAPI `InternationalString` is closely related, but not identical, to ISO 19103 `LanguageString`.
+GeoAPI `International­String` is closely related, but not identical, to ISO 19103 `Language­String`.
 The main difference is that the latter is a character string in one specific language,
-while `InternationalString` can be a collection of character strings in different locales.
+while `International­String` can be a collection of character strings in different locales.
 This is useful, for example, when an implementation is operating on a server that serves multiple languages simultaneously,
 to allow sending string representations in the locale of the client rather than the locale of the server running the GeoAPI implementation.
 
@@ -23,7 +23,7 @@ This specification makes no recommendation about the default or fallback languag
 because some programming languages provide their own mechanism
 (e.g. using _Language Range_ as defined by <<RFC4647>>).
 Consequently, GeoAPI delegates most internationalization types to the target language standard library, as shown in the following table.
-An example in <<InternationalString>> shows the use of `InternationalString` in the Java language.
+An example in <<International­String>> shows the use of `International­String` in the Java language.
 
 .Linguistic types mapping
 [options="header"]
@@ -38,13 +38,18 @@ An example in <<InternationalString>> shows the use of `InternationalString` in 
 
 Notes:
 
-* (1) Sometimes substituted by `CharSequence` or `InternationalString`.
+* (1) Sometimes substituted by `Char­Sequence` or `International­String`.
 * (2) Defined as a unit of measurement in ISO 19103 §C.4.24.
 * (3) From ISO 19103 §7.2.10 (<<primitives,primitive types>>).
 
 
 [[internationalization_departures]]
 ===== Departures from ISO model
+
+Internationalization in GeoAPI differs from the OGC/ISO standards
+as described in the following sub-sections.
+
+
 
 [[internationalization_departures_as_renaming]]
 ====== Renaming
@@ -55,6 +60,6 @@ or because the GeoAPI type is inspired by a similar effort in the target languag
 [[internationalization_departures_for_harmonization]]
 ====== Harmonization
 `InternationalString` as defined by GeoAPI provides the same functionality than ISO 19115 `PT_FreeText`.
-It can be applied to all ISO 19115 elements who's data type is `CharacterString` and domain is “free text”.
-Consequently, GeoAPI uses the single `InternationalString` interface for the two ISO types
+It can be applied to all ISO 19115 elements who's data type is `Character­String` and domain is “free text”.
+Consequently, GeoAPI uses the single `International­String` interface for the two ISO types
 `LanguageCode` (from ISO 19103) and `PT_FreeText` (from ISO 19115).

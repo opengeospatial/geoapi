@@ -28,13 +28,13 @@ GeoAPI generally includes timezone information, but this policy may be adjusted 
 
 Notes:
 
-* (1) Some properties defined in GeoAPI 3._x_ use the legacy `java.util.Date` class for historical reasons.
+* (1) Some properties defined in GeoAPI 3._x_ use the legacy `java​.util​.Date` class for historical reasons.
 
 `DateTime` is distinct from `Instant`.
-The former is expressed in the proleptic Gregorian calendar as described in ISO 8601,
+The former is expressed in the proleptic Gregorian calendar as described in <<ISO8601>>,
 while the latter is an instantaneous point on the selected time scale, astronomical or atomic.
 An `Instant` does not have year, month or day components.
 It is instead a duration elapsed since an epoch,
-and its conversion to a `DateTime` may be complicated.
-In GeoAPI, temporal objects in metadata are typically `DateTime`
+and its conversion to a `Date­Time` may be complicated.
+In GeoAPI, temporal objects in metadata are typically `Date­Time`
 while coordinates in a temporal coordinate reference system are typically `Instant`.

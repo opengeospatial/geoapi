@@ -2,10 +2,10 @@
 ==== Capabilities
 _From <<ISO19143>> §7.13_
 
-`Filter­Capabilities` is the entry point for listing which expressions and filter operators are available.
+`FilterCapabilities` is the entry point for listing which expressions and filter operators are available.
 It capabilities are separated in the following categories:
 
-* `Id­Capabilities` lists names that represent the resource identifier elements that the service supports.
+* `IdCapabilities` lists names that represent the resource identifier elements that the service supports.
 * `Scalar­Capabilities` advertises which logical, comparison and arithmetic operators the service supports.
 * `Spatial­Capabilities` advertises which spatial operators and geometric operands the service supports.
 * `Temporal­Capabilities` advertises which temporal operators and temporal operands the service supports.

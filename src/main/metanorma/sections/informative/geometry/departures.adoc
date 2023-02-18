@@ -1,21 +1,25 @@
 [[geometry_departures]]
 ==== Departures from ISO 19107
 
+Geometries in GeoAPI differ from the OGC/ISO standards
+as described in the following sub-sections.
+
+
 [[geometry_departures_as_renaming]]
 ==== Renaming
-The parent class of all geometries is called `GM_Object` in the ISO 19107 standard.
+The parent class of all geometries is called `GM​_Object` in the ISO 19107 standard.
 GeoAPI interfaces use the `Geometry` name instead,
 as the omission of the `GM_ prefix` would leave a name too similar to Java’s `Object` class.
 
 [[geometry_departures_for_convenience]]
 ===== Convenience
-GeoAPI has moved the `DirectPosition` and `Envelope` types from the coordinate sub-package
-where they are defined in the ISO 19107 specification up to the `opengis.geometry` package
+GeoAPI has moved the `Direct­Position` and `Envelope` types from the coordinate sub-package
+where they are defined in the ISO 19107 specification up to the `opengis​.geometry` package
 due to their importance and frequency of use.
 
 [[geometry_departures_for_union]]
 ===== Union replacement
-ISO 19107 defines `Position` as the union of `DirectPosition` and `Point`.
+ISO 19107 defines `Position` as the union of `Direct­Position` and `Point`.
 But unions are not allowed in Java.
 Instead, GeoAPI defines `Position` as the base interface of both types
 so a similar functionality can be achieved with an _"is instance of"_ check.

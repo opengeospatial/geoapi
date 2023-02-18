@@ -4,17 +4,17 @@ _From <<ISO19111>> §11.2, <<ISO19115-1>> §6.5.12, <<ISO19157>> §C.2.2.4_
 
 The concept of operation parameters is defined in many OGC/ISO standards:
 
-* ISO 19111 provides `CC_OperationParameter`,
-* ISO 19115 provides `SV_Parameter`,
-* ISO 19157 provides `DQM_Parameter`, and
-* OGC 01-004 (a legacy standard, but still useful to GeoAPI) provided `GC_ParameterInfo`.
+* <<ISO19111>> provides `CC​_Operation­Parameter`,
+* <<ISO19115-1>> provides `SV​_Parameter`,
+* <<ISO19157>> provides `DQM​_Parameter`, and
+* OGC 01-004 (a legacy standard, but still useful to GeoAPI) provided `GC​_Parameter­Info`.
 
-GeoAPI provides a unified parameter framework in the `org.opengis.parameter` Java package.
+GeoAPI provides a unified parameter framework in the `org​.opengis​.parameter` Java package.
 The ISO 19111 model is adopted as the basis because it provides a clear separation between
 the definition of a parameter (name, aliases, identifier, expected value type and units)
 and the actual parameter value.
 The parameter properties that are defined by other standards but not present
-in `CC_OperationParameter` are retrofitted in the GeoAPI parameter framework.
+in `CC​_Operation­Parameter` are retrofitted in the GeoAPI parameter framework.
 
 .Main parameter properties and their mapping to ISO standards
 [options="header"]
@@ -35,7 +35,7 @@ in `CC_OperationParameter` are retrofitted in the GeoAPI parameter framework.
 ISO 19157 `Description` type contains a mandatory text and an optional illustration.
 Only the text description is explicitly stored in the GeoAPI unified parameter type.
 However, if needed implementations can associate the `description` property to an
-object that implement both the `InternationalString` and `Description` interfaces.
+object that implement both the `International­String` and `Description` interfaces.
 
 
 
@@ -44,4 +44,4 @@ object that implement both the `InternationalString` and `Description` interface
 
 `OperationParameter` has been renamed as `ParameterDescriptor`
 to emphasize that it only describes the parameters without providing values.
-The `Descriptor` suffix is found in other Java libraries such as JavaBeans and Java Advanced Imaging.
+The `Descriptor` suffix is found in other Java libraries such as Java­Beans and Java Advanced Imaging.

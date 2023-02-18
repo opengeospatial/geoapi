@@ -11,20 +11,23 @@ by grouping different types and functionality in separated {supported-languages}
 .OGC/ISO specifications and GeoAPI packages mapping
 image::packages.svg[GeoAPI packages]
 
-The `opengis.annotation` package provides the annotation system
+The `opengis​.annotation` package provides the annotation system
 used to document the origin and obligation level of all methods and types in GeoAPI.
 These annotations are available through introspection at runtime for any code which wishes to exploit this information.
-The `opengis.util` package provides some basic types shared by two or more standards.
-The packages in the `opengis.metadata` namespace cover the types defined in the ISO 19115 _Metadata_ specification,
-which are data structures describing other data.
-The packages in the `opengis.parameter` and `opengis.referencing` namespaces
-implement the types from the ISO 19111 _Spatial Referencing by Coordinates_ specification
-complemented by the mathematical operator types from the OGC 01-009 _Coordinate Transformation Services_ implementation specification.
-The packages in the `opengis.geometry` namespace cover the types defined in the ISO 19107 _Spatial Schema_ specification,
+The `opengis​.util` package provides some basic types shared by two or more standards.
+Most of them are derived from <<ISO19103>>.
+The packages in the `opengis​.metadata` namespace cover the types defined in the <<ISO19115-1>> and <<ISO19115-2>>
+_Metadata_ specifications, which are data structures describing other data.
+They are completed by <<ISO19157>> _Data quality_ for the `quality` sub-package.
+The packages in the `opengis​.parameter` and `opengis​.referencing` namespaces
+implement the types from the <<ISO19111>> _Referencing by Coordinates_ specification
+complemented by the mathematical operator types from the <<OGC01-009>> _Coordinate Transformation Services_ implementation specification.
+The packages in the `opengis​.geometry` namespace cover the types defined in the <<ISO19107>> _Spatial Schema_ specification,
 although version 4.0 of the library only defines the elements from that specification needed by the geo-referencing types.
-Finally the `opengis.feature` package covers the meta-classes defined in the ISO 19109 _Rules for application schema_ specification,
-completed by the dynamic attributes defined in OGC 18-075 _Moving Features_ specification.
+The `opengis​.feature` package covers the meta-classes defined in the <<ISO19109>> _Rules for application schema_ specification,
+completed by the dynamic attributes defined in <<OGC18-075>> _Moving Features_ specification.
 The feature package is not needed for dynamic languages like Python.
+The `opengis​.filter` package covers the types defined in <<ISO19143>> _Filter encoding_ specification.
 
 
 include::informative/mapping_rules.adoc[]

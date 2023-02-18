@@ -7,7 +7,7 @@
 :draft:                    1.0
 :edition:                  4.0
 :committee:                technical
-:external-id:              http://www.opengis.net/doc/{doc-type}/{standard}/{m.n}
+:external-id:              http://www.opengis.net/doc/IS/geoapi/4.0
 :docnumber:                TBD
 :received-date:            TBD
 :issued-date:              TBD

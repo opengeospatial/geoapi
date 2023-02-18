@@ -27,7 +27,9 @@ OGC Declaration
 ////
 
 The interfaces described in this standard follow closely, without introducing new concepts,
-from the previously published standards of the Open Geospatial Consortium and the International Organization for Standardization.
+from the previously published standards of
+the Open Geospatial Consortium (OGC) and
+the International Organization for Standardization (ISO).
 Nonetheless, attention is drawn to the possibility that some of the elements of this document may be the subject of patent rights.
 The Open Geospatial Consortium shall not be held responsible for identifying any or all such patent rights.
 Recipients of this document are requested to submit, with their comments, notification of any relevant patent claims
@@ -53,7 +55,7 @@ This standard is a _realization_ of OGC/ISO abstract specifications: it defines 
 By comparison, the Geographic Markup Language (GML) is another realization of the same abstract specifications
 (ignoring version numbers) but targeting a different language (XML).
 GeoAPI documents the mapping of types and methods from the abstract model into {supported-languages} programming languages,
-providing standard interfaces in the `org.opengis` (Java) or `opengis` (Python) namespaces
+providing standard interfaces in the `"org.opengis"` (Java) or `"opengis"` (Python) namespaces
 and explaining the use of GeoAPI interfaces.
 
 

@@ -17,13 +17,14 @@ There is four kinds of coordinate operations in GeoAPI:
 * #TODO: Point motion operation.#
 * A _concatenated operation_ defines a sequential execution of any of above operations.
 
-GeoAPI provides three ways to create a coordinate operation:
+GeoAPI provides three ways to create a coordinate operation,
+described in the following sub-sections.
 
 [[coordinate_operation_from_crs_pair]]
 ===== From a pair of CRS
 Given a source coordinate reference system (CRS) in which existing coordinate values are expressed,
 and a target coordinate reference system in which coordinate values are desired,
-`Coordinate­Operation­Factory` can provide a coordinate operation performing the conversion or transformation work.
+`CoordinateOperationFactory` can provide a coordinate operation performing the conversion or transformation work.
 An example is given in <<java_coordinate_operation>> for the Java language.
 
 Note that when several possibilities exist for the same pair of CRS,
@@ -31,7 +32,7 @@ the selected transformation is implementation-dependent.
 Implementations should select the "best" transformation based on criterion
 such as accuracy and domain of validity, but GeoAPI does not specify any rule.
 Users are encouraged to verify which transformation has been selected by invoking
-the `CoordinateOperation.toWKT()` method.
+the `Coordinate­Operation.toWKT()` method.
 
 #TODO: `RegisterOperations` returns a set of all operations.#
 

@@ -18,13 +18,13 @@ More specialized sub-types such as `Binary­Comparison­Operator` and `Distance�
 .Partial UML of filters
 image::filter.svg[Filter UML]
 
-In above diagram, the `operatorType` property defined in the `Filter` parent interface
+In above diagram, the `operator­Type` property defined in the `Filter` parent interface
 is overridden by more specialized types (shown as associations) in each sub-interface.
 This is <<term_covariant,type covariance>>.
 Likewise `expression` is defined in parent interface with unconstrained multiplicity,
 but that multiplicity is restrained in sub-interfaces.
 
 Filter operands are expressions.
-For example, a filter named "Property­Is­Equal­To" uses two expressions.
+For example, a filter named `"PropertyIs­EqualTo"` uses two expressions.
 The first expression may be a `Value­Reference` fetching the value of a property
 and the second expression may be a `Literal` with the desired value.

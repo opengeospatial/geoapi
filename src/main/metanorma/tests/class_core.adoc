@@ -2,7 +2,7 @@
 [conformance_class_core]
 ====
 [%metadata]
-label:: http://www.opengis.net/spec/geoapi/3.1/conf/library
+label:: http://www.opengis.net/spec/geoapi/4.0/conf/core
 subject:: Requirements Class "Core"
 classification:: Target Type: library
 ====

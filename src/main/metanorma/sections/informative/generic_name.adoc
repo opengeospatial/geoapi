@@ -2,7 +2,7 @@
 ==== Name types
 _From <<ISO19103>> §7.5_
 
-A `GenericName` is a sequence of identifiers rooted within the context of a namespace.
+A `Generic­Name` is a sequence of identifiers rooted within the context of a namespace.
 `NameSpace` defines a domain in which names can be mapped to objects.
 For example, names could be primary keys in a database table,
 in which case the namespace is materialized by the table.
@@ -13,17 +13,17 @@ Each storage (XML, shapefiles, netCDF, …) may have their own constraints for n
 image::names.svg[UML of name objects]
 
 `GenericName` is the base interface for all names in a `NameSpace`.
-A generic name can be either a `LocalName`, or a `ScopedName` which is an aggregate of
-a `LocalName` (the _head_) for locating another `NameSpace` and
-a `GenericName` (the _tail_) valid in that name space.
-For example if `"urn:​ogc:​def:​crs:​EPSG:​10:​4326"` is a `ScopedName`,
-then `"urn"` is the _head_ and `"ogc:​def:​crs:​EPSG:​10:​4326"` is the _tail_.
+A generic name can be either a `Local­Name`, or a `Scoped­Name` which is an aggregate of
+a `Local­Name` (the _head_) for locating another `Name­Space` and
+a `Generic­Name` (the _tail_) valid in that name space.
+For example if `"urn:ogc:def:crs:EPSG:10:4326"` is a `Scoped­Name`,
+then `"urn"` is the _head_ and `"ogc:def:crs:EPSG:10:4326"` is the _tail_.
 GeoAPI extends the model by allowing navigation in the opposite direction,
-with `"urn:​ogc:​def:​crs:​EPSG:​10"` as the _path_ and `"4326"` as the _tip_.
+with `"urn:ogc:def:crs:EPSG:10"` as the _path_ and `"4326"` as the _tip_.
 
 [[path_components]]
 .Components of a generic name
-image::path_components.svg["urn:​ogc:​def:​crs:​EPSG:​10" components]
+image::path_components.svg["urn:ogc:def:crs:EPSG:10" components]
 
 `TypeName` and `MemberName` are subtypes of `LocalName`
 for referencing a type (for example a class) and a member (for example a property in a class) respectively.
@@ -45,16 +45,16 @@ All those types are mapped to {supported-languages} classes as below:
 
 [[type_name_mapping]]
 ===== Mapping to programming languages
-The [data type URN standard value 1.1](https://schemas.opengis.net/definitions/1.1.0/dataType.xml) OGC schema
-defines the following standard names (non-exhaustive list):
+The https://schemas.opengis.net/definitions/1.1.0/data­Type.xml[data type URN standard value 1.1]
+OGC schema derived from <<OGC07-092>> defines the following standard names (non-exhaustive list):
 
-* `urn:ogc:def:dataType:OGC:1.1:boolean`
-* `urn:ogc:def:dataType:OGC:1.1:nonNegativeInteger`
-* `urn:ogc:def:dataType:OGC:1.1:string`
-* `urn:ogc:def:dataType:OGC:1.1:anyURI`
+* `urn​:ogc​:def​:data­Type:OGC:1.1:boolean`
+* `urn​:ogc​:def​:data­Type:OGC:1.1:nonNegative­Integer`
+* `urn​:ogc​:def​:data­Type:OGC:1.1:string`
+* `urn​:ogc​:def​:data­Type:OGC:1.1:anyURI`
 
-Above names are valid values for `TypeName`,
-where `urn:ogc:def:dataType:OGC:1.1` is the scope of the `LocalName`.
+Above names are valid values for `Type­Name`,
+where `urn​:ogc​:def​:data­Type:OGC:1.1` is the scope of the `Local­Name`.
 In addition, GeoAPI defines also the following type names using only `OGC` as the scope.
 The general rule is to use the name used in UML diagrams of OGC/ISO standards.
 
@@ -80,23 +80,27 @@ The general rule is to use the name used in UML diagrams of OGC/ISO standards.
 [[generic_name_departures]]
 ===== Departures from ISO model
 
+Generic names in GeoAPI differ from the OGC/ISO standards
+as described in the following sub-sections.
+
+
 [[generic_name_departures_for_generalization]]
 ====== Generalization
 GeoAPI extends the ISO 19103 model by adding a (_path_, _tip_) pair in complement to the (_head_, _tail_) pair.
-While the _head_ and _tip_ properties carry non-trivial information only inside `ScopedName`,
-GeoAPI nevertheless makes them available from the parent `GenericName` interface (not shown in above UML diagram)
-with the restriction that they shall return `this` (Java) or `self` (Python) when the name is an instance of `LocalName`.
+While the _head_ and _tip_ properties carry non-trivial information only inside `Scoped­Name`,
+GeoAPI nevertheless makes them available from the parent `Generic­Name` interface (not shown in <<generic_name_UML>>)
+with the restriction that they shall return `this` (Java) or `self` (Python) when the name is an instance of `Local­Name`.
 This generalization makes common operations simpler without the need to check for the exact name interface.
 
 [[generic_name_departures_as_renaming]]
 ====== Renaming
-The ISO 19103 `GenericName.aName` property appears as `toString` in above UML diagram,
+The ISO 19103 `Generic­Name.aName` property appears as `toString` in <<generic_name_UML>>,
 but this property should be mapped to the standard mechanism for representing an arbitrary object
 as a character string in the target programming language.
 In Java this is the `toString()` method;
 in Python this is `+__str__+` or `+__repr__+`.
 This specification uses the Java method name as it is more readable, but other languages should adapt.
-The `aName` and `scopedName` properties in sub-interfaces are replaced by inheritance of `toString` in above UML.
+The `aName` and `scoped­Name` properties in sub-interfaces are replaced by inheritance of `toString` in above UML.
 
 [[generic_name_omissions]]
 ====== Omissions
@@ -108,7 +112,7 @@ An example in <<JNDI>> shows how some omitted methods can be implemented by JNDI
 
 [[generic_name_additions]]
 ====== Additions
-The `NameFactory` is an extension to allow the construction of instances of these name types
+The `Name­Factory` is an extension to allow the construction of instances of these name types
 (in GeoAPI, factories are realizations of constructors).
-The `GenericName.toFullyQualifiedName()` method is an addition for developer convenience.
+The `Generic­Name.toFully­Qualified­Name()` method is an addition for developer convenience.
 All GeoAPI additions on name types carry no new information compared to ISO model.
