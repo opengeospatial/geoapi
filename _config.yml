@@ -14,7 +14,7 @@
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
 title: GeoAPI
-email: your-email@example.com
+email:
 description: >- # this means to ignore newlines until "baseurl:"
  Programming interfaces for geospatial applications
 baseurl: "" # the subpath of your site, e.g. /blog
@@ -88,7 +88,7 @@ defaults:
         - text: "Developments"
           link: "/snapshot/index.html"
         - text: Specification draft
-          link: "/snapshot/standard_document.html"
+          link: "https://opengeospatial.github.io/ogcna-auto-review/23-016.html"
         - text: "Java API preview"
           link: "/snapshot/javadoc/index.html"
         - text: "Python API preview"

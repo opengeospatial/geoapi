@@ -46,7 +46,7 @@ title: "GeoAPI development"
 <p>All documents listed below are snapshots and may change at any time before release.</p>
 
 <ul class="list-disc ml-4">
-  <li class="my-1 text-justify"><a href="standard_document.html">Specification draft</a></li>
+  <li class="my-1 text-justify"><a href="https://opengeospatial.github.io/ogcna-auto-review/23-016.html">Specification draft</a></li>
   <li class="my-1 text-justify"><a class="externalLink" href="https://github.com/opengeospatial/geoapi/issues">Issues tracker on GitHub</a></li>
   <li class="my-1 text-justify"><b>Java</b><ul>
     <li class="my-1 text-justify"><a href="javadoc/content.html">Java ↔︎ OGC/ISO mapping</a></li>
