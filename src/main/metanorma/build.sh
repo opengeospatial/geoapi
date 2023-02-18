@@ -16,7 +16,7 @@ SOURCE_DIR="`realpath $SOURCE_DIR`"
 TARGET_DIR="`realpath $SOURCE_DIR/../../../target`"
 mkdir --parents --verbose $TARGET_DIR
 
-metanorma --output-dir "$TARGET_DIR" --agree-to-terms --type ogc --extensions html standard.adoc
+metanorma compile --output-dir "$TARGET_DIR" --agree-to-terms --type ogc --extensions html standard.adoc
 
 # Following directory is empty after a successful build.
 rmdir _files

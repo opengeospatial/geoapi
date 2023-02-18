@@ -8,7 +8,7 @@
 :edition:                  4.0
 :committee:                technical
 :external-id:              http://www.opengis.net/doc/IS/geoapi/4.0
-:docnumber:                TBD
+:docnumber:                23-016
 :received-date:            TBD
 :issued-date:              TBD
 :published-date:           TBD
