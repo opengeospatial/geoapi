@@ -2,4 +2,4 @@
 metanorma:
   source:
     files:
-      - document.adoc
+      - standard.adoc

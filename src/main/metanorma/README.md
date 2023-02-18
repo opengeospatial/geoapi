@@ -2,7 +2,7 @@
 
 This directory contains the source files of GeoAPI standard.
 
-* `document.adoc` — the main standard document with references to all sections.
+* `standard.adoc` — the main standard document with references to all sections.
 * `sections`      — each section of the standard document in a separate document.
 * `requirements`  — requirements and requirement classes referenced in `normative_text.adoc`.
 * `tests`         — conformance test suite.
@@ -18,7 +18,7 @@ Then run from the command line
 (the `--agree-to-terms` option is for retrieving licensed fonts):
 
 ```shell
-metanorma --agree-to-terms --type ogc --extensions pdf,html document.adoc
+metanorma --agree-to-terms --type ogc --extensions pdf,html standard.adoc
 ```
 
 Above command will generate the following files and directories.
