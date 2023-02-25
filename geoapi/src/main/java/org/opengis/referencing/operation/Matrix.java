@@ -62,6 +62,16 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="PT_Matrix", specification=OGC_01009)
 public interface Matrix {
     /**
+     * Returns {@code true} if this matrix is an identity matrix.
+     *
+     * @return {@code true} if this matrix is an identity matrix.
+     *
+     * @departure easeOfUse
+     *   Added as a convenience for a frequently requested operation.
+     */
+    boolean isIdentity();
+
+    /**
      * Returns the number of rows in this matrix.
      *
      * @return the number of rows in this matrix.
@@ -91,6 +101,7 @@ public interface Matrix {
      * @param  row     the row number to be retrieved (zero indexed).
      * @param  column  the column number to be retrieved (zero indexed).
      * @return the value at the indexed element.
+     * @throws IndexOutOfBoundsException if the specified row or column is out of bounds.
      *
      * @departure integration
      *   Needed for making the matrix usable. The method signature matches the one of
@@ -105,6 +116,8 @@ public interface Matrix {
      * @param  row     the row number of the value to set (zero indexed).
      * @param  column  the column number of the value to set (zero indexed).
      * @param  value   the new matrix element value.
+     * @throws IndexOutOfBoundsException if the specified row or column is out of bounds.
+     * @throws UnsupportedOperationException if this matrix is unmodifiable.
      *
      * @departure integration
      *   Needed for making the matrix usable. The method signature matches the one of
@@ -114,19 +127,9 @@ public interface Matrix {
     void setElement(int row, int column, double value);
 
     /**
-     * Returns {@code true} if this matrix is an identity matrix.
+     * Returns a modifiable copy of this matrix.
      *
-     * @return {@code true} if this matrix is an identity matrix.
-     *
-     * @departure easeOfUse
-     *   Added as a convenience for a frequently requested operation.
-     */
-    boolean isIdentity();
-
-    /**
-     * Returns a clone of this matrix.
-     *
-     * @return a clone of this matrix.
+     * @return a modifiable copy of this matrix.
      */
     Matrix clone();
 }

@@ -1,0 +1,17 @@
+[[test-signatures]]
+[abstract_test]
+====
+[%metadata]
+label:: /conf/core/api-definition
+subject:: /req/req-class-lib/req-signatures
+test-purpose:: Verify that all types and properties in OGC namespace are as published.
+
+[.component,class=test method]
+=====
+[.component,class=step]
+--
+#TODO: write a Java program verifying signature of all classes and methods in the `org.opengis` namespace.
+This verification would be done for the "libraries" target type only, not the "applications" target type.#
+--
+=====
+====

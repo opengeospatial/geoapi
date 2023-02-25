@@ -1,0 +1,38 @@
+[[req_signatures]]
+[requirement]
+====
+[%metadata]
+label:: /req/req-class-lib/req-signatures
+[.component,class=conditions]
+--
+. Redistributed modules in OGC namespace shall contain the exact same API as defined by this standard.
+--
+
+[.component,class=part]
+--
+Redistributed Java modules in `org​.opengis` namespace shall contain the exact same set of types, methods and properties
+as listed in the API documentation published by OGC at the following location:
+
+Java: http://www.geoapi.org/snapshot/javadoc/ #TODO: update URL.#
+--
+
+[.component,class=part]
+--
+Redistributed Python modules in `opengis` namespace shall contain the exact same set of types, methods and properties
+as listed in the API documentation published by OGC at the following locations:
+
+Python: http://www.geoapi.org/snapshot/python/ #TODO: update URL.#
+--
+====
+
+Note that this requirement does not mean that vendors must implement all types and methods,
+or cannot implement their own API in addition of GeoAPI.
+This requirement only means that modules or packages inside the `org​.opengis` or `opengis` namespaces
+shall contain the exact same set of types as published at above links,
+and each of those types shall contain the exact same set of properties as published.
+But vendors are still free to implement only a subset of their choice
+and throw exception for unimplemented types and methods.
+Vendors can also add new types and methods, provided that those additions are in a namespace
+different than `org​.opengis` and `opengis`.
+Finally, this requirement applies only to libraries redistributed for use by other developers.
+Final applications are free to remove any unused types or methods if such removal is invisible to other developers.

@@ -37,7 +37,7 @@ package org.opengis.tools.version;
  * The {@linkplain #major} and {@linkplain #minor} version numbers,
  * together with other information, are parsed from a {@code String}
  * given to the constructor. The version string can be a final release
- * like {@code "3.0.1"} or a milestone like {@code "3.1-M07"}.
+ * like {@code "3.0.2"} or a milestone like {@code "3.1-M07"}.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -102,7 +102,7 @@ public final class Version implements Comparable<Version> {
     /**
      * Parses the given version string.
      *
-     * @param  version The version to parse (e.g. {@code "3.0.1"} or {@code "3.1-M07"}).
+     * @param  version  the version to parse (e.g. {@code "3.0.2"} or {@code "3.1-M07"}).
      * @throws NumberFormatException If the version cannot be parsed.
      */
     public Version(final String version) throws NumberFormatException {

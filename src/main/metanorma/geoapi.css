@@ -1,0 +1,17 @@
+/*
+ * This stylesheet is applied in addition to the standard.css;
+ * it does not replace it. We need to declare in this file only
+ * the elements that we want to overwrite.
+ */
+
+p:not(.NormRef):not(.Biblio):not(div.formula *) {
+  text-align: justify;
+}
+
+li {
+  text-align: justify;
+}
+
+div.figure, div.formula {
+  background-color: inherit;
+}

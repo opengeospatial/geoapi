@@ -1,0 +1,40 @@
+[[factories]]
+==== Factories
+_From <<OGC01-009>> §12.3.[6…7] and §12.4.6_
+
+The referencing packages include factory types defined originally in the <<OGC01-009>> specification.
+These factories define a normalized approach to object instantiation and,
+if used exclusively, simplify the work of switching between implementations.
+Subtypes of `Object­Factory` instantiate objects by assembling components passed as arguments and
+subtypes of `Authority­Factory` instantiate objects based on identifiers in some third party database,
+notably those in the EPSG geodetic dataset.
+
+.Factory interfaces partially derived from OGC 01-009
+image::factories.svg[UML of factories]
+
+#TODO: Some methods of `CRSAuthorityFactory` and
+`CoordinateOperationAuthorityFactory` to be replaced by ISO 19111:2019 `RegisterOperations`.#
+
+Code that needs to instantiate one of the objects defined in GeoAPI referencing packages
+should first obtain the factory in some platform dependent manner
+and then use the factory methods to instantiate the desired object instances.
+These instances can then be used through the interfaces defined in the GeoAPI library.
+
+In Java, factory implementations are discovered by `java​.util​.Service­Loader`.
+In Python, GeoAPI does not have a recommended mechanism yet.
+
+
+[[axis_order]]
+===== Axis order
+The order of coordinate system axes in every objects obtained from an `Authority­Factory` shall be as defined by the authority.
+The order depends on the Coordinate Reference System (CRS) type and the country defining the CRS.
+In the case of geographic CRS, this is often – but not always – the (_latitude_, _longitude_) axis order.
+In particular the following method call:
+
+
+[source,java,options="unnumbered"]
+----------------------------------------------------------------------------
+GeographicCRS WGS84 = crsAuthorityFactory.createGeographicCRS("EPSG::4326");
+----------------------------------------------------------------------------
+
+shall return a coordinate reference system with (_latitude_, _longitude_) axis order, not (_longitude_, _latitude_).

@@ -1,0 +1,26 @@
+[[nil_values]]
+==== Nil values
+
+<<ISO19115-3>> – _XML schema implementation for fundamental concepts_ allows property values to be nil
+even when the property is declared mandatory by ISO 19115-1 standard.
+In such case, ISO 19115-3 requires to specify why the property is nil.
+Nil reasons can be:
+
+* *Template:*     the metadata is only a template with values to be provided later.
+* *Withheld:*     the value is not divulged.
+* *Unknown:*      a correct value probably exists but is not known and not computable.
+* *Missing:*      the correct value is not readily available and may not exist.
+* *Inapplicable:* there is no value.
+
+GeoAPI does not provide a mechanism for specifying the reason why a property is nil.
+Instead, the GeoAPI rules of method return values have been relaxed for the metadata packages.
+Elsewhere in GeoAPI, methods which have a mandatory obligation in the specification
+must return an instance of the return type and cannot return the Java `null` or Python `None` reference.
+However, in the metadata package this rule is relaxed because data sets are encountered so frequently
+which have nil values for any of above-cited reasons.
+In the GeoAPI metadata packages, methods for mandatory properties should return a valid instance,
+but users should be prepared to receive `null` (Java), `None` (Python) or an empty collection.
+This modification has been adopted to allow implementations sufficient latitude
+about how to handle metadata records with nil values.
+Nonetheless, sophisticated implementations can determine if a metadata record conforms with
+the ISO 19115-1 specification by inspecting the annotations at runtime (<<UML_introspection>>).

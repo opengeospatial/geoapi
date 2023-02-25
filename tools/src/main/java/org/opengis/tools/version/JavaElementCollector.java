@@ -60,7 +60,7 @@ import java.lang.reflect.InvocationTargetException;
  *
  * <p><b>Usage example:</b></p>
  * <blockquote><code>
- * JavaElement[] elements = JavaElementCollector.collectAPIChanges(new Version("3.0.1"), new Version("3.1-M07"));
+ * JavaElement[] elements = JavaElementCollector.collectAPIChanges(new Version("3.0.2"), new Version("3.1-M07"));
  * </code></blockquote>
  *
  * Note that this class indirectly uses hard-coded reference to the Unit API

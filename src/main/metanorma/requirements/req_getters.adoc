@@ -1,0 +1,35 @@
+[[req_getters]]
+[requirement]
+====
+[%metadata]
+label:: /req/req-class-lib/req-getters
+[.component,class=conditions]
+--
+. Optional getter methods should return the value, or `null` or `None`.
+. Mandatory getter methods should return a non-null value or throw an exception.
+--
+
+[.component,class=part]
+--
+Optional getter methods should return the requested value unless the value
+is missing or the method is not implemented in which case they should return
+an empty collection if possible, or `null` or `None` otherwise.
+--
+
+[.component,class=part]
+--
+Unless otherwise specified in this specification or in the API documentation,
+mandatory getter methods should return the requested value unless the value
+is missing in which case they should throw an exception such as `Illegal­State­Exception`.
+--
+
+[.component,class=part]
+--
+As an exception to condition B,
+mandatory getter methods in the metadata packages are allowed to return `null` or `None`
+because of the extensive existence of incomplete metadata (<<nil_values>>).
+--
+====
+
+"Getter" methods (methods which obtain a value from an object)
+are documented through annotations in the Javadoc as mandatory or optional.

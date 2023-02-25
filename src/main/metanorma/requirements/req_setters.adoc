@@ -1,0 +1,33 @@
+[[req_setters]]
+[requirement]
+====
+[%metadata]
+label:: /req/req-class-lib/req-setters
+[.component,class=conditions]
+--
+. Setter methods shall either mutate the object or throw an exception.
+--
+
+[.component,class=part]
+--
+Methods which set the value of an object
+shall either succeed or throw an exception such as
+`UnsupportedOperationException` if the method is not implemented or if the object is unmodifiable,
+`IllegalArgumentException` if the value is illegal in that implementation, or
+`IllegalStateException` if some context makes the use of that method illegal.
+This list of exception types is not exclusive.
+--
+====
+
+*Example:*
+A call to `parameter​.setValue(-10.25)` in Java
+may have the first of following results which is applicable:
+
+* The method is supported and the -10.25 value is valid:
+  The setter method returns silently.
+* The method is not implemented by the library:
+  `Unsupported­Operation­Exception` is thrown.
+* Values for that parameter are restricted to positive numbers:
+  `Illegal­Argument­Exception` is thrown.
+* The `Parameter­Value` instance has been declared unmodifiable:
+  `Illegal­State­Exception` or `Unsupported­Operation­Exception` is thrown.

@@ -1,0 +1,15 @@
+[cols="1,4",width="90%",options="unnumbered"]
+|===
+2+|*Requirements Class: Application* {set:cellbgcolor:#CACCCE}
+2+|http://www.opengis.net/spec/ABCD/m.n/req/req-class-app {set:cellbgcolor:#FFFFFF}
+|Target type | Application
+|Dependency  |
+|*Requirement 1* {set:cellbgcolor:#CACCCE} |http://www.opengis.net/spec/ABCD/m.n/req/req-class-app/req-authority +
+Conformance with authority definitions {set:cellbgcolor:#FFFFFF}
+{set:cellbgcolor:#FFFFFF}
+|*Requirement 2* {set:cellbgcolor:#CACCCE} |http://www.opengis.net/spec/ABCD/m.n/req/req-class-app/req-wkt +
+Conformance with WKT syntax {set:cellbgcolor:#FFFFFF}
+{set:cellbgcolor:#FFFFFF}
+|===
+
+#TODO: Describe requirements.#

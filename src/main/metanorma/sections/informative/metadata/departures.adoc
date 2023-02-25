@@ -1,0 +1,50 @@
+[[metadata_departures]]
+==== Departures from ISO 19115
+
+Metadata in GeoAPI differ from the OGC/ISO standards
+as described in the following sub-sections.
+
+
+[[metadata_departures_for_harmonization_with_19115_2]]
+===== Harmonization with ISO 19115-2
+A departure in the GeoAPI metadata packages from the published ISO 19115 standard is in the way GeoAPI metadata package
+added the types and properties defined in the specification <<ISO19115-2>> – _Extensions for acquisition and processing_.
+The latter was forced to create a number of interfaces to hold elements which naturally could occur directly in the interfaces defined by ISO 19115-1.
+We integrated such interfaces directly into the existing interfaces rather than adding complexity to the API which exists by historical accident.
+For example, ISO 19115-2 defines a `MI​_Band` interface which extends the `MD​_Band` interface defined by ISO 19115-1,
+with the addition of a `transfer­Function­Type` property (among others) for completing the `scale­Factor` and
+`offset` properties defined by ISO 19115-1. GeoAPI merges those two interfaces together,
+with annotations (<<annotations>>) on each property for declaring the originating standard.
+The metadata interfaces merged in such way are:
+
+.Metadata ISO 19115-2 interfaces merged with ISO 19115-1 parent interfaces
+[options="header"]
+|=====================================================================
+|ISO 19115-1 parent interface |ISO 19115-2 subclass merged with parent
+|`LI_ProcessStep`             |`LE_ProcessStep`
+|`LI_Source`                  |`LE_Source`
+|`MD_Band`                    |`MI_Band`
+|`MD_CoverageDescription`     |`MI_CoverageDescription`
+|`MD_Georectified`            |`MI_Georectified`
+|`MD_Georeferenceable`        |`MI_Georeferenceable`
+|`MD_ImageDescription`        |`MI_ImageDescription`
+|`MD_Metadata`                |`MI_Metadata`
+|=====================================================================
+
+
+[[metadata_departures_for_harmonization_with_19111]]
+===== Harmonization with ISO 19111
+Coordinate Reference Systems (CRS) are defined in details by the <<ISO19111>> standard.
+But the ISO 19115 metadata standards do not reference those CRS interfaces directly (except `VerticalCRS`).
+Instead, the metadata standards reference CRS by their identifier (for example an EPSG code),
+optionally accompanied by a code telling whether the CRS type is geographic, projected, temporal, a compound of the above, a geographic identifier, _etc_.
+The ISO 19115 standard combines those two information in a `Reference­System` interface.
+
+In order to have a more uniform way to handle reference systems,
+GeoAPI replaces (_identifier_, _type code_) tuples by associations to the actual _Reference System_ objects.
+The ISO 19115 `Reference­System` type is redefined as a subtype of ISO 19111 `Identified­Object` (<<reference_system_UML>>).
+The `reference­System­Identifier` property defined by ISO 19115 is replaced by inheritance of `identifier` property from `Identified­Object`.
+The `reference­System­Type` property value (geographic, projected, compound, geographic identifier, _etc._)
+can be determined using language-specific instructions such as `instanceof` in Java.
+
+In the same spirit than above replacement, `verticalCRSId` is omitted because redundant with `verticalCRS`.

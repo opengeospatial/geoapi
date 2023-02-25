@@ -1,0 +1,16 @@
+[[tests_class_core]]
+[conformance_class_core]
+====
+[%metadata]
+label:: http://www.opengis.net/spec/geoapi/{edition}/conf/core
+subject:: Requirements Class "Core"
+classification:: Target Type: library
+====
+
+==== Test signature
+
+include::test_signatures.adoc[]
+
+==== Test behavior
+
+include::test_invariants.adoc[]

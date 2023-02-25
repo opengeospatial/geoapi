@@ -1,0 +1,40 @@
+[[datetime]]
+==== Date and time
+_From <<ISO19103>> §7.2.2 to 7.2.4_
+
+The ISO 19103 `Date` interface gives values for year, month and day
+while the `Time` interface gives values for hour, minute and second.
+`DateTime` is the combination of a date with a time, with or without timezone.
+GeoAPI maps the ISO date and time interfaces to the types provided in the standard library of target languages.
+In some cases like Java, this mapping forces GeoAPI to choose whether the time component shall include timezone
+information or not since the choices are represented by different types
+(e.g. `LocalDateTime`, `OffsetDateTime` and `ZonedDateTime`).
+The timezone information is often desired for geospatial data
+(for example in the acquisition time of a remote sensing image),
+but may be undesired for some other cases like office opening hours.
+In the latter case, the decision to include timezone or not depends if the opening hours apply to one specific office
+or to all offices spanning the multiple timezones of a country.
+GeoAPI generally includes timezone information, but this policy may be adjusted on a case-by-case basis.
+
+.Date and time types mapping
+[options="header"]
+|===================================================================
+|ISO 19103 interface   |Java class                      |Python type
+|`Date`                |`java.time.LocalDate`     ^(1)^ |
+|`Time`                |`java.time.OffsetTime`          |
+|`DateTime`            |`java.time.ZonedDateTime` ^(1)^ |`datetime`
+|(none)                |`java.time.Instant`       ^(1)^ |
+|===================================================================
+
+Notes:
+
+* (1) Some properties defined in GeoAPI 3._x_ use the legacy `java​.util​.Date` class for historical reasons.
+
+`DateTime` is distinct from `Instant`.
+The former is expressed in the proleptic Gregorian calendar as described in <<ISO8601>>,
+while the latter is an instantaneous point on the selected time scale, astronomical or atomic.
+An `Instant` does not have year, month or day components.
+It is instead a duration elapsed since an epoch,
+and its conversion to a `Date­Time` may be complicated.
+In GeoAPI, temporal objects in metadata are typically `Date­Time`
+while coordinates in a temporal coordinate reference system are typically `Instant`.

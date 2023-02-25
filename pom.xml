@@ -321,11 +321,6 @@
           <artifactId>exec-maven-plugin</artifactId>
           <version>3.1.0</version>
         </plugin>
-        <plugin>
-          <groupId>org.asciidoctor</groupId>
-          <artifactId>asciidoctor-maven-plugin</artifactId>
-          <version>2.2.2</version>
-        </plugin>
       </plugins>
     </pluginManagement>
 
@@ -444,34 +439,6 @@
 
 
       <!-- ============================================================================================
-               Specification from AsciiDoctor files
-           ============================================================================================ -->
-      <plugin>
-        <groupId>org.asciidoctor</groupId>
-        <artifactId>asciidoctor-maven-plugin</artifactId>
-        <inherited>false</inherited>
-        <executions>
-          <execution>
-            <id>specification</id>
-            <phase>pre-site</phase>
-            <goals>
-              <goal>process-asciidoc</goal>
-            </goals>
-            <configuration>
-              <sourceDocumentName>standard_document.adoc</sourceDocumentName>
-              <outputDirectory>${project.build.directory}/site/snapshot</outputDirectory>
-              <relativeBaseDir>true</relativeBaseDir>
-              <backend>html</backend>
-              <attributes>
-                <toc-placement>true</toc-placement>     <!-- Should be false if the backend is pdf.-->
-              </attributes>
-            </configuration>
-          </execution>
-        </executions>
-      </plugin>
-
-
-      <!-- ============================================================================================
                Javadoc generation
            ============================================================================================ -->
       <plugin>
@@ -481,7 +448,7 @@
           <top>
             <!-- Remove this notice for the final GeoAPI release! -->
             &lt;div class="snapshot-warning"&gt;&lt;b&gt;This specification is not final and is subject to change.&lt;/b&gt;&lt;br/&gt;
-                For OGC standard, see &lt;a href="http://www.geoapi.org/3.0/javadoc/index.html"&gt;GeoAPI 3.0.1&lt;/a&gt;.
+                For OGC standard, see &lt;a href="http://www.geoapi.org/3.0/javadoc/index.html"&gt;GeoAPI 3.0.2&lt;/a&gt;.
             &lt;/div&gt;
           </top>
           <encoding>${project.build.sourceEncoding}</encoding>

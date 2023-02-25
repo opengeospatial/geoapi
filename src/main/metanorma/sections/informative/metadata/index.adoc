@@ -1,0 +1,34 @@
+[[metadata]]
+=== Metadata packages
+
+The GeoAPI metadata packages use the `opengis​.metadata` namespace and implement the types defined
+in the <<ISO19115-1>> – _Metadata part 1: Fundamentals_ specification along with the modifications
+of <<ISO19115-1A1>> and <<ISO19115-1A2>>.
+They are completed or merged with the types defined in <<ISO19115-2>> –
+_Metadata part 2: Extensions for acquisition and processing_
+and <<ISO19157>> — _Data quality_ specifications.
+
+The metadata packages of GeoAPI provide container types for descriptive elements which may be related to data sets or components.
+All of these data structures are essentially containers for strings, dates or numbers,
+and the interfaces consist almost exclusively of methods which provide read access to those types or a container.
+The API defines no methods which manipulate or modify the data structures.
+Implementers are free to provide a fully mutable implementation of GeoAPI interfaces,
+but users may need to cast to the implementation classes in order to modify a metadata.
+
+There is almost 500 properties in more than 150 metadata interfaces. This specification does not describe them;
+see ISO 19115 together with GeoAPI Javadoc or Python-doc (<<conformance>>) for a description of each property.
+Implementers can support a subset of their choice.
+The following UML example shows a few frequently used interfaces with some of their properties.
+An example in <<java_metadata>> shows how to extract the individual name from a `Citation` in the Java language.
+
+.Example of a few metadata interfaces with a subset of their properties
+image::metadata.svg[Partial UML for a few metadata types]
+
+
+include::mapping.adoc[]
+
+include::reference_system.adoc[]
+
+include::nil_values.adoc[]
+
+include::departures.adoc[]

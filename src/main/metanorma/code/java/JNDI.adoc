@@ -1,0 +1,21 @@
+[[JNDI]]
+==== Names in JNDI context
+
+The ISO 19103 name types (<<generic_name>>) define mapping methods from a name to the object identified by that name.
+But the mapping methods defined by ISO 19103 are not part of the `Name­Space` interface defined by GeoAPI.
+Instead, GeoAPI leaves that functionality to frameworks such as the Java Naming and Directory Interface™ (JNDI).
+Java applications which need such mapping may use the methods in the `javax​.naming​.Context` interface:
+
+.Java Naming and Directory Interface equivalences
+[.compact, options="header"]
+|====================================================================================
+|ISO 19103 `NameSpace` member   |`org.opengis.util.NameSpace` |`javax.naming.Context`
+|`isGlobal`                     |`isGlobal()`                 |
+|`acceptableClassList`          |                             |
+|`generateID(Any)`              |                             |
+|`locate(LocalName)`            |                             |`lookup(Name)`
+|`name`                         |`name()`                     |`getNameInNamespace()`
+|`registerID(LocalName, Any)`   |                             |`bind(Name, Object)`
+|`select(GenericName)`          |                             |`lookup(Name)`
+|`unregisterID(LocalName, Any)` |                             |`unbind(Name)`
+|====================================================================================

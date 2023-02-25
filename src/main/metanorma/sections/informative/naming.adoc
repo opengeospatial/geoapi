@@ -1,0 +1,41 @@
+[[naming]]
+==== Naming conventions
+
+The interface and property names defined in OGC/ISO standards may be modified
+for compliance with the conventions in use in target programming languages.
+The main changes are described below:
+
+[[naming_interfaces]]
+===== Interfaces
+The two-letter prefixes are dropped.
+For example, `"MD_Metadata"` and `"CI_Citation"` interfaces are named `"Metadata"` and `"Citation"` in {supported-languages}.
+The camel cases convention (for example `"Coordinate­System­Axis"`) is kept unchanged for interfaces.
+
+[[naming_enumerations]]
+===== Code lists and enumerations
+The two-letter prefixes are dropped in the same way than for interfaces.
+Then if the type name ends with the `"Code"` suffix, that suffix is dropped too in strongly-typed languages like Java.
+For example, the ISO 19115 `"MD_Topic­Category­Code"` code list is named `"Topic­Category"` in Java classes.
+But the `"Code"` suffix drop is not applied to more dynamic languages like Python,
+because the naming convention can be a compensation for the absence of compile-time type checks.
+
+[[naming_properties]]
+===== Properties
+The name adaptations depend on the target programming language and on the multiplicity.
+In Java, accessor methods start with the `"get"` prefix and are followed by their property name in camel cases.
+But in Python, no prefix is added and the camel cases convention is replaced by the snake cases convention
+(see the `"coordinateSystem"` example below).
+If a property allows more than one value, then the plural form of its noun may be used.
+The plural form hints the developers that they may need to use indexes or iterators for accessing elements.
+
+.Example of name adaptations in programming elements
+[options="header"]
+|======================================================================================
+|Metatype       |Name in OGC/ISO        |Name in Java           |Name in Python
+|Interface      |`CoordinateSystemAxis` |`CoordinateSystemAxis` |`CoordinateSystemAxis`
+|Interface      |`CI_Citation`          |`Citation`             |`Citation`
+|Code list      |`CI_TelephoneTypeCode` |`TelephoneType`        |`TelephoneTypeCode`
+|Enumeration    |`MD_TopicCategoryCode` |`TopicCategory`        |`TopicCategoryCode`
+|Property [0…1] |`coordinateSystem`     |`getCoordinateSystem()`|`coordinate_system`
+|Property [0…∞] |`alternateTitle`       |`getAlternateTitles()` |`alternate_title`
+|======================================================================================

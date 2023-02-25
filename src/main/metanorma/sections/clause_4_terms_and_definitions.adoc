@@ -1,0 +1,263 @@
+[[terms_and_definitions]]
+== Terms and definitions
+
+[[term_API]]
+=== application programming interface (API)
+a formally defined set of types and methods which establish a contract between client code which uses the API
+and implementation code which provides the API
+
+
+[[term_cardinality]]
+=== cardinality
+number of elements in a set
+
+[.source]
+<<ISO19103>>
+
+NOTE: Contrast with _multiplicity_, which is the range of possible cardinalities a set can hold.
+
+
+[[term_conceptual_model]]
+=== conceptual model
+model that defines concepts of a universe of discourse
+
+[.source]
+<<ISO19101-1>>
+
+
+[[term_constraint]]
+=== constraint
+UML condition or restriction expressed in natural language text or in a machine readable language
+for the purpose of declaring some of the semantics of an element
+
+[.source]
+<<ISO19103>>
+
+
+[[term_coordinate]]
+=== coordinate
+one of a sequence of numbers designating the position of a point
+
+[.source]
+<<ISO19111>>
+
+NOTE: In a spatial coordinate reference system, the coordinate numbers are qualified by units.
+
+
+[[term_coordinate_operation]]
+=== coordinate operation
+process using a mathematical model, based on a one-to-one relationship, that changes coordinates in a source coordinate
+reference system to coordinates in a target coordinate reference system, or that changes coordinates at a source coordinate
+epoch to coordinates at a target coordinate epoch within the same coordinate reference system
+
+[.source]
+<<ISO19111>>
+
+
+[[term_crs]]
+=== coordinate reference system
+coordinate system that is related to an object by a datum
+
+[.source]
+<<ISO19111>>
+
+NOTE: Geodetic and vertical datums are referred to as reference frames.
+
+NOTE: For geodetic and vertical reference frames, the object will be the Earth.
+In planetary applications, geodetic and vertical reference frames may be applied to other celestial bodies.
+
+
+[[term_covariant]]
+=== covariant type
+a type that can be replaced by a more specialized type when the property is overridden in a subclass
+
+NOTE: Some programming languages allow covariant return types in method declarations.
+
+
+[[term_coverage]]
+=== coverage
+feature that acts as a function to return values from its range for any direct position within its spatial,
+temporal, or spatiotemporal domain
+
+[.source]
+<<ISO19123>>
+
+
+[[term_dataset]]
+=== dataset
+identifiable collection of data
+
+[.source]
+<<ISO19115-1>>
+
+
+[[term_datatype]]
+=== datatype
+specification of a value domain with operations allowed on values in this domain
+
+[.source]
+<<ISO19103>>
+
+NOTE: Data types include primitive predefined types and user definable types.
+
+[example]
+`Integer`, `Real`, `Boolean`, `String` and `Date`.
+
+
+[[term_dynamic_attribute]]
+=== dynamic attribute
+characteristic of a feature in which its value taken from the domain of the feature attribute type varies with time
+
+[.source]
+<<OGC19-045>>
+
+
+[[term_feature]]
+=== feature
+abstraction of a real world phenomena
+
+[.source]
+<<ISO19109>>
+
+NOTE: A feature can occur as a type or an instance.
+Feature type or feature instance should be used when only one is meant.
+
+
+[[term_feature_attribute]]
+=== feature attribute
+characteristic of a feature
+
+[.source]
+<<ISO19109>>
+
+NOTE: A feature attribute can occur as a type or an instance.
+Feature attribute type or feature attribute instance is used when only one is meant.
+
+
+[[term_feature_operation]]
+=== feature operation
+operation that every instance of a feature type may perform
+
+[.source]
+<<ISO19109>>
+
+
+[[term_function]]
+=== function
+rule that associates each element from a domain (source, or domain of the function) to a unique element in another domain (target, co-domain, or range)
+
+[.source]
+<<ISO19107>>
+
+
+[[term_geographic_feature]]
+=== geographic feature
+representation of real world phenomenon associated with a location relative to the Earth
+
+[.source]
+<<ISO19101-2>>
+
+
+[[term_geometric_object]]
+=== geometric object
+spatial object representing a geometric set
+
+[.source]
+<<ISO19107>>
+
+
+[[term_interface]]
+=== interface
+UML classifier that represents a declaration of a set of coherent public UML features and obligations
+
+NOTE: An interface specifies a contract; any classifier that realizes the interface must fulfil that contract.
+The obligations that can be associated with an interface are in the form of various kinds of constraints
+(such as pre- and post-conditions) or protocol specifications,
+which can impose ordering restrictions on interactions through the interface.
+
+
+[[term_java]]
+=== Java
+trademark of Oracle used to refer to an object oriented, single inheritance programming language
+whose syntax derives from the C programming language and which is defined by the Java Language Specification
+
+
+[[term_literal_value]]
+=== literal value
+constant, explicitly specified value
+
+[.source]
+<<ISO19143>>
+
+NOTE: This contrasts with a value that is determined by resolving a chain of substitution (e.g. a variable).
+
+
+[[term_metadata]]
+=== metadata
+data about data
+
+[.source]
+<<ISO19115-1>>
+
+
+[[term_moving_feature]]
+=== moving feature
+feature whose location changes over time
+
+NOTE: Its base representation uses a local origin and local coordinate vectors
+of a geometric object at a given reference time.
+
+NOTE: The local origin and ordinate vectors establish an engineering coordinate
+reference system (ISO 19111), also called a local frame or a local Euclidean coordinate system.
+
+
+[[term_multiplicity]]
+=== multiplicity
+UML specification of the range of allowable cardinalities that a set may assume
+
+[.source]
+<<ISO19103>>
+
+NOTE: Contrast with _cardinality_, which is the number of elements in a set.
+
+
+[[term_package]]
+=== package
+UML general purpose mechanism for organizing elements into groups
+
+[.source]
+<<ISO19103>>
+
+
+[[term_property]]
+=== property
+facet or attribute of an object referenced by a name
+
+[.source]
+<<ISO19143>>
+
+
+[[term_python]]
+=== Python
+an interpreted high-level programming language for general-purpose programming
+
+
+[[term_realization]]
+=== realization
+specialized abstraction relationship between two sets of model elements, one representing
+a specification (the supplier) and the other representing an implementation of the latter (the client)
+
+[.source]
+<<ISO19103>>
+
+NOTE: Realization indicates inheritance of behaviour without inheritance of structure.
+
+NOTE: GeoAPI and GML are two realizations of OGC/ISO abstract specifications.
+
+
+[[term_trajectory]]
+=== trajectory
+path of a moving point described by a one parameter set of points
+
+[.source]
+<<ISO19141>>

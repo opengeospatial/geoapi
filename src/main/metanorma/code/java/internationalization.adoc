@@ -1,0 +1,22 @@
+[[InternationalString]]
+==== Multilingual string
+
+Internationalization (<<internationalization>>) is handled using objects provided by the standard Java library
+such as `java​.util​.Locale`, with the addition of one GeoAPI interface.
+The `org​.opengis​.util​.International­String` interface provides a container for multiple versions of the same text,
+each for a specific `Locale` — the identifier used in Java for a specific language, possibly in a named territory.
+
+[source,java]
+----------------------------------------------------------------------------
+NameFactory factory =  ...                      // Implementation dependent.
+InternationalString multiLingual = factory.createInternationalString(Map.of(
+        Locale.ENGLISH, "My documents",
+        Locale.FRENCH,  "Mes documents"));
+
+System.out.println(localized);         // Language at implementation choice.
+System.out.println(localized.toString(Locale.FRENCH));
+----------------------------------------------------------------------------
+
+The method to obtain factories is not specified by this standard and therefore depends on the design of the library implementation.
+Also, the locale used by default depends on the choice of the implementation so the result of the call `toString()`
+without parameters will depend on the implementation.

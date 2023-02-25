@@ -1,0 +1,39 @@
+[cols="1,4",width="90%",options="unnumbered"]
+|===
+2+|*Requirements Class: Library* {set:cellbgcolor:#CACCCE}
+2+|http://www.opengis.net/spec/geoapi/{edition}/req/req-class-lib {set:cellbgcolor:#FFFFFF}
+|Target type | Library
+|Dependency  | <<requirements-application,Requirements class Application>>
+|*Requirement 1* {set:cellbgcolor:#CACCCE} |<<req-signatures,http://www.opengis.net/spec/geoapi/{edition}/req/req-class-lib/req-signatures>> +
+Source and binary compatibility {set:cellbgcolor:#FFFFFF}
+|*Requirement 2* {set:cellbgcolor:#CACCCE} |<<req-behavior,http://www.opengis.net/spec/geoapi/{edition}/req/req-class-lib/req-behavior>> +
+Behavioral compatibility {set:cellbgcolor:#FFFFFF}
+|*Requirement 3* {set:cellbgcolor:#CACCCE} |<<req-factory-methods,http://www.opengis.net/spec/geoapi/{edition}/req/req-class-lib/req-factory-methods>> +
+Factory exception {set:cellbgcolor:#FFFFFF}
+|*Requirement 4* {set:cellbgcolor:#CACCCE} |<<req-setters,http://www.opengis.net/spec/geoapi/{edition}/req/req-class-lib/req-setters>> +
+Setter methods {set:cellbgcolor:#FFFFFF}
+|*Requirement 5* {set:cellbgcolor:#CACCCE} |<<req-getter,http://www.opengis.net/spec/geoapi/{edition}/req/req-class-lib/req-getter>> +
+Getter methods {set:cellbgcolor:#FFFFFF}
+{set:cellbgcolor:#FFFFFF}
+|===
+
+
+[[req-signatures]]
+==== Source and binary compatibility
+include::req_signatures.adoc[]
+
+[[req-behavior]]
+==== Behavioral compatibility
+include::req_behavior.adoc[]
+
+[[req-factory-methods]]
+==== Factory methods
+include::req_factory_methods.adoc[]
+
+[[req-setters]]
+==== Setter methods
+include::req_setters.adoc[]
+
+[[req-getter]]
+==== Getter methods
+include::req_getters.adoc[]

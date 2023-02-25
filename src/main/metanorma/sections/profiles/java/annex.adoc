@@ -1,0 +1,26 @@
+[appendix,obligation="normative"]
+[[java]]
+== Java Profile
+
+In addition to this document, this specification includes the GeoAPI Java Archive file `geoapi​.jar`.
+That file can be downloaded using the following Maven coordinates:
+
+[source,xml]
+-------------
+<dependency>
+  <groupId>org.opengis</groupId>
+  <artifactId>geoapi</artifactId>
+  <version>3.1-SNAPSHOT</version>
+</dependency>
+-------------
+#TODO: replace snapshot by final version number.#
+
+Libraries shall implement at least some interfaces defined in that archive file.
+It is not required to implement all interfaces.
+The contract for each interface and each method is specified in the javadoc.
+
+include::uom_jsr.adoc[]
+
+include::filter.adoc[]
+
+include::tests.adoc[]

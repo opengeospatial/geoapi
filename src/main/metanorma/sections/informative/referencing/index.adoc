@@ -1,0 +1,46 @@
+[[referencing]]
+=== Referencing packages
+
+The GeoAPI referencing packages use the `opengis​.referencing` and `opengis​.parameter` namespaces
+and implement the types defined in the <<ISO19111>> - _Referencing by coordinates_ specification.
+#TODO: upgrade to ISO 19111:2019.#
+The referencing package also includes the types describing object factories and mathematical transformation operators
+defined in the legacy standard <<OGC01-009>> - _Coordinate Transformation Services_ from 2003.
+Those types can be used to define various datums, define various coordinate systems,
+and combine those to define the coordinate referencing systems (CRS) generally encountered in geospatial science.
+The UML below (incomplete for brevity) shows a few commonly used GeoAPI types.
+Differences compared to ISO 19111
+(notably inheritance from `ReferenceSystem` type, location of `coordinateSystem` association and inclusion of `MathTransform` interface)
+are discussed in following sections and in the departures section (<<referencing_departures>>).
+
+.Subset of interfaces derived from ISO 19111 and other standards
+image::referencing.svg[Partial UML of Coordinate Reference Systems]
+
+More information about the `Reference­System` parent interface
+is given in the _Metadata packages_ section (<<reference_system>>).
+The mapping from ISO 19111 packages to GeoAPI packages is shown below:
+
+.Referencing package mapping
+[options="header"]
+|===================================================================================================
+|ISO package                 |Java package                          |Python module
+|Identified Object           |`org.opengis.referencing`             |`opengis.referencing.datum`
+|Reference System            |`org.opengis.referencing`             |`opengis.referencing.crs`
+|Coordinate Reference System |`org.opengis.referencing.crs`         |`opengis.referencing.crs`
+|Coordinate System           |`org.opengis.referencing.cs`          |`opengis.referencing.cs`
+|Datum                       |`org.opengis.referencing.datum`       |`opengis.referencing.datum`
+|Coordinate Operation        |`org.opengis.referencing.operation`   |`opengis.referencing.operation`
+|Coordinate Operation        |`org.opengis.referencing.parameter`   |`opengis.parameter`
+|===================================================================================================
+
+include::coordinate_system.adoc[]
+
+include::factories.adoc[]
+
+include::coordinate_operation.adoc[]
+
+include::math_transform.adoc[]
+
+include::wkt.adoc[]
+
+include::departures.adoc[]
