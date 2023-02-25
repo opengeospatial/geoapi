@@ -73,7 +73,7 @@ nD::   Multi-Dimensional
 === Identifiers
 The normative provisions in this specification are denoted by the URI:
 
-http://www.opengis.net/spec/geoapi/4.0/
+http://www.opengis.net/spec/geoapi/{edition}/
 
 All requirements and conformance tests that appear in this document are denoted by partial URIs which are relative to this base.
 
