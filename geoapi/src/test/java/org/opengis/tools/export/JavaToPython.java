@@ -1,9 +1,7 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
+ *    Copyright © 2018-2023 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
- *
- *    Copyright (C) 2018-2021 Open Geospatial Consortium, Inc.
- *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
@@ -78,7 +76,7 @@ class JavaToPython extends SourceGenerator {
     /**
      * Start of the copyright statement to put in headers, before the year.
      */
-    static final String COPYRIGHT = "#    Copyright (C) ";
+    static final String COPYRIGHT = "#    Copyright © ";
 
     /**
      * The current year, for formatting the Copyright header. This is used only for writing files.
@@ -452,10 +450,8 @@ class JavaToPython extends SourceGenerator {
                 content = new StringBuilder(2048)
                        .append('#').append(lineSeparator)
                        .append("#    GeoAPI - Programming interfaces for OGC/ISO standards").append(lineSeparator)
-                       .append("#    http://www.geoapi.org").append(lineSeparator)
-                       .append('#').append(lineSeparator)
                        .append(COPYRIGHT).append(currentYear).append(" Open Geospatial Consortium, Inc.").append(lineSeparator)
-                       .append("#    All Rights Reserved. http://www.opengeospatial.org/ogc/legal").append(lineSeparator)
+                       .append("#    http://www.geoapi.org").append(lineSeparator)
                        .append('#').append(lineSeparator)
                        .append(lineSeparator)
                        .append("from abc import ABC, abstractmethod").append(lineSeparator)

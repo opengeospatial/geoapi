@@ -1,9 +1,7 @@
 #
 #    GeoAPI - Programming interfaces for OGC/ISO standards
+#    Copyright © 2018-2023 Open Geospatial Consortium, Inc.
 #    http://www.geoapi.org
-#
-#    Copyright (C) 2018-2021 Open Geospatial Consortium, Inc.
-#    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
 #
 
 from abc import ABC, abstractmethod
