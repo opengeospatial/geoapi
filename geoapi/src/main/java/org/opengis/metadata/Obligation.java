@@ -1,9 +1,7 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
+ *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
- *
- *    Copyright (C) 2004-2018 Open Geospatial Consortium, Inc.
- *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
  *    you may not use this file except in compliance with the License.
