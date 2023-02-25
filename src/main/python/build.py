@@ -78,6 +78,6 @@ copyPythonFiles('geoapi-java-python', 'opengis/bridge/java')
 link('src/main/python/setup.py',    buildDir + 'setup.py')
 link('src/main/python/README.md',   buildDir + 'README.md')
 link('src/main/python/MANIFEST.in', buildDir + 'MANIFEST.in')
-link('LICENSE.txt',                 buildDir + 'LICENSE')
+link('LICENSE',                     buildDir + 'LICENSE')
 os.chdir(buildDir)
 import setup
