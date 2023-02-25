@@ -1,6 +1,8 @@
 # GeoAPI specification
 
-This directory contains the source files of GeoAPI standard.
+This directory contains the source files of GeoAPI standard document.
+The standard is generated from the sources using Metanorma.
+The main files and directories are:
 
 * `standard.adoc` — the main standard document with references to all sections.
 * `sections`      — each section of the standard document in a separate document.
@@ -9,6 +11,15 @@ This directory contains the source files of GeoAPI standard.
 * `code`          — sample code to accompany the standard.
 * `figures`       — figures, including figures generated from UML.
 * `UML`           — UML diagrams.
+* `build.sh`      — helper Unix script for launching Metanorma.
+
+
+## License
+
+The content of this directory is under a different license than the rest of GeoAPI.
+This directory is under [OGC document notice](https://www.ogc.org/about/policies/document-notice/).
+The rest of GeoAPI is under [OGC software policy](https://www.ogc.org/about/policies/software-licenses/).
+The latter applies the Apache 2 license to all Java and Python interfaces distributed by GeoAPI.
 
 
 ## Build locally
