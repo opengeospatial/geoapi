@@ -5,29 +5,17 @@
  *    Copyright (C) 2012-2021 Open Geospatial Consortium, Inc.
  *    All Rights Reserved. http://www.opengeospatial.org/ogc/legal
  *
- *    Permission to use, copy, and modify this software and its documentation, with
- *    or without modification, for any purpose and without fee or royalty is hereby
- *    granted, provided that you include the following on ALL copies of the software
- *    and documentation or portions thereof, including modifications, that you make:
+ *    Licensed under the Apache License, Version 2.0 (the "License");
+ *    you may not use this file except in compliance with the License.
+ *    You may obtain a copy of the License at
  *
- *    1. The full text of this NOTICE in a location viewable to users of the
- *       redistributed or derivative work.
- *    2. Notice of any changes or modifications to the OGC files, including the
- *       date changes were made.
+ *        http://www.apache.org/licenses/LICENSE-2.0
  *
- *    THIS SOFTWARE AND DOCUMENTATION IS PROVIDED "AS IS," AND COPYRIGHT HOLDERS MAKE
- *    NO REPRESENTATIONS OR WARRANTIES, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED
- *    TO, WARRANTIES OF MERCHANTABILITY OR FITNESS FOR ANY PARTICULAR PURPOSE OR THAT
- *    THE USE OF THE SOFTWARE OR DOCUMENTATION WILL NOT INFRINGE ANY THIRD PARTY
- *    PATENTS, COPYRIGHTS, TRADEMARKS OR OTHER RIGHTS.
- *
- *    COPYRIGHT HOLDERS WILL NOT BE LIABLE FOR ANY DIRECT, INDIRECT, SPECIAL OR
- *    CONSEQUENTIAL DAMAGES ARISING OUT OF ANY USE OF THE SOFTWARE OR DOCUMENTATION.
- *
- *    The name and trademarks of copyright holders may NOT be used in advertising or
- *    publicity pertaining to the software without specific, written prior permission.
- *    Title to copyright in this software and any associated documentation will at all
- *    times remain with copyright holders.
+ *    Unless required by applicable law or agreed to in writing, software
+ *    distributed under the License is distributed on an "AS IS" BASIS,
+ *    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ *    See the License for the specific language governing permissions and
+ *    limitations under the License.
  */
 package org.opengis.test.util;
 
