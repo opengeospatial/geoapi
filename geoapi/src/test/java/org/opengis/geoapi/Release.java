@@ -47,6 +47,11 @@ import static org.junit.Assume.*;
  */
 final class Release implements Closeable {
     /**
+     * Prefix of module information.
+     */
+    private static final String MODULE_INFO = "module-info";
+
+    /**
      * Filename extension of class files.
      */
     private static final String CLASS_EXT = ".class";
@@ -104,7 +109,7 @@ final class Release implements Closeable {
             final Enumeration<JarEntry> it = jar.entries();
             while (it.hasMoreElements()) {
                 String entry = it.nextElement().getName();
-                if (entry.endsWith(CLASS_EXT)) {
+                if (entry.endsWith(CLASS_EXT) && !entry.contains(MODULE_INFO)) {
                     entry = entry.substring(0, entry.length() - CLASS_EXT.length()).replace('/', '.');
                     assertTrue(entries.add(entry));
                 }
