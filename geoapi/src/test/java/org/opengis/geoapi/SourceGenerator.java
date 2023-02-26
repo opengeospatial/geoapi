@@ -47,24 +47,9 @@ public abstract class SourceGenerator {
     private static Path targetDirectory;
 
     /**
-     * {@code true} if this test includes some classes from the {@code geoapi-pending} module.
-     * This is never the case when building and testing with Maven, but may happen when testing
-     * from the NetBeans project (depending how the project is setup).
-     */
-    private static boolean isPendingModuleIncluded;
-
-    /**
      * For subclass constructors.
      */
     protected SourceGenerator() {
-    }
-
-    /**
-     * Returns {@code true} if this test includes some classes from the {@code geoapi-pending} module.
-     */
-    static synchronized boolean isPendingModuleIncluded() {
-        targetDirectory();                  // For forcing isPendingModuleIncluded calculation.
-        return isPendingModuleIncluded;
     }
 
     /**
@@ -82,14 +67,6 @@ public abstract class SourceGenerator {
             Path parent = parent(dir, "classes");
             switch (parent.getFileName().toString()) {
                 case "target": break;                       // Building with Maven - nothing to do.
-                case "build": {                             // Testing from NetBeans project.
-                    parent = parent(parent, "build");
-                    parent = parent(parent, "NetBeans");
-                    parent = parent(parent, "ide-project");
-                    dir = parent.resolve("geoapi").resolve("target").resolve("classes");
-                    isPendingModuleIncluded = true;
-                    break;
-                }
                 default: fail("Unexpected directory: " + dir);
             }
             assertTrue("Not a directory.", Files.isDirectory(dir));
@@ -99,9 +76,8 @@ public abstract class SourceGenerator {
     }
 
     /**
-     * Returns the root of the directory containing the given class. In a Maven build, this is the {@code target/classes}
-     * directory of the module containing the given class. In a NetBeans build when using the NetBeans project, this is the
-     * {@code ide-project/NetBeans/build/classes} directory.
+     * Returns the root of the directory containing the given class. In a Maven build,
+     * this is the {@code target/classes} directory of the module containing the given class.
      */
     private static Path rootClassesDirectory(final Class<?> sample) {
         final String pathname = sample.getCanonicalName();
