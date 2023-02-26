@@ -48,52 +48,10 @@ import org.opengis.util.Factory;
  * <h2>How implementations are discovered</h2>
  * All tests use {@link Factory} instances that are specific to the implementation being tested.
  * By default {@code TestSuite} fetches the factory implementations with {@link ServiceLoader},
- * which will scan every <code>META-INF/services/org.opengis.<var>TheFactory</var></code> files
- * on the classpath. However, implementers can override this default mechanism with explicit calls
- * to the {@link #setFactories(Class, Factory[])} method.
+ * which will iterate every <code>provides org.opengis.<var>TheFactory</var></code> statements
+ * in {@code module-info} files. However, implementers can override this default mechanism with
+ * explicit calls to the {@link #setFactories(Class, Factory[])} method.
  *
- * <p>Implementers can have some control on the tests (factories to use, features to test, tolerance
- * thresholds) by registering their {@link FactoryFilter} or {@link ImplementationDetails} in the
- * {@code META-INF/services/} directory. As an alternative, implementers can also extend directly
- * the various {@link TestCase} subclasses.</p>
- *
- * <div class="note"><b>Example:</b>
- * the test suite below declares that the tolerance threshold for {@code MyProjection}
- * needs to be relaxed by a factor 10 during reverse projections.
- *
- * {@snippet lang="java" :
- * package org.myproject;
- *
- * import org.opengis.test.TestSuite;
- * import org.opengis.test.CalculationType;
- * import org.opengis.test.ToleranceModifier;
- * import org.opengis.test.ToleranceModifiers;
- * import org.opengis.test.ImplementationDetails;
- * import org.opengis.referencing.operation.MathTransform;
- * import org.opengis.util.Factory;
- * import java.util.Properties;
- *
- * public class AllTests extends TestSuite implements ImplementationDetails {
- *     @Override
- *     public Properties configuration(Factory... factories) {
- *         return null;
- *     }
- *
- *     @Override
- *     public ToleranceModifier tolerance(MathTransform transform) {
- *         if (transform instanceof MyProjection) {
- *             return ToleranceModifiers.scale(EnumSet.of(CalculationType.INVERSE_TRANSFORM), 1, 10);
- *         }
- *         return null;
- *     }
- * }}
- *
- * The above {@code AllTests} class needs to be registered in the {@code META-INF/services/}
- * directory if the implementation details shall be honored (otherwise the tests will be run,
- * but the implementation details will be ignored).
- * </div>
- *
- * @see ImplementationDetails
  * @see TestCase
  * @see Factory
  *
@@ -147,7 +105,7 @@ public strictfp class TestSuite {
     /**
      * Returns the factory implementations explicitly given by the last call to
      * {@link #setFactories(Class, Factory[])} for the given interface.
-     * This method does not scan the {@code META-INF/services/<T>} entries.
+     * This method does not iterate on {@link ServiceLoader} entries.
      *
      * @param <T>   the compile-time type of the {@code type} class argument.
      * @param type  the factory interface for which an implementations is desired.
@@ -205,14 +163,6 @@ public strictfp class TestSuite {
      */
     public static void clear() {
         synchronized (TestCase.FACTORIES) {
-            ServiceLoader<?> services = TestCase.getFactoryFilter();
-            synchronized (services) {
-                services.reload();
-            }
-            services = TestCase.getImplementationDetails();
-            synchronized (services) {
-                services.reload();
-            }
             final Iterator<Iterable<? extends Factory>> it = TestCase.FACTORIES.values().iterator();
             while (it.hasNext()) {
                 final Iterable<? extends Factory> factories = it.next();

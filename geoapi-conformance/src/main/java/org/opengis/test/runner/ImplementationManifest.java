@@ -39,6 +39,8 @@ import static org.opengis.test.runner.Runner.LINE_SEPARATOR;
  * entry in their {@code META-INF/services/} directory. We use this criterion in
  * order to distinguish between the GeoAPI implementation and its dependencies.
  *
+ * @todo Need to change above criterion now that GeoAPI uses {@code module-info}.
+ *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1

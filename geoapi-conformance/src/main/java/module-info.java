@@ -30,11 +30,6 @@
  *     defined in this module.</li>
  * </ul>
  *
- * Implementers can alter the tests, for example in order to disable testing of some unsupported features,
- * either by extending directly the appropriate {@code TestCase} subclass (easiest way),
- * or by providing {@linkplain org.opengis.test.ImplementationDetails implementation details} in a central place.
- * See the <a href="http://www.geoapi.org/conformance/index.html">web site</a> for examples.
- *
  * @version 4.0
  * @since 2.2
  */
@@ -54,7 +49,4 @@ module org.opengis.geoapi.conformance {
     exports org.opengis.test.coverage.image;
     exports org.opengis.test.dataset;
     exports org.opengis.test.report;
-
-    uses org.opengis.test.FactoryFilter;
-    uses org.opengis.test.ImplementationDetails;
 }

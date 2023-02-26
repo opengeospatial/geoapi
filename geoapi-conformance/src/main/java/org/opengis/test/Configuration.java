@@ -49,7 +49,7 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  * {@code Configuration} is used in two places:
  *
  * <ul>
- *   <li>Before each test is executed, {@link ImplementationDetails} can provide configuration information.
+ *   <li>Before each test is executed.
  *       For example, an implementation can declare that it does not support the calculation of transform derivative.</li>
  *   <li>After each test is executed, {@link TestListener} can obtain the actual configuration used by the test.
  *       For example, listeners can know which {@link Factory} instances were used.</li>
@@ -98,7 +98,6 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  * </td></tr></table>
  *
  * @see TestCase#configuration()
- * @see ImplementationDetails#configuration(Factory[])
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

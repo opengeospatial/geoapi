@@ -18,11 +18,8 @@
 package org.opengis.test;
 
 import java.util.Set;
-import java.util.Map;
 import java.util.Arrays;
 import java.util.EnumSet;
-import java.util.LinkedHashMap;
-import java.util.ServiceLoader;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.MathTransform;
 
@@ -488,32 +485,5 @@ public strictfp final class ToleranceModifiers {
                 next = separator;
             }
         }
-    }
-
-    /**
-     * Returns all implementation-specific modifiers found on the classpath for the given math
-     * transform. Implementers can modify the tolerance threshold for particular math transforms
-     * using the {@link ImplementationDetails} interface.
-     *
-     * @param  transform  the transform for which to get implementation-specific modifiers.
-     * @return all implementation-specific modifiers found, or an empty array if none.
-     *
-     * @see ImplementationDetails#tolerance(MathTransform)
-     */
-    public static ToleranceModifier[] getImplementationSpecific(final MathTransform transform) {
-        Map<ToleranceModifier,Boolean> modifiers = null;
-        final ServiceLoader<ImplementationDetails> services = TestCase.getImplementationDetails();
-        synchronized (services) {
-            for (final ImplementationDetails impl : services) {
-                final ToleranceModifier modifier = impl.tolerance(transform);
-                if (modifier != null) {
-                    if (modifiers == null) {
-                        modifiers = new LinkedHashMap<>();
-                    }
-                    modifiers.put(modifier, null);
-                }
-            }
-        }
-        return (modifiers != null) ? modifiers.keySet().toArray(new ToleranceModifier[modifiers.size()]) : EMPTY_ARRAY;
     }
 }

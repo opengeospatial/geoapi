@@ -65,22 +65,7 @@ public strictfp abstract class TestCase {
      */
     static final Map<Class<? extends Factory>, Iterable<? extends Factory>> FACTORIES = new HashMap<>();
 
-    /**
-     * The service loader to use for loading {@link FactoryFilter}.
-     *
-     * <p>Accesses to this field must be synchronized on itself. If both {@code FACTORIES} and
-     * {@code FACTORY_FILTER} are synchronized, then {@code FACTORIES} must be synchronized first.</p>
-     */
-    private static ServiceLoader<FactoryFilter> factoryFilter;
 
-    /**
-     * The service loader to use for loading {@link ImplementationDetails}.
-     *
-     * <p>Accesses to this field must be synchronized on itself. If both {@code FACTORIES}
-     * and {@code IMPLEMENTATION_DETAILS} are synchronized, then {@code FACTORIES} must be
-     * synchronized first.</p>
-     */
-    private static ServiceLoader<ImplementationDetails> implementationDetails;
 
     /**
      * The class loader to use for searching implementations, or {@code null} for the default.
@@ -95,11 +80,7 @@ public strictfp abstract class TestCase {
      */
     static void setClassLoader(final ClassLoader loader) {
         synchronized (FACTORIES) {
-            if (loader != classLoader) {
-                classLoader = loader;
-                factoryFilter = null;
-                implementationDetails = null;
-            }
+            classLoader = loader;
         }
     }
 
@@ -112,29 +93,7 @@ public strictfp abstract class TestCase {
                 : ServiceLoader.load(service, classLoader);
     }
 
-    /**
-     * Returns the current {@link #factoryFilter} instance, creating a new one if needed.
-     */
-    static ServiceLoader<FactoryFilter> getFactoryFilter() {
-        synchronized (FACTORIES) {
-            if (factoryFilter == null) {
-                factoryFilter = load(FactoryFilter.class);
-            }
-            return factoryFilter;
-        }
-    }
 
-    /**
-     * Returns the current {@link #implementationDetails} instance, creating a new one if needed.
-     */
-    static ServiceLoader<ImplementationDetails> getImplementationDetails() {
-        synchronized (FACTORIES) {
-            if (implementationDetails == null) {
-                implementationDetails = load(ImplementationDetails.class);
-            }
-            return implementationDetails;
-        }
-    }
 
     /**
      * The test listeners. We intentionally copy the full array every time a listener is
@@ -293,42 +252,14 @@ public strictfp abstract class TestCase {
     /**
      * Creates a new test which will use the given factories to execute.
      *
-     * @param factories  the factories to be used by the test. Those factories will be given to
-     *        {@link ImplementationDetails#configuration(Factory[])} in order to decide which
-     *        {@linkplain #validators} to use.
+     * @param factories  the factories to be used by the test.
      *
      * @since 3.1
      */
     protected TestCase(final Factory... factories) {
-        Objects.requireNonNull(factories, "Given 'factories' array cannot be null.");
-        this.factories = factories;
-        Units units = null;
-        ValidatorContainer validators = null;
-        final ServiceLoader<ImplementationDetails> services = getImplementationDetails();
-        synchronized (services) {
-            for (final ImplementationDetails impl : services) {
-                final Configuration config = impl.configuration(factories);
-                if (config != null) {
-                    if (units == null) {
-                        units = config.get(Configuration.Key.units);
-                    }
-                    if (validators == null) {
-                        validators = config.get(Configuration.Key.validators);
-                    }
-                    if (units != null && validators != null) {
-                        break;          // We got all information will we looking for, no need to continue.
-                    }
-                }
-            }
-        }
-        if (units == null) {
-            units = Units.getDefault();
-        }
-        if (validators == null) {
-            Objects.requireNonNull(validators = Validators.DEFAULT, "Validators.DEFAULT shall not be null.");
-        }
-        this.units = units;
-        this.validators = validators;
+        this.factories  = Objects.requireNonNull(factories, "Given `factories` array cannot be null.");
+        this.validators = Objects.requireNonNull(Validators.DEFAULT, "Validators.DEFAULT shall not be null.");
+        this.units      = Units.getDefault();
     }
 
     /**
@@ -382,36 +313,17 @@ public strictfp abstract class TestCase {
      */
     @SafeVarargs
     protected static List<Factory[]> factories(final Class<? extends Factory>... types) {
-        return factories(null, types);
-    }
-
-    /**
-     * Returns factory instances for given factory interfaces, excluding the factories filtered
-     * by the given filter. This method performs the same work than {@link #factories(Class[])}
-     * except that the given filter is applied in addition to any filter found on the classpath.
-     *
-     * <p>The main purpose of this method is to get {@link org.opengis.referencing.AuthorityFactory}
-     * instances for a given authority name.</p>
-     *
-     * @param  filter  an optional factory filter to use in addition to any filter declared in
-     *                 the classpath, or {@code null} if none.
-     * @param  types   the kind of factories to fetch.
-     * @return all combinations of factories of the given kind. Each list element is an array
-     *         having the same length than {@code types}.
-     *
-     * @since 3.1
-     */
-    @SafeVarargs
-    protected static List<Factory[]> factories(final FactoryFilter filter, final Class<? extends Factory>... types) {
         final List<Factory[]> factories = new ArrayList<>(4);
         try {
             synchronized (FACTORIES) {
-                if (!factories(filter, types, factories)) {
-                    // The user has invoked TestSuite.setFactories(…), for example inside
-                    // his FactoryFilter.filter(…) method. Let be lenient and try again.
-                    // If the second try fails for the same reason, we will give up.
+                if (!factories(types, factories)) {
+                    /*
+                     * The user has invoked TestSuite.setFactories(…) during the iteration.
+                     * Let be lenient and try again.
+                     * If the second try fails for the same reason, we will give up.
+                     */
                     factories.clear();
-                    if (!factories(filter, types, factories)) {
+                    if (!factories(types, factories)) {
                         throw new ServiceConfigurationError("TestSuite.setFactories(…) has been invoked "
                                 + "in the middle of a search for factories.");
                     }
@@ -433,9 +345,7 @@ public strictfp abstract class TestCase {
      * some user method while we were iterating. This check is done in an opportunist;
      * it is not fully reliable.
      */
-    private static boolean factories(final FactoryFilter filter,
-            final Class<? extends Factory>[] types, final List<Factory[]> factories)
-    {
+    private static boolean factories(final Class<? extends Factory>[] types, final List<Factory[]> factories) {
         factories.add(new Factory[types.length]);
         for (int i=0; i<types.length; i++) {
             final Class<? extends Factory> type = types[i];
@@ -453,24 +363,24 @@ public strictfp abstract class TestCase {
             }
             List<Factory[]> toUpdate = factories;
             for (final Factory factory : choices) {
-                if (filter(type, factory, filter)) {
-                    if (toUpdate == factories) {
-                        toUpdate = Arrays.asList(factories.toArray(new Factory[factories.size()][]));
-                    } else {
-                        for (int j=toUpdate.size(); --j>=0;) {
-                            toUpdate.set(j, toUpdate.get(j).clone());
-                        }
-                        factories.addAll(toUpdate);
+                type.cast(factory);
+                if (toUpdate == factories) {
+                    toUpdate = Arrays.asList(factories.toArray(new Factory[factories.size()][]));
+                } else {
+                    for (int j=toUpdate.size(); --j>=0;) {
+                        toUpdate.set(j, toUpdate.get(j).clone());
                     }
-                    for (final Factory[] previous : toUpdate) {
-                        previous[i] = factory;
-                    }
+                    factories.addAll(toUpdate);
+                }
+                for (final Factory[] previous : toUpdate) {
+                    previous[i] = factory;
                 }
             }
-            // Check if TestSuite.setFactories(…) has been invoked while we were iterating.
-            // The method may have been invoked by a FactoryFilter.filter(…) method for
-            // example. While not an encouraged practice, we try to be a little bit more
-            // robust than not checking at all.
+            /*
+             * Check if TestSuite.setFactories(…) has been invoked while we were iterating.
+             * While not an encouraged practice, we try to be a little bit more robust than
+             * not checking at all.
+             */
             if (FACTORIES.get(type) != choices) {
                 return false;
             }
@@ -479,31 +389,8 @@ public strictfp abstract class TestCase {
     }
 
     /**
-     * Returns {@code true} if the given factory can be tested. This method iterates over all
-     * registered {@link FactoryFilter} and ensures that all of them accept the given factory.
-     */
-    private static <T extends Factory> boolean filter(final Class<T> category, final Factory factory, final FactoryFilter filter) {
-        final T checked = category.cast(factory);
-        if (filter != null && !filter.filter(category, checked)) {
-            return false;
-        }
-        final ServiceLoader<FactoryFilter> services = getFactoryFilter();
-        synchronized (services) {
-            for (final FactoryFilter impl : services) {
-                if (!impl.filter(category, checked)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    /**
-     * Returns booleans indicating whether the given operations are enabled. By default, every
-     * operations are enabled. However, if any {@link ImplementationDetails} instance found on the
-     * classpath returns a {@linkplain ImplementationDetails#configuration configuration} map
-     * having the value {@link Boolean#FALSE} for a given key, then the boolean value corresponding
-     * to that key is set to {@code false}.
+     * Returns booleans indicating whether the given operations are enabled.
+     * By default, every operations are enabled.
      *
      * @param  properties  the key for which the flags are wanted.
      * @return an array of the same length than {@code properties} in which each element at index
@@ -515,36 +402,13 @@ public strictfp abstract class TestCase {
     protected final boolean[] getEnabledFlags(final Configuration.Key<Boolean>... properties) {
         final boolean[] isEnabled = new boolean[properties.length];
         Arrays.fill(isEnabled, true);
-        final ServiceLoader<ImplementationDetails> services = getImplementationDetails();
-        synchronized (services) {
-            for (final ImplementationDetails impl : services) {
-                final Configuration config = impl.configuration(factories);
-                if (config != null) {
-                    boolean atLeastOneTestIsEnabled = false;
-                    for (int i=0; i<properties.length; i++) {
-                        if (isEnabled[i]) {
-                            final Boolean value = config.get(properties[i]);
-                            if (value != null && !(isEnabled[i] = value)) {
-                                continue;                       // Leave 'atLeastOneTestIsEnabled' unchanged.
-                            }
-                            atLeastOneTestIsEnabled = true;
-                        }
-                    }
-                    if (!atLeastOneTestIsEnabled) {
-                        break;                                  // No need to continue scanning the classpath.
-                    }
-                }
-            }
-        }
         return isEnabled;
     }
 
     /**
      * Returns information about the configuration of the test which has been run.
-     * The content of this map depends on the {@code TestCase} subclass and on the
-     * values returned by the {@link ImplementationDetails#configuration(Factory[])}
-     * method for the factories being tested. For a description of the map content,
-     * see any of the following subclasses:
+     * The content of this map depends on the {@code TestCase} subclass.
+     * For a description of the map content, see any of the following subclasses:
      *
      * <ul>
      *   <li>{@link org.opengis.test.referencing.AffineTransformTest#configuration()}</li>
@@ -554,8 +418,6 @@ public strictfp abstract class TestCase {
      *
      * @return the configuration of the test being run, or an empty map if none.
      *         This method returns a modifiable map in order to allow subclasses to modify it.
-     *
-     * @see ImplementationDetails#configuration(Factory[])
      *
      * @since 3.1
      */

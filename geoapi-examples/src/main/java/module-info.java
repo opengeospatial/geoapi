@@ -51,4 +51,6 @@ module org.opengis.geoapi.example {
     requires tech.uom.seshat;
     requires org.opengis.geoapi.pending;
     requires vecmath;
+
+    provides org.opengis.util.NameFactory with org.opengis.example.util.SimpleNameFactory;
 }
