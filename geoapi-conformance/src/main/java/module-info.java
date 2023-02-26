@@ -49,10 +49,10 @@ module org.opengis.geoapi.conformance {
     exports org.opengis.test.util;
     exports org.opengis.test.metadata;
     exports org.opengis.test.referencing;
-    exports org.opengis.test.referencing.gigs;
     exports org.opengis.test.wkt;
     exports org.opengis.test.geometry;
     exports org.opengis.test.coverage.image;
+    exports org.opengis.test.dataset;
     exports org.opengis.test.report;
 
     uses org.opengis.test.FactoryFilter;

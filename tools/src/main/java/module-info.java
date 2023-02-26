@@ -31,7 +31,7 @@
  * </ul>
  *
  * Usage instructions from command-line are in the
- * <a href="https://github.com/opengeospatial/geoapi/tools/README.md">README.md</a> file.
+ * <a href="https://github.com/opengeospatial/geoapi/tree/master/tools">README.md</a> file.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0

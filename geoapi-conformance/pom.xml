@@ -122,11 +122,6 @@
             <manifest>
               <mainClass>org.opengis.test.runner.Main</mainClass>
             </manifest>
-            <manifestEntries>
-              <Automatic-Module-Name>
-                org.opengis.geoapi.conformance
-              </Automatic-Module-Name>
-            </manifestEntries>
           </archive>
         </configuration>
       </plugin>
