@@ -3,9 +3,6 @@ target/
 
 # Netbeans files
 nbactions.xml
-ide-project/NetBeans/build/
-ide-project/NetBeans/dist/
-ide-project/NetBeans/nbproject/private/
 
 # Eclipse files
 .classpath

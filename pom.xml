@@ -232,9 +232,9 @@
       </dependency>
       <dependency>
         <!-- The JUnit version number appears also in the Javadoc plugin configuration,
-             in shell scripts, in Java code generating reports, and in NetBeans project
-             configuration. If JUnit is updated, please search for the version number in
-             the whole project. Search also for version number of the Hamcrest dependency. -->
+             in shell scripts, and in Java code generating reports. If JUnit is updated,
+             please search for the version number in the whole project.
+             Search also for version number of the Hamcrest dependency. -->
         <groupId>junit</groupId>
         <artifactId>junit</artifactId>
         <version>4.13.2</version>
