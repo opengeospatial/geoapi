@@ -101,43 +101,9 @@
     <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
     <website.encoding>UTF-8</website.encoding>
     <skipNativeLibraryTests>true</skipNativeLibraryTests>
-    <maven.compiler.release>8</maven.compiler.release>
-    <future.source>module-info.java</future.source>             <!-- To exclude when JDK9 profile is not enabled. -->
+    <maven.compiler.release>11</maven.compiler.release>
   </properties>
   <profiles>
-    <!--
-      Build as Java 9 modules (experimental). We provide the module-info.java file in
-      a separated director for avoiding to confuse IDEs, and for making easier to use
-      a different module-info.java file in geoapi-pending.
-    -->
-    <profile>
-      <id>jdk9</id>
-      <properties>
-        <maven.compiler.release>9</maven.compiler.release>
-        <future.source>(none)</future.source>
-      </properties>
-      <build>
-        <plugins>
-          <plugin>
-            <groupId>org.codehaus.mojo</groupId>
-            <artifactId>build-helper-maven-plugin</artifactId>
-            <executions>
-              <execution>
-                <id>sources</id>
-                <goals>
-                  <goal>add-source</goal>
-                </goals>
-                <configuration>
-                  <sources>
-                    <source>src/main/java9</source>
-                  </sources>
-                </configuration>
-              </execution>
-            </executions>
-          </plugin>
-        </plugins>
-      </build>
-    </profile>
     <!--
       Official release: require signing the JAR files.
     -->
@@ -370,9 +336,6 @@
             <arg>-Xlint:all</arg>
             <arg>-Xdoclint:all,-reference</arg>
           </compilerArgs>
-          <excludes>
-            <exclude>${future.source}</exclude>
-          </excludes>
         </configuration>
       </plugin>
 

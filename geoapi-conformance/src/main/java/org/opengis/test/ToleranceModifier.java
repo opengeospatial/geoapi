@@ -20,24 +20,13 @@ package org.opengis.test;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.GeographicCRS;
 import org.opengis.referencing.crs.ProjectedCRS;
-import org.opengis.referencing.operation.MathTransform;
 
 
 /**
  * Modifies the tolerance threshold before to compare a calculated value against its expected value.
- * When a {@link TestCase} is run, GeoAPI performs the following steps:
- *
- * <ul>
- *   <li>Scan every {@link ImplementationDetails} on the classpath and invoke their
- *       {@link ImplementationDetails#tolerance(MathTransform) tolerance(…)}
- *       method for the {@link MathTransform} being tested.</li>
- *
- *   <li>For each non-null {@code ToleranceModifier}, invoke the {@link #adjust(double[],
- *       DirectPosition, CalculationType) adjust(…)} method. The first given argument will be
- *       the default tolerance thresholds computed by the {@link TestCase} being run. Implementation
- *       can modify those tolerances in an arbitrary number of dimensions.</li>
- * </ul>
- *
+ * When a {@link TestCase} is run, GeoAPI invoke the {@link #adjust(double[], DirectPosition, CalculationType)
+ * adjust(…)} method. The first given argument will be the default tolerance thresholds computed by the
+ * {@link TestCase} being run. Implementation can modify those tolerances in an arbitrary number of dimensions.
  * Different implementations are available for different cases. For example:
  *
  * <ul>

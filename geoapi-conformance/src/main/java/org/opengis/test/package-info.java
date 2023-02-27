@@ -50,9 +50,8 @@
  *       assertion methods.</p></li>
  *
  *   <li><p><b>Configuration</b><br>
- *       {@link org.opengis.test.Configuration}, {@link org.opengis.test.CalculationType},
- *       {@link org.opengis.test.ToleranceModifier}, {@link org.opengis.test.FactoryFilter} and
- *       {@link org.opengis.test.ImplementationDetails} allow implementers to alter the tests.</p></li>
+ *       {@link org.opengis.test.Configuration}, {@link org.opengis.test.CalculationType} and
+ *       {@link org.opengis.test.ToleranceModifier} allow implementers to alter the tests.</p></li>
  *
  *   <li><p><b>Events</b><br>
  *       {@link org.opengis.test.TestListener}, {@link org.opengis.test.TestEvent} and

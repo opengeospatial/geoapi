@@ -18,38 +18,23 @@
 
 
 /**
- * Java interfaces derived from specifications of <cite>International Organization for Standardization</cite> (<abbr>ISO</abbr>)
- * and <cite><a href="http://www.opengeospatial.org">Open Geospatial Consortium</a></cite> (<abbr>OGC</abbr>).
- * The interfaces were created from UML diagrams found in the <abbr>ISO</abbr> and <abbr>OGC</abbr> specifications.
+ * Java interfaces derived from specifications of <cite>International Organization for Standardization</cite> (ISO)
+ * and <cite><a href="http://www.opengeospatial.org">Open Geospatial Consortium</a></cite> (OGC), pending review.
+ * Some of those interfaces may migrate to the normative GeoAPI module when they will be considered ready.
  *
- * <h2>Links</h2>
- * <ul>
- *   <li><a href="http://www.geoapi.org/">GeoAPI home page</a></li>
- *   <li><a href="http://www.opengeospatial.org/standards/geoapi/"><abbr>OGC</abbr> GeoAPI specification</a></li>
- *   <li><a href="content.html">GeoAPI content (with mapping to <abbr>OGC</abbr>/<abbr>ISO</abbr> <abbr>UML</abbr>)</a></li>
- *   <li><a href="UML-Java.html">Mapping from <abbr>UML</abbr> diagrams to Java interfaces</a></li>
- *   <li><a href="departures.html">Departures in Java interfaces compared to <abbr>UML</abbr> diagrams</a></li>
- *   <li><a href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html"><cite>Well-Known Text 2</cite> (<abbr>WKT</abbr> 2) specification</a></li>
- *   <li><a href="org/opengis/referencing/doc-files/WKT.html"><cite>Well-Known Text 1</cite> (<abbr>WKT</abbr> 1) specification</a></li>
- *   <li><a href="future-work.html">Future work</a></li>
- * </ul>
- *
- * <h2>Requirements</h2>
- * <ul>
- *   <li><a href="http://docs.oracle.com/javase/7/docs/index.html">Java&nbsp;7</a> or later.</li>
- *   <li><a href="https://jcp.org/en/jsr/detail?id=385"><abbr>JSR</abbr>-385</a> units of measurement API.</li>
- * </ul>
+ * <p>Every interfaces defined in the <a href="http://www.geoapi.org/snapshot/">normative module</a> are reproduced here.
+ * Consequently, importing the {@code geoapi-pending} module in a project is sufficient for using both the normative and
+ * the experimental interfaces.</p>
  *
  * @version 4.0
- * @since 1.0
+ * @since 2.2
  */
-module org.opengis.geoapi {
-    requires transitive java.measure;
+module org.opengis.geoapi.pending {
     /*
-     * The only java.desktop dependency is the java.awt.geom.Point2D class used in
-     * org.opengis.referencing.operation.MathTransform2D.  Since that interface is
-     * not directly referenced anywhere, it can easily be ignored by implementers.
+     * Bellow is a copy-and-paste of geoapi module information,
+     * with some additional exports at the bottom.
      */
+    requires transitive java.measure;
     requires transitive static java.desktop;
 
     exports org.opengis.annotation;
@@ -75,7 +60,21 @@ module org.opengis.geoapi {
     exports org.opengis.geometry;
     exports org.opengis.geometry.coordinate;
     exports org.opengis.feature;
+    exports org.opengis.filter;
+    exports org.opengis.filter.capability;
 
     exports org.opengis.temporal;
     exports org.opengis.geometry.primitive;
+
+    // Additional exports
+    exports org.opengis.referencing.gazetteer;
+    exports org.opengis.geometry.aggregate;
+    exports org.opengis.geometry.complex;
+    exports org.opengis.coverage.grid;
+    exports org.opengis.observation;
+    exports org.opengis.observation.coverage;
+    exports org.opengis.observation.sampling;
+    exports org.opengis.sld;
+    exports org.opengis.style;
+    exports org.opengis.style.portrayal;
 }

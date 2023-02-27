@@ -294,12 +294,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * Creates a test case initialized to default values. The {@linkplain #transform}
      * is initially null, the {@linkplain #tolerance} threshold is initially zero and
      * all <code>is&lt;</code><var>Operation</var><code>&gt;Supported</code> are set
-     * to {@code true} unless at least one {@link org.opengis.test.ImplementationDetails}
-     * object disabled some tests.
+     * to {@code true}.
      *
-     * @param factories  the factories to be used by the test. Those factories will be given to
-     *        {@link org.opengis.test.ImplementationDetails#configuration(Factory[])} in order
-     *        to decide which tests should be enabled.
+     * @param factories  the factories to be used by the test.
      */
     @SuppressWarnings("unchecked")
     protected TransformTestCase(final Factory... factories) {
@@ -361,10 +358,6 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *       <li>{@link #isDerivativeSupported}</li>
      *     </ul>
      *   </li>
-     *   <li>The {@code "isToleranceRelaxed"} key associated to the value {@link Boolean#TRUE}
-     *       if the {@link ToleranceModifiers#getImplementationSpecific(MathTransform)} method
-     *       found at least one {@link ToleranceModifier} on the classpath, or
-     *       {@link Boolean#FALSE} otherwise.</li>
      * </ul>
      *
      * @return {@inheritDoc}
@@ -1271,8 +1264,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
         if (cachedModifier == null || modifierUsedByCache != toleranceModifier || transformUsedByCache != transform) {
             transformUsedByCache = transform;
             modifierUsedByCache = toleranceModifier;
-            final ToleranceModifier foundOnTheClasspath = ToleranceModifiers.maximum(
-                    ToleranceModifiers.getImplementationSpecific(transform));
+            final ToleranceModifier foundOnTheClasspath = null;     // TODO: provide a way for users to relax tolerance.
             isToleranceRelaxed |= (foundOnTheClasspath != null);
             cachedModifier = ToleranceModifiers.concatenate(toleranceModifier, foundOnTheClasspath);
         }
