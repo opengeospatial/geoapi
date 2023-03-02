@@ -313,7 +313,7 @@ public abstract class Interfacing extends CodeList<Interfacing> {
              * except for resolving ambiguities. The amount of classes is potentially
              * large and only a small amount of it is typically used.
              */
-            final Properties p = new Properties();      // TODO: use (CLASS_CAPACITY + 14) on JDK10.
+            final Properties p = new Properties(CLASS_CAPACITY + 14);
             try (InputStream in = UML.class.getResourceAsStream(CLASS_LIST)) {
                 p.load(in);
             } catch (NullPointerException | IOException e) {

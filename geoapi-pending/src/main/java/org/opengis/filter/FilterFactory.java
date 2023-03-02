@@ -18,7 +18,7 @@
 package org.opengis.filter;
 
 import java.time.Instant;
-import java.util.Arrays;
+import java.util.List;
 import java.util.Objects;
 import java.util.Collection;
 import javax.measure.Quantity;
@@ -420,9 +420,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @see LogicalOperatorName#AND
      */
     default LogicalOperator<R> and(Filter<? super R> operand1, Filter<? super R> operand2) {
-        // TODO: use List.of(…) with JDK9.
-        return and(Arrays.<Filter<? super R>>asList(Objects.requireNonNull(operand1),
-                                                    Objects.requireNonNull(operand2)));
+        return and(List.<Filter<? super R>>of(Objects.requireNonNull(operand1),
+                                              Objects.requireNonNull(operand2)));
     }
 
     /**
@@ -446,9 +445,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @see LogicalOperatorName#OR
      */
     default LogicalOperator<R> or(Filter<? super R> operand1, Filter<? super R> operand2) {
-        // TODO: use List.of(…) with JDK9.
-        return or(Arrays.<Filter<? super R>>asList(Objects.requireNonNull(operand1),
-                                                   Objects.requireNonNull(operand2)));
+        return or(List.<Filter<? super R>>of(Objects.requireNonNull(operand1),
+                                             Objects.requireNonNull(operand2)));
     }
 
     /**

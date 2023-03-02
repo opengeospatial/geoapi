@@ -18,7 +18,6 @@
 package org.opengis.filter;
 
 import java.util.List;
-import java.util.Arrays;
 import java.util.Iterator;
 import java.util.Locale;
 import org.opengis.util.LocalName;
@@ -78,7 +77,7 @@ final class Name implements ScopedName {
     @Override public GenericName         path()                   {return head;}
     @Override public GenericName         tail()                   {return tail;}
     @Override public LocalName           tip()                    {return tail;}
-    @Override public List<LocalName>     getParsedNames()         {return Arrays.asList(head, tail);}  // TODO: List.of(…) in JDK9.
+    @Override public List<LocalName>     getParsedNames()         {return List.of(head, tail);}
     @Override public int                 depth()                  {return 2;}
     @Override public GenericName         toFullyQualifiedName()   {return this;}
     @Override public InternationalString toInternationalString()  {return new Text(toString());}

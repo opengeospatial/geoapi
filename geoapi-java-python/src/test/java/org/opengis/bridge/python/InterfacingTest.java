@@ -68,7 +68,7 @@ public final class InterfacingTest {
      */
     @Test
     public void verifyTypesForNames() throws IOException, ClassNotFoundException {
-        final Properties umlToClass = new Properties();     // TODO: use (CLASS_CAPACITY + 14) on JDK10.
+        final Properties umlToClass = new Properties(Interfacing.GeoAPI.CLASS_CAPACITY + 14);
         try (InputStream in = UML.class.getResourceAsStream(Interfacing.GeoAPI.CLASS_LIST)) {
             umlToClass.load(in);
         }

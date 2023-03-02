@@ -55,7 +55,8 @@ public interface TemporalOperator<R> extends Filter<R> {
      * The list content is as below:
      *
      * <ol>
-     *   <li>The first expression should be a {@link ValueReference} evaluating to a temporal object.
+     *   <li>
+     *     The first expression should be a {@link ValueReference} evaluating to a temporal object.
      *   </li><li>
      *     The second expression should be a {@link ValueReference} or a {@linkplain Literal literal}
      *     evaluating to a temporal object.
