@@ -100,7 +100,7 @@ public final class SplineCurveForm extends CodeList<SplineCurveForm> {
      */
     public static SplineCurveForm[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new SplineCurveForm[VALUES.size()]);
+            return VALUES.toArray(SplineCurveForm[]::new);
         }
     }
 

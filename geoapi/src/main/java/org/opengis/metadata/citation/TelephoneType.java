@@ -81,7 +81,7 @@ public final class TelephoneType extends CodeList<TelephoneType> {
      */
     public static TelephoneType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new TelephoneType[VALUES.size()]);
+            return VALUES.toArray(TelephoneType[]::new);
         }
     }
 

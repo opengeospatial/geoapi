@@ -84,7 +84,7 @@ public final class OperationType extends CodeList<OperationType> {
      */
     public static OperationType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new OperationType[VALUES.size()]);
+            return VALUES.toArray(OperationType[]::new);
         }
     }
 

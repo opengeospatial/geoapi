@@ -82,7 +82,7 @@ public final class ObjectiveType extends CodeList<ObjectiveType> {
      */
     public static ObjectiveType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new ObjectiveType[VALUES.size()]);
+            return VALUES.toArray(ObjectiveType[]::new);
         }
     }
 

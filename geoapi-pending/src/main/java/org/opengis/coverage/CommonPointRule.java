@@ -117,7 +117,7 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
      */
     public static CommonPointRule[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new CommonPointRule[VALUES.size()]);
+            return VALUES.toArray(CommonPointRule[]::new);
         }
     }
 

@@ -100,7 +100,7 @@ public final class PolarisationOrientation extends CodeList<PolarisationOrientat
      */
     public static PolarisationOrientation[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new PolarisationOrientation[VALUES.size()]);
+            return VALUES.toArray(PolarisationOrientation[]::new);
         }
     }
 

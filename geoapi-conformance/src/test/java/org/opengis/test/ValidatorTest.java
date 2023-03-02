@@ -17,8 +17,8 @@
  */
 package org.opengis.test;
 
-import java.util.Arrays;
 import java.util.Collections;
+import java.util.List;
 import org.junit.*;
 
 import static org.junit.Assert.*;
@@ -87,6 +87,6 @@ public class ValidatorTest {
      */
     @Test
     public void testValidate() {
-        validator.validate(Arrays.asList("Red", "Blue", "Green", "Blue", "Green", "Yellow"));
+        validator.validate(List.of("Red", "Blue", "Green", "Blue", "Green", "Yellow"));
     }
 }

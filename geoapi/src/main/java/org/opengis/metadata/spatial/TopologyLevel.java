@@ -118,7 +118,7 @@ public final class TopologyLevel extends CodeList<TopologyLevel> {
      */
     public static TopologyLevel[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new TopologyLevel[VALUES.size()]);
+            return VALUES.toArray(TopologyLevel[]::new);
         }
     }
 

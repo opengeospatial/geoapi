@@ -332,7 +332,7 @@ public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      */
     public static ReferenceSystemType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new ReferenceSystemType[VALUES.size()]);
+            return VALUES.toArray(ReferenceSystemType[]::new);
         }
     }
 

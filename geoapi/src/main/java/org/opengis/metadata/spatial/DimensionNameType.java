@@ -112,7 +112,7 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
      */
     public static DimensionNameType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new DimensionNameType[VALUES.size()]);
+            return VALUES.toArray(DimensionNameType[]::new);
         }
     }
 

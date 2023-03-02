@@ -140,7 +140,7 @@ public final class SurfaceInterpolation extends CodeList<SurfaceInterpolation> {
      */
     public static SurfaceInterpolation[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new SurfaceInterpolation[VALUES.size()]);
+            return VALUES.toArray(SurfaceInterpolation[]::new);
         }
     }
 

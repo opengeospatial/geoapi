@@ -99,7 +99,7 @@ public final class SpatialRepresentationType extends CodeList<SpatialRepresentat
      */
     public static SpatialRepresentationType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new SpatialRepresentationType[VALUES.size()]);
+            return VALUES.toArray(SpatialRepresentationType[]::new);
         }
     }
 

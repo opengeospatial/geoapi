@@ -164,7 +164,7 @@ public abstract class Interfacing extends CodeList<Interfacing> {
      */
     public static Interfacing[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Interfacing[VALUES.size()]);
+            return VALUES.toArray(Interfacing[]::new);
         }
     }
 

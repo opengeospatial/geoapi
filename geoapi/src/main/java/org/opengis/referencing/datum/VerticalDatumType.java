@@ -117,7 +117,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      */
     public static VerticalDatumType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new VerticalDatumType[VALUES.size()]);
+            return VALUES.toArray(VerticalDatumType[]::new);
         }
     }
 

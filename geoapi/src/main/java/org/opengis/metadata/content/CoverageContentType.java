@@ -135,7 +135,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      */
     public static CoverageContentType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new CoverageContentType[VALUES.size()]);
+            return VALUES.toArray(CoverageContentType[]::new);
         }
     }
 

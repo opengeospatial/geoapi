@@ -82,7 +82,7 @@ public final class Trigger extends CodeList<Trigger> {
      */
     public static Trigger[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Trigger[VALUES.size()]);
+            return VALUES.toArray(Trigger[]::new);
         }
     }
 

@@ -143,7 +143,7 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      */
     public static OnLineFunction[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new OnLineFunction[VALUES.size()]);
+            return VALUES.toArray(OnLineFunction[]::new);
         }
     }
 

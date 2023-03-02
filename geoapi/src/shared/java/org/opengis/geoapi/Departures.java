@@ -163,7 +163,7 @@ public class Departures {
          */
         final void beforeAddProperties(final Map<String,?> properties) {
             if (needToReorderProperties) {
-                propertiesToKeepLast = properties.keySet().toArray(new String[properties.size()]);
+                propertiesToKeepLast = properties.keySet().toArray(String[]::new);
             }
         }
 

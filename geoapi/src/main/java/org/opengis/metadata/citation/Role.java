@@ -205,7 +205,7 @@ public final class Role extends CodeList<Role> {
      */
     public static Role[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Role[VALUES.size()]);
+            return VALUES.toArray(Role[]::new);
         }
     }
 

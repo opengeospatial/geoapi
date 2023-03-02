@@ -95,7 +95,7 @@ public final class CouplingType  extends CodeList<CouplingType> {
      */
     public static CouplingType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new CouplingType[VALUES.size()]);
+            return VALUES.toArray(CouplingType[]::new);
         }
     }
 

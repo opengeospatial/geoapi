@@ -102,7 +102,7 @@ public final class BandDefinition extends CodeList<BandDefinition> {
      */
     public static BandDefinition[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new BandDefinition[VALUES.size()]);
+            return VALUES.toArray(BandDefinition[]::new);
         }
     }
 

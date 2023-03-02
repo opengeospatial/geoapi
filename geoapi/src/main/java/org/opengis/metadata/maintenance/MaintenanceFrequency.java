@@ -160,7 +160,7 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
      */
     public static MaintenanceFrequency[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new MaintenanceFrequency[VALUES.size()]);
+            return VALUES.toArray(MaintenanceFrequency[]::new);
         }
     }
 

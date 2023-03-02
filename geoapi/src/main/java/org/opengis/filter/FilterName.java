@@ -69,7 +69,7 @@ final class FilterName extends CodeList<FilterName> {
      */
     public static FilterName[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new FilterName[VALUES.size()]);
+            return VALUES.toArray(FilterName[]::new);
         }
     }
 

@@ -134,7 +134,7 @@ public final class SpatialOperatorName extends CodeList<SpatialOperatorName> {
      */
     public static SpatialOperatorName[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new SpatialOperatorName[VALUES.size()]);
+            return VALUES.toArray(SpatialOperatorName[]::new);
         }
     }
 

@@ -17,7 +17,7 @@
  */
 package org.opengis.tools.apt;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -54,7 +54,7 @@ public final class RunCompilation implements FileFilter {
     public void main() throws Exception {
         final JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         final StandardJavaFileManager fm = compiler.getStandardFileManager(null, null, StandardCharsets.UTF_8);
-        final JavaCompiler.CompilationTask task = compiler.getTask(null, fm, null, Arrays.asList(
+        final JavaCompiler.CompilationTask task = compiler.getTask(null, fm, null, List.of(
                     "-proc:only",             // Perform only annotation processing, no compilation.
                     "-XprintProcessorInfo",   // Prints information about which annotations a processor is asked to process.
                     "-XprintRounds",          // Prints information about initial and subsequent annotation processing rounds.

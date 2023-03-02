@@ -104,7 +104,7 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      */
     public static GeometricObjectType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new GeometricObjectType[VALUES.size()]);
+            return VALUES.toArray(GeometricObjectType[]::new);
         }
     }
 

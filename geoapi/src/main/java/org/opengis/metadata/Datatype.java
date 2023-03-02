@@ -156,7 +156,7 @@ public final class Datatype extends CodeList<Datatype> {
      */
     public static Datatype[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Datatype[VALUES.size()]);
+            return VALUES.toArray(Datatype[]::new);
         }
     }
 

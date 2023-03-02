@@ -139,7 +139,7 @@ public final class ValueStructure extends CodeList<ValueStructure> {
      */
     public static ValueStructure[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new ValueStructure[VALUES.size()]);
+            return VALUES.toArray(ValueStructure[]::new);
         }
     }
 

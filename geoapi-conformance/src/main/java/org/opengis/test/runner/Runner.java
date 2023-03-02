@@ -130,7 +130,7 @@ final class Runner extends RunListener implements TestListener {
      */
     ResultEntry[] getEntries() {
         synchronized (entries) {
-            return entries.toArray(new ResultEntry[entries.size()]);
+            return entries.toArray(ResultEntry[]::new);
         }
     }
 

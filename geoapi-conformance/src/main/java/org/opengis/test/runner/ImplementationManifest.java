@@ -124,7 +124,7 @@ final class ImplementationManifest {
             }
         }
         if (manifest != null) {
-            manifest.dependencies = classpath.toArray(new File[classpath.size()]);
+            manifest.dependencies = classpath.toArray(File[]::new);
         }
         return manifest;
     }

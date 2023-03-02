@@ -17,7 +17,7 @@
  */
 package org.opengis.metadata.quality;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.Collection;
 import java.time.temporal.Temporal;
 
@@ -51,6 +51,6 @@ final class EvaluationMethodImpl implements EvaluationMethod {
      */
     @Override
     public Collection<Temporal> getDates() {
-        return Arrays.asList(startTime, endTime);
+        return List.of(startTime, endTime);
     }
 }

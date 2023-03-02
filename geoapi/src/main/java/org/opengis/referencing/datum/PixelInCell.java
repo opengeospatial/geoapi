@@ -101,7 +101,7 @@ public final class PixelInCell extends CodeList<PixelInCell> {
      */
     public static PixelInCell[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new PixelInCell[VALUES.size()]);
+            return VALUES.toArray(PixelInCell[]::new);
         }
     }
 

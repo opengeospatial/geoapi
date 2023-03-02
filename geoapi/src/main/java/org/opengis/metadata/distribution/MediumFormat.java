@@ -109,7 +109,7 @@ public final class MediumFormat extends CodeList<MediumFormat> {
      */
     public static MediumFormat[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new MediumFormat[VALUES.size()]);
+            return VALUES.toArray(MediumFormat[]::new);
         }
     }
 

@@ -132,7 +132,7 @@ public final class RelativePosition extends CodeList<RelativePosition> {
      */
     public static RelativePosition[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new RelativePosition[VALUES.size()]);
+            return VALUES.toArray(RelativePosition[]::new);
         }
     }
 

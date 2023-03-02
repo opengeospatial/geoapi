@@ -84,7 +84,7 @@ public final class DistanceOperatorName extends CodeList<DistanceOperatorName> {
      */
     public static DistanceOperatorName[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new DistanceOperatorName[VALUES.size()]);
+            return VALUES.toArray(DistanceOperatorName[]::new);
         }
     }
 

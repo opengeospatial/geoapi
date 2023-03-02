@@ -342,7 +342,7 @@ class JavaToPython extends SourceGenerator {
                 }
             }
         }
-        final PythonProperty[] props = properties.values().toArray(new PythonProperty[properties.size()]);
+        final PythonProperty[] props = properties.values().toArray(PythonProperty[]::new);
         properties.clear();
         Arrays.sort(props);
         return props;

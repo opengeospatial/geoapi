@@ -20,7 +20,6 @@ package org.opengis.tools.apt;
 import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
-import java.util.HashSet;
 import java.util.Comparator;
 import java.util.Properties;
 import javax.tools.Diagnostic;
@@ -107,8 +106,8 @@ public class IndexGenerator extends UmlProcessor implements Comparator<TypeEleme
      * Creates a default processor.
      */
     public IndexGenerator() {
-        javaMethods    = new HashSet<>(Arrays.asList("toString", "clone", "equals", "hashCode", "doubleValue"));
-        vecmathMethods = new HashSet<>(Arrays.asList("getNumRow", "getNumCol", "getElement", "setElement"));
+        javaMethods    = Set.of("toString", "clone", "equals", "hashCode", "doubleValue");
+        vecmathMethods = Set.of("getNumRow", "getNumCol", "getElement", "setElement");
         lineSeparator  = System.getProperty("line.separator", "\n");
         notes          = new Properties();
     }

@@ -153,7 +153,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      */
     public static TemporalOperatorName[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new TemporalOperatorName[VALUES.size()]);
+            return VALUES.toArray(TemporalOperatorName[]::new);
         }
     }
 

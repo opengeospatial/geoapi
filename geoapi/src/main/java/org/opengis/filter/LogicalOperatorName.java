@@ -82,7 +82,7 @@ public final class LogicalOperatorName extends CodeList<LogicalOperatorName> {
      */
     public static LogicalOperatorName[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new LogicalOperatorName[VALUES.size()]);
+            return VALUES.toArray(LogicalOperatorName[]::new);
         }
     }
 

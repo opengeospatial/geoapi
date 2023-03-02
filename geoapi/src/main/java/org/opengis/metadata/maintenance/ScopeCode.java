@@ -300,7 +300,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      */
     public static ScopeCode[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new ScopeCode[VALUES.size()]);
+            return VALUES.toArray(ScopeCode[]::new);
         }
     }
 

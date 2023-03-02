@@ -89,7 +89,7 @@ public final class IndeterminateValue extends CodeList<IndeterminateValue> {
      */
     public static IndeterminateValue[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new IndeterminateValue[VALUES.size()]);
+            return VALUES.toArray(IndeterminateValue[]::new);
         }
     }
 

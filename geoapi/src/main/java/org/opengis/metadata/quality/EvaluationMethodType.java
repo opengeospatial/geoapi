@@ -84,7 +84,7 @@ public final class EvaluationMethodType extends CodeList<EvaluationMethodType> {
      */
     public static EvaluationMethodType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new EvaluationMethodType[VALUES.size()]);
+            return VALUES.toArray(EvaluationMethodType[]::new);
         }
     }
 
