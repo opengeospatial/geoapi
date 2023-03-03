@@ -3,9 +3,10 @@ layout: default
 permalink: "/archives/index.html"
 title: GeoAPI History
 ---
-<h1>History</h1>
 
-<p>List of releases or milestones:</p>
+# History
+
+List of releases or milestones:
 
 <ul>
   <li><a href="{{ '/3.0/index.html' | relative_url }}">GeoAPI 3.0</a> - Formal release, standardized by <a class="externalLink" href="https://www.opengeospatial.org/standards/geoapi">OGC 09-083</a>, <i>GeoAPI specification</i>.</li>

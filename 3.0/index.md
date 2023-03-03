@@ -3,40 +3,38 @@ layout: default
 permalink: "/3.0/index.html"
 title: "GeoAPI 3.0.2"
 ---
-<h1>GeoAPI 3.0.2</h1>
 
-<p>
-  Release 3.0 of GeoAPI contains the interfaces developed by the GeoAPI project and accepted
-  by the Open Geospatial Consortium with the final draft of the engineering specification
-  <cite>GeoAPI specification</cite> and therefore considered by the GeoAPI project as one of its official releases.
-  This release requires a Java environment Java 7 or higher.
-</p>
+# GeoAPI 3.0.2
 
-<ul class="list-disc ml-4">
-  <li class="my-1 text-justify"><a class="externalLink" href="https://www.opengeospatial.org/standards/geoapi">Defining specification</a> from OGC web site.</li>
-  <li class="my-1 text-justify"><a href="javadoc/content.html">Table of content</a></li>
-  <li class="my-1 text-justify"><a href="javadoc/index.html">Browse javadoc</a></li>
-  <li class="my-1 text-justify"><a href="../java/examples/index.html">Usage examples</a></li>
-  <li class="my-1 text-justify"><a class="externalLink" href="https://sourceforge.net/projects/geoapi/files/GeoAPI-3_0_2.zip/download">Download from SourceForge</a></li>
-  <li class="my-1 text-justify"><b>Download as Maven dependency:</b>
-<p>
-  GeoAPI 3.0 is deployed on the <a class="externalLink" href="https://search.maven.org/">Maven Central Repository</a>
-  and can be used in a Maven project with the following declaration in the <code>pom.xml</code> file:
-</p>
-<pre>&lt;dependencies&gt;
-    &lt;dependency&gt;
-        &lt;groupId&gt;org.opengis&lt;/groupId&gt;
-        &lt;artifactId&gt;geoapi&lt;/artifactId&gt;
-        &lt;version&gt;3.0.2&lt;/version&gt;
-    &lt;/dependency&gt;
-&lt;/dependencies&gt;</pre>
-  </li>
-</ul>
+Release 3.0 of GeoAPI contains the interfaces developed by the GeoAPI project and accepted
+by the Open Geospatial Consortium with the final draft of the engineering specification
+_GeoAPI specification_ and therefore considered by the GeoAPI project as one of its official releases.
+This release requires a Java environment Java 7 or higher.
 
-<h2>Changes since GeoAPI 2.<var>x</var></h2>
+* [Defining specification from OGC web site](https://www.ogc.org/standard/geoapi/)
+* [Table of content](javadoc/content.html)
+* [Browse javadoc](javadoc/index.html)
+* [Usage examples](../java/examples/index.html)
+* [Download from SourceForge](https://sourceforge.net/projects/geoapi/files/GeoAPI-3_0_2.zip/download)
 
-<p>
-  This release is identical to the latest GeoAPI 2.3 milestone except for the JSR-275 dependency (deprecated)
-  which is replaced by JSR-363 (the Java standard API for units of measurements).
-  For a list of changes compared to previous versions, see the <a href="{{ '/archives/2.3/index.html' | relative_url }}">changes in the 2.3 series of milestones</a>.
-</p>
+## Download as Maven dependency
+
+GeoAPI 3.0 is deployed on the [Maven Central Repository](https://central.sonatype.com/search?q=geoapi&namespace=org.opengis)
+and can be used in a Maven project with the following declaration in the `pom.xml` file:
+
+```xml
+<dependencies>
+  <dependency>
+    <groupId>org.opengis</groupId>
+    <artifactId>geoapi</artifactId>
+    <version>3.0.2</version>
+  </dependency>
+</dependencies>
+```
+
+## Changes since GeoAPI 2._x_
+
+This release contains the same API as the latest GeoAPI 2.3 milestone except for the
+JSR-275 dependency (deprecated) which is replaced by JSR-385 (the Java standard API for units of measurements).
+For a list of changes compared to previous versions,
+see the [changes in the 2.3 series of milestones](../archives/2.3/index.html).
