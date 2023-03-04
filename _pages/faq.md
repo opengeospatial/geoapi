@@ -40,10 +40,10 @@ faqs:
         by GeoAPI.
       </p>
       <p>
-        The GeoAPI project eventually formed to pursue this work. The interfaces defined in the
-        <abbr>OGC</abbr> specification 01-009 became GeoAPI version 0.1. GeoAPI 1.0 was released with the draft
-        of <abbr>OGC</abbr> specification 03-064 <cite>GO-1 Application Objects</cite>. In May 2005, the final draft
-        of the GO-1 specification, which included GeoAPI interfaces, was accepted as an <abbr>OGC</abbr> standard
+        The GeoAPI project eventually formed to pursue this work.
+        The interfaces defined in the <abbr>OGC</abbr> specification 01-009 became GeoAPI version 1.0.
+        In May 2005, the final version of the <abbr>OGC</abbr> specification 03-064 <cite>GO-1 Application Objects</cite>,
+        which included GeoAPI interfaces, was accepted as an <abbr>OGC</abbr> standard
         and the matching version of GeoAPI was released as version 2.0.
       </p>
       <p>
@@ -151,7 +151,7 @@ faqs:
       </p>
       <ul class="list-disc ml-4">
         <li class="my-1 text-justify">In the &quot;<cite>Comparison with legacy <abbr>OGC</abbr> specifications</cite>&quot; annex in the
-          <a href="https://www.opengeospatial.org/standards/geoapi">GeoAPI specification</a>
+          <a href="https://www.ogc.org/standard/geoapi/">GeoAPI specification</a>
           <svg class="w-4 h-4 fill-current text-gray-600 inline-block" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
           <path class="heroicon-ui" d="M19 6.41L8.7 16.71a1 1 0 1 1-1.4-1.42L17.58 5H14a1 1 0 0 1 0-2h6a1 1 0 0 1 1 1v6a1 1 0 0 1-2 0V6.41zM17 14a1 1 0 0 1 2 0v5a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V7c0-1.1.9-2 2-2h5a1 1 0 0 1 0 2H5v12h12v-5z"/>
           </svg>.</li>

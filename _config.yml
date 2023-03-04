@@ -119,8 +119,6 @@ defaults:
       pagemenu:
         - text: "Archives"
           link: "/archives/index.html"
-        - text: "0.1"
-          link: "/archives/0.1/index.html"
         - text: "1.0"
           link: "/archives/1.0/index.html"
         - text: "2.0"
