@@ -125,10 +125,6 @@ defaults:
           link: "/archives/1.0/index.html"
         - text: "2.0"
           link: "/archives/2.0/index.html"
-        - text: "2.1"
-          link: "/archives/2.1/index.html"
-        - text: "2.2"
-          link: "/archives/2.2/index.html"
         - text: "2.3"
           link: "/archives/2.3/index.html"
 

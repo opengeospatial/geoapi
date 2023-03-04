@@ -32,7 +32,7 @@ and can be used in a Maven project with the following declaration in the `pom.xm
 </dependencies>
 ```
 
-## Changes since GeoAPI 2._x_
+## Changes since GeoAPI 2.0.0
 
 This release contains the same API as the latest GeoAPI 2.3 milestone except for the
 JSR-275 dependency (deprecated) which is replaced by JSR-385 (the Java standard API for units of measurements).

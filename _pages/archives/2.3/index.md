@@ -1,18 +1,25 @@
 ---
 layout: default
 permalink: "/archives/2.3/index.html"
-title: GeoAPI 2.3 (archived)
+title: GeoAPI 2.3 milestones (archived)
 ---
 
-# GeoAPI 2.3 (archived)
+# GeoAPI 2.3 milestones (archived)
 
 <div class="bg-red-100 border border-red-400 text-red-700 px-4 py-3 my-4 rounded relative" role="alert">
   <strong class="font-bold">Note:</strong>
-  <span class="block sm:inline">GeoAPI 2.3 is a legacy milestone. See home page for latest release.</span>
+  <span class="block sm:inline">GeoAPI 2.1 to 2.3 were legacy milestones.
+  Those milestones have never been formalized in any standards document.
+  See home page for the formal release.</span>
 </div>
 
-GeoAPI 2.3 was the development branch of [GeoAPI 3.0](../../3.0/index.html).
-This milestone required a Java environment Java 5 or higher.
+Milestones 2.1, 2.2 and 2.3 of GeoAPI contained the interfaces developed by the GeoAPI project
+but never formalized in any standards document.
+GeoAPI 2.3 milestones were the development branch of [GeoAPI 3.0](../../3.0/index.html).
+The GeoAPI 3.0 release contains the same API as the latest GeoAPI 2.3 milestone
+except for the JSR-275 dependency (deprecated) which is replaced by JSR-385
+(the Java standard API for units of measurements).
+
 
 ## Changes in API
 
@@ -23,7 +30,7 @@ The changes since 2.3-M1 give the cleanest picture of what actually changed,
 because the changes since the previous version are often &quot;polluted&quot;
 by the methods that are deprecated before to be removed.
 
-| Change since             | &nbsp;&nbsp;M5&nbsp;&nbsp;    | &nbsp;&nbsp;M4&nbsp;&nbsp;    | &nbsp;&nbsp;M3&nbsp;&nbsp;    | &nbsp;&nbsp;M2&nbsp;&nbsp;    | &nbsp;&nbsp;M1&nbsp;&nbsp;    |
+| Milestone 2.3            | &nbsp;&nbsp;M5&nbsp;&nbsp;    | &nbsp;&nbsp;M4&nbsp;&nbsp;    | &nbsp;&nbsp;M3&nbsp;&nbsp;    | &nbsp;&nbsp;M2&nbsp;&nbsp;    | &nbsp;&nbsp;M1&nbsp;&nbsp;    |
 | ------------------------ |:-----------------------------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|:-----------------------------:|
 | Changes in **M6** since: | [M5](../2.3-M6/since-M5.html) | [M4](../2.3-M6/since-M4.html) | [M3](../2.3-M6/since-M3.html) | [M2](../2.3-M6/since-M2.html) | [M1](../2.3-M6/since-M1.html) |
 | Changes in **M5** since: |                               | [M4](../2.3-M5/since-M4.html) | [M3](../2.3-M5/since-M3.html) | [M2](../2.3-M5/since-M2.html) | [M1](../2.3-M5/since-M1.html) |
@@ -31,8 +38,9 @@ by the methods that are deprecated before to be removed.
 | Changes in **M3** since: |                               |                               |                               | [M2](../2.3-M3/since-M2.html) | [M1](../2.3-M3/since-M1.html) |
 | Changes in **M2** since: |                               |                               |                               |                               | [M1](../2.3-M2/since-M1.html) |
 
+<br/>
 
-## Resolved issues
+## Changes log
 
 * Milestone 2.3-M9
   * [GEO-184](https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-184) — Move Factory and related exception classes to org.opengis.util
@@ -84,3 +92,10 @@ by the methods that are deprecated before to be removed.
   * [GEO-157](https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-157) — Split geoapi in two modules: &quot;geoapi&quot; and &quot;pending&quot;
   * [GEO-160](https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-160) — Remove packages GO, Layer and clean deprecated sld packages classes
   * [GEO-164](https://osgeo-org.atlassian.net/projects/GEO/issues/GEO-164) — Create a specification draft for June 2009 OGC meeting (Boston)
+* Milestone 2.2
+  * Require Java environment Java 5 or higher.
+  * Miscellaneous other changes.
+* Milestone 1.1
+  * Came in two flavors: `geoapi-nogenerics.jar` required a Java environment J2SE 1.4
+    or higher while `geoapi.jar` required a Java environment Java 5 or higher.
+  * Miscellaneous other changes.
