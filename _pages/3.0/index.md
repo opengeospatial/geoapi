@@ -9,7 +9,7 @@ title: "GeoAPI 3.0.2"
 Release 3.0 of GeoAPI contains the interfaces developed by the GeoAPI project and accepted
 by the Open Geospatial Consortium with the final draft of the engineering specification
 _GeoAPI specification_ and therefore considered by the GeoAPI project as one of its official releases.
-This release requires a Java environment Java 7 or higher.
+This release requires a Java environment Java 8 or higher.
 
 * [Defining specification from OGC web site](https://www.ogc.org/standard/geoapi/)
 * [Table of content](javadoc/content.html)
