@@ -3,17 +3,17 @@ layout: default
 permalink: "/java/examples/usage.html"
 title: "GeoAPI examples in Java"
 ---
-<h1>Using GeoAPI in Java</h1>
+# Using GeoAPI in Java
 
-<p>
-  GeoAPI is implementation neutral. All Java codes in this page is free of any direct dependency to an implementation.
-  Consequently the first step is to discover which implementation is available at run time.
-  This step should be done only once, for example during application initialization.
-</p>
+GeoAPI is implementation neutral.
+All Java codes in this page is free of any direct dependency to an implementation.
+Consequently the first step is to discover which implementation is available at run time.
+This step should be done only once, for example during application initialization.
 
-<details class="code">
-  <summary>Discover a GeoAPI implementation at run time</summary>
-  <pre>import java.util.ServiceLoader;
+## Discover a GeoAPI implementation at run time
+
+```java
+import java.util.ServiceLoader;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.operation.CoordinateOperationFactory;
 
@@ -45,20 +45,19 @@ public class MyApp {
         opFactory = ServiceLoader.load(CoordinateOperationFactory.class).findFirst()
                 .orElseThrow(() -> new IllegalStateException("No GeoAPI implementation found"));
     }
-}</pre>
-</details>
+}
+```
 
-<p>
-  After an implementation has been found, the GeoAPI interfaces can be used for various operations
-  like getting a Coordinate Reference System (<abbr>CRS</abbr>) from an <abbr>EPSG</abbr> code,
-  from a Well Known Text (<abbr>WKT</abbr>) or from Geographic Markup Language (<abbr>GML</abbr>),
-  then finding a coordinate operation (map projection, datum shift, <i>etc.</i>) between a given
-  pair of <abbr>CRS</abbr>s.
-</p>
+After an implementation has been found, the GeoAPI interfaces can be used for various operations
+like getting a Coordinate Reference System (CRS) from an EPSG code,
+from a Well Known Text (WKT) or from Geographic Markup Language (GML),
+then finding a coordinate operation (map projection, datum shift, _etc._)
+between a given pair of CRSs.
 
-<details class="code">
-  <summary>Apply a map projection using the factories</summary>
-  <pre>import org.opengis.referencing.crs.CoordinateReferenceSystem;
+## Apply a map projection using the factories
+
+```java
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.util.FactoryException;
@@ -95,23 +94,22 @@ public class MyApp {
         final MyApp test = new MyApp();
         test.geographicToProjected();
     }
-}</pre>
-</details>
+}
+```
 
-<p>
-  Coordinate operations are usually valid only in a limited geographic area and with a limited accuracy.
-  Operations may have centimetric accuracy or may have errors of a few tens of metres for geodesic reasons
-  (not necessarily because of implementation shortcoming).
-  GeoAPI implementations should report the domain of validity and accuracy of their coordinate operations.
-  The following example shows how those metadata can be obtained. The code is verbose, but this is because
-  the same <abbr>ISO</abbr> 19115 metadata objects are used for describing a much wider range of features
-  than coordinate operations. For example metadata are used for describing Earth Observation data, <i>etc</i>.
-  Developers can easily create convenience methods for fetching the exact information they need.
-</p>
+Coordinate operations are usually valid only in a limited geographic area and with a limited accuracy.
+Operations may have centimetric accuracy or may have errors of a few tens of metres for geodesic reasons
+(not necessarily because of implementation shortcoming).
+GeoAPI implementations should report the domain of validity and accuracy of their coordinate operations.
+The following example shows how those metadata can be obtained. The code is verbose, but this is because
+the same ISO 19115 metadata objects are used for describing a much wider range of features than coordinate operations.
+For example metadata are used for describing Earth Observation data, _etc_.
+Developers can easily create convenience methods for fetching the exact information they need.
 
-<details class="code">
-  <summary>Get domain of validity and accuracy metadata</summary>
-  <pre>import org.opengis.metadata.extent.Extent;
+## Get domain of validity and accuracy metadata
+
+```java
+import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.extent.GeographicBoundingBox;
 import org.opengis.metadata.extent.GeographicExtent;
 import org.opengis.metadata.quality.PositionalAccuracy;
@@ -149,58 +147,55 @@ public class MyApp {
             }
         }
     }
-}</pre>
-</details>
+}
+```
 
-<p>
-  In order to use GeoAPI, developers must select a third-party implementation.
-  Some implementations are listed below for making easier to run the examples,
-  but that list does not aim to be exhaustive and is not an <abbr>OGC</abbr> endorsement of those implementations.
-  Those examples presume that the Java application is built as a Maven project.
-  The examples below use the default scope, but developers can add <code>&lt;scope&gt;runtime&lt;/scope&gt;</code>
-  if they want to make sure that their application has no direct dependency to an implementation.
-</p>
+In order to use GeoAPI, developers must select a third-party implementation.
+Some implementations are listed below for making easier to run the examples,
+but that list does not aim to be exhaustive and is not an OGC endorsement of those implementations.
+Those examples presume that the Java application is built as a Maven project.
+The examples below use the default scope, but developers can add `<scope>runtime</scope>`
+if they want to make sure that their application has no direct dependency to an implementation.
 
-<details class="code">
-  <summary>Test with Apache Spatial Information System</summary>
-  <p>
-    Add the following declarations in the project <code>pom.xml</code> file:
-  </p>
-<pre>&lt;dependencies&gt;
-  &lt;dependency&gt;
-    &lt;groupId&gt;org.apache.sis.core&lt;/groupId&gt;
-    &lt;artifactId&gt;sis-referencing&lt;/artifactId&gt;
-    &lt;version&gt;1.0&lt;/version&gt;
-  &lt;/dependency&gt;
-  &lt;dependency&gt;
-    &lt;!-- See <a href="https://sis.apache.org/epsg.html" class="externalLink">https://sis.apache.org/epsg.html</a> --&gt;
-    &lt;groupId&gt;org.apache.sis.non-free&lt;/groupId&gt;
-    &lt;artifactId&gt;sis-embedded-data&lt;/artifactId&gt;
-    &lt;version&gt;1.0&lt;/version&gt;
-    &lt;scope&gt;runtime&lt;/scope&gt;
-  &lt;/dependency&gt;
-  &lt;dependency&gt;
-    &lt;groupId&gt;org.glassfish.jaxb&lt;/groupId&gt;
-    &lt;artifactId&gt;jaxb-runtime&lt;/artifactId&gt;
-    &lt;version&gt;2.3.2&lt;/version&gt;
-    &lt;scope&gt;runtime&lt;/scope&gt;
-  &lt;/dependency&gt;
-&lt;/dependencies&gt;</pre>
-</details>
+## Test with Apache Spatial Information System
 
-<details class="code">
-  <summary>Test with PROJ 6</summary>
+Add the following declarations in the project `pom.xml` file:
 
-  <p>
-    Build the <a href="https://github.com/Kortforsyningen/PROJ-JNI" class="externalLink">PROJ-JNI project</a> locally
-    (including the native C++ code), then add the following declaration in the project <code>pom.xml</code> file:
-  </p>
+```xml
+<dependencies>
+  <dependency>
+    <groupId>org.apache.sis.core</groupId>
+    <artifactId>sis-referencing</artifactId>
+    <version>1.3</version>
+  </dependency>
+  <dependency>
+    <!-- https://sis.apache.org/epsg.html -->
+    <groupId>org.apache.sis.non-free</groupId>
+    <artifactId>sis-embedded-data</artifactId>
+    <version>1.3</version>
+    <scope>runtime</scope>
+  </dependency>
+  <dependency>
+    <groupId>org.glassfish.jaxb</groupId>
+    <artifactId>jaxb-runtime</artifactId>
+    <version>2.3.2</version>
+    <scope>runtime</scope>
+  </dependency>
+</dependencies>
+```
 
-<pre>&lt;dependencies&gt;
-  &lt;dependency&gt;
-    &lt;groupId&gt;org.kortforsyningen&lt;/groupId&gt;
-    &lt;artifactId&gt;proj&lt;/artifactId&gt;
-    &lt;version&gt;1.0&lt;/version&gt;
-  &lt;/dependency&gt;
-&lt;/dependencies&gt;</pre>
-</details>
+## Test with PROJ 6
+
+Build the [PROJ-JNI project](https://github.com/osgeo/PROJ-JNI)
+locally (including the native C++ code),
+then add the following declaration in the project `pom.xml` file:
+
+```xml
+<dependencies>
+  <dependency>
+    <groupId>org.osgeo</groupId>
+    <artifactId>proj</artifactId>
+    <version>2.0</version>
+  </dependency>
+</dependencies>
+```

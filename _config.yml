@@ -25,7 +25,7 @@ github_username:
 menu:
  # home, and the page-menus are handled differently in _includes/menu.html
  - text: "License"
-   link: "https://www.opengeospatial.org/ogc/software"
+   link: "https://www.ogc.org/about/policies/software-licenses/"
    is_external: true
  - text: "Latest release"
    link: "/3.0/index.html"
