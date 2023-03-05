@@ -17,7 +17,7 @@
  */
 package org.opengis.test.referencing;
 
-import java.util.Arrays;
+import java.util.List;
 import java.util.ArrayList;
 import org.opengis.referencing.cs.AxisDirection;
 import org.junit.*;
@@ -71,11 +71,11 @@ public class ValidatorTest {
      */
     @Test
     public void testAssertPerpendicularAxes() {
-        final ArrayList<AxisDirection> directions = new ArrayList<>(Arrays.asList(
+        final var directions = new ArrayList<>(List.of(
                 NORTH, DISPLAY_DOWN, OTHER, WEST, DISPLAY_RIGHT, FUTURE));
         CSValidator.assertPerpendicularAxes(directions);
         assertTrue("Collection is cleaned as a side effect of internal working.", directions.isEmpty());
-        directions.addAll(Arrays.asList(NORTH, DISPLAY_DOWN, OTHER, SOUTH_EAST, DISPLAY_RIGHT, FUTURE));
+        directions.addAll(List.of(NORTH, DISPLAY_DOWN, OTHER, SOUTH_EAST, DISPLAY_RIGHT, FUTURE));
         try {
             CSValidator.assertPerpendicularAxes(directions);
             fail("Should have detected the non-perpendicular axes.");

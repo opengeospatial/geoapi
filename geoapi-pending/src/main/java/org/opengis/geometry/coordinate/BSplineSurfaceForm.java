@@ -101,7 +101,7 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
      */
     public static BSplineSurfaceForm[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new BSplineSurfaceForm[VALUES.size()]);
+            return VALUES.toArray(BSplineSurfaceForm[]::new);
         }
     }
 

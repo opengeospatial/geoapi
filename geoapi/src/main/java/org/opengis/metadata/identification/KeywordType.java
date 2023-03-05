@@ -176,7 +176,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      */
     public static KeywordType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new KeywordType[VALUES.size()]);
+            return VALUES.toArray(KeywordType[]::new);
         }
     }
 

@@ -17,7 +17,7 @@
  */
 package org.opengis.filter;
 
-import java.util.Arrays;
+import java.util.List;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -36,7 +36,7 @@ public final class FilterExpressionsTest {
      */
     @Test
     public void testFilterLiterals() {
-        final FilterExpressions<Filter<?>> exp = new FilterExpressions<>(Arrays.asList(Filter.include(), Filter.exclude()));
+        final FilterExpressions<Filter<?>> exp = new FilterExpressions<>(List.of(Filter.include(), Filter.exclude()));
         assertFalse(exp.isEmpty());
         assertEquals(2, exp.size());
         assertEquals(Boolean.TRUE,  exp.get(0).apply(null));

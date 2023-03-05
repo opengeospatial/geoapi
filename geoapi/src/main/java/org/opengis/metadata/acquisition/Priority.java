@@ -88,7 +88,7 @@ public final class Priority extends CodeList<Priority> {
      */
     public static Priority[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Priority[VALUES.size()]);
+            return VALUES.toArray(Priority[]::new);
         }
     }
 

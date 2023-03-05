@@ -200,7 +200,7 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      */
     public static InterpolationMethod[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new InterpolationMethod[VALUES.size()]);
+            return VALUES.toArray(InterpolationMethod[]::new);
         }
     }
 

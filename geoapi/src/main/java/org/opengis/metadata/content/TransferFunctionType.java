@@ -82,7 +82,7 @@ public final class TransferFunctionType extends CodeList<TransferFunctionType> {
      */
     public static TransferFunctionType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new TransferFunctionType[VALUES.size()]);
+            return VALUES.toArray(TransferFunctionType[]::new);
         }
     }
 

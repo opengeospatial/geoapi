@@ -82,7 +82,7 @@ public final class Context extends CodeList<Context> {
      */
     public static Context[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Context[VALUES.size()]);
+            return VALUES.toArray(Context[]::new);
         }
     }
 

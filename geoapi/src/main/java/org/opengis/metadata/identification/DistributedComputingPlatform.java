@@ -131,7 +131,7 @@ public final class DistributedComputingPlatform extends CodeList<DistributedComp
      */
     public static DistributedComputingPlatform[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new DistributedComputingPlatform[VALUES.size()]);
+            return VALUES.toArray(DistributedComputingPlatform[]::new);
         }
     }
 

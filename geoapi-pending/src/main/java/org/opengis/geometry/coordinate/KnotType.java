@@ -89,7 +89,7 @@ public class KnotType extends CodeList<KnotType> {
      */
     public static KnotType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new KnotType[VALUES.size()]);
+            return VALUES.toArray(KnotType[]::new);
         }
     }
 

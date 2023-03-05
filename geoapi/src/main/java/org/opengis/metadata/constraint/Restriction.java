@@ -220,7 +220,7 @@ public final class Restriction extends CodeList<Restriction> {
      */
     public static Restriction[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Restriction[VALUES.size()]);
+            return VALUES.toArray(Restriction[]::new);
         }
     }
 

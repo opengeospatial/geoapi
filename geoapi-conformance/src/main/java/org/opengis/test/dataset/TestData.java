@@ -21,7 +21,6 @@ import java.io.File;
 import java.net.URL;
 import java.net.URI;
 import java.net.URISyntaxException;
-import java.io.EOFException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.FileOutputStream;
@@ -253,13 +252,7 @@ public enum TestData {
          */
         final byte[] content = new byte[length];
         try (InputStream stream = open()) {
-            int offset = 0, r, n;
-            do {                        // TODO: replace this loop by stream.readNBytes(content, 0, length) in JDK9.
-                r = length - offset;
-                n = stream.read(content, offset, r);
-                if (n < 0) throw new EOFException(filename);
-            } while (r != n);
-            if (stream.read() >= 0) {
+            if (stream.readNBytes(content, 0, length) != length) {
                 throw new IOException("Unexpected file length.");
             }
         }

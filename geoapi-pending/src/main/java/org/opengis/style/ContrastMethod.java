@@ -96,7 +96,7 @@ public final class ContrastMethod extends CodeList<ContrastMethod> {
      */
     public static ContrastMethod[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new ContrastMethod[VALUES.size()]);
+            return VALUES.toArray(ContrastMethod[]::new);
         }
     }
 

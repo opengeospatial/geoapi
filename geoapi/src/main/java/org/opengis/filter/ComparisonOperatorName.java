@@ -120,7 +120,7 @@ public final class ComparisonOperatorName extends CodeList<ComparisonOperatorNam
      */
     public static ComparisonOperatorName[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new ComparisonOperatorName[VALUES.size()]);
+            return VALUES.toArray(ComparisonOperatorName[]::new);
         }
     }
 

@@ -133,7 +133,7 @@ public final class ImagingCondition extends CodeList<ImagingCondition> {
      */
     public static ImagingCondition[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new ImagingCondition[VALUES.size()]);
+            return VALUES.toArray(ImagingCondition[]::new);
         }
     }
 

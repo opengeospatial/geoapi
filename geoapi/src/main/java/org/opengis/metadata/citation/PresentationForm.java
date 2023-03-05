@@ -219,7 +219,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      */
     public static PresentationForm[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new PresentationForm[VALUES.size()]);
+            return VALUES.toArray(PresentationForm[]::new);
         }
     }
 

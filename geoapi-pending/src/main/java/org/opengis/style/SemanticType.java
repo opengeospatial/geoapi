@@ -110,7 +110,7 @@ public final class SemanticType extends CodeList<SemanticType> {
      */
     public static SemanticType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new SemanticType[VALUES.size()]);
+            return VALUES.toArray(SemanticType[]::new);
         }
     }
 

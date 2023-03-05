@@ -24,7 +24,6 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.ArrayList;
 import java.util.Iterator;
-import java.util.Arrays;
 import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Files;
@@ -93,7 +92,7 @@ public final class ContentTest implements FileVisitor<Path> {
         for (int i=0; i<types.length; i++) {
             types[i] = new HashSet<>();
         }
-        ignoreTypes = new HashSet<>(Arrays.asList(
+        ignoreTypes = new HashSet<>(List.of(
                 org.opengis.annotation.ComplianceLevel.class,
                 org.opengis.annotation.Specification.class,
                 org.opengis.annotation.Stereotype.class,

@@ -383,7 +383,7 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      */
     public static CharacterSet[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new CharacterSet[VALUES.size()]);
+            return VALUES.toArray(CharacterSet[]::new);
         }
     }
 

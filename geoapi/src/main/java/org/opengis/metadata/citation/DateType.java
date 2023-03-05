@@ -190,7 +190,7 @@ public final class DateType extends CodeList<DateType> {
      */
     public static DateType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new DateType[VALUES.size()]);
+            return VALUES.toArray(DateType[]::new);
         }
     }
 

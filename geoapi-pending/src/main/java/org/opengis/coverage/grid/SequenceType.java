@@ -188,7 +188,7 @@ public class SequenceType extends CodeList<SequenceType> {
      */
     public static SequenceType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new SequenceType[VALUES.size()]);
+            return VALUES.toArray(SequenceType[]::new);
         }
     }
 

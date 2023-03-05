@@ -302,7 +302,7 @@ mark:   for (final Iterator<JavaElement> it = oldAPI.iterator(); it.hasNext();) 
      */
     private static void removeChildrenOfNewOrDeleted(final Set<JavaElement> elements) {
         // We have to copy the elements in a temporary array for protecting them from changes.
-        for (final JavaElement container : elements.toArray(new JavaElement[elements.size()])) {
+        for (final JavaElement container : elements.toArray(JavaElement[]::new)) {
             final JavaElementChanges changes = container.changes();
             if (changes == null || changes.isRemoved) {
                 for (final Iterator<JavaElement> it = elements.iterator(); it.hasNext();) {

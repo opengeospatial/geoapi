@@ -128,7 +128,7 @@ public final class MethodSignatureTest extends SourceGenerator {
     @Test
     public void verifyReturnTypes() {
         for (final Class<?> c : Content.ALL.types()) {
-            final String pkg = c.getPackage().getName();                    // TODO: replace by getPackageName() in JDK9.
+            final String pkg = c.getPackageName();
             if (pkg.startsWith("org.opengis.util"))        continue;        // Skipped for now.
             if (pkg.startsWith("org.opengis.referencing")) continue;        // Skipped for now.
             if (pkg.startsWith("org.opengis.parameter"))   continue;        // Skipped for now.
@@ -182,7 +182,7 @@ public final class MethodSignatureTest extends SourceGenerator {
     @Test
     public void verifyDefaultMethods() {
         for (final Class<?> c : Content.ALL.types()) {
-            final String pkg = c.getPackage().getName();                // TODO: replace by getPackageName() in JDK9.
+            final String pkg = c.getPackageName();
             if (pkg.startsWith("org.opengis.util"))      continue;      // Skipped for now.
             if (pkg.startsWith("org.opengis.parameter")) continue;      // Skipped for now.
             if (pkg.startsWith("org.opengis.temporal"))  continue;      // Skipped for now.

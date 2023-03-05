@@ -88,7 +88,7 @@ public final class GeometryType extends CodeList<GeometryType> {
      */
     public static GeometryType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new GeometryType[VALUES.size()]);
+            return VALUES.toArray(GeometryType[]::new);
         }
     }
 

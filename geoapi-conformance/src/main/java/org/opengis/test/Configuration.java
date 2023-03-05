@@ -626,7 +626,7 @@ public class Configuration implements Serializable {
          */
         public static Key<?>[] values() {
             synchronized (VALUES) {
-                return VALUES.toArray(new Key<?>[VALUES.size()]);
+                return VALUES.toArray(Key<?>[]::new);
             }
         }
 

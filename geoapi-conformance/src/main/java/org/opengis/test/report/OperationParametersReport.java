@@ -230,7 +230,7 @@ public class OperationParametersReport extends Report {
         public String toString() {
             final StringBuilder buffer = new StringBuilder(64);
             try {
-                write(buffer, names.keySet().toArray(new String[names.size()]), false, false, false);
+                write(buffer, names.keySet().toArray(String[]::new), false, false, false);
             } catch (IOException e) {
                 throw new AssertionError(e);                                // Should never happen.
             }
@@ -419,7 +419,7 @@ public class OperationParametersReport extends Report {
         for (final Row row : rows) {
             codeSpaces.addAll(row.names.keySet());
         }
-        return codeSpaces.toArray(new String[codeSpaces.size()]);
+        return codeSpaces.toArray(String[]::new);
     }
 
     /**

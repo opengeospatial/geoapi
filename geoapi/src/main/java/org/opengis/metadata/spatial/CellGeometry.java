@@ -92,7 +92,7 @@ public final class CellGeometry extends CodeList<CellGeometry> {
      */
     public static CellGeometry[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new CellGeometry[VALUES.size()]);
+            return VALUES.toArray(CellGeometry[]::new);
         }
     }
 

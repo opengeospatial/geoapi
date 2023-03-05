@@ -340,7 +340,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      */
     public static AxisDirection[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new AxisDirection[VALUES.size()]);
+            return VALUES.toArray(AxisDirection[]::new);
         }
     }
 

@@ -92,7 +92,7 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
      */
     public static RangeMeaning[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new RangeMeaning[VALUES.size()]);
+            return VALUES.toArray(RangeMeaning[]::new);
         }
     }
 

@@ -195,7 +195,7 @@ public final class Progress extends CodeList<Progress> {
      */
     public static Progress[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Progress[VALUES.size()]);
+            return VALUES.toArray(Progress[]::new);
         }
     }
 

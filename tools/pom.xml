@@ -50,8 +50,7 @@
 
 
   <!-- ===========================================================
-           Compilation. Force the same configuration than the one
-           declared in parent POM when "jdk9" profile is enabled.
+           Compilation
        =========================================================== -->
   <build>
     <plugins>

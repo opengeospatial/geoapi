@@ -160,7 +160,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      */
     public static CurveInterpolation[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new CurveInterpolation[VALUES.size()]);
+            return VALUES.toArray(CurveInterpolation[]::new);
         }
     }
 

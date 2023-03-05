@@ -154,7 +154,7 @@ public final class InitiativeType extends CodeList<InitiativeType>{
      */
     public static InitiativeType[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new InitiativeType[VALUES.size()]);
+            return VALUES.toArray(InitiativeType[]::new);
         }
     }
 

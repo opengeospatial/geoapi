@@ -143,7 +143,7 @@ public final class GeometryOperand extends CodeList<GeometryOperand> {
      */
     public static GeometryOperand[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new GeometryOperand[VALUES.size()]);
+            return VALUES.toArray(GeometryOperand[]::new);
         }
     }
 

@@ -82,7 +82,7 @@ public final class Sequence extends CodeList<Sequence> {
      */
     public static Sequence[] values() {
         synchronized (VALUES) {
-            return VALUES.toArray(new Sequence[VALUES.size()]);
+            return VALUES.toArray(Sequence[]::new);
         }
     }
 
