@@ -16,17 +16,17 @@ but implementations in other languages can be tested using for example the
 [Java-Python](../java-python/index.html) bridge.
 GeoAPI tests provide three kinds of Java classes:
 
-* [Validators](../conformance/java/org/opengis/test/Validators.html) for testing the conformance of existing instances of GeoAPI interfaces.
-* [TestCase](../conformance/java/org/opengis/test/TestCase.html) as the base class of all JUnit tests in this module, which can be extended by developers on a case-by-case basis.
-* [TestSuite](../conformance/java/org/opengis/test/TestSuite.html) as the aggregation of all JUnit tests defined in this module.
+* [Validators](javadoc/org.opengis.geoapi.conformance/org/opengis/test/Validators.html) for testing the conformance of existing instances of GeoAPI interfaces.
+* [TestCase](javadoc/org.opengis.geoapi.conformance/org/opengis/test/TestCase.html) as the base class of all JUnit tests in this module, which can be extended by developers on a case-by-case basis.
+* [TestSuite](javadoc/org.opengis.geoapi.conformance/org/opengis/test/TestSuite.html) as the aggregation of all JUnit tests defined in this module.
 
 The test cases and validators are grouped in
-[util](../conformance/java/org/opengis/test/util/package-summary.html),
-[metadata](../conformance/java/org/opengis/test/metadata/package-summary.html),
-[referencing](../conformance/java/org/opengis/test/referencing/package-summary.html) and
-[geometry](../conformance/java/org/opengis/test/geometry/package-summary.html) packages.
+[util](javadoc/org.opengis.geoapi.conformance/org/opengis/test/util/package-summary.html),
+[metadata](javadoc/org.opengis.geoapi.conformance/org/opengis/test/metadata/package-summary.html),
+[referencing](javadoc/org.opengis.geoapi.conformance/org/opengis/test/referencing/package-summary.html) and
+[geometry](javadoc/org.opengis.geoapi.conformance/org/opengis/test/geometry/package-summary.html) packages.
 A graphical JUnit runner is also provided in the
-[runner](../conformance/java/org/opengis/test/runner/package-summary.html) package.
+[runner](javadoc/org.opengis.geoapi.conformance/org/opengis/test/runner/package-summary.html) package.
 That JUnit runner is designed specifically for the `geoapi-conformance` test suite,
 and provides more information than common runners (for example which factories were used for each test).
 

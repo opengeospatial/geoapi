@@ -11,7 +11,7 @@ Those implementations are not complete, but can be used as starting points for i
 Since every files in this module are placed into the Public Domain,
 anyone is free to do whatever they wish with those files.
 
-* [Browse the javadoc](doc/index.html)
+* [Browse the javadoc](../../snapshot/javadoc/org.opengis.geoapi.example/index.html)
 * [Source code on GitHub](https://github.com/opengeospatial/geoapi/tree/master/geoapi-examples/src/main/java/org/opengis/example)
 
 ## Metadata
