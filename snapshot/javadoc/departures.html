@@ -10,541 +10,16 @@
   <h1>Departures from the ISO/OGC specifications</h1>
   <p>The following sections list all the departures from the ISO standards taken by the GeoAPI interface library. The rationale for these departures fall into the following categories:</p>
   <ul>
-    <li><a href="#generalization">Generalization by relaxation of ISO/OGC restriction</a></li>
-    <li><a href="#constraint">Departure due to constraint of the Java language</a></li>
-    <li><a href="#rename">Change of name without change in functionality</a></li>
-    <li><a href="#historic">Departure for historical reason</a></li>
-    <li><a href="#extension">Addition of element not in the ISO/OGC specification</a></li>
-    <li><a href="#harmonization">Departure for harmonization between different specifications</a></li>
     <li><a href="#easeOfUse">Extension for convenience without introduction of new functionality</a></li>
+    <li><a href="#harmonization">Departure for harmonization between different specifications</a></li>
+    <li><a href="#extension">Addition of element not in the ISO/OGC specification</a></li>
+    <li><a href="#historic">Departure for historical reason</a></li>
+    <li><a href="#rename">Change of name without change in functionality</a></li>
+    <li><a href="#constraint">Departure due to constraint of the Java language</a></li>
+    <li><a href="#generalization">Generalization by relaxation of ISO/OGC restriction</a></li>
     <li><a href="#integration">Departure for closer integration with the Java environment</a></li>
   </ul>
   <section class="categories">
-    <h2 id="generalization">Generalization by relaxation of ISO/OGC restriction</h2>
-    <section class="types">
-
-      <h3>Interface <a href="org/opengis/referencing/AuthorityFactory.html">AuthorityFactory</a></h3>
-      <section class="members">
-        <h4>Method createObject</h4>
-        <div class="desc">This method is not part of the OGC specification. It has been added to leverage the
-   capability of factories that can automatically determine the type of the requested
-   object at runtime.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/filter/BinarySpatialOperator.html">BinarySpatialOperator</a></h3>
-      <section class="members">
-        <h4>Method getOperand1</h4>
-        <div class="desc">ISO 19143 restricts the type to <code>ValueReference</code>.
-   GeoAPI relaxes this restriction by allowing arbitrary expressions.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/referencing/crs/CompoundCRS.html">CompoundCRS</a></h3>
-      <section class="members">
-        <h4>Method getComponents</h4>
-        <div class="desc">ISO 19111 said <cite>"nesting of compound CRSs shall not be permitted; the individual single systems
-   shall be aggregated together"</cite>. However this approach causes data lost: it is difficult to add
-   a temporal CRS to an existing three-dimensional compound CRS without loosing the name and identifiers
-   of the 3D CRS, unless nesting is permitted. It is programmatically easier to convert nested CRSs to a
-   flat list of single CRSs when needed than to reconstruct the 3D CRS from the single components.
-   Consequently GeoAPI has been keep conformant with the legacy OGC 01-009 specification in this aspect,
-   which were allowing nested compound CRS.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/referencing/crs/CoordinateReferenceSystem.html">CoordinateReferenceSystem</a></h3>
-      <section class="members">
-        <h4>Method getCoordinateSystem</h4>
-        <div class="desc">ISO 19111 defines this method for <code>SC_SingleCRS</code> only. GeoAPI declares this method in
-   this parent interface for user convenience, since CS dimension and axes are commonly requested
-   information and will always be available, directly or indirectly, even for <code>SC_CompoundCRS</code>.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/filter/Filter.html">Filter</a></h3>
-      <section class="members">
-        <h4>Method getOperatorType</h4>
-        <div class="desc">The ISO/OGC standard defines an <code>operatorType</code> property in <code>UnaryLogicOperator</code>,
-   <code>BinaryLogicOperator</code>, <code>BinaryComparisonOperator</code>, <code>BinarySpatialOperator</code>
-   and <code>DistanceOperator</code>. This method has been added for providing a single access point
-   for that information without the need to check for each sub-type.</div>
-
-        <h4>Method getExpressions</h4>
-        <div class="desc">This method has been added for providing a single access point for information provided in sub-types.
-   The properties captured here have different names in OGC/ISO specification depending on the sub-type:
-   <code>expression</code> (with a cardinality of 1, 2 or unlimited), <code>operand1</code>, <code>operand2</code>, or
-   <code>valueReference</code>. This method provides a way to access those expressions without the need to
-   make special cases for each sub-type.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/parameter/GeneralParameterDescriptor.html">GeneralParameterDescriptor</a></h3>
-      <section class="members">
-        <h4>Method getMaximumOccurs</h4>
-        <div class="desc">Moved up (in the interface hierarchy) the <code>maximumOccurs</code> method from
-   <code>ParameterDescriptorGroup</code> into this super-interface, for parallelism
-   with the <code>minimumOccurs</code> method.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/util/GenericName.html">GenericName</a></h3>
-      <section class="members">
-        <h4>Method head</h4>
-        <div class="desc">ISO defines this method in <code>ScopedName</code> only. GeoAPI defines it in the base
-   class since <code>LocalName</code> can return a sensible value for it. This reduces the
-   need for casts.</div>
-      </section>
-    </section>
-    <h2 id="constraint">Departure due to constraint of the Java language</h2>
-    <section class="types">
-
-      <h3>Package <a href="org/opengis/referencing/cs/package-summary.html">cs</a></h3>
-        <div class="desc">ISO 19111 defines <code>GeodeticCS</code>, <code>EngineeringCS</code> and <code>ImageCS</code> unions.
-   However the <code>union</code> construct found in some languages like C/C++ is not available in Java.
-   For each union, a different approach has been applied and documented in the <code>org.opengis.referencing.cs</code>
-   package. In the particular case of <code>ImageCS</code>, the same type-safety objective can be obtained
-   through a slight change in the interface hierarchy.</div>
-
-      <h3>Interface <a href="org/opengis/referencing/cs/CartesianCS.html">CartesianCS</a></h3>
-        <div class="desc">ISO 19111 defines <code>CartesianCS</code> as a direct sub-type of <code>CoordinateSystem</code>.
-   ISO also defines <code>ImageCS</code> as the union of <code>AffineCS</code> and <code>CartesianCS</code>,
-   for use by <code>ImageCRS</code>. Because the <code>union</code> construct found in some languages like
-   C/C++ does not exist in Java, GeoAPI defines <code>CartesianCS</code> as a sub-type of <code>AffineCS</code>
-   in order to achieve the same type safety.
-   With this change, GeoAPI can use <code>AffineCS</code> directly without the need to define <code>ImageCS</code>.
-   In this hierarchy, <code>CartesianCS</code> is considered a special case of <code>AffineCS</code> where all axes
-   are perpendicular to each other.</div>
-
-      <h3>Interface <a href="org/opengis/referencing/datum/Ellipsoid.html">Ellipsoid</a></h3>
-        <div class="desc">ISO 19111 defines the union named <code>secondDefiningParameter</code>
-   as being either <code>semiMinorAxis</code> or <code>inverseFlattening</code>.
-   The <code>union</code> construct (defined in some languages like C/C++) does not exist in Java.
-   GeoAPI changed the interface to require both ellipsoidal parameters (in addition to the <code>semiMajorAxis</code>
-   parameter which is mandatory in any case), as was done in <a>OGC 01-009</a>.
-   However, implementers could readily permit users to only provide one of the two parameters
-   by creating a class which calculates the second parameter from the first.
-   For precision, GeoAPI imports the <code>isIvfDefinitive</code> attribute from OGC 01-009
-   to enable the user to establish which of the two parameters was used to define the instance.</div>
-
-      <h3>Interface <a href="org/opengis/referencing/crs/GeographicCRS.html">GeographicCRS</a></h3>
-        <div class="desc">This interface is kept conformant with the specification published in 2003. The 2007 revision
-   of ISO 19111 removed the <code>SC_GeographicCRS</code> and <code>SC_GeocentricCRS</code> types,
-   handling both using the <code>SC_GeodeticCRS</code> parent type. GeoAPI keeps them for two reasons:
-   <ul>
-     <li>The distinction between those two types is in wide use.</li>
-     <li>A distinct geographic type allows GeoAPI to restrict the coordinate system type to <code>EllipsoidalCS</code>.
-         ISO 19111 uses a <code>union</code> for expressing this restriction at the <code>SC_GeodeticCRS</code> level, but
-         the Java language does not provide such construct. A distinct geographic type is one way to achieve the
-         same goal.</li>
-   </ul></div>
-
-      <h3>Interface <a href="org/opengis/geometry/coordinate/Position.html">Position</a></h3>
-        <div class="desc">ISO 19107 defines <code>Position</code> as a <code>union</code> of <code>DirectPosition</code> and <code>Point</code>
-   but unions are not allowed in Java. GeoAPI defines <code>Position</code> as the base interface of both
-   types so the two conditional accessor methods, <code>getPoint()</code> and <code>getDirectPosition()</code>,
-   can be replaced by an <code>instanceof</code> check. However, the <code>getDirectPosition()</code> has been
-   retained with different semantics, conceptually returning a <code>DirectPosition</code> at the same location.
-   The conditionality has also been changed to mandatory since all three types conceptually have a
-   well defined location.</div>
-
-      <h3>Interface <a href="org/opengis/filter/BinarySpatialOperator.html">BinarySpatialOperator</a></h3>
-      <section class="members">
-        <h4>Method getOperand2</h4>
-        <div class="desc">ISO 19143 restricts the type to <code>SpatialDescription</code>, which is a union between
-   <code>Geometry</code>, <code>Envelope</code> and <code>ValueReference</code>.
-   Union has no direct equivalence in Java and is replaced by documentation in this method.</div>
-      </section>
-
-      <h3>Enum <a href="org/opengis/annotation/Obligation.html">Obligation</a></h3>
-      <section class="members">
-        <h4>Enum FORBIDDEN</h4>
-        <div class="desc">ISO specifications sometime override a parent method with a comment saying that the method
-   is not allowed for a particular class. Since there is no construct in Java for expressing
-   this constraint in the method signature, GeoAPI defines a <code>FORBIDDEN</code> obligation
-   (not in original ISO specifications) to be used with the <code>@UML</code> annotation and
-   which adds a flag in the Java documentation.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/filter/TemporalOperator.html">TemporalOperator</a></h3>
-      <section class="members">
-        <h4>Method getExpressions</h4>
-        <div class="desc">ISO 19143 uses two properties, named <code>operand1</code> and <code>operand2</code>,
-   of type <code>ValueReference</code> and <code>TemporalOperand</code> respectively.
-   The later is an union of <code>TM_Object</code> and <code>ValueReference</code>,
-   which has no direct equivalence in Java.
-   The union purpose is replaced by documentation in this method.
-   The two values are put in a list for retrofitting in <code>Filter#getExpressions()</code>.</div>
-      </section>
-    </section>
-    <h2 id="rename">Change of name without change in functionality</h2>
-    <section class="types">
-
-      <h3>Class <a href="org/opengis/metadata/identification/DistributedComputingPlatform.html">DistributedComputingPlatform</a></h3>
-        <div class="desc">Renamed from "<code>DCPList</code>" to "<code>DistributedComputingPlatform</code>" for the following reasons:
-   <ol>
-     <li>GeoAPI avoids the "<code>List</code>" suffix because instances of this class are not list.
-         The concept of list rather applies to the list of pre-defined static constants in this class.</li>
-     <li>"<code>DCP</code>" is an abbreviation, and Java usage is to avoid abbreviations unless they are well known.</li>
-   </ol></div>
-
-      <h3>Interface <a href="org/opengis/parameter/GeneralParameterDescriptor.html">GeneralParameterDescriptor</a>,<br>Interface <a href="org/opengis/parameter/ParameterDescriptor.html">ParameterDescriptor</a>,<br>Interface <a href="org/opengis/parameter/ParameterDescriptorGroup.html">ParameterDescriptorGroup</a></h3>
-        <div class="desc">GeoAPI uses a name which contains the "<code>Descriptor</code>" word for consistency with other
-   libraries in Java (e.g. <code>ParameterListDescriptor</code> in Java Advanced Imaging).</div>
-
-      <h3>Interface <a href="org/opengis/util/InternationalString.html">InternationalString</a></h3>
-        <div class="desc">This is called <code>PT_FreeText</code> in ISO 19115 standard, and can be applied to all metadata
-   elements who's data type is <code>CharacterString</code> and domain is “free text”. GeoAPI uses the
-   <code>InternationalString</code> name for historical reasons and for consistency with similar object in
-   <a>JSR-150</a> <cite>(Internationalization Service for J2EE)</cite>.</div>
-
-      <h3>Interface <a href="org/opengis/metadata/quality/Element.html">Element</a></h3>
-      <section class="members">
-        <h4>Method getMeasureReference</h4>
-        <div class="desc">The ISO 19157 property name is <code>measure</code>.
-   This is renamed <code>measureReference</code> in GeoAPI for reflecting the return type
-   and for making room for a <code>measure</code> property for the full <code>Measure</code> description.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/metadata/quality/EvaluationMethod.html">EvaluationMethod</a></h3>
-      <section class="members">
-        <h4>Method getReferenceDocuments</h4>
-        <div class="desc">Renamed from <code>"referenceDoc"</code> to <code>"referenceDocument"</code>
-   for avoiding abbreviation (a Java usage).</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/metadata/content/FeatureCatalogueDescription.html">FeatureCatalogueDescription</a></h3>
-      <section class="members">
-        <h4>Method getFeatureTypeInfo</h4>
-        <div class="desc">Renamed from "<code>featureTypes</code>" to "<code>featureTypeInfo</code>" for the following reasons:
-   <ol>
-     <li>Avoid name collision with the ISO 19115:2003 definition of "<code>featureTypes</code>".</li>
-     <li>Avoid confusion between <code>FeatureTypeInfo</code> and <code>org.opengis.feature.FeatureType</code>.
-         A <code>getFeatureTypes()</code> method name would suggest that the collection contains the latter.</li>
-   </ol></div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/referencing/crs/GeneralDerivedCRS.html">GeneralDerivedCRS</a></h3>
-      <section class="members">
-        <h4>Method getConversionFromBase</h4>
-        <div class="desc">"<code>conversion</code>" may be confusing as a method name
-   since it does not indicate which CRS is the source or which is the target.
-   The OGC 01-009 specification used the <code>toBase()</code> method name.
-   By analogy with 01-009, GeoAPI defines a method name which contains the "<code>FromBase</code>" expression.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/metadata/extent/GeographicExtent.html">GeographicExtent</a></h3>
-      <section class="members">
-        <h4>Method getInclusion</h4>
-        <div class="desc">The ISO identifier is <code>"extentTypeCode"</code> and defines the value 1 for inclusion,
-   and 0 for exclusion. GeoAPI uses a name which better expresses the meaning of the return value.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/parameter/ParameterValue.html">ParameterValue</a></h3>
-      <section class="members">
-        <h4>Method doubleValue</h4>
-        <div class="desc">Renamed the method from "<code>value</code>" to "<code>doubleValue</code>" for consistency
-   with <code>Number.doubleValue()</code> and the other "<code>*Value</code>" methods defined
-   in this interface.</div>
-
-        <h4>Method intValue</h4>
-        <div class="desc">Renamed the method from "<code>integerValue</code>" to "<code>intValue</code>" for
-   consistency with <code>Number.intValue()</code> and the <code>int</code> Java primitive type.</div>
-
-        <h4>Method doubleValueList</h4>
-        <div class="desc">Renamed the method from "<code>valueList</code>" to "<code>doubleValueList</code>" both for
-   consistency with <code>doubleValue()</code> and also because, like <code>doubleValue()</code>,
-   this method returns an array of <code>double</code> values rather than a <code>Measure</code>
-   object.</div>
-
-        <h4>Method intValueList</h4>
-        <div class="desc">Renamed the attribute from "<code>integerValueList</code>" to "<code>intValueList</code>"
-   for consistency with <code>intValue()</code>.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/parameter/ParameterValueGroup.html">ParameterValueGroup</a></h3>
-      <section class="members">
-        <h4>Method getDescriptor</h4>
-        <div class="desc">The ISO name was "<code>group</code>". GeoAPI uses "<code>descriptor</code>" instead in
-   order to override the <code>getDescriptor()</code> generic method provided in the parent
-   interface. In addition the "descriptor" name makes more apparent that this method returns
-   an abstract definition of parameters - not their actual values - and is consistent with
-   usage in other Java libraries like the <cite>Java Advanced Imaging</cite> library.</div>
-      </section>
-    </section>
-    <h2 id="historic">Departure for historical reason</h2>
-    <section class="types">
-
-      <h3>Interface <a href="org/opengis/referencing/cs/CSAuthorityFactory.html">CSAuthorityFactory</a>,<br>Interface <a href="org/opengis/referencing/cs/CSFactory.html">CSFactory</a></h3>
-        <div class="desc">Added for consistency with CRS and datum factories. This CS factory was not defined in the
-   OGC specification because OGC 01-009 was created before ISO 19111 and had no equivalent of
-   the ISO <cite>Coordinate System</cite> types.</div>
-
-      <h3>Interface <a href="org/opengis/referencing/crs/GeocentricCRS.html">GeocentricCRS</a></h3>
-        <div class="desc">This interface is kept conformant with the specification published in 2003. The 2007 revision
-   of ISO 19111 removed the <code>SC_GeographicCRS</code> and <code>SC_GeocentricCRS</code> types,
-   handling both using the <code>SC_GeodeticCRS</code> parent type.
-   GeoAPI keeps them since the distinction between those two types is in wide use.</div>
-
-      <h3>Interface <a href="org/opengis/referencing/operation/CoordinateOperation.html">CoordinateOperation</a></h3>
-      <section class="members">
-        <h4>Method getScope</h4>
-        <div class="desc">This method has been kept conformant with the specification published in 2003.
-   The revision published in 2007 replaced the singleton by a collection and changed the
-   obligation from "optional" to "mandatory", requiring a return value of
-   <cite>"not known"</cite> if the scope is unknown. This change is still under review.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/referencing/datum/Datum.html">Datum</a></h3>
-      <section class="members">
-        <h4>Method getAnchorPoint</h4>
-        <div class="desc">This method has been kept conformant with the specification published in 2003 for compatibility reasons.
-   The revision published in 2007 renamed this property as <code>anchorDefinition</code>.</div>
-
-        <h4>Method getScope</h4>
-        <div class="desc">This method has been kept conformant with the specification published in 2003. The revision
-   published in 2007 replaced the singleton by a collection and changed the obligation
-   from "optional" to "mandatory", requiring a return value of <cite>"not known"</cite>
-   if the scope is unknown.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/metadata/ExtendedElementInformation.html">ExtendedElementInformation</a></h3>
-      <section class="members">
-        <h4>Method getName</h4>
-        <div class="desc">This property has been kept conform to ISO 19115:2003 for simplicity.
-    The 2014 revision defines two mutually exclusive names depending on the data type:
-    <code>"conceptName"</code> for <code>ENUMERATION</code>, <code>CODE_LIST</code> or <code>CODE_LIST_ELEMENT</code>,
-    and <code>"name"</code> for all other data types. GeoAPI keeps the <code>"name"</code> property for all
-    data types and let developers inspect the <code>"dataType"</code> property if needed.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/referencing/datum/PrimeMeridian.html">PrimeMeridian</a></h3>
-      <section class="members">
-        <h4>Method getAngularUnit</h4>
-        <div class="desc">This attribute is inherited from an older OGC specification.
-   In ISO 19111, <code>greenwichLongitude</code> is a property of type <code>Angle</code>
-   rather than <code>double</code>, and the unit of measure is part of the <code>Angle</code> value.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/metadata/quality/QuantitativeResult.html">QuantitativeResult</a></h3>
-      <section class="members">
-        <h4>Method getValueType</h4>
-        <div class="desc">Renamed from <code>"valueRecordType"</code> to <code>"valueType"</code> for compatibility with ISO 19115:2003
-   and because the return object type does not need to be repeated in Java method name.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/referencing/ReferenceSystem.html">ReferenceSystem</a></h3>
-      <section class="members">
-        <h4>Method getDomainOfValidity</h4>
-        <div class="desc">This method has been kept conformant with the specification published in 2003.
-   Later revisions changed the multiplicity, so the return type should now be a
-   collection. The singleton has been preserved in GeoAPI for historical reasons,
-   and also because the <code>Extent</code> attributes already allow collections.</div>
-
-        <h4>Method getScope</h4>
-        <div class="desc">This method was initially derived from the ISO 19111 specification published in 2003.
-   Later revision (ISO 19111:2007) differs in 3 aspects:
-   <ul>
-     <li>ISO 19111:2007 moved this property from this type to the <code>SC_CRS</code> subtype.
-         GeoAPI keeps this property here for historical reasons.</li>
-     <li>ISO 19111:2007 changed the obligation from optional to mandatory
-         and requires the value to be <cite>"not known"</cite> if the scope is unknown.
-         GeoAPI lefts the obligation unchanged: optional with <code>null</code> value for unknown scope.</li>
-     <li>ISO 19111:2007 changed the multiplicity from singleton to a collection.
-         GeoAPI keeps the singleton type for historical reasons.</li>
-   </ul></div>
-      </section>
-    </section>
-    <h2 id="extension">Addition of element not in the ISO/OGC specification</h2>
-    <section class="types">
-
-      <h3>Interface <a href="org/opengis/referencing/operation/ConicProjection.html">ConicProjection</a>,<br>Interface <a href="org/opengis/referencing/operation/CylindricalProjection.html">CylindricalProjection</a>,<br>Interface <a href="org/opengis/referencing/operation/PlanarProjection.html">PlanarProjection</a>,<br>Interface <a href="org/opengis/referencing/operation/Projection.html">Projection</a></h3>
-        <div class="desc">This interface is not part of the ISO specification. It has been added in GeoAPI at user
-   request, in order to provide a way to know the kind of map projection.</div>
-
-      <h3>Interface <a href="org/opengis/util/CodeList/Filter.html">Filter</a></h3>
-        <div class="desc">The inner <code>CodeList.Filter</code> interface is not part of the OGC specification.
-   It has been added because <code>CodeList</code> is one of the few concrete classes in
-   GeoAPI and there is a need to give some user control over the behavior of the
-   <code>CodeList</code> implementation.</div>
-
-      <h3>Interface <a href="org/opengis/referencing/operation/MathTransform1D.html">MathTransform1D</a></h3>
-        <div class="desc">This interface is not part of the OGC specification. It has been added as a complement
-   of <code>MathTransform2D</code> and because the 1D case provides opportunities for optimization
-   through a <code>transform</code> method accepting a single <code>double</code> primitive type.</div>
-
-      <h3>Interface <a href="org/opengis/util/NameFactory.html">NameFactory</a></h3>
-        <div class="desc">Added in order to provide constructors for <code>GenericName</code> and related interfaces.</div>
-
-      <h3>Interface <a href="org/opengis/referencing/AuthorityFactory.html">AuthorityFactory</a></h3>
-      <section class="members">
-        <h4>Method getAuthorityCodes</h4>
-        <div class="desc">This method is not part of the OGC specification but has been added as a way to publish
-   the capabilities of a factory.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/util/CodeList.html">CodeList</a></h3>
-      <section class="members">
-        <h4>Method names</h4>
-        <div class="desc">Defined because each <code>CodeList</code> has at least two names, the Java programmatic
-   name and the UML identifier, while some subclasses have additional names.</div>
-
-        <h4>Method identifier</h4>
-        <div class="desc">Defined because each <code>CodeList</code> has a UML identifier in addition of the Java
-   programmatic name.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/referencing/operation/CoordinateOperationAuthorityFactory.html">CoordinateOperationAuthorityFactory</a></h3>
-      <section class="members">
-        <h4>Method createOperationMethod</h4>
-        <div class="desc">This method has been added because OGC 01-009 does not define a factory
-   method for creating such object.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/referencing/operation/CoordinateOperationFactory.html">CoordinateOperationFactory</a></h3>
-      <section class="members">
-        <h4>Method createOperation</h4>
-        <div class="desc">This method has been added at user request, in order to specify the desired
-   transformation path when many are available.</div>
-
-        <h4>Method createConcatenatedOperation,<br>Method createOperationMethod</h4>
-        <div class="desc">This method has been added because OGC 01-009 does not define a factory
-   method for creating such object.</div>
-
-        <h4>Method createDefiningConversion</h4>
-        <div class="desc">The <cite>defining conversion</cite> concept appears in ISO 19111:2007 textual specification
-   without formalization in UML diagrams. This concept has been formalized in GeoAPI
-   in order to allow the creation of <code>ProjectedCRS</code> instances.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/parameter/GeneralParameterDescriptor.html">GeneralParameterDescriptor</a></h3>
-      <section class="members">
-        <h4>Method createValue</h4>
-        <div class="desc">This method is not part of the ISO specification. It is provided in GeoAPI as a kind of
-   factory method.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/util/GenericName.html">GenericName</a></h3>
-      <section class="members">
-        <h4>Method toInternationalString</h4>
-        <div class="desc">This method is not part of the ISO specification. It has been added to provide
-   a way to localize the name.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/referencing/IdentifiedObject.html">IdentifiedObject</a></h3>
-      <section class="members">
-        <h4>Method toWKT</h4>
-        <div class="desc">This method is not part of the OGC specification. It has been added in order to provide the
-   converse of the <code>CRSFactory.createFromWKT(String)</code> method, which is defined in OGC 01-009.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/referencing/operation/MathTransformFactory.html">MathTransformFactory</a></h3>
-      <section class="members">
-        <h4>Method getAvailableMethods</h4>
-        <div class="desc">This method is not part of the OGC specification.
-   It has been added as a way to publish the capabilities of a factory.</div>
-
-        <h4>Method getLastMethodUsed</h4>
-        <div class="desc">This method is not part of the OGC specification.
-   It has been added because this information appears to be important in some situations.
-   We did not defined a {<code>MathTransform</code>, <code>OperationMethod</code>} tuple in order
-   to keep <code>create(…)</code> simpler in the common case where the operation method is not needed,
-   and for historical reasons (conformance to OGC 01-009).</div>
-
-        <h4>Method getDefaultParameters,<br>Method createBaseToDerived</h4>
-        <div class="desc">This method is part of the GeoAPI mechanism for defining the math transform parameters
-   or deriving other transforms.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/parameter/ParameterDescriptor.html">ParameterDescriptor</a></h3>
-      <section class="members">
-        <h4>Method getValidValues,<br>Method getUnit</h4>
-        <div class="desc">This method is not part of ISO specification. It is provided as a complement of information.</div>
-
-        <h4>Method createValue</h4>
-        <div class="desc">This method is not part of the ISO specification.
-   It is provided in GeoAPI as a kind of factory method.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/parameter/ParameterDescriptorGroup.html">ParameterDescriptorGroup</a></h3>
-      <section class="members">
-        <h4>Method createValue</h4>
-        <div class="desc">This method is not part of the ISO specification. It is provided in GeoAPI as a kind of
-   factory method.</div>
-      </section>
-    </section>
-    <h2 id="harmonization">Departure for harmonization between different specifications</h2>
-    <section class="types">
-
-      <h3>Package <a href="org/opengis/parameter/package-summary.html">parameter</a></h3>
-        <div class="desc">ISO 19111 defines parameters in the <cite>Coordinate Operation</cite> package, while
-   ISO 19115 defines parameters in the <cite>Services</cite> package.
-   GeoAPI moves those classes in this <code>parameter</code> independent package
-   and tries to provide a single model for the two standards when possible.
-   With this move, GeoAPI has extended the use of these parameter classes to a more general use rather
-   than only for referencing operation types.</div>
-
-      <h3>Interface <a href="org/opengis/util/Factory.html">Factory</a></h3>
-        <div class="desc">This interface is not part of the OGC specification. It is added for uniformity,
-   in order to provide a common base class for all factories.</div>
-
-      <h3>Interface <a href="org/opengis/referencing/IdentifiedObject.html">IdentifiedObject</a></h3>
-        <div class="desc">ISO 19111 defines two types, <code>IO_IdentifiedObjectBase</code> and <code>IO_IdentifiedObject</code>, as a
-   workaround for introducing a base type for the <code>name</code>, <code>identifier</code>, <code>alias</code>
-   and <code>remarks</code> properties without changing the <code>RS_ReferenceSystem</code> definition inherited
-   from ISO 19115. Since GeoAPI replaces ISO 19115 CRS definitions by the ISO 19111 ones for providing a unified
-   model, it does not need this workaround. Consequently GeoAPI merges <code>IO_IdentifiedObjectBase</code> and
-   <code>IO_IdentifiedObject</code> into this single interface.</div>
-
-      <h3>Interface <a href="org/opengis/referencing/ObjectFactory.html">ObjectFactory</a></h3>
-        <div class="desc">This interface is not part of any OGC specification. It is added for uniformity,
-   in order to provide a common base class for all referencing factories producing
-   <code>IdentifiedObject</code> instances.</div>
-
-      <h3>Interface <a href="org/opengis/referencing/ReferenceSystem.html">ReferenceSystem</a></h3>
-        <div class="desc">The type defined in ISO 19115 has no relationship with ISO 19111.
-    GeoAPI redefines this type as a subtype of <code>IdentifiedObject</code>
-    and the common parent for
-    <code>org.opengis.referencing.crs.CoordinateReferenceSystem</code> and
-    <code>org.opengis.referencing.gazetteer.ReferenceSystemUsingIdentifiers</code>.
-    This change makes this interface closer to the legacy
-    ISO 19115:2003 <code>RS_ReferenceSystem</code> than to
-    ISO 19115:2015 <code>MD_ReferenceSystem</code>.</div>
-
-      <h3>Interface <a href="org/opengis/filter/DistanceOperator.html">DistanceOperator</a></h3>
-      <section class="members">
-        <h4>Method getExpressions</h4>
-        <div class="desc">ISO 19143 defines a single expression (<code>valueReference</code>)
-   completed by 2 parameters (<code>geometry</code> and <code>distance</code>).
-   GeoAPI puts the expression and the 2 parameters in a single list for enabling access
-   to all parameters in a more generic wayFilter#getExpressions().</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/metadata/quality/Measure.html">Measure</a></h3>
-      <section class="members">
-        <h4>Method getParameters</h4>
-        <div class="desc">Usage of the ISO 19157 <code>DQM_Parameter</code> type has been replaced by usage of the ISO 19111
-   <code>CC_OperationParameter</code> type, completed with some new <code>DQM_Parameter</code> properties,
-   in order to provide a unified parameter API. Note that <code>CC_OperationParameter</code> is named
-   <code>ParameterDescriptor</code> in GeoAPI to reflect its extended scope.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/metadata/identification/OperationMetadata.html">OperationMetadata</a></h3>
-      <section class="members">
-        <h4>Method getParameters</h4>
-        <div class="desc">Usage of the ISO 19115 <code>SV_Parameter</code> type has been replaced by usage of the ISO 19111
-   <code>CC_OperationParameter</code> type, completed with new <code>SV_Parameter</code> properties,
-   in order to provide a unified parameter API. Note that <code>CC_OperationParameter</code> is named
-   <code>ParameterDescriptor</code> in GeoAPI to reflect its extended scope.</div>
-      </section>
-
-      <h3>Interface <a href="org/opengis/metadata/content/SampleDimension.html">SampleDimension</a></h3>
-      <section class="members">
-        <h4>Method getTransferFunctionType</h4>
-        <div class="desc">ISO 19115-2 defines this property in the <code>MI_Band</code> type (a <code>MD_Band</code> subtype)
-   for historical reasons. GeoAPI moves this property up in the hierarchy to a more natural place
-   when not constrained by historical reasons, which is together with the offset and scale factor.</div>
-
-        <h4>Method getNominalSpatialResolution</h4>
-        <div class="desc">ISO 19115-2 defines this property in the <code>MI_Band</code> type (a <code>MD_Band</code> subtype)
-   for historical reasons. GeoAPI moves this property up in the hierarchy since this property
-   can apply to any sample dimension, not only the measurements in the electromagnetic spectrum.</div>
-      </section>
-    </section>
     <h2 id="easeOfUse">Extension for convenience without introduction of new functionality</h2>
     <section class="types">
 
@@ -681,6 +156,538 @@
    It reduces the number of interfaces and makes easy to query the operands for a specific operator.</div>
       </section>
     </section>
+    <h2 id="harmonization">Departure for harmonization between different specifications</h2>
+    <section class="types">
+
+      <h3>Package <a href="org/opengis/parameter/package-summary.html">parameter</a></h3>
+        <div class="desc">ISO 19111 defines parameters in the <cite>Coordinate Operation</cite> package, while
+   ISO 19115 defines parameters in the <cite>Services</cite> package.
+   GeoAPI moves those classes in this <code>parameter</code> independent package
+   and tries to provide a single model for the two standards when possible.
+   With this move, GeoAPI has extended the use of these parameter classes to a more general use rather
+   than only for referencing operation types.</div>
+
+      <h3>Interface <a href="org/opengis/util/Factory.html">Factory</a></h3>
+        <div class="desc">This interface is not part of the OGC specification. It is added for uniformity,
+   in order to provide a common base class for all factories.</div>
+
+      <h3>Interface <a href="org/opengis/referencing/IdentifiedObject.html">IdentifiedObject</a></h3>
+        <div class="desc">ISO 19111 defines two types, <code>IO_IdentifiedObjectBase</code> and <code>IO_IdentifiedObject</code>, as a
+   workaround for introducing a base type for the <code>name</code>, <code>identifier</code>, <code>alias</code>
+   and <code>remarks</code> properties without changing the <code>RS_ReferenceSystem</code> definition inherited
+   from ISO 19115. Since GeoAPI replaces ISO 19115 CRS definitions by the ISO 19111 ones for providing a unified
+   model, it does not need this workaround. Consequently, GeoAPI merges <code>IO_IdentifiedObjectBase</code> and
+   <code>IO_IdentifiedObject</code> into this single interface.</div>
+
+      <h3>Interface <a href="org/opengis/referencing/ObjectFactory.html">ObjectFactory</a></h3>
+        <div class="desc">This interface is not part of any OGC specification. It is added for uniformity,
+   in order to provide a common base class for all referencing factories producing
+   <code>IdentifiedObject</code> instances.</div>
+
+      <h3>Interface <a href="org/opengis/referencing/ReferenceSystem.html">ReferenceSystem</a></h3>
+        <div class="desc">The type defined in ISO 19115 has no relationship with ISO 19111.
+    GeoAPI redefines this type as a subtype of <code>IdentifiedObject</code>
+    and the common parent for
+    <code>org.opengis.referencing.crs.CoordinateReferenceSystem</code> and
+    <code>org.opengis.referencing.gazetteer.ReferenceSystemUsingIdentifiers</code>.
+    This change makes this interface closer to the legacy
+    ISO 19115:2003 <code>RS_ReferenceSystem</code> than to
+    ISO 19115:2015 <code>MD_ReferenceSystem</code>.</div>
+
+      <h3>Interface <a href="org/opengis/filter/DistanceOperator.html">DistanceOperator</a></h3>
+      <section class="members">
+        <h4>Method getExpressions</h4>
+        <div class="desc">ISO 19143 defines a single expression (<code>valueReference</code>)
+   completed by 2 parameters (<code>geometry</code> and <code>distance</code>).
+   GeoAPI puts the expression and the 2 parameters in a single list for enabling access
+   to all parameters in a more generic wayFilter#getExpressions().</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/metadata/quality/Measure.html">Measure</a></h3>
+      <section class="members">
+        <h4>Method getParameters</h4>
+        <div class="desc">Usage of the ISO 19157 <code>DQM_Parameter</code> type has been replaced by usage of the ISO 19111
+   <code>CC_OperationParameter</code> type, completed with some new <code>DQM_Parameter</code> properties,
+   in order to provide a unified parameter API. Note that <code>CC_OperationParameter</code> is named
+   <code>ParameterDescriptor</code> in GeoAPI to reflect its extended scope.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/metadata/identification/OperationMetadata.html">OperationMetadata</a></h3>
+      <section class="members">
+        <h4>Method getParameters</h4>
+        <div class="desc">Usage of the ISO 19115 <code>SV_Parameter</code> type has been replaced by usage of the ISO 19111
+   <code>CC_OperationParameter</code> type, completed with new <code>SV_Parameter</code> properties,
+   in order to provide a unified parameter API. Note that <code>CC_OperationParameter</code> is named
+   <code>ParameterDescriptor</code> in GeoAPI to reflect its extended scope.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/metadata/content/SampleDimension.html">SampleDimension</a></h3>
+      <section class="members">
+        <h4>Method getTransferFunctionType</h4>
+        <div class="desc">ISO 19115-2 defines this property in the <code>MI_Band</code> type (a <code>MD_Band</code> subtype)
+   for historical reasons. GeoAPI moves this property up in the hierarchy to a more natural place
+   when not constrained by historical reasons, which is together with the offset and scale factor.</div>
+
+        <h4>Method getNominalSpatialResolution</h4>
+        <div class="desc">ISO 19115-2 defines this property in the <code>MI_Band</code> type (a <code>MD_Band</code> subtype)
+   for historical reasons. GeoAPI moves this property up in the hierarchy since this property
+   can apply to any sample dimension, not only the measurements in the electromagnetic spectrum.</div>
+      </section>
+    </section>
+    <h2 id="extension">Addition of element not in the ISO/OGC specification</h2>
+    <section class="types">
+
+      <h3>Interface <a href="org/opengis/referencing/operation/ConicProjection.html">ConicProjection</a>,<br>Interface <a href="org/opengis/referencing/operation/CylindricalProjection.html">CylindricalProjection</a>,<br>Interface <a href="org/opengis/referencing/operation/PlanarProjection.html">PlanarProjection</a>,<br>Interface <a href="org/opengis/referencing/operation/Projection.html">Projection</a></h3>
+        <div class="desc">This interface is not part of the ISO specification. It has been added in GeoAPI at user
+   request, in order to provide a way to know the kind of map projection.</div>
+
+      <h3>Interface <a href="org/opengis/util/CodeList/Filter.html">Filter</a></h3>
+        <div class="desc">The inner <code>CodeList.Filter</code> interface is not part of the OGC specification.
+   It has been added because <code>CodeList</code> is one of the few concrete classes in
+   GeoAPI and there is a need to give some user control over the behavior of the
+   <code>CodeList</code> implementation.</div>
+
+      <h3>Interface <a href="org/opengis/referencing/operation/MathTransform1D.html">MathTransform1D</a></h3>
+        <div class="desc">This interface is not part of the OGC specification. It has been added as a complement
+   of <code>MathTransform2D</code> and because the 1D case provides opportunities for optimization
+   through a <code>transform</code> method accepting a single <code>double</code> primitive type.</div>
+
+      <h3>Interface <a href="org/opengis/util/NameFactory.html">NameFactory</a></h3>
+        <div class="desc">Added in order to provide constructors for <code>GenericName</code> and related interfaces.</div>
+
+      <h3>Interface <a href="org/opengis/referencing/AuthorityFactory.html">AuthorityFactory</a></h3>
+      <section class="members">
+        <h4>Method getAuthorityCodes</h4>
+        <div class="desc">This method is not part of the OGC specification but has been added as a way to publish
+   the capabilities of a factory.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/util/CodeList.html">CodeList</a></h3>
+      <section class="members">
+        <h4>Method names</h4>
+        <div class="desc">Defined because each <code>CodeList</code> has at least two names, the Java programmatic
+   name and the UML identifier, while some subclasses have additional names.</div>
+
+        <h4>Method identifier</h4>
+        <div class="desc">Defined because each <code>CodeList</code> has a UML identifier in addition of the Java
+   programmatic name.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/referencing/operation/CoordinateOperationAuthorityFactory.html">CoordinateOperationAuthorityFactory</a></h3>
+      <section class="members">
+        <h4>Method createOperationMethod</h4>
+        <div class="desc">This method has been added because OGC 01-009 does not define a factory
+   method for creating such object.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/referencing/operation/CoordinateOperationFactory.html">CoordinateOperationFactory</a></h3>
+      <section class="members">
+        <h4>Method createOperation</h4>
+        <div class="desc">This method has been added at user request, in order to specify the desired
+   transformation path when many are available.</div>
+
+        <h4>Method createConcatenatedOperation,<br>Method createOperationMethod</h4>
+        <div class="desc">This method has been added because OGC 01-009 does not define a factory
+   method for creating such object.</div>
+
+        <h4>Method createDefiningConversion</h4>
+        <div class="desc">The <cite>defining conversion</cite> concept appears in ISO 19111:2007 textual specification
+   without formalization in UML diagrams. This concept has been formalized in GeoAPI
+   in order to allow the creation of <code>ProjectedCRS</code> instances.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/parameter/GeneralParameterDescriptor.html">GeneralParameterDescriptor</a></h3>
+      <section class="members">
+        <h4>Method createValue</h4>
+        <div class="desc">This method is not part of the ISO specification. It is provided in GeoAPI as a kind of
+   factory method.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/util/GenericName.html">GenericName</a></h3>
+      <section class="members">
+        <h4>Method toInternationalString</h4>
+        <div class="desc">This method is not part of the ISO specification. It has been added to provide
+   a way to localize the name.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/referencing/IdentifiedObject.html">IdentifiedObject</a></h3>
+      <section class="members">
+        <h4>Method toWKT</h4>
+        <div class="desc">This method is not part of the OGC specification. It has been added in order to provide the
+   converse of the <code>CRSFactory.createFromWKT(String)</code> method, which is defined in OGC 01-009.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/referencing/operation/MathTransformFactory.html">MathTransformFactory</a></h3>
+      <section class="members">
+        <h4>Method getAvailableMethods</h4>
+        <div class="desc">This method is not part of the OGC specification.
+   It has been added as a way to publish the capabilities of a factory.</div>
+
+        <h4>Method getLastMethodUsed</h4>
+        <div class="desc">This method is not part of the OGC specification.
+   It has been added because this information appears to be important in some situations.
+   We did not defined a {<code>MathTransform</code>, <code>OperationMethod</code>} tuple in order
+   to keep <code>create(…)</code> simpler in the common case where the operation method is not needed,
+   and for historical reasons (conformance to OGC 01-009).</div>
+
+        <h4>Method getDefaultParameters,<br>Method createBaseToDerived</h4>
+        <div class="desc">This method is part of the GeoAPI mechanism for defining the math transform parameters
+   or deriving other transforms.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/parameter/ParameterDescriptor.html">ParameterDescriptor</a></h3>
+      <section class="members">
+        <h4>Method getValidValues,<br>Method getUnit</h4>
+        <div class="desc">This method is not part of ISO specification. It is provided as a complement of information.</div>
+
+        <h4>Method createValue</h4>
+        <div class="desc">This method is not part of the ISO specification.
+   It is provided in GeoAPI as a kind of factory method.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/parameter/ParameterDescriptorGroup.html">ParameterDescriptorGroup</a></h3>
+      <section class="members">
+        <h4>Method createValue</h4>
+        <div class="desc">This method is not part of the ISO specification. It is provided in GeoAPI as a kind of
+   factory method.</div>
+      </section>
+    </section>
+    <h2 id="historic">Departure for historical reason</h2>
+    <section class="types">
+
+      <h3>Interface <a href="org/opengis/referencing/cs/CSAuthorityFactory.html">CSAuthorityFactory</a>,<br>Interface <a href="org/opengis/referencing/cs/CSFactory.html">CSFactory</a></h3>
+        <div class="desc">Added for consistency with CRS and datum factories. This CS factory was not defined in the
+   OGC specification because OGC 01-009 was created before ISO 19111 and had no equivalent of
+   the ISO <cite>Coordinate System</cite> types.</div>
+
+      <h3>Interface <a href="org/opengis/referencing/crs/GeocentricCRS.html">GeocentricCRS</a></h3>
+        <div class="desc">This interface is kept conformant with the specification published in 2003. The 2007 revision
+   of ISO 19111 removed the <code>SC_GeographicCRS</code> and <code>SC_GeocentricCRS</code> types,
+   handling both using the <code>SC_GeodeticCRS</code> parent type.
+   GeoAPI keeps them since the distinction between those two types is in wide use.</div>
+
+      <h3>Interface <a href="org/opengis/referencing/operation/CoordinateOperation.html">CoordinateOperation</a></h3>
+      <section class="members">
+        <h4>Method getScope</h4>
+        <div class="desc">This method has been kept conformant with the specification published in 2003.
+   The revision published in 2007 replaced the singleton by a collection and changed the
+   obligation from "optional" to "mandatory", requiring a return value of
+   <cite>"not known"</cite> if the scope is unknown. This change is still under review.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/referencing/datum/Datum.html">Datum</a></h3>
+      <section class="members">
+        <h4>Method getAnchorPoint</h4>
+        <div class="desc">This method has been kept conformant with the specification published in 2003 for compatibility reasons.
+   The revision published in 2007 renamed this property as <code>anchorDefinition</code>.</div>
+
+        <h4>Method getScope</h4>
+        <div class="desc">This method has been kept conformant with the specification published in 2003. The revision
+   published in 2007 replaced the singleton by a collection and changed the obligation
+   from "optional" to "mandatory", requiring a return value of <cite>"not known"</cite>
+   if the scope is unknown.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/metadata/ExtendedElementInformation.html">ExtendedElementInformation</a></h3>
+      <section class="members">
+        <h4>Method getName</h4>
+        <div class="desc">This property has been kept conform to ISO 19115:2003 for simplicity.
+    The 2014 revision defines two mutually exclusive names depending on the data type:
+    <code>"conceptName"</code> for <code>ENUMERATION</code>, <code>CODE_LIST</code> or <code>CODE_LIST_ELEMENT</code>,
+    and <code>"name"</code> for all other data types. GeoAPI keeps the <code>"name"</code> property for all
+    data types and let developers inspect the <code>"dataType"</code> property if needed.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/referencing/datum/PrimeMeridian.html">PrimeMeridian</a></h3>
+      <section class="members">
+        <h4>Method getAngularUnit</h4>
+        <div class="desc">This attribute is inherited from an older OGC specification.
+   In ISO 19111, <code>greenwichLongitude</code> is a property of type <code>Angle</code>
+   rather than <code>double</code>, and the unit of measure is part of the <code>Angle</code> value.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/metadata/quality/QuantitativeResult.html">QuantitativeResult</a></h3>
+      <section class="members">
+        <h4>Method getValueType</h4>
+        <div class="desc">Renamed from <code>"valueRecordType"</code> to <code>"valueType"</code> for compatibility with ISO 19115:2003
+   and because the return object type does not need to be repeated in Java method name.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/referencing/ReferenceSystem.html">ReferenceSystem</a></h3>
+      <section class="members">
+        <h4>Method getDomainOfValidity</h4>
+        <div class="desc">This method has been kept conformant with the specification published in 2003.
+   Later revisions changed the multiplicity, so the return type should now be a
+   collection. The singleton has been preserved in GeoAPI for historical reasons,
+   and also because the <code>Extent</code> attributes already allow collections.</div>
+
+        <h4>Method getScope</h4>
+        <div class="desc">This method was initially derived from the ISO 19111 specification published in 2003.
+   Later revision (ISO 19111:2007) differs in 3 aspects:
+   <ul>
+     <li>ISO 19111:2007 moved this property from this type to the <code>SC_CRS</code> subtype.
+         GeoAPI keeps this property here for historical reasons.</li>
+     <li>ISO 19111:2007 changed the obligation from optional to mandatory
+         and requires the value to be <cite>"not known"</cite> if the scope is unknown.
+         GeoAPI lefts the obligation unchanged: optional with <code>null</code> value for unknown scope.</li>
+     <li>ISO 19111:2007 changed the multiplicity from singleton to a collection.
+         GeoAPI keeps the singleton type for historical reasons.</li>
+   </ul></div>
+      </section>
+    </section>
+    <h2 id="rename">Change of name without change in functionality</h2>
+    <section class="types">
+
+      <h3>Class <a href="org/opengis/metadata/identification/DistributedComputingPlatform.html">DistributedComputingPlatform</a></h3>
+        <div class="desc">Renamed from "<code>DCPList</code>" to "<code>DistributedComputingPlatform</code>" for the following reasons:
+   <ol>
+     <li>GeoAPI avoids the "<code>List</code>" suffix because instances of this class are not list.
+         The concept of list rather applies to the list of predefined static constants in this class.</li>
+     <li>"<code>DCP</code>" is an abbreviation, and Java usage is to avoid abbreviations unless they are well known.</li>
+   </ol></div>
+
+      <h3>Interface <a href="org/opengis/parameter/GeneralParameterDescriptor.html">GeneralParameterDescriptor</a>,<br>Interface <a href="org/opengis/parameter/ParameterDescriptor.html">ParameterDescriptor</a>,<br>Interface <a href="org/opengis/parameter/ParameterDescriptorGroup.html">ParameterDescriptorGroup</a></h3>
+        <div class="desc">GeoAPI uses a name which contains the "<code>Descriptor</code>" word for consistency with other
+   libraries in Java (e.g. <code>ParameterListDescriptor</code> in Java Advanced Imaging).</div>
+
+      <h3>Interface <a href="org/opengis/util/InternationalString.html">InternationalString</a></h3>
+        <div class="desc">This is called <code>PT_FreeText</code> in ISO 19115 standard, and can be applied to all metadata
+   elements who's data type is <code>CharacterString</code> and domain is “free text”.
+   GeoAPI uses the <code>InternationalString</code> name for historical reasons and for consistency
+   with similar object in Internationalization Service for J2EE.</div>
+
+      <h3>Interface <a href="org/opengis/metadata/quality/Element.html">Element</a></h3>
+      <section class="members">
+        <h4>Method getMeasureReference</h4>
+        <div class="desc">The ISO 19157 property name is <code>measure</code>.
+   This is renamed <code>measureReference</code> in GeoAPI for reflecting the return type
+   and for making room for a <code>measure</code> property for the full <code>Measure</code> description.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/metadata/quality/EvaluationMethod.html">EvaluationMethod</a></h3>
+      <section class="members">
+        <h4>Method getReferenceDocuments</h4>
+        <div class="desc">Renamed from <code>"referenceDoc"</code> to <code>"referenceDocument"</code>
+   for avoiding abbreviation (a Java usage).</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/metadata/content/FeatureCatalogueDescription.html">FeatureCatalogueDescription</a></h3>
+      <section class="members">
+        <h4>Method getFeatureTypeInfo</h4>
+        <div class="desc">Renamed from "<code>featureTypes</code>" to "<code>featureTypeInfo</code>" for the following reasons:
+   <ol>
+     <li>Avoid name collision with the ISO 19115:2003 definition of "<code>featureTypes</code>".</li>
+     <li>Avoid confusion between <code>FeatureTypeInfo</code> and <code>org.opengis.feature.FeatureType</code>.
+         A <code>getFeatureTypes()</code> method name would suggest that the collection contains the latter.</li>
+   </ol></div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/referencing/crs/GeneralDerivedCRS.html">GeneralDerivedCRS</a></h3>
+      <section class="members">
+        <h4>Method getConversionFromBase</h4>
+        <div class="desc">"<code>conversion</code>" may be confusing as a method name
+   since it does not indicate which CRS is the source or which is the target.
+   The OGC 01-009 specification used the <code>toBase()</code> method name.
+   By analogy with 01-009, GeoAPI defines a method name which contains the "<code>FromBase</code>" expression.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/metadata/extent/GeographicExtent.html">GeographicExtent</a></h3>
+      <section class="members">
+        <h4>Method getInclusion</h4>
+        <div class="desc">The ISO identifier is <code>"extentTypeCode"</code> and defines the value 1 for inclusion,
+   and 0 for exclusion. GeoAPI uses a name which better expresses the meaning of the return value.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/parameter/ParameterValue.html">ParameterValue</a></h3>
+      <section class="members">
+        <h4>Method doubleValue</h4>
+        <div class="desc">Renamed the method from "<code>value</code>" to "<code>doubleValue</code>" for consistency
+   with <code>Number.doubleValue()</code> and the other "<code>*Value</code>" methods defined
+   in this interface.</div>
+
+        <h4>Method intValue</h4>
+        <div class="desc">Renamed the method from "<code>integerValue</code>" to "<code>intValue</code>" for
+   consistency with <code>Number.intValue()</code> and the <code>int</code> Java primitive type.</div>
+
+        <h4>Method doubleValueList</h4>
+        <div class="desc">Renamed the method from "<code>valueList</code>" to "<code>doubleValueList</code>" both for
+   consistency with <code>doubleValue()</code> and also because, like <code>doubleValue()</code>,
+   this method returns an array of <code>double</code> values rather than a <code>Measure</code>
+   object.</div>
+
+        <h4>Method intValueList</h4>
+        <div class="desc">Renamed the attribute from "<code>integerValueList</code>" to "<code>intValueList</code>"
+   for consistency with <code>intValue()</code>.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/parameter/ParameterValueGroup.html">ParameterValueGroup</a></h3>
+      <section class="members">
+        <h4>Method getDescriptor</h4>
+        <div class="desc">The ISO name was "<code>group</code>". GeoAPI uses "<code>descriptor</code>" instead in
+   order to override the <code>getDescriptor()</code> generic method provided in the parent
+   interface. In addition the "descriptor" name makes more apparent that this method returns
+   an abstract definition of parameters - not their actual values - and is consistent with
+   usage in other Java libraries like the <cite>Java Advanced Imaging</cite> library.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/metadata/citation/Party.html">Party</a></h3>
+      <section class="members">
+        <h4>Method getIdentifiers</h4>
+        <div class="desc">Renamed from "<code>partyIdentifier</code>" to "<code>identifier</code>"
+   for providing a unified method signature for identifiers.</div>
+      </section>
+    </section>
+    <h2 id="constraint">Departure due to constraint of the Java language</h2>
+    <section class="types">
+
+      <h3>Package <a href="org/opengis/referencing/cs/package-summary.html">cs</a></h3>
+        <div class="desc">ISO 19111 defines <code>GeodeticCS</code>, <code>EngineeringCS</code> and <code>ImageCS</code> unions.
+   However, the <code>union</code> construct found in some languages like C/C++ is not available in Java.
+   For each union, a different approach has been applied and documented in the <code>org.opengis.referencing.cs</code>
+   package. In the particular case of <code>ImageCS</code>, the same type-safety objective can be obtained
+   through a slight change in the interface hierarchy.</div>
+
+      <h3>Interface <a href="org/opengis/referencing/cs/CartesianCS.html">CartesianCS</a></h3>
+        <div class="desc">ISO 19111 defines <code>CartesianCS</code> as a direct sub-type of <code>CoordinateSystem</code>.
+   ISO also defines <code>ImageCS</code> as the union of <code>AffineCS</code> and <code>CartesianCS</code>,
+   for use by <code>ImageCRS</code>. Because the <code>union</code> construct found in some languages like
+   C/C++ does not exist in Java, GeoAPI defines <code>CartesianCS</code> as a sub-type of <code>AffineCS</code>
+   in order to achieve the same type safety.
+   With this change, GeoAPI can use <code>AffineCS</code> directly without the need to define <code>ImageCS</code>.
+   In this hierarchy, <code>CartesianCS</code> is considered a special case of <code>AffineCS</code> where all axes
+   are perpendicular to each other.</div>
+
+      <h3>Interface <a href="org/opengis/referencing/datum/Ellipsoid.html">Ellipsoid</a></h3>
+        <div class="desc">ISO 19111 defines the union named <code>secondDefiningParameter</code>
+   as being either <code>semiMinorAxis</code> or <code>inverseFlattening</code>.
+   The <code>union</code> construct (defined in some languages like C/C++) does not exist in Java.
+   GeoAPI changed the interface to require both ellipsoidal parameters (in addition to the <code>semiMajorAxis</code>
+   parameter which is mandatory in any case), as was done in <a>OGC 01-009</a>.
+   However, implementers could readily permit users to only provide one of the two parameters
+   by creating a class which calculates the second parameter from the first.
+   For precision, GeoAPI imports the <code>isIvfDefinitive</code> attribute from OGC 01-009
+   to enable the user to establish which of the two parameters was used to define the instance.</div>
+
+      <h3>Interface <a href="org/opengis/referencing/crs/GeographicCRS.html">GeographicCRS</a></h3>
+        <div class="desc">This interface is kept conformant with the specification published in 2003. The 2007 revision
+   of ISO 19111 removed the <code>SC_GeographicCRS</code> and <code>SC_GeocentricCRS</code> types,
+   handling both using the <code>SC_GeodeticCRS</code> parent type. GeoAPI keeps them for two reasons:
+   <ul>
+     <li>The distinction between those two types is in wide use.</li>
+     <li>A distinct geographic type allows GeoAPI to restrict the coordinate system type to <code>EllipsoidalCS</code>.
+         ISO 19111 uses a <code>union</code> for expressing this restriction at the <code>SC_GeodeticCRS</code> level, but
+         the Java language does not provide such construct. A distinct geographic type is one way to achieve the
+         same goal.</li>
+   </ul></div>
+
+      <h3>Interface <a href="org/opengis/geometry/coordinate/Position.html">Position</a></h3>
+        <div class="desc">ISO 19107 defines <code>Position</code> as a <code>union</code> of <code>DirectPosition</code> and <code>Point</code>
+   but unions are not allowed in Java. GeoAPI defines <code>Position</code> as the base interface of both
+   types so the two conditional accessor methods, <code>getPoint()</code> and <code>getDirectPosition()</code>,
+   can be replaced by an <code>instanceof</code> check. However, the <code>getDirectPosition()</code> has been
+   retained with different semantics, conceptually returning a <code>DirectPosition</code> at the same location.
+   The conditionality has also been changed to mandatory since all three types conceptually have a
+   well defined location.</div>
+
+      <h3>Interface <a href="org/opengis/filter/BinarySpatialOperator.html">BinarySpatialOperator</a></h3>
+      <section class="members">
+        <h4>Method getOperand2</h4>
+        <div class="desc">ISO 19143 restricts the type to <code>SpatialDescription</code>, which is a union between
+   <code>Geometry</code>, <code>Envelope</code> and <code>ValueReference</code>.
+   Union has no direct equivalence in Java and is replaced by documentation in this method.</div>
+      </section>
+
+      <h3>Enum <a href="org/opengis/annotation/Obligation.html">Obligation</a></h3>
+      <section class="members">
+        <h4>Enum FORBIDDEN</h4>
+        <div class="desc">ISO specifications sometimes override a parent method with a comment saying that the method
+   is not allowed for a particular class. Since there is no construct in Java for expressing
+   this constraint in the method signature, GeoAPI defines a <code>FORBIDDEN</code> obligation
+   (not in original ISO specifications) to be used with the <code>@UML</code> annotation and
+   which adds a flag in the Java documentation.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/filter/TemporalOperator.html">TemporalOperator</a></h3>
+      <section class="members">
+        <h4>Method getExpressions</h4>
+        <div class="desc">ISO 19143 uses two properties, named <code>operand1</code> and <code>operand2</code>,
+   of type <code>ValueReference</code> and <code>TemporalOperand</code> respectively.
+   The later is an union of <code>TM_Object</code> and <code>ValueReference</code>,
+   which has no direct equivalence in Java.
+   The union purpose is replaced by documentation in this method.
+   The two values are put in a list for retrofitting in <code>Filter#getExpressions()</code>.</div>
+      </section>
+    </section>
+    <h2 id="generalization">Generalization by relaxation of ISO/OGC restriction</h2>
+    <section class="types">
+
+      <h3>Interface <a href="org/opengis/referencing/AuthorityFactory.html">AuthorityFactory</a></h3>
+      <section class="members">
+        <h4>Method createObject</h4>
+        <div class="desc">This method is not part of the OGC specification. It has been added to leverage the
+   capability of factories that can automatically determine the type of the requested
+   object at runtime.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/filter/BinarySpatialOperator.html">BinarySpatialOperator</a></h3>
+      <section class="members">
+        <h4>Method getOperand1</h4>
+        <div class="desc">ISO 19143 restricts the type to <code>ValueReference</code>.
+   GeoAPI relaxes this restriction by allowing arbitrary expressions.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/referencing/crs/CompoundCRS.html">CompoundCRS</a></h3>
+      <section class="members">
+        <h4>Method getComponents</h4>
+        <div class="desc">ISO 19111 said <cite>"nesting of compound CRSs shall not be permitted; the individual single systems
+   shall be aggregated together"</cite>. However, this approach causes data lost: it is difficult to add
+   a temporal CRS to an existing three-dimensional compound CRS without loosing the name and identifiers
+   of the 3D CRS, unless nesting is permitted. It is programmatically easier to convert nested CRSs to a
+   flat list of single CRSs when needed than to reconstruct the 3D CRS from the single components.
+   Consequently, GeoAPI has been keep conformant with the legacy OGC 01-009 specification in this aspect,
+   which were allowing nested compound CRS.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/referencing/crs/CoordinateReferenceSystem.html">CoordinateReferenceSystem</a></h3>
+      <section class="members">
+        <h4>Method getCoordinateSystem</h4>
+        <div class="desc">ISO 19111 defines this method for <code>SC_SingleCRS</code> only. GeoAPI declares this method in
+   this parent interface for user convenience, since CS dimension and axes are commonly requested
+   information and will always be available, directly or indirectly, even for <code>SC_CompoundCRS</code>.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/filter/Filter.html">Filter</a></h3>
+      <section class="members">
+        <h4>Method getOperatorType</h4>
+        <div class="desc">The ISO/OGC standard defines an <code>operatorType</code> property in <code>UnaryLogicOperator</code>,
+   <code>BinaryLogicOperator</code>, <code>BinaryComparisonOperator</code>, <code>BinarySpatialOperator</code>
+   and <code>DistanceOperator</code>. This method has been added for providing a single access point
+   for that information without the need to check for each sub-type.</div>
+
+        <h4>Method getExpressions</h4>
+        <div class="desc">This method has been added for providing a single access point for information provided in sub-types.
+   The properties captured here have different names in OGC/ISO specification depending on the sub-type:
+   <code>expression</code> (with a cardinality of 1, 2 or unlimited), <code>operand1</code>, <code>operand2</code>, or
+   <code>valueReference</code>. This method provides a way to access those expressions without the need to
+   make special cases for each sub-type.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/parameter/GeneralParameterDescriptor.html">GeneralParameterDescriptor</a></h3>
+      <section class="members">
+        <h4>Method getMaximumOccurs</h4>
+        <div class="desc">Moved up (in the interface hierarchy) the <code>maximumOccurs</code> method from
+   <code>ParameterDescriptorGroup</code> into this super-interface, for parallelism
+   with the <code>minimumOccurs</code> method.</div>
+      </section>
+
+      <h3>Interface <a href="org/opengis/util/GenericName.html">GenericName</a></h3>
+      <section class="members">
+        <h4>Method head</h4>
+        <div class="desc">ISO defines this method in <code>ScopedName</code> only. GeoAPI defines it in the base
+   class since <code>LocalName</code> can return a sensible value for it. This reduces the
+   need for casts.</div>
+      </section>
+    </section>
     <h2 id="integration">Departure for closer integration with the Java environment</h2>
     <section class="types">
 
@@ -697,7 +704,7 @@
    GeoAPI follows a similar path by <strong>not</strong> providing a <code>DerivedCRSType</code> code list.
    Instead, we recommend to implement the corresponding interface as documented in the above table.
    Then, Java expressions like <code>(baseCRS instanceof FooCRS)</code> provides the same capability
-   than the code list with more flexibility. For example it allows to use a derived CRS of type “vertical”
+   than the code list with more flexibility. For example, it allows to use a derived CRS of type “vertical”
    with API expecting an instance of <code>VerticalCRS</code>.</div>
 
       <h3>Interface <a href="org/opengis/referencing/operation/MathTransform2D.html">MathTransform2D</a></h3>
@@ -772,7 +779,7 @@
    code lists by equivalent objects from the standard Java library. The <code>PT_Locale</code> class, which is a
    container for above code-lists, is replaced by <code>Map</code> entries in order to avoid to introduce a new class
    and because the character set information is not as relevant in Java than in XML documents.
-   For example the character encoding information is irrelevant to <code>InternationalString</code>
+   For example, the character encoding information is irrelevant to <code>InternationalString</code>
    because the Java language fixes the encoding of all <code>String</code> instances to UTF-16.
 
    <p>In addition ISO 19115:2014 defines <code>defaultLocale</code> and <code>otherLocale(s)</code> as separated attributes,
