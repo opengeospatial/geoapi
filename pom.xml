@@ -512,7 +512,6 @@
             <link>https://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/</link>
             <link>https://junit.org/junit4/javadoc/latest/</link>
             <link>https://iogp-gigs.github.io/GIGSGeoAPI/</link>
-            <link>https://www.geoapi.org/snapshot/javadoc/</link>   <!-- For modules that depend on GeoAPI. -->
           </links>
         </configuration>
       </plugin>

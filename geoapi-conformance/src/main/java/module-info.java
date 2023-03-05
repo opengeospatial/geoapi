@@ -36,6 +36,7 @@
 module org.opengis.geoapi.conformance {
     requires java.prefs;
     requires java.logging;
+    requires transitive java.desktop;
     requires transitive java.measure;
     requires transitive org.opengis.geoapi.pending;
     requires junit;

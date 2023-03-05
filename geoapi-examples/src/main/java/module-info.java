@@ -52,5 +52,10 @@ module org.opengis.geoapi.example {
     requires org.opengis.geoapi.pending;
     requires vecmath;
 
+    exports org.opengis.example.geometry;
+    exports org.opengis.example.metadata;
+    exports org.opengis.example.parameter;
+    exports org.opengis.example.referencing;
+
     provides org.opengis.util.NameFactory with org.opengis.example.util.SimpleNameFactory;
 }
