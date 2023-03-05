@@ -22,24 +22,6 @@
  * and <cite><a href="http://www.opengeospatial.org">Open Geospatial Consortium</a></cite> (<abbr>OGC</abbr>).
  * The interfaces were created from UML diagrams found in the <abbr>ISO</abbr> and <abbr>OGC</abbr> specifications.
  *
- * <h2>Links</h2>
- * <ul>
- *   <li><a href="http://www.geoapi.org/">GeoAPI home page</a></li>
- *   <li><a href="http://www.opengeospatial.org/standards/geoapi/"><abbr>OGC</abbr> GeoAPI specification</a></li>
- *   <li><a href="content.html">GeoAPI content (with mapping to <abbr>OGC</abbr>/<abbr>ISO</abbr> <abbr>UML</abbr>)</a></li>
- *   <li><a href="UML-Java.html">Mapping from <abbr>UML</abbr> diagrams to Java interfaces</a></li>
- *   <li><a href="departures.html">Departures in Java interfaces compared to <abbr>UML</abbr> diagrams</a></li>
- *   <li><a href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html"><cite>Well-Known Text 2</cite> (<abbr>WKT</abbr> 2) specification</a></li>
- *   <li><a href="org/opengis/referencing/doc-files/WKT.html"><cite>Well-Known Text 1</cite> (<abbr>WKT</abbr> 1) specification</a></li>
- *   <li><a href="future-work.html">Future work</a></li>
- * </ul>
- *
- * <h2>Requirements</h2>
- * <ul>
- *   <li><a href="https://docs.oracle.com/en/java/javase/11/">Java 11</a> or later.</li>
- *   <li><a href="https://jcp.org/en/jsr/detail?id=385"><abbr>JSR</abbr>-385</a> units of measurement API.</li>
- * </ul>
- *
  * @version 4.0
  * @since 1.0
  */
