@@ -3,6 +3,7 @@
                 "OGC_doc_number": "23-016",
                 "urn":"http://www.opengis.net/doc/IS/geoapi/4.0",
                 "title":"OGC GeoAPI",
+                "version":"4.0",
                 "path":"src/main/metanorma/standard.adoc"
         }
 }
