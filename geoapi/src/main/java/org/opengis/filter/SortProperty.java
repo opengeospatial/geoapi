@@ -46,7 +46,7 @@ public interface SortProperty<R> extends Comparator<R> {
      * @return the property to sort by.
      */
     @UML(identifier="valueReference", obligation=MANDATORY, specification=ISO_19143)
-    ValueReference<? super R, ?> getValueReference();
+    ValueReference<R,?> getValueReference();
 
     /**
      * The sorting order, ascending or descending.

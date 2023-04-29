@@ -57,7 +57,7 @@ public interface BetweenComparisonOperator<R> extends ComparisonOperator<R> {
      *         the lower boundary and the upper boundary in that order.
      */
     @Override
-    List<Expression<? super R, ?>> getExpressions();
+    List<Expression<R,?>> getExpressions();
 
     /**
      * Returns the expression to be compared by this operator.
@@ -66,7 +66,7 @@ public interface BetweenComparisonOperator<R> extends ComparisonOperator<R> {
      * @return the expression to be compared.
      */
     @UML(identifier="expression", obligation=MANDATORY, specification=ISO_19143)
-    default Expression<? super R, ?> getExpression() {
+    default Expression<R,?> getExpression() {
         return getExpressions().get(0);
     }
 
@@ -77,7 +77,7 @@ public interface BetweenComparisonOperator<R> extends ComparisonOperator<R> {
      * @return the lower bound, inclusive.
      */
     @UML(identifier="lowerBoundary", obligation=MANDATORY, specification=ISO_19143)
-    default Expression<? super R, ?> getLowerBoundary() {
+    default Expression<R,?> getLowerBoundary() {
         return getExpressions().get(1);
     }
 
@@ -88,7 +88,7 @@ public interface BetweenComparisonOperator<R> extends ComparisonOperator<R> {
      * @return the upper bound, inclusive.
      */
     @UML(identifier="upperBoundary", obligation=MANDATORY, specification=ISO_19143)
-    default Expression<? super R, ?> getUpperBoundary() {
+    default Expression<R,?> getUpperBoundary() {
         return getExpressions().get(2);
     }
 }

@@ -130,7 +130,14 @@ public interface Filter<R> extends Predicate<R> {
      *   {@code valueReference}. This method provides a way to access those expressions without the need to
      *   make special cases for each sub-type.
      */
-    List<Expression<? super R, ?>> getExpressions();
+    List<Expression<R,?>> getExpressions();
+    /*
+     * API design note: the `<R>` parameterized type could be more generic. It could be `<? super R>` instead.
+     * However expressions and filters are often chained, and following a chain of filters become difficult if,
+     * when asking parameters of parameters, the `<? super R>` type become a kind of `<? super ? super R>` type.
+     * The latter is reported by the compiler as `<? super #CAP1>`. Experience with implementation shows that it
+     * is difficult to avoid unsafe cast in such cases.
+     */
 
     /**
      * Given an object, determines if the test(s) represented by this filter are passed.

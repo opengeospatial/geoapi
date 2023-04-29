@@ -52,21 +52,7 @@ public interface BinaryComparisonOperator<R> extends ComparisonOperator<R> {
      */
     @Override
     @UML(identifier="expression", obligation=MANDATORY, specification=ISO_19143)
-    List<Expression<? super R, ?>> getExpressions();
-
-    /*
-     * API design note: the major reason for the two following convenience methods is type safety.
-     * Consider the following code (which is valid)!
-     *
-     *     BinaryComparisonOperator<R> operator = ...;
-     *     List<Expression<? super R, ?>> expressions = getExpressions();
-     *
-     * Above code become invalid if the operator type is changed from <R> to <? super R> because
-     * the list type become <? super #CAP1> when #CAP1 cannot be expressed as a parametric type.
-     * We cannot store a type-safe reference to the list, but accessing individual elements of
-     * that list (as done below) stay legel. Providing methods for that allow implementors to
-     * override those methods with more efficient implementations.
-     */
+    List<Expression<R,?>> getExpressions();
 
     /**
      * Returns the element on the left side of the comparison expression.
@@ -74,7 +60,7 @@ public interface BinaryComparisonOperator<R> extends ComparisonOperator<R> {
      *
      * @return the first element in the list of expressions.
      */
-    default Expression<? super R, ?> getOperand1() {
+    default Expression<R,?> getOperand1() {
         return getExpressions().get(0);
     }
 
@@ -84,7 +70,7 @@ public interface BinaryComparisonOperator<R> extends ComparisonOperator<R> {
      *
      * @return the second element in the list of expressions.
      */
-    default Expression<? super R, ?> getOperand2() {
+    default Expression<R,?> getOperand2() {
         return getExpressions().get(1);
     }
 

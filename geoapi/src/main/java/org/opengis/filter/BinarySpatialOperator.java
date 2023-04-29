@@ -78,7 +78,7 @@ public interface BinarySpatialOperator<R> extends SpatialOperator<R> {
      *   GeoAPI relaxes this restriction by allowing arbitrary expressions.
      */
     @UML(identifier="operand1", obligation=MANDATORY, specification=ISO_19143)
-    default Expression<? super R, ?> getOperand1() {
+    default Expression<R,?> getOperand1() {
         return getExpressions().get(0);
     }
 
@@ -101,7 +101,7 @@ public interface BinarySpatialOperator<R> extends SpatialOperator<R> {
      *   Union has no direct equivalence in Java and is replaced by documentation in this method.
      */
     @UML(identifier="operand2", obligation=MANDATORY, specification=ISO_19143)
-    default Expression<? super R, ?> getOperand2() {
+    default Expression<R,?> getOperand2() {
         return getExpressions().get(1);
     }
 
@@ -113,5 +113,5 @@ public interface BinarySpatialOperator<R> extends SpatialOperator<R> {
      * @return a list of size 2 containing the two expressions to be evaluated.
      */
     @Override
-    List<Expression<? super R, ?>> getExpressions();
+    List<Expression<R,?>> getExpressions();
 }

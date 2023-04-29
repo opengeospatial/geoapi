@@ -83,7 +83,14 @@ public interface Expression<R,V> extends Function<R,V> {
      * @return the sub-expressions to be evaluated, or an empty list if none.
      */
     @UML(identifier="Function.expression", obligation=MANDATORY, specification=ISO_19143)
-    List<Expression<? super R, ?>> getParameters();
+    List<Expression<R,?>> getParameters();
+    /*
+     * API design note: the `<R>` parameterized type could be more generic. It could be `<? super R>` instead.
+     * However expressions and filters are often chained, and following a chain of expressions become difficult
+     * if, when asking parameters of parameters, the `<? super R>` type become a kind of `<? super ? super R>`.
+     * The latter is reported by the compiler as `<? super #CAP1>`. Experience with implementation shows that
+     * it is difficult to avoid unsafe cast in such cases.
+     */
 
     /**
      * Evaluates the expression value based on the content of the given object.

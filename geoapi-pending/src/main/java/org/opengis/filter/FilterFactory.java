@@ -136,8 +136,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see ComparisonOperatorName#PROPERTY_IS_EQUAL_TO
      */
-    default BinaryComparisonOperator<R> equal(Expression<? super R, ?> expression1,
-                                              Expression<? super R, ?> expression2)
+    default BinaryComparisonOperator<R> equal(Expression<R,?> expression1,
+                                              Expression<R,?> expression2)
     {
         return equal(Objects.requireNonNull(expression1),
                      Objects.requireNonNull(expression2),
@@ -155,8 +155,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see ComparisonOperatorName#PROPERTY_IS_EQUAL_TO
      */
-    BinaryComparisonOperator<R> equal(Expression<? super R, ?> expression1,
-                                      Expression<? super R, ?> expression2,
+    BinaryComparisonOperator<R> equal(Expression<R,?> expression1,
+                                      Expression<R,?> expression2,
                                       boolean isMatchingCase, MatchAction matchAction);
 
     /**
@@ -170,8 +170,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see ComparisonOperatorName#PROPERTY_IS_NOT_EQUAL_TO
      */
-    default BinaryComparisonOperator<R> notEqual(Expression<? super R, ?> expression1,
-                                                 Expression<? super R, ?> expression2)
+    default BinaryComparisonOperator<R> notEqual(Expression<R,?> expression1,
+                                                 Expression<R,?> expression2)
     {
         return notEqual(Objects.requireNonNull(expression1),
                         Objects.requireNonNull(expression2),
@@ -189,8 +189,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see ComparisonOperatorName#PROPERTY_IS_NOT_EQUAL_TO
      */
-    BinaryComparisonOperator<R> notEqual(Expression<? super R, ?> expression1,
-                                         Expression<? super R, ?> expression2,
+    BinaryComparisonOperator<R> notEqual(Expression<R,?> expression1,
+                                         Expression<R,?> expression2,
                                          boolean isMatchingCase, MatchAction matchAction);
 
     /**
@@ -205,8 +205,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @see ComparisonOperatorName#PROPERTY_IS_LESS_THAN
      * @todo Revisit if we can be more specific on the second parameterized type in expressions.
      */
-    default BinaryComparisonOperator<R> less(Expression<? super R, ?> expression1,
-                                             Expression<? super R, ?> expression2)
+    default BinaryComparisonOperator<R> less(Expression<R,?> expression1,
+                                             Expression<R,?> expression2)
     {
         return less(Objects.requireNonNull(expression1),
                     Objects.requireNonNull(expression2),
@@ -225,8 +225,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @see ComparisonOperatorName#PROPERTY_IS_LESS_THAN
      * @todo Revisit if we can be more specific on the second parameterized type in expressions.
      */
-    BinaryComparisonOperator<R> less(Expression<? super R, ?> expression1,
-                                     Expression<? super R, ?> expression2,
+    BinaryComparisonOperator<R> less(Expression<R,?> expression1,
+                                     Expression<R,?> expression2,
                                      boolean isMatchingCase, MatchAction matchAction);
 
     /**
@@ -241,8 +241,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @see ComparisonOperatorName#PROPERTY_IS_GREATER_THAN
      * @todo Revisit if we can be more specific on the second parameterized type in expressions.
      */
-    default BinaryComparisonOperator<R> greater(Expression<? super R, ?> expression1,
-                                                Expression<? super R, ?> expression2)
+    default BinaryComparisonOperator<R> greater(Expression<R,?> expression1,
+                                                Expression<R,?> expression2)
     {
         return greater(Objects.requireNonNull(expression1),
                        Objects.requireNonNull(expression2),
@@ -261,8 +261,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @see ComparisonOperatorName#PROPERTY_IS_GREATER_THAN
      * @todo Revisit if we can be more specific on the second parameterized type in expressions.
      */
-    BinaryComparisonOperator<R> greater(Expression<? super R, ?> expression1,
-                                        Expression<? super R, ?> expression2,
+    BinaryComparisonOperator<R> greater(Expression<R,?> expression1,
+                                        Expression<R,?> expression2,
                                         boolean isMatchingCase, MatchAction matchAction);
 
     /**
@@ -277,8 +277,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @see ComparisonOperatorName#PROPERTY_IS_LESS_THAN_OR_EQUAL_TO
      * @todo Revisit if we can be more specific on the second parameterized type in expressions.
      */
-    default BinaryComparisonOperator<R> lessOrEqual(Expression<? super R, ?> expression1,
-                                                    Expression<? super R, ?> expression2)
+    default BinaryComparisonOperator<R> lessOrEqual(Expression<R,?> expression1,
+                                                    Expression<R,?> expression2)
     {
         return lessOrEqual(Objects.requireNonNull(expression1),
                            Objects.requireNonNull(expression2),
@@ -297,8 +297,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @see ComparisonOperatorName#PROPERTY_IS_LESS_THAN_OR_EQUAL_TO
      * @todo Revisit if we can be more specific on the second parameterized type in expressions.
      */
-    BinaryComparisonOperator<R> lessOrEqual(Expression<? super R, ?> expression1,
-                                            Expression<? super R, ?> expression2,
+    BinaryComparisonOperator<R> lessOrEqual(Expression<R,?> expression1,
+                                            Expression<R,?> expression2,
                                             boolean isMatchingCase, MatchAction matchAction);
 
     /**
@@ -313,8 +313,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @see ComparisonOperatorName#PROPERTY_IS_GREATER_THAN_OR_EQUAL_TO
      * @todo Revisit if we can be more specific on the second parameterized type in expressions.
      */
-    default BinaryComparisonOperator<R> greaterOrEqual(Expression<? super R, ?> expression1,
-                                                       Expression<? super R, ?> expression2)
+    default BinaryComparisonOperator<R> greaterOrEqual(Expression<R,?> expression1,
+                                                       Expression<R,?> expression2)
     {
         return greaterOrEqual(Objects.requireNonNull(expression1),
                               Objects.requireNonNull(expression2),
@@ -333,8 +333,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @see ComparisonOperatorName#PROPERTY_IS_GREATER_THAN_OR_EQUAL_TO
      * @todo Revisit if we can be more specific on the second parameterized type in expressions.
      */
-    BinaryComparisonOperator<R> greaterOrEqual(Expression<? super R, ?> expression1,
-                                               Expression<? super R, ?> expression2,
+    BinaryComparisonOperator<R> greaterOrEqual(Expression<R,?> expression1,
+                                               Expression<R,?> expression2,
                                                boolean isMatchingCase, MatchAction matchAction);
 
     /**
@@ -347,9 +347,9 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @return a filter evaluating ({@code expression} ≥ {@code lowerBoundary})
      *                       &amp; ({@code expression} ≤ {@code upperBoundary}).
      */
-    BetweenComparisonOperator<R> between(Expression<? super R, ?> expression,
-                                         Expression<? super R, ?> lowerBoundary,
-                                         Expression<? super R, ?> upperBoundary);
+    BetweenComparisonOperator<R> between(Expression<R,?> expression,
+                                         Expression<R,?> lowerBoundary,
+                                         Expression<R,?> upperBoundary);
 
     /**
      * Character string comparison operator with pattern matching and default wildcards.
@@ -360,7 +360,7 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @param  pattern     pattern to match against expression values.
      * @return a character string comparison operator with pattern matching.
      */
-    default LikeOperator<R> like(Expression<? super R, ?> expression, String pattern) {
+    default LikeOperator<R> like(Expression<R,?> expression, String pattern) {
         return like(Objects.requireNonNull(expression), Objects.requireNonNull(pattern), '%', '_', '\\', true);
     }
 
@@ -375,7 +375,7 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @param  isMatchingCase  specifies how a filter expression processor should perform string comparisons.
      * @return a character string comparison operator with pattern matching.
      */
-    LikeOperator<R> like(Expression<? super R, ?> expression, String pattern,
+    LikeOperator<R> like(Expression<R,?> expression, String pattern,
             char wildcard, char singleChar, char escape, boolean isMatchingCase);
 
     /**
@@ -385,7 +385,7 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @param  expression  source of values to compare against {@code null}.
      * @return a filter that checks if an expression's value is {@code null}.
      */
-    NullOperator<R> isNull(Expression<? super R, ?> expression);
+    NullOperator<R> isNull(Expression<R,?> expression);
 
     /**
      * An operator that tests if an expression's value is nil.
@@ -408,7 +408,7 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @param  nilReason   the reason why the value is nil, or {@code null} for accepting any reason.
      * @return a filter that checks if an expression's value is nil for the specified reason.
      */
-    NilOperator<R> isNil(Expression<? super R, ?> expression, String nilReason);
+    NilOperator<R> isNil(Expression<R,?> expression, String nilReason);
 
     /**
      * Creates a {@code AND} filter between two filters.
@@ -419,8 +419,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see LogicalOperatorName#AND
      */
-    default LogicalOperator<R> and(Filter<? super R> operand1, Filter<? super R> operand2) {
-        return and(List.<Filter<? super R>>of(Objects.requireNonNull(operand1),
+    default LogicalOperator<R> and(Filter<R> operand1, Filter<R> operand2) {
+        return and(List.<Filter<R>>of(Objects.requireNonNull(operand1),
                                               Objects.requireNonNull(operand2)));
     }
 
@@ -433,7 +433,7 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see LogicalOperatorName#AND
      */
-    LogicalOperator<R> and(Collection<? extends Filter<? super R>> operands);
+    LogicalOperator<R> and(Collection<? extends Filter<R>> operands);
 
     /**
      * Creates a {@code OR} filter between two filters.
@@ -444,8 +444,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see LogicalOperatorName#OR
      */
-    default LogicalOperator<R> or(Filter<? super R> operand1, Filter<? super R> operand2) {
-        return or(List.<Filter<? super R>>of(Objects.requireNonNull(operand1),
+    default LogicalOperator<R> or(Filter<R> operand1, Filter<R> operand2) {
+        return or(List.<Filter<R>>of(Objects.requireNonNull(operand1),
                                              Objects.requireNonNull(operand2)));
     }
 
@@ -458,7 +458,7 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see LogicalOperatorName#OR
      */
-    LogicalOperator<R> or(Collection<? extends Filter<? super R>> operands);
+    LogicalOperator<R> or(Collection<? extends Filter<R>> operands);
 
     /**
      * Creates a {@code NOT} filter for the given filter.
@@ -468,7 +468,7 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see LogicalOperatorName#NOT
      */
-    LogicalOperator<R> not(Filter<? super R> operand);
+    LogicalOperator<R> not(Filter<R> operand);
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -486,7 +486,7 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see SpatialOperatorName#BBOX
      */
-    BinarySpatialOperator<R> bbox(Expression<? super R, ? extends G> geometry, Envelope bounds);
+    BinarySpatialOperator<R> bbox(Expression<R, ? extends G> geometry, Envelope bounds);
 
     /**
      * Creates an operator that checks if the geometry of the two operands are equal.
@@ -499,8 +499,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @todo Rename {@code equal}.
      */
-    BinarySpatialOperator<R> equals(Expression<? super R, ? extends G> geometry1,
-                                    Expression<? super R, ? extends G> geometry2);
+    BinarySpatialOperator<R> equals(Expression<R, ? extends G> geometry1,
+                                    Expression<R, ? extends G> geometry2);
 
     /**
      * Creates an operator that checks if the first operand is disjoint from the second.
@@ -511,8 +511,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see SpatialOperatorName#DISJOINT
      */
-    BinarySpatialOperator<R> disjoint(Expression<? super R, ? extends G> geometry1,
-                                      Expression<? super R, ? extends G> geometry2);
+    BinarySpatialOperator<R> disjoint(Expression<R, ? extends G> geometry1,
+                                      Expression<R, ? extends G> geometry2);
 
     /**
      * Creates an operator that checks if the two geometric operands intersect.
@@ -523,8 +523,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see SpatialOperatorName#INTERSECTS
      */
-    BinarySpatialOperator<R> intersects(Expression<? super R, ? extends G> geometry1,
-                                        Expression<? super R, ? extends G> geometry2);
+    BinarySpatialOperator<R> intersects(Expression<R, ? extends G> geometry1,
+                                        Expression<R, ? extends G> geometry2);
 
     /**
      * Creates an operator that checks if the two geometric operands touch each other, but do not overlap.
@@ -535,8 +535,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see SpatialOperatorName#TOUCHES
      */
-    BinarySpatialOperator<R> touches(Expression<? super R, ? extends G> geometry1,
-                                     Expression<? super R, ? extends G> geometry2);
+    BinarySpatialOperator<R> touches(Expression<R, ? extends G> geometry1,
+                                     Expression<R, ? extends G> geometry2);
 
     /**
      * Creates an operator that checks if the first geometric operand crosses the second.
@@ -547,8 +547,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see SpatialOperatorName#CROSSES
      */
-    BinarySpatialOperator<R> crosses(Expression<? super R, ? extends G> geometry1,
-                                     Expression<? super R, ? extends G> geometry2);
+    BinarySpatialOperator<R> crosses(Expression<R, ? extends G> geometry1,
+                                     Expression<R, ? extends G> geometry2);
 
     /**
      * Creates an operator that checks if the first geometric operand is completely
@@ -560,8 +560,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see SpatialOperatorName#WITHIN
      */
-    BinarySpatialOperator<R> within(Expression<? super R, ? extends G> geometry1,
-                                    Expression<? super R, ? extends G> geometry2);
+    BinarySpatialOperator<R> within(Expression<R, ? extends G> geometry1,
+                                    Expression<R, ? extends G> geometry2);
 
     /**
      * Creates an operator that checks if the first geometric operand contains the second.
@@ -572,8 +572,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see SpatialOperatorName#CONTAINS
      */
-    BinarySpatialOperator<R> contains(Expression<? super R, ? extends G> geometry1,
-                                      Expression<? super R, ? extends G> geometry2);
+    BinarySpatialOperator<R> contains(Expression<R, ? extends G> geometry1,
+                                      Expression<R, ? extends G> geometry2);
 
     /**
      * Creates an operator that checks if the interior of the first geometric operand
@@ -585,8 +585,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see SpatialOperatorName#OVERLAPS
      */
-    BinarySpatialOperator<R>  overlaps(Expression<? super R, ? extends G> geometry1,
-                                       Expression<? super R, ? extends G> geometry2);
+    BinarySpatialOperator<R>  overlaps(Expression<R, ? extends G> geometry1,
+                                       Expression<R, ? extends G> geometry2);
 
     /**
      * Creates an operator that checks if all of a feature's geometry is more distant
@@ -600,8 +600,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see DistanceOperatorName#BEYOND
      */
-    DistanceOperator<R> beyond(Expression<? super R, ? extends G> geometry1,
-                               Expression<? super R, ? extends G> geometry2,
+    DistanceOperator<R> beyond(Expression<R, ? extends G> geometry1,
+                               Expression<R, ? extends G> geometry2,
                                Quantity<Length> distance);
 
     /**
@@ -616,8 +616,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see DistanceOperatorName#WITHIN
      */
-    DistanceOperator<R> within(Expression<? super R, ? extends G> geometry1,
-                               Expression<? super R, ? extends G> geometry2,
+    DistanceOperator<R> within(Expression<R, ? extends G> geometry1,
+                               Expression<R, ? extends G> geometry2,
                                Quantity<Length> distance);
 
 ////////////////////////////////////////////////////////////////////////////////
@@ -635,8 +635,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see TemporalOperatorName#AFTER
      */
-    TemporalOperator<R> after(Expression<? super R, ? extends T> time1,
-                              Expression<? super R, ? extends T> time2);
+    TemporalOperator<R> after(Expression<R, ? extends T> time1,
+                              Expression<R, ? extends T> time2);
 
     /**
      * Creates an operator that checks if first temporal operand is before the second.
@@ -647,8 +647,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see TemporalOperatorName#BEFORE
      */
-    TemporalOperator<R> before(Expression<? super R, ? extends T> time1,
-                               Expression<? super R, ? extends T> time2);
+    TemporalOperator<R> before(Expression<R, ? extends T> time1,
+                               Expression<R, ? extends T> time2);
 
     /**
      * Creates an operator that checks if first temporal operand begins at the second.
@@ -659,8 +659,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see TemporalOperatorName#BEGINS
      */
-    TemporalOperator<R> begins(Expression<? super R, ? extends T> time1,
-                               Expression<? super R, ? extends T> time2);
+    TemporalOperator<R> begins(Expression<R, ? extends T> time1,
+                               Expression<R, ? extends T> time2);
 
     /**
      * Creates an operator that checks if first temporal operand begun by the second.
@@ -671,8 +671,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see TemporalOperatorName#BEGUN_BY
      */
-    TemporalOperator<R> begunBy(Expression<? super R, ? extends T> time1,
-                                Expression<? super R, ? extends T> time2);
+    TemporalOperator<R> begunBy(Expression<R, ? extends T> time1,
+                                Expression<R, ? extends T> time2);
 
     /**
      * Creates an operator that checks if first temporal operand is contained by the second.
@@ -683,8 +683,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see TemporalOperatorName#CONTAINS
      */
-    TemporalOperator<R> tcontains(Expression<? super R, ? extends T> time1,
-                                  Expression<? super R, ? extends T> time2);
+    TemporalOperator<R> tcontains(Expression<R, ? extends T> time1,
+                                  Expression<R, ? extends T> time2);
 
     /**
      * Creates an operator that checks if first temporal operand is during the second.
@@ -695,8 +695,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see TemporalOperatorName#DURING
      */
-    TemporalOperator<R> during(Expression<? super R, ? extends T> time1,
-                               Expression<? super R, ? extends T> time2);
+    TemporalOperator<R> during(Expression<R, ? extends T> time1,
+                               Expression<R, ? extends T> time2);
 
     /**
      * Creates an operator that checks if first temporal operand is equal to the second.
@@ -707,8 +707,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see TemporalOperatorName#EQUALS
      */
-    TemporalOperator<R> tequals(Expression<? super R, ? extends T> time1,
-                                Expression<? super R, ? extends T> time2);
+    TemporalOperator<R> tequals(Expression<R, ? extends T> time1,
+                                Expression<R, ? extends T> time2);
 
     /**
      * Creates an operator that checks if first temporal operand overlaps the second.
@@ -719,8 +719,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see TemporalOperatorName#OVERLAPS
      */
-    TemporalOperator<R> toverlaps(Expression<? super R, ? extends T> time1,
-                                  Expression<? super R, ? extends T> time2);
+    TemporalOperator<R> toverlaps(Expression<R, ? extends T> time1,
+                                  Expression<R, ? extends T> time2);
 
     /**
      * Creates an operator that checks if first temporal operand meets the second.
@@ -731,8 +731,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see TemporalOperatorName#MEETS
      */
-    TemporalOperator<R> meets(Expression<? super R, ? extends T> time1,
-                              Expression<? super R, ? extends T> time2);
+    TemporalOperator<R> meets(Expression<R, ? extends T> time1,
+                              Expression<R, ? extends T> time2);
 
     /**
      * Creates an operator that checks if first temporal operand ends at the second.
@@ -743,8 +743,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see TemporalOperatorName#ENDS
      */
-    TemporalOperator<R> ends(Expression<? super R, ? extends T> time1,
-                             Expression<? super R, ? extends T> time2);
+    TemporalOperator<R> ends(Expression<R, ? extends T> time1,
+                             Expression<R, ? extends T> time2);
 
     /**
      * Creates an operator that checks if first temporal operand is overlapped by the second.
@@ -755,8 +755,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see TemporalOperatorName#OVERLAPPED_BY
      */
-    TemporalOperator<R> overlappedBy(Expression<? super R, ? extends T> time1,
-                                     Expression<? super R, ? extends T> time2);
+    TemporalOperator<R> overlappedBy(Expression<R, ? extends T> time1,
+                                     Expression<R, ? extends T> time2);
 
     /**
      * Creates an operator that checks if first temporal operand is met by the second.
@@ -767,8 +767,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see TemporalOperatorName#MET_BY
      */
-    TemporalOperator<R> metBy(Expression<? super R, ? extends T> time1,
-                              Expression<? super R, ? extends T> time2);
+    TemporalOperator<R> metBy(Expression<R, ? extends T> time1,
+                              Expression<R, ? extends T> time2);
 
     /**
      * Creates an operator that checks if first temporal operand is ended by the second.
@@ -779,8 +779,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see TemporalOperatorName#ENDED_BY
      */
-    TemporalOperator<R> endedBy(Expression<? super R, ? extends T> time1,
-                                Expression<? super R, ? extends T> time2);
+    TemporalOperator<R> endedBy(Expression<R, ? extends T> time1,
+                                Expression<R, ? extends T> time2);
 
     /**
      * Creates a shortcut operator semantically equivalent to NOT (Before OR Meets OR MetBy OR After).
@@ -792,8 +792,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      *
      * @see TemporalOperatorName#ANY_INTERACTS
      */
-    TemporalOperator<R> anyInteracts(Expression<? super R, ? extends T> time1,
-                                     Expression<? super R, ? extends T> time2);
+    TemporalOperator<R> anyInteracts(Expression<R, ? extends T> time1,
+                                     Expression<R, ? extends T> time2);
 
 ////////////////////////////////////////////////////////////////////////////////
 //
@@ -808,8 +808,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @param  operand2  expression fetching the second number.
      * @return an expression for the "Add" function between the two numerical values.
      */
-    Expression<R,Number> add(Expression<? super R, ? extends Number> operand1,
-                             Expression<? super R, ? extends Number> operand2);
+    Expression<R,Number> add(Expression<R, ? extends Number> operand1,
+                             Expression<R, ? extends Number> operand2);
 
     /**
      * Creates a function computing the numeric difference between the first and second operand.
@@ -818,8 +818,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @param  operand2  expression fetching the second number.
      * @return an expression for the "Subtract" function between the two numerical values.
      */
-    Expression<R,Number> subtract(Expression<? super R, ? extends Number> operand1,
-                                  Expression<? super R, ? extends Number> operand2);
+    Expression<R,Number> subtract(Expression<R, ? extends Number> operand1,
+                                  Expression<R, ? extends Number> operand2);
 
     /**
      * Creates a function computing the numeric product of their first and second operand.
@@ -828,8 +828,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @param  operand2  expression fetching the second number.
      * @return an expression for the "Multiply" function between the two numerical values.
      */
-    Expression<R,Number> multiply(Expression<? super R, ? extends Number> operand1,
-                                  Expression<? super R, ? extends Number> operand2);
+    Expression<R,Number> multiply(Expression<R, ? extends Number> operand1,
+                                  Expression<R, ? extends Number> operand2);
 
     /**
      * Creates a function computing the numeric quotient resulting from dividing the first operand by the second.
@@ -838,8 +838,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @param  operand2  expression fetching the second number.
      * @return an expression for the "Divide" function between the two numerical values.
      */
-    Expression<R,Number> divide(Expression<? super R, ? extends Number> operand1,
-                                Expression<? super R, ? extends Number> operand2);
+    Expression<R,Number> divide(Expression<R, ? extends Number> operand1,
+                                Expression<R, ? extends Number> operand2);
 
     /**
      * Creates an implementation-specific function with a single parameter.
@@ -852,7 +852,7 @@ public interface FilterFactory<R,G,T> extends Factory {
      *         or if the argument is illegal for the specified function.
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
-    default Expression<R,?> function(String name, Expression<? super R, ?> parameter) {
+    default Expression<R,?> function(String name, Expression<R,?> parameter) {
         return function(name, new Expression[] {
             Objects.requireNonNull(parameter)
         });
@@ -870,7 +870,7 @@ public interface FilterFactory<R,G,T> extends Factory {
      *         or if the arguments are illegal for the specified function.
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
-    default Expression<R,?> function(String name, Expression<? super R, ?> param1, Expression<? super R, ?> param2) {
+    default Expression<R,?> function(String name, Expression<R,?> param1, Expression<R,?> param2) {
         return function(name, new Expression[] {
             Objects.requireNonNull(param1),
             Objects.requireNonNull(param2)
@@ -887,7 +887,7 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @throws IllegalArgumentException if the given name is not recognized,
      *         or if the arguments are illegal for the specified function.
      */
-    Expression<R,?> function(String name, Expression<? super R, ?>[] parameters);
+    Expression<R,?> function(String name, Expression<R,?>[] parameters);
 
     /**
      * Indicates a property by which contents should be sorted, along with intended order.
@@ -897,5 +897,5 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @param  order     the sorting order, ascending or descending.
      * @return definition of sort order of a property.
      */
-    SortProperty<R> sort(ValueReference<? super R, ?> property, SortOrder order);
+    SortProperty<R> sort(ValueReference<R,?> property, SortOrder order);
 }

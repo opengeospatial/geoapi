@@ -75,7 +75,7 @@ final class FilterLiteral implements Filter<Object>, Serializable {
      * Returns an empty list since this literal depends on no expression.
      */
     @Override
-    public List<Expression<? super Object, ?>> getExpressions() {
+    public List<Expression<Object,?>> getExpressions() {
         return Collections.emptyList();
     }
 

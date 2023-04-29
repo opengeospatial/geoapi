@@ -75,5 +75,5 @@ public interface TemporalOperator<R> extends Filter<R> {
      */
     @Override
     @UML(identifier="operand1, operand2", obligation=MANDATORY, specification=ISO_19143)
-    List<Expression<? super R, ?>> getExpressions();
+    List<Expression<R,?>> getExpressions();
 }
