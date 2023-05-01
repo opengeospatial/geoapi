@@ -36,18 +36,18 @@ import org.opengis.util.ScopedName;
  *
  * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to filter.
  */
-final class FilterExpressions<R> extends AbstractList<Expression<? super R, ?>> {
+final class FilterExpressions<R> extends AbstractList<Expression<R,?>> {
     /**
      * The filters to view as expressions.
      *
      * @see LogicalOperator#getOperands()
      */
-    private final List<Filter<? super R>> filters;
+    private final List<Filter<R>> filters;
 
     /**
      * Creates a new list of expression wrapping the given list of expressions.
      */
-    FilterExpressions(final List<Filter<? super R>> filters) {
+    FilterExpressions(final List<Filter<R>> filters) {
         this.filters = Objects.requireNonNull(filters);
     }
 
@@ -71,7 +71,7 @@ final class FilterExpressions<R> extends AbstractList<Expression<? super R, ?>> 
      * Returns the expression wrapper for the filter at the given index.
      */
     @Override
-    public Expression<? super R, ?> get(final int index) {
+    public Expression<R,?> get(final int index) {
         return new Element<>(filters.get(index));
     }
 
@@ -106,10 +106,18 @@ final class FilterExpressions<R> extends AbstractList<Expression<? super R, ?>> 
         }
 
         /**
+         * Returns the class of resources expected by the wrapped filter.
+         */
+        @Override
+        public Class<? super R> getResourceClass() {
+            return filter.getResourceClass();
+        }
+
+        /**
          * Returns the expressions used as arguments for the wrapped filter.
          */
         @Override
-        public List<Expression<? super R, ?>> getParameters() {
+        public List<Expression<R,?>> getParameters() {
             return filter.getExpressions();
         }
 

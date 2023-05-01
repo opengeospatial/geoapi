@@ -59,7 +59,7 @@ public interface NilOperator<R> extends ComparisonOperator<R> {
      */
     @Override
     @UML(identifier="expression", obligation=MANDATORY, specification=ISO_19143)
-    List<Expression<? super R, ?>> getExpressions();
+    List<Expression<R,?>> getExpressions();
 
     /**
      * Returns the reason why the value is nil.

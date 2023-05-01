@@ -81,7 +81,7 @@ public interface DistanceOperator<R> extends SpatialOperator<R> {
      */
     @Override
     @UML(identifier="valueReference", obligation=MANDATORY, specification=ISO_19143)
-    List<Expression<? super R, ?>> getExpressions();
+    List<Expression<R,?>> getExpressions();
 
     /**
      * The literal geometry from which distances are measured.

@@ -44,6 +44,14 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * This use places restrictions on the allowable and is captured as part of schema information {@link FeatureType}.
  * This is similar to the XML concept of "facets".</p>
  *
+ * <h2>Parameter types</h2>
+ * Filters are typically used for filtering feature instances.
+ * In such case, the {@code <R>} type parameter should be {@link org.opengis.feature.Feature}.
+ * However it is legal to use filters for other kinds of resources, for example coverage's geometry-value pairs.
+ * The latter are sometime considered as a kind of features.
+ *
+ * <p>The value of {@code <? super R>} can be obtained at runtime by a call to {@link #getResourceClass()}.</p>
+ *
  * @author  Chris Dillard (SYS Technologies)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -116,6 +124,26 @@ public interface Filter<R> extends Predicate<R> {
     CodeList<?> getOperatorType();
 
     /**
+     * Returns the class of resources expected by this filter. This is the runtime value of the {@code <R>} type,
+     * except that some implementations may accept instances of a more generic type such as {@code Object.class}.
+     * For example {@link #include()} and {@link #exclude()} put no restriction on the resource type
+     * because those filters ignore the given resource.
+     *
+     * <h4>Implementation note</h4>
+     * This filter resource class should be assignable to all resource classes expected by
+     * the {@linkplain #getExpressions() expressions} that are arguments of this filter.
+     * The type parametrization rules guarantee that at least one such specialized class exists: {@code <R>}.
+     * The behavior of this method is undefined if compile-time type safety was bypassed with unchecked casts,
+     * resulting in possible inconsistencies in the tree of expressions.
+     * The undefined behavior may be throwing an exception or returning {@code null}.
+     *
+     * @return type of resources accepted by this filter.
+     *
+     * @see Expression#getResourceClass()
+     */
+    Class<? super R> getResourceClass();
+
+    /**
      * Returns the expressions used as arguments for this filter.
      * This method shall return all parameters used directly by the filter,
      * including the ones also available by dedicated methods
@@ -130,7 +158,14 @@ public interface Filter<R> extends Predicate<R> {
      *   {@code valueReference}. This method provides a way to access those expressions without the need to
      *   make special cases for each sub-type.
      */
-    List<Expression<? super R, ?>> getExpressions();
+    List<Expression<R,?>> getExpressions();
+    /*
+     * API design note: the `<R>` parameterized type could be more generic. It could be `<? super R>` instead.
+     * However expressions and filters are often chained, and following a chain of filters become difficult if,
+     * when asking parameters of parameters, the `<? super R>` type become a kind of `<? super ? super R>` type.
+     * The latter is reported by the compiler as `<? super #CAP1>`. Experience with implementation shows that it
+     * is difficult to avoid unsafe cast in such cases.
+     */
 
     /**
      * Given an object, determines if the test(s) represented by this filter are passed.

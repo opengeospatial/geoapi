@@ -72,10 +72,20 @@ final class FilterLiteral implements Filter<Object>, Serializable {
     }
 
     /**
+     * Returns {@code Object.class} since this filter accepts anything.
+     * We cannot return a subclass because it depends on the parameterized type
+     * used in the call to {@link Filter#include()} or {@link Filter#exclude()}.
+     */
+    @Override
+    public Class<Object> getResourceClass() {
+        return Object.class;
+    }
+
+    /**
      * Returns an empty list since this literal depends on no expression.
      */
     @Override
-    public List<Expression<? super Object, ?>> getExpressions() {
+    public List<Expression<Object,?>> getExpressions() {
         return Collections.emptyList();
     }
 

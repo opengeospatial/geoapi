@@ -70,7 +70,7 @@ public interface LogicalOperator<R> extends Filter<R> {
      * @return a view of {@linkplain #getOperands() operands list} as expressions.
      */
     @Override
-    default List<Expression<? super R, ?>> getExpressions() {
+    default List<Expression<R,?>> getExpressions() {
         return new FilterExpressions<>(getOperands());
     }
 
@@ -82,5 +82,5 @@ public interface LogicalOperator<R> extends Filter<R> {
      * @return all child filters used as operands.
      */
     @UML(identifier="UnaryLogicOperator.operands, BinaryLogicOperator.operands", obligation=MANDATORY, specification=ISO_19143)
-    List<Filter<? super R>> getOperands();
+    List<Filter<R>> getOperands();
 }

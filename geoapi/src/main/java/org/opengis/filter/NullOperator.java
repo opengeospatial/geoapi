@@ -56,5 +56,5 @@ public interface NullOperator<R> extends ComparisonOperator<R> {
      */
     @Override
     @UML(identifier="expression", obligation=MANDATORY, specification=ISO_19143)
-    List<Expression<? super R, ?>> getExpressions();
+    List<Expression<R,?>> getExpressions();
 }
