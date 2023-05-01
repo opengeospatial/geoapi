@@ -29,11 +29,11 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * A constant value that can be used in expressions.
  * The {@link #apply(R)} method of this class must return the same value as {@link #getValue()}.
  *
- * <div class="note"><b>Note:</b>
- * the content of {@link #getValue()} may be persisted with XML based technologies.
+ * <h2>Type of values</h2>
+ * The content of {@link #getValue()} may be persisted with XML based technologies.
  * As an example a {@link org.opengis.geometry.Geometry} may be written out using GML.
  * Consequently, the value should be data objects such as strings, numbers, dates, or geometries.
- * It should not be state of operations.</div>
+ * It should not be state of operations.
  *
  * @author  Chris Dillard (SYS Technologies)
  * @author  Martin Desruisseaux (Geomatys)
@@ -55,6 +55,19 @@ public interface Literal<R,V> extends Expression<R,V> {
     @Override
     default ScopedName getFunctionName() {
         return Name.LITERAL;
+    }
+
+    /**
+     * Returns the class of resources accepted by this expression.
+     * The default implementation of this method returns {@code Object.class} because
+     * the resource is ignored by the default implementation of {@link #apply(Object)},
+     * and thus can be anything.
+     *
+     * @return {@code Object.class}.
+     */
+    @Override
+    default Class<? super R> getResourceClass() {
+        return Object.class;
     }
 
     /**

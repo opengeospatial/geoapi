@@ -37,12 +37,11 @@ import static org.opengis.annotation.Specification.ISO_19143;
  *
  * <p>Expressions are applied on objects of type {@code <R>}.
  * Those objects are typically {@link Feature} instances,
- * but expressions can also be used with other kind of objects
- * such as {@code Coverage}.</p>
+ * but expressions can also be used with other kind of objects such as coverage's geometry-value pairs.
+ * The value of {@code <? super R>} can be obtained at runtime by a call to {@link #getResourceClass()}.</p>
  *
  * <p>Expressions return a value of type {@code <V>}.
- * Expressions that can be used as {@link org.opengis.filter.Filter} operators
- * and can thus be combined using logical operations shall return a {@link Boolean} result.</p>
+ * Expressions that can be used as {@link Filter} operators shall return a {@link Boolean} result.</p>
  *
  * <p>Expressions can be implementation-specific functions.
  * Each execution environment should provide a list of supported functions
@@ -76,6 +75,26 @@ public interface Expression<R,V> extends Function<R,V> {
      */
     @UML(identifier="Function.name", obligation=MANDATORY, specification=ISO_19143)
     ScopedName getFunctionName();
+
+    /**
+     * Returns the class of resources expected by this expression. This is the runtime value of the {@code <R>} type,
+     * except that some implementations may accept instances of a more generic type such as {@code Object.class}.
+     * For example {@link Literal} may put no restriction on the resource type because it ignores the given resource.
+     *
+     * <h4>Implementation note</h4>
+     * For some expressions like {@link ValueReference}, the resource class may be an implementation-dependent
+     * hard-coded value. For other expressions, the return value should be assignable to all resource classes
+     * expected by the {@linkplain #getParameters() parameters}.
+     * The type parametrization rules guarantee that at least one such specialized class exists: {@code <R>}.
+     * The behavior of this method is undefined if compile-time type safety was bypassed with unchecked casts,
+     * resulting in possible inconsistencies in the tree of expressions.
+     * The undefined behavior may be throwing an exception or returning {@code null}.
+     *
+     * @return type of resources accepted by this expression.
+     *
+     * @see Filter#getResourceClass()
+     */
+    Class<? super R> getResourceClass();
 
     /**
      * Returns the list sub-expressions that will be evaluated to provide the parameters to the function.

@@ -106,6 +106,14 @@ final class FilterExpressions<R> extends AbstractList<Expression<R,?>> {
         }
 
         /**
+         * Returns the class of resources expected by the wrapped filter.
+         */
+        @Override
+        public Class<? super R> getResourceClass() {
+            return filter.getResourceClass();
+        }
+
+        /**
          * Returns the expressions used as arguments for the wrapped filter.
          */
         @Override
