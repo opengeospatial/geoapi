@@ -23,9 +23,9 @@ import java.util.HashSet;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Properties;
-import java.io.InputStream;
 import java.io.IOException;
 import org.opengis.annotation.UML;
+import org.opengis.annotation.ResourceBundles;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -56,7 +56,6 @@ public final class InterfacingTest {
      */
     @Test
     public void verifyCapacities() {
-        assertEquals(hashMapCapacity(geoapi.typesForNames().size()), Interfacing.GeoAPI.CLASS_CAPACITY);
         assertEquals(hashMapCapacity(geoapi.subclassed().size()), Interfacing.GeoAPI.SUBCLASSED_CAPACITY);
     }
 
@@ -68,10 +67,7 @@ public final class InterfacingTest {
      */
     @Test
     public void verifyTypesForNames() throws IOException, ClassNotFoundException {
-        final Properties umlToClass = new Properties(Interfacing.GeoAPI.CLASS_CAPACITY + 14);
-        try (InputStream in = UML.class.getResourceAsStream(Interfacing.GeoAPI.CLASS_LIST)) {
-            umlToClass.load(in);
-        }
+        final Properties umlToClass = ResourceBundles.classIndex();
         /*
          * Create a map of Python type names to Java classes. In this process, we are going to have name collisions
          * as a result of prefix removal. For example, "MD_Identifier" and "RS_Identifier" both become "Identifier".
@@ -80,7 +76,7 @@ public final class InterfacingTest {
          */
         final Set<Class<?>> deprecated = new HashSet<>();
         final ClassLoader loader = UML.class.getClassLoader();
-        final Map<String,Class<?>> typesForNames = new HashMap<>(Interfacing.GeoAPI.CLASS_CAPACITY);
+        final Map<String,Class<?>> typesForNames = new HashMap<>(hashMapCapacity(umlToClass.size()));
         for (final Map.Entry<Object,Object> e : umlToClass.entrySet()) {
             String name = (String) e.getKey();
             name = name.substring(name.indexOf('_') + 1);

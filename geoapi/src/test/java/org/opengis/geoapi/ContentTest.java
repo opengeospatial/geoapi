@@ -94,6 +94,7 @@ public final class ContentTest implements FileVisitor<Path> {
         ignoreTypes = new HashSet<>(List.of(
                 org.opengis.annotation.Specification.class,
                 org.opengis.annotation.Stereotype.class,
+                org.opengis.annotation.ResourceBundles.class,
                 org.opengis.util.CodeList.class));
 
         skipDependencies = new HashMap<>(20);

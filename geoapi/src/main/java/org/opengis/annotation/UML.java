@@ -41,6 +41,8 @@ public @interface UML {
      * entity where it come from.
      *
      * @return the UML identifier used in the standard.
+     *
+     * @see ResourceBundles#classIndex()
      */
     String identifier();
 

@@ -25,12 +25,12 @@ import java.util.List;
 import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Collections;
-import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.ObjectStreamException;
 import java.nio.charset.StandardCharsets;
+import org.opengis.annotation.ResourceBundles;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.jpy.PyObject;
@@ -240,22 +240,10 @@ public abstract class Interfacing extends CodeList<Interfacing> {
         static final String PYTHON_PREFIX = "opengis.";
 
         /**
-         * The file in the {@link UML} package containing the list of all GeoAPI interfaces.
-         * This is used for populating {@link #typesForNames}.
-         */
-        static final String CLASS_LIST = "class-index.properties";
-
-        /**
          * The file in the {@link GeoAPI} package containing the list of all GeoAPI interfaces
          * having subclasses. This is used for populating {@link #subclassed}.
          */
         static final String SUBCLASSED_LIST = "subclassed.txt";
-
-        /**
-         * Initial capacity for the {@link #typesForNames} map, as the number of lines in the
-         * {@value #CLASS_LIST} file divided by 0.75.
-         */
-        static final int CLASS_CAPACITY = 288;
 
         /**
          * Initial capacity for the {@link #subclassed} set, as the number of lines in the
@@ -309,18 +297,18 @@ public abstract class Interfacing extends CodeList<Interfacing> {
         GeoAPI(final String name) {
             super(name);
             /*
-             * Load the list of all classes without creating the Class instead yet,
+             * Load the list of all classes without resolving the Class instances yet,
              * except for resolving ambiguities. The amount of classes is potentially
              * large and only a small amount of it is typically used.
              */
-            final Properties p = new Properties(CLASS_CAPACITY + 14);
-            try (InputStream in = UML.class.getResourceAsStream(CLASS_LIST)) {
-                p.load(in);
+            final Properties p;
+            try {
+                p = ResourceBundles.classIndex();
             } catch (NullPointerException | IOException e) {
-                throw (Error) new ExceptionInInitializerError(error(CLASS_LIST, true)).initCause(e);
+                throw (Error) new ExceptionInInitializerError(error("class-index.properties", true)).initCause(e);
             }
             final Set<String> excludes = excludes();
-            typesForNames = new HashMap<>(CLASS_CAPACITY);
+            typesForNames = new HashMap<>(Math.round(p.size() / 0.75f));
             for (final Map.Entry<Object,Object> e : p.entrySet()) {
                 String type = (String) e.getKey();
                 if (!excludes.contains(type)) {
@@ -391,7 +379,7 @@ public abstract class Interfacing extends CodeList<Interfacing> {
                             if (name != null) try {
                                 return Class.forName(name, false, UML.class.getClassLoader());
                             } catch (ClassNotFoundException e) {
-                                throw new EnvironmentException(error(CLASS_LIST, false), e);
+                                throw new EnvironmentException(error("class-index.properties", false), e);
                             }
                         }
                     }

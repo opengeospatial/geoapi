@@ -70,6 +70,7 @@ module org.opengis.geoapi.pending {
     exports org.opengis.referencing.gazetteer;
     exports org.opengis.geometry.aggregate;
     exports org.opengis.geometry.complex;
+    exports org.opengis.coverage;
     exports org.opengis.coverage.grid;
     exports org.opengis.observation;
     exports org.opengis.observation.coverage;

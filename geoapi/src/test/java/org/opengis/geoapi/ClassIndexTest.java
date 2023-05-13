@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Specification;
+import org.opengis.annotation.ResourceBundles;
 import org.junit.Test;
 
 import static org.junit.Assert.*;
@@ -55,8 +56,8 @@ import static org.opengis.annotation.Specification.*;
  */
 public final class ClassIndexTest extends SourceGenerator {
     /**
-     * The name of the index file to read or generate. This file will be located in the
-     * "{@code org/opengis/annotation}" directory.
+     * The name of the index file to read or generate.
+     * This file will be located in the"{@code org/opengis/annotation}" directory.
      */
     private static final String INDEX_FILENAME = "class-index.properties";
 
@@ -179,5 +180,15 @@ public final class ClassIndexTest extends SourceGenerator {
             buffer.append(line).append('\n');
         }
         return buffer.toString();
+    }
+
+    /**
+     * Tests {@link ResourceBundles#classIndex()}.
+     *
+     * @throws IOException if the properties cannot be loaded.
+     */
+    @Test
+    public void testResourceBundles() throws IOException {
+        assertFalse(ResourceBundles.classIndex().isEmpty());
     }
 }
