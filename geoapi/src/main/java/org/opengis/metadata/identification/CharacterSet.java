@@ -74,6 +74,9 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
  *     codes.load(in);
  * }}
  *
+ * <!-- We do not provide convenience method here for above snippet because this class is deprecated.
+ *      Above snippet works with user's named module because "2003" is not a valid package name. -->
+ *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @version 3.1
  * @since   2.1

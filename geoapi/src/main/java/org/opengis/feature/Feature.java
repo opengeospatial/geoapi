@@ -66,10 +66,10 @@ public interface Feature {
      * the result of {@linkplain Operation#apply executing} the operation on this feature,
      * at implementation choice.
      *
-     * <div class="note"><b>Tip:</b> this method returns the property <em>instance</em>.
-     * If only the property <em>value</em> is desired, then {@link #getPropertyValue(String)} is preferred
-     * since it gives to implementations a chance to avoid the creation of {@link Attribute} or
-     * {@link FeatureAssociation} instances.</div>
+     * <h4>Performance note</h4>
+     * This method returns the property <em>instance</em>. If only the property <em>value</em> is desired,
+     * then {@link #getPropertyValue(String)} is preferred because it gives to implementations a chance to
+     * avoid the creation of {@link Attribute} or {@link FeatureAssociation} instances.
      *
      * @param  name  the property name.
      * @return the property of the given name (never {@code null}).
@@ -95,9 +95,10 @@ public interface Feature {
      * assert property.getType() == getType().getProperty(property.getName());
      * }
      *
-     * <div class="note"><b>Note:</b> this method is useful for storing non-default {@code Attribute} or
-     * {@code Association} implementations in this feature. When default implementations are sufficient,
-     * the {@link #setPropertyValue(String, Object)} method is preferred.</div>
+     * <h4>Usage note</h4>
+     * This method is useful for storing non-default {@code Attribute} or {@code Association} implementations in
+     * this feature. When default implementations are sufficient, the {@link #setPropertyValue(String, Object)}
+     * method is preferred.
      *
      * @param  property  the property to set.
      * @throws PropertyNotFoundException if the name of the given property is not a property name of this feature.
@@ -123,10 +124,10 @@ public interface Feature {
      *   <tr><td>{@code FeatureAssociationRole}</td> <td>2 or more</td>   <td>{@link FeatureAssociation#getValues()}</td> <td>{@code Collection<Feature>}</td></tr>
      * </table>
      *
-     * <div class="note"><b>Note:</b> “max. occurs” is the {@linkplain AttributeType#getMaximumOccurs()
-     * maximum number of occurrences} and does not depend on the actual number of values. If an attribute allows
-     * more than one value, then this method will always return a collection for that attribute even if the collection
-     * is empty.</div>
+     * <h4>Note on occurrences</h4>
+     * “max. occurs” is the {@linkplain AttributeType#getMaximumOccurs() maximum number of occurrences}
+     * and does not depend on the actual number of values. If an attribute allows more than one value,
+     * then this method will always return a collection for that attribute even if the collection is empty.
      *
      * @param  name  the property name.
      * @return value of the specified property,
@@ -141,11 +142,11 @@ public interface Feature {
     /**
      * Sets the value for the property of the given name.
      *
-     * <div class="note"><b>Note on validation</b>:
-     * the verifications performed by this method is implementation dependent.
+     * <h4>Note on validation</h4>
+     * The verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
      * and offer another method for performing more extensive validation.
-     * Implementations should document their validation process.</div>
+     * Implementations should document their validation process.
      *
      * @param  name   the property name.
      * @param  value  the new value for the specified property (may be {@code null}).

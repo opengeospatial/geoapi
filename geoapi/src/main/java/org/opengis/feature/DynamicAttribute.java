@@ -82,8 +82,8 @@ public interface DynamicAttribute<V> extends Attribute<V> {
      * Evaluating at the given temporal position may require interpolation.
      * Interpolation algorithm, if any, is implementation-dependent.
      *
-     * <div class="note"><b>Implementation note</b>:
-     * there is different approaches in the way that collection elements are related to those property values:
+     * <h4>Note for implementers</h4>
+     * There is different approaches in the way that collection elements are related to those property values:
      * <ul>
      *   <li>The collection may be a snapshot of property values at the method invocation time.</li>
      *   <li>The collection may be an unmodifiable view of properties values.</li>
@@ -91,7 +91,6 @@ public interface DynamicAttribute<V> extends Attribute<V> {
      * </ul>
      * This method does not mandate a particular approach.
      * However, implementations should document which policy they choose.
-     * </div>
      *
      * @param  time  the date, Julian day or other means to represent a position in time.
      * @return the attribute values.

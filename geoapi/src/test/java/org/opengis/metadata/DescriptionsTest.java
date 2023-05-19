@@ -33,6 +33,7 @@ import org.opengis.annotation.Specification;
 
 import org.junit.Test;
 import static org.junit.Assert.*;
+import org.opengis.annotation.ResourceBundles;
 
 
 /**
@@ -82,7 +83,7 @@ public final class DescriptionsTest {
      */
     @Test
     public void testAll() {
-        final ResourceBundle resources = ResourceBundle.getBundle("org.opengis.metadata.Descriptions");
+        final ResourceBundle resources = ResourceBundles.descriptions(null);
         /*
          * Get the set of keys. We will remove entries from this set as we found them.
          * When this test is finished, the set of keys should be empty.
@@ -166,7 +167,7 @@ public final class DescriptionsTest {
      */
     @Test
     public void testEnglish() {
-        final ResourceBundle resources = ResourceBundle.getBundle("org.opengis.metadata.Descriptions", Locale.ENGLISH);
+        final ResourceBundle resources = ResourceBundles.descriptions(Locale.ENGLISH);
         assertEquals("Unique identifier for the resource. Example: Universal Product Code (UPC), National Stock Number (NSN).",
                 resources.getString("CI_Citation.identifier"));
     }

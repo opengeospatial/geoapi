@@ -66,11 +66,11 @@ public interface FeatureAssociation extends Property {
     /**
      * Sets the associated feature.
      *
-     * <div class="note"><b>Note on validation</b>:
-     * the verifications performed by this method is implementation dependent.
+     * <h4>Note on validation</h4>
+     * The verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
      * and offer another method for performing more extensive validation.
-     * Implementations should document their validation process.</div>
+     * Implementations should document their validation process.
      *
      * @param  value  the new value, or {@code null}.
      * @throws InvalidPropertyValueException if this method verifies argument validity and the given value
@@ -83,8 +83,8 @@ public interface FeatureAssociation extends Property {
     /**
      * Returns all features, or an empty collection if none.
      *
-     * <div class="note"><b>Implementation note</b>:
-     * there is different approaches in the way that collection elements are related to this property values:
+     * <h4>Note for implementers</h4>
+     * There is different approaches in the way that collection elements are related to this property values:
      * <ul>
      *   <li>The collection may be a snapshot of property values at the method invocation time.</li>
      *   <li>The collection may be an unmodifiable view of properties values.</li>
@@ -92,7 +92,6 @@ public interface FeatureAssociation extends Property {
      * </ul>
      * This method does not mandate a particular approach.
      * However, implementations should document which policy they choose.
-     * </div>
      *
      * @return the features.
      */
@@ -101,11 +100,11 @@ public interface FeatureAssociation extends Property {
     /**
      * Sets the features. All previous values are replaced by the given collection.
      *
-     * <div class="note"><b>Note on validation</b>:
-     * the verifications performed by this method is implementation dependent.
+     * <h4>Note on validation</h4>
+     * The verifications performed by this method is implementation dependent.
      * For performance reasons, an implementation may verify only the most basic constraints
      * and offer another method for performing more extensive validation.
-     * Implementations should document their validation process.</div>
+     * Implementations should document their validation process.
      *
      * @param  values  the new values.
      * @throws InvalidPropertyValueException if this method verifies argument validity and the given values
