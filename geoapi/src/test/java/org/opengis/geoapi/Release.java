@@ -61,6 +61,11 @@ final class Release implements Closeable {
     private static final String LEGACY_UNIT_PACKAGE = "javax.measure.unit.";
 
     /**
+     * Version of the Unit API.
+     */
+    private static final String UNIT_API_VERSION = "2.1.3";
+
+    /**
      * Path to the JAR file of the GeoAPI version represented by the release.
      */
     private final File file;
@@ -91,7 +96,7 @@ final class Release implements Closeable {
         assumeTrue("GeoAPI " + version + " not in Maven repository.", file.isFile());
         final File depFile = new File(mavenRepository, isUsingLegacyUnits
                 ? "javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar"
-                : "javax/measure/unit-api/1.0/unit-api-1.0.jar");
+                : "javax/measure/unit-api/" + UNIT_API_VERSION + "/unit-api-" + UNIT_API_VERSION + ".jar");
 
         assertTrue("Required dependency not found: " + depFile, depFile.isFile());
         final URL dependency = depFile.toURI().toURL();
