@@ -153,6 +153,7 @@ public interface CSFactory extends ObjectFactory {
 
     /**
      * Creates a spherical coordinate system from the given set of axis.
+     * Two axes shall use angular units and one axis shall use linear units.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -166,6 +167,23 @@ public interface CSFactory extends ObjectFactory {
                                   CoordinateSystemAxis axis0,
                                   CoordinateSystemAxis axis1,
                                   CoordinateSystemAxis axis2) throws FactoryException;
+
+    /**
+     * Creates a spherical coordinate system without radius.
+     * The two axes shall use angular units.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  axis0  the first  axis.
+     * @param  axis1  the second axis.
+     * @return the coordinate system for the given properties and axes.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
+     */
+    SphericalCS createSphericalCS(Map<String, ?>  properties,
+                                  CoordinateSystemAxis axis0,
+                                  CoordinateSystemAxis axis1) throws FactoryException;
 
     /**
      * Creates an ellipsoidal coordinate system without ellipsoidal height.

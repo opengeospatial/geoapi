@@ -23,7 +23,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 3-dimensional coordinate system with one distance measured from the origin and two angular coordinates.
+ * A 2- or 3-dimensional coordinate system with one distance measured from the origin and two angular coordinates.
+ * In the two-dimensional case, the radius is omitted and may be implicitly an ellipsoid surface.
  * Not to be confused with an {@link EllipsoidalCS} based on an ellipsoid "degenerated" into a sphere.
  *
  * <p>This type of CS can be used by coordinate reference systems of type
