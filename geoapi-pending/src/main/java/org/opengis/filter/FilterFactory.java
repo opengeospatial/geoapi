@@ -421,7 +421,7 @@ public interface FilterFactory<R,G,T> extends Factory {
      */
     default LogicalOperator<R> and(Filter<R> operand1, Filter<R> operand2) {
         return and(List.<Filter<R>>of(Objects.requireNonNull(operand1),
-                                              Objects.requireNonNull(operand2)));
+                                      Objects.requireNonNull(operand2)));
     }
 
     /**
@@ -446,7 +446,7 @@ public interface FilterFactory<R,G,T> extends Factory {
      */
     default LogicalOperator<R> or(Filter<R> operand1, Filter<R> operand2) {
         return or(List.<Filter<R>>of(Objects.requireNonNull(operand1),
-                                             Objects.requireNonNull(operand2)));
+                                     Objects.requireNonNull(operand2)));
     }
 
     /**

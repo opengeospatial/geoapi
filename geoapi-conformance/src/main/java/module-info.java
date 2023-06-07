@@ -41,6 +41,7 @@ module org.opengis.geoapi.conformance {
     requires transitive org.opengis.geoapi.pending;
     requires junit;
 
+    exports org.opengis.geoapi;
     exports org.opengis.test;
     exports org.opengis.test.util;
     exports org.opengis.test.metadata;
