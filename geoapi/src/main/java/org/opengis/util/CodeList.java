@@ -296,7 +296,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * Returns the identifier declared in the {@link UML} annotation, or {@code null} if none.
      * The UML identifier shall be the ISO or OGC name for this code constant.
      *
-     * @return the ISO/OGC identifier for this code constant, or {@code null} if none.
+     * @return the ISO/OGC identifier for this code, or {@code null} if none.
      *
      * @departure extension
      *   Defined because each {@code CodeList} has a UML identifier in addition of the Java
@@ -324,11 +324,18 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                     }
                 }
             } catch (NoSuchFieldException e) {
-                // There is no field for a code of this name. It may be normal, since the user
-                // may have created a custom CodeList without declaring it as a constant.
+                /*
+                 * There is no field for a code of this name. It may be normal, because the user
+                 * may have created a custom `CodeList` without declaring it as a constant.
+                 */
             } catch (IllegalAccessException e) {
-                // Should never happen since getField(String) returns only public fields.
-                throw new AssertionError(e);
+                /*
+                 * Should never happen with accessible packages because `getField(String)` returns
+                 * only public fields. However it may happen if the code list is defined in a user
+                 * module and that module does not export the package containing the code list.
+                 */
+                System.getLogger("org.opengis.geoapi").log(System.Logger.Level.WARNING,
+                        "Cannot get the UML identifier of " + getClass().getSimpleName() + '.' + name(), e);
             }
             identifier = id;
         }
