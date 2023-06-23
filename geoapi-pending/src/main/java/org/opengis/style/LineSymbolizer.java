@@ -28,7 +28,6 @@ import org.opengis.filter.Expression;
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 2.2
  */
 @XmlElement("LineSymbolizer")
 public interface LineSymbolizer extends Symbolizer {

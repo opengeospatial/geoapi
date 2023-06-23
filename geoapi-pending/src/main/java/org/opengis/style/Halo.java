@@ -29,11 +29,9 @@ import org.opengis.annotation.XmlElement;
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 2.2
  */
 @XmlElement("Halo")
 public interface Halo {
-
     /**
      * Returns the object that indicates how the halo area around the text
      * should be filled.
@@ -68,5 +66,4 @@ public interface Halo {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

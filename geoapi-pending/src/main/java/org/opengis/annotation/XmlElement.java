@@ -33,12 +33,15 @@ import static java.lang.annotation.RetentionPolicy.*;
  * only provides enough information for finding the corresponding XML element in
  * the {@linkplain XmlSchema schema}.
  *
+ * <p>This annotation is used for documentation purpose only and may be removed in a future version.
+ * The reason is that GeoAPI tries to publish interfaces based on UML instead of XSD schemas.</p>
+ *
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.0
  */
 @Documented
 @Target({TYPE,METHOD,FIELD})
-@Retention(RUNTIME)
+@Retention(SOURCE)                  // Used for documentation purpose only.
 public @interface XmlElement {
     /**
      * The name of the element in the XML schema.

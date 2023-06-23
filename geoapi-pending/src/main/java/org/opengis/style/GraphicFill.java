@@ -19,6 +19,7 @@ package org.opengis.style;
 
 import org.opengis.annotation.XmlElement;
 
+
 /**
  * A GraphicFill is a simple interface with only a graphic but
  * additional parameters for the GraphicFill may be provided in the
@@ -29,16 +30,13 @@ import org.opengis.annotation.XmlElement;
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
  */
 @XmlElement("GraphicFill")
 public interface GraphicFill extends Graphic{
-
     /**
      * Calls the visit method of a StyleVisitor
      *
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

@@ -19,6 +19,7 @@ package org.opengis.style;
 
 import org.opengis.annotation.XmlElement;
 
+
 /**
  * The OverlapBehavior element tells a system how to behave when multiple
  * raster images in a layer  overlap each other, for example with
@@ -34,7 +35,6 @@ import org.opengis.annotation.XmlElement;
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
  */
 @XmlElement("OverlapBehavior")
 public enum OverlapBehavior {

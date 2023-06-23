@@ -29,7 +29,6 @@ import org.opengis.filter.Expression;
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Ian Turton, CCG
- * @since GeoAPI 2.2
  */
 @XmlElement("LinePlacement")
 public interface LinePlacement extends LabelPlacement {

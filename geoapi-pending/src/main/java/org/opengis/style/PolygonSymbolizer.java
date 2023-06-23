@@ -28,11 +28,9 @@ import org.opengis.filter.Expression;
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 2.2
  */
 @XmlElement("PolygonSymbolizer")
 public interface PolygonSymbolizer extends Symbolizer {
-
     /**
      * Returns the object containing all the information necessary to draw
      * styled lines.  This is used for the edges of polygons.

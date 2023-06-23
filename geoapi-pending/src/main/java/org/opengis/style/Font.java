@@ -30,7 +30,6 @@ import org.opengis.annotation.XmlParameter;
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 2.2
  */
 @XmlElement("Font")
 public interface Font {
@@ -84,5 +83,4 @@ public interface Font {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

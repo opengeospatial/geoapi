@@ -33,7 +33,6 @@ import org.opengis.annotation.XmlParameter;
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 2.2
  */
 @XmlElement("Graphic")
 public interface Graphic {

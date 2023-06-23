@@ -39,7 +39,6 @@ import org.opengis.annotation.XmlElement;
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
  */
 @XmlElement("ContrastEnchancement:type")
 public final class ContrastMethod extends CodeList<ContrastMethod> {

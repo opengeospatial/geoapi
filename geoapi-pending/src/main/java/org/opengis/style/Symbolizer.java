@@ -22,22 +22,23 @@ import javax.measure.quantity.Length;
 import org.opengis.feature.Feature;
 import org.opengis.filter.Expression;
 import org.opengis.filter.ValueReference;
-import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
-
-import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Abstract superclass of the symbolizers defined by the Symbology Encoding specification.
+ * Description of how a feature is to appear on a map.
+ * A symbolizer describes how the shape should appear,
+ * together with graphical properties such as color and opacity.
+ * A symbolizer is obtained by specifying one of a small number of different types
+ * and then supplying parameters to override its default behaviour.
+ * The predefined type of symbolizers are
+ * {@linkplain LineSymbolizer line},
+ * {@linkplain PolygonSymbolizer polygon},
+ * {@linkplain PointSymbolizer point},
+ * {@linkplain TextSymbolizer text}, and
+ * {@linkplain RasterSymbolizer raster}.
  *
- * <p>Please note you are not free to create your own subtype o Symbolizer - we are limited
- * to LineSymbolizer, PointSymbolizer, PolygonSymbolizer, RasterSymbolizer and TextSymbolizer.</p>
- *
- * <p><b>Using a static geometry</b></p>
- * One can use static geometry if needed, see {@link #getGeometryPropertyName()}
- *
- * <p><b>Particular cases if the geometry is not the defined type of the symbolizer</b></p>
+ * <h2>Particular cases if the geometry is not the defined type of the symbolizer</h2>
  * Geometry types other than inherently linear types can also be used. If a point geometry is
  * used, it should be interpreted as a line of "epsilon" (arbitrarily small) length with a
  * horizontal orientation centered on the point, and should be rendered with two end caps.
@@ -49,9 +50,7 @@ import static org.opengis.annotation.Specification.*;
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 2.2
  */
-@UML(identifier="PF_PortrayalSpecification", specification=ISO_19117)
 public interface Symbolizer {
     /**
      * Returns a  measure unit.

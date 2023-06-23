@@ -30,7 +30,6 @@ import org.opengis.metadata.citation.OnlineResource;
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 2.2
  */
 @XmlElement("ExternalGraphic")
 public interface ExternalGraphic extends GraphicalSymbol {
