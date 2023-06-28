@@ -32,8 +32,7 @@ import org.opengis.annotation.XmlElement;
 @XmlElement("TextSymbolizer")
 public interface TextSymbolizer extends Symbolizer {
     /**
-     * Returns the expression that will be evaluated to determine what text is
-     * displayed.
+     * Returns the expression that will be evaluated to determine what text is displayed.
      * If a Label element is not provided in a TextSymbolizer, then no text shall be rendered.
      */
     @XmlElement("Label")

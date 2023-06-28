@@ -22,6 +22,8 @@ import org.opengis.annotation.XmlElement;
 
 /**
  * Indicates how to draw point geometries on a map.
+ * if a line, polygon, or raster geometry is used with this Symbolizer,
+ * then the semantic is to use the centroid of the geometry, or any similar representative point.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium

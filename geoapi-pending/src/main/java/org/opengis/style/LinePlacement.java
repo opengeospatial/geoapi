@@ -22,8 +22,7 @@ import org.opengis.filter.Expression;
 
 
 /**
- * The "LinePlacement" specifies where and how a text label should be rendered
- * relative to a line.
+ * Instructions about where and how a text label should be rendered relative to a line.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
@@ -36,8 +35,8 @@ public interface LinePlacement extends LabelPlacement {
      * The PerpendicularOffset element of a LinePlacement gives the perpendicular distance
      * away from a line to draw a label.
      *
-     * The distance is in uoms and is positive to the left-hand side of the line string. Negative
-     * numbers mean right. The default offset is 0.
+     * The distance is in uoms and is positive to the left-hand side of the line string.
+     * Negative numbers mean right. The default offset is 0.
      */
     @XmlElement("PerpendicularOffset")
     Expression getPerpendicularOffset();

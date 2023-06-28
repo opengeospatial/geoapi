@@ -29,7 +29,7 @@ import org.opengis.annotation.XmlElement;
  * @author Johann Sorel (Geomatys)
  */
 @XmlElement("LegendGraphic")
-public interface GraphicLegend extends Graphic{
+public interface GraphicLegend extends Graphic {
     /**
      * calls the visit method of a StyleVisitor
      *

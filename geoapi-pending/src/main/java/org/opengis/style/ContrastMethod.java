@@ -25,22 +25,14 @@ import org.opengis.annotation.XmlElement;
 
 
 /**
- * The ContrastEnhancement element defines contrast enhancement for a channel of a
- * false-color image or for a color image.
- *
+ * Contrast enhancement for an image channel.
  * In the case of a color image, the relative grayscale brightness of a pixel color is used.
- * “Normalize” means to stretch the contrast so that the dimmest color is stretched to black
- * and the brightest color is stretched to white, with all colors in between stretched out
- * linearly. “Histogram” means to stretch the contrast based on a histogram of how many
- * colors are at each brightness level on input, with the goal of producing equal number of
- * pixels in the image at each brightness level on output. This has the effect of revealing
- * many subtle ground features.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  */
-@XmlElement("ContrastEnchancement:type")
+@XmlElement("ContrastEnchancement")
 public final class ContrastMethod extends CodeList<ContrastMethod> {
     /**
      * Serial number for compatibility with different versions.
@@ -51,29 +43,33 @@ public final class ContrastMethod extends CodeList<ContrastMethod> {
      * List of all enumerations of this type.
      * Must be declared before any enum declaration.
      */
-    private static final List<ContrastMethod> VALUES = new ArrayList<ContrastMethod>(3);
+    private static final List<ContrastMethod> VALUES = new ArrayList<>(4);
 
     /**
-     * Normalize enchancement.
-     * “Normalize” means to stretch the contrast so that the dimmest color is stretched to black
-     * and the brightest color is stretched to white, with all colors in between stretched out
-     * linearly.
+     * Dimmest color is stretched to black and the brightest color is stretched to white.
+     * All colors in between are stretched out linearly.
      */
     @XmlElement("Normalize")
     public static final ContrastMethod NORMALIZE = new ContrastMethod("NORMALIZE");
 
     /**
-     * Histogram enchancement.
-     * “Histogram” means to stretch the contrast based on a histogram of how many
-     * colors are at each brightness level on input, with the goal of producing equal number of
-     * pixels in the image at each brightness level on output.
+     * Contrast based on a histogram of how many colors are at each brightness level on input.
+     * The goal is to produce equal number of pixels in the image at each brightness level on output.
+     * This has the effect of revealing many subtle ground features.
      */
     @XmlElement("Histogram")
     public static final ContrastMethod HISTOGRAM = new ContrastMethod("HISTOGRAM");
 
     /**
-     * No enchancement.
-     * this is the default value.
+     * Contrast based on a gamma value.
+     * A gamma value tells how much to brighten (value greater than 1)
+     * or dim (value less than 1) an image, with 1 meaning no change.
+     */
+    public static final ContrastMethod GAMMA = new ContrastMethod("GAMMA");
+
+    /**
+     * No enhancement.
+     * This is the default value.
      */
     public static final ContrastMethod NONE = new ContrastMethod("NONE");
 

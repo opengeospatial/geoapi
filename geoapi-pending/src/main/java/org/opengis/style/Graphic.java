@@ -24,10 +24,11 @@ import org.opengis.annotation.XmlParameter;
 
 
 /**
- * A Graphic is a "graphic symbol" with an inherent shape, color(s), and possibly size. A
- * "graphic" can be very informally defined as "a little picture" and can be of either a raster
- * or vector-graphic source type. The term "graphic" is used since the term "symbol" is
- * similar to "Symbolizer" which is used in a different context in SE.
+ * A "graphic symbol" with an inherent shape, color(s), and possibly size.
+ * A "graphic" can be very informally defined as "a little picture"
+ * and can be of either a raster or vector-graphic source type.
+ * The term "graphic" is used since the term "symbol" is similar to "Symbolizer"
+ * which is used in a different context in SE.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
@@ -38,8 +39,14 @@ import org.opengis.annotation.XmlParameter;
 public interface Graphic {
     /**
      * Returns the list of external image files or marks that comprise this graphic.
-     * All elements of the list must be instances of either {@link Mark} or {@link ExternalGraphic}.
-     * <p>
+     * All elements of the list shall be instances of either {@link Mark} or {@link ExternalGraphic}.
+     * Multiple external URLs and marks may be referenced with the semantic that they all provide
+     * the equivalent graphic in different formats.
+     *
+     * <p>If the list is empty, it is to be treated as a single default mark.
+     * That default is a square with with a 50%-gray fill and a black outline,
+     * with a size of 6 pixels, unless an explicit {@linkplain #getSize() size} is specified.</p>
+     *
      * @return List of Marks or ExternalGraphics; if empty it is to be treated a single default Mark.
      */
     @XmlElement("ExternalGraphic,Mark")
@@ -53,14 +60,16 @@ public interface Graphic {
      * Indicates the level of translucency as a floating point number whose value is between 0.0
      * and 1.0 (inclusive).  A value of zero means completely transparent.  A value of 1.0 means
      * completely opaque.  If null, the default value is 1.0, totally opaque.
+     *
+     * @return the level of translucency as a floating point number between 0 and 1 (inclusive).
      */
     @XmlParameter("stroke-opacity")
     Expression getOpacity();
 
     /**
-     * The Size element gives the absolute size of the graphic in uoms encoded as a floating-
-     * point number. The default size for an object is context-dependent. Negative values are
-     * not allowed.
+     * The Size element gives the absolute size of the graphic in uoms encoded as a floating-point number.
+     * The default size for an object is context-dependent. Negative values are not allowed.
+     *
      * The default size of an image format (such as GIF) is the inherent size of the image. The
      * default size of a format without an inherent size (such as SVG which are not specially
      * marked) is defined to be 16 pixels in height and the corresponding aspect in width. If a
@@ -69,6 +78,8 @@ public interface Graphic {
      * for image graphics to be on the order of 200 pixels in linear size and to be scaled to lower
      * sizes. On systems that can resample these graphic images "smoothly," the results will be
      * visually pleasing.
+     *
+     * @return absolute size of the graphic as a floating point number, or {@code null} for the default value.
      */
     @XmlParameter("Size")
     Expression getSize();
@@ -89,9 +100,8 @@ public interface Graphic {
     Expression getRotation();
 
     /**
-     * The AnchorPoint element of a PointSymbolizer gives the location inside of a Graphic
-     * (or label - see 11.4.4) to use for anchoring the graphic to the main-geometry point. The
-     * coordinates are given as two floating-point numbers in the AnchorPointX and
+     * Returns the location inside of a graphic to use for anchoring the graphic to the main-geometry point.
+     * The coordinates are given as two floating-point numbers in the AnchorPointX and
      * AnchorPointY elements each with values between 0.0 and 1.0 inclusive. The bounding
      * box of the graphic/label to be rendered is considered to be in a coordinate space from 0.0
      * (lower-left corner) to 1.0 (upper-right corner), and the anchor position is specified as a
@@ -105,13 +115,15 @@ public interface Graphic {
     AnchorPoint getAnchorPoint();
 
     /**
-     * The Displacement gives the X and Y displacements from the "hot-spot" point. This
-     * element may be used to avoid over-plotting of multiple graphic symbols used as part of
+     * The Displacement gives the X and Y displacements from the "hot-spot" point.
+     * This element may be used to avoid over-plotting of multiple graphic symbols used as part of
      * the same point symbol. The displacements are in units of measure above and to the right
      * of the point. The default displacement is X=0, Y=0.
      *
      * If Displacement is used in conjunction with Size and/or Rotation then the graphic
      * symbol shall be scaled and/or rotated before it is displaced.s
+     *
+     * @return displacement from the "hot-spot" point.
      */
     @XmlParameter("Displacement")
     Displacement getDisplacement();
