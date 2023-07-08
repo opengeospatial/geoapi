@@ -42,7 +42,7 @@ import org.opengis.referencing.operation.MathTransformFactory;
  * props.setProperty("PRODUCT.NAME", "MyProduct");
  * props.setProperty("PRODUCT.URL",  "http://www.myproject.org");
  * Reports reports = new Reports(props);
- * reports.addAll(MathTransformFactory.class);
+ * reports.add(MathTransformFactory.class, myTransformFactory);
  * reports.write(new File("my-output-directory"));
  * }
  *
@@ -82,26 +82,22 @@ public class Reports extends Report {
     }
 
     /**
-     * Adds every kind of report applicable to the given factory. The kind of reports will be
-     * determined from the type of the provided factory. The current implementation can handle
-     * the following kind of factories:
+     * Add a report for the given factory.
+     * The current implementation can handle the following kind of factories:
      *
      * <ul>
      *   <li>{@link CRSAuthorityFactory},  given to {@link AuthorityCodesReport}</li>
      *   <li>{@link MathTransformFactory}, given to {@link OperationParametersReport}</li>
      * </ul>
      *
+     * @param  <T>      compile-time value of the {@code type} argument.
+     * @param  type     the factory type, specified in case the factory implements many interfaces.
      * @param  factory  the factory for which to generate a report.
-     * @param  type     the factory type, usually {@code factory.getClass()}.
      * @return {@code true} if this method will generate a report for the given factory,
      *         or {@code false} if the factory has been ignored.
      * @throws FactoryException if an error occurred while querying the factory.
      */
-    public boolean add(final Factory factory, final Class<? extends Factory> type) throws FactoryException {
-        if (!type.isInstance(factory)) {
-            throw new ClassCastException("Factory of class " + factory.getClass().getCanonicalName() +
-                    " is not a kind of " + type.getSimpleName());
-        }
+    public <T extends Factory> boolean add(final Class<T> type, final T factory) throws FactoryException {
         boolean modified = false;
         if (CRSAuthorityFactory.class.isAssignableFrom(type)) {
             final AuthorityCodesReport report = getReport(AuthorityCodesReport.class);
@@ -118,39 +114,6 @@ public class Reports extends Report {
             }
         }
         return modified;
-    }
-
-    /**
-     * Adds every kinds of report applicable to every factories of the given class found on
-     * the classpath. This method scans the classpath for factories in the way documented
-     * in the {@link org.opengis.test.TestCase#factories(Class[])} method. For each instance
-     * found, {@link #add(Factory, Class)} is invoked.
-     *
-     * @param  type  the kind of factories to add.
-     * @return {@code true} if this method will generate at least one report for the factories
-     *         of the given type, or {@code false} otherwise.
-     * @throws FactoryException if an error occurred while querying the factories.
-     */
-    public boolean addAll(final Class<? extends Factory> type) throws FactoryException {
-        boolean modified = false;
-        for (final Factory factory : FactoryProvider.forType(type)) {
-            modified |= add(factory, type);
-        }
-        return modified;
-    }
-
-    /**
-     * Adds every kinds of report applicable to every factories of known class found on
-     * the classpath. This method scans the classpath for factories in the way documented
-     * in the {@link org.opengis.test.TestCase#factories(Class[])} method. For each instance
-     * found, {@link #add(Factory, Class)} is invoked.
-     *
-     * @return {@code true} if this method will generate at least one report, or {@code false} otherwise.
-     * @throws FactoryException if an error occurred while querying the factories.
-     */
-    public boolean addAll() throws FactoryException {
-        return addAll(CRSAuthorityFactory.class) |
-               addAll(MathTransformFactory.class);
     }
 
     /**

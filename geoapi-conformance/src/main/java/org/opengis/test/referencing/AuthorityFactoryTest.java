@@ -18,10 +18,8 @@
 package org.opengis.test.referencing;
 
 import java.util.Set;
-import java.util.List;
 import java.awt.geom.Rectangle2D;
 
-import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
@@ -40,8 +38,6 @@ import org.opengis.test.ToleranceModifier;
 import org.opengis.test.Configuration;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
@@ -63,11 +59,8 @@ import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
  * define a subclass in their own test suite as in the example below:
  *
  * {@snippet lang="java" :
- * import org.junit.runner.RunWith;
- * import org.junit.runners.JUnit4;
  * import org.opengis.test.referencing.AuthorityFactoryTest;
  *
- * @RunWith(JUnit4.class)
  * public class MyTest extends AuthorityFactoryTest {
  *     public MyTest() {
  *         super(new MyCRSAuthorityFactory(), new MyCSAuthorityFactory(), new MyDatumAuthorityFactory());
@@ -83,7 +76,6 @@ import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
  * @version 3.1
  * @since   2.3
  */
-@RunWith(Parameterized.class)
 public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     /**
      * Factory to use for building {@link CoordinateReferenceSystem} instances, or {@code null} if none.
@@ -205,23 +197,6 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * </ul>
      */
     private final ParameterizedTransformTest test;
-
-    /**
-     * Returns a default set of factories to use for running the tests. Those factories are given
-     * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead of
-     * subclassed by the implementer. The factories are fetched as documented in the
-     * {@link #factories(Class[])} javadoc.
-     *
-     * @return the default set of arguments to be given to the {@code AuthorityFactoryTest} constructor.
-     *
-     * @since 3.1
-     */
-    @Parameterized.Parameters
-    @SuppressWarnings("unchecked")
-    public static List<Factory[]> factories() {
-        return factories(CRSAuthorityFactory.class, CSAuthorityFactory.class, DatumAuthorityFactory.class);
-    }
 
     /**
      * Creates a new test using the given factories. If a given factory is {@code null},
