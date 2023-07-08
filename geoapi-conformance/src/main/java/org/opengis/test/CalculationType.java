@@ -69,11 +69,5 @@ public enum CalculationType {
      * in the same order. Consequently in case of doubt, implementers can use the same policy
      * than for {@link #DIRECT_TRANSFORM}.
      */
-    TRANSFORM_DERIVATIVE;
-
-    /**
-     * @deprecated Renamed {@link #IDENTITY}.
-     */
-    @Deprecated
-    public static final CalculationType STRICT = IDENTITY;
+    TRANSFORM_DERIVATIVE
 }

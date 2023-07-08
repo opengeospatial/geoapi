@@ -27,11 +27,6 @@ import java.util.ServiceLoader;
 import java.util.ServiceConfigurationError;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import java.util.logging.LogRecord;
-
-import org.junit.Rule;
-import org.junit.rules.TestWatcher;
-import org.junit.runner.Description;
 
 import org.opengis.util.Factory;
 
@@ -63,26 +58,12 @@ public strictfp abstract class TestCase {
      *
      * @see TestSuite#setFactories(Class, Factory[])
      */
-    static final Map<Class<? extends Factory>, Iterable<? extends Factory>> FACTORIES = new HashMap<>();
-
-
+    private static final Map<Class<? extends Factory>, Iterable<? extends Factory>> FACTORIES = new HashMap<>();
 
     /**
      * The class loader to use for searching implementations, or {@code null} for the default.
      */
     private static ClassLoader classLoader;
-
-    /**
-     * Sets the class loader to use for loading implementations. A {@code null} value restores
-     * the default {@linkplain Thread#getContextClassLoader() context class loader}.
-     *
-     * @param loader  the class loader to use, or {@code null} for the default.
-     */
-    static void setClassLoader(final ClassLoader loader) {
-        synchronized (FACTORIES) {
-            classLoader = loader;
-        }
-    }
 
     /**
      * Creates a service loader for the given type. This method must be invoked from a block
@@ -92,106 +73,6 @@ public strictfp abstract class TestCase {
         return (classLoader == null) ? ServiceLoader.load(service)
                 : ServiceLoader.load(service, classLoader);
     }
-
-
-
-    /**
-     * The test listeners. We intentionally copy the full array every time a listener is
-     * added or removed. We do not clone the array used by the {@link #listener} field,
-     * so it is important that any array instance is never modified after creation.
-     *
-     * @see #addTestListener(TestListener)
-     * @see #removeTestListener(TestListener)
-     * @see #getTestListeners()
-     */
-    private static TestListener[] listeners = new TestListener[0];
-
-    /**
-     * Returns all currently registered test listeners, or an empty array if none.
-     * This method returns directly the internal array, so it is important to never modify it.
-     * This method is for internal usage by the {@link #listener} field only.
-     */
-    @SuppressWarnings("ReturnOfCollectionOrArrayField")
-    static synchronized TestListener[] getTestListeners() {
-        return listeners;
-    }
-
-    /**
-     * A JUnit {@linkplain Rule rule} for listening to test execution events. This rule forwards
-     * events to all {@linkplain TestSuite#addTestListener(TestListener) registered listeners}.
-     *
-     * <p>This field is public because JUnit requires us to do so, but should be considered as
-     * an implementation details (it should have been a private field).</p>
-     *
-     * @since 3.1
-     */
-    @Rule
-    public final TestWatcher listener = new TestWatcher() {
-        /**
-         * A snapshot of the test listeners. We make this snapshot at rule creation time
-         * in order to be sure that the same set of listeners is notified for all phases
-         * of the test method being run.
-         */
-        private final TestListener[] listeners = getTestListeners();
-
-        /**
-         * Invoked when a test is about to start.
-         */
-        @Override
-        protected void starting(final Description description) {
-            final TestEvent event = new TestEvent(TestCase.this, description);
-            for (final TestListener listener : listeners) {
-                listener.starting(event);
-            }
-        }
-
-        /**
-         * Invoked when a test succeeds.
-         */
-        @Override
-        protected void succeeded(final Description description) {
-            final TestEvent event = new TestEvent(TestCase.this, description);
-            for (final TestListener listener : listeners) {
-                listener.succeeded(event);
-            }
-        }
-
-        /**
-         * Invoked when a test fails. If the failure occurred in an optional part of the test,
-         * logs an information message for helping the developer to disable that test if (s)he wishes.
-         */
-        @Override
-        protected void failed(final Throwable exception, final Description description) {
-            final TestEvent event = new TestEvent(TestCase.this, description);
-            final Configuration.Key<Boolean> tip = configurationTip;
-            if (tip != null) {
-                event.configurationTip = tip;
-                final Logger logger = Logger.getLogger("org.opengis.test");
-                final LogRecord record = new LogRecord(Level.INFO, "A test failure occurred while "
-                        + "testing an optional feature. To skip that part of the test, set the '"
-                        + tip.name() + "' boolean field to false or specify that value in the "
-                        + "Configuration map.");
-                record.setLoggerName(logger.getName());
-                record.setSourceClassName(event.getClassName());
-                record.setSourceMethodName(event.getMethodName());
-                logger.log(record);
-            }
-            for (final TestListener listener : listeners) {
-                listener.failed(event, exception);
-            }
-        }
-
-        /**
-         * Invoked when a test method finishes (whether passing or failing)
-         */
-        @Override
-        protected void finished(final Description description) {
-            final TestEvent event = new TestEvent(TestCase.this, description);
-            for (final TestListener listener : listeners) {
-                listener.finished(event);
-            }
-        }
-    };
 
     /**
      * The factories used by the test case to execute, or an empty array if none.
@@ -426,40 +307,5 @@ public strictfp abstract class TestCase {
         configuration.put(Configuration.Key.units,      units);
         configuration.put(Configuration.Key.validators, validators);
         return configuration;
-    }
-
-    /**
-     * Implementation of the {@link TestSuite#addTestListener(TestListener)} public method.
-     *
-     * @param listener  the listener to add. {@code null} values are silently ignored.
-     *
-     * @deprecated To be replaced by JUnit 5 listener mechanism.
-     */
-    @Deprecated
-    static synchronized void addTestListener(final TestListener listener) {
-        if (listener != null) {
-            final int length = listeners.length;
-            listeners = Arrays.copyOf(listeners, length + 1);
-            listeners[length] = listener;
-        }
-    }
-
-    /**
-     * Implementation of the {@link TestSuite#removeTestListener(TestListener)} public method.
-     *
-     * @param listener  the listener to remove. {@code null} values are silently ignored.
-     *
-     * @deprecated To be replaced by JUnit 5 listener mechanism.
-     */
-    @Deprecated
-    static synchronized void removeTestListener(final TestListener listener) {
-        for (int i=listeners.length; --i>=0;) {
-            if (listeners[i] == listener) {
-                final int length = listeners.length - 1;
-                System.arraycopy(listeners, i, listeners, i+1, length-i);
-                listeners = Arrays.copyOf(listeners, length);
-                break;
-            }
-        }
     }
 }
