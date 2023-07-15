@@ -22,9 +22,8 @@ import org.opengis.filter.Expression;
 
 
 /**
- * <p>The ContrastEnhancement object defines contrast enhancement for a channel of
+ * The ContrastEnhancement object defines contrast enhancement for a channel of
  * a false-color image or for a color image.
- * </p>
  *
  * <p>In the case of a color image, the relative grayscale brightness of a pixel
  * color is used. ?Normalize? means to stretch the contrast so that the
@@ -44,11 +43,9 @@ import org.opengis.filter.Expression;
  * @author Open Geospatial Consortium
  * @author Ian Turton, CCG
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
  */
 @XmlElement("ContrastEnhancement")
 public interface ContrastEnhancement {
-
     /**
      * We use a codeList to enable more enchancement type possibilities.
      */
@@ -71,5 +68,4 @@ public interface ContrastEnhancement {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

@@ -20,20 +20,19 @@ package org.opengis.style;
 import java.util.Map;
 import org.opengis.filter.Expression;
 
+
 /**
  * An symbolizer interface for all unnormalized symbolizers,
  * This interface should be used for vendor specific symbolizers.
  *
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.3
  */
 public interface ExtensionSymbolizer extends Symbolizer {
-    
     /**
-     * Returns the name of the extension, this name should be commun to all 
+     * Returns the name of the extension, this name should be commun to all
      * implementation of a given extension symbolizer sub class.
-     * 
+     *
      * @return the symbolizer extension name
      */
     String getExtensionName();
@@ -52,5 +51,4 @@ public interface ExtensionSymbolizer extends Symbolizer {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

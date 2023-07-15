@@ -25,7 +25,6 @@ import java.util.LinkedHashMap;
 import java.util.Objects;
 import java.io.Serializable;
 
-import org.opengis.util.Factory;
 import org.opengis.util.CodeList;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
@@ -46,13 +45,12 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 
 /**
  * Contains information about the test environment, like available factories and disabled tests.
- * {@code Configuration} is used in two places:
+ * {@code Configuration} is used:
  *
  * <ul>
  *   <li>Before each test is executed.
  *       For example, an implementation can declare that it does not support the calculation of transform derivative.</li>
- *   <li>After each test is executed, {@link TestListener} can obtain the actual configuration used by the test.
- *       For example, listeners can know which {@link Factory} instances were used.</li>
+ *   <li>After each test is executed, for obtaining the actual configuration used by the test.</li>
  * </ul>
  *
  * This class provides {@link #get get}, {@link #put put} and {@link #remove remove} methods

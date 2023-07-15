@@ -23,19 +23,30 @@ import org.opengis.filter.Expression;
 
 /**
  * Holds the information that indicates how to draw the lines and the interior of polygons.
+ * If a polygon has holes, then they are not filled,
+ * but the borders around the holes are stroked in the usual way.
+ * Islands within holes are filled and stroked, and so on.
+ *
+ * <p>The fill should be rendered first, then the stroke should be rendered on top of the fill.
+ * A missing stroke element means that the geometry will not be stroked.</p>
+ *
+ * <h2>Non-polygon kinds of geometry</h2>
+ * If a point geometry is referenced instead of a polygon, then a small, square, orthonormal polygon
+ * should be constructed for rendering. If a line is referenced, then the line (string) is closed for
+ * filling (only) by connecting its end point to its start point, any line crossings are corrected in
+ * some way, and only the original line is stroked. If a raster geometry is used, then the raster-coverage
+ * area is used as the polygon. A missing Geometry element selects the “default” geometry for a feature type.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 2.2
  */
 @XmlElement("PolygonSymbolizer")
 public interface PolygonSymbolizer extends Symbolizer {
-
     /**
-     * Returns the object containing all the information necessary to draw
-     * styled lines.  This is used for the edges of polygons.
+     * Returns the object containing all the information necessary to draw styled lines.
+     * This is used for the edges of polygons.
      */
     @XmlElement("Stroke")
     Stroke getStroke();
@@ -58,10 +69,10 @@ public interface PolygonSymbolizer extends Symbolizer {
     Displacement getDisplacement();
 
     /**
-     * PerpendicularOffset works as defined for LineSymbolizer, allowing to draw polygons
-     * smaller or larger than their actual geometry. The distance is in uoms and is positive to the
-     * outside of the polygon. Negative numbers mean drawing the polygon smaller. The default
-     * offset is 0.
+     * A distance to apply for drawing lines in parallel to the original polygon.
+     * This property allow to draw polygons smaller or larger than their actual geometry.
+     * The distance units of measurement is given by {@link #getUnitOfMeasure()}.
+     * The value is positive outside the polygon. The default offset is 0.
      */
     @XmlElement("PerpendicularOffset")
     Expression getPerpendicularOffset();

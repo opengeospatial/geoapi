@@ -29,7 +29,6 @@ import org.opengis.filter.Expression;
  * @author Open Geospatial Consortium
  * @author Ian Turton, CCG
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
  */
 @XmlElement("RasterSymbolizer")
 public interface RasterSymbolizer extends Symbolizer {

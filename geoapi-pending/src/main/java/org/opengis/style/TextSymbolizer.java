@@ -28,13 +28,11 @@ import org.opengis.annotation.XmlElement;
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 2.2
  */
 @XmlElement("TextSymbolizer")
 public interface TextSymbolizer extends Symbolizer {
     /**
-     * Returns the expression that will be evaluated to determine what text is
-     * displayed.
+     * Returns the expression that will be evaluated to determine what text is displayed.
      * If a Label element is not provided in a TextSymbolizer, then no text shall be rendered.
      */
     @XmlElement("Label")

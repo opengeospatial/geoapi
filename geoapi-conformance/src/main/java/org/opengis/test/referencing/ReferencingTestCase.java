@@ -63,13 +63,6 @@ import static org.opengis.test.Assert.*;
  */
 public strictfp abstract class ReferencingTestCase extends TestCase {
     /**
-     * Creates a new test without factory. This constructor is provided for subclasses that
-     * instantiate their {@link CoordinateReferenceSystem} directly, without using any factory.
-     */
-    protected ReferencingTestCase() {
-    }
-
-    /**
      * Creates a test case initialized to default values.
      *
      * @param factories  the factories to be used by the test. Those factories are passed to

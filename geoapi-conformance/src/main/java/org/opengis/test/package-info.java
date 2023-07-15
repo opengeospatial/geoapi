@@ -52,11 +52,6 @@
  *   <li><p><b>Configuration</b><br>
  *       {@link org.opengis.test.Configuration}, {@link org.opengis.test.CalculationType} and
  *       {@link org.opengis.test.ToleranceModifier} allow implementers to alter the tests.</p></li>
- *
- *   <li><p><b>Events</b><br>
- *       {@link org.opengis.test.TestListener}, {@link org.opengis.test.TestEvent} and
- *       {@link org.opengis.test.ComputationFailure} allow implementers to be notified about test executions,
- *       successes or failures.</p></li>
  * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)

@@ -18,7 +18,6 @@
 package org.opengis.test.referencing;
 
 import java.util.Map;
-import java.util.List;
 import java.util.Collections;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
@@ -31,13 +30,10 @@ import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ObjectFactory;
-import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.test.Units;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
@@ -53,11 +49,8 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * define a subclass in their own test suite as in the example below:
  *
  * {@snippet lang="java" :
- * import org.junit.runner.RunWith;
- * import org.junit.runners.JUnit4;
  * import org.opengis.test.referencing.ObjectFactoryTest;
  *
- * @RunWith(JUnit4.class)
  * public class MyTest extends ObjectFactoryTest {
  *     public MyTest() {
  *         super(new MyDatumFactory(), new MyCSFactory(), new MyCRSFactory(), new MyOpFactory());
@@ -72,7 +65,6 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * @version 3.1
  * @since   2.3
  */
-@RunWith(Parameterized.class)
 public strictfp class ObjectFactoryTest extends ReferencingTestCase {
     /**
      * Factory to use for building {@link Datum} instances, or {@code null} if none.
@@ -93,23 +85,6 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
      * Factory to use for building {@link Conversion} instances, or {@code null} if none.
      */
     protected final CoordinateOperationFactory copFactory;
-
-    /**
-     * Returns a default set of factories to use for running the tests. Those factories are given
-     * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead of
-     * subclassed by the implementer. The factories are fetched as documented in the
-     * {@link #factories(Class[])} javadoc.
-     *
-     * @return the default set of arguments to be given to the {@code ObjectFactoryTest} constructor.
-     *
-     * @since 3.1
-     */
-    @Parameterized.Parameters
-    @SuppressWarnings("unchecked")
-    public static List<Factory[]> factories() {
-        return factories(DatumFactory.class, CSFactory.class, CRSFactory.class, CoordinateOperationFactory.class);
-    }
 
     /**
      * Creates a new test using the given factories. If a given factory is {@code null},

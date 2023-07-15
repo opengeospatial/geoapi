@@ -24,10 +24,8 @@ import java.awt.color.ColorSpace;
 import java.awt.image.RenderedImage;
 import java.awt.image.BufferedImage;
 import java.awt.image.DataBuffer;
-import java.awt.image.BandedSampleModel;
 import java.awt.image.ColorModel;
 import java.awt.image.ComponentColorModel;
-import java.awt.image.Raster;
 import java.awt.image.WritableRaster;
 
 import org.opengis.test.TestCase;
@@ -44,13 +42,6 @@ import org.opengis.test.TestCase;
  * @since   3.1
  */
 abstract strictfp class ImageBackendTestCase extends TestCase {
-    /**
-     * Small value for comparison of sample values. Since scientific data often store their
-     * values as {@code float} numbers, this {@code SAMPLE_TOLERANCE} value must be of the
-     * order of {@code float} relative precision, not {@code double}.
-     */
-    static final float SAMPLE_TOLERANCE = 1E-5f;
-
     /**
      * Creates a new test case.
      */
@@ -69,30 +60,6 @@ abstract strictfp class ImageBackendTestCase extends TestCase {
             image.getMinY(),
             image.getWidth(),
             image.getHeight());
-    }
-
-    /**
-     * Creates a banded raster for the given data type.
-     *
-     * @param  dataType  the data type as one of the {@link DataBuffer} constants.
-     * @param  width     the desired raster width.
-     * @param  height    the desired raster height.
-     * @param  numBands  the desired number of bands.
-     * @return a writable raster of the given type and size.
-     */
-    static WritableRaster createBandedRaster(final int dataType, final int width, final int height, final int numBands) {
-        switch (dataType) {
-            case DataBuffer.TYPE_BYTE:
-            case DataBuffer.TYPE_USHORT:
-            case DataBuffer.TYPE_INT: {
-                // As of JDK7, the method called below supports only the above-cited types.
-                return Raster.createBandedRaster(dataType, width, height, numBands, null);
-            }
-            default: {
-                // For all other types, we need to create the sample model ourselves.
-                return Raster.createWritableRaster(new BandedSampleModel(dataType, width, height, numBands), null);
-            }
-        }
     }
 
     /**

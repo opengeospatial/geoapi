@@ -36,7 +36,6 @@ package org.opengis.style;
  * @author James Macgill
  * @author Ian Turton
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
  */
 public interface StyleVisitor {
     /**

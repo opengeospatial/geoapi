@@ -21,9 +21,6 @@ import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
-
 
 /**
  * Tests objects that combine all referencing sub-packages, especially {@code crs}, {@code cs} and
@@ -34,11 +31,8 @@ import org.junit.runners.Parameterized;
  * define a subclass in their own test suite as in the example below:
  *
  * {@snippet lang="java" :
- * import org.junit.runner.RunWith;
- * import org.junit.runners.JUnit4;
  * import org.opengis.test.referencing.ReferencingTest;
  *
- * @RunWith(JUnit4.class)
  * public class MyTest extends ReferencingTest {
  *     public MyTest() {
  *         super(new MyCRSFactory(), new MyCSFactory(), new MyDatumFactory());
@@ -53,7 +47,6 @@ import org.junit.runners.Parameterized;
  * @deprecated Renamed as {@link ObjectFactoryTest}.
  */
 @Deprecated
-@RunWith(Parameterized.class)
 public strictfp class ReferencingTest extends ObjectFactoryTest {
     /**
      * Creates a new test using the given factories. If a given factory is {@code null},

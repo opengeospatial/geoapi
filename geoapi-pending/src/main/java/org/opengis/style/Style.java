@@ -18,34 +18,25 @@
 package org.opengis.style;
 
 import java.util.List;
-import org.opengis.annotation.UML;
 
 import org.opengis.annotation.XmlElement;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
 
 /**
- * <p>A UserStyle is at the same semantic level as a NamedStyle used in the context of a
- * WMS. In a sense, a named style can be thought of as a reference to a hidden UserStyle
- * that is stored inside of a map server.</p>
- *
+ * A UserStyle is at the same semantic level as a NamedStyle used in the context of a WMS.
+ * In a sense, a named style can be thought of as a reference to a hidden UserStyle
+ * that is stored inside of a map server.
  *
  * <p>A portrayal catalog consists of a set of feature portrayal objects. Many may
  * exist for each feature type that may occur in the dataset. each feature object
  * has assigned a set of portrayal rules.</p>
  *
- * This class is a merged between ISO 19117 Portrayal and OGC SLD 1.1.0
- *
  * @version <A HREF="http://www.opengeospatial.org/standards/sld">Implementation specification 1.1.0</A>
  *
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
  */
-@UML(identifier="PF_PortrayalCatalog", specification=ISO_19117)
 @XmlElement("UserStyle")
 public interface Style {
-
     /**
      * Style name (machine readable, don't show to users)
      *
@@ -73,7 +64,6 @@ public interface Style {
     /**
      * Returns a collection of feature type style.
      */
-    @UML(identifier="featurePortrayal", obligation=MANDATORY, specification=ISO_19117)
     @XmlElement("FeatureTypeStyle")
     List<? extends FeatureTypeStyle> featureTypeStyles();
 
@@ -82,7 +72,6 @@ public interface Style {
      * This specification should not use any external functions.
      * This specification should use at least one spatial attribute.
      */
-    @UML(identifier="defaultPortrayalSpec", obligation=MANDATORY, specification=ISO_19117)
     Symbolizer getDefaultSpecification();
 
     /**

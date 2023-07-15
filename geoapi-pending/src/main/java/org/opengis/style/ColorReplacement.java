@@ -20,6 +20,7 @@ package org.opengis.style;
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.Expression;
 
+
 /**
  * The ColorReplacement element, which may occur multiple times, allows to replace a
  * color in the ExternalGraphic, the color specified in the OriginalColor sub-element, by
@@ -28,11 +29,9 @@ import org.opengis.filter.Expression;
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
  */
 @XmlElement("ColorReplacement")
 public interface ColorReplacement {
-
     /**
      * Recoding: Transformation of discrete values to any other values. This is needed
      * when integers have to be translated into text or, reversely, text contents into other
@@ -50,5 +49,4 @@ public interface ColorReplacement {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

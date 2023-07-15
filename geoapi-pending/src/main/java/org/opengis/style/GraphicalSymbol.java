@@ -17,6 +17,7 @@
  */
 package org.opengis.style;
 
+
 /**
  * Common superclass for the two types of markers that can appear as children of a
  * {@link Graphic} object, namely {@link Mark} and {@link ExternalGraphic}.
@@ -26,5 +27,4 @@ package org.opengis.style;
  * @since GeoAPI 2.0
  */
 public interface GraphicalSymbol {
-    
 }

@@ -190,20 +190,26 @@
         <artifactId>unit-api</artifactId>
         <version>2.1.3</version>
       </dependency>
+
+      <!-- Test dependencies.
+
+        NOTE: the JUnit version number may appear also in documentation, scripts or reports.
+              If JUnit is updated, please search for the version number in the whole project.
+      -->
+      <dependency>
+        <groupId>org.junit.jupiter</groupId>
+        <artifactId>junit-jupiter-api</artifactId>
+        <version>5.9.3</version>
+      </dependency>
+      <dependency>
+        <groupId>org.junit.vintage</groupId>
+        <artifactId>junit-vintage-engine</artifactId>
+        <version>5.9.3</version>
+      </dependency>
       <dependency>
         <groupId>tech.uom</groupId>
         <artifactId>seshat</artifactId>
         <version>1.3</version>
-        <scope>test</scope>
-      </dependency>
-      <dependency>
-        <!-- The JUnit version number appears also in the Javadoc plugin configuration,
-             in shell scripts, and in Java code generating reports. If JUnit is updated,
-             please search for the version number in the whole project.
-             Search also for version number of the Hamcrest dependency. -->
-        <groupId>junit</groupId>
-        <artifactId>junit</artifactId>
-        <version>4.13.2</version>
         <scope>test</scope>
       </dependency>
       <dependency>
@@ -221,8 +227,13 @@
       <artifactId>unit-api</artifactId>
     </dependency>
     <dependency>
-      <groupId>junit</groupId>
-      <artifactId>junit</artifactId>
+      <groupId>org.junit.jupiter</groupId>
+      <artifactId>junit-jupiter-api</artifactId>
+      <scope>test</scope>
+    </dependency>
+    <dependency>
+      <groupId>org.junit.vintage</groupId>
+      <artifactId>junit-vintage-engine</artifactId>
       <scope>test</scope>
     </dependency>
   </dependencies>
@@ -478,7 +489,7 @@
             <link>https://docs.oracle.com/en/java/javase/11/docs/api/</link>
             <link>https://download.java.net/media/java3d/javadoc/1.5.2/</link>
             <link>https://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/</link>
-            <link>https://junit.org/junit4/javadoc/latest/</link>
+            <link>https://junit.org/junit5/docs/current/api/</link>
             <link>https://iogp-gigs.github.io/GIGSGeoAPI/</link>
           </links>
         </configuration>

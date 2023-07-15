@@ -275,14 +275,6 @@ public strictfp abstract class TransformTestCase extends TestCase {
     private boolean isToleranceRelaxed;
 
     /**
-     * Creates a new test without factory. This constructor is provided for subclasses
-     * that instantiate their {@link MathTransform} directly, without using any factory.
-     */
-    protected TransformTestCase() {
-        setEnabledFlags(getEnabledFlags(getEnabledKeys(0)));
-    }
-
-    /**
      * Creates a new test without factory and with the given {@code isFooSupported} flags.
      * The given array must be the result of a call to {@link #getEnabledKeys(int)}.
      */

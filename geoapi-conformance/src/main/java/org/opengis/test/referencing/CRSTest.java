@@ -17,16 +17,12 @@
  */
 package org.opengis.test.referencing;
 
-import java.util.List;
 
 import org.opengis.referencing.crs.*;
-import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 
 /**
@@ -39,11 +35,8 @@ import org.junit.runners.Parameterized;
  * define a subclass in their own test suite as in the example below:
  *
  * {@snippet lang="java" :
- * import org.junit.runner.RunWith;
- * import org.junit.runners.JUnit4;
  * import org.opengis.test.referencing.CRSTest;
  *
- * @RunWith(JUnit4.class)
  * public class MyTest extends CRSTest {
  *     public MyTest() {
  *         super(new MyCRSAuthorityFactory());
@@ -58,30 +51,12 @@ import org.junit.runners.Parameterized;
  * @deprecated Renamed as {@link AuthorityFactoryTest}.
  */
 @Deprecated
-@RunWith(Parameterized.class)
 public strictfp class CRSTest extends ReferencingTestCase {
     /**
      * The authority factory for creating a {@link CoordinateReferenceSystem} from a code,
      * or {@code null} if none.
      */
     protected final CRSAuthorityFactory factory;
-
-    /**
-     * Returns a default set of factories to use for running the tests. Those factories are given
-     * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead of
-     * subclassed by the implementer. The factories are fetched as documented in the
-     * {@link #factories(Class[])} javadoc.
-     *
-     * @return the default set of arguments to be given to the {@code CRSTest} constructor.
-     *
-     * @since 3.1
-     */
-    @Parameterized.Parameters
-    @SuppressWarnings("unchecked")
-    public static List<Factory[]> factories() {
-        return factories(CRSAuthorityFactory.class);
-    }
 
     /**
      * Creates a new test using the given factory. If the given factory is {@code null},

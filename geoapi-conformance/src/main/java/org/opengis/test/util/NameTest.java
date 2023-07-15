@@ -18,7 +18,6 @@
 package org.opengis.test.util;
 
 import java.util.Map;
-import java.util.List;
 import java.util.Locale;
 import java.util.HashMap;
 import java.util.regex.Pattern;
@@ -28,8 +27,6 @@ import org.opengis.test.TestCase;
 import org.opengis.test.Configuration;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 import static org.junit.Assume.*;
 import static org.opengis.test.Assert.*;
@@ -44,11 +41,8 @@ import static org.opengis.test.Assert.*;
  * define a subclass in their own test suite as in the example below:
  *
  * {@snippet lang="java" :
- * import org.junit.runner.RunWith;
- * import org.junit.runners.JUnit4;
  * import org.opengis.test.util.NameTest;
  *
- * @RunWith(JUnit4.class)
  * public class MyTest extends NameTest {
  *     public MyTest() {
  *         super(new MyNameFactory());
@@ -61,7 +55,6 @@ import static org.opengis.test.Assert.*;
  * @version 3.1
  * @since   2.2
  */
-@RunWith(Parameterized.class)
 public strictfp class NameTest extends TestCase {
     /**
      * The factory to be used for testing {@linkplain GenericName generic name} instances,
@@ -91,23 +84,6 @@ public strictfp class NameTest extends TestCase {
      * </ul>
      */
     protected boolean isMixedNameSyntaxSupported;
-
-    /**
-     * Returns a default set of factories to use for running the tests. Those factories are given
-     * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead of
-     * subclassed by the implementer. The factories are fetched as documented in the
-     * {@link #factories(Class[])} javadoc.
-     *
-     * @return the default set of arguments to be given to the {@code NameTest} constructor.
-     *
-     * @since 3.1
-     */
-    @Parameterized.Parameters
-    @SuppressWarnings("unchecked")
-    public static List<Factory[]> factories() {
-        return factories(NameFactory.class);
-    }
 
     /**
      * Creates a new test using the given factory. If the given factory is {@code null},

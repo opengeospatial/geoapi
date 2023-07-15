@@ -21,6 +21,7 @@ import javax.swing.Icon;
 import org.opengis.annotation.XmlElement;
 import org.opengis.metadata.citation.OnlineResource;
 
+
 /**
  * The alternative to a WellKnownName is an external mark format. The MarkIndex
  * allows an individual mark in a mark archive to be selected. An example format for an
@@ -30,10 +31,8 @@ import org.opengis.metadata.citation.OnlineResource;
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
  */
 public interface ExternalMark {
-
     /**
      * Returns on online resource defined by a URI.
      *
@@ -77,5 +76,4 @@ public interface ExternalMark {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

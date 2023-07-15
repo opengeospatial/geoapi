@@ -24,14 +24,18 @@ import org.opengis.filter.Expression;
 /**
  * The Displacement gives the X and Y displacements from the original geometry. This
  * element may be used to avoid over-plotting of multiple PolygonSymbolizers for one
- * geometry or supplying "shadows" of polygon gemeotries. The displacements are in units
- * of pixels above and to the right of the point. The default displacement is X=0, Y=0.
+ * geometry or supplying "shadows" of polygon gemeotries.
+ * The displacements units depend on the context:
+ * in {@linkplain Symbolizer#getUnitOfMeasure() symbolizer unit of measurements}
+ * when the displacement is applied by a {@link PolygonSymbolizer},
+ * but in pixels when the displacement is applied by a {@link TextSymbolizer}.
+ * The displacements are to the right of the point.
+ * The default displacement is X=0, Y=0.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Ian Turton, CCG
- * @since GeoAPI 2.2
  */
 @XmlElement("Displacement")
 public interface Displacement {

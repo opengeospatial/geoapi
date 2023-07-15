@@ -28,11 +28,9 @@ import org.opengis.annotation.XmlElement;
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 2.2
  */
 @XmlElement("Mark")
 public interface Mark extends GraphicalSymbol {
-
     /**
      * Returns the expression whose value will indicate the symbol to draw.
      * The WellKnownName element gives the well-known name of the shape of the mark.
@@ -86,5 +84,4 @@ public interface Mark extends GraphicalSymbol {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

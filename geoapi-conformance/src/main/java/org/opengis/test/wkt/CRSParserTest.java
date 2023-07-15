@@ -24,7 +24,6 @@ import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 import javax.measure.quantity.Dimensionless;
 
-import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.*;
@@ -34,8 +33,6 @@ import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.test.referencing.ReferencingTestCase;
 import org.opengis.test.Configuration;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 import org.junit.Test;
 
 import static java.lang.Double.NaN;
@@ -69,11 +66,8 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * define a subclass in their own test suite as in the example below:
  *
  * {@snippet lang="java" :
- * import org.junit.runner.RunWith;
- * import org.junit.runners.JUnit4;
  * import org.opengis.test.wkt.CRSParserTest;
  *
- * @RunWith(JUnit4.class)
  * public class MyTest extends CRSParserTest {
  *     public MyTest() {
  *         super(new MyCRSFactory());
@@ -87,7 +81,6 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  *
  * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html">WKT 2 specification</a>
  */
-@RunWith(Parameterized.class)
 public strictfp class CRSParserTest extends ReferencingTestCase {
     /**
      * The factory to use for parsing WKT strings. The {@link CRSFactory#createFromWKT(String)} method
@@ -109,21 +102,6 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * the axis names specified by ISO 19162 differ from the axis names specified by ISO 19111.
      */
     protected boolean isValidationEnabled;
-
-    /**
-     * Returns a default set of factories to use for running the tests. Those factories are given
-     * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead of
-     * sub-classed by the implementer. The factories are fetched as documented in the
-     * {@link #factories(Class[])} javadoc.
-     *
-     * @return the default set of arguments to be given to the {@code ObjectFactoryTest} constructor.
-     */
-    @Parameterized.Parameters
-    @SuppressWarnings("unchecked")
-    public static List<Factory[]> factories() {
-        return factories(CRSFactory.class);
-    }
 
     /**
      * Creates a new test using the given factory.

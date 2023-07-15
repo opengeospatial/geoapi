@@ -28,12 +28,15 @@ import static java.lang.annotation.RetentionPolicy.*;
  * Maps a method to the XML parameter. This annotation can be used with reflection for
  * finding the corresponding XML parameter in the {@linkplain XmlSchema schema}.
  *
+ * <p>This annotation is used for documentation purpose only and may be removed in a future version.
+ * The reason is that GeoAPI tries to publish interfaces based on UML instead of XSD schemas.</p>
+ *
  * @author  Johann Sorel (Geomatys)
  * @since   GeoAPI 2.2
  */
 @Documented
 @Target(METHOD)
-@Retention(RUNTIME)
+@Retention(SOURCE)                  // Used for documentation purpose only.
 public @interface XmlParameter {
     /**
      * The name of the element in the XML schema.

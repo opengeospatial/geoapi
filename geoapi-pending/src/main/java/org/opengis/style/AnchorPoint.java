@@ -20,6 +20,7 @@ package org.opengis.style;
 import org.opengis.annotation.XmlElement;
 import org.opengis.filter.Expression;
 
+
 /**
  * An AnchorPoint identifies the location inside a textlabel to use as an
  * "anchor" for positioning it relative to a point geometry.
@@ -28,11 +29,9 @@ import org.opengis.filter.Expression;
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Ian Turton
- * @since GeoAPI 2.2
  */
 @XmlElement("AnchorPoint")
 public interface AnchorPoint {
-
     /**
      * get the x coordinate of the anchor point
      *
@@ -55,5 +54,4 @@ public interface AnchorPoint {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

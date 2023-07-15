@@ -17,12 +17,10 @@
  */
 package org.opengis.test.referencing;
 
-import java.util.List;
 import java.util.Arrays;
 import java.util.Random;
 import java.awt.geom.AffineTransform;
 
-import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
@@ -30,10 +28,7 @@ import org.opengis.referencing.operation.TransformException;
 import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.test.Configuration;
 
-
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.Parameterized;
 
 import static java.lang.StrictMath.*;
 import static org.junit.Assume.*;
@@ -51,11 +46,8 @@ import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
  * define a subclass in their own test suite as in the example below:
  *
  * {@snippet lang="java" :
- * import org.junit.runner.RunWith;
- * import org.junit.runners.JUnit4;
  * import org.opengis.test.referencing.AffineTransformTest;
  *
- * @RunWith(JUnit4.class)
  * public class MyTest extends AffineTransformTest {
  *     public MyTest() {
  *         super(new MyMathTransformFactory());
@@ -69,7 +61,6 @@ import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
  * @version 3.1
  * @since   3.1
  */
-@RunWith(Parameterized.class)
 public strictfp class AffineTransformTest extends TransformTestCase {
     /**
      * The default tolerance threshold for comparing the results of direct transforms.
@@ -118,21 +109,6 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * size 3×3 (i.e. affine transforms between two-dimensional spaces) will be tested.
      */
     protected boolean isNonBidimensionalSpaceSupported;
-
-    /**
-     * Returns a default set of factories to use for running the tests. Those factories are given
-     * in arguments to the constructor when this test class is instantiated directly by JUnit (for
-     * example as a {@linkplain org.junit.runners.Suite.SuiteClasses suite} element), instead of
-     * sub-classed by the implementer. The factories are fetched as documented in the
-     * {@link #factories(Class[])} javadoc.
-     *
-     * @return the default set of arguments to be given to the {@code AffineTransformTest} constructor.
-     */
-    @Parameterized.Parameters
-    @SuppressWarnings("unchecked")
-    public static List<Factory[]> factories() {
-        return factories(MathTransformFactory.class);
-    }
 
     /**
      * Creates a new test using the given factory. If the given factory is {@code null},

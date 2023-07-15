@@ -22,25 +22,22 @@ import org.opengis.filter.Expression;
 
 
 /**
- * The GraphicStroke element both indicates that a repeated-linear-graphic stroke type will
- * be used.
+ * Repeated-linear-graphic stroke.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
  */
 @XmlElement("GraphicStroke")
 public interface GraphicStroke extends Graphic{
     /**
-     * InitialGap specifies how far away the first graphic will be drawn relative to the start of
-     * the rendering line
+     * How far away the first graphic will be drawn relative to the start of the rendering line.
      */
     @XmlElement("InitialGap")
     Expression getInitialGap();
 
     /**
-     * Gap gives the distance between two graphics.
+     * Distance between two graphics.
      */
     @XmlElement("Gap")
     Expression getGap();

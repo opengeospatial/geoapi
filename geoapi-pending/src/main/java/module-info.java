@@ -75,7 +75,6 @@ module org.opengis.geoapi.pending {
     exports org.opengis.observation;
     exports org.opengis.observation.coverage;
     exports org.opengis.observation.sampling;
-    exports org.opengis.sld;
     exports org.opengis.style;
     exports org.opengis.style.portrayal;
 }

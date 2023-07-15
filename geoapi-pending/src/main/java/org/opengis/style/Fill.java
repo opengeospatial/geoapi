@@ -29,11 +29,9 @@ import org.opengis.annotation.XmlParameter;
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 2.2
  */
 @XmlElement("Fill")
 public interface Fill {
-
     /**
      * If this object is to be filled with tiled copies of an image, then returns
      * a non-null Graphic that indicates what image should be drawn.
@@ -76,5 +74,4 @@ public interface Fill {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

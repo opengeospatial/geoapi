@@ -38,11 +38,9 @@ import org.opengis.filter.Expression;
  * @author Open Geospatial Consortium
  * @author Ian Turton, CCG
  * @author Johann Sorel (Geomatys)
- * @since GeoAPI 2.2
  */
 @XmlElement("ShadedRelief")
 public interface ShadedRelief {
-
     /**
      * indicates if brightnessOnly is true or false. Default is false.
      *
@@ -67,5 +65,4 @@ public interface ShadedRelief {
      * @param visitor the style visitor
      */
     Object accept(StyleVisitor visitor, Object extraData);
-
 }

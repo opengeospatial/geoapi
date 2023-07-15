@@ -22,14 +22,12 @@ import org.opengis.filter.Expression;
 
 
 /**
- * A PointPlacement specifies how a text label is positioned relative to a
- * geometric point.
+ * Instructions about how a text label is positioned relative to a geometric point.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Ian Turton
- * @since GeoAPI 2.2
  */
 @XmlElement("PointPlacement")
 public interface PointPlacement extends LabelPlacement {

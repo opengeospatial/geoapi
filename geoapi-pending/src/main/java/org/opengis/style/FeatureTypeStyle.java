@@ -19,32 +19,29 @@ package org.opengis.style;
 
 import java.util.List;
 import java.util.Set;
-import org.opengis.annotation.UML;
 import org.opengis.annotation.XmlElement;
-
+import org.opengis.feature.Feature;
 import org.opengis.util.GenericName;
 import org.opengis.filter.ResourceId;
 import org.opengis.metadata.citation.OnlineResource;
-import static org.opengis.annotation.Obligation.*;
-import static org.opengis.annotation.Specification.*;
+
 
 /**
- * Represents a style that applies to features or coverage.
+ * Defines the styling that is to be applied to a single feature type.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/symbol">Symbology Encoding Implementation Specification 1.1.0</A>
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  * @author Chris Dillard (SYS Technologies)
- * @since GeoAPI 2.2
  */
 @XmlElement("FeatureTypeStyle")
-@UML(identifier="PF_FeaturePortrayal", specification=ISO_19117)
 public interface FeatureTypeStyle {
     /**
      * Returns a name for this style.
-     * This can be any string that uniquely identifies this style within a given
-     * canvas.  It is not meant to be human-friendly.  (The "title" property is
-     * meant to be human friendly.)
+     * This can be any string that uniquely identifies this style within a given canvas.
+     * It is not meant to be human-friendly. For a human-friendly label,
+     * see the {@linkplain Description#getTitle() title} instead.
+     *
      * @return a name for this style.
      */
     @XmlElement("Name")
@@ -53,28 +50,24 @@ public interface FeatureTypeStyle {
     /**
      * Returns the description of this style.
      *
-     * @return description with usual informations used
-     * for user interfaces.
+     * @return description with usual information used for user interfaces.
      */
     @XmlElement("Description")
-    @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19117)
     Description getDescription();
 
     /**
-     * Returns an identification of features object.
+     * Returns an identification of feature instances on which to apply the style.
+     * This method enable the possibility to use a feature type style on a given list
+     * of features only, instead of all instances of the feature type.
      *
-     * <p>
-     * ISO 19117 extends FeatureTypeStyle be providing this method.
-     * This method enable the possibility to use a feature type style
-     * on a given list of features only, which is not possible in OGC SE.
-     * </p>
+     * @return identification of the feature instances.
      */
-    @UML(identifier="definedForInst", obligation=OPTIONAL, specification=ISO_19117)
-    ResourceId getFeatureInstanceIDs();
+    ResourceId<Feature> getFeatureInstanceIDs();
 
     /**
-     * Returns the names of the feature type that this style is meant to act
-     * upon.
+     * Returns the names of the feature type that this style is meant to act upon.
+     * It is allowed to be empty but only if the feature type can be inferred by other means,
+     * for example from context or using {@link SemanticType} identifiers.
      *
      * <p>
      * In OGC Symbology Encoding define this method to return a single
@@ -83,18 +76,15 @@ public interface FeatureTypeStyle {
      * to multiple featuretypes and not limited to a single one.
      * </p>
      *
-     * @return the name of the feature type that this style is meant
-     * to act upon.
+     * @return the name of the feature type that this style is meant to act upon.
      */
     @XmlElement("FeatureTypeName")
-    @UML(identifier="definedFor", obligation=OPTIONAL, specification=ISO_19117)
     Set<GenericName> featureTypeNames();
 
     /**
-     * Returns a collection that identifies the more general "type" of geometry
-     * that this style is meant to act upon.
-     * In the current OGC SE specifications, this is an experimental element and
-     * can take only one of the following values:
+     * Returns the most general types of geometry that this style is meant to act upon.
+     * The syntax is currently undefined, but the following values are reserved to indicate
+     * that the style applies to feature with default geometry of specific type:
      *
      * <ul>
      *   <li>{@code generic:point}</li>
@@ -104,17 +94,20 @@ public interface FeatureTypeStyle {
      *   <li>{@code generic:raster}</li>
      *   <li>{@code generic:any}</li>
      * </ul>
+     *
+     * @return the types of geometry that this style is meant to act upon.
      */
     @XmlElement("SemanticTypeIdentifier")
     Set<SemanticType> semanticTypeIdentifiers();
 
     /**
      * Returns the list of rules contained by this style.
+     * Order matter: the first item in a list will be the
+     * first item plotted and hence appears on the bottom.
      *
-     * @return the list of rules. cannot be null but can be empty.
+     * @return the ordered list of rules. Cannot be null but can be empty.
      */
     @XmlElement("Rule")
-    @UML(identifier="portrayalRule", obligation=MANDATORY, specification=ISO_19117)
     List<? extends Rule> rules();
 
     /**
