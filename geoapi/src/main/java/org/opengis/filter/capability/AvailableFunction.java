@@ -20,7 +20,7 @@ package org.opengis.filter.capability;
 import java.util.List;
 import java.util.Collections;
 import org.opengis.util.LocalName;
-import org.opengis.util.ScopedName;
+import org.opengis.util.TypeName;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.OPTIONAL;
@@ -56,9 +56,14 @@ public interface AvailableFunction {
      * Returns the type of return value.
      *
      * @return the type of return value.
+     *
+     * @departure integration
+     *   OGC/ISO defines the return type as {@link org.opengis.util.ScopedName}.
+     *   However this is at odd with other classes returning type information,
+     *   which use {@code TypeName}.
      */
     @UML(identifier="returns", obligation=MANDATORY, specification=ISO_19143)
-    ScopedName getReturnType();
+    TypeName getReturnType();
 
     /**
      * Returns the list of arguments expected by the function.

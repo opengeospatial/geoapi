@@ -18,7 +18,7 @@
 package org.opengis.filter.capability;
 
 import org.opengis.util.LocalName;
-import org.opengis.util.ScopedName;
+import org.opengis.util.TypeName;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.MANDATORY;
@@ -49,7 +49,14 @@ public interface Argument {
      * Name of the type of the argument.
      *
      * @return argument type.
+     *
+     * @departure integration
+     *   OGC/ISO defines the return type as {@link org.opengis.util.ScopedName}.
+     *   However this is at odd with other classes returning type information,
+     *   which use {@code TypeName}. The use of type name is also a step toward
+     *   possible parameter harmonization described in
+     *   <a href="https://github.com/opengeospatial/geoapi/issues/89">issue #89</a>.
      */
     @UML(identifier="type", obligation=MANDATORY, specification=ISO_19143)
-    ScopedName getType();
+    TypeName getValueType();
 }
