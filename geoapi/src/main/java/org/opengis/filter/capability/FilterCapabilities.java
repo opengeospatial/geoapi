@@ -17,10 +17,14 @@
  */
 package org.opengis.filter.capability;
 
+import java.util.Map;
 import java.util.Optional;
-import java.util.Collection;
 import java.util.Collections;
 import org.opengis.annotation.UML;
+import org.opengis.util.LocalName;
+import org.opengis.util.ScopedName;
+import org.opengis.filter.Expression;
+import org.opengis.filter.FilterFactory;
 
 import static org.opengis.annotation.Obligation.OPTIONAL;
 import static org.opengis.annotation.Obligation.MANDATORY;
@@ -93,13 +97,21 @@ public interface FilterCapabilities {
     }
 
     /**
-     * Enumerates the function that may be used in filter expressions.
+     * Enumerates the functions that may be used in filter expressions.
+     * Keys are function names that can be used in calls to {@link FilterFactory#function(String, Expression[])}.
+     * Associated values are descriptions of the functions.
      *
-     * @return the function that may be used in filter expressions.
+     * <h4>Invariants</h4>
+     * For each entry, the key should be equal to <code>{@linkplain AvailableFunction#getName()}.toString()</code>,
+     * optionally with the {@link LocalName} replaced by a {@link ScopedName} for string representation purposes.
+     *
+     * @return the functions that may be used in filter expressions.
+     *
+     * @see FilterFactory#function(String, Expression[])
      */
     @UML(identifier="functions", obligation=OPTIONAL, specification=ISO_19143)
-    default Collection<? extends AvailableFunction> getFunctions() {
-        return Collections.emptyList();
+    default Map<String, ? extends AvailableFunction> getFunctions() {
+        return Collections.emptyMap();
     }
 
     /**

@@ -31,11 +31,14 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @todo Consider omitting this interface at least of GeoAPI 3.1.
+ *       It is not clear what "additional operator" is and how it differs from a function.
  */
 @UML(identifier="ExtendedCapabilities", specification=ISO_19143)
 public interface ExtendedCapabilities {
     /**
-     * returns a list of additional operator names.
+     * Returns a list of additional operator names.
      *
      * @return additional operator names.
      */

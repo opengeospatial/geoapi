@@ -848,6 +848,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @return an expression which will call the specified function.
      * @throws IllegalArgumentException if the given name is not recognized,
      *         or if the argument is illegal for the specified function.
+     *
+     * @see FilterCapabilities#getFunctions()
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     default Expression<R,?> function(String name, Expression<R,?> parameter) {
@@ -866,6 +868,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @return an expression which will call the specified function.
      * @throws IllegalArgumentException if the given name is not recognized,
      *         or if the arguments are illegal for the specified function.
+     *
+     * @see FilterCapabilities#getFunctions()
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     default Expression<R,?> function(String name, Expression<R,?> param1, Expression<R,?> param2) {
@@ -884,6 +888,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @return an expression which will call the specified function.
      * @throws IllegalArgumentException if the given name is not recognized,
      *         or if the arguments are illegal for the specified function.
+     *
+     * @see FilterCapabilities#getFunctions()
      */
     Expression<R,?> function(String name, Expression<R,?>[] parameters);
 
