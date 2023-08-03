@@ -13,3 +13,4 @@ It capabilities are separated in the following categories:
 * `Extended­Capabilities` advertises any additional operators added to the filter syntax.
 
 The enumeration of scalar, spatial and temporal capabilities use de code lists shown in <<filter>>.
+The arguments of available functions are described by the unified parameter API (<<parameters>>).

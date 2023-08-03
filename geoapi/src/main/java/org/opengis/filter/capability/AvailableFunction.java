@@ -22,6 +22,7 @@ import java.util.Collections;
 import org.opengis.util.LocalName;
 import org.opengis.util.TypeName;
 import org.opengis.annotation.UML;
+import org.opengis.parameter.ParameterDescriptor;
 
 import static org.opengis.annotation.Obligation.OPTIONAL;
 import static org.opengis.annotation.Obligation.MANDATORY;
@@ -68,10 +69,29 @@ public interface AvailableFunction {
     /**
      * Returns the list of arguments expected by the function.
      *
+     * <h4>Unified parameter API</h4>
+     * In GeoAPI, the {@code Argument} type defined by ISO 19143 is replaced by {@link ParameterDescriptor}
+     * in order to provide a single parameter API (see {@link org.opengis.parameter} for more information).
+     * The mapping from ISO 19143 to GeoAPI is defined in the following table.
+     * The equivalences are straightforward except for the types:
+     * {@code name} is mapped to an {@link org.opengis.metadata.Identifier} instead of {@link LocalName},
+     * and {@code type} is mapped to an {@link TypeName} instead of {@link org.opengis.util.ScopedName}.
+     *
+     * <table class="ogc">
+     *   <caption>Argument properties mapped to GeoAPI</caption>
+     *   <tr><th>{@code Argument} property</th> <th>{@code ParameterDescriptor} property</th></tr>
+     *   <tr><td>{@code name}</td> <td>{@link ParameterDescriptor#getName() name}</td></tr>
+     *   <tr><td>{@code type}</td> <td>{@link ParameterDescriptor#getValueType() valueType}</td></tr>
+     * </table>
+     *
+     * @departure harmonization
+     *   Usage of the ISO 19143 {@code Argument} type has been replaced by usage of the ISO 19111
+     *   {@code CC_OperationParameter} type in order to provide a unified parameter API.
+     *
      * @return arguments that the function accepts.
      */
     @UML(identifier="arguments", obligation=OPTIONAL, specification=ISO_19143)
-    default List<? extends Argument> getArguments() {
+    default List<? extends ParameterDescriptor<?>> getArguments() {
         return Collections.emptyList();
     }
 }

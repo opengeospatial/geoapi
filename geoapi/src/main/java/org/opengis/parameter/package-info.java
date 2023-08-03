@@ -100,6 +100,16 @@
  *
  *
  *
+ * <h2>Filter and expression arguments</h2>
+ * <p>The filter encoding standard uses a simple argument class ({@code Argument})
+ * with only {@code name} and {@code type} properties.
+ * In order to provide a unified parameter API, GeoAPI omits the filter argument class
+ * and instead defines a mapping from filter properties to GeoAPI properties.
+ * The mapping is documented in {@link org.opengis.filter.capability.AvailableFunction#getArguments()}
+ * and in {@link org.opengis.parameter.GeneralParameterDescriptor} javadoc.</p>
+ *
+ *
+ *
  * <h2>Web Processing Service parameters</h2>
  * <p>The Web Processing Service (WPS) standard defines {@code Input} and {@code Output} structures
  * with some properties similar to the {@link org.opengis.parameter.GeneralParameterDescriptor} ones.

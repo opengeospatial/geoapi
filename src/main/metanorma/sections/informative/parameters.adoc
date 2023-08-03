@@ -6,7 +6,8 @@ The concept of operation parameters is defined in many OGC/ISO standards:
 
 * <<ISO19111>> provides `CC​_Operation­Parameter`,
 * <<ISO19115-1>> provides `SV​_Parameter`,
-* <<ISO19157>> provides `DQM​_Parameter`, and
+* <<ISO19157>> provides `DQM​_Parameter`,
+* <<ISO19143>> provides `Argument`, and
 * OGC 01-004 (a legacy standard, but still useful to GeoAPI) provided `GC​_Parameter­Info`.
 
 GeoAPI provides a unified parameter framework in the `org​.opengis​.parameter` Java package.
@@ -18,19 +19,19 @@ in `CC​_Operation­Parameter` are retrofitted in the GeoAPI parameter framewor
 
 .Main parameter properties and their mapping to ISO standards
 [options="header"]
-|==========================================================================================================
-|GeoAPI             |ISO 19111       |ISO 19115       |ISO 19157     |Remarks
-|`name`             |`name`          |`name`          |`name`        |
-|`alias`            |`alias`         |                |              |
-|`identifier`       |`identifier`    |                |              |Optional, contrarily to `name` which is mandatory.
-|`name.description` |                |                |`definition`  |Should be a short sentence.
-|`description`      |                |`description`   |`description` |`BrowseGraphic` property not explicitly supported.
-|`remarks`          |`remarks`       |                |              |
-|`valueType`        |                |                |`valueType`   |
-|`direction`        |                |`direction`     |              |
-|`minimumOccurs`    |`minimumOccurs` |`optionality`   |              |`optionality   = (minimumOccurs > 0)`
-|`maximumOccurs`    |`maximumOccurs` |`repeatability` |              |`repeatability = (maximumOccurs > 1)`
-|==========================================================================================================
+|=====================================================================================================================
+|GeoAPI             |ISO 19111       |ISO 19115       |ISO 19157     |ISO 19143 |Remarks
+|`name`             |`name`          |`name`          |`name`        |`name`    |
+|`alias`            |`alias`         |                |              |          |
+|`identifier`       |`identifier`    |                |              |          |Optional, contrarily to `name` which is mandatory.
+|`name.description` |                |                |`definition`  |          |Should be a short sentence.
+|`description`      |                |`description`   |`description` |          |`BrowseGraphic` property not explicitly supported.
+|`remarks`          |`remarks`       |                |              |          |
+|`valueType`        |                |                |`valueType`   |`type`    |
+|`direction`        |                |`direction`     |              |          |
+|`minimumOccurs`    |`minimumOccurs` |`optionality`   |              |          |`optionality   = (minimumOccurs > 0)`
+|`maximumOccurs`    |`maximumOccurs` |`repeatability` |              |          |`repeatability = (maximumOccurs > 1)`
+|=====================================================================================================================
 
 ISO 19157 `Description` type contains a mandatory text and an optional illustration.
 Only the text description is explicitly stored in the GeoAPI unified parameter type.
