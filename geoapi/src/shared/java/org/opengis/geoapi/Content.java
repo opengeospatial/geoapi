@@ -314,7 +314,8 @@ public enum Content {
                org.opengis.filter.capability       .Argument                            .class,
                org.opengis.filter.capability       .AvailableFunction                   .class,
                org.opengis.filter.capability       .ExtendedCapabilities                .class,
-               org.opengis.filter.capability       .FilterCapabilities                  .class),
+               org.opengis.filter.capability       .FilterCapabilities                  .class,
+               org.opengis.filter                  .FilterFactory                       .class),
 
     /**
      * All code list classes.
