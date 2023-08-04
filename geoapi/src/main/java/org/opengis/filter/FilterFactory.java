@@ -32,8 +32,8 @@ import org.opengis.filter.capability.FilterCapabilities;
 /**
  * Factory of instances of the various {@link Filter} and {@link Expression} subclasses.
  *
- * <p><b>WARNING:</b> this interface is a first draft. Its API may change at any time.
- * In particular different strategies may be tried regarding the parameterized types.</p>
+ * @todo This interface is a first draft. Its API may change at any time.
+ * In particular different strategies may be tried regarding the parameterized types.
  *
  * @author  Chris Dillard (SYS Technologies)
  * @author  Jody Garnett (Refractions Research Inc.)
@@ -42,9 +42,7 @@ import org.opengis.filter.capability.FilterCapabilities;
  * @version 3.1
  *
  * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to use as inputs.
- * @param  <G>  base class of geometry objects. The implementation-neutral type is GeoAPI {@link Geometry},
- *              but this factory allows the use of other implementations such as JTS
- *              {@link org.locationtech.jts.geom.Geometry} or ESRI {@link com.esri.core.geometry.Geometry}.
+ * @param  <G>  base class of geometry objects. The implementation-neutral type is GeoAPI {@link Geometry}.
  * @param  <T>  base class of temporal objects.
  *
  * @since 3.1
@@ -850,6 +848,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @return an expression which will call the specified function.
      * @throws IllegalArgumentException if the given name is not recognized,
      *         or if the argument is illegal for the specified function.
+     *
+     * @see FilterCapabilities#getFunctions()
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     default Expression<R,?> function(String name, Expression<R,?> parameter) {
@@ -868,6 +868,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @return an expression which will call the specified function.
      * @throws IllegalArgumentException if the given name is not recognized,
      *         or if the arguments are illegal for the specified function.
+     *
+     * @see FilterCapabilities#getFunctions()
      */
     @SuppressWarnings({"unchecked", "rawtypes"})
     default Expression<R,?> function(String name, Expression<R,?> param1, Expression<R,?> param2) {
@@ -886,6 +888,8 @@ public interface FilterFactory<R,G,T> extends Factory {
      * @return an expression which will call the specified function.
      * @throws IllegalArgumentException if the given name is not recognized,
      *         or if the arguments are illegal for the specified function.
+     *
+     * @see FilterCapabilities#getFunctions()
      */
     Expression<R,?> function(String name, Expression<R,?>[] parameters);
 

@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Abstract definition of a parameter or group of parameters used by an operation method.
  * This interface combines information provided by Referencing by Coordinates (ISO 19111),
- * Service Metadata (ISO 19115), Data Quality (ISO 19157)
+ * Service Metadata (ISO 19115), Data Quality (ISO 19157), filter encoding (ISO 19143)
  * and Web Processing Services (WPS) standards.
  * The main information are:
  *
@@ -45,10 +45,12 @@ import static org.opengis.annotation.Specification.*;
  *     <th class="sep">ISO 19111</th>
  *     <th class="sep">ISO 19115</th>
  *     <th class="sep">ISO 19157</th>
+ *     <th class="sep">ISO 19143</th>
  *     <th class="sep">WPS</th>
  *     <th class="sep">Remarks</th>
  *   </tr><tr>
  *     <td>{@link #getName()}</td>
+ *     <td class="sep">{@code name}</td>
  *     <td class="sep">{@code name}</td>
  *     <td class="sep">{@code name}</td>
  *     <td class="sep">{@code name}</td>
@@ -61,9 +63,11 @@ import static org.opengis.annotation.Specification.*;
  *     <td class="sep"></td>
  *     <td class="sep"></td>
  *     <td class="sep"></td>
+ *     <td class="sep"></td>
  *   </tr><tr>
  *     <td>{@link #getIdentifiers() getIdentifiers()}</td>
  *     <td class="sep">{@code identifier}</td>
+ *     <td class="sep"></td>
  *     <td class="sep"></td>
  *     <td class="sep"></td>
  *     <td class="sep"></td>
@@ -74,6 +78,7 @@ import static org.opengis.annotation.Specification.*;
  *     <td class="sep"></td>
  *     <td class="sep">{@code definition}</td>
  *     <td class="sep"></td>
+ *     <td class="sep"></td>
  *     <td class="sep">Should be a short sentence.</td>
  *   </tr>
  *   <!-- "Title" (WPS) equivalent to "designation" (Feature), but not yet provided. -->
@@ -82,6 +87,7 @@ import static org.opengis.annotation.Specification.*;
  *     <td class="sep"></td>
  *     <td class="sep">{@code description}</td>
  *     <td class="sep">{@code description}</td>
+ *     <td class="sep"></td>
  *     <td class="sep">{@code Abstract}</td>
  *     <td class="sep">Explanation more detailed than the definition.</td>
  *   </tr><tr>
@@ -91,11 +97,13 @@ import static org.opengis.annotation.Specification.*;
  *     <td class="sep"></td>
  *     <td class="sep"></td>
  *     <td class="sep"></td>
+ *     <td class="sep"></td>
  *   </tr><tr>
  *     <td>{@link ParameterDescriptor#getValueType() getValueType()}</td>
  *     <td class="sep"></td>
  *     <td class="sep"></td>
  *     <td class="sep">{@code valueType}</td>
+ *     <td class="sep">{@code type}</td>
  *     <td class="sep"></td>
  *     <td class="sep">Name that describes the type of parameter values.</td>
  *   </tr><tr>
@@ -104,11 +112,13 @@ import static org.opengis.annotation.Specification.*;
  *     <td class="sep">{@code direction}</td>
  *     <td class="sep"></td>
  *     <td class="sep"></td>
+ *     <td class="sep"></td>
  *     <td class="sep">Tells if the parameter is a WPS {@code Input} or {@code Output} structure.</td>
  *   </tr><tr>
  *     <td>{@link #getMinimumOccurs()}</td>
  *     <td class="sep">{@code minimumOccurs}</td>
  *     <td class="sep">{@code optionality}</td>
+ *     <td class="sep"></td>
  *     <td class="sep"></td>
  *     <td class="sep">{@code MinOccurs}</td>
  *     <td class="sep">{@code optionality   = (minimumOccurs > 0)}</td>
@@ -116,6 +126,7 @@ import static org.opengis.annotation.Specification.*;
  *     <td>{@link #getMaximumOccurs()}</td>
  *     <td class="sep">{@code maximumOccurs}</td>
  *     <td class="sep">{@code repeatability}</td>
+ *     <td class="sep"></td>
  *     <td class="sep"></td>
  *     <td class="sep">{@code MaxOccurs}</td>
  *     <td class="sep">{@code repeatability = (maximumOccurs > 1)}</td>

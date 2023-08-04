@@ -312,10 +312,10 @@ public enum Content {
                org.opengis.filter.capability       .ScalarCapabilities                  .class,
                org.opengis.filter.capability       .SpatialCapabilities                 .class,
                org.opengis.filter.capability       .TemporalCapabilities                .class,
-               org.opengis.filter.capability       .Argument                            .class,
                org.opengis.filter.capability       .AvailableFunction                   .class,
                org.opengis.filter.capability       .ExtendedCapabilities                .class,
-               org.opengis.filter.capability       .FilterCapabilities                  .class),
+               org.opengis.filter.capability       .FilterCapabilities                  .class,
+               org.opengis.filter                  .FilterFactory                       .class),
 
     /**
      * All code list classes.
