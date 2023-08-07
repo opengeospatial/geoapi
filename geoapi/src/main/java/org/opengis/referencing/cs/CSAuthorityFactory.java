@@ -238,6 +238,25 @@ public interface CSAuthorityFactory extends AuthorityFactory {
     }
 
     /**
+     * Returns a 4-dimensional Minkowski coordinate system from a code.
+     *
+     * @param  code  value allocated by authority.
+     * @return the coordinate system for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @since Testbed-19
+     */
+    default MinkowskiCS createMinkowskiCS(final String code) throws FactoryException {
+        final CoordinateSystem cs = createCoordinateSystem(code);
+        try {
+            return (MinkowskiCS) cs;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, cs, e);
+        }
+    }
+
+    /**
      * Returns an arbitrary object from a code.
      *
      * @param  code  value allocated by authority.

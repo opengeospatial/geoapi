@@ -316,6 +316,29 @@ public interface CSFactory extends ObjectFactory {
     }
 
     /**
+     * Creates a four-dimensional Minkowski coordinate system.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  axis0  the first  axis.
+     * @param  axis1  the second axis.
+     * @param  axis2  the third  axis.
+     * @param  axis3  the fourth  axis.
+     * @return the coordinate system for the given properties and axes.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since Testbed-19
+     */
+    default MinkowskiCS createMinkowskiCS(Map<String,?> properties,
+                                          CoordinateSystemAxis axis0,
+                                          CoordinateSystemAxis axis1,
+                                          CoordinateSystemAxis axis2,
+                                          CoordinateSystemAxis axis3) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, MinkowskiCS.class);
+    }
+
+    /**
      * Creates a two-dimensional user defined coordinate system.
      *
      * @param  properties  name and other properties to give to the new object.

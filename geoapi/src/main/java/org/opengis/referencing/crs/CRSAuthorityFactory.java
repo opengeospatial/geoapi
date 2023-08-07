@@ -118,6 +118,27 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
     }
 
     /**
+     * Returns an inertial coordinate reference system from a code.
+     *
+     * @param  code  value allocated by authority.
+     * @return the coordinate reference system for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createInertialReferenceFrame(String)
+     *
+     * @since Testbed-19
+     */
+    default InertialCRS createInertialCRS(final String code) throws FactoryException {
+        final CoordinateReferenceSystem crs = createCoordinateReferenceSystem(code);
+        try {
+            return (InertialCRS) crs;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, crs, e);
+        }
+    }
+
+    /**
      * Returns a vertical coordinate reference system from a code.
      *
      * @param  code  value allocated by authority.

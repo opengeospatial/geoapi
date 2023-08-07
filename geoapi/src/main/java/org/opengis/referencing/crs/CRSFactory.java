@@ -116,6 +116,26 @@ public interface CRSFactory extends ObjectFactory {
     }
 
     /**
+     * Creates an inertial coordinate reference system from a coordinate system.
+     * The coordinate system type shall be ellipsoidal, spherical, Cartesian or Minkowski.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum  inertial reference frame to use in created CRS.
+     * @param  cs  the coordinate system for the created CRS.
+     * @return the coordinate reference system for the given properties.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since Testbed-19
+     */
+    default InertialCRS createInertialCRS(Map<String,?> properties,
+                                          InertialReferenceFrame datum,
+                                          CoordinateSystem cs) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, InertialCRS.class);
+    }
+
+    /**
      * Creates a vertical coordinate reference system.
      *
      * @param  properties  name and other properties to give to the new object.

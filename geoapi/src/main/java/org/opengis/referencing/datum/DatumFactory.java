@@ -55,6 +55,20 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CS_CoordinateSystemFactory", specification=OGC_01009)
 public interface DatumFactory extends ObjectFactory {
     /**
+     * Creates a celestial body identification.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @return the celestial body for the given properties.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since Testbed-19
+     */
+    default CelestialBody createCelestialBody(Map<String,?> properties) throws FactoryException {
+        throw new UnimplementedServiceException(this, CelestialBody.class);
+    }
+
+    /**
      * Creates an ellipsoid from radius values.
      *
      * @param  properties  name and other properties to give to the new object.
@@ -203,5 +217,25 @@ public interface DatumFactory extends ObjectFactory {
                                         PixelInCell   pixelInCell) throws FactoryException
     {
         throw new UnimplementedServiceException(this, ImageDatum.class);
+    }
+
+    /**
+     * Creates an inertial reference frame from ellipsoid and prime meridian.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  ellipsoid      ellipsoid to use in new inertial reference frame.
+     * @param  primeMeridian  prime meridian to use in new inertial reference frame.
+     * @return the inertial reference frame for the given properties.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since Testbed-19
+     */
+    default InertialReferenceFrame createInertialReferenceFrame(
+            Map<String,?> properties,
+            Ellipsoid     ellipsoid,
+            PrimeMeridian primeMeridian) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, InertialReferenceFrame.class);
     }
 }

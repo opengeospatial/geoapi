@@ -54,6 +54,20 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
 public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
+     * Returns a celestial body from a code.
+     *
+     * @param  code  value allocated by authority.
+     * @return the celestial body for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @since Testbed-19
+     */
+    default CelestialBody createCelestialBody(String code) throws FactoryException {
+        throw new UnimplementedServiceException(this, CelestialBody.class);
+    }
+
+    /**
      * Returns an ellipsoid from a code.
      *
      * @param  code  value allocated by authority.
@@ -219,6 +233,28 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
         final Datum datum = createDatum(code);
         try {
             return (ImageDatum) datum;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, datum, e);
+        }
+    }
+
+    /**
+     * Returns an inertial reference frame from a code.
+     *
+     * @param  code  value allocated by authority.
+     * @return the datum for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @see #createEllipsoid(String)
+     * @see #createPrimeMeridian(String)
+     *
+     * @since Testbed-19
+     */
+    default InertialReferenceFrame createInertialReferenceFrame(final String code) throws FactoryException {
+        final Datum datum = createDatum(code);
+        try {
+            return (InertialReferenceFrame) datum;
         } catch (ClassCastException e) {
             throw unexpectedType(this, code, datum, e);
         }

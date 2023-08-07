@@ -18,6 +18,7 @@
 package org.opengis.referencing.datum;
 
 import java.util.Date;
+import java.util.Optional;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.util.InternationalString;
@@ -53,6 +54,18 @@ import static org.opengis.annotation.Specification.*;
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="CD_Datum", specification=ISO_19111, version=2007)
 public interface Datum extends IdentifiedObject {
+    /**
+     * Key for the <code>{@value}</code> property to be given to the
+     * {@code DatumFactory.createFoo(Map, ...)} methods.
+     * This is used for setting the value to be returned by {@link #getCelestialBody()}.
+     *
+     * @see DatumFactory
+     * @see #getCelestialBody()
+     *
+     * @since Testbed-19
+     */
+    String CELESTIAL_BODY_KEY = "celestialBody";
+
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@code DatumFactory.createFoo(Map, ...)} methods.
@@ -94,6 +107,17 @@ public interface Datum extends IdentifiedObject {
      * @see org.opengis.referencing.ObjectDomain#getScope()
      */
     String SCOPE_KEY = "scope";
+
+    /**
+     * Identification of the star, planet, asteroid or other celestial body for which a datum is defined.
+     *
+     * @return star, planet, asteroid or other celestial body for which a datum is defined.
+     *
+     * @since Testbed-19
+     */
+    default Optional<CelestialBody> getCelestialBody() {
+        return Optional.empty();
+    }
 
     /**
      * A description, possibly including coordinates of an identified point or points, of the
