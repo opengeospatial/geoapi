@@ -20,10 +20,12 @@ package org.opengis.referencing.cs;
 import javax.measure.Unit;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.util.UnimplementedServiceException;
 import org.opengis.util.FactoryException;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
+import static org.opengis.geoapi.internal.Errors.unexpectedType;
 
 
 /**
@@ -31,6 +33,16 @@ import static org.opengis.annotation.Specification.*;
  * External authorities are used to manage definitions of objects used in this interface.
  * The definitions of these objects are referenced using code strings.
  * A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
+ *
+ * <h2>Default methods</h2>
+ * All {@code create(…)} methods in this interface are optional.
+ * If a method is not overridden by the implementer, the default is:
+ * <ul>
+ *   <li>For methods creating a sub-type of {@link CoordinateSystem}, delegate to
+ *       {@link #createCoordinateSystem(String)} then check the returned object type.</li>
+ *   <li>For all other methods, throw an {@link UnimplementedServiceException} with a message
+ *       saying that the type or service is not supported.</li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Johann Sorel (Geomatys)
@@ -47,6 +59,31 @@ import static org.opengis.annotation.Specification.*;
  */
 public interface CSAuthorityFactory extends AuthorityFactory {
     /**
+     * Returns an unit of measurement from a code.
+     *
+     * @param  code  value allocated by authority.
+     * @return the unit for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     */
+    @UML(identifier="CS_CoordinateSystemAuthorityFactory.createLinearUnit, createAngularUnit", specification=OGC_01009)
+    default Unit<?> createUnit(String code) throws FactoryException {
+        throw new UnimplementedServiceException(this, Unit.class);
+    }
+
+    /**
+     * Returns a coordinate system axis from a code.
+     *
+     * @param  code  value allocated by authority.
+     * @return the axis for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     */
+    default CoordinateSystemAxis createCoordinateSystemAxis(String code) throws FactoryException {
+        throw new UnimplementedServiceException(this, CoordinateSystemAxis.class);
+    }
+
+    /**
      * Returns an arbitrary coordinate system from a code.
      *
      * <p>If the coordinate system type is known at compile time, then it is recommended
@@ -60,8 +97,9 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    CoordinateSystem createCoordinateSystem(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
+    default CoordinateSystem createCoordinateSystem(String code) throws FactoryException {
+        throw new UnimplementedServiceException(this, CoordinateSystem.class);
+    }
 
     /**
      * Returns a Cartesian coordinate system from a code.
@@ -71,8 +109,14 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    CartesianCS createCartesianCS(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
+    default CartesianCS createCartesianCS(final String code) throws FactoryException {
+        final CoordinateSystem cs = createCoordinateSystem(code);
+        try {
+            return (CartesianCS) cs;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, cs, e);
+        }
+    }
 
     /**
      * Returns a polar coordinate system from a code.
@@ -82,8 +126,14 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    PolarCS createPolarCS(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
+    default PolarCS createPolarCS(final String code) throws FactoryException {
+        final CoordinateSystem cs = createCoordinateSystem(code);
+        try {
+            return (PolarCS) cs;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, cs, e);
+        }
+    }
 
     /**
      * Returns a cylindrical coordinate system from a code.
@@ -93,8 +143,14 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    CylindricalCS createCylindricalCS(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
+    default CylindricalCS createCylindricalCS(final String code) throws FactoryException {
+        final CoordinateSystem cs = createCoordinateSystem(code);
+        try {
+            return (CylindricalCS) cs;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, cs, e);
+        }
+    }
 
     /**
      * Returns a spherical coordinate system from a code.
@@ -104,8 +160,14 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    SphericalCS createSphericalCS(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
+    default SphericalCS createSphericalCS(final String code) throws FactoryException {
+        final CoordinateSystem cs = createCoordinateSystem(code);
+        try {
+            return (SphericalCS) cs;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, cs, e);
+        }
+    }
 
     /**
      * Returns an ellipsoidal coordinate system from a code.
@@ -115,8 +177,14 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    EllipsoidalCS createEllipsoidalCS(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
+    default EllipsoidalCS createEllipsoidalCS(final String code) throws FactoryException {
+        final CoordinateSystem cs = createCoordinateSystem(code);
+        try {
+            return (EllipsoidalCS) cs;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, cs, e);
+        }
+    }
 
     /**
      * Returns a vertical coordinate system from a code.
@@ -126,8 +194,14 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    VerticalCS createVerticalCS(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
+    default VerticalCS createVerticalCS(final String code) throws FactoryException {
+        final CoordinateSystem cs = createCoordinateSystem(code);
+        try {
+            return (VerticalCS) cs;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, cs, e);
+        }
+    }
 
     /**
      * Returns a temporal coordinate system from a code.
@@ -137,8 +211,14 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    TimeCS createTimeCS(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
+    default TimeCS createTimeCS(final String code) throws FactoryException {
+        final CoordinateSystem cs = createCoordinateSystem(code);
+        try {
+            return (TimeCS) cs;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, cs, e);
+        }
+    }
 
     /**
      * Returns a parametric coordinate system from a code.
@@ -148,29 +228,12 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      */
-    ParametricCS createParametricCS(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
-
-    /**
-     * Returns a coordinate system axis from a code.
-     *
-     * @param  code  value allocated by authority.
-     * @return the axis for the given code.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
-     */
-    CoordinateSystemAxis createCoordinateSystemAxis(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
-
-    /**
-     * Returns an unit of measurement from a code.
-     *
-     * @param  code  value allocated by authority.
-     * @return the unit for the given code.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
-     */
-    @UML(identifier="CS_CoordinateSystemAuthorityFactory.createLinearUnit, createAngularUnit", specification=OGC_01009)
-    Unit<?> createUnit(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
+    default ParametricCS createParametricCS(final String code) throws FactoryException {
+        final CoordinateSystem cs = createCoordinateSystem(code);
+        try {
+            return (ParametricCS) cs;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, cs, e);
+        }
+    }
 }

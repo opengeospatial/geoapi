@@ -75,36 +75,40 @@ import static org.opengis.annotation.Specification.*;
 public interface IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} {@code createFoo(Map, ...)} methods.
+     * {@code ObjectFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getName()}.
      *
+     * @see ObjectFactory
      * @see #getName()
      */
     String NAME_KEY = "name";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} {@code createFoo(Map, ...)} methods.
+     * {@code ObjectFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getAlias()}.
      *
+     * @see ObjectFactory
      * @see #getAlias()
      */
     String ALIAS_KEY = "alias";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} {@code createFoo(Map, ...)} methods.
+     * {@code ObjectFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getIdentifiers()}.
      *
+     * @see ObjectFactory
      * @see #getIdentifiers()
      */
     String IDENTIFIERS_KEY = "identifiers";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} {@code createFoo(Map, ...)} methods.
+     * {@code ObjectFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getRemarks()}.
      *
+     * @see ObjectFactory
      * @see #getRemarks()
      */
     String REMARKS_KEY = "remarks";

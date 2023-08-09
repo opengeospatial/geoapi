@@ -72,18 +72,20 @@ import static org.opengis.annotation.Specification.*;
 public interface ReferenceSystem extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} {@code createFoo(Map, ...)} methods.
+     * {@code ObjectFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getDomainOfValidity()}.
      *
+     * @see ObjectFactory
      * @see #getDomainOfValidity()
      */
     String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} {@code createFoo(Map, ...)} methods.
+     * {@code ObjectFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getScope()}.
      *
+     * @see ObjectFactory
      * @see #getScope()
      */
     String SCOPE_KEY = "scope";

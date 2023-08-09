@@ -56,8 +56,7 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      *   This method has been added because OGC 01-009 does not define a factory
      *   method for creating such object.
      */
-    OperationMethod createOperationMethod(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
+    OperationMethod createOperationMethod(String code) throws FactoryException;
 
     /**
      * Creates an operation from a single operation code. The "{@linkplain Identifier#getAuthority
@@ -71,8 +70,7 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      * @throws FactoryException if the object creation failed for some other reason.
      */
     @UML(identifier="createFromTransformationCode", specification=OGC_01009)
-    CoordinateOperation createCoordinateOperation(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
+    CoordinateOperation createCoordinateOperation(String code) throws FactoryException;
 
     /**
      * Creates operations from {@linkplain CoordinateReferenceSystem coordinate reference system}
@@ -92,5 +90,5 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      */
     @UML(identifier="createFromCoordinateSystemCodes", specification=OGC_01009)
     Set<CoordinateOperation> createFromCoordinateReferenceSystemCodes(String sourceCRS, String targetCRS)
-            throws NoSuchAuthorityCodeException, FactoryException;
+            throws FactoryException;
 }

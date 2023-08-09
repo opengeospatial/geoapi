@@ -243,7 +243,9 @@ public final class MethodSignatureTest extends SourceGenerator {
                                 }
                             }
                         }
-                        if (m.isDefault() != isOptional && m.getReturnType() != Boolean.TYPE) {
+                        if (m.isDefault() != isOptional && m.getReturnType() != Boolean.TYPE
+                                && !m.getName().startsWith("create"))   // Ignore factory methods.
+                        {
                             fail(c.getSimpleName() + '.' + m.getName() + ": " + (isOptional
                                     ? "expected a default method."
                                     : "should not have default method."));

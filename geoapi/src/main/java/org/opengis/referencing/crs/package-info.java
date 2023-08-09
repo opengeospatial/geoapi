@@ -118,7 +118,7 @@
  * </blockquote>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  */
 package org.opengis.referencing.crs;

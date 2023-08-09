@@ -84,7 +84,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
     @UML(identifier="createFromCoordinateSystems", specification=OGC_01009)
     CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
                                         CoordinateReferenceSystem targetCRS)
-            throws OperationNotFoundException, FactoryException;
+            throws FactoryException;
 
     /**
      * Returns an operation using a particular method for conversion or transformation
@@ -122,7 +122,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
     CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
                                         CoordinateReferenceSystem targetCRS,
                                         OperationMethod           method)
-            throws OperationNotFoundException, FactoryException;
+            throws FactoryException;
 
     /**
      * Creates a concatenated operation from a sequence of operations.
@@ -278,5 +278,5 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *
      * @since 3.1
      */
-    OperationMethod getOperationMethod(String name) throws NoSuchIdentifierException, FactoryException;
+    OperationMethod getOperationMethod(String name) throws FactoryException;
 }

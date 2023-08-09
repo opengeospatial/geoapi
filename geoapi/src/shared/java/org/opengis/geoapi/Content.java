@@ -389,6 +389,7 @@ public enum Content {
      * All exceptions.
      */
     EXCEPTIONS(org.opengis.util                  .FactoryException                     .class,
+               org.opengis.util                  .UnimplementedServiceException        .class,
                org.opengis.util                  .NoSuchIdentifierException            .class,
                org.opengis.referencing           .NoSuchAuthorityCodeException         .class,
                org.opengis.referencing.operation .OperationNotFoundException           .class,
