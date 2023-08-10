@@ -144,7 +144,7 @@ import static org.opengis.annotation.Specification.*;
  * @see GeneralParameterValue
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="CC_GeneralOperationParameter", specification=ISO_19111)
+@UML(identifier="CC_GeneralOperationParameter", specification=ISO_19111, version=2007)
 public interface GeneralParameterDescriptor extends IdentifiedObject {
     /**
      * The name, as used by the service or operation for this parameter.

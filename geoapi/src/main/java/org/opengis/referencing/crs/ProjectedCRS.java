@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * @see CRSAuthorityFactory#createProjectedCRS(String)
  * @see CRSFactory#createProjectedCRS(Map, GeographicCRS, Conversion, CartesianCS)
  */
-@UML(identifier="SC_ProjectedCRS", specification=ISO_19111)
+@UML(identifier="SC_ProjectedCRS", specification=ISO_19111, version=2007)
 public interface ProjectedCRS extends GeneralDerivedCRS {
     /**
      * Returns the base coordinate reference system, which must be geographic.

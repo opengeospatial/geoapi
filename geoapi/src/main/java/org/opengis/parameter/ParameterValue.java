@@ -67,7 +67,7 @@ import static org.opengis.annotation.Specification.*;
  * @see ParameterValueGroup
  */
 @Classifier(Stereotype.UNION)
-@UML(identifier="CC_ParameterValue", specification=ISO_19111)
+@UML(identifier="CC_ParameterValue", specification=ISO_19111, version=2007)
 public interface ParameterValue<T> extends GeneralParameterValue {
     /**
      * Returns the abstract definition of this parameter value.

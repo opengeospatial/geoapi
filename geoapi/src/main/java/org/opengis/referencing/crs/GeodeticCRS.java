@@ -38,7 +38,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   2.1
  */
-@UML(identifier="SC_GeodeticCRS", specification=ISO_19111)
+@UML(identifier="SC_GeodeticCRS", specification=ISO_19111, version=2007)
 public interface GeodeticCRS extends SingleCRS {
     /**
      * Returns the datum, which shall be geodetic.

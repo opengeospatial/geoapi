@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * @see DatumAuthorityFactory#createPrimeMeridian(String)
  * @see DatumFactory#createPrimeMeridian(Map, double, Unit)
  */
-@UML(identifier="CD_PrimeMeridian", specification=ISO_19111)
+@UML(identifier="CD_PrimeMeridian", specification=ISO_19111, version=2007)
 public interface PrimeMeridian extends IdentifiedObject {
     /**
      * Longitude of the prime meridian measured from the Greenwich meridian, positive eastward.

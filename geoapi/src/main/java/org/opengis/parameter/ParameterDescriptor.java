@@ -56,7 +56,7 @@ import static org.opengis.annotation.Specification.*;
  * @see ParameterValue
  * @see ParameterDescriptorGroup
  */
-@UML(identifier="CC_OperationParameter", specification=ISO_19111)
+@UML(identifier="CC_OperationParameter", specification=ISO_19111, version=2007)
 public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
     /**
      * Returns the name that describes the type of parameter values.

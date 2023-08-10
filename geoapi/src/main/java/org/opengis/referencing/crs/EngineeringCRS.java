@@ -70,7 +70,7 @@ import static org.opengis.annotation.Specification.*;
  * @see CRSAuthorityFactory#createEngineeringCRS(String)
  * @see CRSFactory#createEngineeringCRS(Map, EngineeringDatum, CoordinateSystem)
  */
-@UML(identifier="SC_EngineeringCRS", specification=ISO_19111)
+@UML(identifier="SC_EngineeringCRS", specification=ISO_19111, version=2007)
 public interface EngineeringCRS extends SingleCRS {
     /**
      * Returns the datum, which shall be an engineering one.

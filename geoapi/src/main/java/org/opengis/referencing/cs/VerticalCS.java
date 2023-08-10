@@ -52,6 +52,6 @@ import static org.opengis.annotation.Specification.*;
  * @see CSAuthorityFactory#createVerticalCS(String)
  * @see CSFactory#createVerticalCS(Map, CoordinateSystemAxis)
  */
-@UML(identifier="CS_VerticalCS", specification=ISO_19111)
+@UML(identifier="CS_VerticalCS", specification=ISO_19111, version=2007)
 public interface VerticalCS extends CoordinateSystem {
 }

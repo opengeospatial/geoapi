@@ -37,6 +37,6 @@ import static org.opengis.annotation.Specification.*;
  * @see CSAuthorityFactory#createCylindricalCS(String)
  * @see CSFactory#createCylindricalCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
  */
-@UML(identifier="CS_CylindricalCS", specification=ISO_19111)
+@UML(identifier="CS_CylindricalCS", specification=ISO_19111, version=2007)
 public interface CylindricalCS extends CoordinateSystem {
 }

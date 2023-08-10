@@ -53,6 +53,6 @@ import static org.opengis.annotation.Specification.*;
  * @see CSFactory#createEllipsoidalCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)
  * @see CSFactory#createEllipsoidalCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
  */
-@UML(identifier="CS_EllipsoidalCS", specification=ISO_19111)
+@UML(identifier="CS_EllipsoidalCS", specification=ISO_19111, version=2007)
 public interface EllipsoidalCS extends CoordinateSystem {
 }

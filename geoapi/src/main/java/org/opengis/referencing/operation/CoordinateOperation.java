@@ -59,7 +59,7 @@ import static org.opengis.annotation.Specification.*;
  * @see CoordinateOperationFactory#createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="CC_CoordinateOperation", specification=ISO_19111)
+@UML(identifier="CC_CoordinateOperation", specification=ISO_19111, version=2007)
 public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property.

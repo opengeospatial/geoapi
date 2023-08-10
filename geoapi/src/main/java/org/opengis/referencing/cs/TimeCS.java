@@ -37,6 +37,6 @@ import static org.opengis.annotation.Specification.*;
  * @see CSAuthorityFactory#createTimeCS(String)
  * @see CSFactory#createTimeCS(Map, CoordinateSystemAxis)
  */
-@UML(identifier="CS_TimeCS", specification=ISO_19111)
+@UML(identifier="CS_TimeCS", specification=ISO_19111, version=2007)
 public interface TimeCS extends CoordinateSystem {
 }

@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
  * @see DatumAuthorityFactory#createImageDatum(String)
  * @see DatumFactory#createImageDatum(Map, PixelInCell)
  */
-@UML(identifier="CD_ImageDatum", specification=ISO_19111)
+@UML(identifier="CD_ImageDatum", specification=ISO_19111, version=2007)
 public interface ImageDatum extends Datum {
     /**
      * Specification of the way the image grid is associated with the image data attributes.

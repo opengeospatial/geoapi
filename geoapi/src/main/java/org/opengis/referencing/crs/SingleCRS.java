@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * @see org.opengis.referencing.datum.Datum
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="SC_SingleCRS", specification=ISO_19111)
+@UML(identifier="SC_SingleCRS", specification=ISO_19111, version=2007)
 public interface SingleCRS extends CoordinateReferenceSystem {
     /**
      * Returns the coordinate system associated to this CRS.

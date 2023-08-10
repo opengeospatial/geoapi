@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  * @see DatumAuthorityFactory#createTemporalDatum(String)
  * @see DatumFactory#createTemporalDatum(Map, Date)
  */
-@UML(identifier="CD_TemporalDatum", specification=ISO_19111)
+@UML(identifier="CD_TemporalDatum", specification=ISO_19111, version=2007)
 public interface TemporalDatum extends Datum {
     /**
      * The date and time origin of this temporal datum.

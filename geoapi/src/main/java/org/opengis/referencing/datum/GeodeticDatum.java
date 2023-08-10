@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * @see DatumAuthorityFactory#createGeodeticDatum(String)
  * @see DatumFactory#createGeodeticDatum(Map, Ellipsoid, PrimeMeridian)
  */
-@UML(identifier="CD_GeodeticDatum", specification=ISO_19111)
+@UML(identifier="CD_GeodeticDatum", specification=ISO_19111, version=2007)
 public interface GeodeticDatum extends Datum {
     /**
      * Returns the ellipsoid.

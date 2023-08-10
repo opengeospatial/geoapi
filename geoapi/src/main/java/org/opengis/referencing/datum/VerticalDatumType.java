@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  */
-@UML(identifier="CD_VerticalDatumType", specification=ISO_19111)
+@UML(identifier="CD_VerticalDatumType", specification=ISO_19111, version=2003)
 public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     /**
      * Serial number for compatibility with different versions.

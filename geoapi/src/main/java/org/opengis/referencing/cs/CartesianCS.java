@@ -85,6 +85,6 @@ import static org.opengis.annotation.Specification.*;
  * @see CSFactory#createCartesianCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)
  * @see CSFactory#createCartesianCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
  */
-@UML(identifier="CS_CartesianCS", specification=ISO_19111)
+@UML(identifier="CS_CartesianCS", specification=ISO_19111, version=2007)
 public interface CartesianCS extends AffineCS {
 }

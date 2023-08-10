@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * @see OperationMethod#getFormula()
  */
 @Classifier(Stereotype.UNION)
-@UML(identifier="CC_Formula", specification=ISO_19111)
+@UML(identifier="CC_Formula", specification=ISO_19111, version=2007)
 public interface Formula {
     /**
      * Formula(s) or procedure used by the operation method.

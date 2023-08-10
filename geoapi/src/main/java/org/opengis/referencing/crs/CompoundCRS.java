@@ -59,7 +59,7 @@ import static org.opengis.annotation.Specification.*;
  * @see CRSAuthorityFactory#createCompoundCRS(String)
  * @see CRSFactory#createCompoundCRS(Map, CoordinateReferenceSystem[])
  */
-@UML(identifier="SC_CompoundCRS", specification=ISO_19111)
+@UML(identifier="SC_CompoundCRS", specification=ISO_19111, version=2007)
 public interface CompoundCRS extends CoordinateReferenceSystem {
     /**
      * The ordered list of coordinate reference systems.

@@ -55,7 +55,7 @@ import static org.opengis.annotation.Specification.*;
  * @see ParameterDescriptorGroup
  * @see ParameterValue
  */
-@UML(identifier="CC_ParameterValueGroup", specification=ISO_19111)
+@UML(identifier="CC_ParameterValueGroup", specification=ISO_19111, version=2007)
 public interface ParameterValueGroup extends GeneralParameterValue {
     /**
      * The abstract definition of this group of parameters.

@@ -101,7 +101,7 @@ public interface ReferenceSystem extends IdentifiedObject {
      *   collection. The singleton has been preserved in GeoAPI for historical reasons,
      *   and also because the {@code Extent} attributes already allow collections.
      */
-    @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default Extent getDomainOfValidity() {
         return null;
     }
@@ -125,7 +125,7 @@ public interface ReferenceSystem extends IdentifiedObject {
      *         GeoAPI keeps the singleton type for historical reasons.</li>
      *   </ul>
      */
-    @UML(identifier="SC_CRS.scope", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="SC_CRS.scope", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default InternationalString getScope() {
         return null;
     }

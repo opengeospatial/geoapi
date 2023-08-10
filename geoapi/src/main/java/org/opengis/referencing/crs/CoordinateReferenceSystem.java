@@ -60,7 +60,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="SC_CRS", specification=ISO_19111)
+@UML(identifier="SC_CRS", specification=ISO_19111, version=2007)
 public interface CoordinateReferenceSystem extends ReferenceSystem {
     /**
      * Returns the coordinate system of a single CRS, or a view over all coordinate systems of a compound CRS.

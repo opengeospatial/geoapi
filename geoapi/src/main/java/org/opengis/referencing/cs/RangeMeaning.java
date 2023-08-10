@@ -38,7 +38,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see CoordinateSystemAxis#getRangeMeaning()
  */
-@UML(identifier="CS_RangeMeaning", specification=ISO_19111)
+@UML(identifier="CS_RangeMeaning", specification=ISO_19111, version=2007)
 public final class RangeMeaning extends CodeList<RangeMeaning> {
     /**
      * Serial number for compatibility with different versions.

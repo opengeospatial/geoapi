@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="CS_CoordinateSystem", specification=ISO_19111)
+@UML(identifier="CS_CoordinateSystem", specification=ISO_19111, version=2007)
 public interface CoordinateSystem extends IdentifiedObject {
     /**
      * Returns the dimension of the coordinate system.

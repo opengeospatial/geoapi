@@ -71,7 +71,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   2.0
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="IO_IdentifiedObject", specification=ISO_19111)
+@UML(identifier="IO_IdentifiedObject", specification=ISO_19111, version=2007)
 public interface IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the

@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
  * @see ParameterValueGroup
  * @see ParameterDescriptor
  */
-@UML(identifier="CC_OperationParameterGroup", specification=ISO_19111)
+@UML(identifier="CC_OperationParameterGroup", specification=ISO_19111, version=2007)
 public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
     /**
      * Returns the parameters in this group.

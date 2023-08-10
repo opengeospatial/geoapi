@@ -69,7 +69,7 @@ import static org.opengis.annotation.Specification.*;
  * @see DatumFactory#createEllipsoid(Map, double, double, Unit)
  * @see DatumFactory#createFlattenedSphere(Map, double, double, Unit)
  */
-@UML(identifier="CD_Ellipsoid", specification=ISO_19111)
+@UML(identifier="CD_Ellipsoid", specification=ISO_19111, version=2007)
 public interface Ellipsoid extends IdentifiedObject {
     /**
      * Returns the linear unit of the {@linkplain #getSemiMajorAxis() semi-major}

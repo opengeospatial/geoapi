@@ -76,7 +76,7 @@ import static org.opengis.annotation.Specification.*;
  * @see CoordinateOperationAuthorityFactory#createOperationMethod(String)
  * @see CoordinateOperationFactory#createOperationMethod(Map, Integer, Integer, ParameterDescriptorGroup)
  */
-@UML(identifier="CC_OperationMethod", specification=ISO_19111)
+@UML(identifier="CC_OperationMethod", specification=ISO_19111, version=2007)
 public interface OperationMethod extends IdentifiedObject {
     /*
      * NOTE FOR JAVADOC WRITER:

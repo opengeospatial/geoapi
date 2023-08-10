@@ -76,9 +76,6 @@ public @interface UML {
      * <ul>
      *   <li>{@linkplain Specification#ISO_19115 ISO 19115}:2003 defined {@code PT_Locale} in a way closer
      *       to the {@link java.util.Locale java.util.Locale} model than the newer ISO 19115:2014.</li>
-     *   <li>An {@linkplain Specification#ISO_19111 ISO 19111} revision by OGC defined geographic and geocentric CRS
-     *       in a more type-safe way than ISO 19111:2007. The later model requires C/C++ {@code union} construct for
-     *       type-safety, which does not exist in the Java language.</li>
      * </ul>
      *
      * @return the specification version, or 0 for the default (usually latest) specification.

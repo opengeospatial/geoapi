@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="CD_Datum", specification=ISO_19111)
+@UML(identifier="CD_Datum", specification=ISO_19111, version=2007)
 public interface Datum extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
