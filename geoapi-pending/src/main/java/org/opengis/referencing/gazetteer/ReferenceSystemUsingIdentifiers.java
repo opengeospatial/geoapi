@@ -104,10 +104,16 @@ public interface ReferenceSystemUsingIdentifiers extends ReferenceSystem {
      *
      * @see LocationType#getTerritoryOfUse()
      * @see Gazetteer#getTerritoryOfUse()
+     *
+     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */
     @Override
+    @SuppressWarnings("removal")
+    @Deprecated(since="3.1", forRemoval=true)
     @UML(identifier="domainOfValidity", obligation=MANDATORY, specification=ISO_19112)
-    Extent getDomainOfValidity();
+    default Extent getDomainOfValidity() {
+        return ReferenceSystem.super.getDomainOfValidity();
+    }
 
     /**
      * Property used to characterize the spatial reference system.

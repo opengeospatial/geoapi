@@ -32,6 +32,7 @@ import org.opengis.metadata.extent.TemporalExtent;
 import org.opengis.metadata.extent.VerticalExtent;
 import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
+import org.opengis.referencing.ObjectDomain;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.PrimeMeridian;
@@ -337,7 +338,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * @param northBoundLatitude  the expected maximum latitude,  or NaN if unrestricted.
      * @param eastBoundLongitude  the expected maximum longitude, or NaN if unrestricted.
      *
-     * @see CoordinateReferenceSystem#getDomainOfValidity()
+     * @see ObjectDomain#getDomainOfValidity()
      */
     protected void verifyGeographicExtent(final Extent extent, final String description,
             final double southBoundLatitude, final double westBoundLongitude,
@@ -410,7 +411,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * @param unit          the unit of {@code minimumValue}, {@code maximumValue} and {@code tolerance} arguments,
      *                      or {@code null} for skipping the unit conversion.
      *
-     * @see CoordinateReferenceSystem#getDomainOfValidity()
+     * @see ObjectDomain#getDomainOfValidity()
      */
     protected void verifyVerticalExtent(final Extent extent,
             final double minimumValue, final double maximumValue, final double tolerance, final Unit<?> unit)
@@ -472,7 +473,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * @param endTime    the expected end time, or {@code null} if unrestricted.
      * @param tolerance  the tolerance threshold to use for comparison, in unit of days.
      *
-     * @see CoordinateReferenceSystem#getDomainOfValidity()
+     * @see ObjectDomain#getDomainOfValidity()
      */
     protected void verifyTimeExtent(final Extent extent, final Date startTime, final Date endTime, final double tolerance) {
         if (extent != null) {

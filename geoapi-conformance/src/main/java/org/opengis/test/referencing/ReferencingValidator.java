@@ -25,8 +25,10 @@ import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.parameter.GeneralParameterDescriptor;
+import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.Identifier;
 import org.opengis.util.GenericName;
+import org.opengis.util.InternationalString;
 
 import org.opengis.test.Units;
 import org.opengis.test.Validator;
@@ -103,12 +105,32 @@ public abstract class ReferencingValidator extends Validator {
     }
 
     /**
+     * Ensures that the given domain has a scope and a domain of validity.
+     *
+     * @param  object  the object to validate, or {@code null}.
+     *
+     * @since 3.1
+     */
+    public void validate(final ObjectDomain object) {
+        if (object == null) {
+            return;
+        }
+        final InternationalString scope = object.getScope();
+        mandatory("ObjectDomain: shall have a scope.", scope);
+        final Extent domain = object.getDomainOfValidity();
+        mandatory("ObjectDomain: shall have a domain of validity.", domain);
+        container.validate(scope);
+        container.validate(domain);
+    }
+
+    /**
      * Performs the validation that are common to all reference systems. This method is
      * invoked by {@code validate} methods after they have determined the type of their
      * argument.
      *
      * @param  object  the object to validate (cannot be null).
      */
+    @SuppressWarnings("removal")
     final void validateReferenceSystem(final ReferenceSystem object) {
         validateIdentifiedObject(object);
         container.validate(object.getScope());
@@ -138,6 +160,14 @@ public abstract class ReferencingValidator extends Validator {
             for (final GenericName name : alias) {
                 assertNotNull("IdentifiedObject: getAlias() cannot contain null element.", alias);
                 container.validate(name);
+            }
+        }
+        final Collection<? extends ObjectDomain> domains = object.getDomains();
+        if (domains != null) {
+            validate(domains);
+            for (final ObjectDomain domain : domains) {
+                assertNotNull("IdentifiedObject: getDomains() cannot contain null element.", domains);
+                container.validate(domain);
             }
         }
         container.validate(object.getRemarks());

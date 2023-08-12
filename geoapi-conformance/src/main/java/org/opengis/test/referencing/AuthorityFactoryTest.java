@@ -24,6 +24,7 @@ import org.opengis.util.FactoryException;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
+import org.opengis.referencing.ObjectDomain;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
@@ -45,8 +46,8 @@ import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
 
 
 /**
- * Tests the creation of referencing objects from the {@linkplain AuthorityFactory authority
- * factories} given at construction time.
+ * Tests the creation of referencing objects from the {@linkplain AuthorityFactory authority factories}
+ * given at construction time.
  *
  * <p>Many {@link ProjectedCRS} instances tested in this class use the same projections than the
  * {@link MathTransform} instances tested in {@link ParameterizedTransformTest}. However, the latter
@@ -420,20 +421,22 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
                 double λmax = areaOfValidity.getMaxX();
                 double φmin = areaOfValidity.getMinY();
                 double φmax = areaOfValidity.getMaxY();
-                final Extent extent = crs.getDomainOfValidity();
-                validators.validate(extent);
-                if (extent != null) {
-                    for (final GeographicExtent element : extent.getGeographicElements()) {
-                        if (element instanceof GeographicBoundingBox && Boolean.TRUE.equals(element.getInclusion())) {
-                            final GeographicBoundingBox bbox = (GeographicBoundingBox) element;
-                            λmin = bbox.getWestBoundLongitude();
-                            λmax = bbox.getEastBoundLongitude();
-                            φmin = bbox.getSouthBoundLatitude();
-                            φmax = bbox.getNorthBoundLatitude();
-                            setRect(areaOfValidity, λmin, φmin, λmax, φmax, swapλφ, toAngularUnit);
-                            assertFalse("Empty geographic bounding box.", areaOfValidity.isEmpty());
-                            test.verifyInDomainOfValidity(areaOfValidity);
-                            tested = true;
+                for (final ObjectDomain domain : crs.getDomains()) {
+                    final Extent extent = domain.getDomainOfValidity();
+                    if (extent != null) {
+                        validators.validate(extent);
+                        for (final GeographicExtent element : extent.getGeographicElements()) {
+                            if (element instanceof GeographicBoundingBox && Boolean.TRUE.equals(element.getInclusion())) {
+                                final GeographicBoundingBox bbox = (GeographicBoundingBox) element;
+                                λmin = bbox.getWestBoundLongitude();
+                                λmax = bbox.getEastBoundLongitude();
+                                φmin = bbox.getSouthBoundLatitude();
+                                φmax = bbox.getNorthBoundLatitude();
+                                setRect(areaOfValidity, λmin, φmin, λmax, φmax, swapλφ, toAngularUnit);
+                                assertFalse("Empty geographic bounding box.", areaOfValidity.isEmpty());
+                                test.verifyInDomainOfValidity(areaOfValidity);
+                                tested = true;
+                            }
                         }
                     }
                 }

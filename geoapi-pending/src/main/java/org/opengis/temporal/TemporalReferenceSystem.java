@@ -62,8 +62,14 @@ public interface TemporalReferenceSystem extends ReferenceSystem {
      * <p>Please note this is very similar to ReferenceSystem.getValidArea() from ISO 19115.</p>
      *
      * @return the space and time within which the reference system is applicable.
+     *
+     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */
     @Override
+    @SuppressWarnings("removal")
+    @Deprecated(since="3.1", forRemoval=true)
     @UML(identifier="DomainOfValidity", obligation=MANDATORY, specification=ISO_19108)
-    Extent getDomainOfValidity();
+    default Extent getDomainOfValidity() {
+        return ReferenceSystem.super.getDomainOfValidity();
+    }
 }

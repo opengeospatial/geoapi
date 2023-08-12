@@ -121,7 +121,7 @@ public interface LocationType {
      * @return geographic area within which the location type occurs.
      *
      * @see Gazetteer#getTerritoryOfUse()
-     * @see ReferenceSystemUsingIdentifiers#getDomainOfValidity()
+     * @see ReferenceSystemUsingIdentifiers#getDomains()
      */
     @UML(identifier="territoryOfUse", obligation=MANDATORY, specification=ISO_19112)
     GeographicExtent getTerritoryOfUse();

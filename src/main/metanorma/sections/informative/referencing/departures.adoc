@@ -78,6 +78,24 @@ For precision, GeoAPI imports the `isIvf­Definitive` boolean property from <<OG
 to enable the user to establish which of the two parameters was used to define the instance.
 
 
+[[referencing_departures_object_usage]]
+===== Scope and domain of validity
+
+In the ISO 19111 model, only the `Datum`, `CoordinateReferenceSystem` and `CoordinateOperation` types
+can specify a scope and a domain of validity.
+This is done through the `domain` property defined in a common parent of those three types, named `ObjectUsage`.
+GeoAPI makes the `domain` property more generally available by moving it into the `IdentifiedObject` parent type.
+This generalization allows other types of object, such as `CoordinateSystem`, to also specify a domain.
+For example, an application for data in space may want to define a `MinkowskiCS` type with the following scope:
+"For objects moving at relativistic speed".
+
+As a side-effect of this generalization, the `ObjectUsage` interface can be omitted since `domain` was its sole property.
+The `ObjectUsage` type name is at odd with the semantics of subclassing as an “is type of” hierarchy.
+Qualifying a CRS as “a type of object usage” is restrictive.
+Instead, CRS _contains_ a description of object usage.
+This semantic oddity is avoided by omitting the `ObjectUsage` type.
+
+
 [[referencing_departures_unions]]
 ===== Omitted unions
 

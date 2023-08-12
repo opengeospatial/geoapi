@@ -185,6 +185,7 @@ public class OperationValidator extends ReferencingValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      */
+    @SuppressWarnings("removal")
     private void validateCoordinateOperation(final CoordinateOperation object) {
         if (object == null) {
             return;

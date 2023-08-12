@@ -82,7 +82,7 @@ public interface Gazetteer {
      * @return geographic domain covered by the gazetteer.
      *
      * @see LocationType#getTerritoryOfUse()
-     * @see ReferenceSystemUsingIdentifiers#getDomainOfValidity()
+     * @see ReferenceSystemUsingIdentifiers#getDomains()
      */
     @UML(identifier="territoryOfUse", obligation=MANDATORY, specification=ISO_19112)
     GeographicExtent getTerritoryOfUse();

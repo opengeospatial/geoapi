@@ -950,6 +950,19 @@ public class ValidatorContainer implements Cloneable {
      *
      * @param  object  the object to test, or {@code null}.
      *
+     * @see ReferencingValidator#validate(ObjectDomain)
+     *
+     * @since 3.1
+     */
+    public final void validate(final ObjectDomain object) {
+        crs.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see MetadataBaseValidator#validate(Identifier)
      *
      * @since 3.1

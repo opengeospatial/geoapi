@@ -39,6 +39,7 @@ public final class KeyConstantsTest {
      * expect the JVM to have {@linkplain String#intern internalized} the strings.
      */
     @Test
+    @SuppressWarnings("removal")
     public void testSame() {
         assertSame(SCOPE_KEY,              Datum              .SCOPE_KEY);
         assertSame(SCOPE_KEY,              CoordinateOperation.SCOPE_KEY);
