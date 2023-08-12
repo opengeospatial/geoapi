@@ -19,6 +19,7 @@ package org.opengis.referencing.crs;
 
 import java.util.Map;
 import java.util.List;
+import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -53,7 +54,7 @@ import static org.opengis.annotation.Specification.*;
  * oil or gas.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see CRSAuthorityFactory#createCompoundCRS(String)
@@ -77,4 +78,22 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      */
     @UML(identifier="componentReferenceSystem", obligation=MANDATORY, specification=ISO_19111)
     List<CoordinateReferenceSystem> getComponents();
+
+    /**
+     * Returns a view over all coordinate systems of this compound CRS.
+     * The returned coordinate system shall have a {@linkplain CoordinateSystem#getDimension() dimension}
+     * equals to the sum of the dimensions of all {@linkplain #getComponents() components},
+     * and axes obtained from the coordinate system of each component.
+     *
+     * @return view over all coordinate systems of this compound CRS.
+     *
+     * @departure generalization
+     *   ISO 19111 defines this method for {@code SC_SingleCRS} only. GeoAPI declares this method in
+     *   {@code CompoundCRS} as well for user convenience, because CS dimension and axes are commonly
+     *   requested information that are still available (indirectly) for compound CRS.
+     */
+    @Override
+    default CoordinateSystem getCoordinateSystem() {
+        return new CompoundCS(this);
+    }
 }
