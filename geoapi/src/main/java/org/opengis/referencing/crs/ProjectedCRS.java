@@ -38,7 +38,7 @@ import static org.opengis.annotation.Specification.*;
  * {@link org.opengis.referencing.cs.CartesianCS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see CRSAuthorityFactory#createProjectedCRS(String)
@@ -55,9 +55,9 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
     GeographicCRS getBaseCRS();
 
     /**
-     * Returns the map projection from the {@linkplain #getBaseCRS() base CRS} to this CRS.
+     * Returns the map projection from the base CRS to this CRS.
      *
-     * @return the conversion from the base CRS to this projected CRS.
+     * @return the conversion from the {@linkplain #getBaseCRS() base CRS} to this projected CRS.
      */
     @Override
     Projection getConversionFromBase();
@@ -72,9 +72,13 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
     CartesianCS getCoordinateSystem();
 
     /**
-     * Returns the datum.
+     * Returns the same datum than the base CRS datum.
+     *
+     * @return the datum of this projected CRS, which is the {@linkplain #getBaseCRS() base CRS} datum.
      */
     @Override
     @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
-    GeodeticDatum getDatum();
+    default GeodeticDatum getDatum() {
+        return getBaseCRS().getDatum();
+    }
 }

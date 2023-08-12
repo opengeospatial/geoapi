@@ -203,6 +203,13 @@ public final class MethodSignatureTest extends SourceGenerator {
                              * Special cases for methods withoud default despite declared optional,
                              * or conversely (with default despite declared mandatory).
                              */
+                            if (c == org.opengis.referencing.crs.GeneralDerivedCRS.class ||
+                                c == org.opengis.referencing.crs.ProjectedCRS.class)
+                            {
+                                switch (m.getName()) {
+                                    case "getDatum": isOptional = true;
+                                }
+                            }
                             if (c == org.opengis.referencing.operation.Conversion.class) {
                                 switch (m.getName()) {
                                     case "getSourceCRS":

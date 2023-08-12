@@ -17,6 +17,7 @@
  */
 package org.opengis.referencing.crs;
 
+import org.opengis.referencing.datum.Datum;
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
@@ -38,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * types of coordinate reference systems.</p>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  */
 @Classifier(Stereotype.ABSTRACT)
@@ -65,4 +66,14 @@ public interface GeneralDerivedCRS extends SingleCRS {
      */
     @UML(identifier="conversion", obligation=MANDATORY, specification=ISO_19111)
     Conversion getConversionFromBase();
+
+    /**
+     * Returns the same datum than the base CRS datum.
+     *
+     * @return the datum of this derived CRS, which is the {@linkplain #getBaseCRS() base CRS} datum.
+     */
+    @Override
+    default Datum getDatum() {
+        return getBaseCRS().getDatum();
+    }
 }

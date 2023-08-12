@@ -55,27 +55,30 @@ import static org.opengis.annotation.Specification.*;
 public interface Datum extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} {@code <code>createFoo(Map, ...)} methods.
+     * {@code DatumFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getAnchorPoint()}.
      *
+     * @see DatumFactory
      * @see #getAnchorPoint()
      */
     String ANCHOR_POINT_KEY = "anchorPoint";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} {@code createFoo(Map, ...)} methods.
+     * {@code DatumFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getRealizationEpoch()}.
      *
+     * @see DatumFactory
      * @see #getRealizationEpoch()
      */
     String REALIZATION_EPOCH_KEY = "realizationEpoch";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} {@code createFoo(Map, ...)} methods.
+     * {@code DatumFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getDomainOfValidity()}.
      *
+     * @see DatumFactory
      * @see #getDomainOfValidity()
      *
      * @deprecated Replaced by {@link #DOMAIN_KEY} as of ISO 19111:2019.
@@ -85,9 +88,10 @@ public interface Datum extends IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} {@code createFoo(Map, ...)} methods.
+     * {@code DatumFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getScope()}.
      *
+     * @see DatumFactory
      * @see #getScope()
      *
      * @deprecated Replaced by {@link #DOMAIN_KEY} as of ISO 19111:2019.
