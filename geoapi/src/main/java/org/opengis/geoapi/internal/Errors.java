@@ -17,6 +17,7 @@
  */
 package org.opengis.geoapi.internal;
 
+import java.util.Objects;
 import org.opengis.util.Factory;
 import org.opengis.util.InternationalString;
 import org.opengis.util.UnimplementedServiceException;
@@ -28,8 +29,11 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;
 
 
 /**
- * Provides error messages for saying that an implementation does not support a feature.
- * This is used for building the message in {@link UnimplementedServiceException} among others.
+ * Provides error messages for saying that an implementation does not support a type or a service.
+ * This is used for building messages in {@link UnimplementedServiceException} or other exceptions.
+ * This class is loaded only if an implementation does not support a feature requested by the user.
+ * It is intended to help users to identify which implementation they are using and which service
+ * is not implemented.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -53,7 +57,7 @@ public final class Errors {
      */
     public static String cannotCreate(final Factory factory, final Class<?> type, final String variant) {
         final var message = new StringBuilder(80).append("The “").append(getVendor(factory))
-                        .append("” factory does not support the creation of ").append(type);
+                .append("” implementation does not support the creation of ").append(type.getSimpleName());
         if (variant != null) {
             message.append(" (").append(variant).append(')');
         }
@@ -69,7 +73,7 @@ public final class Errors {
      * @return error message saying that the factory does not support parsing the specified format.
      */
     public static String cannotParse(final Factory factory, final String format) {
-        return "The “" + getVendor(factory) + "” factory does not support the parsing of " + format + " format.";
+        return "The “" + getVendor(factory) + "” implementation does not support the parsing of " + format + " format.";
     }
 
     /**
@@ -86,16 +90,19 @@ public final class Errors {
     {
         String as = null, ac = null;
         final Citation authority = factory.getAuthority();
-        if (authority != null) {
-            for (final Identifier id : actual.getIdentifiers()) {
-                if (authority.equals(id.getAuthority())) {
-                    as = id.getCodeSpace();
-                    ac = id.getCode();
-                    break;
-                }
+        for (final Identifier id : actual.getIdentifiers()) {
+            if (Objects.equals(authority, id.getAuthority())) {
+                as = id.getCodeSpace();
+                ac = id.getCode();
+                break;
             }
         }
-        return new NoSuchAuthorityCodeException("Not an object of the expected type.", as, ac, code, cause);
+        /*
+         * We do not try to provide more information about the expected versus actual type
+         * because they are already provided in the message of the `ClassCastException`.
+         */
+        return new NoSuchAuthorityCodeException("The “" + code + "” object from the “" + getVendor(factory)
+                    + "” implementation is not an instance of the requested type.", as, ac, code, cause);
     }
 
     /**
@@ -107,7 +114,7 @@ public final class Errors {
     private static String getVendor(final Factory factory) {
         String vendor = getTitle(factory.getVendor());
         if (vendor == null || vendor.isBlank()) {
-            vendor = factory.getClass().getCanonicalName();
+            vendor = factory.getClass().getName();
         }
         return vendor;
     }

@@ -304,43 +304,6 @@ public class AuthorityCodesReport extends Report {
     }
 
     /**
-     * Adds the objects identified by the given codes.
-     * This method performs the following steps:
-     *
-     * <ul>
-     *   <li>For each code, try to instantiate an object with
-     *     {@link AuthorityFactory#createObject(String)}, then:
-     *     <ul>
-     *       <li>In case of success, invoke {@link #createRow(String, IdentifiedObject)};</li>
-     *       <li>In case of failure, invoke {@link #createRow(String, FactoryException)}.</li>
-     *     </ul>
-     *   </li>
-     *   <li>If the {@code createRow(…)} method returned a non-null
-     *       instance, add the created row to the {@link #rows} list.</li>
-     * </ul>
-     *
-     * Subclasses can override the above-cited {@code createRow(…)}
-     * methods in order to customize the table content.
-     *
-     * @param  factory  the factory from which to get the objects.
-     * @param  codes    the authority codes of the objects to create.
-     * @throws FactoryException if a non-recoverable error occurred while querying the factory.
-     */
-    public void add(final AuthorityFactory factory, final Collection<String> codes) throws FactoryException {
-        setDefault(factory);
-        final int previousCount = rows.size();
-        for (final String code : codes) {
-            try {
-                add(createRow(code, factory.createObject(code)));
-            } catch (FactoryException exception) {
-                add(createRow(code, exception));
-            }
-            progress(previousCount + rows.size(),
-                     previousCount + codes.size());
-        }
-    }
-
-    /**
      * Returns a new {@link Row} instance. Subclasses can override this method if they wish to
      * instantiate a subclass of {@code Row}.
      *

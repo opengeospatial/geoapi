@@ -223,4 +223,21 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
             throw unexpectedType(this, code, datum, e);
         }
     }
+
+    /**
+     * Returns an arbitrary object from a code.
+     *
+     * @param  code  value allocated by authority.
+     * @return the object for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @deprecated This method is ambiguous. Use {@link #createDatum(String)} instead.
+     */
+    @Override
+    @SuppressWarnings("removal")
+    @Deprecated(since = "3.1", forRemoval = true)
+    default org.opengis.referencing.IdentifiedObject createObject(String code) throws FactoryException {
+        return createDatum(code);
+    }
 }

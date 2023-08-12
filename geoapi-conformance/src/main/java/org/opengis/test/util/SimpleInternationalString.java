@@ -45,7 +45,7 @@ final class SimpleInternationalString implements InternationalString {
     }
 
     /**
-     * Returns the length of the string.
+     * {@return the length of the string}.
      */
     @Override
     public int length() {
@@ -80,7 +80,7 @@ final class SimpleInternationalString implements InternationalString {
     }
 
     /**
-     * Returns the string representation, which is unique for all locales.
+     * {@return the string specified at construction time}.
      */
     @Override
     public String toString() {
@@ -88,7 +88,10 @@ final class SimpleInternationalString implements InternationalString {
     }
 
     /**
-     * Returns the same string for all locales. This is the string given to the constructor.
+     * {@return the same string for all locales}.
+     * This is the string given to the constructor.
+     *
+     * @param  locale  ignored.
      */
     @Override
     public String toString(final Locale locale) {
@@ -122,7 +125,7 @@ final class SimpleInternationalString implements InternationalString {
     }
 
     /**
-     * Returns a hash code value for this international text.
+     * {@return a hash code value for this international text}.
      */
     @Override
     public int hashCode() {
