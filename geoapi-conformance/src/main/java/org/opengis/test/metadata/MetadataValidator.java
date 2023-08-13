@@ -54,9 +54,10 @@ public abstract class MetadataValidator extends Validator {
      * all elements are non-null and of the expected type. Callers should iterate over the
      * returned array and validate each elements, if needed.
      *
-     * @param <T>          the type of elements in the collection, or {@code null} if none.
-     * @param elementType  the type of elements in the collection.
-     * @param objects      the collection to validate (never {@code null}).
+     * @param  <T>          the type of elements in the collection, or {@code null} if none.
+     * @param  elementType  the type of elements in the collection.
+     * @param  objects      the collection to validate (never {@code null}).
+     * @return an array of all elements in the given collection.
      */
     final <T> T[] toArray(final Class<T> elementType, final Collection<? extends T> objects) {
         assertNotNull("Null collection. Should be an empty one if there is no elements.", objects);

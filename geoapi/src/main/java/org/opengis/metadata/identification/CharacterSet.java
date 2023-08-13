@@ -308,6 +308,8 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     /**
      * Constructs an enum with identical name and charset.
      * This is needed for {@link CodeList#valueOf(Class, String)} reflection.
+     *
+     * @param name  the name of the new element.
      */
     private CharacterSet(final String name) {
         this(name, name);

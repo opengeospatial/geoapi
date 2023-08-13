@@ -46,10 +46,13 @@ final class CharSequences {
     }
 
     /**
-     * Returns the code point after the given index. This method completes
+     * {@return the code point after the given index}. This method completes
      * {@link Character#codePointBefore(CharSequence, int)} but is rarely used because slightly
      * inefficient (in most cases, the code point at {@code index} is known together with the
      * corresponding {@code charCount(int)} value, so the method calls should be unnecessary).
+     *
+     * @param  text   the string from which to get the code point.
+     * @param  index  index before the code point to get.
      */
     private static int codePointAfter(final CharSequence text, final int index) {
         return codePointAt(text, index + charCount(codePointAt(text, index)));

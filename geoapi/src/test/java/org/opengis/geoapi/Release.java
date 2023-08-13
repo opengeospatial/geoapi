@@ -104,7 +104,9 @@ final class Release implements Closeable {
     }
 
     /**
-     * Returns the fully qualified names of all classes found in the JAR file.
+     * {@return the fully qualified names of all classes found in the JAR file}.
+     *
+     * @throws IOException if a JAR file cannot be read.
      */
     final Collection<String> listClasses() throws IOException {
         final List<String> entries = new ArrayList<>();
@@ -123,16 +125,21 @@ final class Release implements Closeable {
 
     /**
      * Loads class of the given name.
+     *
+     * @param  name  name of the class to load.
+     * @return class of the given name.
+     * @throws ClassNotFoundException if no class is found for the given name.
      */
     final Class<?> loadClass(final String name) throws ClassNotFoundException {
         return Class.forName(name, false, loader);
     }
 
     /**
-     * Returns the parameters of the given methods.
+     * {@return the parameters of the given methods}.
      *
      * @param  source  the API from which the given method has been loaded.
      * @param  method  the method from which to get parameter types.
+     * @throws ClassNotFoundException if a parameter class was not found.
      */
     final Class<?>[] getParameterTypes(final Release source, final Method method) throws ClassNotFoundException {
         final Class<?>[] paramTypes = method.getParameterTypes();
@@ -161,6 +168,9 @@ final class Release implements Closeable {
 
     /**
      * Replaces JSR-275 class names by JSR-363 names.
+     *
+     * @param  className  the JSR-275 class name.
+     * @return the corresponding JSR-363 class name.
      */
     static String normalize(String className) {
         if (className.startsWith(LEGACY_UNIT_PACKAGE)) {
@@ -171,6 +181,8 @@ final class Release implements Closeable {
 
     /**
      * Closes the class loader.
+     *
+     * @throws IOException if an error occurred while closing the reader.
      */
     @Override
     public void close() throws IOException {
@@ -180,7 +192,8 @@ final class Release implements Closeable {
     }
 
     /**
-     * Returns the JAR filename. This is used when reporting JUnit error for debugging purpose.
+     * {@return the JAR filename}.
+     * This is used when reporting JUnit error for debugging purpose.
      */
     @Override
     public String toString() {

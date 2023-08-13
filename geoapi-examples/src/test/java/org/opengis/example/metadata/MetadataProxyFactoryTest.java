@@ -63,6 +63,10 @@ public class MetadataProxyFactoryTest {
 
     /**
      * Verifies that the given collection contains exactly one element, then returns that element.
+     *
+     * @param  <T>  type of elements in the collection.
+     * @param  collection  the collection to verify.
+     * @return the singleton element in the given collection.
      */
     private static <T> T getSingleton(final Collection<? extends T> collection) {
         final Iterator<? extends T> it = collection.iterator();

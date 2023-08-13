@@ -34,6 +34,12 @@ import static org.junit.Assert.*;
  */
 public class AssertTest {
     /**
+     * Creates a new test case.
+     */
+    public AssertTest() {
+    }
+
+    /**
      * Tests {@link Assert#assertUnicodeIdentifierEquals(String, CharSequence, CharSequence, boolean)}.
      */
     @Test

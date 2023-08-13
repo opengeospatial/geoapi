@@ -35,6 +35,7 @@ import org.opengis.util.Factory;
  *
  * @see TestSuite
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp abstract class TestCase {
     /**
      * The factories used by the test case to execute, or an empty array if none.

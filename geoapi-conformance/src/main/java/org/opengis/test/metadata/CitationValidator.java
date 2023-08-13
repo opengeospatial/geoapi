@@ -128,6 +128,11 @@ public class CitationValidator extends MetadataValidator {
 
     /**
      * Asserts that the date {@code d2} is equal or after {@code d1}.
+     *
+     * @param t1  type of first date.
+     * @param d1  date expected to be first.
+     * @param t2  type of second data.
+     * @param d2  date expected to be second.
      */
     private static void assertOrdered(final DateType t1, final Date d1, final DateType t2, final Date d2) {
         if (d1 != null && d2.before(d1)) {

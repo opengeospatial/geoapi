@@ -49,6 +49,9 @@ public final class MethodSignatureTest extends SourceGenerator {
 
     /**
      * Returns {@code true} if the given field or method is public from a GeoAPI point of view.
+     *
+     * @param  method  the method to filter.
+     * @return whether the given method is public.
      */
     private static boolean isPublic(final Member method) {
         return (method.getModifiers() & (Modifier.PUBLIC | Modifier.PROTECTED)) != 0;
@@ -76,6 +79,8 @@ public final class MethodSignatureTest extends SourceGenerator {
 
     /**
      * Verifies the UML annotation of the given class or method.
+     *
+     * @param  c  the element on which to verify UML annotation.
      */
     private static void verifyUML(final AnnotatedElement c) {
         final UML uml = c.getAnnotation(UML.class);

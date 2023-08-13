@@ -270,6 +270,8 @@ public enum TopicCategory implements ControlledVocabulary {
 
     /**
      * Creates a new constant with the given UML identifier.
+     *
+     * @param identifier  the UML identifier.
      */
     private TopicCategory(final String identifier) {
         this.identifier = identifier;

@@ -55,6 +55,9 @@ final class SimpleCitationDate implements CitationDate {
 
     /**
      * Creates a new citation date.
+     *
+     * @param  type  the value to be returned by {@link #getDateType()}.
+     * @param  time  the value to be returned by {@link #getDate()}.
      */
     SimpleCitationDate(final DateType type, final String time) {
         this.type = type;

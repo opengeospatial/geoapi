@@ -37,6 +37,7 @@ public class SimpleGridEnvelope implements GridEnvelope {
      * Checks if coordinate values in the minimum index are less than or
      * equal to the corresponding coordinate value in the maximum index.
      *
+     * @param  index  grid coordinates to verify.
      * @throws IllegalArgumentException if an coordinate value in the minimum index is not
      *         less than or equal to the corresponding coordinate value in the maximum index.
      */

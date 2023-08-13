@@ -236,8 +236,8 @@ public class OperationValidator extends ReferencingValidator {
         mandatory("Operation: OperationMethod is mandatory.", method);
         if (method != null) {
             validate(method);
-            final Integer opSourceDimension = method.getSourceDimensions();
-            final Integer opTargetDimension = method.getTargetDimensions();
+            @SuppressWarnings("removal") final Integer opSourceDimension = method.getSourceDimensions();
+            @SuppressWarnings("removal") final Integer opTargetDimension = method.getTargetDimensions();
             final MathTransform transform = object.getMathTransform();
             // Do not validate because it is already done by validateCoordinateOperation(object).
             if (transform != null) {
@@ -309,8 +309,8 @@ public class OperationValidator extends ReferencingValidator {
         if (object == null) {
             return;
         }
-        final Integer sourceDimension = object.getSourceDimensions();
-        final Integer targetDimension = object.getTargetDimensions();
+        @SuppressWarnings("removal") final Integer sourceDimension = object.getSourceDimensions();
+        @SuppressWarnings("removal") final Integer targetDimension = object.getTargetDimensions();
         if (sourceDimension != null) {
             assertStrictlyPositive("OperationMethod: source dimension must be greater than zero.", sourceDimension);
         }
@@ -363,7 +363,9 @@ public class OperationValidator extends ReferencingValidator {
     }
 
     /**
-     * Returns the dimension of the given CRS.
+     * {@return the number of dimensions of the given CRS}.
+     *
+     * @param  crs  the CRS for which to get the number of dimensions.
      */
     private static int dimension(final CoordinateReferenceSystem crs) {
         return crs.getCoordinateSystem().getDimension();

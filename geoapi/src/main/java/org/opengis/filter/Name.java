@@ -66,6 +66,9 @@ final class Name implements ScopedName {
 
     /**
      * Creates a new name.
+     *
+     * @param  head  first component of this scoped name.
+     * @param  tail  second component of this scoped name.
      */
     Name(final LocalName head, final String tail) {
         this.head = head;
@@ -104,13 +107,22 @@ final class Name implements ScopedName {
         /** This name prefixed with the scope. */
         private final GenericName fullyQualified;
 
-        /** Creates a new name with no scope. */
+        /**
+         * Creates a new name with no scope.
+         *
+         * @param  name  string representation of this name component.
+         */
         Part(final String name) {
             this.name = name;
             fullyQualified = this;
         }
 
-        /** Creates a new name in a scope inferred by the fully qualified name. */
+        /**
+         * Creates a new name in a scope inferred by the fully qualified name.
+         *
+         * @param  fullyQualified  the full name (including its namespace).
+         * @param  name  string representation of this name component.
+         */
         Part(final Name fullyQualified, final String name) {
             this.fullyQualified = fullyQualified;
             this.name = name;
@@ -143,7 +155,11 @@ final class Name implements ScopedName {
         /** Name of this namespace. */
         private final GenericName name;
 
-        /** Creates a new namespace of the given name. */
+        /**
+         * Creates a new namespace of the given name.
+         *
+         * @param  name  name of this namespace.
+         */
         Space(final GenericName name) {
             this.name = name;
         }
@@ -159,7 +175,11 @@ final class Name implements ScopedName {
         /** The text represented by this international string. */
         private final String text;
 
-        /** Creates a new wrapper for the given text. */
+        /**
+         * Creates a new wrapper for the given text.
+         *
+         * @param  text  the text represented by this international string.
+         */
         Text(final String text) {
             this.text = text;
         }
@@ -175,6 +195,10 @@ final class Name implements ScopedName {
          * Compares two generic names for lexicographically order of their string representation.
          * The public API is the {@link Name#compareTo(GenericName)} method but the implementation
          * is put in this {@link Text} class for avoiding early loading of this rarely needed code.
+         *
+         * @param  a  the first generic name to compare.
+         * @param  b  the second generic name to compare.
+         * @return negative if <var>a</var> is before <var>b</var>, positive if after, or 0 if equal.
          */
         static final int compare(final GenericName a, final GenericName b) {
             final Iterator<? extends LocalName> at = a.getParsedNames().iterator();

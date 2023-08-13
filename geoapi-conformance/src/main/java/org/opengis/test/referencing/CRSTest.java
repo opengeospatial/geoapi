@@ -51,6 +51,7 @@ import org.junit.Test;
  * @deprecated Renamed as {@link AuthorityFactoryTest}.
  */
 @Deprecated
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class CRSTest extends ReferencingTestCase {
     /**
      * The authority factory for creating a {@link CoordinateReferenceSystem} from a code,

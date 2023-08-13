@@ -168,6 +168,10 @@ public class AuthorityCodesReport extends Report {
 
         /**
          * Writes this row to the given stream.
+         *
+         * @param  out        where to write this row.
+         * @param  highlight  whether to highlight this row.
+         * @throws IOException if an error occurred while writing this row.
          */
         final void write(final Appendable out, final boolean highlight) throws IOException {
             if (isSectionHeader) {
@@ -246,6 +250,8 @@ public class AuthorityCodesReport extends Report {
 
     /**
      * Sets the default product name and factory name.
+     *
+     * @param  factory  the factory to set.
      */
     private void setDefault(final AuthorityFactory factory) {
         setVendor("PRODUCT", factory.getVendor());
@@ -254,6 +260,8 @@ public class AuthorityCodesReport extends Report {
 
     /**
      * Adds the given row to the {@link #rows} list, of non-null.
+     *
+     * @param  row  the row to add if non-null.
      */
     private void add(final Row row) {
         if (row != null) {

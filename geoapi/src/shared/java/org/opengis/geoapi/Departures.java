@@ -151,6 +151,9 @@ public class Departures {
 
         /**
          * Creates information for a type.
+         *
+         * @param  typeName  name of the merged type.
+         * @param  reorder   whether we will need to reorder properties.
          */
         private MergeInfo(final String typeName, final boolean reorder) {
             this.typeName = typeName;
@@ -160,6 +163,8 @@ public class Departures {
         /**
          * Invoked before properties are added in the given map. This method does nothing
          * in the common case where there is no merge operation to prepare.
+         *
+         * @param  properties  map where a property will be added.
          */
         final void beforeAddProperties(final Map<String,?> properties) {
             if (needToReorderProperties) {
@@ -171,6 +176,9 @@ public class Departures {
          * Invoked after properties are added in the given map. If a merge operation has been applied,
          * then this method may reorder entries in the given map by moving last the properties recorded
          * in this {@code MergeInfo}.
+         *
+         * @param  <E>         type of values in the map.
+         * @param  properties  map where a property has been added.
          */
         final <E> void afterAddProperties(final Map<String,E> properties) {
             if (propertiesToKeepLast != null) {

@@ -84,6 +84,10 @@ public enum DocumentationStyle {
 
     /**
      * Returns the index {@literal >=} {@code from} of the first non-whitespace character.
+     *
+     * @param  doc   the documentation declared in the XSD file.
+     * @param  from  index of the first character in {@code doc}.
+     * @return index of the first character to use in {@code doc}.
      */
     private static int skipLeadingWhitespaces(final String doc, int from) {
          while (from < doc.length()) {
@@ -96,6 +100,10 @@ public enum DocumentationStyle {
 
     /**
      * Returns the index {@literal <} {@code from} of the last whitespace character.
+     *
+     * @param  doc   the documentation declared in the XSD file.
+     * @param  from  index after the last character in {@code doc}.
+     * @return index after the last character to use in {@code doc}.
      */
     private static int skipTrailingWhitespaces(final String doc, int from) {
          while (from > 0) {
@@ -163,8 +171,10 @@ public enum DocumentationStyle {
     }
 
     /**
-     * Returns the index after the last character to keep in the given documentation.
+     * {@return the index after the last character to keep in the given documentation}.
      * This method cut the documentation before trailing "shortName" and other annexes.
+     *
+     * @param  doc  the documentation declared in the XSD file.
      */
     private static int beforeAnnexes(final String doc) {
         int stopAt = doc.length();

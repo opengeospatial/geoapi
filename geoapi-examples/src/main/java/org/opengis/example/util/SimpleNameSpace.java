@@ -50,6 +50,9 @@ public class SimpleNameSpace implements NameSpace {
     /**
      * Creates a new instance for name and using the given factory.
      * This constructor is package-private in order to prevent improper values.
+     *
+     * @param  factory  the factory to use for creating name instances in this namespace.
+     * @param  name     the identifier of this namespace.
      */
     SimpleNameSpace(final SimpleNameFactory factory, final SimpleName name) {
         this.factory = factory;
@@ -101,17 +104,19 @@ public class SimpleNameSpace implements NameSpace {
     }
 
     /**
-     * Returns the given namespace as a {@link SimpleName} implementation. The current
-     * implementation just casts the given value, but future versions may copy the namespace.
+     * {@return the given namespace as a {@code SimpleNameSpace} implementation}.
+     * The current implementation just casts the given value, but future versions may copy the namespace.
+     *
+     * @param  name  the name to cast or copy.
      */
     static SimpleNameSpace castOrCopy(final NameSpace name) {
         return (SimpleNameSpace) name;
     }
 
     /**
-     * Indicates whether this namespace is a "top level" namespace.  Global, or top-level
-     * namespaces are not contained within another namespace. The global namespace has no
-     * parent.
+     * Indicates whether this namespace is a "top level" namespace.
+     * Global, or top-level namespaces are not contained within another namespace.
+     * The global namespace has no parent.
      *
      * @return {@code true} if this namespace has no parent.
      */

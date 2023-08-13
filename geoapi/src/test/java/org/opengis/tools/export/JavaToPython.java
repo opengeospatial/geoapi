@@ -555,6 +555,7 @@ class JavaToPython extends SourceGenerator {
      *
      * @param  content  where to append indentation.
      * @param  n        number of spaces to append.
+     * @return the given buffer for method call chaining.
      */
     static StringBuilder indent(final StringBuilder content, int n) {
         while (--n >= 0) {

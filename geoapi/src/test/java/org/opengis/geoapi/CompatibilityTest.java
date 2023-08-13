@@ -133,6 +133,11 @@ public final class CompatibilityTest implements Closeable {
      * is used only by {@link #listChanges()} as part of the release notes.
      *
      * @return list of new methods, or {@code null} if none.
+     * @throws IOException if an error occurred while reading a JAR file.
+     * @throws ClassNotFoundException if a class that existed in the previous GeoAPI release
+     *         has not been found in the new release.
+     * @throws NoSuchMethodException if a method that existed in the previous GeoAPI release
+     *         has not been found in the new release.
      */
     private List<String> listNewMethods() throws IOException, ClassNotFoundException, NoSuchMethodException {
         final List<String> newMethods = new ArrayList<>();
@@ -183,6 +188,11 @@ public final class CompatibilityTest implements Closeable {
      * If this method is used for a JUnit test, then the expected result is an empty list.
      *
      * @return list of incompatible changes.
+     * @throws IOException if an error occurred while reading a JAR file.
+     * @throws ClassNotFoundException if a class that existed in the previous GeoAPI release
+     *         has not been found in the new release.
+     * @throws NoSuchMethodException if a method that existed in the previous GeoAPI release
+     *         has not been found in the new release.
      */
     private List<IncompatibleChange> createIncompatibleChangesList() throws IOException, ClassNotFoundException, NoSuchMethodException {
         final List<IncompatibleChange> incompatibleChanges = new ArrayList<>();

@@ -58,7 +58,7 @@ import javax.annotation.processing.SupportedOptions;
  * @version 3.1
  * @since   2.0
  */
-@SupportedSourceVersion(SourceVersion.RELEASE_6)
+@SupportedSourceVersion(SourceVersion.RELEASE_11)
 @SupportedAnnotationTypes(UmlProcessor.UML_CLASSNAME)
 @SupportedOptions({"output", "notesList"})
 public class IndexGenerator extends UmlProcessor implements Comparator<TypeElement> {

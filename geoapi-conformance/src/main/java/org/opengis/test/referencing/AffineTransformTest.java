@@ -61,6 +61,7 @@ import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
  * @version 3.1
  * @since   3.1
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class AffineTransformTest extends TransformTestCase {
     /**
      * The default tolerance threshold for comparing the results of direct transforms.
@@ -156,7 +157,9 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     /**
      * Runs a test using the given Java2D affine transform as a reference.
      *
-     * @param reference  the affine transform to use as a reference for checking the results.
+     * @param  reference  the affine transform to use as a reference for checking the results.
+     * @throws FactoryException if the transform cannot be created.
+     * @throws TransformException if an error occurred while testing the transform.
      */
     private void runTest(final AffineTransform reference) throws FactoryException, TransformException {
         assumeNotNull(mtFactory);
@@ -191,6 +194,12 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     /**
      * Runs a test using the given matrix. This method checks only for internal consistency,
      * i.e. we don't have an external implementation that we can use for comparing the results.
+     *
+     * @param  numRow    number of rows in the matrix.
+     * @param  numCol    number of columns in the matrix.
+     * @param  elements  matrix element values.
+     * @throws FactoryException if the transform cannot be created.
+     * @throws TransformException if an error occurred while testing the transform.
      */
     private void runTest(final int numRow, final int numCol, final double... elements)
             throws FactoryException, TransformException

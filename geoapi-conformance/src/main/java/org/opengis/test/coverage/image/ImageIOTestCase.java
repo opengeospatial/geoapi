@@ -32,6 +32,7 @@ import javax.imageio.IIOParam;
  * @version 3.1
  * @since   3.1
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp abstract class ImageIOTestCase extends ImageBackendTestCase {
     /**
      * Default number of iterations when testing the image read operations.
@@ -109,8 +110,9 @@ public strictfp abstract class ImageIOTestCase extends ImageBackendTestCase {
      * Returns an iterator on a random region, subsampling and source bands of the given image.
      * The selected parameters are set in the given {@code param} object.
      *
-     * @param  image  the image for which to returns an iterator.
+     * @param  image  the image for which to return an iterator.
      * @param  param  the parameter where to set the random region, subsampling and source bands.
+     * @return an iterator over a random region of the specified image.
      */
     final PixelIterator getIteratorOnRandomSubset(final RenderedImage image, final IIOParam param) {
         final Rectangle region = getBounds(image);

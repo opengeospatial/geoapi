@@ -111,6 +111,7 @@ public class ImageValidator extends Validator {
      * Validates the given image reader or image writer provider.
      *
      * @param spi  the provider to validate, or {@code null} if none.
+     * @param pluginType  expected provider base class.
      */
     private void validateProvider(final ImageReaderWriterSpi spi, final Class<?> pluginType) {
         mandatory("ImageReaderWriterSpi: shall have a vendorName string.", spi.getVendorName());
@@ -163,6 +164,10 @@ public class ImageValidator extends Validator {
     /**
      * Validates the image or stream metadata format names.
      * This method ensures that there is no duplicated values.
+     *
+     * @param type  the type of metadata to validate: "Stream" or "Image".
+     * @param nativeMetadataFormatName  the name of the native metadata format.
+     * @param extraMetadataFormatNames  the name of the extra metadata format.
      */
     private static void validateMetadataFormatName(final String type, String nativeMetadataFormatName,
             final String[] extraMetadataFormatNames)

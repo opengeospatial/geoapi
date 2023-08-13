@@ -54,20 +54,20 @@ final class IdentifiedObjects {
      * {@linkplain Identifier#getCodeSpace() code space} and
      * {@linkplain Identifier#getVersion() version}.
      *
-     * @param  o1  the first operation method to compare, or {@code null}.
-     * @param  o2  the second operation method to compare, or {@code null}.
+     * @param  s1  the first operation method to compare, or {@code null}.
+     * @param  s2  the second operation method to compare, or {@code null}.
      * @return -1 if {@code o1} should appears before {@code o2}, -1 for the converse,
      *         or 0 if this method cannot determine an ordering for the given object.
      */
-    public static int compare(final Identifier n1, final Identifier n2) {
-        if (n1 == n2)   return  0;
-        if (n1 == null) return +1;
-        if (n2 == null) return -1;
-        int c = compare(n1.getCode(), n2.getCode());
+    public static int compare(final Identifier s1, final Identifier s2) {
+        if (s1 == s2)   return  0;
+        if (s1 == null) return +1;
+        if (s2 == null) return -1;
+        int c = compare(s1.getCode(), s2.getCode());
         if (c == 0) {
-            c = compare(n1.getCodeSpace(), n2.getCodeSpace());
+            c = compare(s1.getCodeSpace(), s2.getCodeSpace());
             if (c == 0) {
-                c = compare(n1.getVersion(), n2.getVersion());
+                c = compare(s1.getVersion(), s2.getVersion());
             }
         }
         return c;
@@ -84,6 +84,7 @@ final class IdentifiedObjects {
      * @return -1 if {@code s1} should appears before {@code s2}, +1 for the converse,
      *         or 0 if the two strings are equal.
      */
+    @SuppressWarnings("StringEquality")
     static int compare(String s1, String s2) {
         if (s1 == s2)   return  0;  // Identity comparison ok here, since this is only an optimization for a common case.
         if (s1 == null) return +1;
@@ -115,6 +116,10 @@ final class IdentifiedObjects {
     /**
      * Compares the elements in the given arrays for order. Elements are compared as numerical
      * values if possible, otherwise as strings using a case-insensitive comparator.
+     *
+     * @param  s1  the first array of strings to compare, or {@code null}.
+     * @param  s2  the second array of strings to compare, or {@code null}.
+     * @return negative if {@code s1} is before {@code s2}, positive if after, 0 if equal.
      */
     static int compare(final String[] s1, final String[] s2) {
         final int length = Math.min(s1.length, s2.length);
@@ -130,6 +135,9 @@ final class IdentifiedObjects {
     /**
      * Returns {@code true} if the given string seems to be a number.
      * The string must be non-empty (it must be verified by the caller).
+     *
+     * @param  s  the string to test.
+     * @return whether the given string seems a number.
      */
     private static boolean isNumeric(final String s) {
         for (int i=s.length(); --i>=0;) {
@@ -147,6 +155,10 @@ final class IdentifiedObjects {
      * Replaces {@code null} value by an empty set. While implementations should always
      * return an empty collection instead of null, we nevertheless stay lenient since
      * the report generators are not validators; we just want to show what we have.
+     *
+     * @param  <E>  type of elements in the collection.
+     * @param  c    the potentially null collection.
+     * @return the non-null collection.
      */
     static <E> Collection<E> nullSafe(final Collection<E> c) {
         return (c != null) ? c : Collections.<E>emptySet();
@@ -187,6 +199,11 @@ final class IdentifiedObjects {
     /**
      * Implementation of {@link #getNameAndAliases(IdentifiedObject, String)}
      * and {@link #getCodeSpaces(IdentifiedObject, String)}.
+     *
+     * @param  info            the object to get the name and aliases from, or {@code null}.
+     * @param  codeSpace       the code space for the name and aliases to return, or {@code null} for all code spaces.
+     * @param  wantCodeSpaces  whether to include code spaces in the given map.
+     * @param  names           a map where to add the code spaces and scopes.
      */
     private static void getNameComponents(final IdentifiedObject info, final String codeSpace,
             final boolean wantCodeSpaces, final Map<String, ? super Boolean> names)

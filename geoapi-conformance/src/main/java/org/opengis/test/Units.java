@@ -106,8 +106,10 @@ public class Units extends PseudoFactory {
     }
 
     /**
-     * Returns the dimensionless unit. This is a workaround for what seems to be a bug
+     * {@return the dimensionless unit}. This is a workaround for what seems to be a bug
      * in the reference implementation 1.0.1 of unit API.
+     *
+     * @param  system  the system of units to use for creating base units.
      */
     private static Unit<Dimensionless> getDimensionless(final SystemOfUnits system) {
         Unit<Dimensionless> unit = system.getUnit(Dimensionless.class);
@@ -119,19 +121,19 @@ public class Units extends PseudoFactory {
         return unit;
     }
 
-    /** Base unit of measurement for lengths.            */  public Unit<Length>   metre()        {return metre;}
-    /** Unit of measurement defined as 1000 metres.      */  public Unit<Length>   kilometre()    {return kilometre;}
-    /** Unit of measurement defined as 0.3048 metres.    */  public Unit<Length>   foot()         {return foot;}
-    /** Unit of measurement defined as 12/39.37 metres.  */  public Unit<Length>   footSurveyUS() {return footSurveyUS;}
-    /** Base unit of measurement for angle.              */  public Unit<Angle>    radian()       {return radian;}
-    /** Unit of measurement defined as 1E-6 radians.     */  public Unit<Angle>    microradian()  {return microradian;}
-    /** Unit of measurement defined as π/180 radians.    */  public Unit<Angle>    degree()       {return degree;}
-    /** Unit of measurement defined as π/200 radians.    */  public Unit<Angle>    grad()         {return grad;}
-    /** Unit of measurement defined as 1/(60×60) degree. */  public Unit<Angle>    arcSecond()    {return arcSecond;}
-    /** Base unit of measurement for durations.          */  public Unit<Time>     second()       {return second;}
-    /** Unit of measurement defined as 24×60×60 seconds. */  public Unit<Time>     day()          {return day;}
-    /** Base unit of measurement for pressure.           */  public Unit<Pressure> pascal()       {return pascal;}
-    /** Unit of measurement defined as 100 pascals.      */  public Unit<Pressure> hectopascal()  {return hectopascal;}
-    /** Dimensionless unit for scale measurements.       */  public Unit<Dimensionless> one()     {return one;}
-    /** The "parts per million" unit.                    */  public Unit<Dimensionless> ppm()     {return ppm;}
+    /** {@return the base unit of measurement for lengths}.            */  public Unit<Length>   metre()        {return metre;}
+    /** {@return the unit of measurement defined as 1000 metres}.      */  public Unit<Length>   kilometre()    {return kilometre;}
+    /** {@return the unit of measurement defined as 0.3048 metres}.    */  public Unit<Length>   foot()         {return foot;}
+    /** {@return the unit of measurement defined as 12/39.37 metres}.  */  public Unit<Length>   footSurveyUS() {return footSurveyUS;}
+    /** {@return the base unit of measurement for angle}.              */  public Unit<Angle>    radian()       {return radian;}
+    /** {@return the unit of measurement defined as 1E-6 radians}.     */  public Unit<Angle>    microradian()  {return microradian;}
+    /** {@return the unit of measurement defined as π/180 radians}.    */  public Unit<Angle>    degree()       {return degree;}
+    /** {@return the unit of measurement defined as π/200 radians}.    */  public Unit<Angle>    grad()         {return grad;}
+    /** {@return the unit of measurement defined as 1/(60×60) degree}. */  public Unit<Angle>    arcSecond()    {return arcSecond;}
+    /** {@return the base unit of measurement for durations}.          */  public Unit<Time>     second()       {return second;}
+    /** {@return the unit of measurement defined as 24×60×60 seconds}. */  public Unit<Time>     day()          {return day;}
+    /** {@return the base unit of measurement for pressure}.           */  public Unit<Pressure> pascal()       {return pascal;}
+    /** {@return the unit of measurement defined as 100 pascals}.      */  public Unit<Pressure> hectopascal()  {return hectopascal;}
+    /** {@return the dimensionless unit for scale measurements}.       */  public Unit<Dimensionless> one()     {return one;}
+    /** {@return the the "parts per million" unit}.                    */  public Unit<Dimensionless> ppm()     {return ppm;}
 }

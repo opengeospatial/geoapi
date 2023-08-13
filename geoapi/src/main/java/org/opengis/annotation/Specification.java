@@ -640,6 +640,8 @@ public enum Specification {
 
     /**
      * Creates a new enum constant with the given default version.
+     *
+     * @param defaultVersion  the default version of OGC/ISO standard for this enumeration constant.
      */
     private Specification(final short defaultVersion) {
         this.defaultVersion = defaultVersion;

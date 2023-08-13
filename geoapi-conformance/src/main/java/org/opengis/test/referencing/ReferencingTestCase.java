@@ -62,6 +62,7 @@ import static org.opengis.test.Assert.*;
  * @version 3.1
  * @since   3.1
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp abstract class ReferencingTestCase extends TestCase {
     /**
      * Creates a test case initialized to default values.
@@ -76,6 +77,9 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
 
     /**
      * Returns the given wrapper as a primitive value, or NaN if null.
+     *
+     * @param  value  the value to unwrap.
+     * @return the unwrapped value.
      */
     private static double toPrimitive(final Double value) {
         return (value != null) ? value : Double.NaN;
@@ -83,6 +87,9 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
 
     /**
      * Converts the given date to Julian days.
+     *
+     * @param  time  the date to convert.
+     * @return the Julian days for the given date.
      */
     private static double julian(final Date time) {
         return (time.getTime() - (-2440588 * (24*60*60*1000L) + (12*60*60*1000L))) / (24*60*60*1000.0);
@@ -91,8 +98,10 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
     /**
      * Infers a value from the extent as a {@link Date} object and computes the union with a lower or upper bounds.
      *
-     * @param bound  the current lower ({@code begin == true}) or upper ({@code begin == false}) bound.
-     * @param begin  {@code true} for the start time, or {@code false} for the end time.
+     * @param  bound  the current lower ({@code begin == true}) or upper ({@code begin == false}) bound.
+     * @param  extent the extent from which to read a bound.
+     * @param  begin  {@code true} for the start time, or {@code false} for the end time.
+     * @return the new bound value.
      */
     private static Date union(final Date bound, final TemporalPrimitive extent, final boolean begin) {
         final Instant instant;

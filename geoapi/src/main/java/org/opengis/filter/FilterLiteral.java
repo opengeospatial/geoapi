@@ -58,6 +58,8 @@ final class FilterLiteral implements Filter<Object>, Serializable {
 
     /**
      * Creates a new filter.
+     *
+     * @param  value  the constant evaluation result.
      */
     private FilterLiteral(final boolean value) {
         this.value = value;
@@ -107,6 +109,9 @@ final class FilterLiteral implements Filter<Object>, Serializable {
 
     /**
      * Returns the canonical instance on deserialization.
+     *
+     * @return the unique instance for this filter.
+     * @throws ObjectStreamException required by method signature but never thrown.
      */
     private Object readResolve() throws ObjectStreamException {
         return value ? INCLUDE : EXCLUDE;

@@ -110,13 +110,14 @@ public class Configuration implements Serializable {
     /**
      * The map were to store the configuration entries.
      */
-    private final Map<Key<?>,Object> properties;
+    private final LinkedHashMap<Key<?>,Object> properties;
 
     /**
      * An unmodifiable view of the {@link #properties} map.
      *
      * @see #map()
      */
+    @SuppressWarnings("serial")     // Okay because wrapping a serializable map.
     private final Map<Key<?>,Object> unmodifiable;
 
     /**

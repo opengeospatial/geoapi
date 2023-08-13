@@ -81,6 +81,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  *
  * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html">WKT 2 specification</a>
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class CRSParserTest extends ReferencingTestCase {
     /**
      * The factory to use for parsing WKT strings. The {@link CRSFactory#createFromWKT(String)} method
@@ -222,6 +223,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     /**
      * Parses the given WKT.
      *
+     * @param  <T>   compile-time value of {@code type}.
      * @param  type  the expected object type.
      * @param  text  the WKT string to parse.
      * @return the parsed object.
@@ -398,6 +400,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Verifies the CRS name, datum and axes for {@code GEODCRS[“NAD83”]}.
      * This method does not verify the remark, since it is not included in the components of {@code COMPOUNDCRS[…]}.
      *
+     * @param  crs     CRS to validate.
+     * @param  hasIdentifier  whether the given CRS is expected to have an identifier.
      * @param  degree  value of {@link org.opengis.test.Units#degree()} (for fetching it only once per test).
      * @param  metre   value of {@link org.opengis.test.Units#metre()}  (for fetching it only once per test).
      */
@@ -693,6 +697,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Verifies the CRS name, datum and conversion parameters for {@code PROJCRS[“NAD27 / Texas South Central”]}.
      * This method does not verify the axes and remark, since they are not specified in {@code BASEPROJCRS[…]}.
      *
+     * @param  crs           CRS to validate.
      * @param  degree        value of {@link org.opengis.test.Units#degree()} (for fetching it only once per test).
      * @param  footSurveyUS  value of {@link org.opengis.test.Units#footSurveyUS()}.
      */
@@ -833,6 +838,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     /**
      * Verifies the CRS name, datum and axis for {@code VERTCRS[“NAD88”]}.
      *
+     * @param  crs    CRS to validate.
      * @param  metre  value of {@link org.opengis.test.Units#metre()}  (for fetching it only once per test).
      */
     private void verifyNAD28(final VerticalCRS crs, final Unit<Length> metre) {
@@ -873,6 +879,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
 
     /**
      * Verifies the CRS name, datum and axis for {@code TIMECRS[“GPS Time”]}.
+     *
+     * @param  crs  CRS to validate.
      */
     private void verifyGPSTime(final TemporalCRS crs) {
         verifyIdentification   (crs, "GPS Time", null);

@@ -157,30 +157,7 @@ public class ValidatorContainer implements Cloneable {
      * or to set their set {@link Validator#requireMandatoryAttributes requireMandatoryAttributes}
      * field to {@code false}.
      */
-    public final List<Validator> all = new AbstractList<Validator>() {
-        @Override
-        public int size() {
-            return 11;
-        }
-
-        @Override
-        public Validator get(int index) {
-            switch (index) {
-                case  0: return naming;
-                case  1: return metadata;
-                case  2: return citation;
-                case  3: return extent;
-                case  4: return datum;
-                case  5: return cs;
-                case  6: return crs;
-                case  7: return parameter;
-                case  8: return coordinateOperation;
-                case  9: return geometry;
-                case 10: return image;
-                default: throw new IndexOutOfBoundsException(String.valueOf(index));
-            }
-        }
-    };
+    public final List<Validator> all;
 
     /**
      * Creates a new {@code ValidatorContainer} initialized with new {@link Validator} instances.
@@ -189,6 +166,30 @@ public class ValidatorContainer implements Cloneable {
      * instead.
      */
     public ValidatorContainer() {
+        all = new AbstractList<Validator>() {
+            @Override
+            public int size() {
+                return 11;
+            }
+
+            @Override
+            public Validator get(final int index) {
+                switch (index) {
+                    case  0: return naming;
+                    case  1: return metadata;
+                    case  2: return citation;
+                    case  3: return extent;
+                    case  4: return datum;
+                    case  5: return cs;
+                    case  6: return crs;
+                    case  7: return parameter;
+                    case  8: return coordinateOperation;
+                    case  9: return geometry;
+                    case 10: return image;
+                    default: throw new IndexOutOfBoundsException(index);
+                }
+            }
+        };
     }
 
     /**

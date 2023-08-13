@@ -92,6 +92,8 @@ final class WarningMessage {
 
     /**
      * Logs this message at the given level.
+     *
+     * @param  level  the level at which to log this message.
      */
     private void log(final Level level) {
         final LogRecord record = new LogRecord(level, message);

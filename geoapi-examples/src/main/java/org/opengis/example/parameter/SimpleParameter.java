@@ -99,7 +99,13 @@ public class SimpleParameter extends SimpleIdentifiedObject
         /** Value to be returned by {@link SimpleParameter}. */
         final Double minimum, maximum;
 
-        /** Creates a new enum with the given unit of measurement and range of values. */
+        /**
+         * Creates a new enum with the given unit of measurement and range of values.
+         *
+         * @param  unit     value to be returned by {@link SimpleParameter#getUnit()}.
+         * @param  minimum  the minimum, or {@code null} if none.
+         * @param  maximum  the maximum, or {@code null} if none.
+         */
         private Type(final Unit<?> unit, final Double minimum, final Double maximum) {
             this.unit    = unit;
             this.minimum = minimum;
@@ -556,7 +562,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
     /**
      * Returns a copy of this parameter value. This method is similar to {@link #createValue()}
      * except for the following:
-     * <p>
+     *
      * <ul>
      *   <li>This method returns an instance of the same class.</li>
      *   <li>The {@linkplain #value} is initialized to the same value than the cloned parameter.</li>

@@ -35,6 +35,7 @@ import java.awt.image.WritableRaster;
  * @version 3.1
  * @since   3.1
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 final strictfp class RasterImage implements RenderedImage {
     /**
      * The wrapped raster.
@@ -43,6 +44,8 @@ final strictfp class RasterImage implements RenderedImage {
 
     /**
      * Creates a new image wrapping the given raster.
+     *
+     * @param raster  the wrapped raster.
      */
     RasterImage(final Raster raster) {
         this.raster = raster;
@@ -69,6 +72,10 @@ final strictfp class RasterImage implements RenderedImage {
     /**
      * Returns the raster if the given index is (0,0).
      * For any other index, thrown an exception.
+     *
+     * @param  tileX the X index of the requested tile.
+     * @param  tileY the Y index of the requested tile.
+     * @return the tile at the specified indices.
      */
     @Override
     public Raster getTile(final int tileX, final int tileY) {
@@ -79,7 +86,7 @@ final strictfp class RasterImage implements RenderedImage {
     }
 
     /**
-     * Returns the wrapped raster. This method does <strong>not</strong> copy the raster data,
+     * {@return the wrapped raster}. This method does <strong>not</strong> copy the raster data,
      * which is a violation of {@link RenderedImage} contract. However, this is not a problem
      * for the purpose of the GeoAPI tests suite.
      */
@@ -90,6 +97,9 @@ final strictfp class RasterImage implements RenderedImage {
 
     /**
      * Unsupported operation (not needed for the GeoAPI tests suite).
+     *
+     * @param  rect  ignored.
+     * @return never return.
      */
     @Override
     public Raster getData(final Rectangle rect) {
@@ -98,6 +108,9 @@ final strictfp class RasterImage implements RenderedImage {
 
     /**
      * Unsupported operation (not needed for the GeoAPI tests suite).
+     *
+     * @param  raster  ignored.
+     * @return never return.
      */
     @Override
     public WritableRaster copyData(WritableRaster raster) {

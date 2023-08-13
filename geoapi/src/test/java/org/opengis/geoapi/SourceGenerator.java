@@ -76,8 +76,10 @@ public abstract class SourceGenerator {
     }
 
     /**
-     * Returns the root of the directory containing the given class. In a Maven build,
+     * {@return the root of the directory containing the given class}. In a Maven build,
      * this is the {@code target/classes} directory of the module containing the given class.
+     *
+     * @param  sample  any class in the module to find.
      */
     private static Path rootClassesDirectory(final Class<?> sample) {
         final String pathname = sample.getCanonicalName();

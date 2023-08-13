@@ -418,12 +418,14 @@ public enum Content {
     ALL(CONTROLLED_VOCABULARY, INTERFACES, EXCEPTIONS);
 
     /**
-     * All types in that are members of the category identified by this enumeration value.
+     * All types that are members of the category identified by this enumeration value.
      */
     private final Class<?>[] types;
 
     /**
      * Creates a new enumeration with the given members.
+     *
+     * @param  types  all types that are members of the category identified by this enumeration value.
      */
     private Content(final Class<?>... types) {
         this.types = types;
@@ -431,6 +433,8 @@ public enum Content {
 
     /**
      * Creates a new enumeration as the union of existing enumerations.
+     *
+     * @param  others  the other enumerations to combine in this one.
      */
     private Content(final Content... others) {
         int length = 0;
@@ -508,6 +512,9 @@ public enum Content {
 
     /**
      * Returns {@link ParameterizedType#getActualTypeArguments()} as a {@link Class} or {@code null}.
+     *
+     * @param  type  the type to convert to a class.
+     * @return the given type as a class, or {@code null}.
      */
     private static Class<?> getActualTypeArgument(Type type) {
         if (type instanceof ParameterizedType) {

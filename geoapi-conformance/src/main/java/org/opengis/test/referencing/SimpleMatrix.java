@@ -59,6 +59,8 @@ final class SimpleMatrix implements Matrix, Cloneable {
 
     /**
      * Creates a new matrix initialized to the values of the given matrix.
+     *
+     * @param  toCopy  the matrix to copy.
      */
     private SimpleMatrix(final SimpleMatrix toCopy) {
         numCol   = toCopy.numCol;
@@ -166,6 +168,10 @@ final class SimpleMatrix implements Matrix, Cloneable {
 
     /**
      * Returns a string representation of the given matrix.
+     *
+     * @param matrix         the matrix to format.
+     * @param appendTo       where to format the matrix.
+     * @param lineSeparator  value of {@link System#lineSeparator()}.
      */
     static void toString(final Matrix matrix, final StringBuilder appendTo, final String lineSeparator) {
         /*

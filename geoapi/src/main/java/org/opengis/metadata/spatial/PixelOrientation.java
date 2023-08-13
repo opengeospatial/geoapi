@@ -86,6 +86,8 @@ public enum PixelOrientation implements ControlledVocabulary {
 
     /**
      * Creates a new constant with the given UML identifier.
+     *
+     * @param identifier  the UML identifier.
      */
     private PixelOrientation(final String identifier) {
         this.identifier = identifier;

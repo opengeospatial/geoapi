@@ -41,6 +41,7 @@ import org.opengis.test.TestCase;
  * @version 3.1
  * @since   3.1
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 abstract strictfp class ImageBackendTestCase extends TestCase {
     /**
      * Creates a new test case.
@@ -124,6 +125,11 @@ abstract strictfp class ImageBackendTestCase extends TestCase {
     /**
      * Returns {@code true} if the given array contains the given value.
      * Only the <var>length</var> first elements are checked.
+     *
+     * @param  array   the array where to search the value.
+     * @param  length  number of valid elements in the given array.
+     * @param  value   the value to search.
+     * @return whether the given array contains the given value.
      */
     static boolean contains(final int[] array, int length, final int value) {
         while (--length >= 0) {

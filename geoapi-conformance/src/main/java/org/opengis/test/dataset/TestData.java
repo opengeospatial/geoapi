@@ -174,6 +174,9 @@ public enum TestData {
 
     /**
      * Creates a new enumeration value.
+     *
+     * @param filename  name of the test file.
+     * @param length    expected length in bytes.
      */
     private TestData(final String filename, final int length) {
         this.filename = filename;

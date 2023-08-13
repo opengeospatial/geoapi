@@ -32,6 +32,12 @@ import static org.junit.Assert.*;
  */
 public class ConfigurationTest {
     /**
+     * Creates a new test case.
+     */
+    public ConfigurationTest() {
+    }
+
+    /**
      * The {@link org.opengis.test.runner} package requires that all key names related to
      * enabling / disabling tests begin with {@code "is"} and end with {@code "Supported"}.
      */

@@ -45,8 +45,7 @@ final class SamplePoints {
     private final int usedByCRS;
 
     /**
-     * The EPSG code of the {@linkplain CoordinateOperation coordinate operation}
-     * being tested.
+     * The EPSG code of the {@linkplain CoordinateOperation coordinate operation} being tested.
      */
     final int operation;
 
@@ -67,6 +66,12 @@ final class SamplePoints {
 
     /**
      * Creates a new instance for the given sample points.
+     *
+     * @param usedByCRS       the EPSG code for the Coordinate Reference System using the sample points.
+     * @param operation       the EPSG code of the {@link CoordinateOperation} being tested.
+     * @param sourcePoints    the points to test, in the source (typically geographic) CRS.
+     * @param targetPoints    the expected results of the conversion or transformation of {@code sourcePoints}.
+     * @param areaOfValidity  the area of validity in which to test random points, in units of the base (source) CRS.
      */
     private SamplePoints(final int usedByCRS, final int operation,
             double[] sourcePoints, double[] targetPoints, final Rectangle2D areaOfValidity)
@@ -409,6 +414,8 @@ final class SamplePoints {
     /**
      * Swap the (λ,φ) or (x,y) coordinate values in the given array.
      * The coordinate points are assumed two-dimensional.
+     *
+     * @param  coordinates  the array where to swap axes.
      */
     static void swap(final double[] coordinates) {
         for (int i=0; i<coordinates.length; i++) {
@@ -420,6 +427,8 @@ final class SamplePoints {
 
     /**
      * Reverses the sign of all coordinate values in the given array.
+     *
+     * @param  coordinates  the array where to flip axes.
      */
     static void flip(final double[] coordinates) {
         for (int i=0; i<coordinates.length; i++) {

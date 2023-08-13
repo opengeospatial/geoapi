@@ -347,6 +347,8 @@ public final class ContentTest implements FileVisitor<Path> {
      * Adds a bullet point with the name of the given class. Used for formatting error message.
      * The caller is responsible to invoke this method only in context where {@link #buffer} is
      * available for building error messages (and not used for something else).
+     *
+     * @param  type  class to add in error message.
      */
     private void appendToErrorMessage(final Class<?> type) {
         buffer.append("  • ").append(type.getCanonicalName()).append(System.lineSeparator());

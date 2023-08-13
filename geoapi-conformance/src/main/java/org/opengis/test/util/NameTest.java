@@ -55,6 +55,7 @@ import static org.opengis.test.Assert.*;
  * @version 3.1
  * @since   2.2
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class NameTest extends TestCase {
     /**
      * The factory to be used for testing {@linkplain GenericName generic name} instances,

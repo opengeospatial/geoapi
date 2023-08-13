@@ -240,6 +240,10 @@ public class Reports extends Report {
 
     /**
      * Returns a file relative to the given directory.
+     *
+     * @param  directory  the directory of the file.
+     * @param  file       file relative to the given directory.
+     * @return file in the given directory.
      */
     private static File relativize(final File directory, File file) {
         File relative = new File(file.getName());

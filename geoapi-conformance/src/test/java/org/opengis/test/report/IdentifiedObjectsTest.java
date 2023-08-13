@@ -31,6 +31,12 @@ import static org.opengis.test.report.IdentifiedObjects.SEPARATOR;
  */
 public class IdentifiedObjectsTest {
     /**
+     * Creates a new test case.
+     */
+    public IdentifiedObjectsTest() {
+    }
+
+    /**
      * Tests {@link IdentifiedObjects#compare(String[], String[])}.
      */
     @Test

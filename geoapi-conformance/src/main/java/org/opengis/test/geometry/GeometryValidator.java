@@ -67,6 +67,10 @@ public class GeometryValidator extends Validator {
      * Returns {@code true} if the given range is [+0 … -0]. Such range is used by some implementations
      * for representing a 360° turn around the Earth. Such convention is of course not mandatory, but
      * some tests in this class must be aware of it.
+     *
+     * @param  lower  the lower value of the range to test.
+     * @param  upper  the upper value of the range to test.
+     * @return whether the given range is [+0 … -0].
      */
     private static boolean isPositiveToNegativeZero(final double lower, final double upper) {
         return Double.doubleToRawLongBits(lower) == 0L &&                       // Positive zero

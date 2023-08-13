@@ -126,6 +126,7 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  * @version 3.1
  * @since   3.1
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class ParameterizedTransformTest extends TransformTestCase {
     /**
      * The default tolerance threshold for comparing the results of direct transforms.
@@ -190,6 +191,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     /**
      * Creates a new test without factory and with the given {@code isFooSupported} flags.
      * The given array must be the result of a call to {@link #getEnabledKeys(int)}.
+     *
+     * @param  isEnabled  the enabled status of all options.
      */
     ParameterizedTransformTest(final boolean[] isEnabled) {
         super(isEnabled);
@@ -245,6 +248,9 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
 
     /**
      * Returns the error message for an unsupported operation method.
+     *
+     * @param  name  the operation method for which to return an error message.
+     * @return error message for an unsupported operation method.
      */
     private static String unsupportedMethod(final String name) {
         return "The “" + name + "” operation method is not supported by the tested implementation.";
@@ -254,6 +260,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * Initialized the {@link #parameters} field to the default values for the given operation method.
      * If the tested implementation does not support the specified operation method, then the test will
      * be skipped.
+     *
+     * @param  method  the operation method for which to set parameter values.
      */
     private void createParameters(final String method) {
         assumeNotNull(mtFactory);
@@ -270,7 +278,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * The set of allowed codes is documented in second column of the
      * {@link PseudoEpsgFactory#createParameters(int)} method.
      *
-     * @param  type  either {@code Projection.class} or {@code Transformation.class}.
+     * @param  type    either {@code Projection.class} or {@code Transformation.class}.
+     * @param  sample  the points which will be transformed.
      * @throws FactoryException if the math transform cannot be created.
      */
     private void createMathTransform(final Class<? extends SingleOperation> type, final SamplePoints sample)
@@ -331,6 +340,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * This method should be invoked <strong>after</strong> {@link #createMathTransform(Class, SamplePoints)}
      * because because it needs to know the number of dimensions.
+     *
+     * @param  modifier  the tolerance modifier to apply.
      */
     final void setTolerance(final ToleranceModifier modifier) {
         if (toleranceModifier == null) {
@@ -368,6 +379,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     /**
      * Tests the transform consistency using many random points inside the area of validity.
      *
+     * @param  areaOfValidity  the domain in which to create test points.
      * @throws TransformException if a point cannot be transformed.
      */
     final void verifyInDomainOfValidity(final Rectangle2D areaOfValidity) throws TransformException {
@@ -1793,8 +1805,15 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
 
     /**
      * Executes {@link #verifyInDomain(double[], double[], int[], Random)} using a three-dimensional domain.
+     *
+     * @param  areaOfValidity  the horizontal domain of test points.
+     * @param  zmin            the vertical minimum value of test points.
+     * @param  zmax            the vertical maximum value of test points.
+     * @throws TransformException if a point cannot be transformed.
      */
-    private void verifyInDomain3D(final Rectangle2D areaOfValidity, final double zmin, final double zmax) throws TransformException {
+    private void verifyInDomain3D(final Rectangle2D areaOfValidity, final double zmin, final double zmax)
+            throws TransformException
+    {
         verifyInDomain(new double[] {areaOfValidity.getMinX(), areaOfValidity.getMinY(), zmin},
                        new double[] {areaOfValidity.getMaxX(), areaOfValidity.getMaxY(), zmax},
                        new int[] {10, 10, 10}, new Random());

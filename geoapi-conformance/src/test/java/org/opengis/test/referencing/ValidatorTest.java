@@ -35,6 +35,12 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  */
 public class ValidatorTest {
     /**
+     * Creates a new test case.
+     */
+    public ValidatorTest() {
+    }
+
+    /**
      * Tests the content of the {@link CSValidator#ORIENTATIONS} array.
      * We expect orientations in the [0…360]° range.
      */

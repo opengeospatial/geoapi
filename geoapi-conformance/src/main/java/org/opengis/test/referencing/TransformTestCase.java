@@ -75,6 +75,7 @@ import static org.opengis.test.Assert.*;
  * @version 3.1
  * @since   2.2
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * The maximal offset (in number of coordinate points), exclusive, to apply when testing
@@ -277,6 +278,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
     /**
      * Creates a new test without factory and with the given {@code isFooSupported} flags.
      * The given array must be the result of a call to {@link #getEnabledKeys(int)}.
+     *
+     * @param  isEnabled  the enabled status of all options.
      */
     TransformTestCase(final boolean[] isEnabled) {
         setEnabledFlags(isEnabled);
@@ -304,6 +307,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * of {@code TransformTestCase}, we allow the configuration to be supplied externally because
      * {@link AuthorityFactoryTest} will use this class internally with a set of flags determined
      * from a different set of factories than the factories given to the constructor of this class.</p>
+     *
+     * @param  isEnabled  the enabled status of all options.
      */
     private void setEnabledFlags(final boolean[] isEnabled) {
         isDoubleToDoubleSupported   = isEnabled[0];
@@ -316,9 +321,11 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
-     * Returns the keys to gives to the {@link #setEnabledFlags(boolean[])} method. The
-     * elements in the returned array <strong>must</strong> be in the order expected by
-     * the {@link #setEnabledFlags(boolean[])} method for setting the fields.
+     * {@return the keys to gives to the {@link #setEnabledFlags(boolean[])} method}.
+     * The elements in the returned array <strong>must</strong> be in the order expected
+     * by the {@link #setEnabledFlags(boolean[])} method for setting the fields.
+     *
+     * @param  extraSpace  additional empty slots to allocate at the end of the returned array.
      */
     static Configuration.Key<Boolean>[] getEnabledKeys(final int extraSpace) {
         @SuppressWarnings({"unchecked","rawtypes"})
@@ -927,7 +934,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             for (int i=dim; i<coordinates.length; i+=dimension) {
                 coordinates[i] = coordinate;
                 if (randomGenerator != null) {
-                    coordinates[i] += (randomGenerator.nextFloat() - 0.5f) * delta;
+                    coordinates[i] += (randomGenerator.nextFloat() - 0.5f) * (float) delta;
                 }
                 if (++count == step) {
                     count = 0;
@@ -1244,7 +1251,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
-     * Returns the tolerance modifier to use for comparing coordinate values. The user-specified
+     * {@return the tolerance modifier to use for comparing coordinate values}. The user-specified
      * value in {@link #toleranceModifier} is merged with any implementation-specific modifiers,
      * and the result is cached in {@link #cachedModifier} for reuse.
      *
@@ -1508,6 +1515,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
 
     /**
      * Returns {@code true} if the given array is an array of {@code double} primitive types.
+     *
+     * @param  array  the object to test.
+     * @return whether the given object is an array of {@code double} values.
      */
     private static boolean isDoubleArray(final Object array) {
         return array.getClass().getComponentType() == Double.TYPE;

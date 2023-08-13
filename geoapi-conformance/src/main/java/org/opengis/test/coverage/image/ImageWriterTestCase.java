@@ -76,6 +76,7 @@ import static org.junit.Assume.*;
  * @version 3.1
  * @since   3.1
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase implements Closeable {
     /**
      * The prefix used for temporary files that may be created by this test case.
@@ -189,6 +190,10 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * supported on the assumption that the user provided an incomplete {@link ImageReader}
      * implementation, but his reader input type is consistent with his writer output type.
      *
+     * @param  spi   the provider to filter.
+     * @param  type  the input type.
+     * @return whether the provider supports the given type.
+     *
      * @see #closeAndRead(ByteArrayOutputStream)
      */
     private static boolean isSupportedInput(final ImageReaderSpi spi, final Class<?> type) {
@@ -207,6 +212,10 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * Returns {@code true} if the given writer provider supports the given output type.
      * If the given provider is {@code null}, then this method assumes that the standard
      * {@link ImageOutputStream} type is expected as in the Image I/O specification.
+     *
+     * @param  spi   the provider to filter.
+     * @param  type  the output type.
+     * @return whether the provider supports the given type.
      *
      * @see #open(int)
      */
@@ -227,6 +236,10 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * If no writer provider is found, then this method assumes {@code true}.
      *
      * <p>This method also performs an opportunist validation of the image writer provider.</p>
+     *
+     * @param  image  the image to filter.
+     * @return whether the writer can encode the given image.
+     * @throws IOException if the writer cannot be prepared.
      */
     private boolean canEncodeImage(final RenderedImage image) throws IOException {
         prepareImageWriter(false);
@@ -363,6 +376,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     /**
      * Implementation of the {@code testFooWrite()} methods.
      *
+     * @param  image  the image to write.
      * @throws IOException if an error occurred while writing the image or reading it back.
      */
     private void testImageWrites(final RenderedImage image) throws IOException {

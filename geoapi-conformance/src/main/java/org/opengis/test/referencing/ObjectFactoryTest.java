@@ -65,6 +65,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * @version 3.1
  * @since   2.3
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class ObjectFactoryTest extends ReferencingTestCase {
     /**
      * Factory to use for building {@link Datum} instances, or {@code null} if none.
@@ -109,7 +110,7 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
     }
 
     /**
-     * Returns the authority factory tests backed by the object factories.
+     * {@return the authority factory tests backed by the object factories}.
      */
     private AuthorityFactoryTest createAuthorityFactoryTest() {
         final PseudoEpsgFactory factory = new PseudoEpsgFactory(Units.getDefault(),

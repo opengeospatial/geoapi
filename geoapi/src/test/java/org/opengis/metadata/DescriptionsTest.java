@@ -50,7 +50,9 @@ public final class DescriptionsTest {
     }
 
     /**
-     * Whether to test the given type.
+     * {@return whether to test the given type}.
+     *
+     * @param  type  a class that may be tested.
      */
     private static boolean filter(final Class<?> type) {
         if (type.getName().startsWith("org.opengis.metadata.")) {
@@ -69,6 +71,9 @@ public final class DescriptionsTest {
 
     /**
      * Asserts that the given key exists in the given resource bundle.
+     *
+     * @param  resources   the resource from which to get an entry.
+     * @param  identifier  entry to get from the resource.
      */
     private static void assertResourceExists(final ResourceBundle resources, final String identifier) {
         final String value = assertDoesNotThrow(() -> resources.getString(identifier), identifier);

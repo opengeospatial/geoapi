@@ -46,11 +46,12 @@
  * @version 4.0
  */
 module org.opengis.geoapi.example {
+    requires transitive vecmath;
+    requires transitive java.measure;
+    requires transitive org.opengis.geoapi.pending;
+
     requires java.naming;
-    requires java.measure;
     requires tech.uom.seshat;
-    requires org.opengis.geoapi.pending;
-    requires vecmath;
 
     exports org.opengis.example.geometry;
     exports org.opengis.example.metadata;
