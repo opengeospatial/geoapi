@@ -7,7 +7,7 @@ package org.opengis.example.geometry;
 
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.opengis.test.Validators.*;
 
 
@@ -20,6 +20,12 @@ import static org.opengis.test.Validators.*;
  */
 public class SimpleDirectPositionTest {
     /**
+     * Creates a new test case.
+     */
+    public SimpleDirectPositionTest() {
+    }
+
+    /**
      * Tests the creation of a {@code SimpleDirectPosition} and verifies the
      * values returned by {@link SimpleDirectPosition#getOrdinate(int)}.
      */
@@ -28,10 +34,10 @@ public class SimpleDirectPositionTest {
         final SimpleDirectPosition pos = new SimpleDirectPosition(null, 4, 8, -2);
         assertNull(pos.getCoordinateReferenceSystem());
         assertEquals( 3,   pos.getDimension());
-        assertEquals( 4.0, pos.getOrdinate(0), 0.0);
-        assertEquals( 8.0, pos.getOrdinate(1), 0.0);
-        assertEquals(-2.0, pos.getOrdinate(2), 0.0);
-        assertArrayEquals(new double[] {4.0, 8.0, -2.0}, pos.getCoordinate(), 0.0);
+        assertEquals( 4.0, pos.getOrdinate(0));
+        assertEquals( 8.0, pos.getOrdinate(1));
+        assertEquals(-2.0, pos.getOrdinate(2));
+        assertArrayEquals(new double[] {4.0, 8.0, -2.0}, pos.getCoordinate());
         validate(pos);
     }
 
@@ -44,13 +50,13 @@ public class SimpleDirectPositionTest {
         final SimpleDirectPosition pos = new SimpleDirectPosition(2);
         assertNull(pos.getCoordinateReferenceSystem());
         assertEquals(2,   pos.getDimension());
-        assertEquals(0.0, pos.getOrdinate(0), 0.0);
-        assertEquals(0.0, pos.getOrdinate(1), 0.0);
+        assertEquals(0.0, pos.getOrdinate(0));
+        assertEquals(0.0, pos.getOrdinate(1));
         pos.setOrdinate(0, 4.0);
         pos.setOrdinate(1, 3.0);
-        assertEquals(4.0, pos.getOrdinate(0), 0.0);
-        assertEquals(3.0, pos.getOrdinate(1), 0.0);
-        assertArrayEquals(new double[] {4.0, 3.0}, pos.getCoordinate(), 0.0);
+        assertEquals(4.0, pos.getOrdinate(0));
+        assertEquals(3.0, pos.getOrdinate(1));
+        assertArrayEquals(new double[] {4.0, 3.0}, pos.getCoordinate());
         validate(pos);
     }
 

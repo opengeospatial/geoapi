@@ -31,7 +31,7 @@ import java.lang.reflect.Modifier;
 import org.junit.After;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.Assume.assumeFalse;
 
 
@@ -167,7 +167,7 @@ public final class CompatibilityTest implements Closeable {
                      * parameters of the old method, but this check should actually never fail (if the parameters
                      * were not the same, the method would not have been found).
                      */
-                    assertArrayEquals(methodName, paramTypes, oldMethod.getParameterTypes());
+                    assertArrayEquals(paramTypes, oldMethod.getParameterTypes(), methodName);
                     continue;
                 } catch (ClassNotFoundException | NoSuchMethodException e) {
                     // Ignore - will execute the same code as if 'oldClass' were null.
@@ -214,14 +214,14 @@ public final class CompatibilityTest implements Closeable {
                 final String methodName = oldMethod.getName();
                 final Class<?>[] paramTypes = newAPI.getParameterTypes(oldAPI, oldMethod);
                 final Method newMethod = newClass.getMethod(methodName, paramTypes);
-                assertArrayEquals(methodName, paramTypes, newMethod.getParameterTypes());   // Paranoiac check (should never fail).
+                assertArrayEquals(paramTypes, newMethod.getParameterTypes(), methodName);   // Paranoiac check (should never fail).
                 /*
                  * Compare generic arguments (if any). We require an exact match,
                  * including for parameterized types.
                  */
                 final Type[] oldGPT = oldMethod.getGenericParameterTypes();
                 final Type[] newGPT = newMethod.getGenericParameterTypes();
-                assertEquals(methodName, oldGPT.length, newGPT.length);         // Paranoiac check (should never fail).
+                assertEquals(oldGPT.length, newGPT.length, methodName);         // Paranoiac check (should never fail).
                 for (int i=0; i<oldGPT.length; i++) {
                     final String oldType = Release.normalize(oldGPT[i].getTypeName());
                     final String newType = Release.normalize(newGPT[i].getTypeName());

@@ -32,7 +32,7 @@ import javax.tools.StandardJavaFileManager;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -70,17 +70,16 @@ public final class RunCompilation implements FileFilter {
      */
     private static File getSourceDirectory() throws URISyntaxException {
         final URL t = RunCompilation.class.getResource(RunCompilation.class.getSimpleName() + ".class");
-        assertNotNull("Path to class file not found.", t);
+        assertNotNull(t, "Path to class file not found.");
         File file = new File(t.toURI());
         do {
             file = file.getParentFile();
-            assertNotNull("Unexpected path to class file.");
+            assertNotNull(file, "Unexpected path to class file.");
         } while (!file.getName().equals("test-classes"));
-        assertEquals ("Unexpected path to class file.", "target", (file = file.getParentFile()).getName());
-        assertEquals ("Unexpected path to class file.", "tools",  (file = file.getParentFile()).getName());
-        assertNotNull("Unexpected path to class file.",            file = file.getParentFile());
-        file = new File(file, "geoapi/src");
-        assertTrue("Source directory not found.", file.isDirectory());
+        assertEquals ((file = file.getParentFile()).getName(), "target", "Unexpected path to class file.");
+        assertEquals ((file = file.getParentFile()).getName(), "tools",  "Unexpected path to class file.");
+        assertNotNull((file = file.getParentFile()),                     "Unexpected path to class file.");
+        assertTrue((file = new File(file, "geoapi/src")).isDirectory(),  "Source directory not found.");
         return file;
     }
 

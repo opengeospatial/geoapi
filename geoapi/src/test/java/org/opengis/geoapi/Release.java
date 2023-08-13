@@ -31,8 +31,8 @@ import java.net.URL;
 import java.net.URLClassLoader;
 import java.lang.reflect.Method;
 
-import static org.junit.Assert.*;
-import static org.junit.Assume.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assume.assumeTrue;
 
 
 /**
@@ -98,7 +98,7 @@ final class Release implements Closeable {
                 ? "javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar"
                 : "javax/measure/unit-api/" + UNIT_API_VERSION + "/unit-api-" + UNIT_API_VERSION + ".jar");
 
-        assertTrue("Required dependency not found: " + depFile, depFile.isFile());
+        assertTrue(depFile.isFile(), () -> "Required dependency not found: " + depFile);
         final URL dependency = depFile.toURI().toURL();
         loader = new URLClassLoader(new URL[] {file.toURI().toURL(), dependency}, parent);
     }

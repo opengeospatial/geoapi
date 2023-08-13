@@ -48,7 +48,7 @@ import org.xml.sax.SAXException;
 import org.junit.Test;
 
 import static java.util.Collections.singletonMap;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**

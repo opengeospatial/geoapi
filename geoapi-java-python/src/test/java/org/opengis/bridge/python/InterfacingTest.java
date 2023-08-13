@@ -28,7 +28,7 @@ import org.opengis.annotation.UML;
 import org.opengis.annotation.ResourceBundles;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -45,7 +45,7 @@ public final class InterfacingTest {
     private final Interfacing.GeoAPI geoapi;
 
     /**
-     * Creates a new test.
+     * Creates a new test case.
      */
     public InterfacingTest() {
         geoapi = (Interfacing.GeoAPI) Interfacing.GEOAPI;
@@ -102,7 +102,7 @@ public final class InterfacingTest {
         for (final Class<?> c : deprecated) {
             assertTrue(excludes.add(c.getAnnotation(UML.class).identifier()));
         }
-        assertEquals("excludes", geoapi.excludes(), excludes);
+        assertEquals(geoapi.excludes(), excludes, "excludes");
         /*
          * Assert that Interfacing.GEOAPI has the correct list of Java interfaces.
          * In particular, in case of name collision the interface shall be the non-deprecated one.
@@ -110,8 +110,8 @@ public final class InterfacingTest {
         for (final Map.Entry<String,String> e : geoapi.typesForNames().entrySet()) {
             final String key = e.getKey();
             final Class<?> type = typesForNames.remove(key);
-            assertNotNull(key, type);
-            assertEquals(key, type.getName(), e.getValue());
+            assertNotNull(type, key);
+            assertEquals(type.getName(), e.getValue(), key);
         }
     }
 

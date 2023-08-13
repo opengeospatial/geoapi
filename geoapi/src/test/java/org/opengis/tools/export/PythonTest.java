@@ -28,8 +28,8 @@ import org.xml.sax.SAXException;
 import org.opengis.geoapi.SchemaException;
 import org.opengis.geoapi.SchemaInformation;
 
-import static org.junit.Assume.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.Assume.assumeTrue;
 
 
 /**

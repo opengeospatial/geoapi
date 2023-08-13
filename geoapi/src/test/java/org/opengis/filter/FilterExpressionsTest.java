@@ -20,7 +20,7 @@ package org.opengis.filter;
 import java.util.List;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -31,6 +31,12 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 public final class FilterExpressionsTest {
+    /**
+     * Creates a new test case.
+     */
+    public FilterExpressionsTest() {
+    }
+
     /**
      * Tests with {@link FilterLiteral} values.
      */

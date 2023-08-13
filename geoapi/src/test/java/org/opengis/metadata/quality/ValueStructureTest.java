@@ -25,7 +25,7 @@ import java.util.Collection;
 import org.opengis.referencing.operation.Matrix;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -36,6 +36,12 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 public final class ValueStructureTest {
+    /**
+     * Creates a new test case.
+     */
+    public ValueStructureTest() {
+    }
+
     /**
      * Tests {@link ValueStructure#valueOf(Class)}.
      */

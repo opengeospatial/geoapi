@@ -11,7 +11,7 @@ import org.opengis.example.metadata.SimpleCitation;
 import tech.uom.seshat.Units;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -23,10 +23,10 @@ import static org.junit.Assert.*;
  */
 public class SimpleParameterGroupTest {
     /**
-     * Tolerance factor for comparison of floating point numbers
-     * that are expected to be strictly equal.
+     * Creates a new test case.
      */
-    private static final double STRICT = 0.0;
+    public SimpleParameterGroupTest() {
+    }
 
     /**
      * Creates a parameter group for a Mercator projection.
@@ -43,14 +43,14 @@ public class SimpleParameterGroupTest {
 
         assertEquals(Units.DEGREE, group.parameter("Longitude of natural origin").getUnit());
         assertEquals(Units.METRE,  group.parameter("False easting")              .getUnit());
-        assertEquals(0.0,          group.parameter("Latitude of natural origin") .doubleValue(), STRICT);
+        assertEquals(0.0,          group.parameter("Latitude of natural origin") .doubleValue());
 
         final ParameterValueGroup clone = group.clone();
         assertNotSame(clone, group);
         assertEquals (clone, group);
 
         group.parameter("Latitude of natural origin").setValue(30.0);
-        assertEquals(30.0, group.parameter("Latitude of natural origin") .doubleValue(), STRICT);
-        assertNotEquals("Group should not anymore be equal to the clone.", group, clone);
+        assertEquals(30.0, group.parameter("Latitude of natural origin").doubleValue());
+        assertNotEquals(group, clone, "Group should not anymore be equal to the clone.");
     }
 }

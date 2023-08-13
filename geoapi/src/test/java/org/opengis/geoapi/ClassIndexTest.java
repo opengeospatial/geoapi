@@ -38,7 +38,7 @@ import org.opengis.annotation.Specification;
 import org.opengis.annotation.ResourceBundles;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -66,6 +66,12 @@ public final class ClassIndexTest extends SourceGenerator {
      * used by {@link java.util.Properties} when loading a file from an {@link InputStream}.
      */
     private static final String ENCODING = "ISO-8859-1";
+
+    /**
+     * Creates a new test case.
+     */
+    public ClassIndexTest() {
+    }
 
     /**
      * Verifies the class index (if it exists) or generates the class index (if it doesn't exist).
@@ -99,8 +105,9 @@ public final class ClassIndexTest extends SourceGenerator {
         final InputStream in = UML.class.getResourceAsStream(INDEX_FILENAME);
         if (in != null) {
             final String actual = load(in);
-            assertEquals("The content of the \"" + INDEX_FILENAME + "\" file is different from " +
-                         "the content found by scanning the compiled classes.", index, actual);
+            assertEquals(index, actual,
+                        "The content of the \"" + INDEX_FILENAME + "\" file is different from " +
+                        "the content found by scanning the compiled classes.");
         } else {
             final String reason = save(index);
             if (reason != null) {
@@ -174,7 +181,7 @@ public final class ClassIndexTest extends SourceGenerator {
                 } while ((identifier = merged.remove(identifier)) != null);
             }
         }
-        assertTrue(merged.toString(), merged.isEmpty());
+        assertTrue(merged.isEmpty(), merged.toString());
         Collections.sort(lines);
         for (final String line : lines) {
             buffer.append(line).append('\n');

@@ -36,7 +36,7 @@ import java.lang.reflect.Modifier;
 import org.opengis.util.CodeList;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -309,13 +309,7 @@ public final class ContentTest implements FileVisitor<Path> {
                 if (!name.endsWith(INFO_SUFFIX)) {
                     final int length = buffer.length();
                     final String classname = buffer.append(name).toString();
-                    final Class<?> c;
-                    try {
-                        c = Class.forName(classname);
-                    } catch (ClassNotFoundException e) {
-                        fail(e.toString());
-                        return FileVisitResult.TERMINATE;
-                    }
+                    final Class<?> c = assertDoesNotThrow(() -> Class.forName(classname));
                     if (Modifier.isPublic(c.getModifiers()) && !c.isAnnotation() && !ignoreTypes.remove(c)) {
                         final Content category;
                         if (c.isInterface())                          category = Content.INTERFACES;
@@ -327,7 +321,7 @@ public final class ContentTest implements FileVisitor<Path> {
                             return FileVisitResult.TERMINATE;
                         }
                         final Set<Class<?>> members = types[category.ordinal()];
-                        assertTrue(classname, members.add(c));                      // Fails if a class is declared twice.
+                        assertTrue(members.add(c), classname);                    // Fails if a class is declared twice.
                     }
                     buffer.setLength(length);
                 }
