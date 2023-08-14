@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 2- or 3-dimensional coordinate system with straight axes that are not necessarily orthogonal.
+ * A 2- or 3-dimensional coordinate system in Euclidean space with straight axes that are not necessarily orthogonal.
  *
  * <p>This type of CS can be used by coordinate reference systems of type
  * {@link org.opengis.referencing.crs.EngineeringCRS} or

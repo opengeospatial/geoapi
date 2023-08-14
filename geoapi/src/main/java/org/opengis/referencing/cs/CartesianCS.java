@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 2- or 3-dimensional coordinate system with orthogonal straight axes.
+ * A 2- or 3-dimensional coordinate system in Euclidean space with orthogonal straight axes.
  * All axes shall have the same length unit of measure.
  *
  * <p>This type of CS can be used by coordinate reference systems of type
@@ -62,20 +62,6 @@ import static org.opengis.annotation.Specification.*;
  *   <tr><td>Right</td><td>y</td> <td>{@code AxisDirection.valueOf("STARBOARD")}</td> <td>metre</td></tr>
  *   <tr><td>Down</td> <td>z</td> <td>{@link AxisDirection#DOWN}</td>                 <td>metre</td></tr>
  * </table>
- *
- * <div class="note"><b>Note:</b>
- * the above example uses two axis directions that are not defined in ISO 19111,
- * but found in ISO 19162 as "{@code forward}" and "{@code starboard}".</div>
- *
- * @departure constraint
- *   ISO 19111 defines {@code CartesianCS} as a direct sub-type of {@code CoordinateSystem}.
- *   ISO also defines {@code ImageCS} as the union of {@code AffineCS} and {@code CartesianCS},
- *   for use by {@code ImageCRS}. Because the {@code union} construct found in some languages like
- *   C/C++ does not exist in Java, GeoAPI defines {@code CartesianCS} as a sub-type of {@code AffineCS}
- *   in order to achieve the same type safety.
- *   With this change, GeoAPI can use {@code AffineCS} directly without the need to define {@code ImageCS}.
- *   In this hierarchy, {@code CartesianCS} is considered a special case of {@code AffineCS} where all axes
- *   are perpendicular to each other.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
