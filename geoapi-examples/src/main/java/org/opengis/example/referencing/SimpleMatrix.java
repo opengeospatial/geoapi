@@ -48,26 +48,6 @@ public class SimpleMatrix extends GMatrix implements Matrix {
     }
 
     /**
-     * Returns {@code true} if this matrix is an identity matrix.
-     */
-    @Override
-    public boolean isIdentity() {
-        final int numRow = getNumRow();
-        final int numCol = getNumCol();
-        if (numRow != numCol) {
-            return false;
-        }
-        for (int j=0; j<numRow; j++) {
-            for (int i=0; i<numCol; i++) {
-                if (getElement(j,i) != (i==j ? 1 : 0)) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
-
-    /**
      * Returns a clone of this matrix.
      */
     @Override
