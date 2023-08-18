@@ -60,6 +60,7 @@ module org.opengis.geoapi.pending {
     exports org.opengis.geometry;
     exports org.opengis.geometry.coordinate;
     exports org.opengis.feature;
+    exports org.opengis.feature.type;
     exports org.opengis.filter;
     exports org.opengis.filter.capability;
 
