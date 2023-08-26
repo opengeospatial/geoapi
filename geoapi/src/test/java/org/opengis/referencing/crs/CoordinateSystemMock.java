@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * Axes are identified by their {@link #getAbbreviation() abbreviation}.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   3.1
  */
 final class CoordinateSystemMock implements SingleCRS, CoordinateSystem, CoordinateSystemAxis {

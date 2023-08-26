@@ -32,7 +32,7 @@ import org.opengis.util.InternationalString;
  * The only method doing some work is the identifier.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   3.1
  */
 final class IdentifiedObjectMock implements SingleCRS, CoordinateSystem, Datum, Identifier {

@@ -33,7 +33,7 @@ import org.opengis.referencing.cs.CoordinateSystemAxis;
  * for better performances or other characteristics such as WKT support.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   3.1
  */
 final class CompoundCS implements CoordinateSystem, Identifier {

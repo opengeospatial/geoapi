@@ -85,7 +85,7 @@ class AffineTransform2D extends AffineTransform implements MathTransform2D {
      * Returns the given direct position as a {@link Point2D}. This is used for forwarding
      * GeoAPI method calls to {@link AffineTransform} method calls.
      *
-     * @param  point  the direct position to returns as a two-dimensional point.
+     * @param  point  the direct position to return as a two-dimensional point.
      * @return the direct position as a two-dimensional point.
      * @throws MismatchedDimensionException if the given position is not two-dimensional.
      */

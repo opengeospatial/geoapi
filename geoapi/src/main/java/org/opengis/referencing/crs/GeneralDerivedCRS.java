@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * types of coordinate reference systems.</p>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  */
 @Classifier(Stereotype.ABSTRACT)
