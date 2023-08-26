@@ -168,6 +168,10 @@ public class AuthorityCodesReport extends Report {
 
         /**
          * Writes this row to the given stream.
+         *
+         * @param  out        where to write this row.
+         * @param  highlight  whether to highlight this row.
+         * @throws IOException if an error occurred while writing this row.
          */
         final void write(final Appendable out, final boolean highlight) throws IOException {
             if (isSectionHeader) {
@@ -246,6 +250,8 @@ public class AuthorityCodesReport extends Report {
 
     /**
      * Sets the default product name and factory name.
+     *
+     * @param  factory  the factory to set.
      */
     private void setDefault(final AuthorityFactory factory) {
         setVendor("PRODUCT", factory.getVendor());
@@ -254,6 +260,8 @@ public class AuthorityCodesReport extends Report {
 
     /**
      * Adds the given row to the {@link #rows} list, of non-null.
+     *
+     * @param  row  the row to add if non-null.
      */
     private void add(final Row row) {
         if (row != null) {
@@ -295,43 +303,6 @@ public class AuthorityCodesReport extends Report {
         for (final String code : codes) {
             try {
                 add(createRow(code, factory.createCoordinateReferenceSystem(code)));
-            } catch (FactoryException exception) {
-                add(createRow(code, exception));
-            }
-            progress(previousCount + rows.size(),
-                     previousCount + codes.size());
-        }
-    }
-
-    /**
-     * Adds the objects identified by the given codes.
-     * This method performs the following steps:
-     *
-     * <ul>
-     *   <li>For each code, try to instantiate an object with
-     *     {@link AuthorityFactory#createObject(String)}, then:
-     *     <ul>
-     *       <li>In case of success, invoke {@link #createRow(String, IdentifiedObject)};</li>
-     *       <li>In case of failure, invoke {@link #createRow(String, FactoryException)}.</li>
-     *     </ul>
-     *   </li>
-     *   <li>If the {@code createRow(…)} method returned a non-null
-     *       instance, add the created row to the {@link #rows} list.</li>
-     * </ul>
-     *
-     * Subclasses can override the above-cited {@code createRow(…)}
-     * methods in order to customize the table content.
-     *
-     * @param  factory  the factory from which to get the objects.
-     * @param  codes    the authority codes of the objects to create.
-     * @throws FactoryException if a non-recoverable error occurred while querying the factory.
-     */
-    public void add(final AuthorityFactory factory, final Collection<String> codes) throws FactoryException {
-        setDefault(factory);
-        final int previousCount = rows.size();
-        for (final String code : codes) {
-            try {
-                add(createRow(code, factory.createObject(code)));
             } catch (FactoryException exception) {
                 add(createRow(code, exception));
             }

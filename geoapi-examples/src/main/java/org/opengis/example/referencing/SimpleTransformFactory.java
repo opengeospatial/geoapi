@@ -88,7 +88,9 @@ public class SimpleTransformFactory implements MathTransformFactory {
     }
 
     /**
-     * Returns the exception to be thrown when a transform for the given parameters is requested.
+     * {@return the exception to throw when a transform for the given parameters is requested}.
+     *
+     * @param  parameters  the unsupported parameters.
      */
     private static NoSuchIdentifierException unsupported(final ParameterValueGroup parameters) {
         return new NoSuchIdentifierException("Parameterized transforms are not implemented.",

@@ -76,7 +76,7 @@ import static org.opengis.annotation.Specification.*;
  * @see CoordinateOperationAuthorityFactory#createOperationMethod(String)
  * @see CoordinateOperationFactory#createOperationMethod(Map, Integer, Integer, ParameterDescriptorGroup)
  */
-@UML(identifier="CC_OperationMethod", specification=ISO_19111)
+@UML(identifier="CC_OperationMethod", specification=ISO_19111, version=2007)
 public interface OperationMethod extends IdentifiedObject {
     /*
      * NOTE FOR JAVADOC WRITER:
@@ -113,7 +113,7 @@ public interface OperationMethod extends IdentifiedObject {
      *
      * @deprecated This attribute has been removed from ISO 19111:2019.
      */
-    @Deprecated
+    @Deprecated(since = "3.1", forRemoval = true)
     @UML(identifier="sourceDimensions", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default Integer getSourceDimensions() {
         return null;
@@ -130,7 +130,7 @@ public interface OperationMethod extends IdentifiedObject {
      *
      * @deprecated This attribute has been removed from ISO 19111:2019.
      */
-    @Deprecated
+    @Deprecated(since = "3.1", forRemoval = true)
     @UML(identifier="targetDimensions", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default Integer getTargetDimensions() {
         return null;

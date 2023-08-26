@@ -48,6 +48,7 @@ public class TransformException extends Exception {
      * @see #getLastCompletedTransform()
      * @see #setLastCompletedTransform(MathTransform)
      */
+    @SuppressWarnings("serial")                     // Not statically typed as serializable.
     private MathTransform lastCompletedTransform;
 
     /**

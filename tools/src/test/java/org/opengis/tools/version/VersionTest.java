@@ -18,7 +18,7 @@
 package org.opengis.tools.version;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -29,6 +29,12 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 public final class VersionTest {
+    /**
+     * Creates a new test case.
+     */
+    public VersionTest() {
+    }
+
     /**
      * Tests the version numbers having the documented pattern.
      * This is by contrast with informal pattern that we could

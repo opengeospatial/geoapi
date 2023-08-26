@@ -51,7 +51,7 @@ import static org.opengis.annotation.Specification.*;
  * @see CRSAuthorityFactory#createVerticalCRS(String)
  * @see CRSFactory#createVerticalCRS(Map, VerticalDatum, VerticalCS)
  */
-@UML(identifier="SC_VerticalCRS", specification=ISO_19111)
+@UML(identifier="SC_VerticalCRS", specification=ISO_19111, version=2007)
 public interface VerticalCRS extends SingleCRS {
     /**
      * Returns the coordinate system, which shall be vertical.

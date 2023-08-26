@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  * @see GeneralParameterDescriptor
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="CC_GeneralParameterValue", specification=ISO_19111)
+@UML(identifier="CC_GeneralParameterValue", specification=ISO_19111, version=2007)
 public interface GeneralParameterValue {
     /**
      * Returns the abstract definition of this parameter or group of parameters.

@@ -35,6 +35,6 @@ import static org.opengis.annotation.Specification.*;
  * @see DatumAuthorityFactory#createEngineeringDatum(String)
  * @see DatumFactory#createEngineeringDatum(Map)
  */
-@UML(identifier="CD_EngineeringDatum", specification=ISO_19111)
+@UML(identifier="CD_EngineeringDatum", specification=ISO_19111, version=2007)
 public interface EngineeringDatum extends Datum {
 }

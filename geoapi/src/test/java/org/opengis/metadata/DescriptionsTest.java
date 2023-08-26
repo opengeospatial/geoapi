@@ -21,7 +21,6 @@ import java.util.Set;
 import java.util.HashSet;
 import java.util.Enumeration;
 import java.util.ResourceBundle;
-import java.util.MissingResourceException;
 import java.util.Locale;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -30,10 +29,10 @@ import org.opengis.geoapi.Content;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Specification;
+import org.opengis.annotation.ResourceBundles;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
-import org.opengis.annotation.ResourceBundles;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -45,7 +44,15 @@ import org.opengis.annotation.ResourceBundles;
  */
 public final class DescriptionsTest {
     /**
-     * Whether to test the given type.
+     * Creates a new test case.
+     */
+    public DescriptionsTest() {
+    }
+
+    /**
+     * {@return whether to test the given type}.
+     *
+     * @param  type  a class that may be tested.
      */
     private static boolean filter(final Class<?> type) {
         if (type.getName().startsWith("org.opengis.metadata.")) {
@@ -64,15 +71,12 @@ public final class DescriptionsTest {
 
     /**
      * Asserts that the given key exists in the given resource bundle.
+     *
+     * @param  resources   the resource from which to get an entry.
+     * @param  identifier  entry to get from the resource.
      */
     private static void assertResourceExists(final ResourceBundle resources, final String identifier) {
-        final String value;
-        try {
-            value = resources.getString(identifier);
-        } catch (MissingResourceException e) {
-            fail(e.toString());
-            return;
-        }
+        final String value = assertDoesNotThrow(() -> resources.getString(identifier), identifier);
         assertNotNull(identifier, value);
     }
 
@@ -91,22 +95,22 @@ public final class DescriptionsTest {
         final Set<String> keys = new HashSet<>();
         for (final Enumeration<String> e=resources.getKeys(); e.hasMoreElements();) {
             final String key = e.nextElement();
-            assertTrue("Duplicated key" , keys.add(key));
+            assertTrue(keys.add(key), "Duplicated key");
         }
         for (final Class<?> type : Content.ALL.types()) {
             if (!filter(type)) continue;
             UML uml = type.getAnnotation(UML.class);
-            assertNotNull("Missing UML annotation", uml);
+            assertNotNull(uml, "Missing UML annotation");
             final String classIdentifier = uml.identifier();
             if (Enum.class.isAssignableFrom(type)) {
                 assertResourceExists(resources, classIdentifier);
-                assertTrue(classIdentifier, keys.remove(classIdentifier));
+                assertTrue(keys.remove(classIdentifier), classIdentifier);
                 for (final Field code : type.getDeclaredFields()) {
                     uml = code.getAnnotation(UML.class);
                     if (uml != null) {
                         final String identifier = classIdentifier + '.' + uml.identifier();
                         assertResourceExists(resources, identifier);
-                        assertTrue(identifier, keys.remove(identifier));
+                        assertTrue(keys.remove(identifier), identifier);
                     }
                 }
             } else if (CodeList.class.isAssignableFrom(type)) {
@@ -120,7 +124,7 @@ public final class DescriptionsTest {
                     continue;
                 }
                 assertResourceExists(resources, classIdentifier);
-                assertTrue(classIdentifier, keys.remove(classIdentifier));
+                assertTrue(keys.remove(classIdentifier), classIdentifier);
                 for (final Field code : type.getDeclaredFields()) {
                     if (code.isAnnotationPresent(Deprecated.class)) {
                         continue;                                       // Skip deprecated fields or methods.
@@ -138,7 +142,7 @@ public final class DescriptionsTest {
                         }
                         final String identifier = classIdentifier + '.' + uml.identifier();
                         assertResourceExists(resources, identifier);
-                        assertTrue(identifier, keys.remove(identifier));
+                        assertTrue(keys.remove(identifier), identifier);
                     }
                 }
             } else {
@@ -148,18 +152,18 @@ public final class DescriptionsTest {
                  * which must be excluded.
                  */
                 assertResourceExists(resources, classIdentifier);
-                assertTrue(classIdentifier, keys.remove(classIdentifier));
+                assertTrue(keys.remove(classIdentifier), classIdentifier);
                 for (final Method method : type.getDeclaredMethods()) {
                     uml = method.getAnnotation(UML.class);
                     if (uml != null) {
                         final String identifier = classIdentifier + '.' + uml.identifier();
                         assertResourceExists(resources, identifier);
-                        assertTrue(identifier, keys.remove(identifier));
+                        assertTrue(keys.remove(identifier), identifier);
                     }
                 }
             }
         }
-        assertTrue("Some keys do not map any class or method: " + keys, keys.isEmpty());
+        assertTrue(keys.isEmpty(), () -> "Some keys do not map any class or method: " + keys);
     }
 
     /**

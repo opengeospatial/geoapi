@@ -139,6 +139,7 @@ public class SchemaInformation {
         /** Documentation, or {@code null} if none.  */ public final String  documentation;
 
         /** Stores information about a new property or type. */
+        @SuppressWarnings("doclint:missing")
         Element(final String typeName, final String namespace, final boolean isRequired, final boolean isCollection,
                 final String  documentation)
         {
@@ -151,6 +152,8 @@ public class SchemaInformation {
 
         /**
          * Returns the prefix if it can be derived from the {@linkplain #namespace}, or {@code null} otherwise.
+         *
+         * @return the prefix or {@code null}.
          */
         String prefix() {
             if (namespace.startsWith(ROOT_NAMESPACE)) {
@@ -162,7 +165,10 @@ public class SchemaInformation {
         }
 
         /**
-         * Tests if this element has the same type name (including namespace) than given element.
+         * Tests if this element has the same type name (including namespace) than the given element.
+         *
+         * @param  other  the other element to compare.
+         * @return whether the two elements are equal.
          */
         boolean nameEqual(final Element other) {
             return Objects.equals(typeName,  other.typeName)
@@ -191,6 +197,9 @@ public class SchemaInformation {
      * Notifies that we are about to define the XML type for each property. In OGC/ISO schemas, those definitions
      * have the {@value #PROPERTY_TYPE_SUFFIX} suffix in their name (which is omitted). After this method call,
      * properties can be defined by calls to {@link #addProperty(String, String, boolean, boolean)}.
+     *
+     * @param  type  name of the XML type to be defined.
+     * @throws SchemaException if an inconsistency is found.
      */
     private void preparePropertyDefinitions(final String type) throws SchemaException {
         final String k = trim(type, TYPE_SUFFIX).intern();
@@ -341,6 +350,7 @@ public class SchemaInformation {
      * @param  type        name of the type.
      * @param  namespace   namespace of all properties.
      * @param  properties  (property name, property type, isRequired, isCollection) tuples.
+     * @throws SchemaException if an inconsistency is found.
      */
     private void addHardCoded(final String type, final String namespace, final Object... properties) throws SchemaException {
         final Map<String,Element> pm = new LinkedHashMap<>(properties.length);
@@ -389,6 +399,12 @@ public class SchemaInformation {
      * Stores information about classes in the given node and children. This method invokes itself
      * for scanning children, until we reach sub-nodes about properties (in which case we continue
      * with {@link #storePropertyDefinition(Node)}).
+     *
+     * @param  node  root of a tree of classes to add.
+     * @throws IOException if an error occurred while reading the XSD file.
+     * @throws ParserConfigurationException if an error occurred while configuring the XSD parser.
+     * @throws SAXException if an error occurred while parsing the XSD file.
+     * @throws SchemaException if an inconsistency is found in the parsed XSD.
      */
     private void storeClassDefinition(final Node node)
             throws IOException, ParserConfigurationException, SAXException, SchemaException
@@ -483,6 +499,9 @@ public class SchemaInformation {
      * {@preformat xml
      *   <xs:element name="(…)" type="(…)_PropertyType" minOccurs="(…)" maxOccurs="(…)">
      * }
+     *
+     * @param  node  node of the element to parse.
+     * @throws SchemaException if an inconsistency is found.
      */
     private void storePropertyDefinition(final Node node) throws SchemaException {
         if (XMLConstants.W3C_XML_SCHEMA_NS_URI.equals(node.getNamespaceURI())) {
@@ -535,6 +554,9 @@ public class SchemaInformation {
      * {@preformat xml
      *   <xs:element ref="(…)">
      * }
+     *
+     * @param  node  node of the element to parse.
+     * @throws SchemaException if an inconsistency is found.
      */
     private void verifyPropertyType(final Node node) throws SchemaException {
         if (XMLConstants.W3C_XML_SCHEMA_NS_URI.equals(node.getNamespaceURI())) {
@@ -591,6 +613,13 @@ public class SchemaInformation {
     /**
      * Adds a property of the current name and type. This method is invoked during schema parsing.
      * The property namespace is assumed to be {@link #targetNamespace}.
+     *
+     * @param name           XSD name of the property to add.
+     * @param type           XSD type of the property to add.
+     * @param isRequired     whether the property is mandatory.
+     * @param isCollection   whether the property accepts many occurrences.
+     * @param documentation  explanation about what is the property.
+     * @throws SchemaException if an inconsistency is found.
      */
     private void addProperty(final String name, final String type, final boolean isRequired, final boolean isCollection,
             final String documentation) throws SchemaException
@@ -607,6 +636,9 @@ public class SchemaInformation {
     /**
      * Returns the documentation for the given node, with the first letter made upper case
      * and a dot added at the end of the sentence. Null or empty texts are ignored.
+     *
+     * @param  node  element for which to get the documentation.
+     * @return documentation of the give node formatted as a sentence.
      */
     private String documentation(Node node) {
         if (documentationStyle != DocumentationStyle.NONE) {
@@ -654,6 +686,11 @@ public class SchemaInformation {
     /**
      * Returns the attribute of the given name in the given node,
      * or throws an exception if the attribute is not present.
+     *
+     * @param  node  node from which to get an attribute.
+     * @param  name  name of the mandatory attribute.
+     * @return the attribute value.
+     * @throws SchemaException if the attribute is not found.
      */
     private static String getMandatoryAttribute(final Node node, final String name) throws SchemaException {
         final NamedNodeMap attributes = node.getAttributes();

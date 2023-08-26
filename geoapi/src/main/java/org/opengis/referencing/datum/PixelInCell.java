@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see org.opengis.metadata.spatial.PixelOrientation
  */
-@UML(identifier="CD_PixelInCell", specification=ISO_19111)
+@UML(identifier="CD_PixelInCell", specification=ISO_19111, version=2007)
 public final class PixelInCell extends CodeList<PixelInCell> {
     /**
      * Serial number for compatibility with different versions.

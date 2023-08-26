@@ -84,7 +84,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
     @UML(identifier="createFromCoordinateSystems", specification=OGC_01009)
     CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
                                         CoordinateReferenceSystem targetCRS)
-            throws OperationNotFoundException, FactoryException;
+            throws FactoryException;
 
     /**
      * Returns an operation using a particular method for conversion or transformation
@@ -122,7 +122,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
     CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
                                         CoordinateReferenceSystem targetCRS,
                                         OperationMethod           method)
-            throws OperationNotFoundException, FactoryException;
+            throws FactoryException;
 
     /**
      * Creates a concatenated operation from a sequence of operations.
@@ -148,27 +148,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * Their sole purpose is to be given as an argument to {@linkplain CRSFactory#createDerivedCRS
      * derived CRS} and {@linkplain CRSFactory#createProjectedCRS projected CRS} constructors.
      *
-     * <p>Some available properties are {@linkplain ObjectFactory listed there}.
-     * Additionally, the following properties are understood by this constructor:</p>
-     *
-     * <table class="ogc">
-     *   <caption>Keys for additional standard properties</caption>
-     *   <tr>
-     *     <th>Property name</th>
-     *     <th>Value type</th>
-     *     <th>Returned by</th>
-     *   </tr>
-     *   <tr>
-     *     <td>{@value org.opengis.referencing.operation.CoordinateOperation#DOMAIN_OF_VALIDITY_KEY}</td>
-     *     <td>{@link org.opengis.metadata.extent.Extent}</td>
-     *     <td>{@link CoordinateOperation#getDomainOfValidity()}</td>
-     *   </tr>
-     *   <tr>
-     *     <td>{@value org.opengis.referencing.operation.CoordinateOperation#SCOPE_KEY}</td>
-     *     <td>{@link String} or {@link org.opengis.util.InternationalString}</td>
-     *     <td>{@link CoordinateOperation#getScope()}</td>
-     *   </tr>
-     * </table>
+     * <p>Some available properties are {@linkplain ObjectFactory listed there}.</p>
      *
      * @param  properties  set of properties. Shall contain at least {@code "name"}.
      * @param  method      the operation method. A value can be obtained by {@link #getOperationMethod(String)}.
@@ -278,5 +258,5 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *
      * @since 3.1
      */
-    OperationMethod getOperationMethod(String name) throws NoSuchIdentifierException, FactoryException;
+    OperationMethod getOperationMethod(String name) throws FactoryException;
 }

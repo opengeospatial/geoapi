@@ -6,8 +6,6 @@
 package org.opengis.example.referencing;
 
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.operation.TransformException;
@@ -22,7 +20,6 @@ import org.opengis.referencing.operation.TransformException;
  * @version 3.1
  * @since   3.1
  */
-@RunWith(JUnit4.class)
 public class AffineTransform2DTest extends ProjectiveTransformTest {
     /**
      * Creates a new test case.

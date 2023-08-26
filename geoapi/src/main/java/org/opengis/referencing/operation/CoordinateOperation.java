@@ -19,6 +19,7 @@ package org.opengis.referencing.operation;
 
 import java.util.Collection;
 import java.util.Collections;
+import org.opengis.referencing.ObjectDomain;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.metadata.quality.PositionalAccuracy;
@@ -59,7 +60,7 @@ import static org.opengis.annotation.Specification.*;
  * @see CoordinateOperationFactory#createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="CC_CoordinateOperation", specification=ISO_19111)
+@UML(identifier="CC_CoordinateOperation", specification=ISO_19111, version=2007)
 public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property.
@@ -82,7 +83,10 @@ public interface CoordinateOperation extends IdentifiedObject {
      * This is used for setting the value to be returned by {@link #getDomainOfValidity()}.
      *
      * @see #getDomainOfValidity()
+     *
+     * @deprecated Replaced by {@link #DOMAIN_KEY} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1", forRemoval=true)
     String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
 
     /**
@@ -90,7 +94,10 @@ public interface CoordinateOperation extends IdentifiedObject {
      * This is used for setting the value to be returned by {@link #getScope()}.
      *
      * @see #getScope()
+     *
+     * @deprecated Replaced by {@link #DOMAIN_KEY} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1", forRemoval=true)
     String SCOPE_KEY = "scope";
 
     /**
@@ -147,10 +154,13 @@ public interface CoordinateOperation extends IdentifiedObject {
      * @return the coordinate operation valid domain, or {@code null} if not available.
      *
      * @see CoordinateReferenceSystem#getDomainOfValidity()
+     *
+     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */
-    @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
+    @Deprecated(since="3.1", forRemoval=true)
+    @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default Extent getDomainOfValidity() {
-        return null;
+        return getDomains().stream().map(ObjectDomain::getDomainOfValidity).findFirst().orElse(null);
     }
 
     /**
@@ -163,10 +173,13 @@ public interface CoordinateOperation extends IdentifiedObject {
      *   The revision published in 2007 replaced the singleton by a collection and changed the
      *   obligation from "optional" to "mandatory", requiring a return value of
      *   <cite>"not known"</cite> if the scope is unknown. This change is still under review.
+     *
+     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */
-    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
+    @Deprecated(since="3.1", forRemoval=true)
+    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default InternationalString getScope() {
-        return null;
+        return getDomains().stream().map(ObjectDomain::getScope).findFirst().orElse(null);
     }
 
     /**

@@ -32,6 +32,12 @@ import static org.junit.Assert.*;
  */
 public final class TestDataTest {
     /**
+     * Creates a new test case.
+     */
+    public TestDataTest() {
+    }
+
+    /**
      * Tests {@link TestData#content()} on all enumeration values.
      * If a file does not have the expected length, an exception will be thrown here.
      *

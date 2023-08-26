@@ -22,7 +22,7 @@ import org.opengis.referencing.operation.CoordinateOperation;
 import org.junit.Test;
 
 import static org.opengis.referencing.ReferenceSystem.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -34,11 +34,18 @@ import static org.junit.Assert.*;
  */
 public final class KeyConstantsTest {
     /**
+     * Creates a new test case.
+     */
+    public KeyConstantsTest() {
+    }
+
+    /**
      * Ensures that the key that are expected to be the same are really the same.
      * We use {@code assertSame} instead of {@code assertEquals} because we
      * expect the JVM to have {@linkplain String#intern internalized} the strings.
      */
     @Test
+    @SuppressWarnings("removal")
     public void testSame() {
         assertSame(SCOPE_KEY,              Datum              .SCOPE_KEY);
         assertSame(SCOPE_KEY,              CoordinateOperation.SCOPE_KEY);

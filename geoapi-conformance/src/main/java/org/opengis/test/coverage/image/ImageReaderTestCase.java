@@ -86,6 +86,7 @@ import static org.junit.Assume.*;
  * @version 3.1
  * @since   3.1
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase implements Closeable {
     /**
      * The {@link ImageReader} API to use for testing read operations.
@@ -139,6 +140,8 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
 
     /**
      * Asserts that the {@linkplain ImageReader#getInput() reader input} is set to a non-null value.
+     *
+     * @param  reader  the reader to validate.
      */
     private static void assertInputSet(final ImageReader reader) {
         assertNotNull("The 'reader' field shall be set in the 'prepareImageReader' method.", reader);
@@ -267,6 +270,9 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
     /**
      * Verifies the validity of metadata attributes as documented in the
      * {@link #testStreamMetadata()} and {@link #testImageMetadata()} methods.
+     *
+     * @param  metadata  the metadata to validate.
+     * @throws IOException if an error occurred while reading the metadata.
      */
     private void validate(final IIOMetadata metadata) throws IOException {
         final Metadata md = getMetadata(Metadata.class, metadata);

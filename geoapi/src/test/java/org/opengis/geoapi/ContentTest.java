@@ -37,7 +37,7 @@ import org.opengis.util.CodeList;
 import org.junit.Ignore;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -93,6 +93,7 @@ public final class ContentTest implements FileVisitor<Path> {
             types[i] = new HashSet<>();
         }
         ignoreTypes = new HashSet<>(List.of(
+                org.opengis.geoapi.internal.Errors.class,
                 org.opengis.annotation.ComplianceLevel.class,
                 org.opengis.annotation.Specification.class,
                 org.opengis.annotation.Stereotype.class,
@@ -312,13 +313,7 @@ public final class ContentTest implements FileVisitor<Path> {
                 if (!name.endsWith(INFO_SUFFIX)) {
                     final int length = buffer.length();
                     final String classname = buffer.append(name).toString();
-                    final Class<?> c;
-                    try {
-                        c = Class.forName(classname);
-                    } catch (ClassNotFoundException e) {
-                        fail(e.toString());
-                        return FileVisitResult.TERMINATE;
-                    }
+                    final Class<?> c = assertDoesNotThrow(() -> Class.forName(classname));
                     if (Modifier.isPublic(c.getModifiers()) && !c.isAnnotation() && !ignoreTypes.remove(c)) {
                         final Content category;
                         if (c.isInterface())                          category = Content.INTERFACES;
@@ -330,7 +325,7 @@ public final class ContentTest implements FileVisitor<Path> {
                             return FileVisitResult.TERMINATE;
                         }
                         final Set<Class<?>> members = types[category.ordinal()];
-                        assertTrue(classname, members.add(c));                      // Fails if a class is declared twice.
+                        assertTrue(members.add(c), classname);                    // Fails if a class is declared twice.
                     }
                     buffer.setLength(length);
                 }
@@ -356,6 +351,8 @@ public final class ContentTest implements FileVisitor<Path> {
      * Adds a bullet point with the name of the given class. Used for formatting error message.
      * The caller is responsible to invoke this method only in context where {@link #buffer} is
      * available for building error messages (and not used for something else).
+     *
+     * @param  type  class to add in error message.
      */
     private void appendToErrorMessage(final Class<?> type) {
         buffer.append("  • ").append(type.getCanonicalName()).append(System.lineSeparator());

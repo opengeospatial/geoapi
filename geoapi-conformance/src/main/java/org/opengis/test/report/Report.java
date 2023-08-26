@@ -272,6 +272,9 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
     /**
      * Returns a string value for the given text. If the given text is an instance of {@link InternationalString},
      * then this method fetches the string for the {@linkplain #locale current locale}.
+     *
+     * @param  text  the possibly localized text.
+     * @return the given text as a string.
      */
     final String toString(final CharSequence text) {
         if (text == null) {
@@ -286,6 +289,9 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
     /**
      * Ensures that the given {@link File} object denotes a file (not a directory).
      * If the given argument is a directory, then the {@code "FILENAME"} property value will be added.
+     *
+     * @param  destination  the file or directory.
+     * @return the given file or a file in the given directory.
      */
     final File toFile(File destination) {
         if (destination.isDirectory()) {
@@ -441,6 +447,10 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
 
     /**
      * Writes the indentation spaces on the left margin.
+     *
+     * @param  out          where to write.
+     * @param  indentation  number of spaces to write.
+     * @throws IOException if an error occurred while writing in {@code out}.
      */
     static void writeIndentation(final Appendable out, int indentation) throws IOException {
         while (--indentation >= 0) {
@@ -451,8 +461,10 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
     /**
      * Writes the {@code class="…"} attribute values inside a HTML element.
      *
-     * @param classes  an arbitrary number of classes in the SLD. Length can be 0, 1, 2 or more.
-     *        Any null element will be silently ignored.
+     * @param  out      where to write.
+     * @param  classes  an arbitrary number of classes in the SLD. Length can be 0, 1, 2 or more.
+     *         Any null element will be silently ignored.
+     * @throws IOException if an error occurred while writing in {@code out}.
      */
     static void writeClassAttribute(final Appendable out, final String... classes) throws IOException {
         boolean hasClasses = false;
@@ -474,6 +486,9 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
     /**
      * Escape {@code <} and {@code >} characters for HTML. This method is null-safe.
      * Empty strings are replaced by {@code null} value.
+     *
+     * @param  text  the text to escape.
+     * @return the escaped text.
      */
     static String escape(String text) {
         if (text != null) {

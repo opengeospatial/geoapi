@@ -19,16 +19,29 @@ package org.opengis.referencing.datum;
 
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.util.UnimplementedServiceException;
 import org.opengis.util.FactoryException;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
+import static org.opengis.geoapi.internal.Errors.unexpectedType;
 
 
 /**
- * Creates {@linkplain Datum datum} objects using authority codes. External authorities are used to
- * manage definitions of objects used in this interface. The definitions of these objects are
- * referenced using code strings. A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
+ * Creates {@linkplain Datum datum} objects using authority codes.
+ * External authorities are used to manage definitions of objects used in this interface.
+ * The definitions of these objects are referenced using code strings.
+ * A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
+ *
+ * <h2>Default methods</h2>
+ * All {@code create(…)} methods in this interface are optional.
+ * If a method is not overridden by the implementer, the default is:
+ * <ul>
+ *   <li>For methods creating a sub-type of {@link Datum}, delegate to
+ *       {@link #createDatum(String)} then check the returned object type.</li>
+ *   <li>For all other methods, throw an {@link UnimplementedServiceException} with a message
+ *       saying that the type or service is not supported.</li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Johann Sorel (Geomatys)
@@ -40,6 +53,36 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
 public interface DatumAuthorityFactory extends AuthorityFactory {
+    /**
+     * Returns an ellipsoid from a code.
+     *
+     * @param  code  value allocated by authority.
+     * @return the ellipsoid for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @see #createGeodeticDatum(String)
+     */
+    @UML(identifier="createEllipsoid", specification=OGC_01009)
+    default Ellipsoid createEllipsoid(String code) throws FactoryException {
+        throw new UnimplementedServiceException(this, Ellipsoid.class);
+    }
+
+    /**
+     * Returns a prime meridian from a code.
+     *
+     * @param  code  value allocated by authority.
+     * @return the prime meridian for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @see #createGeodeticDatum(String)
+     */
+    @UML(identifier="createPrimeMeridian", specification=OGC_01009)
+    default PrimeMeridian createPrimeMeridian(String code) throws FactoryException {
+        throw new UnimplementedServiceException(this, PrimeMeridian.class);
+    }
+
     /**
      * Returns an arbitrary datum from a code.
      *
@@ -58,74 +101,9 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @see #createVerticalDatum(String)
      * @see #createTemporalDatum(String)
      */
-    Datum createDatum(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
-
-    /**
-     * Returns a engineering datum from a code.
-     *
-     * @param  code  value allocated by authority.
-     * @return the datum for the given code.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
-     *
-     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createEngineeringCRS(String)
-     */
-    EngineeringDatum createEngineeringDatum(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
-
-    /**
-     * Returns a image datum from a code.
-     *
-     * @param  code  value allocated by authority.
-     * @return the datum for the given code.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
-     *
-     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createImageCRS(String)
-     */
-    ImageDatum createImageDatum(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
-
-    /**
-     * Returns a vertical datum from a code.
-     *
-     * @param  code  value allocated by authority.
-     * @return the datum for the given code.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
-     *
-     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS(String)
-     */
-    @UML(identifier="createVerticalDatum", specification=OGC_01009)
-    VerticalDatum createVerticalDatum(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
-
-    /**
-     * Returns a temporal datum from a code.
-     *
-     * @param  code  value allocated by authority.
-     * @return the datum for the given code.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
-     *
-     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createTemporalCRS(String)
-     */
-    TemporalDatum createTemporalDatum(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
-
-    /**
-     * Returns a parametric datum from a code.
-     *
-     * @param  code  value allocated by authority.
-     * @return the datum for the given code.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
-     *
-     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createParametricCRS(String)
-     */
-    ParametricDatum createParametricDatum(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
+    default Datum createDatum(String code) throws FactoryException {
+        throw new UnimplementedServiceException(this, Datum.class);
+    }
 
     /**
      * Returns a geodetic datum from a code.
@@ -141,34 +119,125 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS(String)
      */
     @UML(identifier="createHorizontalDatum", specification=OGC_01009)
-    GeodeticDatum createGeodeticDatum(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
+    default GeodeticDatum createGeodeticDatum(final String code) throws FactoryException {
+        final Datum datum = createDatum(code);
+        try {
+            return (GeodeticDatum) datum;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, datum, e);
+        }
+    }
 
     /**
-     * Returns an ellipsoid from a code.
+     * Returns a vertical datum from a code.
      *
      * @param  code  value allocated by authority.
-     * @return the ellipsoid for the given code.
+     * @return the datum for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see #createGeodeticDatum(String)
+     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS(String)
      */
-    @UML(identifier="createEllipsoid", specification=OGC_01009)
-    Ellipsoid createEllipsoid(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
+    @UML(identifier="createVerticalDatum", specification=OGC_01009)
+    default VerticalDatum createVerticalDatum(final String code) throws FactoryException {
+        final Datum datum = createDatum(code);
+        try {
+            return (VerticalDatum) datum;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, datum, e);
+        }
+    }
 
     /**
-     * Returns a prime meridian from a code.
+     * Returns a temporal datum from a code.
      *
      * @param  code  value allocated by authority.
-     * @return the prime meridian for the given code.
+     * @return the datum for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see #createGeodeticDatum(String)
+     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createTemporalCRS(String)
      */
-    @UML(identifier="createPrimeMeridian", specification=OGC_01009)
-    PrimeMeridian createPrimeMeridian(String code)
-            throws NoSuchAuthorityCodeException, FactoryException;
+    default TemporalDatum createTemporalDatum(final String code) throws FactoryException {
+        final Datum datum = createDatum(code);
+        try {
+            return (TemporalDatum) datum;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, datum, e);
+        }
+    }
+
+    /**
+     * Returns a parametric datum from a code.
+     *
+     * @param  code  value allocated by authority.
+     * @return the datum for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createParametricCRS(String)
+     */
+    default ParametricDatum createParametricDatum(final String code) throws FactoryException {
+        final Datum datum = createDatum(code);
+        try {
+            return (ParametricDatum) datum;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, datum, e);
+        }
+    }
+
+    /**
+     * Returns a engineering datum from a code.
+     *
+     * @param  code  value allocated by authority.
+     * @return the datum for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createEngineeringCRS(String)
+     */
+    default EngineeringDatum createEngineeringDatum(final String code) throws FactoryException {
+        final Datum datum = createDatum(code);
+        try {
+            return (EngineeringDatum) datum;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, datum, e);
+        }
+    }
+
+    /**
+     * Returns a image datum from a code.
+     *
+     * @param  code  value allocated by authority.
+     * @return the datum for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createImageCRS(String)
+     */
+    default ImageDatum createImageDatum(final String code) throws FactoryException {
+        final Datum datum = createDatum(code);
+        try {
+            return (ImageDatum) datum;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, datum, e);
+        }
+    }
+
+    /**
+     * Returns an arbitrary object from a code.
+     *
+     * @param  code  value allocated by authority.
+     * @return the object for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @deprecated This method is ambiguous. Use {@link #createDatum(String)} instead.
+     */
+    @Override
+    @SuppressWarnings("removal")
+    @Deprecated(since = "3.1", forRemoval = true)
+    default org.opengis.referencing.IdentifiedObject createObject(String code) throws FactoryException {
+        return createDatum(code);
+    }
 }

@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
  * @see DatumAuthorityFactory#createVerticalDatum(String)
  * @see DatumFactory#createVerticalDatum(Map, VerticalDatumType)
  */
-@UML(identifier="CD_VerticalDatum", specification=ISO_19111)
+@UML(identifier="CD_VerticalDatum", specification=ISO_19111, version=2007)
 public interface VerticalDatum extends Datum {
     /**
      * The type of this vertical datum.

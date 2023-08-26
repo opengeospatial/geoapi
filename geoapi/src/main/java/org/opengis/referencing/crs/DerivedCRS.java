@@ -60,6 +60,6 @@ import static org.opengis.annotation.Specification.*;
  * @see CRSAuthorityFactory#createDerivedCRS(String)
  * @see CRSFactory#createDerivedCRS(Map, CoordinateReferenceSystem, Conversion, CoordinateSystem)
  */
-@UML(identifier="SC_DerivedCRS", specification=ISO_19111)
+@UML(identifier="SC_DerivedCRS", specification=ISO_19111, version=2007)
 public interface DerivedCRS extends GeneralDerivedCRS {
 }

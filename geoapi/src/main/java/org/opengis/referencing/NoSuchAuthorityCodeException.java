@@ -26,7 +26,7 @@ import org.opengis.util.NoSuchIdentifierException;
  * and code components.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
@@ -40,14 +40,14 @@ public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
     private static final long serialVersionUID = -1573748311981746573L;
 
     /**
-     * The authority.
+     * The authority, or {@code null} if unknown.
      *
      * @see #getAuthority()
      */
     private final String authority;
 
     /**
-     * The invalid authority code.
+     * The invalid authority code, or {@code null} if unknown.
      *
      * @see #getAuthorityCode()
      */
@@ -55,6 +55,7 @@ public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
 
     /**
      * Constructs an exception with the specified detail message and authority code.
+     * All arguments accept the {@code null} value.
      *
      * @param  message    the detail message, saved for later retrieval by the {@link #getMessage()} method.
      * @param  authority  the authority, saved for retrieval by the {@link #getAuthority()} method.
@@ -65,8 +66,9 @@ public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
     }
 
     /**
-     * Constructs an exception with the specified detail message, authority code and identifier.
+     * Constructs an exception with the specified detail message, authority, code and identifier.
      * The identifier argument is optional. If omitted, then "{@code authority:code}" will be used.
+     * All arguments accept the {@code null} value.
      *
      * @param  message     the detail message, saved for later retrieval by the {@link #getMessage()} method.
      * @param  authority   the authority, saved for retrieval by the {@link #getAuthority()} method.
@@ -76,6 +78,27 @@ public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
      */
     public NoSuchAuthorityCodeException(final String message, final String authority, final String code, final String identifier) {
         super(message, identifier);
+        this.authority = authority;
+        this.code = code;
+    }
+
+    /**
+     * Constructs an exception with the specified detail message, authority, code, identifier and error cause.
+     * All arguments accept the {@code null} value.
+     *
+     * @param message     the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param authority   the authority, saved for retrieval by the {@link #getAuthority()} method.
+     * @param code        the invalid authority code, saved for retrieval by the {@link #getAuthorityCode()} method.
+     * @param identifier  the full identifier as a concatenation of the authority and the code,
+     *                    saved for retrieval by the {@link #getIdentifierCode()} method.
+     * @param cause       the cause, saved for later retrieval by the {@link #getCause()} method.
+     *
+     * @since 3.1
+     */
+    public NoSuchAuthorityCodeException(final String message, final String authority, final String code,
+                                        final String identifier, final Throwable cause)
+    {
+        super(message, identifier, cause);
         this.authority = authority;
         this.code = code;
     }

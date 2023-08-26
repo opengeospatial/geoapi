@@ -34,6 +34,12 @@ import static org.junit.Assert.*;
  */
 public class ImageBackendCaseTest {
     /**
+     * Creates a new test case.
+     */
+    public ImageBackendCaseTest() {
+    }
+
+    /**
      * Tests the {@link ImageBackendTestCase#createImage(int, int, int, int)} method
      * with a single band.
      */

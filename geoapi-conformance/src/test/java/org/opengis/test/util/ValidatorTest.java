@@ -30,6 +30,12 @@ import org.junit.*;
  */
 public class ValidatorTest {
     /**
+     * Creates a new test case.
+     */
+    public ValidatorTest() {
+    }
+
+    /**
      * Verifies that {@link NameValidator#validate(InternationalString)} doesn't throw
      * unexpected exceptions.
      */

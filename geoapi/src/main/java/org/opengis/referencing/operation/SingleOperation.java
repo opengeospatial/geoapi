@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="CC_SingleOperation", specification=ISO_19111)
+@UML(identifier="CC_SingleOperation", specification=ISO_19111, version=2007)
 public interface SingleOperation extends CoordinateOperation {
     /**
      * Returns the operation method.

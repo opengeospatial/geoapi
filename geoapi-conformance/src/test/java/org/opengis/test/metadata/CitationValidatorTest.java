@@ -34,6 +34,12 @@ import static org.opengis.test.Validators.validate;
  */
 public class CitationValidatorTest {
     /**
+     * Creates a new test case.
+     */
+    public CitationValidatorTest() {
+    }
+
+    /**
      * Tests {@link CitationValidator#validate(CitationDate...)}.
      */
     @Test

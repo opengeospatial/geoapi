@@ -23,7 +23,7 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -69,22 +69,24 @@ public abstract class SourceGenerator {
                 case "target": break;                       // Building with Maven - nothing to do.
                 default: fail("Unexpected directory: " + dir);
             }
-            assertTrue("Not a directory.", Files.isDirectory(dir));
+            assertTrue(Files.isDirectory(dir), "Not a directory.");
             targetDirectory = dir;
         }
         return dir;
     }
 
     /**
-     * Returns the root of the directory containing the given class. In a Maven build,
+     * {@return the root of the directory containing the given class}. In a Maven build,
      * this is the {@code target/classes} directory of the module containing the given class.
+     *
+     * @param  sample  any class in the module to find.
      */
     private static Path rootClassesDirectory(final Class<?> sample) {
         final String pathname = sample.getCanonicalName();
         int s = pathname.lastIndexOf('.');
         String name = pathname.substring(s+1) + CLASS_SUFFIX;
         final URL url = sample.getResource(name);
-        assertNotNull("Class file not found.", url);
+        assertNotNull(url, "Class file not found.");
         Path dir;
         try {
             dir = Paths.get(url.toURI());
@@ -110,7 +112,7 @@ public abstract class SourceGenerator {
      * @return the parent directory (never null).
      */
     private static Path parent(final Path path, final String expected) {
-        assertEquals("Unexpected file or directory name.", expected, path.getFileName().toString());
+        assertEquals(expected, path.getFileName().toString(), "Unexpected file or directory name.");
         final Path parent = path.getParent();
         if (parent == null) {
             fail("Missing parent directory for " + path);
@@ -129,9 +131,9 @@ public abstract class SourceGenerator {
     protected static Path sourceDirectory(final String language) {
         Path dir = parent(targetDirectory(), "classes");
         dir = parent(dir, "target");
-        assertEquals("Not the expected module.", "geoapi", dir.getFileName().toString());
+        assertEquals("geoapi", dir.getFileName().toString(), "Not the expected module.");
         dir = dir.resolve("src").resolve("main").resolve(language);
-        assertTrue("Not a directory.", Files.isDirectory(dir));
+        assertTrue(Files.isDirectory(dir), "Not a directory.");
         return dir;
     }
 

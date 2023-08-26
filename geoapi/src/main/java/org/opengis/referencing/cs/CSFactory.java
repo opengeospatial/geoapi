@@ -21,6 +21,7 @@ import java.util.Map;
 import javax.measure.Unit;
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.util.FactoryException;
+import org.opengis.util.UnimplementedServiceException;
 
 
 /**
@@ -30,6 +31,12 @@ import org.opengis.util.FactoryException;
  * This factory is very flexible, whereas the authority factory is easier to use.
  * So {@link CSAuthorityFactory} can be used to make "standard" coordinate systems,
  * and {@code CSFactory} can be used to make "special" coordinate systems.
+ *
+ * <h2>Default methods</h2>
+ * All {@code create(…)} methods in this interface are optional.
+ * If a method is not overridden by the implementer,
+ * the default is to throw an {@link UnimplementedServiceException}
+ * with a message saying that the type or service is not supported.
  *
  * @author  Martin Desruisseaux (IRD)
  * @author  Johann Sorel (Geomatys)
@@ -56,13 +63,16 @@ public interface CSFactory extends ObjectFactory {
      * @return the axis for the given properties.
      * @throws FactoryException if the object creation failed.
      */
-    CoordinateSystemAxis createCoordinateSystemAxis(Map<String,?> properties,
-                                                    String        abbreviation,
-                                                    AxisDirection direction,
-                                                    Unit<?>       unit) throws FactoryException;
+    default CoordinateSystemAxis createCoordinateSystemAxis(Map<String,?> properties,
+                                                            String        abbreviation,
+                                                            AxisDirection direction,
+                                                            Unit<?>       unit) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, CoordinateSystemAxis.class);
+    }
 
     /**
-     * Creates a two dimensional Cartesian coordinate system from the given pair of axis.
+     * Creates a two dimensional Cartesian coordinate system from the given pair of axes.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -71,12 +81,87 @@ public interface CSFactory extends ObjectFactory {
      * @return the coordinate system for the given properties and axes.
      * @throws FactoryException if the object creation failed.
      */
-    CartesianCS createCartesianCS(Map<String, ?>  properties,
+    default CartesianCS createCartesianCS(Map<String,?>  properties,
+                                          CoordinateSystemAxis axis0,
+                                          CoordinateSystemAxis axis1) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, CartesianCS.class, "2D");
+    }
+
+    /**
+     * Creates a three dimensional Cartesian coordinate system from the given set of axes.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  axis0  the first  axis.
+     * @param  axis1  the second axis.
+     * @param  axis2  the third  axis.
+     * @return the coordinate system for the given properties and axes.
+     * @throws FactoryException if the object creation failed.
+     */
+    default CartesianCS createCartesianCS(Map<String,?>  properties,
+                                          CoordinateSystemAxis axis0,
+                                          CoordinateSystemAxis axis1,
+                                          CoordinateSystemAxis axis2) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, CartesianCS.class, "3D");
+    }
+
+    /**
+     * Creates a two dimensional affine coordinate system from the given pair of axes.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  axis0  the first  axis.
+     * @param  axis1  the second axis.
+     * @return the coordinate system for the given properties and axes.
+     * @throws FactoryException if the object creation failed.
+     */
+    default AffineCS createAffineCS(Map<String,?>  properties,
+                                    CoordinateSystemAxis axis0,
+                                    CoordinateSystemAxis axis1) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, AffineCS.class, "2D");
+    }
+
+    /**
+     * Creates a three dimensional affine coordinate system from the given set of axes.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  axis0  the first  axis.
+     * @param  axis1  the second axis.
+     * @param  axis2  the third  axis.
+     * @return the coordinate system for the given properties and axes.
+     * @throws FactoryException if the object creation failed.
+     */
+    default AffineCS createAffineCS(Map<String,?>  properties,
+                                    CoordinateSystemAxis axis0,
+                                    CoordinateSystemAxis axis1,
+                                    CoordinateSystemAxis axis2) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, AffineCS.class, "3D");
+    }
+
+    /**
+     * Creates a polar coordinate system from the given pair of axes.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  axis0  the first  axis.
+     * @param  axis1  the second axis.
+     * @return the coordinate system for the given properties and axes.
+     * @throws FactoryException if the object creation failed.
+     */
+    default PolarCS createPolarCS(Map<String,?>  properties,
                                   CoordinateSystemAxis axis0,
-                                  CoordinateSystemAxis axis1) throws FactoryException;
+                                  CoordinateSystemAxis axis1) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, PolarCS.class);
+    }
 
     /**
-     * Creates a three dimensional Cartesian coordinate system from the given set of axis.
+     * Creates a cylindrical coordinate system from the given set of axes.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -86,87 +171,13 @@ public interface CSFactory extends ObjectFactory {
      * @return the coordinate system for the given properties and axes.
      * @throws FactoryException if the object creation failed.
      */
-    CartesianCS createCartesianCS(Map<String, ?>  properties,
-                                  CoordinateSystemAxis axis0,
-                                  CoordinateSystemAxis axis1,
-                                  CoordinateSystemAxis axis2) throws FactoryException;
-
-    /**
-     * Creates a two dimensional coordinate system from the given pair of axis.
-     *
-     * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  axis0  the first  axis.
-     * @param  axis1  the second axis.
-     * @return the coordinate system for the given properties and axes.
-     * @throws FactoryException if the object creation failed.
-     */
-    AffineCS createAffineCS(Map<String, ?>  properties,
-                            CoordinateSystemAxis axis0,
-                            CoordinateSystemAxis axis1) throws FactoryException;
-
-    /**
-     * Creates a three dimensional coordinate system from the given set of axis.
-     *
-     * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  axis0  the first  axis.
-     * @param  axis1  the second axis.
-     * @param  axis2  the third  axis.
-     * @return the coordinate system for the given properties and axes.
-     * @throws FactoryException if the object creation failed.
-     */
-    AffineCS createAffineCS(Map<String, ?>  properties,
-                            CoordinateSystemAxis axis0,
-                            CoordinateSystemAxis axis1,
-                            CoordinateSystemAxis axis2) throws FactoryException;
-
-    /**
-     * Creates a polar coordinate system from the given pair of axis.
-     *
-     * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  axis0  the first  axis.
-     * @param  axis1  the second axis.
-     * @return the coordinate system for the given properties and axes.
-     * @throws FactoryException if the object creation failed.
-     */
-    PolarCS createPolarCS(Map<String, ?>  properties,
-                          CoordinateSystemAxis axis0,
-                          CoordinateSystemAxis axis1) throws FactoryException;
-
-    /**
-     * Creates a cylindrical coordinate system from the given set of axis.
-     *
-     * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  axis0  the first  axis.
-     * @param  axis1  the second axis.
-     * @param  axis2  the third  axis.
-     * @return the coordinate system for the given properties and axes.
-     * @throws FactoryException if the object creation failed.
-     */
-    CylindricalCS createCylindricalCS(Map<String, ?>  properties,
-                                      CoordinateSystemAxis axis0,
-                                      CoordinateSystemAxis axis1,
-                                      CoordinateSystemAxis axis2) throws FactoryException;
-
-    /**
-     * Creates a spherical coordinate system from the given set of axis.
-     * Two axes shall use angular units and one axis shall use linear units.
-     *
-     * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  axis0  the first  axis.
-     * @param  axis1  the second axis.
-     * @param  axis2  the third  axis.
-     * @return the coordinate system for the given properties and axes.
-     * @throws FactoryException if the object creation failed.
-     */
-    SphericalCS createSphericalCS(Map<String, ?>  properties,
-                                  CoordinateSystemAxis axis0,
-                                  CoordinateSystemAxis axis1,
-                                  CoordinateSystemAxis axis2) throws FactoryException;
+    default CylindricalCS createCylindricalCS(Map<String,?>  properties,
+                                              CoordinateSystemAxis axis0,
+                                              CoordinateSystemAxis axis1,
+                                              CoordinateSystemAxis axis2) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, CylindricalCS.class);
+    }
 
     /**
      * Creates a spherical coordinate system without radius.
@@ -181,9 +192,32 @@ public interface CSFactory extends ObjectFactory {
      *
      * @since 3.1
      */
-    SphericalCS createSphericalCS(Map<String, ?>  properties,
-                                  CoordinateSystemAxis axis0,
-                                  CoordinateSystemAxis axis1) throws FactoryException;
+    default SphericalCS createSphericalCS(Map<String,?>  properties,
+                                          CoordinateSystemAxis axis0,
+                                          CoordinateSystemAxis axis1) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, SphericalCS.class, "2D");
+    }
+
+    /**
+     * Creates a spherical coordinate system from the given set of axes.
+     * Two axes shall use angular units and one axis shall use linear units.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  axis0  the first  axis.
+     * @param  axis1  the second axis.
+     * @param  axis2  the third  axis.
+     * @return the coordinate system for the given properties and axes.
+     * @throws FactoryException if the object creation failed.
+     */
+    default SphericalCS createSphericalCS(Map<String,?>  properties,
+                                          CoordinateSystemAxis axis0,
+                                          CoordinateSystemAxis axis1,
+                                          CoordinateSystemAxis axis2) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, SphericalCS.class, "3D");
+    }
 
     /**
      * Creates an ellipsoidal coordinate system without ellipsoidal height.
@@ -195,9 +229,12 @@ public interface CSFactory extends ObjectFactory {
      * @return the coordinate system for the given properties and axes.
      * @throws FactoryException if the object creation failed.
      */
-    EllipsoidalCS createEllipsoidalCS(Map<String, ?>  properties,
-                                      CoordinateSystemAxis axis0,
-                                      CoordinateSystemAxis axis1) throws FactoryException;
+    default EllipsoidalCS createEllipsoidalCS(Map<String,?>  properties,
+                                              CoordinateSystemAxis axis0,
+                                              CoordinateSystemAxis axis1) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, EllipsoidalCS.class, "2D");
+    }
 
     /**
      * Creates an ellipsoidal coordinate system with ellipsoidal height.
@@ -210,10 +247,13 @@ public interface CSFactory extends ObjectFactory {
      * @return the coordinate system for the given properties and axes.
      * @throws FactoryException if the object creation failed.
      */
-    EllipsoidalCS createEllipsoidalCS(Map<String, ?>  properties,
-                                      CoordinateSystemAxis axis0,
-                                      CoordinateSystemAxis axis1,
-                                      CoordinateSystemAxis axis2) throws FactoryException;
+    default EllipsoidalCS createEllipsoidalCS(Map<String,?>  properties,
+                                              CoordinateSystemAxis axis0,
+                                              CoordinateSystemAxis axis1,
+                                              CoordinateSystemAxis axis2) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, EllipsoidalCS.class, "3D");
+    }
 
     /**
      * Creates a vertical coordinate system.
@@ -224,8 +264,11 @@ public interface CSFactory extends ObjectFactory {
      * @return the coordinate system for the given properties and axes.
      * @throws FactoryException if the object creation failed.
      */
-    VerticalCS createVerticalCS(Map<String, ?> properties,
-                                CoordinateSystemAxis axis) throws FactoryException;
+    default VerticalCS createVerticalCS(Map<String,?> properties,
+                                        CoordinateSystemAxis axis) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, VerticalCS.class);
+    }
 
     /**
      * Creates a time coordinate system.
@@ -236,8 +279,11 @@ public interface CSFactory extends ObjectFactory {
      * @return the coordinate system for the given properties and axes.
      * @throws FactoryException if the object creation failed.
      */
-    TimeCS createTimeCS(Map<String, ?> properties,
-                        CoordinateSystemAxis axis) throws FactoryException;
+    default TimeCS createTimeCS(Map<String,?> properties,
+                                CoordinateSystemAxis axis) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, TimeCS.class);
+    }
 
     /**
      * Creates a parametric coordinate system.
@@ -248,8 +294,11 @@ public interface CSFactory extends ObjectFactory {
      * @return the coordinate system for the given properties and axes.
      * @throws FactoryException if the object creation failed.
      */
-    ParametricCS createParametricCS(Map<String, ?> properties,
-                                    CoordinateSystemAxis axis) throws FactoryException;
+    default ParametricCS createParametricCS(Map<String,?> properties,
+                                            CoordinateSystemAxis axis) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, ParametricCS.class);
+    }
 
     /**
      * Creates a linear coordinate system.
@@ -260,8 +309,11 @@ public interface CSFactory extends ObjectFactory {
      * @return the coordinate system for the given properties and axes.
      * @throws FactoryException if the object creation failed.
      */
-    LinearCS createLinearCS(Map<String, ?> properties,
-                            CoordinateSystemAxis axis) throws FactoryException;
+    default LinearCS createLinearCS(Map<String,?> properties,
+                                    CoordinateSystemAxis axis) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, LinearCS.class);
+    }
 
     /**
      * Creates a two-dimensional user defined coordinate system.
@@ -273,9 +325,12 @@ public interface CSFactory extends ObjectFactory {
      * @return the coordinate system for the given properties and axes.
      * @throws FactoryException if the object creation failed.
      */
-    UserDefinedCS createUserDefinedCS(Map<String, ?>  properties,
-                                      CoordinateSystemAxis axis0,
-                                      CoordinateSystemAxis axis1) throws FactoryException;
+    default UserDefinedCS createUserDefinedCS(Map<String,?>  properties,
+                                              CoordinateSystemAxis axis0,
+                                              CoordinateSystemAxis axis1) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, UserDefinedCS.class, "2D");
+    }
 
     /**
      * Creates a three-dimensional user defined coordinate system.
@@ -288,8 +343,11 @@ public interface CSFactory extends ObjectFactory {
      * @return the coordinate system for the given properties and axes.
      * @throws FactoryException if the object creation failed.
      */
-    UserDefinedCS createUserDefinedCS(Map<String, ?>  properties,
-                                      CoordinateSystemAxis axis0,
-                                      CoordinateSystemAxis axis1,
-                                      CoordinateSystemAxis axis2) throws FactoryException;
+    default UserDefinedCS createUserDefinedCS(Map<String,?>  properties,
+                                              CoordinateSystemAxis axis0,
+                                              CoordinateSystemAxis axis1,
+                                              CoordinateSystemAxis axis2) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, UserDefinedCS.class, "3D");
+    }
 }

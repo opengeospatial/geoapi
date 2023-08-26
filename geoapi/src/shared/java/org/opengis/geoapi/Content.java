@@ -51,6 +51,10 @@ public enum Content {
                org.opengis.util                    .RecordSchema                        .class,
                org.opengis.util                    .RecordType                          .class,
                org.opengis.util                    .Record                              .class,
+               org.opengis.temporal                .TemporalPrimitive                   .class,
+               org.opengis.temporal                .TemporalPosition                    .class,
+               org.opengis.temporal                .Duration                            .class,
+               org.opengis.temporal                .PeriodDuration                      .class,
                org.opengis.metadata.citation       .Series                              .class,
                org.opengis.metadata.citation       .Address                             .class,
                org.opengis.metadata.citation       .Telephone                           .class,
@@ -64,7 +68,16 @@ public enum Content {
                org.opengis.metadata.citation       .CitationDate                        .class,
                org.opengis.metadata.citation       .Citation                            .class,
                org.opengis.metadata                .Identifier                          .class,     // Depends on Citation
+               org.opengis.metadata.extent         .GeographicExtent                    .class,
+               org.opengis.metadata.extent         .GeographicBoundingBox               .class,
+               org.opengis.metadata.extent         .GeographicDescription               .class,     // Depends on Identifier
+               org.opengis.metadata.extent         .BoundingPolygon                     .class,
+               org.opengis.metadata.extent         .VerticalExtent                      .class,
+               org.opengis.metadata.extent         .TemporalExtent                      .class,
+               org.opengis.metadata.extent         .SpatialTemporalExtent               .class,
+               org.opengis.metadata.extent         .Extent                              .class,
                org.opengis.referencing             .ReferenceIdentifier                 .class,
+               org.opengis.referencing             .ObjectDomain                        .class,     // Depends on Extent
                org.opengis.referencing             .IdentifiedObject                    .class,     // A parameter dependency.
                org.opengis.parameter               .GeneralParameterDescriptor          .class,
                org.opengis.parameter               .GeneralParameterValue               .class,
@@ -72,18 +85,6 @@ public enum Content {
                org.opengis.parameter               .ParameterValue                      .class,
                org.opengis.parameter               .ParameterDescriptorGroup            .class,
                org.opengis.parameter               .ParameterValueGroup                 .class,
-               org.opengis.temporal                .TemporalPrimitive                   .class,
-               org.opengis.temporal                .TemporalPosition                    .class,
-               org.opengis.temporal                .Duration                            .class,
-               org.opengis.temporal                .PeriodDuration                      .class,
-               org.opengis.metadata.extent         .GeographicExtent                    .class,
-               org.opengis.metadata.extent         .GeographicBoundingBox               .class,
-               org.opengis.metadata.extent         .GeographicDescription               .class,
-               org.opengis.metadata.extent         .BoundingPolygon                     .class,
-               org.opengis.metadata.extent         .VerticalExtent                      .class,
-               org.opengis.metadata.extent         .TemporalExtent                      .class,
-               org.opengis.metadata.extent         .SpatialTemporalExtent               .class,
-               org.opengis.metadata.extent         .Extent                              .class,
                org.opengis.metadata.maintenance    .ScopeDescription                    .class,
                org.opengis.metadata.maintenance    .Scope                               .class,
                org.opengis.metadata.maintenance    .MaintenanceInformation              .class,
@@ -391,6 +392,7 @@ public enum Content {
      * All exceptions.
      */
     EXCEPTIONS(org.opengis.util                  .FactoryException                     .class,
+               org.opengis.util                  .UnimplementedServiceException        .class,
                org.opengis.util                  .NoSuchIdentifierException            .class,
                org.opengis.referencing           .NoSuchAuthorityCodeException         .class,
                org.opengis.referencing.operation .OperationNotFoundException           .class,
@@ -418,12 +420,14 @@ public enum Content {
     ALL(CONTROLLED_VOCABULARY, INTERFACES, EXCEPTIONS);
 
     /**
-     * All types in that are members of the category identified by this enumeration value.
+     * All types that are members of the category identified by this enumeration value.
      */
     private final Class<?>[] types;
 
     /**
      * Creates a new enumeration with the given members.
+     *
+     * @param  types  all types that are members of the category identified by this enumeration value.
      */
     private Content(final Class<?>... types) {
         this.types = types;
@@ -431,6 +435,8 @@ public enum Content {
 
     /**
      * Creates a new enumeration as the union of existing enumerations.
+     *
+     * @param  others  the other enumerations to combine in this one.
      */
     private Content(final Content... others) {
         int length = 0;
@@ -508,6 +514,9 @@ public enum Content {
 
     /**
      * Returns {@link ParameterizedType#getActualTypeArguments()} as a {@link Class} or {@code null}.
+     *
+     * @param  type  the type to convert to a class.
+     * @return the given type as a class, or {@code null}.
      */
     private static Class<?> getActualTypeArgument(Type type) {
         if (type instanceof ParameterizedType) {

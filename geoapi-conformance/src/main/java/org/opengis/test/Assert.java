@@ -54,6 +54,7 @@ import org.opengis.test.coverage.image.PixelIterator;
  * @version 3.1
  * @since   2.2
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class Assert extends org.junit.Assert {
     /**
      * The keyword for unrestricted value in {@link String} arguments.
@@ -68,6 +69,9 @@ public strictfp class Assert extends org.junit.Assert {
 
     /**
      * Returns the given message, or an empty string if the message is null.
+     *
+     * @param  message  the message, possibly null.
+     * @return the given message or an empty string, never null.
      */
     private static String nonNull(final String message) {
         return (message != null) ? message.trim().concat(" ") : "";
@@ -94,8 +98,13 @@ public strictfp class Assert extends org.junit.Assert {
 
     /**
      * Verifies if we expected a null value, then returns {@code true} if the value is null as expected.
+     *
+     * @param  expected  the expected value.
+     * @param  actual    the actual value.
+     * @param  message   the message to report in case of error.
+     * @return whether the value was null.
      */
-    private static boolean isNull(final String message, final Object expected, final Object actual) {
+    private static boolean isNull(final Object expected, final Object actual, final String message) {
         final boolean isNull = (actual == null);
         if (isNull != (expected == null)) {
             fail(concat(message, isNull ? "Value is null." : "Expected null."));
@@ -292,7 +301,7 @@ public strictfp class Assert extends org.junit.Assert {
      * @since 3.1
      */
     public static void assertAnyTitleEquals(final String message, final String expected, final Citation actual) {
-        if (isNull(message, expected, actual)) {
+        if (isNull(expected, actual, message)) {
             return;
         }
         InternationalString title = actual.getTitle();
@@ -366,7 +375,7 @@ public strictfp class Assert extends org.junit.Assert {
     public static void assertUnicodeIdentifierEquals(final String message,
             final CharSequence expected, final CharSequence actual, final boolean ignoreCase)
     {
-        if (UNRESTRICTED.equals(expected) || isNull(message, expected, actual)) {
+        if (UNRESTRICTED.equals(expected) || isNull(expected, actual, message)) {
             return;
         }
         final int expLength = expected.length();
@@ -413,6 +422,10 @@ public strictfp class Assert extends org.junit.Assert {
 
     /**
      * Returns {@code true} if the given codepoint is an unicode identifier start or part.
+     *
+     * @param  codepoint  the code point to test.
+     * @param  part       {@code false} for identifier start, {@code true} for identifier part.
+     * @return whether the given code point is an identifier start or part.
      */
     private static boolean isUnicodeIdentifier(final int codepoint, final boolean part) {
         return part ? Character.isUnicodeIdentifierPart (codepoint)
@@ -452,7 +465,7 @@ public strictfp class Assert extends org.junit.Assert {
      * @see org.opengis.test.referencing.TransformTestCase#assertMatrixEquals(String, Matrix, Matrix, Matrix)
      */
     public static void assertMatrixEquals(final String message, final Matrix expected, final Matrix actual, final double tolerance) {
-        if (isNull(message, expected, actual)) {
+        if (isNull(expected, actual, message)) {
             return;
         }
         final int numRow = actual.getNumRow();
@@ -498,7 +511,7 @@ public strictfp class Assert extends org.junit.Assert {
     public static void assertShapeEquals(String message, final Shape expected,
             final Shape actual, final double toleranceX, final double toleranceY)
     {
-        if (isNull(message, expected, actual)) {
+        if (isNull(expected, actual, message)) {
             return;
         }
         final Rectangle2D b0 = expected.getBounds2D();
@@ -541,7 +554,7 @@ public strictfp class Assert extends org.junit.Assert {
     public static void assertPathEquals(final String message, final PathIterator expected,
             final PathIterator actual, final double toleranceX, final double toleranceY)
     {
-        if (isNull(message, expected, actual)) {
+        if (isNull(expected, actual, message)) {
             return;
         }
         assertEquals(concat(message, "Mismatched winding rule."), expected.getWindingRule(), actual.getWindingRule());
@@ -595,7 +608,7 @@ public strictfp class Assert extends org.junit.Assert {
     public static void assertSampleValuesEqual(final String message, final RenderedImage expected,
             final RenderedImage actual, final double tolerance)
     {
-        if (isNull(message, expected, actual)) {
+        if (isNull(expected, actual, message)) {
             return;
         }
         assertEquals(concat(message, "Mismatched image width."),  expected.getWidth(),  actual.getWidth());

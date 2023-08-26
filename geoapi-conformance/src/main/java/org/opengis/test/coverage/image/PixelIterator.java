@@ -54,6 +54,7 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class PixelIterator {
     /**
      * The image in which to iterate.
@@ -195,6 +196,11 @@ public strictfp class PixelIterator {
     /**
      * Rounds the given numbers, rounding toward floor or ceil depending on the value
      * of the {@code ceil} argument. This method works for negative numerator too.
+     *
+     * @param  numerator    the value to divide.
+     * @param  denominator  the divisor.
+     * @param  ceil         whether to round toward up.
+     * @return division result rounded toward the specified direction.
      */
     private static int divide(final int numerator, final int denominator, final boolean ceil) {
         assertTrue("Require a non-negative denominator.", denominator > 0);
@@ -433,12 +439,17 @@ public strictfp class PixelIterator {
     /**
      * Invoked when a sample value mismatch has been found, for allowing {@link PixelIteratorForIO}
      * to append to the error message the I/O parameters used for the reading or writing process.
+     *
+     * @param buffer         buffer where to write the message.
+     * @param lineSeparator  value of {@link System#lineSeparator()}.
      */
     void completeComparisonFailureMessage(final StringBuilder buffer, final String lineSeparator) {
     }
 
     /**
      * Formats the current position of this iterator in the given buffer.
+     *
+     * @param buffer  buffer where to write the position.
      */
     private void position(final StringBuilder buffer) {
         buffer.append('(').append(getX()).append(", ").append(getY()).append(") band ").append(getBand());

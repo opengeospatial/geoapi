@@ -105,7 +105,10 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * <p>The default implementation returns {@code null}.</p>
      *
      * @return the domain of usage, or {@code null} if none.
+     *
+     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1", forRemoval=true)
     public InternationalString getScope() {
         return null;
     }
@@ -118,7 +121,10 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * <p>The default implementation returns {@code null}.</p>
      *
      * @return the valid domain, or {@code null} if not available.
+     *
+     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1", forRemoval=true)
     public Extent getDomainOfValidity() {
         return null;
     }

@@ -35,7 +35,7 @@ import org.opengis.metadata.identification.CharacterSet;
 import org.opengis.annotation.UML;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -50,6 +50,12 @@ public final class CodeListTest {
      * The root directory of Java source code, or {@code null} if unspecified.
      */
     private String sourceDirectory;
+
+    /**
+     * Creates a new test case.
+     */
+    public CodeListTest() {
+    }
 
     /**
      * Parse the Java source code of a {@code CodeList} implementation in order to find the initial capacity.
@@ -108,10 +114,10 @@ public final class CodeListTest {
              */
             final String className = codeClass.getCanonicalName();
             final Method valuesMethod = codeClass.getMethod("values", (Class<?>[]) null);
-            assertTrue(className + ".values() is not public.", Modifier.isPublic(valuesMethod.getModifiers()));
-            assertTrue(className + ".values() is not static.", Modifier.isStatic(valuesMethod.getModifiers()));
+            assertTrue(Modifier.isPublic(valuesMethod.getModifiers()), () -> className + ".values() is not public.");
+            assertTrue(Modifier.isStatic(valuesMethod.getModifiers()), () -> className + ".values() is not static.");
             final ControlledVocabulary[] values = (ControlledVocabulary[]) valuesMethod.invoke(null, (Object[]) null);
-            assertNotNull(className + ".values() returned null.", values);
+            assertNotNull(values, () -> className + ".values() returned null.");
             /*
              * Tests every CodeList instances returned by values().
              * Every field should be public, static and final.
@@ -120,19 +126,19 @@ public final class CodeListTest {
             for (final ControlledVocabulary value : values) {
                 final String valueName = value.name();
                 final String fullName  = className + '.' + valueName;
-                assertTrue(fullName + " is of unexpected type.", codeClass.isInstance(value));
+                assertTrue(codeClass.isInstance(value), () -> fullName + " is of unexpected type.");
                 final Field field = codeClass.getDeclaredField(valueName);
                 final int modifiers = field.getModifiers();
                 if (field.isAnnotationPresent(UML.class)) {
-                    assertTrue(fullName + " is not public.", Modifier.isPublic(modifiers));
+                    assertTrue(Modifier.isPublic(modifiers), () -> fullName + " is not public.");
                 } else {
                     field.setAccessible(true);
                 }
-                assertTrue  (fullName + " is not static.", Modifier.isStatic(modifiers));
-                assertTrue  (fullName + " is not final.",  Modifier.isFinal (modifiers));
-                assertEquals(fullName + " name mismatch.", valueName, field.getName());
-                assertSame(fullName + " is not the expected instance.", value, field.get(null));
-                assertArrayEquals(className + ".family() mismatch.", values, value.family());
+                assertTrue  (Modifier.isStatic(modifiers), () -> fullName  + " is not static.");
+                assertTrue  (Modifier.isFinal (modifiers), () -> fullName  + " is not final.");
+                assertEquals(valueName, field.getName(),   () -> fullName  + " name mismatch.");
+                assertSame  (value,     field.get(null),   () -> fullName  + " is not the expected instance.");
+                assertArrayEquals(values, value.family(),  () -> className + ".family() mismatch.");
             }
             /*
              * Gets the private VALUES field only if CodeList is the direct parent.
@@ -141,28 +147,29 @@ public final class CodeListTest {
                 final String arrayName = className + ".VALUES";
                 final Field field = codeClass.getDeclaredField("VALUES");
                 final int modifiers = field.getModifiers();
-                assertTrue (arrayName + " is not static.", Modifier.isStatic   (modifiers));
-                assertTrue (arrayName + " is not final.",  Modifier.isFinal    (modifiers));
-                assertFalse(arrayName + " is protected.",  Modifier.isProtected(modifiers));
-                assertFalse(arrayName + " is public.",     Modifier.isPublic   (modifiers));
+                assertTrue (Modifier.isStatic   (modifiers), () -> arrayName + " is not static.");
+                assertTrue (Modifier.isFinal    (modifiers), () -> arrayName + " is not final.");
+                assertFalse(Modifier.isProtected(modifiers), () -> arrayName + " is protected.");
+                assertFalse(Modifier.isPublic   (modifiers), () -> arrayName + " is public.");
                 field.setAccessible(true);
                 final ArrayList<?> asList;
                 try {
                     final Object candidate = field.get(null);
-                    assertEquals(arrayName + " is not an ArrayList.", ArrayList.class, candidate.getClass());
+                    assertEquals(ArrayList.class, candidate.getClass(), () -> arrayName + " is not an ArrayList.");
                     asList = (ArrayList<?>) candidate;
                 } catch (IllegalAccessException e) {
                     fail(arrayName + " is not accessible: " + e);
                     return;
                 }
-                assertArrayEquals(arrayName + " content does not match values().", values, asList.toArray());
+                assertArrayEquals(values, asList.toArray(), () -> arrayName + " content does not match values().");
                 /*
                  * Verifies if the ArrayList initial capacity match the actual list size.
                  * It is not mandatory to have an accurate initial capacity, but it avoid
                  * a little bit of memory reallocation at application startup time.
                  */
                 if (sourceDirectory != null) {
-                    assertEquals(arrayName + " not properly sized.", asList.size(), getDeclaredCapacity(codeClass));
+                    assertEquals(asList.size(), getDeclaredCapacity(codeClass),
+                                 () -> arrayName + " not properly sized.");
                 }
             }
             /*
@@ -177,8 +184,10 @@ public final class CodeListTest {
              */
             if (CodeList.class.isAssignableFrom(codeClass)) {
                 final CodeList<?> value = (CodeList<?>) valueOfMethod.invoke(null, "MyNewCode");
-                assertTrue(className + ".valueOf(String) did not created an instance of the expected class.", codeClass.isInstance(value));
-                assertEquals("Newly created CodeList does not have the expected name.", "MyNewCode", value.name());
+                assertTrue(codeClass.isInstance(value),
+                           () -> className + ".valueOf(String) did not created an instance of the expected class.");
+                assertEquals("MyNewCode", value.name(),
+                             "Newly created CodeList does not have the expected name.");
             }
         }
     }

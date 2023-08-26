@@ -66,7 +66,7 @@ final class Utilities {
      * Returns the {@linkplain IdentifiedObject#getName() names} of all objects in the given
      * collection. If the given collection is {@code null}, then this method returns an empty set.
      *
-     * @param  object  the objects for which to get the names, or {@code null}.
+     * @param  objects  the objects for which to get the names, or {@code null}.
      * @return the names of all non-null objects (never {@code null}).
      */
     public static Set<String> getNames(final Collection<? extends IdentifiedObject> objects) {
@@ -110,7 +110,7 @@ final class Utilities {
      *
      * <p>If the given collection is {@code null}, then this method returns an empty set.</p>
      *
-     * @param  object  the objects for which to get the names and the aliases, or {@code null}.
+     * @param  objects the objects for which to get the names and the aliases, or {@code null}.
      * @return the names and aliases of all non-null objects (never {@code null}).
      */
     public static Set<String> getNameAndAliases(final Collection<? extends IdentifiedObject> objects) {
@@ -129,6 +129,9 @@ final class Utilities {
 
     /**
      * Adds the name and aliases in the given set.
+     *
+     * @param object  the object from which to get name and aliases.
+     * @param names   the set where to add name and aliases.
      */
     private static void getNameAndAliases(final IdentifiedObject object, final Set<String> names) {
         final String name = getName(object);

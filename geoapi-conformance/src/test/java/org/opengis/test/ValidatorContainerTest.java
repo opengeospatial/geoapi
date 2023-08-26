@@ -33,6 +33,12 @@ import static org.junit.Assert.*;
  */
 public class ValidatorContainerTest {
     /**
+     * Creates a new test case.
+     */
+    public ValidatorContainerTest() {
+    }
+
+    /**
      * Ensures that {@link ValidatorContainer#all} contains no duplicated value.
      * Also ensures that the declared list size is the expected one.
      */

@@ -16,7 +16,7 @@ import org.opengis.metadata.Metadata;
 import org.opengis.metadata.citation.Party;
 import org.opengis.metadata.citation.ResponsibleParty;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -27,6 +27,12 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 public class MetadataProxyFactoryTest {
+    /**
+     * Creates a new test case.
+     */
+    public MetadataProxyFactoryTest() {
+    }
+
     /**
      * Tests the creation of a {@link Metadata} containing a {@link Responsibility}.
      */
@@ -49,20 +55,24 @@ public class MetadataProxyFactoryTest {
         final Metadata md = factory.create(Metadata.class, attributes);
         assertEquals("Aristotle", getSingleton(getSingleton(md.getContacts()).getParties()).getName().toString());
 
-        assertTrue("Null value should have been replaced by empty collection.",
-                md.getSpatialRepresentationInfo().isEmpty());
+        assertTrue(md.getSpatialRepresentationInfo().isEmpty(),
+                "Null value should have been replaced by empty collection.");
 
         assertEquals("MD_Metadata{contact=[CI_ResponsibleParty{party=[CI_Party{name=Aristotle}]}]}", md.toString());
     }
 
     /**
      * Verifies that the given collection contains exactly one element, then returns that element.
+     *
+     * @param  <T>  type of elements in the collection.
+     * @param  collection  the collection to verify.
+     * @return the singleton element in the given collection.
      */
     private static <T> T getSingleton(final Collection<? extends T> collection) {
         final Iterator<? extends T> it = collection.iterator();
-        assertTrue("hasNext", it.hasNext());
+        assertTrue(it.hasNext(), "hasNext");
         final T element = it.next();
-        assertFalse("hasNext", it.hasNext());
+        assertFalse(it.hasNext(), "hasNext");
         return element;
     }
 }

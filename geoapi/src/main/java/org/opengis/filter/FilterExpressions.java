@@ -46,6 +46,8 @@ final class FilterExpressions<R> extends AbstractList<Expression<R,?>> {
 
     /**
      * Creates a new list of expression wrapping the given list of expressions.
+     *
+     * @param  filters  the filters to view as expressions.
      */
     FilterExpressions(final List<Filter<R>> filters) {
         this.filters = Objects.requireNonNull(filters);
@@ -77,6 +79,8 @@ final class FilterExpressions<R> extends AbstractList<Expression<R,?>> {
 
     /**
      * A filter viewed as an expression having a {@code Boolean} return value.
+     *
+     * @param  <R>  type of resources used as inputs.
      */
     private static final class Element<R> implements Expression<R,Boolean> {
         /**
@@ -86,6 +90,8 @@ final class FilterExpressions<R> extends AbstractList<Expression<R,?>> {
 
         /**
          * Creates a new expression wrapping the given filter.
+         *
+         * @param  filter  the filter to view as expression.
          */
         Element(final Filter<R> filter) {
             this.filter = Objects.requireNonNull(filter);

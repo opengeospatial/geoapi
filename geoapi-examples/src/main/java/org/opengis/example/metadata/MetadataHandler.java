@@ -35,8 +35,11 @@ final class MetadataHandler implements InvocationHandler {
     private final Map<String,?> attributes;
 
     /**
-     * Creates a new handler for the given GeoAPI interface, which will returns the
-     * values of the given map.
+     * Creates a new handler for the given GeoAPI interface,
+     * which will returns the values of the given map.
+     *
+     * @param  type        the GeoAPI interface implemented by this handler.
+     * @param  attributes  the attribute values to return when a GeoAPI method is invoked.
      */
     MetadataHandler(final Class<?> type, final Map<String,?> attributes) {
         this.type = type;

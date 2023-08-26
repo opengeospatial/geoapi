@@ -59,6 +59,6 @@ import static org.opengis.annotation.Specification.*;
  * @see CSAuthorityFactory#createSphericalCS(String)
  * @see CSFactory#createSphericalCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
  */
-@UML(identifier="CS_SphericalCS", specification=ISO_19111)
+@UML(identifier="CS_SphericalCS", specification=ISO_19111, version=2007)
 public interface SphericalCS extends CoordinateSystem {
 }

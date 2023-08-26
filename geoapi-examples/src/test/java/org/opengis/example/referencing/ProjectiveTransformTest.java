@@ -7,8 +7,6 @@ package org.opengis.example.referencing;
 
 import org.junit.Test;
 import org.junit.After;
-import org.junit.runner.RunWith;
-import org.junit.runners.JUnit4;
 
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.operation.Matrix;
@@ -16,7 +14,7 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.test.referencing.AffineTransformTest;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -28,7 +26,6 @@ import static org.junit.Assert.*;
  * @version 3.1
  * @since   3.1
  */
-@RunWith(JUnit4.class)
 public class ProjectiveTransformTest extends AffineTransformTest {
     /**
      * The expected class of the {@link #transform} instance.
@@ -78,6 +75,6 @@ public class ProjectiveTransformTest extends AffineTransformTest {
      */
     @After
     public void ensureExpectedTransformClass() {
-        assertEquals("Unexpected transform instance.", expectedTransformClass, transform.getClass());
+        assertEquals(expectedTransformClass, transform.getClass(), "Unexpected transform instance.");
     }
 }

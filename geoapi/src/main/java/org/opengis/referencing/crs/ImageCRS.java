@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * @see CRSAuthorityFactory#createImageCRS(String)
  * @see CRSFactory#createImageCRS(Map, ImageDatum, AffineCS)
  */
-@UML(identifier="SC_ImageCRS", specification=ISO_19111)
+@UML(identifier="SC_ImageCRS", specification=ISO_19111, version=2007)
 public interface ImageCRS extends SingleCRS {
     /**
      * Returns the affine coordinate system, which shall be {@linkplain AffineCS affine} or

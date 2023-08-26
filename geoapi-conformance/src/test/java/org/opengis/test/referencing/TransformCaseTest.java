@@ -53,10 +53,9 @@ public class TransformCaseTest extends TransformTestCase {
     protected final float[] coordinates = new float[256];
 
     /**
-     * Default constructor without factories.
+     * Creates a new test case.
      */
     public TransformCaseTest() {
-        super();
     }
 
     /**
@@ -211,6 +210,12 @@ public class TransformCaseTest extends TransformTestCase {
 
     /**
      * Implementation of {@code testVerifyInDomain} for an arbitrary number of dimensions.
+     *
+     * @param  min  minimum legal coordinate values.
+     * @param  max  maximum legal coordinate values.
+     * @param  num  the number of points along each dimension.
+     * @return the generated random coordinates inside the given domain of validity.
+     * @throws TransformException if a transform or a derivative cannot be computed.
      */
     private void testVerifyInDomain(final double[] min, final double[] max, final int... num)
             throws TransformException

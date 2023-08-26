@@ -33,7 +33,7 @@ import org.opengis.parameter.ParameterValueGroup;  // For javadoc
  * name.</p>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform(ParameterValueGroup)
@@ -50,13 +50,27 @@ public class NoSuchIdentifierException extends FactoryException {
     private final String identifier;
 
     /**
-     * Constructs an exception with the specified detail message and classification name.
+     * Constructs an exception with the specified detail message and identifier.
      *
      * @param message     the detail message, saved for later retrieval by the {@link #getMessage()} method.
-     * @param identifier  the {@linkplain Identifier#getCode() identifier code}.
+     * @param identifier  the {@linkplain Identifier#getCode() identifier code} which was not found.
      */
     public NoSuchIdentifierException(final String message, final String identifier) {
         super(message);
+        this.identifier = identifier;
+    }
+
+    /**
+     * Constructs an exception with the specified detail message, identifier and cause.
+     *
+     * @param message     the detail message, saved for later retrieval by the {@link #getMessage()} method.
+     * @param identifier  the {@linkplain Identifier#getCode() identifier code} which was not found.
+     * @param cause       the cause, saved for later retrieval by the {@link #getCause()} method.
+     *
+     * @since 3.1
+     */
+    public NoSuchIdentifierException(final String message, final String identifier, final Throwable cause) {
+        super(message, cause);
         this.identifier = identifier;
     }
 

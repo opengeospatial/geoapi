@@ -24,6 +24,7 @@ import org.opengis.util.FactoryException;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
+import org.opengis.referencing.ObjectDomain;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
@@ -45,8 +46,8 @@ import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
 
 
 /**
- * Tests the creation of referencing objects from the {@linkplain AuthorityFactory authority
- * factories} given at construction time.
+ * Tests the creation of referencing objects from the {@linkplain AuthorityFactory authority factories}
+ * given at construction time.
  *
  * <p>Many {@link ProjectedCRS} instances tested in this class use the same projections than the
  * {@link MathTransform} instances tested in {@link ParameterizedTransformTest}. However, the latter
@@ -76,6 +77,7 @@ import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
  * @version 3.1
  * @since   2.3
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     /**
      * Factory to use for building {@link CoordinateReferenceSystem} instances, or {@code null} if none.
@@ -308,9 +310,10 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * directions are (East,North), but the boolean argument allows to swap and flip those
      * directions.
      *
-     * @param cs    the coordinate system to check, or {@code null}.
-     * @param swap  {@code true} if the the easting and northing axes should be interchanged.
-     * @param flip  {@code true} if the sign of both axes should be reversed.
+     * @param message  the message to report in case of error.
+     * @param cs       the coordinate system to check, or {@code null}.
+     * @param swap     {@code true} if the the easting and northing axes should be interchanged.
+     * @param flip     {@code true} if the sign of both axes should be reversed.
      */
     private static void verifyAxisDirection(final String message, final CoordinateSystem cs,
             final boolean swap, final boolean flip)
@@ -420,20 +423,22 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
                 double λmax = areaOfValidity.getMaxX();
                 double φmin = areaOfValidity.getMinY();
                 double φmax = areaOfValidity.getMaxY();
-                final Extent extent = crs.getDomainOfValidity();
-                validators.validate(extent);
-                if (extent != null) {
-                    for (final GeographicExtent element : extent.getGeographicElements()) {
-                        if (element instanceof GeographicBoundingBox && Boolean.TRUE.equals(element.getInclusion())) {
-                            final GeographicBoundingBox bbox = (GeographicBoundingBox) element;
-                            λmin = bbox.getWestBoundLongitude();
-                            λmax = bbox.getEastBoundLongitude();
-                            φmin = bbox.getSouthBoundLatitude();
-                            φmax = bbox.getNorthBoundLatitude();
-                            setRect(areaOfValidity, λmin, φmin, λmax, φmax, swapλφ, toAngularUnit);
-                            assertFalse("Empty geographic bounding box.", areaOfValidity.isEmpty());
-                            test.verifyInDomainOfValidity(areaOfValidity);
-                            tested = true;
+                for (final ObjectDomain domain : crs.getDomains()) {
+                    final Extent extent = domain.getDomainOfValidity();
+                    if (extent != null) {
+                        validators.validate(extent);
+                        for (final GeographicExtent element : extent.getGeographicElements()) {
+                            if (element instanceof GeographicBoundingBox && Boolean.TRUE.equals(element.getInclusion())) {
+                                final GeographicBoundingBox bbox = (GeographicBoundingBox) element;
+                                λmin = bbox.getWestBoundLongitude();
+                                λmax = bbox.getEastBoundLongitude();
+                                φmin = bbox.getSouthBoundLatitude();
+                                φmax = bbox.getNorthBoundLatitude();
+                                setRect(areaOfValidity, λmin, φmin, λmax, φmax, swapλφ, toAngularUnit);
+                                assertFalse("Empty geographic bounding box.", areaOfValidity.isEmpty());
+                                test.verifyInDomainOfValidity(areaOfValidity);
+                                tested = true;
+                            }
                         }
                     }
                 }
@@ -447,6 +452,14 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
 
     /**
      * Sets the area of validity, swapping axis and converting units if necessary.
+     *
+     * @param areaOfValidity  the rectangle to set.
+     * @param λmin            the new longitude minimum.
+     * @param φmin            the new latitude minimum.
+     * @param λmax            the new longitude maximum.
+     * @param φmax            the new latitude maximum.
+     * @param swapλφ          whether to swap axis order.
+     * @param toAngularUnit   conversion factor to axis units.
      */
     private static void setRect(final Rectangle2D areaOfValidity,
             double λmin, double φmin, double λmax, double φmax,

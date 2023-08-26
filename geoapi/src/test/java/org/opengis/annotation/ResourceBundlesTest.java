@@ -22,7 +22,7 @@ import java.util.Locale;
 import java.util.ResourceBundle;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -33,6 +33,12 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 public final class ResourceBundlesTest {
+    /**
+     * Creates a new test case.
+     */
+    public ResourceBundlesTest() {
+    }
+
     /**
      * Verifies the {@code *_CAPACITY} constant values.
      *

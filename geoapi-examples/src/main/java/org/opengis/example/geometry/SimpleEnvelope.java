@@ -87,6 +87,10 @@ public class SimpleEnvelope implements Envelope {
      * neither their dimensions; they must have been checked by the caller. However, this method
      * verifies that the lower values are not greater than upper values, because this simple class
      * does not support envelopes crossing the anti-meridian.
+     *
+     * @param  coordinates  the array where to set the coordinate values.
+     * @param  lowerCorner  first corner from which to get the coordinates.
+     * @param  upperCorner  second corner from which to get the coordinates.
      */
     private static void setCorners(final double[] coordinates,
                                    final DirectPosition lowerCorner,

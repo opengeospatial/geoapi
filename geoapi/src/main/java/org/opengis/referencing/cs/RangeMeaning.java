@@ -28,9 +28,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Meaning of the axis value range specified through
- * {@linkplain CoordinateSystemAxis#getMinimumValue() minimum value} and
- * {@linkplain CoordinateSystemAxis#getMaximumValue() maximum value}.
+ * Meaning of the axis value range specified through minimum value and maximum value.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -38,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see CoordinateSystemAxis#getRangeMeaning()
  */
-@UML(identifier="CS_RangeMeaning", specification=ISO_19111)
+@UML(identifier="CS_RangeMeaning", specification=ISO_19111, version=2007)
 public final class RangeMeaning extends CodeList<RangeMeaning> {
     /**
      * Serial number for compatibility with different versions.

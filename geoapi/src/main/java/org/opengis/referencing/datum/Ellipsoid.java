@@ -18,6 +18,7 @@
 package org.opengis.referencing.datum;
 
 import java.util.Map;
+import java.util.OptionalDouble;
 import javax.measure.Unit;
 import javax.measure.quantity.Length;
 import org.opengis.referencing.IdentifiedObject;
@@ -30,13 +31,18 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Geometric figure that can be used to describe the approximate shape of the earth.
  * In mathematical terms, it is a surface formed by the rotation of an ellipse about
- * its minor axis. An ellipsoid requires two defining parameters:
+ * its minor axis. An ellipsoid requires two or three defining parameters:
  *
  * <ul>
- *   <li>{@linkplain #getSemiMajorAxis() semi-major axis} and
- *       {@linkplain #getInverseFlattening() inverse flattening}, or</li>
- *   <li>{@linkplain #getSemiMajorAxis() semi-major axis} and
- *       {@linkplain #getSemiMinorAxis() semi-minor axis}.</li>
+ *   <li>One of the following:
+ *     <ul>
+ *       <li>{@linkplain #getSemiMajorAxis() semi-major axis} and
+ *           {@linkplain #getInverseFlattening() inverse flattening}, or</li>
+ *       <li>{@linkplain #getSemiMajorAxis() semi-major axis} and
+ *           {@linkplain #getSemiMinorAxis() semi-minor axis}.</li>
+ *     </ul>
+ *   </li>
+ *   <li>Optionally a semi-median axis (for planetary applications).</li>
  * </ul>
  *
  * There is not just one ellipsoid. An ellipsoid is a matter of choice, and therefore many
@@ -62,14 +68,14 @@ import static org.opengis.annotation.Specification.*;
  *   to enable the user to establish which of the two parameters was used to define the instance.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0.1
+ * @version 3.1
  * @since   1.0
  *
  * @see DatumAuthorityFactory#createEllipsoid(String)
  * @see DatumFactory#createEllipsoid(Map, double, double, Unit)
  * @see DatumFactory#createFlattenedSphere(Map, double, double, Unit)
  */
-@UML(identifier="CD_Ellipsoid", specification=ISO_19111)
+@UML(identifier="CD_Ellipsoid", specification=ISO_19111, version=2007)
 public interface Ellipsoid extends IdentifiedObject {
     /**
      * Returns the linear unit of the {@linkplain #getSemiMajorAxis() semi-major}
@@ -89,6 +95,20 @@ public interface Ellipsoid extends IdentifiedObject {
      */
     @UML(identifier="semiMajorAxis", obligation=MANDATORY, specification=ISO_19111)
     double getSemiMajorAxis();
+
+    /**
+     * Length of the semi-median axis of a triaxial ellipsoid.
+     * This parameter is not required for a biaxial ellipsoid.
+     * The default implementation returns an empty value.
+     *
+     * @return length of the semi-median axis of a triaxial ellipsoid.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="semiMedianAxis", obligation=OPTIONAL, specification=ISO_19111)
+    default OptionalDouble getSemiMedianAxis() {
+        return OptionalDouble.empty();
+    }
 
     /**
      * Length of the semi-minor axis of the ellipsoid. This is the

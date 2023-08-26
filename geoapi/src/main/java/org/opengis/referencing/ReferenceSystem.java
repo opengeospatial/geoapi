@@ -44,9 +44,9 @@ import static org.opengis.annotation.Specification.*;
  *   <li>A {@linkplain #getName() name} (e.g. “<cite>WGS 84 / World Mercator</cite>”).</li>
  *   <li>Alternative names or {@linkplain #getAlias() aliases}, sometimes used for abbreviations.</li>
  *   <li>{@linkplain #getIdentifiers() Identifiers} allocated by authorities (e.g. “EPSG:3395”).</li>
- *   <li>The {@linkplain #getDomainOfValidity() domain of validity} in which this reference system is valid
+ *   <li>The {@linkplain ObjectDomain#getDomainOfValidity() domain of validity} in which this reference system is valid
  *       (e.g. “<cite>World - between 80°S and 84°N</cite>”).</li>
- *   <li>The {@linkplain #getScope() scope} or intended usage for this reference system
+ *   <li>The {@linkplain ObjectDomain#getScope() scope} or intended usage for this reference system
  *       (e.g. “<cite>Very small scale mapping</cite>”).</li>
  *   <li>{@linkplain #getRemarks() Remarks} about this object, including data source information
  *       (e.g. “<cite>Euro-centric view of world excluding polar areas</cite>”).</li>
@@ -72,20 +72,28 @@ import static org.opengis.annotation.Specification.*;
 public interface ReferenceSystem extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} {@code createFoo(Map, ...)} methods.
+     * {@code ObjectFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getDomainOfValidity()}.
      *
+     * @see ObjectFactory
      * @see #getDomainOfValidity()
+     *
+     * @deprecated Replaced by {@link #DOMAIN_KEY} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1", forRemoval=true)
     String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} {@code createFoo(Map, ...)} methods.
+     * {@code ObjectFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getScope()}.
      *
+     * @see ObjectFactory
      * @see #getScope()
+     *
+     * @deprecated Replaced by {@link #DOMAIN_KEY} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1", forRemoval=true)
     String SCOPE_KEY = "scope";
 
     /**
@@ -93,15 +101,12 @@ public interface ReferenceSystem extends IdentifiedObject {
      *
      * @return the reference system valid domain, or {@code null} if not available.
      *
-     * @departure historic
-     *   This method has been kept conformant with the specification published in 2003.
-     *   Later revisions changed the multiplicity, so the return type should now be a
-     *   collection. The singleton has been preserved in GeoAPI for historical reasons,
-     *   and also because the {@code Extent} attributes already allow collections.
+     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */
-    @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
+    @Deprecated(since="3.1", forRemoval=true)
+    @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default Extent getDomainOfValidity() {
-        return null;
+        return getDomains().stream().map(ObjectDomain::getDomainOfValidity).findFirst().orElse(null);
     }
 
     /**
@@ -110,21 +115,11 @@ public interface ReferenceSystem extends IdentifiedObject {
      *
      * @return the domain of usage, or {@code null} if none.
      *
-     * @departure historic
-     *   This method was initially derived from the ISO 19111 specification published in 2003.
-     *   Later revision (ISO 19111:2007) differs in 3 aspects:
-     *   <ul>
-     *     <li>ISO 19111:2007 moved this property from this type to the {@code SC_CRS} subtype.
-     *         GeoAPI keeps this property here for historical reasons.</li>
-     *     <li>ISO 19111:2007 changed the obligation from optional to mandatory
-     *         and requires the value to be <cite>"not known"</cite> if the scope is unknown.
-     *         GeoAPI lefts the obligation unchanged: optional with {@code null} value for unknown scope.</li>
-     *     <li>ISO 19111:2007 changed the multiplicity from singleton to a collection.
-     *         GeoAPI keeps the singleton type for historical reasons.</li>
-     *   </ul>
+     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */
-    @UML(identifier="SC_CRS.scope", obligation=OPTIONAL, specification=ISO_19111)
+    @Deprecated(since="3.1", forRemoval=true)
+    @UML(identifier="SC_CRS.scope", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default InternationalString getScope() {
-        return null;
+        return getDomains().stream().map(ObjectDomain::getScope).findFirst().orElse(null);
     }
 }

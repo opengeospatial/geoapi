@@ -40,6 +40,12 @@ public class ToleranceModifiersTest implements DirectPosition {
     private final double[] tolerance = new double[] {1, 3, 2};
 
     /**
+     * Creates a new test case.
+     */
+    public ToleranceModifiersTest() {
+    }
+
+    /**
      * A {@link DirectPosition} method returning the hard-coded
      * number of dimensions that we use for this test.
      */

@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.0
  * @since   1.0
  */
-@UML(identifier="CC_PassThroughOperation", specification=ISO_19111)
+@UML(identifier="CC_PassThroughOperation", specification=ISO_19111, version=2007)
 public interface PassThroughOperation extends SingleOperation {
     /**
      * Returns the operation to apply on the subset of a coordinate tuple.

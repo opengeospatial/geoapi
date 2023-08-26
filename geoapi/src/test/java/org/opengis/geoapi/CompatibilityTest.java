@@ -31,7 +31,7 @@ import java.lang.reflect.Modifier;
 import org.junit.After;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.Assume.assumeFalse;
 
 
@@ -133,6 +133,11 @@ public final class CompatibilityTest implements Closeable {
      * is used only by {@link #listChanges()} as part of the release notes.
      *
      * @return list of new methods, or {@code null} if none.
+     * @throws IOException if an error occurred while reading a JAR file.
+     * @throws ClassNotFoundException if a class that existed in the previous GeoAPI release
+     *         has not been found in the new release.
+     * @throws NoSuchMethodException if a method that existed in the previous GeoAPI release
+     *         has not been found in the new release.
      */
     private List<String> listNewMethods() throws IOException, ClassNotFoundException, NoSuchMethodException {
         final List<String> newMethods = new ArrayList<>();
@@ -167,7 +172,7 @@ public final class CompatibilityTest implements Closeable {
                      * parameters of the old method, but this check should actually never fail (if the parameters
                      * were not the same, the method would not have been found).
                      */
-                    assertArrayEquals(methodName, paramTypes, oldMethod.getParameterTypes());
+                    assertArrayEquals(paramTypes, oldMethod.getParameterTypes(), methodName);
                     continue;
                 } catch (ClassNotFoundException | NoSuchMethodException e) {
                     // Ignore - will execute the same code as if 'oldClass' were null.
@@ -183,6 +188,11 @@ public final class CompatibilityTest implements Closeable {
      * If this method is used for a JUnit test, then the expected result is an empty list.
      *
      * @return list of incompatible changes.
+     * @throws IOException if an error occurred while reading a JAR file.
+     * @throws ClassNotFoundException if a class that existed in the previous GeoAPI release
+     *         has not been found in the new release.
+     * @throws NoSuchMethodException if a method that existed in the previous GeoAPI release
+     *         has not been found in the new release.
      */
     private List<IncompatibleChange> createIncompatibleChangesList() throws IOException, ClassNotFoundException, NoSuchMethodException {
         final List<IncompatibleChange> incompatibleChanges = new ArrayList<>();
@@ -214,14 +224,14 @@ public final class CompatibilityTest implements Closeable {
                 final String methodName = oldMethod.getName();
                 final Class<?>[] paramTypes = newAPI.getParameterTypes(oldAPI, oldMethod);
                 final Method newMethod = newClass.getMethod(methodName, paramTypes);
-                assertArrayEquals(methodName, paramTypes, newMethod.getParameterTypes());   // Paranoiac check (should never fail).
+                assertArrayEquals(paramTypes, newMethod.getParameterTypes(), methodName);   // Paranoiac check (should never fail).
                 /*
                  * Compare generic arguments (if any). We require an exact match,
                  * including for parameterized types.
                  */
                 final Type[] oldGPT = oldMethod.getGenericParameterTypes();
                 final Type[] newGPT = newMethod.getGenericParameterTypes();
-                assertEquals(methodName, oldGPT.length, newGPT.length);         // Paranoiac check (should never fail).
+                assertEquals(oldGPT.length, newGPT.length, methodName);         // Paranoiac check (should never fail).
                 for (int i=0; i<oldGPT.length; i++) {
                     final String oldType = Release.normalize(oldGPT[i].toString());     // TODO: use getTypeName() on JDK8.
                     final String newType = Release.normalize(newGPT[i].toString());

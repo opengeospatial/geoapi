@@ -45,15 +45,16 @@ import static org.junit.Assume.*;
 
 /**
  * Creates referencing objects for a limited set of hard-coded EPSG codes
- * using {@link ObjectFactory} and {@link MathTransformFactory}. This pseudo-factory
- * can be used with implementation that do not support (or don't want to test) a "real"
- * {@link CRSAuthorityFactory} for the EPSG database.
+ * using {@link ObjectFactory} and {@link MathTransformFactory}.
+ * This pseudo-factory can be used with implementations that do not support
+ * (or don't want to test) a "real" {@link CRSAuthorityFactory} for the EPSG database.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   3.1
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAuthorityFactory,
         CSAuthorityFactory, CRSAuthorityFactory
 {
@@ -206,8 +207,12 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * The default implementation returns {@code null}.
      *
      * @throws FactoryException if this method cannot provide the requested information.
+     *
+     * @deprecated This method is ambiguous.
      */
     @Override
+    @SuppressWarnings("removal")
+    @Deprecated(since = "3.1", forRemoval = true)
     public InternationalString getDescriptionText(final String code) throws FactoryException {
         return null;
     }
@@ -242,8 +247,12 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * @param  code  value allocated by authority.
      * @return the datum for the given code.
      * @throws FactoryException if the object creation failed.
+     *
+     * @deprecated This method is ambiguous.
      */
     @Override
+    @SuppressWarnings("removal")
+    @Deprecated(since = "3.1", forRemoval = true)
     public IdentifiedObject createObject(final String code) throws FactoryException {
         final int id = parseCode(code);
         switch (id) {
@@ -253,7 +262,6 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             default:   throw noSuchAuthorityCode(id, code);
         }
     }
-
 
 
 

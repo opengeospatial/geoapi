@@ -297,6 +297,12 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     /**
      * Like {@link System#arraycopy(Object, int, Object, int, int)}, but cast {@code float}
      * to {@code double} during the copy operation.
+     *
+     * @param srcPts  the source array.
+     * @param srcOff  starting position in the source array.
+     * @param dstPts  the destination array.
+     * @param dstOff  starting position in the destination array.
+     * @param length  the number of array elements to be copied.
      */
     private static void arraycopy(float[] srcPts, int srcOff, double[] dstPts, int dstOff, int length) {
         while (--length >= 0) {
@@ -307,6 +313,12 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     /**
      * Like {@link System#arraycopy(Object, int, Object, int, int)}, but cast {@code double}
      * to {@code float} during the copy operation.
+     *
+     * @param srcPts  the source array.
+     * @param srcOff  starting position in the source array.
+     * @param dstPts  the destination array.
+     * @param dstOff  starting position in the destination array.
+     * @param length  the number of array elements to be copied.
      */
     private static void arraycopy(double[] srcPts, int srcOff, float[] dstPts, int dstOff, int length) {
         while (--length >= 0) {

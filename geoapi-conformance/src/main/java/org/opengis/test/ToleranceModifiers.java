@@ -33,6 +33,7 @@ import static java.lang.StrictMath.*;
  * @version 3.1
  * @since   3.1
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp final class ToleranceModifiers {
     /**
      * The standard length of one nautical mile, which is {@value} metres. This is the length
@@ -59,6 +60,10 @@ public strictfp final class ToleranceModifiers {
      * Base implementation of all {@link ToleranceModifier} defined in the enclosing class.
      */
     strictfp static abstract class Abstract implements ToleranceModifier {
+        /** Invoked by the public static method or field only. */
+        Abstract() {
+        }
+
         /** Compares this object with the given object for equality. */
         @Override
         public boolean equals(final Object object) {
@@ -80,7 +85,11 @@ public strictfp final class ToleranceModifiers {
             return buffer.append(']').toString();
         }
 
-        /** Overridden by subclasses for defining the inner part of {@code toString()}. */
+        /**
+         * Overridden by subclasses for defining the inner part of {@code toString()}.
+         *
+         * @param  buffer  where to write the string representation of this tolerance modifier.
+         */
         void toString(final StringBuilder buffer) {
             buffer.append('…');
         }
@@ -90,6 +99,11 @@ public strictfp final class ToleranceModifiers {
      * Implementation of {@link ToleranceModifier#RELATIVE}.
      */
     strictfp static final class Relative extends Abstract {
+        /** Invoked by the public static method or field only. */
+        Relative() {
+        }
+
+        /** Adjusts the tolerances as documented in the enclosing class. */
         @Override
         public void adjust(final double[] tolerance, final DirectPosition coordinate, final CalculationType mode) {
             for (int i=0; i<tolerance.length; i++) {
@@ -134,7 +148,12 @@ public strictfp final class ToleranceModifiers {
         /** The dimension of the tolerance values to modify. */
         private final int λDimension, φDimension;
 
-        /** Invoked by the public static method or field only. */
+        /**
+         * Invoked by the public static method or field only.
+         *
+         * @param λDimension  dimension of longitude values.
+         * @param φDimension  dimension of latitude values.
+         */
         Geographic(final int λDimension, final int φDimension) {
             this.λDimension = λDimension;
             this.φDimension = φDimension;
@@ -216,7 +235,12 @@ public strictfp final class ToleranceModifiers {
      * Implementation of the value returned by {@link ToleranceModifiers#projection(int,int)}.
      */
     strictfp static final class Projection extends Geographic {
-        /** Invoked by the public static method or field only. */
+        /**
+         * Invoked by the public static method or field only.
+         *
+         * @param λDimension  dimension of longitude values.
+         * @param φDimension  dimension of latitude values.
+         */
         Projection(final int λDimension, final int φDimension) {
             super(λDimension, φDimension);
         }
@@ -272,7 +296,12 @@ public strictfp final class ToleranceModifiers {
         /** The scale factors. */
         private final double[] factors;
 
-        /** Invoked by the public static method only. */
+        /**
+         * Invoked by the public static method only.
+         *
+         * @param  types    the types for which to apply the scale factors.
+         * @param  factors  the scale factors.
+         */
         Scale(final Set<CalculationType> types, final double[] factors) {
             this.types   = types;
             this.factors = factors;
@@ -375,7 +404,11 @@ public strictfp final class ToleranceModifiers {
         /** The modifiers from which to get the maximal tolerance. */
         private final ToleranceModifier[] modifiers;
 
-        /** Invoked by the public static method only. */
+        /**
+         * Invoked by the public static method only.
+         *
+         * @param  modifiers  the modifiers from which to get the maximal tolerance.
+         */
         Maximum(final ToleranceModifier[] modifiers) {
             this.modifiers = modifiers;
         }
@@ -438,7 +471,12 @@ public strictfp final class ToleranceModifiers {
         /** The modifiers to concatenate. */
         private final ToleranceModifier first, second;
 
-        /** Invoked by the public static method only. */
+        /**
+         * Invoked by the public static method only.
+         *
+         * @param  first   first modifier to concatenate.
+         * @param  second  second modifier to concatenate.
+         */
         Concatenate(final ToleranceModifier first, final ToleranceModifier second) {
             this.first  = first;
             this.second = second;
@@ -473,7 +511,13 @@ public strictfp final class ToleranceModifiers {
             toString(buffer, " → ", first, second);
         }
 
-        /** Concatenates the string representations of the given modifiers. */
+        /**
+         * Concatenates the string representations of the given modifiers.
+         *
+         * @param buffer     where to write the string representations.
+         * @param separator  separator between tolerance modifiers.
+         * @param modifiers  the tolerance modifiers to format.
+         */
         static void toString(final StringBuilder buffer, final String separator, final ToleranceModifier... modifiers) {
             String next = "";
             for (final ToleranceModifier modifier : modifiers) {

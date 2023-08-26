@@ -52,7 +52,11 @@ class ProgressListener {
      * Creates a new listener. If {@code chain} is {@code true}, then new listener will
      * be inserted after the given listener and before its next one. If {@code false},
      * then the new listener is a root which will be followed by the given listener.
+     *
+     * @param other  the previous or next listener.
+     * @param chain  {@code false} if the other listener is next, {@code true} if it is previous.
      */
+    @SuppressWarnings("ThisEscapedInObjectConstruction")
     ProgressListener(final ProgressListener other, final boolean chain) {
         next = other;
         if (chain) {

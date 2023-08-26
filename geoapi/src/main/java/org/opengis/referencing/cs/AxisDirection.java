@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see CoordinateSystemAxis#getDirection()
  */
-@UML(identifier="CS_AxisDirection", specification=ISO_19111)
+@UML(identifier="CS_AxisDirection", specification=ISO_19111, version=2007)
 public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Serial number for compatibility with different versions.

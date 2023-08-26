@@ -20,7 +20,7 @@ package org.opengis.geoapi;
 import java.util.Set;
 import java.util.HashSet;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -48,6 +48,10 @@ final class IncompatibleChange {
 
     /**
      * Creates a new incompatible change declaration.
+     *
+     * @param  method   the fully qualified class name and method where the incompatible changes happen.
+     * @param  oldType  the old return type.
+     * @param  newType  the new return type.
      */
     IncompatibleChange(final String method, final String oldType, final String newType) {
         this.method  = method;
@@ -56,7 +60,7 @@ final class IncompatibleChange {
     }
 
     /**
-     * Returns the accepted incompatible changes between GeoAPI 3.0.2 and GeoAPI 3.1.
+     * {@return the accepted incompatible changes between GeoAPI 3.0.2 and GeoAPI 3.1}.
      */
     static Set<IncompatibleChange> for31() {
         return fill("org.opengis.metadata.content.Band.getUnits",
@@ -65,7 +69,7 @@ final class IncompatibleChange {
     }
 
     /**
-     * Returns the accepted incompatible changes between GeoAPI 3.1 and GeoAPI 4.0.
+     * {@return the accepted incompatible changes between GeoAPI 3.1 and GeoAPI 4.0}.
      */
     static Set<IncompatibleChange> for40() {
         return fill();
@@ -73,18 +77,21 @@ final class IncompatibleChange {
 
     /**
      * Creates a set of incompatible changes from (method, oldType, newType) tuples.
+     *
+     * @param  types  (method, oldType, newType) tuples.
+     * @return set of incompatible changes.
      */
     private static Set<IncompatibleChange> fill(final String... types) {
         final Set<IncompatibleChange> changes = new HashSet<>();
         for (int i=0; i<types.length;) {
             final IncompatibleChange c = new IncompatibleChange(types[i++], types[i++], types[i++]);
-            assertTrue(c.method, changes.add(c));
+            assertTrue(changes.add(c), c.method);
         }
         return changes;
     }
 
     /**
-     * Returns a hash code value for this change.
+     * {@return a hash code value for this change}.
      */
     @Override
     public int hashCode() {
@@ -93,6 +100,9 @@ final class IncompatibleChange {
 
     /**
      * Compares the given object with this instance for equality.
+     *
+     * @param  obj  the object to compare.
+     * @return whether the two objects are equal.
      */
     @Override
     public boolean equals(final Object obj) {
@@ -104,7 +114,7 @@ final class IncompatibleChange {
     }
 
     /**
-     * Returns a string representation of this incompatible change.
+     * {@return a string representation of this incompatible change}.
      */
     @Override
     public String toString() {
@@ -113,6 +123,10 @@ final class IncompatibleChange {
 
     /**
      * Implementation of {@link #toString()}.
+     *
+     * @param  buffer         where to format the string.
+     * @param  lineSeparator  value of {@link System#lineSeparator()}.
+     * @return the given buffer for method call chaining.
      */
     final StringBuilder toString(final StringBuilder buffer, final String lineSeparator) {
         return buffer.append("Incompatible change in the return type of ").append(method).append(':').append(lineSeparator)

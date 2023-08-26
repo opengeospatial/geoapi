@@ -19,6 +19,7 @@ package org.opengis.referencing.datum;
 
 import java.util.Date;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.ObjectDomain;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
@@ -50,42 +51,52 @@ import static org.opengis.annotation.Specification.*;
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="CD_Datum", specification=ISO_19111)
+@UML(identifier="CD_Datum", specification=ISO_19111, version=2007)
 public interface Datum extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} {@code <code>createFoo(Map, ...)} methods.
+     * {@code DatumFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getAnchorPoint()}.
      *
+     * @see DatumFactory
      * @see #getAnchorPoint()
      */
     String ANCHOR_POINT_KEY = "anchorPoint";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} {@code createFoo(Map, ...)} methods.
+     * {@code DatumFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getRealizationEpoch()}.
      *
+     * @see DatumFactory
      * @see #getRealizationEpoch()
      */
     String REALIZATION_EPOCH_KEY = "realizationEpoch";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} {@code createFoo(Map, ...)} methods.
+     * {@code DatumFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getDomainOfValidity()}.
      *
+     * @see DatumFactory
      * @see #getDomainOfValidity()
+     *
+     * @deprecated Replaced by {@link #DOMAIN_KEY} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1", forRemoval=true)
     String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain DatumFactory datum factory} {@code createFoo(Map, ...)} methods.
+     * {@code DatumFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getScope()}.
      *
+     * @see DatumFactory
      * @see #getScope()
+     *
+     * @deprecated Replaced by {@link #DOMAIN_KEY} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1", forRemoval=true)
     String SCOPE_KEY = "scope";
 
     /**
@@ -152,10 +163,13 @@ public interface Datum extends IdentifiedObject {
      * Area or region or timeframe in which this datum is valid.
      *
      * @return the datum valid domain, or {@code null} if not available.
+     *
+     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */
-    @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
+    @Deprecated(since="3.1", forRemoval=true)
+    @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default Extent getDomainOfValidity() {
-        return null;
+        return getDomains().stream().map(ObjectDomain::getDomainOfValidity).findFirst().orElse(null);
     }
 
     /**
@@ -168,9 +182,12 @@ public interface Datum extends IdentifiedObject {
      *   published in 2007 replaced the singleton by a collection and changed the obligation
      *   from "optional" to "mandatory", requiring a return value of <cite>"not known"</cite>
      *   if the scope is unknown.
+     *
+     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */
-    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111)
+    @Deprecated(since="3.1", forRemoval=true)
+    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default InternationalString getScope() {
-        return null;
+        return getDomains().stream().map(ObjectDomain::getScope).findFirst().orElse(null);
     }
 }

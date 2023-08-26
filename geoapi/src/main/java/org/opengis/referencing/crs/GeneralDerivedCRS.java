@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="SC_GeneralDerivedCRS", specification=ISO_19111)
+@UML(identifier="SC_GeneralDerivedCRS", specification=ISO_19111, version=2007)
 public interface GeneralDerivedCRS extends SingleCRS {
     /**
      * Returns the base coordinate reference system.

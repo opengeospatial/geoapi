@@ -53,6 +53,12 @@ final class BogusAffineTransform2D extends AffineTransform2D {
     boolean wrongDerivative;
 
     /**
+     * Creates a new identity transform.
+     */
+    BogusAffineTransform2D() {
+    }
+
+    /**
      * Transforms the given array, introducing an erroneous value if {@link #wrongFloatToFloat} is {@code true}.
      */
     @Override

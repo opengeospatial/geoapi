@@ -79,6 +79,7 @@ public class ContentVerifier {
      * more than one interface with the same class. For example, the same {@code value} instance could implement
      * both {@code Metadata} and {@code DataIdentification} interfaces.</p>
      */
+    @SuppressWarnings("doclint:missing")
     private static final class Element {
         private final Class<?> type;
         private final Object value;
@@ -130,7 +131,12 @@ public class ContentVerifier {
         /** The expected metadata value. */ public final Object expected;
         /** The value found in metadata. */ public final Object actual;
 
-        /** Creates a new entry for a mismatched value. */
+        /**
+         * Creates a new entry for a mismatched value.
+         *
+         * @param expected  the expected metadata value.
+         * @param actual    the value found in metadata.
+         */
         Mismatch(final Object expected, final Object actual) {
             this.expected = expected;
             this.actual   = actual;
@@ -141,7 +147,12 @@ public class ContentVerifier {
             return toString(new StringBuilder()).toString();
         }
 
-        /** Formats the string representation in the given buffer. */
+        /**
+         * Formats the string representation in the given buffer.
+         *
+         * @param  appendTo  where to append the string representation.
+         * @return the given buffer for method calls chaining.
+         */
         final StringBuilder toString(final StringBuilder appendTo) {
             formatValue(expected, appendTo.append("expected "));
             formatValue(actual,   appendTo.append(" but was "));
@@ -201,6 +212,10 @@ public class ContentVerifier {
 
     /**
      * Returns {@code true} if the given property shall be ignored.
+     *
+     * @param  type      the type containing the property to filter.
+     * @param  property  the property to filter.
+     * @return whether to ignore the given property.
      */
     private boolean isIgnored(final Class<?> type, final UML property) {
         final Set<String> properties = ignore.get(type);
@@ -237,6 +252,8 @@ public class ContentVerifier {
     /**
      * Adds a snapshot of the given object for later comparison against expected values.
      *
+     * @param  <T>     compile time value of {@code type}.
+     * @param  type    the GeoAPI interface implemented by the given object.
      * @param  actual  the metadata or CRS read from a dataset, or {@code null} if none.
      * @throws IllegalStateException if the given object contains a property already found in a previous
      *         call to this method, and the values found in those two invocations are not equal.
@@ -289,6 +306,7 @@ public class ContentVerifier {
      * @param  type  the GeoAPI interface implemented by the given object, or the standard Java class if not a metadata type.
      * @param  obj   non-null instance of {@code type} to add in the map.
      * @throws InvocationTargetException if an error occurred while invoking client code.
+     * @throws IllegalAccessException if the method to invoke is not public (should never happen with interfaces).
      * @throws IllegalStateException if a different metadata value is already presents for the current {@link #path} key.
      */
     private void addPropertyValue(Class<?> type, final Object obj) throws InvocationTargetException, IllegalAccessException {
@@ -366,6 +384,9 @@ public class ContentVerifier {
     /**
      * Returns the upper bounds of the parameterized type. For example if a method returns {@code Collection<String>},
      * then {@code boundOfParameterizedProperty(method.getGenericReturnType())} should return {@code String.class}.
+     *
+     * @param  type  the type for which to get parameterized bound type.
+     * @return the parameterized bound type.
      */
     private static Class<?> boundOfParameterizedProperty(Type type) {
         if (type instanceof ParameterizedType) {
@@ -402,6 +423,9 @@ public class ContentVerifier {
     /**
      * Returns {@code true} if the given value should be considered as a "primitive" for formatting purpose.
      * Primitive are null, numbers or booleans, but we extend this definition to enumerations and code lists.
+     *
+     * @param  value  the value to test.
+     * @return whether the specified value is a primitive for formatting purpose.
      */
     private static boolean isPrimitive(final Object value) {
         return (value == null) || (value instanceof ControlledVocabulary)
@@ -412,6 +436,11 @@ public class ContentVerifier {
      * Implementation of {@code compareMetadata(…)} public methods. This implementation removes properties
      * from the given map as they are found. After this method completed, the remaining entries in the given
      * map are properties not found in the metadata given to {@code addMetadataToVerify(…)} methods.
+     *
+     * @param  entries  the metadata properties to compare, in a modifiable map (will be modified).
+     * @return {@code true} if all properties match, with no missing property and no unexpected property.
+     *
+     * @see #compareMetadata()
      */
     private boolean filterProperties(final Set<Map.Entry<String,Object>> entries) {
         final Iterator<Map.Entry<String,Object>> it = entries.iterator();
@@ -575,6 +604,11 @@ public class ContentVerifier {
 
     /**
      * Formats the given entry as a table in the given {@link StringBuilder}.
+     *
+     * @param label          table label.
+     * @param values         values to format.
+     * @param appendTo       where to write the value.
+     * @param lineSeparator  value of {@link System#lineSeparator()}.
      */
     private static void formatTable(final String label, final Collection<Map.Entry<String,Object>> values,
             final StringBuilder appendTo, final String lineSeparator)
@@ -610,6 +644,9 @@ public class ContentVerifier {
 
     /**
      * Formats the given value in the given buffer, eventually between quotes.
+     *
+     * @param value     value to format.
+     * @param appendTo  where to write the value.
      */
     private static void formatValue(final Object value, final StringBuilder appendTo) {
         final boolean quote = !isPrimitive(value);

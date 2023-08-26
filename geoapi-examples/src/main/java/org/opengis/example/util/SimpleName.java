@@ -309,8 +309,11 @@ public class SimpleName implements GenericName {
     }
 
     /**
-     * Returns the given generic name as a {@link SimpleName} implementation. The current
-     * implementation just casts the given value, but future versions may copy the name components.
+     * {@return the given generic name as a {@code SimpleName} implementation}.
+     * The current implementation just casts the given value,
+     * but future versions may copy the name components.
+     *
+     * @param  name  the name to cast or copy.
      */
     static SimpleName castOrCopy(final GenericName name) {
         return (SimpleName) name;
@@ -333,8 +336,10 @@ public class SimpleName implements GenericName {
     }
 
     /**
-     * Returns the given scope, or the {@link SimpleNameSpace#ROOT root} namespace
-     * if the given argument is null.
+     * Returns the given scope, or the root namespace if the given argument is null.
+     *
+     * @param  scope  the scope to return, or {@code null} for the root.
+     * @return the given scope, or {@link SimpleNameSpace#ROOT}.
      */
     private static SimpleNameSpace nonNull(final SimpleNameSpace scope) {
         return (scope != null) ? scope : SimpleNameSpace.ROOT;

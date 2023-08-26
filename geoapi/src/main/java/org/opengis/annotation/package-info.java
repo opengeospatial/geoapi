@@ -26,7 +26,7 @@
  * interface appears in the source code as:
  *
  * {@snippet lang="java" :
- * @UML(identifier = "SC_ProjectedCRS", specification = ISO_19111)
+ * @UML(identifier = "ProjectedCRS", specification = ISO_19111)
  * }
  *
  * These annotations are available at runtime by Java introspection. This is useful, for example,

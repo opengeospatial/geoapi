@@ -25,6 +25,7 @@ import javax.measure.quantity.Length;
 import javax.measure.quantity.Dimensionless;
 
 import org.opengis.util.FactoryException;
+import org.opengis.referencing.ObjectDomain;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.cs.*;
@@ -56,8 +57,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  *   <li>{@link CoordinateSystem#getDimension()}</li>
  *   <li>{@link CoordinateSystemAxis#getAbbreviation()} when they were explicitly given in the WKT and do not need transliteration.</li>
  *   <li>{@link CoordinateSystemAxis#getDirection()} and {@link CoordinateSystemAxis#getUnit() getUnit()}</li>
- *   <li>{@link CoordinateReferenceSystem#getScope()} (optional – null allowed)</li>
- *   <li>{@link CoordinateReferenceSystem#getDomainOfValidity()} (optional – null allowed)</li>
+ *   <li>{@link CoordinateReferenceSystem#getDomains()} (optional – empty set allowed)</li>
  *   <li>{@link CoordinateReferenceSystem#getRemarks()} (optional – null allowed)</li>
  * </ul>
  *
@@ -81,6 +81,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  *
  * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html">WKT 2 specification</a>
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class CRSParserTest extends ReferencingTestCase {
     /**
      * The factory to use for parsing WKT strings. The {@link CRSFactory#createFromWKT(String)} method
@@ -222,6 +223,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     /**
      * Parses the given WKT.
      *
+     * @param  <T>   compile-time value of {@code type}.
      * @param  type  the expected object type.
      * @param  text  the WKT string to parse.
      * @return the parsed object.
@@ -398,6 +400,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Verifies the CRS name, datum and axes for {@code GEODCRS[“NAD83”]}.
      * This method does not verify the remark, since it is not included in the components of {@code COMPOUNDCRS[…]}.
      *
+     * @param  crs     CRS to validate.
+     * @param  hasIdentifier  whether the given CRS is expected to have an identifier.
      * @param  degree  value of {@link org.opengis.test.Units#degree()} (for fetching it only once per test).
      * @param  metre   value of {@link org.opengis.test.Units#metre()}  (for fetching it only once per test).
      */
@@ -515,7 +519,6 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         final Unit<Length> metre = units.metre();
         final GeodeticDatum datum;
         final CoordinateSystem cs;
-        final Extent extent;
 
         verifyIdentification   (crs, "JGD2000", "4946");
         verifyDatum            (datum = crs.getDatum(), "Japanese Geodetic Datum 2000");
@@ -523,9 +526,12 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyPrimeMeridian    (datum.getPrimeMeridian(), null, 0, degree);
         verifyAxisAbbreviations(cs = crs.getCoordinateSystem(), "X", "Y", "Z");
         verifyCoordinateSystem (cs, CartesianCS.class, new AxisDirection[] {GEOCENTRIC_X, GEOCENTRIC_Y, GEOCENTRIC_Z}, metre);
-        verifyGeographicExtent (extent = crs.getDomainOfValidity(), "Japan", 17.09, 122.38, 46.05, 157.64);
-        verifyTimeExtent       (extent, new Date(1017619200000L), new Date(1319155200000L), 1);
-        assertNullOrEquals("scope", "Geodesy, topographic mapping and cadastre", crs.getScope());
+        for (final ObjectDomain domain : crs.getDomains()) {
+            final Extent extent = domain.getDomainOfValidity();
+            verifyGeographicExtent (extent, "Japan", 17.09, 122.38, 46.05, 157.64);
+            verifyTimeExtent       (extent, new Date(1017619200000L), new Date(1319155200000L), 1);
+            assertNullOrEquals("scope", "Geodesy, topographic mapping and cadastre", domain.getScope());
+        }
         assertNullOrEquals("remark", "注：JGD2000ジオセントリックは現在JGD2011に代わりました。", crs.getRemarks());
     }
 
@@ -603,8 +609,10 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyParameter(group, "False easting",          4321000.0, metre);
         verifyParameter(group, "False northing",         3210000.0, metre);
 
-        verifyGeographicExtent(crs.getDomainOfValidity(), "An area description", NaN, NaN, NaN, NaN);
-        assertNullOrEquals("scope", "Description of a purpose", crs.getScope());
+        for (final ObjectDomain domain : crs.getDomains()) {
+            verifyGeographicExtent(domain.getDomainOfValidity(), "An area description", NaN, NaN, NaN, NaN);
+            assertNullOrEquals("scope", "Description of a purpose", domain.getScope());
+        }
     }
 
     /**
@@ -689,6 +697,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * Verifies the CRS name, datum and conversion parameters for {@code PROJCRS[“NAD27 / Texas South Central”]}.
      * This method does not verify the axes and remark, since they are not specified in {@code BASEPROJCRS[…]}.
      *
+     * @param  crs           CRS to validate.
      * @param  degree        value of {@link org.opengis.test.Units#degree()} (for fetching it only once per test).
      * @param  footSurveyUS  value of {@link org.opengis.test.Units#footSurveyUS()}.
      */
@@ -829,6 +838,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     /**
      * Verifies the CRS name, datum and axis for {@code VERTCRS[“NAD88”]}.
      *
+     * @param  crs    CRS to validate.
      * @param  metre  value of {@link org.opengis.test.Units#metre()}  (for fetching it only once per test).
      */
     private void verifyNAD28(final VerticalCRS crs, final Unit<Length> metre) {
@@ -869,6 +879,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
 
     /**
      * Verifies the CRS name, datum and axis for {@code TIMECRS[“GPS Time”]}.
+     *
+     * @param  crs  CRS to validate.
      */
     private void verifyGPSTime(final TemporalCRS crs) {
         verifyIdentification   (crs, "GPS Time", null);

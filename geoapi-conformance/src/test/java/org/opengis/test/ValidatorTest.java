@@ -35,9 +35,16 @@ public class ValidatorTest {
     /**
      * The validator to use for testing purpose.
      */
-    private final Validator validator = new Validator(Validators.DEFAULT, "org.opengis.test") {
-        // No abstract method to override.
-    };
+    private final Validator validator;
+
+    /**
+     * Creates a new test case.
+     */
+    public ValidatorTest() {
+        validator = new Validator(Validators.DEFAULT, "org.opengis.test") {
+            // No abstract method to override.
+        };
+    }
 
     /**
      * Tests test {@link Validator#mandatory(String, Object)} method.

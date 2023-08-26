@@ -30,6 +30,12 @@ import static org.junit.Assert.*;
  */
 public class UnitsTest {
     /**
+     * Creates a new test case.
+     */
+    public UnitsTest() {
+    }
+
+    /**
      * Verifies the symbol of base units.
      * We do not verify derived units like kilometres.
      * Part of the purpose of this test is to ensure that we got the international system (SI).

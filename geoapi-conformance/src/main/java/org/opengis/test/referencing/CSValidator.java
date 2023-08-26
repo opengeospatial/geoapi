@@ -49,13 +49,19 @@ public class CSValidator extends ReferencingValidator {
         /** Amount of degrees in one angle unit. */ static final double ANGLE_UNIT = 22.5;
         /** Geographic, matrix or display.       */ final String category;
         /** Orientation as a multiple of 22.5°.  */ final int orientation;
-        /** Creates a new {@code Orientation}.   */
+
+        /**
+         * Creates a new {@code Orientation}.
+         *
+         * @param  category     geographic, matrix or display.
+         * @param  orientation  orientation as a multiple of 22.5°.
+         */
         Orientation(final String category, final int orientation) {
             this.category    = category;
             this.orientation = orientation;
         }
 
-        /** String representation for debugging purpose only. */
+        /** {@return a string representation for debugging purpose only}. */
         @Override public String toString() {
             return category + ':' + (orientation * ANGLE_UNIT) + '°';
         }
@@ -309,6 +315,8 @@ public class CSValidator extends ReferencingValidator {
      * Unknown or incompatible directions (e.g. {@code NORTH} with {@code FUTURE}) are ignored.
      *
      * <p>The given collection will be modified; do not pass a valuable collection!</p>
+     *
+     * @param  directions  the axis directions to verify.
      */
     static void assertPerpendicularAxes(final Iterable<AxisDirection> directions) {
         Iterator<AxisDirection> it;

@@ -22,6 +22,7 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
+import org.opengis.util.UnimplementedServiceException;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
 
@@ -36,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  * number ID. For example, the EPSG code for a WGS84 Lat/Lon coordinate system is “4326”.</p>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  */
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
@@ -83,15 +84,24 @@ public interface AuthorityFactory extends Factory {
 
     /**
      * Returns a description of the object corresponding to a code.
+     * The description may be used in graphical user interfaces.
      *
      * @param  code  value allocated by authority.
      * @return a description of the object, or {@code null} if the object
      *         corresponding to the specified {@code code} has no description.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the query failed for some other reason.
+     *
+     * @deprecated This method is ambiguous because the EPSG geodetic registry may allocate
+     *             the same code to different kinds of object.
+     *
+     * @todo Provide an alternative, maybe with a {@code Class} argument.
      */
+    @Deprecated(since = "3.1", forRemoval = true)
     @UML(identifier="descriptionText", specification=OGC_01009)
-    InternationalString getDescriptionText(String code) throws NoSuchAuthorityCodeException, FactoryException;
+    default InternationalString getDescriptionText(String code) throws FactoryException {
+        throw new UnimplementedServiceException(this, InternationalString.class, "description");
+    }
 
     /**
      * Returns an arbitrary object from a code. The returned object will typically be an
@@ -116,6 +126,14 @@ public interface AuthorityFactory extends Factory {
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createDatum(String)
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createCoordinateReferenceSystem(String)
+     *
+     * @deprecated This method is ambiguous because the EPSG geodetic registry may allocate the same code
+     *             to different kinds of object. A more specialized method such as {@code createDatum(…)},
+     *             {@code createCoordinateSystem(…)} or {@code createCoordinateReferenceSystem(…)} should
+     *             be invoked instead.
      */
-    IdentifiedObject createObject(String code) throws NoSuchAuthorityCodeException, FactoryException;
+    @Deprecated(since = "3.1", forRemoval = true)
+    default IdentifiedObject createObject(String code) throws FactoryException {
+        throw new UnimplementedServiceException(this, IdentifiedObject.class);
+    }
 }

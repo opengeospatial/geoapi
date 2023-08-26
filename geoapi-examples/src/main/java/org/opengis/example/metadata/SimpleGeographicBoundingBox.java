@@ -188,6 +188,11 @@ public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Exten
 
     /**
      * Returns {@code true} if the given floating point values are equal.
+     * NaN values are considered equal.
+     *
+     * @param  a  the first value to compare.
+     * @param  b  the second value to compare.
+     * @return whether the given values are equal.
      */
     private static boolean equals(final double a, final double b) {
         return Double.doubleToLongBits(a) == Double.doubleToLongBits(b);

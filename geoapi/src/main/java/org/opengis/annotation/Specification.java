@@ -148,46 +148,57 @@ public enum Specification {
     ISO_19109((short) 2013),
 
     /**
-     * ISO 19111, Spatial Referencing by Coordinates
+     * ISO 19111, Referencing by coordinates
      * (<a href="http://www.opengeospatial.org/standards/as">OGC Topic 2</a>).
      * This is the specification for package {@link org.opengis.referencing} and sub-packages.
      *
      * <p><b>ISO abstract:</b></p>
      * <div class="note">
-     * <p>Defines the conceptual schema for the description of spatial referencing by
-     * coordinates, optionally extended to spatio-temporal referencing. It describes the minimum
-     * data required to define one-, two- and three-dimensional spatial coordinate reference systems
-     * with an extension to merged spatial-temporal reference systems. It allows additional descriptive
-     * information to be provided. It also describes the information required to change coordinates
-     * from one coordinate reference system to another.</p>
+     * <p>Defines the conceptual schema for the description of referencing by coordinates.
+     * It describes the minimum data required to define coordinate reference systems.
+     * This document supports the definition of:</p>
+     * <ul>
+     *   <li>spatial coordinate reference systems where coordinate values do not change with time. The system may:
+     *     <ul>
+     *       <li>be geodetic and apply on a national or regional basis, or</li>
+     *       <li>apply locally such as for a building or construction site, or</li>
+     *       <li>apply locally to an image or image sensor;</li>
+     *       <li>be referenced to a moving platform such as a car, a ship, an aircraft or a spacecraft.
+     *           Such a coordinate reference system can be related to a second coordinate reference system
+     *           which is referenced to the Earth through a transformation that includes a time element;</li>
+     *     </ul>
+     *   </li>
+     *   <li>spatial coordinate reference systems in which coordinate values of points on or near the surface
+     *       of the earth change with time due to tectonic plate motion or other crustal deformation.
+     *       Such dynamic systems include time evolution, however they remain spatial in nature;</li>
+     *   <li>parametric coordinate reference systems which use a non-spatial parameter that varies monotonically
+     *       with height or depth;</li>
+     *   <li>temporal coordinate reference systems which use dateTime, temporal count or temporal measure quantities
+     *       that vary monotonically with time;</li>
+     *   <li>mixed spatial, parametric or temporal coordinate reference systems.</li>
+     * </ul>
+     * <p>The definition of a coordinate reference system does not change with time,
+     * although in some cases some of the defining parameters can include a rate of change of the parameter.
+     * The coordinate values within a dynamic and in a temporal coordinate reference system can change with time.</p>
      *
-     * <p>In ISO 19111, a coordinate reference system does not change with time.
-     * For coordinate reference systems defined on moving platforms such as cars, ships, aircraft and
-     * spacecraft, the transformation to an Earth-fixed coordinate reference system can include a time
-     * element.</p>
-     *
-     * <p>ISO 19111 is applicable to producers and users of geographic information.
-     * Although it is applicable to digital geographic data, its principles can be extended to many
-     * other forms of geographic data such as maps, charts and text documents.</p>
-     *
-     * <p>The schema described can be applied to the combination of horizontal
-     * position with a third non-spatial parameter which varies monotonically with height or depth.
-     * This extension to non-spatial data is beyond the scope of ISO 19111 but can be implemented
-     * through profiles.</p>
+     * <p>This document also describes the conceptual schema for defining the information required to describe
+     * operations that change coordinate values. In addition to the minimum data required for the definition of
+     * the coordinate reference system or coordinate operation, the conceptual schema allows additional descriptive
+     * information – coordinate reference system metadata – to be provided.</p>
      * </div>
      *
      * <p><b>Version numbers used in GeoAPI:</b></p>
      * <ul>
      *   <li><b>2003:</b> OGC 03-073r1</li>
-     *   <li><b>2007:</b> ISO 19111:2007   ({@linkplain #defaultVersion() default version})</li>
-     *   <li><b>2019:</b> ISO 19111:2019
+     *   <li><b>2007:</b> ISO 19111:2007</li>
+     *   <li><b>2019:</b> ISO 19111:2019   ({@linkplain #defaultVersion() default version})</li>
      * </ul>
      *
      * @see #OGC_01009
-     * @see <a href="https://www.iso.org/standard/41126.html">ISO 19111:2007 on standards catalogue</a>
-     * @see <a href="http://portal.opengeospatial.org/files/?artifact_id=39049">Download from OGC</a>
+     * @see <a href="https://www.iso.org/standard/74039.html">ISO 19111:2019 on standards catalogue</a>
+     * @see <a href="https://portal.ogc.org/files/18-005r5">Download from OGC</a>
      */
-    ISO_19111((short) 2007),
+    ISO_19111((short) 2019),
 
     /**
      * ISO 19111-2, Part 2: Extension for parametric values
@@ -629,6 +640,8 @@ public enum Specification {
 
     /**
      * Creates a new enum constant with the given default version.
+     *
+     * @param defaultVersion  the default version of OGC/ISO standard for this enumeration constant.
      */
     private Specification(final short defaultVersion) {
         this.defaultVersion = defaultVersion;

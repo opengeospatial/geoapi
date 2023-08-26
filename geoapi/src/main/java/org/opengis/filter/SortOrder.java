@@ -59,6 +59,9 @@ public enum SortOrder implements ControlledVocabulary {
 
     /**
      * Creates a new constant with the given UML identifier.
+     *
+     * @param identifier  the UML identifier.
+     * @param sql  name used in SQL statements.
      */
     private SortOrder(final String identifier, final String sql) {
         this.identifier = identifier;

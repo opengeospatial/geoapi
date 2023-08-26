@@ -47,6 +47,7 @@ import org.opengis.referencing.datum.*;
  * @deprecated Renamed as {@link ObjectFactoryTest}.
  */
 @Deprecated
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class ReferencingTest extends ObjectFactoryTest {
     /**
      * Creates a new test using the given factories. If a given factory is {@code null},

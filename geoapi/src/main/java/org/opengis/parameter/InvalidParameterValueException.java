@@ -56,6 +56,7 @@ public class InvalidParameterValueException extends IllegalArgumentException {
     /**
      * The invalid parameter value.
      */
+    @SuppressWarnings("serial")         // Typicall a String, Integer, Double or URI instance.
     private final Object value;
 
     /**

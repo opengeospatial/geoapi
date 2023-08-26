@@ -73,6 +73,8 @@ final class SimpleDirectPosition implements DirectPosition {
 
     /**
      * Creates a new two-dimensional direct position initialized to the given point.
+     *
+     * @param  point  the initial coordinate values.
      */
     public SimpleDirectPosition(final Point2D point) {
         coordinates = new double[] {
@@ -109,6 +111,8 @@ final class SimpleDirectPosition implements DirectPosition {
     /**
      * Sets all coordinate values. The array length must be equal to the number of dimensions.
      *
+     * @param  coordinates  the coordinate values for a single point.
+     *
      * @since 3.1
      */
     public void setCoordinate(final double... coordinates) {
@@ -121,9 +125,9 @@ final class SimpleDirectPosition implements DirectPosition {
      * Sets all coordinate values starting at the given offset in the given array.
      * This method is for internal usage by {@link TransformTestCase} only.
      *
-     * @param array      the {@code float[]} or {@code double[]} array.
-     * @param offset     index of the first element to copy from the given array.
-     * @param useDouble  if {@code false}, cast the values to floats.
+     * @param coordinates  the {@code float[]} or {@code double[]} array.
+     * @param offset       index of the first element to copy from the given array.
+     * @param useDouble    if {@code false}, cast the values to floats.
      */
     final void setCoordinate(final Object coordinates, int offset, final boolean useDouble) {
         assertFalse("This DirectPosition shall not be modified.", unmodifiable);

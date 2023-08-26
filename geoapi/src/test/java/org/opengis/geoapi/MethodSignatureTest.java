@@ -30,7 +30,7 @@ import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
 import org.junit.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -42,7 +42,16 @@ import static org.junit.Assert.*;
  */
 public final class MethodSignatureTest extends SourceGenerator {
     /**
+     * Creates a new test case.
+     */
+    public MethodSignatureTest() {
+    }
+
+    /**
      * Returns {@code true} if the given field or method is public from a GeoAPI point of view.
+     *
+     * @param  method  the method to filter.
+     * @return whether the given method is public.
      */
     private static boolean isPublic(final Member method) {
         return (method.getModifiers() & (Modifier.PUBLIC | Modifier.PROTECTED)) != 0;
@@ -70,6 +79,8 @@ public final class MethodSignatureTest extends SourceGenerator {
 
     /**
      * Verifies the UML annotation of the given class or method.
+     *
+     * @param  c  the element on which to verify UML annotation.
      */
     private static void verifyUML(final AnnotatedElement c) {
         final UML uml = c.getAnnotation(UML.class);
@@ -116,7 +127,7 @@ public final class MethodSignatureTest extends SourceGenerator {
     public void verifyCodeLists() {
         for (final Class<?> c : Content.ALL.types()) {
             if (CodeList.class.isAssignableFrom(c) && c != CodeList.class) {
-                assertTrue(c.getName(), Modifier.isFinal(c.getModifiers()));
+                assertTrue(Modifier.isFinal(c.getModifiers()), c.getName());
             }
         }
     }
@@ -141,9 +152,9 @@ public final class MethodSignatureTest extends SourceGenerator {
                     /*
                      * Require all collections to be parameterized with exactly one parameter.
                      */
-                    assertTrue(description, type instanceof ParameterizedType);
+                    assertInstanceOf(ParameterizedType.class, type, description);
                     Type[] p = ((ParameterizedType) type).getActualTypeArguments();
-                    assertEquals(description, 1, p.length);
+                    assertEquals(1, p.length, description);
                     type = p[0];
                     /*
                      * Whether we allow covariant element type, i.e. <? extends T> instead of <T>.
@@ -153,7 +164,7 @@ public final class MethodSignatureTest extends SourceGenerator {
                     final boolean isCovariant = (type instanceof WildcardType);
                     if (isCovariant) {
                         p = ((WildcardType) type).getUpperBounds();
-                        assertEquals(description, 1, p.length);
+                        assertEquals(1, p.length, description);
                         type = p[0];
                     }
                     if (type instanceof Class<?>) {
@@ -206,6 +217,13 @@ public final class MethodSignatureTest extends SourceGenerator {
                              * Special cases for methods withoud default despite declared optional,
                              * or conversely (with default despite declared mandatory).
                              */
+                            if (c == org.opengis.referencing.crs.GeneralDerivedCRS.class ||
+                                c == org.opengis.referencing.crs.ProjectedCRS.class)
+                            {
+                                switch (m.getName()) {
+                                    case "getDatum": isOptional = true;
+                                }
+                            }
                             if (c == org.opengis.referencing.operation.Conversion.class) {
                                 switch (m.getName()) {
                                     case "getSourceCRS":
@@ -246,7 +264,9 @@ public final class MethodSignatureTest extends SourceGenerator {
                                 }
                             }
                         }
-                        if (m.isDefault() != isOptional && m.getReturnType() != Boolean.TYPE) {
+                        if (m.isDefault() != isOptional && m.getReturnType() != Boolean.TYPE
+                                && !m.getName().startsWith("create"))   // Ignore factory methods.
+                        {
                             fail(c.getSimpleName() + '.' + m.getName() + ": " + (isOptional
                                     ? "expected a default method."
                                     : "should not have default method."));

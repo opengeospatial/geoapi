@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * @see Transformation
  * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
  */
-@UML(identifier="CC_Conversion", specification=ISO_19111)
+@UML(identifier="CC_Conversion", specification=ISO_19111, version=2007)
 public interface Conversion extends SingleOperation {
     /**
      * Returns the source CRS. Conversions may have a source CRS that

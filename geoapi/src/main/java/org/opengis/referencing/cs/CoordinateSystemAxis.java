@@ -76,7 +76,7 @@ import static org.opengis.annotation.Specification.*;
  * @see CSAuthorityFactory#createCoordinateSystemAxis(String)
  * @see CSFactory#createCoordinateSystemAxis(Map, String, AxisDirection, Unit)
  */
-@UML(identifier="CS_CoordinateSystemAxis", specification=ISO_19111)
+@UML(identifier="CS_CoordinateSystemAxis", specification=ISO_19111, version=2007)
 public interface CoordinateSystemAxis extends IdentifiedObject {
     /**
      * Returns the abbreviation used for this coordinate system axes.

@@ -28,6 +28,7 @@ import org.opengis.referencing.ReferenceIdentifier;
  * @version 3.1
  * @since   3.1
  */
+@SuppressWarnings("strictfp")   // Because we still target Java 11.
 final strictfp class EPSGIdentifier implements ReferenceIdentifier {
     /**
      * The value to be returned by {@link #getCode()}.
@@ -36,6 +37,8 @@ final strictfp class EPSGIdentifier implements ReferenceIdentifier {
 
     /**
      * Creates a new identifier for the "EPSG" namespace and the given code.
+     *
+     * @param  code  the value to be returned by {@link #getCode()}.
      */
     EPSGIdentifier(final int code) {
         this.code = code;

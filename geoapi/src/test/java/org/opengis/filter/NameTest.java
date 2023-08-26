@@ -18,7 +18,7 @@
 package org.opengis.filter;
 
 import org.junit.Test;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -29,6 +29,12 @@ import static org.junit.Assert.*;
  * @since   3.1
  */
 public final class NameTest {
+    /**
+     * Creates a new test case.
+     */
+    public NameTest() {
+    }
+
     /**
      * Verifies the name for {@code "fes:Literal"}.
      */

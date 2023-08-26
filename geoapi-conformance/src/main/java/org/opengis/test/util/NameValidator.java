@@ -130,6 +130,9 @@ public class NameValidator extends Validator {
      * to avoid never-ending loop.
      *
      * <p>This method shall not validate the scope, since it could leads to a never-ending loop.</p>
+     *
+     * @param object       the name to validate.
+     * @param parsedNames  expected parsed names.
      */
     private void validate(final GenericName object, final List<? extends LocalName> parsedNames) {
         mandatory("GenericName: getParsedNames() shall not return null.", parsedNames);

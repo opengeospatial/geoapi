@@ -71,40 +71,56 @@ import static org.opengis.annotation.Specification.*;
  * @since   2.0
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="IO_IdentifiedObject", specification=ISO_19111)
+@UML(identifier="IO_IdentifiedObject", specification=ISO_19111, version=2007)
 public interface IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} {@code createFoo(Map, ...)} methods.
+     * {@code ObjectFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getName()}.
      *
+     * @see ObjectFactory
      * @see #getName()
      */
     String NAME_KEY = "name";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} {@code createFoo(Map, ...)} methods.
+     * {@code ObjectFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getAlias()}.
      *
+     * @see ObjectFactory
      * @see #getAlias()
      */
     String ALIAS_KEY = "alias";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} {@code createFoo(Map, ...)} methods.
+     * {@code ObjectFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getIdentifiers()}.
      *
+     * @see ObjectFactory
      * @see #getIdentifiers()
      */
     String IDENTIFIERS_KEY = "identifiers";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
-     * {@linkplain ObjectFactory object factory} {@code createFoo(Map, ...)} methods.
+     * {@code ObjectFactory.createFoo(Map, ...)} methods.
+     * This is used for setting the value to be returned by {@link #getDomain()}.
+     *
+     * @see ObjectFactory
+     * @see #getDomains()
+     *
+     * @since 3.1
+     */
+    String DOMAIN_KEY = "domain";
+
+    /**
+     * Key for the <code>{@value}</code> property to be given to the
+     * {@code ObjectFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getRemarks()}.
      *
+     * @see ObjectFactory
      * @see #getRemarks()
      */
     String REMARKS_KEY = "remarks";
@@ -146,6 +162,39 @@ public interface IdentifiedObject {
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19111)
     default Set<ReferenceIdentifier> getIdentifiers() {
         return Collections.emptySet();
+    }
+
+    /**
+     * Usage of this CRS-related object.
+     * The domain includes a scope (description of the primary purpose of this object) together
+     * with a domain of validity (spatial and temporal extent in which the object can be used).
+     * Those properties are paired together for facilitating descriptions of usage such as
+     * "Purpose 1 in area A, purpose 2 in area B".
+     *
+     * @return scopes and domains of validity of this object.
+     *
+     * @departure generalization
+     *   ISO 19111 defines this property in an {@code ObjectUsage} subtype so that only the
+     *   {@link org.opengis.referencing.datum.Datum},
+     *   {@link org.opengis.referencing.crs.CoordinateReferenceSystem} and
+     *   {@link org.opengis.referencing.operation.CoordinateOperation} subtypes inherit this property.
+     *   GeoAPI relaxes this restriction for two reasons:
+     *   <ul>
+     *     <li>A need to specify a scope can also occur in other subtypes.
+     *         For example a Minkowski {@link org.opengis.referencing.cs.CoordinateSystem}
+     *         may want to specify "For objects moving at relativistic speed" scope.</li>
+     *     <li>The {@code ObjectUsage} type name is at odd with
+     *         the semantics of subclassing as an “is type of” hierarchy.
+     *         Qualifying a CRS as “a type of object usage” is restrictive.
+     *         Instead, CRS <em>contains</em> a description of object usage.
+     *         Omitting the {@code ObjectUsage} subtype avoids this semantic oddity.</li>
+     *   </ul>
+     *
+     * @since 3.1
+     */
+    @UML(identifier="ObjectUsage.domain", obligation=OPTIONAL, specification=ISO_19111)
+    default Collection<ObjectDomain> getDomains() {
+        return Collections.emptyList();
     }
 
     /**
