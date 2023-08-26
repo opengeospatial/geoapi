@@ -30,7 +30,7 @@
  *     defined in this module.</li>
  * </ul>
  *
- * @version 4.0
+ * @version 3.1
  * @since 2.2
  */
 module org.opengis.geoapi.conformance {

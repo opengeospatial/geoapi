@@ -26,7 +26,7 @@
  * Consequently, importing the {@code geoapi-pending} module in a project is sufficient for using both the normative and
  * the experimental interfaces.</p>
  *
- * @version 4.0
+ * @version 3.1
  * @since 2.2
  */
 module org.opengis.geoapi.pending {

@@ -34,7 +34,7 @@
  * <a href="https://github.com/opengeospatial/geoapi/tree/master/tools">README.md</a> file.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 4.0
+ * @version 3.1
  * @since   3.0
  */
 module org.opengis.geoapi.build {

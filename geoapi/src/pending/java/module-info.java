@@ -22,7 +22,7 @@
  * and <cite><a href="http://www.opengeospatial.org">Open Geospatial Consortium</a></cite> (<abbr>OGC</abbr>).
  * The interfaces were created from UML diagrams found in the <abbr>ISO</abbr> and <abbr>OGC</abbr> specifications.
  *
- * @version 4.0
+ * @version 3.1
  * @since 1.0
  */
 module org.opengis.geoapi {

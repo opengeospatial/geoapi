@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Cédric Briançon (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
- * @version 4.0
+ * @version 3.1
  * @since   2.3
  */
 @UML(identifier="DQ_CoverageResult", specification=ISO_19157)

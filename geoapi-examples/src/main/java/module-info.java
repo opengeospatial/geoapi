@@ -43,7 +43,7 @@
  * While this is not a recommended approach for strict ISO 19111 compliance, the intent is to demonstrate
  * that implementers can hide some of the ISO 19111 complexity.
  *
- * @version 4.0
+ * @version 3.1
  */
 module org.opengis.geoapi.example {
     requires transitive vecmath;
