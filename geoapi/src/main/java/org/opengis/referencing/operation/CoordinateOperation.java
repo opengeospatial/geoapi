@@ -84,7 +84,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @see #getDomainOfValidity()
      *
-     * @deprecated Replaced by {@link #DOMAIN_KEY} as of ISO 19111:2019.
+     * @deprecated Replaced by {@link #DOMAINS_KEY} as of ISO 19111:2019.
      */
     @Deprecated(since="3.1", forRemoval=true)
     String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
@@ -95,7 +95,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @see #getScope()
      *
-     * @deprecated Replaced by {@link #DOMAIN_KEY} as of ISO 19111:2019.
+     * @deprecated Replaced by {@link #DOMAINS_KEY} as of ISO 19111:2019.
      */
     @Deprecated(since="3.1", forRemoval=true)
     String SCOPE_KEY = "scope";

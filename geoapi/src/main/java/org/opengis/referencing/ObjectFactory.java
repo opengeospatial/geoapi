@@ -72,7 +72,7 @@ import org.opengis.util.GenericName;
  *     <td>{@link IdentifiedObject#getIdentifiers()}</td>
  *   </tr>
  *   <tr>
- *     <td>{@value org.opengis.referencing.IdentifiedObject#DOMAIN_KEY}</td>
+ *     <td>{@value org.opengis.referencing.IdentifiedObject#DOMAINS_KEY}</td>
  *     <td><code>{@linkplain ObjectDomain}[]</code></td>
  *     <td>{@link ObjectDomain}</td>
  *     <td>{@link IdentifiedObject#getDomains()}</td>
