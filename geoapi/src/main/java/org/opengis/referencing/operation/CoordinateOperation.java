@@ -19,7 +19,6 @@ package org.opengis.referencing.operation;
 
 import java.util.Collection;
 import java.util.Collections;
-import org.opengis.referencing.ObjectDomain;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.metadata.quality.PositionalAccuracy;
@@ -28,6 +27,7 @@ import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
+import org.opengis.geoapi.internal.Legacy;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -157,7 +157,7 @@ public interface CoordinateOperation extends IdentifiedObject {
     @Deprecated(since="3.1", forRemoval=true)
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default Extent getDomainOfValidity() {
-        return getDomains().stream().map(ObjectDomain::getDomainOfValidity).findFirst().orElse(null);
+        return Legacy.getDomainOfValidity(getDomains());
     }
 
     /**
@@ -176,7 +176,7 @@ public interface CoordinateOperation extends IdentifiedObject {
     @Deprecated(since="3.1", forRemoval=true)
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default InternationalString getScope() {
-        return getDomains().stream().map(ObjectDomain::getScope).findFirst().orElse(null);
+        return Legacy.getScope(getDomains());
     }
 
     /**
