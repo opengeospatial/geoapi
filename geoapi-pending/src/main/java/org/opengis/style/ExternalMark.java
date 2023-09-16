@@ -36,8 +36,8 @@ public interface ExternalMark {
     /**
      * Returns on online resource defined by a URI.
      *
-     * Both OnlineResource and InlineContent can't be null and both
-     * can't be set at the same time.
+     * Both OnlineResource and InlineContent cannot be null and both
+     * cannot be set at the same time.
      *
      * @return OnlineResource or null
      */
@@ -47,8 +47,8 @@ public interface ExternalMark {
     /**
      * Returns on inline content.
      *
-     * Both OnlineResource and InlineContent can't be null and both
-     * can't be set at the same time.
+     * Both OnlineResource and InlineContent cannot be null and both
+     * cannot be set at the same time.
      *
      * @return InlineContent or null
      */

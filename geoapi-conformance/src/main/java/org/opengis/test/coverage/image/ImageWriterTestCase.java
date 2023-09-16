@@ -321,7 +321,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
             /*
              * If the reader doesn't support the given input type, try to wrap it in an
              * ImageInputStream - which is mandatory according Image I/O specification.
-             * If we can't wrap it, process anyway and let the reader throws the exception.
+             * If we cannot wrap it, process anyway and let the reader throws the exception.
              */
             if (!(input instanceof ImageInputStream)) {
                 final ImageInputStream in = ImageIO.createImageInputStream(input);

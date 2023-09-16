@@ -521,7 +521,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * the transform itself.</p>
      *
      * @param  coordinates  the source coordinates to transform.
-     * @throws TransformException if at least one coordinate can't be transformed.
+     * @throws TransformException if at least one coordinate cannot be transformed.
      */
     protected void verifyInverse(final double... coordinates) throws TransformException {
         assertTrue("isInverseTransformSupported == false.", isInverseTransformSupported);
@@ -580,7 +580,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * <p>The default implementation delegates to {@link #verifyInverse(double[])}.</p>
      *
      * @param  coordinates  the source coordinates to transform.
-     * @throws TransformException if at least one coordinate can't be transformed.
+     * @throws TransformException if at least one coordinate cannot be transformed.
      */
     protected void verifyInverse(final float... coordinates) throws TransformException {
         assertTrue("isInverseTransformSupported == false.", isInverseTransformSupported);
@@ -613,7 +613,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *
      * @param  sourceFloats  the source coordinates to transform as an array of {@code float} values.
      * @return the transformed coordinates, returned for convenience.
-     * @throws TransformException if at least one coordinate can't be transformed.
+     * @throws TransformException if at least one coordinate cannot be transformed.
      *
      * @see #isDoubleToDoubleSupported
      * @see #isFloatToFloatSupported

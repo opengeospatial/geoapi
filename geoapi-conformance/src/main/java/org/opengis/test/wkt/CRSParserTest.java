@@ -176,7 +176,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     }
 
     /**
-     * Asserts the the given character sequence is either null or equals to the given value.
+     * Asserts the given character sequence is either null or equals to the given value.
      * This is used for optional elements like remarks.
      *
      * @param property  the property being tested, for producing a message in case of assertion failure.

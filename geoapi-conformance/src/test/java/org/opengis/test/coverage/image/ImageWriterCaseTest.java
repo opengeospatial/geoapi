@@ -71,7 +71,7 @@ public class ImageWriterCaseTest extends ImageWriterTestCase {
     }
 
     /**
-     * As of JDK7, the PNG writer does not detect that it can't write signed values.
+     * As of JDK7, the PNG writer does not detect that it cannot write signed values.
      */
     @Override
     @Ignore("ImageWriterSpi.canDecode(RenderedImage) doen't return 'false'")
