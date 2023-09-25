@@ -99,7 +99,7 @@ public interface DirectPosition extends Position {
      *       then we can work directly on this array. If we don't have this guarantee, then we must
      *       conservatively clone the array in every cases.</li>
      *   <li>Cloning the returned array is useless if the implementation cloned the array or was
-     *       forced to returns a new array anyway (for example because the coordinates were
+     *       forced to return a new array anyway (for example because the coordinates were
      *       computed on the fly)</li>
      * </ul>
      *

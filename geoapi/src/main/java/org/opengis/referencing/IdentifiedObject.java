@@ -113,7 +113,7 @@ public interface IdentifiedObject {
      *
      * @since 3.1
      */
-    String DOMAIN_KEY = "domain";
+    String DOMAINS_KEY = "domains";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the

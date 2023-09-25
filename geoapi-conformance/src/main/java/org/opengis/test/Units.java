@@ -135,5 +135,5 @@ public class Units extends PseudoFactory {
     /** {@return the base unit of measurement for pressure}.           */  public Unit<Pressure> pascal()       {return pascal;}
     /** {@return the unit of measurement defined as 100 pascals}.      */  public Unit<Pressure> hectopascal()  {return hectopascal;}
     /** {@return the dimensionless unit for scale measurements}.       */  public Unit<Dimensionless> one()     {return one;}
-    /** {@return the the "parts per million" unit}.                    */  public Unit<Dimensionless> ppm()     {return ppm;}
+    /** {@return the "parts per million" unit}.                        */  public Unit<Dimensionless> ppm()     {return ppm;}
 }

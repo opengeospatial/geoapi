@@ -304,7 +304,7 @@ public class CSValidator extends ReferencingValidator {
         assertStrictlyPositive("CoordinateSystem: dimension must be greater than zero.", dimension);
         for (int i=0; i<dimension; i++) {
             final CoordinateSystemAxis axis = object.getAxis(i);
-            mandatory("CoordinateSystem: axis can't be null.", axis);
+            mandatory("CoordinateSystem: axis cannot be null.", axis);
             validate(axis);
         }
     }

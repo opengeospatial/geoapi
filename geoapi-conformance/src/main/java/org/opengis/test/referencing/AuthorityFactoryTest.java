@@ -312,7 +312,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * @param message  the message to report in case of error.
      * @param cs       the coordinate system to check, or {@code null}.
-     * @param swap     {@code true} if the the easting and northing axes should be interchanged.
+     * @param swap     {@code true} if the easting and northing axes should be interchanged.
      * @param flip     {@code true} if the sign of both axes should be reversed.
      */
     private static void verifyAxisDirection(final String message, final CoordinateSystem cs,

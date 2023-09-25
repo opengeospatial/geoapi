@@ -88,7 +88,7 @@ public abstract class Validator {
      * for tolerating null values. ISO specifications flags some attributes as mandatory,
      * while some other are optional. Optional attributes are allowed to be null at any time,
      * but mandatory attributes shall never be null - in theory. However, implementers may
-     * choose to returns {@code null} on a temporary basis while they are developing their
+     * choose to return {@code null} on a temporary basis while they are developing their
      * library. If this field is set to {@code false}, then missing mandatory attributes
      * will be logged as warnings instead of causing a failure.
      *

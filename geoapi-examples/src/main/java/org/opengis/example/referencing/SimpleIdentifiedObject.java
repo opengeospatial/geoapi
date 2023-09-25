@@ -134,7 +134,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * throws unconditionally the exception since we do not support WKT formatting.
      *
      * @return the Well Know Text for this object.
-     * @throws UnsupportedOperationException if this object can't be formatted as WKT.
+     * @throws UnsupportedOperationException if this object cannot be formatted as WKT.
      */
     @Override
     public String toWKT() throws UnsupportedOperationException {

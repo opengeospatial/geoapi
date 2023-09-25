@@ -19,7 +19,6 @@ package org.opengis.referencing.operation;
 
 import java.util.Collection;
 import java.util.Collections;
-import org.opengis.referencing.ObjectDomain;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.metadata.quality.PositionalAccuracy;
@@ -28,6 +27,7 @@ import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
+import org.opengis.geoapi.internal.Legacy;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -72,7 +72,8 @@ public interface CoordinateOperation extends IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property.
-     * This is used for setting the value to be returned by {@link #getCoordinateOperationAccuracy()}.
+     * This property is kept for compatibility with ISO 19111:2007.
+     * However as of ISO 19111:2019, {@link #DOMAINS_KEY} should be preferred.
      *
      * @see #getCoordinateOperationAccuracy()
      */
@@ -80,24 +81,20 @@ public interface CoordinateOperation extends IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property.
-     * This is used for setting the value to be returned by {@link #getDomainOfValidity()}.
+     * This property is kept for compatibility with ISO 19111:2007.
+     * However as of ISO 19111:2019, {@link #DOMAINS_KEY} is preferred.
      *
-     * @see #getDomainOfValidity()
-     *
-     * @deprecated Replaced by {@link #DOMAIN_KEY} as of ISO 19111:2019.
+     * @see org.opengis.referencing.ObjectDomain#getDomainOfValidity()
      */
-    @Deprecated(since="3.1", forRemoval=true)
     String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
 
     /**
      * Key for the <code>{@value}</code> property.
-     * This is used for setting the value to be returned by {@link #getScope()}.
+     * This property is kept for compatibility with ISO 19111:2007.
+     * However as of ISO 19111:2019, {@link #DOMAINS_KEY} is preferred.
      *
-     * @see #getScope()
-     *
-     * @deprecated Replaced by {@link #DOMAIN_KEY} as of ISO 19111:2019.
+     * @see org.opengis.referencing.ObjectDomain#getScope()
      */
-    @Deprecated(since="3.1", forRemoval=true)
     String SCOPE_KEY = "scope";
 
     /**
@@ -160,7 +157,7 @@ public interface CoordinateOperation extends IdentifiedObject {
     @Deprecated(since="3.1", forRemoval=true)
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default Extent getDomainOfValidity() {
-        return getDomains().stream().map(ObjectDomain::getDomainOfValidity).findFirst().orElse(null);
+        return Legacy.getDomainOfValidity(getDomains());
     }
 
     /**
@@ -179,7 +176,7 @@ public interface CoordinateOperation extends IdentifiedObject {
     @Deprecated(since="3.1", forRemoval=true)
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default InternationalString getScope() {
-        return getDomains().stream().map(ObjectDomain::getScope).findFirst().orElse(null);
+        return Legacy.getScope(getDomains());
     }
 
     /**

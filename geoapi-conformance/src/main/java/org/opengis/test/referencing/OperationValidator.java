@@ -90,7 +90,7 @@ public class OperationValidator extends ReferencingValidator {
 
         final CoordinateOperation operation = object.getOperation();
         mandatory("PassThroughOperation: getOperation() is mandatory.", operation);
-        assertNotSame("PassThroughOperation: getOperation() can't be this.", object, operation);
+        assertNotSame("PassThroughOperation: getOperation() cannot be this.", object, operation);
         dispatch(operation);
 
         final int[] index = object.getModifiedCoordinates();
@@ -125,8 +125,8 @@ public class OperationValidator extends ReferencingValidator {
         validate(operations);
         CoordinateOperation first=null, last=null;
         for (final CoordinateOperation single : operations) {
-            assertNotNull("ConcatenatedOperation: getOperations() can't contain null element.", single);
-            assertNotSame("ConcatenatedOperation: can't contain itself as a single element.", single, object);
+            assertNotNull("ConcatenatedOperation: getOperations() cannot contain null element.", single);
+            assertNotSame("ConcatenatedOperation: cannot contain itself as a single element.", single, object);
             dispatch(single);
             if (first == null) {
                 first = single;
@@ -190,7 +190,7 @@ public class OperationValidator extends ReferencingValidator {
         if (object == null) {
             return;
         }
-        assertFalse("CoordinateOperation: can't be both a ConcatenatedOperation and a SingleOperation.",
+        assertFalse("CoordinateOperation: cannot be both a ConcatenatedOperation and a SingleOperation.",
                 (object instanceof ConcatenatedOperation) && (object instanceof SingleOperation));
         validateIdentifiedObject(object);
         container.validate(object.getScope());
@@ -229,7 +229,7 @@ public class OperationValidator extends ReferencingValidator {
             return;
         }
         validateCoordinateOperation(object);
-        assertFalse("Operation: can't be both a Conversion and a Transformation.",
+        assertFalse("Operation: cannot be both a Conversion and a Transformation.",
                 (object instanceof Conversion) && (object instanceof Transformation));
 
         final OperationMethod method = object.getMethod();
@@ -266,11 +266,11 @@ public class OperationValidator extends ReferencingValidator {
             return;
         }
         validateOperation(object);
-        assertFalse("Projection: can't be both planar and conic.",
+        assertFalse("Projection: cannot be both planar and conic.",
                 (object instanceof PlanarProjection) && (object instanceof ConicProjection));
-        assertFalse("Projection: can't be both planar and cylindrical.",
+        assertFalse("Projection: cannot be both planar and cylindrical.",
                 (object instanceof PlanarProjection) && (object instanceof CylindricalProjection));
-        assertFalse("Projection: can't be both cylindrical and conic.",
+        assertFalse("Projection: cannot be both cylindrical and conic.",
                 (object instanceof CylindricalProjection) && (object instanceof ConicProjection));
 
         if (object.getMathTransform() != null) {

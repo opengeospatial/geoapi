@@ -114,7 +114,7 @@ public interface MathTransformFactory extends Factory {
      *
      * <p>Implementers should document how their implementation behave in a multi-threads environment.
      * For example, some implementations use {@linkplain java.lang.ThreadLocal thread local variables},
-     * while other can choose to returns {@code null} in all cases since {@code getLastMethodUsed()}
+     * while other can choose to return {@code null} in all cases since {@code getLastMethodUsed()}
      * is optional.</p>
      *
      * <p>Invoking {@code getLastMethodUsed()} can be useful after a call to
