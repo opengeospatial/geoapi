@@ -140,11 +140,6 @@ public abstract class Report {
     final Properties defaultProperties;
 
     /**
-     * The listener object to inform about the progress, or {@code null} if none.
-     */
-    ProgressListener listener;
-
-    /**
      * Creates a new report generator using the given property values. The list of expected
      * entries is subclass specific and shall be documented in their javadoc.
      *
@@ -498,22 +493,5 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
             }
         }
         return text;
-    }
-
-    /**
-     * Invoked when the report is making some progress. This is typically invoked from a
-     * {@code add(…)} method, since they are usually slower than {@link #write(File)}.
-     * Subclasses can override this method if they want to be notified about progress.
-     *
-     * @param position  a number ranging from 0 to {@code count}.
-     *        This is typically the number or rows created so far for the HTML table to write.
-     * @param count  the maximal expected value of {@code position}. Note that this value may change between
-     *        different invocations if the report gets a better estimation about the number of rows to be created.
-     */
-    protected void progress(final int position, final int count) {
-        final ProgressListener listener = this.listener;
-        if (listener != null) {
-            listener.progress(position, count);
-        }
     }
 }

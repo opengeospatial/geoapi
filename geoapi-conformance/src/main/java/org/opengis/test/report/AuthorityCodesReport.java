@@ -299,15 +299,12 @@ public class AuthorityCodesReport extends Report {
         defaultProperties.setProperty("OBJECTS.KIND", "Coordinate Reference Systems (CRS)");
         defaultProperties.setProperty("FILENAME", "CRS-Codes.html");
         final Collection<String> codes = factory.getAuthorityCodes(CoordinateReferenceSystem.class);
-        final int previousCount = rows.size();
         for (final String code : codes) {
             try {
                 add(createRow(code, factory.createCoordinateReferenceSystem(code)));
             } catch (FactoryException exception) {
                 add(createRow(code, exception));
             }
-            progress(previousCount + rows.size(),
-                     previousCount + codes.size());
         }
     }
 
@@ -405,8 +402,6 @@ public class AuthorityCodesReport extends Report {
 
     /**
      * Invoked by {@link Report} every time a {@code ${FOO}} occurrence is found.
-     * This operation is pretty fast; the slow operation which deserve progress
-     * listeners is rather the {@link #add(CRSAuthorityFactory)} method.
      *
      * @throws IOException if an error occurred during the copy.
      */

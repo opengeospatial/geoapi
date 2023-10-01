@@ -365,11 +365,8 @@ public class OperationParametersReport extends Report {
         defaultProperties.setProperty("FILENAME", "CoordinateOperations.html");
         setVendor("PRODUCT", factory.getVendor());
         final Set<OperationMethod> operations = factory.getAvailableMethods(SingleOperation.class);
-        final int previousCount = rows.size();
         for (final OperationMethod operation : operations) {
             add(operation, operation.getParameters());
-            progress(previousCount + rows.size(),
-                     previousCount + operations.size());
         }
     }
 
