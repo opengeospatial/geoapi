@@ -7,8 +7,9 @@ layout: default
 
 # OGC® GeoAPI
 
-GeoAPI provides a set programming interfaces for geospatial applications.
-In a series of packages or modules, GeoAPI 3.0 defines interfaces for metadata handling
+GeoAPI provides a set of programming interfaces for geospatial applications.
+In a series of packages or modules in the `org.opengis`® namespace,
+GeoAPI 3.0 defines interfaces for metadata handling
 and for geodetic referencing (map projections).
 The GeoAPI interfaces closely follow the abstract models published collaboratively by the
 [International Organization for Standardization](https://www.isotc211.org/) (ISO) in its 19100 series of documents
