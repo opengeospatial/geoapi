@@ -113,7 +113,7 @@ final class CharSequences {
      * @param  start   the beginning index in the {@code buffer}, inclusive.
      * @param  end     the ending index in the {@code buffer}, exclusive.
      * @param  chars   the array that will replace previous contents.
-     * @throws NullArgumentException if the {@code buffer} or {@code chars} argument is null.
+     * @throws NullPointerException if the {@code buffer} or {@code chars} argument is null.
      *
      * @see StringBuilder#replace(int, int, String)
      */
