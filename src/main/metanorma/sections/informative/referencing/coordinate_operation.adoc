@@ -3,7 +3,7 @@
 _From <<ISO19111>> §12 and §C.5_
 
 A Coordinate Operation can _transform_ or _convert_ coordinate tuples from one Coordinate Reference System (CRS) to another CRS.
-There is four kinds of coordinate operations in GeoAPI:
+There are four kinds of coordinate operations in GeoAPI:
 
 * A _coordinate conversion_ is the implementation of some mathematical formulas without empirically derived parameters.
   Conversions can be as accurate as floating point computations allow.

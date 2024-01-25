@@ -38,7 +38,7 @@ import org.jpy.PyObject;
 
 /**
  * A code list specifying how a Python object should be interfaced to a Java implementation
- * of a given interface. There is two-predefined modes: {@link #GEOAPI} and {@link #DEFAULT}.
+ * of a given interface. There are two-predefined modes: {@link #GEOAPI} and {@link #DEFAULT}.
  * Users can define different modes if they override the {@link #toJava(PyObject, Class)} method.
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -169,7 +169,7 @@ public abstract class Interfacing extends CodeList<Interfacing> {
     }
 
     /**
-     * Returns the list of codes of the same kind than this code list element.
+     * Returns the list of codes of the same kind as this code list element.
      * Invoking this method is equivalent to invoking {@link #values()}, except that
      * this method can be invoked on an instance of the parent {@code CodeList} class.
      *

@@ -49,7 +49,7 @@ import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
  * Tests the creation of referencing objects from the {@linkplain AuthorityFactory authority factories}
  * given at construction time.
  *
- * <p>Many {@link ProjectedCRS} instances tested in this class use the same projections than the
+ * <p>Many {@link ProjectedCRS} instances tested in this class use the same projections as the
  * {@link MathTransform} instances tested in {@link ParameterizedTransformTest}. However, the latter
  * test class expects (λ,φ) input coordinates in degrees and (<var>x</var>,<var>y</var>)
  * output coordinates in metres, while this {@code AuthorityFactoryTest} class expects

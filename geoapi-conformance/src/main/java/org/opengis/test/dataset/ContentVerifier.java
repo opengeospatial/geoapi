@@ -179,7 +179,7 @@ public class ContentVerifier {
     }
 
     /**
-     * Resets this verifier to the same state than after construction.
+     * Resets this verifier to the same state as after construction.
      * This method can be invoked for reusing the same verifier with different metadata objects.
      */
     public void clear() {

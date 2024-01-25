@@ -653,7 +653,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 assertNotSame("MathTransform.transform(DirectPosition, …) shall not overwrite " +
                         "the source position.", sourcePosition, targetPosition);
                 assertEquals("MathTransform.transform(DirectPosition) must return a position having " +
-                        "the same dimension than MathTransform.getTargetDimension().",
+                        "the same dimension as MathTransform.getTargetDimension().",
                         targetDimension, targetPosition.getDimension());
                 for (int j=0; j<targetDimension; j++) {
                     expectedFloats[targetOffset] = (float) (expectedDoubles[targetOffset] = targetPosition.getOrdinate(j));

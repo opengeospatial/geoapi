@@ -346,7 +346,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
     /**
      * Returns the string representation of this parameter value. The default implementation returns
      * the concatenation of the {@linkplain SimpleIdentifiedObject#toString() identifier string}, the
-     * {@code " = "} string, then the same string than the {@linkplain #stringValue() string value}.
+     * {@code " = "} string, then the same string as the {@linkplain #stringValue() string value}.
      *
      * @see #stringValue()
      */
@@ -565,7 +565,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      *
      * <ul>
      *   <li>This method returns an instance of the same class.</li>
-     *   <li>The {@linkplain #value} is initialized to the same value than the cloned parameter.</li>
+     *   <li>The {@linkplain #value} is initialized to the same value as the cloned parameter.</li>
      * </ul>
      *
      * @see #createValue()

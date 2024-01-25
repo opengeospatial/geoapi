@@ -124,7 +124,7 @@ public interface Expression<R,V> extends Function<R,V> {
     V apply(R input) throws InvalidFilterValueException;
 
     /**
-     * Returns an expression doing the same evaluation than this method, but returning results
+     * Returns an expression doing the same evaluation as this method, but returning results
      * as values of the specified type. This method can return {@code this} if this expression
      * is already guaranteed to provide results of the specified type.
      * Otherwise this method can either (at implementer choice) return a new expression

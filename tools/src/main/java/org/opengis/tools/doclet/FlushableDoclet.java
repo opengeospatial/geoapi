@@ -44,7 +44,7 @@ import jdk.javadoc.doclet.StandardDoclet;
  *
  * <p>The {@code Consumer<Flushable>} interface is used as a callback mechanism for taglet initialization.
  * Taglets cannot invoke {@code FlushableDoclet} methods directly because the doclet initialized by Javadoc
- * tools does not use the same class loader than taglet. {@link BlockTaglet} instances can communicate with
+ * tools does not use the same class loader as taglet. {@link BlockTaglet} instances can communicate with
  * the {@code FlushableDoclet} instance only using objects from the standard Java library.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)

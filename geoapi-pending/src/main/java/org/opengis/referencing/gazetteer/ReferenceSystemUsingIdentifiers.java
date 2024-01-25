@@ -81,7 +81,7 @@ public interface ReferenceSystemUsingIdentifiers extends ReferenceSystem {
      * @departure constraint
      *   ISO 19112 defines <code>name</code> as a <code>CharacterString</code>. But ISO 19111,
      *   which defines the parent type, defines <code>name</code> as a <code>MD_Identifier</code>.
-     *   The type in this sub-interface had to be changed to the same type than the parent interface.
+     *   The type in this sub-interface had to be changed to the same type as the parent interface.
      *   Furthermore, ISO 19112 said that a version reference can be included in the name,
      *   in which case <code>Identifier.getVersion()</code> can be used.
      *

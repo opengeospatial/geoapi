@@ -247,7 +247,7 @@ public class SchemaInformation {
     /**
      * Creates a new verifier. If the computer contains a local copy of ISO schemas, then the {@code schemaRootDirectory}
      * argument can be set to that directory for faster schema loadings. If non-null, that directory should contain the
-     * same files than <a href="https://schemas.isotc211.org/">https://schemas.isotc211.org/</a> (not necessarily with
+     * same files as <a href="https://schemas.isotc211.org/">https://schemas.isotc211.org/</a> (not necessarily with
      * all sub-directories). In particular, that directory should contain an {@code 19115} sub-directory.
      *
      * <p>The {@link Departures#mergedTypes} entries will be {@linkplain Map#remove removed} as they are found.

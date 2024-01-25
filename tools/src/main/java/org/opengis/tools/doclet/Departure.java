@@ -266,7 +266,7 @@ public final class Departure extends BlockTaglet implements Flushable {
                         final Name name = element.typeName;
                         if (name.equals(lastName)) {
                             /*
-                             * New method or field for the same interface than the previous method
+                             * New method or field for the same interface as the previous method
                              * or field. Just insert a new line, do not repeat the interface name.
                              */
                             out.newLine();

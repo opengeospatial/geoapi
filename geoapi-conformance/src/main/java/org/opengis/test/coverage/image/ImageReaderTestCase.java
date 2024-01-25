@@ -462,7 +462,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
 
     /**
      * Tests the {@link ImageReader#readAsRenderedImage(int, ImageReadParam) ImageReader.readAsRenderedImage} method.
-     * This method performs the same test than {@link #testReadAsBufferedImage()}, except that the
+     * This method performs the same test as {@link #testReadAsBufferedImage()}, except that the
      * {@link ImageReader#readAsRenderedImage(int, ImageReadParam)} method is invoked instead of
      * {@code ImageReader.read(int, ImageReadParam)}.
      *
@@ -475,7 +475,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
 
     /**
      * Tests the {@link ImageReader#readRaster(int, ImageReadParam) ImageReader.readRaster} method.
-     * This method performs the same test than {@link #testReadAsBufferedImage()}, except that the
+     * This method performs the same test as {@link #testReadAsBufferedImage()}, except that the
      * {@link ImageReader#readRaster(int, ImageReadParam)} method is invoked instead of
      * {@code ImageReader.read(int, ImageReadParam)}.
      *

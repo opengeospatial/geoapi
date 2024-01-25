@@ -67,7 +67,7 @@ public interface NameFactory extends Factory {
      *   </tr><tr>
      *     <td>{@code "separator.head"}</td>
      *     <td>The separator to insert between the namespace and the {@linkplain GenericName#head() head}.<br>
-     *         If omitted, then the default is the same value than {@code "separator"}.</td>
+     *         If omitted, then the default is the same value as {@code "separator"}.</td>
      *   </tr>
      * </table></blockquote>
      *
@@ -86,7 +86,7 @@ public interface NameFactory extends Factory {
 
     /**
      * Creates a type name from the given character sequence and automatically inferred Java type.
-     * The character sequence shall complies to the same restriction than
+     * The character sequence shall complies to the same restriction as
      * {@link #createLocalName createLocalName(…)}.
      *
      * @param  scope  the {@linkplain GenericName#scope() scope} of the type name to create,

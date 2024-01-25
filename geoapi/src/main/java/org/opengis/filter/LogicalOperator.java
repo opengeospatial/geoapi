@@ -57,7 +57,7 @@ public interface LogicalOperator<R> extends Filter<R> {
 
     /**
      * Returns a view of filter operands as expressions having {@code Boolean} return values.
-     * The expression list shall have the same size than the {@linkplain #getOperands() operands list}.
+     * The expression list shall have the same size as the {@linkplain #getOperands() operands list}.
      * For each index <var>i</var> valid for the lists, the following relation shall hold:
      *
      * {@snippet lang="java" :

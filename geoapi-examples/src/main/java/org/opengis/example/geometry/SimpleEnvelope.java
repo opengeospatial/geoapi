@@ -69,7 +69,7 @@ public class SimpleEnvelope implements Envelope {
     }
 
     /**
-     * Constructs a new envelope with the same data than the specified envelope.
+     * Constructs a new envelope with the same data as the specified envelope.
      * This is a copy constructor.
      *
      * @param  envelope  the envelope to copy.

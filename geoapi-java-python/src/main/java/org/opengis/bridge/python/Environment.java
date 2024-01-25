@@ -121,7 +121,7 @@ public class Environment {
 
     /**
      * Specifies how the Java methods in the given interface should be mapped to Python methods or attributes.
-     * There is two main interfacing modes supported by default: if this method returns {@link Interfacing#GEOAPI},
+     * There are two main interfacing modes supported by default: if this method returns {@link Interfacing#GEOAPI},
      * then the mapping between Java and Python uses the following rules:
      *
      * <ul>

@@ -133,7 +133,7 @@ class JavaToPython extends SourceGenerator {
     /**
      * Creates a new Python classes writer or verifier. If the computer contains a local copy of ISO schemas,
      * then the {@code schemaRootDirectory} argument can be set to that directory for faster schema loadings.
-     * If non-null, that directory should contain the same files than
+     * If non-null, that directory should contain the same files as
      * <a href="https://schemas.isotc211.org/">https://schemas.isotc211.org/</a> (not necessarily with
      * all sub-directories). In particular, that directory should contain an {@code 19115} sub-directory.
      *
@@ -331,7 +331,7 @@ class JavaToPython extends SourceGenerator {
         /*
          * At this point we got the list of properties to write in Python interfaces.
          * But Java methods are listed in no particular order. Before to write them,
-         * we should sort them in the same order than in the XSD file.
+         * we should sort them in the same order as in the XSD file.
          */
         if (definition != null) {
             int position = 0;

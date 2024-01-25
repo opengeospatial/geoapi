@@ -255,7 +255,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      *
      * <ul>
      *   <li>This method returns an instance of the same class.</li>
-     *   <li>The {@linkplain #values()} are initialized to the same values than the cloned group.</li>
+     *   <li>The {@linkplain #values()} are initialized to the same values as the cloned group.</li>
      * </ul>
      *
      * @see #createValue()

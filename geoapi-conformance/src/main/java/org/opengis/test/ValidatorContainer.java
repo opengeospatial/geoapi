@@ -193,7 +193,7 @@ public class ValidatorContainer implements Cloneable {
     }
 
     /**
-     * Returns a new container using the same validators than this instance. After this method call,
+     * Returns a new container using the same validators as this instance. After this method call,
      * the two {@code ValidatorContainer} instances will share the same {@link Validator} instances.
      *
      * <p>This method is typically used in order to use the default configuration with a few

@@ -87,7 +87,7 @@ public interface Feature {
      * <ul>
      *   <li>It must be non-null.</li>
      *   <li>Its {@linkplain Property#getName() name} shall be the name of the property to set in this feature.</li>
-     *   <li>Its type shall be the same instance than the {@linkplain FeatureType#getProperty(String) property type}
+     *   <li>Its type shall be the same instance as the {@linkplain FeatureType#getProperty(String) property type}
      *       defined by the feature type for the above name. In other words, the following condition shall hold:</li>
      * </ul>
      *

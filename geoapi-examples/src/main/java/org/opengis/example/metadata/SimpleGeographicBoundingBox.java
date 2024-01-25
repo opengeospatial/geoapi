@@ -54,7 +54,7 @@ public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Exten
     protected final double northBoundLatitude;
 
     /**
-     * Constructs a geographic bounding box initialized to the same values than the specified one.
+     * Constructs a geographic bounding box initialized to the same values as the specified one.
      *
      * @param box  the existing box to use for initializing this geographic bounding box.
      */
@@ -77,7 +77,7 @@ public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Exten
     /**
      * Creates a geographic bounding box initialized to the specified values.
      *
-     * <p><strong>Caution:</strong> Arguments are expected in the same order than they appear in the
+     * <p><strong>Caution:</strong> Arguments are expected in the same order as they appear in the
      * ISO 19115 specification. This is different than the order commonly found in Java world,
      * which is rather (<var>x</var><sub>min</sub>, <var>y</var><sub>min</sub>,
      * <var>x</var><sub>max</sub>, <var>y</var><sub>max</sub>).</p>

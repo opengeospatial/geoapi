@@ -133,7 +133,7 @@ final class MetadataHandler implements InvocationHandler {
     }
 
     /**
-     * Returns {@code true} if the given object is a metadata handler with the same attributes than
+     * Returns {@code true} if the given object is a metadata handler with the same attributes as
      * this handler. If the given object is the proxy, then the proxy handler will be unwrapped.
      * Note that since the proxy {@code equals} method delegates to this method, the symmetry is
      * preserved: handler.equals(proxy) == proxy.equals(handler).

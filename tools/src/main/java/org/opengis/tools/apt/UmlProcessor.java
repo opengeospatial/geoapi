@@ -316,7 +316,7 @@ abstract class UmlProcessor extends AbstractProcessor {
             if (a != null) {
                 String identifier = (String) a.getValue();
                 /*
-                 * If there is two or more UML identifiers collapsed in only one Java method,
+                 * If there are two or more UML identifiers collapsed in only one Java method,
                  * keep only the first identifier (which is usually the main attribute).
                  */
                 final int split = identifier.indexOf(',');

@@ -34,7 +34,7 @@ public class SimpleMatrix extends GMatrix implements Matrix {
     }
 
     /**
-     * Creates a new matrix initialized to the same content than the given matrix.
+     * Creates a new matrix initialized to the same content as the given matrix.
      *
      * @param matrix  the matrix to copy.
      */
