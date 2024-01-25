@@ -566,7 +566,7 @@ public enum Specification {
     OGC_03064((short) 10),
 
     /**
-     * Coordinate Transformation Services implementation specification.
+     * Coordinate Transformation Services.
      * This is the specification used as a complement of {@linkplain #ISO_19111 ISO 19111}
      * when an aspect was not defined in the ISO specification.
      *
@@ -581,7 +581,7 @@ public enum Specification {
     OGC_01009((short) 1),
 
     /**
-     * Grid Coverages implementation specification.
+     * Grid Coverages.
      * This is the specification used as a complement of {@linkplain #ISO_19123 ISO 19123}
      * when an aspect was not defined in the ISO specification.
      *

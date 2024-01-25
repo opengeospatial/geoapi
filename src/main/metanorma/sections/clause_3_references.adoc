@@ -42,13 +42,13 @@
 
 * [[[ISO19162,ISO 19162:2019]]], _Geographic information — Well-known text representation of coordinate reference systems_
 
-* [[[OGC01-009,OGC 01-009]]], _OpenGIS® Implementation Specification: Coordinate Transformation Services_
+* [[[OGC01-009,OGC 01-009]]], _OpenGIS® Coordinate Transformation Services_
 
 * [[[OGC18-075,OGC 18-075]]], _OGC® Moving Features Encoding Part I: XML Core_
 
 * [[[OGC19-045,OGC 19-045r3]]], _OGC® Moving Features Encoding: JSON_
 
-* [[[OGC06-121,OGC 06-121r9]]], _OGC® Web Service Common Implementation Specification_
+* [[[OGC06-121,OGC 06-121r9]]], _OGC® Web Service Common_
 
 * [[[JSR385,JSR 385]]], _JSR 385: Units of Measurement API 2.0_
 
