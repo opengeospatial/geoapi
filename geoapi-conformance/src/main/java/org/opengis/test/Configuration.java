@@ -237,11 +237,10 @@ public class Configuration implements Serializable {
      * This code list is extensible: users can create new instances by
      * invoking the {@link #valueOf(String, Class)} static method.
      *
-     * <p><b><u>Note on field names:</u></b><br>
+     * <h2>Note on field names</h2>
      * Every constants declared in this class have a name matching exactly the field names in
-     * {@link TestCase} subclasses. This is a departure from the usual <cite>"all upper-case
-     * letters"</cite> convention, but make the relationship with fields more obvious
-     * and the parsing of {@link java.util.Properties} files easier.</p>
+     * {@link TestCase} subclasses. This is a departure from the usual <q>all upper-case letters</q> convention,
+     * but make the relationship with fields more obvious and the parsing of {@link java.util.Properties} files easier.
      *
      * @param  <T>  the type of values associated with the key.
      *
@@ -439,8 +438,8 @@ public class Configuration implements Serializable {
          *
          * <div class="note"><b>Example:</b>
          * ISO 19111 (the <cite>referencing by coordinates</cite> abstract model) specifies that the name of
-         * the latitude axis in a geographic CRS shall be <cite>"Geodetic latitude"</cite> while ISO 19162
-         * (a.k.a <cite>Well Known Text 2</cite>) specifies <cite>"Latitude"</cite>. Consequently, the GeoAPI
+         * the latitude axis in a geographic CRS shall be <q>Geodetic latitude</q> while ISO 19162
+         * (a.k.a <cite>Well Known Text 2</cite>) specifies <q>Latitude</q>. Consequently, the GeoAPI
          * conformance module allows implementer to disable the check for ISO 19111 conformance if their WKT
          * parser does not adapt the parsed CRS objects to the ISO 19111 axis naming.</div>
          *

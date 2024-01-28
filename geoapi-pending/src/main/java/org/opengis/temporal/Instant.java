@@ -28,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  * in space.
  *
  * @departure integration
- *   In ISO 19108 Position interface is define as an union class, which does not exist in java.
+ *   In ISO 19108 Position interface is define as a union class, which does not exist in java.
  *   We choose to omit Position class and add getDate() method into {@link Instant} interface.
  *
  * @author Stephane Fellah (Image Matters)

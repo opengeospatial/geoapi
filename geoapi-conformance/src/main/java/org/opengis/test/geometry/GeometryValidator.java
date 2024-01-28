@@ -131,8 +131,8 @@ public class GeometryValidator extends Validator {
                     dimension, upperCorner.getDimension());
         }
         if (crs != null) {
-            if (lowerCRS != null) assertSame("Envelope: lower CRS shall be the same than the envelope CRS.", crs, lowerCRS);
-            if (upperCRS != null) assertSame("Envelope: upper CRS shall be the same than the envelope CRS.", crs, upperCRS);
+            if (lowerCRS != null) assertSame("Envelope: lower CRS shall be the same as the envelope CRS.", crs, lowerCRS);
+            if (upperCRS != null) assertSame("Envelope: upper CRS shall be the same as the envelope CRS.", crs, upperCRS);
         } else if (lowerCRS != null && upperCRS != null) {
             assertSame("Envelope: the two corners shall have the same CRS.", lowerCRS, upperCRS);
         }
@@ -207,7 +207,7 @@ public class GeometryValidator extends Validator {
             assertEquals("DirectPosition: coordinate array length shall be equal to the dimension.",
                     dimension, coordinates.length);
             for (int i=0; i<dimension; i++) {
-                assertEquals("DirectPosition: getOrdinate(i) shall be the same than coordinate[i].",
+                assertEquals("DirectPosition: getOrdinate(i) shall be the same as coordinate[i].",
                         coordinates[i], object.getOrdinate(i), 0.0);         // No tolerance - we want exact match.
             }
         }

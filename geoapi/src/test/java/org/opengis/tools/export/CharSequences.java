@@ -62,7 +62,7 @@ final class CharSequences {
      * Given a string in camel cases, returns a string with the same words separated by underscores.
      * A word begins with a upper-case character following a lower-case character.
      * For example, if the given string is {@code "PixelInterleavedSampleModel"},
-     * then this method returns <cite>"pixel interleaved sample model"</cite>.
+     * then this method returns <q>pixel interleaved sample model</q>.
      *
      * <p>The given string is usually a programmatic identifier like a class name or a method name.</p>
      *

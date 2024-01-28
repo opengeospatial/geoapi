@@ -144,7 +144,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     protected boolean isFloatToDoubleSupported;
 
     /**
-     * {@code true} if the destination array can be the same than the source array,
+     * {@code true} if the destination array can be the same as the source array,
      * and the source and target region of the array can overlap. The default value
      * is {@code true}. Vendor can set this value to {@code false} in order to test
      * a transform which is not fully implemented.

@@ -32,8 +32,8 @@ import static org.opengis.annotation.Specification.*;
  * <h2>Axis name</h2>
  * Usage of coordinate system axis names is constrained by geodetic custom in a number of cases,
  * depending mainly on the coordinate reference system type. These constraints are shown in the
- * table below. This constraint works in two directions; for example the names <cite>"geodetic
- * latitude"</cite> and <cite>"geodetic longitude"</cite> shall be used to designate the coordinate
+ * table below. This constraint works in two directions; for example the names <q>geodetic
+ * latitude</q> and <q>geodetic longitude</q> shall be used to designate the coordinate
  * axis names associated with a geographic coordinate reference system. Conversely, these names
  * shall not be used in any other context.
  *

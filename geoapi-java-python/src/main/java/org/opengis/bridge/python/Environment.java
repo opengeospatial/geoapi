@@ -82,7 +82,7 @@ public class Environment {
 
     /**
      * Represents the given Python sequence as a read-only Java list containing elements of the given type.
-     * The given {@code type} argument can be the same than the ones accepted by {@link #toJava(PyObject, Class)}.
+     * The given {@code type} argument can be the same as the ones accepted by {@link #toJava(PyObject, Class)}.
      *
      * @param  <E>     compile-time value of the {@code type} argument.
      * @param  object  the Python sequence to represent as a Java list, or {@code null} for an empty list.

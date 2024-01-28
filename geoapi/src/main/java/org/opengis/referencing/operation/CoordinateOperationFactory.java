@@ -126,6 +126,8 @@ public interface CoordinateOperationFactory extends ObjectFactory {
 
     /**
      * Creates a concatenated operation from a sequence of operations.
+     * The source coordinate reference system of the first step and the target coordinate reference system of the
+     * last step are the source and target coordinate reference system associated with the concatenated operation.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -205,6 +207,8 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   method for creating such object.
      *
      * @since 3.1
+     *
+     * @todo Remove dimension arguments.
      */
     OperationMethod createOperationMethod(Map<String,?> properties,
                                           Integer  sourceDimension,

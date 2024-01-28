@@ -183,7 +183,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      *
      * @param  srcPts  the array containing the source point coordinates.
      * @param  srcOff  the offset to the first point to be transformed in the source array.
-     * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same than {@code srcPts}.
+     * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same as {@code srcPts}.
      * @param  dstOff  the offset to the location of the first transformed point that is stored in the destination array.
      * @param  numPts  the number of point objects to be transformed.
      * @throws TransformException if a point cannot be transformed.
@@ -214,7 +214,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      *
      * @param  srcPts  the array containing the source point coordinates.
      * @param  srcOff  the offset to the first point to be transformed in the source array.
-     * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same than {@code srcPts}.
+     * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same as {@code srcPts}.
      * @param  dstOff  the offset to the location of the first transformed point that is stored in the destination array.
      * @param  numPts  the number of point objects to be transformed.
      * @throws TransformException if a point cannot be transformed.
@@ -245,7 +245,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      *
      * @param  srcPts  the array containing the source point coordinates.
      * @param  srcOff  the offset to the first point to be transformed in the source array.
-     * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same than {@code srcPts}.
+     * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same as {@code srcPts}.
      * @param  dstOff  the offset to the location of the first transformed point that is stored in the destination array.
      * @param  numPts  the number of point objects to be transformed.
      * @throws TransformException if a point cannot be transformed.
@@ -272,7 +272,7 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
      *
      * @param  srcPts  the array containing the source point coordinates.
      * @param  srcOff  the offset to the first point to be transformed in the source array.
-     * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same than {@code srcPts}.
+     * @param  dstPts  the array into which the transformed point coordinates are returned. May be the same as {@code srcPts}.
      * @param  dstOff  the offset to the location of the first transformed point that is stored in the destination array.
      * @param  numPts  the number of point objects to be transformed.
      * @throws TransformException if a point cannot be transformed.

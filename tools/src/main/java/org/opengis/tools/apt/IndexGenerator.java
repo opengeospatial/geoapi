@@ -46,7 +46,7 @@ import javax.annotation.processing.SupportedOptions;
  * given output file (usually "{@code geoapi/src/main/javadoc/content.html}"). The result is published online at
  * <a href="http://www.geoapi.org/snapshot/javadoc/content.html">http://www.geoapi.org/snapshot/javadoc/content.html</a>
  *
- * <p><b><u>Usage</u></b></p>
+ * <h2>Usage</h2>
  * Instructions about this processor can be found in the module javadoc.
  * Options are:
  * <ul>

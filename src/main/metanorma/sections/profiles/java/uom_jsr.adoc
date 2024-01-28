@@ -4,7 +4,7 @@
 The Java profile of GeoAPI does not materialize any of the units of measurement types (<<units>>) defined by ISO 19103.
 Instead, unit modeling is entirely delegated to the Java Specification Request <<JSR385>>.
 The ISO 19103 `Measure` type is represented by the JSR 385 `Quantity` interface.
-The Java standard defines various quantity subtypes in the same way than ISO 19103 does,
+The Java standard defines various quantity subtypes in the same way as ISO 19103 does,
 often with the same names (`Angle`, `Length`, `Area`, `Volume`, _etc_).
 But contrarily to ISO 19103, JSR 385 does not define a parallel set of subtypes for units of measurement.
 Instead, it defines only one unit type, `javax​.measure​.Unit<Q extends Quantity<Q>>`,

@@ -106,7 +106,7 @@ public interface IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@code ObjectFactory.createFoo(Map, ...)} methods.
-     * This is used for setting the value to be returned by {@link #getDomain()}.
+     * This is used for setting the value to be returned by {@link #getDomains()}.
      *
      * @see ObjectFactory
      * @see #getDomains()

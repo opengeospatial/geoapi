@@ -48,12 +48,12 @@ import org.opengis.test.coverage.image.*;
  * in various packages. Vendors can change the value of fields in this class if they wish to
  * override some validation process.
  *
- * <p><b><u>Customization</u></b><br>
+ * <h2>Customization</h2>
  * All {@code validate(…)} methods in this class are final because this class is not the extension
  * point for overriding validation processes. Instead, extend the appropriate {@link Validator}
  * subclass and assign an instance to the corresponding field in this class. For example in order
- * to override the validation of {@link org.opengis.referencing.crs.GeographicCRS} objects, one
- * can do:</p>
+ * to override the validation of {@link org.opengis.referencing.crs.GeographicCRS} objects,
+ * one can do:
  *
  * {@snippet lang="java" :
  * ValidatorContainer container = new ValidationContainer();

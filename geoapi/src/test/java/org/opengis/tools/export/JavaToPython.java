@@ -96,7 +96,7 @@ class JavaToPython extends SourceGenerator {
     private final Map<String,StringBuilder> contents;
 
     /**
-     * The Python modules to create for each package prefixes. The keys are the same than in the {@link #contents} map.
+     * The Python modules to create for each package prefixes. The keys are the same as in the {@link #contents} map.
      * Values are Python filenames without {@value #FILE_SUFFIX} suffix.
      */
     private final NameSpaces namespaces;

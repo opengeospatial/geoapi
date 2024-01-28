@@ -55,7 +55,7 @@ public interface AdhocQueryExpression extends QueryExpression {
      *
      * @departure easeOfUse
      *   The filter specification associates a class {@code Type} with the following properties,
-     *   where {@code ofType} and {@code ofKind} are in an union (which means that exactly one of
+     *   where {@code ofType} and {@code ofKind} are in a union (which means that exactly one of
      *   those 2 properties shall be provided):
      *   <ul>
      *     <li>{@code ofType} as a {@link org.opengis.util.ScopedName}.</li>

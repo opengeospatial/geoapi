@@ -168,7 +168,7 @@ public final class CompatibilityTest implements Closeable {
                     final Method oldMethod = oldClass.getMethod(methodName, paramTypes);
                     /*
                      * At this point we found that the method existed, so we will not report it has a new method.
-                     * As a paranoiac check we verify that the parameters of the new method are the same than the
+                     * As a paranoiac check we verify that the parameters of the new method are the same as the
                      * parameters of the old method, but this check should actually never fail (if the parameters
                      * were not the same, the method would not have been found).
                      */

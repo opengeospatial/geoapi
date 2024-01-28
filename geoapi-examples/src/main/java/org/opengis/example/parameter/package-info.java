@@ -11,7 +11,8 @@
  * {@link org.opengis.parameter.GeneralParameterDescriptor}.
  * This means that each parameter value is also its own descriptor.
  *
- * <p><b><u>Example: Creating parameters for the Mercator projection</u></b></p>
+ * <h2>Example 1</h2>
+ * Creating parameters for the Mercator projection:
  *
  * {@snippet lang="java" :
  * public ParameterValueGroup createMercatorParameters() {
@@ -24,7 +25,8 @@
  *             new SimpleParameter(authority, "False northing",                 SimpleParameter.Type.LINEAR));
  * }}
  *
- * <p><b><u>Example: Defining values to the Mercator parameters</u></b></p>
+ * <h2>Example 2</h2>
+ * Defining values to the Mercator parameters:
  *
  * {@snippet lang="java" :
  * public ParameterValueGroup createMercatorParameters() {
@@ -33,8 +35,8 @@
  *     group.parameter("False easting").setValue(5000.0, SI.METRE);
  * }}
  *
- * <p>Every classes in this package are hereby placed into the Public Domain.
- * This means anyone is free to do whatever they wish with those files.</p>
+ * Every classes in this package are hereby placed into the Public Domain.
+ * This means anyone is free to do whatever they wish with those files.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

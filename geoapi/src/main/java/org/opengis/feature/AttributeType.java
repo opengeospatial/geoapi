@@ -140,7 +140,7 @@ public interface AttributeType<V> extends PropertyType {
 
     /**
      * Other attribute types that describe this attribute type.
-     * See <cite>"Attribute characterization"</cite> in class Javadoc for more information.
+     * See <q>Attribute characterization</q> in class Javadoc for more information.
      *
      * <div class="note"><b>Example:</b>
      * an attribute that carries a measurement (e.g. air temperature) may have another attribute

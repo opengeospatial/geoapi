@@ -59,7 +59,7 @@ or because the GeoAPI type is inspired by a similar effort in the target languag
 
 [[internationalization_departures_for_harmonization]]
 ====== Harmonization
-`InternationalString` as defined by GeoAPI provides the same functionality than ISO 19115 `PT_FreeText`.
+`InternationalString` as defined by GeoAPI provides the same functionality as ISO 19115 `PT_FreeText`.
 It can be applied to all ISO 19115 elements who's data type is `Character­String` and domain is “free text”.
 Consequently, GeoAPI uses the single `International­String` interface for the two ISO types
 `LanguageCode` (from ISO 19103) and `PT_FreeText` (from ISO 19115).

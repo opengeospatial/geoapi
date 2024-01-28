@@ -128,7 +128,7 @@ public final class ResourceBundles {
      * Callers should invoke this method only once and cache the map.
      *
      * @return mapping from UML identifiers to Java classes in a new {@code Properties} instance.
-     * @throws IOException if the properties can not be loaded.
+     * @throws IOException if the properties cannot be loaded.
      *
      * @see UML#identifier()
      */

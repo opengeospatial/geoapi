@@ -104,7 +104,7 @@ class MathTransform(ABC):
         :type src_pts: numpy.ndarray
         :param src_off: the offset to the first point to be transformed in the source array.
         :type src_off: int
-        :param dst_pts: the array into which the transformed point coordinates are returned. May be the same than srcPts
+        :param dst_pts: the array into which the transformed point coordinates are returned. May be the same as srcPts
         :type dst_pts: numpy.ndarray
         :param dst_off: the offset to the location of the first transformed point that is stored in the destination
         :type dst_off: int

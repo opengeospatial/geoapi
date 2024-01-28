@@ -142,7 +142,7 @@ public interface Attribute<V> extends Property {
     /**
      * Other attributes that describe this attribute. For example if this attribute carries a measurement,
      * then a characteristic of this attribute could be the measurement accuracy.
-     * See <cite>"Attribute characterization"</cite> in {@link AttributeType} Javadoc for more information.
+     * See <q>Attribute characterization</q> in {@link AttributeType} Javadoc for more information.
      *
      * <p>Attributes having a value equals to their {@linkplain AttributeType#getDefaultValue() default value}
      * do not need to appear in this characteristics map. For example all temperature measurements in a dataset

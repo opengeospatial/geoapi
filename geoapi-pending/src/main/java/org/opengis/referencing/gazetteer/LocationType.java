@@ -64,11 +64,11 @@ public interface LocationType {
      * Property used as the defining characteristic of the location type.
      *
      * <div class="note"><b>Examples:</b>
-     * <cite>“local administration”</cite> for administrative areas,
-     * <cite>“built environment”</cite> for towns or properties,
-     * <cite>“access”</cite> for streets,
-     * <cite>“electoral”</cite>,
-     * <cite>“postal”</cite>.</div>
+     * <q>local administration</q> for administrative areas,
+     * <q>built environment</q> for towns or properties,
+     * <q>access</q> for streets,
+     * <q>electoral</q>,
+     * <q>postal</q>.</div>
      *
      * @return property used as the defining characteristic of the location type.
      *
@@ -151,8 +151,8 @@ public interface LocationType {
     /**
      * Parent location types (location types of which this location type is a sub-division).
      * A location type can have more than one possible parent. For example, the parent of a
-     * location type named <cite>“street”</cite> could be <cite>“locality”</cite>, <cite>“town”</cite>
-     * or <cite>“administrative area”</cite>.
+     * location type named <q>street</q> could be <q>locality</q>, <q>town</q>
+     * or <q>administrative area</q>.
      *
      * @return parent location types, or an empty collection if none.
      *

@@ -47,4 +47,4 @@ The `reference­System­Identifier` property defined by ISO 19115 is replaced by
 The `reference­System­Type` property value (geographic, projected, compound, geographic identifier, _etc._)
 can be determined using language-specific instructions such as `instanceof` in Java.
 
-In the same spirit than above replacement, `verticalCRSId` is omitted because redundant with `verticalCRS`.
+In the same spirit as above replacement, `verticalCRSId` is omitted because redundant with `verticalCRS`.

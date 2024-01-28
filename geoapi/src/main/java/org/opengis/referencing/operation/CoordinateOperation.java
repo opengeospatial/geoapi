@@ -169,7 +169,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      *   This method has been kept conformant with the specification published in 2003.
      *   The revision published in 2007 replaced the singleton by a collection and changed the
      *   obligation from "optional" to "mandatory", requiring a return value of
-     *   <cite>"not known"</cite> if the scope is unknown. This change is still under review.
+     *   <q>not known</q> if the scope is unknown. This change is still under review.
      *
      * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */

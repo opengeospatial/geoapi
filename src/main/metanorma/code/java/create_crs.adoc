@@ -61,7 +61,7 @@ Above example created the "Makassar / NEIEZ" coordinate reference system in a ha
 But when an authority code is available (which is the case of above example),
 the use of an authority factory is recommended not only because it is easier,
 but also because it generally provides more metadata information such as scope and domain of validity.
-The following example creates the same CRS than above example:
+The following example creates the same CRS as above example:
 
 [source,java]
 ---------------------------------------------------------------------------

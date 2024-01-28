@@ -375,7 +375,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
         final Class<? extends CodeList> ct =  this.getClass();
         final Class<? extends CodeList> co = other.getClass();
         if (!ct.equals(co)) {
-            throw new ClassCastException("Can't compare " + ct.getSimpleName() + " to " + co.getSimpleName());
+            throw new ClassCastException("Cannot compare " + ct.getSimpleName() + " to " + co.getSimpleName());
         }
         return ordinal - ((CodeList<?>) other).ordinal;
     }

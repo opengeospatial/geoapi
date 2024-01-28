@@ -81,7 +81,7 @@ class ScopedName(GenericName):
     @property
     @abstractmethod
     def head(self) -> LocalName:
-        """The first element in the sequence of parsed names. The head element must exists in the same name space than this scoped name."""
+        """The first element in the sequence of parsed names. The head element must exists in the same name space as this scoped name."""
         pass
 
     @property
