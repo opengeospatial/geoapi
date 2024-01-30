@@ -53,7 +53,7 @@ import org.opengis.annotation.Stereotype;
  * name follow some naming convention. For example, type names are suffixed with {@code "_Type"} in OGC
  * schemas, while property type names are suffixed with {@code "_PropertyType"}.  This class throws an
  * exception if a type does not follow the expected naming convention. This requirement makes
- * implementation easier, by reducing the amount of {@link Map}s that we need to manage.</p>
+ * implementation easier, by reducing the number of {@link Map}s that we need to manage.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @since   3.1

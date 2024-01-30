@@ -125,7 +125,7 @@ public final class InterfacingTest {
         final Map<String,String> typesForNames = geoapi.typesForNames();
         /*
          * For each interface, set a flag telling us whether that interface has subtypes or not.
-         * Environment uses this information for reducing the amount of relatively costly checks
+         * Environment uses this information for reducing the number of relatively costly checks
          * for subtypes.
          */
         final ClassLoader loader = UML.class.getClassLoader();

@@ -24,7 +24,7 @@
  * anyone is free to do whatever they wish with those files.
  *
  * <h2>Metadata</h2>
- * The {@link org.opengis.metadata} package and sub-packages contain a large amount of interfaces,
+ * The {@link org.opengis.metadata} package and sub-packages contain a large number of interfaces,
  * which may give the impression that implementing metadata is very tedious.
  * However the {@link java.lang.reflect.Proxy} class can provide dynamically generated implementations.
  * The metadata example in this module shows how to implement every metadata interfaces with only two small classes.

@@ -27,7 +27,7 @@ import org.opengis.example.referencing.SimpleIdentifiedObject;
  * A {@link ParameterValue} implementation for {@code double} values.
  * In order to keep the conceptual model simpler, this parameter value is also its own descriptor.
  * This is not quite a recommended practice (such descriptors are less suitable for use in {@link java.util.HashMap}),
- * but allows us to keep the amount of classes smaller and closely related interfaces together.
+ * but allows us to keep the number of classes smaller and closely related interfaces together.
  *
  * <p>For keeping things yet simpler, the {@linkplain #getValueClass() value class} is hard-coded as
  * {@link Double}, the {@linkplain #getUnit() units of measurement} are constrained to standard

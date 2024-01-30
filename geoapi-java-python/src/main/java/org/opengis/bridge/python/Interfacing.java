@@ -298,8 +298,8 @@ public abstract class Interfacing extends CodeList<Interfacing> {
             super(name);
             /*
              * Load the list of all classes without resolving the Class instances yet,
-             * except for resolving ambiguities. The amount of classes is potentially
-             * large and only a small amount of it is typically used.
+             * except for resolving ambiguities. The number of classes is potentially
+             * large and only a small number of them are typically used.
              */
             final Properties p;
             try {
@@ -318,7 +318,7 @@ public abstract class Interfacing extends CodeList<Interfacing> {
             }
             /*
              * Load the list of classes that may have sub-types. We convert the String
-             * into Class instances here because the amount of classes is smaller.
+             * into Class instances here because the number of classes is smaller.
              */
             subclassed = new HashSet<>(SUBCLASSED_CAPACITY);
             final ClassLoader loader = UML.class.getClassLoader();

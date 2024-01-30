@@ -28,7 +28,7 @@ import org.opengis.util.InternationalString;
  * A {@link ParameterValueGroup} implementation for {@link SimpleParameter} instances.
  * In order to keep the conceptual model simpler, this parameter group is also its own
  * descriptor. This is not quite a recommended practice (such descriptors are less suitable
- * for use in {@link java.util.HashMap}), but allow us to keep the amount of classes smaller
+ * for use in {@link java.util.HashMap}), but allow us to keep the number of classes smaller
  * and closely related interfaces together.
  *
  * <p>The most interesting methods in this class are:</p>

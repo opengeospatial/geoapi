@@ -67,7 +67,7 @@ public final class CompatibilityTest implements Closeable {
     /**
      * Incompatible changes which are accepted for this release.
      * For minor releases we should have very few of them - only if the previous type was clearly wrong.
-     * For major releases the amount of incompatible changes may be greater.
+     * For major releases the number of incompatible changes may be greater.
      */
     private final Set<IncompatibleChange> acceptedIncompatibleChanges;
 
