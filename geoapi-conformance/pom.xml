@@ -37,7 +37,7 @@
     <developer>
       <id>desruisseaux</id>
       <name>Martin Desruisseaux</name>
-      <email>martin.desruisseaux@geomatys.fr</email>
+      <email>martin.desruisseaux@geomatys.com</email>
       <organization>Geomatys</organization>
       <organizationUrl>http://www.geomatys.com</organizationUrl>
       <roles>
@@ -51,7 +51,7 @@
     <contributor>
       <name>Cédric Briançon</name>
       <organization>Geomatys</organization>
-      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
+      <organizationUrl>http://www.geomatys.com/</organizationUrl>
       <roles>
         <role>Java developer</role>
       </roles>

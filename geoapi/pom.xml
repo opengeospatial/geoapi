@@ -39,7 +39,7 @@ The development community in building GIS solutions is sustaining an enormous le
     <developer>
       <id>desruisseaux</id>
       <name>Martin Desruisseaux</name>
-      <email>martin.desruisseaux@geomatys.fr</email>
+      <email>martin.desruisseaux@geomatys.com</email>
       <organization>Geomatys</organization>
       <organizationUrl>http://www.geomatys.com</organizationUrl>
       <roles>
@@ -54,7 +54,7 @@ The development community in building GIS solutions is sustaining an enormous le
     <contributor>
       <name>Cédric Briançon</name>
       <organization>Geomatys</organization>
-      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
+      <organizationUrl>http://www.geomatys.com/</organizationUrl>
       <roles>
         <role>Java developer</role>
       </roles>
@@ -71,7 +71,7 @@ The development community in building GIS solutions is sustaining an enormous le
       <!-- <id>avcuster</id> -->
       <name>Adrian Custer</name>
       <organization>Geomatys</organization>
-      <organizationUrl>http://www.geomatys.fr/</organizationUrl>
+      <organizationUrl>http://www.geomatys.com/</organizationUrl>
       <roles>
         <role>Specification editor</role>
       </roles>
