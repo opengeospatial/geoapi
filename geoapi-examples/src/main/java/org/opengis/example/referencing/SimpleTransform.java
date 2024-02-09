@@ -22,9 +22,8 @@ import org.opengis.example.geometry.SimpleDirectPosition;
 
 
 /**
- * A {@link CoordinateOperation} abstract base class. This class does not make
- * distinction between <cite>Coordinate Operation</cite> and <cite>Math Transform</cite>, so we
- * implement the two interfaces by the same class.
+ * A {@link CoordinateOperation} abstract base class. This class does not distinguish between
+ * <i>Coordinate Operation</i> and <i>Math Transform</i>, therefor it implements the two interfaces.
  *
  * <p>Subclasses must implement the {@link #transform(DirectPosition, DirectPosition)} method.
  * All other transform methods are defined in terms of the above-cited method.

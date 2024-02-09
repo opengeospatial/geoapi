@@ -20,9 +20,9 @@ import static java.lang.Double.doubleToLongBits;
 
 
 /**
- * A {@link GeodeticDatum} using the <cite>Greenwich</cite> prime meridian. This class does not make
- * distinction between <cite>Geodetic Datum</cite> and <cite>Ellipsoid</cite>, so we implement
- * the two interfaces by the same class.
+ * A {@link GeodeticDatum} using the <q>Greenwich</q> prime meridian.
+ * This class does not distinguish between <i>Geodetic Datum</i> and <i>Ellipsoid</i>,
+ * therefor it implements the two interfaces.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

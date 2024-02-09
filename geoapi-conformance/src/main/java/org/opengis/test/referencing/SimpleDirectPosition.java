@@ -189,7 +189,7 @@ final class SimpleDirectPosition implements DirectPosition {
     }
 
     /**
-     * Returns the <cite>Well Known Test</cite> (WKT) representation of this direct position.
+     * Returns the <i>Well Known Test</i> (WKT) representation of this direct position.
      */
     @Override
     public String toString() {

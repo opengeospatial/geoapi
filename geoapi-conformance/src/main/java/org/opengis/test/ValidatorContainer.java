@@ -151,8 +151,8 @@ public class ValidatorContainer implements Cloneable {
 
     /**
      * An unmodifiable "live" list of all validators. Any change to the value of a field declared
-     * in this class is reflected immediately in this list (so this list is <cite>unmodifiable</cite>
-     * but not <cite>immutable</cite>). This list is convenient if the same setting must be applied
+     * in this class is reflected immediately in this list (so this list is <i>unmodifiable</i>
+     * but not <i>immutable</i>). This list is convenient if the same setting must be applied
      * on all validators, for example in order to change their {@link Validator#logger logger} setting
      * or to set their set {@link Validator#requireMandatoryAttributes requireMandatoryAttributes}
      * field to {@code false}.

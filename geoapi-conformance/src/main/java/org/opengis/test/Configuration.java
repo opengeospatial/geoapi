@@ -423,8 +423,8 @@ public class Configuration implements Serializable {
         /**
          * Whether (<var>y</var>,<var>x</var>) axis order is supported. This axis swapping is not
          * supported, then the tests that would normally expect (<var>y</var>,<var>x</var>) axis
-         * order or <cite>South Oriented</cite> CRS will rather use the (<var>x</var>,<var>y</var>)
-         * axis order and <cite>North Oriented</cite> CRS in their test.
+         * order or <i>South Oriented</i> CRS will rather use the (<var>x</var>,<var>y</var>)
+         * axis order and <i>North Oriented</i> CRS in their test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#isAxisSwappingSupported
          */
@@ -437,7 +437,7 @@ public class Configuration implements Serializable {
          * is relaxed.
          *
          * <div class="note"><b>Example:</b>
-         * ISO 19111 (the <cite>referencing by coordinates</cite> abstract model) specifies that the name of
+         * ISO 19111 (the <cite>Referencing by Coordinates</cite> abstract model) specifies that the name of
          * the latitude axis in a geographic CRS shall be <q>Geodetic latitude</q> while ISO 19162
          * (a.k.a <cite>Well Known Text 2</cite>) specifies <q>Latitude</q>. Consequently, the GeoAPI
          * conformance module allows implementer to disable the check for ISO 19111 conformance if their WKT

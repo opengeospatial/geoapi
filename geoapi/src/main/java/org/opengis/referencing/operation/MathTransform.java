@@ -288,11 +288,11 @@ public interface MathTransform {
     boolean isIdentity();
 
     /**
-     * Returns a <cite>Well-Known Text</cite> (WKT) for this object.
+     * Returns a <i>Well-Known Text</i> (WKT) for this object.
      * Version 1 of Well-Know Text is <a href="../doc-files/WKT.html">defined in extended Backus Naur form</a>.
      * This operation may fail if unsupported or if this instance contains elements that do not have WKT representation.
      *
-     * @return the <cite>Well-Known Text</cite> (WKT) for this object.
+     * @return the Well-Known Text (WKT) for this object.
      * @throws UnsupportedOperationException if this object cannot be formatted as WKT.
      *
      * @see MathTransformFactory#createFromWKT(String)

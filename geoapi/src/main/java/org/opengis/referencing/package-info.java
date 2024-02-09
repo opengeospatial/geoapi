@@ -31,8 +31,8 @@
  *
  * The {@link org.opengis.referencing.IdentifiedObject} interface contains attributes common to several objects
  * used in spatial referencing by coordinates. For example, a {@linkplain org.opengis.referencing.datum.Datum datum}
- * {@linkplain org.opengis.referencing.IdentifiedObject#getName() primary names} might be “<cite>North American Datum
- * of 1983</cite>”. This may have alternative names or {@linkplain org.opengis.referencing.IdentifiedObject#getAlias()
+ * {@linkplain org.opengis.referencing.IdentifiedObject#getName() primary names} might be <q>North American Datum
+ * of 1983</q>. This may have alternative names or {@linkplain org.opengis.referencing.IdentifiedObject#getAlias()
  * aliases}, for example the abbreviation “NAD83”.
  *
  * <p>Another attribute is {@linkplain org.opengis.referencing.IdentifiedObject#getIdentifiers() identifiers}.

@@ -18,7 +18,7 @@
 
 /**
  * Filters features according their properties.
- * A <cite>filter expression</cite> is a construct used to identify a subset of resources
+ * A <dfn>filter expression</dfn> is a construct used to identify a subset of resources
  * from a collection of resources whose property values satisfy a set of logically connected predicates.
  * If the property values of a resource satisfy all the predicates in a filter then that resource is considered
  * to be part of the resulting subset.

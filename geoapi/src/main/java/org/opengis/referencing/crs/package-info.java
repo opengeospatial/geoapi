@@ -106,13 +106,13 @@
  * that are horizontal (2D) in nature and vertical (1D). It is established practice to combine the horizontal
  * coordinates of a point with a height or depth from a different CRS. The coordinate reference system to which
  * these 3D coordinates are referenced combines the separate horizontal and vertical coordinate reference systems
- * of the horizontal and vertical coordinates. Such a CRS is called a <cite>compound</cite> CRS.
+ * of the horizontal and vertical coordinates. Such a CRS is called a <dfn>compound</dfn> CRS.
  * It consists of an ordered sequence of the two or more single coordinate reference systems.</p>
  *
  * <p id="DerivedCRS"><b>Derived:</b>
  * Some coordinate reference systems are defined by applying a coordinate conversion to another CRS.
- * Such a CRS is called a <cite>derived</cite> CRS and the coordinate reference system it was derived from
- * by applying the conversion is called the <cite>source</cite> or <cite>base</cite> CRS.
+ * Such a CRS is called a <dfn>derived</dfn> CRS and the coordinate reference system it was derived from
+ * by applying the conversion is called the <dfn>source</dfn> or <dfn>base</dfn> CRS.
  * A coordinate conversion is an arithmetic operation with zero or more parameters that have defined values.
  * The base CRS and derived CRS have the same datum.</p>
  * </blockquote>

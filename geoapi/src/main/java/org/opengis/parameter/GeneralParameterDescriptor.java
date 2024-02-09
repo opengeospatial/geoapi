@@ -189,7 +189,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
 
     /**
      * Indication if the parameter is an input to the service, an output or both.
-     * This information applies mostly to <cite>service metadata</cite>.
+     * This information applies mostly to <i>service metadata</i>.
      * The default value is {@link ParameterDirection#IN}.
      *
      * @return indication if the parameter is an input to the service, an output or both.

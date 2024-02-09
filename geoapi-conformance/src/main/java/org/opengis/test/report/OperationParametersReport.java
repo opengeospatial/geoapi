@@ -107,7 +107,7 @@ public class OperationParametersReport extends Report {
          * <p>The default value is {@code null} in every cases. Subclasses of {@link OperationParametersReport}
          * can modify this value in order to classify operations by category. For example, subclasses
          * may use this value for classifying {@link OperationMethod} instances according the kind
-         * of map projection (<cite>planar</cite>, <cite>cylindrical</cite>, <cite>conic</cite>).</p>
+         * of map projection (<i>planar</i>, <i>cylindrical</i>, <i>conic</i>).</p>
          */
         public String category;
 

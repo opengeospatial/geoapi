@@ -28,9 +28,8 @@ import org.opengis.referencing.datum.VerticalDatumType;
 
 
 /**
- * A {@link CoordinateReferenceSystem} abstract base class. This class does not make distinction
- * between <cite>Coordinate System</cite> and <cite>Coordinate Reference System</cite>, so we
- * implement the two interfaces by the same class.
+ * A {@link CoordinateReferenceSystem} abstract base class. This class does not distinguish between
+ * <i>Coordinate System</i> and <i>Coordinate Reference System</i>, therefor it implements the two interfaces.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

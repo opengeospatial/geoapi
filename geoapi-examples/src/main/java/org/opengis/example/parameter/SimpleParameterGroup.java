@@ -50,7 +50,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * {@linkplain ParameterDescriptor parameter descriptor} and
      * {@linkplain ParameterValue parameter values} for the {@code double} value type.
      *
-     * <p>This list is <cite>live</cite>: changes to this list will be reflected immediately
+     * <p>This list is <i>live</i>: changes to this list will be reflected immediately
      * in the {@link #descriptors()} and {@link #values()} views.</p>
      */
     protected final List<SimpleParameter> parameters;

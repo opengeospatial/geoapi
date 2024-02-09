@@ -51,7 +51,7 @@ import static org.opengis.annotation.Specification.*;
  * the {@link #tail()} method evaluates to a {@code ScopedName} before finally terminating on a {@link LocalName}.
  *
  * <p>It may be seen that {@code ScopedName} is the means by which fully-qualified names are expressed.
- * However, a {@code ScopedName} is not, in itself, what is commonly thought of as a <cite>fully qualified</cite> name.
+ * However, a {@code ScopedName} is not, in itself, what is commonly thought of as a <i>fully qualified</i> name.
  * The {@code ScopedName} type is one link in the chain, not the entire chain.
  * A scoped name is a fully qualified name only if its {@linkplain #scope() scope}
  * {@linkplain NameSpace#isGlobal() is global}.</p>

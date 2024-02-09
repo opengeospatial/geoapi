@@ -40,7 +40,7 @@ import org.opengis.util.GenericName;
  * <h2>Object properties</h2>
  * Most factory methods expect a {@link Map Map&lt;String,?&gt;} argument.
  * The table below lists the keys that {@code ObjectFactory} implementations shall accept,
- * together with the type of values associated to those keys (the <cite>alternative types</cite> column
+ * together with the type of values associated to those keys (the <q>Alternative types</q> column
  * gives examples of types that factory implementations may accept as well for convenience).
  * A value for the {@code "name"} key is mandatory, while all other properties are optional.
  * Factory methods shall ignore unknown properties.
@@ -56,7 +56,7 @@ import org.opengis.util.GenericName;
  *   <tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
  *     <td>{@link Identifier}</td>
- *     <td>{@link String} (see <cite>alternative</cite> below)</td>
+ *     <td>{@link String} (see alternatives below)</td>
  *     <td>{@link IdentifiedObject#getName()}</td>
  *   </tr>
  *   <tr>
@@ -80,7 +80,7 @@ import org.opengis.util.GenericName;
  *   <tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#REMARKS_KEY}</td>
  *     <td>{@link InternationalString}</td>
- *     <td>{@link String} (see <cite>localization</cite> below)</td>
+ *     <td>{@link String} (see localization below)</td>
  *     <td>{@link IdentifiedObject#getRemarks()}</td>
  *   </tr>
  * </table>

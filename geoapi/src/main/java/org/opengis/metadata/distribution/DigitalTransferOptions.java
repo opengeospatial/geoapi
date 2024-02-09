@@ -39,10 +39,10 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="MD_DigitalTransferOptions", specification=ISO_19115)
 public interface DigitalTransferOptions {
     /**
-     * Tiles, layers, geographic areas, <cite>etc.</cite>, in which data is available.
+     * Tiles, layers, geographic areas, <i>etc.</i>, in which data is available.
      * Units of distribution apply to both onLine and offLine distributions.
      *
-     * @return tiles, layers, geographic areas, <cite>etc.</cite> in which data is available, or {@code null}.
+     * @return tiles, layers, geographic areas, <i>etc.</i> in which data is available, or {@code null}.
      */
     @UML(identifier="unitsOfDistribution", obligation=OPTIONAL, specification=ISO_19115)
     default InternationalString getUnitsOfDistribution() {

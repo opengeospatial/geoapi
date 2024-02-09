@@ -129,7 +129,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, Identifier {
     }
 
     /**
-     * Returns a <cite>Well-Known Text</cite> (WKT) for this object. The default implementation
+     * Returns a <i>Well-Known Text</i> (WKT) for this object. The default implementation
      * throws unconditionally the exception since we do not support WKT formatting.
      *
      * @return the Well Know Text for this object.

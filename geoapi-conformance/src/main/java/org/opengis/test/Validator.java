@@ -214,9 +214,9 @@ public abstract class Validator {
     /**
      * Ensures that the elements in the given collection are compliant with the {@link Object}
      * {@code equals(Object)} and {@code hashCode()} contract. This method ensures that the
-     * {@code equals(Object)} methods implement <cite>reflexive</cite>, <cite>symmetric</cite>
-     * and <cite>transitive</cite> relations. It also ensures that if {@code A.equals(B)}, then
-     * {@code A.hashCode() == B.hashCode()}.
+     * {@code equals(Object)} methods implement <i>reflexive</i>, <i>symmetric</i>
+     * and <i>transitive</i> relations. It also ensures that if {@code A.equals(B)},
+     * then {@code A.hashCode() == B.hashCode()}.
      *
      * <p>If the given collection is null, then this method does nothing.
      * If the given collection contains null elements, then those elements are ignored.</p>

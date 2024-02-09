@@ -25,7 +25,7 @@ import org.opengis.annotation.UML;
  * Individual party = factory.create(Individual.class, attributes);
  * }
  *
- * The metadata proxy are <cite>live</cite>, i.e. any change to the maps of attributes will
+ * The metadata proxy are <i>live</i>, i.e. any change to the maps of attributes will
  * be immediately reflected in the values returned by the metadata objects.
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -41,7 +41,7 @@ public class MetadataProxyFactory {
 
     /**
      * Creates a new implementation of the given metadata interface which will contains the
-     * values in the given map. The returned metadata proxy is <cite>live</cite>, i.e. any
+     * values in the given map. The returned metadata proxy is <i>live</i>, i.e. any
      * change to the given map of attributes will be immediately reflected in the values
      * returned by the metadata object.
      *

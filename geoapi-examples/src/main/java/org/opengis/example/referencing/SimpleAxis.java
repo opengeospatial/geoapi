@@ -58,13 +58,13 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
     static final Unit<Angle> DEGREE = Units.RADIAN.multiply(Math.PI/180);
 
     /**
-     * The <cite>geodetic latitude</cite> axis.
+     * The <q>geodetic latitude</q> axis.
      * Values are increasing toward East, in decimal degrees.
      */
     public static final CoordinateSystemAxis LATITUDE = new SimpleAxis(SimpleCitation.EPSG, "geodetic latitude", 'φ');
 
     /**
-     * The <cite>geodetic longitude</cite> axis.
+     * The <q>geodetic longitude</q> axis.
      * Values are increasing toward North, in decimal degrees.
      */
     public static final CoordinateSystemAxis LONGITUDE = new SimpleAxis(SimpleCitation.EPSG, "geodetic longitude", 'λ');

@@ -41,22 +41,22 @@ import static org.opengis.annotation.Specification.*;
  * <caption>Context of coordinate system axis names usage</caption>
  * <tr><th>CS</th><th>CRS</th><th>Permitted coordinate system axis names</th></tr>
  * <tr><td>Cartesian</td><td>Geocentric</td>
- *     <td><cite>Geocentric X</cite>,
- *         <cite>Geocentric Y</cite>,
- *         <cite>Geocentric Z</cite></td></tr>
+ *     <td><i>Geocentric X</i>,
+ *         <i>Geocentric Y</i>,
+ *         <i>Geocentric Z</i></td></tr>
  * <tr><td>Spherical</td><td>Geocentric</td>
- *     <td><cite>Spherical Latitude</cite>,
- *         <cite>Spherical Longitude</cite>,
- *         <cite>Geocentric Radius</cite></td></tr>
+ *     <td><i>Spherical Latitude</i>,
+ *         <i>Spherical Longitude</i>,
+ *         <i>Geocentric Radius</i></td></tr>
  * <tr><td>Ellipsoidal</td><td>Geographic</td>
- *     <td><cite>Geodetic Latitude</cite>,
- *         <cite>Geodetic Longitude</cite>,
- *         <cite>Ellipsoidal height</cite> (if 3D)</td></tr>
+ *     <td><i>Geodetic Latitude</i>,
+ *         <i>Geodetic Longitude</i>,
+ *         <i>Ellipsoidal height</i> (if 3D)</td></tr>
  * <tr><td>Vertical</td><td>Vertical</td>
- *     <td><cite>Gravity-related height</cite> or <cite>Depth</cite></td></tr>
+ *     <td><i>Gravity-related height</i> or <i>Depth</i></td></tr>
  * <tr><td>Cartesian</td><td>Projected</td>
- *     <td><cite>Easting</cite> or <cite>Westing</cite>,
- *         <cite>Northing</cite> or <cite>Southing</cite></td></tr>
+ *     <td><i>Easting</i> or <i>Westing</i>,
+ *         <i>Northing</i> or <i>Southing</i></td></tr>
  * </table>
  *
  * Image and engineering coordinate reference systems may make use of names specific to the

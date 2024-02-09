@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
 @UML(identifier="Conformance", specification=ISO_19143)
 public interface Conformance {
     /**
-     * Returns whether the implementation supports the <cite>Query</cite> conformance level.
+     * Returns whether the implementation supports the <i>Query</i> conformance level.
      *
      * @return whether implementation supports Query.
      */
@@ -45,7 +45,7 @@ public interface Conformance {
     }
 
     /**
-     * Returns whether the implementation supports the <cite>Ad hoc query</cite> conformance level.
+     * Returns whether the implementation supports the <i>Ad hoc query</i> conformance level.
      *
      * @return whether implementation supports ad hoc query.
      */
@@ -55,7 +55,7 @@ public interface Conformance {
     }
 
     /**
-     * Returns whether the implementation supports the <cite>Functions</cite> conformance level.
+     * Returns whether the implementation supports the <i>Functions</i> conformance level.
      *
      * @return whether implementation supports functions.
      */
@@ -65,7 +65,7 @@ public interface Conformance {
     }
 
     /**
-     * Returns whether the implementation supports the <cite>Resource Identification</cite> conformance level.
+     * Returns whether the implementation supports the <i>Resource Identification</i> conformance level.
      *
      * @return whether implementation supports resource identification.
      */
@@ -75,7 +75,7 @@ public interface Conformance {
     }
 
     /**
-     * Returns whether the implementation supports the <cite>Minimum Standard Filter</cite> conformance level.
+     * Returns whether the implementation supports the <i>Minimum Standard Filter</i> conformance level.
      * A value of {@code true} means that all the logical operators ({@code And}, {@code Or}, {@code Not})
      * are supported, together with the following comparison operators:
      *
@@ -99,7 +99,7 @@ public interface Conformance {
     }
 
     /**
-     * Returns whether the implementation supports the <cite>Standard Filter</cite> conformance level.
+     * Returns whether the implementation supports the <i>Standard Filter</i> conformance level.
      * A value of {@code true} means that all the {@linkplain #implementsMinStandardFilter() minimum
      * standard filters} are supported, together with the following comparison operators:
      *
@@ -121,7 +121,7 @@ public interface Conformance {
     }
 
     /**
-     * Returns whether the implementation supports the <cite>Minimum Spatial Filter</cite> conformance level.
+     * Returns whether the implementation supports the <i>Minimum Spatial Filter</i> conformance level.
      * A value of {@code true} means that the following spatial operators are supported:
      *
      * <blockquote>
@@ -139,7 +139,7 @@ public interface Conformance {
     }
 
     /**
-     * Returns whether the implementation supports the <cite>Spatial Filter</cite> conformance level.
+     * Returns whether the implementation supports the <i>Spatial Filter</i> conformance level.
      * A value of {@code true} means that all the {@linkplain #implementsMinSpatialFilter() minimum
      * spatial filters} are supported, together with at least one additional spatial operator.
      * Those operators shall be listed in the
@@ -153,7 +153,7 @@ public interface Conformance {
     }
 
     /**
-     * Returns whether the implementation supports the <cite>Minimum Temporal Filter</cite> conformance level.
+     * Returns whether the implementation supports the <i>Minimum Temporal Filter</i> conformance level.
      * A value of {@code true} means that the following temporal operators are supported:
      *
      * <blockquote>
@@ -171,7 +171,7 @@ public interface Conformance {
     }
 
     /**
-     * Returns whether the implementation supports the <cite>Temporal Filter</cite> conformance level.
+     * Returns whether the implementation supports the <i>Temporal Filter</i> conformance level.
      * A value of {@code true} means that all the {@linkplain #implementsMinTemporalFilter() minimum
      * temporal filters} are supported, together with at least one additional temporal operator.
      * Those operators shall be listed in the
@@ -185,7 +185,7 @@ public interface Conformance {
     }
 
     /**
-     * Returns whether the implementation supports the <cite>Version navigation</cite> conformance level.
+     * Returns whether the implementation supports the <i>Version navigation</i> conformance level.
      *
      * @return whether implementation supports version navigation.
      */
@@ -195,7 +195,7 @@ public interface Conformance {
     }
 
     /**
-     * Returns whether the implementation supports the <cite>Sorting</cite> conformance level.
+     * Returns whether the implementation supports the <i>Sorting</i> conformance level.
      *
      * @return whether implementation supports sorting.
      */
@@ -205,7 +205,7 @@ public interface Conformance {
     }
 
     /**
-     * Returns whether the implementation supports the <cite>Extended Operators</cite> conformance level.
+     * Returns whether the implementation supports the <i>Extended Operators</i> conformance level.
      *
      * @return whether implementation supports extended operators.
      */

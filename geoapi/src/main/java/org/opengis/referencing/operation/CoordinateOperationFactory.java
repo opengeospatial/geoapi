@@ -99,7 +99,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * </ul>
      *
      * <b>Example:</b> A transformation between two {@linkplain GeographicCRS geographic CRS} using
-     * different {@linkplain GeodeticDatum datum} requires a <cite>datum shift</cite>.
+     * different {@linkplain GeodeticDatum datum} requires a <i>datum shift</i>.
      * Many methods exist for this purpose, including interpolations in a grid,
      * a scale/rotation/translation in geocentric coordinates or the Molodenski approximation.
      * When invoking {@code createOperation(…)} without operation method,
@@ -163,7 +163,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @see CRSFactory#createDerivedCRS(Map, CoordinateReferenceSystem, Conversion, CoordinateSystem)
      *
      * @departure extension
-     *   The <cite>defining conversion</cite> concept appears in ISO 19111:2007 textual specification
+     *   The <i>defining conversion</i> concept appears in ISO 19111:2007 textual specification
      *   without formalization in UML diagrams. This concept has been formalized in GeoAPI
      *   in order to allow the creation of {@code ProjectedCRS} instances.
      */

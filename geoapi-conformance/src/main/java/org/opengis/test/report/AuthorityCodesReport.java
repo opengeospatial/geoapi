@@ -65,7 +65,7 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
  * <ol>
  *   <li>Create a {@link Properties} map with the values documented in the above table.
  *       Default values exist for many keys, but may depend on the environment.
- *       It is safer to specify values explicitly when they are known, except the <cite>automatic</cite> ones.</li>
+ *       It is safer to specify values explicitly when they are known, except the <i>automatic</i> ones.</li>
  *   <li>Create a new {@code AuthorityCodesReport} with the above properties map given to the constructor.</li>
  *   <li>Invoke one of the {@link #add(CRSAuthorityFactory) add(…)} methods for the factory of identified objects
  *       to include in the HTML page.</li>

@@ -284,7 +284,7 @@ public class SimpleEnvelope implements Envelope {
     }
 
     /**
-     * Formats this envelope in the <cite>Well-Known Text</cite> (WKT) format.
+     * Formats this envelope in the <i>Well-Known Text</i> (WKT) format.
      * The output is of the form "{@code BOX}<var>n</var>{@code D(}{@linkplain #getLowerCorner()
      * lower corner}{@code ,}{@linkplain #getUpperCorner() upper corner}{@code )}"
      * where <var>n</var> is the {@linkplain #getDimension() number of dimensions}.

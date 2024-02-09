@@ -8,7 +8,7 @@
  * Implementation of some interfaces from the {@link org.opengis.referencing} package.
  * In order to provide a simpler model, some classes in this package merge many distinct
  * GeoAPI concepts. For example, many existing projection libraries make no distinction between
- * <cite>Coordinate System</cite> (CS) and <cite>Coordinate Reference System</cite> (CRS).
+ * <i>Coordinate System</i> (CS) and <i>Coordinate Reference System</i> (CRS).
  * This package follows this simplified model by providing a single class implementing both
  * the CS and CRS interfaces.
  *

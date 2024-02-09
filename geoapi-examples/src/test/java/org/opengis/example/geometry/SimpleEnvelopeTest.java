@@ -73,7 +73,7 @@ public class SimpleEnvelopeTest {
     }
 
     /**
-     * Tests <cite>Well-Known Text</cite> (WKT) formatting.
+     * Tests <i>Well-Known Text</i> (WKT) formatting.
      */
     @Test
     public void testWKT() {

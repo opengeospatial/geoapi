@@ -45,7 +45,7 @@ public interface ScalarCapabilities {
     /**
      * Indicates if logical operator support is provided.
      * A value of {@code true} indicates that the filter can process
-     * <cite>And</cite>, <cite>Or</cite> and <cite>Not</cite> operators.
+     * <i>And</i>, <i>Or</i> and <i>Not</i> operators.
      *
      * @return whether logical operators are supported.
      */

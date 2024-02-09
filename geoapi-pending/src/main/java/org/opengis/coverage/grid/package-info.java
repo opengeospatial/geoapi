@@ -96,9 +96,9 @@
  * Evaluation of a grid coverage is based on interpolation between grid points, i.e., within a grid cell bounded by the grid
  * lines that connect the grid points that represent the sample points.</p>
  *
- * <p>In the ISO 19123 International Standard, the term <cite>grid cell</cite> refers to the cell bounded
- * by the grid lines that connect the grid points. The term <cite>sample space</cite> refers to the observed or measured
- * space surrounding a sample point. The term <cite>footprint</cite> refers to a representation of a sample space in the
+ * <p>In the ISO 19123 International Standard, the term <dfn>grid cell</dfn> refers to the cell bounded
+ * by the grid lines that connect the grid points. The term <dfn>sample space</dfn> refers to the observed or measured
+ * space surrounding a sample point. The term <dfn>footprint</dfn> refers to a representation of a sample space in the
  * context of some coordinate reference system.</p>
  *
  * <p>In dealing with gridded data, e.g., for processing or portrayal, it is often assumed that the size

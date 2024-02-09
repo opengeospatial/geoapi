@@ -53,7 +53,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * <h2>Attribute characterization</h2>
  * An {@code Attribute} can be characterized by other attributes. For example, an attribute that carries a measurement
  * (e.g. air temperature) may have another attribute that holds the measurement accuracy (e.g. ±0.1°C).
- * Such accuracy can be stored as a <cite>characteristic</cite> of the measurement attribute.
+ * Such accuracy can be stored as a <i>characteristic</i> of the measurement attribute.
  *
  * <p>The {@link #characteristics()} method in this {@code AttributeType} interface returns a description of all
  * characteristics that attributes of this type may have. The actual characteristics values can be stored on a
@@ -140,7 +140,7 @@ public interface AttributeType<V> extends PropertyType {
 
     /**
      * Other attribute types that describe this attribute type.
-     * See <q>Attribute characterization</q> in class Javadoc for more information.
+     * See <cite>Attribute characterization</cite> in class Javadoc for more information.
      *
      * <div class="note"><b>Example:</b>
      * an attribute that carries a measurement (e.g. air temperature) may have another attribute

@@ -84,8 +84,8 @@ public final class ResourceBundles {
      *
      * <h4>Example</h4>
      * {@code codeLists.getString("CI_RoleCode.principalInvestigator")} returns
-     * <q>"Principal investigator"</q> if the specified locale is {@link Locale#ENGLISH}, or
-     * <q>"Maître d’œuvre principal"</q> if the specified locale is {@link Locale#FRENCH}.
+     * <q>Principal investigator</q> if the specified locale is {@link Locale#ENGLISH}, or
+     * <q>Maître d’œuvre principal</q> if the specified locale is {@link Locale#FRENCH}.
      *
      * @param  locale    the locale for which a resource bundle is desired, or {@code null} for the default locale.
      * @return localized texts for the specified or default locale.
@@ -102,10 +102,10 @@ public final class ResourceBundles {
      *
      * <h4>Example</h4>
      * {@code descriptions.getString("CI_RoleCode.principalInvestigator")} returns
-     * <q>"Key party responsible for gathering information and conducting research."</q>
+     * <q>Key party responsible for gathering information and conducting research.</q>
      * if the specified locale is {@link Locale#ENGLISH}, or
-     * <q>"Acteur qui a assuré la réalisation de la ressource, éventuellement en faisant appel
-     * à des co-traitants ou des sous-traitants."</q> if the specified locale is {@link Locale#FRENCH}.
+     * <q>Acteur qui a assuré la réalisation de la ressource, éventuellement en faisant appel
+     * à des co-traitants ou des sous-traitants.</q> if the specified locale is {@link Locale#FRENCH}.
      *
      * @param  locale  the locale for which a resource bundle is desired, or {@code null} for the default locale.
      * @return localized texts for the specified or default locale.

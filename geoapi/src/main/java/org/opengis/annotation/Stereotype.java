@@ -24,13 +24,12 @@ package org.opengis.annotation;
  * annotation.
  *
  * <p>This enumeration is closely related to the ISO 19115 {@link org.opengis.metadata.Datatype} code list,
- * but not identical since ISO 19115 specifies <cite>datatype</cite> and <cite>stereotype</cite> as two
- * distinct information. Furthermore, {@code Stereotype} needs to be defined as an {@code Enum} for
- * allowing usages in Java annotations</p>
+ * but not identical since ISO 19115 specifies <i>datatype</i> and <i>stereotype</i> as two distinct information.
+ * Furthermore, {@code Stereotype} needs to be defined as an {@code Enum} for allowing usages in Java annotations</p>
  *
- * <p>This enumeration does not include the <cite>code list</cite> and <cite>enumeration</cite>
- * stereotypes, because instances of those types are identified by the
- * {@link org.opengis.util.CodeList} and {@link Enum} base classes respectively.</p>
+ * <p>This enumeration does not include the <i>code list</i> and <i>enumeration</i> stereotypes,
+ * because instances of those types are identified by the {@link org.opengis.util.CodeList} and
+ * {@link Enum} base classes respectively.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

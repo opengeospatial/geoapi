@@ -70,7 +70,7 @@ public interface QuantitativeResult extends Result {
      * measure are implemented to provide the value of the quantitative result.
      *
      * <div class="note"><b>Example:</b>
-     * Within the description of the <cite>misclassification matrix</cite> measure,
+     * Within the description of the <i>misclassification matrix</i> measure,
      * the {@linkplain Measure#getValueType() value type} may be an integer and
      * the {@linkplain Measure#getValueStructure() value structure} is matrix (<var>n</var> × <var>n</var>).
      * The {@link #getValues() value} attribute of the {@code QuantitativeResult} provides the result matrix itself.

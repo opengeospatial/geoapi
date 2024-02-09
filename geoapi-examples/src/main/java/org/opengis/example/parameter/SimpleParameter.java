@@ -204,8 +204,8 @@ public class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
-     * Returns the unit of measurement. Because this class implements both the <cite>value</cite>
-     * and <cite>descriptor</cite> interfaces, the unit of measurement applies to the
+     * Returns the unit of measurement. Because this class implements both the
+     * <i>value</i> and <i>descriptor</i> interfaces, the unit of measurement applies to the
      * {@linkplain #doubleValue() parameter value} as well as the {@linkplain #getDefaultValue default},
      * the {@linkplain #getMinimumValue minimum} and the {@linkplain #getMaximumValue maximum} values.
      *

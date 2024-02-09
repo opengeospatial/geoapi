@@ -164,7 +164,7 @@ public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Exten
 
     /**
      * Indication of whether the bounding box encompasses an area covered by the data
-     * (<cite>inclusion</cite>) or an area where data is not present (<cite>exclusion</cite>).
+     * (<dfn>inclusion</dfn>) or an area where data is not present (<dfn>exclusion</dfn>).
      * The default implementation unconditionally returns {@link Boolean#TRUE}.
      *
      * @return {@code true} for inclusion, or {@code false} for exclusion.
