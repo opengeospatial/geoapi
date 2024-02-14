@@ -21,7 +21,7 @@ import java.util.Arrays;
 import java.awt.geom.Rectangle2D;
 import org.opengis.referencing.operation.CoordinateOperation;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.opengis.test.referencing.PseudoEpsgFactory.R_US_FEET;
 import static org.opengis.test.referencing.PseudoEpsgFactory.LINKS;
 

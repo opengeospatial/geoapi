@@ -21,7 +21,7 @@ import java.util.List;
 import org.opengis.util.*;
 import org.opengis.test.Validator;
 import org.opengis.test.ValidatorContainer;
-import static org.opengis.test.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -59,21 +59,21 @@ public class NameValidator extends Validator {
         final String s = object.toString();
         mandatory("CharSequence: toString() shall never returns null.", s);
         if (s != null) {
-            assertEquals("CharSequence: length is inconsistent with toString() length.", s.length(), length);
+            assertEquals(s.length(), length, "CharSequence: length is inconsistent with toString() length.");
             boolean expectLowSurrogate = false;
             for (int i=0; i<length; i++) {
                 final char c = s.charAt(i);
-                assertEquals("CharSequence: character inconsistent with toString().", c, object.charAt(i));
+                assertEquals(c, object.charAt(i), "CharSequence: character inconsistent with toString().");
                 if (expectLowSurrogate) {
-                    assertTrue("CharSequence: High surrogate shall be followed by low surrogate.", Character.isLowSurrogate(c));
+                    assertTrue(Character.isLowSurrogate(c), "CharSequence: High surrogate shall be followed by low surrogate.");
                 }
                 expectLowSurrogate = Character.isHighSurrogate(c);
             }
-            assertFalse("CharSequence: High surrogate shall be followed by low surrogate.", expectLowSurrogate);
+            assertFalse(expectLowSurrogate, "CharSequence: High surrogate shall be followed by low surrogate.");
         }
         mandatory("InternationalString: toString(Locale) shall not return null.", object.toString(null));
-        assertEquals("InternationalString: shall be equal to itself.", object, object);
-        assertEquals("InternationalString: shall be comparable to itself.", 0, object.compareTo(object));
+        assertEquals(object, object, "InternationalString: shall be equal to itself.");
+        assertEquals(0, object.compareTo(object), "InternationalString: shall be comparable to itself.");
     }
 
     /**
@@ -91,13 +91,13 @@ public class NameValidator extends Validator {
             final NameSpace scope = name.scope();
             mandatory("NameSpace: identifier shall have a global scope.", scope);
             if (scope != null) {
-                assertTrue("NameSpace: identifier scope shall be global.", scope.isGlobal());
+                assertTrue(scope.isGlobal(), "NameSpace: identifier scope shall be global.");
             }
             /*
              * Following test is a consequence of the previous one, so we check the scope first in
              * order to report the error as a bad scope before to reference this GeoAPI extension.
              */
-            assertSame("NameSpace: the identifier shall be fully qualified.", name, name.toFullyQualifiedName());
+            assertSame(name, name.toFullyQualifiedName(), "NameSpace: the identifier shall be fully qualified.");
             /*
              * Do not validate global namespaces because their name could be anything including
              * an empty name, and the 'validate' method below does not accept empty collections.
@@ -138,14 +138,15 @@ public class NameValidator extends Validator {
         mandatory("GenericName: getParsedNames() shall not return null.", parsedNames);
         if (parsedNames != null) {
             validate(parsedNames);
-            assertFalse("GenericName: getParsedNames() shall not return an empty list.", parsedNames.isEmpty());
+            assertFalse(parsedNames.isEmpty(),
+                    "GenericName: getParsedNames() shall not return an empty list.");
             final int size = parsedNames.size();
-            assertEquals("GenericName: getParsedNames() list size shall be equal to depth().",
-                    size, object.depth());
-            assertEquals("GenericName: head() shall be the first element in getParsedNames() list.",
-                    parsedNames.get(0), object.head());
-            assertEquals("GenericName: tip() shall be the last element in getParsedNames() list.",
-                    parsedNames.get(size-1), object.tip());
+            assertEquals(size, object.depth(),
+                    "GenericName: getParsedNames() list size shall be equal to depth().");
+            assertEquals(parsedNames.get(0), object.head(),
+                    "GenericName: head() shall be the first element in getParsedNames() list.");
+            assertEquals(parsedNames.get(size-1), object.tip(),
+                    "GenericName: tip() shall be the last element in getParsedNames() list.");
         }
         /*
          * Validates fully qualified name.
@@ -153,8 +154,8 @@ public class NameValidator extends Validator {
         final GenericName fullyQualified = object.toFullyQualifiedName();
         mandatory("GenericName: toFullyQualifiedName() shall not return null.", fullyQualified);
         if (fullyQualified != null) {
-            assertEquals("GenericName: toFullyQualifiedName() inconsistent with the global scope status.",
-                    object.scope().isGlobal(), fullyQualified == object);
+            assertEquals(object.scope().isGlobal(), fullyQualified == object,
+                    "GenericName: toFullyQualifiedName() inconsistent with the global scope status.");
         }
         /*
          * Validates string representations.
@@ -162,20 +163,20 @@ public class NameValidator extends Validator {
         final String unlocalized = object.toString();
         mandatory("GenericName: toString() shall never returns null.", unlocalized);
         if (unlocalized != null && fullyQualified != null) {
-            assertTrue("GenericName: fully qualified name shall end with the name.",
-                    fullyQualified.toString().endsWith(unlocalized));
+            assertTrue(fullyQualified.toString().endsWith(unlocalized),
+                    "GenericName: fully qualified name shall end with the name.");
         }
         final InternationalString localized = object.toInternationalString();
         validate(localized);
         if (localized != null && fullyQualified != null) {
-            assertTrue("GenericName: fully qualified name shall end with the name (localized version).",
-                    fullyQualified.toInternationalString().toString().endsWith(localized.toString()));
+            assertTrue(fullyQualified.toInternationalString().toString().endsWith(localized.toString()),
+                    "GenericName: fully qualified name shall end with the name (localized version).");
         }
         /*
          * Validates comparisons.
          */
-        assertEquals("GenericName: shall be equal to itself.", object, object);
-        assertEquals("GenericName: shall be comparable to itself.", 0, object.compareTo(object));
+        assertEquals(object, object, "GenericName: shall be equal to itself.");
+        assertEquals(0, object.compareTo(object), "GenericName: shall be comparable to itself.");
     }
 
     /**
@@ -191,9 +192,9 @@ public class NameValidator extends Validator {
         final List<? extends LocalName> parsedNames = object.getParsedNames();
         validate(object, parsedNames);
         if (parsedNames != null) {
-            assertEquals("LocalName: shall have exactly one parsed name.", 1, parsedNames.size());
-            assertSame("LocalName: the parsed name element shall be the enclosing local name.",
-                    object, parsedNames.get(0));
+            assertEquals(1, parsedNames.size(), "LocalName: shall have exactly one parsed name.");
+            assertSame(object, parsedNames.get(0),
+                    "LocalName: the parsed name element shall be the enclosing local name.");
         }
     }
 
@@ -211,14 +212,14 @@ public class NameValidator extends Validator {
         final NameSpace scope = object.scope();
         validate(scope);
         if (scope != null) {
-            assertEquals("ScopedName: head.scope shall be equal to the scope.", scope, object.head().scope());
+            assertEquals(scope, object.head().scope(), "ScopedName: head.scope shall be equal to the scope.");
         }
         if (parsedNames != null) {
             boolean global = (scope != null) && scope.isGlobal();
             for (final LocalName name : parsedNames) {
-                assertNotNull("ScopedName: getParsedNames() cannot contain null element.", name);
-                assertNotSame("ScopedName: the enclosing scoped name cannot be in any parsed name.", object, name);
-                assertEquals("ScopedName: inconsistent value of isGlobal().", global, name.scope().isGlobal());
+                assertNotNull(name, "ScopedName: getParsedNames() cannot contain null element.");
+                assertNotSame(object, name, "ScopedName: the enclosing scoped name cannot be in any parsed name.");
+                assertEquals(global, name.scope().isGlobal(), "ScopedName: inconsistent value of isGlobal().");
                 global = false;         // Only the first name may be global.
                 validate(name);
             }
@@ -230,13 +231,13 @@ public class NameValidator extends Validator {
         final GenericName tail = object.tail();
         mandatory("ScopedName: tail() shall not return null.", tail);
         if (tail != null) {
-            assertEquals("ScopedName: tail() shall have one less element than the enclosing scoped name.",
-                    depth-1, tail.depth());
-            assertEquals("ScopedName: tip().toString() and tail.tip().toString() shall be equal.",
-                    object.tip(), tail.tip());
+            assertEquals(depth-1, tail.depth(),
+                    "ScopedName: tail() shall have one less element than the enclosing scoped name.");
+            assertEquals(object.tip(), tail.tip(),
+                    "ScopedName: tip().toString() and tail.tip().toString() shall be equal.");
             if (parsedNames != null) {
-                assertEquals("ScopedName: tail() shall be defined as subList(1, depth).",
-                        parsedNames.subList(1, depth), tail.getParsedNames());
+                assertEquals(parsedNames.subList(1, depth), tail.getParsedNames(),
+                        "ScopedName: tail() shall be defined as subList(1, depth).");
             }
         }
         /*
@@ -245,13 +246,13 @@ public class NameValidator extends Validator {
         final GenericName path = object.path();
         mandatory("ScopedName: the path shall not be null.", path);
         if (path != null) {
-            assertEquals("ScopedName: path() shall have one less element than the enclosing scoped name.",
-                    depth-1, path.depth());
-            assertEquals("ScopedName: head() and path.head() shall be equal.",
-                    object.head(), path.head());
+            assertEquals(depth-1, path.depth(),
+                    "ScopedName: path() shall have one less element than the enclosing scoped name.");
+            assertEquals(object.head(), path.head(),
+                    "ScopedName: head() and path.head() shall be equal.");
             if (parsedNames != null) {
-                assertEquals("ScopedName: path() shall be defined as subList(0, depth-1).",
-                        parsedNames.subList(0, depth-1), path.getParsedNames());
+                assertEquals(parsedNames.subList(0, depth-1), path.getParsedNames(),
+                        "ScopedName: path() shall be defined as subList(0, depth-1).");
             }
         }
     }

@@ -22,7 +22,11 @@ import java.util.List;
 
 import org.opengis.parameter.*;
 import org.opengis.test.ValidatorContainer;
-import static org.opengis.test.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.opengis.test.Assert.assertBetween;
+import static org.opengis.test.Assert.assertPositive;
+import static org.opengis.test.Assert.assertContains;
+import static org.opengis.test.Assert.assertValidRange;
 
 
 /**
@@ -104,26 +108,26 @@ public class ParameterValidator extends ReferencingValidator {
             validate(validValues);
             for (final T value : validValues) {
                 if (value != null) {
-                    assertInstanceOf("ParameterDescriptor: getValidValues() has unexpected element.", valueClass, value);
+                    assertInstanceOf(valueClass, value, "ParameterDescriptor: getValidValues() has unexpected element.");
                 }
             }
         }
         final Comparable<T> min = object.getMinimumValue();
         if (min != null) {
-            assertInstanceOf("ParameterDescriptor: getMinimumValue() returns unexpected value.", valueClass, min);
+            assertInstanceOf(valueClass, min, "ParameterDescriptor: getMinimumValue() returns unexpected value.");
         }
         final Comparable<T> max = object.getMaximumValue();
         if (max != null) {
-            assertInstanceOf("ParameterDescriptor: getMaximumValue() returns unexpected value.", valueClass, max);
+            assertInstanceOf(valueClass, max, "ParameterDescriptor: getMaximumValue() returns unexpected value.");
         }
         assertValidRange("ParameterDescriptor: inconsistent minimum and maximum values.", min, max);
         final T def = object.getDefaultValue();
         if (def != null) {
-            assertInstanceOf("ParameterDescriptor: getDefaultValue() returns unexpected value.", valueClass, def);
+            assertInstanceOf(valueClass, def, "ParameterDescriptor: getDefaultValue() returns unexpected value.");
             assertBetween("ParameterDescriptor: getDefaultValue() out of range.", min, max, def);
         }
         assertBetween("ParameterDescriptor: getMinimumOccurs() shall returns 0 or 1.", 0, 1, object.getMinimumOccurs());
-        assertEquals("ParameterDescriptor: getMaximumOccurs() shall returns exactly 1.", 1, object.getMaximumOccurs());
+        assertEquals(1, object.getMaximumOccurs(), "ParameterDescriptor: getMaximumOccurs() shall returns exactly 1.");
     }
 
     /**
@@ -139,18 +143,17 @@ public class ParameterValidator extends ReferencingValidator {
         final List<GeneralParameterDescriptor> descriptors = object.descriptors();
         if (requireMandatoryAttributes) {
             // Do not invoke mandatory(…) because we allow empty collections.
-            assertNotNull("ParameterDescriptorGroup: descriptors() should not return null.", descriptors);
+            assertNotNull(descriptors, "ParameterDescriptorGroup: descriptors() should not return null.");
         }
         if (descriptors != null) {
             validate(descriptors);
             for (final GeneralParameterDescriptor descriptor : descriptors) {
-                assertNotNull("ParameterDescriptorGroup: descriptors() cannot contain null element.", descriptor);
+                assertNotNull(descriptor, "ParameterDescriptorGroup: descriptors() cannot contain null element.");
                 dispatch(descriptor);
                 final GeneralParameterDescriptor byName = object.descriptor(descriptor.getName().getCode());
                 mandatory("ParameterDescriptorGroup: descriptor(String) should returns a value.", byName);
                 if (byName != null) {
-                    assertEquals("ParameterDescriptorGroup: descriptor(String) inconsistent with descriptors().",
-                            descriptor, byName);
+                    assertEquals(descriptor, byName, "ParameterDescriptorGroup: descriptor(String) inconsistent with descriptors().");
                 }
             }
         }
@@ -177,7 +180,7 @@ public class ParameterValidator extends ReferencingValidator {
         if (value != null) {
             if (descriptor != null) {
                 final Class<T> valueClass = descriptor.getValueClass();
-                assertInstanceOf("ParameterValue: getValue() returns unexpected value.", valueClass, value);
+                assertInstanceOf(valueClass, value, "ParameterValue: getValue() returns unexpected value.");
                 final Set<T> validValues = descriptor.getValidValues();
                 if (validValues != null) {
                     validate(validValues);
@@ -205,14 +208,14 @@ public class ParameterValidator extends ReferencingValidator {
         final List<GeneralParameterValue> values = object.values();
         if (requireMandatoryAttributes) {
             // Do not invoke mandatory(…) because we allow empty collections.
-            assertNotNull("ParameterValueGroup: values() should not return null.", values);
+            assertNotNull(values, "ParameterValueGroup: values() should not return null.");
         }
         if (values == null) {
             return;
         }
         validate(values);
         for (final GeneralParameterValue value : values) {
-            assertNotNull("ParameterValueGroup: values() cannot contain null element.", value);
+            assertNotNull(value, "ParameterValueGroup: values() cannot contain null element.");
             dispatch(value);
             final GeneralParameterDescriptor descriptor = value.getDescriptor();
             mandatory("GeneralParameterValue: expected a descriptor.", descriptor);
@@ -228,15 +231,15 @@ public class ParameterValidator extends ReferencingValidator {
                 final GeneralParameterDescriptor byName = descriptors.descriptor(name);
                 mandatory("ParameterDescriptorGroup: should never return null.", byName);
                 if (byName != null) {
-                    assertEquals("ParameterValueGroup: descriptor(String) inconsistent" +
-                            " with value.getDescriptor().", descriptor, byName);
+                    assertEquals(descriptor, byName,
+                            "ParameterValueGroup: descriptor(String) inconsistent with value.getDescriptor().");
                 }
             }
             if (value instanceof ParameterValue<?>) {
                 final ParameterValue<?> byName = object.parameter(name);
                 mandatory("ParameterValueGroup: parameter(String) should returns a value.", byName);
                 if (byName != null) {
-                    assertEquals("ParameterValueGroup: value(String) inconsistent with values().", value, byName);
+                    assertEquals(value, byName, "ParameterValueGroup: value(String) inconsistent with values().");
                 }
             }
         }

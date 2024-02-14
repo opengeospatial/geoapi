@@ -39,9 +39,10 @@ import javax.imageio.metadata.IIOMetadata;
 import javax.imageio.stream.ImageInputStream;
 import javax.imageio.stream.ImageOutputStream;
 
-import org.junit.*;
-import static org.junit.Assert.*;
-import static org.junit.Assume.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.*;
 
 
 /**
@@ -264,7 +265,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * @throws IOException In an error occurred while setting the output.
      */
     private ByteArrayOutputStream open(final int capacity) throws IOException {
-        assertNotNull("The 'writer' field shall be set at construction time or in a method annotated by @Before.", writer);
+        assertNotNull(writer, "The 'writer' field shall be set at construction time or in a method annotated by @Before.");
         if (writer.getOutput() != null) {
             return null;                                // The output has been set by the user himself.
         }
@@ -312,7 +313,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
         writer.setOutput(null);
         if (reader == null) {
             reader = ImageIO.getImageReader(writer);
-            assertNotNull("The ImageWriter does not declare a compatible reader.", reader);
+            assertNotNull(reader, "The ImageWriter does not declare a compatible reader.");
         }
         if (buffer != null) {
             input = ImageIO.createImageInputStream(new ByteArrayInputStream(buffer.toByteArray()));
@@ -453,7 +454,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     public void testOneByteBand() throws IOException {
         final BufferedImage image = createImage(DataBuffer.TYPE_BYTE, 180, 90, 1);
         fill(image.getRaster(), random);
-        assumeTrue(canEncodeImage(image));
+        assumeTrue(canEncodeImage(image), "Skipped because the writer cannot encode the test image.");
         testImageWrites(image);
     }
 
@@ -466,7 +467,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     public void testThreeByteBands() throws IOException {
         final BufferedImage image = createImage(DataBuffer.TYPE_BYTE, 180, 90, 3);
         fill(image.getRaster(), random);
-        assumeTrue(canEncodeImage(image));
+        assumeTrue(canEncodeImage(image), "Skipped because the writer cannot encode the test image.");
         testImageWrites(image);
     }
 
@@ -479,7 +480,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     public void testOneShortBand() throws IOException {
         final BufferedImage image = createImage(DataBuffer.TYPE_SHORT, 180, 90, 1);
         fill(image.getRaster(), random);
-        assumeTrue(canEncodeImage(image));
+        assumeTrue(canEncodeImage(image), "Skipped because the writer cannot encode the test image.");
         testImageWrites(image);
     }
 
@@ -492,7 +493,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     public void testOneUnsignedShortBand() throws IOException {
         final BufferedImage image = createImage(DataBuffer.TYPE_USHORT, 180, 90, 1);
         fill(image.getRaster(), random);
-        assumeTrue(canEncodeImage(image));
+        assumeTrue(canEncodeImage(image), "Skipped because the writer cannot encode the test image.");
         testImageWrites(image);
     }
 
@@ -505,7 +506,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     public void testOneIntBand() throws IOException {
         final BufferedImage image = createImage(DataBuffer.TYPE_INT, 180, 90, 1);
         fill(image.getRaster(), random);
-        assumeTrue(canEncodeImage(image));
+        assumeTrue(canEncodeImage(image), "Skipped because the writer cannot encode the test image.");
         testImageWrites(image);
     }
 
@@ -518,7 +519,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     public void testOneFloatBand() throws IOException {
         final BufferedImage image = createImage(DataBuffer.TYPE_FLOAT, 180, 90, 1);
         fill(image.getRaster(), random);
-        assumeTrue(canEncodeImage(image));
+        assumeTrue(canEncodeImage(image), "Skipped because the writer cannot encode the test image.");
         testImageWrites(image);
     }
 
@@ -531,7 +532,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     public void testOneDoubleBand() throws IOException {
         final BufferedImage image = createImage(DataBuffer.TYPE_DOUBLE, 180, 90, 1);
         fill(image.getRaster(), random);
-        assumeTrue(canEncodeImage(image));
+        assumeTrue(canEncodeImage(image), "Skipped because the writer cannot encode the test image.");
         testImageWrites(image);
     }
 
@@ -552,8 +553,8 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      * @see ImageWriter#reset()
      * @see ImageWriter#dispose()
      */
-    @After
     @Override
+    @AfterEach
     public void close() throws IOException {
         if (writer != null) {
             close(writer.getOutput());

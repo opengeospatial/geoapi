@@ -36,7 +36,7 @@ import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Specification;
 import org.opengis.annotation.ResourceBundles;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.opengis.annotation.Specification.*;

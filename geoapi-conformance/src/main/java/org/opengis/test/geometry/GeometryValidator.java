@@ -30,7 +30,10 @@ import org.opengis.test.ValidatorContainer;
 
 import static java.lang.Double.NaN;
 import static java.lang.Double.isNaN;
-import static org.opengis.test.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.opengis.test.Assert.assertBetween;
+import static org.opengis.test.Assert.assertPositive;
+import static org.opengis.test.Assert.assertValidRange;
 
 
 /**
@@ -104,8 +107,8 @@ public class GeometryValidator extends Validator {
         if (crs != null) {
             cs = crs.getCoordinateSystem();
             if (cs != null) {
-                assertEquals("Envelope: CRS dimension shall be equal to the envelope dimension",
-                        dimension, cs.getDimension());
+                assertEquals(dimension, cs.getDimension(),
+                        "Envelope: CRS dimension shall be equal to the envelope dimension");
             }
         }
         /*
@@ -122,19 +125,19 @@ public class GeometryValidator extends Validator {
         CoordinateReferenceSystem upperCRS = null;
         if (lowerCorner != null) {
             lowerCRS = lowerCorner.getCoordinateReferenceSystem();
-            assertEquals("Envelope: lower corner dimension shall be equal to the envelope dimension.",
-                    dimension, lowerCorner.getDimension());
+            assertEquals(dimension, lowerCorner.getDimension(),
+                    "Envelope: lower corner dimension shall be equal to the envelope dimension.");
         }
         if (upperCorner != null) {
             upperCRS = upperCorner.getCoordinateReferenceSystem();
-            assertEquals("Envelope: upper corner dimension shall be equal to the envelope dimension.",
-                    dimension, upperCorner.getDimension());
+            assertEquals(dimension, upperCorner.getDimension(),
+                    "Envelope: upper corner dimension shall be equal to the envelope dimension.");
         }
         if (crs != null) {
-            if (lowerCRS != null) assertSame("Envelope: lower CRS shall be the same as the envelope CRS.", crs, lowerCRS);
-            if (upperCRS != null) assertSame("Envelope: upper CRS shall be the same as the envelope CRS.", crs, upperCRS);
+            if (lowerCRS != null) assertSame(crs, lowerCRS, "Envelope: lower CRS shall be the same as the envelope CRS.");
+            if (upperCRS != null) assertSame(crs, upperCRS, "Envelope: upper CRS shall be the same as the envelope CRS.");
         } else if (lowerCRS != null && upperCRS != null) {
-            assertSame("Envelope: the two corners shall have the same CRS.", lowerCRS, upperCRS);
+            assertSame(lowerCRS, upperCRS, "Envelope: the two corners shall have the same CRS.");
         }
         /*
          * Verifies the consistency of lower, upper, minimum, maximum, median and span values.
@@ -156,12 +159,12 @@ public class GeometryValidator extends Validator {
             final double median  = object.getMedian (i);
             final double span    = object.getSpan   (i);
             if (!isNaN(minimum) && !isNaN(maximum)) {
-                if (lower <= upper && !isPositiveToNegativeZero(lower, upper)) {            // Do not accept NaN in this block.
+                if (lower <= upper && !isPositiveToNegativeZero(lower, upper)) { // Do not accept NaN in this block.
                     final double eps = (upper - lower) * tolerance;
-                    assertEquals("Envelope: minimum value shall be equal to the lower corner coordinate.", lower, minimum, eps);
-                    assertEquals("Envelope: maximum value shall be equal to the upper corner coordinate.", upper, maximum, eps);
-                    assertEquals("Envelope: unexpected span value.",   (maximum - minimum),   span,   eps);
-                    assertEquals("Envelope: unexpected median value.", (maximum + minimum)/2, median, eps);
+                    assertEquals(lower, minimum, eps, "Envelope: minimum value shall be equal to the lower corner coordinate.");
+                    assertEquals(upper, maximum, eps, "Envelope: maximum value shall be equal to the upper corner coordinate.");
+                    assertEquals((maximum - minimum),   span,   eps, "Envelope: unexpected span value.");
+                    assertEquals((maximum + minimum)/2, median, eps, "Envelope: unexpected median value.");
                 } else if (RangeMeaning.EXACT.equals(meaning)) {
                     // assertBetween(…) tolerates NaN values, which is what we want.
                     assertValidRange("Envelope: invalid minimum or maximum.", minimum, maximum);
@@ -171,8 +174,8 @@ public class GeometryValidator extends Validator {
                 }
             }
             if (meaning != null && (lower > upper || isPositiveToNegativeZero(lower, upper))) {
-                assertEquals("Envelope: lower coordinate value may be greater than upper coordinate value "
-                        + "only on axis having wrappround range.", RangeMeaning.WRAPAROUND, meaning);
+                assertEquals(RangeMeaning.WRAPAROUND, meaning, "Envelope: lower coordinate value may be "
+                        + "greater than upper coordinate value only on axis having wrappround range.");
             }
         }
     }
@@ -204,11 +207,11 @@ public class GeometryValidator extends Validator {
         final double[] coordinates = object.getCoordinate();
         mandatory("DirectPosition: coordinate array cannot be null.", coordinates);
         if (coordinates != null) {
-            assertEquals("DirectPosition: coordinate array length shall be equal to the dimension.",
-                    dimension, coordinates.length);
+            assertEquals(dimension, coordinates.length,
+                    "DirectPosition: coordinate array length shall be equal to the dimension.");
             for (int i=0; i<dimension; i++) {
-                assertEquals("DirectPosition: getOrdinate(i) shall be the same as coordinate[i].",
-                        coordinates[i], object.getOrdinate(i), 0.0);         // No tolerance - we want exact match.
+                assertEquals(coordinates[i], object.getOrdinate(i),     // No tolerance - we want exact match.
+                        "DirectPosition: getOrdinate(i) shall be the same than coordinate[i].");
             }
         }
         /*
@@ -220,8 +223,8 @@ public class GeometryValidator extends Validator {
         if (crs != null) {
             final CoordinateSystem cs = crs.getCoordinateSystem();                      // Assume already validated.
             if (cs != null) {
-                assertEquals("DirectPosition: CRS dimension must matches the position dimension.",
-                        dimension, cs.getDimension());
+                assertEquals(dimension, cs.getDimension(),
+                        "DirectPosition: CRS dimension must matches the position dimension.");
                 for (int i=0; i<dimension; i++) {
                     final CoordinateSystemAxis axis = cs.getAxis(i);                    // Assume already validated.
                     if (axis != null && RangeMeaning.EXACT.equals(axis.getRangeMeaning())) {
@@ -239,17 +242,17 @@ public class GeometryValidator extends Validator {
          * contract stated in the javadoc.
          */
         hashCode += Arrays.hashCode(coordinates);
-        assertEquals("DirectPosition: hashCode shall be compliant to the contract given in javadoc.",
-                hashCode, object.hashCode());
-        assertTrue("DirectPosition: shall be equal to itself.", object.equals(object));
+        assertEquals(hashCode, object.hashCode(),
+                "DirectPosition: hashCode shall be compliant to the contract given in javadoc.");
+        assertTrue(object.equals(object), "DirectPosition: shall be equal to itself.");
         /*
          * Ensures that the array returned by DirectPosition.getCoordinate() is a clone.
          */
         for (int i=0; i<dimension; i++) {
             final double oldValue = coordinates[i];
             coordinates[i] *= 2;
-            assertEquals("DirectPosition: coordinate array shall be cloned.",
-                    oldValue, object.getOrdinate(i), 0.0);                      // No tolerance - we want exact match.
+            assertEquals(oldValue, object.getOrdinate(i),                      // No tolerance - we want exact match.
+                    "DirectPosition: coordinate array shall be cloned.");
         }
     }
 }

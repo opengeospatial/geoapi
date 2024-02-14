@@ -23,8 +23,8 @@ import java.io.InputStream;
 import javax.imageio.ImageIO;
 import javax.imageio.ImageReader;
 
-import org.junit.BeforeClass;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.BeforeAll;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -58,11 +58,11 @@ public class ImageReaderCaseTest extends ImageReaderTestCase {
                     break;                                          // Give precedence to standard reader.
                 }
             }
-            assertNotNull("No PNG image reader found.", reader);
+            assertNotNull(reader, "No PNG image reader found.");
         }
         if (setInput) {
             final InputStream input = ImageReaderCaseTest.class.getResourceAsStream("PointLoma.png");
-            assertNotNull("PointLoma.png file not found", input);
+            assertNotNull(input, "PointLoma.png file not found");
             reader.setInput(ImageIO.createImageInputStream(input));
         }
     }
@@ -71,7 +71,7 @@ public class ImageReaderCaseTest extends ImageReaderTestCase {
      * Disables the creation of temporary caches on disk - use the memory instead.
      * We don't need disk cache since we test only small images.
      */
-    @BeforeClass
+    @BeforeAll
     public static void configureImageIO() {
         ImageIO.setUseCache(false);
     }

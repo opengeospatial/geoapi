@@ -28,8 +28,9 @@ import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.test.ValidatorContainer;
 
-import static org.opengis.test.Assert.*;
-import static org.opengis.test.referencing.Utilities.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.opengis.test.referencing.Utilities.getName;
+import static org.opengis.test.referencing.Utilities.getAxisDirections;
 
 
 /**
@@ -181,10 +182,10 @@ public class CRSValidator extends ReferencingValidator {
             container.validate((CartesianCS) cs);
             final Set<AxisDirection> axes = getAxisDirections(cs);
             validate(axes);
-            assertTrue("GeocentricCRS: expected Geocentric X axis direction.", axes.remove(AxisDirection.GEOCENTRIC_X));
-            assertTrue("GeocentricCRS: expected Geocentric Y axis direction.", axes.remove(AxisDirection.GEOCENTRIC_Y));
-            assertTrue("GeocentricCRS: expected Geocentric Z axis direction.", axes.remove(AxisDirection.GEOCENTRIC_Z));
-            assertTrue("GeocentricCRS: unknown axis direction.",               axes.isEmpty());
+            assertTrue(axes.remove(AxisDirection.GEOCENTRIC_X), "GeocentricCRS: expected Geocentric X axis direction.");
+            assertTrue(axes.remove(AxisDirection.GEOCENTRIC_Y), "GeocentricCRS: expected Geocentric Y axis direction.");
+            assertTrue(axes.remove(AxisDirection.GEOCENTRIC_Z), "GeocentricCRS: expected Geocentric Z axis direction.");
+            assertTrue(axes.isEmpty(), "GeocentricCRS: unknown axis direction.");
             if (enforceStandardNames) {
                 assertStandardNames("GeocentricCRS", cs, GEOCENTRIC_AXIS_NAME);
             }
@@ -278,12 +279,12 @@ public class CRSValidator extends ReferencingValidator {
                 final CoordinateReferenceSystem sourceCRS = conversion.getSourceCRS();
                 final CoordinateReferenceSystem targetCRS = conversion.getTargetCRS();
                 if (baseCRS != null && sourceCRS != null) {
-                    assertSame("GeneralDerivedCRS: The base CRS should be " +
-                            "the source CRS of the conversion.", baseCRS, sourceCRS);
+                    assertSame(baseCRS, sourceCRS,
+                            "GeneralDerivedCRS: The base CRS should be the source CRS of the conversion.");
                 }
                 if (targetCRS != null) {
-                    assertSame("GeneralDerivedCRS: The derived CRS should be " +
-                            "the target CRS of the conversion.", object, targetCRS);
+                    assertSame(object, targetCRS,
+                            "GeneralDerivedCRS: The derived CRS should be the target CRS of the conversion.");
                 }
             }
         } finally {
@@ -323,14 +324,14 @@ public class CRSValidator extends ReferencingValidator {
         final CoordinateSystem cs = object.getCoordinateSystem();
         mandatory("EngineeringCRS: shall have a CoordinateSystem.", cs);
         container.validate(cs);
-        assertTrue("EngineeringCRS: illegal coordinate system type. Shall be one of affine, "
-                + "Cartesian, cylindrical, linear, polar, spherical or user defined.",
-                cs instanceof AffineCS      || // Include the CartesianCS case.
-                cs instanceof CylindricalCS ||
-                cs instanceof LinearCS      ||
-                cs instanceof PolarCS       ||
-                cs instanceof SphericalCS   ||
-                cs instanceof UserDefinedCS);
+        assertTrue(cs instanceof AffineCS      ||      // Include the CartesianCS case.
+                   cs instanceof CylindricalCS ||
+                   cs instanceof LinearCS      ||
+                   cs instanceof PolarCS       ||
+                   cs instanceof SphericalCS   ||
+                   cs instanceof UserDefinedCS,
+                "EngineeringCRS: illegal coordinate system type. Shall be one of affine, "
+                + "Cartesian, cylindrical, linear, polar, spherical or user defined.");
 
         final Datum datum = object.getDatum();
         mandatory("EngineeringCRS: shall have a Datum.", datum);
@@ -404,7 +405,7 @@ public class CRSValidator extends ReferencingValidator {
         mandatory("CompoundCRS: shall have components.", components);
         if (components != null) {
             // If the above 'mandatory(…)' call accepted an empty list, we accept it too.
-            assertTrue("CompoundCRS: shall have at least 2 components.", components.size() != 1);
+            assertNotEquals(1, components.size(), "CompoundCRS: shall have at least 2 components.");
             for (final CoordinateReferenceSystem component : components) {
                 dispatch(component);
             }
@@ -443,8 +444,8 @@ public class CRSValidator extends ReferencingValidator {
      * The intent is to leave the trailing X, Y or Z case unchanged in "geocentric X",
      * "geocentric Y" and "geocentric Z" axis names.
      *
-     * @param  name  the string to convert.
-     * @return the given string converted to lower cases except last letter.
+     * @param  name  the name in mixed case.
+     * @return the given string in lower case, except last letter if single.
      */
     static String toLowerCase(final String name) {
         int s = name.length();

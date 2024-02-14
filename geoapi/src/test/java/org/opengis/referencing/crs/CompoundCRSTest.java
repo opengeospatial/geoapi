@@ -17,8 +17,8 @@
  */
 package org.opengis.referencing.crs;
 
-import org.junit.Test;
 import org.opengis.referencing.cs.CoordinateSystem;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

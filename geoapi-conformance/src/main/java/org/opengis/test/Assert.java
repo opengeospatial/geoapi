@@ -18,6 +18,7 @@
 package org.opengis.test;
 
 import java.util.Collection;
+import java.util.function.Supplier;
 import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.PathIterator;
@@ -32,39 +33,27 @@ import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.test.coverage.image.PixelIterator;
 
+import static org.junit.jupiter.api.Assertions.*;
+
 
 /**
  * Extension to JUnit assertion methods.
- * This class inherits all assertion methods from the {@link org.junit.Assert org.junit.Assert} class.
- * Consequently, developers can replace the following statement:
- *
- * {@snippet lang="java" :
- * import static org.junit.Assert.*;
- * }
- *
- * by
- *
- * {@snippet lang="java" :
- * import static org.opengis.test.Assert.*;
- * }
- *
- * if they wish to use the assertion methods defined here in addition of JUnit methods.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   2.2
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
-public strictfp class Assert extends org.junit.Assert {
+public final strictfp class Assert {
     /**
      * The keyword for unrestricted value in {@link String} arguments.
      */
     private static final String UNRESTRICTED = "##unrestricted";
 
     /**
-     * For subclass constructors only.
+     * Do not allow instantiation of this class.
      */
-    protected Assert() {
+    private Assert() {
     }
 
     /**
@@ -99,10 +88,10 @@ public strictfp class Assert extends org.junit.Assert {
     /**
      * Verifies if we expected a null value, then returns {@code true} if the value is null as expected.
      *
-     * @param  expected  the expected value.
-     * @param  actual    the actual value.
-     * @param  message   the message to report in case of error.
-     * @return whether the value was null.
+     * @param  expected  the expected value (only its existence is checked).
+     * @param  actual    the actual value (only its existence is checked).
+     * @param  message   the message to show in case of test failure, or {@code null}.
+     * @return whether the actual value is null.
      */
     private static boolean isNull(final Object expected, final Object actual, final String message) {
         final boolean isNull = (actual == null);
@@ -120,7 +109,10 @@ public strictfp class Assert extends org.junit.Assert {
      * @param message       header of the exception message in case of failure, or {@code null} if none.
      * @param expectedType  the expected parent class of the value, or {@code null} if unrestricted.
      * @param value         the value to test, or {@code null} (which is a failure).
+     *
+     * @deprecated Replaced by {@code org.junit.jupiter.api.Assertions.assertInstanceOf(…)}.
      */
+    @Deprecated
     public static void assertInstanceOf(final String message, final Class<?> expectedType, final Object value) {
         if (expectedType != null && !expectedType.isInstance(value)) {
             if (value == null) {
@@ -142,7 +134,7 @@ public strictfp class Assert extends org.junit.Assert {
      * Asserts that the given integer value is positive, including zero.
      *
      * @param message  header of the exception message in case of failure, or {@code null} if none.
-     * @param value   The value to test.
+     * @param value    the value to test.
      */
     public static void assertPositive(final String message, final int value) {
         if (value < 0) {
@@ -203,7 +195,7 @@ public strictfp class Assert extends org.junit.Assert {
      * @param maximum  the upper bound of the range to test.
      */
     public static void assertValidRange(final String message, final double minimum, final double maximum) {
-        if (!(minimum <= maximum)) {                            // Use '!' for catching NaN.
+        if (!(minimum <= maximum)) {            // Use `!` for catching NaN.
             fail(nonNull(message) + "Range found is [" + minimum + " ... " + maximum + "].");
         }
     }
@@ -336,10 +328,10 @@ public strictfp class Assert extends org.junit.Assert {
         if (actual == null) {
             fail(concat(message, "Identifier is null"));
         } else {
-            if (!UNRESTRICTED.equals(authority)) assertAnyTitleEquals(message,                     authority, actual.getAuthority());
-            if (!UNRESTRICTED.equals(codeSpace)) assertEquals(concat(message, "Wrong code space"), codeSpace, actual.getCodeSpace());
-            if (!UNRESTRICTED.equals(version))   assertEquals(concat(message, "Wrong version"),    version,   actual.getVersion());
-            if (!UNRESTRICTED.equals(code))      assertEquals(concat(message, "Wrong code"),       code,      actual.getCode());
+            if (!UNRESTRICTED.equals(authority)) assertAnyTitleEquals(message, authority, actual.getAuthority());
+            if (!UNRESTRICTED.equals(codeSpace)) assertEquals(codeSpace, actual.getCodeSpace(), () -> concat(message, "Wrong code space"));
+            if (!UNRESTRICTED.equals(version))   assertEquals(version,   actual.getVersion(),   () -> concat(message, "Wrong version"));
+            if (!UNRESTRICTED.equals(code))      assertEquals(code,      actual.getCode(),      () -> concat(message, "Wrong code"));
         }
     }
 
@@ -424,8 +416,8 @@ public strictfp class Assert extends org.junit.Assert {
      * Returns {@code true} if the given codepoint is an unicode identifier start or part.
      *
      * @param  codepoint  the code point to test.
-     * @param  part       {@code false} for identifier start, {@code true} for identifier part.
-     * @return whether the given code point is an identifier start or part.
+     * @param  part       {@code false} for identifier start, or {@code true} for identifier part.
+     * @return whether the given code point is a Unicode identifier start or part.
      */
     private static boolean isUnicodeIdentifier(final int codepoint, final boolean part) {
         return part ? Character.isUnicodeIdentifierPart (codepoint)
@@ -433,8 +425,8 @@ public strictfp class Assert extends org.junit.Assert {
     }
 
     /**
-     * Asserts that all axes in the given coordinate system are pointing toward the given
-     * directions, in the same order.
+     * Asserts that all axes in the given coordinate system are pointing toward the given directions,
+     * in the same order.
      *
      * @param message   header of the exception message in case of failure, or {@code null} if none.
      * @param cs        the coordinate system to test.
@@ -442,13 +434,14 @@ public strictfp class Assert extends org.junit.Assert {
      *
      * @since 3.1
      */
-    public static void assertAxisDirectionsEqual(String message,
+    public static void assertAxisDirectionsEqual(final String message,
             final CoordinateSystem cs, final AxisDirection... expected)
     {
-        assertEquals(concat(message, "Wrong coordinate system dimension."), expected.length, cs.getDimension());
-        message = concat(message, "Wrong axis direction.");
+        assertEquals(expected.length, cs.getDimension(), () -> concat(message, "Wrong coordinate system dimension."));
         for (int i=0; i<expected.length; i++) {
-            assertEquals(message, expected[i], cs.getAxis(i).getDirection());
+            final int ci = i;   // Because lambda expressions require final values.
+            assertEquals(expected[i], cs.getAxis(i).getDirection(),
+                    () -> concat(message, "Wrong axis direction at index" + ci + '.'));
         }
     }
 
@@ -470,8 +463,8 @@ public strictfp class Assert extends org.junit.Assert {
         }
         final int numRow = actual.getNumRow();
         final int numCol = actual.getNumCol();
-        assertEquals("numRow", expected.getNumRow(), numRow);
-        assertEquals("numCol", expected.getNumCol(), numCol);
+        assertEquals(expected.getNumRow(), numRow, "numRow");
+        assertEquals(expected.getNumCol(), numCol, "numCol");
         for (int j=0; j<numRow; j++) {
             for (int i=0; i<numCol; i++) {
                 final double e = expected.getElement(j,i);
@@ -508,7 +501,7 @@ public strictfp class Assert extends org.junit.Assert {
      *
      * @since 3.1
      */
-    public static void assertShapeEquals(String message, final Shape expected,
+    public static void assertShapeEquals(final String message, final Shape expected,
             final Shape actual, final double toleranceX, final double toleranceY)
     {
         if (isNull(expected, actual, message)) {
@@ -516,11 +509,11 @@ public strictfp class Assert extends org.junit.Assert {
         }
         final Rectangle2D b0 = expected.getBounds2D();
         final Rectangle2D b1 = actual  .getBounds2D();
-        final String mismatch = concat(message, "Mismatched bounds.");
-        assertEquals(mismatch, b0.getMinX(), b1.getMinX(), toleranceX);
-        assertEquals(mismatch, b0.getMaxX(), b1.getMaxX(), toleranceX);
-        assertEquals(mismatch, b0.getMinY(), b1.getMinY(), toleranceY);
-        assertEquals(mismatch, b0.getMaxY(), b1.getMaxY(), toleranceY);
+        final Supplier<String> mismatch = () -> concat(message, "Mismatched bounds.");
+        assertEquals(b0.getMinX(), b1.getMinX(), toleranceX, mismatch);
+        assertEquals(b0.getMaxX(), b1.getMaxX(), toleranceX, mismatch);
+        assertEquals(b0.getMinY(), b1.getMinY(), toleranceY, mismatch);
+        assertEquals(b0.getMaxY(), b1.getMaxY(), toleranceY, mismatch);
         assertPathEquals(message, expected.getPathIterator(null), actual.getPathIterator(null), toleranceX, toleranceY);
     }
 
@@ -557,17 +550,18 @@ public strictfp class Assert extends org.junit.Assert {
         if (isNull(expected, actual, message)) {
             return;
         }
-        assertEquals(concat(message, "Mismatched winding rule."), expected.getWindingRule(), actual.getWindingRule());
-        final String   mismatchedType = concat(message, "Mismatched path segment type.");
-        final String   mismatchedX    = concat(message, "Mismatched X coordinate value.");
-        final String   mismatchedY    = concat(message, "Mismatched Y coordinate value.");
-        final String   endOfPath      = concat(message, "Premature end of path.");
+        assertEquals(expected.getWindingRule(), actual.getWindingRule(),
+                     () -> concat(message, "Mismatched winding rule."));
+        final Supplier<String> mismatchedType = () -> concat(message, "Mismatched path segment type.");
+        final Supplier<String> mismatchedX    = () -> concat(message, "Mismatched X coordinate value.");
+        final Supplier<String> mismatchedY    = () -> concat(message, "Mismatched Y coordinate value.");
+        final Supplier<String> endOfPath      = () -> concat(message, "Premature end of path.");
         final double[] expectedCoords = new double[6];
         final double[] actualCoords   = new double[6];
         while (!expected.isDone()) {
-            assertFalse(endOfPath, actual.isDone());
+            assertFalse(actual.isDone(), endOfPath);
             final int type = expected.currentSegment(expectedCoords);
-            assertEquals(mismatchedType, type, actual.currentSegment(actualCoords));
+            assertEquals(type, actual.currentSegment(actualCoords), mismatchedType);
             final int length;
             switch (type) {
                 case PathIterator.SEG_CLOSE:   length = 0; break;
@@ -578,13 +572,13 @@ public strictfp class Assert extends org.junit.Assert {
                 default: throw new AssertionError(nonNull(message) + "Unknown segment type: " + type);
             }
             for (int i=0; i<length;) {
-                assertEquals(mismatchedX, expectedCoords[i], actualCoords[i++], toleranceX);
-                assertEquals(mismatchedY, expectedCoords[i], actualCoords[i++], toleranceY);
+                assertEquals(expectedCoords[i], actualCoords[i++], toleranceX, mismatchedX);
+                assertEquals(expectedCoords[i], actualCoords[i++], toleranceY, mismatchedY);
             }
             actual.next();
             expected.next();
         }
-        assertTrue(concat(message, "Expected end of path."), actual.isDone());
+        assertTrue(actual.isDone(), () -> concat(message, "Expected end of path."));
     }
 
     /**
@@ -611,11 +605,11 @@ public strictfp class Assert extends org.junit.Assert {
         if (isNull(expected, actual, message)) {
             return;
         }
-        assertEquals(concat(message, "Mismatched image width."),  expected.getWidth(),  actual.getWidth());
-        assertEquals(concat(message, "Mismatched image height."), expected.getHeight(), actual.getHeight());
-        assertEquals(concat(message, "Mismatched number of bands."),
-                expected.getSampleModel().getNumBands(), actual.getSampleModel().getNumBands());
-        final PixelIterator iterator = new PixelIterator(expected);
+        assertEquals(expected.getWidth(),  actual.getWidth(),  () -> concat(message, "Mismatched image width."));
+        assertEquals(expected.getHeight(), actual.getHeight(), () -> concat(message, "Mismatched image height."));
+        assertEquals(expected.getSampleModel().getNumBands(), actual.getSampleModel().getNumBands(),
+                     () -> concat(message, "Mismatched number of bands."));
+        final var iterator = new PixelIterator(expected);
         iterator.assertSampleValuesEqual(new PixelIterator(actual), tolerance);
     }
 }

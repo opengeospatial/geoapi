@@ -20,7 +20,7 @@ package org.opengis.annotation;
 import java.io.IOException;
 import java.util.Locale;
 import java.util.ResourceBundle;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

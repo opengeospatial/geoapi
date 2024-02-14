@@ -5,10 +5,13 @@
  */
 package org.opengis.example.referencing;
 
-import org.junit.Test;
-
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.operation.TransformException;
+import org.opengis.test.referencing.AffineTransformTest;
+import org.junit.jupiter.api.AfterEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -20,99 +23,30 @@ import org.opengis.referencing.operation.TransformException;
  * @version 3.1
  * @since   3.1
  */
-public class AffineTransform2DTest extends ProjectiveTransformTest {
+public class AffineTransform2DTest extends AffineTransformTest {
     /**
      * Creates a new test case.
      */
     public AffineTransform2DTest() {
-        super(new SimpleTransformFactory());
+        super(ProjectiveTransformTest.factory());
     }
 
     /**
-     * Declares that this particular test expects an {@link AffineTransform2D} instance,
-     * then runs the test.
+     * Declares that our implementation cannot invert such transform, then delegate to the parent class.
      */
     @Test
     @Override
-    public void testIdentity2D() throws FactoryException, TransformException {
-        expectedTransformClass = AffineTransform2D.class;
-        super.testIdentity2D();
+    public void testDimensionReduction() throws FactoryException, TransformException {
+        isInverseTransformSupported = false;
+        super.testDimensionReduction();
     }
 
     /**
-     * Declares that this particular test expects an {@link AffineTransform2D} instance,
-     * then runs the test.
+     * Invoked after every tests in order to ensure that the transform created by the factory
+     * is of the expected type.
      */
-    @Test
-    @Override
-    public void testAxisSwapping2D() throws FactoryException, TransformException {
-        expectedTransformClass = AffineTransform2D.class;
-        super.testAxisSwapping2D();
-    }
-
-    /**
-     * Declares that this particular test expects an {@link AffineTransform2D} instance,
-     * then runs the test.
-     */
-    @Test
-    @Override
-    public void testSouthOrientated2D() throws FactoryException, TransformException {
-        expectedTransformClass = AffineTransform2D.class;
-        super.testSouthOrientated2D();
-    }
-
-    /**
-     * Declares that this particular test expects an {@link AffineTransform2D} instance,
-     * then runs the test.
-     */
-    @Test
-    @Override
-    public void testTranslatation2D() throws FactoryException, TransformException {
-        expectedTransformClass = AffineTransform2D.class;
-        super.testTranslatation2D();
-    }
-
-    /**
-     * Declares that this particular test expects an {@link AffineTransform2D} instance,
-     * then runs the test.
-     */
-    @Test
-    @Override
-    public void testUniformScale2D() throws FactoryException, TransformException {
-        expectedTransformClass = AffineTransform2D.class;
-        super.testUniformScale2D();
-    }
-
-    /**
-     * Declares that this particular test expects an {@link AffineTransform2D} instance,
-     * then runs the test.
-     */
-    @Test
-    @Override
-    public void testGenericScale2D() throws FactoryException, TransformException {
-        expectedTransformClass = AffineTransform2D.class;
-        super.testGenericScale2D();
-    }
-
-    /**
-     * Declares that this particular test expects an {@link AffineTransform2D} instance,
-     * then runs the test.
-     */
-    @Test
-    @Override
-    public void testRotation2D() throws FactoryException, TransformException {
-        expectedTransformClass = AffineTransform2D.class;
-        super.testRotation2D();
-    }
-
-    /**
-     * Declares that this particular test expects an {@link AffineTransform2D} instance,
-     * then runs the test.
-     */
-    @Test
-    @Override
-    public void testGeneral() throws FactoryException, TransformException {
-        expectedTransformClass = AffineTransform2D.class;
-        super.testGeneral();
+    @AfterEach
+    public void ensureExpectedTransformClass() {
+        assertEquals(ProjectiveTransform.class, transform.getClass(), "Unexpected transform instance.");
     }
 }

@@ -48,9 +48,11 @@ import org.opengis.temporal.Period;
 import org.opengis.temporal.TemporalPrimitive;
 import org.opengis.test.TestCase;
 import org.opengis.util.Factory;
+import org.opentest4j.AssertionFailedError;
 
 import static java.lang.Double.isNaN;
-import static org.opengis.test.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.opengis.test.Assert.assertUnicodeIdentifierEquals;
 
 
 /**
@@ -157,7 +159,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
             }
             if (identifier != null) {
                 for (final Identifier id : object.getIdentifiers()) {
-                    assertNotNull("getName().getIdentifiers()", id);
+                    assertNotNull(id, "getName().getIdentifiers()");
                     if (identifier.equalsIgnoreCase(id.getCode())) {
                         return;
                     }
@@ -204,11 +206,13 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
                         name, Utilities.getName(ellipsoid), true);
             }
             final Unit<Length> actualUnit = ellipsoid.getAxisUnit();
-            assertNotNull("Ellipsoid.getAxisUnit()", actualUnit);
-            assertEquals("Ellipsoid.getSemiMajorAxis()", semiMajor,
+            assertNotNull(actualUnit, "Ellipsoid.getAxisUnit()");
+            assertEquals(semiMajor,
                     actualUnit.getConverterTo(axisUnit).convert(ellipsoid.getSemiMajorAxis()),
-                    units.metre().getConverterTo(axisUnit).convert(5E-4));
-            assertEquals("Ellipsoid.getInverseFlattening()", inverseFlattening, ellipsoid.getInverseFlattening(), 5E-10);
+                    units.metre().getConverterTo(axisUnit).convert(5E-4),
+                    "Ellipsoid.getSemiMajorAxis()");
+            assertEquals(inverseFlattening, ellipsoid.getInverseFlattening(), 5E-10,
+                    "Ellipsoid.getInverseFlattening()");
         }
     }
 
@@ -247,10 +251,11 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
                         name, Utilities.getName(primeMeridian), true);
             }
             final Unit<Angle> actualUnit = primeMeridian.getAngularUnit();
-            assertNotNull("PrimeMeridian.getAngularUnit()", actualUnit);
-            assertEquals("PrimeMeridian.getGreenwichLongitude()", greenwichLongitude,
+            assertNotNull(actualUnit, "PrimeMeridian.getAngularUnit()");
+            assertEquals(greenwichLongitude,
                     actualUnit.getConverterTo(angularUnit).convert(primeMeridian.getGreenwichLongitude()),
-                    units.degree().getConverterTo(angularUnit).convert(5E-8));
+                    units.degree().getConverterTo(angularUnit).convert(5E-8),
+                    "PrimeMeridian.getGreenwichLongitude()");
         }
     }
 
@@ -275,12 +280,12 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
             final AxisDirection[] directions, final Unit<?>... axisUnits)
     {
         if (cs != null) {
-            assertEquals("CoordinateSystem.getDimension()", directions.length, cs.getDimension());
+            assertEquals(directions.length, cs.getDimension(), "CoordinateSystem.getDimension()");
             for (int i=0; i<directions.length; i++) {
                 final CoordinateSystemAxis axis = cs.getAxis(i);
-                assertNotNull("CoordinateSystem.getAxis(*)", axis);
-                assertEquals ("CoordinateSystem.getAxis(*).getDirection()", directions[i], axis.getDirection());
-                assertEquals ("CoordinateSystem.getAxis(*).getUnit()", axisUnits[Math.min(i, axisUnits.length-1)], axis.getUnit());
+                assertNotNull(axis, "CoordinateSystem.getAxis(*)");
+                assertEquals(directions[i], axis.getDirection(), "CoordinateSystem.getAxis(*).getDirection()");
+                assertEquals(axisUnits[Math.min(i, axisUnits.length-1)], axis.getUnit(), "CoordinateSystem.getAxis(*).getUnit()");
             }
         }
     }
@@ -306,8 +311,8 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
     protected void verifyParameter(final ParameterValueGroup group, final String name, final double value, final Unit<?> unit) {
         if (group != null) {
             final ParameterValue<?> param = group.parameter(name);
-            assertNotNull(name, param);
-            assertEquals(name, param.doubleValue(unit), value, StrictMath.abs(value * 1E-10));
+            assertNotNull(param, name);
+            assertEquals(param.doubleValue(unit), value, StrictMath.abs(value * 1E-10), name);
         }
     }
 
@@ -384,15 +389,15 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
                 }
             }
             if (unknownArea != null) {
-                assertEquals("GeographicDescription", description, unknownArea);
+                assertEquals(description, unknownArea, "GeographicDescription");
             }
             /*
              * WKT 2 specification said that BBOX precision should be about 0.01°.
              */
-            if (!isNaN(southBoundLatitude) && ymin != Double.POSITIVE_INFINITY) assertEquals("getSouthBoundLatitude()", southBoundLatitude, ymin, 0.005);
-            if (!isNaN(westBoundLongitude) && xmin != Double.POSITIVE_INFINITY) assertEquals("getWestBoundLongitude()", westBoundLongitude, xmin, 0.005);
-            if (!isNaN(northBoundLatitude) && ymax != Double.NEGATIVE_INFINITY) assertEquals("getNorthBoundLatitude()", northBoundLatitude, ymax, 0.005);
-            if (!isNaN(eastBoundLongitude) && xmax != Double.NEGATIVE_INFINITY) assertEquals("getEastBoundLongitude()", eastBoundLongitude, xmax, 0.005);
+            if (!isNaN(southBoundLatitude) && ymin != Double.POSITIVE_INFINITY) assertEquals(southBoundLatitude, ymin, 0.005, "getSouthBoundLatitude()");
+            if (!isNaN(westBoundLongitude) && xmin != Double.POSITIVE_INFINITY) assertEquals(westBoundLongitude, xmin, 0.005, "getWestBoundLongitude()");
+            if (!isNaN(northBoundLatitude) && ymax != Double.NEGATIVE_INFINITY) assertEquals(northBoundLatitude, ymax, 0.005, "getNorthBoundLatitude()");
+            if (!isNaN(eastBoundLongitude) && xmax != Double.NEGATIVE_INFINITY) assertEquals(eastBoundLongitude, xmax, 0.005, "getEastBoundLongitude()");
         }
     }
 
@@ -436,7 +441,8 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
                     if (crs != null) {
                         final VerticalCS cs = crs.getCoordinateSystem();
                         if (cs != null) {
-                            assertEquals("VerticalExtent.getVerticalCRS().getCoordinateSystem().getDimension()", 1, cs.getDimension());
+                            assertEquals(1, cs.getDimension(),
+                                    "VerticalExtent.getVerticalCRS().getCoordinateSystem().getDimension()");
                             final CoordinateSystemAxis axis = cs.getAxis(0);
                             if (axis != null) {
                                 final Unit<?> u = axis.getUnit();
@@ -445,7 +451,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
                                     try {
                                         c = u.getConverterToAny(unit);
                                     } catch (IncommensurableException ex) {
-                                        throw new AssertionError("Expected VerticalExtent in units of “"
+                                        throw new AssertionFailedError("Expected VerticalExtent in units of “"
                                                 + unit + "” but got units of “" + u + "”.", ex);
                                     }
                                     minValue = c.convert(minValue);
@@ -458,8 +464,8 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
                 if (minValue < min) min = minValue;
                 if (maxValue > max) max = maxValue;
             }
-            if (!isNaN(minimumValue) && min != Double.POSITIVE_INFINITY) assertEquals("VerticalExtent.getMinimumValue()", minimumValue, min, tolerance);
-            if (!isNaN(maximumValue) && max != Double.NEGATIVE_INFINITY) assertEquals("VerticalExtent.getMaximumValue()", maximumValue, max, tolerance);
+            if (!isNaN(minimumValue) && min != Double.POSITIVE_INFINITY) assertEquals(minimumValue, min, tolerance, "VerticalExtent.getMinimumValue()");
+            if (!isNaN(maximumValue) && max != Double.NEGATIVE_INFINITY) assertEquals(maximumValue, max, tolerance, "VerticalExtent.getMaximumValue()");
         }
     }
 
@@ -494,10 +500,10 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
                 max = union(max, p, false);
             }
             if (startTime != null && min != null) {
-                assertEquals("TemporalExtent start time (julian days)", julian(startTime), julian(min), tolerance);
+                assertEquals(julian(startTime), julian(min), tolerance, "TemporalExtent start time (julian days)");
             }
             if (endTime != null && max != null) {
-                assertEquals("TemporalExtent end time (julian days)", julian(endTime), julian(max), tolerance);
+                assertEquals(julian(endTime), julian(max), tolerance, "TemporalExtent end time (julian days)");
             }
         }
     }

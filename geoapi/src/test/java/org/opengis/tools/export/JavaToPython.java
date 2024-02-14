@@ -45,7 +45,7 @@ import org.opengis.geoapi.DocumentationStyle;
 import org.opengis.geoapi.SchemaInformation;
 import org.opengis.geoapi.SchemaException;
 import org.xml.sax.SAXException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static java.util.Collections.singletonMap;
 import static org.junit.jupiter.api.Assertions.*;

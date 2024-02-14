@@ -42,7 +42,7 @@ import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.util.ControlledVocabulary;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.junit.Assert;
+import org.junit.jupiter.api.Assertions;
 
 
 /**
@@ -571,7 +571,7 @@ public class ContentVerifier {
      */
     public void assertMetadataEquals() {
         if (!compareMetadata()) {
-            Assert.fail(toString());
+            Assertions.fail(toString());
         }
     }
 

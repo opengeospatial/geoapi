@@ -29,8 +29,8 @@ import java.nio.charset.StandardCharsets;
 import javax.tools.ToolProvider;
 import javax.tools.JavaCompiler;
 import javax.tools.StandardJavaFileManager;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Disabled;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -50,7 +50,7 @@ public final class RunCompilation implements FileFilter {
      * @throws Exception if any kind of errors occurred.
      */
     @Test
-    @Ignore("Used for debugging purpose only.")
+    @Disabled("Used for debugging purpose only.")
     public void main() throws Exception {
         final JavaCompiler compiler = ToolProvider.getSystemJavaCompiler();
         final StandardJavaFileManager fm = compiler.getStandardFileManager(null, null, StandardCharsets.UTF_8);

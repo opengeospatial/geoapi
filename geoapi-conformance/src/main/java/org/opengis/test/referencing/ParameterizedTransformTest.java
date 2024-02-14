@@ -42,12 +42,13 @@ import org.opengis.test.ToleranceModifier;
 import org.opengis.test.CalculationType;
 import org.opengis.test.Configuration;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static java.lang.StrictMath.*;
-import static org.junit.Assert.*;
-import static org.junit.Assume.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.*;
 import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
+import static org.opengis.test.referencing.AffineTransformTest.NO_FACTORY;
 
 
 /**
@@ -89,9 +90,9 @@ import static org.opengis.test.ToleranceModifiers.NAUTICAL_MILE;
  * implements the {@link MathTransform2D} interface):
  *
  * {@snippet lang="java" :
- * import org.junit.Test;
+ * import org.junit.jupiter.api.Test;
  * import org.opengis.test.referencing.ParameterizedTransformTest;
- * import static org.junit.Assert.*;
+ * import static org.junit.jupiter.api.Assertions.*;
  *
  * public class MyTest extends ParameterizedTransformTest {
  *     public MyTest() {
@@ -264,11 +265,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * @param  method  the operation method for which to set parameter values.
      */
     private void createParameters(final String method) {
-        assumeNotNull(mtFactory);
+        assumeTrue(mtFactory != null, NO_FACTORY);
         try {
             parameters = mtFactory.getDefaultParameters(method);
         } catch (NoSuchIdentifierException e) {
-            assumeNoException(unsupportedMethod(method), e);        // Will mark the test as "ignored".
+            abort(unsupportedMethod(method));           // Will mark the test as "ignored".
         }
     }
 
@@ -287,14 +288,14 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     {
         try {
             if (parameters == null) {
-                assumeNotNull(mtFactory);
+                assumeTrue(mtFactory != null, NO_FACTORY);
                 parameters = PseudoEpsgFactory.createParameters(mtFactory, sample.operation);
                 validators.validate(parameters);
             }
             if (transform == null) {
-                assumeNotNull(mtFactory);
+                assumeTrue(mtFactory != null, NO_FACTORY);
                 transform = mtFactory.createParameterizedTransform(parameters);
-                assertNotNull(description, transform);
+                assertNotNull(transform, description);
                 validators.validate(transform);
             }
         } catch (NoSuchIdentifierException e) {
@@ -308,14 +309,14 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
                 if (!Collections.disjoint(Utilities.getNameAndAliases(descriptor),
                         Utilities.getNameAndAliases(mtFactory.getAvailableMethods(type))))
                 {
-                    throw e;                            // Will mark the test as "failed".
+                    throw e;                // Will mark the test as "failed".
                 }
                 message = unsupportedMethod(Utilities.getName(descriptor));
             } else {
                 message = "The “EPSG:" + sample.operation + "” coordinate operation uses the “" + e.getIdentifierCode()
                         + "” method, which is not supported by the tested implementation.";
             }
-            assumeNoException(message, e);              // Will mark the test as "ignored".
+            abort(message);                 // Will mark the test as "ignored".
         }
     }
 

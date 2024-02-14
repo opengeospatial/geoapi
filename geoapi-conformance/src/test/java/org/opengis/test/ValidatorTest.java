@@ -19,9 +19,9 @@ package org.opengis.test;
 
 import java.util.Collections;
 import java.util.List;
-import org.junit.*;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -53,18 +53,13 @@ public class ValidatorTest {
     public void testMandatory() {
         validator.mandatory("Should not fail.", "dummy");
         validator.mandatory("Should not fail.", Collections.singleton("dummy"));
-        try {
-            validator.mandatory("Should fail.", null);
-        } catch (AssertionError e) {
-            // This is the expected exception.
-            assertEquals("Should fail.", e.getMessage());
-        }
-        try {
-            validator.mandatory("Should fail.", Collections.emptySet());
-        } catch (AssertionError e) {
-            // This is the expected exception.
-            assertEquals("Should fail.", e.getMessage());
-        }
+
+        AssertionError e;
+        e = assertThrows(AssertionError.class, () -> validator.mandatory("Should fail.", null));
+        assertTrue(e.getMessage().startsWith("Should fail."));
+
+        e = assertThrows(AssertionError.class, () -> validator.mandatory("Should fail.", Collections.emptySet()));
+        assertTrue(e.getMessage().startsWith("Should fail."));
     }
 
     /**
@@ -74,19 +69,13 @@ public class ValidatorTest {
     public void testForbidden() {
         validator.forbidden("Should not fail.", null);
         validator.forbidden("Should not fail.", Collections.emptySet());
-        try {
-            validator.forbidden("Should fail.", "dummy");
-        } catch (AssertionError e) {
-            // This is the expected exception.
-            final String message = e.getMessage();
-            assertTrue(message, message.startsWith("Should fail."));
-        }
-        try {
-            validator.forbidden("Should fail.", Collections.singleton("dummy"));
-        } catch (AssertionError e) {
-            // This is the expected exception.
-            assertEquals("Should fail.", e.getMessage());
-        }
+
+        AssertionError e;
+        e = assertThrows(AssertionError.class, () -> validator.forbidden("Should fail.", "dummy"));
+        assertTrue(e.getMessage().startsWith("Should fail."));
+
+        e = assertThrows(AssertionError.class, () -> validator.forbidden("Should fail.", Collections.singleton("dummy")));
+        assertTrue(e.getMessage().startsWith("Should fail."));
     }
 
     /**

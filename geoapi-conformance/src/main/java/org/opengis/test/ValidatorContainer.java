@@ -167,13 +167,13 @@ public class ValidatorContainer implements Cloneable {
      */
     public ValidatorContainer() {
         all = new AbstractList<Validator>() {
-            @Override
-            public int size() {
+            /** Returns the number of elements in this list. */
+            @Override public int size() {
                 return 11;
             }
 
-            @Override
-            public Validator get(final int index) {
+            /** Returns the validator at the given index. */
+            @Override public Validator get(final int index) {
                 switch (index) {
                     case  0: return naming;
                     case  1: return metadata;

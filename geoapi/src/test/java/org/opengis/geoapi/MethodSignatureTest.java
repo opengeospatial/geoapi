@@ -28,7 +28,7 @@ import java.lang.reflect.WildcardType;
 import java.lang.reflect.Modifier;
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

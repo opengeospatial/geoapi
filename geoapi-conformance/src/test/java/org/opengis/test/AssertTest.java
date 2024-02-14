@@ -21,8 +21,8 @@ import java.awt.Shape;
 import java.awt.geom.Rectangle2D;
 import java.awt.geom.RoundRectangle2D;
 
-import org.junit.Test;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -49,21 +49,19 @@ public class AssertTest {
         Assert.assertUnicodeIdentifierEquals(null, "WGS 84",   "WGS84",  true);
         Assert.assertUnicodeIdentifierEquals(null, "WGS 84",   "WGS 84", true);
         Assert.assertUnicodeIdentifierEquals(null, "_WgS 84!", "wgs84",  true);
-        try {
-            Assert.assertUnicodeIdentifierEquals(null, "WGS84 and more" , "WGS84", true);
-        } catch (AssertionError e) {
-            assertEquals("Expected \"WGS84 and more\" but got \"WGS84\". Missing part: \"and more\".", e.getMessage());
-        }
-        try {
-            Assert.assertUnicodeIdentifierEquals(null, "WGS84" , "WGS84 and more", true);
-        } catch (AssertionError e) {
-            assertEquals("Expected \"WGS84\", but found it with a unexpected trailing string: \"and more\".", e.getMessage());
-        }
-        try {
-            Assert.assertUnicodeIdentifierEquals(null, "WGS84" , "WBS84", true);
-        } catch (AssertionError e) {
-            assertEquals("Expected \"WGS84\" but got \"WBS84\".", e.getMessage());
-        }
+
+        AssertionError e;
+        e = assertThrows(AssertionError.class,
+                () -> Assert.assertUnicodeIdentifierEquals(null, "WGS84 and more" , "WGS84", true));
+        assertEquals("Expected \"WGS84 and more\" but got \"WGS84\". Missing part: \"and more\".", e.getMessage());
+
+        e = assertThrows(AssertionError.class,
+                () -> Assert.assertUnicodeIdentifierEquals(null, "WGS84" , "WGS84 and more", true));
+        assertEquals("Expected \"WGS84\", but found it with a unexpected trailing string: \"and more\".", e.getMessage());
+
+        e = assertThrows(AssertionError.class,
+                () -> Assert.assertUnicodeIdentifierEquals(null, "WGS84" , "WBS84", true));
+        assertEquals("Expected \"WGS84\" but got \"WBS84\".", e.getMessage());
     }
 
     /**
@@ -74,12 +72,9 @@ public class AssertTest {
         final Shape shape = new RoundRectangle2D.Double(-20, -10, 100, 80, 4, 5);
         Assert.assertShapeEquals(null, shape, shape, 0, 0);
         final Shape mismatched = new Rectangle2D.Double(-20, -10, 100, 80);
-        try {
-            Assert.assertShapeEquals(null, shape, mismatched, 0, 0);
-            fail("Expected an AssertionError.");
-        } catch (AssertionError e) {
-            // This is the expected exception.
-            assertTrue(e.getMessage().contains("Mismatched"));
-        }
+
+        AssertionError e = assertThrows(AssertionError.class,
+                () -> Assert.assertShapeEquals(null, shape, mismatched, 0, 0));
+        assertTrue(e.getMessage().contains("Mismatched"));
     }
 }

@@ -10,11 +10,10 @@ import java.util.HashMap;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
-import org.junit.Test;
-
 import org.opengis.metadata.Metadata;
 import org.opengis.metadata.citation.Party;
 import org.opengis.metadata.citation.Responsibility;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

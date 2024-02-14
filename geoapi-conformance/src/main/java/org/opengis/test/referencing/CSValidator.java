@@ -22,8 +22,11 @@ import java.util.Iterator;
 import org.opengis.referencing.cs.*;
 import org.opengis.test.ValidatorContainer;
 
-import static org.opengis.test.Assert.*;
-import static org.opengis.test.referencing.Utilities.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.opengis.test.Assert.assertBetween;
+import static org.opengis.test.Assert.assertValidRange;
+import static org.opengis.test.Assert.assertStrictlyPositive;
+import static org.opengis.test.referencing.Utilities.getAxisDirections;
 
 
 /**
@@ -199,7 +202,7 @@ public class CSValidator extends ReferencingValidator {
         validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
-        assertEquals("SphericalCS: wrong number of dimensions.", 3, dimension);
+        assertEquals(3, dimension, "SphericalCS: wrong number of dimensions.");
     }
 
     /**
@@ -214,7 +217,7 @@ public class CSValidator extends ReferencingValidator {
         validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
-        assertEquals("CylindricalCS: wrong number of dimensions.", 3, dimension);
+        assertEquals(3, dimension, "CylindricalCS: wrong number of dimensions.");
     }
 
     /**
@@ -229,7 +232,7 @@ public class CSValidator extends ReferencingValidator {
         validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
-        assertEquals("PolarCS: wrong number of dimensions.", 2, dimension);
+        assertEquals(2, dimension, "PolarCS: wrong number of dimensions.");
     }
 
     /**
@@ -244,7 +247,7 @@ public class CSValidator extends ReferencingValidator {
         validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
-        assertEquals("LinearCS: wrong number of dimensions.", 1, dimension);
+        assertEquals(1, dimension, "LinearCS: wrong number of dimensions.");
     }
 
     /**
@@ -259,7 +262,7 @@ public class CSValidator extends ReferencingValidator {
         validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
-        assertEquals("VerticalCS: wrong number of dimensions.", 1, dimension);
+        assertEquals(1, dimension, "VerticalCS: wrong number of dimensions.");
     }
 
     /**
@@ -274,7 +277,7 @@ public class CSValidator extends ReferencingValidator {
         validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
-        assertEquals("TimeCS: wrong number of dimensions.", 1, dimension);
+        assertEquals(1, dimension, "TimeCS: wrong number of dimensions.");
     }
 
     /**
@@ -332,8 +335,10 @@ public class CSValidator extends ReferencingValidator {
                             ref = other;
                             refDirection = direction;
                         } else {
-                            // At this point, we got a pair of orientations to compare.
-                            // We will perform the comparison only if they are compatible.
+                            /*
+                             * At this point, we got a pair of orientations to compare.
+                             * We will perform the comparison only if they are compatible.
+                             */
                             if (ref.category.equals(other.category)) {
                                 // Get the angle as a multiple of 22.5°.
                                 // An angle of 4 units is 90°.
@@ -344,8 +349,10 @@ public class CSValidator extends ReferencingValidator {
                                             " and " + direction.name() + '.');
                                 }
                             }
-                            // Do not remove the 'other' axis direction, since we
-                            // want to compare it again in other pairs of axes.
+                            /*
+                             * Do not remove the `other` axis direction, because
+                             * we want to compare it again in other pairs of axes.
+                             */
                             continue;
                         }
                     }

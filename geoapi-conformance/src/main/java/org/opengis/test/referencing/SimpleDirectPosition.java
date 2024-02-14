@@ -23,7 +23,7 @@ import java.lang.reflect.Array;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -67,7 +67,7 @@ final class SimpleDirectPosition implements DirectPosition {
      * @since 3.1
      */
     public SimpleDirectPosition(final double[] coordinates) {
-        assertNotNull("Array of coordinate values shall not be null.", coordinates);
+        assertNotNull(coordinates, "Array of coordinate values shall not be null.");
         this.coordinates = coordinates;
     }
 
@@ -116,8 +116,8 @@ final class SimpleDirectPosition implements DirectPosition {
      * @since 3.1
      */
     public void setCoordinate(final double... coordinates) {
-        assertFalse("This DirectPosition shall not be modified.", unmodifiable);
-        assertEquals("Unexpected dimension.", this.coordinates.length, coordinates.length);
+        assertFalse(unmodifiable, "This DirectPosition shall not be modified.");
+        assertEquals(this.coordinates.length, coordinates.length, "Unexpected number of dimensions.");
         System.arraycopy(coordinates, 0, this.coordinates, 0, coordinates.length);
     }
 
@@ -130,7 +130,7 @@ final class SimpleDirectPosition implements DirectPosition {
      * @param useDouble    if {@code false}, cast the values to floats.
      */
     final void setCoordinate(final Object coordinates, int offset, final boolean useDouble) {
-        assertFalse("This DirectPosition shall not be modified.", unmodifiable);
+        assertFalse(unmodifiable, "This DirectPosition shall not be modified.");
         final int dimension = this.coordinates.length;
         for (int i=0; i<dimension; i++) {
             double coordinate = Array.getDouble(coordinates, offset++);
@@ -154,7 +154,7 @@ final class SimpleDirectPosition implements DirectPosition {
      */
     @Override
     public void setOrdinate(int dimension, double value) throws IndexOutOfBoundsException {
-        assertFalse("This DirectPosition shall not be modified.", unmodifiable);
+        assertFalse(unmodifiable, "This DirectPosition shall not be modified.");
         coordinates[dimension] = value;
     }
 

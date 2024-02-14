@@ -33,7 +33,7 @@ import org.opengis.util.InternationalString;
 import org.opengis.test.Units;
 import org.opengis.test.Validator;
 import org.opengis.test.ValidatorContainer;
-import static org.opengis.test.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -150,7 +150,7 @@ public abstract class ReferencingValidator extends Validator {
         if (identifiers != null) {
             validate(identifiers);
             for (final Identifier id : identifiers) {
-                assertNotNull("IdentifiedObject: getIdentifiers() cannot contain null element.", id);
+                assertNotNull(id, "IdentifiedObject: getIdentifiers() cannot contain null element.");
                 validate(id);
             }
         }
@@ -158,7 +158,7 @@ public abstract class ReferencingValidator extends Validator {
         if (alias != null) {
             validate(alias);
             for (final GenericName name : alias) {
-                assertNotNull("IdentifiedObject: getAlias() cannot contain null element.", alias);
+                assertNotNull(alias, "IdentifiedObject: getAlias() cannot contain null element.");
                 container.validate(name);
             }
         }
@@ -166,7 +166,7 @@ public abstract class ReferencingValidator extends Validator {
         if (domains != null) {
             validate(domains);
             for (final ObjectDomain domain : domains) {
-                assertNotNull("IdentifiedObject: getDomains() cannot contain null element.", domains);
+                assertNotNull(domains, "IdentifiedObject: getDomains() cannot contain null element.");
                 container.validate(domain);
             }
         }

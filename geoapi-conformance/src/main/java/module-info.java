@@ -38,7 +38,7 @@ module org.opengis.geoapi.conformance {
     requires transitive java.desktop;
     requires transitive java.measure;
     requires transitive org.opengis.geoapi.pending;
-    requires junit;
+    requires transitive org.junit.jupiter.api;
 
     exports org.opengis.geoapi;
     exports org.opengis.test;

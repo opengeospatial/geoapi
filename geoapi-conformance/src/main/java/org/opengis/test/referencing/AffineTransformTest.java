@@ -28,11 +28,11 @@ import org.opengis.referencing.operation.TransformException;
 import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.test.Configuration;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static java.lang.StrictMath.*;
-import static org.junit.Assume.*;
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
 
 
@@ -63,6 +63,25 @@ import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class AffineTransformTest extends TransformTestCase {
+    /**
+     * The message when a test is disabled because no transform factory has been found.
+     */
+    static final String NO_FACTORY = "No math transform factory found.";
+
+    /**
+     * The message when a test is disabled because the implementation supports only two-dimensional spaces.
+     *
+     * @see #isNonBidimensionalSpaceSupported
+     */
+    private static final String TWO_DIMENSIONAL_ONLY = "Only two-dimensional spaces are supported by the tested implementation.";
+
+    /**
+     * The message when a test is disabled because the implementation supports only square matrices.
+     *
+     * @see #isNonSquareMatrixSupported
+     */
+    private static final String SQUARE_MATRIX_ONLY = "Only square matrices are supported by the tested implementation.";
+
     /**
      * The default tolerance threshold for comparing the results of direct transforms.
      * Because affine transform are linear, only rounding errors should exist.
@@ -162,7 +181,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      * @throws TransformException if an error occurred while testing the transform.
      */
     private void runTest(final AffineTransform reference) throws FactoryException, TransformException {
-        assumeNotNull(mtFactory);
+        assumeTrue(mtFactory != null, NO_FACTORY);
         if (matrix == null) {
             matrix = new SimpleMatrix(3, 3,
                     reference.getScaleX(), reference.getShearX(), reference.getTranslateX(),
@@ -187,7 +206,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
         reference.transform(source, 0, target, 0, coordinates.length/2);
         verifyTransform(source, target);
         for (int i=0; i<coordinates.length; i++) {
-            assertEquals("Source array should be unmodified.", coordinates[i], source[i], 0.0);
+            assertEquals(coordinates[i], source[i], "Source array should be unmodified.");
         }
     }
 
@@ -204,7 +223,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     private void runTest(final int numRow, final int numCol, final double... elements)
             throws FactoryException, TransformException
     {
-        assumeNotNull(mtFactory);
+        assumeTrue(mtFactory != null, NO_FACTORY);
         if (matrix == null) {
             matrix = new SimpleMatrix(numRow, numCol, elements);
         }
@@ -249,12 +268,12 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      */
     @Test
     public void testIdentity1D() throws FactoryException, TransformException {
-        assumeTrue(isNonBidimensionalSpaceSupported);
+        assumeTrue(isNonBidimensionalSpaceSupported, TWO_DIMENSIONAL_ONLY);
         configurationTip = Configuration.Key.isNonBidimensionalSpaceSupported;
         runTest(2, 2,
             1, 0,
             0, 1);
-        assertTrue("MathTransform.isIdentity().", transform.isIdentity());
+        assertTrue(transform.isIdentity(), "MathTransform.isIdentity()");
     }
 
     /**
@@ -266,7 +285,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     @Test
     public void testIdentity2D() throws FactoryException, TransformException {
         runTest(new AffineTransform());
-        assertTrue("MathTransform.isIdentity().", transform.isIdentity());
+        assertTrue(transform.isIdentity(), "MathTransform.isIdentity()");
     }
 
     /**
@@ -279,14 +298,14 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      */
     @Test
     public void testIdentity3D() throws FactoryException, TransformException {
-        assumeTrue(isNonBidimensionalSpaceSupported);
+        assumeTrue(isNonBidimensionalSpaceSupported, TWO_DIMENSIONAL_ONLY);
         configurationTip = Configuration.Key.isNonBidimensionalSpaceSupported;
         runTest(4, 4,
             1, 0, 0, 0,
             0, 1, 0, 0,
             0, 0, 1, 0,
             0, 0, 0, 1);
-        assertTrue("MathTransform.isIdentity().", transform.isIdentity());
+        assertTrue(transform.isIdentity(), "MathTransform.isIdentity()");
     }
 
     /**
@@ -298,7 +317,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     @Test
     public void testAxisSwapping2D() throws FactoryException, TransformException {
         runTest(new AffineTransform(0, 1, 1, 0, 0, 0));
-        assertFalse("MathTransform.isIdentity().", transform.isIdentity());
+        assertFalse(transform.isIdentity(), "MathTransform.isIdentity()");
     }
 
     /**
@@ -310,7 +329,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     @Test
     public void testSouthOrientated2D() throws FactoryException, TransformException {
         runTest(AffineTransform.getQuadrantRotateInstance(2));
-        assertFalse("MathTransform.isIdentity().", transform.isIdentity());
+        assertFalse(transform.isIdentity(), "MathTransform.isIdentity()");
     }
 
     /**
@@ -324,7 +343,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     @Test
     public void testTranslatation2D() throws FactoryException, TransformException {
         runTest(AffineTransform.getTranslateInstance(400000, -100000));
-        assertFalse("MathTransform.isIdentity().", transform.isIdentity());
+        assertFalse(transform.isIdentity(), "MathTransform.isIdentity()");
     }
 
     /**
@@ -337,7 +356,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     @Test
     public void testUniformScale2D() throws FactoryException, TransformException {
         runTest(AffineTransform.getScaleInstance(FEET, FEET));
-        assertFalse("MathTransform.isIdentity().", transform.isIdentity());
+        assertFalse(transform.isIdentity(), "MathTransform.isIdentity()");
     }
 
     /**
@@ -349,7 +368,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     @Test
     public void testGenericScale2D() throws FactoryException, TransformException {
         runTest(AffineTransform.getScaleInstance(3, 4));
-        assertFalse("MathTransform.isIdentity().", transform.isIdentity());
+        assertFalse(transform.isIdentity(), "MathTransform.isIdentity()");
     }
 
     /**
@@ -361,7 +380,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
     @Test
     public void testRotation2D() throws FactoryException, TransformException {
         runTest(AffineTransform.getRotateInstance(toRadians(30)));
-        assertFalse("MathTransform.isIdentity().", transform.isIdentity());
+        assertFalse(transform.isIdentity(), "MathTransform.isIdentity()");
     }
 
     /**
@@ -377,7 +396,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
         reference.scale(0.2, 0.3);
         reference.translate(300, 500);
         runTest(reference);
-        assertFalse("MathTransform.isIdentity().", transform.isIdentity());
+        assertFalse(transform.isIdentity(), "MathTransform.isIdentity()");
     }
 
     /**
@@ -390,7 +409,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      */
     @Test
     public void testDimensionReduction() throws FactoryException, TransformException {
-        assumeTrue(isNonSquareMatrixSupported);
+        assumeTrue(isNonSquareMatrixSupported, SQUARE_MATRIX_ONLY);
         configurationTip = Configuration.Key.isNonSquareMatrixSupported;
         final int sourceDim = 4;
         final int targetDim = 2;
@@ -429,6 +448,6 @@ public strictfp class AffineTransformTest extends TransformTestCase {
         } finally {
             isInverseTransformSupported = inverseSupported;
         }
-        assertFalse("MathTransform.isIdentity().", transform.isIdentity());
+        assertFalse(transform.isIdentity(), "MathTransform.isIdentity()");
     }
 }

@@ -32,7 +32,7 @@ import java.net.URLClassLoader;
 import java.lang.reflect.Method;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.junit.Assume.assumeTrue;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 
 /**
@@ -93,7 +93,7 @@ final class Release implements Closeable {
     Release(final File mavenRepository, final String version, final ClassLoader parent) throws MalformedURLException {
         isUsingLegacyUnits = version.startsWith("2.") || version.startsWith("3.0.0");
         file = new File(mavenRepository, "org/opengis/geoapi/" + version + "/geoapi-" + version + ".jar");
-        assumeTrue("GeoAPI " + version + " not in Maven repository.", file.isFile());
+        assumeTrue(file.isFile(), () -> "GeoAPI " + version + " not in Maven repository.");
         final File depFile = new File(mavenRepository, isUsingLegacyUnits
                 ? "javax/measure/jsr-275/0.9.3/jsr-275-0.9.3.jar"
                 : "javax/measure/unit-api/" + UNIT_API_VERSION + "/unit-api-" + UNIT_API_VERSION + ".jar");

@@ -38,11 +38,13 @@ import org.opengis.test.CalculationType;
 import org.opengis.test.ToleranceModifier;
 import org.opengis.test.Configuration;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assume.*;
-import static org.opengis.test.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.abort;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
+import static org.opengis.test.Assert.assertAxisDirectionsEqual;
 
 
 /**
@@ -79,6 +81,11 @@ import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
+    /**
+     * The message when a test is disabled because no authority factory has been found.
+     */
+    private static final String NO_CRS_FACTORY = "No CRS authority factory found.";
+
     /**
      * Factory to use for building {@link CoordinateReferenceSystem} instances, or {@code null} if none.
      */
@@ -273,9 +280,9 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      */
     @Test
     public void testWGS84() throws NoSuchAuthorityCodeException, FactoryException {
-        assumeNotNull(crsAuthorityFactory);
+        assumeTrue(crsAuthorityFactory != null, NO_CRS_FACTORY);
         final GeographicCRS crs = crsAuthorityFactory.createGeographicCRS("EPSG:4326");
-        assertNotNull("CRSAuthorityFactory.createGeographicCRS()", crs);
+        assertNotNull(crs, "CRSAuthorityFactory.createGeographicCRS()");
         object = crs;
         validators.validate(crs);
         verifyIdentification(crs, "WGS 84", null);
@@ -348,7 +355,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
         if (!isAxisSwappingSupported) {
             swapλφ = swapxy = flipxy = false;
         }
-        assumeNotNull(crsAuthorityFactory);
+        assumeTrue(crsAuthorityFactory != null, NO_CRS_FACTORY);
         final ProjectedCRS crs;
         try {
             crs = crsAuthorityFactory.createProjectedCRS("EPSG:" + code);
@@ -359,11 +366,11 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
              */
             final Set<String> authorityCodes = crsAuthorityFactory.getAuthorityCodes(ProjectedCRS.class);
             if (authorityCodes == null || !authorityCodes.contains(String.valueOf(code))) {
-                assumeNoException(e);               // Will mark the test as "ignored".
+                abort("Unsupported CRS: " + e);     // Will mark the test as "ignored".
             }
             throw e;                                // Will mark the test as "failed".
         }
-        assertNotNull("CRSAuthorityFactory.createProjectedCRS()", crs);
+        assertNotNull(crs, "CRSAuthorityFactory.createProjectedCRS()");
         object = crs;
         validators.validate(crs);
         /*
@@ -377,8 +384,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
             verifyAxisDirection("BaseCRS", baseCRS.getCoordinateSystem(), swapλφ, false);
             final GeodeticDatum datum = baseCRS.getDatum();
             if (datum != null) {
-                assertEquals("PrimeMeridian.greenwichLongitude", primeMeridian,
-                        getGreenwichLongitude(datum.getPrimeMeridian()), DEFAULT_TOLERANCE);
+                assertEquals(primeMeridian, getGreenwichLongitude(datum.getPrimeMeridian()), DEFAULT_TOLERANCE,
+                             "PrimeMeridian.greenwichLongitude");
             }
         }
         /*
@@ -435,7 +442,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
                                 φmin = bbox.getSouthBoundLatitude();
                                 φmax = bbox.getNorthBoundLatitude();
                                 setRect(areaOfValidity, λmin, φmin, λmax, φmax, swapλφ, toAngularUnit);
-                                assertFalse("Empty geographic bounding box.", areaOfValidity.isEmpty());
+                                assertFalse(areaOfValidity.isEmpty(), "Empty geographic bounding box.");
                                 test.verifyInDomainOfValidity(areaOfValidity);
                                 tested = true;
                             }

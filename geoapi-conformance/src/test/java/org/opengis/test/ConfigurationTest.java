@@ -18,9 +18,9 @@
 package org.opengis.test;
 
 import org.opengis.referencing.operation.MathTransformFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -50,8 +50,8 @@ public class ConfigurationTest {
                     && e != Configuration.Key.isToleranceRelaxed)
             {
                 final String key = e.name();
-                assertTrue("Expected \"is\" prefix.", key.startsWith("is"));
-                assertTrue("Expected \"Supported\" prefix.", key.endsWith("Supported"));
+                assertTrue(key.startsWith("is"), "Expected \"is\" prefix.");
+                assertTrue(key.endsWith("Supported"), "Expected \"Supported\" prefix.");
             }
         }
     }
@@ -70,9 +70,10 @@ public class ConfigurationTest {
     /**
      * Tests the type checking.
      */
-    @Test(expected=ClassCastException.class)
+    @Test
     public void testWrongValueOf() {
-        assertSame(Configuration.Key.isDoubleToDoubleSupported,
-                   Configuration.Key.valueOf("isDoubleToDoubleSupported", String.class));
+        assertThrows(ClassCastException.class,
+                () -> assertSame(Configuration.Key.isDoubleToDoubleSupported,
+                                 Configuration.Key.valueOf("isDoubleToDoubleSupported", String.class)));
     }
 }
