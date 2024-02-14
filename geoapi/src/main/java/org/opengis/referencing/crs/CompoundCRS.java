@@ -68,8 +68,8 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      * @return the ordered list of coordinate reference systems.
      *
      * @departure generalization
-     *   ISO 19111 said <cite>"nesting of compound CRSs shall not be permitted; the individual single systems
-     *   shall be aggregated together"</cite>. However, this approach causes data lost: it is difficult to add
+     *   ISO 19111 said <q>nesting of compound CRSs shall not be permitted; the individual single systems
+     *   shall be aggregated together</q>. However, this approach causes data lost: it is difficult to add
      *   a temporal CRS to an existing three-dimensional compound CRS without loosing the name and identifiers
      *   of the 3D CRS, unless nesting is permitted. It is programmatically easier to convert nested CRSs to a
      *   flat list of single CRSs when needed than to reconstruct the 3D CRS from the single components.

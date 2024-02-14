@@ -29,9 +29,9 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Contains the geometric characteristics of a qualdrilateral grid. A grid is a network composed
  * of two or more sets of curves in which members of each set intersect the members of other sets
- * in a systematic way. The curves are called <cite>grid lines</cite>; the points at which they
- * intersect are <cite>grid points</cite>; the interstices between the grid lines are called
- * <cite>grid cells</cite>.
+ * in a systematic way. The curves are called <dfn>grid lines</dfn>; the points at which they
+ * intersect are <dfn>grid points</dfn>; the interstices between the grid lines are called
+ * <dfn>grid cells</dfn>.
  * <p>
  * {@code Grid} has three subclasses, which lie in two partitions. The Positioning partition includes
  * {@link RectifiedGrid} and {@link ReferenceableGrid}, which contain information that relates the grid

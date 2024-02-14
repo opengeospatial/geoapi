@@ -56,8 +56,8 @@ import static org.opengis.annotation.Specification.ISO_19109;
  *
  * <div class="note"><b>Analogy with Java language</b>:
  * compared to the Java language, the above rule is similar to overriding a method with a more specific return
- * type (a.k.a. <cite>covariant return type</cite>). This is also similar to Java arrays, which are implicitly
- * <cite>covariant</cite> (i.e. {@code String[]} can be casted to {@code CharSequence[]}, which is safe for read
+ * type (a.k.a. <dfn>covariant return type</dfn>). This is also similar to Java arrays, which are implicitly
+ * <i>covariant</i> (i.e. {@code String[]} can be casted to {@code CharSequence[]}, which is safe for read
  * operations but not for write operations — the latter may throw {@link ArrayStoreException}).</div>
  *
  * @author  Jody Garnett (Refractions Research)

@@ -34,13 +34,13 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain org.opengis.parameter.ParameterValue values} to these parameters.
  *
  * <div class="note"><b>Example:</b>
- * an operation method named “<cite>Mercator (variant A)</cite>” (EPSG:9804) declares the following parameters:
+ * an operation method named <q>Mercator (variant A)</q> (EPSG:9804) declares the following parameters:
  * <ul>
- *   <li>“<cite>Latitude of natural origin</cite>” in degrees.</li>
- *   <li>“<cite>Longitude of natural origin</cite>” in degrees.</li>
- *   <li>“<cite>Scale factor at natural origin</cite>” as a dimensionless number.</li>
- *   <li>“<cite>False easting</cite>” in metres.</li>
- *   <li>“<cite>False northing</cite>” in metres.</li>
+ *   <li><q>Latitude of natural origin</q> in degrees.</li>
+ *   <li><q>Longitude of natural origin</q> in degrees.</li>
+ *   <li><q>Scale factor at natural origin</q> as a dimensionless number.</li>
+ *   <li><q>False easting</q> in metres.</li>
+ *   <li><q>False northing</q> in metres.</li>
  * </ul>
  * Implementations can optionally assign {@linkplain org.opengis.parameter.ParameterDescriptor#getDefaultValue()
  * default values} to those parameters.</div>
@@ -105,7 +105,7 @@ public interface OperationMethod extends IdentifiedObject {
     /**
      * Number of dimensions in the source CRS of this operation method.
      * Note that some operation methods work with an arbitrary number of
-     * dimensions (e.g. <cite>Affine Transform</cite>) and may return {@code null}.
+     * dimensions (e.g. <i>Affine Transform</i>) and may return {@code null}.
      *
      * @return the dimension of source CRS, or {@code null} if unknown.
      *
@@ -122,7 +122,7 @@ public interface OperationMethod extends IdentifiedObject {
     /**
      * Number of dimensions in the target CRS of this operation method.
      * Note that some operation methods work with an arbitrary number of
-     * dimensions (e.g. <cite>Affine Transform</cite>) and may return {@code null}.
+     * dimensions (e.g. <i>Affine Transform</i>) and may return {@code null}.
      *
      * @return the dimension of target CRS, or {@code null} if unknown.
      *

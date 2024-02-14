@@ -72,7 +72,7 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
     CartesianCS getCoordinateSystem();
 
     /**
-     * Returns the same datum than the base CRS datum.
+     * Returns the same datum as the base CRS datum.
      *
      * @return the datum of this projected CRS, which is the {@linkplain #getBaseCRS() base CRS} datum.
      */

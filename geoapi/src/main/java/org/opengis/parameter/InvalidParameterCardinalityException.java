@@ -29,7 +29,7 @@ package org.opengis.parameter;
  * {@link ParameterValueGroup#values()}.</p>
  *
  * <div class="note"><b>Note 1:</b>
- * the <cite>cardinality</cite> is the number of elements in a set. Contrast with <cite>multiplicity</cite>,
+ * the <dfn>cardinality</dfn> is the number of elements in a set. Contrast with <dfn>multiplicity</dfn>,
  * which is the range of possible cardinalities a set can hold.</div>
  *
  * <div class="note"><b>Note 2:</b>

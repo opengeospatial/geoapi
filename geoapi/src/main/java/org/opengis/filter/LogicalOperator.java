@@ -33,8 +33,8 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * The NOT operator reverses the logical value of an expression.
  *
  * <p>The arity is determined the length of the {@linkplain #getOperands() operands} list.
- * If 1, this operator is an <cite>unary logic operator</cite>.
- * If 2 or more, this operator is a <cite>binary logic operator</cite>.
+ * If 1, this operator is an <dfn>unary logic operator</dfn>.
+ * If 2, this operator is a <dfn>binary logic operator</dfn>.
  * The length may be more than 2 if the AND or OR operation is repeated for all operands.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -57,7 +57,7 @@ public interface LogicalOperator<R> extends Filter<R> {
 
     /**
      * Returns a view of filter operands as expressions having {@code Boolean} return values.
-     * The expression list shall have the same size than the {@linkplain #getOperands() operands list}.
+     * The expression list shall have the same size as the {@linkplain #getOperands() operands list}.
      * For each index <var>i</var> valid for the lists, the following relation shall hold:
      *
      * {@snippet lang="java" :

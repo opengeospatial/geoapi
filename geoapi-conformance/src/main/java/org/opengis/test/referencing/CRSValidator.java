@@ -72,9 +72,8 @@ public class CRSValidator extends ReferencingValidator {
     /**
      * {@code true} if standard names shall be enforced when such names are defined by an OGC/ISO
      * standard. For example, the ISO 19111 standard constraints the {@link GeographicCRS} axis names
-     * to <cite>"geodetic latitude"</cite>, <cite>"geodetic longitude"</cite> and <cite>"ellipsoidal
-     * height"</cite> (if 3D) names. Those axis names will be verified by this validator, unless
-     * this fields is explicitly set to {@code false}.
+     * to <q>geodetic latitude</q>, <q>geodetic longitude</q> and <q>ellipsoidal height</q> (if 3D) names.
+     * Those axis names will be verified by this validator, unless this fields is explicitly set to {@code false}.
      *
      * @see #validate(GeocentricCRS)
      * @see #validate(GeographicCRS)
@@ -132,10 +131,10 @@ public class CRSValidator extends ReferencingValidator {
      * to have the following names:
      *
      * <ul>
-     *   <li>For Cartesian coordinate system, <cite>"geocentric X"</cite>,
-     *       <cite>"geocentric Y"</cite> and <cite>"geocentric Z"</cite>.</li>
-     *   <li>For spherical coordinate system, <cite>"spherical latitude"</cite>,
-     *       <cite>"spherical longitude"</cite> and <cite>"geocentric radius"</cite>.</li>
+     *   <li>For Cartesian coordinate system, <q>geocentric X</q>,
+     *       <q>geocentric Y</q> and <q>geocentric Z</q>.</li>
+     *   <li>For spherical coordinate system, <q>spherical latitude</q>,
+     *       <q>spherical longitude</q> and <q>geocentric radius</q>.</li>
      * </ul>
      *
      * @param  object  the object to validate, or {@code null}.
@@ -150,8 +149,7 @@ public class CRSValidator extends ReferencingValidator {
      * to have the following names:
      *
      * <ul>
-     *   <li><cite>"geodetic latitude"</cite>, <cite>"geodetic longitude"</cite> and
-     *       <cite>"ellipsoidal height"</cite> (if 3D).</li>
+     *   <li><q>geodetic latitude</q>, <q>geodetic longitude</q> and <q>ellipsoidal height</q> (if 3D).</li>
      * </ul>
      *
      * @param  object  the object to validate, or {@code null}.
@@ -209,8 +207,7 @@ public class CRSValidator extends ReferencingValidator {
      * to have the following names:
      *
      * <ul>
-     *   <li><cite>"northing"</cite> or <cite>"southing"</cite>, <cite>"easting"</cite> or
-     *       <cite>"westing"</cite>.</li>
+     *   <li><q>northing</q> or <q>southing</q>, <q>easting</q> or <q>westing</q>.</li>
      * </ul>
      *
      * @param  object  the object to validate, or {@code null}.
@@ -346,7 +343,7 @@ public class CRSValidator extends ReferencingValidator {
      * to have the following names:
      *
      * <ul>
-     *   <li><cite>"depth"</cite> or <cite>"gravity-related height"</cite>.</li>
+     *   <li><q>depth</q> or <q>gravity-related height</q>.</li>
      * </ul>
      *
      * @param  object  the object to validate, or {@code null}.

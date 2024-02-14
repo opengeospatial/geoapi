@@ -144,7 +144,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     protected boolean isFloatToDoubleSupported;
 
     /**
-     * {@code true} if the destination array can be the same than the source array,
+     * {@code true} if the destination array can be the same as the source array,
      * and the source and target region of the array can overlap. The default value
      * is {@code true}. Vendor can set this value to {@code false} in order to test
      * a transform which is not fully implemented.
@@ -653,7 +653,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 assertNotSame("MathTransform.transform(DirectPosition, …) shall not overwrite " +
                         "the source position.", sourcePosition, targetPosition);
                 assertEquals("MathTransform.transform(DirectPosition) must return a position having " +
-                        "the same dimension than MathTransform.getTargetDimension().",
+                        "the same dimension as MathTransform.getTargetDimension().",
                         targetDimension, targetPosition.getDimension());
                 for (int j=0; j<targetDimension; j++) {
                     expectedFloats[targetOffset] = (float) (expectedDoubles[targetOffset] = targetPosition.getOrdinate(j));
@@ -763,14 +763,14 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * and compares the result with the <a href="http://en.wikipedia.org/wiki/Finite_difference">finite
      * differences</a> approximation.
      *
-     * <p>All the three common forms of finite differences (<cite>forward difference</cite>,
-     * <cite>backward difference</cite> and <cite>central difference</cite>) are computed.
+     * <p>All the three common forms of finite differences (<i>forward difference</i>,
+     * <i>backward difference</i> and <i>central difference</i>) are computed.
      * If the finite difference method was a "perfect" approximation, all those three forms
      * would produce identical results. In practice the results will differ, especially in
      * areas where the derivative function varies fast. The difference between the results
      * will be used as an estimation of the approximation accuracy.</p>
      *
-     * <p>The distance between the two points used by the <cite>central difference</cite>
+     * <p>The distance between the two points used by the <i>central difference</i>
      * approximation shall be specified in the {@link #derivativeDeltas} array, in units
      * of the source CRS. If the length of the {@code derivativeDeltas} array is smaller
      * than the number of source dimensions, then the last delta value is used for all
@@ -781,7 +781,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * <ul>
      *   <li>{@code expected} - the expected derivative result estimated by the central
      *       difference method.</li>
-     *   <li>{@code tolmat} - a <cite>tolerance matrix</cite> containing, for each matrix element,
+     *   <li>{@code tolmat} - a <i>tolerance matrix</i> containing, for each matrix element,
      *       the largest difference found between the three approximation methods. The values in
      *       this matrix will not be lower than the {@linkplain #toleranceModifier modified}
      *       {@linkplain #tolerance} threshold.</li>
@@ -1450,7 +1450,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * <p>For each matrix element, the tolerance value is given by the corresponding element in the
      * {@code tolmat} matrix. This tolerance matrix is initialized by the
      * {@link #verifyDerivative(double[])} method to the differences found between the 3 forms of
-     * finite difference (<cite>forward</cite>, <cite>backward</cite>, <cite>central</cite>).
+     * finite difference (<i>forward</i>, <i>backward</i>, <i>central</i>).
      * Developers can override this method and overwrite the {@code tolmat} elements if they
      * wish different tolerance values.</p>
      *

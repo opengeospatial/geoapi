@@ -217,8 +217,8 @@ public interface MathTransformFactory extends Factory {
      *   <li>The domain shall be a subset of {[-180,180)×(-90,90)}.</li>
      *   <li>Axis directions are usually ({@linkplain org.opengis.referencing.cs.AxisDirection#EAST east},
      *       {@linkplain org.opengis.referencing.cs.AxisDirection#NORTH north}), but exceptions may exist
-     *       for some operation methods like <cite>"Lambert Conic Conformal (West Orientated)"</cite>
-     *       (EPSG:9826) or <cite>"Transverse Mercator (South Orientated)"</cite> (EPSG:9808).</li>
+     *       for some operation methods like <cite>Lambert Conic Conformal (West Orientated)</cite>
+     *       (EPSG:9826) or <cite>Transverse Mercator (South Orientated)</cite> (EPSG:9808).</li>
      * </ul>
      *
      * Although all cartographic projection transforms must have the properties listed above, many projected coordinate
@@ -227,8 +227,8 @@ public interface MathTransformFactory extends Factory {
      * instead of (<var>longitude</var>, <var>latitude</var>). This means that the cartographic projected transform is often
      * used as a single step in a series of transforms, where the other steps change units and swap coordinates.
      *
-     * <p>When the change of axis directions is part of the map projection definition as in <cite>"Transverse Mercator
-     * (South Orientated)"</cite>, there is a conflict with the above-cited (<var>east</var>, <var>north</var>) directions.
+     * <p>When the change of axis directions is part of the map projection definition as in <cite>Transverse Mercator
+     * (South Orientated)</cite>, there is a conflict with the above-cited (<var>east</var>, <var>north</var>) directions.
      * In such cases the {@code createParameterizedTransform(…)} behavior is implementation specific, since different
      * libraries may resolve this conflict in different ways.
      * Users can invoke {@link #createBaseToDerived createBaseToDerived(…)} instead for more determinist results.</p>
@@ -321,13 +321,13 @@ public interface MathTransformFactory extends Factory {
     }
 
     /**
-     * Creates a math transform object from a <cite>Well-Known Text</cite>.
+     * Creates a math transform object from a <i>Well-Known Text</i>.
      * The <a href="../doc-files/WKT.html">definition for WKT</a> is
      * shown using Extended Backus Naur Form (EBNF).
      *
      * @param  wkt  math transform encoded in Well-Known Text format.
      * @return the math transform (never {@code null}).
-     * @throws FactoryException if the Well-Known Text can't be parsed,
+     * @throws FactoryException if the Well-Known Text cannot be parsed,
      *         or if the math transform creation failed from some other reason.
      *
      * @see MathTransform#toWKT()

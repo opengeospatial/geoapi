@@ -17,7 +17,7 @@
  */
 
 /**
- * Tests <cite>Well-Known Text</cite> (WKT) parsing.
+ * Tests <i>Well-Known Text</i> (WKT) parsing.
  * Each {@code *ParserTest} class in this package tests a factory method implemented by the product to test.
  * The factory method is given various WKT strings provided by the international standard defining the WKT format.
  * The tests verify that the objects returned by the factory method have the expected values.

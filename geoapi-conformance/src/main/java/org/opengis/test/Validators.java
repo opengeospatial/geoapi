@@ -47,12 +47,12 @@ import org.opengis.test.coverage.image.*;
  * {@link Validator} objects in various packages. This class is especially convenient
  * when used with {@code static import} statements.
  *
- * <p><b><u>Customization</u></b><br>
+ * <h2>Customization</h2>
  * To override some validation process on a <em>system-wide</em> basis, vendors can either
  * assign a new {@link ValidatorContainer} instance to the {@link #DEFAULT} static field, or
  * modify the fields ({@link ValidatorContainer#cs cs}, {@link ValidatorContainer#crs crs},
  * <i>etc.</i>) in the existing instance. The following example alters the existing instance
- * in order to accept non-standard axis names:</p>
+ * in order to accept non-standard axis names:
  *
  * {@snippet lang="java" :
  * Validators.DEFAULT.crs.enforceStandardNames = false;

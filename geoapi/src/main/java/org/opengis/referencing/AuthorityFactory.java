@@ -28,8 +28,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Base interface for all authority factories. An <cite>authority</cite> is an organization
- * that maintains definitions of authority codes. An <cite>authority code</cite> is a compact
+ * Base interface for all authority factories. An <dfn>authority</dfn> is an organization
+ * that maintains definitions of authority codes. An <dfn>authority code</dfn> is a compact
  * string defined by an authority to reference a particular spatial reference object.
  *
  * <p>For example, the <a href="http://www.epsg.org">European Petroleum Survey Group (EPSG)</a> maintains

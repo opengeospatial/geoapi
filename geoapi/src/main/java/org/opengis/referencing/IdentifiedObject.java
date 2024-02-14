@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  * Identified objects contain the following properties:
  *
  * <ul>
- *   <li>A {@linkplain #getName() name} (e.g. “<cite>North American Datum of 1983</cite>”).</li>
+ *   <li>A {@linkplain #getName() name} (e.g. <q>North American Datum of 1983</q>).</li>
  *   <li>Alternative names or {@linkplain #getAlias() aliases} (e.g. “NAD83” abbreviation).</li>
  *   <li>{@linkplain #getIdentifiers() Identifiers} allocated by authorities
  *       (e.g. a register of geodetic codes and parameters might give the NAD83 datum a unique code of “6269”).</li>
@@ -46,9 +46,9 @@ import static org.opengis.annotation.Specification.*;
  * Some typical {@code IdentifiedObject} sub-types are:
  *
  * <ul>
- *   <li>{@linkplain org.opengis.referencing.datum.GeodeticDatum Geodetic Datum} (e.g. “<cite>World Geodetic System 1984</cite>”),</li>
- *   <li>{@linkplain org.opengis.referencing.operation.OperationMethod Operation Method} (e.g. “<cite>Mercator (variant A)</cite>”),</li>
- *   <li>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem Coordinate Reference System} (e.g. “<cite>WGS 84 / World Mercator</cite>”).</li>
+ *   <li>{@linkplain org.opengis.referencing.datum.GeodeticDatum Geodetic Datum} (e.g. <cite>World Geodetic System 1984</cite>),</li>
+ *   <li>{@linkplain org.opengis.referencing.operation.OperationMethod Operation Method} (e.g. <cite>Mercator (variant A)</cite>),</li>
+ *   <li>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem Coordinate Reference System} (e.g. <cite>WGS 84 / World Mercator</cite>).</li>
  * </ul>
  *
  * When {@link org.opengis.referencing.crs.CRSAuthorityFactory} is used to create an object,
@@ -106,7 +106,7 @@ public interface IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@code ObjectFactory.createFoo(Map, ...)} methods.
-     * This is used for setting the value to be returned by {@link #getDomain()}.
+     * This is used for setting the value to be returned by {@link #getDomains()}.
      *
      * @see ObjectFactory
      * @see #getDomains()
@@ -208,7 +208,7 @@ public interface IdentifiedObject {
     }
 
     /**
-     * Returns a <cite>Well-Known Text</cite> (WKT) for this object.
+     * Returns a <i>Well-Known Text</i> (WKT) for this object.
      * Well-Known Texts (WKT) may come in two formats:
      *
      * <ul>

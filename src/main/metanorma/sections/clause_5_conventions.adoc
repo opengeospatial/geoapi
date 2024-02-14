@@ -32,7 +32,7 @@ This document reserves the word _attribute_ for <<term_feature_attribute,feature
 The meaning of _implementation_ depends on the context.
 From the perspective of OGC/ISO abstract specifications,
 Java interfaces or Python abstract classes are implementations of the abstract models,
-in the same way than XML Schema Definitions (XSD) are other implementations of the same abstract models.
+in the same way as XML Schema Definitions (XSD) are other implementations of the same abstract models.
 But from the perspective of programming languages, interfaces are not implementations;
 instead the word "implementation" is used for concrete classes.
 In this document, the types provided by GeoAPI are said to be an implementation of abstract models,

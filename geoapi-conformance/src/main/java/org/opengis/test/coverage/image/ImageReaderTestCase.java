@@ -428,7 +428,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * Tests the {@link ImageReader#read(int, ImageReadParam) ImageReader.read} method.
      * First, this method reads the full image with a call to {@link ImageReader#read(int)}.
      * Then, this method invokes {@link ImageReader#read(int, ImageReadParam)} an arbitrary
-     * amount of time for the following configurations (note: any {@code isXXXSupported} field
+     * number of times for the following configurations (note: any {@code isXXXSupported} field
      * which was set to {@code false} prior the execution of this test will stay {@code false}):
      *
      * <ul>
@@ -462,7 +462,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
 
     /**
      * Tests the {@link ImageReader#readAsRenderedImage(int, ImageReadParam) ImageReader.readAsRenderedImage} method.
-     * This method performs the same test than {@link #testReadAsBufferedImage()}, except that the
+     * This method performs the same test as {@link #testReadAsBufferedImage()}, except that the
      * {@link ImageReader#readAsRenderedImage(int, ImageReadParam)} method is invoked instead of
      * {@code ImageReader.read(int, ImageReadParam)}.
      *
@@ -475,7 +475,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
 
     /**
      * Tests the {@link ImageReader#readRaster(int, ImageReadParam) ImageReader.readRaster} method.
-     * This method performs the same test than {@link #testReadAsBufferedImage()}, except that the
+     * This method performs the same test as {@link #testReadAsBufferedImage()}, except that the
      * {@link ImageReader#readRaster(int, ImageReadParam)} method is invoked instead of
      * {@code ImageReader.read(int, ImageReadParam)}.
      *

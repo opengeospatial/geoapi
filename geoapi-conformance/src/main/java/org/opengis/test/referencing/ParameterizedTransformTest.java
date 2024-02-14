@@ -141,8 +141,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * (100 km - same order of magnitude than the transformed coordinate values) and all other
      * values are close to zero. However, we cannot use the {@link #TRANSFORM_TOLERANCE} value
      * in every cases because the expected derivative coefficients are computed using a numerical
-     * approximation. Some empirical tests have show that the difference between <cite>forward
-     * difference</cite> and <cite>backward difference</cite> can be close to 0.25, so we must
+     * approximation. Some empirical tests have show that the difference between <i>forward
+     * difference</i> and <i>backward difference</i> can be close to 0.25, so we must
      * be prepared to increase this tolerance threshold.
      */
     private static final double DERIVATIVE_TOLERANCE = 0.01;
@@ -395,8 +395,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Mercator (variant A)"</cite> (EPSG:9804) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Mercator (variant A)</q> (EPSG:9804) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -447,8 +447,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Mercator (variant B)"</cite> (EPSG:9805) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Mercator (variant B)</q> (EPSG:9805) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -498,8 +498,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Mercator (variant C)"</cite> (EPSG:1044) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Mercator (variant C)</q> (EPSG:1044) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -507,7 +507,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      *
      * <p>The math transform parameters and the sample coordinates are below.
      * Note that this is similar to {@link #testMercator2SP()}, except that the
-     * <cite>"latitude of false origin"</cite> parameter is set to 42°N.</p>
+     * <q>latitude of false origin</q> parameter is set to 42°N.</p>
      *
      * <div class="horizontal-flow">
      *   <table class="ogc">
@@ -567,15 +567,15 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Mercator (Spherical)"</cite> (EPSG:1026) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Mercator (Spherical)</q> (EPSG:1026) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
      * {@linkplain MathTransform#derivative derivatives} are coherent.
      *
      * <p>The math transform parameters and the sample coordinates are below.
-     * Note that the sample point is the same than for {@link #testPseudoMercator()},
+     * Note that the sample point is the same as for {@link #testPseudoMercator()},
      * but with a different result in projected coordinates.</p>
      *
      * <div class="horizontal-flow">
@@ -623,8 +623,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Mercator Popular Visualisation Pseudo Mercator"</cite> (EPSG:1024) projection
-     * method. First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Mercator Popular Visualisation Pseudo Mercator</q> (EPSG:1024) projection
+     * method. First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -674,7 +674,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"IGNF:MILLER"</cite> projection.
+     * Tests the <q>IGNF:MILLER</q> projection.
      * First, this method transforms the point given below
      * and compares the {@link MathTransform} result with the expected result. Next, this method
      * transforms a random set of points in the projection area of validity and ensures that the
@@ -722,8 +722,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Hotine Oblique Mercator (variant B)"</cite> (EPSG:9815) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Hotine Oblique Mercator (variant B)</q> (EPSG:9815) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -776,8 +776,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Transverse Mercator"</cite> (EPSG:9807) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Transverse Mercator</q> (EPSG:9807) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -829,7 +829,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
 
     /**
      * Tests the <cite>Transverse Mercator (South Orientated)</cite> (EPSG:9808) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -898,8 +898,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Cassini-Soldner"</cite> (EPSG:9806) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Cassini-Soldner</q> (EPSG:9806) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -950,8 +950,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Hyperbolic Cassini-Soldner"</cite> (EPSG:9833) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Hyperbolic Cassini-Soldner</q> (EPSG:9833) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -1002,8 +1002,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Lambert Conic Conformal (1SP)"</cite> (EPSG:9801) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Lambert Conic Conformal (1SP)</q> (EPSG:9801) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -1054,8 +1054,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Lambert Conic Conformal (2SP)"</cite> (EPSG:9802) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Lambert Conic Conformal (2SP)</q> (EPSG:9802) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -1108,8 +1108,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Lambert Conic Conformal (2SP Belgium)"</cite> (EPSG:9803) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Lambert Conic Conformal (2SP Belgium)</q> (EPSG:9803) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -1161,8 +1161,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Lambert Conic Conformal (2SP Michigan)"</cite> (EPSG:1051) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Lambert Conic Conformal (2SP Michigan)</q> (EPSG:1051) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -1213,8 +1213,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Lambert Azimuthal Equal Area"</cite> (EPSG:9820) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Lambert Azimuthal Equal Area</q> (EPSG:9820) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -1264,8 +1264,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Polar Stereographic (variant A)"</cite> (EPSG:9810) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Polar Stereographic (variant A)</q> (EPSG:9810) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -1317,8 +1317,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Polar Stereographic (variant B)"</cite> (EPSG:9829) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Polar Stereographic (variant B)</q> (EPSG:9829) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -1369,8 +1369,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Polar Stereographic (variant C)"</cite> (EPSG:9830) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Polar Stereographic (variant C)</q> (EPSG:9830) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -1421,8 +1421,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Oblique Stereographic"</cite> (EPSG:9809) projection method.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Oblique Stereographic</q> (EPSG:9809) projection method.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -1473,7 +1473,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"American Polyconic"</cite> (EPSG:9818) projection.
+     * Tests the <q>American Polyconic</q> (EPSG:9818) projection.
      * First, this method transforms the some of the points given in Table 19, p 132 of
      * <a href="http://pubs.er.usgs.gov/usgspubs/pp/pp1395">Map Projections, a working manual</a>
      * by John P.Snyder. Next, this method transforms a random set of points in the projection
@@ -1520,8 +1520,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Krovak"</cite> (EPSG:9819) projection.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Krovak</q> (EPSG:9819) projection.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -1571,8 +1571,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Orthographic"</cite> (EPSG:9840) projection.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Orthographic</q> (EPSG:9840) projection.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -1617,8 +1617,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Modified Azimuthal Equidistant"</cite> (EPSG:9832) projection.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Modified Azimuthal Equidistant</q> (EPSG:9832) projection.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of points in the projection area of validity
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -1663,8 +1663,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Abridged Molodensky"</cite> (EPSG:9605) datum shift operation.
-     * First, this method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Abridged Molodensky</q> (EPSG:9605) datum shift operation.
+     * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      * Next, this method transforms a random set of geographic coordinates
      * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
@@ -1712,8 +1712,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Geographic/topocentric conversions"</cite> (EPSG:9837).
-     * This method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Geographic/topocentric conversions</q> (EPSG:9837).
+     * This method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      *
      * <p>A CRS using this method is "EPSG topocentric example A" (EPSG:5819)".
@@ -1758,8 +1758,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Tests the <cite>"Geocentric/topocentric conversions"</cite> (EPSG:9836).
-     * This method transforms the point given in the <cite>Example</cite> section of the
+     * Tests the <q>Geocentric/topocentric conversions</q> (EPSG:9836).
+     * This method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
      *
      * <p>A CRS using this method is "EPSG topocentric example B" (EPSG:5820)".

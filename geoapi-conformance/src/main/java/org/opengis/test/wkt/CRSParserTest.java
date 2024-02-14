@@ -154,7 +154,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
 
     /**
      * Compares the abbreviations of coordinate system axes against the expected values.
-     * The comparison is case-sensitive, e.g. <var>h</var> (ellipsoidal height) is not the same than
+     * The comparison is case-sensitive, e.g. <var>h</var> (ellipsoidal height) is not the same as
      * <var>H</var> (gravity-related height).
      *
      * <p>The GeoAPI conformance tests invoke this method only for abbreviations that should not need transliteration.

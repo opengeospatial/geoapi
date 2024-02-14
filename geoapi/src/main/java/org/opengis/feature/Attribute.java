@@ -115,7 +115,7 @@ public interface Attribute<V> extends Property {
      * <ul>
      *   <li>The collection may be a snapshot of property values at the method invocation time.</li>
      *   <li>The collection may be an unmodifiable view of properties values.</li>
-     *   <li>The collection may be <cite>live</cite> (changes in the collection are reflected in this attribute, and vis-versa).</li>
+     *   <li>The collection may be <i>live</i> (changes in the collection are reflected in this attribute, and vis-versa).</li>
      * </ul>
      * This method does not mandate a particular approach.
      * However, implementations should document which policy they choose.
@@ -142,7 +142,7 @@ public interface Attribute<V> extends Property {
     /**
      * Other attributes that describe this attribute. For example if this attribute carries a measurement,
      * then a characteristic of this attribute could be the measurement accuracy.
-     * See <cite>"Attribute characterization"</cite> in {@link AttributeType} Javadoc for more information.
+     * See <cite>Attribute characterization</cite> in {@link AttributeType} Javadoc for more information.
      *
      * <p>Attributes having a value equals to their {@linkplain AttributeType#getDefaultValue() default value}
      * do not need to appear in this characteristics map. For example all temperature measurements in a dataset

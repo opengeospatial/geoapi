@@ -45,7 +45,7 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
  *   <tr><th>Key</th>                            <th>Remarks</th>   <th>Meaning</th></tr>
  *   <tr><td>{@code TITLE}</td>                  <td></td>          <td>Title of the web page to produce.</td></tr>
  *   <tr><td>{@code DESCRIPTION}</td>            <td>optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
- *   <tr><td>{@code OBJECTS.KIND}</td>           <td></td>          <td>Kind of objects listed in the page (e.g. <cite>"Coordinate Reference Systems"</cite>).</td></tr>
+ *   <tr><td>{@code OBJECTS.KIND}</td>           <td></td>          <td>Kind of objects listed in the page (e.g. <q>Coordinate Reference Systems</q>).</td></tr>
  *   <tr><td>{@code FACTORY.NAME}</td>           <td></td>          <td>The name of the authority factory.</td></tr>
  *   <tr><td>{@code FACTORY.VERSION}</td>        <td></td>          <td>The version of the authority factory.</td></tr>
  *   <tr><td>{@code FACTORY.VERSION.SUFFIX}</td> <td>optional</td>  <td>An optional text to write after the factory version (in the main text only).</td></tr>
@@ -65,7 +65,7 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
  * <ol>
  *   <li>Create a {@link Properties} map with the values documented in the above table.
  *       Default values exist for many keys, but may depend on the environment.
- *       It is safer to specify values explicitly when they are known, except the <cite>automatic</cite> ones.</li>
+ *       It is safer to specify values explicitly when they are known, except the <i>automatic</i> ones.</li>
  *   <li>Create a new {@code AuthorityCodesReport} with the above properties map given to the constructor.</li>
  *   <li>Invoke one of the {@link #add(CRSAuthorityFactory) add(…)} methods for the factory of identified objects
  *       to include in the HTML page.</li>
@@ -299,15 +299,12 @@ public class AuthorityCodesReport extends Report {
         defaultProperties.setProperty("OBJECTS.KIND", "Coordinate Reference Systems (CRS)");
         defaultProperties.setProperty("FILENAME", "CRS-Codes.html");
         final Collection<String> codes = factory.getAuthorityCodes(CoordinateReferenceSystem.class);
-        final int previousCount = rows.size();
         for (final String code : codes) {
             try {
                 add(createRow(code, factory.createCoordinateReferenceSystem(code)));
             } catch (FactoryException exception) {
                 add(createRow(code, exception));
             }
-            progress(previousCount + rows.size(),
-                     previousCount + codes.size());
         }
     }
 
@@ -405,8 +402,6 @@ public class AuthorityCodesReport extends Report {
 
     /**
      * Invoked by {@link Report} every time a {@code ${FOO}} occurrence is found.
-     * This operation is pretty fast; the slow operation which deserve progress
-     * listeners is rather the {@link #add(CRSAuthorityFactory)} method.
      *
      * @throws IOException if an error occurred during the copy.
      */

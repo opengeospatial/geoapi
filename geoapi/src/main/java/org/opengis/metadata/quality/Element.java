@@ -227,7 +227,7 @@ public interface Element {
      *
      * <p>The default implementation returns a wrapper around @link EvaluationMethod#getDates()} collection.
      * Calls to {@link Iterator#next()} may throw {@link java.time.DateTimeException} if the temporal object
-     * can not be converted to a date.</p>
+     * cannot be converted to a date.</p>
      *
      * @return date or range of dates on which a data quality measure was applied.
      *

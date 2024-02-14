@@ -103,7 +103,7 @@ public strictfp abstract class TestCase {
      * By default, every operations are enabled.
      *
      * @param  properties  the key for which the flags are wanted.
-     * @return an array of the same length than {@code properties} in which each element at index
+     * @return an array of the same length as {@code properties} in which each element at index
      *         <var>i</var> indicates whether the {@code properties[i]} test should be enabled.
      *
      * @since 3.1

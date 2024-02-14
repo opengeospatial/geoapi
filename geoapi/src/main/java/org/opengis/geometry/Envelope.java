@@ -111,7 +111,7 @@ public interface Envelope {
      * implementation-dependent. If supported, the extended interpretation is applicable only to
      * axes having a {@link RangeMeaning#WRAPAROUND WRAPAROUND} range meaning - usually the
      * longitude axis. On typical map representations, the {@code getLowerCorner()} method
-     * name still "visually" appropriate since the <cite>lower</cite> corner still toward the
+     * name still "visually" appropriate since the <i>lower</i> corner still toward the
      * bottom of the map even if the left corner became the right corner.
      *
      * @return the lower corner, typically (but not necessarily) containing minimal coordinate values.
@@ -135,7 +135,7 @@ public interface Envelope {
      * implementation-dependent. If supported, the extended interpretation is applicable only to
      * axes having a {@link RangeMeaning#WRAPAROUND WRAPAROUND} range meaning - usually the
      * longitude axis. On typical map representations, the {@code getUpperCorner()} method
-     * name still "visually" appropriate since the <cite>upper</cite> corner still toward the
+     * name still "visually" appropriate since the <i>upper</i> corner still toward the
      * top of the map even if the right corner became the left corner.
      *
      * @return the upper corner, typically (but not necessarily) containing maximal coordinate values.

@@ -48,12 +48,12 @@ import org.opengis.test.coverage.image.*;
  * in various packages. Vendors can change the value of fields in this class if they wish to
  * override some validation process.
  *
- * <p><b><u>Customization</u></b><br>
+ * <h2>Customization</h2>
  * All {@code validate(…)} methods in this class are final because this class is not the extension
  * point for overriding validation processes. Instead, extend the appropriate {@link Validator}
  * subclass and assign an instance to the corresponding field in this class. For example in order
- * to override the validation of {@link org.opengis.referencing.crs.GeographicCRS} objects, one
- * can do:</p>
+ * to override the validation of {@link org.opengis.referencing.crs.GeographicCRS} objects,
+ * one can do:
  *
  * {@snippet lang="java" :
  * ValidatorContainer container = new ValidationContainer();
@@ -151,8 +151,8 @@ public class ValidatorContainer implements Cloneable {
 
     /**
      * An unmodifiable "live" list of all validators. Any change to the value of a field declared
-     * in this class is reflected immediately in this list (so this list is <cite>unmodifiable</cite>
-     * but not <cite>immutable</cite>). This list is convenient if the same setting must be applied
+     * in this class is reflected immediately in this list (so this list is <i>unmodifiable</i>
+     * but not <i>immutable</i>). This list is convenient if the same setting must be applied
      * on all validators, for example in order to change their {@link Validator#logger logger} setting
      * or to set their set {@link Validator#requireMandatoryAttributes requireMandatoryAttributes}
      * field to {@code false}.
@@ -193,7 +193,7 @@ public class ValidatorContainer implements Cloneable {
     }
 
     /**
-     * Returns a new container using the same validators than this instance. After this method call,
+     * Returns a new container using the same validators as this instance. After this method call,
      * the two {@code ValidatorContainer} instances will share the same {@link Validator} instances.
      *
      * <p>This method is typically used in order to use the default configuration with a few

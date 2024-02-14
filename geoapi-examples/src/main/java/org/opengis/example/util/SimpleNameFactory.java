@@ -158,7 +158,7 @@ public class SimpleNameFactory implements NameFactory {
 
     /**
      * Creates a type name from the given character sequence and automatically inferred Java type.
-     * The character sequence shall complies to the same restriction than
+     * The character sequence shall complies to the same restriction as
      * {@link #createLocalName createLocalName(…)}.
      *
      * @param  scope  the {@linkplain GenericName#scope() scope} of the type name to be created,

@@ -4,7 +4,7 @@ GeoAPI provides a set of Java and Python language programming interfaces for geo
 The interfaces developed by the GeoAPI project include data structures and manipulation methods needed
 for geographic information system applications. The GeoAPI interfaces closely follow the abstract models
 and concrete specifications published collaboratively by the International Organization for Standardization (ISO)
-in its 19100 series of documents and the Open Geospatial Consortium (OGC) in its abstract and implementation specifications.
+in its 19100 series of documents and the Open Geospatial Consortium (OGC) in its abstract and implementation standards.
 
 The current release is GeoAPI 3.0.2, published as an
 [Open Geospatial Consortium standard](http://www.opengeospatial.org/standards/geoapi/) and

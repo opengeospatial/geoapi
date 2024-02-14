@@ -54,8 +54,8 @@ import static org.opengis.annotation.Specification.*;
  *   ISO 19123 defines <code>RectifiedGrid</code> as a direct sub-type of <code>Grid</code>.
  *   In GeoAPI, <code>RectifiedGrid</code> extends <code>Grid</code> indirectly, through
  *   <code>ReferenceableGrid</code>. In the GeoAPI hierarchy, <code>RectifiedGrid</code>
- *   is considered as a special case of <code>ReferenceableGrid</code> where the <cite>grid
- *   to CRS</cite> coordinate operation is affine. This hierarchy make easier to leverage
+ *   is considered as a special case of <code>ReferenceableGrid</code> where the <i>grid
+ *   to CRS</i> coordinate operation is affine. This hierarchy make easier to leverage
  *   the same code for both the affine and non-affine cases when the code does not require
  *   a strictly affine operation.
  *
@@ -93,8 +93,8 @@ public interface RectifiedGrid extends ReferenceableGrid {
      * @departure rename
      *   A <code>"convertCoordinates"</code> method name would match better the ISO identifier.
      *   However, since <code>RectifiedGrid</code> extends <code>ReferenceableGrid</code> in GeoAPI,
-     *   we have to use the same method names than the latter. Here, <cite>transform</cite> is to be
-     *   understood as a term encompassing both <cite>transformation</cite> and <cite>conversion</cite>.
+     *   we have to use the same method names as the latter. Here, <dfn>transform</dfn> is to be
+     *   understood as a term encompassing both <i>transformation</i> and <i>conversion</i>.
      *   This is similar to the <code>MathTransform</code> name policy.
      */
     @UML(identifier="coordConv", obligation=MANDATORY, specification=ISO_19123)
@@ -119,8 +119,8 @@ public interface RectifiedGrid extends ReferenceableGrid {
      * @departure rename
      *   A <code>"inverseConvertCoordinates"</code> method name would match better the ISO identifier.
      *   However, since <code>RectifiedGrid</code> extends <code>ReferenceableGrid</code> in GeoAPI,
-     *   we have to use the same method names than the latter. Here, <cite>transform</cite> is to be
-     *   understood as a term encompassing both <cite>transformation</cite> and <cite>conversion</cite>.
+     *   we have to use the same method names as the latter. Here, <dfn>transform</dfn> is to be
+     *   understood as a term encompassing both <i>transformation</i> and <i>conversion</i>.
      *   This is similar to the <code>MathTransform</code> name policy.
      */
     @UML(identifier="invCoordConv", obligation=MANDATORY, specification=ISO_19123)

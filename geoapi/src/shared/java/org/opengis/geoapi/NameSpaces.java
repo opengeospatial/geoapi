@@ -116,7 +116,7 @@ public final class NameSpaces {
      *
      * <ul>
      *   <li>{@link QName#getLocalPart()} will be the OGC/ISO name,
-     *        which is usually the same than the XML local part but not always.</li>
+     *        which is usually the same as the XML local part but not always.</li>
      *   <li>{@link QName#getPrefix()} will be the XML prefix if known, or the UML prefix otherwise.
      *       May be empty is no prefix can be inferred.</li>
      *   <li>{@link QName#getNamespaceURI()} will be the programmatic namespace.

@@ -27,8 +27,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A coordinate reference system that is defined by its coordinate
- * {@linkplain Conversion conversion} from another coordinate reference system.
+ * A coordinate reference system that is defined by its coordinate conversion from another coordinate reference system.
  * Derived CRS are not directly associated to a {@linkplain org.opengis.referencing.datum.Datum datum}.
  *
  * <p>In principle, all sub-types of {@link CoordinateReferenceSystem} may take on the role of either source or

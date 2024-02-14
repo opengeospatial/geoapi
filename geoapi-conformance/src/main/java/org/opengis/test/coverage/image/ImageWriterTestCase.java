@@ -458,7 +458,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     }
 
     /**
-     * Same test than {@link #testOneByteBand()}, but using RGB values in three bands.
+     * Same test as {@link #testOneByteBand()}, but using RGB values in three bands.
      *
      * @throws IOException if an error occurred while writing the image or or reading it back.
      */
@@ -471,7 +471,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     }
 
     /**
-     * Same test than {@link #testOneByteBand()}, but using the signed {@code short} type.
+     * Same test as {@link #testOneByteBand()}, but using the signed {@code short} type.
      *
      * @throws IOException if an error occurred while writing the image or or reading it back.
      */
@@ -484,7 +484,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     }
 
     /**
-     * Same test than {@link #testOneByteBand()}, but using the unsigned {@code short} type.
+     * Same test as {@link #testOneByteBand()}, but using the unsigned {@code short} type.
      *
      * @throws IOException if an error occurred while writing the image or or reading it back.
      */
@@ -497,7 +497,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     }
 
     /**
-     * Same test than {@link #testOneByteBand()}, but using the signed {@code int} type.
+     * Same test as {@link #testOneByteBand()}, but using the signed {@code int} type.
      *
      * @throws IOException if an error occurred while writing the image or or reading it back.
      */
@@ -510,7 +510,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     }
 
     /**
-     * Same test than {@link #testOneByteBand()}, but using the signed {@code float} type.
+     * Same test as {@link #testOneByteBand()}, but using the signed {@code float} type.
      *
      * @throws IOException if an error occurred while writing the image or or reading it back.
      */
@@ -523,7 +523,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
     }
 
     /**
-     * Same test than {@link #testOneByteBand()}, but using the signed {@code double} type.
+     * Same test as {@link #testOneByteBand()}, but using the signed {@code double} type.
      *
      * @throws IOException if an error occurred while writing the image or or reading it back.
      */
@@ -544,7 +544,7 @@ public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase imple
      *   <li>Invokes {@link ImageWriter#reset()} for clearing the output and listeners.</li>
      *   <li>Invokes {@link ImageWriter#dispose()} for performing additional resource disposal, if any.</li>
      *   <li>Sets the {@link #writer} field to {@code null} for preventing accidental use.</li>
-     *   <li>Performs the same steps than above for the {@linkplain #reader}, if non-null.</li>
+     *   <li>Performs the same steps as above for the {@linkplain #reader}, if non-null.</li>
      * </ul>
      *
      * @throws IOException if an error occurred while closing the output stream.

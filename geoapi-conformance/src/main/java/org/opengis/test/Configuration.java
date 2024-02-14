@@ -237,11 +237,10 @@ public class Configuration implements Serializable {
      * This code list is extensible: users can create new instances by
      * invoking the {@link #valueOf(String, Class)} static method.
      *
-     * <p><b><u>Note on field names:</u></b><br>
+     * <h2>Note on field names</h2>
      * Every constants declared in this class have a name matching exactly the field names in
-     * {@link TestCase} subclasses. This is a departure from the usual <cite>"all upper-case
-     * letters"</cite> convention, but make the relationship with fields more obvious
-     * and the parsing of {@link java.util.Properties} files easier.</p>
+     * {@link TestCase} subclasses. This is a departure from the usual <q>all upper-case letters</q> convention,
+     * but make the relationship with fields more obvious and the parsing of {@link java.util.Properties} files easier.
      *
      * @param  <T>  the type of values associated with the key.
      *
@@ -424,8 +423,8 @@ public class Configuration implements Serializable {
         /**
          * Whether (<var>y</var>,<var>x</var>) axis order is supported. This axis swapping is not
          * supported, then the tests that would normally expect (<var>y</var>,<var>x</var>) axis
-         * order or <cite>South Oriented</cite> CRS will rather use the (<var>x</var>,<var>y</var>)
-         * axis order and <cite>North Oriented</cite> CRS in their test.
+         * order or <i>South Oriented</i> CRS will rather use the (<var>x</var>,<var>y</var>)
+         * axis order and <i>North Oriented</i> CRS in their test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#isAxisSwappingSupported
          */
@@ -438,9 +437,9 @@ public class Configuration implements Serializable {
          * is relaxed.
          *
          * <div class="note"><b>Example:</b>
-         * ISO 19111 (the <cite>referencing by coordinates</cite> abstract model) specifies that the name of
-         * the latitude axis in a geographic CRS shall be <cite>"Geodetic latitude"</cite> while ISO 19162
-         * (a.k.a <cite>Well Known Text 2</cite>) specifies <cite>"Latitude"</cite>. Consequently, the GeoAPI
+         * ISO 19111 (the <cite>Referencing by Coordinates</cite> abstract model) specifies that the name of
+         * the latitude axis in a geographic CRS shall be <q>Geodetic latitude</q> while ISO 19162
+         * (a.k.a <cite>Well Known Text 2</cite>) specifies <q>Latitude</q>. Consequently, the GeoAPI
          * conformance module allows implementer to disable the check for ISO 19111 conformance if their WKT
          * parser does not adapt the parsed CRS objects to the ISO 19111 axis naming.</div>
          *
@@ -630,7 +629,7 @@ public class Configuration implements Serializable {
         }
 
         /**
-         * Returns the list of codes of the same kind than this code list element.
+         * Returns the list of codes of the same kind as this code list element.
          * Invoking this method is equivalent to invoking {@link #values()}, except that
          * this method can be invoked on an instance of the parent {@code CodeList} class.
          *

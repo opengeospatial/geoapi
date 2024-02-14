@@ -62,7 +62,7 @@ import org.opengis.metadata.citation.Responsibility;
  *   <tr><td>{@code TITLE}</td>          <td></td>          <td>Title of the web page to produce.</td></tr>
  *   <tr><td>{@code DATE}</td>           <td>automatic</td> <td>Date of report creation.</td></tr>
  *   <tr><td>{@code DESCRIPTION}</td>    <td>optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
- *   <tr><td>{@code OBJECTS.KIND}</td>   <td></td>          <td>Kind of objects listed in the page (e.g. <cite>"Operation Methods"</cite>).</td></tr>
+ *   <tr><td>{@code OBJECTS.KIND}</td>   <td></td>          <td>Kind of objects listed in the page (e.g. <q>Operation Methods</q>).</td></tr>
  *   <tr><td>{@code PRODUCT.NAME}</td>   <td></td>          <td>Name of the product for which the report is generated.</td></tr>
  *   <tr><td>{@code PRODUCT.VERSION}</td><td></td>          <td>Version of the product for which the report is generated.</td></tr>
  *   <tr><td>{@code PRODUCT.URL}</td>    <td></td>          <td>URL where more information is available about the product.</td></tr>
@@ -138,11 +138,6 @@ public abstract class Report {
      * in any future version. We don't document them (for now) for this reason.
      */
     final Properties defaultProperties;
-
-    /**
-     * The listener object to inform about the progress, or {@code null} if none.
-     */
-    ProgressListener listener;
 
     /**
      * Creates a new report generator using the given property values. The list of expected
@@ -498,22 +493,5 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
             }
         }
         return text;
-    }
-
-    /**
-     * Invoked when the report is making some progress. This is typically invoked from a
-     * {@code add(…)} method, since they are usually slower than {@link #write(File)}.
-     * Subclasses can override this method if they want to be notified about progress.
-     *
-     * @param position  a number ranging from 0 to {@code count}.
-     *        This is typically the number or rows created so far for the HTML table to write.
-     * @param count  the maximal expected value of {@code position}. Note that this value may change between
-     *        different invocations if the report gets a better estimation about the number of rows to be created.
-     */
-    protected void progress(final int position, final int count) {
-        final ProgressListener listener = this.listener;
-        if (listener != null) {
-            listener.progress(position, count);
-        }
     }
 }

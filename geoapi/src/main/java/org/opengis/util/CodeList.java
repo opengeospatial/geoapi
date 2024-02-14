@@ -291,12 +291,12 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
     }
 
     /**
-     * Returns the list of codes of the same kind than this code.
+     * Returns the list of codes of the same kind as this code.
      * Invoking this method gives identical results than invoking the static {@code values()} methods
      * provided in {@code CodeList} subclasses, except that {@code family()} does not require the class
      * to be known at compile-time — provided that at least one instance of the family is available.
      *
-     * @return the codes of the same kind than this code.
+     * @return the codes of the same kind as this code.
      *
      * @departure integration
      *   Provided by analogy with {@code Enum.family()}, which was defined in a initial
@@ -437,7 +437,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
         final Class<? extends CodeList> ct =  this.getClass();
         final Class<? extends CodeList> co = other.getClass();
         if (!ct.equals(co)) {
-            throw new ClassCastException("Can't compare " + ct.getSimpleName() + " to " + co.getSimpleName());
+            throw new ClassCastException("Cannot compare " + ct.getSimpleName() + " to " + co.getSimpleName());
         }
         return ordinal - ((CodeList<?>) other).ordinal;
     }

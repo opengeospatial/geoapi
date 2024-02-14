@@ -206,9 +206,9 @@ public class SimpleDirectPosition implements DirectPosition {
     }
 
     /**
-     * Returns a string representation of this direct position in <cite>Well-Known Text</cite> (WKT) format.
+     * Returns a string representation of this direct position in <i>Well-Known Text</i> (WKT) format.
      *
-     * @return the <cite>Well-Known Text</cite> representation of this direct position.
+     * @return the Well-Known Text representation of this direct position.
      *
      * @see <a href="https://en.wikipedia.org/wiki/Well-known_text_representation_of_geometry">Well-known text on Wikipedia</a>
      */

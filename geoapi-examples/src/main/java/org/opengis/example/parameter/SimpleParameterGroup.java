@@ -28,7 +28,7 @@ import org.opengis.util.InternationalString;
  * A {@link ParameterValueGroup} implementation for {@link SimpleParameter} instances.
  * In order to keep the conceptual model simpler, this parameter group is also its own
  * descriptor. This is not quite a recommended practice (such descriptors are less suitable
- * for use in {@link java.util.HashMap}), but allow us to keep the amount of classes smaller
+ * for use in {@link java.util.HashMap}), but allow us to keep the number of classes smaller
  * and closely related interfaces together.
  *
  * <p>The most interesting methods in this class are:</p>
@@ -50,7 +50,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      * {@linkplain ParameterDescriptor parameter descriptor} and
      * {@linkplain ParameterValue parameter values} for the {@code double} value type.
      *
-     * <p>This list is <cite>live</cite>: changes to this list will be reflected immediately
+     * <p>This list is <i>live</i>: changes to this list will be reflected immediately
      * in the {@link #descriptors()} and {@link #values()} views.</p>
      */
     protected final List<SimpleParameter> parameters;
@@ -255,7 +255,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
      *
      * <ul>
      *   <li>This method returns an instance of the same class.</li>
-     *   <li>The {@linkplain #values()} are initialized to the same values than the cloned group.</li>
+     *   <li>The {@linkplain #values()} are initialized to the same values as the cloned group.</li>
      * </ul>
      *
      * @see #createValue()

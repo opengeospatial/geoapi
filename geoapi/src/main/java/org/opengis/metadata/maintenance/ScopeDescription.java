@@ -49,7 +49,7 @@ public interface ScopeDescription {
      * if a geographic data provider is generating vector mapping for the administrative areas
      * and if the data were processed in the same way, then the provider could record the bulk
      * of initial data at {@link ScopeCode#DATASET} level with a
-     * “<cite>Administrative area A, B &amp; C</cite>” description.
+     * <q>Administrative area A, B &amp; C</q> description.
      * </div>
      *
      * @return dataset to which the information applies, or {@code null}.
@@ -70,7 +70,7 @@ public interface ScopeDescription {
      * <div class="note"><b>Example:</b>
      * if an administrative area performs a complete re-survey of the road network,
      * the change can be recorded at {@link ScopeCode#FEATURE_TYPE} level with a
-     * “<cite>Administrative area A — Road network</cite>” description.
+     * <q>Administrative area A — Road network</q> description.
      * </div>
      *
      * <div class="warning"><b>Upcoming API change</b><br>
@@ -96,7 +96,7 @@ public interface ScopeDescription {
      * <div class="note"><b>Example:</b>
      * if an administrative area detects an anomaly in all overhead clearance of the road survey,
      * the correction can be recorded at {@link ScopeCode#ATTRIBUTE_TYPE} level with a
-     * “<cite>Administrative area A — Overhead clearance</cite>” description.
+     * <q>Administrative area A — Overhead clearance</q> description.
      * </div>
      *
      * <div class="warning"><b>Upcoming API change</b><br>
@@ -122,7 +122,7 @@ public interface ScopeDescription {
      * <div class="note"><b>Example:</b>
      * if a new bridge is constructed in a road network,
      * the change can be recorded at {@link ScopeCode#FEATURE} level with a
-     * “<cite>Administrative area A — New bridge</cite>” description.
+     * <q>Administrative area A — New bridge</q> description.
      * </div>
      *
      * <div class="warning"><b>Upcoming API change</b><br>
@@ -148,7 +148,7 @@ public interface ScopeDescription {
      * <div class="note"><b>Example:</b>
      * if the overhead clearance of a new bridge was wrongly recorded,
      * the correction can be recorded at {@link ScopeCode#ATTRIBUTE} level with a
-     * “<cite>Administrative area A — New bridge — Overhead clearance</cite>” description.
+     * <q>Administrative area A — New bridge — Overhead clearance</q> description.
      * </div>
      *
      * <div class="warning"><b>Upcoming API change</b><br>

@@ -69,11 +69,7 @@ public enum Obligation implements ControlledVocabulary {
      *   (not in original ISO specifications) to be used with the {@code @UML} annotation and
      *   which adds a flag in the Java documentation.
      */
-    FORBIDDEN(null) {
-        @Override public String[] names() {
-            return new String[] {name()};
-        }
-    };
+    FORBIDDEN(null);
 
     /**
      * The UML identifier.
@@ -106,7 +102,11 @@ public enum Obligation implements ControlledVocabulary {
      */
     @Override
     public String[] names() {
-        return new String[] {name(), identifier};
+        if (identifier != null) {
+            return new String[] {name(), identifier};
+        } else {
+            return new String[] {name()};
+        }
     }
 
     /**

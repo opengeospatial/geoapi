@@ -172,7 +172,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * This method allows for some flexibilities:
      *
      * <ul>
-     *   <li>{@link Ellipsoid#getName()} allows for the same flexibilities than the one documented in
+     *   <li>{@link Ellipsoid#getName()} allows for the same flexibilities as the one documented in
      *       {@link #verifyIdentification verifyIdentification(…)}.</li>
      *   <li>{@link Ellipsoid#getSemiMajorAxis()} does not need to use the unit of measurement given
      *       by the {@code axisUnit} argument. Unit conversion will be applied as needed.</li>
@@ -217,7 +217,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * This method allows for some flexibilities:
      *
      * <ul>
-     *   <li>{@link PrimeMeridian#getName()} allows for the same flexibilities than the one documented in
+     *   <li>{@link PrimeMeridian#getName()} allows for the same flexibilities as the one documented in
      *       {@link #verifyIdentification verifyIdentification(…)}.</li>
      *   <li>{@link PrimeMeridian#getGreenwichLongitude()} does not need to use the unit of measurement given
      *       by the {@code angularUnit} argument. Unit conversion will be applied as needed.</li>
@@ -369,7 +369,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
                     if ((t = bbox.getEastBoundLongitude()) > xmax) xmax = t;
                 }
                 /*
-                 * Description: optional, but if present we allow any amount of identifiers
+                 * Description: optional, but if present we allow any number of identifiers
                  * provided that at least one contain the expected string.
                  */
                 if (description != null && e instanceof GeographicDescription) {

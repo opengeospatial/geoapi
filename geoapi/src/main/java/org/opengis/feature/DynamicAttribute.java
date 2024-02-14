@@ -87,7 +87,7 @@ public interface DynamicAttribute<V> extends Attribute<V> {
      * <ul>
      *   <li>The collection may be a snapshot of property values at the method invocation time.</li>
      *   <li>The collection may be an unmodifiable view of properties values.</li>
-     *   <li>The collection may be <cite>live</cite> (changes in the collection are reflected in this attribute, and vis-versa).</li>
+     *   <li>The collection may be <i>live</i> (changes in the collection are reflected in this attribute, and vis-versa).</li>
      * </ul>
      * This method does not mandate a particular approach.
      * However, implementations should document which policy they choose.

@@ -235,7 +235,7 @@ public interface CRSFactory extends ObjectFactory {
      * <p>It is the user's responsibility to ensure that the conversion performs all required steps,
      * including unit conversions and change of axis order, if needed. Note that this behavior is
      * different than {@link #createProjectedCRS createProjectedCRS(…)} because transforms other than
-     * <cite>cartographic projections</cite> are not standardized.</p>
+     * <i>cartographic projections</i> are not standardized.</p>
      *
      * <div class="warning"><b>Upcoming API change — specialization</b><br>
      * According ISO 19111, the {@code baseCRS} type should be {@link SingleCRS}.
@@ -322,7 +322,7 @@ public interface CRSFactory extends ObjectFactory {
     }
 
     /**
-     * Creates a coordinate reference system object from a <cite>Well-Known Text</cite>.
+     * Creates a coordinate reference system object from a <i>Well-Known Text</i>.
      * Well-Known texts (WKT) may come in two formats:
      *
      * <ul>

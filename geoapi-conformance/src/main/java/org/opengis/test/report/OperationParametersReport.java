@@ -55,7 +55,7 @@ import org.opengis.referencing.operation.MathTransformFactory;
  *   <tr><th>Key</th>                    <th>Remarks</th>   <th>Meaning</th></tr>
  *   <tr><td>{@code TITLE}</td>          <td></td>          <td>Title of the web page to produce.</td></tr>
  *   <tr><td>{@code DESCRIPTION}</td>    <td>optional</td>  <td>Description to write after the introductory paragraph.</td></tr>
- *   <tr><td>{@code OBJECTS.KIND}</td>   <td></td>          <td>Kind of objects listed in the page (e.g. <cite>"Operation Methods"</cite>).</td></tr>
+ *   <tr><td>{@code OBJECTS.KIND}</td>   <td></td>          <td>Kind of objects listed in the page (e.g. <q>Operation Methods</q>).</td></tr>
  *   <tr><td>{@code PRODUCT.NAME}</td>   <td></td>          <td>Name of the product for which the report is generated.</td></tr>
  *   <tr><td>{@code PRODUCT.VERSION}</td><td></td>          <td>Version of the product for which the report is generated.</td></tr>
  *   <tr><td>{@code PRODUCT.URL}</td>    <td></td>          <td>URL where more information is available about the product.</td></tr>
@@ -107,7 +107,7 @@ public class OperationParametersReport extends Report {
          * <p>The default value is {@code null} in every cases. Subclasses of {@link OperationParametersReport}
          * can modify this value in order to classify operations by category. For example, subclasses
          * may use this value for classifying {@link OperationMethod} instances according the kind
-         * of map projection (<cite>planar</cite>, <cite>cylindrical</cite>, <cite>conic</cite>).</p>
+         * of map projection (<i>planar</i>, <i>cylindrical</i>, <i>conic</i>).</p>
          */
         public String category;
 
@@ -365,11 +365,8 @@ public class OperationParametersReport extends Report {
         defaultProperties.setProperty("FILENAME", "CoordinateOperations.html");
         setVendor("PRODUCT", factory.getVendor());
         final Set<OperationMethod> operations = factory.getAvailableMethods(SingleOperation.class);
-        final int previousCount = rows.size();
         for (final OperationMethod operation : operations) {
             add(operation, operation.getParameters());
-            progress(previousCount + rows.size(),
-                     previousCount + operations.size());
         }
     }
 

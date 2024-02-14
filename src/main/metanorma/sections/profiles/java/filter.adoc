@@ -1,7 +1,7 @@
 [[java_filter]]
 === Filters and Java functions
 
-Java `Stream` provides an efficient way to deliver a potentially large amount of features.
+Java `Stream` provides an efficient way to deliver a potentially large number of features.
 The GeoAPI interfaces for filters and expressions have been designed for working smoothly
 with the `java​.util​.stream` interfaces. In particular:
 

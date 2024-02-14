@@ -5,7 +5,7 @@
 This GeoAPI standard evolved from an effort at the Open Geospatial Consortium (OGC) and in the free software community
 focused on developing a library of interfaces defining a coherent data model for the manipulation of geospatial data
 based on the data model defined in the OGC Abstract Specifications.
-GeoAPI interfaces originates with the publication in January 2001 of the implementation specification
+GeoAPI interfaces originates with the publication in January 2001 of the implementation standard
 <<OGC01-009>> _Coordinate Transformation Services_ Revision 1.00 (Martin Daly, ed.)
 which included a set of interfaces written in different programming languages and in the `org​.opengis` namespace.
 The GeoAPI project started in 2003 as an effort from several contributors to develop a set of Java language interfaces
@@ -17,7 +17,7 @@ as the basis for further work, the standards developed by the Technical Committe
 International Organization for Standardization (ISO) in its ISO 19100 series.
 The GeoAPI project therefore realigned its interfaces with those standards.
 In 2003, version 1.0 of GeoAPI interfaces was released to match the release of the first public draft
-of the implementation specification <<OGC03-064>> _GO-1 Application Objects_ Version 1.0 (Greg Reynolds, ed.).
+of the implementation standard <<OGC03-064>> _GO-1 Application Objects_ Version 1.0 (Greg Reynolds, ed.).
 The standardization effort of GO-1 took a couple of years during which extensive work was made on GeoAPI interfaces.
 Release 2.0 of GeoAPI was made at the time of the final publication of the GO-1 specification in 2005.
 GO-1 has been retired later, but a new working group has been formed in 2009 for continuing GeoAPI development

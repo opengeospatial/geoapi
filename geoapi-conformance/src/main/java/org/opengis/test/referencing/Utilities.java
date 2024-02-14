@@ -150,7 +150,7 @@ final class Utilities {
 
     /**
      * Returns the axis directions from the given coordinate system.
-     * The directions are in the same order than axis in the coordinate system.
+     * The directions are in the same order as axis in the coordinate system.
      * The returned set can be safely modified by the caller.
      *
      * @param  cs  the coordinate system from which to get axis directions.

@@ -104,7 +104,7 @@ public final class SpatialRepresentationType extends CodeList<SpatialRepresentat
     }
 
     /**
-     * Returns the list of codes of the same kind than this code list element.
+     * Returns the list of codes of the same kind as this code list element.
      * Invoking this method is equivalent to invoking {@link #values()}, except that
      * this method can be invoked on an instance of the parent {@code CodeList} class.
      *

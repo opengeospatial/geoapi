@@ -68,7 +68,7 @@ public interface TemporalOperator<R> extends Filter<R> {
      * @departure constraint
      *   ISO 19143 uses two properties, named {@code operand1} and {@code operand2},
      *   of type {@code ValueReference} and {@code TemporalOperand} respectively.
-     *   The later is an union of {@code TM_Object} and {@code ValueReference},
+     *   The later is a union of {@code TM_Object} and {@code ValueReference},
      *   which has no direct equivalence in Java.
      *   The union purpose is replaced by documentation in this method.
      *   The two values are put in a list for retrofitting in {@link Filter#getExpressions()}.

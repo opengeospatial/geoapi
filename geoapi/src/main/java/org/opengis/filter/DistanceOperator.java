@@ -63,10 +63,10 @@ public interface DistanceOperator<R> extends SpatialOperator<R> {
      *     spatial property values fulfill the spatial relationship implied by the operator.
      *   </li><li>
      *     The second expression should be a {@linkplain Literal literal} evaluating
-     *     to the same geometry than the one returned by {@link #getGeometry()}.
+     *     to the same geometry as the one returned by {@link #getGeometry()}.
      *   </li><li>
      *     The third expression should be a {@linkplain Literal literal} evaluating
-     *     to the same measure than the one returned by {@link #getDistance()}.
+     *     to the same measure as the one returned by {@link #getDistance()}.
      *   </li>
      * </ol>
      *

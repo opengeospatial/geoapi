@@ -73,13 +73,13 @@ public interface ControlledVocabulary {
     int ordinal();
 
     /**
-     * Returns the enumeration or list of codes of the same kind than this item.
+     * Returns the enumeration or list of codes of the same kind as this item.
      * Invoking this method gives identical results than invoking the static {@code values()} methods
      * provided in {@code Enum} and {@code CodeList} subclasses, except that {@code family()} does not
      * require the class to be known at compile-time — provided that at leat one instance of the family
      * is available.
      *
-     * @return the enumeration or list of codes of the same kind than this item.
+     * @return the enumeration or list of codes of the same kind as this item.
      */
     ControlledVocabulary[] family();
 }

@@ -315,7 +315,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
 
     /**
      * Tests using a translation of (400000,-100000) metres in a two-dimensional space.
-     * This translation is the (<cite>False easting</cite>, <cite>False northing</cite>)
+     * This translation is determined by the <q>False easting</q> and <q>False northing</q>
      * parameter values of the <cite>OSGB 1936 / British National Grid</cite> projection.
      *
      * @throws FactoryException should never happen.
@@ -329,7 +329,7 @@ public strictfp class AffineTransformTest extends TransformTestCase {
 
     /**
      * Tests using a uniform scale factor of 0.3048 in a two-dimensional space.
-     * This is the conversion factor from <cite>feet</cite> to <cite>metres</cite>.
+     * This is the conversion factor from <i>feet</i> to <i>metres</i>.
      *
      * @throws FactoryException should never happen.
      * @throws TransformException should never happen.

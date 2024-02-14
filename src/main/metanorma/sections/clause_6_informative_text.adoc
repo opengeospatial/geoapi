@@ -21,7 +21,7 @@ _Metadata_ specifications, which are data structures describing other data.
 They are completed by <<ISO19157>> _Data quality_ for the `quality` sub-package.
 The packages in the `opengis​.parameter` and `opengis​.referencing` namespaces
 implement the types from the <<ISO19111>> _Referencing by Coordinates_ specification
-complemented by the mathematical operator types from the <<OGC01-009>> _Coordinate Transformation Services_ implementation specification.
+complemented by the mathematical operator types from the <<OGC01-009>> _Coordinate Transformation Services_.
 The packages in the `opengis​.geometry` namespace cover the types defined in the <<ISO19107>> _Spatial Schema_ specification,
 although version {edition} of the library only defines the elements from that specification needed by the geo-referencing types.
 The `opengis​.feature` package covers the meta-classes defined in the <<ISO19109>> _Rules for application schema_ specification,

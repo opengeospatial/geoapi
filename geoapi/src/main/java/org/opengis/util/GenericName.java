@@ -126,7 +126,7 @@ import static org.opengis.annotation.Specification.*;
  * <h2>Comparison with Java Content Repository (JCR) names</h2>
  * In the Java standard {@link javax.xml.namespace.QName} class and in the Java Content Repository (JCR) specification,
  * a name is an ordered pair of (<var>Name space</var>, <var>Local part</var>) strings. A JCR name can take two lexical
- * forms: <cite>expanded form</cite> and <cite>qualified form</cite>. Those names are defined as:
+ * forms: <dfn>expanded form</dfn> and <dfn>qualified form</dfn>. Those names are defined as:
  *
  * <blockquote><table class="ogc" style="white-space: nowrap">
  *   <caption>Equivalence between JCR name and {@code GenericName}</caption>

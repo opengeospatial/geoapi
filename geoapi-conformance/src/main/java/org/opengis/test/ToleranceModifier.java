@@ -72,7 +72,7 @@ public interface ToleranceModifier {
 
     /**
      * Converts λ and φ tolerance values from metres to degrees before comparing
-     * the result of an <cite>reverse projection</cite>. For <cite>forward projections</cite>
+     * the result of an <i>reverse projection</i>. For <i>forward projections</i>
      * and all other calculations, the tolerance values are left unchanged.
      *
      * <p>The modifier performs the work documented in {@link #GEOGRAPHIC} if and only if the
@@ -85,7 +85,7 @@ public interface ToleranceModifier {
 
     /**
      * Converts φ and λ tolerance values from metres to degrees before comparing
-     * the result of an <cite>reverse projection</cite>. This modifier is identical to the
+     * the result of an <i>reverse projection</i>. This modifier is identical to the
      * {@link #PROJECTION} tolerance modifier, except that φ and λ axes are
      * interchanged. This is the most common modifier used when testing {@link ProjectedCRS}
      * instances created from the <a href="http://www.epsg.org">EPSG</a> database.

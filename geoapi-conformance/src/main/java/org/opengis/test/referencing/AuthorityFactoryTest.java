@@ -49,7 +49,7 @@ import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
  * Tests the creation of referencing objects from the {@linkplain AuthorityFactory authority factories}
  * given at construction time.
  *
- * <p>Many {@link ProjectedCRS} instances tested in this class use the same projections than the
+ * <p>Many {@link ProjectedCRS} instances tested in this class use the same projections as the
  * {@link MathTransform} instances tested in {@link ParameterizedTransformTest}. However, the latter
  * test class expects (λ,φ) input coordinates in degrees and (<var>x</var>,<var>y</var>)
  * output coordinates in metres, while this {@code AuthorityFactoryTest} class expects
@@ -128,7 +128,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     /**
      * {@code true} if the sign of coordinate values shall be reversed in both projected axes.
      * This flag applies only to projected coordinates. This flag is set to {@code true} for
-     * <cite>South Oriented</cite> {@link ProjectedCRS}.
+     * <i>South Oriented</i> {@link ProjectedCRS}.
      *
      * <p><b>Default value:</b> {@code false}.</p>
      *
@@ -138,7 +138,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
 
     /**
      * {@code true} if the {@linkplain CoordinateReferenceSystem Coordinate Reference System} being
-     * tested is a polar CRS. Such CRS have axis orientation like <cite>"South along 90°E"</cite>
+     * tested is a polar CRS. Such CRS have axis orientation like <q>South along 90°E</q>
      * instead of {@linkplain AxisDirection#EAST East} or {@linkplain AxisDirection#NORTH North}.
      *
      * <p><b>Default value:</b> {@code false}.</p>
@@ -182,8 +182,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * {@code true} if {@link #crsAuthorityFactory} and {@link #csAuthorityFactory} supports the
      * creation of coordinate system with (<var>y</var>,<var>x</var>) axis order. If this field is
      * set to {@code false}, then the tests that would normally expect (<var>y</var>,<var>x</var>)
-     * axis order or <cite>South Oriented</cite> CRS will rather use the (<var>x</var>,<var>y</var>)
-     * axis order and <cite>North Oriented</cite> CRS in their test.
+     * axis order or <i>South Oriented</i> CRS will rather use the (<var>x</var>,<var>y</var>)
+     * axis order and <i>North Oriented</i> CRS in their test.
      *
      * @since 3.1
      */
