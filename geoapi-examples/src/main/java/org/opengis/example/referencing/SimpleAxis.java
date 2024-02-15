@@ -153,11 +153,9 @@ public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSyst
             final AxisDirection direction, final Unit<?> unit)
     {
         super(authority, name);
-        Objects.requireNonNull(direction);
-        Objects.requireNonNull(unit);
         this.abbreviation = abbreviation;
-        this.direction    = direction;
-        this.unit         = unit;
+        this.direction    = Objects.requireNonNull(direction);
+        this.unit         = Objects.requireNonNull(unit);
     }
 
     /**

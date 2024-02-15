@@ -38,6 +38,7 @@ public class SimpleMatrix extends GMatrix implements Matrix {
      *
      * @param matrix  the matrix to copy.
      */
+    @SuppressWarnings("this-escape")
     public SimpleMatrix(final Matrix matrix) {
         super(matrix.getNumRow(), matrix.getNumCol());
         for (int j=super.getNumRow(); --j>=0;) {

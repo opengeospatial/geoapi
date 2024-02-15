@@ -98,10 +98,10 @@ public strictfp class NameTest extends TestCase {
      *
      * @param factory  the factory to be used for creation of instances to be tested.
      */
+    @SuppressWarnings("this-escape")
     public NameTest(final NameFactory factory) {
         super(factory);
         this.factory = factory;
-        @SuppressWarnings("unchecked")
         final boolean[] isEnabled = getEnabledFlags(
                 Configuration.Key.isMultiLocaleSupported,
                 Configuration.Key.isMixedNameSyntaxSupported);

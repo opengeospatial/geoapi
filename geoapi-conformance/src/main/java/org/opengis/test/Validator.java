@@ -120,8 +120,7 @@ public abstract class Validator {
      * @param packageName  the name of the package containing the classes to be validated.
      */
     protected Validator(final ValidatorContainer container, final String packageName) {
-        Objects.requireNonNull(container, "ValidatorContainer shall not be null.");
-        this.container = container;
+        this.container = Objects.requireNonNull(container, "ValidatorContainer shall not be null.");
         this.logger = Logger.getLogger(packageName);
     }
 

@@ -215,6 +215,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * @param csFactory     factory for creating {@link CoordinateSystem} instances.
      * @param datumFactory  factory for creating {@link Datum} instances.
      */
+    @SuppressWarnings("this-escape")
     public AuthorityFactoryTest(final CRSAuthorityFactory crsFactory,
             final CSAuthorityFactory csFactory, final DatumAuthorityFactory datumFactory)
     {

@@ -211,7 +211,7 @@ public class GeometryValidator extends Validator {
                     "DirectPosition: coordinate array length shall be equal to the dimension.");
             for (int i=0; i<dimension; i++) {
                 assertEquals(coordinates[i], object.getOrdinate(i),     // No tolerance - we want exact match.
-                        "DirectPosition: getOrdinate(i) shall be the same than coordinate[i].");
+                        "DirectPosition: getOrdinate(i) shall be the same as coordinate[i].");
             }
         }
         /*

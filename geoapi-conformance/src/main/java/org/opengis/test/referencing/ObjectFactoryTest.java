@@ -232,20 +232,6 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
     }
 
     /**
-     * Tests the creation of a projected CRS with vertical height.
-     *
-     * @throws FactoryException if a factory fails to create a referencing object.
-     *
-     * @deprecated Renamed {@link #testProjectedWithGeoidalHeight()} for making clearer that this is not
-     *             a projected CRS associated to a 3D coordinate system.
-     */
-    @Test
-    @Deprecated
-    public void testProjected3D() throws FactoryException {
-        testProjectedWithGeoidalHeight();
-    }
-
-    /**
      * Tests the creation of a compound CRS made of a projected CRS with a gravity-related height.
      *
      * @throws FactoryException if a factory fails to create a referencing object.

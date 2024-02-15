@@ -61,8 +61,7 @@ public class SimpleCitation implements Citation, InternationalString {
      * @param title  the citation title to be returned indirectly by {@link #getTitle()}.
      */
     public SimpleCitation(final String title) {
-        Objects.requireNonNull(title);
-        this.title = title;
+        this.title = Objects.requireNonNull(title);
     }
 
     /**
