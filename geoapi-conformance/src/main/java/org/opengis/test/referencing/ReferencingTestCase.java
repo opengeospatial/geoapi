@@ -52,7 +52,7 @@ import org.opentest4j.AssertionFailedError;
 
 import static java.lang.Double.isNaN;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.opengis.test.Assert.assertUnicodeIdentifierEquals;
+import static org.opengis.test.Assertions.assertUnicodeIdentifierEquals;
 
 
 /**
@@ -131,7 +131,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      *       <li>Only the value returned by {@link Identifier#getCode()} is verified.
      *           The code space, authority and version are ignored.</li>
      *       <li>Only the characters that are valid for Unicode identifiers are compared (ignoring case), as documented in
-     *           {@link org.opengis.test.Assert#assertUnicodeIdentifierEquals Assert.assertUnicodeIdentifierEquals(…)}.</li>
+     *           {@link org.opengis.test.Assertions#assertUnicodeIdentifierEquals Assertions.assertUnicodeIdentifierEquals(…)}.</li>
      *     </ul>
      *   </li>
      *   <li>For {@link IdentifiedObject#getIdentifiers()}:
@@ -155,7 +155,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
     protected void verifyIdentification(final IdentifiedObject object, final String name, final String identifier) {
         if (object != null) {
             if (name != null) {
-                assertUnicodeIdentifierEquals("getName().getCode()", name, Utilities.getName(object), true);
+                assertUnicodeIdentifierEquals(name, Utilities.getName(object), true, "getName().getCode()");
             }
             if (identifier != null) {
                 for (final Identifier id : object.getIdentifiers()) {
@@ -202,8 +202,8 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
     {
         if (ellipsoid != null) {
             if (name != null) {
-                assertUnicodeIdentifierEquals("Ellipsoid.getName().getCode()",
-                        name, Utilities.getName(ellipsoid), true);
+                assertUnicodeIdentifierEquals(name, Utilities.getName(ellipsoid), true,
+                        "Ellipsoid.getName().getCode()");
             }
             final Unit<Length> actualUnit = ellipsoid.getAxisUnit();
             assertNotNull(actualUnit, "Ellipsoid.getAxisUnit()");
@@ -247,8 +247,8 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
     {
         if (primeMeridian != null) {
             if (name != null) {
-                assertUnicodeIdentifierEquals("PrimeMeridian.getName().getCode()",
-                        name, Utilities.getName(primeMeridian), true);
+                assertUnicodeIdentifierEquals(name, Utilities.getName(primeMeridian), true,
+                        "PrimeMeridian.getName().getCode()");
             }
             final Unit<Angle> actualUnit = primeMeridian.getAngularUnit();
             assertNotNull(actualUnit, "PrimeMeridian.getAngularUnit()");

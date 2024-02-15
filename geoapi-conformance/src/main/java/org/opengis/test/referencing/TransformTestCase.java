@@ -37,7 +37,7 @@ import org.opengis.test.TestCase;
 
 import static java.lang.StrictMath.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.opengis.test.Assert.assertStrictlyPositive;
+import static org.opengis.test.Assertions.assertStrictlyPositive;
 
 
 /**
@@ -408,8 +408,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
         assertNotNull(transform, "TransformTestCase.transform shall be assigned a value.");
         final int sourceDimension = transform.getSourceDimensions();
         final int targetDimension = transform.getTargetDimensions();
-        assertStrictlyPositive("Source dimension shall be positive.", sourceDimension);
-        assertStrictlyPositive("Target dimension shall be positive.", targetDimension);
+        assertStrictlyPositive(sourceDimension, "Source dimension shall be positive.");
+        assertStrictlyPositive(targetDimension, "Target dimension shall be positive.");
         final MathTransform inverse;
         if (isInverseTransformSupported) {
             final Configuration.Key<Boolean> oldTip = configurationTip;
@@ -499,8 +499,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
         assertNotNull(transform, "TransformTestCase.transform shall be assigned a value.");
         final int sourceDimension = transform.getSourceDimensions();
         final int targetDimension = transform.getTargetDimensions();
-        assertStrictlyPositive("Source dimension shall be positive.", sourceDimension);
-        assertStrictlyPositive("Target dimension shall be positive.", targetDimension);
+        assertStrictlyPositive(sourceDimension, "Source dimension shall be positive.");
+        assertStrictlyPositive(targetDimension, "Target dimension shall be positive.");
         final MathTransform inverse = transform.inverse();
         assertNotNull(inverse, "MathTransform.inverse() shall not return null.");
         assertEquals(targetDimension, inverse.getSourceDimensions(),
@@ -1257,7 +1257,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @throws DerivativeFailure if at least one matrix element is not equal to the expected value.
      *
      * @see #verifyDerivative(double[])
-     * @see org.opengis.test.Assert#assertMatrixEquals(String, Matrix, Matrix, double)
+     * @see org.opengis.test.Assertions#assertMatrixEquals(Matrix, Matrix, double, String)
      *
      * @since 3.1
      */

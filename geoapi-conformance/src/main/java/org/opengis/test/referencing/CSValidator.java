@@ -23,9 +23,9 @@ import org.opengis.referencing.cs.*;
 import org.opengis.test.ValidatorContainer;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.opengis.test.Assert.assertBetween;
-import static org.opengis.test.Assert.assertValidRange;
-import static org.opengis.test.Assert.assertStrictlyPositive;
+import static org.opengis.test.Assertions.assertBetween;
+import static org.opengis.test.Assertions.assertValidRange;
+import static org.opengis.test.Assertions.assertStrictlyPositive;
 import static org.opengis.test.referencing.Utilities.getAxisDirections;
 
 
@@ -151,8 +151,8 @@ public class CSValidator extends ReferencingValidator {
         validateIdentifiedObject(object);
         mandatory("CoordinateSystemAxis: abbreviation is mandatory.", object.getAbbreviation());
         mandatory("CoordinateSystemAxis: unit is mandatory.", object.getUnit());
-        assertValidRange("CoordinateSystemAxis: expected maximum >= minimum.",
-                object.getMinimumValue(), object.getMaximumValue());
+        assertValidRange(object.getMinimumValue(), object.getMaximumValue(),
+                "CoordinateSystemAxis: expected maximum >= minimum.");
     }
 
     /**
@@ -187,7 +187,7 @@ public class CSValidator extends ReferencingValidator {
         validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
-        assertBetween("EllipsoidalCS: wrong number of dimensions.", 2, 3, dimension);
+        assertBetween(2, 3, dimension, "EllipsoidalCS: wrong number of dimensions.");
     }
 
     /**
@@ -292,7 +292,7 @@ public class CSValidator extends ReferencingValidator {
         validateIdentifiedObject(object);
         validateAxes(object);
         final int dimension = object.getDimension();
-        assertBetween("UserDefinedCS: wrong number of dimensions.", 2, 3, dimension);
+        assertBetween(2, 3, dimension, "UserDefinedCS: wrong number of dimensions.");
     }
 
     /**
@@ -304,7 +304,7 @@ public class CSValidator extends ReferencingValidator {
      */
     private void validateAxes(final CoordinateSystem object) {
         final int dimension = object.getDimension();
-        assertStrictlyPositive("CoordinateSystem: dimension must be greater than zero.", dimension);
+        assertStrictlyPositive(dimension, "CoordinateSystem: dimension must be greater than zero.");
         for (int i=0; i<dimension; i++) {
             final CoordinateSystemAxis axis = object.getAxis(i);
             mandatory("CoordinateSystem: axis cannot be null.", axis);

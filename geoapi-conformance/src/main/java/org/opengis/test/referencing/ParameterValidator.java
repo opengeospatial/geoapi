@@ -23,10 +23,10 @@ import java.util.List;
 import org.opengis.parameter.*;
 import org.opengis.test.ValidatorContainer;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.opengis.test.Assert.assertBetween;
-import static org.opengis.test.Assert.assertPositive;
-import static org.opengis.test.Assert.assertContains;
-import static org.opengis.test.Assert.assertValidRange;
+import static org.opengis.test.Assertions.assertBetween;
+import static org.opengis.test.Assertions.assertPositive;
+import static org.opengis.test.Assertions.assertContains;
+import static org.opengis.test.Assertions.assertValidRange;
 
 
 /**
@@ -120,13 +120,13 @@ public class ParameterValidator extends ReferencingValidator {
         if (max != null) {
             assertInstanceOf(valueClass, max, "ParameterDescriptor: getMaximumValue() returns unexpected value.");
         }
-        assertValidRange("ParameterDescriptor: inconsistent minimum and maximum values.", min, max);
+        assertValidRange(min, max, "ParameterDescriptor: inconsistent minimum and maximum values.");
         final T def = object.getDefaultValue();
         if (def != null) {
             assertInstanceOf(valueClass, def, "ParameterDescriptor: getDefaultValue() returns unexpected value.");
-            assertBetween("ParameterDescriptor: getDefaultValue() out of range.", min, max, def);
+            assertBetween(min, max, def, "ParameterDescriptor: getDefaultValue() out of range.");
         }
-        assertBetween("ParameterDescriptor: getMinimumOccurs() shall returns 0 or 1.", 0, 1, object.getMinimumOccurs());
+        assertBetween(0, 1, object.getMinimumOccurs(), "ParameterDescriptor: getMinimumOccurs() shall returns 0 or 1.");
         assertEquals(1, object.getMaximumOccurs(), "ParameterDescriptor: getMaximumOccurs() shall returns exactly 1.");
     }
 
@@ -158,9 +158,9 @@ public class ParameterValidator extends ReferencingValidator {
             }
         }
         final int minOccurs = object.getMinimumOccurs();
-        assertPositive("ParameterDescriptor: getMinimumOccurs() cannot be negative.", minOccurs);
-        assertValidRange("ParameterDescriptor: getMaximumOccurs() gives inconsistent range.",
-                minOccurs, object.getMaximumOccurs());
+        assertPositive(minOccurs, "ParameterDescriptor: getMinimumOccurs() cannot be negative.");
+        assertValidRange(minOccurs, object.getMaximumOccurs(),
+                "ParameterDescriptor: getMaximumOccurs() gives inconsistent range.");
     }
 
     /**
@@ -184,11 +184,10 @@ public class ParameterValidator extends ReferencingValidator {
                 final Set<T> validValues = descriptor.getValidValues();
                 if (validValues != null) {
                     validate(validValues);
-                    assertContains("ParameterValue: getValue() not a member of getValidValues() set.",
-                            validValues, value);
+                    assertContains(validValues, value, "ParameterValue: getValue() not a member of getValidValues() set.");
                 }
-                assertBetween("ParameterValue: getValue() is out of bounds.",
-                        descriptor.getMinimumValue(), descriptor.getMaximumValue(), value);
+                assertBetween(descriptor.getMinimumValue(), descriptor.getMaximumValue(), value,
+                        "ParameterValue: getValue() is out of bounds.");
             }
         }
     }

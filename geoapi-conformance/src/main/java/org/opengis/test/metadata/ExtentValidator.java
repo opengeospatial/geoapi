@@ -23,7 +23,7 @@ import org.opengis.geometry.Geometry;
 import org.opengis.test.ValidatorContainer;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.opengis.test.Assert.assertBetween;
+import static org.opengis.test.Assertions.assertBetween;
 
 
 /**
@@ -108,10 +108,10 @@ public class ExtentValidator extends MetadataValidator {
         final double east  = object.getEastBoundLongitude();
         final double south = object.getSouthBoundLatitude();
         final double north = object.getNorthBoundLatitude();
-        assertBetween("GeographicBoundingBox: illegal west bound.",  -180, +180, west);
-        assertBetween("GeographicBoundingBox: illegal east bound.",  -180, +180, east);
-        assertBetween("GeographicBoundingBox: illegal south bound.", -90,   +90, south);
-        assertBetween("GeographicBoundingBox: illegal north bound.", -90,   +90, north);
+        assertBetween(-180, +180, west, "GeographicBoundingBox: illegal west bound.");
+        assertBetween(-180, +180, east, "GeographicBoundingBox: illegal east bound.");
+        assertBetween(-90,   +90, south, "GeographicBoundingBox: illegal south bound.");
+        assertBetween(-90,   +90, north, "GeographicBoundingBox: illegal north bound.");
         assertFalse(south > north, "GeographicBoundingBox: invalid range of latitudes.");       // Accept NaN.
         /*
          * Do not require west <= east, as this condition is not specified in ISO 19115.

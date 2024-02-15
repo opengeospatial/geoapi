@@ -41,10 +41,10 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.2
+ * @since   3.1
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
-public final strictfp class Assert {
+public final strictfp class Assertions {
     /**
      * The keyword for unrestricted value in {@link String} arguments.
      */
@@ -53,7 +53,7 @@ public final strictfp class Assert {
     /**
      * Do not allow instantiation of this class.
      */
-    private Assert() {
+    private Assertions() {
     }
 
     /**
@@ -102,41 +102,12 @@ public final strictfp class Assert {
     }
 
     /**
-     * Asserts that the given value is an instance of the given class. No tests are performed if
-     * the type is {@code null}. If the type is not-null but the value is null, this is considered
-     * as a failure.
-     *
-     * @param message       header of the exception message in case of failure, or {@code null} if none.
-     * @param expectedType  the expected parent class of the value, or {@code null} if unrestricted.
-     * @param value         the value to test, or {@code null} (which is a failure).
-     *
-     * @deprecated Replaced by {@code org.junit.jupiter.api.Assertions.assertInstanceOf(…)}.
-     */
-    @Deprecated
-    public static void assertInstanceOf(final String message, final Class<?> expectedType, final Object value) {
-        if (expectedType != null && !expectedType.isInstance(value)) {
-            if (value == null) {
-                fail(nonNull(message) + "Value is null.");
-            } else {
-                String expectedName = expectedType.getSimpleName();
-                String actualName = value.getClass().getSimpleName();
-                if (expectedName.equals(actualName)) {
-                    expectedName = expectedType.getCanonicalName();
-                    actualName = value.getClass().getCanonicalName();
-                }
-                fail(nonNull(message) + "Value \"" + value + "\" is of type " + actualName +
-                        " while the expected type was " + expectedName + " or a subtype.");
-            }
-        }
-    }
-
-    /**
      * Asserts that the given integer value is positive, including zero.
      *
-     * @param message  header of the exception message in case of failure, or {@code null} if none.
      * @param value    the value to test.
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
      */
-    public static void assertPositive(final String message, final int value) {
+    public static void assertPositive(final int value, final String message) {
         if (value < 0) {
             fail(nonNull(message) + "Value is " + value + '.');
         }
@@ -145,10 +116,10 @@ public final strictfp class Assert {
     /**
      * Asserts that the given integer value is strictly positive, excluding zero.
      *
-     * @param message  header of the exception message in case of failure, or {@code null} if none.
      * @param value    the value to test.
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
      */
-    public static void assertStrictlyPositive(final String message, final int value) {
+    public static void assertStrictlyPositive(final int value, final String message) {
         if (value <= 0) {
             fail(nonNull(message) + "Value is " + value + '.');
         }
@@ -160,12 +131,12 @@ public final strictfp class Assert {
      * maximum value.
      *
      * @param <T>      the type of values being compared.
-     * @param message  header of the exception message in case of failure, or {@code null} if none.
      * @param minimum  the lower bound of the range to test, or {@code null} if unbounded.
      * @param maximum  the upper bound of the range to test, or {@code null} if unbounded.
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
      */
     @SuppressWarnings("unchecked")
-    public static <T> void assertValidRange(final String message, final Comparable<T> minimum, final Comparable<T> maximum) {
+    public static <T> void assertValidRange(final Comparable<T> minimum, final Comparable<T> maximum, final String message) {
         if (minimum != null && maximum != null) {
             if (minimum.compareTo((T) maximum) > 0) {
                 fail(nonNull(message) + "Range found is [" + minimum + " ... " + maximum + "].");
@@ -176,11 +147,11 @@ public final strictfp class Assert {
     /**
      * Asserts that the given minimum is smaller or equals to the given maximum.
      *
-     * @param message  header of the exception message in case of failure, or {@code null} if none.
      * @param minimum  the lower bound of the range to test.
      * @param maximum  the upper bound of the range to test.
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
      */
-    public static void assertValidRange(final String message, final int minimum, final int maximum) {
+    public static void assertValidRange(final int minimum, final int maximum, final String message) {
         if (minimum > maximum) {
             fail(nonNull(message) + "Range found is [" + minimum + " ... " + maximum + "].");
         }
@@ -190,11 +161,11 @@ public final strictfp class Assert {
      * Asserts that the given minimum is smaller or equals to the given maximum.
      * If one bound is or both bounds are {@linkplain Double#NaN NaN}, then the test fails.
      *
-     * @param message  header of the exception message in case of failure, or {@code null} if none.
      * @param minimum  the lower bound of the range to test.
      * @param maximum  the upper bound of the range to test.
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
      */
-    public static void assertValidRange(final String message, final double minimum, final double maximum) {
+    public static void assertValidRange(final double minimum, final double maximum, final String message) {
         if (!(minimum <= maximum)) {            // Use `!` for catching NaN.
             fail(nonNull(message) + "Range found is [" + minimum + " ... " + maximum + "].");
         }
@@ -205,12 +176,12 @@ public final strictfp class Assert {
      * test the validity of the given [{@code minimum} … {@code maximum}] range.
      *
      * @param <T>      the type of values being compared.
-     * @param message  header of the exception message in case of failure, or {@code null} if none.
      * @param minimum  the lower bound of the range (inclusive), or {@code null} if unbounded.
      * @param maximum  the upper bound of the range (inclusive), or {@code null} if unbounded.
      * @param value    the value to test, or {@code null} (which is a failure).
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
      */
-    public static <T> void assertBetween(final String message, final Comparable<T> minimum, final Comparable<T> maximum, T value) {
+    public static <T> void assertBetween(final Comparable<T> minimum, final Comparable<T> maximum, T value, final String message) {
         if (minimum != null) {
             if (minimum.compareTo(value) > 0) {
                 fail(nonNull(message) + "Value " + value + " is less than " + minimum + '.');
@@ -227,12 +198,12 @@ public final strictfp class Assert {
      * Asserts that the given value is inside the given range. This method does <strong>not</strong>
      * test the validity of the given [{@code minimum} … {@code maximum}] range.
      *
-     * @param message  header of the exception message in case of failure, or {@code null} if none.
      * @param minimum  the lower bound of the range, inclusive.
      * @param maximum  the upper bound of the range, inclusive.
      * @param value    the value to test.
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
      */
-    public static void assertBetween(final String message, final int minimum, final int maximum, final int value) {
+    public static void assertBetween(final int minimum, final int maximum, final int value, final String message) {
         if (value < minimum) {
             fail(nonNull(message) + "Value " + value + " is less than " + minimum + '.');
         }
@@ -246,12 +217,12 @@ public final strictfp class Assert {
      * {@linkplain Double#NaN NaN}, then this test passes silently. This method does <strong>not</strong>
      * test the validity of the given [{@code minimum} … {@code maximum}] range.
      *
-     * @param message  header of the exception message in case of failure, or {@code null} if none.
      * @param minimum  the lower bound of the range, inclusive.
      * @param maximum  the upper bound of the range, inclusive.
      * @param value    the value to test.
+     * @param message  header of the exception message in case of failure, or {@code null} if none.
      */
-    public static void assertBetween(final String message, final double minimum, final double maximum, final double value) {
+    public static void assertBetween(final double minimum, final double maximum, final double value, final String message) {
         if (value < minimum) {
             fail(nonNull(message) + "Value " + value + " is less than " + minimum + '.');
         }
@@ -266,11 +237,11 @@ public final strictfp class Assert {
      * empty). If the given value is null, then the test passes only if the given collection
      * contains the null element.
      *
-     * @param message     header of the exception message in case of failure, or {@code null} if none.
      * @param collection  the collection where to look for inclusion, or {@code null} if unrestricted.
      * @param value       the value to test for inclusion.
+     * @param message     header of the exception message in case of failure, or {@code null} if none.
      */
-    public static void assertContains(final String message, final Collection<?> collection, final Object value) {
+    public static void assertContains(final Collection<?> collection, final Object value, final String message) {
         if (collection != null) {
             if (!collection.contains(value)) {
                 fail(nonNull(message) + "Looked for value \"" + value + "\" in a collection of " +
@@ -286,13 +257,11 @@ public final strictfp class Assert {
      * alternate titles} rather than the main {@linkplain Citation#getTitle() title}, but this method
      * tests both for safety.
      *
-     * @param message   header of the exception message in case of failure, or {@code null} if none.
      * @param expected  the expected title or alternate title.
      * @param actual    the citation to test.
-     *
-     * @since 3.1
+     * @param message   header of the exception message in case of failure, or {@code null} if none.
      */
-    public static void assertAnyTitleEquals(final String message, final String expected, final Citation actual) {
+    public static void assertAnyTitleEquals(final String expected, final Citation actual, final String message) {
         if (isNull(expected, actual, message)) {
             return;
         }
@@ -313,39 +282,24 @@ public final strictfp class Assert {
      * If any of the above-cited properties is {@code ""##unrestricted"}, then it will not be verified.
      * This flexibility is useful in the common case where a test accepts any {@code version} value.
      *
-     * @param message    header of the exception message in case of failure, or {@code null} if none.
      * @param authority  the expected authority title or alternate title (may be {@code null}), or {@code "##unrestricted"}.
      * @param codeSpace  the expected code space (may be {@code null}), or {@code "##unrestricted"}.
      * @param version    the expected version    (may be {@code null}), or {@code "##unrestricted"}.
      * @param code       the expected code value (may be {@code null}), or {@code "##unrestricted"}.
      * @param actual     the identifier to test.
-     *
-     * @since 3.1
+     * @param message    header of the exception message in case of failure, or {@code null} if none.
      */
-    public static void assertIdentifierEquals(final String message, final String authority, final String codeSpace,
-            final String version, final String code, final Identifier actual)
+    public static void assertIdentifierEquals(final String authority, final String codeSpace, final String version,
+            final String code, final Identifier actual, final String message)
     {
         if (actual == null) {
             fail(concat(message, "Identifier is null"));
         } else {
-            if (!UNRESTRICTED.equals(authority)) assertAnyTitleEquals(message, authority, actual.getAuthority());
+            if (!UNRESTRICTED.equals(authority)) assertAnyTitleEquals(authority, actual.getAuthority(), message);
             if (!UNRESTRICTED.equals(codeSpace)) assertEquals(codeSpace, actual.getCodeSpace(), () -> concat(message, "Wrong code space"));
             if (!UNRESTRICTED.equals(version))   assertEquals(version,   actual.getVersion(),   () -> concat(message, "Wrong version"));
             if (!UNRESTRICTED.equals(code))      assertEquals(code,      actual.getCode(),      () -> concat(message, "Wrong code"));
         }
-    }
-
-    /**
-     * @deprecated Renamed {@link #assertUnicodeIdentifierEquals(String, CharSequence, CharSequence, boolean)}
-     * for avoiding confusion with the {@code Identifier} interface.
-     *
-     * @param message   header of the exception message in case of failure, or {@code null} if none.
-     * @param expected  the expected character sequence.
-     * @param value     the character sequence to compare.
-     */
-    @Deprecated
-    public static void assertIdentifierEquals(final String message, final CharSequence expected, final CharSequence value) {
-        assertUnicodeIdentifierEquals(message, expected, value, true);
     }
 
     /**
@@ -357,15 +311,13 @@ public final strictfp class Assert {
      *
      * <p><b>Examples:</b> {@code "WGS 84"} and {@code "WGS84"} as equal according this method.</p>
      *
-     * @param message     header of the exception message in case of failure, or {@code null} if none.
      * @param expected    the expected character sequence (may be {@code null}), or {@code "##unrestricted"}.
      * @param actual      the character sequence to compare, or {@code null}.
      * @param ignoreCase  {@code true} for ignoring case.
-     *
-     * @since 3.1
+     * @param message     header of the exception message in case of failure, or {@code null} if none.
      */
-    public static void assertUnicodeIdentifierEquals(final String message,
-            final CharSequence expected, final CharSequence actual, final boolean ignoreCase)
+    public static void assertUnicodeIdentifierEquals(final CharSequence expected, final CharSequence actual,
+            final boolean ignoreCase, final String message)
     {
         if (UNRESTRICTED.equals(expected) || isNull(expected, actual, message)) {
             return;
@@ -428,15 +380,22 @@ public final strictfp class Assert {
      * Asserts that all axes in the given coordinate system are pointing toward the given directions,
      * in the same order.
      *
-     * @param message   header of the exception message in case of failure, or {@code null} if none.
      * @param cs        the coordinate system to test.
      * @param expected  the expected axis directions.
-     *
-     * @since 3.1
      */
-    public static void assertAxisDirectionsEqual(final String message,
-            final CoordinateSystem cs, final AxisDirection... expected)
-    {
+    public static void assertAxisDirectionsEqual(final CoordinateSystem cs, final AxisDirection... expected) {
+        assertAxisDirectionsEqual(cs, expected, null);
+    }
+
+    /**
+     * Asserts that all axes in the given coordinate system are pointing toward the given directions,
+     * in the same order.
+     *
+     * @param cs        the coordinate system to test.
+     * @param expected  the expected axis directions.
+     * @param message   header of the exception message in case of failure, or {@code null} if none.
+     */
+    public static void assertAxisDirectionsEqual(final CoordinateSystem cs, final AxisDirection[] expected, final String message) {
         assertEquals(expected.length, cs.getDimension(), () -> concat(message, "Wrong coordinate system dimension."));
         for (int i=0; i<expected.length; i++) {
             final int ci = i;   // Because lambda expressions require final values.
@@ -448,16 +407,14 @@ public final strictfp class Assert {
     /**
      * Asserts that the given matrix is equal to the expected one, up to the given tolerance value.
      *
-     * @param message    header of the exception message in case of failure, or {@code null} if none.
      * @param expected   the expected matrix, which may be {@code null}.
      * @param actual     the matrix to compare, or {@code null}.
      * @param tolerance  the tolerance threshold.
-     *
-     * @since 3.1
+     * @param message    header of the exception message in case of failure, or {@code null} if none.
      *
      * @see org.opengis.test.referencing.TransformTestCase#assertMatrixEquals(String, Matrix, Matrix, Matrix)
      */
-    public static void assertMatrixEquals(final String message, final Matrix expected, final Matrix actual, final double tolerance) {
+    public static void assertMatrixEquals(final Matrix expected, final Matrix actual, final double tolerance, final String message) {
         if (isNull(expected, actual, message)) {
             return;
         }
@@ -493,16 +450,14 @@ public final strictfp class Assert {
      *   </ol></li>
      * </ol>
      *
-     * @param message     header of the exception message in case of failure, or {@code null} if none.
      * @param expected    the expected shape, which may be {@code null}.
      * @param actual      the actual shape, or {@code null}.
      * @param toleranceX  the tolerance threshold for <var>x</var> coordinate values.
      * @param toleranceY  the tolerance threshold for <var>y</var> coordinate values.
-     *
-     * @since 3.1
+     * @param message     header of the exception message in case of failure, or {@code null} if none.
      */
-    public static void assertShapeEquals(final String message, final Shape expected,
-            final Shape actual, final double toleranceX, final double toleranceY)
+    public static void assertShapeEquals(final Shape expected, final Shape actual,
+            final double toleranceX, final double toleranceY, final String message)
     {
         if (isNull(expected, actual, message)) {
             return;
@@ -514,7 +469,7 @@ public final strictfp class Assert {
         assertEquals(b0.getMaxX(), b1.getMaxX(), toleranceX, mismatch);
         assertEquals(b0.getMinY(), b1.getMinY(), toleranceY, mismatch);
         assertEquals(b0.getMaxY(), b1.getMaxY(), toleranceY, mismatch);
-        assertPathEquals(message, expected.getPathIterator(null), actual.getPathIterator(null), toleranceX, toleranceY);
+        assertPathEquals(expected.getPathIterator(null), actual.getPathIterator(null), toleranceX, toleranceY, message);
     }
 
     /**
@@ -536,16 +491,14 @@ public final strictfp class Assert {
      * in such case, the tester needs to invoke the {@link Shape#getPathIterator(AffineTransform, double)}
      * method himself.
      *
-     * @param message     header of the exception message in case of failure, or {@code null} if none.
      * @param expected    the expected path, which may be {@code null}.
      * @param actual      the actual path, or {@code null}.
      * @param toleranceX  the tolerance threshold for <var>x</var> coordinate values.
      * @param toleranceY  the tolerance threshold for <var>y</var> coordinate values.
-     *
-     * @since 3.1
+     * @param message     header of the exception message in case of failure, or {@code null} if none.
      */
-    public static void assertPathEquals(final String message, final PathIterator expected,
-            final PathIterator actual, final double toleranceX, final double toleranceY)
+    public static void assertPathEquals(final PathIterator expected, final PathIterator actual,
+            final double toleranceX, final double toleranceY, final String message)
     {
         if (isNull(expected, actual, message)) {
             return;
@@ -589,18 +542,16 @@ public final strictfp class Assert {
      * {@linkplain java.awt.image.ColorModel color model} or
      * {@linkplain java.awt.image.SampleModel#getDataType() datatype} to be equal.
      *
-     * @param message    header of the exception message in case of failure, or {@code null} if none.
      * @param expected   an image containing the expected values, which may be {@code null}.
      * @param actual     the actual image containing the sample values to compare, or {@code null}.
      * @param tolerance  tolerance threshold for floating point comparisons.
      *                   This threshold is ignored if both images use integer datatype.
+     * @param message    header of the exception message in case of failure, or {@code null} if none.
      *
      * @see PixelIterator#assertSampleValuesEqual(PixelIterator, double)
-     *
-     * @since 3.1
      */
-    public static void assertSampleValuesEqual(final String message, final RenderedImage expected,
-            final RenderedImage actual, final double tolerance)
+    public static void assertSampleValuesEqual(final RenderedImage expected, final RenderedImage actual,
+            final double tolerance, final String message)
     {
         if (isNull(expected, actual, message)) {
             return;

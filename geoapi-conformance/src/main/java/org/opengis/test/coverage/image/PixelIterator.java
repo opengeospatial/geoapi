@@ -47,7 +47,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *     // Do some processing with the value here...
  * }}
  *
- * @see org.opengis.test.Assert#assertSampleValuesEqual(String, RenderedImage, RenderedImage, double)
+ * @see org.opengis.test.Assertions#assertSampleValuesEqual(RenderedImage, RenderedImage, double, String)
  *
  * @author  Rémi Marechal (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

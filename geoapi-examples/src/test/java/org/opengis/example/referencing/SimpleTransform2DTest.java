@@ -16,7 +16,7 @@ import org.opengis.referencing.operation.TransformException;
 import org.opengis.test.referencing.TransformTestCase;
 import org.junit.jupiter.api.Test;
 
-import static org.opengis.test.Assert.*;
+import static org.opengis.test.Assertions.*;
 
 
 /**
@@ -83,6 +83,6 @@ public class SimpleTransform2DTest extends TransformTestCase {
         final Shape sourceShape = new RoundRectangle2D.Double(-20, -10, 100, 80, 4, 5);
         final Shape targetShape = ((MathTransform2D) transform).createTransformedShape(sourceShape);
         final Shape expectedShape = new AffineTransform(SCALE_X, 0, 0, SCALE_Y, TRANSLATE_X, TRANSLATE_Y).createTransformedShape(sourceShape);
-        assertShapeEquals(null, expectedShape, targetShape, 1E-10, 1E-10);
+        assertShapeEquals(expectedShape, targetShape, 1E-10, 1E-10, null);
     }
 }

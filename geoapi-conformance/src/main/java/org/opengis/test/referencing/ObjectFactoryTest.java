@@ -36,7 +36,7 @@ import org.opengis.test.Units;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
-import static org.opengis.test.Assert.assertAxisDirectionsEqual;
+import static org.opengis.test.Assertions.assertAxisDirectionsEqual;
 import static org.opengis.referencing.cs.AxisDirection.*;
 
 
@@ -228,7 +228,7 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
 
         assumeTrue(crsFactory != null, NO_CRS_FACTORY);
         validators.validate(crs = crsFactory.createGeocentricCRS(name("Geocentric CRS"), datum, cs));
-        assertAxisDirectionsEqual("GeocentricCRS", crs.getCoordinateSystem(), GEOCENTRIC_X, GEOCENTRIC_Z, GEOCENTRIC_Y);
+        assertAxisDirectionsEqual(crs.getCoordinateSystem(), new AxisDirection[] {GEOCENTRIC_X, GEOCENTRIC_Z, GEOCENTRIC_Y}, "GeocentricCRS");
     }
 
     /**
@@ -293,6 +293,6 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         validators.validate(baseToUTM    = copFactory .createDefiningConversion(name("Transverse_Mercator"), projectionMethod, paramUTM));
         validators.validate(projectedCRS = crsFactory.createProjectedCRS(name("WGS 84 / UTM Zone 12 (2D)"), baseCRS, baseToUTM, projectedCS));
         validators.validate(crs3D        = crsFactory.createCompoundCRS(name("3D Compound WGS 84 / UTM Zone 12"), projectedCRS, heightCRS));
-        assertAxisDirectionsEqual("CompoundCRS", crs3D.getCoordinateSystem(), NORTH, EAST, UP);
+        assertAxisDirectionsEqual(crs3D.getCoordinateSystem(), new AxisDirection[] {NORTH, EAST, UP}, "CompoundCRS");
     }
 }

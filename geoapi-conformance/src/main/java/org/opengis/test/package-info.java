@@ -46,7 +46,7 @@
  *       the above, but usually do not need to be considered unless the validation process needs to be customized.</p></li>
  *
  *   <li><p><b>Assertions</b><br>
- *       {@link org.opengis.test.Assert} provides some assertion methods.</p></li>
+ *       {@link org.opengis.test.Assertions} provides some assertion methods.</p></li>
  *
  *   <li><p><b>Configuration</b><br>
  *       {@link org.opengis.test.Configuration}, {@link org.opengis.test.CalculationType} and

@@ -94,7 +94,7 @@ public final class InterfacingTest {
             }
         }
         /*
-         * Assert that Interfacing.GEOAPI know the correct set of interfaces to exclude.
+         * Assert that Interfacing.GEOAPI knows the correct set of interfaces to exclude.
          * Tested first because other tests in this class are likely to fail if this list
          * of excluded interfaces is wrong.
          */
