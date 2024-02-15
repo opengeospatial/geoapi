@@ -111,12 +111,12 @@ loadScripts(document, 'script');</script>
 <hr>
 <div class="type-signature"><span class="modifiers">public class </span><span class="element-name type-name-label">InvalidParameterTypeException</span>
 <span class="extends-implements">extends <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/IllegalStateException.html" title="class or interface in java.lang" class="external-link">IllegalStateException</a></span></div>
-<div class="block">Thrown by <a href="ParameterValue.html" title="interface in org.opengis.parameter"><code>ParameterValue</code></a> getter methods when a value can not be casted to the
+<div class="block">Thrown by <a href="ParameterValue.html" title="interface in org.opengis.parameter"><code>ParameterValue</code></a> getter methods when a value cannot be casted to the
  requested type. For example this exception is thrown when <a href="ParameterValue.html#doubleValue()"><code>ParameterValue.doubleValue()</code></a>
  is invoked but the value is not convertible to a <code>double</code>.
 
  <blockquote><font size=-1><b>Note:</b>
-This exception is of kind <code>IllegalStateException</code> instead than
+This exception is of kind <code>IllegalStateException</code> instead of
         <code>IllegalArgumentException</code> because it is not caused by a bad argument.
         It is rather a consequence of a zero-argument method invoked in a context where
         is it not allowed.</font></blockquote></div>

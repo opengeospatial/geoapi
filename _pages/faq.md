@@ -85,7 +85,7 @@ faqs:
         We believe that both approaches are complementary. Web services are efficient ways to publish geographic
         information using existing software. But some users need to build their own solution, for example a numerical model.
         Many existing software packages provide sophisticated developer toolkits, but each toolkit has its own learning curve,
-        and one can not easily switch from one toolkit to another or mix components from different toolkits.
+        and one cannot easily switch from one toolkit to another or mix components from different toolkits.
         Using standardized interfaces, a significant part of the <abbr>API</abbr> can stay constant across different toolkits,
         thus reducing both the learning curve (especially since the interfaces are derived from published abstract UML)
         and the inter-operability pain points.
@@ -159,7 +159,7 @@ faqs:
           (also an annex in the GeoAPI specification).</li>
         <li class="my-1 text-justify">In source code, class files and javadoc using the <a href="3.0/javadoc/org.opengis.geoapi/org/opengis/annotation/UML.html">UML annotation</a>
           associated with the <a href="3.0/javadoc/org.opengis.geoapi/org/opengis/annotation/Specification.html#OGC_01009"><abbr>OGC</abbr> 01-009 specification enum</a>
-          or an other <abbr>OGC</abbr> enum.</li>
+          or another <abbr>OGC</abbr> enum.</li>
       </ul>
       <p>
         GeoAPI defines also a few convenience methods for frequently used operations
@@ -187,7 +187,7 @@ faqs:
         <abbr>API</abbr> generated from those schemas are twice bigger than the conceptual model.
       </p>
       <p>
-        We could derive the <abbr>API</abbr> from the UML in <cite>Rational Rose</cite> format instead than the XML schemas,
+        We could derive the <abbr>API</abbr> from the UML in <cite>Rational Rose</cite> format instead of the XML schemas,
         but a lot of human intervention is still essential.
         The relationship between UML and programmatic interfaces is not always straightforward.
         For example:

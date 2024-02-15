@@ -18,7 +18,7 @@ GeoAPI provides an interpretation and adaptation of these standards
 to match the expectations of Java or Python programmers.
 These standards provide GeoAPI with the richness which comes from the expertise of the specification writers.
 Clients benefit from the potential for inter-operability which comes from using a well defined, standardized data model.
-Implementers benefit from having a pre-defined set of well considered,
+Implementers benefit from having a predefined set of well considered,
 formal boundaries to modularize their development work.
 
 The GeoAPI interfaces provide a layer which separates client code, which call the API,

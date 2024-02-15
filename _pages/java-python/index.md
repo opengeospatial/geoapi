@@ -64,7 +64,7 @@ Next, verify the `build/<var>platform-and-version</var>/jpyconfig.properties` fi
 That file can optionally be moved in any directory of your choice.
 The content should be similar to below,
 with `path-to-build-result` replaced by the path to the `*.so` files under the `jpy/build` directory.
-<!-- If JPY has been installed from a release instead than built locally,
+<!-- If JPY has been installed from a release instead of built locally,
 then those `*.so` files are located in the `/usr/…/site-packages/` directory. -->
 The `/usr/lib/` paths also depend on the system (`lib` may be `lib64` or something much longer on MacOS).
 
@@ -99,7 +99,7 @@ mvn install -Djpy.config=<var>path-to-config</var>/jpyconfig.properties
 ```
 
 Build GeoAPI 4.0-SNAPSHOT. This step should not be required anymore after GeoAPI 4.0 release.
-The GeoAPI directory can be anywhere; the example below puts it at the same level than the `jpy` directory.
+The GeoAPI directory can be anywhere; the example below puts it at the same level as the `jpy` directory.
 
 ### Build GeoAPI
 

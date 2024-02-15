@@ -64,6 +64,6 @@ Validators are thread-safe except for the configuration phase
 (which is optional and usually executed only once before the tests begin).
 Validators test the logical consistency of their argument.
 For example if given a chain of concatenated transforms,
-`validate(object)` will ensure that the source dimension of a transformation step is equals to the target dimension of the previous step.
+`validate(object)` will ensure that the source dimension of a transformation step is equal to the target dimension of the previous step.
 Dependencies are traversed recursively,
 for example validating a `CoordinateReferenceSystem` object implies validating its `CoordinateSystem` and `Datum` attributes.

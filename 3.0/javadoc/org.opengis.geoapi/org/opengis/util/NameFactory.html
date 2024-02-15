@@ -218,7 +218,7 @@ Added in order to provide constructors for <code>GenericName</code> and related 
      <td nowrap>&nbsp;The separator to insert between the namespace and the
      <a href="GenericName.html#head()">head</a>. For HTTP namespace, it is <code>"://"</code>.
      For URN namespace, it is typically <code>":"</code>. If this entry is omitted, then
-     the default shall be the same value than the <code>"separator"</code> entry.</td>
+     the default shall be the same value as the <code>"separator"</code> entry.</td>
    </tr>
  </table></div>
 <dl class="notes">
@@ -239,7 +239,7 @@ Added in order to provide constructors for <code>GenericName</code> and related 
 <div class="member-signature"><span class="return-type"><a href="TypeName.html" title="interface in org.opengis.util">TypeName</a></span>&nbsp;<span class="element-name">createTypeName</span><wbr><span class="parameters">(<a href="NameSpace.html" title="interface in org.opengis.util">NameSpace</a>&nbsp;scope,
  <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;name)</span></div>
 <div class="block">Creates a type name from the given character sequence. The character sequence shall
- complies to the same restriction than <a href="#createLocalName(org.opengis.util.NameSpace,java.lang.CharSequence)"><code>createLocalName</code></a>.</div>
+ complies to the same restriction as <a href="#createLocalName(org.opengis.util.NameSpace,java.lang.CharSequence)"><code>createLocalName</code></a>.</div>
 <dl class="notes">
 <dt>Parameters:</dt>
 <dd><code>scope</code> - The <a href="GenericName.html#scope()">scope</a> of the type name to be created,
@@ -258,7 +258,7 @@ Added in order to provide constructors for <code>GenericName</code> and related 
 <div class="member-signature"><span class="return-type"><a href="LocalName.html" title="interface in org.opengis.util">LocalName</a></span>&nbsp;<span class="element-name">createLocalName</span><wbr><span class="parameters">(<a href="NameSpace.html" title="interface in org.opengis.util">NameSpace</a>&nbsp;scope,
  <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>&nbsp;name)</span></div>
 <div class="block">Creates a local name from the given character sequence. The character sequence can be either
- a <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link"><code>String</code></a> or an <a href="InternationalString.html" title="interface in org.opengis.util"><code>InternationalString</code></a> instance. In the later case, implementations
+ a <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link"><code>String</code></a> or an <a href="InternationalString.html" title="interface in org.opengis.util"><code>InternationalString</code></a> instance. In the latter case, implementations
  can use an arbitrary <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Locale.html" title="class or interface in java.util" class="external-link">locale</a> (typically <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Locale.html#ENGLISH" title="class or interface in java.util" class="external-link"><code>ENGLISH</code></a>,
  but not necessarily) for the unlocalized string to be returned by <a href="LocalName.html#toString()"><code>LocalName.toString()</code></a>.</div>
 <dl class="notes">
@@ -279,7 +279,7 @@ Added in order to provide constructors for <code>GenericName</code> and related 
 <div class="member-signature"><span class="return-type"><a href="GenericName.html" title="interface in org.opengis.util">GenericName</a></span>&nbsp;<span class="element-name">createGenericName</span><wbr><span class="parameters">(<a href="NameSpace.html" title="interface in org.opengis.util">NameSpace</a>&nbsp;scope,
  <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/CharSequence.html" title="class or interface in java.lang" class="external-link">CharSequence</a>...&nbsp;parsedNames)</span></div>
 <div class="block">Creates a local or scoped name from an array of parsed names. The array elements can be either
- <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link"><code>String</code></a> or <a href="InternationalString.html" title="interface in org.opengis.util"><code>InternationalString</code></a> instances. In the later case, implementations
+ <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link"><code>String</code></a> or <a href="InternationalString.html" title="interface in org.opengis.util"><code>InternationalString</code></a> instances. In the latter case, implementations
  can use an arbitrary <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Locale.html" title="class or interface in java.util" class="external-link">locale</a> (typically <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/util/Locale.html#ENGLISH" title="class or interface in java.util" class="external-link"><code>ENGLISH</code></a>,
  but not necessarily) for the unlocalized string to be returned by <a href="GenericName.html#toString()"><code>GenericName.toString()</code></a>.
  <p>

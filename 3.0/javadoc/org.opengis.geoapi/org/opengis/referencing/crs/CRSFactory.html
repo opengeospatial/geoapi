@@ -443,7 +443,7 @@ extends <a href="../ObjectFactory.html" title="interface in org.opengis.referenc
  affected axes are in degrees. But the transform should not rotate this coordinate
  system in any other plane.
  <p>
- The <code>conversionFromBase</code> shall contains the <a href="../operation/SingleOperation.html#getParameterValues()">parameter values</a> required for the conversion. It may or may not contain the corresponding
+ The <code>conversionFromBase</code> shall contain the <a href="../operation/SingleOperation.html#getParameterValues()">parameter values</a> required for the conversion. It may or may not contain the corresponding
  "<a href="../operation/CoordinateOperation.html#getMathTransform()">base to derived</a>" transform, at user's choice. If
  a transform is provided, this method may or may not use it at implementation choice.
  Otherwise it shall creates the transform from the parameters.
@@ -491,7 +491,7 @@ extends <a href="../ObjectFactory.html" title="interface in org.opengis.referenc
  <a href="../cs/CartesianCS.html" title="interface in org.opengis.referencing.cs">CartesianCS</a>&nbsp;derivedCS)</span>
                          throws <span class="exceptions"><a href="../../util/FactoryException.html" title="class in org.opengis.util">FactoryException</a></span></div>
 <div class="block">Creates a projected coordinate reference system from a defining conversion.
- The <code>conversionFromBase</code> shall contains the <a href="../operation/SingleOperation.html#getParameterValues()">parameter values</a> required for the projection. It may or may not contain the corresponding
+ The <code>conversionFromBase</code> shall contain the <a href="../operation/SingleOperation.html#getParameterValues()">parameter values</a> required for the projection. It may or may not contain the corresponding
  "<a href="../operation/CoordinateOperation.html#getMathTransform()">base to derived</a>" transform, at user's choice. If
  a transform is provided, this method may or may not use it at implementation choice.
  Otherwise it shall creates the transform from the parameters.

@@ -298,7 +298,7 @@ loadScripts(document, 'script');</script>
 <dt>Throws:</dt>
 <dd><code><a href="../../geometry/MismatchedDimensionException.html" title="class in org.opengis.geometry">MismatchedDimensionException</a></code> - if <code>ptSrc</code> or
          <code>ptDst</code> doesn't have the expected dimension.</dd>
-<dd><code><a href="TransformException.html" title="class in org.opengis.referencing.operation">TransformException</a></code> - if the point can't be transformed.</dd>
+<dd><code><a href="TransformException.html" title="class in org.opengis.referencing.operation">TransformException</a></code> - if the point cannot be transformed.</dd>
 </dl>
 </section>
 </li>
@@ -326,15 +326,15 @@ loadScripts(document, 'script');</script>
 <dd><code>srcPts</code> - the array containing the source point coordinates.</dd>
 <dd><code>srcOff</code> - the offset to the first point to be transformed in the source array.</dd>
 <dd><code>dstPts</code> - the array into which the transformed point coordinates are returned.
-                 May be the same than <code>srcPts</code>.</dd>
+                 May be the same as <code>srcPts</code>.</dd>
 <dd><code>dstOff</code> - the offset to the location of the first transformed point that is
                 stored in the destination array.</dd>
 <dd><code>numPts</code> - the number of point objects to be transformed.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="TransformException.html" title="class in org.opengis.referencing.operation">TransformException</a></code> - if a point can't be transformed. Some implementations will stop
+<dd><code><a href="TransformException.html" title="class in org.opengis.referencing.operation">TransformException</a></code> - if a point cannot be transformed. Some implementations will stop
          at the first failure, wile some other implementations will fill the untransformable
          points with <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Double.html#NaN" title="class or interface in java.lang" class="external-link">NaN</a> values, continue and throw the exception
-         only at end. Implementations that fall in the later case should set the <a href="TransformException.html#getLastCompletedTransform()">last completed transform</a> to <code>this</code>.</dd>
+         only at end. Implementations that fall in the latter case should set the <a href="TransformException.html#getLastCompletedTransform()">last completed transform</a> to <code>this</code>.</dd>
 </dl>
 </section>
 </li>
@@ -360,15 +360,15 @@ loadScripts(document, 'script');</script>
 <dd><code>srcPts</code> - the array containing the source point coordinates.</dd>
 <dd><code>srcOff</code> - the offset to the first point to be transformed in the source array.</dd>
 <dd><code>dstPts</code> - the array into which the transformed point coordinates are returned.
-                May be the same than <code>srcPts</code>.</dd>
+                May be the same as <code>srcPts</code>.</dd>
 <dd><code>dstOff</code> - the offset to the location of the first transformed point that is
                 stored in the destination array.</dd>
 <dd><code>numPts</code> - the number of point objects to be transformed.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="TransformException.html" title="class in org.opengis.referencing.operation">TransformException</a></code> - if a point can't be transformed. Some implementations will stop
+<dd><code><a href="TransformException.html" title="class in org.opengis.referencing.operation">TransformException</a></code> - if a point cannot be transformed. Some implementations will stop
          at the first failure, wile some other implementations will fill the untransformable
          points with <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Double.html#NaN" title="class or interface in java.lang" class="external-link">NaN</a> values, continue and throw the exception
-         only at end. Implementations that fall in the later case should set the <a href="TransformException.html#getLastCompletedTransform()">last completed transform</a> to <code>this</code>.</dd>
+         only at end. Implementations that fall in the latter case should set the <a href="TransformException.html#getLastCompletedTransform()">last completed transform</a> to <code>this</code>.</dd>
 </dl>
 </section>
 </li>
@@ -398,10 +398,10 @@ loadScripts(document, 'script');</script>
                 stored in the destination array.</dd>
 <dd><code>numPts</code> - the number of point objects to be transformed.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="TransformException.html" title="class in org.opengis.referencing.operation">TransformException</a></code> - if a point can't be transformed. Some implementations will stop
+<dd><code><a href="TransformException.html" title="class in org.opengis.referencing.operation">TransformException</a></code> - if a point cannot be transformed. Some implementations will stop
          at the first failure, wile some other implementations will fill the untransformable
          points with <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Double.html#NaN" title="class or interface in java.lang" class="external-link">NaN</a> values, continue and throw the exception
-         only at end. Implementations that fall in the later case should set the <a href="TransformException.html#getLastCompletedTransform()">last completed transform</a> to <code>this</code>.</dd>
+         only at end. Implementations that fall in the latter case should set the <a href="TransformException.html#getLastCompletedTransform()">last completed transform</a> to <code>this</code>.</dd>
 <dt>Since:</dt>
 <dd>2.2</dd>
 </dl>
@@ -433,10 +433,10 @@ loadScripts(document, 'script');</script>
                 stored in the destination array.</dd>
 <dd><code>numPts</code> - the number of point objects to be transformed.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="TransformException.html" title="class in org.opengis.referencing.operation">TransformException</a></code> - if a point can't be transformed. Some implementations will stop
+<dd><code><a href="TransformException.html" title="class in org.opengis.referencing.operation">TransformException</a></code> - if a point cannot be transformed. Some implementations will stop
          at the first failure, wile some other implementations will fill the untransformable
          points with <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/Double.html#NaN" title="class or interface in java.lang" class="external-link">NaN</a> values, continue and throw the exception
-         only at end. Implementations that fall in the later case should set the <a href="TransformException.html#getLastCompletedTransform()">last completed transform</a> to <code>this</code>.</dd>
+         only at end. Implementations that fall in the latter case should set the <a href="TransformException.html#getLastCompletedTransform()">last completed transform</a> to <code>this</code>.</dd>
 <dt>Since:</dt>
 <dd>2.2</dd>
 </dl>
@@ -498,7 +498,7 @@ loadScripts(document, 'script');</script>
          and <code>point</code> is <code>null</code>.</dd>
 <dd><code><a href="../../geometry/MismatchedDimensionException.html" title="class in org.opengis.geometry">MismatchedDimensionException</a></code> - if <code>point</code> doesn't have
          the expected dimension.</dd>
-<dd><code><a href="TransformException.html" title="class in org.opengis.referencing.operation">TransformException</a></code> - if the derivative can't be evaluated at the
+<dd><code><a href="TransformException.html" title="class in org.opengis.referencing.operation">TransformException</a></code> - if the derivative cannot be evaluated at the
          specified point.</dd>
 </dl>
 </section>
@@ -520,7 +520,7 @@ loadScripts(document, 'script');</script>
 <dt>Returns:</dt>
 <dd>The inverse transform.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="NoninvertibleTransformException.html" title="class in org.opengis.referencing.operation">NoninvertibleTransformException</a></code> - if the transform can't be inverted.</dd>
+<dd><code><a href="NoninvertibleTransformException.html" title="class in org.opengis.referencing.operation">NoninvertibleTransformException</a></code> - if the transform cannot be inverted.</dd>
 </dl>
 </section>
 </li>
@@ -552,7 +552,7 @@ loadScripts(document, 'script');</script>
 <dt>Returns:</dt>
 <dd>The <A HREF="../doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this object.</dd>
 <dt>Throws:</dt>
-<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/UnsupportedOperationException.html" title="class or interface in java.lang" class="external-link">UnsupportedOperationException</a></code> - If this object can't be formatted as WKT.</dd>
+<dd><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/UnsupportedOperationException.html" title="class or interface in java.lang" class="external-link">UnsupportedOperationException</a></code> - If this object cannot be formatted as WKT.</dd>
 </dl>
 </section>
 </li>

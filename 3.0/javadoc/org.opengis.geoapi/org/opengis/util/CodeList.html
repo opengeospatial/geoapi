@@ -202,7 +202,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
 <div class="col-first even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code>abstract <a href="CodeList.html" title="type parameter in CodeList">E</a>[]</code></div>
 <div class="col-second even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3"><code><a href="#family()" class="member-name-link">family</a>()</code></div>
 <div class="col-last even-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab3">
-<div class="block">Returns the list of codes of the same kind than this code.</div>
+<div class="block">Returns the list of codes of the same kind as this code.</div>
 </div>
 <div class="col-first odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/String.html" title="class or interface in java.lang" class="external-link">String</a></code></div>
 <div class="col-second odd-row-color method-summary-table method-summary-table-tab2 method-summary-table-tab4"><code><a href="#identifier()" class="member-name-link">identifier</a>()</code></div>
@@ -303,7 +303,7 @@ implements <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base
  <p><b>Implementation note:</b> The <code>codeType</code> class needs to be initialized before to
  invoke this method. This is usually the case when the caller is a static method of the
  <code>codeType</code> class. However in other situations, callers may need to initialize
- explicitely the given class.</p></div>
+ explicitly the given class.</p></div>
 <dl class="notes">
 <dt>Type Parameters:</dt>
 <dd><code>T</code> - The compile-time type given as the <code>codeType</code> parameter.</dd>
@@ -356,7 +356,7 @@ Provided by analogy with the methods in the Java <code>Enum</code> class.
 <section class="detail" id="family()">
 <h3>family</h3>
 <div class="member-signature"><span class="modifiers">public abstract</span>&nbsp;<span class="return-type"><a href="CodeList.html" title="type parameter in CodeList">E</a>[]</span>&nbsp;<span class="element-name">family</span>()</div>
-<div class="block">Returns the list of codes of the same kind than this code.
+<div class="block">Returns the list of codes of the same kind as this code.
  This is similar to the static <code>values()</code> method provided in <code>CodeList</code>
  subclasses, except that <code>family()</code> does not require the class to be known at
  compile-time - provided that at leat one instance of the family is available. The
@@ -365,7 +365,7 @@ Provided by analogy with the methods in the Java <code>Enum</code> class.
  <a href="https://docs.oracle.com/en/java/javase/11/docs/api/java.base/java/lang/reflect/package-summary.html" class="external-link">reflection</a> is used).</div>
 <dl class="notes">
 <dt>Returns:</dt>
-<dd>The codes of the same kind than this code.</dd>
+<dd>The codes of the same kind as this code.</dd>
 <dt class="departure">Departure from OGC/ISO abstract specification:</dt>
 <dd class="departure"><details>
 <summary>Departure for closer integration with the Java environment</summary>
@@ -489,7 +489,7 @@ Provided by analogy with the methods in the Java <code>Enum</code> class.
 <dt>Parameters:</dt>
 <dd><code>object</code> - The object to compare with this code.</dd>
 <dt>Returns:</dt>
-<dd><code>true</code> if the given object is equals to this code.</dd>
+<dd><code>true</code> if the given object is equal to this code.</dd>
 <dt>Since:</dt>
 <dd>2.2</dd>
 </dl>
