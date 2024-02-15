@@ -6,6 +6,9 @@ title: "GeoAPI conformance"
 
 # Conformance tests
 
+The conformance tests create various geodetic objects from EPSG codes or explicit parameters
+and verify that they are well formed.
+Some coordinate operations are executed and their results are verified.
 The GeoAPI conformance tests are currently written in Java as JUnit tests,
 but [future version](../snapshot/conformance.html) will open to more languages.
 GeoAPI tests provide two kinds of Java classes:
@@ -14,12 +17,14 @@ GeoAPI tests provide two kinds of Java classes:
 * `TestCase` as the base class of all JUnit tests in this module,
   which can be extended by developers on a case-by-case basis.
 
-The test cases and validators are grouped in
-`util`, `metadata`, `referencing` and `geometry` packages.
+GeoAPI conformance tests are extended by the [GIGS runner through GeoAPI](https://github.com/IOGP-GIGS/GIGSGeoAPI),
+which allows to run [Geospatial Integrity of Geoscience Software](https://gigs.iogp.org/) (GIGS)
+tests on arbitrary GeoAPI implementations.
 
 ## Download as Maven dependency
 
-Conformance tests are deployed on the [Maven Central Repository](https://central.sonatype.com/search?q=geoapi-conformance&namespace=org.opengis)
+GeoAPI Conformance tests are deployed on the
+[Maven Central Repository](https://central.sonatype.com/search?q=geoapi-conformance&namespace=org.opengis)
 and can be used in a Maven project with the following declaration in the `pom.xml` file:
 
 ```xml
