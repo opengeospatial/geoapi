@@ -96,7 +96,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     protected boolean isFloatToDoubleSupported = true;
 
     /**
-     * {@code true} if the destination array can be the same than the source array,
+     * {@code true} if the destination array can be the same as the source array,
      * and the source and target region of the array can overlap. The default value
      * is {@code true}. Vendor can set this value to {@code false} in order to test
      * a transform which is not fully implemented.
@@ -112,7 +112,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * Maximum difference to be accepted when comparing a transformed ordinate value with
      * the expected one. By default this threshold is absolute; no special computation is
      * performed for taking in account the magnitude of the ordinate being compared. If a
-     * subclass needs to set a relative tolerance threshold instead than an absolute one,
+     * subclass needs to set a relative tolerance threshold instead of an absolute one,
      * it should override the {@link #tolerance(double)} method.
      * <p>
      * The default value is 0, which means that strict equality will be required. Subclasses
@@ -165,7 +165,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
     }
 
     /**
-     * Transforms the given coordinates and verifies that the result is equals (within a positive
+     * Transforms the given coordinates and verifies that the result is equal (within a positive
      * delta) to the expected ones. If the difference between an expected and actual ordinate value
      * is greater than the {@linkplain #tolerance(double) tolerance} threshold, then the assertion
      * fails.
@@ -259,7 +259,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * the transform itself.
      *
      * @param  coordinates The source coordinates to transform.
-     * @throws TransformException if at least one coordinate can't be transformed.
+     * @throws TransformException if at least one coordinate cannot be transformed.
      */
     protected void verifyInverse(final double[] coordinates) throws TransformException {
         /*
@@ -318,7 +318,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * The default implementation delegates to {@link #verifyInverse(double[])}.
      *
      * @param  coordinates The source coordinates to transform.
-     * @throws TransformException if at least one coordinate can't be transformed.
+     * @throws TransformException if at least one coordinate cannot be transformed.
      */
     protected void verifyInverse(final float[] coordinates) throws TransformException {
         final double[] sourceDoubles = new double[coordinates.length];
@@ -338,7 +338,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * Other transform methods (operating on arrays) will be compared against that reference,
      * unless their checks were disabled (see class javadoc for details).
      * <p>
-     * This method expects an array of {@code float} values instead than {@code double}
+     * This method expects an array of {@code float} values instead of {@code double}
      * for making sure that the {@code MathTransform.transform(float[], ...)} and
      * {@code MathTransform.transform(double[], ...)} methods produces the same numerical values.
      * The {@code double} values may show extra digits when formatted in base 10, but this is not
@@ -349,7 +349,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *
      * @param  sourceFloats The source coordinates to transform as an array of {@code float} values.
      * @return The transformed coordinates, returned for convenience.
-     * @throws TransformException if at least one coordinate can't be transformed.
+     * @throws TransformException if at least one coordinate cannot be transformed.
      */
     protected float[] verifyConsistency(final float[] sourceFloats) throws TransformException {
         final MathTransform transform = this.transform; // Protect from changes.
@@ -380,7 +380,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 targetPosition = transform.transform(sourcePosition, targetPosition);
                 assertNotNull("MathTransform.transform(DirectPosition,...) shall not return null.", targetPosition);
                 assertEquals("MathTransform.transform(DirectPosition) must return a position having " +
-                        "the same dimension than MathTransform.getTargetDimension().",
+                        "the same dimension as MathTransform.getTargetDimension().",
                         targetDimension, targetPosition.getDimension());
                 for (int j=0; j<targetDimension; j++) {
                     transformed[targetOffset++] = (float) targetPosition.getOrdinate(j);
@@ -638,7 +638,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
             final float expected = expectedPts[expectedOffset++];
             final float actual   = actualPts  [  actualOffset++];
             /*
-             * This method uses !(a <= b) expressions instead than (a > b) for catching NaN.
+             * This method uses !(a <= b) expressions instead of (a > b) for catching NaN.
              * The next condition working on bit patterns is for for NaN and Infinity values.
              */
             if ((strict || !(Math.abs(actual - expected) <= (float) tolerance(expected)))

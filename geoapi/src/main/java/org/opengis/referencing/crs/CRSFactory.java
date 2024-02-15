@@ -180,7 +180,7 @@ public interface CRSFactory extends ObjectFactory {
      * affected axes are in degrees. But the transform should not rotate this coordinate
      * system in any other plane.
      * <p>
-     * The {@code conversionFromBase} shall contains the {@linkplain Conversion#getParameterValues
+     * The {@code conversionFromBase} shall contain the {@linkplain Conversion#getParameterValues
      * parameter values} required for the conversion. It may or may not contain the corresponding
      * "{@linkplain Conversion#getMathTransform base to derived}" transform, at user's choice. If
      * a transform is provided, this method may or may not use it at implementation choice.
@@ -217,7 +217,7 @@ public interface CRSFactory extends ObjectFactory {
 
     /**
      * Creates a projected coordinate reference system from a defining conversion.
-     * The {@code conversionFromBase} shall contains the {@linkplain Conversion#getParameterValues
+     * The {@code conversionFromBase} shall contain the {@linkplain Conversion#getParameterValues
      * parameter values} required for the projection. It may or may not contain the corresponding
      * "{@linkplain Conversion#getMathTransform base to derived}" transform, at user's choice. If
      * a transform is provided, this method may or may not use it at implementation choice.

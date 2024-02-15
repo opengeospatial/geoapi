@@ -84,7 +84,7 @@ public interface MathTransform {
      *         in {@code ptDst}, or a newly created point if {@code ptDst} was null.
      * @throws MismatchedDimensionException if {@code ptSrc} or
      *         {@code ptDst} doesn't have the expected dimension.
-     * @throws TransformException if the point can't be transformed.
+     * @throws TransformException if the point cannot be transformed.
      */
     @UML(identifier="transform", specification=OGC_01009)
     DirectPosition transform(DirectPosition ptSrc, DirectPosition ptDst)
@@ -103,14 +103,14 @@ public interface MathTransform {
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
      * @param  dstPts the array into which the transformed point coordinates are returned.
-     *                 May be the same than {@code srcPts}.
+     *                 May be the same as {@code srcPts}.
      * @param  dstOff the offset to the location of the first transformed point that is
      *                stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed. Some implementations will stop
+     * @throws TransformException if a point cannot be transformed. Some implementations will stop
      *         at the first failure, wile some other implementations will fill the untransformable
      *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
-     *         only at end. Implementations that fall in the later case should set the {@linkplain
+     *         only at end. Implementations that fall in the latter case should set the {@linkplain
      *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      */
     @UML(identifier="transformList", specification=OGC_01009)
@@ -130,14 +130,14 @@ public interface MathTransform {
      * @param  srcPts the array containing the source point coordinates.
      * @param  srcOff the offset to the first point to be transformed in the source array.
      * @param  dstPts the array into which the transformed point coordinates are returned.
-     *                May be the same than {@code srcPts}.
+     *                May be the same as {@code srcPts}.
      * @param  dstOff the offset to the location of the first transformed point that is
      *                stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed. Some implementations will stop
+     * @throws TransformException if a point cannot be transformed. Some implementations will stop
      *         at the first failure, wile some other implementations will fill the untransformable
      *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
-     *         only at end. Implementations that fall in the later case should set the {@linkplain
+     *         only at end. Implementations that fall in the latter case should set the {@linkplain
      *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      */
     void transform(float[] srcPts, int srcOff,
@@ -159,10 +159,10 @@ public interface MathTransform {
      * @param  dstOff the offset to the location of the first transformed point that is
      *                stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed. Some implementations will stop
+     * @throws TransformException if a point cannot be transformed. Some implementations will stop
      *         at the first failure, wile some other implementations will fill the untransformable
      *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
-     *         only at end. Implementations that fall in the later case should set the {@linkplain
+     *         only at end. Implementations that fall in the latter case should set the {@linkplain
      *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
      * @since 2.2
@@ -186,10 +186,10 @@ public interface MathTransform {
      * @param  dstOff the offset to the location of the first transformed point that is
      *                stored in the destination array.
      * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point can't be transformed. Some implementations will stop
+     * @throws TransformException if a point cannot be transformed. Some implementations will stop
      *         at the first failure, wile some other implementations will fill the untransformable
      *         points with {@linkplain Double#NaN NaN} values, continue and throw the exception
-     *         only at end. Implementations that fall in the later case should set the {@linkplain
+     *         only at end. Implementations that fall in the latter case should set the {@linkplain
      *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
      * @since 2.2
@@ -243,7 +243,7 @@ public interface MathTransform {
      *         and {@code point} is {@code null}.
      * @throws MismatchedDimensionException if {@code point} doesn't have
      *         the expected dimension.
-     * @throws TransformException if the derivative can't be evaluated at the
+     * @throws TransformException if the derivative cannot be evaluated at the
      *         specified point.
      */
     @UML(identifier="derivative", specification=OGC_01009)
@@ -259,7 +259,7 @@ public interface MathTransform {
      * all cartographic projections should succeed.
      *
      * @return The inverse transform.
-     * @throws NoninvertibleTransformException if the transform can't be inverted.
+     * @throws NoninvertibleTransformException if the transform cannot be inverted.
      */
     @UML(identifier="inverse", specification=OGC_01009)
     MathTransform inverse() throws NoninvertibleTransformException;
@@ -279,7 +279,7 @@ public interface MathTransform {
      * This operation may fails if an object is too complex for the WKT format capability.
      *
      * @return The <A HREF="../doc-files/WKT.html"><cite>Well Known Text</cite> (WKT)</A> for this object.
-     * @throws UnsupportedOperationException If this object can't be formatted as WKT.
+     * @throws UnsupportedOperationException If this object cannot be formatted as WKT.
      */
     @UML(identifier="getWKT", specification=OGC_01009)
     String toWKT() throws UnsupportedOperationException;

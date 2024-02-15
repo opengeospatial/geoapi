@@ -293,7 +293,7 @@ public interface MathTransformFactory extends Factory {
      *
      * @param  wkt Math transform encoded in Well-Known Text format.
      * @return The math transform (never {@code null}).
-     * @throws FactoryException if the Well-Known Text can't be parsed,
+     * @throws FactoryException if the Well-Known Text cannot be parsed,
      *         or if the math transform creation failed from some other reason.
      */
     @UML(identifier="createFromWKT", obligation=MANDATORY, specification=OGC_01009)

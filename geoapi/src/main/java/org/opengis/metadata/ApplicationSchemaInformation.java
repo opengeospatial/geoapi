@@ -85,7 +85,7 @@ public interface ApplicationSchemaInformation {
      * @return Application schema as a software development file.
      *
      * @todo In UML, the type was {@code binary}. It is not clear if
-     *       it was intented to be the file content.
+     *       it was intended to be the file content.
      */
     @UML(identifier="softwareDevelopmentFile", obligation=OPTIONAL, specification=ISO_19115)
     URI getSoftwareDevelopmentFile();

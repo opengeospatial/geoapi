@@ -59,7 +59,7 @@ final class DepartureElement implements Comparable<DepartureElement> {
 
     /**
      * The class or method name that contains the departure.
-     * May be the same than {@link #shortTypeName}.
+     * May be the same as {@link #shortTypeName}.
      */
     private final String name;
 

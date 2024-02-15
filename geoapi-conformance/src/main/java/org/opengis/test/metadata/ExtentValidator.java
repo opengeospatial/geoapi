@@ -140,7 +140,7 @@ public class ExtentValidator extends MetadataValidator {
             mandatory("SpatialTemporalExtent: must contains spatial extent.", elements);
             if (elements != null) {
                 for (final GeographicExtent element : elements) {
-                    assertNotNull("SpatialTemporalExtent: getSpatialExtent() can't contain null element.", element);
+                    assertNotNull("SpatialTemporalExtent: getSpatialExtent() cannot contain null element.", element);
                     dispatch(element);
                 }
             }

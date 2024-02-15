@@ -159,7 +159,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * <p><b>Implementation note:</b> The {@code codeType} class needs to be initialized before to
      * invoke this method. This is usually the case when the caller is a static method of the
      * {@code codeType} class. However in other situations, callers may need to initialize
-     * explicitely the given class.</p>
+     * explicitly the given class.</p>
      *
      * @param <T> The compile-time type given as the {@code codeType} parameter.
      * @param codeType The type of code list.
@@ -251,13 +251,13 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
                 constructor.setAccessible(true);
                 return constructor.newInstance(name);
             } catch (ReflectiveOperationException exception) {
-                throw new IllegalArgumentException("Can't create code of type " + codeType.getSimpleName(), exception);
+                throw new IllegalArgumentException("Cannot create code of type " + codeType.getSimpleName(), exception);
             }
         }
     }
 
     /**
-     * Returns the list of codes of the same kind than this code.
+     * Returns the list of codes of the same kind as this code.
      * This is similar to the static {@code values()} method provided in {@code CodeList}
      * subclasses, except that {@code family()} does not require the class to be known at
      * compile-time - provided that at leat one instance of the family is available. The
@@ -265,7 +265,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * instance, but the class needs to be known at compile time unless
      * {@linkplain java.lang.reflect reflection} is used).
      *
-     * @return The codes of the same kind than this code.
+     * @return The codes of the same kind as this code.
      *
      * @departure integration
      *   Provided by analogy with <code>Enum.family()</code>, which was defined in a initial
@@ -332,7 +332,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      */
     public String identifier() {
         // Save the field in a local variable for protection against concurrent change (this
-        // operation is garanteed atomic according Java specification). We don't synchronize
+        // operation is guaranteed atomic according Java specification). We don't synchronize
         // since it is not a problem if this method is executed twice in concurrent threads.
         String identifier = this.identifier;
         if (identifier == null) {
@@ -400,7 +400,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
         final Class<? extends CodeList> ct =  this.getClass();
         final Class<? extends CodeList> co = other.getClass();
         if (!ct.equals(co)) {
-            throw new ClassCastException("Can't compare " + ct.getSimpleName() + " to " + co.getSimpleName());
+            throw new ClassCastException("Cannot compare " + ct.getSimpleName() + " to " + co.getSimpleName());
         }
         return ordinal - ((CodeList<?>) other).ordinal;
     }
@@ -411,7 +411,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * Ordinal values are unique for each code list element of the same class.
      *
      * @param object The object to compare with this code.
-     * @return {@code true} if the given object is equals to this code.
+     * @return {@code true} if the given object is equal to this code.
      *
      * @since 2.2
      */

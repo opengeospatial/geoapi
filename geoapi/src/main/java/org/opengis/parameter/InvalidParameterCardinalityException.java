@@ -31,7 +31,7 @@ import java.util.List;
  * method, or indirectly during the {@linkplain List#add add} or {@linkplain List#remove remove}
  * operations on the list returned by {@link ParameterValueGroup#values()}.
  *
- * {@note This exception is of kind <code>IllegalStateException</code> instead than
+ * {@note This exception is of kind <code>IllegalStateException</code> instead of
  *        <code>IllegalArgumentException</code> because it is not caused by a bad argument.
  *        It is rather a consequence of an <code>ParameterValueGroup</code> being "full".}
  *

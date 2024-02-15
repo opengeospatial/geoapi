@@ -141,7 +141,7 @@ public interface ParameterValueGroup extends GeneralParameterValue {
      * @throws InvalidParameterCardinalityException If this parameter group already contains the
      *         {@linkplain ParameterDescriptorGroup#getMaximumOccurs maximum number of occurences}
      *         of subgroups of the given name.
-     * @throws IllegalStateException If the group can not be added for an other raison.
+     * @throws IllegalStateException If the group cannot be added for another reason.
      *
      * @departure easeOfUse
      *   This method is not part of the ISO specification. It has been added in an attempt to make

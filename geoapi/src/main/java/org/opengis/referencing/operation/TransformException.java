@@ -23,10 +23,10 @@ import org.opengis.geometry.DirectPosition;  // For javadoc
 /**
  * Common superclass for a number of transformation-related exceptions.
  * {@code TransformException} are thrown by {@link MathTransform}
- * when a coordinate transformation can't be {@linkplain MathTransform#inverse inverted}
+ * when a coordinate transformation cannot be {@linkplain MathTransform#inverse inverted}
  * ({@link NoninvertibleTransformException}), when the
- * {@linkplain MathTransform#derivative derivative} can't be computed or when a coordinate
- * can't be {@linkplain MathTransform#transform(DirectPosition, DirectPosition) transformed}.
+ * {@linkplain MathTransform#derivative derivative} cannot be computed or when a coordinate
+ * cannot be {@linkplain MathTransform#transform(DirectPosition, DirectPosition) transformed}.
  * It is also thrown when {@link CoordinateOperationFactory} fails to find a path between two
  * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}.
  *

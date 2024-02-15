@@ -22,7 +22,7 @@ import org.opengis.parameter.ParameterValueGroup;  // For javadoc
 
 
 /**
- * Thrown when an identifier provided to a factory method can not be found.
+ * Thrown when an identifier provided to a factory method cannot be found.
  * The identifier is often provided by {@link Identifier#getCode()}.
  * <p>
  * <b>Example:</b> This exception is thrown when a

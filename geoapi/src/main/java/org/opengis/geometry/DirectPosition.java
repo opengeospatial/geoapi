@@ -115,7 +115,7 @@ public interface DirectPosition extends Position {
      *
      * @param dimension The dimension in the range 0 to {@linkplain #getDimension dimension}-1.
      * @return The coordinate at the specified dimension.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException If the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension envelope dimension}.
      */
     double getOrdinate(int dimension) throws IndexOutOfBoundsException;
@@ -125,7 +125,7 @@ public interface DirectPosition extends Position {
      *
      * @param dimension the dimension for the ordinate of interest.
      * @param value the ordinate value of interest.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException If the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension envelope dimension}.
      * @throws UnsupportedOperationException if this direct position is immutable.
      */
@@ -150,7 +150,7 @@ public interface DirectPosition extends Position {
      * </ul>
      *
      * @param object The object to compare with this direct position for equality.
-     * @return {@code true} if the given object is equals to this direct position.
+     * @return {@code true} if the given object is equal to this direct position.
      *
      * @since 2.1
      */

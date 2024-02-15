@@ -18,7 +18,7 @@
 
 /**
  * A set of base types from {@linkplain org.opengis.annotation.Specification#ISO_19103 ISO 19103}
- * which can not be mapped directly from Java, plus utilities.
+ * which cannot be mapped directly from Java, plus utilities.
  *
  * <h3>Names and Namespaces</h3>
  * <p align="justify">The job of a "name" in the context of ISO 19103 is to associate that name

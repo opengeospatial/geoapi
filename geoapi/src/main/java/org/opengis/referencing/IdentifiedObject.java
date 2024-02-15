@@ -128,7 +128,7 @@ public interface IdentifiedObject {
      * different unit for each axis).
      *
      * @return The Well Know Text for this object.
-     * @throws UnsupportedOperationException If this object can't be formatted as WKT.
+     * @throws UnsupportedOperationException If this object cannot be formatted as WKT.
      *
      * @departure extension
      *   This method is not part of the OGC specification. It has been added in order to provide

@@ -69,7 +69,7 @@ public final class Sequence extends CodeList<Sequence> {
      * Constructs an enum with the given name. The new enum is
      * automatically added to the list returned by {@link #values}.
      *
-     * @param name The enum name. This name must not be in use by an other enum of this type.
+     * @param name The enum name. This name must not be in use by another enum of this type.
      */
     private Sequence(final String name) {
         super(name, VALUES);
@@ -87,7 +87,7 @@ public final class Sequence extends CodeList<Sequence> {
     }
 
     /**
-     * Returns the list of enumerations of the same kind than this enum.
+     * Returns the list of enumerations of the same kind as this enum.
      */
     public Sequence[] family() {
         return values();

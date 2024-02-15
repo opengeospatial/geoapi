@@ -225,14 +225,14 @@ public class CSValidator extends ReferencingValidator {
      * invoked by {@code validate} methods after they have determined the type of their
      * argument.
      *
-     * @param object The object to validate (can not be null).
+     * @param object The object to validate (cannot be null).
      */
     private void validateAxes(final CoordinateSystem object) {
         final int dimension = object.getDimension();
         assertStrictlyPositive("CoordinateSystem: dimension must be greater than zero.", dimension);
         for (int i=0; i<dimension; i++) {
             final CoordinateSystemAxis axis = object.getAxis(i);
-            mandatory("CoordinateSystem: axis can't be null.", axis);
+            mandatory("CoordinateSystem: axis cannot be null.", axis);
             validate(axis);
         }
     }

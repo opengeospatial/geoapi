@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * Specification of the way the image grid is associated with the image data attributes.
  * <p>
  * This code list is similar to {@link org.opengis.metadata.spatial.PixelOrientation}
- * except that the later is more clearly restricted to the two-dimensional case.
+ * except that the latter is more clearly restricted to the two-dimensional case.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -72,7 +72,7 @@ public final class PixelInCell extends CodeList<PixelInCell> {
      * Constructs an enum with the given name. The new enum is
      * automatically added to the list returned by {@link #values}.
      *
-     * @param name The enum name. This name must not be in use by an other enum of this type.
+     * @param name The enum name. This name must not be in use by another enum of this type.
      */
     private PixelInCell(final String name) {
         super(name, VALUES);
@@ -90,7 +90,7 @@ public final class PixelInCell extends CodeList<PixelInCell> {
     }
 
     /**
-     * Returns the list of enumerations of the same kind than this enum.
+     * Returns the list of enumerations of the same kind as this enum.
      */
     public PixelInCell[] family() {
         return values();

@@ -110,7 +110,7 @@ public interface Envelope {
      *
      * @param  dimension The dimension for which to obtain the ordinate value.
      * @return The minimal ordinate at the given dimension.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException If the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension envelope dimension}.
      *
      * @departure easeOfUse
@@ -136,7 +136,7 @@ public interface Envelope {
      *
      * @param  dimension The dimension for which to obtain the ordinate value.
      * @return The maximal ordinate at the given dimension.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException If the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension envelope dimension}.
      *
      * @departure easeOfUse
@@ -162,7 +162,7 @@ public interface Envelope {
      *
      * @param  dimension The dimension for which to obtain the ordinate value.
      * @return The median ordinate at the given dimension.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException If the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension envelope dimension}.
      *
      * @departure easeOfUse
@@ -188,7 +188,7 @@ public interface Envelope {
      *
      * @param  dimension The dimension for which to obtain the ordinate value.
      * @return The span (typically width or height) at the given dimension.
-     * @throws IndexOutOfBoundsException If the given index is negative or is equals or greater
+     * @throws IndexOutOfBoundsException If the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension envelope dimension}.
      *
      * @departure easeOfUse

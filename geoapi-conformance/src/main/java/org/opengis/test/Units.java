@@ -102,7 +102,7 @@ public class Units implements Factory {
         if (unit == null) try {
             unit = ((Unit<?>) Class.forName("tec.units.ri.AbstractUnit").getField("ONE").get(null)).asType(Dimensionless.class);
         } catch (ReflectiveOperationException | ClassCastException e) {
-            throw new IllegalArgumentException("Can not create a dimensionless unit from the given provider.");
+            throw new IllegalArgumentException("Cannot create a dimensionless unit from the given provider.");
         }
         return unit;
     }

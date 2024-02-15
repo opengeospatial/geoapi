@@ -60,7 +60,7 @@ public interface VerticalExtent {
      * @return The vertical CRS.
      *
      * @departure integration
-     *   ISO 19115 specifies a generic <code>CoordinateReferenceSystem</code> instead than the more
+     *   ISO 19115 specifies a generic <code>CoordinateReferenceSystem</code> instead of the more
      *   restrictive <code>VerticalCRS</code>. GeoAPI uses the more specific type for type-safety and
      *   consistency with <code>VerticalExtent</code> usage. However this restriction prevents usage
      *   of <cite>Height above the ellipsoid</cite> when only the constants defined in the

@@ -65,7 +65,7 @@ public class GeometryValidator extends Validator {
             return;
         }
         final int dimension = object.getDimension();
-        assertPositive("Envelope: dimension can't be negative.", dimension);
+        assertPositive("Envelope: dimension cannot be negative.", dimension);
         final CoordinateReferenceSystem crs = object.getCoordinateReferenceSystem();
         container.crs.dispatch(crs); // May be null.
         /*
@@ -80,7 +80,7 @@ public class GeometryValidator extends Validator {
             if (crs != null) {
                 CoordinateReferenceSystem check = lower.getCoordinateReferenceSystem();
                 if (check != null) {
-                    assertSame("Envelope: lower CRS must be the same than the envelope CRS.", crs, check);
+                    assertSame("Envelope: lower CRS must be the same as the envelope CRS.", crs, check);
                 }
             }
         }
@@ -93,7 +93,7 @@ public class GeometryValidator extends Validator {
             if (crs != null) {
                 CoordinateReferenceSystem check = upper.getCoordinateReferenceSystem();
                 if (check != null) {
-                    assertSame("Envelope: upper CRS must be the same than the envelope CRS.", crs, check);
+                    assertSame("Envelope: upper CRS must be the same as the envelope CRS.", crs, check);
                 }
             }
         }
@@ -135,14 +135,14 @@ public class GeometryValidator extends Validator {
          * Checks coordinate consistency.
          */
         final int dimension = object.getDimension();
-        assertPositive("DirectPosition: dimension can't be negative.", dimension);
+        assertPositive("DirectPosition: dimension cannot be negative.", dimension);
         final double[] coordinate = object.getCoordinate();
-        mandatory("DirectPosition: coordinate array can't be null.", coordinate);
+        mandatory("DirectPosition: coordinate array cannot be null.", coordinate);
         if (coordinate != null) {
             assertEquals("DirectPosition: coordinate array length must be equals to the dimension.",
                     dimension, coordinate.length);
             for (int i=0; i<dimension; i++) {
-                assertEquals("DirectPosition: getOrdinate(i) must be the same than coordinate[i].",
+                assertEquals("DirectPosition: getOrdinate(i) must be the same as coordinate[i].",
                         coordinate[i], object.getOrdinate(i), 0.0); // No tolerance - we want exact match.
             }
         }

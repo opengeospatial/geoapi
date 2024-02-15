@@ -21,7 +21,7 @@ import org.opengis.util.NoSuchIdentifierException;
 
 
 /**
- * Thrown when an {@linkplain AuthorityFactory authority factory} can't find
+ * Thrown when an {@linkplain AuthorityFactory authority factory} cannot find
  * the requested authority code.
  *
  * @departure extension

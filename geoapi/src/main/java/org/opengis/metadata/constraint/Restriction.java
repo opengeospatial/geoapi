@@ -104,7 +104,7 @@ public final class Restriction extends CodeList<Restriction> {
      * Constructs an enum with the given name. The new enum is
      * automatically added to the list returned by {@link #values}.
      *
-     * @param name The enum name. This name must not be in use by an other enum of this type.
+     * @param name The enum name. This name must not be in use by another enum of this type.
      */
     private Restriction(final String name) {
         super(name, VALUES);
@@ -122,7 +122,7 @@ public final class Restriction extends CodeList<Restriction> {
     }
 
     /**
-     * Returns the list of enumerations of the same kind than this enum.
+     * Returns the list of enumerations of the same kind as this enum.
      */
     public Restriction[] family() {
         return values();

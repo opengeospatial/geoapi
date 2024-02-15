@@ -71,7 +71,7 @@ public interface NameFactory {
      *     <td nowrap>&nbsp;The separator to insert between the namespace and the
      *     {@linkplain GenericName#head head}. For HTTP namespace, it is {@code "://"}.
      *     For URN namespace, it is typically {@code ":"}. If this entry is omitted, then
-     *     the default shall be the same value than the {@code "separator"} entry.</td>
+     *     the default shall be the same value as the {@code "separator"} entry.</td>
      *   </tr>
      * </table>
      *
@@ -88,7 +88,7 @@ public interface NameFactory {
 
     /**
      * Creates a type name from the given character sequence. The character sequence shall
-     * complies to the same restriction than {@link #createLocalName createLocalName}.
+     * complies to the same restriction as {@link #createLocalName createLocalName}.
      *
      * @param scope
      *          The {@linkplain GenericName#scope scope} of the type name to be created,
@@ -103,7 +103,7 @@ public interface NameFactory {
 
     /**
      * Creates a local name from the given character sequence. The character sequence can be either
-     * a {@link String} or an {@link InternationalString} instance. In the later case, implementations
+     * a {@link String} or an {@link InternationalString} instance. In the latter case, implementations
      * can use an arbitrary {@linkplain Locale locale} (typically {@link Locale#ENGLISH ENGLISH},
      * but not necessarily) for the unlocalized string to be returned by {@link LocalName#toString()}.
      *
@@ -120,7 +120,7 @@ public interface NameFactory {
 
     /**
      * Creates a local or scoped name from an array of parsed names. The array elements can be either
-     * {@link String} or {@link InternationalString} instances. In the later case, implementations
+     * {@link String} or {@link InternationalString} instances. In the latter case, implementations
      * can use an arbitrary {@linkplain Locale locale} (typically {@link Locale#ENGLISH ENGLISH},
      * but not necessarily) for the unlocalized string to be returned by {@link GenericName#toString()}.
      * <p>

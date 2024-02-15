@@ -98,7 +98,7 @@ public final class Departure extends AbstractTaglet implements Flushable {
     public void init(final DocletEnvironment env, final Doclet doclet) {
         super.init(env, doclet);
         try {
-            // Can not access FlushableDoclet.postProcess directly because of different ClassLoaders.
+            // Cannot access FlushableDoclet.postProcess directly because of different ClassLoaders.
             ((Consumer<Flushable>) doclet).accept(this);
         } catch (ClassCastException e) {
             print(Diagnostic.Kind.ERROR, null, e.toString());
@@ -210,7 +210,7 @@ public final class Departure extends AbstractTaglet implements Flushable {
                  *    • Constraints of the Java language
                  *    • Integration with the Java environment
                  *    • Generalization
-                 *    • Historical raisons
+                 *    • Historical reasons
                  *    • Class or method renaming
                  */
                 out.write("  <ul>");
@@ -266,7 +266,7 @@ public final class Departure extends AbstractTaglet implements Flushable {
                         final Name name = element.typeName;
                         if (name.equals(lastName)) {
                             /*
-                             * New method or field for the same interface than the previous method
+                             * New method or field for the same interface as the previous method
                              * or field. Just insert a new line, do not repeat the interface name.
                              */
                             out.newLine();
@@ -287,7 +287,7 @@ public final class Departure extends AbstractTaglet implements Flushable {
                             element.writeClassName(out);
                             /*
                              * If this class or interface do not have any member to document for
-                             * departure, and if an other class or interface has exactly the same
+                             * departure, and if another class or interface has exactly the same
                              * departure, merge their description in order to avoid repeating the
                              * same text twice.
                              */

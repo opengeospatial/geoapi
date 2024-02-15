@@ -57,7 +57,7 @@ public abstract class Validator {
      * but mandatory attributes shall never be null - in theory. However implementors may
      * choose to returns {@code null} on a temporary basis while they are developing their
      * library. If this field is set to {@code false}, then missing mandatory attributes
-     * will be logged as warnings instead than causing a failure.
+     * will be logged as warnings instead of causing a failure.
      *
      * <p>The default value is {@code true}.</p>
      *
@@ -70,7 +70,7 @@ public abstract class Validator {
      * tolerating non-null values. In ISO specifications, some attributes are declared as
      * optional in parent class and specialized in subclasses, either as mandatory or as
      * forbidden. If this field is set to {@code false}, then forbidden attributes will
-     * be logged as warnings instead than causing a failure.
+     * be logged as warnings instead of causing a failure.
      *
      * <p>The default value is {@code true}.</p>
      *

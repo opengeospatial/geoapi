@@ -40,7 +40,7 @@ import org.opengis.util.GenericName;
  * <p>
  * <b>Object properties</b><br>
  * Most factory methods expect a {@link Map} argument. The map can be a {@link Properties} instance.
- * The map shall contains at least a {@code "name"} property. In the common case where the name is
+ * The map shall contain at least a {@code "name"} property. In the common case where the name is
  * the only property, the map may be constructed with
  *
  * <code>Collections.{@linkplain Collections#singletonMap singletonMap}("name", <var>theName</var>)</code>

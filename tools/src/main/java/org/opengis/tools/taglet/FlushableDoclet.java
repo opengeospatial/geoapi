@@ -33,8 +33,8 @@ import jdk.javadoc.doclet.StandardDoclet;
  * the list of departures after all Javadoc pages have been generated.
  *
  * <p>The {@code Consumer<Flushable>} interface is used as a callback mechanism for taglet initialization.
- * Taglets can not invoke {@code FlushableDoclet} methods directly because the doclet initialized by Javadoc
- * tools does not use the same class loader than taglet. {@link BlockTaglet} instances can communicate with
+ * Taglets cannot invoke {@code FlushableDoclet} methods directly because the doclet initialized by Javadoc
+ * tools does not use the same class loader as taglet. {@link BlockTaglet} instances can communicate with
  * the {@code FlushableDoclet} instance only using objects from the standard Java library.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
@@ -67,7 +67,7 @@ public final class FlushableDoclet extends StandardDoclet implements Consumer<Fl
     /**
      * Registers an action to execute after doclet finished to generate Javadoc.
      * This initialization is done through an interface of the standard Java API ({@link Flushable})
-     * because custom methods can not be invoked at taglet initialization time, because of different
+     * because custom methods cannot be invoked at taglet initialization time, because of different
      * class loaders.
      *
      * @param  finisher  action to execute at the end of javadoc generation.

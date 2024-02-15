@@ -141,7 +141,7 @@ public final class InitiativeType extends CodeList<InitiativeType>{
      * Constructs an enum with the given name. The new enum is
      * automatically added to the list returned by {@link #values}.
      *
-     * @param name The enum name. This name must not be in use by an other enum of this type.
+     * @param name The enum name. This name must not be in use by another enum of this type.
      */
     private InitiativeType(final String name) {
         super(name, VALUES);
@@ -159,7 +159,7 @@ public final class InitiativeType extends CodeList<InitiativeType>{
     }
 
     /**
-     * Returns the list of enumerations of the same kind than this enum.
+     * Returns the list of enumerations of the same kind as this enum.
      */
     public InitiativeType[] family() {
         return values();

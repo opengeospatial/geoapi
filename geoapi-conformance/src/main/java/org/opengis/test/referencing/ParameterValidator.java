@@ -84,7 +84,7 @@ public class ParameterValidator extends ReferencingValidator {
         }
         validateIdentifiedObject(object);
         final Class<T> valueClass = object.getValueClass();
-        mandatory("ParameterDescriptor: getValueClass() can not return null.", valueClass);
+        mandatory("ParameterDescriptor: getValueClass() cannot return null.", valueClass);
         Set<T> validValues = object.getValidValues();
         if (validValues != null) {
             for (final T value : validValues) {
@@ -125,7 +125,7 @@ public class ParameterValidator extends ReferencingValidator {
         mandatory("ParameterDescriptorGroup: descriptors() should not return null.", descriptors);
         if (descriptors != null) {
             for (final GeneralParameterDescriptor descriptor : descriptors) {
-                assertNotNull("ParameterDescriptorGroup: descriptors() can not contain null element.", descriptor);
+                assertNotNull("ParameterDescriptorGroup: descriptors() cannot contain null element.", descriptor);
                 dispatch(descriptor);
                 final GeneralParameterDescriptor byName = object.descriptor(descriptor.getName().getCode());
                 mandatory("ParameterDescriptorGroup: descriptor(String) should returns a value.", byName);
@@ -136,7 +136,7 @@ public class ParameterValidator extends ReferencingValidator {
             }
         }
         final int minOccurs = object.getMinimumOccurs();
-        assertPositive("ParameterDescriptor: getMinimumOccurs() can not be negative.", minOccurs);
+        assertPositive("ParameterDescriptor: getMinimumOccurs() cannot be negative.", minOccurs);
         assertValidRange("ParameterDescriptor: getMaximumOccurs() gives inconsistent range.",
                 minOccurs, object.getMaximumOccurs());
     }
@@ -188,7 +188,7 @@ public class ParameterValidator extends ReferencingValidator {
             return;
         }
         for (final GeneralParameterValue value : values) {
-            assertNotNull("ParameterValueGroup: values() can not contain null element.", value);
+            assertNotNull("ParameterValueGroup: values() cannot contain null element.", value);
             dispatch(value);
             final GeneralParameterDescriptor descriptor = value.getDescriptor();
             mandatory("GeneralParameterValue: expected a descriptor.", descriptor);

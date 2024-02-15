@@ -108,7 +108,7 @@ final class SimpleDirectPosition implements DirectPosition {
     }
 
     /**
-     * Returns {@code true} if this direct position is equals to the given object.
+     * Returns {@code true} if this direct position is equal to the given object.
      */
     @Override
     public boolean equals(final Object object) {

@@ -71,7 +71,7 @@ public abstract class CRSTest extends TestCase {
      * @throws NoSuchAuthorityCodeException
      *          If the specified code is not found among the ones present in the database.
      * @throws FactoryException
-     *          If the creation of the {@link CoordinateReferenceSystem} failed for an other raison.
+     *          If the creation of the {@link CoordinateReferenceSystem} failed for another reason.
      */
     @Test
     public void testCRSAuthorityCreation() throws NoSuchAuthorityCodeException, FactoryException {
