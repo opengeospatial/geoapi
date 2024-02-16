@@ -5,12 +5,12 @@
  */
 package org.opengis.example.referencing;
 
-import org.junit.Test;
 import org.opengis.referencing.cs.RangeMeaning;
 import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.crs.GeographicCRS;
 import org.opengis.referencing.datum.GeodeticDatum;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

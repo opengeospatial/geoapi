@@ -25,7 +25,7 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.FileOutputStream;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -192,7 +192,7 @@ public enum TestData {
      */
     public URL location() {
         final URL location = TestData.class.getResource(filename);
-        assertNotNull(filename, location);
+        assertNotNull(location, filename);
         return location;
     }
 
@@ -238,7 +238,7 @@ public enum TestData {
      */
     public InputStream open() {
         final InputStream stream = TestData.class.getResourceAsStream(filename);
-        assertNotNull(filename, stream);
+        assertNotNull(stream, filename);
         return stream;
     }
 

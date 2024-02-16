@@ -24,7 +24,9 @@ import javax.measure.quantity.Length;
 
 import org.opengis.referencing.datum.*;
 import org.opengis.test.ValidatorContainer;
-import static org.opengis.test.Assert.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.opengis.test.Assert.assertBetween;
 
 
 /**
@@ -86,7 +88,7 @@ public class DatumValidator extends ReferencingValidator {
         double longitude = object.getGreenwichLongitude();
         if (unit != null) {
             final Unit<Angle> degree = units.degree();
-            assertTrue("PrimeMeridian: unit must be compatible with degrees.", unit.isCompatible(degree));
+            assertTrue(unit.isCompatible(degree), "PrimeMeridian: unit must be compatible with degrees.");
             longitude = unit.getConverterTo(degree).convert(longitude);
         }
         assertBetween("PrimeMeridian: expected longitude in [-180 … +180]° range.", -180, +180, longitude);
@@ -113,20 +115,20 @@ public class DatumValidator extends ReferencingValidator {
         final Unit<Length> unit = object.getAxisUnit();
         mandatory("Ellipsoid: shall have a unit of measurement.", unit);
         if (unit != null) {
-            assertTrue("Ellipsoid: unit must be compatible with metres.", unit.isCompatible(units.metre()));
+            assertTrue(unit.isCompatible(units.metre()), "Ellipsoid: unit must be compatible with metres.");
         }
         final double semiMajor         = object.getSemiMajorAxis();
         final double semiMinor         = object.getSemiMinorAxis();
         final double inverseFlattening = object.getInverseFlattening();
-        assertTrue("Ellipsoid: expected semi-major axis length > 0.", semiMajor > 0);
-        assertTrue("Ellipsoid: expected semi-minor axis length > 0.", semiMinor > 0);
-        assertTrue("Ellipsoid: expected semi-minor <= semi-major axis length.", semiMinor <= semiMajor);
-        assertTrue("Ellipsoid: expected inverse flattening > 0.", inverseFlattening > 0);
+        assertTrue(semiMajor > 0, "Ellipsoid: expected semi-major axis length > 0.");
+        assertTrue(semiMinor > 0, "Ellipsoid: expected semi-minor axis length > 0.");
+        assertTrue(semiMinor <= semiMajor, "Ellipsoid: expected semi-minor <= semi-major axis length.");
+        assertTrue(inverseFlattening > 0, "Ellipsoid: expected inverse flattening > 0.");
         if (!object.isSphere()) {
-            assertEquals("Ellipsoid: inconsistent semi-major axis length.",
-                    semiMajor - semiMajor/inverseFlattening, semiMinor, semiMinor*DEFAULT_TOLERANCE);
-            assertEquals("Ellipsoid: inconsistent inverse flattening.",
-                    semiMajor / (semiMajor-semiMinor), inverseFlattening, inverseFlattening*DEFAULT_TOLERANCE);
+            assertEquals(semiMajor - semiMajor/inverseFlattening, semiMinor, semiMinor*DEFAULT_TOLERANCE,
+                         "Ellipsoid: inconsistent semi-major axis length.");
+            assertEquals(semiMajor / (semiMajor-semiMinor), inverseFlattening, inverseFlattening*DEFAULT_TOLERANCE,
+                         "Ellipsoid: inconsistent inverse flattening.");
         }
     }
 

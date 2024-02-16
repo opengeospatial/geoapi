@@ -35,9 +35,10 @@ import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.identification.Identification;
 import org.opengis.metadata.identification.DataIdentification;
 
-import org.junit.*;
-import static org.junit.Assert.*;
-import static org.junit.Assume.*;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.AfterEach;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.*;
 
 
 /**
@@ -144,8 +145,8 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * @param  reader  the reader to validate.
      */
     private static void assertInputSet(final ImageReader reader) {
-        assertNotNull("The 'reader' field shall be set in the 'prepareImageReader' method.", reader);
-        assertNotNull("reader.setInput(Object) shall be invoked before any test is run.", reader.getInput());
+        assertNotNull(reader, "The 'reader' field shall be set in the 'prepareImageReader' method.");
+        assertNotNull(reader.getInput(), "reader.setInput(Object) shall be invoked before any test is run.");
     }
 
     /**
@@ -394,6 +395,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
     private void readRandomSubsets(final RenderedImage completeImage, final API api,
             final int imageIndex, final int numIterations) throws IOException
     {
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
         final ImageReader reader = this.reader;                                         // Protect from changes.
         assertInputSet(reader);
         for (int iterationCount=0; iterationCount<numIterations; iterationCount++) {
@@ -486,7 +488,7 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
     @Test
     public void testReadAsRaster() throws IOException {
         prepareImageReader(false);
-        assumeTrue(reader.canReadRaster());
+        assumeTrue(reader.canReadRaster(), "Skipped because the reader cannot read rasters.");
         testImageReads(API.READ_RASTER);
     }
 
@@ -568,8 +570,8 @@ public abstract strictfp class ImageReaderTestCase extends ImageIOTestCase imple
      * @see ImageReader#reset()
      * @see ImageReader#dispose()
      */
-    @After
     @Override
+    @AfterEach
     public void close() throws IOException {
         if (reader != null) {
             close(reader.getInput());

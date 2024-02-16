@@ -5,8 +5,8 @@
  */
 package org.opengis.example.parameter;
 
-import org.junit.Test;
 import tech.uom.seshat.Units;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 

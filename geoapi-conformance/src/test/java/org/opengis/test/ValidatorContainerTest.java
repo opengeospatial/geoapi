@@ -20,8 +20,8 @@ package org.opengis.test;
 import java.util.Set;
 import java.util.HashSet;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -47,9 +47,9 @@ public class ValidatorContainerTest {
         final Set<Validator> previous = new HashSet<>();
         final ValidatorContainer container = new ValidatorContainer();
         for (final Validator validator : container.all) {
-            assertTrue("Found a duplicated value.", previous.add(validator));
+            assertTrue(previous.add(validator), "Found a duplicated value.");
         }
-        assertFalse("Found a null value.", previous.remove(null));
-        assertEquals("Declared size is wrong.", previous.size(), container.all.size());
+        assertFalse(previous.remove(null), "Found a null value.");
+        assertEquals(previous.size(), container.all.size(), "Declared size is wrong.");
     }
 }

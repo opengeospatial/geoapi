@@ -17,12 +17,11 @@
  */
 package org.opengis.test.referencing;
 
-
 import org.opengis.referencing.crs.*;
 import org.opengis.util.FactoryException;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 
 /**

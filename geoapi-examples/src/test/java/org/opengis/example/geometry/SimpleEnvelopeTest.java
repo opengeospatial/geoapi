@@ -6,7 +6,7 @@
 package org.opengis.example.geometry;
 
 import org.opengis.geometry.MismatchedDimensionException;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.opengis.test.Validators.*;
@@ -57,19 +57,21 @@ public class SimpleEnvelopeTest {
      * Tests the creation of a {@code SimpleEnvelope} with invalid coordinate values.
      * In this test, the invalid coordinate values is in the last dimension.
      */
-    @Test(expected = IllegalArgumentException.class)
+    @Test
     public void testInvalidOrdinateValues() {
-        new SimpleEnvelope(new SimpleDirectPosition(null, 4, 8, -2),
-                           new SimpleDirectPosition(null, 8, 9, -3));
+        assertThrows(IllegalArgumentException.class,
+                () -> new SimpleEnvelope(new SimpleDirectPosition(null, 4, 8, -2),
+                                         new SimpleDirectPosition(null, 8, 9, -3)));
     }
 
     /**
      * Tests the creation of a {@code SimpleEnvelope} with mismatched dimensions.
      */
-    @Test(expected = MismatchedDimensionException.class)
+    @Test
     public void testMismatchedDimension() {
-        new SimpleEnvelope(new SimpleDirectPosition(null, 4, 8, -2),
-                           new SimpleDirectPosition(null, 8, 9));
+        assertThrows(MismatchedDimensionException.class,
+                () -> new SimpleEnvelope(new SimpleDirectPosition(null, 4, 8, -2),
+                                         new SimpleDirectPosition(null, 8, 9)));
     }
 
     /**
@@ -77,7 +79,7 @@ public class SimpleEnvelopeTest {
      */
     @Test
     public void testWKT() {
-        final SimpleEnvelope envelope = new SimpleEnvelope(
+        final var envelope = new SimpleEnvelope(
                 new SimpleDirectPosition(null, 4, 8, -2),
                 new SimpleDirectPosition(null, 8, 9,  3));
         assertEquals("BOX3D(4.0 8.0 -2.0, 8.0 9.0 3.0)", envelope.toString());

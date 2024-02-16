@@ -5,7 +5,7 @@
  */
 package org.opengis.example.geometry;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.opengis.test.Validators.*;

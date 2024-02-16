@@ -20,9 +20,9 @@ package org.opengis.test.coverage.image;
 import java.awt.image.DataBuffer;
 import java.awt.image.SampleModel;
 import java.awt.image.BufferedImage;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -56,8 +56,8 @@ public class ImageBackendCaseTest {
         for (final int type : types) {
             final BufferedImage image = ImageBackendTestCase.createImage(type, 1, 1, 1);
             final SampleModel model = image.getSampleModel();
-            assertEquals("SampleModel.getDataType()", type, model.getDataType());
-            assertEquals("SampleModel.getNumBands()", 1,    model.getNumBands());
+            assertEquals(type, model.getDataType(), "SampleModel.getDataType()");
+            assertEquals(1,    model.getNumBands(), "SampleModel.getNumBands()");
         }
     }
 
@@ -70,6 +70,6 @@ public class ImageBackendCaseTest {
         final int numBands = 3;                                     // Just for making code more readable.
         final BufferedImage image = ImageBackendTestCase.createImage(DataBuffer.TYPE_BYTE, 1, 1, numBands);
         final SampleModel model = image.getSampleModel();
-        assertEquals("SampleModel.getNumBands()", numBands, model.getNumBands());
+        assertEquals(numBands, model.getNumBands(), "SampleModel.getNumBands()");
     }
 }

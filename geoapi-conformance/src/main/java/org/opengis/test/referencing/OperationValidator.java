@@ -24,7 +24,9 @@ import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 import org.opengis.test.ValidatorContainer;
-import static org.opengis.test.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.opengis.test.Assert.assertBetween;
+import static org.opengis.test.Assert.assertStrictlyPositive;
 
 
 /**
@@ -90,7 +92,7 @@ public class OperationValidator extends ReferencingValidator {
 
         final CoordinateOperation operation = object.getOperation();
         mandatory("PassThroughOperation: getOperation() is mandatory.", operation);
-        assertNotSame("PassThroughOperation: getOperation() cannot be this.", object, operation);
+        assertNotSame(object, operation, "PassThroughOperation: getOperation() cannot be this.");
         dispatch(operation);
 
         final int[] index = object.getModifiedCoordinates();
@@ -125,8 +127,8 @@ public class OperationValidator extends ReferencingValidator {
         validate(operations);
         CoordinateOperation first=null, last=null;
         for (final CoordinateOperation single : operations) {
-            assertNotNull("ConcatenatedOperation: getOperations() cannot contain null element.", single);
-            assertNotSame("ConcatenatedOperation: cannot contain itself as a single element.", single, object);
+            assertNotNull(single, "ConcatenatedOperation: getOperations() cannot contain null element.");
+            assertNotSame(single, object, "ConcatenatedOperation: cannot contain itself as a single element.");
             dispatch(single);
             if (first == null) {
                 first = single;
@@ -135,34 +137,34 @@ public class OperationValidator extends ReferencingValidator {
                 final MathTransform lastMT =   last.getMathTransform();
                 final MathTransform thisMT = single.getMathTransform();
                 if (lastMT != null && thisMT != null) {
-                    assertEquals("ConcatenatedOperation: source dimension of a single operation " +
-                            "must match the target dimension of the previous one.",
-                            lastMT.getTargetDimensions(), thisMT.getSourceDimensions());
+                    assertEquals(lastMT.getTargetDimensions(), thisMT.getSourceDimensions(),
+                            "ConcatenatedOperation: source dimension of a single operation " +
+                            "must match the target dimension of the previous one.");
                 }
                 // Do not validate CRS since it is already done by dispatch(single).
                 final CoordinateReferenceSystem targetCRS =   last.getTargetCRS();
                 final CoordinateReferenceSystem sourceCRS = single.getSourceCRS();
                 if (targetCRS != null && sourceCRS != null) {
-                    assertEquals("ConcatenatedOperation: source dimension of a single operation " +
-                            "must match the target dimension of the previous one.",
-                            dimension(targetCRS), dimension(sourceCRS));
+                    assertEquals(dimension(targetCRS), dimension(sourceCRS),
+                            "ConcatenatedOperation: source dimension of a single operation " +
+                            "must match the target dimension of the previous one.");
                 }
             }
             last = single;
         }
-        assertNotNull("ConcatenatedOperation: shall contain at least one single operation.", last);
+        assertNotNull(last, "ConcatenatedOperation: shall contain at least one single operation.");
         if (transform != null) {
             final MathTransform firstMT = first.getMathTransform();
             final MathTransform lastMT  = last .getMathTransform();
             if (firstMT != null) {
-                assertEquals("ConcatenatedOperation: source dimension must match " +
-                        "the source dimension of the first single operation.",
-                        firstMT.getSourceDimensions(), transform.getSourceDimensions());
+                assertEquals(firstMT.getSourceDimensions(), transform.getSourceDimensions(),
+                        "ConcatenatedOperation: source dimension must match " +
+                        "the source dimension of the first single operation.");
             }
             if (lastMT != null) {
-                assertEquals("ConcatenatedOperation: target dimension must match " +
-                        "the target dimension of the last single operation.",
-                        lastMT.getTargetDimensions(), transform.getTargetDimensions());
+                assertEquals(lastMT.getTargetDimensions(), transform.getTargetDimensions(),
+                        "ConcatenatedOperation: target dimension must match " +
+                        "the target dimension of the last single operation.");
             }
         }
         final CoordinateReferenceSystem sourceCRS = object.getSourceCRS();
@@ -170,12 +172,12 @@ public class OperationValidator extends ReferencingValidator {
         final CoordinateReferenceSystem  firstCRS = first .getSourceCRS();
         final CoordinateReferenceSystem   lastCRS = last  .getTargetCRS();
         if (sourceCRS != null && firstCRS != null) {
-            assertSame("ConcatenatedOperation: sourceCRS must be the source " +
-                    "of the first single operation.", firstCRS, sourceCRS);
+            assertSame(firstCRS, sourceCRS,
+                    "ConcatenatedOperation: sourceCRS must be the source of the first single operation.");
         }
         if (targetCRS != null && lastCRS != null) {
-            assertSame("ConcatenatedOperation: targetCRS must be the target " +
-                    "of the last single operation.", lastCRS, targetCRS);
+            assertSame(lastCRS, targetCRS,
+                    "ConcatenatedOperation: targetCRS must be the target of the last single operation.");
         }
     }
 
@@ -190,8 +192,8 @@ public class OperationValidator extends ReferencingValidator {
         if (object == null) {
             return;
         }
-        assertFalse("CoordinateOperation: cannot be both a ConcatenatedOperation and a SingleOperation.",
-                (object instanceof ConcatenatedOperation) && (object instanceof SingleOperation));
+        assertFalse((object instanceof ConcatenatedOperation) && (object instanceof SingleOperation),
+                "CoordinateOperation: cannot be both a ConcatenatedOperation and a SingleOperation.");
         validateIdentifiedObject(object);
         container.validate(object.getScope());
         container.validate(object.getDomainOfValidity());
@@ -207,12 +209,12 @@ public class OperationValidator extends ReferencingValidator {
         validate(transform);
         if (transform != null) {
             if (sourceCRS != null) {
-                assertEquals("CoordinateOperation: MathTransform source dimension must match sourceCRS dimension.",
-                        dimension(sourceCRS), transform.getSourceDimensions());
+                assertEquals(dimension(sourceCRS), transform.getSourceDimensions(),
+                        "CoordinateOperation: MathTransform source dimension must match sourceCRS dimension.");
             }
             if (targetCRS != null) {
-                assertEquals("CoordinateOperation: MathTransform target dimension must match targetCRS dimension.",
-                        dimension(targetCRS), transform.getTargetDimensions());
+                assertEquals(dimension(targetCRS), transform.getTargetDimensions(),
+                        "CoordinateOperation: MathTransform target dimension must match targetCRS dimension.");
             }
         }
     }
@@ -229,8 +231,8 @@ public class OperationValidator extends ReferencingValidator {
             return;
         }
         validateCoordinateOperation(object);
-        assertFalse("Operation: cannot be both a Conversion and a Transformation.",
-                (object instanceof Conversion) && (object instanceof Transformation));
+        assertFalse((object instanceof Conversion) && (object instanceof Transformation),
+                "Operation: cannot be both a Conversion and a Transformation.");
 
         final OperationMethod method = object.getMethod();
         mandatory("Operation: OperationMethod is mandatory.", method);
@@ -242,12 +244,12 @@ public class OperationValidator extends ReferencingValidator {
             // Do not validate because it is already done by validateCoordinateOperation(object).
             if (transform != null) {
                 if (opSourceDimension != null) {
-                    assertEquals("Operation: MathTransform source dimension must match OperationMethod source dimension.",
-                            opSourceDimension.intValue(), transform.getSourceDimensions());
+                    assertEquals(opSourceDimension.intValue(), transform.getSourceDimensions(),
+                            "Operation: MathTransform source dimension must match OperationMethod source dimension.");
                 }
                 if (opTargetDimension != null) {
-                    assertEquals("Operation: MathTransform target dimension must match OperationMethod target dimension.",
-                            opTargetDimension.intValue(), transform.getTargetDimensions());
+                    assertEquals(opTargetDimension.intValue(), transform.getTargetDimensions(),
+                            "Operation: MathTransform target dimension must match OperationMethod target dimension.");
                 }
             }
         }
@@ -266,12 +268,12 @@ public class OperationValidator extends ReferencingValidator {
             return;
         }
         validateOperation(object);
-        assertFalse("Projection: cannot be both planar and conic.",
-                (object instanceof PlanarProjection) && (object instanceof ConicProjection));
-        assertFalse("Projection: cannot be both planar and cylindrical.",
-                (object instanceof PlanarProjection) && (object instanceof CylindricalProjection));
-        assertFalse("Projection: cannot be both cylindrical and conic.",
-                (object instanceof CylindricalProjection) && (object instanceof ConicProjection));
+        assertFalse((object instanceof PlanarProjection) && (object instanceof ConicProjection),
+                    "Projection: cannot be both planar and conic.");
+        assertFalse((object instanceof PlanarProjection) && (object instanceof CylindricalProjection),
+                    "Projection: cannot be both planar and cylindrical.");
+        assertFalse((object instanceof CylindricalProjection) && (object instanceof ConicProjection),
+                    "Projection: cannot be both cylindrical and conic.");
 
         if (object.getMathTransform() != null) {
             mandatory("Conversion: non-defining conversion should have a source CRS.", object.getSourceCRS());
@@ -349,23 +351,23 @@ public class OperationValidator extends ReferencingValidator {
         assertStrictlyPositive("MathTransform: source dimension must be greater than zero.", sourceDimension);
         assertStrictlyPositive("MathTransform: target dimension must be greater than zero.", targetDimension);
         if (object instanceof MathTransform1D) {
-            assertEquals("MathTransform1D: source dimension must be 1.", 1, sourceDimension);
-            assertEquals("MathTransform1D: target dimension must be 1.", 1, targetDimension);
+            assertEquals(1, sourceDimension, "MathTransform1D: source dimension must be 1.");
+            assertEquals(1, targetDimension, "MathTransform1D: target dimension must be 1.");
         }
         if (object instanceof MathTransform2D) {
-            assertEquals("MathTransform2D: source dimension must be 2.", 2, sourceDimension);
-            assertEquals("MathTransform2D: target dimension must be 2.", 2, targetDimension);
+            assertEquals(2, sourceDimension, "MathTransform2D: source dimension must be 2.");
+            assertEquals(2, targetDimension, "MathTransform2D: target dimension must be 2.");
         }
         if (object.isIdentity()) {
-            assertEquals("MathTransform: identity transforms must have the same source and target dimensions.",
-                    sourceDimension, targetDimension);
+            assertEquals(sourceDimension, targetDimension,
+                    "MathTransform: identity transforms must have the same source and target dimensions.");
         }
     }
 
     /**
      * {@return the number of dimensions of the given CRS}.
      *
-     * @param  crs  the CRS for which to get the number of dimensions.
+     * @param  crs  the coordinate reference system for which to get the number of dimensions.
      */
     private static int dimension(final CoordinateReferenceSystem crs) {
         return crs.getCoordinateSystem().getDimension();

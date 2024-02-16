@@ -77,11 +77,6 @@
       <scope>compile</scope>
     </dependency>
     <dependency>
-      <groupId>org.junit.vintage</groupId>
-      <artifactId>junit-vintage-engine</artifactId>
-      <scope>compile</scope>
-    </dependency>
-    <dependency>
       <groupId>tech.uom</groupId>
       <artifactId>seshat</artifactId>
       <scope>test</scope>
@@ -128,6 +123,17 @@
               <mainClass>org.opengis.test.runner.Main</mainClass>
             </manifest>
           </archive>
+        </configuration>
+      </plugin>
+      <plugin>
+        <groupId>org.apache.maven.plugins</groupId>
+        <artifactId>maven-surefire-plugin</artifactId>
+        <configuration>
+          <argLine>
+            <!-- Temporary hack until we can fix Maven for putting the dependencies on the module path. -->
+            --add-exports org.junit.platform.commons/org.junit.platform.commons.util=ALL-UNNAMED
+            --add-exports org.junit.platform.commons/org.junit.platform.commons.logging=ALL-UNNAMED
+          </argLine>
         </configuration>
       </plugin>
       <plugin>

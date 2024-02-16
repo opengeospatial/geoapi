@@ -26,10 +26,11 @@ import org.opengis.util.*;
 import org.opengis.test.TestCase;
 import org.opengis.test.Configuration;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assume.*;
-import static org.opengis.test.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assumptions.*;
+import static org.opengis.test.Assert.assertContains;
 
 
 /**
@@ -57,6 +58,11 @@ import static org.opengis.test.Assert.*;
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class NameTest extends TestCase {
+    /**
+     * The message when a test is disabled because no name factory has been found.
+     */
+    private static final String NO_FACTORY = "No name factory found.";
+
     /**
      * The factory to be used for testing {@linkplain GenericName generic name} instances,
      * or {@code null} if none.
@@ -159,7 +165,7 @@ public strictfp class NameTest extends TestCase {
      */
     @Test
     public void testInternationalString() {
-        assumeNotNull(factory);
+        assumeTrue(factory != null, NO_FACTORY);
         final Map<Locale,String> names = new HashMap<>();
         names.put(Locale.ENGLISH, "My documents");
         names.put(Locale.FRENCH,  "Mes documents");
@@ -168,8 +174,8 @@ public strictfp class NameTest extends TestCase {
         if (isMultiLocaleSupported) {
             configurationTip = Configuration.Key.isMultiLocaleSupported;
             for (final Map.Entry<Locale,String> entry : names.entrySet()) {
-                assertEquals("toString(Locale) should returns the value given to the factory method.",
-                        entry.getValue(), localized.toString(entry.getKey()));
+                assertEquals(entry.getValue(), localized.toString(entry.getKey()),
+                        "toString(Locale) should returns the value given to the factory method.");
             }
             configurationTip = null;
         }
@@ -189,7 +195,7 @@ public strictfp class NameTest extends TestCase {
      */
     @Test
     public void testLocalName() {
-        assumeNotNull(factory);
+        assumeTrue(factory != null, NO_FACTORY);
         final String EPSG = "EPSG";
         final LocalName authority = factory.createLocalName(null, EPSG);
         validators.validate(authority);
@@ -219,21 +225,21 @@ public strictfp class NameTest extends TestCase {
      */
     @Test
     public void testScopedName() {
-        assumeNotNull(factory);
+        assumeTrue(factory != null, NO_FACTORY);
         final String[] parsed = new String[] {
             "urn","ogc","def","crs","epsg","4326"
         };
         GenericName name = factory.createGenericName(null, parsed);
         validators.validate(name);
 
-        assertEquals("Name should be already fully qualified.",
-                name, name.toFullyQualifiedName());
+        assertEquals(name, name.toFullyQualifiedName(),
+                "Name should be already fully qualified.");
 
-        assertTrue("Fully qualified name should be \"urn:ogc:def:crs:epsg:4326\" (separator may vary).",
-                Pattern.matches("urn\\p{Punct}ogc\\p{Punct}def\\p{Punct}crs\\p{Punct}epsg\\p{Punct}4326",
-                name.toString()));
+        assertTrue(Pattern.matches("urn\\p{Punct}ogc\\p{Punct}def\\p{Punct}crs\\p{Punct}epsg\\p{Punct}4326",
+                   name.toString()),
+                   "Fully qualified name should be \"urn:ogc:def:crs:epsg:4326\" (separator may vary).");
 
-        assertEquals("Depth shall be counted from the global namespace.", 6, name.depth());
+        assertEquals(6, name.depth(), "Depth shall be counted from the global namespace.");
 
         for (int i=parsed.length; --i>=0;) {
             name = name.tip();
@@ -255,7 +261,7 @@ public strictfp class NameTest extends TestCase {
      */
     @Test
     public void testParsedURN() {
-        assumeNotNull(factory);
+        assumeTrue(factory != null, NO_FACTORY);
         final LocalName urn = factory.createLocalName(null, "urn");
         validators.validate(urn);
         final NameSpace ns = createNameSpace(urn, ":", ":");
@@ -263,7 +269,7 @@ public strictfp class NameTest extends TestCase {
         final GenericName name = factory.parseGenericName(ns, "ogc:def:crs:epsg:4326");
         validators.validate(name);
 
-        assertEquals("Depth shall be counted from the \"urn\" namespace.", 5, name.depth());
+        assertEquals(5, name.depth(), "Depth shall be counted from the \"urn\" namespace.");
         assertEquals("ogc:def:crs:epsg:4326", name.toString());
         assertEquals("urn:ogc:def:crs:epsg:4326", name.toFullyQualifiedName().toString());
     }
@@ -282,8 +288,8 @@ public strictfp class NameTest extends TestCase {
      */
     @Test
     public void testParsedHTTP() {
-        assumeNotNull(factory);
-        assumeTrue(isMixedNameSyntaxSupported);
+        assumeTrue(factory != null, NO_FACTORY);
+        assumeTrue(isMixedNameSyntaxSupported, "URL in generic name is not supported by the tested implementation.");
         configurationTip = Configuration.Key.isMixedNameSyntaxSupported;
         GenericName name = factory.createLocalName(null, "http");
         assertEquals(1, name.depth());

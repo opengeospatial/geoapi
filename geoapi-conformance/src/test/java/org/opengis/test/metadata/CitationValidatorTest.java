@@ -19,9 +19,9 @@ package org.opengis.test.metadata;
 
 import org.opengis.metadata.citation.CitationDate;
 import org.opengis.metadata.citation.DateType;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.opengis.test.Validators.validate;
 
 
@@ -51,33 +51,28 @@ public class CitationValidatorTest {
         final CitationDate validityBegins  = new SimpleCitationDate(DateType.VALIDITY_BEGINS,  "2000-06-01");
         final CitationDate validityExpires = new SimpleCitationDate(DateType.VALIDITY_EXPIRES, "2004-01-01");
         validate(creation, released, lastUpdate, nextUpdate, validityBegins, validityExpires);
-        try {
-            validate(new SimpleCitationDate(DateType.CREATION, "2000-08-01"),
-                     released, lastUpdate, nextUpdate, validityBegins, validityExpires);
-            fail("Shall not accept a date before the creation time.");
-        } catch (AssertionError e) {
-            final String msg = e.getMessage();
-            assertTrue(msg, msg.contains("creation"));
-            assertTrue(msg, msg.contains("validityBegins"));
-        }
-        try {
-            validate(creation, released, lastUpdate,
-                     new SimpleCitationDate(DateType.NEXT_UPDATE, "2001-08-01"),
-                     validityBegins, validityExpires);
-            fail("Shall not accept a 'nextUpdate' date before the 'lastUpdate' one.");
-        } catch (AssertionError e) {
-            final String msg = e.getMessage();
-            assertTrue(msg, msg.contains("lastUpdate"));
-            assertTrue(msg, msg.contains("nextUpdate"));
-        }
-        try {
-            validate(creation, released, lastUpdate, nextUpdate, validityBegins,
-                     new SimpleCitationDate(DateType.VALIDITY_EXPIRES, "2000-05-01"));
-            fail("Shall not accept a 'validityExpires' date before the 'validityBegins' one.");
-        } catch (AssertionError e) {
-            final String msg = e.getMessage();
-            assertTrue(msg, msg.contains("validityBegins"));
-            assertTrue(msg, msg.contains("validityExpires"));
-        }
+
+        AssertionError e;
+        e = assertThrows(AssertionError.class,
+                () -> validate(new SimpleCitationDate(DateType.CREATION, "2000-08-01"),
+                               released, lastUpdate, nextUpdate, validityBegins, validityExpires),
+                "Shall not accept a date before the creation time.");
+        assertTrue(e.getMessage().contains("creation"));
+        assertTrue(e.getMessage().contains("validityBegins"));
+
+        e = assertThrows(AssertionError.class,
+                () -> validate(creation, released, lastUpdate,
+                               new SimpleCitationDate(DateType.NEXT_UPDATE, "2001-08-01"),
+                               validityBegins, validityExpires),
+                "Shall not accept a 'nextUpdate' date before the 'lastUpdate' one.");
+        assertTrue(e.getMessage().contains("lastUpdate"));
+        assertTrue(e.getMessage().contains("nextUpdate"));
+
+        e = assertThrows(AssertionError.class,
+                () -> validate(creation, released, lastUpdate, nextUpdate, validityBegins,
+                               new SimpleCitationDate(DateType.VALIDITY_EXPIRES, "2000-05-01")),
+                "Shall not accept a 'validityExpires' date before the 'validityBegins' one.");
+        assertTrue(e.getMessage().contains("validityBegins"));
+        assertTrue(e.getMessage().contains("validityExpires"));
     }
 }

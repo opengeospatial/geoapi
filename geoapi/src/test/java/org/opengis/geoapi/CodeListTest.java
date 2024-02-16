@@ -33,7 +33,7 @@ import org.opengis.util.ControlledVocabulary;
 import org.opengis.metadata.constraint.Restriction;
 import org.opengis.metadata.identification.CharacterSet;
 import org.opengis.annotation.UML;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

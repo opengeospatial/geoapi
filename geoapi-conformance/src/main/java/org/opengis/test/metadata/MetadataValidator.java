@@ -23,7 +23,7 @@ import org.opengis.util.InternationalString;
 
 import org.opengis.test.Validator;
 import org.opengis.test.ValidatorContainer;
-import static org.opengis.test.Assert.*;
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -60,17 +60,17 @@ public abstract class MetadataValidator extends Validator {
      * @return an array of all elements in the given collection.
      */
     final <T> T[] toArray(final Class<T> elementType, final Collection<? extends T> objects) {
-        assertNotNull("Null collection. Should be an empty one if there is no elements.", objects);
+        assertNotNull(objects, "Null collection. Should be an empty one if there is no elements.");
         validate(objects);
         @SuppressWarnings("unchecked")
         final T[] array = (T[]) Array.newInstance(elementType, objects.size());
         int count = 0;
         for (final T element : objects) {
-            assertNotNull("Collection should not contain null element.", element);
-            assertInstanceOf("Wrong element type in the collection.", elementType, element);
+            assertNotNull(element, "Collection should not contain null element.");
+            assertInstanceOf(elementType, element, "Wrong element type in the collection.");
             array[count++] = element;
         }
-        assertEquals("Unexpected end of iteration", array.length, count);
+        assertEquals(array.length, count, "Unexpected end of iteration");
         return array;
     }
 

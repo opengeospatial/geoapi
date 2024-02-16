@@ -21,7 +21,9 @@ import org.opengis.metadata.*;
 import org.opengis.metadata.extent.*;
 import org.opengis.geometry.Geometry;
 import org.opengis.test.ValidatorContainer;
-import static org.opengis.test.Assert.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.opengis.test.Assert.assertBetween;
 
 
 /**
@@ -110,9 +112,11 @@ public class ExtentValidator extends MetadataValidator {
         assertBetween("GeographicBoundingBox: illegal east bound.",  -180, +180, east);
         assertBetween("GeographicBoundingBox: illegal south bound.", -90,   +90, south);
         assertBetween("GeographicBoundingBox: illegal north bound.", -90,   +90, north);
-        assertFalse("GeographicBoundingBox: invalid range of latitudes.",  south > north);          // Accept NaN.
-        // Do not require west <= east, as this condition is not specified in ISO 19115.
-        // Some implementations may use west > east for box spanning the anti-meridian.
+        assertFalse(south > north, "GeographicBoundingBox: invalid range of latitudes.");       // Accept NaN.
+        /*
+         * Do not require west <= east, as this condition is not specified in ISO 19115.
+         * Some implementations may use west > east for box spanning the anti-meridian.
+         */
     }
 
     /**
@@ -129,7 +133,7 @@ public class ExtentValidator extends MetadataValidator {
         mandatory("VerticalExtent: must have a minimum value.", minimum);
         mandatory("VerticalExtent: must have a maximum value.", maximum);
         if (minimum != null && maximum != null) {
-            assertTrue("VerticalExtent: invalid range.", minimum <= maximum);
+            assertTrue(minimum <= maximum, "VerticalExtent: invalid range.");
         }
         container.validate(object.getVerticalCRS());
     }

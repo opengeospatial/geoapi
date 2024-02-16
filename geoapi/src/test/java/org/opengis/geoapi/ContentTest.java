@@ -34,8 +34,8 @@ import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
 import org.opengis.util.CodeList;
-import org.junit.Ignore;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.Disabled;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -139,7 +139,7 @@ public final class ContentTest implements FileVisitor<Path> {
      * @throws IOException if an error occurred while scanning the directory content.
      */
     @Test
-    @Ignore("Pending the adaptation of Content.java to GeoAPI 3.1.")
+    @Disabled("Pending the adaptation of Content.java to GeoAPI 3.1.")
     public void verify() throws IOException {
         Files.walkFileTree(SourceGenerator.targetDirectory().resolve("org"), this);
         final Set<Class<?>> dependencies         = new HashSet<>();

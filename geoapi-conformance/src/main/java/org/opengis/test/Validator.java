@@ -22,7 +22,8 @@ import java.util.Objects;
 import java.util.Collection;
 import java.util.logging.Logger;
 import org.opengis.annotation.Obligation;
-import static org.opengis.test.Assert.*;
+
+import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -155,8 +156,8 @@ public abstract class Validator {
      */
     protected void mandatory(final String message, final Object value) {
         if (requireMandatoryAttributes) {
-            assertNotNull(message, value);
-            assertFalse(message, isEmptyCollection(value));
+            assertNotNull(value, message);
+            assertFalse(isEmptyCollection(value), message);
         } else if (value == null || isEmptyCollection(value)) {
             WarningMessage.log(logger, message, true);
         }
@@ -184,9 +185,9 @@ public abstract class Validator {
     protected void forbidden(final String message, final Object value) {
         if (enforceForbiddenAttributes) {
             if (value instanceof Collection<?>) {
-                assertTrue(message, ((Collection<?>) value).isEmpty());
+                assertTrue(((Collection<?>) value).isEmpty(), message);
             } else {
-                assertNull(message, value);
+                assertNull(value, message);
             }
         } else if (value != null && !isEmptyCollection(value)) {
             WarningMessage.log(logger, message, false);
@@ -232,7 +233,9 @@ public abstract class Validator {
         if (collection == null) {
             return;
         }
-        // Get an array with null elements omitted.
+        /*
+         * Get an array with null elements omitted.
+         */
         int count = 0;
         final Object[] elements = collection.toArray();
         for (final Object element : elements) {
@@ -240,13 +243,17 @@ public abstract class Validator {
                 elements[count++] = element;
             }
         }
-        // Store the hash code before to do any comparison,
-        // in order to detect unexpected changes.
+        /*
+         * Store the hash code before to do any comparison
+         * in order to detect unexpected changes.
+         */
         final int[] hashCodes = new int[count];
         for (int i=0; i<count; i++) {
             hashCodes[i] = elements[i].hashCode();
         }
-        // Marks every objects that are equal.
+        /*
+         * Marks every objects that are equal.
+         */
         final BitSet[] equalMasks = new BitSet[count];
         for (int i=0; i<count; i++) {
             final Object toCompare = elements  [i];
@@ -255,20 +262,22 @@ public abstract class Validator {
             for (int j=0; j<count; j++) {
                 final Object candidate = elements[j];
                 if (toCompare.equals(candidate)) {
-                    assertEquals("Inconsistent hash codes.", hashCode, candidate.hashCode());
+                    assertEquals(hashCode, candidate.hashCode(), "Inconsistent hash codes.");
                     equalMask.set(j);
                 }
             }
-            assertFalse("equals(null):", toCompare.equals(null));
+            assertFalse(toCompare.equals(null), "equals(null):");
         }
-        // Now compare the sets of objects marked as equal.
+        /*
+         * Now compare the sets of objects marked as equal.
+         */
         for (int i=0; i<count; i++) {
             final BitSet equalMask = equalMasks[i];
-            assertTrue("equals(this) shall be reflexive.", equalMask.get(i));
-            for (int j=0; (j=equalMask.nextSetBit(j)) >= 0; j++) {
-                assertEquals("A.equals(B) shall be symmetric and transitive.", equalMask, equalMasks[j]);
+            assertTrue(equalMask.get(i), "equals(this) shall be reflexive.");
+            for (int j=0; (j = equalMask.nextSetBit(j)) >= 0; j++) {
+                assertEquals(equalMask, equalMasks[j], "A.equals(B) shall be symmetric and transitive.");
             }
-            assertEquals("The hash code value has changed.", hashCodes[i], elements[i].hashCode());
+            assertEquals(hashCodes[i], elements[i].hashCode(), "The hash code value has changed.");
         }
     }
 }

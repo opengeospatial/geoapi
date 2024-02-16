@@ -27,7 +27,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CSAuthorityFactory;
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 

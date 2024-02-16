@@ -10,7 +10,7 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.example.metadata.SimpleCitation;
 import tech.uom.seshat.Units;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 

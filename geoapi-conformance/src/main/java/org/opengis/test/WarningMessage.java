@@ -26,9 +26,9 @@ import java.util.logging.LogRecord;
 
 /**
  * Holds information about a warning message logged during a previous test execution.
- * We use this information in order to avoid logging the same message too many time at
- * the warning level. Only the first message will be logged at the warning level, and
- * all other messages will be logged at the fine level.
+ * We use this information in order to avoid logging the same message too many times
+ * at the warning level. Only the first message will be logged at the warning level,
+ * and all other messages will be logged at the fine level.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -54,9 +54,9 @@ final class WarningMessage {
     private final String message;
 
     /**
-     * The method that produced the message:
-     * {@code true} for {@link Validator#mandatory(String, Object)} and
-     * {@code false} for {@link Validator#forbidden(String, Object)}.
+     * The method that produced the message.
+     * This is {@code true} for {@link Validator#mandatory(String, Object)}
+     * and {@code false} for {@link Validator#forbidden(String, Object)}.
      */
     private final boolean mandatory;
 
@@ -93,7 +93,7 @@ final class WarningMessage {
     /**
      * Logs this message at the given level.
      *
-     * @param  level  the level at which to log this message.
+     * @param  level  the logging level of the message to log.
      */
     private void log(final Level level) {
         final LogRecord record = new LogRecord(level, message);

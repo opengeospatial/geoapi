@@ -18,7 +18,7 @@
 package org.opengis.test.util;
 
 import org.opengis.test.Validators;
-import org.junit.*;
+import org.junit.jupiter.api.Test;
 
 
 /**

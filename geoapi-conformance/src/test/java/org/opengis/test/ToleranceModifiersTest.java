@@ -21,8 +21,8 @@ import java.util.EnumSet;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.crs.SingleCRS;
 
-import org.junit.*;
-import static org.junit.Assert.*;
+import org.junit.jupiter.api.Test;
+import static org.junit.jupiter.api.Assertions.*;
 import static org.opengis.test.ToleranceModifier.*;
 
 
@@ -90,11 +90,11 @@ public class ToleranceModifiersTest implements DirectPosition {
     @Test
     public void testRelative() {
         final ToleranceModifier modifier = RELATIVE;
-        assertEquals("Object shall be equal to itself.", modifier, modifier);
-        assertEquals("toString()", "ToleranceModifier.Relative[…]", modifier.toString());
+        assertEquals(modifier, modifier, "Object shall be equal to itself.");
+        assertEquals("ToleranceModifier.Relative[…]", modifier.toString(), "toString()");
 
         modifier.adjust(tolerance, this, CalculationType.DIRECT_TRANSFORM);
-        assertArrayEquals("Expected scaled values.", new double[] {10, 270, 20}, tolerance, 0);
+        assertArrayEquals(new double[] {10, 270, 20}, tolerance, "Expected scaled values.");
     }
 
     /**
@@ -106,12 +106,12 @@ public class ToleranceModifiersTest implements DirectPosition {
         assertSame(GEOGRAPHIC_φλ, ToleranceModifiers.geographic(1, 0));
 
         final ToleranceModifier modifier = GEOGRAPHIC;
-        assertEquals("Object shall be equal to itself.", modifier, modifier);
-        assertEquals("toString()", "ToleranceModifier.Geographic[λ,φ,…]", modifier.toString());
+        assertEquals(modifier, modifier, "Object shall be equal to itself.");
+        assertEquals("ToleranceModifier.Geographic[λ,φ,…]", modifier.toString());
 
         modifier.adjust(tolerance, this, CalculationType.DIRECT_TRANSFORM);
-        assertArrayEquals("Expected conversions from metres to decimal degrees.",
-                new double[] {360, 2.699784E-5, 2}, tolerance, 1E-11);
+        assertArrayEquals(new double[] {360, 2.699784E-5, 2}, tolerance, 1E-11,
+                "Expected conversions from metres to decimal degrees.");
     }
 
     /**
@@ -123,15 +123,15 @@ public class ToleranceModifiersTest implements DirectPosition {
         assertSame(PROJECTION_FROM_φλ, ToleranceModifiers.projection(1, 0));
 
         final ToleranceModifier modifier = PROJECTION;
-        assertEquals("Object shall be equal to itself.", modifier, modifier);
-        assertEquals("toString()", "ToleranceModifier.Projection[λ,φ,…]", modifier.toString());
+        assertEquals(modifier, modifier, "Object shall be equal to itself.");
+        assertEquals("ToleranceModifier.Projection[λ,φ,…]", modifier.toString());
 
         modifier.adjust(tolerance, this, CalculationType.DIRECT_TRANSFORM);
-        assertArrayEquals("Expected unmodified values.", new double[] {1, 3, 2}, tolerance, 0);
+        assertArrayEquals(new double[] {1, 3, 2}, tolerance, "Expected unmodified values.");
 
         modifier.adjust(tolerance, this, CalculationType.INVERSE_TRANSFORM);
-        assertArrayEquals("Expected conversions from metres to decimal degrees.",
-                new double[] {360, 2.699784E-5, 2}, tolerance, 1E-11);
+        assertArrayEquals(new double[] {360, 2.699784E-5, 2}, tolerance, 1E-11,
+                "Expected conversions from metres to decimal degrees.");
     }
 
     /**
@@ -140,17 +140,17 @@ public class ToleranceModifiersTest implements DirectPosition {
     @Test
     public void testScale() {
         final EnumSet<CalculationType> types = EnumSet.of(CalculationType.INVERSE_TRANSFORM);
-        assertNull("Testing with identity conversion.", ToleranceModifiers.scale(types, 1, 1));
+        assertNull(ToleranceModifiers.scale(types, 1, 1), "Testing with identity conversion.");
 
         final ToleranceModifier modifier = ToleranceModifiers.scale(types, 1, 2, 1);
-        assertEquals("Object shall be equal to itself.", modifier, modifier);
-        assertEquals("toString()", "ToleranceModifier.Scale[INVERSE_TRANSFORM:·,×2,…]", modifier.toString());
+        assertEquals(modifier, modifier, "Object shall be equal to itself.");
+        assertEquals("ToleranceModifier.Scale[INVERSE_TRANSFORM:·,×2,…]", modifier.toString());
 
         modifier.adjust(tolerance, this, CalculationType.DIRECT_TRANSFORM);
-        assertArrayEquals("Expected unmodified values.", new double[] {1, 3, 2}, tolerance, 0);
+        assertArrayEquals(new double[] {1, 3, 2}, tolerance, "Expected unmodified values.");
 
         modifier.adjust(tolerance, this, CalculationType.INVERSE_TRANSFORM);
-        assertArrayEquals("Expected scaled values.", new double[] {1, 6, 2}, tolerance, 0);
+        assertArrayEquals(new double[] {1, 6, 2}, tolerance, "Expected scaled values.");
     }
 
     /**
@@ -158,19 +158,19 @@ public class ToleranceModifiersTest implements DirectPosition {
      */
     @Test
     public void testMaximum() {
-        assertNull("Testing with empty array.", ToleranceModifiers.maximum());
-        assertSame("Testing with singleton.", PROJECTION, ToleranceModifiers.maximum(PROJECTION));
+        assertNull(ToleranceModifiers.maximum(), "Testing with empty array.");
+        assertSame(PROJECTION, ToleranceModifiers.maximum(PROJECTION), "Testing with singleton.");
 
         final ToleranceModifier modifier = ToleranceModifiers.maximum(PROJECTION, RELATIVE);
-        assertEquals("Object shall be equal to itself.", modifier, modifier);
-        assertEquals("toString()", "ToleranceModifier.Maximum[Projection[λ,φ,…], Relative[…]]", modifier.toString());
+        assertEquals(modifier, modifier, "Object shall be equal to itself.");
+        assertEquals("ToleranceModifier.Maximum[Projection[λ,φ,…], Relative[…]]", modifier.toString());
 
         final double[] copy = tolerance.clone();
         modifier.adjust(copy, this, CalculationType.DIRECT_TRANSFORM);
-        assertArrayEquals("Expected only scaled values.", new double[] {10, 270, 20}, copy, 0);
+        assertArrayEquals(new double[] {10, 270, 20}, copy, "Expected only scaled values.");
 
         modifier.adjust(tolerance, this, CalculationType.INVERSE_TRANSFORM);
-        assertArrayEquals("Expected converted and scaled values.", new double[] {360, 270, 20}, tolerance, 0);
+        assertArrayEquals(new double[] {360, 270, 20}, tolerance, "Expected converted and scaled values.");
     }
 
     /**
@@ -182,11 +182,11 @@ public class ToleranceModifiersTest implements DirectPosition {
         assertSame(RELATIVE,   ToleranceModifiers.concatenate(null, RELATIVE));
 
         final ToleranceModifier modifier = ToleranceModifiers.concatenate(GEOGRAPHIC, RELATIVE);
-        assertEquals("Object shall be equal to itself.", modifier, modifier);
-        assertEquals("toString()", "ToleranceModifier.Concatenate[Geographic[λ,φ,…] → Relative[…]]", modifier.toString());
+        assertEquals(modifier, modifier, "Object shall be equal to itself.");
+        assertEquals("ToleranceModifier.Concatenate[Geographic[λ,φ,…] → Relative[…]]", modifier.toString());
 
         modifier.adjust(tolerance, this, CalculationType.INVERSE_TRANSFORM);
-        assertArrayEquals("Expected converted and scaled values.",
-                new double[] {3600, 2.42981E-3, 20}, tolerance, 1E-8);
+        assertArrayEquals(new double[] {3600, 2.42981E-3, 20}, tolerance, 1E-8,
+                "Expected converted and scaled values.");
     }
 }

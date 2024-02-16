@@ -29,7 +29,7 @@ import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 
-import static org.junit.Assert.*;
+import static org.junit.jupiter.api.Assertions.fail;
 
 
 /**
@@ -110,7 +110,7 @@ final class Utilities {
      *
      * <p>If the given collection is {@code null}, then this method returns an empty set.</p>
      *
-     * @param  objects the objects for which to get the names and the aliases, or {@code null}.
+     * @param  objects  the objects for which to get the names and the aliases, or {@code null}.
      * @return the names and aliases of all non-null objects (never {@code null}).
      */
     public static Set<String> getNameAndAliases(final Collection<? extends IdentifiedObject> objects) {

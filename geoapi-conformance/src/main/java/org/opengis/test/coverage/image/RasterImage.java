@@ -51,6 +51,7 @@ final strictfp class RasterImage implements RenderedImage {
         this.raster = raster;
     }
 
+    @SuppressWarnings("UseOfObsoleteCollectionType")
     @Override public Vector<RenderedImage> getSources() {return null;}
     @Override public Object      getProperty(String n)  {return Image.UndefinedProperty;}
     @Override public String[]    getPropertyNames()     {return null;}

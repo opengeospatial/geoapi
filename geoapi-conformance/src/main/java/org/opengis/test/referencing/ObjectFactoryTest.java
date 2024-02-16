@@ -33,10 +33,10 @@ import org.opengis.referencing.ObjectFactory;
 import org.opengis.util.FactoryException;
 import org.opengis.test.Units;
 
-import org.junit.Test;
+import org.junit.jupiter.api.Test;
 
-import static org.junit.Assume.*;
-import static org.opengis.test.Assert.*;
+import static org.junit.jupiter.api.Assumptions.assumeTrue;
+import static org.opengis.test.Assert.assertAxisDirectionsEqual;
 import static org.opengis.referencing.cs.AxisDirection.*;
 
 
@@ -67,6 +67,14 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class ObjectFactoryTest extends ReferencingTestCase {
+    /**
+     * The message when a test is disabled because no factory has been found.
+     */
+    static final String NO_CRS_FACTORY   = "No Coordinate Reference System (CRS) factory found.",
+                        NO_CS_FACTORY    = "No Coordinate System (CS) factory found.",
+                        NO_DATUM_FACTORY = "No Datum factory found.",
+                        NO_COP_FACTORY   = "No Coordinate Operation factory found.";
+
     /**
      * Factory to use for building {@link Datum} instances, or {@code null} if none.
      */
@@ -158,20 +166,20 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         final Unit<Angle> degree = units.degree();
 
         // Build a geodetic datum.
-        assumeNotNull(datumFactory);
+        assumeTrue(datumFactory != null, NO_DATUM_FACTORY);
         validators.validate(datum = datumFactory.createGeodeticDatum(name("World Geodetic System 1984"),
                                     datumFactory.createEllipsoid    (name("WGS 84"), 6378137.0, 298.257223563, metre),
                                     datumFactory.createPrimeMeridian(name("Greenwich"), 0.0, degree)));
 
         // Build an ellipsoidal coordinate system.
-        assumeNotNull(csFactory);
+        assumeTrue(csFactory != null, NO_CS_FACTORY);
         validators.validate(λ  = csFactory.createCoordinateSystemAxis(name("Geodetic longitude"), "λ", EAST,  degree));
         validators.validate(φ  = csFactory.createCoordinateSystemAxis(name("Geodetic latitude"),  "φ", NORTH, degree));
         validators.validate(h  = csFactory.createCoordinateSystemAxis(name("Ellipsoidal height"), "h", UP,    metre));
         validators.validate(cs = csFactory.createEllipsoidalCS(name("WGS 84"), φ, λ, h));
 
         // Finally build the geographic coordinate reference system.
-        assumeNotNull(crsFactory);
+        assumeTrue(crsFactory != null, NO_CRS_FACTORY);
         validators.validate(crs = crsFactory.createGeographicCRS(name("WGS84(DD)"), datum, cs));
 
         datum = crs.getDatum();
@@ -207,18 +215,18 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         final Unit<Length> metre = units.metre();
         final Unit<Angle> degree = units.degree();
 
-        assumeNotNull(datumFactory);
+        assumeTrue(datumFactory != null, NO_DATUM_FACTORY);
         validators.validate(greenwich = datumFactory.createPrimeMeridian  (name("Greenwich Meridian"), 0, degree));
         validators.validate(ellipsoid = datumFactory.createFlattenedSphere(name("WGS84 Ellipsoid"), 6378137, 298.257223563, metre));
         validators.validate(datum     = datumFactory.createGeodeticDatum  (name("WGS84 Datum"), ellipsoid, greenwich));
 
-        assumeNotNull(csFactory);
+        assumeTrue(csFactory != null, NO_CS_FACTORY);
         validators.validate(X  = csFactory.createCoordinateSystemAxis(name("Geocentric X"), "X", GEOCENTRIC_X, metre));
         validators.validate(Y  = csFactory.createCoordinateSystemAxis(name("Geocentric Y"), "Y", GEOCENTRIC_Y, metre));
         validators.validate(Z  = csFactory.createCoordinateSystemAxis(name("Geocentric Z"), "Z", GEOCENTRIC_Z, metre));
         validators.validate(cs = csFactory.createCartesianCS(name("Geocentric CS"), X, Z, Y));
 
-        assumeNotNull(crsFactory);
+        assumeTrue(crsFactory != null, NO_CRS_FACTORY);
         validators.validate(crs = crsFactory.createGeocentricCRS(name("Geocentric CRS"), datum, cs));
         assertAxisDirectionsEqual("GeocentricCRS", crs.getCoordinateSystem(), GEOCENTRIC_X, GEOCENTRIC_Z, GEOCENTRIC_Y);
     }
@@ -266,13 +274,13 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         final Unit<Length> metre = units.metre();
         final Unit<Angle> degree = units.degree();
 
-        assumeNotNull(datumFactory);
+        assumeTrue(datumFactory != null, NO_DATUM_FACTORY);
         validators.validate(greenwich   = datumFactory.createPrimeMeridian  (name("Greenwich Meridian"), 0, degree));
         validators.validate(ellipsoid   = datumFactory.createFlattenedSphere(name("WGS84 Ellipsoid"), 6378137, 298.257223563, metre));
         validators.validate(baseDatum   = datumFactory.createGeodeticDatum  (name("WGS84 Datum"), ellipsoid, greenwich));
         validators.validate(heightDatum = datumFactory.createVerticalDatum  (name("WGS84 geoidal height"), VerticalDatumType.GEOIDAL));
 
-        assumeNotNull(csFactory);
+        assumeTrue(csFactory != null, NO_CS_FACTORY);
         validators.validate(axisN       = csFactory.createCoordinateSystemAxis(name("Northing"),               "N", NORTH, metre));
         validators.validate(axisE       = csFactory.createCoordinateSystemAxis(name("Easting"),                "E", EAST,  metre));
         validators.validate(axisH       = csFactory.createCoordinateSystemAxis(name("Gravity-related Height"), "H", UP,    metre));
@@ -282,11 +290,11 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         validators.validate(projectedCS = csFactory.createCartesianCS         (name("2D Cartesian CS"), axisN, axisE));
         validators.validate(heightCS    = csFactory.createVerticalCS          (name("Height CS"),       axisH));
 
-        assumeNotNull(crsFactory);
+        assumeTrue(crsFactory != null, NO_CRS_FACTORY);
         baseCRS   = crsFactory.createGeographicCRS(name("2D geographic CRS"), baseDatum, baseCS);
         heightCRS = crsFactory.createVerticalCRS  (name("Height CRS"),      heightDatum, heightCS);
 
-        assumeNotNull(copFactory);
+        assumeTrue(copFactory != null, NO_COP_FACTORY);
         validators.validate(projectionMethod = copFactory.getOperationMethod("Transverse_Mercator"));
         final ParameterValueGroup paramUTM = projectionMethod.getParameters().createValue();
         paramUTM.parameter("central_meridian")  .setValue(-180 + utmZone*6 - 3);
