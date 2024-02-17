@@ -145,8 +145,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
                 final GeodeticDatum datum, final CoordinateSystemAxis... axes)
         {
             super(authority, name, axes);
-            Objects.requireNonNull(datum);
-            this.datum = datum;
+            this.datum = Objects.requireNonNull(datum);
         }
 
         /**
@@ -213,8 +212,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
                 final VerticalDatumType type, final CoordinateSystemAxis axis)
         {
             super(authority, name, axis);
-            Objects.requireNonNull(type);
-            this.type = type;
+            this.type = Objects.requireNonNull(type);
         }
 
         /**

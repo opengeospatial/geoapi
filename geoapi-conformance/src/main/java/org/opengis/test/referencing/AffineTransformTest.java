@@ -136,10 +136,10 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      *
      * @param factory  factory for creating {@link MathTransform} instances.
      */
+    @SuppressWarnings("this-escape")
     public AffineTransformTest(final MathTransformFactory factory) {
         super(factory);
         mtFactory = factory;
-        @SuppressWarnings("unchecked")
         final boolean[] isEnabled = getEnabledFlags(
                 Configuration.Key.isNonSquareMatrixSupported,
                 Configuration.Key.isNonBidimensionalSpaceSupported);

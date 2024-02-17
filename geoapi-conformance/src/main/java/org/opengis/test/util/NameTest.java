@@ -30,7 +30,7 @@ import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.*;
-import static org.opengis.test.Assert.assertContains;
+import static org.opengis.test.Assertions.assertContains;
 
 
 /**
@@ -98,10 +98,10 @@ public strictfp class NameTest extends TestCase {
      *
      * @param factory  the factory to be used for creation of instances to be tested.
      */
+    @SuppressWarnings("this-escape")
     public NameTest(final NameFactory factory) {
         super(factory);
         this.factory = factory;
-        @SuppressWarnings("unchecked")
         final boolean[] isEnabled = getEnabledFlags(
                 Configuration.Key.isMultiLocaleSupported,
                 Configuration.Key.isMixedNameSyntaxSupported);
@@ -179,8 +179,8 @@ public strictfp class NameTest extends TestCase {
             }
             configurationTip = null;
         }
-        assertContains("toString() should returns one of the values given to the factory method.",
-                names.values(), localized.toString());
+        assertContains(names.values(), localized.toString(),
+                "toString() should returns one of the values given to the factory method.");
     }
 
     /**

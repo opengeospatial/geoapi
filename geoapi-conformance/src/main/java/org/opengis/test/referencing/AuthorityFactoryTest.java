@@ -44,7 +44,7 @@ import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.abort;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.opengis.test.Validator.DEFAULT_TOLERANCE;
-import static org.opengis.test.Assert.assertAxisDirectionsEqual;
+import static org.opengis.test.Assertions.assertAxisDirectionsEqual;
 
 
 /**
@@ -215,6 +215,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * @param csFactory     factory for creating {@link CoordinateSystem} instances.
      * @param datumFactory  factory for creating {@link Datum} instances.
      */
+    @SuppressWarnings("this-escape")
     public AuthorityFactoryTest(final CRSAuthorityFactory crsFactory,
             final CSAuthorityFactory csFactory, final DatumAuthorityFactory datumFactory)
     {
@@ -338,7 +339,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
                 final AxisDirection t = X;
                 X=Y; Y=t;
             }
-            assertAxisDirectionsEqual(message, cs, X, Y);
+            assertAxisDirectionsEqual(cs, new AxisDirection[] {X, Y}, message);
         }
     }
 

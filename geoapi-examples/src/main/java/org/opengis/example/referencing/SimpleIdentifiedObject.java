@@ -50,9 +50,8 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * @param name       the name of the new object.
      */
     public SimpleIdentifiedObject(final Citation authority, final String name) {
-        Objects.requireNonNull(name);
         this.authority = authority;
-        this.code = name;
+        this.code = Objects.requireNonNull(name);
     }
 
     /**

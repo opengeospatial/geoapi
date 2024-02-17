@@ -26,7 +26,7 @@ import org.opengis.referencing.datum.*;
 import org.opengis.test.ValidatorContainer;
 
 import static org.junit.jupiter.api.Assertions.*;
-import static org.opengis.test.Assert.assertBetween;
+import static org.opengis.test.Assertions.assertBetween;
 
 
 /**
@@ -91,7 +91,7 @@ public class DatumValidator extends ReferencingValidator {
             assertTrue(unit.isCompatible(degree), "PrimeMeridian: unit must be compatible with degrees.");
             longitude = unit.getConverterTo(degree).convert(longitude);
         }
-        assertBetween("PrimeMeridian: expected longitude in [-180 … +180]° range.", -180, +180, longitude);
+        assertBetween(-180, +180, longitude, "PrimeMeridian: expected longitude in [-180 … +180]° range.");
     }
 
     /**

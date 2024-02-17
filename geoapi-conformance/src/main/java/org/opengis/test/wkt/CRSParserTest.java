@@ -109,10 +109,10 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      *
      * @param crsFactory  factory for parsing {@link CoordinateReferenceSystem} instances.
      */
+    @SuppressWarnings("this-escape")
     public CRSParserTest(final CRSFactory crsFactory) {
         super(crsFactory);
         this.crsFactory = crsFactory;
-        @SuppressWarnings("unchecked")
         final boolean[] isEnabled = getEnabledFlags(
                 Configuration.Key.isValidationEnabled);
         isValidationEnabled = isEnabled[0];

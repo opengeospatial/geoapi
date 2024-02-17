@@ -68,8 +68,7 @@ public class ProjectiveTransform extends SimpleTransform {
             final SimpleMatrix matrix)
     {
         super(authority, name, sourceCRS, targetCRS);
-        Objects.requireNonNull(matrix);
-        this.matrix = matrix;
+        this.matrix = Objects.requireNonNull(matrix);
         if (sourceCRS != null && sourceCRS.getCoordinateSystem().getDimension() != matrix.getNumCol() - 1) {
             throw new MismatchedDimensionException("Wrong number of source dimensions.");
         }

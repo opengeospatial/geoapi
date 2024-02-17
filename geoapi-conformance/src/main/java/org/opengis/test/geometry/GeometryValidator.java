@@ -31,9 +31,9 @@ import org.opengis.test.ValidatorContainer;
 import static java.lang.Double.NaN;
 import static java.lang.Double.isNaN;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.opengis.test.Assert.assertBetween;
-import static org.opengis.test.Assert.assertPositive;
-import static org.opengis.test.Assert.assertValidRange;
+import static org.opengis.test.Assertions.assertBetween;
+import static org.opengis.test.Assertions.assertPositive;
+import static org.opengis.test.Assertions.assertValidRange;
 
 
 /**
@@ -100,7 +100,7 @@ public class GeometryValidator extends Validator {
             return;
         }
         final int dimension = object.getDimension();
-        assertPositive("Envelope: dimension cannot be negative.", dimension);
+        assertPositive(dimension, "Envelope: dimension cannot be negative.");
         final CoordinateReferenceSystem crs = object.getCoordinateReferenceSystem();
         container.validate(crs);                                                            // May be null.
         CoordinateSystem cs = null;
@@ -167,10 +167,10 @@ public class GeometryValidator extends Validator {
                     assertEquals((maximum + minimum)/2, median, eps, "Envelope: unexpected median value.");
                 } else if (RangeMeaning.EXACT.equals(meaning)) {
                     // assertBetween(…) tolerates NaN values, which is what we want.
-                    assertValidRange("Envelope: invalid minimum or maximum.", minimum, maximum);
-                    assertBetween   ("Envelope: invalid lower coordinate.",   minimum, maximum, lower);
-                    assertBetween   ("Envelope: invalid upper coordinate.",   minimum, maximum, upper);
-                    assertBetween   ("Envelope: invalid median coordinate.",  minimum, maximum, median);
+                    assertValidRange(minimum, maximum,         "Envelope: invalid minimum or maximum.");
+                    assertBetween   (minimum, maximum, lower,  "Envelope: invalid lower coordinate.");
+                    assertBetween   (minimum, maximum, upper,  "Envelope: invalid upper coordinate.");
+                    assertBetween   (minimum, maximum, median, "Envelope: invalid median coordinate.");
                 }
             }
             if (meaning != null && (lower > upper || isPositiveToNegativeZero(lower, upper))) {
@@ -203,7 +203,7 @@ public class GeometryValidator extends Validator {
          * Checks coordinate consistency.
          */
         final int dimension = object.getDimension();
-        assertPositive("DirectPosition: dimension cannot be negative.", dimension);
+        assertPositive(dimension, "DirectPosition: dimension cannot be negative.");
         final double[] coordinates = object.getCoordinate();
         mandatory("DirectPosition: coordinate array cannot be null.", coordinates);
         if (coordinates != null) {
@@ -211,7 +211,7 @@ public class GeometryValidator extends Validator {
                     "DirectPosition: coordinate array length shall be equal to the dimension.");
             for (int i=0; i<dimension; i++) {
                 assertEquals(coordinates[i], object.getOrdinate(i),     // No tolerance - we want exact match.
-                        "DirectPosition: getOrdinate(i) shall be the same than coordinate[i].");
+                        "DirectPosition: getOrdinate(i) shall be the same as coordinate[i].");
             }
         }
         /*
@@ -231,7 +231,7 @@ public class GeometryValidator extends Validator {
                         final double coordinate = coordinates[i];
                         final double minimum  = axis.getMinimumValue();
                         final double maximum  = axis.getMaximumValue();
-                        assertBetween("DirectPosition: coordinate out of axis bounds.", minimum, maximum, coordinate);
+                        assertBetween(minimum, maximum, coordinate, "DirectPosition: coordinate out of axis bounds.");
                     }
                 }
             }

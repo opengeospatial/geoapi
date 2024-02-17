@@ -75,6 +75,7 @@ public class ValidatorContainer implements Cloneable {
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
      */
+    @SuppressWarnings("this-escape")
     public NameValidator naming = new NameValidator(this);
 
     /**
@@ -84,6 +85,7 @@ public class ValidatorContainer implements Cloneable {
      *
      * @since 3.1
      */
+    @SuppressWarnings("this-escape")
     public MetadataBaseValidator metadata = new MetadataBaseValidator(this);
 
     /**
@@ -91,6 +93,7 @@ public class ValidatorContainer implements Cloneable {
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
      */
+    @SuppressWarnings("this-escape")
     public CitationValidator citation = new CitationValidator(this);
 
     /**
@@ -98,6 +101,7 @@ public class ValidatorContainer implements Cloneable {
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
      */
+    @SuppressWarnings("this-escape")
     public ExtentValidator extent = new ExtentValidator(this);
 
     /**
@@ -105,6 +109,7 @@ public class ValidatorContainer implements Cloneable {
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
      */
+    @SuppressWarnings("this-escape")
     public DatumValidator datum = new DatumValidator(this);
 
     /**
@@ -112,6 +117,7 @@ public class ValidatorContainer implements Cloneable {
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
      */
+    @SuppressWarnings("this-escape")
     public CSValidator cs = new CSValidator(this);
 
     /**
@@ -119,6 +125,7 @@ public class ValidatorContainer implements Cloneable {
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
      */
+    @SuppressWarnings("this-escape")
     public CRSValidator crs = new CRSValidator(this);
 
     /**
@@ -126,6 +133,7 @@ public class ValidatorContainer implements Cloneable {
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
      */
+    @SuppressWarnings("this-escape")
     public ParameterValidator parameter = new ParameterValidator(this);
 
     /**
@@ -133,6 +141,7 @@ public class ValidatorContainer implements Cloneable {
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
      */
+    @SuppressWarnings("this-escape")
     public OperationValidator coordinateOperation = new OperationValidator(this);
 
     /**
@@ -140,6 +149,7 @@ public class ValidatorContainer implements Cloneable {
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
      */
+    @SuppressWarnings("this-escape")
     public GeometryValidator geometry = new GeometryValidator(this);
 
     /**
@@ -147,6 +157,7 @@ public class ValidatorContainer implements Cloneable {
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
      */
+    @SuppressWarnings("this-escape")
     public ImageValidator image = new ImageValidator(this);
 
     /**

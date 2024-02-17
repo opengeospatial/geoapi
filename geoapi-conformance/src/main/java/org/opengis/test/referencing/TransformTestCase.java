@@ -37,7 +37,7 @@ import org.opengis.test.TestCase;
 
 import static java.lang.StrictMath.*;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.opengis.test.Assert.assertStrictlyPositive;
+import static org.opengis.test.Assertions.assertStrictlyPositive;
 
 
 /**
@@ -294,7 +294,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *
      * @param factories  the factories to be used by the test.
      */
-    @SuppressWarnings("unchecked")
+    @SuppressWarnings("this-escape")
     protected TransformTestCase(final Factory... factories) {
         super(factories);
         setEnabledFlags(getEnabledFlags(getEnabledKeys(0)));
@@ -393,7 +393,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *
      * @deprecated Replaced by {@link #toleranceModifier}.
      */
-    @Deprecated
+    @Deprecated(since="3.1", forRemoval=true)
     protected double tolerance(final double coordinate) {
         return tolerance;
     }
@@ -446,8 +446,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
         assertNotNull(transform, "TransformTestCase.transform shall be assigned a value.");
         final int sourceDimension = transform.getSourceDimensions();
         final int targetDimension = transform.getTargetDimensions();
-        assertStrictlyPositive("Source dimension shall be positive.", sourceDimension);
-        assertStrictlyPositive("Target dimension shall be positive.", targetDimension);
+        assertStrictlyPositive(sourceDimension, "Source dimension shall be positive.");
+        assertStrictlyPositive(targetDimension, "Target dimension shall be positive.");
         final MathTransform inverse;
         if (isInverseTransformSupported) {
             final Configuration.Key<Boolean> oldTip = configurationTip;
@@ -537,8 +537,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
         assertNotNull(transform, "TransformTestCase.transform shall be assigned a value.");
         final int sourceDimension = transform.getSourceDimensions();
         final int targetDimension = transform.getTargetDimensions();
-        assertStrictlyPositive("Source dimension shall be positive.", sourceDimension);
-        assertStrictlyPositive("Target dimension shall be positive.", targetDimension);
+        assertStrictlyPositive(sourceDimension, "Source dimension shall be positive.");
+        assertStrictlyPositive(targetDimension, "Target dimension shall be positive.");
         final MathTransform inverse = transform.inverse();
         assertNotNull(inverse, "MathTransform.inverse() shall not return null.");
         assertEquals(targetDimension, inverse.getSourceDimensions(),
@@ -1286,7 +1286,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict    {@code true} for ignoring the {@linkplain #tolerance(double) tolerance} threshold.
      *                  In such case, coordinate values are checked for strict equality.
      */
-    @Deprecated
+    @Deprecated(since="3.1", forRemoval=true)
     protected final void assertCoordinateEquals(final String message, final float[] expected,
             final float[] actual, final int index, final boolean strict)
     {
@@ -1304,7 +1304,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict    {@code true} for ignoring the {@linkplain #tolerance(double) tolerance} threshold.
      *                  In such case, coordinate values are checked for strict equality.
      */
-    @Deprecated
+    @Deprecated(since="3.1", forRemoval=true)
     protected final void assertCoordinateEquals(final String message, final float[] expected,
             final double[] actual, final int index, final boolean strict)
     {
@@ -1322,7 +1322,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict    {@code true} for ignoring the {@linkplain #tolerance(double) tolerance} threshold.
      *                  In such case, coordinate values are checked for strict equality.
      */
-    @Deprecated
+    @Deprecated(since="3.1", forRemoval=true)
     protected final void assertCoordinateEquals(final String message, final double[] expected,
             final float[] actual, final int index, final boolean strict)
     {
@@ -1340,7 +1340,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict    {@code true} for ignoring the {@linkplain #tolerance(double) tolerance} threshold.
      *                  In such case, coordinate values are checked for strict equality.
      */
-    @Deprecated
+    @Deprecated(since="3.1", forRemoval=true)
     protected final void assertCoordinateEquals(final String message, final double[] expected,
             final double[] actual, final int index, final boolean strict)
     {
@@ -1361,7 +1361,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict          {@code true} for ignoring the {@linkplain #tolerance(double) tolerance} threshold.
      *                        In such case, coordinate values are checked for strict equality.
      */
-    @Deprecated
+    @Deprecated(since="3.1", forRemoval=true)
     protected final void assertCoordinatesEqual(
             final String  message,     final int dimension,
             final float[] expectedPts, final int expectedOffset,
@@ -1386,7 +1386,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict          {@code true} for ignoring the {@linkplain #tolerance(double) tolerance} threshold.
      *                        In such case, coordinate values are checked for strict equality.
      */
-    @Deprecated
+    @Deprecated(since="3.1", forRemoval=true)
     protected final void assertCoordinatesEqual(
             final String   message,     final int dimension,
             final float[]  expectedPts, final int expectedOffset,
@@ -1411,7 +1411,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict          {@code true} for ignoring the {@linkplain #tolerance(double) tolerance} threshold.
      *                        In such case, coordinate values are checked for strict equality.
      */
-    @Deprecated
+    @Deprecated(since="3.1", forRemoval=true)
     protected final void assertCoordinatesEqual(
             final String   message,     final int dimension,
             final double[] expectedPts, final int expectedOffset,
@@ -1436,7 +1436,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param strict          {@code true} for ignoring the {@linkplain #tolerance(double) tolerance} threshold.
      *                        In such case, coordinate values are checked for strict equality.
      */
-    @Deprecated
+    @Deprecated(since="3.1", forRemoval=true)
     protected final void assertCoordinatesEqual(
             final String   message,     final int dimension,
             final double[] expectedPts, final int expectedOffset,
@@ -1467,7 +1467,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @throws DerivativeFailure if at least one matrix element is not equal to the expected value.
      *
      * @see #verifyDerivative(double[])
-     * @see org.opengis.test.Assert#assertMatrixEquals(String, Matrix, Matrix, double)
+     * @see org.opengis.test.Assertions#assertMatrixEquals(Matrix, Matrix, double, String)
      *
      * @since 3.1
      */

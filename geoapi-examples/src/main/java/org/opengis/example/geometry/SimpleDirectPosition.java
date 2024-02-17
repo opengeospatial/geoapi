@@ -87,12 +87,11 @@ public class SimpleDirectPosition implements DirectPosition {
     public SimpleDirectPosition(final CoordinateReferenceSystem crs, final double... coordinates)
             throws MismatchedDimensionException
     {
-        Objects.requireNonNull(coordinates);
+        this.coordinates = Objects.requireNonNull(coordinates);
+        this.crs = crs;
         if (crs != null && crs.getCoordinateSystem().getDimension() != coordinates.length) {
             throw new MismatchedDimensionException();
         }
-        this.coordinates = coordinates;
-        this.crs = crs;
     }
 
     /**

@@ -119,8 +119,7 @@ public class SimpleName implements GenericName {
                 throws IllegalArgumentException
         {
             super(scope, name);
-            Objects.requireNonNull(attributeType, "An attribute type must be specified.");
-            this.attributeType = attributeType;
+            this.attributeType = Objects.requireNonNull(attributeType, "An attribute type must be specified.");
         }
 
         /**
@@ -303,9 +302,8 @@ public class SimpleName implements GenericName {
      * @param name   the JNDI name wrapped by this {@code SimpleName} (<strong>not</strong> cloned).
      */
     protected SimpleName(final SimpleNameSpace scope, final Name name) {
-        Objects.requireNonNull(name, "A JNDI name must be provided.");
         this.scope = (scope != SimpleNameSpace.ROOT) ? scope : null;
-        this.name  = name;
+        this.name  = Objects.requireNonNull(name, "A JNDI name must be provided.");
     }
 
     /**
