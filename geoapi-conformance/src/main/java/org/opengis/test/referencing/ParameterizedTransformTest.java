@@ -56,7 +56,7 @@ import static org.opengis.test.referencing.AffineTransformTest.NO_FACTORY;
  * parameterized math transforms} from the {@code org.opengis.referencing.operation} package.
  * Math transform instances are created using the factory given at construction time.
  *
- * <p><b>Skipping tests for unsupported operations:</b><br>
+ * <h2>Skipping tests for unsupported operations</h2>
  * If the tested factory throws a {@link NoSuchIdentifierException} during the invocation
  * of one of the following methods:
  *
@@ -68,10 +68,10 @@ import static org.opengis.test.referencing.AffineTransformTest.NO_FACTORY;
  * then the tests is skipped. If any other kind of exception is thrown, or if {@code NoSuchIdentifierException}
  * is thrown under other circumstances than the invocation of above methods, then the test fails.
  *
- * <p><b>Tests and accuracy:</b><br>
+ * <h2>Tests and accuracy</h2>
  * By default, every tests expect an accuracy of 1 centimetre. This accuracy matches the precision
  * of most example points given in the EPSG guidance notice. Implementers can modify the kind of
- * tests being executed and the tolerance threshold in different ways:</p>
+ * tests being executed and the tolerance threshold in different ways:
  *
  * <ul>
  *   <li>Set some <code>is&lt;<var>Operation</var>&gt;Supported</code> fields to {@code false}.</li>
@@ -79,10 +79,10 @@ import static org.opengis.test.referencing.AffineTransformTest.NO_FACTORY;
  *       before to invoke {@code super.testFoo()}.</li>
  *   <li>Override {@link #normalize(DirectPosition, DirectPosition, CalculationType)
  *       normalize(DirectPosition, DirectPosition, CalculationType)}.</li>
- *   <li>Override {@link #assertMatrixEquals(String, Matrix, Matrix, Matrix)}.</li>
+ *   <li>Override {@link #assertMatrixEquals(Matrix, Matrix, Matrix, String)}.</li>
  * </ul>
  *
- * <h2>Usage example:</h2>
+ * <h2>Usage example</h2>
  * in order to specify their factories and run the tests in a JUnit framework, implementers can define
  * a subclass in their own test suite as in the example below. That example shows also how implementers
  * can alter some tests (here the tolerance value for the <cite>Lambert Azimuthal Equal Area</cite> projection)
@@ -1822,9 +1822,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
 
     /**
      * Asserts that a matrix of derivatives is equal to the expected ones within a positive delta.
+     *
+     * @hidden
      */
     @Override
-    protected void assertMatrixEquals(final String message, final Matrix expected, final Matrix actual, final Matrix tolmat)
+    protected void assertMatrixEquals(final Matrix expected, final Matrix actual, final Matrix tolmat, final String message)
             throws DerivativeFailure
     {
         if (tolmat != null) {
@@ -1836,6 +1838,6 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
                 }
             }
         }
-        super.assertMatrixEquals(message, expected, actual, tolmat);
+        super.assertMatrixEquals(expected, actual, tolmat, message);
     }
 }

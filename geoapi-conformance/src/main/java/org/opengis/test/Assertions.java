@@ -412,7 +412,7 @@ public final strictfp class Assertions {
      * @param tolerance  the tolerance threshold.
      * @param message    header of the exception message in case of failure, or {@code null} if none.
      *
-     * @see org.opengis.test.referencing.TransformTestCase#assertMatrixEquals(String, Matrix, Matrix, Matrix)
+     * @see org.opengis.test.referencing.TransformTestCase#assertMatrixEquals(Matrix, Matrix, Matrix, String)
      */
     public static void assertMatrixEquals(final Matrix expected, final Matrix actual, final double tolerance, final String message) {
         if (isNull(expected, actual, message)) {
