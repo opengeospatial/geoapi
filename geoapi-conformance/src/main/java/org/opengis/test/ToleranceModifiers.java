@@ -105,11 +105,11 @@ public strictfp final class ToleranceModifiers {
 
         /** Adjusts the tolerances as documented in the enclosing class. */
         @Override
-        public void adjust(final double[] tolerance, final DirectPosition coordinate, final CalculationType mode) {
-            for (int i=0; i<tolerance.length; i++) {
-                final double scale = abs(coordinate.getOrdinate(i));
+        public void adjust(final double[] tolerances, final DirectPosition coordinates, final CalculationType mode) {
+            for (int i=0; i<tolerances.length; i++) {
+                final double scale = abs(coordinates.getOrdinate(i));
                 if (scale > 1) {
-                    tolerance[i] *= scale;
+                    tolerances[i] *= scale;
                 }
             }
         }
@@ -166,15 +166,15 @@ public strictfp final class ToleranceModifiers {
 
         /** Adjusts the (λ,φ) tolerances as documented in the enclosing class. */
         @Override
-        public void adjust(final double[] tolerance, final DirectPosition coordinate, final CalculationType mode) {
-            tolerance[φDimension] /= (NAUTICAL_MILE * 60);  // 1 nautical miles = 1852 metres in 1 minute of angle.
-            double tol = tolerance[λDimension];
+        public void adjust(final double[] tolerances, final DirectPosition coordinates, final CalculationType mode) {
+            tolerances[φDimension] /= (NAUTICAL_MILE * 60);   // 1 nautical miles = 1852 metres in 1 minute of angle.
+            double tol = tolerances[λDimension];
             if (tol != 0) {
-                tol /= (NAUTICAL_MILE*60 * cos(toRadians(abs(coordinate.getOrdinate(φDimension)))));
-                if (!(tol <= 360)) {                        // !(a<=b) rather than (a>b) in order to catch NaN.
+                tol /= (NAUTICAL_MILE*60 * cos(toRadians(abs(coordinates.getOrdinate(φDimension)))));
+                if (!(tol <= 360)) {                          // !(a<=b) rather than (a>b) in order to catch NaN.
                     tol = 360;
                 }
-                tolerance[λDimension] = tol;
+                tolerances[λDimension] = tol;
             }
         }
 
@@ -247,9 +247,9 @@ public strictfp final class ToleranceModifiers {
 
         /** Adjusts the (λ,φ) tolerances as documented in the enclosing class. */
         @Override
-        public void adjust(final double[] tolerance, final DirectPosition coordinate, final CalculationType mode) {
+        public void adjust(final double[] tolerances, final DirectPosition coordinates, final CalculationType mode) {
             if (mode == CalculationType.INVERSE_TRANSFORM) {
-                super.adjust(tolerance, coordinate, mode);
+                super.adjust(tolerances, coordinates, mode);
             }
         }
     };
@@ -309,10 +309,10 @@ public strictfp final class ToleranceModifiers {
 
         /** Gets the scaled tolerance threshold as documented in the enclosing class. */
         @Override
-        public void adjust(final double[] tolerance, final DirectPosition coordinate, final CalculationType mode) {
+        public void adjust(final double[] tolerances, final DirectPosition coordinates, final CalculationType mode) {
             if (types.contains(mode)) {
-                for (int i=min(tolerance.length, factors.length); --i>=0;) {
-                    tolerance[i] *= factors[i];
+                for (int i=min(tolerances.length, factors.length); --i>=0;) {
+                    tolerances[i] *= factors[i];
                 }
             }
         }
@@ -413,18 +413,18 @@ public strictfp final class ToleranceModifiers {
             this.modifiers = modifiers;
         }
 
-        /** Gets the maximal tolerance threshold as documented in the enclosing class. */
+        /** Gets the maximal tolerance thresholds as documented in the enclosing class. */
         @Override
-        public void adjust(final double[] tolerance, final DirectPosition coordinate, final CalculationType mode) {
-            final double[] original = tolerance.clone();
+        public void adjust(final double[] tolerances, final DirectPosition coordinates, final CalculationType mode) {
+            final double[] original = tolerances.clone();
             final double[] copy = new double[original.length];
             for (final ToleranceModifier modifier : modifiers) {
                 System.arraycopy(original, 0, copy, 0, original.length);
-                modifier.adjust(copy, coordinate, mode);
+                modifier.adjust(copy, coordinates, mode);
                 for (int i=0; i<copy.length; i++) {
                     final double tol = copy[i];
-                    if (tol > tolerance[i]) {
-                        tolerance[i] = tol;
+                    if (tol > tolerances[i]) {
+                        tolerances[i] = tol;
                     }
                 }
             }
@@ -482,11 +482,11 @@ public strictfp final class ToleranceModifiers {
             this.second = second;
         }
 
-        /** Gets the concatenated threshold as documented in the enclosing class. */
+        /** Gets the concatenated thresholds as documented in the enclosing class. */
         @Override
-        public void adjust(final double[] tolerance, final DirectPosition coordinate, final CalculationType mode) {
-            first .adjust(tolerance, coordinate, mode);
-            second.adjust(tolerance, coordinate, mode);
+        public void adjust(final double[] tolerances, final DirectPosition coordinates, final CalculationType mode) {
+            first .adjust(tolerances, coordinates, mode);
+            second.adjust(tolerances, coordinates, mode);
         }
 
         /** Compares this object with the given object for equality. */

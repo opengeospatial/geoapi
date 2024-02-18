@@ -24,7 +24,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Used for describing {@link TemporalPosition temporal positions} referenced 
+ * Used for describing {@link TemporalPosition temporal positions} referenced
  * to other {@linkplain TemporalReferenceSystem temporal reference systems}.
  *
  * @author Stephane Fellah (Image Matters)
@@ -53,7 +53,6 @@ public interface TemporalPosition {
      * If not specified, it is assumed to be an association to Gregorian Calendar and UTC.
      *
      * @return the association which connect the {@link TemporalPosition} to a {@link TemporalReferenceSystem}.
-     * @since 4.0
      */
     @UML(identifier="frame", obligation=MANDATORY, specification=ISO_19108)
     TemporalReferenceSystem getFrame();
