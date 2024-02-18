@@ -100,7 +100,6 @@ public strictfp class NameTest extends TestCase {
      */
     @SuppressWarnings("this-escape")
     public NameTest(final NameFactory factory) {
-        super(factory);
         this.factory = factory;
         final boolean[] isEnabled = getEnabledFlags(
                 Configuration.Key.isMultiLocaleSupported,

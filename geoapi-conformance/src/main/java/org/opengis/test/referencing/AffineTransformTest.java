@@ -138,7 +138,6 @@ public strictfp class AffineTransformTest extends TransformTestCase {
      */
     @SuppressWarnings("this-escape")
     public AffineTransformTest(final MathTransformFactory factory) {
-        super(factory);
         mtFactory = factory;
         final boolean[] isEnabled = getEnabledFlags(
                 Configuration.Key.isNonSquareMatrixSupported,

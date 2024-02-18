@@ -21,7 +21,6 @@ import java.util.Random;
 import java.util.Arrays;
 import java.awt.geom.Point2D;
 
-import org.opengis.util.Factory;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
@@ -229,9 +228,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
 
     /**
      * Optional modification to the {@linkplain #tolerance} threshold before to compare a
-     * coordinate points. {@link ToleranceModifier} instance assigned to this field (if any)
+     * coordinate tuple. {@link ToleranceModifier} instance assigned to this field (if any)
      * are {@linkplain #transform}-dependent. The modifications applied by a particular
-     * {@code ToleranceModifier} instance to the tolerance thresholds is position-dependent.
+     * {@code ToleranceModifier} instance to the tolerance thresholds can be position-dependent.
      *
      * <p>Common values assigned to this field are {@link ToleranceModifier#PROJECTION} and
      * {@link ToleranceModifier#GEOGRAPHIC}.</p>
@@ -271,8 +270,6 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * {@link ToleranceModifier} registered on the classpath. We presume that the
      * implementer specified such tolerance modifier in order to relax the tolerance
      * threshold.
-     *
-     * @since 3.1
      */
     private boolean isToleranceRelaxed;
 
@@ -291,12 +288,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * is initially null, the {@linkplain #tolerance} threshold is initially zero and
      * all <code>is&lt;</code><var>Operation</var><code>&gt;Supported</code> are set
      * to {@code true}.
-     *
-     * @param factories  the factories to be used by the test.
      */
     @SuppressWarnings("this-escape")
-    protected TransformTestCase(final Factory... factories) {
-        super(factories);
+    protected TransformTestCase() {
         setEnabledFlags(getEnabledFlags(getEnabledKeys(0)));
     }
 

@@ -110,7 +110,6 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
             final CRSFactory                 crsFactory,
             final CoordinateOperationFactory copFactory)
     {
-        super(datumFactory, csFactory, crsFactory, copFactory);
         this.datumFactory = datumFactory;
         this.csFactory    = csFactory;
         this.crsFactory   = crsFactory;

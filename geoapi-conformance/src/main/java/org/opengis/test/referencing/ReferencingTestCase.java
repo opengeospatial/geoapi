@@ -47,7 +47,6 @@ import org.opengis.temporal.Instant;
 import org.opengis.temporal.Period;
 import org.opengis.temporal.TemporalPrimitive;
 import org.opengis.test.TestCase;
-import org.opengis.util.Factory;
 import org.opentest4j.AssertionFailedError;
 
 import static java.lang.Double.isNaN;
@@ -68,13 +67,8 @@ import static org.opengis.test.Assertions.assertUnicodeIdentifierEquals;
 public strictfp abstract class ReferencingTestCase extends TestCase {
     /**
      * Creates a test case initialized to default values.
-     *
-     * @param factories  the factories to be used by the test. Those factories are passed to
-     *                   the {@linkplain TestCase#TestCase(Factory[]) super-class constructor}.
      */
-    @SuppressWarnings("unchecked")
-    protected ReferencingTestCase(final Factory... factories) {
-        super(factories);
+    protected ReferencingTestCase() {
     }
 
     /**

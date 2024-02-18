@@ -111,7 +111,6 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      */
     @SuppressWarnings("this-escape")
     public CRSParserTest(final CRSFactory crsFactory) {
-        super(crsFactory);
         this.crsFactory = crsFactory;
         final boolean[] isEnabled = getEnabledFlags(
                 Configuration.Key.isValidationEnabled);
