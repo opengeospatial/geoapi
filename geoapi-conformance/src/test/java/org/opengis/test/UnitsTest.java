@@ -28,7 +28,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 3.0.1
  * @since   3.0.1
  */
-public class UnitsTest {
+public final class UnitsTest {
     /**
      * Creates a new test case.
      */

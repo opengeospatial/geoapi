@@ -33,7 +33,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * @version 3.1
  * @since   2.2
  */
-public class ValidatorTest {
+public final class ValidatorTest {
     /**
      * Creates a new test case.
      */

@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 3.0
  * @since   2.2
  */
-public class ValidatorContainerTest {
+public final class ValidatorContainerTest {
     /**
      * Creates a new test case.
      */
