@@ -207,7 +207,6 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
      * @param factory  factory for creating {@link MathTransform} instances.
      */
     public ParameterizedTransformTest(final MathTransformFactory factory) {
-        super(factory);
         this.mtFactory = factory;
     }
 

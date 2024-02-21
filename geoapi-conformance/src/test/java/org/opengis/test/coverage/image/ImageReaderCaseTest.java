@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 3.1
  * @since   3.1
  */
-public class ImageReaderCaseTest extends ImageReaderTestCase {
+public final class ImageReaderCaseTest extends ImageReaderTestCase {
     /**
      * Creates a new test case.
      */

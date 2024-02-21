@@ -486,7 +486,7 @@ public final strictfp class Assertions {
      *   </ol></li>
      * </ol>
      *
-     * This method can be used instead of {@link #assertShapeEquals(String, Shape, Shape, double, double)}
+     * This method can be used instead of {@link #assertShapeEquals(Shape, Shape, double, double, String)}
      * when the tester needs to compare the shapes with a non-null affine transform or a flatness factor.
      * in such case, the tester needs to invoke the {@link Shape#getPathIterator(AffineTransform, double)}
      * method himself.

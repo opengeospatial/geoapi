@@ -29,7 +29,7 @@ import static org.opengis.test.report.IdentifiedObjects.SEPARATOR;
  * @version 3.1
  * @since   3.1
  */
-public class IdentifiedObjectsTest {
+public final class IdentifiedObjectsTest {
     /**
      * Creates a new test case.
      */

@@ -35,7 +35,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 3.1
  * @since   2.2
  */
-public class TransformCaseTest extends TransformTestCase {
+public final class TransformCaseTest extends TransformTestCase {
     /**
      * The rotation angle to apply on the affine transform. Incremented
      * in order to get different transforms for each test.

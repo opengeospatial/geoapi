@@ -30,7 +30,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @version 3.1
  * @since   3.1
  */
-public class ConfigurationTest {
+public final class ConfigurationTest {
     /**
      * Creates a new test case.
      */

@@ -65,7 +65,6 @@ public strictfp class CRSTest extends ReferencingTestCase {
      * @param factory  factory for creating {@link CoordinateReferenceSystem} instances.
      */
     public CRSTest(final CRSAuthorityFactory factory) {
-        super(factory);
         this.factory = factory;
     }
 

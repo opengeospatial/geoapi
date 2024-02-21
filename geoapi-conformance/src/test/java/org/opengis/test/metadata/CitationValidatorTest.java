@@ -32,7 +32,7 @@ import static org.opengis.test.Validators.validate;
  * @version 3.1
  * @since   3.1
  */
-public class CitationValidatorTest {
+public final class CitationValidatorTest {
     /**
      * Creates a new test case.
      */

@@ -130,7 +130,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * @since 3.1
      */
-    protected boolean swapxy = false;
+    protected boolean swapxy;
 
     /**
      * {@code true} if the sign of coordinate values shall be reversed in both projected axes.
@@ -141,7 +141,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * @since 3.1
      */
-    private boolean flipxy = false;
+    private boolean flipxy;
 
     /**
      * {@code true} if the {@linkplain CoordinateReferenceSystem Coordinate Reference System} being
@@ -152,7 +152,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * @since 3.1
      */
-    private boolean isPolar = false;
+    private boolean isPolar;
 
     /**
      * The expected prime meridian of the CRS being tested, in decimal degrees from Greenwich.
@@ -161,7 +161,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * @since 3.1
      */
-    protected double primeMeridian = 0.0;
+    protected double primeMeridian;
 
     /**
      * Conversion factor from degrees to the CRS-specific angular units. This value is different
@@ -219,7 +219,6 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     public AuthorityFactoryTest(final CRSAuthorityFactory crsFactory,
             final CSAuthorityFactory csFactory, final DatumAuthorityFactory datumFactory)
     {
-        super(crsFactory, csFactory, datumFactory);
         crsAuthorityFactory   = crsFactory;
         csAuthorityFactory    = csFactory;
         datumAuthorityFactory = datumFactory;

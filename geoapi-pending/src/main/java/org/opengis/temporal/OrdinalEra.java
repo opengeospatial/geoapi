@@ -39,25 +39,24 @@ public interface OrdinalEra  extends IdentifiedObject {
 
     /**
      * Returns the beginning {@link Date} at which this {@link OrdinalEra} begun, or {@code null} if none.
-     * 
+     *
      * @return the beginning {@link Date} at which this {@link OrdinalEra} begun, or {@code null} if none.
      */
     @UML(identifier="begin", obligation=OPTIONAL, specification=ISO_19108)
     Date getBegin();
-    
+
     /**
      * Returns the ending {@link Date} at which this {@link OrdinalEra} stop, or {@code null} if none.
-     * 
+     *
      * @return the ending {@link Date} at which this {@link OrdinalEra} stop, or {@code null} if none.
      */
     @UML(identifier="end", obligation=OPTIONAL, specification=ISO_19108)
     Date getEnd();
-    
+
     /**
      * Returns {@link OrdinalEra} sequence that subdivide or compose this {@link OrdinalEra}.
-     * 
+     *
      * @return {@link OrdinalEra} sequence that subdivide or compose this {@link OrdinalEra}.
-     * @since 4.0
      */
     @UML(identifier="member", obligation=MANDATORY, specification=ISO_19108)
     Collection<OrdinalEra> getMember();

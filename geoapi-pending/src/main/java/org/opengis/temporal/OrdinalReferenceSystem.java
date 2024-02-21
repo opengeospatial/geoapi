@@ -42,7 +42,6 @@ public interface OrdinalReferenceSystem extends TemporalReferenceSystem {
      * Returns {@linkplain OrdinalEra ordinal era} sequence that make up the highest level of this ordinal reference system.
      *
      * @return {@linkplain OrdinalEra ordinal era} sequence that make up the highest level of this ordinal reference system.
-     * @since 4.0
      */
     @UML(identifier="component", obligation=MANDATORY,specification=ISO_19108)
     Collection<OrdinalEra> getComponents();

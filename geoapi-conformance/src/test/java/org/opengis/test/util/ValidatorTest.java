@@ -28,7 +28,7 @@ import org.junit.jupiter.api.Test;
  * @version 3.1
  * @since   3.1
  */
-public class ValidatorTest {
+public final class ValidatorTest {
     /**
      * Creates a new test case.
      */

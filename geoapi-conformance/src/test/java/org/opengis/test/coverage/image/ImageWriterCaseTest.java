@@ -35,7 +35,7 @@ import static org.junit.jupiter.api.Assumptions.abort;
  * @version 3.1
  * @since   3.1
  */
-public class ImageWriterCaseTest extends ImageWriterTestCase {
+public final class ImageWriterCaseTest extends ImageWriterTestCase {
     /**
      * Creates a new test case.
      */
