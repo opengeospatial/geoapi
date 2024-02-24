@@ -5,7 +5,7 @@ They are internal to the GeoAPI project and may change at any time.
 
 
 ## Creating releases
-The procedure for creating a GeoAPI release is documented in a [separated page](src/release-instruction.md).
+The procedure for creating a GeoAPI release is documented in a [separated page](../src/release-instruction.md).
 
 
 ## Documenting the API
@@ -29,7 +29,7 @@ Execute the following commands from the project root directory:
 ```shell
 find geoapi/src/main/java -name "*.java" > content.txt
 javac -proc:only -processor org.opengis.tools.apt.IndexGenerator \
-                 -Aoutput=geoapi/src/main/javadoc/content.html \
+                 -Aoutput=src/main/javadoc/content.html \
                  -AnotesList=src/release-notes.properties @content.txt
 rm content.txt
 ```

@@ -458,7 +458,7 @@
           <keywords>true</keywords>       <!-- Adds HTML meta keyword tags to the generated file for each class.  -->
           <breakiterator>true</breakiterator>
           <additionalOptions>
-            -html5 -Xdoclint:syntax --add-stylesheet "${basedir}/src/main/javadoc/geoapi.css"
+            -html5 -Xdoclint:syntax --add-stylesheet "${basedir}/../src/main/javadoc/geoapi.css"
           </additionalOptions>
           <additionalDependencies>
             <additionalDependency>

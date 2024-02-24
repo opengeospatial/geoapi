@@ -12,7 +12,7 @@ export GEOAPI_VERSION=4.0
 
 
 ## Prepare the code
-If not already done, ensure that the `geoapi/src/main/javadoc/content.html` file is up to date.
+If not already done, ensure that the `src/main/javadoc/content.html` file is up to date.
 The following commands assume that the current directory (`pwd`) is the local checkout of GeoAPI.
 
 ```shell
