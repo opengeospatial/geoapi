@@ -289,7 +289,7 @@ public interface MathTransform {
 
     /**
      * Returns a <i>Well-Known Text</i> (WKT) for this object.
-     * Version 1 of Well-Know Text is <a href="../doc-files/WKT.html">defined in extended Backus Naur form</a>.
+     * Version 1 of Well-Know Text is defined in {@linkplain org.opengis.annotation.Specification#OGC_01009 OGC 01-009}.
      * This operation may fail if unsupported or if this instance contains elements that do not have WKT representation.
      *
      * @return the Well-Known Text (WKT) for this object.

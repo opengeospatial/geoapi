@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * <div class="note"><b>Note:</b>
  * some applications may relax the above rule and accept ellipsoidal heights in some contexts.
- * For example, as a transient state while parsing <a href="../doc-files/WKT.html">Well-Known Text 1</a>,
+ * For example, as a transient state while parsing the legacy Well-Known Text version 1,
  * or any other format based on legacy specifications where ellipsoidal heights were allowed as an
  * independent axis. However, implementers are encouraged to assemble the full 3D CRS as soon as they can.</div>
  *

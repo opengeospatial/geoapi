@@ -20,7 +20,20 @@
 /**
  * Java interfaces derived from specifications of <cite>International Organization for Standardization</cite> (<abbr>ISO</abbr>)
  * and <cite><a href="http://www.opengeospatial.org">Open Geospatial Consortium</a></cite> (<abbr>OGC</abbr>).
- * The interfaces were created from UML diagrams found in the <abbr>ISO</abbr> and <abbr>OGC</abbr> specifications.
+ *
+ * <h2>Links</h2>
+ * <ul>
+ *   <li><a href="https://www.ogc.org/">Open Geospatial Consortium</a></li>
+ *   <li><a href="https://www.geoapi.org/">GeoAPI home page</a></li>
+ *   <li><a href="https://www.ogc.org/standard/geoapi/"><abbr>OGC</abbr> GeoAPI specification</a></li>
+ *   <li><a href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html">Well-Known Text 2 (<abbr>WKT</abbr> 2) specification</a></li>
+ * </ul>
+ *
+ * <h2>Requirements</h2>
+ * <ul>
+ *   <li><a href="https://docs.oracle.com/en/java/javase/11/">Java 11</a> or later.</li>
+ *   <li><a href="https://jcp.org/en/jsr/detail?id=385"><abbr>JSR</abbr>-385</a> units of measurement API.</li>
+ * </ul>
  *
  * @version 4.0
  * @since 1.0

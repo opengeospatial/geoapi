@@ -306,8 +306,7 @@ public interface MathTransformFactory extends Factory {
 
     /**
      * Creates a math transform object from a <i>Well-Known Text</i>.
-     * The <a href="../doc-files/WKT.html">definition for WKT</a> is
-     * shown using Extended Backus Naur Form (EBNF).
+     * The WKT of math transforms is defined in {@linkplain org.opengis.annotation.Specification#OGC_01009 OGC 01-009}.
      *
      * @param  wkt  math transform encoded in Well-Known Text format.
      * @return the math transform (never {@code null}).

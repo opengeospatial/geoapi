@@ -202,9 +202,8 @@ public interface IdentifiedObject {
      * Well-Known Texts (WKT) may come in two formats:
      *
      * <ul>
-     *   <li>The current standard, WKT 2, is defined by ISO 19162.</li>
-     *   <li>The legacy format, WKT 1, was defined by {@linkplain org.opengis.annotation.Specification#OGC_01009 OGC 01-009}
-     *       and is shown using Extended Backus Naur Form (EBNF) <a href="doc-files/WKT.html">here</a>.</li>
+     *   <li>The current standard, WKT 2, is defined by {@linkplain org.opengis.annotation.Specification#ISO_19162 ISO 19162}.</li>
+     *   <li>The legacy format, WKT 1, was defined by {@linkplain org.opengis.annotation.Specification#OGC_01009 OGC 01-009}.</li>
      * </ul>
      *
      * Implementations are encouraged to format according the most recent standard.

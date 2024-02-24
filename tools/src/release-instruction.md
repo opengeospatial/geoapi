@@ -75,14 +75,9 @@ git push origin $GEOAPI_VERSION
 
 ## Create the javadoc and the ZIP files
 Generate javadoc.
-Note that the content of `geoapi/src/main/javadoc/` is not copied automatically
-(Maven documentation said that it should be copied,
-but it doesn't seem to be the case as of Maven 2.1.0), so we need to copy ourself.
 
 ```shell
 mvn javadoc:javadoc
-cp geoapi/src/main/javadoc/content.html  geoapi/target/site/apidocs/
-cp geoapi/src/main/javadoc/UML-java.html geoapi/target/site/apidocs/
 ```
 
 Creates a ZIP file and deploy on the download area
