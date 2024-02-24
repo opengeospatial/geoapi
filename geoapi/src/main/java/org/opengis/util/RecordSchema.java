@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @deprecated The {@code RecordSchema} interface has been removed in the 2015 revision of ISO 19103 standard.
  */
-@Deprecated
+@Deprecated(since="3.1")
 @UML(identifier="RecordSchema", specification=ISO_19103, version=2005)
 public interface RecordSchema {
     /**

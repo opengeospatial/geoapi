@@ -38,15 +38,15 @@ import static org.opengis.annotation.Specification.*;
  * This approach ensures that once a {@code RecordType} is constructed, it is immutable.
  *
  * <h2>Comparison with features and Java reflection</h2>
- * If we think about {@code RecordType} as equivalent to a simple feature (ISO 19109) or a Java {@link Class},
- * then we can establish the following equivalence table:
+ * If we think about {@code RecordType} as similar to a simple feature (ISO 19109) or a Java {@link Class}
+ * with public fields, then we can establish the following equivalence table:
  *
  * <table class="ogc">
  *   <caption>Equivalences between records, features and Java constructs</caption>
  *   <tr>
  *     <th>ISO 19103</th>
  *     <th>ISO 19109</th>
- *     <th>Java equivalent</th>
+ *     <th>Similar to Java</th>
  *   </tr><tr>
  *     <td>{@link org.opengis.util.Record}</td>
  *     <td>{@link org.opengis.feature.Feature}</td>
@@ -91,6 +91,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.1
  *
+ * @see Record
  * @see Record#getRecordType()
  */
 @Classifier(Stereotype.METACLASS)
@@ -98,11 +99,7 @@ import static org.opengis.annotation.Specification.*;
 public interface RecordType extends Type {
     /**
      * Returns the name that identifies this record type.
-     *
-     * <div class="note"><b>Comparison with Java reflection:</b>
-     * if we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
-     * this method can be though as the equivalent of the Java {@link Class#getName()} method.
-     * </div>
+     * This is similar to {@linkplain Class#getName() class name} in the Java language.
      *
      * @return the name that identifies this record type.
      */
@@ -113,28 +110,19 @@ public interface RecordType extends Type {
     /**
      * Returns the schema that contains this record type.
      *
-     * <div class="note"><b>Comparison with Java reflection:</b>
-     * if we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
-     * this method can be though as the equivalent of the Java {@link Class#getPackage()} method.
-     * </div>
-     *
      * @return the schema that contains this record type.
      *
      * @deprecated The {@code RecordSchema} interface has been removed in the 2015 revision of ISO 19103 standard.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="schema", obligation=MANDATORY, specification=ISO_19103, version=2005)
     RecordSchema getContainer();
 
     /**
      * Returns the dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
      * The dictionary shall contain at least one entry and should be
-     * {@linkplain java.util.Collections#unmodifiableMap unmodifiable}
-     *
-     * <div class="note"><b>Comparison with Java reflection:</b>
-     * if we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
-     * this method can be though as related to the Java {@link Class#getFields()} method.
-     * </div>
+     * {@linkplain java.util.Collections#unmodifiableMap unmodifiable}.
+     * This is similar to {@linkplain Class#getFields() class fields} in the Java language.
      *
      * @return the dictionary of all (<var>name</var>, <var>type</var>) pairs in this record type.
      *         Shall contain at least one entry.
@@ -155,9 +143,9 @@ public interface RecordType extends Type {
      *
      * @see Record#getAttributes()
      *
-     * @deprecated Renamed {@link #getFieldTypes()}.
+     * @deprecated Renamed {@link #getFieldTypes()} in the 2015 revision of ISO 19103.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="memberType", obligation=MANDATORY, specification=ISO_19103, version=2005)
     default Map<MemberName, Type> getMemberTypes() {
         return getFieldTypes();
@@ -165,14 +153,16 @@ public interface RecordType extends Type {
 
     /**
      * Returns the names of fields defined in this {@code RecordType}'s dictionary.
-     * This method is functionally equivalent to
-     * <code>{@linkplain #getFieldTypes()}.{@linkplain Map#keySet() keySet()}</code>.
+     * This is a convenience method functionally equivalent to the following code:
+     *
+     * {@snippet lang="java" :
+     * return getFieldTypes().keySet();
+     * }
      *
      * @return the set of field names defined in this {@code RecordType}'s dictionary.
      *
      * @departure easeOfUse
-     *   This method provides no additional information compared to the ISO standard methods,
-     *   but is declared in GeoAPI as a convenient shortcut.
+     *   This is a convenience shortcut for a common operation.
      */
     default Set<MemberName> getMembers() {
         return getFieldTypes().keySet();
@@ -181,25 +171,26 @@ public interface RecordType extends Type {
     /**
      * Looks up the provided field name and returns the associated type name.
      * If the field name is not defined in this record type, then this method returns {@code null}.
-     * This method is functionally equivalent to the following code, omitting the check for {@code null} values:
+     * This method is functionally equivalent to the following code:
      *
-     * <blockquote><code>return {@linkplain #getFieldTypes()}.{@linkplain Map#get get}(name).{@linkplain
-     * Type#getTypeName() getTypeName()}</code></blockquote>
+     * {@snippet lang="java" :
+     * Type type = getFieldTypes().get(name);
+     * return (type != null) ? type.getTypeName() : null;
+     * }
      *
-     * <div class="note"><b>Comparison with Java reflection:</b>
-     * if we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
-     * this method can be though as related to the Java {@link Class#getField(String)} method.
-     * </div>
+     * This is similar to {@linkplain Class#getField(String) fetching a class field} in the Java language.
      *
      * @param  name  the name of the field to lookup.
      * @return the type of the field of the given name, or {@code null}.
      *
-     * @see Record#locate(MemberName)
+     * @departure history
+     *   This method was provided in ISO 19103:2003 and removed in ISO 10103:2015.
+     *   GeoAPI keeps it for compatibility reasons, since this method can be seen
+     *   as a shortcut to other methods.
      *
-     * @deprecated This method has been removed in ISO 19103:2015. The same functionality is available with
-     * <code>{@linkplain #getFieldTypes()}.{@linkplain Map#get get}(name).{@linkplain Type#getTypeName() getTypeName()}</code>.
+     * @see #getFieldTypes()
+     * @see Record#get(MemberName)
      */
-    @Deprecated
     @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103, version=2005)
     default TypeName locate(MemberName name) {
         final Type type = getFieldTypes().get(name);
@@ -208,24 +199,27 @@ public interface RecordType extends Type {
 
     /**
      * Determines if the specified record is compatible with this record type.
-     * This method returns {@code true} if the specified {@code record} argument is non-null
-     * and the following minimal condition holds:
+     * This method returns {@code false} if the given {@code record} is null,
+     * or if the following condition is false:
      *
      * {@snippet lang="java" :
-     * Set<MemberName> fieldNames = record.getFields().keySet();
-     * boolean isInstance = getMembers().containsAll(fieldNames);
+     * return (record != null) && getMembers().containsAll(record.getFields().keySet());
      * }
      *
-     * Vendors can put additional implementation-specific conditions.
-     * In particular, implementations are free to require <code>equals({@linkplain Record#getRecordType()})</code>.
+     * If the above condition is true, it may or may not be sufficient for this method to return {@code true}.
+     * Implementations are free to use more restrictive criteria.
+     * In particular, it is valid to implement this method like below:
      *
-     * <div class="note"><b>Comparison with Java reflection:</b>
-     * if we think about this {@code RecordType} as equivalent to a {@code Class} instance, then
-     * this method can be though as the equivalent of the Java {@link Class#isInstance(Object)} method.
-     * </div>
+     * {@snippet lang="java" :
+     * return (record != null) && equals(record.getRecordType());
+     * }
      *
-     * @param  record  the record to test for compatibility.
-     * @return {@code true} if the given record is compatible with this record type.
+     * The {@code containsAll} approach accepts "sub-types" (defined as records with additional fields) in a way
+     * similar to {@linkplain Class#isInstance(Object) assignement-compatibility check} in the Java language,
+     * while the {@code equals} approach accepts only the exact same record definition.
+     *
+     * @param  record  the record to test for compatibility with this type, or {@code null}.
+     * @return {@code true} if the given record is non-null and compatible with this record type.
      *
      * @departure easeOfUse
      *   This method provides no additional information compared to the ISO standard methods,
