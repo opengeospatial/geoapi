@@ -20,7 +20,7 @@ and "master" for GeoAPI 4.0. The main sub-directories are:
   contains a test suite for testing vendor implementations.
 * **[src/main/metanorma](https://github.com/opengeospatial/geoapi/tree/master/src/main/metanorma)**
   contains the GeoAPI specification.
-* Other directories are examples.
+* Other directories are build tools or examples.
 
 See the [wiki page](https://github.com/opengeospatial/geoapi/wiki) for the roadmap and completion status.
 

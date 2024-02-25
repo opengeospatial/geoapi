@@ -13,19 +13,8 @@ export GEOAPI_VERSION=4.0
 
 ## Prepare the code
 If not already done, ensure that the `src/main/javadoc/content.html` file is up to date.
-The following commands assume that the current directory (`pwd`) is the local checkout of GeoAPI.
+See the [build tools](../tools/README.md) page for instruction.
 
-```shell
-export CLASSPATH=$PWD/geoapi/target/geoapi-$GEOAPI_SNAPSHOT.jar:\
-$PWD/geoapi/target/geoapi-$GEOAPI_SNAPSHOT.jar:\
-$PWD/tools/target/tools-$GEOAPI_SNAPSHOT.jar
-
-cd geoapi/src/main/java
-find . -name "*.java" -print | xargs apt -nocompile -factory org.opengis.tools.apt.IndexGenerator
-cd -
-git add --update
-git commit --message "Updated the list of GeoAPI classes and methods."
-```
 
 
 ## Create the tag and deploy
@@ -93,7 +82,7 @@ zip -9 geoapi-$GEOAPI_VERSION.zip geoapi-$GEOAPI_VERSION.jar
 
 ## Create the list of API changes since previous releases
 Edit the version numbers declared in the `ChangeReport.java` file,
-then apply the instructions documented in the [tools page](../README.md).
+then apply the instructions documented in the [tools page](../tools/README.md).
 
 
 ## Final clean

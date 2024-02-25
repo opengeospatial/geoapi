@@ -15,7 +15,7 @@ Adjust the paths as necessary for the local installation.
 
 ```shell
 export GEOAPI_VERSION=4.0-SNAPSHOT
-export CLASSPATH=~/.m2/repository/javax/measure/unit-api/1.0/unit-api-1.0.jar
+export CLASSPATH=~/.m2/repository/javax/measure/unit-api/2.1.3/unit-api-2.1.3.jar
 export CLASSPATH=$CLASSPATH:$PWD/geoapi/target/geoapi-$GEOAPI_VERSION.jar
 export CLASSPATH=$CLASSPATH:$PWD/tools/target/tools-$GEOAPI_VERSION.jar
 export GEOAPI_SITE=../site/archives

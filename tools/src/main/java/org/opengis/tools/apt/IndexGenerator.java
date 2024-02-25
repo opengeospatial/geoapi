@@ -47,7 +47,7 @@ import javax.annotation.processing.SupportedOptions;
  * <a href="http://www.geoapi.org/snapshot/javadoc/content.html">http://www.geoapi.org/snapshot/javadoc/content.html</a>
  *
  * <h2>Usage</h2>
- * Instructions about this processor can be found in the module javadoc.
+ * See the <a href="https://github.com/opengeospatial/geoapi/tree/master/tools">README.md</a> file for usage instruction.
  * Options are:
  * <ul>
  *   <li>{@code output} (mandatory): where to write the HTML page.</li>
