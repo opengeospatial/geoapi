@@ -42,8 +42,6 @@
  * This module follows the path of simpler libraries by merging different ISO concepts in the same class.
  * While this is not a recommended approach for strict ISO 19111 compliance, the intent is to demonstrate
  * that implementers can hide some of the ISO 19111 complexity.
- *
- * @version 4.0
  */
 module org.opengis.geoapi.example {
     requires transitive vecmath;

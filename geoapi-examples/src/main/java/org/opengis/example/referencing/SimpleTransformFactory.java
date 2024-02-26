@@ -32,10 +32,6 @@ import org.opengis.referencing.operation.SingleOperation;
  *   <li>{@link #getLastMethodUsed()}, which returns {@code null}.</li>
  *   <li>{@link #createAffineTransform(Matrix)}</li>
  * </ul>
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class SimpleTransformFactory implements MathTransformFactory {
     /**

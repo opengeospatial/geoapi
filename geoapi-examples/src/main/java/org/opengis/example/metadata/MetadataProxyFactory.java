@@ -27,10 +27,6 @@ import org.opengis.annotation.UML;
  *
  * The metadata proxy are <i>live</i>, i.e. any change to the maps of attributes will
  * be immediately reflected in the values returned by the metadata objects.
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class MetadataProxyFactory {
     /**

@@ -45,10 +45,6 @@ import org.opengis.referencing.cs.RangeMeaning;
  * <tr><th>i</th> <td>column</td>                 <td>{@link AxisDirection#COLUMN_POSITIVE COLUMN_POSITIVE}</td> <td></td>                    <td></td>      <td></td></tr>
  * <tr><th>j</th> <td>row</td>                    <td>{@link AxisDirection#ROW_POSITIVE    ROW_POSITIVE}</td>    <td></td>                    <td></td>      <td></td></tr>
  * </table></blockquote>
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class SimpleAxis extends SimpleIdentifiedObject implements CoordinateSystemAxis {
     /**

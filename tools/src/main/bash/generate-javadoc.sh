@@ -60,6 +60,7 @@ javadoc -doctitle "GeoAPI SNAPSHOT" \
  --add-stylesheet src/main/javadoc/geoapi.css -overview src/main/javadoc/overview.html \
  -doclet org.opengis.tools.doclet.FlushableDoclet -docletpath $DOCLET \
  -taglet org.opengis.tools.doclet.Departure -tagletpath $DOCLET \
+ --since 3.1 \
  -tag category:X:Category: \
  -tag condition:tfmc:Condition: \
  -tag todo:tfmc:TODO: \

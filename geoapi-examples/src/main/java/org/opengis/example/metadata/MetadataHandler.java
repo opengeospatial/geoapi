@@ -18,10 +18,6 @@ import org.opengis.annotation.UML;
 
 /**
  * The handler of all metadata proxy created by {@link MetadataProxyFactory}.
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 final class MetadataHandler implements InvocationHandler {
     /**

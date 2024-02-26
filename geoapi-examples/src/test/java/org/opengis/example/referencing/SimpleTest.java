@@ -17,10 +17,6 @@ import static org.junit.jupiter.api.Assertions.*;
 
 /**
  * Tests the creation of miscellaneous simple objects.
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class SimpleTest {
     /**

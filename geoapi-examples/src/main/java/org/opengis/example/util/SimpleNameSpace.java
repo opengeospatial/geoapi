@@ -16,8 +16,6 @@ import org.opengis.util.GenericName;
 
 /**
  * A {@link NameSpace} defining the scope of {@link SimpleName} instances.
- *
- * @author Martin Desruisseaux
  */
 public class SimpleNameSpace implements NameSpace {
     /**

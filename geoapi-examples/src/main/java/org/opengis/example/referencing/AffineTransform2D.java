@@ -34,10 +34,6 @@ import org.opengis.example.geometry.SimpleDirectPosition;
  *       {@linkplain #getTargetDimensions() target dimensions} are 2.</li>
  *   <li>The last matrix row contains the [0 0 1] values.</li>
  * </ul>
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class AffineTransform2D extends AffineTransform implements MathTransform2D {
     /**

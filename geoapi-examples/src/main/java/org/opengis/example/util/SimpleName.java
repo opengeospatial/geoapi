@@ -34,8 +34,6 @@ import org.opengis.example.metadata.SimpleCitation;
  * {@code GenericName} are usually expected to be immutable, so users are advised to not
  * modify the wrapped JNDI name.</p>
  *
- * @author Martin Desruisseaux
- *
  * @see #jndiName()
  */
 public class SimpleName implements GenericName {
@@ -44,8 +42,6 @@ public class SimpleName implements GenericName {
      * class shall contain exactly one component. In such case the {@linkplain #head() head},
      * the {@linkplain #tip() tip} and the {@linkplain #getParsedNames() parsed names} are
      * simply {@code this} instance.
-     *
-     * @author Martin Desruisseaux
      */
     public static class Type extends Local implements TypeName {
         /**
@@ -96,8 +92,6 @@ public class SimpleName implements GenericName {
      * class shall contain exactly one component. In such case the {@linkplain #head() head},
      * the {@linkplain #tip() tip} and the {@linkplain #getParsedNames() parsed names} are
      * simply {@code this} instance.
-     *
-     * @author Martin Desruisseaux
      */
     public static class Member extends Local implements MemberName {
         /**
@@ -145,8 +139,6 @@ public class SimpleName implements GenericName {
      * class shall contain exactly one component. In such case the {@linkplain #head() head},
      * the {@linkplain #tip() tip} and the {@linkplain #getParsedNames() parsed names} are
      * simply {@code this} instance.
-     *
-     * @author Martin Desruisseaux
      */
     public static class Local extends SimpleName implements LocalName {
         /**
@@ -225,8 +217,6 @@ public class SimpleName implements GenericName {
     /**
      * A {@link ScopedName} specialization of {@link SimpleName}.
      * The JNDI name wrapped by this class shall contain more than one component.
-     *
-     * @author Martin Desruisseaux
      */
     public static class Scoped extends SimpleName implements ScopedName {
         /**

@@ -30,10 +30,6 @@ import org.opengis.referencing.datum.VerticalDatumType;
 /**
  * A {@link CoordinateReferenceSystem} abstract base class. This class does not distinguish between
  * <i>Coordinate System</i> and <i>Coordinate Reference System</i>, therefor it implements the two interfaces.
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public abstract class SimpleCRS extends SimpleIdentifiedObject implements SingleCRS, CoordinateSystem {
     /**
@@ -106,10 +102,6 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
 
     /**
      * A {@link GeographicCRS} specialization of {@link SimpleCRS}.
-     *
-     * @author  Martin Desruisseaux (Geomatys)
-     * @version 3.1
-     * @since   3.1
      */
     public static class Geographic extends SimpleCRS implements GeographicCRS, EllipsoidalCS {
         /**
@@ -189,10 +181,6 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
      * the same datum. However, this particular class takes this approach because the {@code geoapi-examples}
      * module is only a demonstration of how GeoAPI can be implemented in a few simple cases.
      * More complex applications are encouraged to store the datum in a separated object.</p>
-     *
-     * @author  Martin Desruisseaux (Geomatys)
-     * @version 3.1
-     * @since   3.1
      */
     public static class Vertical extends SimpleCRS implements VerticalCRS, VerticalCS, VerticalDatum {
         /**
@@ -250,10 +238,6 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
      * the same datum. However, this particular class takes this approach because the {@code geoapi-examples}
      * module is only a demonstration of how GeoAPI can be implemented in a few simple cases.
      * More complex applications are encouraged to store the datum in a separated object.</p>
-     *
-     * @author  Martin Desruisseaux (Geomatys)
-     * @version 3.1
-     * @since   3.1
      */
     public static class Temporal extends SimpleCRS implements TemporalCRS, TimeCS, TemporalDatum {
         /**

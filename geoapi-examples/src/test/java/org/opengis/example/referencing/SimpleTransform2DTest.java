@@ -23,10 +23,6 @@ import static org.opengis.test.Assertions.*;
  * Tests {@link SimpleTransform2D}. The main purpose of this test is to ensure
  * that the various {@code transform} methods correctly delegate to the
  * {@link SimpleTransform2D#transform(Point2D, Point2D)} method.
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class SimpleTransform2DTest extends TransformTestCase {
     /**
