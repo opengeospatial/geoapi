@@ -26,8 +26,6 @@
  *     existing instances of GeoAPI interfaces.</li>
  *   <li>{@linkplain org.opengis.test.TestCase} as the base class of all JUnit tests
  *     in this module, which can be extended by developers on a case-by-case basis.</li>
- *   <li>{@linkplain org.opengis.test.TestSuite} as the aggregation of all JUnit tests
- *     defined in this module.</li>
  * </ul>
  *
  * @version 4.0

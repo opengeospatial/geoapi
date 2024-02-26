@@ -58,7 +58,6 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * }}
  *
  * @see AuthorityFactoryTest
- * @see org.opengis.test.TestSuite
  *
  * @author  Cédric Briançon (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

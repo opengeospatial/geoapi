@@ -121,7 +121,6 @@ import static org.opengis.test.referencing.AffineTransformTest.NO_FACTORY;
  *
  * @see AffineTransformTest
  * @see AuthorityFactoryTest
- * @see org.opengis.test.TestSuite
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

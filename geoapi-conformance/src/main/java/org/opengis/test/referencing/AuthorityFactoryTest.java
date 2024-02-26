@@ -72,7 +72,6 @@ import static org.opengis.test.Assertions.assertAxisDirectionsEqual;
  *
  * @see ObjectFactoryTest
  * @see ParameterizedTransformTest
- * @see org.opengis.test.TestSuite
  *
  * @author  Cédric Briançon (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

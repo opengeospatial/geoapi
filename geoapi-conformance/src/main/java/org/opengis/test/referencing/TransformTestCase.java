@@ -248,11 +248,6 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * the {@code cachedModifier} value has been computed. They are used in order to detect when
      * {@code cachedModifier} needs to be recalculated.
      *
-     * <p>Note that the above checks will not detect the case where the user invoke
-     * {@link org.opengis.test.TestSuite#clear()}. We presume that typical users
-     * will not invoke that method in the middle of a test (it is okay if that
-     * method is invoked between two tests however).</p>
-     *
      * @see #getToleranceModifier()
      */
     private transient ToleranceModifier cachedModifier, modifierUsedByCache;

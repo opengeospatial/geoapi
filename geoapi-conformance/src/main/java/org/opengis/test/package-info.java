@@ -28,11 +28,6 @@
  *       whether {@linkplain org.opengis.test.referencing.TransformTestCase#isDerivativeSupported math transform
  *       derivatives are supported} by their implementation.</p></li>
  *
- *   <li><p><b>Test suite</b><br>
- *       {@link org.opengis.test.TestSuite} groups all GeoAPI {@code TestCases} in a single point. This is not the
- *       easiest class to use since implementations typically support only a subset of GeoAPI functionalities. But
- *       {@code TestSuite} can provide some help for implementers defining their own test suite.</p></li>
- *
  *   <li><p><b>Validation</b><br>
  *       {@link org.opengis.test.Validators} class provides static {@code validate(…)} methods that can be used for
  *       validating existing instances of various kinds. Those methods can be conveniently imported in a test class

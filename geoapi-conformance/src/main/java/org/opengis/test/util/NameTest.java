@@ -50,8 +50,6 @@ import static org.opengis.test.Assertions.assertContains;
  *     }
  * }}
  *
- * @see org.opengis.test.TestSuite
- *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   2.2

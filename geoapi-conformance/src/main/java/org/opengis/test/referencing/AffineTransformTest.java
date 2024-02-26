@@ -55,7 +55,6 @@ import static org.opengis.test.referencing.PseudoEpsgFactory.FEET;
  * }}
  *
  * @see ParameterizedTransformTest
- * @see org.opengis.test.TestSuite
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
