@@ -290,8 +290,6 @@ public class Configuration implements Serializable {
         /**
          * Whether the {@link IdentifiedObject} instances have {@linkplain IdentifiedObject#getName()
          * names} matching the names declared in the EPSG database.
-         *
-         * @see org.iogp.gigs.Series2000#isStandardNameSupported
          */
         public static final Key<Boolean> isStandardNameSupported =
                 new Key<>(Boolean.class, "isStandardNameSupported");
@@ -299,8 +297,6 @@ public class Configuration implements Serializable {
         /**
          * Whether the {@link IdentifiedObject} instances have at least the
          * {@linkplain IdentifiedObject#getAlias() aliases} declared in the EPSG database.
-         *
-         * @see org.iogp.gigs.Series2000#isStandardAliasSupported
          */
         public static final Key<Boolean> isStandardAliasSupported =
                 new Key<>(Boolean.class, "isStandardAliasSupported");
@@ -308,16 +304,12 @@ public class Configuration implements Serializable {
         /**
          * Whether the {@link IdentifiedObject} instances created indirectly by the factories
          * are expected to have correct identification information.
-         *
-         * @see org.iogp.gigs.Series2000#isDependencyIdentificationSupported
          */
         public static final Key<Boolean> isDependencyIdentificationSupported =
                 new Key<>(Boolean.class, "isDependencyIdentificationSupported");
 
         /**
          * Whether the authority factory supports creation of deprecated {@link IdentifiedObject} instances.
-         *
-         * @see org.iogp.gigs.Series2000#isDeprecatedObjectCreationSupported
          */
         public static final Key<Boolean> isDeprecatedObjectCreationSupported =
                 new Key<>(Boolean.class, "isDeprecatedObjectCreationSupported");
@@ -482,8 +474,6 @@ public class Configuration implements Serializable {
         /**
          * The {@linkplain CoordinateOperationAuthorityFactory Coordinate Operation authority factory}
          * instance used for a test.
-         *
-         * @see org.iogp.gigs.Series2000
          */
         public static final Key<CoordinateOperationAuthorityFactory> copAuthorityFactory =
                 new Key<>(CoordinateOperationAuthorityFactory.class, "copAuthorityFactory");
@@ -502,7 +492,6 @@ public class Configuration implements Serializable {
          * instance used for a test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#crsAuthorityFactory
-         * @see org.iogp.gigs.Series2000
          */
         public static final Key<CRSAuthorityFactory> crsAuthorityFactory =
                 new Key<>(CRSAuthorityFactory.class, "crsAuthorityFactory");
@@ -520,7 +509,6 @@ public class Configuration implements Serializable {
          * The {@linkplain CSAuthorityFactory Coordinate System authority factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#csAuthorityFactory
-         * @see org.iogp.gigs.Series2000
          */
         public static final Key<CSAuthorityFactory> csAuthorityFactory =
                 new Key<>(CSAuthorityFactory.class, "csAuthorityFactory");
@@ -538,7 +526,6 @@ public class Configuration implements Serializable {
          * The {@linkplain DatumAuthorityFactory Datum authority factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#datumAuthorityFactory
-         * @see org.iogp.gigs.Series2000
          */
         public static final Key<DatumAuthorityFactory> datumAuthorityFactory =
                 new Key<>(DatumAuthorityFactory.class, "datumAuthorityFactory");
@@ -559,8 +546,6 @@ public class Configuration implements Serializable {
          * </ul>
          *
          * If the factory does not perform any of the above conversions, then this flag can be {@code true}.
-         *
-         * @see org.iogp.gigs.Series3000#isFactoryPreservingUserValues
          */
         public static final Key<Boolean> isFactoryPreservingUserValues =
                 new Key<>(Boolean.class, "isFactoryPreservingUserValues");

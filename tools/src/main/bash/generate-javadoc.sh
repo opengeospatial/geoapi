@@ -68,7 +68,6 @@ javadoc -doctitle "GeoAPI SNAPSHOT" \
  -link https://download.java.net/media/java3d/javadoc/1.5.2/ \
  -link https://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/ \
  -link https://junit.org/junit5/docs/current/api/ \
- -link https://iogp-gigs.github.io/GIGSGeoAPI/ \
  -d target/apidocs --module-source-path target/src --module-path $DEPS @target/sources.txt
 
 # Copy some resources.
