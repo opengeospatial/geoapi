@@ -19,7 +19,7 @@ package org.opengis.geoapi;
 
 
 /**
- * Thrown when a {@link SchemaCompliance} failed to load a XSD file because it does not comply
+ * Thrown when a {@link SchemaInformation} failed to load a XSD file because it does not comply
  * with expected OGC/ISO conventions, or when a UML annotation failed a compliance check.
  *
  * @author  Martin Desruisseaux (Geomatys)

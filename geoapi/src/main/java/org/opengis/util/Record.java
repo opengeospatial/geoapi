@@ -129,7 +129,7 @@ public interface Record {
      *
      * @see RecordType#locate(MemberName)
      *
-     * @departure history
+     * @departure historic
      *   This method was named {@code locate} in ISO 19103:2005 and removed in ISO 19103:2015.
      *   It has been kept in GeoAPI as a convenience shortcut for a frequently used operation.
      *

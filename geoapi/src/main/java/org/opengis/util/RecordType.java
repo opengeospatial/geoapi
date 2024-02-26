@@ -183,7 +183,7 @@ public interface RecordType extends Type {
      * @param  name  the name of the field to lookup.
      * @return the type of the field of the given name, or {@code null}.
      *
-     * @departure history
+     * @departure historic
      *   This method was provided in ISO 19103:2003 and removed in ISO 10103:2015.
      *   GeoAPI keeps it for compatibility reasons, since this method can be seen
      *   as a shortcut to other methods.

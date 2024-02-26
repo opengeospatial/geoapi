@@ -62,7 +62,7 @@ public interface Expression<R,V> extends Function<R,V> {
     /**
      * Returns the name of the function to be called.
      * The {@linkplain ScopedName#head() head} should identify the defining authority and
-     * the {@linkplain ScopedNamd#tail() tail} should identify the function.
+     * the {@linkplain ScopedName#tail() tail} should identify the function.
      *
      * <div class="note"><b>Examples:</b>
      * This might be {@code "foo:cos"} or {@code "foo:atan2"} where {@code "foo"} is

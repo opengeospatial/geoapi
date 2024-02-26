@@ -35,10 +35,11 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * See {@link DistanceOperatorName} for "within" and "beyond a distance" operations.</p>
  *
  * <h2>Null operand</h2>
- * For all spatial operators in a filter expression, except {@link #DISJOINT} and {@link #BEYOND},
+ * For all spatial operators in a filter expression,
+ * except {@link SpatialOperatorName#DISJOINT DISJOINT} and {@link DistanceOperatorName#BEYOND BEYOND},
  * testing a pair of geometric values where one of the values evaluates to {@code null},
  * shall result in the expression evaluating to {@code false} indicating that the two geometries are disjoint.
- * In the case of the {@link #DISJOINT} and {@link #BEYOND} operators, which test for disjointness,
+ * In the case of the {@code DISJOINT} and {@code BEYOND} operators, which test for disjointness,
  * the expression shall evaluate to {@code true}.
  *
  * @author  Chris Dillard (SYS Technologies)
