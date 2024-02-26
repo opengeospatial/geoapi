@@ -435,7 +435,8 @@
 
 
       <!-- ============================================================================================
-               Javadoc generation
+               Javadoc generation for documentation attached to JAR files.
+               For project-wide (multi-modules) documentation, see `tools`.
            ============================================================================================ -->
       <plugin>
         <artifactId>maven-javadoc-plugin</artifactId>
@@ -458,7 +459,7 @@
           <locale>en</locale>             <!-- The locale that javadoc uses when generating documentation.        -->
           <breakiterator>true</breakiterator>
           <additionalOptions>
-            -html5 -Xdoclint:syntax --add-stylesheet "${basedir}/../src/main/javadoc/geoapi.css"
+            -Xdoclint:syntax --add-stylesheet "${basedir}/../src/main/javadoc/geoapi.css"
           </additionalOptions>
           <additionalDependencies>
             <additionalDependency>
@@ -499,7 +500,6 @@
             <tag><placement>X</placement>    <name>category</name>  <head>Category:</head></tag>
             <tag><placement>tfmc</placement> <name>condition</name> <head>Condition:</head></tag>
             <tag><placement>tfmc</placement> <name>todo</name>      <head>TODO:</head></tag>
-            <tag><placement>X</placement>    <name>issue</name>     <head>JIRA:</head></tag>
             <tag><placement>fm</placement>   <name>unitof</name>    <head>Unit:</head></tag>
           </tags>
 

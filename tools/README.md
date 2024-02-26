@@ -4,10 +4,6 @@ Those tools are used mostly for javadoc generation.
 They are internal to the GeoAPI project and may change at any time.
 
 
-## Creating releases
-The procedure for creating a GeoAPI release is documented in a [separated page](../src/release-instruction.md).
-
-
 ## Documenting the API
 The commands in the rest of this page assume that environment variables have been configured as below
 (execute from the GeoAPI project home directory on a Unix machine).
@@ -65,4 +61,12 @@ java org.opengis.tools.version.ChangeReport 2.3-M1 2.3-M4 $GEOAPI_SITE/2.3-M4/si
 java org.opengis.tools.version.ChangeReport 2.3-M2 2.3-M3 $GEOAPI_SITE/2.3-M3/since-M2.html
 java org.opengis.tools.version.ChangeReport 2.3-M1 2.3-M3 $GEOAPI_SITE/2.3-M3/since-M1.html
 java org.opengis.tools.version.ChangeReport 2.3-M1 2.3-M2 $GEOAPI_SITE/2.3-M2/since-M1.html
+```
+
+### Generating multi-modules Javadoc
+For project-wide (multi-module) Javadoc,
+execute the following command in a Unix shell from the project root directory:
+
+```shell
+./tools/src/main/bash/generate-javadoc.sh
 ```
