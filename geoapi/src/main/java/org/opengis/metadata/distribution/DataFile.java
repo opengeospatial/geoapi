@@ -101,7 +101,7 @@ public interface DataFile {
      *
      * @deprecated Removed in latest XSD schemas.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="fileFormat", obligation=MANDATORY, specification=ISO_19139, version=2007)
     default Format getFileFormat() {
         return null;

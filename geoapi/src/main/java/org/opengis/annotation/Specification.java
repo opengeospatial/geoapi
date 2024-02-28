@@ -461,7 +461,7 @@ public enum Specification {
      *
      * @deprecated since {@link #ISO_19115_3} publication, this standard does not define new elements used by GeoAPI.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     ISO_19139((short) 2007),
 
     /**
@@ -562,7 +562,7 @@ public enum Specification {
      *
      * @deprecated This specification has been retired.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     OGC_03064((short) 10),
 
     /**
@@ -621,7 +621,7 @@ public enum Specification {
      *
      * @since 3.1
      */
-    @Deprecated
+    @Deprecated(since="3.1", forRemoval=true)
     OGC_07022((short) 1),
 
     /**
@@ -630,7 +630,7 @@ public enum Specification {
      *
      * @deprecated To be removed.
      */
-    @Deprecated
+    @Deprecated(since="3.1", forRemoval=true)
     UNSPECIFIED((short) 1);
 
     /**

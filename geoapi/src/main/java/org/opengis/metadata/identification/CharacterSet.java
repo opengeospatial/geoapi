@@ -85,7 +85,7 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
  * <a href="http://www.iana.org/assignments/character-sets">IANA Character Set register</a>.
  * Represented in Java by {@link java.nio.charset.Charset}.
  */
-@Deprecated
+@Deprecated(since="3.1")
 @UML(identifier="MD_CharacterSetCode", specification=ISO_19115)
 public final class CharacterSet extends CodeList<CharacterSet> {
     /**

@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @deprecated Renamed {@link NonQuantitativeAttributeCorrectness}.
  */
-@Deprecated
+@Deprecated(since="3.1")
 @UML(identifier="DQ_NonQuantitativeAttributeAccuracy", specification=ISO_19115, version=2003)
 public interface NonQuantitativeAttributeAccuracy extends NonQuantitativeAttributeCorrectness {
 }

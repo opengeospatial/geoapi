@@ -98,7 +98,7 @@ public interface Metadata {
      * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataIdentifier()}
      *   in order to include the codespace attribute.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="fileIdentifier", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default String getFileIdentifier() {
         Identifier id = getMetadataIdentifier();
@@ -169,7 +169,7 @@ public interface Metadata {
      *
      * @deprecated As of GeoAPI 3.1, replaced by {@link #getLocalesAndCharsets()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="language", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Locale getLanguage() {
         for (Locale lc : getLocalesAndCharsets().keySet()) {
@@ -185,7 +185,7 @@ public interface Metadata {
      *
      * @deprecated As of GeoAPI 3.1, replaced by {@link #getLocalesAndCharsets()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<Locale> getLocales() {
         Locale first = null;
@@ -208,7 +208,7 @@ public interface Metadata {
      *
      * @deprecated As of GeoAPI 3.1, replaced by {@code getLocalesAndCharsets().values()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="characterSet", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default CharacterSet getCharacterSet() {
         for (Charset cs : getLocalesAndCharsets().values()) {
@@ -247,7 +247,7 @@ public interface Metadata {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getParentMetadata()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="parentIdentifier", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     default String getParentIdentifier() {
         Citation parentMetadata = getParentMetadata();
@@ -284,7 +284,7 @@ public interface Metadata {
      * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataScopes()}
      *   followed by {@link MetadataScope#getResourceScope()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="hierarchyLevel", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     default Collection<ScopeCode> getHierarchyLevels() {
         LinkedHashSet<ScopeCode> scopes = new LinkedHashSet<>();
@@ -305,7 +305,7 @@ public interface Metadata {
      * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataScopes()}
      *   followed by {@link MetadataScope#getName()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="hierarchyLevelName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     default Collection<String> getHierarchyLevelNames() {
         LinkedHashSet<String> names = new LinkedHashSet<>();
@@ -348,7 +348,7 @@ public interface Metadata {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getDateInfo()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="dateStamp", obligation=MANDATORY, specification=ISO_19115, version=2003)
     default Date getDateStamp() {
         Date fallback = null;
@@ -372,7 +372,7 @@ public interface Metadata {
      * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataStandards()}
      *   followed by {@link Citation#getTitle()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="metadataStandardName", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default String getMetadataStandardName() {
         for (Citation c : getMetadataStandards()) {
@@ -390,7 +390,7 @@ public interface Metadata {
      * @deprecated As of ISO 19115:2014, replaced by {@link #getMetadataStandards()}
      *   followed by {@link Citation#getEdition()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="metadataStandardVersion", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default String getMetadataStandardVersion() {
         for (Citation c : getMetadataStandards()) {
@@ -464,7 +464,7 @@ public interface Metadata {
      *    {@link Identification#getCitation()} followed by {@link Citation#getOnlineResources()}
      *    followed by {@link OnlineResource#getLinkage()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="dataSetURI", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default String getDataSetUri() {
         for (Identification id : getIdentificationInfo()) {

@@ -67,7 +67,7 @@ public interface ExtendedElementInformation {
      *
      * @deprecated Removed as of ISO 19115:2014.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="shortName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     default String getShortName() {
         return null;
@@ -86,7 +86,7 @@ public interface ExtendedElementInformation {
      *
      * @deprecated Removed as of ISO 19115:2014.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="domainCode", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     default Integer getDomainCode() {
         return null;
@@ -195,7 +195,7 @@ public interface ExtendedElementInformation {
      *
      * @return reason for creating the extended element.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     default Collection<? extends InternationalString> getRationales() {
         InternationalString rationale = getRationale();
         return (rationale != null) ? Collections.singletonList(rationale) : Collections.emptyList();

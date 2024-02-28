@@ -82,7 +82,7 @@ public interface CoverageDescription extends ContentInformation {
      *
      * @deprecated As of ISO 19115:2014, moved to {@link AttributeGroup#getContentTypes()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="contentType", obligation=MANDATORY, specification=ISO_19115, version=2003)
     default CoverageContentType getContentType() {
         for (AttributeGroup group : getAttributeGroups()) {
@@ -99,7 +99,7 @@ public interface CoverageDescription extends ContentInformation {
      *
      * @deprecated As of ISO 19115:2014, moved to {@link AttributeGroup#getAttributes()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends RangeDimension> getDimensions() {
         return Collections.emptyList();

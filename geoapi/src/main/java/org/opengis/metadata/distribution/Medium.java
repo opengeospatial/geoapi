@@ -69,7 +69,7 @@ public interface Medium {
      *
      * @return density at which the data is recorded.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     default Collection<Double> getDensities() {
         Double density = getDensity();
         return (density != null) ? Collections.singleton(density) : Collections.emptySet();

@@ -90,7 +90,7 @@ public interface DigitalTransferOptions {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getOffLines()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     Medium getOffLine();
 
     /**

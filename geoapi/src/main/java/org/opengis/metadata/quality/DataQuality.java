@@ -80,7 +80,7 @@ public interface DataQuality {
      *
      * @deprecated Removed from ISO 19157:2013.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="lineage", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     default Lineage getLineage() {
         return null;

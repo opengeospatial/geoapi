@@ -76,7 +76,7 @@ public interface MaintenanceInformation {
      *             of a {@link org.opengis.metadata.citation.DateType} to describe the type of the date.
      *             Note that {@link org.opengis.metadata.citation.DateType#NEXT_UPDATE} was added to that code list.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="dateOfNextUpdate", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Date getDateOfNextUpdate() {
         Date fallback = null;
@@ -123,7 +123,7 @@ public interface MaintenanceInformation {
      *             were combined into {@link #getMaintenanceScopes()} in order to allow specifying a scope
      *             that includes a spatial and temporal extent.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="updateScope", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<ScopeCode> getUpdateScopes() {
         LinkedHashSet<ScopeCode> codes = new LinkedHashSet<>();
@@ -142,7 +142,7 @@ public interface MaintenanceInformation {
      *             were combined into {@link #getMaintenanceScopes()} in order to allow specifying a scope
      *             that includes a spatial and temporal extent.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="updateScopeDescription", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends ScopeDescription> getUpdateScopeDescriptions() {
         for (Scope scope : getMaintenanceScopes()) {

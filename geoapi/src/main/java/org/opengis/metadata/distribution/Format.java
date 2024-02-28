@@ -56,7 +56,7 @@ public interface Format {
      * @deprecated As of ISO 19115:2014, replaced by
      * <code>{@linkplain #getFormatSpecificationCitation()}.{@linkplain Citation#getTitle() getTitle()}</code>.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="specification", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default InternationalString getSpecification() {
         Citation spec = getFormatSpecificationCitation();
@@ -72,7 +72,7 @@ public interface Format {
      * <code>{@linkplain #getFormatSpecificationCitation()}.{@linkplain Citation#getAlternateTitles() getAlternateTitles()}</code>.
      * Note that citation alternate titles are often used for abbreviations.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19115, version=2003)
     default InternationalString getName() {
         Citation spec = getFormatSpecificationCitation();
@@ -91,7 +91,7 @@ public interface Format {
      * @deprecated As of ISO 19115:2014, replaced by
      * <code>{@linkplain #getFormatSpecificationCitation()}.{@linkplain Citation#getEdition() getEdition()}</code>.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="version", obligation=MANDATORY, specification=ISO_19115, version=2003)
     default InternationalString getVersion() {
         Citation spec = getFormatSpecificationCitation();

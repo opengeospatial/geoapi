@@ -65,7 +65,7 @@ public final class AssociationType extends CodeList<AssociationType> {
     /**
      * @deprecated Renamed <code>LARGER_WOR<b><u>K</u></b>_CITATION</code>.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     public static final AssociationType LARGER_WORD_CITATION = LARGER_WORK_CITATION;
 
     /**
@@ -79,7 +79,7 @@ public final class AssociationType extends CodeList<AssociationType> {
      *
      * @deprecated Removed in ISO 19115:2014.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="source", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     public static final AssociationType SOURCE = new AssociationType("SOURCE");
 

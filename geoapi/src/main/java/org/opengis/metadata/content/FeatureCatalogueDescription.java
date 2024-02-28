@@ -85,7 +85,7 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      *
      * @deprecated Replaced by {@code getLocalesAndCharsets().keySet()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="language", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<Locale> getLanguages() {
         return getLocalesAndCharsets().keySet();
@@ -129,7 +129,7 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getFeatureTypeInfo()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     default Collection<? extends GenericName> getFeatureTypes() {
         final ArrayList<GenericName> names = new ArrayList<>();
         getFeatureTypeInfo().forEach((info) -> names.add(info.getFeatureTypeName()));

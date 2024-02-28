@@ -78,7 +78,7 @@ public interface Source {
      *
      * @deprecated As of ISO 19115:2014, moved to {@link Resolution#getEquivalentScale()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="scaleDenominator", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default RepresentativeFraction getScaleDenominator() {
         Resolution res = getSourceSpatialResolution();
@@ -140,7 +140,7 @@ public interface Source {
      *
      * @deprecated As of ISO 19115:2014, moved to {@link Scope#getExtents()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="sourceExtent", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends Extent> getSourceExtents() {
         return Collections.emptyList();

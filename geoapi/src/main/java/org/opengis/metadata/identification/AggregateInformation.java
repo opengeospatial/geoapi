@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  *
  * @deprecated As of ISO 19115:2014, replaced by {@link AssociatedResource}.
  */
-@Deprecated
+@Deprecated(since="3.1")
 @UML(identifier="MD_AggregateInformation", specification=ISO_19115, version=2003)
 public interface AggregateInformation extends AssociatedResource {
     /**
@@ -46,7 +46,7 @@ public interface AggregateInformation extends AssociatedResource {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getName()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="aggregateDataSetName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Citation getAggregateDataSetName();
 
@@ -59,7 +59,7 @@ public interface AggregateInformation extends AssociatedResource {
      *
      * @deprecated As of ISO 19115:2014, replaced by an identifier of {@link #getAggregateDataSetName()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="aggregateDataSetIdentifier", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     Identifier getAggregateDataSetIdentifier();
 }

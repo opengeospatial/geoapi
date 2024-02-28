@@ -65,7 +65,7 @@ public interface CoverageResult extends Result {
      *
      * @deprecated Replaced by {@link #getResultContent()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="resultContentDescription", obligation=MANDATORY, specification=ISO_19115_2, version=2009)
     default CoverageDescription getResultContentDescription() {
         return null;

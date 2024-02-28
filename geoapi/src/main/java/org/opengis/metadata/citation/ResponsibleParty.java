@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * @deprecated As of ISO 19115:2014, the {@code ResponsibleParty} type has been replaced by {@link Responsibility}
  *             to allow more flexible associations of individuals, organisations, and roles.
  */
-@Deprecated
+@Deprecated(since="3.1")
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_ResponsibleParty", specification=ISO_19115, version=2003)
 public interface ResponsibleParty extends Responsibility {
@@ -53,7 +53,7 @@ public interface ResponsibleParty extends Responsibility {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@code getName()} in {@link Individual}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="individualName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     String getIndividualName();
 
@@ -67,7 +67,7 @@ public interface ResponsibleParty extends Responsibility {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@code getName()} in {@link Organisation}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="organisationName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     InternationalString getOrganisationName();
 
@@ -81,7 +81,7 @@ public interface ResponsibleParty extends Responsibility {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link Individual#getPositionName()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="positionName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     InternationalString getPositionName();
 
@@ -92,7 +92,7 @@ public interface ResponsibleParty extends Responsibility {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link Party#getContactInfo()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="contactInfo", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Contact getContactInfo();
 

@@ -77,7 +77,7 @@ public interface DataIdentification extends Identification {
      *
      * @deprecated Replaced by {@code getLocalesAndCharsets().keySet()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="language", obligation=MANDATORY, specification=ISO_19115, version=2003)
     default Collection<Locale> getLanguages() {
         return getLocalesAndCharsets().keySet();
@@ -90,7 +90,7 @@ public interface DataIdentification extends Identification {
      *
      * @deprecated Replaced by {@code getLocalesAndCharsets().values()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     default Collection<Charset> getCharacterSets() {
         return getLocalesAndCharsets().values();

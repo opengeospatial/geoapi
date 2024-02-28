@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @deprecated Renamed {@link TemporalQuality}.
  */
-@Deprecated
+@Deprecated(since="3.1")
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="DQ_TemporalAccuracy", specification=ISO_19115, version=2003)
 public interface TemporalAccuracy extends TemporalQuality {

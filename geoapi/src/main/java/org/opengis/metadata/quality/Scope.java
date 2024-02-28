@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @deprecated As of ISO 19115:2014, {@code DQ_Scope} has been replaced by {@code MD_Scope}.
  *             The later is defined in the {@link org.opengis.metadata.maintenance} package.
  */
-@Deprecated
+@Deprecated(since="3.1")
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="DQ_Scope", specification=ISO_19115, version=2003)
 public interface Scope extends org.opengis.metadata.maintenance.Scope {
@@ -61,7 +61,7 @@ public interface Scope extends org.opengis.metadata.maintenance.Scope {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getExtents()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Extent getExtent() {
         Iterator<? extends Extent> it = getExtents().iterator();

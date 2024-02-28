@@ -71,7 +71,7 @@ public interface Telephone {
      * @deprecated As of ISO 19115:2014, replaced by a {@linkplain #getNumber() number}
      *             with {@link TelephoneType#VOICE}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="voice", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<String> getVoices() {
         if (TelephoneType.VOICE.equals(getNumberType())) {
@@ -91,7 +91,7 @@ public interface Telephone {
      * @deprecated As of ISO 19115:2014, replaced by a {@linkplain #getNumber() number}
      *             with {@link TelephoneType#FACSIMILE}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="facsimile", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<String> getFacsimiles() {
         if (TelephoneType.FACSIMILE.equals(getNumberType())) {

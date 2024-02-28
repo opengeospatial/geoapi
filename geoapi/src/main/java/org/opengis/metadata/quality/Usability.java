@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @deprecated Removed from latest ISO 19157 standard.
  */
-@Deprecated
+@Deprecated(since="3.1")
 @UML(identifier="QE_Usability", specification=ISO_19115_2, version=2009)
 public interface Usability extends Element {
 }

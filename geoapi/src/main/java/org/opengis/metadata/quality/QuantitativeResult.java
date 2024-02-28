@@ -100,7 +100,7 @@ public interface QuantitativeResult extends Result {
      *
      * @deprecated Removed from ISO 19157:2013.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="errorStatistic", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default InternationalString getErrorStatistic() {
         return null;
