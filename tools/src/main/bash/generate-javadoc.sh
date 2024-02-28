@@ -73,3 +73,4 @@ javadoc -doctitle "GeoAPI SNAPSHOT" \
 
 # Copy some resources.
 cp --interactive src/main/javadoc/content.* src/main/javadoc/departure.* src/main/javadoc/*.png target/apidocs/
+mv --interactive departures.html target/apidocs/
