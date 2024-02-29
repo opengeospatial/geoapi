@@ -1,6 +1,6 @@
 #
 #    GeoAPI - Programming interfaces for OGC/ISO standards
-#    Copyright © 2018-2023 Open Geospatial Consortium, Inc.
+#    Copyright © 2019-2023 Open Geospatial Consortium, Inc.
 #    http://www.geoapi.org
 #
 
