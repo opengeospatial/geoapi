@@ -395,6 +395,7 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
      * @return A negative value if the given code is less than this code,
      *         a positive value if greater or 0 if equal.
      */
+    @Override
     @SuppressWarnings("rawtypes")
     public final int compareTo(final E other) {
         final Class<? extends CodeList> ct =  this.getClass();
@@ -403,24 +404,6 @@ public abstract class CodeList<E extends CodeList<E>> implements Comparable<E>, 
             throw new ClassCastException("Cannot compare " + ct.getSimpleName() + " to " + co.getSimpleName());
         }
         return ordinal - ((CodeList<?>) other).ordinal;
-    }
-
-    /**
-     * Compares the specified object with this code list for equality. This method compares only
-     * {@linkplain #ordinal ordinal} values for consistency with the {@link #compareTo(CodeList)} method.
-     * Ordinal values are unique for each code list element of the same class.
-     *
-     * @param object The object to compare with this code.
-     * @return {@code true} if the given object is equal to this code.
-     *
-     * @since 2.2
-     */
-    @Override
-    public final boolean equals(final Object object) {
-        if (object != null && object.getClass().equals(getClass())) {
-            return ordinal == ((CodeList<?>) object).ordinal;
-        }
-        return false;
     }
 
     /**
