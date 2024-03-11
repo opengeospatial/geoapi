@@ -34,8 +34,8 @@ import static org.opengis.test.Assertions.assertContains;
 
 
 /**
- * Tests {@linkplain GenericName generic name} and related objects from the {@code org.opengis.util}
- * package. Name instances are created using a {@link NameFactory} given at construction time.
+ * Tests {@linkplain GenericName generic name} and related objects from the {@code org.opengis.util} package.
+ * Name instances are created using a {@link NameFactory} given at construction time.
  *
  * <h2>Usage example:</h2>
  * in order to specify their factories and run the tests in a JUnit framework, implementers can

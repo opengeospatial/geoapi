@@ -27,7 +27,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
 
 
 /**
- * Tests {@link CSValidator}.
+ * Tests {@link CSValidator} and {@link CRSValidator}.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
