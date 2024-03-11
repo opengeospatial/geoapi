@@ -17,11 +17,9 @@
  */
 package org.opengis.referencing.cs;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -31,23 +29,18 @@ import static org.opengis.annotation.Specification.*;
  * Meaning of the axis value range specified through minimum value and maximum value.
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.1
  *
  * @see CoordinateSystemAxis#getRangeMeaning()
  */
+@Vocabulary(capacity=2)
 @UML(identifier="CS_RangeMeaning", specification=ISO_19111, version=2007)
 public final class RangeMeaning extends CodeList<RangeMeaning> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -3525560558294789416L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<RangeMeaning> VALUES = new ArrayList<>(2);
 
     /**
      * Any value between and including {@linkplain CoordinateSystemAxis#getMinimumValue() minimum value}
@@ -74,13 +67,12 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
     public static final RangeMeaning WRAPAROUND = new RangeMeaning("WRAPAROUND");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private RangeMeaning(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -89,9 +81,7 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
      * @return the list of codes declared in the current JVM.
      */
     public static RangeMeaning[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(RangeMeaning[]::new);
-        }
+        return values(RangeMeaning.class);
     }
 
     /**
@@ -107,16 +97,15 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
     }
 
     /**
-     * Returns the range meaning that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the range meaning that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static RangeMeaning valueOf(String code) {
-        return valueOf(RangeMeaning.class, code);
+        return valueOf(RangeMeaning.class, code, RangeMeaning::new).get();
     }
 }

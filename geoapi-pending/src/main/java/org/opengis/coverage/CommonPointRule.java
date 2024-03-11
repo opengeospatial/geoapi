@@ -17,12 +17,11 @@
  */
 package org.opengis.coverage;
 
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Collection;                    // For javadoc
 import org.opengis.util.CodeList;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -46,18 +45,13 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see Coverage#getCommonPointRule
  */
+@Vocabulary(capacity=6)
 @UML(identifier="CV_CommonPointRule", specification=ISO_19123)
 public class CommonPointRule extends CodeList<CommonPointRule> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -2713234273445009558L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<CommonPointRule> VALUES = new ArrayList<CommonPointRule>(6);
 
     /**
      * The mean of the feature attribute values.
@@ -100,14 +94,13 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
     public static final CommonPointRule END = new CommonPointRule("END");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param  name  the name of the new element.
      *        This name must not be in use by another element of this type.
      */
     private CommonPointRule(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -116,9 +109,7 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
      * @return the list of codes declared in the current JVM.
      */
     public static CommonPointRule[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(CommonPointRule[]::new);
-        }
+        return values(CommonPointRule.class);
     }
 
     /**
@@ -134,16 +125,15 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
     }
 
     /**
-     * Returns the common point rule that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the common point rule that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static CommonPointRule valueOf(String code) {
-        return valueOf(CommonPointRule.class, code);
+        return valueOf(CommonPointRule.class, code, CommonPointRule::new).get();
     }
 }

@@ -17,11 +17,9 @@
  */
 package org.opengis.metadata.content;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -31,21 +29,16 @@ import static org.opengis.annotation.Specification.*;
  * Transform function to be used when scaling a physical value for a given element.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
+@Vocabulary(capacity=3)
 @UML(identifier="MI_TransferFunctionTypeCode", specification=ISO_19115_2)
 public final class TransferFunctionType extends CodeList<TransferFunctionType> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -8238532116096874717L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<TransferFunctionType> VALUES = new ArrayList<>(3);
 
     /**
      * Function used for transformation is first order polynomial.
@@ -66,13 +59,12 @@ public final class TransferFunctionType extends CodeList<TransferFunctionType> {
     public static final TransferFunctionType EXPONENTIAL = new TransferFunctionType("EXPONENTIAL");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private TransferFunctionType(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -81,9 +73,7 @@ public final class TransferFunctionType extends CodeList<TransferFunctionType> {
      * @return the list of codes declared in the current JVM.
      */
     public static TransferFunctionType[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(TransferFunctionType[]::new);
-        }
+        return values(TransferFunctionType.class);
     }
 
     /**
@@ -99,16 +89,15 @@ public final class TransferFunctionType extends CodeList<TransferFunctionType> {
     }
 
     /**
-     * Returns the transfer function type that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the transfer function type that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static TransferFunctionType valueOf(String code) {
-        return valueOf(TransferFunctionType.class, code);
+        return valueOf(TransferFunctionType.class, code, TransferFunctionType::new).get();
     }
 }

@@ -20,12 +20,12 @@ package org.opengis.metadata.quality;
 import java.util.Map;
 import java.util.Set;
 import java.util.List;
-import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Optional;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.referencing.operation.Matrix;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -39,18 +39,13 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   3.1
  */
+@Vocabulary(capacity=6, parameters=1)
 @UML(identifier="DQM_ValueStructure", specification=ISO_19157)
 public final class ValueStructure extends CodeList<ValueStructure> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = 455647811714853262L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<ValueStructure> VALUES = new ArrayList<>(6);
 
     /**
      * Finite, unordered collection of related items that may be repeated.
@@ -92,7 +87,7 @@ public final class ValueStructure extends CodeList<ValueStructure> {
      * for any direct position within its spatial, temporal or spatiotemporal domain.
      */
     @UML(identifier="coverage", obligation=CONDITIONAL, specification=ISO_19157)
-    public static final ValueStructure COVERAGE = new ValueStructure("COVERAGE");
+    public static final ValueStructure COVERAGE = new ValueStructure("COVERAGE", null);
 
     /**
      * The values in the order they should be tested by {@link #valueOf(Class)}.
@@ -106,29 +101,13 @@ public final class ValueStructure extends CodeList<ValueStructure> {
     private final Class<?> type;
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
-     *
-     * This is invoked by reflection by {@link #valueOf(Class, String)}
-     * when a new code needs to be created. This is indirectly required
-     * for {@link #valueOf(String)} implementation.
-     *
-     * @param name  the name of the new element. This name shall not be in use by another element of this type.
-     */
-    private ValueStructure(final String name) {
-        super(name, VALUES);
-        type = null;
-    }
-
-    /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      * @param type  base Java interface for objects storing this kind of structure.
      */
     private ValueStructure(final String name, final Class<?> type) {
-        super(name, VALUES);
+        super(name);
         this.type = type;
     }
 
@@ -138,9 +117,7 @@ public final class ValueStructure extends CodeList<ValueStructure> {
      * @return the list of codes declared in the current JVM.
      */
     public static ValueStructure[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(ValueStructure[]::new);
-        }
+        return values(ValueStructure.class);
     }
 
     /**
@@ -157,15 +134,17 @@ public final class ValueStructure extends CodeList<ValueStructure> {
 
     /**
      * Returns the structure that matches the given string, or returns a new one if none match it.
-     * More specifically, this methods returns the first instance for which
-     * <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code> returns {@code true}.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
      * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
+     * @param  type  Java type corresponding to the value, or {@code null} if unspecified.
+     *               This is used only if a new code list element is created.
      * @return a code matching the given name.
      */
-    public static ValueStructure valueOf(String code) {
-        return valueOf(ValueStructure.class, code);
+    public static ValueStructure valueOf(String code, final Class<?> type) {
+        return valueOf(ValueStructure.class, code, (name) -> new ValueStructure(name, type)).get();
     }
 
     /**

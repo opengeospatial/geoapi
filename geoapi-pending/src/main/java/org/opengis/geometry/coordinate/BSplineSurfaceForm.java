@@ -17,11 +17,9 @@
  */
 package org.opengis.geometry.coordinate;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -34,18 +32,13 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.1
  */
+@Vocabulary(capacity=6)
 @UML(identifier="GM_BSplineSurfaceForm", specification=ISO_19107)
 public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -5066463171878030795L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<BSplineSurfaceForm> VALUES = new ArrayList<BSplineSurfaceForm>(6);
 
     /**
      * A bounded portion of a plane represented by a B-spline surface of degree 1 in each parameter.
@@ -84,14 +77,13 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
     public static final BSplineSurfaceForm UNSPECIFIED = new BSplineSurfaceForm("UNSPECIFIED");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param  name  the name of the new element.
      *        This name must not be in use by another element of this type.
      */
     private BSplineSurfaceForm(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -100,9 +92,7 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
      * @return the list of codes declared in the current JVM.
      */
     public static BSplineSurfaceForm[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(BSplineSurfaceForm[]::new);
-        }
+        return values(BSplineSurfaceForm.class);
     }
 
     /**
@@ -118,16 +108,15 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
     }
 
     /**
-     * Returns the B-spline surface form that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the B-spline surface form that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static BSplineSurfaceForm valueOf(String code) {
-        return valueOf(BSplineSurfaceForm.class, code);
+        return valueOf(BSplineSurfaceForm.class, code, BSplineSurfaceForm::new).get();
     }
 }

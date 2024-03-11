@@ -17,10 +17,9 @@
  */
 package org.opengis.referencing.datum;
 
-import java.util.List;
-import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -34,23 +33,18 @@ import static org.opengis.annotation.Specification.*;
  * except that the latter is more clearly restricted to the two-dimensional case.</div>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see org.opengis.metadata.spatial.PixelOrientation
  */
+@Vocabulary(capacity=2)
 @UML(identifier="CD_PixelInCell", specification=ISO_19111, version=2007)
 public final class PixelInCell extends CodeList<PixelInCell> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = 2857889370030758462L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<PixelInCell> VALUES = new ArrayList<>(2);
 
     /**
      * The origin of the image coordinate system is the centre of a grid cell or image pixel.
@@ -70,13 +64,12 @@ public final class PixelInCell extends CodeList<PixelInCell> {
     public static final PixelInCell CELL_CORNER = new PixelInCell("CELL_CORNER");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private PixelInCell(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -100,9 +93,7 @@ public final class PixelInCell extends CodeList<PixelInCell> {
      * @return the list of codes declared in the current JVM.
      */
     public static PixelInCell[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(PixelInCell[]::new);
-        }
+        return values(PixelInCell.class);
     }
 
     /**
@@ -118,16 +109,15 @@ public final class PixelInCell extends CodeList<PixelInCell> {
     }
 
     /**
-     * Returns the pixel in cell that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the pixel in cell that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static PixelInCell valueOf(String code) {
-        return valueOf(PixelInCell.class, code);
+        return valueOf(PixelInCell.class, code, PixelInCell::new).get();
     }
 }

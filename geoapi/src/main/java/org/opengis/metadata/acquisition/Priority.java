@@ -17,11 +17,9 @@
  */
 package org.opengis.metadata.acquisition;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -31,21 +29,16 @@ import static org.opengis.annotation.Specification.*;
  * Ordered list of priorities.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
+@Vocabulary(capacity=4)
 @UML(identifier="MI_PriorityCode", specification=ISO_19115_2)
 public final class Priority extends CodeList<Priority> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -3504801926504645861L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<Priority> VALUES = new ArrayList<>(4);
 
     /**
      * Decisive importance.
@@ -72,13 +65,12 @@ public final class Priority extends CodeList<Priority> {
     public static final Priority LOW_IMPORTANCE = new Priority("LOW_IMPORTANCE");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private Priority(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -87,9 +79,7 @@ public final class Priority extends CodeList<Priority> {
      * @return the list of codes declared in the current JVM.
      */
     public static Priority[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(Priority[]::new);
-        }
+        return values(Priority.class);
     }
 
     /**
@@ -105,16 +95,15 @@ public final class Priority extends CodeList<Priority> {
     }
 
     /**
-     * Returns the priority that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the priority that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static Priority valueOf(String code) {
-        return valueOf(Priority.class, code);
+        return valueOf(Priority.class, code, Priority::new).get();
     }
 }

@@ -17,11 +17,9 @@
  */
 package org.opengis.metadata.constraint;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -35,18 +33,13 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
+@Vocabulary(capacity=17)
 @UML(identifier="MD_RestrictionCode", specification=ISO_19115)
 public final class Restriction extends CodeList<Restriction> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = 7949159742645339894L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<Restriction> VALUES = new ArrayList<>(17);
 
     /**
      * Exclusive right to the publication, production, or sale of the rights to a literary,
@@ -189,13 +182,12 @@ public final class Restriction extends CodeList<Restriction> {
     public static final Restriction IN_CONFIDENCE = new Restriction("IN_CONFIDENCE");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private Restriction(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -219,9 +211,7 @@ public final class Restriction extends CodeList<Restriction> {
      * @return the list of codes declared in the current JVM.
      */
     public static Restriction[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(Restriction[]::new);
-        }
+        return values(Restriction.class);
     }
 
     /**
@@ -237,11 +227,10 @@ public final class Restriction extends CodeList<Restriction> {
     }
 
     /**
-     * Returns the restriction that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the restriction that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * <p>For compatibility reasons, the {@code "LICENSE"} string (derived from ISO 19115:2003)
      * is taken as synonymous to {@code "LICENCE"} (derived from ISO 19115:2014).</p>
@@ -253,6 +242,6 @@ public final class Restriction extends CodeList<Restriction> {
         if ("LICENSE".equals(code)) {
             code = "LICENCE";           // For compatibility between ISO 19115:2003 and ISO 19115:2014.
         }
-        return valueOf(Restriction.class, code);
+        return valueOf(Restriction.class, code, Restriction::new).get();
     }
 }

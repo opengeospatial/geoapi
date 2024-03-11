@@ -17,10 +17,9 @@
  */
 package org.opengis.filter;
 
-import java.util.List;
-import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19143;
@@ -34,18 +33,13 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  */
+@Vocabulary(capacity=9)
 @UML(identifier="SpatialOperatorName", specification=ISO_19143)
 public final class SpatialOperatorName extends CodeList<SpatialOperatorName> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -5467041303033565459L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<SpatialOperatorName> VALUES = new ArrayList<>(9);
 
     /**
      * Operator evaluates to {@code true} when the bounding box of the feature's geometry
@@ -118,13 +112,12 @@ public final class SpatialOperatorName extends CodeList<SpatialOperatorName> {
     public static final SpatialOperatorName OVERLAPS = new SpatialOperatorName("OVERLAPS");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private SpatialOperatorName(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -133,9 +126,7 @@ public final class SpatialOperatorName extends CodeList<SpatialOperatorName> {
      * @return the list of codes declared in the current JVM.
      */
     public static SpatialOperatorName[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(SpatialOperatorName[]::new);
-        }
+        return values(SpatialOperatorName.class);
     }
 
     /**
@@ -152,14 +143,14 @@ public final class SpatialOperatorName extends CodeList<SpatialOperatorName> {
 
     /**
      * Returns the spatial operator that matches the given string, or returns a new one if none match it.
-     * More specifically, this methods returns the first instance for which
-     * <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code> returns {@code true}.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
      * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static SpatialOperatorName valueOf(String code) {
-        return valueOf(SpatialOperatorName.class, code);
+        return valueOf(SpatialOperatorName.class, code, SpatialOperatorName::new).get();
     }
 }

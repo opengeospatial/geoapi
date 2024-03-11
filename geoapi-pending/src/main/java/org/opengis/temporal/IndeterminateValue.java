@@ -17,11 +17,9 @@
  */
 package org.opengis.temporal;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Specification.*;
 
@@ -34,18 +32,13 @@ import static org.opengis.annotation.Specification.*;
  * @since   2.3
  * @version 4.0
  */
+@Vocabulary(capacity=4)
 @UML(identifier="TM_IndeterminateValue", specification=ISO_19108)
 public final class IndeterminateValue extends CodeList<IndeterminateValue> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = 1399031922917754577L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<IndeterminateValue> VALUES = new ArrayList<IndeterminateValue>(4);
 
     /**
      * Shall be used with the parent class {@link TemporalPosition} to indicate that
@@ -72,14 +65,13 @@ public final class IndeterminateValue extends CodeList<IndeterminateValue> {
     public static final IndeterminateValue AFTER = new IndeterminateValue("AFTER");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param  name  the name of the new element.
      *        This name must not be in use by another element of this type.
      */
     private IndeterminateValue(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -88,9 +80,7 @@ public final class IndeterminateValue extends CodeList<IndeterminateValue> {
      * @return the list of codes declared in the current JVM.
      */
     public static IndeterminateValue[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(IndeterminateValue[]::new);
-        }
+        return values(IndeterminateValue.class);
     }
 
     /**
@@ -106,16 +96,15 @@ public final class IndeterminateValue extends CodeList<IndeterminateValue> {
     }
 
     /**
-     * Returns the indeterminate value that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the indeterminate value that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static IndeterminateValue valueOf(String code) {
-        return valueOf(IndeterminateValue.class, code);
+        return valueOf(IndeterminateValue.class, code, IndeterminateValue::new).get();
     }
 }

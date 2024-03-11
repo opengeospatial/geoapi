@@ -17,11 +17,9 @@
  */
 package org.opengis.geometry.coordinate;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -40,18 +38,13 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
+@Vocabulary(capacity=3)
 @UML(identifier="GM_KnotType", specification=ISO_19107)
 public class KnotType extends CodeList<KnotType> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -431722533158166557L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<KnotType> VALUES = new ArrayList<KnotType>(3);
 
     /**
      * The form of knots is appropriate for a uniform B-spline.
@@ -72,14 +65,13 @@ public class KnotType extends CodeList<KnotType> {
     public static final KnotType PIECEWISE_BEZIER = new KnotType("PIECEWISE_BEZIER");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param  name  the name of the new element.
      *        This name must not be in use by another element of this type.
      */
     private KnotType(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -88,9 +80,7 @@ public class KnotType extends CodeList<KnotType> {
      * @return the list of codes declared in the current JVM.
      */
     public static KnotType[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(KnotType[]::new);
-        }
+        return values(KnotType.class);
     }
 
     /**
@@ -106,16 +96,15 @@ public class KnotType extends CodeList<KnotType> {
     }
 
     /**
-     * Returns the KnotType that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the KnotType that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static KnotType valueOf(String code) {
-        return valueOf(KnotType.class, code);
+        return valueOf(KnotType.class, code, KnotType::new).get();
     }
 }

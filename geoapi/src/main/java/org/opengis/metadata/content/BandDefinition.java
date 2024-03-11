@@ -17,11 +17,9 @@
  */
 package org.opengis.metadata.content;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -31,21 +29,16 @@ import static org.opengis.annotation.Specification.*;
  * Designation of criterion for defining maximum and minimum wavelengths for a spectral band.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
+@Vocabulary(capacity=5)
 @UML(identifier="MI_BandDefinition", specification=ISO_19115_2)
 public final class BandDefinition extends CodeList<BandDefinition> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -6673852201803408346L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<BandDefinition> VALUES = new ArrayList<>(5);
 
     /**
      * Width of a distribution equal to the distance between the outer two points on the
@@ -86,13 +79,12 @@ public final class BandDefinition extends CodeList<BandDefinition> {
     public static final BandDefinition EQUIVALENT_WIDTH = new BandDefinition("EQUIVALENT_WIDTH");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private BandDefinition(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -101,9 +93,7 @@ public final class BandDefinition extends CodeList<BandDefinition> {
      * @return the list of codes declared in the current JVM.
      */
     public static BandDefinition[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(BandDefinition[]::new);
-        }
+        return values(BandDefinition.class);
     }
 
     /**
@@ -119,16 +109,15 @@ public final class BandDefinition extends CodeList<BandDefinition> {
     }
 
     /**
-     * Returns the band definition that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the band definition that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static BandDefinition valueOf(String code) {
-        return valueOf(BandDefinition.class, code);
+        return valueOf(BandDefinition.class, code, BandDefinition::new).get();
     }
 }

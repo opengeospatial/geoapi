@@ -18,8 +18,6 @@
 package org.opengis.test;
 
 import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Objects;
@@ -253,12 +251,6 @@ public class Configuration implements Serializable {
          * For cross-version compatibility.
          */
         private static final long serialVersionUID = -5920183652024058448L;
-
-        /**
-         * The list of all keys created. Contains the key constants declared in this class, and
-         * any key that the user may have created. Must be declared before any key declaration.
-         */
-        private static final List<Key<?>> VALUES = new ArrayList<>(32);
 
         /*
          * If new constants are added, please remember to update the Configuration class javadoc.
@@ -566,14 +558,13 @@ public class Configuration implements Serializable {
         final Class<T> type;
 
         /**
-         * Constructs a key with the given name. The new key is
-         * automatically added to the list returned by {@link #values}.
+         * Constructs a key with the given name.
          *
          * @param  type  the type of values associated to the new key.
          * @param  name  the key name. This name must not be in use by any other key.
          */
         private Key(final Class<T> type, final String name) {
-            super(name, VALUES);
+            super(name);
             this.type = type;
         }
 
@@ -592,14 +583,12 @@ public class Configuration implements Serializable {
         @SuppressWarnings("unchecked")
         public static <T> Key<? extends T> valueOf(final String name, final Class<T> type) {
             Objects.requireNonNull(type, "type");
-            final Key<?> key = valueOf(Key.class, (code) -> name.equals(code.name()), null);
-            if (key != null) {
-                if (!type.isAssignableFrom(key.type)) {
-                    throw new ClassCastException(key.type.getName());
-                }
-                return (Key) key;
+            @SuppressWarnings("rawtypes")
+            final Key<?> key = (Key<?>) valueOf(Key.class, name, (n) -> new Key(type, n)).get();
+            if (type.isAssignableFrom(key.type)) {
+                return (Key<? extends T>) key;
             }
-            return new Key<>(type, name);
+            throw new ClassCastException(key.type.getCanonicalName());
         }
 
         /**
@@ -607,10 +596,9 @@ public class Configuration implements Serializable {
          *
          * @return the list of keys declared in the current JVM.
          */
+        @SuppressWarnings("unchecked")
         public static Key<?>[] values() {
-            synchronized (VALUES) {
-                return VALUES.toArray(Key<?>[]::new);
-            }
+            return values(Key.class);
         }
 
         /**

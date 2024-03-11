@@ -17,11 +17,9 @@
  */
 package org.opengis.metadata.citation;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -35,18 +33,13 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
+@Vocabulary(capacity=21)
 @UML(identifier="CI_PresentationFormCode", specification=ISO_19115)
 public final class PresentationForm extends CodeList<PresentationForm> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = 5668779490885399888L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<PresentationForm> VALUES = new ArrayList<>(21);
 
     /**
      * Digital representation of a primarily textual item (can contain illustrations also).
@@ -203,13 +196,12 @@ public final class PresentationForm extends CodeList<PresentationForm> {
     public static final PresentationForm DIAGRAM_HARDCOPY = new PresentationForm("DIAGRAM_HARDCOPY");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private PresentationForm(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -218,9 +210,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * @return the list of codes declared in the current JVM.
      */
     public static PresentationForm[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(PresentationForm[]::new);
-        }
+        return values(PresentationForm.class);
     }
 
     /**
@@ -236,16 +226,15 @@ public final class PresentationForm extends CodeList<PresentationForm> {
     }
 
     /**
-     * Returns the presentation form that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the presentation form that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static PresentationForm valueOf(String code) {
-        return valueOf(PresentationForm.class, code);
+        return valueOf(PresentationForm.class, code, PresentationForm::new).get();
     }
 }

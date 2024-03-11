@@ -17,11 +17,9 @@
  */
 package org.opengis.metadata.identification;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19115;
@@ -31,21 +29,16 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * Type of aggregation activity in which datasets are related
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @version 3.0
+ * @version 3.1
  * @since   2.1
  */
+@Vocabulary(capacity=15)
 @UML(identifier="DS_InitiativeTypeCode", specification=ISO_19115)
 public final class InitiativeType extends CodeList<InitiativeType>{
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -6875282680499638030L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<InitiativeType> VALUES = new ArrayList<>(15);
 
     /**
      * Series of organized planned actions.
@@ -138,13 +131,12 @@ public final class InitiativeType extends CodeList<InitiativeType>{
     public static final InitiativeType TRIAL = new InitiativeType("TRIAL");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private InitiativeType(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -153,9 +145,7 @@ public final class InitiativeType extends CodeList<InitiativeType>{
      * @return the list of codes declared in the current JVM.
      */
     public static InitiativeType[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(InitiativeType[]::new);
-        }
+        return values(InitiativeType.class);
     }
 
     /**
@@ -171,16 +161,15 @@ public final class InitiativeType extends CodeList<InitiativeType>{
     }
 
     /**
-     * Returns the initiative type that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the initiative type that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static InitiativeType valueOf(String code) {
-        return valueOf(InitiativeType.class, code);
+        return valueOf(InitiativeType.class, code, InitiativeType::new).get();
     }
 }

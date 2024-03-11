@@ -17,10 +17,9 @@
  */
 package org.opengis.referencing.datum;
 
-import java.util.List;
-import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -45,21 +44,16 @@ import static org.opengis.annotation.Specification.*;
  * @see VerticalDatum#getVerticalDatumType()
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  */
+@Vocabulary(capacity=4)
 @UML(identifier="CD_VerticalDatumType", specification=ISO_19111, version=2003)
 public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -8161084528823937553L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<VerticalDatumType> VALUES = new ArrayList<>(4);
 
     /**
      * In some cases, for example oil exploration and production, a geological feature, such as the top
@@ -101,13 +95,12 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     public static final VerticalDatumType BAROMETRIC = new VerticalDatumType("BAROMETRIC");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private VerticalDatumType(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -116,9 +109,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * @return the list of codes declared in the current JVM.
      */
     public static VerticalDatumType[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(VerticalDatumType[]::new);
-        }
+        return values(VerticalDatumType.class);
     }
 
     /**
@@ -134,16 +125,15 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     }
 
     /**
-     * Returns the vertical datum type that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the vertical datum type that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static VerticalDatumType valueOf(String code) {
-        return valueOf(VerticalDatumType.class, code);
+        return valueOf(VerticalDatumType.class, code, VerticalDatumType::new).get();
     }
 }

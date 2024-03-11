@@ -17,10 +17,8 @@
  */
 package org.opengis.style;
 
-import java.util.List;
-import java.util.ArrayList;
 import org.opengis.util.CodeList;
-
+import org.opengis.geoapi.internal.Vocabulary;
 import org.opengis.annotation.XmlElement;
 
 
@@ -32,18 +30,13 @@ import org.opengis.annotation.XmlElement;
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  */
+@Vocabulary(capacity=4)
 @XmlElement("ContrastEnchancement")
 public final class ContrastMethod extends CodeList<ContrastMethod> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -7328502367911363577L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<ContrastMethod> VALUES = new ArrayList<>(4);
 
     /**
      * Dimmest color is stretched to black and the brightest color is stretched to white.
@@ -74,14 +67,13 @@ public final class ContrastMethod extends CodeList<ContrastMethod> {
     public static final ContrastMethod NONE = new ContrastMethod("NONE");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param  name  the name of the new element.
      *        This name must not be in use by another element of this type.
      */
     private ContrastMethod(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -90,9 +82,7 @@ public final class ContrastMethod extends CodeList<ContrastMethod> {
      * @return the list of codes declared in the current JVM.
      */
     public static ContrastMethod[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(ContrastMethod[]::new);
-        }
+        return values(ContrastMethod.class);
     }
 
     /**
@@ -108,16 +98,15 @@ public final class ContrastMethod extends CodeList<ContrastMethod> {
     }
 
     /**
-     * Returns the contrast type that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the contrast type that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static ContrastMethod valueOf(String code) {
-        return valueOf(ContrastMethod.class, code);
+        return valueOf(ContrastMethod.class, code, ContrastMethod::new).get();
     }
 }

@@ -21,8 +21,6 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Set;
 import java.util.HashSet;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Properties;
 import java.util.Collections;
 import java.io.InputStreamReader;
@@ -55,12 +53,6 @@ public abstract class Interfacing extends CodeList<Interfacing> {
     private static final long serialVersionUID = -869703977561151644L;
 
     /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<Interfacing> VALUES = new ArrayList<>(2);
-
-    /**
      * The mapping between Java and Python uses the GeoAPI specific rules.
      * Those rules are:
      *
@@ -82,13 +74,12 @@ public abstract class Interfacing extends CodeList<Interfacing> {
     public static final Interfacing DEFAULT = new Default("DEFAULT");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     protected Interfacing(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -163,9 +154,7 @@ public abstract class Interfacing extends CodeList<Interfacing> {
      * @return the list of codes declared in the current JVM.
      */
     public static Interfacing[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(Interfacing[]::new);
-        }
+        return values(Interfacing.class);
     }
 
     /**

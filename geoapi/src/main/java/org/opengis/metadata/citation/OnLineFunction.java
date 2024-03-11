@@ -17,11 +17,9 @@
  */
 package org.opengis.metadata.citation;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -35,18 +33,13 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
+@Vocabulary(capacity=11)
 @UML(identifier="CI_OnLineFunctionCode", specification=ISO_19115)
 public final class OnLineFunction extends CodeList<OnLineFunction> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = 2333803519583053407L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<OnLineFunction> VALUES = new ArrayList<>(11);
 
     /**
      * Online instructions for transferring data from one storage device or system to another.
@@ -127,13 +120,12 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
     public static final OnLineFunction FILE_ACCESS = new OnLineFunction("FILE_ACCESS");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private OnLineFunction(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -142,9 +134,7 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      * @return the list of codes declared in the current JVM.
      */
     public static OnLineFunction[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(OnLineFunction[]::new);
-        }
+        return values(OnLineFunction.class);
     }
 
     /**
@@ -160,16 +150,15 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
     }
 
     /**
-     * Returns the on line function that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the on line function that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static OnLineFunction valueOf(String code) {
-        return valueOf(OnLineFunction.class, code);
+        return valueOf(OnLineFunction.class, code, OnLineFunction::new).get();
     }
 }

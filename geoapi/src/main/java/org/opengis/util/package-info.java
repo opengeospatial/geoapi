@@ -49,7 +49,11 @@
  *      └─ {@linkplain org.opengis.referencing.AuthorityFactory}</pre>
  * </td><td class="sep" style="width: 25%; white-space: nowrap">
  * <pre> GeoAPI object
- *  └─ {@linkplain org.opengis.util.InternationalString}</pre>
+ *  └─ {@linkplain org.opengis.util.InternationalString}
+ *
+ * {@linkplain org.opengis.util.ControlledVocabulary}
+ *  ├─ {@linkplain org.opengis.util.CodeList}
+ *  └─ {@linkplain java.lang.Enum}</pre>
  * </td></tr></table>
  *
  * <h2>Names and Namespaces</h2>

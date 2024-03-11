@@ -17,11 +17,9 @@
  */
 package org.opengis.metadata.acquisition;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -31,21 +29,16 @@ import static org.opengis.annotation.Specification.*;
  * Geometric description of the collection.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  */
+@Vocabulary(capacity=4)
 @UML(identifier="MI_GeometryTypeCode", specification=ISO_19115_2)
 public final class GeometryType extends CodeList<GeometryType> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -8326145457020825352L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<GeometryType> VALUES = new ArrayList<>(4);
 
     /**
      * Single geographic point of interest.
@@ -72,13 +65,12 @@ public final class GeometryType extends CodeList<GeometryType> {
     public static final GeometryType STRIP = new GeometryType("STRIP");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private GeometryType(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -87,9 +79,7 @@ public final class GeometryType extends CodeList<GeometryType> {
      * @return the list of codes declared in the current JVM.
      */
     public static GeometryType[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(GeometryType[]::new);
-        }
+        return values(GeometryType.class);
     }
 
     /**
@@ -105,16 +95,15 @@ public final class GeometryType extends CodeList<GeometryType> {
     }
 
     /**
-     * Returns the geometry type that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the geometry type that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static GeometryType valueOf(String code) {
-        return valueOf(GeometryType.class, code);
+        return valueOf(GeometryType.class, code, GeometryType::new).get();
     }
 }

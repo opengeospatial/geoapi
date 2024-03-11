@@ -17,10 +17,9 @@
  */
 package org.opengis.filter;
 
-import java.util.List;
-import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19143;
@@ -34,18 +33,13 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  */
+@Vocabulary(capacity=10)
 @UML(identifier="BinaryComparisonName", specification=ISO_19143)
 public final class ComparisonOperatorName extends CodeList<ComparisonOperatorName> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -6384249667390069781L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<ComparisonOperatorName> VALUES = new ArrayList<>(10);
 
     /**
      * Filter operator that compares that its two sub-expressions are equal to each other.
@@ -104,13 +98,12 @@ public final class ComparisonOperatorName extends CodeList<ComparisonOperatorNam
     static final ComparisonOperatorName PROPERTY_IS_NIL = new ComparisonOperatorName("PROPERTY_IS_NIL");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private ComparisonOperatorName(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -119,9 +112,7 @@ public final class ComparisonOperatorName extends CodeList<ComparisonOperatorNam
      * @return the list of codes declared in the current JVM.
      */
     public static ComparisonOperatorName[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(ComparisonOperatorName[]::new);
-        }
+        return values(ComparisonOperatorName.class);
     }
 
     /**
@@ -138,14 +129,14 @@ public final class ComparisonOperatorName extends CodeList<ComparisonOperatorNam
 
     /**
      * Returns the comparison operators that matches the given string, or returns a new one if none match it.
-     * More specifically, this methods returns the first instance for which
-     * <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code> returns {@code true}.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
      * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static ComparisonOperatorName valueOf(String code) {
-        return valueOf(ComparisonOperatorName.class, code);
+        return valueOf(ComparisonOperatorName.class, code, ComparisonOperatorName::new).get();
     }
 }
