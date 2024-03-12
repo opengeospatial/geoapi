@@ -65,34 +65,6 @@ table.ogc tr td.sep {
 }
 
 /*
- * Table providing description of GIGS tests. It currently applies only to the
- * org.opengis.test.referencing.gigs package. Note: JDK 13 seems to include any
- * CSS file in doc-files directory for the package that contains it, but I have
- * not found a documentation saying if this is officially supported. If yes, we
- * could move the GIGS style in that package.
- */
-table.gigs caption {
-  text-align:     left;
-  font-weight:    bold;
-  padding-bottom: 9px;
-}
-
-table.gigs {
-  border-color:     gray;
-  border-style:     solid;
-  border-width:     1px;
-  border-spacing:   15px 2px;
-  margin:           15px 0px;
-  padding:          9px;
-}
-
-table.gigs th {
-  text-align: left;
-  vertical-align: top;
-  white-space: nowrap;
-}
-
-/*
  * Layout two or more elements horizontally.
  */
 div.horizontal-flow {

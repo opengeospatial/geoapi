@@ -4,10 +4,6 @@ Those tools are used mostly for javadoc generation.
 They are internal to the GeoAPI project and may change at any time.
 
 
-## Creating releases
-The procedure for creating a GeoAPI release is documented in a [separated page](src/release-instruction.md).
-
-
 ## Documenting the API
 The commands in the rest of this page assume that environment variables have been configured as below
 (execute from the GeoAPI project home directory on a Unix machine).
@@ -15,7 +11,7 @@ Adjust the paths as necessary for the local installation.
 
 ```shell
 export GEOAPI_VERSION=4.0-SNAPSHOT
-export CLASSPATH=~/.m2/repository/javax/measure/unit-api/1.0/unit-api-1.0.jar
+export CLASSPATH=~/.m2/repository/javax/measure/unit-api/2.1.3/unit-api-2.1.3.jar
 export CLASSPATH=$CLASSPATH:$PWD/geoapi/target/geoapi-$GEOAPI_VERSION.jar
 export CLASSPATH=$CLASSPATH:$PWD/tools/target/tools-$GEOAPI_VERSION.jar
 export GEOAPI_SITE=../site/archives
@@ -29,7 +25,7 @@ Execute the following commands from the project root directory:
 ```shell
 find geoapi/src/main/java -name "*.java" > content.txt
 javac -proc:only -processor org.opengis.tools.apt.IndexGenerator \
-                 -Aoutput=geoapi/src/main/javadoc/content.html \
+                 -Aoutput=src/main/javadoc/content.html \
                  -AnotesList=src/release-notes.properties @content.txt
 rm content.txt
 ```
@@ -65,4 +61,12 @@ java org.opengis.tools.version.ChangeReport 2.3-M1 2.3-M4 $GEOAPI_SITE/2.3-M4/si
 java org.opengis.tools.version.ChangeReport 2.3-M2 2.3-M3 $GEOAPI_SITE/2.3-M3/since-M2.html
 java org.opengis.tools.version.ChangeReport 2.3-M1 2.3-M3 $GEOAPI_SITE/2.3-M3/since-M1.html
 java org.opengis.tools.version.ChangeReport 2.3-M1 2.3-M2 $GEOAPI_SITE/2.3-M2/since-M1.html
+```
+
+### Generating multi-modules Javadoc
+For project-wide (multi-module) Javadoc,
+execute the following command in a Unix shell from the project root directory:
+
+```shell
+./tools/src/main/bash/generate-javadoc.sh
 ```

@@ -11,10 +11,6 @@ import org.opengis.test.util.NameTest;
 /**
  * Tests the {@link SimpleName} implementations.
  * This class inherits its the tests from the {@code geoapi-conformance} module.
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class SimpleNameTest extends NameTest {
     /**

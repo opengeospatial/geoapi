@@ -18,10 +18,6 @@ import org.opengis.metadata.extent.GeographicBoundingBox;
  * An {@link Extent} containing only a single {@link GeographicBoundingBox}.
  * In order to keep the model simpler, this simple geographic bounding box
  * is also an extent with no vertical or temporal elements.
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Extent {
     /**

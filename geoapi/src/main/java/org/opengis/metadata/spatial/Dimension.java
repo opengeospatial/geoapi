@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2004-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -59,7 +59,7 @@ public interface Dimension {
      *
      * <div class="warning"><b>Upcoming API change — units of measurement</b><br>
      * The return type of this method may change in GeoAPI 4.0. It may be replaced by the
-     * {@link javax.measure.quantity.Quantity} type in order to provide unit of measurement
+     * {@link javax.measure.Quantity} type in order to provide unit of measurement
      * together with the value.
      * </div>
      *

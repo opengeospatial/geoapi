@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2004-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -62,7 +62,7 @@ public interface Contact {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getPhones()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     default Telephone getPhone() {
         Iterator<? extends Telephone> it = getPhones().iterator();
         return it.hasNext() ? it.next() : null;
@@ -90,7 +90,7 @@ public interface Contact {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getAddresses()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     default Address getAddress() {
         Iterator<? extends Address> it = getAddresses().iterator();
         return it.hasNext() ? it.next() : null;
@@ -118,7 +118,7 @@ public interface Contact {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getOnlineResources()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     default OnlineResource getOnlineResource() {
         Iterator<? extends OnlineResource> it = getOnlineResources().iterator();
         return it.hasNext() ? it.next() : null;

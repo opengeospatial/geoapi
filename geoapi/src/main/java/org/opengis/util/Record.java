@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2006-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2006-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -63,11 +63,6 @@ public interface Record {
      * This association is optional according ISO 19103.
      * But implementers are encouraged to provide a value in all cases.
      *
-     * <div class="note"><b>Comparison with Java reflection:</b>
-     * if we think about this {@code Record} as equivalent to an {@code Object} instance, then
-     * this method can be though as the equivalent of the Java {@link Object#getClass()} method.
-     * </div>
-     *
      * @return the type definition of this record. May be {@code null}.
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19103)
@@ -96,9 +91,9 @@ public interface Record {
      *
      * @see RecordType#getMemberTypes()
      *
-     * @deprecated Renamed {@link #getFields()}.
+     * @deprecated Renamed {@link #getFields()} in the 2015 revision of ISO 19103.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="memberValue", obligation=MANDATORY, specification=ISO_19103, version=2005)
     default Map<MemberName, Object> getAttributes() {
         return getFields();
@@ -106,7 +101,26 @@ public interface Record {
 
     /**
      * Returns the value for a field of the specified name.
-     * This is functionally equivalent to <code>{@linkplain #getFields()}.{@linkplain Map#get get}(name)</code>.
+     *
+     * @param  name  the name of the field to lookup.
+     * @return the value of the field for the given name.
+     *
+     * @deprecated This method has been removed from the ISO 19103:2015 standard. It has been kept in GeoAPI
+     *             for convenience, but renamed {@link #get(MemberName)} for consistency with common practice.
+     */
+    @Deprecated(since="3.1")
+    default Object locate(MemberName name) {
+        return get(name);
+    }
+
+    /**
+     * Returns the value for a field of the specified name.
+     * This is functionally equivalent to the following code:
+     *
+     * {@snippet lang="java" :
+     * return getFields().get(name);
+     * }
+     *
      * The type of the returned object is given by
      * <code>{@linkplain #getRecordType()}.{@linkplain RecordType#locate locate}(name)</code>.
      *
@@ -115,32 +129,35 @@ public interface Record {
      *
      * @see RecordType#locate(MemberName)
      *
-     * @deprecated This method has been removed in ISO 19103:2015. The same functionality is available with
-     *             <code>{@linkplain #getFields()}.{@linkplain Map#get get}(name)</code>.
+     * @departure historic
+     *   This method was named {@code locate} in ISO 19103:2005 and removed in ISO 19103:2015.
+     *   It has been kept in GeoAPI as a convenience shortcut for a frequently used operation.
+     *
+     * @since 3.1
      */
-    @Deprecated
     @UML(identifier="locate", obligation=MANDATORY, specification=ISO_19103, version=2005)
-    default Object locate(MemberName name) {
+    default Object get(MemberName name) {
         return getFields().get(name);
     }
 
     /**
-     * Sets the value for the field of the specified name. This is functionally equivalent
-     * to <code>{@linkplain #getFields()}.{@linkplain Map#put put}(name, value)</code>.
-     * Remind that {@code name} keys are constrained to {@linkplain RecordType#getMembers()
-     * record type members} only.
+     * Sets the value for the field of the specified name.
+     * This is functionally equivalent to the following code:
+     *
+     * {@snippet lang="java" :
+     * getFields().put(name, value);
+     * }
+     *
+     * Remind that {@code name} keys are constrained to
+     * {@linkplain RecordType#getMembers() record type members} only.
      *
      * @param  name   the name of the field to modify.
      * @param  value  the new value for the field.
      * @throws UnsupportedOperationException if this record is not modifiable.
      *
      * @departure easeOfUse
-     *   This method provides no additional functionality compared to the ISO standard methods,
-     *   but is declared in GeoAPI as a convenient shortcut.
-     *
-     * @deprecated Use <code>{@linkplain #getFields()}.{@linkplain Map#put put}(name, value)</code> instead.
+     *   This is a convenience shortcut for a frequently used operation.
      */
-    @Deprecated
     default void set(MemberName name, Object value) throws UnsupportedOperationException {
         getFields().put(name, value);
     }

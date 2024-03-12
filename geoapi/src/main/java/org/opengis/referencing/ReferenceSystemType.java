@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2014-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2014-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,10 +17,9 @@
  */
 package org.opengis.referencing;
 
-import java.util.List;
-import java.util.ArrayList;
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.ISO_19115;
@@ -33,18 +32,13 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @version 3.1
  * @since   3.1
  */
+@Vocabulary(capacity=28)
 @UML(identifier="MD_ReferenceSystemTypeCode", specification=ISO_19115)
 public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = 5574086630226193267L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<ReferenceSystemType> VALUES = new ArrayList<>(28);
 
     /**
      * Compound spatio-parametric coordinate reference system containing an
@@ -316,13 +310,12 @@ public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
             new ReferenceSystemType("VERTICAL");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private ReferenceSystemType(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -331,9 +324,7 @@ public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * @return the list of codes declared in the current JVM.
      */
     public static ReferenceSystemType[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(ReferenceSystemType[]::new);
-        }
+        return values(ReferenceSystemType.class);
     }
 
     /**
@@ -349,16 +340,15 @@ public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
     }
 
     /**
-     * Returns the {@link ReferenceSystemType} that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the {@link ReferenceSystemType} that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static ReferenceSystemType valueOf(String code) {
-        return valueOf(ReferenceSystemType.class, code);
+        return valueOf(ReferenceSystemType.class, code, ReferenceSystemType::new).get();
     }
 }

@@ -11,10 +11,6 @@ import org.opengis.referencing.operation.Matrix;
 
 /**
  * A {@link Matrix} built on top of Java3D {@code vecmath} library.
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class SimpleMatrix extends GMatrix implements Matrix {
     /**

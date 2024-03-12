@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2012-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2011-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,10 +19,11 @@ package org.opengis.test.util;
 
 import org.opengis.test.Validators;
 import org.junit.jupiter.api.Test;
+import org.opengis.geoapi.Content;
 
 
 /**
- * Tests {@link NameValidator}.
+ * Tests {@link NameValidator} and {@link CodeListValidator}.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
@@ -41,9 +42,20 @@ public final class ValidatorTest {
      */
     @Test
     public void testInternationalString() {
-        final NameValidator validator = new NameValidator(Validators.DEFAULT);
+        final var validator = new NameValidator(Validators.DEFAULT);
         validator.validate(new SimpleInternationalString("English"));
         validator.validate(new SimpleInternationalString("Français"));
         validator.validate(new SimpleInternationalString("日本語"));
+    }
+
+    /**
+     * Runs the code list validator on all GeoAPI code lists.
+     */
+    @Test
+    public void testCodeLists() {
+        final var validator = new CodeListValidator(Validators.DEFAULT);
+        for (final Class<?> codeType : Content.CODE_LISTS.types()) {
+            validator.validate(codeType);
+        }
     }
 }

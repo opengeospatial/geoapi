@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2009-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -42,12 +42,12 @@ import javax.annotation.processing.SupportedOptions;
 
 
 /**
- * Generates a list of all types and methods, together with their ISO identifier. The list will be written in the
- * given output file (usually "{@code geoapi/src/main/javadoc/content.html}"). The result is published online at
+ * Generates a list of all types and methods, together with their ISO identifier. The list will be written in
+ * the given output file (usually "{@code src/main/javadoc/content.html}"). The result is published online at
  * <a href="http://www.geoapi.org/snapshot/javadoc/content.html">http://www.geoapi.org/snapshot/javadoc/content.html</a>
  *
  * <h2>Usage</h2>
- * Instructions about this processor can be found in the module javadoc.
+ * See the <a href="https://github.com/opengeospatial/geoapi/tree/master/tools">README.md</a> file for usage instruction.
  * Options are:
  * <ul>
  *   <li>{@code output} (mandatory): where to write the HTML page.</li>

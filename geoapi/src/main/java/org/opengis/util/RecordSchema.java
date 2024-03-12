@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2006-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2006-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @deprecated The {@code RecordSchema} interface has been removed in the 2015 revision of ISO 19103 standard.
  */
-@Deprecated
+@Deprecated(since="3.1")
 @UML(identifier="RecordSchema", specification=ISO_19103, version=2005)
 public interface RecordSchema {
     /**

@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2004-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -315,7 +315,7 @@ public interface Identification {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getAssociatedResources()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="aggregationInfo", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends AggregateInformation> getAggregationInfo() {
         ArrayList<AggregateInformation> info = new ArrayList<>();

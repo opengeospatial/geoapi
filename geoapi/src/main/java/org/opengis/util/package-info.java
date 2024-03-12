@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2003-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2009-2023 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -49,7 +49,11 @@
  *      └─ {@linkplain org.opengis.referencing.AuthorityFactory}</pre>
  * </td><td class="sep" style="width: 25%; white-space: nowrap">
  * <pre> GeoAPI object
- *  └─ {@linkplain org.opengis.util.InternationalString}</pre>
+ *  └─ {@linkplain org.opengis.util.InternationalString}
+ *
+ * {@linkplain org.opengis.util.ControlledVocabulary}
+ *  ├─ {@linkplain org.opengis.util.CodeList}
+ *  └─ {@linkplain java.lang.Enum}</pre>
  * </td></tr></table>
  *
  * <h2>Names and Namespaces</h2>

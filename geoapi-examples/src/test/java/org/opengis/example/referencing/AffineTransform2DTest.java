@@ -18,10 +18,6 @@ import static org.junit.jupiter.api.Assertions.*;
  * Tests {@link AffineTransform2D} using the
  * <code><a href="http://www.geoapi.org/conformance/index.html">geoapi-conformance</a></code>
  * module.
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class AffineTransform2DTest extends AffineTransformTest {
     /**

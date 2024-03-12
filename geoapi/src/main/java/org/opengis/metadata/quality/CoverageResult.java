@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2009-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2009-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -65,7 +65,7 @@ public interface CoverageResult extends Result {
      *
      * @deprecated Replaced by {@link #getResultContent()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="resultContentDescription", obligation=MANDATORY, specification=ISO_19115_2, version=2009)
     default CoverageDescription getResultContentDescription() {
         return null;

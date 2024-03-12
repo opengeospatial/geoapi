@@ -27,8 +27,6 @@ import org.opengis.example.metadata.SimpleCitation;
 
 /**
  * A {@link NameFactory} for creating {@link SimpleName} instances.
- *
- * @author Martin Desruisseaux
  */
 public class SimpleNameFactory implements NameFactory {
     /**
@@ -196,8 +194,6 @@ public class SimpleNameFactory implements NameFactory {
      * @param  name           the member name as a string or an international string.
      * @param  attributeType  the type of the data associated with the record member.
      * @return the member name for the given character sequence.
-     *
-     * @since 3.1
      */
     @Override
     public MemberName createMemberName(final NameSpace scope, final CharSequence name, final TypeName attributeType) {

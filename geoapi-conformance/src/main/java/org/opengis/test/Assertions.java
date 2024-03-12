@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2008-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2008-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -538,7 +538,10 @@ public final strictfp class Assertions {
      * Asserts that all sample values in the given images are equal. This method requires the images
      * {@linkplain RenderedImage#getWidth() width}, {@linkplain RenderedImage#getHeight() height}
      * and the {@linkplain java.awt.image.SampleModel#getNumBands() number of bands} to be equal,
-     * but does <em>not</em> require the {@linkplain RenderedImage#getTile(int, int) tiling},
+     * but does <em>not</em> require the
+     * {@linkplain RenderedImage#getMinX() minimal <var>x</var>} value,
+     * {@linkplain RenderedImage#getMinY() minimal <var>y</var>} value,
+     * {@linkplain RenderedImage#getTile(int, int) tiling},
      * {@linkplain java.awt.image.ColorModel color model} or
      * {@linkplain java.awt.image.SampleModel#getDataType() datatype} to be equal.
      *

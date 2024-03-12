@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2004-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,11 +17,9 @@
  */
 package org.opengis.referencing.cs;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -36,23 +34,18 @@ import static org.opengis.annotation.Specification.*;
  * relevant for algorithms converting South African grid coordinates into Lat/Long.</p>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see CoordinateSystemAxis#getDirection()
  */
+@Vocabulary(capacity=32)
 @UML(identifier="CS_AxisDirection", specification=ISO_19111, version=2007)
 public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -4405275475770755714L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<AxisDirection> VALUES = new ArrayList<>(32);
 
     /**
      * Unknown or unspecified axis orientation.
@@ -324,13 +317,12 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     public static final AxisDirection DISPLAY_DOWN = new AxisDirection("DISPLAY_DOWN");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private AxisDirection(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -339,9 +331,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @return the list of codes declared in the current JVM.
      */
     public static AxisDirection[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(AxisDirection[]::new);
-        }
+        return values(AxisDirection.class);
     }
 
     /**
@@ -357,16 +347,15 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     }
 
     /**
-     * Returns the axis direction that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the axis direction that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static AxisDirection valueOf(String code) {
-        return valueOf(AxisDirection.class, code);
+        return valueOf(AxisDirection.class, code, AxisDirection::new).get();
     }
 }

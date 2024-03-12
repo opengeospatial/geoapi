@@ -41,6 +41,11 @@ import org.opengis.referencing.NoSuchAuthorityCodeException;
  */
 public final class Errors {
     /**
+     * Name of the logger to use for non-fatal errors.
+     */
+    public static final String LOGGER = "org.opengis.geoapi";
+
+    /**
      * Do not allow instantiation of this class.
      */
     private Errors() {

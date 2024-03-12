@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2011-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2011-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,8 +18,6 @@
 package org.opengis.test;
 
 import java.util.Map;
-import java.util.List;
-import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.Objects;
@@ -254,12 +252,6 @@ public class Configuration implements Serializable {
          */
         private static final long serialVersionUID = -5920183652024058448L;
 
-        /**
-         * The list of all keys created. Contains the key constants declared in this class, and
-         * any key that the user may have created. Must be declared before any key declaration.
-         */
-        private static final List<Key<?>> VALUES = new ArrayList<>(32);
-
         /*
          * If new constants are added, please remember to update the Configuration class javadoc.
          */
@@ -290,8 +282,6 @@ public class Configuration implements Serializable {
         /**
          * Whether the {@link IdentifiedObject} instances have {@linkplain IdentifiedObject#getName()
          * names} matching the names declared in the EPSG database.
-         *
-         * @see org.iogp.gigs.Series2000#isStandardNameSupported
          */
         public static final Key<Boolean> isStandardNameSupported =
                 new Key<>(Boolean.class, "isStandardNameSupported");
@@ -299,8 +289,6 @@ public class Configuration implements Serializable {
         /**
          * Whether the {@link IdentifiedObject} instances have at least the
          * {@linkplain IdentifiedObject#getAlias() aliases} declared in the EPSG database.
-         *
-         * @see org.iogp.gigs.Series2000#isStandardAliasSupported
          */
         public static final Key<Boolean> isStandardAliasSupported =
                 new Key<>(Boolean.class, "isStandardAliasSupported");
@@ -308,16 +296,12 @@ public class Configuration implements Serializable {
         /**
          * Whether the {@link IdentifiedObject} instances created indirectly by the factories
          * are expected to have correct identification information.
-         *
-         * @see org.iogp.gigs.Series2000#isDependencyIdentificationSupported
          */
         public static final Key<Boolean> isDependencyIdentificationSupported =
                 new Key<>(Boolean.class, "isDependencyIdentificationSupported");
 
         /**
          * Whether the authority factory supports creation of deprecated {@link IdentifiedObject} instances.
-         *
-         * @see org.iogp.gigs.Series2000#isDeprecatedObjectCreationSupported
          */
         public static final Key<Boolean> isDeprecatedObjectCreationSupported =
                 new Key<>(Boolean.class, "isDeprecatedObjectCreationSupported");
@@ -482,8 +466,6 @@ public class Configuration implements Serializable {
         /**
          * The {@linkplain CoordinateOperationAuthorityFactory Coordinate Operation authority factory}
          * instance used for a test.
-         *
-         * @see org.iogp.gigs.Series2000
          */
         public static final Key<CoordinateOperationAuthorityFactory> copAuthorityFactory =
                 new Key<>(CoordinateOperationAuthorityFactory.class, "copAuthorityFactory");
@@ -502,7 +484,6 @@ public class Configuration implements Serializable {
          * instance used for a test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#crsAuthorityFactory
-         * @see org.iogp.gigs.Series2000
          */
         public static final Key<CRSAuthorityFactory> crsAuthorityFactory =
                 new Key<>(CRSAuthorityFactory.class, "crsAuthorityFactory");
@@ -520,7 +501,6 @@ public class Configuration implements Serializable {
          * The {@linkplain CSAuthorityFactory Coordinate System authority factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#csAuthorityFactory
-         * @see org.iogp.gigs.Series2000
          */
         public static final Key<CSAuthorityFactory> csAuthorityFactory =
                 new Key<>(CSAuthorityFactory.class, "csAuthorityFactory");
@@ -538,7 +518,6 @@ public class Configuration implements Serializable {
          * The {@linkplain DatumAuthorityFactory Datum authority factory} instance used for a test.
          *
          * @see org.opengis.test.referencing.AuthorityFactoryTest#datumAuthorityFactory
-         * @see org.iogp.gigs.Series2000
          */
         public static final Key<DatumAuthorityFactory> datumAuthorityFactory =
                 new Key<>(DatumAuthorityFactory.class, "datumAuthorityFactory");
@@ -559,8 +538,6 @@ public class Configuration implements Serializable {
          * </ul>
          *
          * If the factory does not perform any of the above conversions, then this flag can be {@code true}.
-         *
-         * @see org.iogp.gigs.Series3000#isFactoryPreservingUserValues
          */
         public static final Key<Boolean> isFactoryPreservingUserValues =
                 new Key<>(Boolean.class, "isFactoryPreservingUserValues");
@@ -581,14 +558,13 @@ public class Configuration implements Serializable {
         final Class<T> type;
 
         /**
-         * Constructs a key with the given name. The new key is
-         * automatically added to the list returned by {@link #values}.
+         * Constructs a key with the given name.
          *
          * @param  type  the type of values associated to the new key.
          * @param  name  the key name. This name must not be in use by any other key.
          */
         private Key(final Class<T> type, final String name) {
-            super(name, VALUES);
+            super(name);
             this.type = type;
         }
 
@@ -607,14 +583,12 @@ public class Configuration implements Serializable {
         @SuppressWarnings("unchecked")
         public static <T> Key<? extends T> valueOf(final String name, final Class<T> type) {
             Objects.requireNonNull(type, "type");
-            final Key<?> key = valueOf(Key.class, (code) -> name.equals(code.name()), null);
-            if (key != null) {
-                if (!type.isAssignableFrom(key.type)) {
-                    throw new ClassCastException(key.type.getName());
-                }
-                return (Key) key;
+            @SuppressWarnings("rawtypes")
+            final Key<?> key = (Key<?>) valueOf(Key.class, name, (n) -> new Key(type, n)).get();
+            if (type.isAssignableFrom(key.type)) {
+                return (Key<? extends T>) key;
             }
-            return new Key<>(type, name);
+            throw new ClassCastException(key.type.getCanonicalName());
         }
 
         /**
@@ -622,10 +596,9 @@ public class Configuration implements Serializable {
          *
          * @return the list of keys declared in the current JVM.
          */
+        @SuppressWarnings("unchecked")
         public static Key<?>[] values() {
-            synchronized (VALUES) {
-                return VALUES.toArray(Key<?>[]::new);
-            }
+            return values(Key.class);
         }
 
         /**

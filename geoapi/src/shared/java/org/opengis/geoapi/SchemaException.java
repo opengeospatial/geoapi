@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2018-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2004-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,7 +19,7 @@ package org.opengis.geoapi;
 
 
 /**
- * Thrown when a {@link SchemaCompliance} failed to load a XSD file because it does not comply
+ * Thrown when a {@link SchemaInformation} failed to load a XSD file because it does not comply
  * with expected OGC/ISO conventions, or when a UML annotation failed a compliance check.
  *
  * @author  Martin Desruisseaux (Geomatys)

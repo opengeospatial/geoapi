@@ -20,15 +20,16 @@ and "master" for GeoAPI 4.0. The main sub-directories are:
   contains a test suite for testing vendor implementations.
 * **[src/main/metanorma](https://github.com/opengeospatial/geoapi/tree/master/src/main/metanorma)**
   contains the GeoAPI specification.
-* Other directories are examples.
+* Other directories are build tools or examples.
 
 See the [wiki page](https://github.com/opengeospatial/geoapi/wiki) for the roadmap and completion status.
 
 
 ## Development snapshots
 
-GeoAPI requires Java 10 and [Maven 3](http://maven.apache.org) for building,
-but the compilation result can be used with Java 8 or later.
+GeoAPI development branches require Java 18 and [Maven 3](http://maven.apache.org) for building,
+but the compilation result can be run on Java 11.
+The GeoAPI 3.0 stable release requires only Java 8.
 
 * **[OGC specification](https://opengeospatial.github.io/ogcna-auto-review/23-016.html)**
   is built in HTML format with `mvn pre-site -N`.\

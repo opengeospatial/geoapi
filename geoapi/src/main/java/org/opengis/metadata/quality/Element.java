@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2004-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -131,7 +131,7 @@ public interface Element {
      *
      * @deprecated Replaced by {@link MeasureReference#getNamesOfMeasure()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="nameOfMeasure", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends InternationalString> getNamesOfMeasure() {
         final MeasureReference ref = getMeasureReference();
@@ -145,7 +145,7 @@ public interface Element {
      *
      * @deprecated Replaced by {@link MeasureReference#getMeasureIdentification()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="measureIdentification", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Identifier getMeasureIdentification() {
         final MeasureReference ref = getMeasureReference();
@@ -159,7 +159,7 @@ public interface Element {
      *
      * @deprecated Replaced by {@link MeasureReference#getMeasureDescription()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="measureDescription", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default InternationalString getMeasureDescription() {
         final MeasureReference ref = getMeasureReference();
@@ -185,7 +185,7 @@ public interface Element {
      *
      * @deprecated Replaced by {@link EvaluationMethod#getEvaluationMethodType()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="evaluationMethodType", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default EvaluationMethodType getEvaluationMethodType() {
         final EvaluationMethod ref = getEvaluationMethod();
@@ -199,7 +199,7 @@ public interface Element {
      *
      * @deprecated Replaced by {@link EvaluationMethod#getEvaluationMethodDescription()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="evaluationMethodDescription", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default InternationalString getEvaluationMethodDescription() {
         final EvaluationMethod ref = getEvaluationMethod();
@@ -213,7 +213,7 @@ public interface Element {
      *
      * @deprecated Replaced by {@link EvaluationMethod#getEvaluationProcedure()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="evaluationProcedure", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Citation getEvaluationProcedure() {
         final EvaluationMethod ref = getEvaluationMethod();
@@ -233,7 +233,7 @@ public interface Element {
      *
      * @deprecated Replaced by {@link EvaluationMethod#getDates()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends Date> getDates() {
         return new AbstractCollection<Date>() {

@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2009-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2011-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -72,7 +72,6 @@ import static org.opengis.test.Assertions.assertAxisDirectionsEqual;
  *
  * @see ObjectFactoryTest
  * @see ParameterizedTransformTest
- * @see org.opengis.test.TestSuite
  *
  * @author  Cédric Briançon (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

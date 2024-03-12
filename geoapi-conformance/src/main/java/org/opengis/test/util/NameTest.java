@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2008-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2008-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -34,8 +34,8 @@ import static org.opengis.test.Assertions.assertContains;
 
 
 /**
- * Tests {@linkplain GenericName generic name} and related objects from the {@code org.opengis.util}
- * package. Name instances are created using a {@link NameFactory} given at construction time.
+ * Tests {@linkplain GenericName generic name} and related objects from the {@code org.opengis.util} package.
+ * Name instances are created using a {@link NameFactory} given at construction time.
  *
  * <h2>Usage example:</h2>
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
@@ -49,8 +49,6 @@ import static org.opengis.test.Assertions.assertContains;
  *         super(new MyNameFactory());
  *     }
  * }}
- *
- * @see org.opengis.test.TestSuite
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

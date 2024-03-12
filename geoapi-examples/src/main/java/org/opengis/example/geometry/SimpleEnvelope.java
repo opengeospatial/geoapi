@@ -22,10 +22,6 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * <p>This simple implementation does not support envelopes crossing the anti-meridian.
  * Consequently, lower coordinate values shall not be greater than corresponding upper
  * coordinate values.</p>
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class SimpleEnvelope implements Envelope {
     /**

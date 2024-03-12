@@ -17,10 +17,9 @@
  */
 package org.opengis.metadata;
 
-import java.util.List;
-import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Specification.*;
 
@@ -35,21 +34,16 @@ import static org.opengis.annotation.Specification.*;
  * in GeoAPI 4.0. See <a href="http://jira.codehaus.org/browse/GEO-199">GEO-199</a> for more information.</div>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   2.0
  */
+@Vocabulary(capacity=3)
 @UML(identifier="MD_ObligationCode", specification=ISO_19115)
 public final class Obligation extends CodeList<Obligation> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -2135167450448770693L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<Obligation> VALUES = new ArrayList<Obligation>(3);
 
     /**
      * Element is always required.
@@ -70,14 +64,13 @@ public final class Obligation extends CodeList<Obligation> {
     public static final Obligation CONDITIONAL = new Obligation("CONDITIONAL");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name The name of the new element.
      *        This name must not be in use by an other element of this type.
      */
     private Obligation(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -86,9 +79,7 @@ public final class Obligation extends CodeList<Obligation> {
      * @return The list of codes declared in the current JVM.
      */
     public static Obligation[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(new Obligation[VALUES.size()]);
-        }
+        return values(Obligation.class);
     }
 
     /**
@@ -104,16 +95,15 @@ public final class Obligation extends CodeList<Obligation> {
     }
 
     /**
-     * Returns the obligation that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the obligation that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param code The name of the code to fetch or to create.
      * @return A code matching the given name.
      */
     public static Obligation valueOf(String code) {
-        return valueOf(Obligation.class, code);
+        return valueOf(Obligation.class, code, Obligation::new).get();
     }
 }

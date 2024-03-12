@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2004-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -23,8 +23,8 @@ package org.opengis.util;
  *
  * <p>If the failure is caused by an illegal authority code, then the actual exception should
  * be {@link org.opengis.referencing.NoSuchAuthorityCodeException}. Otherwise, if the failure
- * is caused by some error in the underlying database (e.g. {@link java.io.IOException} or
- * {@link java.sql.SQLException}), then the cause shall be specified to the constructor.</p>
+ * is caused by some error in the underlying database (e.g. {@code IOException} or {@code SQLException}),
+ * then the cause should be specified to the constructor.</p>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -65,7 +65,7 @@ public class FactoryException extends Exception {
     /**
      * Constructs an exception with the specified detail message and cause.
      * The cause is the exception thrown in the underlying database
-     * (e.g. {@link java.io.IOException} or {@link java.sql.SQLException}).
+     * (e.g. {@code IOException} or {@code SQLException}).
      *
      * @param message  the detail message, saved for later retrieval by the {@link #getMessage()} method.
      * @param cause    the cause, saved for later retrieval by the {@link #getCause()} method.

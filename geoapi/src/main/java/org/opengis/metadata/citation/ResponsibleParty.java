@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2004-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -44,7 +44,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @version 3.1
  * @since   1.0
  */
-@Deprecated
+@Deprecated(since="3.1")
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_ResponsibleParty", specification=ISO_19115, version=2003)
 public interface ResponsibleParty extends Responsibility {
@@ -58,8 +58,8 @@ public interface ResponsibleParty extends Responsibility {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@code getName()} in {@link Individual}.
      */
-    @Deprecated
     @Profile(level=CORE)
+    @Deprecated(since="3.1")
     @UML(identifier="individualName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     String getIndividualName();
 
@@ -73,8 +73,8 @@ public interface ResponsibleParty extends Responsibility {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@code getName()} in {@link Organisation}.
      */
-    @Deprecated
     @Profile(level=CORE)
+    @Deprecated(since="3.1")
     @UML(identifier="organisationName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     InternationalString getOrganisationName();
 
@@ -88,8 +88,8 @@ public interface ResponsibleParty extends Responsibility {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link Individual#getPositionName()}.
      */
-    @Deprecated
     @Profile(level=CORE)
+    @Deprecated(since="3.1")
     @UML(identifier="positionName", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     InternationalString getPositionName();
 
@@ -100,7 +100,7 @@ public interface ResponsibleParty extends Responsibility {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link Party#getContactInfo()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="contactInfo", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     Contact getContactInfo();
 

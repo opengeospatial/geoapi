@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2018-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2023-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -42,8 +42,6 @@
  * This module follows the path of simpler libraries by merging different ISO concepts in the same class.
  * While this is not a recommended approach for strict ISO 19111 compliance, the intent is to demonstrate
  * that implementers can hide some of the ISO 19111 complexity.
- *
- * @version 3.1
  */
 module org.opengis.geoapi.example {
     requires transitive vecmath;

@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2009-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2009-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @deprecated Removed from latest ISO 19157 standard.
  */
-@Deprecated
+@Deprecated(since="3.1")
 @UML(identifier="QE_Usability", specification=ISO_19115_2, version=2009)
 public interface Usability extends Element {
 }

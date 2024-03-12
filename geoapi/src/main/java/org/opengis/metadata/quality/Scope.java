@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2004-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -64,7 +64,7 @@ public interface Scope extends org.opengis.metadata.maintenance.Scope {
      *
      * @deprecated As of ISO 19115:2014, replaced by {@link #getExtents()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Extent getExtent() {
         Iterator<? extends Extent> it = getExtents().iterator();

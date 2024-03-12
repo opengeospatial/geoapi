@@ -49,10 +49,6 @@ import org.opengis.example.referencing.SimpleIdentifiedObject;
  * of other kind than {@code double}. To be strict, all methods working with any value type other
  * than {@code double} should throw an {@link InvalidParameterTypeException}.
  * However, this implementation is {@linkplain #LENIENT lenient}.
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class SimpleParameter extends SimpleIdentifiedObject
         implements ParameterValue<Double>, ParameterDescriptor<Double>, Cloneable
@@ -62,10 +58,6 @@ public class SimpleParameter extends SimpleIdentifiedObject
      * This enum is stored in the {@link SimpleParameter#type} field, and used in
      * order to determine the values returned by the methods implementing the
      * {@link ParameterDescriptor} interface.
-     *
-     * @author  Martin Desruisseaux (Geomatys)
-     * @version 3.1
-     * @since   3.1
      */
     public static enum Type {
         /**

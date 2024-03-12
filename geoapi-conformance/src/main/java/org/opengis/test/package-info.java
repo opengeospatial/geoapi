@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2008-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2008-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,11 +27,6 @@
  *       the {@code TestCase} subclasses of their choice for gaining some control, for example in order to specify
  *       whether {@linkplain org.opengis.test.referencing.TransformTestCase#isDerivativeSupported math transform
  *       derivatives are supported} by their implementation.</p></li>
- *
- *   <li><p><b>Test suite</b><br>
- *       {@link org.opengis.test.TestSuite} groups all GeoAPI {@code TestCases} in a single point. This is not the
- *       easiest class to use since implementations typically support only a subset of GeoAPI functionalities. But
- *       {@code TestSuite} can provide some help for implementers defining their own test suite.</p></li>
  *
  *   <li><p><b>Validation</b><br>
  *       {@link org.opengis.test.Validators} class provides static {@code validate(…)} methods that can be used for

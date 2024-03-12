@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2006-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2003-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -62,7 +62,7 @@ public interface Expression<R,V> extends Function<R,V> {
     /**
      * Returns the name of the function to be called.
      * The {@linkplain ScopedName#head() head} should identify the defining authority and
-     * the {@linkplain ScopedNamd#tail() tail} should identify the function.
+     * the {@linkplain ScopedName#tail() tail} should identify the function.
      *
      * <div class="note"><b>Examples:</b>
      * This might be {@code "foo:cos"} or {@code "foo:atan2"} where {@code "foo"} is

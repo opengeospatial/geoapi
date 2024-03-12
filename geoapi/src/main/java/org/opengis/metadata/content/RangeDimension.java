@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2004-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -70,7 +70,7 @@ public interface RangeDimension {
      *
      * @deprecated As of ISO 19115:2014, renamed {@link #getDescription()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="descriptor", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default InternationalString getDescriptor() {
         return getDescription();

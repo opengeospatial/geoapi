@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2007-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2006-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,11 +17,9 @@
  */
 package org.opengis.metadata.identification;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19115;
@@ -35,18 +33,13 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @version 3.1
  * @since   2.1
  */
+@Vocabulary(capacity=10)
 @UML(identifier="DS_AssociationTypeCode", specification=ISO_19115)
 public final class AssociationType extends CodeList<AssociationType> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = 6031427859661710114L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<AssociationType> VALUES = new ArrayList<>(10);
 
     /**
      * Reference from one dataset to another.
@@ -65,7 +58,7 @@ public final class AssociationType extends CodeList<AssociationType> {
     /**
      * @deprecated Renamed <code>LARGER_WOR<b><u>K</u></b>_CITATION</code>.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     public static final AssociationType LARGER_WORD_CITATION = LARGER_WORK_CITATION;
 
     /**
@@ -79,7 +72,7 @@ public final class AssociationType extends CodeList<AssociationType> {
      *
      * @deprecated Removed in ISO 19115:2014.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="source", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     public static final AssociationType SOURCE = new AssociationType("SOURCE");
 
@@ -134,13 +127,12 @@ public final class AssociationType extends CodeList<AssociationType> {
     public static final AssociationType REVISION_OF = new AssociationType("REVISION_OF");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private AssociationType(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -149,9 +141,7 @@ public final class AssociationType extends CodeList<AssociationType> {
      * @return the list of codes declared in the current JVM.
      */
     public static AssociationType[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(AssociationType[]::new);
-        }
+        return values(AssociationType.class);
     }
 
     /**
@@ -167,16 +157,15 @@ public final class AssociationType extends CodeList<AssociationType> {
     }
 
     /**
-     * Returns the association type that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the association type that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static AssociationType valueOf(String code) {
-        return valueOf(AssociationType.class, code);
+        return valueOf(AssociationType.class, code, AssociationType::new).get();
     }
 }

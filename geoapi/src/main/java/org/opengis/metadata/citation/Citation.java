@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2003-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -184,7 +184,7 @@ public interface Citation {
      *
      * @deprecated Removed as of ISO 19115:2014.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="collectiveTitle", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default InternationalString getCollectiveTitle() {
         return null;

@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2004-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -81,7 +81,7 @@ public interface DataIdentification extends Identification {
      *
      * @deprecated Replaced by {@code getLocalesAndCharsets().keySet()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="language", obligation=MANDATORY, specification=ISO_19115, version=2003)
     default Collection<Locale> getLanguages() {
         return getLocalesAndCharsets().keySet();
@@ -101,7 +101,7 @@ public interface DataIdentification extends Identification {
      *
      * @deprecated Replaced by {@code getLocalesAndCharsets().values()}.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="characterSet", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     default Collection<CharacterSet> getCharacterSets() {
         LinkedHashSet<CharacterSet> codes = new LinkedHashSet<>();

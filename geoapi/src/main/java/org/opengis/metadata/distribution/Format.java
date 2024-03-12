@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2004-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -59,7 +59,7 @@ public interface Format {
      * @deprecated As of ISO 19115:2014, replaced by
      * <code>{@linkplain #getFormatSpecificationCitation()}.{@linkplain Citation#getTitle() getTitle()}</code>.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="specification", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default InternationalString getSpecification() {
         Citation spec = getFormatSpecificationCitation();
@@ -75,8 +75,8 @@ public interface Format {
      * <code>{@linkplain #getFormatSpecificationCitation()}.{@linkplain Citation#getAlternateTitles() getAlternateTitles()}</code>.
      * Note that citation alternate titles are often used for abbreviations.
      */
-    @Deprecated
     @Profile(level=CORE)
+    @Deprecated(since="3.1")
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19115, version=2003)
     default InternationalString getName() {
         Citation spec = getFormatSpecificationCitation();
@@ -95,8 +95,8 @@ public interface Format {
      * @deprecated As of ISO 19115:2014, replaced by
      * <code>{@linkplain #getFormatSpecificationCitation()}.{@linkplain Citation#getEdition() getEdition()}</code>.
      */
-    @Deprecated
     @Profile(level=CORE)
+    @Deprecated(since="3.1")
     @UML(identifier="version", obligation=MANDATORY, specification=ISO_19115, version=2003)
     default InternationalString getVersion() {
         Citation spec = getFormatSpecificationCitation();

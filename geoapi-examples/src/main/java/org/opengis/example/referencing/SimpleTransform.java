@@ -28,10 +28,6 @@ import org.opengis.example.geometry.SimpleDirectPosition;
  * <p>Subclasses must implement the {@link #transform(DirectPosition, DirectPosition)} method.
  * All other transform methods are defined in terms of the above-cited method.
  * However, the other {@code transform} methods may be overridden for performances reasons.</p>
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public abstract class SimpleTransform extends SimpleIdentifiedObject implements CoordinateOperation, MathTransform {
     /**

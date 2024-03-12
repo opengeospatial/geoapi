@@ -14,10 +14,6 @@ import static org.opengis.test.Validators.*;
 
 /**
  * Tests {@link SimpleEnvelope}.
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class SimpleEnvelopeTest {
     /**

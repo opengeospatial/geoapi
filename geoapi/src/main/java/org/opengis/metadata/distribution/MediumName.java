@@ -17,10 +17,9 @@
  */
 package org.opengis.metadata.distribution;
 
-import java.util.List;
-import java.util.ArrayList;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -37,19 +36,14 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Deprecated
+@Deprecated(since="3.1")
+@Vocabulary(capacity=18)
 @UML(identifier="MD_MediumNameCode", specification=ISO_19115, version=2003)
 public final class MediumName extends CodeList<MediumName> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = 2634504971646621701L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<MediumName> VALUES = new ArrayList<>(18);
 
     /**
      * Read-only optical disk.
@@ -160,13 +154,12 @@ public final class MediumName extends CodeList<MediumName> {
     public static final MediumName HARDCOPY = new MediumName("HARDCOPY");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private MediumName(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -175,9 +168,7 @@ public final class MediumName extends CodeList<MediumName> {
      * @return the list of codes declared in the current JVM.
      */
     public static MediumName[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(new MediumName[VALUES.size()]);
-        }
+        return values(MediumName.class);
     }
 
     /**
@@ -193,16 +184,15 @@ public final class MediumName extends CodeList<MediumName> {
     }
 
     /**
-     * Returns the medium name that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the medium name that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static MediumName valueOf(String code) {
-        return valueOf(MediumName.class, code);
+        return valueOf(MediumName.class, code, MediumName::new).get();
     }
 }

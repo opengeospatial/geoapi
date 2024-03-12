@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2005-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2005-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,11 +17,9 @@
  */
 package org.opengis.coverage.grid;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -59,18 +57,13 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.1
  */
+@Vocabulary(capacity=6)
 @UML(identifier="CV_SequenceType", specification=ISO_19123)
 public class SequenceType extends CodeList<SequenceType> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -6231205465579495566L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<SequenceType> VALUES = new ArrayList<SequenceType>(6);
 
     /**
      * Feature attribute value records are assigned to consecutive grid points along a single grid line
@@ -171,14 +164,13 @@ public class SequenceType extends CodeList<SequenceType> {
     public static final SequenceType HILBERT = new SequenceType("HILBERT");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param  name  the name of the new element.
      *        This name must not be in use by another element of this type.
      */
     private SequenceType(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -187,9 +179,7 @@ public class SequenceType extends CodeList<SequenceType> {
      * @return the list of codes declared in the current JVM.
      */
     public static SequenceType[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(SequenceType[]::new);
-        }
+        return values(SequenceType.class);
     }
 
     /**
@@ -205,16 +195,15 @@ public class SequenceType extends CodeList<SequenceType> {
     }
 
     /**
-     * Returns the sequence type that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the sequence type that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static SequenceType valueOf(String code) {
-        return valueOf(SequenceType.class, code);
+        return valueOf(SequenceType.class, code, SequenceType::new).get();
     }
 }

@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2019-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2021-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,8 +17,7 @@
  */
 package org.opengis.filter;
 
-import java.util.List;
-import java.util.ArrayList;
+import org.opengis.geoapi.internal.Vocabulary;
 import org.opengis.util.CodeList;
 
 
@@ -29,17 +28,12 @@ import org.opengis.util.CodeList;
  * @version 3.1
  * @since   3.1
  */
+@Vocabulary(capacity=3)
 final class FilterName extends CodeList<FilterName> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -320789665042646602L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<FilterName> VALUES = new ArrayList<>(3);
 
     /**
      * Default value for {@link ResourceId#getOperatorType()}.
@@ -53,13 +47,12 @@ final class FilterName extends CodeList<FilterName> {
                             EXCLUDE = new FilterName("EXCLUDE");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private FilterName(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -68,9 +61,7 @@ final class FilterName extends CodeList<FilterName> {
      * @return the list of codes declared in the current JVM.
      */
     public static FilterName[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(FilterName[]::new);
-        }
+        return values(FilterName.class);
     }
 
     /**

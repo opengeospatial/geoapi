@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2009-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2019-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,11 +17,9 @@
  */
 package org.opengis.metadata.content;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -39,18 +37,13 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   3.0
  */
+@Vocabulary(capacity=6)
 @UML(identifier="MI_PolarisationOrientationCode", specification=ISO_19115_2)
 public final class PolarizationOrientation extends CodeList<PolarizationOrientation> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -8653877364510456891L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<PolarizationOrientation> VALUES = new ArrayList<>(6);
 
     /**
      * Polarization of the sensor oriented in the horizontal plane in relation to swath direction.
@@ -89,13 +82,12 @@ public final class PolarizationOrientation extends CodeList<PolarizationOrientat
     public static final PolarizationOrientation PHI = new PolarizationOrientation("PHI");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private PolarizationOrientation(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -104,9 +96,7 @@ public final class PolarizationOrientation extends CodeList<PolarizationOrientat
      * @return the list of codes declared in the current JVM.
      */
     public static PolarizationOrientation[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(PolarizationOrientation[]::new);
-        }
+        return values(PolarizationOrientation.class);
     }
 
     /**
@@ -122,16 +112,15 @@ public final class PolarizationOrientation extends CodeList<PolarizationOrientat
     }
 
     /**
-     * Returns the transfer function type that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the transfer function type that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static PolarizationOrientation valueOf(String code) {
-        return valueOf(PolarizationOrientation.class, code);
+        return valueOf(PolarizationOrientation.class, code, PolarizationOrientation::new).get();
     }
 }

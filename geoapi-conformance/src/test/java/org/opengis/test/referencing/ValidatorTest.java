@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2012-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2011-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -27,7 +27,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
 
 
 /**
- * Tests {@link CSValidator}.
+ * Tests {@link CSValidator} and {@link CRSValidator}.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

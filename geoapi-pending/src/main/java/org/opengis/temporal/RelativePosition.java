@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2006-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2006-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,11 +17,9 @@
  */
 package org.opengis.temporal;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Specification.*;
 
@@ -35,18 +33,13 @@ import static org.opengis.annotation.Specification.*;
  * @since   2.3
  * @version 4.0
  */
+@Vocabulary(capacity=13)
 @UML(identifier="TM_RelativePosition", specification=ISO_19108)
 public final class RelativePosition extends CodeList<RelativePosition> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -2918422623747953495L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<RelativePosition> VALUES = new ArrayList<RelativePosition>(13);
 
     /**
      * This {@link TemporalTopologicalPrimitive} is earlier in the sequence than <i>other</i>
@@ -115,14 +108,13 @@ public final class RelativePosition extends CodeList<RelativePosition> {
     public static final RelativePosition ENDED_BY = new RelativePosition("ENDED_BY");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param  name  the name of the new element.
      *        This name must not be in use by another element of this type.
      */
     private RelativePosition(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -131,9 +123,7 @@ public final class RelativePosition extends CodeList<RelativePosition> {
      * @return the list of codes declared in the current JVM.
      */
     public static RelativePosition[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(RelativePosition[]::new);
-        }
+        return values(RelativePosition.class);
     }
 
     /**
@@ -149,16 +139,15 @@ public final class RelativePosition extends CodeList<RelativePosition> {
     }
 
     /**
-     * Returns the relative position that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the relative position that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static RelativePosition valueOf(String code) {
-        return valueOf(RelativePosition.class, code);
+        return valueOf(RelativePosition.class, code, RelativePosition::new).get();
     }
 }

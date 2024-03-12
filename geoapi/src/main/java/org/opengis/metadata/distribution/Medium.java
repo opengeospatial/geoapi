@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2004-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -73,7 +73,7 @@ public interface Medium {
      *
      * @return density at which the data is recorded.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     default Collection<Double> getDensities() {
         Double density = getDensity();
         return (density != null) ? Collections.singleton(density) : Collections.emptySet();

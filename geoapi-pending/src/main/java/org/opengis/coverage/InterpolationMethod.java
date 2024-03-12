@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2005-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2005-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,11 +17,9 @@
  */
 package org.opengis.coverage;
 
-import java.util.List;
-import java.util.ArrayList;
-
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -55,18 +53,13 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.1
  */
+@Vocabulary(capacity=9)
 @UML(identifier="CV_InterpolationMethod", specification=ISO_19123)
 public class InterpolationMethod extends CodeList<InterpolationMethod> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -4289541167757079847L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<InterpolationMethod> VALUES = new ArrayList<InterpolationMethod>(9);
 
     /**
      * Generates a feature attribute value at a direct position by assigning it the feature attribute
@@ -183,14 +176,13 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
     public static final InterpolationMethod BARYCENTRIC = new InterpolationMethod("BARYCENTRIC");
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param  name  the name of the new element.
      *        This name must not be in use by another element of this type.
      */
     private InterpolationMethod(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -199,9 +191,7 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      * @return the list of codes declared in the current JVM.
      */
     public static InterpolationMethod[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(InterpolationMethod[]::new);
-        }
+        return values(InterpolationMethod.class);
     }
 
     /**
@@ -217,16 +207,15 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
     }
 
     /**
-     * Returns the interpolation method that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the interpolation method that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static InterpolationMethod valueOf(String code) {
-        return valueOf(InterpolationMethod.class, code);
+        return valueOf(InterpolationMethod.class, code, InterpolationMethod::new).get();
     }
 }

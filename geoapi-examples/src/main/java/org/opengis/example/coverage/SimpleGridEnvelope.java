@@ -20,11 +20,6 @@ import org.opengis.coverage.grid.GridCoordinates;
  * ISO 19123 defines {@linkplain #getHigh() high} coordinates as <strong>inclusive</strong>.
  * We follow this specification for all getters methods, but keep in mind that this is the
  * opposite of Java2D usage where {@link Rectangle} maximal values are exclusive.</p>
- *
- * @author Martin Desruisseaux (IRD, Geomatys)
- * @version 3.1
- *
- * @since 3.1
  */
 public class SimpleGridEnvelope implements GridEnvelope {
     /**

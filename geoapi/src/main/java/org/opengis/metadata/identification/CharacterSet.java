@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2007-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2007-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,11 +19,10 @@ package org.opengis.metadata.identification;
 
 import java.nio.charset.Charset;
 import java.nio.charset.UnsupportedCharsetException;
-import java.util.List;
-import java.util.ArrayList;
 
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
+import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Specification.ISO_19115;
 import static org.opengis.annotation.Obligation.CONDITIONAL;
@@ -85,19 +84,14 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
  * <a href="http://www.iana.org/assignments/character-sets">IANA Character Set register</a>.
  * Represented in Java by {@link java.nio.charset.Charset}.
  */
-@Deprecated
+@Vocabulary(capacity=29)
+@Deprecated(since="3.1")
 @UML(identifier="MD_CharacterSetCode", specification=ISO_19115)
 public final class CharacterSet extends CodeList<CharacterSet> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -4726629268456735927L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<CharacterSet> VALUES = new ArrayList<>(29);
 
     /**
      * 16-bit fixed size Universal Character Set, based on ISO/IEC 10646.
@@ -294,14 +288,13 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     private final String charset;
 
     /**
-     * Constructs an element of the given name. The new element is
-     * automatically added to the list returned by {@link #values()}.
+     * Constructs an element of the given name.
      *
      * @param name     the name of the new element. This name shall not be in use by another element of this type.
      * @param charset  the Java {@link Charset} name, or {@code null} if none.
      */
     private CharacterSet(final String name, final String charset) {
-        super(name, VALUES);
+        super(name);
         this.charset = (charset != null) ? charset : name;
     }
 
@@ -369,7 +362,6 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     @Override
     public String[] names() {
         final String name = name();
-        final String charset = this.charset;
         if (charset.equals(name)) {
             return super.names();
         }
@@ -387,9 +379,7 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      * @return the list of codes declared in the current JVM.
      */
     public static CharacterSet[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(CharacterSet[]::new);
-        }
+        return values(CharacterSet.class);
     }
 
     /**
@@ -405,16 +395,15 @@ public final class CharacterSet extends CodeList<CharacterSet> {
     }
 
     /**
-     * Returns the character set that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the character set that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static CharacterSet valueOf(String code) {
-        return valueOf(CharacterSet.class, code);
+        return valueOf(CharacterSet.class, code, CharacterSet::new).get();
     }
 }

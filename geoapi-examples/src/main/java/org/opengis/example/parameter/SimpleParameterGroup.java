@@ -36,10 +36,6 @@ import org.opengis.util.InternationalString;
  *   <li>{@link #getName()}, for the name of this parameter group</li>
  *   <li>{@link #parameter(String)}, for getting a parameter of the given name.</li>
  * </ul>
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class SimpleParameterGroup extends SimpleIdentifiedObject
         implements ParameterValueGroup, ParameterDescriptorGroup, Cloneable

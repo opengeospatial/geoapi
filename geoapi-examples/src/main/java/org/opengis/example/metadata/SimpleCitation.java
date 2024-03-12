@@ -20,10 +20,6 @@ import org.opengis.util.InternationalString;
  * <p>This class can also be used as an {@link InternationalString} implementation. Because
  * there is only one attribute - the {@linkplain #getTitle() title} - there is no ambiguity
  * about the value represented by the citation or the international string.</p>
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class SimpleCitation implements Citation, InternationalString {
     /**

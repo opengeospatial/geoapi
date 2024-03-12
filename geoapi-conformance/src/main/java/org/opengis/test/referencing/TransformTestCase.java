@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2008-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2008-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -247,11 +247,6 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * the values of {@link #toleranceModifier} and {@link #transform} respectively at the time
      * the {@code cachedModifier} value has been computed. They are used in order to detect when
      * {@code cachedModifier} needs to be recalculated.
-     *
-     * <p>Note that the above checks will not detect the case where the user invoke
-     * {@link org.opengis.test.TestSuite#clear()}. We presume that typical users
-     * will not invoke that method in the middle of a test (it is okay if that
-     * method is invoked between two tests however).</p>
      *
      * @see #getToleranceModifier()
      */

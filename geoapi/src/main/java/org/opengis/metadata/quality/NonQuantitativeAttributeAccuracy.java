@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2004-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2007-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @deprecated Renamed {@link NonQuantitativeAttributeCorrectness}.
  */
-@Deprecated
+@Deprecated(since="3.1")
 @UML(identifier="DQ_NonQuantitativeAttributeAccuracy", specification=ISO_19115, version=2003)
 public interface NonQuantitativeAttributeAccuracy extends NonQuantitativeAttributeCorrectness {
 }

@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2009-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2009-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -101,7 +101,7 @@ public interface DataFile {
      *
      * @deprecated Removed in latest XSD schemas.
      */
-    @Deprecated
+    @Deprecated(since="3.1")
     @UML(identifier="fileFormat", obligation=MANDATORY, specification=ISO_19139, version=2007)
     default Format getFileFormat() {
         return null;

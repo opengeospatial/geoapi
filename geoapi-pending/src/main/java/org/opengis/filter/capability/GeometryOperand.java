@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2007-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2007-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,9 +17,8 @@
  */
 package org.opengis.filter.capability;
 
-import java.util.List;
-import java.util.ArrayList;
 import org.opengis.util.CodeList;
+import org.opengis.geoapi.internal.Vocabulary;
 
 
 /**
@@ -58,17 +57,12 @@ import org.opengis.util.CodeList;
  * {@link org.opengis.filter.capability.SpatialCapabilities#getGeometryOperands()}.
  */
 @Deprecated
+@Vocabulary(capacity=19)
 public final class GeometryOperand extends CodeList<GeometryOperand> {
     /**
      * For cross-version compatibility.
      */
     private static final long serialVersionUID = 6517166553565301182L;
-
-    /**
-     * List of all enumerations of this type.
-     * Must be declared before any enum declaration.
-     */
-    private static final List<GeometryOperand> VALUES = new ArrayList<GeometryOperand>(19);
 
     /** {@code "http://www.opengis.net/gml/Envelope"} */
     public static final GeometryOperand Envelope = new GeometryOperand("Envelope");
@@ -133,7 +127,7 @@ public final class GeometryOperand extends CodeList<GeometryOperand> {
      * @param  name  the name of the new element. This name must not be in use by another element of this type.
      */
     private GeometryOperand(final String name) {
-        super(name, VALUES);
+        super(name);
     }
 
     /**
@@ -142,9 +136,7 @@ public final class GeometryOperand extends CodeList<GeometryOperand> {
      * @return the list of codes declared in the current JVM.
      */
     public static GeometryOperand[] values() {
-        synchronized (VALUES) {
-            return VALUES.toArray(GeometryOperand[]::new);
-        }
+        return values(GeometryOperand.class);
     }
 
     /**
@@ -160,16 +152,15 @@ public final class GeometryOperand extends CodeList<GeometryOperand> {
     }
 
     /**
-     * Returns the date type that matches the given string, or returns a
-     * new one if none match it. More specifically, this methods returns the first instance for
-     * which <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code>
-     * returns {@code true}. If no existing instance is found, then a new one is created for
-     * the given name.
+     * Returns the date type that matches the given string, or returns a new one if none match it.
+     * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
+     * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
+     * If no existing instance is found, then a new one is created for the given name.
      *
      * @param  code  the name of the code to fetch or to create.
      * @return a code matching the given name.
      */
     public static GeometryOperand valueOf(final String code) {
-        return valueOf(GeometryOperand.class, code);
+        return valueOf(GeometryOperand.class, code, GeometryOperand::new).get();
     }
 }

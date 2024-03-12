@@ -21,10 +21,6 @@ import org.opengis.referencing.ReferenceIdentifier;
  * <p>Since the {@linkplain #getName() name} is the only identifier contained by this class,
  * {@code SimpleIdentifiedObject} implements directly the {@link Identifier} interface.
  * Consequently, this class can also be used as an {@code Identifier} implementation.</p>
- *
- * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
- * @since   3.1
  */
 public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdentifier {
     /**

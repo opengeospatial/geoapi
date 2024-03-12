@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2018-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2018-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -26,8 +26,6 @@
  *     existing instances of GeoAPI interfaces.</li>
  *   <li>{@linkplain org.opengis.test.TestCase} as the base class of all JUnit tests
  *     in this module, which can be extended by developers on a case-by-case basis.</li>
- *   <li>{@linkplain org.opengis.test.TestSuite} as the aggregation of all JUnit tests
- *     defined in this module.</li>
  * </ul>
  *
  * @version 3.1
