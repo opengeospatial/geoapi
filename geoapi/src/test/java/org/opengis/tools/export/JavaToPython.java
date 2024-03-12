@@ -312,7 +312,7 @@ class JavaToPython extends SourceGenerator {
                     if (properties.put(name, p) != null) switch (name) {
                         /*
                          * If the same property appears twice, this is theoretically an error.
-                         * But we make an exception for properties that have been splitted in
+                         * But we make an exception for properties that have been split in
                          * two Java methods because Java can return only one value.
                          */
                         case "cardinality":                         // [minOccurs … maxOccurs]

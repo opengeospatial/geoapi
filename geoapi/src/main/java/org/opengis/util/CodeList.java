@@ -253,8 +253,9 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * then the given name <em>shall</em> be the case-sensitive name of the static field.
      *
      * @param  name  the code name. Shall be the name of the static field if such field exist.
+     *
+     * @since 3.1
      */
-    @SuppressWarnings("unchecked")
     protected CodeList(final String name) {
         this.name = name;
         Class<?> type = getClass();
@@ -264,7 +265,9 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                 throw new IllegalStateException("Class shall not be anonymous.");
             }
         }
-        final Elements values = getOrCreateList((Class<? extends CodeList<?>>) type);
+        @SuppressWarnings("unchecked")      // The following cast should never fail.
+        var codeType = (Class<? extends CodeList<?>>) type;
+        final Elements values = getOrCreateList(codeType);
         synchronized (values) {
             ordinal = values.size();
             values.add(name);           // Needed for incrementing the list size.
