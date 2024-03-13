@@ -626,7 +626,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 assertEquals(targetDimension, targetPosition.getDimension(), "MathTransform.transform(DirectPosition)"
                         + " must return a position having the same dimension as MathTransform.getTargetDimension().");
                 for (int j=0; j<targetDimension; j++) {
-                    expectedFloats[targetOffset] = (float) (expectedDoubles[targetOffset] = targetPosition.getOrdinate(j));
+                    expectedFloats[targetOffset] = (float) (expectedDoubles[targetOffset] = targetPosition.getCoordinate(j));
                     targetOffset++;
                 }
             }
@@ -853,14 +853,14 @@ public strictfp abstract class TransformTestCase extends TestCase {
             S2.setCoordinate(coordinates);
             final double coordinate = coordinates[i];
             final double delta = derivativeDeltas[min(i, derivativeDeltas.length-1)];
-            S1.setOrdinate(i, coordinate - delta/2);
-            S2.setOrdinate(i, coordinate + delta/2);
+            S1.setCoordinate(i, coordinate - delta/2);
+            S2.setCoordinate(i, coordinate + delta/2);
             assertSame(T1, transform.transform(S1, T1));
             assertSame(T2, transform.transform(S2, T2));
             for (int j=0; j<targetDim; j++) {
-                final double dc = (T2.getOrdinate(j) - T1.getOrdinate(j)) /  delta;         // Central difference
-                final double df = (T2.getOrdinate(j) - T0.getOrdinate(j)) / (delta/2);      // Forward difference
-                final double db = (T0.getOrdinate(j) - T1.getOrdinate(j)) / (delta/2);      // Backward difference
+                final double dc = (T2.getCoordinate(j) - T1.getCoordinate(j)) /  delta;     // Central difference
+                final double df = (T2.getCoordinate(j) - T0.getCoordinate(j)) / (delta/2);  // Forward difference
+                final double db = (T0.getCoordinate(j) - T1.getCoordinate(j)) / (delta/2);  // Backward difference
                 approx.setElement(j, i, dc);
                 tolmat.setElement(j, i, max(tolerances[j], max(abs(df - db), max(abs(dc - db), abs(dc - df)))));
             }
@@ -1225,8 +1225,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
                 modifier.adjust(tolerances, expected, mode);
             }
             for (int mismatch=0; mismatch<dimension; mismatch++) {
-                final double a = actual  .getOrdinate(mismatch);
-                final double e = expected.getOrdinate(mismatch);
+                final double a = actual  .getCoordinate(mismatch);
+                final double e = expected.getCoordinate(mismatch);
                 /*
                  * This method uses !(a <= b) expressions instead of (a > b) for catching NaN.
                  * The next condition working on bit patterns is for NaN and Infinity values.
@@ -1380,7 +1380,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * range, applying 360° shifts if needed.
      *
      * <p>The default implementation does nothing. Subclasses can modify the {@code actual} coordinate
-     * values directly using the {@link DirectPosition#setOrdinate(int, double)} method.</p>
+     * values directly using the {@link DirectPosition#setCoordinate(int, double)} method.</p>
      *
      * @param expected  the expected coordinate value provided by the test case.
      * @param actual    the coordinate value computed by the {@linkplain #transform} being tested.

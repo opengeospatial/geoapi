@@ -150,7 +150,7 @@ public interface Envelope {
      * object:
      *
      * <blockquote><code>
-     * minimum = {@linkplain #getLowerCorner()}.{@linkplain DirectPosition#getOrdinate(int) getOrdinate}(dimension);
+     * minimum = {@linkplain #getLowerCorner()}.{@linkplain DirectPosition#getCoordinate(int) getCoordinate}(dimension);
      * </code></blockquote>
      *
      * <h4>Crossing the anti-meridian of a geographic CRS</h4>
@@ -185,7 +185,7 @@ public interface Envelope {
      * object:
      *
      * <blockquote><code>
-     * maximum = {@linkplain #getUpperCorner()}.{@linkplain DirectPosition#getOrdinate(int) getOrdinate}(dimension);
+     * maximum = {@linkplain #getUpperCorner()}.{@linkplain DirectPosition#getCoordinate(int) getCoordinate}(dimension);
      * </code></blockquote>
      *
      * <h4>Crossing the anti-meridian of a geographic CRS</h4>

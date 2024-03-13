@@ -94,8 +94,8 @@ public class SimpleEnvelope implements Envelope {
     {
         final int dimension = coordinates.length/2;
         for (int i=0; i<dimension; i++) {
-            final double lower = lowerCorner.getOrdinate(i);
-            final double upper = upperCorner.getOrdinate(i);
+            final double lower = lowerCorner.getCoordinate(i);
+            final double upper = upperCorner.getCoordinate(i);
             if (lower > upper) {
                 throw new IllegalArgumentException("Coordinate value in the lower corner at dimension "
                         + i + ", which is " + lower + ", cannot be greater than the corresponding "
@@ -184,7 +184,7 @@ public class SimpleEnvelope implements Envelope {
      * this method is equivalent to the following code:
      *
      * {@snippet lang="java" :
-     * return getLowerCorner().getOrdinate(dimension);
+     * return getLowerCorner().getCoordinate(dimension);
      * }
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.
@@ -204,7 +204,7 @@ public class SimpleEnvelope implements Envelope {
      * this method is equivalent to the following code:
      *
      * {@snippet lang="java" :
-     * return getUpperCorner().getOrdinate(dimension);
+     * return getUpperCorner().getCoordinate(dimension);
      * }
      *
      * @param  dimension  the dimension for which to obtain the coordinate value.

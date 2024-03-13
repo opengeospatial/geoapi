@@ -44,8 +44,8 @@ public class SimpleEnvelopeTest {
         assertEquals( 4.0, envelope.getSpan   (0));
         assertEquals( 1.0, envelope.getSpan   (1));
         assertEquals( 5.0, envelope.getSpan   (2));
-        assertArrayEquals(new double[] {4.0, 8.0, -2.0}, envelope.getLowerCorner().getCoordinate());
-        assertArrayEquals(new double[] {8.0, 9.0,  3.0}, envelope.getUpperCorner().getCoordinate());
+        assertArrayEquals(new double[] {4.0, 8.0, -2.0}, envelope.getLowerCorner().getCoordinates());
+        assertArrayEquals(new double[] {8.0, 9.0,  3.0}, envelope.getUpperCorner().getCoordinates());
         validate(envelope);
     }
 
