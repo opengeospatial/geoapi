@@ -48,7 +48,7 @@ public interface PositionFactory {
      * coordinate array. You should not attempt to reuse this array after it
      * has been provided to this factory method.
      *
-     * @param coordinates Array of ordinates used for this DirectPosition
+     * @param coordinates array of coordinates used for this {@code DirectPosition}.
      * @throws MismatchedDimensionException if the coordinates array length doesn't match
      *         the {@linkplain #getCoordinateReferenceSystem coordinate reference system}
      *         dimension.

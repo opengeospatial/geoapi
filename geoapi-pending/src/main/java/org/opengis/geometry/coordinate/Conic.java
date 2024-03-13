@@ -28,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Any general conic curve. Any of the conic section curves can be canonically represented
- * in polar co-ordinates (&rho;, φ) as:
+ * in polar coordinates (&rho;, φ) as:
  *
  * <img src="doc-files/ConicCurve.png" alt="Conic curve">
  *

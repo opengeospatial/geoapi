@@ -278,11 +278,11 @@ public interface Geometry extends TransfiniteSet {
     Geometry transform(CoordinateReferenceSystem newCRS) throws TransformException;
 
     /**
-     * Returns the minimum bounding box for this {@code Geometry}. This shall be the
-     * coordinate region spanning the minimum and maximum value for each ordinate taken on by
-     * {@linkplain DirectPosition direct positions} in this {@code Geometry}. The simplest
+     * Returns the minimum bounding box for this {@code Geometry}.
+     * This shall be the region spanning the minimum and maximum value for each coordinate taken
+     * on by {@linkplain DirectPosition direct positions} in this {@code Geometry}. The simplest
      * representation for an envelope consists of two {@linkplain DirectPosition direct positions},
-     * the first one containing all the minimums for each ordinate, and second one containing all
+     * the first one containing all the minimums for each coordinate, and second one containing all
      * the maximums. However, there are cases for which these two positions would be outside the
      * domain of validity of the object's coordinate reference system.
      *

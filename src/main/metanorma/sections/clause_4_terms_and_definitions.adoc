@@ -207,7 +207,7 @@ feature whose location changes over time
 NOTE: Its base representation uses a local origin and local coordinate vectors
 of a geometric object at a given reference time.
 
-NOTE: The local origin and ordinate vectors establish an engineering coordinate
+NOTE: The local origin and coordinate vectors establish an engineering coordinate
 reference system (ISO 19111), also called a local frame or a local Euclidean coordinate system.
 
 

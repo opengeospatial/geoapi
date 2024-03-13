@@ -67,7 +67,7 @@ class CoordinateSystemAxis(IdentifiedObject):
     def abbreviation(self) -> str:
         """
         The abbreviation used for this coordinate system axes.
-        This abbreviation is also used to identify the ordinates in coordinate tuple.
+        This abbreviation is also used to identify the coordinate in a coordinate tuple.
 
         :return: The coordinate system axis abbreviation.
         :rtype: int
