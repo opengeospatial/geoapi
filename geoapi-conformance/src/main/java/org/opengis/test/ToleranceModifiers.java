@@ -107,7 +107,7 @@ public strictfp final class ToleranceModifiers {
         @Override
         public void adjust(final double[] tolerances, final DirectPosition coordinates, final CalculationType mode) {
             for (int i=0; i<tolerances.length; i++) {
-                final double scale = abs(coordinates.getOrdinate(i));
+                final double scale = abs(coordinates.getCoordinate(i));
                 if (scale > 1) {
                     tolerances[i] *= scale;
                 }
@@ -170,7 +170,7 @@ public strictfp final class ToleranceModifiers {
             tolerances[φDimension] /= (NAUTICAL_MILE * 60);   // 1 nautical miles = 1852 metres in 1 minute of angle.
             double tol = tolerances[λDimension];
             if (tol != 0) {
-                tol /= (NAUTICAL_MILE*60 * cos(toRadians(abs(coordinates.getOrdinate(φDimension)))));
+                tol /= (NAUTICAL_MILE*60 * cos(toRadians(abs(coordinates.getCoordinate(φDimension)))));
                 if (!(tol <= 360)) {                          // !(a<=b) rather than (a>b) in order to catch NaN.
                     tol = 360;
                 }

@@ -41,7 +41,7 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
     private static final long serialVersionUID = -8534729639298737965L;
 
     /**
-     * Ordinate (y) axis.
+     * Coordinate (y) axis.
      */
     @UML(identifier="row", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DimensionNameType ROW = new DimensionNameType("ROW");

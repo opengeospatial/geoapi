@@ -73,29 +73,29 @@ public interface DirectPosition extends Position {
 
     /**
      * A <b>copy</b> of the coordinates presented as an array of double values.
-     * Please note that this is only a copy (the real values may be stored in
-     * another format) so changes to the returned array will not affect the
-     * source DirectPosition.
+     * Please note that this is only a copy (the real values may be stored in another format),
+     * therefor changes to the returned array will not affect the source {@code DirectPosition}.
      *
      * {@snippet lang="java" :
      * final int dim = position.getDimension();
      * for (int i=0; i&lt;dim; i++) {
-     *     position.getOrdinate(i);       // no copy overhead
+     *     position.getCoordinate(i);       // no copy overhead
      * }}
      *
      * To manipulate coordinates, the following idiom can be used:
      *
      * {@snippet lang="java" :
-     * position.setOrdinate(i, value);    // edit in place
+     * position.setCoordinate(i, value);    // edit in place
      * }
      *
+     * <h4>Design note</h4>
      * There are a couple reasons for requesting a copy:
      *
      * <ul>
      *   <li>We want an array of coordinates with the intent to modify it for computation purpose
      *       (without modifying the original {@code DirectPosition}), or we want to protect the
      *       array from future {@code DirectPosition} changes.</li>
-     *   <li>If {@code DirectPosition.getOrdinates()} is guaranteed to not return the backing array,
+     *   <li>If {@code DirectPosition.getCoordinates()} is guaranteed to not return the backing array,
      *       then we can work directly on this array. If we don't have this guarantee, then we must
      *       conservatively clone the array in every cases.</li>
      *   <li>Cloning the returned array is useless if the implementation cloned the array or was
@@ -103,16 +103,29 @@ public interface DirectPosition extends Position {
      *       computed on the fly)</li>
      * </ul>
      *
-     * Precedence is given to data integrity over {@code getOrdinates()} performance.
-     * Performance concern can be avoided with usage of {@link #getOrdinate(int)}.
+     * Precedence is given to data integrity over {@code getCoordinates()} performance.
+     * Performance concern can be avoided with usage of {@link #getCoordinate(int)}.
      *
      * @return a copy of the coordinates. Changes in the returned array will not be reflected back
      *         in this {@code DirectPosition} object.
      *
-     * @todo needs to be renamed {@code getCoordinates()}.
+     * @since 3.1
      */
     @UML(identifier="coordinate", obligation=MANDATORY, specification=ISO_19107)
-    double[] getCoordinate();
+    double[] getCoordinates();
+
+    /**
+     * A <b>copy</b> of the coordinates presented as an array of double values.
+     *
+     * @return a copy of the coordinates. Changes in the returned array will not be reflected back
+     *         in this {@code DirectPosition} object.
+     *
+     * @deprecated Renamed {@link #getCoordinates()}.
+     */
+    @Deprecated(since="3.1", forRemoval=true)
+    default double[] getCoordinate() {
+        return getCoordinates();
+    }
 
     /**
      * Returns the coordinate at the specified dimension.
@@ -120,11 +133,26 @@ public interface DirectPosition extends Position {
      * @param  dimension  the dimension in the range 0 to {@linkplain #getDimension dimension}-1.
      * @return the coordinate at the specified dimension.
      * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
-     *         than the {@linkplain #getDimension() position dimension}.
+     *         than the {@linkplain #getDimension() number of dimensions}.
      *
-     * @todo needs to be renamed {@code getCoordinate(int)}.
+     * @since 3.1
      */
-    double getOrdinate(int dimension) throws IndexOutOfBoundsException;
+    double getCoordinate(int dimension);
+
+    /**
+     * Returns the coordinate at the specified dimension.
+     *
+     * @param  dimension  the dimension in the range 0 to {@linkplain #getDimension dimension}-1.
+     * @return the coordinate at the specified dimension.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
+     *         than the {@linkplain #getDimension() number of dimensions}.
+     *
+     * @deprecated Renamed {@link #getCoordinate(int)}.
+     */
+    @Deprecated(since="3.1", forRemoval=true)
+    default double getOrdinate(int dimension) throws IndexOutOfBoundsException {
+        return getCoordinate(dimension);
+    }
 
     /**
      * Sets the coordinate value along the specified dimension.
@@ -135,10 +163,27 @@ public interface DirectPosition extends Position {
      *         than the {@linkplain #getDimension() position dimension}.
      * @throws UnsupportedOperationException if this direct position is immutable.
      *
-     * @todo needs to be renamed {@code setCoordinate(int, double)}.
+     * @since 3.1
      */
-    void setOrdinate(int dimension, double value)
-            throws IndexOutOfBoundsException, UnsupportedOperationException;
+    void setCoordinate(int dimension, double value);
+
+    /**
+     * Sets the coordinate value along the specified dimension.
+     *
+     * @param  dimension  the dimension for the coordinate of interest.
+     * @param  value      the coordinate value of interest.
+     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
+     *         than the {@linkplain #getDimension() position dimension}.
+     * @throws UnsupportedOperationException if this direct position is immutable.
+     *
+     * @deprecated Renamed {@link #setCoordinate(int, double)}.
+     */
+    @Deprecated(since="3.1", forRemoval=true)
+    default void setOrdinate(int dimension, double value)
+            throws IndexOutOfBoundsException, UnsupportedOperationException
+    {
+        setCoordinate(dimension, value);
+    }
 
     /**
      * Compares this direct position with the specified object for equality.
@@ -150,10 +195,10 @@ public interface DirectPosition extends Position {
      *   <li>Both direct positions have the same {@linkplain #getDimension() number of dimensions}.</li>
      *   <li>Both direct positions have the same or equal {@linkplain #getCoordinateReferenceSystem
      *       coordinate reference system}.</li>
-     *   <li>For all dimension <var>i</var>, the {@linkplain #getOrdinate coordinate value} of both
+     *   <li>For all dimension <var>i</var>, the {@linkplain #getCoordinates coordinate value} of both
      *       direct positions at that dimension are equals in the sense of {@link Double#equals(Object)}.
      *       In other words, <code>{@linkplain java.util.Arrays#equals(double[],double[])
-     *       Arrays.equals}({@linkplain #getCoordinate()}, object.getCoordinate())</code>
+     *       Arrays.equals}({@linkplain #getCoordinates()}, object.getCoordinates())</code>
      *       returns {@code true}.</li>
      * </ul>
      *
@@ -168,7 +213,7 @@ public interface DirectPosition extends Position {
      * the same value as:
      *
      * <code>{@linkplain java.util.Arrays#hashCode(double[]) Arrays.hashCode}({@linkplain
-     * #getCoordinate()}) + {@linkplain #getCoordinateReferenceSystem()}.hashCode()</code>
+     * #getCoordinates()}) + {@linkplain #getCoordinateReferenceSystem()}.hashCode()</code>
      *
      * where the right hand side of the addition is omitted if the coordinate reference
      * system is null.

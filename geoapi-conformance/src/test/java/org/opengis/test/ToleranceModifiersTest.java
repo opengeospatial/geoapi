@@ -59,7 +59,7 @@ public final class ToleranceModifiersTest implements DirectPosition {
      * to be tested with the above {@linkplain #tolerance} values.
      */
     @Override
-    public double getOrdinate(final int dimension) {
+    public double getCoordinate(final int dimension) {
         switch (dimension) {
             case 0:  return  10;  // λ
             case 1:  return  90;  // φ
@@ -73,7 +73,7 @@ public final class ToleranceModifiersTest implements DirectPosition {
      * Attempting to do so will cause a JUnit failure.
      */
     @Override
-    public void setOrdinate(int dimension, double value) {
+    public void setCoordinate(int dimension, double value) {
         fail("The coordinate should not be modified.");
     }
 
@@ -82,7 +82,7 @@ public final class ToleranceModifiersTest implements DirectPosition {
      */
     @Override public DirectPosition getDirectPosition()            {return this;}
     @Override public SingleCRS      getCoordinateReferenceSystem() {return null;}
-    @Override public double[]       getCoordinate()                {return null;}
+    @Override public double[]       getCoordinates()               {return null;}
 
     /**
      * Tests the {@link ToleranceModifiers.Relative} implementation.

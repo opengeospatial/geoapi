@@ -152,8 +152,8 @@ public class GeometryValidator extends Validator {
                     meaning = axis.getRangeMeaning();
                 }
             }
-            final double lower   = (lowerCorner != null) ? lowerCorner.getOrdinate(i) : NaN;
-            final double upper   = (upperCorner != null) ? upperCorner.getOrdinate(i) : NaN;
+            final double lower   = (lowerCorner != null) ? lowerCorner.getCoordinate(i) : NaN;
+            final double upper   = (upperCorner != null) ? upperCorner.getCoordinate(i) : NaN;
             final double minimum = object.getMinimum(i);
             final double maximum = object.getMaximum(i);
             final double median  = object.getMedian (i);
@@ -187,8 +187,8 @@ public class GeometryValidator extends Validator {
      * <ul>
      *   <li>The number of dimension cannot be negative.</li>
      *   <li>If the position is associated to a CRS, then their number of dimensions must be equal.</li>
-     *   <li>Length of {@link DirectPosition#getCoordinate()} must be equals to the number of dimensions.</li>
-     *   <li>Values of above array must be equals to values returned by {@link DirectPosition#getOrdinate(int)}.</li>
+     *   <li>Length of {@link DirectPosition#getCoordinates()} must be equals to the number of dimensions.</li>
+     *   <li>Values of above array must be equals to values returned by {@link DirectPosition#getCoordinate(int)}.</li>
      *   <li>If the position is associated to a CRS and the axis range meaning is {@link RangeMeaning#EXACT},
      *       then the coordinate values must be between the minimum and maximum axis value.</li>
      * </ul>
@@ -204,14 +204,14 @@ public class GeometryValidator extends Validator {
          */
         final int dimension = object.getDimension();
         assertPositive(dimension, "DirectPosition: dimension cannot be negative.");
-        final double[] coordinates = object.getCoordinate();
+        final double[] coordinates = object.getCoordinates();
         mandatory("DirectPosition: coordinate array cannot be null.", coordinates);
         if (coordinates != null) {
             assertEquals(dimension, coordinates.length,
                     "DirectPosition: coordinate array length shall be equal to the dimension.");
             for (int i=0; i<dimension; i++) {
-                assertEquals(coordinates[i], object.getOrdinate(i),     // No tolerance - we want exact match.
-                        "DirectPosition: getOrdinate(i) shall be the same as coordinate[i].");
+                assertEquals(coordinates[i], object.getCoordinate(i),   // No tolerance - we want exact match.
+                        "DirectPosition: getCoordinate(i) shall be the same as coordinates[i].");
             }
         }
         /*
@@ -246,13 +246,13 @@ public class GeometryValidator extends Validator {
                 "DirectPosition: hashCode shall be compliant to the contract given in javadoc.");
         assertTrue(object.equals(object), "DirectPosition: shall be equal to itself.");
         /*
-         * Ensures that the array returned by DirectPosition.getCoordinate() is a clone.
+         * Ensures that the array returned by DirectPosition.getCoordinates() is a clone.
          */
         for (int i=0; i<dimension; i++) {
             final double oldValue = coordinates[i];
             coordinates[i] *= 2;
-            assertEquals(oldValue, object.getOrdinate(i),                      // No tolerance - we want exact match.
-                    "DirectPosition: coordinate array shall be cloned.");
+            assertEquals(oldValue, object.getCoordinate(i),                    // No tolerance - we want exact match.
+                    "DirectPosition: coordinates array shall be cloned.");
         }
     }
 }

@@ -27,7 +27,7 @@ public class SimpleDirectPosition implements DirectPosition {
      * the {@link java.util.Arrays} methods. However, we encourage to use only the methods from
      * the {@link DirectPosition} interface in most cases.</p>
      *
-     * @see #getCoordinate()
+     * @see #getCoordinates()
      */
     public final double[] coordinates;
 
@@ -97,7 +97,7 @@ public class SimpleDirectPosition implements DirectPosition {
      * @param position  the direct position from which to copy the CRS and coordinate values.
      */
     public SimpleDirectPosition(final DirectPosition position) {
-        coordinates = position.getCoordinate();           // Array shall be a copy according DirectPosition contract.
+        coordinates = position.getCoordinates();          // Array shall be a copy according DirectPosition contract.
         crs = position.getCoordinateReferenceSystem();
     }
 
@@ -130,7 +130,7 @@ public class SimpleDirectPosition implements DirectPosition {
      * @return a clone of the {@link #coordinates} array.
      */
     @Override
-    public double[] getCoordinate() {
+    public double[] getCoordinates() {
         return coordinates.clone();
     }
 
@@ -143,7 +143,7 @@ public class SimpleDirectPosition implements DirectPosition {
      *         than the {@linkplain #getDimension() position dimension}.
      */
     @Override
-    public double getOrdinate(final int dimension) throws IndexOutOfBoundsException {
+    public double getCoordinate(final int dimension) throws IndexOutOfBoundsException {
         return coordinates[dimension];
     }
 
@@ -156,7 +156,7 @@ public class SimpleDirectPosition implements DirectPosition {
      *         than the {@linkplain #getDimension() position dimension}.
      */
     @Override
-    public void setOrdinate(final int dimension, final double value) throws IndexOutOfBoundsException {
+    public void setCoordinate(final int dimension, final double value) throws IndexOutOfBoundsException {
         coordinates[dimension] = value;
     }
 
@@ -181,7 +181,7 @@ public class SimpleDirectPosition implements DirectPosition {
     public boolean equals(final Object object) {
         if (object instanceof DirectPosition) {
             final DirectPosition other = (DirectPosition) object;
-            return Arrays.equals(coordinates, other.getCoordinate()) &&
+            return Arrays.equals(coordinates, other.getCoordinates()) &&
                    Objects.equals(crs, other.getCoordinateReferenceSystem());
         }
         return false;

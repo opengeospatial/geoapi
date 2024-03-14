@@ -143,15 +143,15 @@ public class AffineTransform2D extends AffineTransform implements MathTransform2
         if (ptSrc.getDimension() != 2) {
             throw new MismatchedDimensionException("ptSrc must have 2 dimensions.");
         }
-        Point2D pt = new Point2D.Double(ptSrc.getOrdinate(0), ptSrc.getOrdinate(1));
+        Point2D pt = new Point2D.Double(ptSrc.getCoordinate(0), ptSrc.getCoordinate(1));
         pt = transform(pt, pt);
         if (ptDst == null) {
             ptDst = new SimpleDirectPosition(2);
         } else if (ptDst.getDimension() != 2) {
             throw new MismatchedDimensionException("ptDst must have 2 dimensions.");
         }
-        ptDst.setOrdinate(0, pt.getX());
-        ptDst.setOrdinate(1, pt.getY());
+        ptDst.setCoordinate(0, pt.getX());
+        ptDst.setCoordinate(1, pt.getY());
         return ptDst;
     }
 

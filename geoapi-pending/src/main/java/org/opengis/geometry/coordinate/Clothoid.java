@@ -26,7 +26,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * The clothoid (or Cornu's spiral), a plane curve whose curvature is a fixed function of
- * its length. In suitably chosen co-ordinates it is given by Fresnel's integrals:
+ * its length. In suitably chosen coordinates it is given by Fresnel's integrals:
  *
  * @todo TODO: paste the equation here
  *

@@ -42,7 +42,7 @@ final class SimpleDirectPosition implements DirectPosition {
 
     /**
      * {@code true} to freeze this position. If {@code true}, then any attempts to invoke
-     * a {@link #setOrdinate(int, double)} method will cause a JUnit test failure.
+     * a {@link #setCoordinate(int, double)} method will cause a JUnit test failure.
      *
      * <p>Note that setting this field to {@code true} does not prevent {@link TransformTestCase}
      * to write directly in the {@link #coordinates} array. But since this class is package-private,
@@ -104,7 +104,7 @@ final class SimpleDirectPosition implements DirectPosition {
      * {@inheritDoc}
      */
     @Override
-    public double[] getCoordinate() {
+    public double[] getCoordinates() {
         return coordinates.clone();
     }
 
@@ -145,7 +145,7 @@ final class SimpleDirectPosition implements DirectPosition {
      * {@inheritDoc}
      */
     @Override
-    public double getOrdinate(int dimension) throws IndexOutOfBoundsException {
+    public double getCoordinate(int dimension) throws IndexOutOfBoundsException {
         return coordinates[dimension];
     }
 
@@ -153,7 +153,7 @@ final class SimpleDirectPosition implements DirectPosition {
      * {@inheritDoc}
      */
     @Override
-    public void setOrdinate(int dimension, double value) throws IndexOutOfBoundsException {
+    public void setCoordinate(int dimension, double value) throws IndexOutOfBoundsException {
         assertFalse(unmodifiable, "This DirectPosition shall not be modified.");
         coordinates[dimension] = value;
     }
@@ -174,7 +174,7 @@ final class SimpleDirectPosition implements DirectPosition {
         if (object instanceof DirectPosition) {
             final DirectPosition other = (DirectPosition) object;
             if (other.getCoordinateReferenceSystem() == null) {
-                return Arrays.equals(coordinates, other.getCoordinate());
+                return Arrays.equals(coordinates, other.getCoordinates());
             }
         }
         return false;

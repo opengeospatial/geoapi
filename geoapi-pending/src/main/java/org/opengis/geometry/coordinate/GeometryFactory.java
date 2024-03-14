@@ -54,9 +54,9 @@ public interface GeometryFactory {
     /**
      * Creates a new Envelope with the given corners.
      *
-     * @param lowerCorner A coordinate position consisting of all the maximal ordinates for each
+     * @param lowerCorner A coordinate position consisting of all the maximal coordinates for each
      *                    dimension for all points within the envelope.
-     * @param upperCorner A coordinate position consisting of all the minimal ordinates for each
+     * @param upperCorner A coordinate position consisting of all the minimal coordinates for each
      *                    dimension for all points within the envelope.
      *
      * @throws MismatchedReferenceSystemException if the coordinate positions don't use

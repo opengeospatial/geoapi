@@ -58,7 +58,7 @@ public interface GriddedSurface extends ParametricCurveSurface {
      * Returns the doubly indexed sequence of control points, given in row major form.
      * There is no assumption made about the shape of the grid. For example, the positions
      * need not effect a "2&frac12;D" surface, consecutive points may be equal in any or
-     * all of their ordinates. Further, the curves in either or both directions may close.
+     * all of their coordinates. Further, the curves in either or both directions may close.
      */
     @UML(identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
     PointGrid getControlPoints();

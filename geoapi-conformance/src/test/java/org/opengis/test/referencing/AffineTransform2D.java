@@ -95,7 +95,7 @@ class AffineTransform2D extends AffineTransform implements MathTransform2D {
         if (point.getDimension() != 2) {
             throw new MismatchedDimensionException();
         }
-        return new Point2D.Double(point.getOrdinate(0), point.getOrdinate(1));
+        return new Point2D.Double(point.getCoordinate(0), point.getCoordinate(1));
     }
 
     /**
@@ -120,8 +120,8 @@ class AffineTransform2D extends AffineTransform implements MathTransform2D {
                 throw new MismatchedDimensionException();
             }
         }
-        ptDst.setOrdinate(0, point.x);
-        ptDst.setOrdinate(1, point.y);
+        ptDst.setCoordinate(0, point.x);
+        ptDst.setCoordinate(1, point.y);
         return ptDst;
     }
 

@@ -129,7 +129,7 @@ public class ProjectiveTransform extends SimpleTransform {
         final GMatrix target = new GMatrix(dstDim+1, 1);
         source.setElement(srcDim, 0, 1);
         for (int j=0; j<srcDim; j++) {
-            source.setElement(j, 0, ptSrc.getOrdinate(j));
+            source.setElement(j, 0, ptSrc.getCoordinate(j));
         }
         //
         // Compute [target] = [matrix]*[source]
@@ -138,7 +138,7 @@ public class ProjectiveTransform extends SimpleTransform {
         target.mul(matrix, source);
         final double w = target.getElement(dstDim, 0);          // =1 if the transform is affine.
         for (int j=0; j<dstDim; j++) {
-            ptDst.setOrdinate(j, target.getElement(j, 0) / w);
+            ptDst.setCoordinate(j, target.getElement(j, 0) / w);
         }
         return ptDst;
     }

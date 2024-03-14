@@ -67,7 +67,7 @@ public interface PrimitiveFactory {
      * upperCorner = (x2, y2)</pre></blockquote>
      *
      * (we ignore the CRS below, assuming that it is a global variable), then we can take the
-     * various permutations of the ordinate values to create a list of polygon corners:
+     * various permutations of the coordinate values to create a list of polygon corners:
      *
      * <blockquote><pre>
      * {@link org.opengis.geometry.aggregate.MultiPoint} = { (x1, y1), (x1, y2), (x2, y1), (x2, y2) }</pre></blockquote>
