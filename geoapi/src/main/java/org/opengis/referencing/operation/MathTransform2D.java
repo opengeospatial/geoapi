@@ -63,7 +63,7 @@ public interface MathTransform2D extends MathTransform {
      * shape doesn't need to have the same number of points than the original shape.
      *
      * @param  shape  the Shape to transform.
-     * @return the transformed shape. Some implementations may returns
+     * @return the transformed shape. Some implementations may return
      *         {@code shape} unmodified if this transform is identity.
      * @throws TransformException if a transform failed.
      *

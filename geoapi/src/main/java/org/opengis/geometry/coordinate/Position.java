@@ -28,20 +28,14 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A type consisting of either a {@linkplain DirectPosition direct position} or of a
- * {@linkplain Point point} from which a {@linkplain DirectPosition direct position}
- * shall be obtained. The use of this data type allows the identification of a position
- * either directly as a coordinate tuple (variant direct) or indirectly as a {@linkplain Point point}
- * (variant indirect).
+ * A type consisting of either a direct position or of a point from which a direct position shall be obtained.
+ * The use of this data type allows the identification of a position either directly as a coordinate tuple
+ * (variant direct) or indirectly as a {@linkplain Point point} (variant indirect).
  *
  * @departure constraint
  *   ISO 19107 defines {@code Position} as a {@code union} of {@code DirectPosition} and {@code Point}
  *   but unions are not allowed in Java. GeoAPI defines {@code Position} as the base interface of both
- *   types so the two conditional accessor methods, {@code getPoint()} and {@code getDirectPosition()},
- *   can be replaced by an {@code instanceof} check. However, the {@code getDirectPosition()} has been
- *   retained with different semantics, conceptually returning a {@code DirectPosition} at the same location.
- *   The conditionality has also been changed to mandatory since all three types conceptually have a
- *   well defined location.
+ *   types, and the Java {@code instanceof} operation should be used for determining the type.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1

@@ -20,7 +20,7 @@ package org.opengis.referencing.operation;
 
 /**
  * Transforms one-dimensional coordinate points.
- * {@link CoordinateOperation#getMathTransform()} may returns instance of this
+ * {@link CoordinateOperation#getMathTransform()} may return instance of this
  * interface when source and destination coordinate systems are both one dimensional.
  * {@code MathTransform1D} extends {@link MathTransform} by adding a simple method
  * transforming a value without the overhead of creating data array.
