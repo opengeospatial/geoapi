@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 1-, 2- or 3-dimensional contextually local coordinate reference system.
+ * A 1-, 2- or 3-dimensional contextually local <abbr>CRS</abbr>.
  * It can be divided into two broad categories:
  *
  * <ul>

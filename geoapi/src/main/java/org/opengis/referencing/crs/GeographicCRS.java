@@ -27,14 +27,16 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 2- or 3-dimensional coordinate reference system based on an ellipsoidal approximation of the geoid.
- * This provides an accurate representation of the geometry of geographic features for a large
- * portion of the earth's surface.
+ * A 2- or 3-dimensional <abbr>CRS</abbr> based on an ellipsoidal approximation of the geoid.
+ * This provides an accurate representation of the geometry of geographic features for a large portion of the earth's surface.
+ * A 2D geographic <abbr>CRS</abbr> is used when positions of features are described on the surface of the reference ellipsoid.
+ * A 3D geographic <abbr>CRS</abbr> is used when positions are described on, above or below the reference ellipsoid.
  *
- * <p>A Geographic CRS is not suitable for mapmaking on a planar surface, because it describes geometry
- * on a curved surface. It is impossible to represent such geometry in a Euclidean plane without
- * introducing distortions. The need to control these distortions has given rise to the development
- * of the science of {@linkplain org.opengis.referencing.operation.Projection map projections}.</p>
+ * <p>A geographic <abbr>CRS</abbr> is not suitable for mapmaking on a planar surface,
+ * because it describes geometry on a curved surface.
+ * It is impossible to represent such geometry in a Euclidean plane without introducing distortions.
+ * The need to control these distortions has given rise to the development of the science of
+ * {@linkplain org.opengis.referencing.operation.Projection map projections}.</p>
  *
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.EllipsoidalCS}.</p>

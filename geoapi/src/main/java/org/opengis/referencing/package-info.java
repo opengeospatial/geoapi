@@ -17,47 +17,38 @@
  */
 
 /**
- * Base interfaces for {@linkplain org.opengis.referencing.ReferenceSystem reference systems}. The following
- * is adapted from {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS® Spatial Referencing by
- * Coordinates (Topic 2)} specification.
- *
- * <p>A reference system contains the metadata required to interpret spatial location information unambiguously.
- * The description of an object's attributes can be done</p>
- *
- * <ul>
- *   <li>explicitly, by providing all defining parameters, or</li>
- *   <li>by identifier, a reference to a recognised source that contains a full description of the object.</li>
- * </ul>
- *
- * The {@link org.opengis.referencing.IdentifiedObject} interface contains attributes common to several objects
- * used in spatial referencing by coordinates. For example, a {@linkplain org.opengis.referencing.datum.Datum datum}
- * {@linkplain org.opengis.referencing.IdentifiedObject#getName() primary names} might be <q>North American Datum
- * of 1983</q>. This may have alternative names or {@linkplain org.opengis.referencing.IdentifiedObject#getAlias()
- * aliases}, for example the abbreviation “NAD83”.
+ * Base interfaces for reference systems by coordinates or by identifiers.
+ * A reference system contains the metadata required to interpret spatial location information unambiguously.
+ * Referencing can be done by coordinates with interfaces in the {@code crs} sub-package,
+ * or by identifiers with interfaces in the {@code gazetteer} sub-package.
+ * The {@link org.opengis.referencing.IdentifiedObject} interface in this package
+ * contains attributes common to several objects used in referencing by coordinates or by identifiers.
+ * For example, a reference frame {@linkplain org.opengis.referencing.IdentifiedObject#getName() primary name}
+ * might be <q>North American Datum of 1983</q>. That reference frame may have alternative names or
+ * {@linkplain org.opengis.referencing.IdentifiedObject#getAlias() aliases},
+ * for example, the abbreviation <q>NAD83</q>.
  *
  * <p>Another attribute is {@linkplain org.opengis.referencing.IdentifiedObject#getIdentifiers() identifiers}.
- * This is a unique code used to reference an object in a given place. For example, an external geodetic register might
- * give the NAD83 datum a unique code of “6269”. Identifiers have a data type of {@link org.opengis.metadata.Identifier}.
- * In addition to the use of an identifier as a reference to a definition in a remote register, it may also be included
- * in an object definition to allow remote users to refer to the object.</p>
- *
- * <p>Most interfaced objects are immutable. This means that implementations promise
- * not to change an object's internal state once they have handed out an interface pointer. Since
- * most interfaced objects are specified to be immutable, there do not need to be any constraints
- * on operation sequencing. This means that these interfaces can be used in parallel computing
- * environments (e.g. Internet servers).</p>
+ * This is a unique code used to reference an object in a given place.
+ * For example, an external geodetic register might give the NAD83 reference frame a unique code of <q>6269</q>.
+ * Objects can be obtained from codes using sub-interfaces of {@link org.opengis.referencing.AuthorityFactory}.
+ * Identifiers have a data type of {@link org.opengis.metadata.Identifier}.</p>
  *
  * <h2>Well-Known Text format</h2>
- * <p>Many entities in this specification can be printed in a well-known text format.
- * This allows objects to be stored in databases (persistence), and transmitted between
- * interoperating computer programs. Well-Known Texts (WKT) may come in two formats:
+ * Many entities can be printed in a
+ * {@linkplain org.opengis.annotation.Specification#ISO_19162 Well-Known Text (WKT)} format
+ * by invoking the {@link org.opengis.referencing.IdentifiedObject#toWKT()} method.
+ * This allows objects to be stored in databases (persistence),
+ * and transmitted between inter-operating computer programs.
  *
- * <ul>
- *   <li>The current standard, WKT 2, is defined by {@linkplain org.opengis.annotation.Specification#ISO_19162 ISO 19162}.</li>
- *   <li>The legacy format, WKT 1, was defined by {@linkplain org.opengis.annotation.Specification#OGC_01009 OGC 01-009}.</li>
- * </ul>
+ * <h2>Immutability</h2>
+ * Most interfaced objects are immutable. This means that implementations should not
+ * change an object's internal state once they have handed out an interface pointer.
+ * Since most interfaced objects are specified to be immutable,
+ * there do not need to be any constraints on operation sequencing.
+ * This means that these interfaces can be used in parallel computing environments (e.g. Internet servers).
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @version 3.1
  * @since   1.0

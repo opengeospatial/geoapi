@@ -48,22 +48,22 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="CC_Conversion", specification=ISO_19111, version=2007)
 public interface Conversion extends SingleOperation {
     /**
-     * Returns the source CRS. Conversions may have a source CRS that
-     * is not specified here, but through
-     * {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS()} instead.
+     * Returns the source <abbr>CRS</abbr>.
+     * Conversions may have a source <abbr>CRS</abbr> that is not specified here,
+     * but through {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS()} instead.
      *
-     * @return the source CRS, or {@code null} if not available.
+     * @return the source <abbr>CRS</abbr>, or {@code null} if not available.
      */
     @Override
     @UML(identifier="sourceCRS", obligation=OPTIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getSourceCRS();
 
     /**
-     * Returns the target CRS. {@linkplain Conversion Conversions} may have a target CRS
-     * that is not specified here, but through
-     * {@link org.opengis.referencing.crs.GeneralDerivedCRS} instead.
+     * Returns the target <abbr>CRS</abbr>.
+     * Conversions may have a target <abbr>CRS</abbr> that is not specified here,
+     * but through {@link org.opengis.referencing.crs.GeneralDerivedCRS} instead.
      *
-     * @return the target CRS, or {@code null} if not available.
+     * @return the target <abbr>CRS</abbr>, or {@code null} if not available.
      */
     @Override
     @UML(identifier="targetCRS", obligation=OPTIONAL, specification=ISO_19111)

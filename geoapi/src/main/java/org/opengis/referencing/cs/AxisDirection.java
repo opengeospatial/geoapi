@@ -56,8 +56,8 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     public static final AxisDirection OTHER = new AxisDirection("OTHER");
 
     /**
-     * Axis positive direction is north. In a geographic or projected CRS,
-     * north is defined through the geodetic datum. In an engineering CRS,
+     * Axis positive direction is north. In a geographic or projected <abbr>CRS</abbr>,
+     * north is defined through the geodetic datum. In an engineering <abbr>CRS</abbr>,
      * north may be defined with respect to an engineering object rather
      * than a geographical direction.
      *

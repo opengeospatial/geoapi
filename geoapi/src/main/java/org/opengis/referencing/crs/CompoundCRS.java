@@ -27,9 +27,9 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A coordinate reference system describing the position of points through two or more
- * independent coordinate reference systems. Thus it is indirectly associated with two
- * or more {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems}
+ * A <abbr>CRS</abbr> describing the position of points through two or more independent <abbr>CRS</abbr>s.
+ * Thus it is indirectly associated with two or more
+ * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems}
  * and {@linkplain org.opengis.referencing.datum.Datum datums} by defining the compound
  * CRS as an ordered set of two or more instances of {@link CoordinateReferenceSystem}.
  *

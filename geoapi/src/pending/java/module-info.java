@@ -67,6 +67,7 @@ module org.opengis.geoapi {
     exports org.opengis.referencing.cs;
     exports org.opengis.referencing.crs;
     exports org.opengis.referencing.operation;
+    exports org.opengis.coordinate;
     exports org.opengis.geometry;
     exports org.opengis.geometry.coordinate;
     exports org.opengis.feature;

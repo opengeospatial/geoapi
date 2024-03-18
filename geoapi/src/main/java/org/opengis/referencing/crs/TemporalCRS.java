@@ -27,7 +27,9 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 1-dimensional coordinate reference system used for the recording of time.
+ * A 1-dimensional <abbr>CRS</abbr> used for the recording of time.
+ * Any <abbr>CRS</abbr> can be associate with a temporal <abbr>CRS</abbr> to form a spatio-temporal {@link CompoundCRS}.
+ * More than one temporal <abbr>CRS</abbr> may be included if these axes represent different time quantities.
  *
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.TimeCS}.</p>

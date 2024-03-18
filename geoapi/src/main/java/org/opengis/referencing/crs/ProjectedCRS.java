@@ -29,10 +29,10 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 2-dimensional coordinate reference system used to approximate the shape of the earth on a planar surface.
- * It is done in such a way that the distortion that is inherent to the approximation is carefully
- * controlled and known. Distortion correction is commonly applied to calculated bearings and
- * distances to produce values that are a close match to actual field values.
+ * A 2- or 3-dimensional <abbr>CRS</abbr> based on an approximation of the shape of the earth's surface by a plane.
+ * It is done in such a way that the distortion that is inherent to the approximation is carefully controlled and known.
+ * Distortion correction is commonly applied to calculated bearings and distances
+ * to produce values that are a close match to actual field values.
  *
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.CartesianCS}.</p>

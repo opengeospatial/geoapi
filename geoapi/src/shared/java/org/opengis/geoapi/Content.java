@@ -122,6 +122,8 @@ public enum Content {
                org.opengis.geometry                .DirectPosition                      .class,
                org.opengis.geometry                .Envelope                            .class,
                org.opengis.geometry                .Geometry                            .class,
+               org.opengis.coordinate              .CoordinateMetadata                  .class,
+               org.opengis.coordinate              .CoordinateSet                       .class,
                org.opengis.geometry.primitive      .Point                               .class,
                org.opengis.metadata.acquisition    .Instrument                          .class,
                org.opengis.metadata.acquisition    .Platform                            .class,

@@ -28,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Base type of {@linkplain CoordinateSystem coordinate systems} related to an object by a {@linkplain Datum datum}.
+ * Base type of <abbr>CRS</abbr> related to an object by a datum.
  * For {@linkplain org.opengis.referencing.datum.GeodeticDatum geodetic}
  * and {@linkplain org.opengis.referencing.datum.VerticalDatum vertical} datums, the object will be the Earth.
  *
@@ -48,6 +48,9 @@ import static org.opengis.annotation.Specification.*;
 public interface SingleCRS extends CoordinateReferenceSystem {
     /**
      * Returns the coordinate system associated to this CRS.
+     * The coordinate system is composed of a set of coordinate axes with specified units of measure.
+     * This concept implies the mathematical rules that define how coordinate values are calculated
+     * from distances, angles and other geometric elements and vice versa.
      */
     @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
@@ -57,6 +60,11 @@ public interface SingleCRS extends CoordinateReferenceSystem {
      * Returns the datum associated directly or indirectly to this CRS.
      * In the case of {@link GeneralDerivedCRS}, this method returns the
      * datum of the {@linkplain GeneralDerivedCRS#getBaseCRS() base CRS}.
+     *
+     * <p>A datum specifies the relationship of a coordinate system to the object, thus ensuring that the abstract
+     * mathematical concept “coordinate system” can be applied to the practical problem of describing positions of
+     * features on or near the earth's surface by means of coordinates. The object will generally, but not necessarily,
+     * be the earth. For certain coordinate reference systems, the object may be a moving platform.</p>
      *
      * @return the datum.
      *

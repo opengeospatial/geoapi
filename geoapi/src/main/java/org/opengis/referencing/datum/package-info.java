@@ -17,22 +17,17 @@
  */
 
 /**
- * {@linkplain org.opengis.referencing.datum.Datum Geodetic datum} (the relationship of a
- * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate system} to the earth).
- * The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS® Spatial Referencing by
- * Coordinates (Topic 2)} specification.
- *
- * <p>A datum can be used as the basis for one-, two- or three-dimensional systems.
+ * Relationship of a Coordinate System (CS) to the Earth, another celestial body or a platform.
+ * A datum can be used as the basis for one-, two- or three-dimensional systems.
  * For {@linkplain org.opengis.referencing.crs.GeodeticCRS geodetic}
  * and {@linkplain org.opengis.referencing.crs.VerticalCRS vertical} coordinate reference systems,
  * the datum shall relate the coordinate system to the Earth.
  * With other types of coordinate reference systems (CRS), the datum may relate the coordinate system
  * to another physical or virtual object. In some applications of an
- * {@linkplain org.opengis.referencing.crs.EngineeringCRS Engineering CRS}, the object may be a platform
- * moving relative to the Earth. In these applications, the datum itself is not time-dependent,
- * but any transformations of the associated coordinates to an Earth-fixed or other coordinate reference system
- * shall contain time-dependent parameters.</p>
+ * {@linkplain org.opengis.referencing.crs.EngineeringCRS Engineering <abbr>CRS</abbr>},
+ * the object may be a platform moving relative to the Earth. In these applications,
+ * the datum itself is not time-dependent, but any transformations of the associated coordinates
+ * to an Earth-fixed or other coordinate reference system shall contain time-dependent parameters.
  *
  * <p>Five subtypes of datum are specified:
  * {@linkplain org.opengis.referencing.datum.GeodeticDatum geodetic},
@@ -98,10 +93,9 @@
  *   for the instantaneous atmospheric pressure at sea level and the height of the
  *   point above MSL.</p>
  *
- *   <p>In meteorology, atmospheric pressure routinely takes the role
- *   as vertical coordinate in a CRS that is used as a spatial reference frame for
- *   meteorological parameters in the upper atmosphere. The origin of the datum
- *   is in that case the (hypothetical) zero atmospheric pressure and the positive
+ *   <p>In meteorology, atmospheric pressure routinely takes the role as vertical coordinate in a <abbr>CRS</abbr>
+ *   that is used as a spatial reference frame for meteorological parameters in the upper atmosphere.
+ *   The origin of the datum is in that case the (hypothetical) zero atmospheric pressure and the positive
  *   vertical axis points down (to increasing pressure).</p></li>
  *
  *   <li><p><b>Other surface</b><br>
@@ -114,7 +108,7 @@
  * <h2>Image datum</h2>
  * <p>The image pixel grid is defined as the set of lines of constant
  * integer coordinate values. The term "image grid" is often used in other standards to
- * describe the concept of Image CRS. However, care must be taken to correctly interpret
+ * describe the concept of Image <abbr>CRS</abbr>. However, care must be taken to correctly interpret
  * this term in the context in which it is used. The term "grid cell" is often used as a
  * substitute for the term "pixel".</p>
  *
@@ -155,13 +149,13 @@
  * specification shall not be provided if the datum type not geodetic.</p>
  *
  * <p>One ellipsoid must be specified with every geodetic datum,
- * even if the ellipsoid is not used computationally. The latter may be the case
- * when a Geocentric CRS is used, e.g., in the calculation of satellite orbit and
- * ground positions from satellite observations. Although use of a Geocentric CRS
- * apparently obviates the need of an ellipsoid, the ellipsoid usually played a role
- * in the determination of the associated geodetic datum. Furthermore, one or more
- * Geographic CRSs may be based on the same geodetic datum, which requires the correct
- * ellipsoid the associated with any given geodetic datum.</p>
+ * even if the ellipsoid is not used computationally.
+ * The latter may be the case when a Geocentric <abbr>CRS</abbr> is used,
+ * e.g., in the calculation of satellite orbit and ground positions from satellite observations.
+ * Although use of a Geocentric <abbr>CRS</abbr> apparently obviates the need of an ellipsoid,
+ * the ellipsoid usually played a role in the determination of the associated geodetic datum.
+ * Furthermore, one or more Geographic <abbr>CRS</abbr>s may be based on the same geodetic datum,
+ * which requires the correct ellipsoid the associated with any given geodetic datum.</p>
  *
  * <p>An ellipsoid is defined either by its semi-major axis and
  * inverse flattening, or by its semi-major axis and semi-minor axis. For some

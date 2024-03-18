@@ -31,7 +31,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * <div class="note"><b>Note:</b>
  * the image datum definition applies regardless of whether or not the image is georeferenced.
- * Georeferencing is performed through a transformation of image CRS to geodetic or projected CRS.
+ * Georeferencing is performed through a transformation of image <abbr>CRS</abbr> to geodetic
+ * or projected <abbr>CRS</abbr>.
  * The transformation plays no part in the image datum definition.</div>
  *
  * @author  Martin Desruisseaux (IRD)

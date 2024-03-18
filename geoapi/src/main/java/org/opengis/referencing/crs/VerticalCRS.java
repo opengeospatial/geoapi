@@ -27,9 +27,9 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 1-dimensional coordinate reference system used for recording heights or depths. Vertical CRSs make use
- * of the direction of gravity to define the concept of height or depth, but the relationship with
- * gravity may not be straightforward.
+ * A 1-dimensional <abbr>CRS</abbr> used for recording heights or depths.
+ * Vertical <abbr>CRS</abbr>s make use of the direction of gravity to define the concept of height or depth,
+ * but the relationship with gravity may not be straightforward.
  *
  * <p>By implication, ellipsoidal heights (<var>h</var>) cannot be captured in a vertical coordinate
  * reference system. Ellipsoidal heights cannot exist independently, but only as inseparable part

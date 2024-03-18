@@ -17,11 +17,10 @@
  */
 
 /**
- * {@linkplain org.opengis.referencing.operation.CoordinateOperation Coordinate operations} (relationship between
- * any two {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference systems}).
- * The following is adapted from
- * {@linkplain org.opengis.annotation.Specification#ISO_19111 OpenGIS® Spatial Referencing by
- * Coordinates (Topic 2)} specification.
+ * Coordinate operations (relationship between any two <abbr>CRS</abbr>).
+ * Coordinates may be changed to be referenced to a different <abbr>CRS</abbr>.
+ * If the <abbr>CRS</abbr> is dynamic, coordinates also may be referenced to a different coordinate epoch,
+ * or to both a different <abbr>CRS</abbr> and different coordinate epoch.
  *
  * <p>If the relationship between any two coordinate reference
  * systems is known, coordinates can be transformed or converted to another
@@ -53,12 +52,11 @@
  *       transformation method, parameter values and accuracy characteristics.</p></li>
  * </ul>
  *
- * <p>A coordinate operation (transformation or conversion) can be
- * time-varying, and must be time-varying if either the source or target CRS is time
- * varying. When the coordinate operation is time-varying, the operation method used
- * will also be time-varying, and some of the parameters used by that operation method
- * will involve time. For example, some of the parameters may have time, velocity, and/or
- * acceleration values and units.</p>
+ * <p>A coordinate operation (transformation or conversion) can be time-varying,
+ * and must be time-varying if either the source or target <abbr>CRS</abbr> is time varying.
+ * When the coordinate operation is time-varying, the operation method used will also be time-varying,
+ * and some of the parameters used by that operation method will involve time.
+ * For example, some of the parameters may have time, velocity, and/or acceleration values and units.</p>
  *
  * <h2>Coordinate conversions</h2>
  * <p>Coordinate conversions are coordinate operations that make use
@@ -68,7 +66,7 @@
  * fixed arithmetic relationship. Additionally one of the two tuples cannot exist
  * without specification of the coordinate conversion and the 'source' coordinate
  * reference system. Coordinate conversions are therefore intimately related to the
- * concept of {@linkplain org.opengis.referencing.crs.DerivedCRS Derived CRS}.</p>
+ * concept of {@linkplain org.opengis.referencing.crs.DerivedCRS Derived <abbr>CRS</abbr>}.</p>
  *
  * <p>The best-known example of this source-derived relationship
  * is a {@linkplain org.opengis.referencing.crs.ProjectedCRS projected coordinate reference system},
@@ -93,11 +91,11 @@
  * conversions. Concatenated coordinate operations may contain coordinate transformations
  * and/or coordinate conversions.</p>
  *
- * <p>The source and target coordinate reference system of a
- * coordinate conversion are defined in the {@link org.opengis.referencing.crs.GeneralDerivedCRS},
- * by specifying the base (i.e., source) CRS and the defining conversion. The derived
- * coordinate reference system itself is the target CRS in this situation. When used
- * in a concatenated operation, the conversion's source and target coordinate reference
+ * <p>The source and target coordinate reference system of a coordinate conversion
+ * are defined in the {@link org.opengis.referencing.crs.GeneralDerivedCRS},
+ * by specifying the base (i.e., source) <abbr>CRS</abbr> and the defining conversion.
+ * The derived coordinate reference system itself is the target <abbr>CRS</abbr> in this situation.
+ * When used in a concatenated operation, the conversion's source and target coordinate reference
  * system are equally subject to the above constraint as the source and target of a
  * transformation although they are specified in a different manner.</p>
  *
