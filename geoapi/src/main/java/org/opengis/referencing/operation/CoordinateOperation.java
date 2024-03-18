@@ -17,8 +17,11 @@
  */
 package org.opengis.referencing.operation;
 
+import java.util.Optional;
 import java.util.Collection;
 import java.util.Collections;
+import java.time.temporal.Temporal;
+import org.opengis.coordinate.CoordinateSet;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.metadata.quality.PositionalAccuracy;
@@ -34,8 +37,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A mathematical operation on coordinates that transforms or converts coordinates to
- * another coordinate reference system.
+ * A mathematical operation on coordinates that transforms or converts coordinates to another <abbr>CRS</abbr> or epoch.
  *
  * <h2>Inverse operation</h2>
  * Many but not all coordinate operations (from
@@ -51,7 +53,7 @@ import static org.opengis.annotation.Specification.*;
  * entirely different parameter values are needed, a different coordinate operation
  * shall be defined.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  *
@@ -124,6 +126,32 @@ public interface CoordinateOperation extends IdentifiedObject {
     CoordinateReferenceSystem getTargetCRS();
 
     /**
+     * Returns the date at which source coordinate tuples are valid.
+     * This is mandatory of the <abbr>CRS</abbr> is dynamic.
+     *
+     * @return epoch at which source coordinate tuples are valid.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="sourceEpoch", obligation=CONDITIONAL, specification=ISO_19111)
+    default Optional<Temporal> getSourceEpoch() {
+        return Optional.empty();
+    }
+
+    /**
+     * Returns the date at which target coordinate tuples are valid.
+     * This is mandatory of the <abbr>CRS</abbr> is dynamic.
+     *
+     * @return epoch at which target coordinate tuples are valid.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="targetEpoch", obligation=CONDITIONAL, specification=ISO_19111)
+    default Optional<Temporal> getTargetEpoch() {
+        return Optional.empty();
+    }
+
+    /**
      * Version of the coordinate transformation (i.e., instantiation due to the stochastic
      * nature of the parameters). Mandatory when describing a transformation, and should not
      * be supplied for a conversion.
@@ -190,4 +218,35 @@ public interface CoordinateOperation extends IdentifiedObject {
      */
     @UML(identifier="CT_CoordinateTransformation.getMathTransform", specification=OGC_01009)
     MathTransform getMathTransform();
+
+    /**
+     * Changes coordinates from being referenced to the source <abbr>CRS</abbr>
+     * and/or epoch to being referenced to the target <abbr>CRS</abbr> and/or epoch.
+     * The <abbr>CRS</abbr> and epoch (if any) of the given data <em>should</em> (see below) be equivalent to the
+     * {@linkplain #getSourceCRS() source CRS} and {@linkplain #getSourceEpoch() source epoch} of this operation.
+     * The <abbr>CRS</abbr> and epoch (if any) of the returned data <em>shall</em> be equivalent to the
+     * {@linkplain #getTargetCRS() target CRS} and {@linkplain #getTargetEpoch() target epoch} of this operation.
+     * The order of coordinate tuples <em>shall</em> be preserved.
+     *
+     * <h4>Implementation flexibility</h4>
+     * If the <abbr>CRS</abbr> and/or epoch of the given data are not equivalent to the source <abbr>CRS</abbr>
+     * and/or epoch of this coordinate operation, implementations can either throw an exception or automatically
+     * prepend an additional transform step.
+     *
+     * <p>Implementations are free to compute the change immediately or to delay the computation.
+     * For example, the changes may be computed on-the-fly in {@link CoordinateSet#stream()}.</p>
+     *
+     * <p>This method operates on coordinate tuples and does not deal with interpolation of geometry types.
+     * When a coordinate set is subjected to a coordinate operation, its geometry might or might not be preserved.</p>
+     *
+     * @param  data  the coordinates to change.
+     * @return the result of changing coordinates.
+     * @throws TransformException if some coordinates cannot be changed.
+     *         Note that this exception not being thrown is not a guarantee that the computation
+     *         will not fail later, for example during a stream terminal operation.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="transform", specification=ISO_19111)
+    CoordinateSet transform(CoordinateSet data) throws TransformException;
 }

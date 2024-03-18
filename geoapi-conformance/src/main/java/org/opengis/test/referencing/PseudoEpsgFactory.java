@@ -34,7 +34,6 @@ import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.FactoryException;
-import org.opengis.util.InternationalString;
 import org.opengis.test.util.PseudoFactory;
 import org.opengis.test.ValidatorContainer;
 import org.opengis.test.Units;
@@ -209,24 +208,6 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     @Override
     public Set<String> getAuthorityCodes(final Class<? extends IdentifiedObject> type) throws FactoryException {
         return Collections.emptySet();
-    }
-
-    /**
-     * Returns a description of the object corresponding to a code.
-     * The default implementation returns {@code null}.
-     *
-     * @param  code  value allocated by authority.
-     * @return a description of the object, or {@code null} if the object
-     *         corresponding to the specified {@code code} has no description.
-     * @throws FactoryException if this method cannot provide the requested information.
-     *
-     * @deprecated This method is ambiguous.
-     */
-    @Override
-    @SuppressWarnings("removal")
-    @Deprecated(since = "3.1", forRemoval = true)
-    public InternationalString getDescriptionText(final String code) throws FactoryException {
-        return null;
     }
 
     /**

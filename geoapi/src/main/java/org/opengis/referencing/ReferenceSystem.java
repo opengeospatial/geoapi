@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Description of a spatial and temporal reference system used by a dataset.
+ * Base interface of reference systems by coordinates or by identifiers.
  * A reference system contains the metadata required to interpret spatial location information unambiguously.
  * Two methods to describe spatial location are distinguished:
  *

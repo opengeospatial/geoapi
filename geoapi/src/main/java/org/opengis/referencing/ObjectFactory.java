@@ -17,7 +17,6 @@
  */
 package org.opengis.referencing;
 
-import java.util.Map;
 import java.util.Locale;
 
 import org.opengis.metadata.Identifier;
@@ -28,7 +27,7 @@ import org.opengis.util.GenericName;
 
 
 /**
- * Base interface for all factories of {@linkplain IdentifiedObject identified objects}.
+ * Base interface for all factories of identified objects.
  * Factories build up complex objects from simpler objects or values.
  * This factory allows applications to make
  * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems},
@@ -38,7 +37,7 @@ import org.opengis.util.GenericName;
  * This factory is very flexible, whereas the authority factory is easier to use.
  *
  * <h2>Object properties</h2>
- * Most factory methods expect a {@link Map Map&lt;String,?&gt;} argument.
+ * Most factory methods expect a {@code Map<String,?>} argument.
  * The table below lists the keys that {@code ObjectFactory} implementations shall accept,
  * together with the type of values associated to those keys (the <q>Alternative types</q> column
  * gives examples of types that factory implementations may accept as well for convenience).

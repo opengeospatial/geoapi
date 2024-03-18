@@ -37,9 +37,9 @@ import static org.opengis.annotation.Specification.*;
  *
  * <ul>
  *   <li>A {@linkplain #getName() name} (e.g. <q>North American Datum of 1983</q>).</li>
- *   <li>Alternative names or {@linkplain #getAlias() aliases} (e.g. “NAD83” abbreviation).</li>
+ *   <li>Alternative names or {@linkplain #getAlias() aliases} (e.g. <q>NAD83</q> abbreviation).</li>
  *   <li>{@linkplain #getIdentifiers() Identifiers} allocated by authorities
- *       (e.g. a register of geodetic codes and parameters might give the NAD83 datum a unique code of “6269”).</li>
+ *       (e.g. a register of geodetic codes and parameters might give the NAD83 datum a unique code of <q>6269</q>).</li>
  *   <li>{@linkplain #getRemarks() Remarks} about this object, including data source information.</li>
  * </ul>
  *
@@ -58,20 +58,12 @@ import static org.opengis.annotation.Specification.*;
  * The other values may or may not be set.
  * If the authority is EPSG, the implementer may consider using the corresponding metadata values in the EPSG tables.
  *
- * @departure harmonization
- *   ISO 19111 defines two types, {@code IO_IdentifiedObjectBase} and {@code IO_IdentifiedObject}, as a
- *   workaround for introducing a base type for the {@code name}, {@code identifier}, {@code alias}
- *   and {@code remarks} properties without changing the {@code RS_ReferenceSystem} definition inherited
- *   from ISO 19115. Since GeoAPI replaces ISO 19115 CRS definitions by the ISO 19111 ones for providing a unified
- *   model, it does not need this workaround. Consequently, GeoAPI merges {@code IO_IdentifiedObjectBase} and
- *   {@code IO_IdentifiedObject} into this single interface.
- *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   2.0
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="IO_IdentifiedObject", specification=ISO_19111, version=2007)
+@UML(identifier="IdentifiedObject", specification=ISO_19111)
 public interface IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the

@@ -23,8 +23,8 @@ import org.opengis.geoapi.internal.Errors;
 /**
  * Thrown when a factory does not implement a method.
  * The unimplemented service may be the creation of instances of some type,
- * or the parsing of texts in <i>Well-Known Text</i> (WKT)
- * or <i>Geographic Markup Language</i> (GML) formats.
+ * or the parsing of texts in <i>Well-Known Text</i> (<abbr>WKT</abbr>)
+ * or <i>Geographic Markup Language</i> (<abbr>GML</abbr>) formats.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1

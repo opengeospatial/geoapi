@@ -41,7 +41,10 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ *
+ * @see org.opengis.referencing.operation.CoordinateOperation#transform(CoordinateSet)
+ *
+ * @since 3.1
  */
 @UML(identifier="CoordinateSet", specification=ISO_19111)
 public interface CoordinateSet extends Iterable<DirectPosition> {
