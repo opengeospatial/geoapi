@@ -67,7 +67,8 @@ import static org.opengis.annotation.Specification.*;
  *   For precision, GeoAPI imports the {@code isIvfDefinitive} attribute from OGC 01-009
  *   to enable the user to establish which of the two parameters was used to define the instance.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  *

@@ -21,6 +21,7 @@ import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.function.Supplier;
 
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
@@ -63,8 +64,8 @@ public class CRSValidator extends ReferencingValidator {
      */
 
     /**
-     * {@code true} if validation of the conversion by {@link #validateGeneralDerivedCRS}
-     * is under way. Used in order to avoid never-ending recursivity.
+     * {@code true} if validation of the conversion by {@link #validateGeneralDerivedCRS} is under way.
+     * Used in order to avoid never-ending recursivity.
      *
      * @todo Replace by a more general mechanism straight in {@link ValidatorContainer}.
      */
@@ -269,7 +270,7 @@ public class CRSValidator extends ReferencingValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      */
-    private void validateGeneralDerivedCRS(final GeneralDerivedCRS object) {
+    private void validateGeneralDerivedCRS(final DerivedCRS object) {
         if (!Boolean.TRUE.equals(VALIDATING.get())) try {
             VALIDATING.set(Boolean.TRUE);
             final Conversion conversion = object.getConversionFromBase();
@@ -280,11 +281,11 @@ public class CRSValidator extends ReferencingValidator {
                 final CoordinateReferenceSystem targetCRS = conversion.getTargetCRS();
                 if (baseCRS != null && sourceCRS != null) {
                     assertSame(baseCRS, sourceCRS,
-                            "GeneralDerivedCRS: The base CRS should be the source CRS of the conversion.");
+                            "DerivedCRS: The base CRS should be the source CRS of the conversion.");
                 }
                 if (targetCRS != null) {
                     assertSame(object, targetCRS,
-                            "GeneralDerivedCRS: The derived CRS should be the target CRS of the conversion.");
+                            "DerivedCRS: The derived CRS should be the target CRS of the conversion.");
                 }
             }
         } finally {
@@ -400,16 +401,76 @@ public class CRSValidator extends ReferencingValidator {
         final CoordinateSystem cs = object.getCoordinateSystem();
         mandatory("CompoundCRS: shall have a CoordinateSystem.", cs);
         container.validate(cs);
-
+        AxisDirection[] directions = null;
+        if (cs != null) {
+            directions = new AxisDirection[cs.getDimension()];
+            for (int i=0; i<directions.length; i++) {
+                CoordinateSystemAxis axis = cs.getAxis(i);
+                if (axis != null) {
+                    directions[i] = axis.getDirection();
+                }
+            }
+        }
+        /*
+         * Verify the components, potentially with nested compound CRS.
+         */
         final List<CoordinateReferenceSystem> components = object.getComponents();
         mandatory("CompoundCRS: shall have components.", components);
         if (components != null) {
+            int dimension = 0;
             // If the above 'mandatory(…)' call accepted an empty list, we accept it too.
             assertNotEquals(1, components.size(), "CompoundCRS: shall have at least 2 components.");
             for (final CoordinateReferenceSystem component : components) {
                 dispatch(component);
+                dimension = compareAxes(component.getCoordinateSystem(), directions, dimension);
+            }
+            if (directions != null) {
+                assertEquals(directions.length, dimension, "CompoundCRS: unexpected sum of the dimension of components.");
             }
         }
+        /*
+         * Verify the components again, but without nested compound CRS.
+         */
+        final List<SingleCRS> singles = object.getSingleComponents();
+        mandatory("CompoundCRS: shall have components.", singles);
+        if (singles != null) {
+            int dimension = 0;
+            assertNotEquals(1, singles.size(), "CompoundCRS: shall have at least 2 components.");
+            for (final SingleCRS component : singles) {
+                dispatch(component);
+                dimension = compareAxes(component.getCoordinateSystem(), directions, dimension);
+            }
+            if (directions != null) {
+                assertEquals(directions.length, dimension, "CompoundCRS: unexpected sum of the dimension of components.");
+            }
+        }
+    }
+
+    /**
+     * Checks if the axis directions of the given coordinate system are the expected one.
+     *
+     * @param  cs          the coordinate system to validate, or {@code null} if none.
+     * @param  directions  the expected directions, or {@code null} if unknown.
+     * @param  index       index of the first element in the {@code directions} array.
+     * @return index after the last element in the {@code directions} array.
+     */
+    private static int compareAxes(final CoordinateSystem cs, final AxisDirection[] directions, int index) {
+        if (directions != null) {
+            assertNotNull("CompoundCRS: missing coordinate system for component.");
+            final int dimension = cs.getDimension();
+            assertTrue(index + dimension < directions.length, "CompoundCRS: components have too many dimensions.");
+            for (int i=0; i<dimension; i++) {
+                final AxisDirection expected = directions[index++];
+                if (expected != null) {
+                    final int d = i;        // Because lambda functions require final values.
+                    final Supplier<String> message = () -> "CompoundCRS: inconsistent axis at dimension " + d + ".";
+                    final CoordinateSystemAxis axis = cs.getAxis(d);
+                    assertNotNull(axis, message);
+                    assertEquals(expected, axis.getDirection(), message);
+                }
+            }
+        }
+        return index;
     }
 
     /**

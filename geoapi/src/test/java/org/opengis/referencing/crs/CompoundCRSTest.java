@@ -17,6 +17,7 @@
  */
 package org.opengis.referencing.crs;
 
+import java.util.List;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.junit.jupiter.api.Test;
 
@@ -48,8 +49,8 @@ public final class CompoundCRSTest {
                 new CoordinateSystemMock(2, 2, 3));
 
         final CoordinateSystem cs = crs.getCoordinateSystem();
-        verifyAxes(cs, "Coordinate system of " + CompoundCRSMock.NAME,
-                  "x0:0", "x0:1", "x1:2", "x2:3", "x2:4");
+        assertTrue(cs.getName().getCode().startsWith("Coordinate system of " + CompoundCRSMock.NAME));
+        verifyAxes(cs, "x0:0", "x0:1", "x1:2", "x2:3", "x2:4");
 
         String message = assertThrows(IndexOutOfBoundsException.class, () -> cs.getAxis(6)).getMessage();
         assertTrue(message.contains("6"));
@@ -59,14 +60,30 @@ public final class CompoundCRSTest {
     }
 
     /**
+     * Tests {@link CompoundCRS#getSingleComponents()}.
+     */
+    @Test
+    public void testGetSingleComponents() {
+        final CompoundCRS crs = new CompoundCRSMock(
+                new CoordinateSystemMock(0, 2, 0),
+                new CompoundCRSMock(
+                    new CoordinateSystemMock(1, 1, 2),
+                    new CoordinateSystemMock(2, 2, 3)));
+
+        List<SingleCRS> components = crs.getSingleComponents();
+        assertEquals(3, components.size());
+        verifyAxes(components.get(0).getCoordinateSystem(), "x0:0", "x0:1");
+        verifyAxes(components.get(1).getCoordinateSystem(), "x1:2");
+        verifyAxes(components.get(2).getCoordinateSystem(), "x2:3", "x2:4");
+    }
+
+    /**
      * Verifies that the given coordinate system has the expected axes.
      *
      * @param cs    the coordinate system to validate.
-     * @param name  the expected coordinate system name.
      * @param axes  the expected coordinate system axes (identified by abbreviations).
      */
-    private static void verifyAxes(final CoordinateSystem cs, final String name, final String... axes) {
-        assertTrue(cs.getName().getCode().startsWith(name));
+    private static void verifyAxes(final CoordinateSystem cs, final String... axes) {
         assertEquals(axes.length, cs.getDimension());
         for (int i=0; i<axes.length; i++) {
             assertEquals(axes[i], cs.getAxis(i).getAbbreviation());

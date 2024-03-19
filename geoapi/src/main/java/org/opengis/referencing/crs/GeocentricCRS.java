@@ -43,7 +43,8 @@ import static org.opengis.annotation.Specification.*;
  *   handling both using the {@code SC_GeodeticCRS} parent type.
  *   GeoAPI keeps them since the distinction between those two types is in wide use.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.0
  * @since   1.0
  *

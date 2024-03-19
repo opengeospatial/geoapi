@@ -51,32 +51,27 @@ import org.opengis.util.GenericName;
  *     <th>Value type</th>
  *     <th>Alternative types</th>
  *     <th>Value returned by</th>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
  *     <td>{@link Identifier}</td>
  *     <td>{@link String} (see alternatives below)</td>
  *     <td>{@link IdentifiedObject#getName()}</td>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#ALIAS_KEY}</td>
  *     <td><code>{@linkplain GenericName}[]</code></td>
  *     <td>{@link GenericName}, {@link String} or <code>{@linkplain String}[]</code></td>
  *     <td>{@link IdentifiedObject#getAlias()}</td>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#IDENTIFIERS_KEY}</td>
  *     <td><code>{@linkplain Identifier}[]</code></td>
  *     <td>{@link Identifier}</td>
  *     <td>{@link IdentifiedObject#getIdentifiers()}</td>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#DOMAINS_KEY}</td>
  *     <td><code>{@linkplain ObjectDomain}[]</code></td>
  *     <td>{@link ObjectDomain}</td>
  *     <td>{@link IdentifiedObject#getDomains()}</td>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#REMARKS_KEY}</td>
  *     <td>{@link InternationalString}</td>
  *     <td>{@link String} (see localization below)</td>

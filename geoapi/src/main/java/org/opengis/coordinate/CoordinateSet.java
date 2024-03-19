@@ -39,6 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * If the <abbr>CRS</abbr> is dynamic, the {@code CoordinateSet} may be converted to another coordinate epoch
  * through a point motion coordinate operation that includes time evolution.
  *
+ * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  *

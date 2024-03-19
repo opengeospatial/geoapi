@@ -37,7 +37,8 @@ import static org.opengis.annotation.Specification.*;
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.CartesianCS}.</p>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  *
@@ -45,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * @see CRSFactory#createProjectedCRS(Map, GeographicCRS, Conversion, CartesianCS)
  */
 @UML(identifier="SC_ProjectedCRS", specification=ISO_19111, version=2007)
-public interface ProjectedCRS extends GeneralDerivedCRS {
+public interface ProjectedCRS extends DerivedCRS {
     /**
      * Returns the base coordinate reference system, which must be geographic.
      *
@@ -64,6 +65,8 @@ public interface ProjectedCRS extends GeneralDerivedCRS {
 
     /**
      * Returns the coordinate system, which shall be Cartesian.
+     * In the 3D case the ellipsoidal height from the base <abbr>CRS</abbr>
+     * is retained to form a three-dimensional Cartesian coordinate system.
      *
      * @return the Cartesian coordinate system.
      */

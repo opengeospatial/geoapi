@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.ISO_19111_2;
 
 
 /**
- * A 1-dimensional coordinate reference system which uses parameter values or functions.
+ * A 1-dimensional <abbr>CRS</abbr> which uses parameter values or functions.
  * A coordinate reference system shall be of the parametric type if a physical or material
  * property or function is used as the dimension.
  * The values or functions can vary monotonically with height.
@@ -40,6 +40,7 @@ import static org.opengis.annotation.Specification.ISO_19111_2;
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.ParametricCS}.</p>
  *
+ * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   3.1

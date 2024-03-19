@@ -31,20 +31,15 @@ import static org.opengis.annotation.Specification.*;
  * Vertical <abbr>CRS</abbr>s make use of the direction of gravity to define the concept of height or depth,
  * but the relationship with gravity may not be straightforward.
  *
- * <p>By implication, ellipsoidal heights (<var>h</var>) cannot be captured in a vertical coordinate
- * reference system. Ellipsoidal heights cannot exist independently, but only as inseparable part
- * of a 3D coordinate tuple defined in a geographic 3D coordinate reference system.</p>
- *
- * <div class="note"><b>Note:</b>
- * some applications may relax the above rule and accept ellipsoidal heights in some contexts.
- * For example, as a transient state while parsing the legacy Well-Known Text version 1,
- * or any other format based on legacy specifications where ellipsoidal heights were allowed as an
- * independent axis. However, implementers are encouraged to assemble the full 3D CRS as soon as they can.</div>
+ * <p>By implication, ellipsoidal heights (<var>h</var>) cannot be captured in a vertical <abbr>CRS</abbr>.
+ * Ellipsoidal heights cannot exist independently, but only as inseparable part of a 3D coordinate tuple
+ * defined in a geographic or projected 3D <abbr>CRS</abbr>.</p>
  *
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.VerticalCS}.</p>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.0
  * @since   1.0
  *

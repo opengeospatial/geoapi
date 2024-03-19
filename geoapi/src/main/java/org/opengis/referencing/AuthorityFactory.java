@@ -39,6 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * of coordinate reference systems, and other spatial referencing objects, where each object has a code number ID.
  * For example, the EPSG code for a <q>WGS84 Lat/Lon</q> <abbr>CRS</abbr> is <q>4326</q>.</p>
  *
+ * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0

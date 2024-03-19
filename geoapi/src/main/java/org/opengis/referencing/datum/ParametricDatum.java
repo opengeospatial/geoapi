@@ -27,6 +27,7 @@ import static org.opengis.annotation.Specification.ISO_19111_2;
  * A textual description and/or a set of parameters identifying a particular reference surface used as
  * the origin of a parametric coordinate system, including its position with respect to the Earth.
  *
+ * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   3.1

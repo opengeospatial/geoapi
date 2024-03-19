@@ -73,8 +73,8 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
     CoordinateOperation createCoordinateOperation(String code) throws FactoryException;
 
     /**
-     * Creates operations from {@linkplain CoordinateReferenceSystem coordinate reference system}
-     * codes. This method returns only the operations declared by the authority, with preferred
+     * Creates operations from Coordinate Reference System codes.
+     * This method returns only the operations declared by the authority, with preferred
      * operations first. This method doesn't need to compute operations from {@code source} to
      * {@code target} CRS if no such operations were explicitly defined in the authority database.
      * Computation of arbitrary operations can be performed by

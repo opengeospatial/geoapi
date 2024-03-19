@@ -92,7 +92,7 @@
  * and/or coordinate conversions.</p>
  *
  * <p>The source and target coordinate reference system of a coordinate conversion
- * are defined in the {@link org.opengis.referencing.crs.GeneralDerivedCRS},
+ * are defined in the {@link org.opengis.referencing.crs.DerivedCRS},
  * by specifying the base (i.e., source) <abbr>CRS</abbr> and the defining conversion.
  * The derived coordinate reference system itself is the target <abbr>CRS</abbr> in this situation.
  * When used in a concatenated operation, the conversion's source and target coordinate reference

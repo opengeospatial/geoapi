@@ -25,7 +25,7 @@ import org.opengis.util.NoSuchIdentifierException;
  * This is a specialization of {@link NoSuchIdentifierException} with the identifier separated in its authority
  * and code components.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  *

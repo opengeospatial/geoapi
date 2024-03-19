@@ -23,12 +23,24 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Defines the origin of an engineering coordinate reference system. An engineering datum is used
- * in a region around that origin. This origin can be fixed with respect to the earth (such as a
- * defined point at a construction site), or be a defined point on a moving vehicle (such as on a
- * ship or satellite).
+ * Identification of the origin of an engineering (or local) coordinate reference system.
+ * An engineering datum is used in a region around that origin.
+ * This origin can be fixed with respect to the Earth (such as a defined point at a construction site),
+ * a defined point on a moving object (such as on a road vehicle, vessel, aircraft or spacecraft),
+ * or a point used to describe spatial location internally on an image.
  *
- * @author  Martin Desruisseaux (IRD)
+ * <p>When used for a region on Earth, engineering <abbr>CRS</abbr>s use a flat-Earth approximation:
+ * corrections for Earth-curvature are not applied.
+ * Typical applications are for civil engineering construction and building information management.
+ * Note that these applications are not restricted to using engineering <abbr>CRS</abbr>s:
+ * they often utilize projected and sometimes geodetic <abbr>CRS</abbr>s.</p>
+ *
+ * <p>When used for an image internal coordinates, the <abbr>CRS</abbr> is not georeferenced.
+ * The image can be georeferenced by relating the engineering <abbr>CRS</abbr> to a geodetic
+ * or projected <abbr>CRS</abbr> through a coordinate transformation.</p>
+ *
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.0
  * @since   1.0
  *

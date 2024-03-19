@@ -193,7 +193,7 @@ class EngineeringCRS(SingleCRS):
         pass
 
 
-class GeneralDerivedCRS(SingleCRS):
+class DerivedCRS(SingleCRS):
     """
     A coordinate reference system that is defined by its coordinate conversion from another coordinate reference system
     (not by a datum).
@@ -239,13 +239,6 @@ class GeodeticCRS(SingleCRS):
         pass
 
 
-class DerivedCRS(GeneralDerivedCRS):
-    """
-    A coordinate reference system that is defined by its coordinate conversion from another coordinate reference system
-    but is not a projected coordinate reference system.
-    """
-
-
 class GeographicCRS(GeodeticCRS):
     """
     A coordinate reference system based on an ellipsoidal approximation of the geoid; this provides an accurate
@@ -264,7 +257,7 @@ class GeographicCRS(GeodeticCRS):
         pass
 
 
-class ProjectedCRS(GeneralDerivedCRS):
+class ProjectedCRS(DerivedCRS):
     """
     A 2D coordinate reference system used to approximate the shape of the earth on a planar surface.
     """

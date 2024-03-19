@@ -235,7 +235,7 @@ class CoordinateOperation(IdentifiedObject):
         """
         Returns the source CRS. The source CRS is mandatory for transformations only.
         Conversions may have a source CRS that is not specified here, but through
-        ``GeneralDerivedCRS.getBaseCRS()`` instead.
+        ``DerivedCRS.getBaseCRS()`` instead.
 
         :return: The source CRS, or null if not available.
         :rtype: CoordinateReferenceSystem
@@ -247,7 +247,7 @@ class CoordinateOperation(IdentifiedObject):
         """
         Returns the target CRS. The target CRS is mandatory for transformations only.
         Conversions may have a target CRS that is not specified here, but through
-        ``GeneralDerivedCRS`` instead.
+        ``DerivedCRS`` instead.
 
         :return: The target CRS, or null if not available.
         :rtype: CoordinateReferenceSystem
@@ -417,7 +417,7 @@ class Conversion(SingleOperation):
     def source_crs(self) -> CoordinateReferenceSystem:
         """
         Returns the source CRS. Conversions may have a source CRS that is not specified here, but through
-        ``GeneralDerivedCRS.getBaseCRS()`` instead.
+        ``DerivedCRS.getBaseCRS()`` instead.
 
         :return: The source CRS, or null if not available.
         :rtype: CoordinateReferenceSystem
@@ -428,7 +428,7 @@ class Conversion(SingleOperation):
     def target_crs(self) -> CoordinateReferenceSystem:
         """
         Returns the target CRS. Conversions may have a target CRS that is not specified here, but through
-        ``GeneralDerivedCRS`` instead.
+        ``DerivedCRS`` instead.
 
         :return: The target CRS, or null if not available.
         :rtype: CoordinateReferenceSystem

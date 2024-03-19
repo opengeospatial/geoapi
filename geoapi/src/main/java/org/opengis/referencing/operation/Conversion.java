@@ -50,7 +50,7 @@ public interface Conversion extends SingleOperation {
     /**
      * Returns the source <abbr>CRS</abbr>.
      * Conversions may have a source <abbr>CRS</abbr> that is not specified here,
-     * but through {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS()} instead.
+     * but through {@link org.opengis.referencing.crs.DerivedCRS#getBaseCRS()} instead.
      *
      * @return the source <abbr>CRS</abbr>, or {@code null} if not available.
      */
@@ -61,7 +61,7 @@ public interface Conversion extends SingleOperation {
     /**
      * Returns the target <abbr>CRS</abbr>.
      * Conversions may have a target <abbr>CRS</abbr> that is not specified here,
-     * but through {@link org.opengis.referencing.crs.GeneralDerivedCRS} instead.
+     * but through {@link org.opengis.referencing.crs.DerivedCRS} instead.
      *
      * @return the target <abbr>CRS</abbr>, or {@code null} if not available.
      */

@@ -58,7 +58,8 @@ import static org.opengis.annotation.Specification.*;
  * The other values may or may not be set.
  * If the authority is EPSG, the implementer may consider using the corresponding metadata values in the EPSG tables.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   2.0
  */

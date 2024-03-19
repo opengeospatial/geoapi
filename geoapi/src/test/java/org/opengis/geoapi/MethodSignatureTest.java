@@ -211,14 +211,19 @@ public final class MethodSignatureTest extends SourceGenerator {
                                 default: throw new AssertionError(uml);
                             }
                             /*
-                             * Special cases for methods withoud default despite declared optional,
+                             * Special cases for methods without default despite declared optional,
                              * or conversely (with default despite declared mandatory).
                              */
-                            if (c == org.opengis.referencing.crs.GeneralDerivedCRS.class ||
+                            if (c == org.opengis.referencing.crs.DerivedCRS.class ||
                                 c == org.opengis.referencing.crs.ProjectedCRS.class)
                             {
                                 switch (m.getName()) {
                                     case "getDatum": isOptional = true;
+                                }
+                            }
+                            if (c == org.opengis.referencing.crs.CompoundCRS.class) {
+                                switch (m.getName()) {
+                                    case "getSingleComponents": isOptional = true;
                                 }
                             }
                             if (c == org.opengis.referencing.operation.Conversion.class) {

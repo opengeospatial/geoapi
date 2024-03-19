@@ -28,6 +28,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
 /**
  * Defines type of reference system used.
  *
+ * @author  ISO 19115 (for abstract model and documentation)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   3.1

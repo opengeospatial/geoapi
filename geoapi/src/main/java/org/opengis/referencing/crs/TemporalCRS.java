@@ -34,7 +34,8 @@ import static org.opengis.annotation.Specification.*;
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.TimeCS}.</p>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.0
  * @since   1.0
  *

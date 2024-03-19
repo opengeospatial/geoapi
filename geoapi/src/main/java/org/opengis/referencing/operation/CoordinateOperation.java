@@ -102,7 +102,7 @@ public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Returns the source CRS. The source CRS is mandatory for {@linkplain Transformation transformations} only.
      * {@linkplain Conversion Conversions} may have a source CRS that is not specified here, but through
-     * {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS()} instead.
+     * {@link org.opengis.referencing.crs.DerivedCRS#getBaseCRS()} instead.
      *
      * @return the source CRS, or {@code null} if not available.
      *
@@ -115,7 +115,7 @@ public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Returns the target CRS. The target CRS is mandatory for {@linkplain Transformation transformations} only.
      * {@linkplain Conversion Conversions} may have a target CRS that is not specified here, but through
-     * {@link org.opengis.referencing.crs.GeneralDerivedCRS} instead.
+     * {@link org.opengis.referencing.crs.DerivedCRS} instead.
      *
      * @return the target CRS, or {@code null} if not available.
      *

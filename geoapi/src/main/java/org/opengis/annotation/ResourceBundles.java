@@ -119,7 +119,7 @@ public final class ResourceBundles {
      * The returned map is the converse of {@link UML#identifier()}.
      *
      * <h4>Examples</h4>
-     * {@code classIndex.getString("SC_CRS")} returns
+     * {@code classIndex.getString("CRS")} returns
      * {@code "org.opengis.referencing.crs.CoordinateReferenceSystem"}.
      *
      * <h4>Performance note</h4>

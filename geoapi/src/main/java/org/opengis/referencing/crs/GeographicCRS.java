@@ -53,7 +53,8 @@ import static org.opengis.annotation.Specification.*;
  *         same goal.</li>
  *   </ul>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.0
  * @since   1.0
  *

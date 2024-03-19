@@ -48,6 +48,7 @@
  * there do not need to be any constraints on operation sequencing.
  * This means that these interfaces can be used in parallel computing environments (e.g. Internet servers).
  *
+ * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @version 3.1

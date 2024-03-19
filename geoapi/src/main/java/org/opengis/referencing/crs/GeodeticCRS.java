@@ -25,17 +25,16 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 2- or 3-dimensional coordinate reference system associated with a geodetic datum.
- * Geodetic CRSs provide an accurate representation of the geometry of geographic features
- * for a large portion of the Earth's surface.
- *
- * <p>This type of CRS can be used with coordinate systems of type
+ * A 2- or 3-dimensional <abbr>CRS</abbr> used over the whole planet or substantial parts of it.
+ * This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.CartesianCS},
  * {@link org.opengis.referencing.cs.SphericalCS} or
- * {@link org.opengis.referencing.cs.EllipsoidalCS}.</p>
+ * {@link org.opengis.referencing.cs.EllipsoidalCS}.
+ * In the latter case, the {@link GeographicCRS} specialization should be used.
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   2.1
  */
 @UML(identifier="SC_GeodeticCRS", specification=ISO_19111, version=2007)

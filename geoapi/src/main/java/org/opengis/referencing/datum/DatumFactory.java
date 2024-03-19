@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Builds up complex {@linkplain Datum datums} from simpler objects or values.
+ * Builds up complex datum objects from simpler objects or values.
  * {@code DatumFactory} allows applications to make {@linkplain Datum datums}
  * that cannot be created by a {@link DatumAuthorityFactory}.
  * This factory is very flexible, whereas the authority factory is easier to use.
@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * the default is to throw an {@link UnimplementedServiceException}
  * with a message saying that the type or service is not supported.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   1.0

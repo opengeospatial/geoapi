@@ -31,9 +31,9 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Specifies the relationship of a {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate system}
- * to the earth, thus creating a {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate
- * reference system}. For {@linkplain org.opengis.referencing.crs.GeocentricCRS geodetic} and
+ * Specifies the relationship of a coordinate system to the earth,
+ * thus creating a coordinate reference system.
+ * For {@linkplain org.opengis.referencing.crs.GeocentricCRS geodetic} and
  * {@linkplain org.opengis.referencing.crs.VerticalCRS vertical} coordinate reference systems,
  * the datum relates the coordinate system to the Earth. With other types of coordinate reference systems,
  * the datum may relate the coordinate system to another physical or virtual object.
@@ -43,7 +43,8 @@ import static org.opengis.annotation.Specification.*;
  * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems}, documented in their
  * javadoc.</p>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  *

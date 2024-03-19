@@ -40,7 +40,7 @@ final class CompoundCRSMock implements CompoundCRS, Identifier {
     private final List<CoordinateReferenceSystem> components;
 
     /**
-     * Creates a new mock.
+     * Creates a new mock with only single CRSs.
      *
      * @param  components  the components of this compound CRS.
      */
@@ -49,6 +49,13 @@ final class CompoundCRSMock implements CompoundCRS, Identifier {
         for (int i=1; i < components.length; i++) {
             components[i-1].assertContinuous(components[i]);
         }
+    }
+
+    /**
+     * Creates a new mock with a nested compound CRS.
+     */
+    CompoundCRSMock(final CoordinateSystemMock head, final CompoundCRSMock tail) {
+        components = List.of(head, tail);
     }
 
     /**

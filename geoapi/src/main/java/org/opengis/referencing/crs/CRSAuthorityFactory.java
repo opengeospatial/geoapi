@@ -28,7 +28,7 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
 
 
 /**
- * Creates {@linkplain CoordinateReferenceSystem coordinate reference systems} using authority codes.
+ * Creates coordinate reference systems using authority codes.
  * External authorities are used to manage definitions of objects used in this interface.
  * The definitions of these objects are referenced using code strings.
  * A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
@@ -43,7 +43,7 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
  *       saying that the type or service is not supported.</li>
  * </ul>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   1.0

@@ -18,43 +18,38 @@
 
 /**
  * Reference systems by coordinates.
- * A {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem Coordinate Reference System} (CRS)
- * consists of one {@linkplain org.opengis.referencing.cs Coordinate System}
+ * A {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem Coordinate Reference System}
+ * (<abbr>CRS</abbr>) generally consists of one {@linkplain org.opengis.referencing.cs Coordinate System}
  * (a set of {@linkplain org.opengis.referencing.cs.CoordinateSystemAxis axes} with implied mathematical rules
  * for calculating distances and angles from coordinates) that is related to the Earth, another celestial body
- * or a platform through one {@linkplain org.opengis.referencing.datum datum}.
+ * or a platform through one {@linkplain org.opengis.referencing.datum datum} or datum ensemble.
  *
  * <p>{@code CoordinateReferenceSystem} instances and their components shall be immutable.
  * For <abbr>CRS</abbr> defined on moving platforms such as cars, ships, aircraft and spacecraft,
  * transformation to an earth-fixed coordinate reference system may include a time element.
- * Time-variability of coordinate reference systems may be covered by creating different
- * {@code CoordinateReferenceSystem} instances, each with a different datum, for consecutive epochs.
- * The date of realization of the datum shall then be included in its definition.
- * Furthermore, it is recommended that the date of realization be included in the names of those datums
- * and coordinate reference systems.</p>
+ * For a dynamic <abbr>CRS</abbr>, locations on or near the surface of the Earth will move
+ * within the <abbr>CRS</abbr> due to crustal motion or deformation, therefor data needs a
+ * {@linkplain org.opengis.coordinate.CoordinateMetadata#getCoordinateEpoch() coordinate epoch}
+ * in addition of the <abbr>CRS</abbr>. In both cases, time-variability is handled by
+ * coordinate operations rather than changes in the <abbr>CRS</abbr> definition.</p>
  *
- * <h2>Sub-types of coordinate reference system</h2>
- * Geodetic survey practice usually divides coordinate reference systems into a number of sub-types.
- * The common classification criterion for sub-typing of coordinate reference systems can be described
- * as the way in which they deal with earth curvature. This has a direct effect on the portion of the
- * earth's surface that can be covered by that type of <abbr>CRS</abbr> with an acceptable degree of error.
+ * <h2>Compound <abbr>CRS</abbr></h2>
+ * The traditional separation of horizontal, vertical and temporal position has resulted in different interfaces
+ * for the horizontal (2D), vertical (1D) and temporal (1D) components. It is established practice to combine the
+ * horizontal coordinates of a point with a height or depth from a different <abbr>CRS</abbr>, and sometime a time.
+ * The <abbr>CRS</abbr> to which these 3D or 4D coordinates are referenced is called a <dfn>compound</dfn>
+ * coordinate reference system.
  *
- * <h3>Compound <abbr>CRS</abbr></h3>
- * The traditional separation of horizontal and vertical position has resulted in coordinate reference systems
- * that are horizontal (2D) in nature and vertical (1D). It is established practice to combine the horizontal
- * coordinates of a point with a height or depth from a different <abbr>CRS</abbr>. The coordinate reference system
- * to which these 3D coordinates are referenced combines the separate horizontal and vertical coordinate reference
- * systems of the horizontal and vertical coordinates. Such a  <abbr>CRS</abbr> is called a <dfn>compound</dfn>
- * <abbr>CRS</abbr>. It consists of an ordered sequence of the two or more single coordinate reference systems.
- *
- * <h3>Derived <abbr>CRS</abbr></h3>
+ * <h2>Derived <abbr>CRS</abbr></h2>
  * Some coordinate reference systems are defined by applying a coordinate conversion to another <abbr>CRS</abbr>.
- * Such a <abbr>CRS</abbr> is called a <dfn>derived</dfn> <abbr>CRS</abbr> and the coordinate reference system it
- * was derived from by applying the conversion is called the <dfn>source</dfn> or <dfn>base</dfn> <abbr>CRS</abbr>.
+ * Such a <abbr>CRS</abbr> is called a <dfn>derived</dfn> coordinate reference system and the <abbr>CRS</abbr>
+ * it was derived from by applying the conversion is called the <dfn>base</dfn> <abbr>CRS</abbr>.
  * A coordinate conversion is an arithmetic operation with zero or more parameters that have defined values.
- * The base <abbr>CRS</abbr> and derived <abbr>CRS</abbr> have the same datum.
+ * The base <abbr>CRS</abbr> and derived <abbr>CRS</abbr> have the same datum or datum ensemble.
+ * Projected <abbr>CRS</abbr>s are special cases of derived <abbr>CRS</abbr>s.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  */

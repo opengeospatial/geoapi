@@ -32,6 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * If the <abbr>CRS</abbr> is dynamic, then a coordinate epoch is also mandatory.
  * Whether the <abbr>CRS</abbr> is dynamic is determined through the <abbr>CRS</abbr>'s reference frame definition.
  *
+ * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1

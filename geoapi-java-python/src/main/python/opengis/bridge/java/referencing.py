@@ -111,7 +111,7 @@ class GeographicCRS(CoordinateReferenceSystem, opengis.referencing.crs.GeodeticC
 
 
 
-class ProjectedCRS(IdentifiedObject, opengis.referencing.crs.GeneralDerivedCRS):
+class ProjectedCRS(IdentifiedObject, opengis.referencing.crs.DerivedCRS):
     def __init__(self, proxy):
         super().__init__(proxy)
 

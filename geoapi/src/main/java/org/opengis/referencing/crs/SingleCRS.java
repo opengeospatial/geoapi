@@ -28,45 +28,50 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Base type of <abbr>CRS</abbr> related to an object by a datum.
+ * Base type of <abbr>CRS</abbr> related to an object by a datum or datum ensemble.
  * For {@linkplain org.opengis.referencing.datum.GeodeticDatum geodetic}
- * and {@linkplain org.opengis.referencing.datum.VerticalDatum vertical} datums, the object will be the Earth.
+ * and {@linkplain org.opengis.referencing.datum.VerticalDatum vertical} reference frame,
+ * the object will be the Earth or another celestial body.
  *
- * <p>The valid coordinate system type and the datum type are constrained by the CRS type.
- * For example, {@code GeographicCRS} can be associated only to {@code EllipsoidalCS} and
- * {@code GeodeticDatum}.</p>
+ * <p>The valid coordinate system type and the datum type are constrained by the <abbr>CRS</abbr> type.
+ * For example, {@code GeographicCRS} can be associated only to {@code EllipsoidalCS} and {@code GeodeticDatum}.
+ * The constraints are documented in the Javadoc of sub-interfaces.</p>
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   2.0
  *
- * @see org.opengis.referencing.cs.CoordinateSystem
- * @see org.opengis.referencing.datum.Datum
+ * @see CoordinateSystem
+ * @see Datum
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="SC_SingleCRS", specification=ISO_19111, version=2007)
+@UML(identifier="SingleCRS", specification=ISO_19111)
 public interface SingleCRS extends CoordinateReferenceSystem {
     /**
-     * Returns the coordinate system associated to this CRS.
-     * The coordinate system is composed of a set of coordinate axes with specified units of measure.
-     * This concept implies the mathematical rules that define how coordinate values are calculated
+     * Returns the coordinate system associated to this <abbr>CRS</abbr>.
+     * The coordinate system (<abbr>CS</abbr>) is composed of a set of coordinate axes with specified units of measure.
+     * The <abbr>CS</abbr> subtype implies the mathematical rules that define how coordinate values are calculated
      * from distances, angles and other geometric elements and vice versa.
+     *
+     * @return the coordinate system associated to this <abbr>CRS</abbr>.
      */
     @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystem getCoordinateSystem();
 
     /**
-     * Returns the datum associated directly or indirectly to this CRS.
-     * In the case of {@link GeneralDerivedCRS}, this method returns the
-     * datum of the {@linkplain GeneralDerivedCRS#getBaseCRS() base CRS}.
+     * Returns the datum associated directly or indirectly to this <abbr>CRS</abbr>.
+     * In the case of {@link DerivedCRS}, this method returns the
+     * datum of the {@linkplain DerivedCRS#getBaseCRS() base CRS}.
      *
      * <p>A datum specifies the relationship of a coordinate system to the object, thus ensuring that the abstract
      * mathematical concept “coordinate system” can be applied to the practical problem of describing positions of
-     * features on or near the earth's surface by means of coordinates. The object will generally, but not necessarily,
-     * be the earth. For certain coordinate reference systems, the object may be a moving platform.</p>
+     * features on or near the planet's surface by means of coordinates.
+     * The object will generally, but not necessarily, be the Earth.
+     * For certain coordinate reference systems, the object may be a moving platform.</p>
      *
-     * @return the datum.
+     * @return the datum associated directly or indirectly to this <abbr>CRS</abbr>.
      *
      * @departure easeOfUse
      *   The ISO specification declares the datum as absent when the association is indirect.

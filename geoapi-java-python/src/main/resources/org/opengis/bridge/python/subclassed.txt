@@ -24,7 +24,7 @@ org.opengis.parameter.GeneralParameterValue
 org.opengis.referencing.IdentifiedObject
 org.opengis.referencing.ReferenceSystem
 org.opengis.referencing.crs.CoordinateReferenceSystem
-org.opengis.referencing.crs.GeneralDerivedCRS
+org.opengis.referencing.crs.DerivedCRS
 org.opengis.referencing.crs.GeodeticCRS
 org.opengis.referencing.crs.SingleCRS
 org.opengis.referencing.cs.AffineCS

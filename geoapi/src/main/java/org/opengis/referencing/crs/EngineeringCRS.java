@@ -27,32 +27,24 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 1-, 2- or 3-dimensional contextually local <abbr>CRS</abbr>.
- * It can be divided into two broad categories:
+ * A 1-, 2- or 3-dimensional <abbr>CRS</abbr> used locally.
+ * It can be divided into three broad categories:
  *
  * <ul>
- *   <li>earth-fixed systems applied to engineering activities on or near the surface of the earth;</li>
- *   <li>CRSs on moving platforms such as road vehicles, vessels, aircraft, or spacecraft.</li>
+ *   <li>planet-fixed systems applied to engineering activities on or near the surface of the planet;</li>
+ *   <li><abbr>CRS</abbr>s on moving platforms such as road vehicles, vessels, aircraft, or spacecraft.</li>
+ *   <li><abbr>CRS</abbr>s used to describe spatial location internally on an image.</li>
  * </ul>
  *
- * Earth-fixed Engineering CRSs are commonly based on a simple flat-earth approximation of the
- * earth's surface, and the effect of earth curvature on feature geometry is ignored: calculations
- * on coordinates use simple plane arithmetic without any corrections for earth curvature. The
- * application of such Engineering CRSs to relatively small areas and "contextually local" is in
- * this case equivalent to "spatially local".
+ * <p>Planet-fixed engineering <abbr>CRS</abbr>s are commonly based on a simple flat-earth approximation
+ * of the planet's surface, and the effect of planet curvature on feature geometry is ignored:
+ * calculations on coordinates use simple plane arithmetic without any corrections for planet curvature.</p>
  *
- * <p>Engineering CRSs used on moving platforms are usually intermediate coordinate reference
- * systems that are computationally required to calculate coordinates referenced to
- * {@linkplain GeocentricCRS geocentric}, {@linkplain GeographicCRS geographic} or
- * {@linkplain ProjectedCRS projected} CRSs. These engineering coordinate reference
- * systems are subject to all the motions of the platform with which they are associated.
- * In this case "contextually local" means that the associated coordinates are meaningful
- * only relative to the moving platform. Earth curvature is usually irrelevant and is therefore
- * ignored. In the spatial sense their applicability may extend from the immediate vicinity of
- * the platform (e.g. a moving seismic ship) to the entire earth (e.g. in space applications).
- * The determining factor is the mathematical model deployed in the positioning calculations.
- * Transformation of coordinates from these moving Engineering CRSs to earth-referenced coordinate
- * reference systems involves time-dependent coordinate operation parameters.</p>
+ * <p>Engineering <abbr>CRS</abbr>s used on moving platforms
+ * are subject to all the motions of the platform with which they are associated.
+ * In this case the associated coordinates are meaningful only relative to the moving platform.
+ * Transformation of coordinates from these moving engineering <abbr>CRS</abbr>s to planet-referenced
+ * <abbr>CRS</abbr>s involves time-dependent coordinate operation parameters.</p>
  *
  * <p>This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.AffineCS},
@@ -63,7 +55,8 @@ import static org.opengis.annotation.Specification.*;
  * {@link org.opengis.referencing.cs.SphericalCS},
  * {@link org.opengis.referencing.cs.UserDefinedCS}.</p>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.0
  * @since   1.0
  *
