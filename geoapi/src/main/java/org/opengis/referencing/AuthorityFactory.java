@@ -35,8 +35,8 @@ import static org.opengis.annotation.Specification.*;
  * An <dfn>authority</dfn> is an organization that maintains definitions of authority codes.
  * An <dfn>authority code</dfn> is a compact string defined by an authority to reference a particular referencing object.
  *
- * <p>For example, the <a href="http://www.epsg.org">European Petroleum Survey Group (EPSG)</a> maintains a database
- * of coordinate reference systems, and other spatial referencing objects, where each object has a code number ID.
+ * <p>For example, the <a href="https://epsg.org">EPSG geodetic registry</a> is a database of coordinate
+ * reference systems, and other spatial referencing objects, where each object has a code number ID.
  * For example, the EPSG code for a <q>WGS84 Lat/Lon</q> <abbr>CRS</abbr> is <q>4326</q>.</p>
  *
  * @author  OGC Topic 2 (for abstract model and documentation)

@@ -24,6 +24,7 @@ import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
+import org.opengis.referencing.datum.DatumEnsemble;
 
 
 /**
@@ -46,29 +47,56 @@ import static org.opengis.annotation.Specification.*;
  * Transformation of coordinates from these moving engineering <abbr>CRS</abbr>s to planet-referenced
  * <abbr>CRS</abbr>s involves time-dependent coordinate operation parameters.</p>
  *
- * <p>This type of CRS can be used with coordinate systems of type
+ * <h2>Permitted coordinate systems</h2>
+ * This type of CRS can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.AffineCS},
  * {@link org.opengis.referencing.cs.CartesianCS},
  * {@link org.opengis.referencing.cs.CylindricalCS},
  * {@link org.opengis.referencing.cs.LinearCS},
  * {@link org.opengis.referencing.cs.PolarCS},
  * {@link org.opengis.referencing.cs.SphericalCS},
- * {@link org.opengis.referencing.cs.UserDefinedCS}.</p>
+ * {@link org.opengis.referencing.cs.UserDefinedCS}.
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see CRSAuthorityFactory#createEngineeringCRS(String)
  * @see CRSFactory#createEngineeringCRS(Map, EngineeringDatum, CoordinateSystem)
  */
-@UML(identifier="SC_EngineeringCRS", specification=ISO_19111, version=2007)
+@UML(identifier="EngineeringCRS", specification=ISO_19111, version=2007)
 public interface EngineeringCRS extends SingleCRS {
     /**
      * Returns the datum, which shall be an engineering one.
+     * This property may be null if this <abbr>CRS</abbr> is related to an object
+     * identified only by a {@linkplain #getDatumEnsemble() datum ensemble}.
+     *
+     * @return the engineering datum, or {@code null} if this <abbr>CRS</abbr> is related to
+     *         an object identified only by a {@linkplain #getDatumEnsemble() datum ensemble}.
+     *
+     * @condition Mandatory if the {@linkplain #getDatumEnsemble() datum ensemble} is not documented.
      */
     @Override
-    @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="datum", obligation=CONDITIONAL, specification=ISO_19111)
     EngineeringDatum getDatum();
+
+    /**
+     * Returns the datum ensemble, which shall have engineering datum members.
+     * This property may be null if this <abbr>CRS</abbr> is related to an object
+     * identified only by a single {@linkplain #getDatum() datum}.
+     *
+     * <p>The default implementation returns {@code null}.</p>
+     *
+     * @return the datum ensemble, or {@code null} if this <abbr>CRS</abbr> is related
+     *         to an object identified only by a single {@linkplain #getDatum() datum}.
+     *
+     * @condition Mandatory if the {@linkplain #getDatum() datum} is not documented.
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="datum", obligation=CONDITIONAL, specification=ISO_19111)
+    default DatumEnsemble<EngineeringDatum> getDatumEnsemble() {
+        return null;
+    }
 }

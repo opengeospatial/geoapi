@@ -143,5 +143,5 @@ public final class ResourceBundles {
     /**
      * Number of lines in the {@code "class-index.properties"} file.
      */
-    static final int INDEX_CAPACITY = 247;
+    static final int INDEX_CAPACITY = 249;
 }

@@ -34,7 +34,7 @@ import static org.opengis.geoapi.internal.Errors.cannotParse;
 /**
  * Builds up complex Coordinate Reference Systems from simpler objects or values.
  * {@code CRSFactory} allows applications to make
- * {@linkplain CoordinateReferenceSystem Coordinate Reference Systems}
+ * {@linkplain CoordinateReferenceSystem Coordinate Reference Systems} (<abbr>CRS</abbr>)
  * that cannot be created by a {@link CRSAuthorityFactory}.
  * This factory is very flexible, whereas the authority factory is easier to use.
  * So {@link CRSAuthorityFactory} can be used to make "standard" coordinate reference systems,

@@ -30,28 +30,28 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A 3-dimensional <abbr>CRS</abbr> with the origin at the approximate centre of mass of the earth.
- * A geocentric CRS deals with the earth's curvature by taking a 3-dimensional spatial view, which obviates
- * the need to model the earth's curvature.
+ * A geocentric CRS deals with the earth's curvature by taking a 3-dimensional spatial view, which
+ * obviates the need to model the earth's curvature.
  *
- * <p>This type of CRS can be used with coordinate systems of type
+ * <h2>Permitted coordinate systems</h2>
+ * This type of <abbr>CRS</abbr> can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.CartesianCS Cartesian} or
- * {@link org.opengis.referencing.cs.SphericalCS Spherical}.</p>
- *
- * @departure historic
- *   This interface is kept conformant with the specification published in 2003. The 2007 revision
- *   of ISO 19111 removed the {@code SC_GeographicCRS} and {@code SC_GeocentricCRS} types,
- *   handling both using the {@code SC_GeodeticCRS} parent type.
- *   GeoAPI keeps them since the distinction between those two types is in wide use.
+ * {@link org.opengis.referencing.cs.SphericalCS Spherical}.
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see CRSAuthorityFactory#createGeocentricCRS(String)
  * @see CRSFactory#createGeocentricCRS(Map, GeodeticDatum, CartesianCS)
  * @see CRSFactory#createGeographicCRS(Map, GeodeticDatum, EllipsoidalCS)
+ *
+ * @deprecated This type was defined in 2003 but removed in 2007.
+ * The ISO 19111 revision published in 2019 still excludes this type.
+ * The {@link GeodeticCRS} base type should be used instead.
  */
+@Deprecated(since="3.1", forRemoval=true)
 @UML(identifier="SC_GeocentricCRS", specification=ISO_19111, version=2003)
 public interface GeocentricCRS extends GeodeticCRS {
     /**

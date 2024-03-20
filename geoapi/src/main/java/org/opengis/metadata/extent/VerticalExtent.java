@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  *   ISO 19115 provides two ways to define a coordinate reference system,
  *   with the restriction that only one of those two ways can be used:
  *   <ol>
- *     <li>{@code verticalCRS}   of type {@code SC_VerticalCRS}     (from ISO 19111),</li>
+ *     <li>{@code verticalCRS}   of type {@code VerticalCRS} (from ISO 19111),</li>
  *     <li>{@code verticalCRSId} of type {@code MD_ReferenceSystem} (from ISO 19115).</li>
  *   </ol>
  *   GeoAPI provides only the first way, because the {@code MD_ReferenceSystem} type

@@ -24,7 +24,7 @@
  * The number of axes is the dimension of the coordinate space. Axis order is significant.
  *
  * <p>One {@link org.opengis.referencing.cs.CoordinateSystem} instance may be used by multiple
- * {@link org.opengis.referencing.crs.CoordinateReferenceSystem} (CRS) instances.
+ * {@link org.opengis.referencing.crs.CoordinateReferenceSystem} (<abbr>CRS</abbr>) instances.
  * The {@linkplain org.opengis.geometry.DirectPosition#getDimension() number of coordinates} in a coordinate tuple
  * shall be equal to the {@linkplain org.opengis.referencing.cs.CoordinateSystem#getDimension() number of coordinate axes}
  * in the coordinate system.
@@ -36,17 +36,16 @@
  * Certain subtypes of coordinate system shall be used only with specific subtypes of coordinate reference system.
  * The restrictions are documented in the javadoc of each <abbr>CRS</abbr> subtype.
  *
- * <p>ISO 19111 defines some coordinate system <em>unions</em> in addition to the coordinate system <em>types</em>.
- * Each union enumerates the coordinate system types that can be associated to a <abbr>CRS</abbr> type.
- * GeoAPI does not define those unions because they have no direct equivalence in the Java language.</p>
+ * <p>Coordinate system <em>types</em> should not be confused with coordinate system <em>unions</em>.
+ * The latter look similar to <abbr>CS</abbr> types, but do not imply a specific set of mathematical rules.
+ * A <abbr>CS</abbr> union is only an enumeration of the <abbr>CS</abbr> types that can be associated to a
+ * given <abbr>CRS</abbr> type. For example, ISO 19111 defines {@code GeodeticCS} as the enumeration of the
+ * types of <abbr>CS</abbr> that can be associated to a {@code GeodeticCRS}.
+ * Since unions are not available in Java (they are available in some other languages such as C++),
+ * GeoAPI replaces them by Javadoc. All <abbr>CS</abbr> defined in this packages are types.</p>
  *
- * @departure constraint
- *   ISO 19111 defines {@code GeodeticCS} and {@code EngineeringCS} unions.
- *   However, the {@code union} construct found in some languages like C/C++ is not available in Java.
- *   For each union, a different approach has been applied and documented in the {@code org.opengis.referencing.cs}
- *   package.
- *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  */

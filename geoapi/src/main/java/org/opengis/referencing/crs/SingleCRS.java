@@ -18,6 +18,7 @@
 package org.opengis.referencing.crs;
 
 import org.opengis.referencing.datum.Datum;
+import org.opengis.referencing.datum.DatumEnsemble;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
@@ -29,12 +30,13 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Base type of <abbr>CRS</abbr> related to an object by a datum or datum ensemble.
- * For {@linkplain org.opengis.referencing.datum.GeodeticDatum geodetic}
- * and {@linkplain org.opengis.referencing.datum.VerticalDatum vertical} reference frame,
- * the object will be the Earth or another celestial body.
+ * The object will generally, but not necessarily, be the Earth. It can be identified either
+ * by a {@linkplain #getDatum() datum} or a {@linkplain #getDatumEnsemble() datum ensemble}.
+ * At least one of those two properties shall be present.
  *
  * <p>The valid coordinate system type and the datum type are constrained by the <abbr>CRS</abbr> type.
- * For example, {@code GeographicCRS} can be associated only to {@code EllipsoidalCS} and {@code GeodeticDatum}.
+ * For example, {@link GeographicCRS} can be associated only to {@code GeodeticReferenceFrame}
+ * (a specialization of {@code Datum}) and {@code EllipsoidalCS}.
  * The constraints are documented in the Javadoc of sub-interfaces.</p>
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
@@ -64,19 +66,49 @@ public interface SingleCRS extends CoordinateReferenceSystem {
      * Returns the datum associated directly or indirectly to this <abbr>CRS</abbr>.
      * In the case of {@link DerivedCRS}, this method returns the
      * datum of the {@linkplain DerivedCRS#getBaseCRS() base CRS}.
+     * This property may be null if this <abbr>CRS</abbr> is related to an object
+     * identified only by a {@linkplain #getDatumEnsemble() datum ensemble}.
      *
      * <p>A datum specifies the relationship of a coordinate system to the object, thus ensuring that the abstract
      * mathematical concept “coordinate system” can be applied to the practical problem of describing positions of
      * features on or near the planet's surface by means of coordinates.
      * The object will generally, but not necessarily, be the Earth.
-     * For certain coordinate reference systems, the object may be a moving platform.</p>
+     * For certain <abbr>CRS</abbr>s, the object may be a moving platform.</p>
      *
-     * @return the datum associated directly or indirectly to this <abbr>CRS</abbr>.
+     * @return the datum, or {@code null} if this <abbr>CRS</abbr> is related to an object
+     *         identified only by a {@linkplain #getDatumEnsemble() datum ensemble}.
      *
      * @departure easeOfUse
      *   The ISO specification declares the datum as absent when the association is indirect.
      *   GeoAPI recommends to follow the link to the base CRS for users convenience.
+     *
+     * @condition Mandatory if the {@linkplain #getDatumEnsemble() datum ensemble} is not documented.
      */
     @UML(identifier="datum", obligation=CONDITIONAL, specification=ISO_19111)
     Datum getDatum();
+
+    /**
+     * Returns the datum ensemble associated directly or indirectly to this <abbr>CRS</abbr>.
+     * In the case of {@link DerivedCRS}, this method returns the datum ensemble
+     * of the {@linkplain DerivedCRS#getBaseCRS() base CRS}.
+     * This property may be null if this <abbr>CRS</abbr> is related to an object
+     * identified only by a single {@linkplain #getDatum() datum}.
+     *
+     * <p>The default implementation returns {@code null}.</p>
+     *
+     * @return the datum ensemble, or {@code null} if this <abbr>CRS</abbr> is related
+     *         to an object identified only by a single {@linkplain #getDatum() datum}.
+     *
+     * @condition Mandatory if the {@linkplain #getDatum() datum} is not documented.
+     * @since 3.1
+     */
+    @UML(identifier="datumEnsemble", obligation=CONDITIONAL, specification=ISO_19111)
+    default DatumEnsemble<?> getDatumEnsemble() {
+        /*
+         * API design note: we cannot use `Optional.empty()` because the use of `Optional<DatumEnsemble<?>>`
+         * as the return type prevents sub-interfaces to specialize the `<?>` part with a more specific type.
+         * Anyway, this attribute is not exactly optional but conditional.
+         */
+        return null;
+    }
 }

@@ -431,7 +431,7 @@ public class CRSValidator extends ReferencingValidator {
         /*
          * Verify the components again, but without nested compound CRS.
          */
-        final List<SingleCRS> singles = object.getSingleComponents();
+        final List<SingleCRS> singles = object.getFlattenedComponents();
         mandatory("CompoundCRS: shall have components.", singles);
         if (singles != null) {
             int dimension = 0;

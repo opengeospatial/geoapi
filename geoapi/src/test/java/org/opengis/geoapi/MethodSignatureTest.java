@@ -223,7 +223,7 @@ public final class MethodSignatureTest extends SourceGenerator {
                             }
                             if (c == org.opengis.referencing.crs.CompoundCRS.class) {
                                 switch (m.getName()) {
-                                    case "getSingleComponents": isOptional = true;
+                                    case "getFlattenedComponents": isOptional = true;
                                 }
                             }
                             if (c == org.opengis.referencing.operation.Conversion.class) {

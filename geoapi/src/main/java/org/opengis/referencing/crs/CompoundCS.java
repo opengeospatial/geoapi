@@ -17,6 +17,7 @@
  */
 package org.opengis.referencing.crs;
 
+import java.io.Serializable;
 import org.opengis.metadata.Identifier;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
@@ -32,14 +33,23 @@ import org.opengis.referencing.cs.CoordinateSystemAxis;
  * Implementers should override {@link CompoundCRS#getCoordinateSystem()} with their own implementation
  * for better performances or other characteristics such as WKT support.
  *
+ * <h2>Serialization</h2>
+ * Instances of this class are serializable if the wrapped <abbr>CRS</abbr> implementation is also serializable.
+ *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */
-final class CompoundCS implements CoordinateSystem, Identifier {
+final class CompoundCS implements CoordinateSystem, Identifier, Serializable {
+    /**
+     * For cross-version compatibility.
+     */
+    private static final long serialVersionUID = 3782889810638117329L;
+
     /**
      * The CRS provided by the implementer.
      */
+    @SuppressWarnings("serial")         // Whether the CRS is serializable is implementor's decision.
     private final CompoundCRS crs;
 
     /**

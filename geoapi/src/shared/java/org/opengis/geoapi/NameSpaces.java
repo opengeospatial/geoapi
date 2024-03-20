@@ -149,6 +149,7 @@ public final class NameSpaces {
                             case "org.opengis.util":        prefix = "gco"; break;
                             case "org.opengis.feature":     prefix = "GF";  break;
                             case "org.opengis.coordinate":
+                            case "org.opengis.referencing.datum":
                             case "org.opengis.referencing.crs":
                             case "org.opengis.referencing": prefix = "RS";  break;
                             case "org.opengis.filter":

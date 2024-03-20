@@ -115,6 +115,7 @@ public enum Content {
                org.opengis.metadata.identification .ServiceIdentification               .class,
                org.opengis.referencing             .ReferenceSystem                     .class,     // Depends on Extent.
                org.opengis.referencing.datum       .Datum                               .class,
+               org.opengis.referencing.datum       .DatumEnsemble                       .class,
                org.opengis.referencing.cs          .CoordinateSystemAxis                .class,
                org.opengis.referencing.cs          .CoordinateSystem                    .class,
                org.opengis.referencing.crs         .CoordinateReferenceSystem           .class,

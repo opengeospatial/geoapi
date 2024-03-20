@@ -19,6 +19,7 @@ package org.opengis.referencing.crs;
 
 import java.util.Map;
 import org.opengis.referencing.cs.CartesianCS;
+import org.opengis.referencing.datum.DatumEnsemble;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.Projection;
@@ -34,8 +35,8 @@ import static org.opengis.annotation.Specification.*;
  * Distortion correction is commonly applied to calculated bearings and distances
  * to produce values that are a close match to actual field values.
  *
- * <p>This type of CRS can be used with coordinate systems of type
- * {@link org.opengis.referencing.cs.CartesianCS}.</p>
+ * <h2>Permitted coordinate systems</h2>
+ * This type of <abbr>CRS</abbr> can be used with coordinate systems of type {@link CartesianCS} only.
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
@@ -45,20 +46,24 @@ import static org.opengis.annotation.Specification.*;
  * @see CRSAuthorityFactory#createProjectedCRS(String)
  * @see CRSFactory#createProjectedCRS(Map, GeographicCRS, Conversion, CartesianCS)
  */
-@UML(identifier="SC_ProjectedCRS", specification=ISO_19111, version=2007)
+@UML(identifier="ProjectedCRS", specification=ISO_19111)
 public interface ProjectedCRS extends DerivedCRS {
     /**
-     * Returns the base coordinate reference system, which must be geographic.
+     * Returns the <abbr>CRS</abbr> that is the base for this projected <abbr>CRS</abbr>.
+     * This is the {@linkplain Conversion#getSourceCRS() source <abbr>CRS</abbr>}
+     * of the {@linkplain #getConversionFromBase() deriving conversion}.
      *
-     * @return the base geographic CRS.
+     * @return the <abbr>CRS</abbr> that is the base for this projected <abbr>CRS</abbr>.
      */
     @Override
     GeographicCRS getBaseCRS();
 
     /**
-     * Returns the map projection from the base CRS to this CRS.
+     * Returns the map projection from the base CRS to this projected CRS.
+     * The source <abbr>CRS</abbr> of the conversion, if non null, shall be the {@linkplain #getBaseCRS() base <abbr>CRS</abbr>}.
+     * The target <abbr>CRS</abbr> of the conversion, if non-null, shall be this <abbr>CRS</abbr>.
      *
-     * @return the conversion from the {@linkplain #getBaseCRS() base CRS} to this projected CRS.
+     * @return the map projection from the base <abbr>CRS</abbr> to this projected <abbr>CRS</abbr>.
      */
     @Override
     Projection getConversionFromBase();
@@ -68,20 +73,38 @@ public interface ProjectedCRS extends DerivedCRS {
      * In the 3D case the ellipsoidal height from the base <abbr>CRS</abbr>
      * is retained to form a three-dimensional Cartesian coordinate system.
      *
-     * @return the Cartesian coordinate system.
+     * @return the Cartesian coordinate system associated to this projected <abbr>CRS</abbr>.
      */
     @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     CartesianCS getCoordinateSystem();
 
     /**
-     * Returns the same datum as the base CRS datum.
+     * Returns the same datum as the base geodetic <abbr>CRS</abbr>.
+     * This property may be null if the base <abbr>CRS</abbr> is related to an object
+     * identified only by a {@linkplain #getDatumEnsemble() datum ensemble}.
      *
-     * @return the datum of this projected CRS, which is the {@linkplain #getBaseCRS() base CRS} datum.
+     * @return the datum of the base geodetic <abbr>CRS</abbr>, or {@code null} if the base is related
+     *         to an object identified only by a {@linkplain #getDatumEnsemble() datum ensemble}.
      */
     @Override
     @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
     default GeodeticDatum getDatum() {
         return getBaseCRS().getDatum();
+    }
+
+    /**
+     * Returns the same datum ensemble as the base geodetic <abbr>CRS</abbr>.
+     * This property may be null if the base <abbr>CRS</abbr> is related to an object
+     * identified only by a single {@linkplain #getDatum() datum}.
+     *
+     * @return the datum ensemble of the base geodetic <abbr>CRS</abbr>, or {@code null} if the base
+     *         is related to an object identified only by a single {@linkplain #getDatum() datum}.
+     *
+     * @since 3.1
+     */
+    @Override
+    default DatumEnsemble<GeodeticDatum> getDatumEnsemble() {
+        return getBaseCRS().getDatumEnsemble();
     }
 }

@@ -17,6 +17,7 @@
  */
 package org.opengis.referencing.crs;
 
+import org.opengis.referencing.datum.DatumEnsemble;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.annotation.UML;
 
@@ -26,7 +27,10 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A 2- or 3-dimensional <abbr>CRS</abbr> used over the whole planet or substantial parts of it.
- * This type of CRS can be used with coordinate systems of type
+ * If the geodetic reference frame is dynamic then the geodetic <abbr>CRS</abbr> is dynamic, else it is static.
+ *
+ * <h2>Permitted coordinate systems</h2>
+ * This type of <abbr>CRS</abbr> can be used with coordinate systems of type
  * {@link org.opengis.referencing.cs.CartesianCS},
  * {@link org.opengis.referencing.cs.SphericalCS} or
  * {@link org.opengis.referencing.cs.EllipsoidalCS}.
@@ -37,12 +41,38 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.1
  */
-@UML(identifier="SC_GeodeticCRS", specification=ISO_19111, version=2007)
+@UML(identifier="GeodeticCRS", specification=ISO_19111)
 public interface GeodeticCRS extends SingleCRS {
     /**
-     * Returns the datum, which shall be geodetic.
+     * Returns the reference frame, which shall be geodetic.
+     * This property may be null if this <abbr>CRS</abbr> is related to an object
+     * identified only by a {@linkplain #getDatumEnsemble() datum ensemble}.
+     *
+     * @return the reference frame, or {@code null} if this <abbr>CRS</abbr> is related to
+     *         an object identified only by a {@linkplain #getDatumEnsemble() datum ensemble}.
+     *
+     * @condition Mandatory if the {@linkplain #getDatumEnsemble() datum ensemble} is not documented.
      */
     @Override
-    @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="datum", obligation=CONDITIONAL, specification=ISO_19111)
     GeodeticDatum getDatum();
+
+    /**
+     * Returns the datum ensemble, which shall have geodetic datum members.
+     * This property may be null if this <abbr>CRS</abbr> is related to an object
+     * identified only by a single {@linkplain #getDatum() datum}.
+     *
+     * <p>The default implementation returns {@code null}.</p>
+     *
+     * @return the datum ensemble, or {@code null} if this <abbr>CRS</abbr> is related
+     *         to an object identified only by a single {@linkplain #getDatum() datum}.
+     *
+     * @condition Mandatory if the {@linkplain #getDatum() datum} is not documented.
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="datum", obligation=CONDITIONAL, specification=ISO_19111)
+    default DatumEnsemble<GeodeticDatum> getDatumEnsemble() {
+        return null;
+    }
 }

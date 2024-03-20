@@ -64,7 +64,7 @@ public interface ToleranceModifier {
      * geographic coordinates. This modifier is identical to the {@link #GEOGRAPHIC} tolerance
      * modifier, except that φ and λ axes are interchanged. This is the most common
      * modifier used when testing {@link GeographicCRS} instances created from the
-     * <a href="http://www.epsg.org">EPSG</a> database.
+     * <a href="https://epsg.org">EPSG geodetic registry</a>.
      *
      * @see ToleranceModifiers#geographic(int, int)
      */
@@ -88,7 +88,7 @@ public interface ToleranceModifier {
      * the result of an <i>reverse projection</i>. This modifier is identical to the
      * {@link #PROJECTION} tolerance modifier, except that φ and λ axes are
      * interchanged. This is the most common modifier used when testing {@link ProjectedCRS}
-     * instances created from the <a href="http://www.epsg.org">EPSG</a> database.
+     * instances created from the <a href="https://epsg.org">EPSG geodetic registry</a>.
      *
      * @see ToleranceModifiers#projection(int, int)
      */

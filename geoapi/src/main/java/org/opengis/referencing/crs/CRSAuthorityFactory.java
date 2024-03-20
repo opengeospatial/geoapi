@@ -31,7 +31,7 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
  * Creates coordinate reference systems using authority codes.
  * External authorities are used to manage definitions of objects used in this interface.
  * The definitions of these objects are referenced using code strings.
- * A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
+ * A commonly used authority is the <a href="https://epsg.org">EPSG geodetic registry</a>.
  *
  * <h2>Default methods</h2>
  * All {@code create(…)} methods in this interface are optional.
