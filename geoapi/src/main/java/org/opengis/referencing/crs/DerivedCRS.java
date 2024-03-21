@@ -64,7 +64,7 @@ import static org.opengis.annotation.Specification.*;
  * @see CRSFactory#createDerivedCRS(Map, CoordinateReferenceSystem, Conversion, CoordinateSystem)
  */
 @SuppressWarnings("removal")
-@UML(identifier="DerivedCRS", specification=ISO_19111, version=2007)
+@UML(identifier="DerivedCRS", specification=ISO_19111)
 public interface DerivedCRS extends GeneralDerivedCRS {
     /**
      * Returns the <abbr>CRS</abbr> that is the base for this derived <abbr>CRS</abbr>.

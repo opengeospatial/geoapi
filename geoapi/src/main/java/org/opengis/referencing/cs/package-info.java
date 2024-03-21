@@ -31,18 +31,26 @@
  * Coordinates in coordinate tuples shall be supplied in the order in which the coordinate system's axes are defined.</p>
  *
  * <h2>Coordinate system types</h2>
- * A coordinate system implies how coordinates are calculated from geometric elements such as distances and
- * angles and vice versa. These rules are not specified in details, but are implied by the coordinate system type.
- * Certain subtypes of coordinate system shall be used only with specific subtypes of coordinate reference system.
+ * A coordinate system implies how coordinates are calculated from geometric elements such as distances and angles
+ * and vice versa. These rules are not specified in details, but are implied by the coordinate system interface.
+ * Certain sub-interfaces of coordinate system shall be used only with specific sub-interfaces of <abbr>CRS</abbr>.
  * The restrictions are documented in the javadoc of each <abbr>CRS</abbr> subtype.
  *
- * <p>Coordinate system <em>types</em> should not be confused with coordinate system <em>unions</em>.
- * The latter look similar to <abbr>CS</abbr> types, but do not imply a specific set of mathematical rules.
- * A <abbr>CS</abbr> union is only an enumeration of the <abbr>CS</abbr> types that can be associated to a
- * given <abbr>CRS</abbr> type. For example, ISO 19111 defines {@code GeodeticCS} as the enumeration of the
- * types of <abbr>CS</abbr> that can be associated to a {@code GeodeticCRS}.
- * Since unions are not available in Java (they are available in some other languages such as C++),
- * GeoAPI replaces them by Javadoc. All <abbr>CS</abbr> defined in this packages are types.</p>
+ * <p>Coordinate system <em>interfaces</em> should not be confused with coordinate system <em>unions</em>.
+ * The latter look similar to <abbr>CS</abbr> interfaces, but do not imply a specific set of mathematical rules.
+ * A <abbr>CS</abbr> union is only an enumeration of the <abbr>CS</abbr> interfaces that can be associated to a
+ * given <abbr>CRS</abbr> interface. Because the Java language has no direct support for unions, the <abbr>CS</abbr>
+ * unions defined by {@linkplain org.opengis.annotation.Specification.ISO_19111 ISO 19111} are not part of GeoAPI.
+ * They are replaced by Javadoc documenting the constraints.</p>
+ *
+ * @departure constraint
+ *   The following unions defined by ISO 19111 are excluded: {@code GeodeticCS} and {@code EngineeringCS}.
+ *   The reason is that the {@code union} construct found in some languages like C/C++ is not available in Java.
+ *   Unions could be simulated, for example, by defining {@code GeodeticCS} as a parent interface of
+ *   {@link org.opengis.referencing.cs.CartesianCS}, {@link org.opengis.referencing.cs.SphericalCS} and
+ *   {@link org.opengis.referencing.cs.EllipsoidalCS} (the members of the {@code GeodeticCS} union).
+ *   However, it would blur the semantics of subtyping as an “is type of” hierarchy.
+ *   For example, a {@code CartesianCS} can be used in non-geodetic contexts.
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)

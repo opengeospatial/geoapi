@@ -151,6 +151,7 @@ public final class NameSpaces {
                             case "org.opengis.coordinate":
                             case "org.opengis.referencing.datum":
                             case "org.opengis.referencing.crs":
+                            case "org.opengis.referencing.cs":
                             case "org.opengis.referencing": prefix = "RS";  break;
                             case "org.opengis.filter":
                             case "org.opengis.filter.capability": return null;

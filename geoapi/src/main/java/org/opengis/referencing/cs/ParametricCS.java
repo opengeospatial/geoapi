@@ -24,7 +24,7 @@ import static org.opengis.annotation.Specification.ISO_19111_2;
 
 
 /**
- * A 1-dimensional coordinate system containing a single axis.
+ * A 1-dimensional coordinate system in which a physical property or function is used as the dimension.
  * This coordinate system uses parameter values or functions to describe the position of a point.
  *
  * <p>This type of CS can be used by coordinate reference systems of type
