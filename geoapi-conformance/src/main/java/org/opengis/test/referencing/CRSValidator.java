@@ -297,7 +297,11 @@ public class CRSValidator extends ReferencingValidator {
      * Validates the given coordinate reference system.
      *
      * @param  object  the object to validate, or {@code null}.
+     *
+     * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
      */
+    @SuppressWarnings("removal")
+    @Deprecated(since="3.1", forRemoval=true)
     public void validate(final ImageCRS object) {
         if (object == null) {
             return;
@@ -332,7 +336,7 @@ public class CRSValidator extends ReferencingValidator {
                    cs instanceof SphericalCS   ||
                    cs instanceof UserDefinedCS,
                 "EngineeringCRS: illegal coordinate system type. Shall be one of affine, "
-                + "Cartesian, cylindrical, linear, polar, spherical or user defined.");
+                + "Cartesian, cylindrical, linear, polar, or spherical.");
 
         final Datum datum = object.getDatum();
         mandatory("EngineeringCRS: shall have a Datum.", datum);

@@ -363,6 +363,7 @@ public enum Content {
             org.opengis.metadata.spatial        .SpatialRepresentationType    .class,
             org.opengis.metadata.spatial        .TopologyLevel                .class,
             org.opengis.referencing             .ReferenceSystemType          .class,
+            org.opengis.referencing.cs          .CoordinateDataType           .class,
             org.opengis.referencing.cs          .AxisDirection                .class,
             org.opengis.referencing.cs          .RangeMeaning                 .class,
             org.opengis.referencing.datum       .PixelInCell                  .class,

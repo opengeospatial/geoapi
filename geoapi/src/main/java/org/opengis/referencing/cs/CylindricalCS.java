@@ -23,20 +23,30 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 3-dimensional coordinate system consisting of a {@link PolarCS} extended by a straight axis perpendicular
- * to the plane spanned by the polar CS.
+ * A 3-dimensional cylindrical coordinate system.
+ * It consists of a {@link PolarCS} extended by a straight axis perpendicular to the plane spanned by the polar CS.
  *
- * <p>This type of CS can be used by coordinate reference systems of type
+ * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
  * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   1.0
  *
  * @see PolarCS
  * @see CSAuthorityFactory#createCylindricalCS(String)
  * @see CSFactory#createCylindricalCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
  */
-@UML(identifier="CS_CylindricalCS", specification=ISO_19111, version=2007)
+@UML(identifier="CylindricalCS", specification=ISO_19111)
 public interface CylindricalCS extends CoordinateSystem {
+    /**
+     * Returns the number of dimensions, which is 3 for this type of coordinate system.
+     *
+     * @return always 3.
+     */
+    @Override
+    default int getDimension() {
+        return 3;
+    }
 }

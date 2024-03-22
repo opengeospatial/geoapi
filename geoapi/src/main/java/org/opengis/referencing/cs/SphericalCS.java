@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  * In the two-dimensional case, the radius is omitted and may be implicitly an ellipsoid surface.
  * Not to be confused with an {@link EllipsoidalCS} based on an ellipsoid "degenerated" into a sphere.
  *
- * <p>This type of CS can be used by coordinate reference systems of type
+ * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
  * {@link org.opengis.referencing.crs.GeocentricCRS} or
  * {@link org.opengis.referencing.crs.EngineeringCRS}.
  * The following examples describe some possible set of axes for spherical CS used with the above-cited CRS:</p>
@@ -43,22 +43,19 @@ import static org.opengis.annotation.Specification.*;
  * <table class="ogc">
  *   <caption>Example 2: used with an Engineering CRS</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Distance</td>  <td>r</td> <td>{@code AxisDirection.valueOf("AWAY_FROM")}</td>         <td>kilometre</td></tr>
- *   <tr><td>Longitude</td> <td>φ</td> <td>{@code AxisDirection.valueOf("COUNTER_CLOCKWISE")}</td> <td>degree</td></tr>
- *   <tr><td>Elevation</td> <td>Θ</td> <td>{@link AxisDirection#UP}</td>                           <td>degree</td></tr>
+ *   <tr><td>Distance</td>  <td>r</td> <td>{@link AxisDirection#AWAY_FROM}</td>         <td>kilometre</td></tr>
+ *   <tr><td>Longitude</td> <td>φ</td> <td>{@link AxisDirection#COUNTER_CLOCKWISE}</td> <td>degree</td></tr>
+ *   <tr><td>Elevation</td> <td>Θ</td> <td>{@link AxisDirection#UP}</td>                <td>degree</td></tr>
  * </table>
  *
- * <div class="note"><b>Note:</b>
- * the above example uses two axis directions that are not defined in ISO 19111,
- * but found in ISO 19162 as "{@code awayFrom}" and "{@code counterClockwise}".</div>
- *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  *
  * @see CSAuthorityFactory#createSphericalCS(String)
  * @see CSFactory#createSphericalCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
  */
-@UML(identifier="CS_SphericalCS", specification=ISO_19111, version=2007)
+@UML(identifier="SphericalCS", specification=ISO_19111)
 public interface SphericalCS extends CoordinateSystem {
 }

@@ -148,34 +148,6 @@ class TemporalCRS(SingleCRS):
         pass
 
 
-class ImageCRS(SingleCRS):
-    """
-    An engineering coordinate reference system applied to locations in images.
-    """
-
-    @property
-    @abstractmethod
-    def coordinate_system(self) -> AffineCS:
-        """
-        Returns the cartesian coordinate system.
-
-        :return: The coordinate system.
-        :rtype: AffineCS
-        """
-        pass
-
-    @property
-    @abstractmethod
-    def datum(self) -> ImageDatum:
-        """
-        Returns the datum, which must be an image one.
-
-        :return: The datum
-        :rtype: ImageDatum
-        """
-        pass
-
-
 class EngineeringCRS(SingleCRS):
     """
     A contextually local coordinate reference system.

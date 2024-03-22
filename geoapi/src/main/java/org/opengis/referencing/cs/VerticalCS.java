@@ -29,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
  * An exact definition is deliberately not provided as the complexities of the subject fall
  * outside the scope of the ISO 19111 specification.
  *
- * <p>This type of CS can be used by coordinate reference systems of type
+ * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
  * {@link org.opengis.referencing.crs.VerticalCRS}.
  * The following examples describe some possible axes for vertical CS used with the above-cited CRS:</p>
  *
@@ -45,13 +45,23 @@ import static org.opengis.annotation.Specification.*;
  *   <tr><td>Depth</td> <td>D</td> <td>{@link AxisDirection#DOWN}</td> <td>metre</td></tr>
  * </table>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  *
  * @see CSAuthorityFactory#createVerticalCS(String)
  * @see CSFactory#createVerticalCS(Map, CoordinateSystemAxis)
  */
-@UML(identifier="CS_VerticalCS", specification=ISO_19111, version=2007)
+@UML(identifier="VerticalCS", specification=ISO_19111)
 public interface VerticalCS extends CoordinateSystem {
+    /**
+     * Returns the number of dimensions, which is 1 for this type of coordinate system.
+     *
+     * @return always 1.
+     */
+    @Override
+    default int getDimension() {
+        return 1;
+    }
 }

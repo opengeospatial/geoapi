@@ -54,8 +54,7 @@ import org.opengis.referencing.datum.DatumEnsemble;
  * {@link org.opengis.referencing.cs.CylindricalCS},
  * {@link org.opengis.referencing.cs.LinearCS},
  * {@link org.opengis.referencing.cs.PolarCS},
- * {@link org.opengis.referencing.cs.SphericalCS},
- * {@link org.opengis.referencing.cs.UserDefinedCS}.
+ * {@link org.opengis.referencing.cs.SphericalCS}.
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)

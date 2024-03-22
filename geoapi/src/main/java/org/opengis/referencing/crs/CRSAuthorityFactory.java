@@ -219,7 +219,11 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @return the coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
      */
+    @SuppressWarnings("removal")
+    @Deprecated(since="3.1", forRemoval=true)
     default ImageCRS createImageCRS(final String code) throws FactoryException {
         final CoordinateReferenceSystem crs = createCoordinateReferenceSystem(code);
         try {

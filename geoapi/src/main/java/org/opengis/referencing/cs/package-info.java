@@ -40,17 +40,24 @@
  * The latter look similar to <abbr>CS</abbr> interfaces, but do not imply a specific set of mathematical rules.
  * A <abbr>CS</abbr> union is only an enumeration of the <abbr>CS</abbr> interfaces that can be associated to a
  * given <abbr>CRS</abbr> interface. Because the Java language has no direct support for unions, the <abbr>CS</abbr>
- * unions defined by {@linkplain org.opengis.annotation.Specification.ISO_19111 ISO 19111} are not part of GeoAPI.
+ * unions defined by {@linkplain org.opengis.annotation.Specification#ISO_19111 ISO 19111} are not part of GeoAPI.
  * They are replaced by Javadoc documenting the constraints.</p>
  *
  * @departure constraint
- *   The following unions defined by ISO 19111 are excluded: {@code GeodeticCS} and {@code EngineeringCS}.
- *   The reason is that the {@code union} construct found in some languages like C/C++ is not available in Java.
+ *   The {@code GeodeticCS}, {@code EngineeringCS} and {@code DerivedProjectedCS} unions are omitted because unions
+ *   are not directly supported in the Java language (they are supported in some other languages such as C/C++).
  *   Unions could be simulated, for example, by defining {@code GeodeticCS} as a parent interface of
  *   {@link org.opengis.referencing.cs.CartesianCS}, {@link org.opengis.referencing.cs.SphericalCS} and
  *   {@link org.opengis.referencing.cs.EllipsoidalCS} (the members of the {@code GeodeticCS} union).
  *   However, it would blur the semantics of subtyping as an “is type of” hierarchy.
  *   For example, a {@code CartesianCS} can be used in non-geodetic contexts.
+ *
+ * @departure harmonization
+ *   The {@code OrdinalCS} and {@code TemporalCountCS} interfaces are omitted because they are about a type
+ *   of coordinate values (integers) rather than the mathematical rules implied by the coordinate system.
+ *   The {@code DateTimeTemporalCS} interface is omitted for similar reason.
+ *   The {@code TemporalMeasureCS} interface is omitted because it behaves like most other axes,
+ *   and therefor is adequately covered by the {@code TimeCS} parent interface.
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)

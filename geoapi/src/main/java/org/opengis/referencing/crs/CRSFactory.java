@@ -211,7 +211,11 @@ public interface CRSFactory extends ObjectFactory {
      * @param  cs     the Cartesian or Oblique Cartesian coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
+     *
+     * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
      */
+    @SuppressWarnings("removal")
+    @Deprecated(since="3.1", forRemoval=true)
     default ImageCRS createImageCRS(Map<String,?> properties,
                                     ImageDatum    datum,
                                     AffineCS      cs) throws FactoryException

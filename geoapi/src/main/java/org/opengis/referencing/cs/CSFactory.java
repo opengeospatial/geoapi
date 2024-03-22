@@ -324,7 +324,12 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis1  the second axis.
      * @return the coordinate system for the given properties and axes.
      * @throws FactoryException if the object creation failed.
+     *
+     * @deprecated User-defined <abbr>CS</abbr> needs their own constructor
+     *             for instantiating their specialized type.
      */
+    @SuppressWarnings("removal")
+    @Deprecated(since="3.1", forRemoval=true)
     default UserDefinedCS createUserDefinedCS(Map<String,?>  properties,
                                               CoordinateSystemAxis axis0,
                                               CoordinateSystemAxis axis1) throws FactoryException
@@ -342,7 +347,12 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis2  the third  axis.
      * @return the coordinate system for the given properties and axes.
      * @throws FactoryException if the object creation failed.
+     *
+     * @deprecated User-defined <abbr>CS</abbr> needs their own constructor
+     *             for instantiating their specialized type.
      */
+    @SuppressWarnings("removal")
+    @Deprecated(since="3.1", forRemoval=true)
     default UserDefinedCS createUserDefinedCS(Map<String,?>  properties,
                                               CoordinateSystemAxis axis0,
                                               CoordinateSystemAxis axis1,

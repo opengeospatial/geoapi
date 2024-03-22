@@ -376,7 +376,11 @@ public class Validators {
      * @param  object  the object to validate, or {@code null}.
      *
      * @see CRSValidator#validate(ImageCRS)
+     *
+     * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
      */
+    @SuppressWarnings("removal")
+    @Deprecated(since="3.1", forRemoval=true)
     public static void validate(final ImageCRS object) {
         DEFAULT.validate(object);
     }
@@ -531,6 +535,8 @@ public class Validators {
      *
      * @see CSValidator#validate(UserDefinedCS)
      */
+    @SuppressWarnings("removal")
+    @Deprecated(since="3.1", forRemoval=true)
     public static void validate(final UserDefinedCS object) {
         DEFAULT.validate(object);
     }

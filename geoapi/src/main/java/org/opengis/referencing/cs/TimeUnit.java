@@ -53,38 +53,49 @@ final class TimeUnit implements TemporalUnit, Serializable {
     private static final double[] DURATIONS;
 
     /**
+     * Tolerance in seconds when comparing durations.
+     * The {@link ChronoUnit} API considers all durations equal or greater than one day as estimated rather than exact.
+     * Therefor, it is not a violation of {@link java.time} API if the tolerance threshold is relaxed for those units.
+     * This class tolerates a difference of one hour per month. The intend is to accept different definitions of years,
+     * e.g., 365.2425 days according Java versus 365.24219265 days according the IUGS definition of tropical year.
+     */
+    private static final double[] TOLERANCES;
+
+    /**
      * The temporal units corresponding to each element in the {@link #DURATIONS} array.
+     * This array has the same length as {@link #DURATIONS} and {@link #TOLERANCES}.
      */
     private static final ChronoUnit[] UNITS;
 
     /**
-     * Index of the unit for which an estimated duration may be used. {@link ChronoUnit} API
-     * considers all durations equal or greater than one day as estimated rather than exact.
-     * Therefor, it is not a violation of {@link java.time} API if the tolerance threshold
-     * is relaxed for those units. So this class tolerates a half-day difference for units
-     * equal or greater than one month.
-     */
-    private static final int RELAX_INDEX;
-
-    /**
-     * Initialize the static fields.
+     * Initializes the static fields.
      */
     static {
         final var m = new TreeMap<Double,ChronoUnit>();
         for (final ChronoUnit unit : ChronoUnit.values()) {
-            if (unit != ChronoUnit.FOREVER) {
+            if (unit.isDateBased() || unit.isTimeBased()) {
                 final Duration duration = unit.getDuration();
                 m.put(duration.getSeconds() + duration.getNano() / 1E+9, unit);
             }
         }
-        DURATIONS = new double[m.size()];
-        UNITS = new ChronoUnit[DURATIONS.length];
-        int i = 0, month = 0;
+        int i = m.size();
+        DURATIONS  = new double[i];
+        TOLERANCES = new double[i];
+        UNITS =  new ChronoUnit[i];
+        i = 0;
+        double tolerance = 0;
         for (final Map.Entry<Double,ChronoUnit> e : m.entrySet()) {
-            if ((UNITS[i] = e.getValue()) == ChronoUnit.MONTHS) month = i;
-            DURATIONS[i++] = e.getKey();
+            switch (UNITS[i] = e.getValue()) {
+                case MILLENNIA:
+                case CENTURIES:
+                case DECADES: tolerance *= 10;    break;
+                case YEARS:   tolerance *= 12;    break;
+                case MONTHS:  tolerance  = 60*60; break;
+            }
+            DURATIONS [i] = e.getKey();
+            TOLERANCES[i] = (tolerance != 0 && UNITS[i].isDurationEstimated()) ? tolerance : 2*Math.ulp(DURATIONS[i]);
+            i++;
         }
-        RELAX_INDEX = month;
     }
 
     /**
@@ -115,11 +126,12 @@ final class TimeUnit implements TemporalUnit, Serializable {
      * then that unit is returned. Otherwise, if the duration can be expressed as a multiple of one
      * of the {@link ChronoUnit}s, then the multiple and the unit are wrapped in a {@code TimeUnit}.
      *
-     * @param  unit  the unit of measurement to map.
+     * @param  unit     the unit of measurement to map.
+     * @param  lenient  whether to use an arbitrary tolerance threshold.
      * @return the temporal unit equivalent to the given unit of measurement.
      * @throws ArithmeticException if the given unit overflows or underflows the capability of the {@link java.time} API.
      */
-    static TemporalUnit valueOf(final Unit<Time> unit) {
+    static TemporalUnit valueOf(final Unit<Time> unit, final boolean lenient) {
         final Unit<Time> base = unit.getSystemUnit();
         if (!"s".equals(base.getSymbol())) {    // Base unit shall be second from SI.
             throw new UnconvertibleException("Unknown system unit: " + base);
@@ -131,20 +143,18 @@ final class TimeUnit implements TemporalUnit, Serializable {
         }
         /*
          * There is no exact match for the amount of seconds. Search for a close match.
-         * The tolerance threshold is half-day for durations equal or larger than one month,
-         * and 1 ULP (practically exact match) for smaller durations.
+         * A tolerance threshold is applied only for some units considered as estimated.
+         * The tolerance is 2 ULP (practically exact match) for smaller durations.
          */
-        i = Math.min(~i, DURATIONS.length - 1);     // Tild operator, not minus.
-        double tolerance = (i >= RELAX_INDEX) ? 12*60*60 : Math.ulp(seconds);
+        i = Math.min(~i, DURATIONS.length - 1);                 // Tild operator, not minus.
         do {
-            final double duration = DURATIONS[i];
-            final long n = Math.round(seconds / duration);
-            if (Math.abs(n * duration - seconds) <= tolerance) {
-                if (n <= 0) break;
-                return (n != 1) ? new TimeUnit(n, UNITS[i]) : UNITS[i];
-            }
-            if (i == RELAX_INDEX) {
-                tolerance = Math.ulp(seconds);
+            if (lenient || !UNITS[i].isDurationEstimated()) {
+                final double duration = DURATIONS[i];
+                final long n = Math.round(seconds / duration);
+                if (Math.abs(n * duration - seconds) <= TOLERANCES[i]) {
+                    if (n <= 0) break;
+                    return (n != 1) ? new TimeUnit(n, UNITS[i]) : UNITS[i];
+                }
             }
         } while (--i >= 0);
         throw new ArithmeticException("Cannot represent " + unit + " with nanosecond precision.");

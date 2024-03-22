@@ -534,7 +534,11 @@ public class ValidatorContainer implements Cloneable {
      * @param  object  the object to validate, or {@code null}.
      *
      * @see CRSValidator#validate(ImageCRS)
+     *
+     * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
      */
+    @SuppressWarnings("removal")
+    @Deprecated(since="3.1", forRemoval=true)
     public final void validate(final ImageCRS object) {
         crs.validate(object);
     }
@@ -689,6 +693,8 @@ public class ValidatorContainer implements Cloneable {
      *
      * @see CSValidator#validate(UserDefinedCS)
      */
+    @SuppressWarnings("removal")
+    @Deprecated(since="3.1", forRemoval=true)
     public final void validate(final UserDefinedCS object) {
         cs.validate(object);
     }

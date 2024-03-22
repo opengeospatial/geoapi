@@ -28,14 +28,17 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Meaning of the axis value range specified through minimum value and maximum value.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   2.1
  *
+ * @see CoordinateSystemAxis#getMinimumValue()
+ * @see CoordinateSystemAxis#getMaximumValue()
  * @see CoordinateSystemAxis#getRangeMeaning()
  */
 @Vocabulary(capacity=2)
-@UML(identifier="CS_RangeMeaning", specification=ISO_19111, version=2007)
+@UML(identifier="RangeMeaning", specification=ISO_19111)
 public final class RangeMeaning extends CodeList<RangeMeaning> {
     /**
      * Serial number for compatibility with different versions.
@@ -43,25 +46,23 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
     private static final long serialVersionUID = -3525560558294789416L;
 
     /**
-     * Any value between and including {@linkplain CoordinateSystemAxis#getMinimumValue() minimum value}
-     * and {@linkplain CoordinateSystemAxis#getMaximumValue() maximum value} is valid.
+     * Any value between and including minimum and maximum value is valid.
      */
     @UML(identifier="exact", obligation=CONDITIONAL, specification=ISO_19111)
     public static final RangeMeaning EXACT = new RangeMeaning("EXACT");
 
     /**
-     * The axis is continuous with values wrapping around at the
-     * {@linkplain CoordinateSystemAxis#getMinimumValue() minimum value} and
-     * {@linkplain CoordinateSystemAxis#getMaximumValue() maximum value}.
+     * The axis is continuous with values wrapping around at the minimum and maximum value.
      * Values with the same meaning repeat modulo the difference between maximum value and
      * minimum value.
      *
-     * <div class="note"><b>Example:</b> in a geographic CRS, longitude values are
-     * often defined with a finite extent (e.g., from -180 degrees to +180 degrees). The minimum
-     * and maximum longitude limits define a single line (on the ellipsoid, sphere, or cylinder),
-     * known as the anti-meridian, across which longitude values are discontinuous: as this line
-     * is crossed, longitude changes abruptly (e.g., going West from a little more than -180° to
-     * a little less than +180°).</div>
+     * <h4>Example</h4>
+     * In a geographic <abbr>CRS</abbr>, longitude values are often defined with a finite extent
+     * (e.g., from -180 degrees to +180 degrees). The minimum and maximum longitude limits define
+     * a single line (on the ellipsoid, sphere, or cylinder), known as the anti-meridian,
+     * across which longitude values are discontinuous:
+     * as this line is crossed, longitude changes abruptly
+     * (e.g., going West from a little more than -180° to a little less than +180°).
      */
     @UML(identifier="wraparound", obligation=CONDITIONAL, specification=ISO_19111)
     public static final RangeMeaning WRAPAROUND = new RangeMeaning("WRAPAROUND");

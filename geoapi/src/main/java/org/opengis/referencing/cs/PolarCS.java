@@ -23,25 +23,23 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 2-dimensional coordinate system in which position is specified by the distance from the
- * origin and the angle between the line from the origin to a point and a reference direction.
+ * A 2-dimensional polar coordinate system.
+ * Position is specified by the distance from the origin and the angle
+ * between the line from the origin to a point and a reference direction.
  *
- * <p>This type of CS can be used by coordinate reference systems of type
+ * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
  * {@link org.opengis.referencing.crs.EngineeringCRS}.
  * The following examples describe some possible set of axes for polar CS used with the above-cited CRS:</p>
  *
  * <table class="ogc">
  *   <caption>Example: used with an Engineering CRS</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Distance</td> <td>r</td> <td>{@code AxisDirection.valueOf("AWAY_FROM")}</td> <td>metre</td></tr>
- *   <tr><td>Bearing</td>  <td>Θ</td> <td>{@code AxisDirection.valueOf("CLOCKWISE")}</td> <td>degree</td></tr>
+ *   <tr><td>Distance</td> <td>r</td> <td>{@link AxisDirection#AWAY_FROM}</td> <td>metre</td></tr>
+ *   <tr><td>Bearing</td>  <td>Θ</td> <td>{@link AxisDirection#CLOCKWISE}</td> <td>degree</td></tr>
  * </table>
  *
- * <div class="note"><b>Note:</b>
- * the above example uses two axis directions that are not defined in ISO 19111,
- * but found in ISO 19162 as "{@code awayFrom}" and "{@code clockwise}".</div>
- *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  *
@@ -49,6 +47,15 @@ import static org.opengis.annotation.Specification.*;
  * @see CSAuthorityFactory#createPolarCS(String)
  * @see CSFactory#createPolarCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)
  */
-@UML(identifier="CS_PolarCS", specification=ISO_19111, version=2007)
+@UML(identifier="PolarCS", specification=ISO_19111)
 public interface PolarCS extends CoordinateSystem {
+    /**
+     * Returns the number of dimensions, which is 2 for this type of coordinate system.
+     *
+     * @return always 2.
+     */
+    @Override
+    default int getDimension() {
+        return 2;
+    }
 }
