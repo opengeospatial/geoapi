@@ -58,12 +58,22 @@ public interface CoordinateMetadata {
      * It should be an object from the {@link java.time} package such as {@link java.time.Instant}.
      * This attribute is required if the <abbr>CRS</abbr> is dynamic.
      *
+     * <h4>Temporal object type</h4>
+     * The type of the returned object depends on the epoch accuracy and the calendar in use.
+     * For coordinates on Earth, the temporal type should be {@link java.time.Year} if the epoch is merely a year,
+     * {@link java.time.YearMonth} or {@link java.time.LocalDate} if a better precision is available,
+     * up to {@link java.time.OffsetDateTime} or {@link java.time.Instant} for maximal precision.
+     * For coordinates on another planet, the time measurement may use a non-Gregorian calendar.
+     * In the latter case, the type of the returned temporal object is currently implementation dependent.
+     *
      * @departure integration
      *   The ISO specification uses a decimal year in the Gregorian calendar.
      *   For example, 2017-03-25 in the Gregorian calendar is epoch 2017.23.
      *   GeoAPI delegates to the Java time package instead.
      *
      * @return epoch at which coordinate tuples are valid.
+     *
+     * @see org.opengis.referencing.datum.DynamicReferenceFrame#getFrameReferenceEpoch()
      */
     @UML(identifier="coordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
     default Optional<Temporal> getCoordinateEpoch() {

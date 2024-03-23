@@ -27,6 +27,12 @@
  * The datum itself is not time-dependent, but any transformations of the associated coordinates
  * to an Earth-fixed or other coordinate reference system may contain time-dependent parameters.
  *
+ * <h2>Dynamic reference frame</h2>
+ * If the subtype of {@code Datum} is geodetic or vertical, the frame-defining parameters may
+ * include time evolution to describe the motions of points used to define the reference frame.
+ * Then the geodetic or vertical reference frame is
+ * {@linkplain org.opengis.referencing.datum.DynamicReferenceFrame dynamic}.
+ *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1

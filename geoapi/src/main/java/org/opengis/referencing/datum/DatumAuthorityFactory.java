@@ -106,7 +106,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
     }
 
     /**
-     * Returns a geodetic datum from a code.
+     * Returns a geodetic reference frame from a code.
      *
      * @param  code  value allocated by authority.
      * @return the datum for the given code.
@@ -235,8 +235,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @deprecated This method is ambiguous. Use {@link #createDatum(String)} instead.
      */
     @Override
-    @SuppressWarnings("removal")
-    @Deprecated(since = "3.1", forRemoval = true)
+    @Deprecated(since = "3.1")
     default org.opengis.referencing.IdentifiedObject createObject(String code) throws FactoryException {
         return createDatum(code);
     }

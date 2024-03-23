@@ -24,6 +24,17 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
+ * Datum ensemble.
+ *
+ * A datum ensemble is a construct to facilitate the merging of realizations of the same reference system
+ * for lower accuracy manipulation. A datum ensemble is a collection of two or more reference frames that
+ * are realizations of one Terrestrial or Vertical Reference System and which for all but the highest
+ * accuracy requirements may be considered to be insignificantly different from each other.
+ * Datasets referenced to the various realizations may be merged without change of coordinates.
+ *
+ * <h2>Constraints</h2>
+ * If the datums specify a {@linkplain Datum#getConventionalRS() conventional reference system} (<abbr>RS</abbr>),
+ * then all datums in a datum ensemble shall have the same conventional <abbr>RS</abbr>.
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)

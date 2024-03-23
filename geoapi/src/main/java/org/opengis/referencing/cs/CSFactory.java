@@ -328,8 +328,7 @@ public interface CSFactory extends ObjectFactory {
      * @deprecated User-defined <abbr>CS</abbr> needs their own constructor
      *             for instantiating their specialized type.
      */
-    @SuppressWarnings("removal")
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since="3.1")
     default UserDefinedCS createUserDefinedCS(Map<String,?>  properties,
                                               CoordinateSystemAxis axis0,
                                               CoordinateSystemAxis axis1) throws FactoryException
@@ -351,8 +350,7 @@ public interface CSFactory extends ObjectFactory {
      * @deprecated User-defined <abbr>CS</abbr> needs their own constructor
      *             for instantiating their specialized type.
      */
-    @SuppressWarnings("removal")
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since="3.1")
     default UserDefinedCS createUserDefinedCS(Map<String,?>  properties,
                                               CoordinateSystemAxis axis0,
                                               CoordinateSystemAxis axis1,

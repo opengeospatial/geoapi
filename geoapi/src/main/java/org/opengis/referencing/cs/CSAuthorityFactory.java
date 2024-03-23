@@ -248,8 +248,7 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @deprecated This method is ambiguous. Use {@link #createCoordinateSystem(String)} instead.
      */
     @Override
-    @SuppressWarnings("removal")
-    @Deprecated(since = "3.1", forRemoval = true)
+    @Deprecated(since = "3.1")
     default org.opengis.referencing.IdentifiedObject createObject(String code) throws FactoryException {
         return createCoordinateSystem(code);
     }

@@ -121,6 +121,7 @@ public interface DirectPosition extends Position {
      *         in this {@code DirectPosition} object.
      *
      * @deprecated Renamed {@link #getCoordinates()}.
+     * To be removed because of the risk of confusion with {@link #getCoordinate(int)}.
      */
     @Deprecated(since="3.1", forRemoval=true)
     default double[] getCoordinate() {
@@ -149,7 +150,7 @@ public interface DirectPosition extends Position {
      *
      * @deprecated Renamed {@link #getCoordinate(int)}.
      */
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since = "3.1")
     default double getOrdinate(int dimension) throws IndexOutOfBoundsException {
         return getCoordinate(dimension);
     }
@@ -185,7 +186,7 @@ public interface DirectPosition extends Position {
      *
      * @deprecated Renamed {@link #setCoordinate(int, double)}.
      */
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since = "3.1")
     default void setOrdinate(int dimension, double value)
             throws IndexOutOfBoundsException, UnsupportedOperationException
     {

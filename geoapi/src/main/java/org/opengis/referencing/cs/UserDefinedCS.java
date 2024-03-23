@@ -43,7 +43,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @deprecated User-defined coordinate systems should extend {@link CoordinateSystem} directly.
  */
-@Deprecated(since="3.1", forRemoval=true)
+@Deprecated(since="3.1")
 @UML(identifier="CS_UserDefinedCS", specification=ISO_19111, version=2007)
 public interface UserDefinedCS extends CoordinateSystem {
 }

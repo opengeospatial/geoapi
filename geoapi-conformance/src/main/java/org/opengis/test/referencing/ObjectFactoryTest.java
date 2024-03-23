@@ -163,7 +163,7 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         final Unit<Length> metre = units.metre();
         final Unit<Angle> degree = units.degree();
 
-        // Build a geodetic datum.
+        // Build a geodetic reference frame.
         assumeTrue(datumFactory != null, NO_DATUM_FACTORY);
         validators.validate(datum = datumFactory.createGeodeticDatum(name("World Geodetic System 1984"),
                                     datumFactory.createEllipsoid    (name("WGS 84"), 6378137.0, 298.257223563, metre),

@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * Some typical {@code IdentifiedObject} sub-types are:
  *
  * <ul>
- *   <li>{@linkplain org.opengis.referencing.datum.GeodeticDatum Geodetic Datum} (e.g. <cite>World Geodetic System 1984</cite>),</li>
+ *   <li>{@linkplain org.opengis.referencing.datum.GeodeticDatum Geodetic Reference Frame} (e.g. <cite>World Geodetic System 1984</cite>),</li>
  *   <li>{@linkplain org.opengis.referencing.operation.OperationMethod Operation Method} (e.g. <cite>Mercator (variant A)</cite>),</li>
  *   <li>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem Coordinate Reference System} (e.g. <cite>WGS 84 / World Mercator</cite>).</li>
  * </ul>
@@ -191,7 +191,7 @@ public interface IdentifiedObject {
     }
 
     /**
-     * Returns a <i>Well-Known Text</i> (WKT) for this object.
+     * Formats a <i>Well-Known Text</i> (WKT) for this object.
      * Well-Known Texts (WKT) may come in two formats:
      *
      * <ul>

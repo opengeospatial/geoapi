@@ -28,40 +28,32 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A prime meridian defines the origin from which longitude values are determined.
- * Most geodetic datums use Greenwich as their prime meridian.
- *
- * <p>Constraints:</p>
- * <ul>
- *   <li>If the prime meridian {@linkplain #getName() name} is “Greenwich” then the value of
- *       {@linkplain #getGreenwichLongitude() Greenwich longitude} shall be 0 degrees.</li>
- *   <li>Conversely if the Greenwich longitude value is zero, then the prime meridian name
- *       shall be “Greenwich”.</li>
- * </ul>
+ * Definition of the origin from which longitude values are determined.
+ * Most geodetic reference frames use Greenwich as their prime meridian.
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @version 3.0.1
+ * @version 3.1
  * @since   1.0
  *
  * @see DatumAuthorityFactory#createPrimeMeridian(String)
  * @see DatumFactory#createPrimeMeridian(Map, double, Unit)
  */
-@UML(identifier="CD_PrimeMeridian", specification=ISO_19111, version=2007)
+@UML(identifier="PrimeMeridian", specification=ISO_19111)
 public interface PrimeMeridian extends IdentifiedObject {
     /**
-     * Longitude of the prime meridian measured from the Greenwich meridian, positive eastward.
-     * The {@code greenwichLongitude} default value is zero, and that value shall be used
-     * when the {@linkplain #getName() meridian name} value is "Greenwich".
+     * Longitude of the prime meridian measured from the internationally-recognized reference meridian,
+     * positive eastward. If the {@linkplain #getName() meridian name} is "Greenwich", then this value
+     * shall be zero.
      *
      * @return the prime meridian Greenwich longitude, in {@linkplain #getAngularUnit angular unit}.
      * @unitof Angle
      */
-    @UML(identifier="greenwichLongitude", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="greenwichLongitude", obligation=MANDATORY, specification=ISO_19111)
     double getGreenwichLongitude();
 
     /**
-     * Returns the angular unit of the {@linkplain #getGreenwichLongitude() Greenwich longitude}.
+     * Returns the angular unit of the Greenwich longitude.
      *
      * @departure historic
      *   This attribute is inherited from an older OGC specification.

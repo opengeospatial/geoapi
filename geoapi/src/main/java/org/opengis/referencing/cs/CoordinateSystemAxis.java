@@ -76,7 +76,7 @@ import static org.opengis.annotation.Specification.*;
  * <h2>Axis direction</h2>
  * The {@linkplain #getDirection() direction} of the coordinate axes is often only approximate.
  * Two geographic coordinate reference systems will make use of the same ellipsoidal coordinate system.
- * These coordinate systems are associated with the earth through two different geodetic datums,
+ * These coordinate systems are associated with the planet through two different geodetic reference frames,
  * which may lead to the two systems being slightly rotated with respect to each other.
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
@@ -109,9 +109,9 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * {@linkplain AxisDirection#UP    up}    or {@linkplain AxisDirection#DOWN  down}.
      *
      * <p>Within any set of coordinate system axes, only one of each pair of terms can be used.
-     * For earth-fixed coordinate reference systems, this direction is often approximate
+     * For planet-fixed coordinate reference systems, this direction is often approximate
      * and intended to provide a human interpretable meaning to the axis.
-     * When a geodetic datum is used, the precise directions of the axes may therefore
+     * When a geodetic reference frame is used, the precise directions of the axes may therefore
      * vary slightly from this approximate direction.</p>
      *
      * <p>Note that an {@link org.opengis.referencing.crs.EngineeringCRS} often requires

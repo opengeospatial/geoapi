@@ -29,9 +29,9 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 3-dimensional <abbr>CRS</abbr> with the origin at the approximate centre of mass of the earth.
- * A geocentric CRS deals with the earth's curvature by taking a 3-dimensional spatial view, which
- * obviates the need to model the earth's curvature.
+ * A 3-dimensional <abbr>CRS</abbr> with the origin at the approximate centre of mass of the planet.
+ * A geocentric CRS deals with the planet's curvature by taking a 3-dimensional spatial view, which
+ * obviates the need to model the planet's curvature.
  *
  * <h2>Permitted coordinate systems</h2>
  * This type of <abbr>CRS</abbr> can be used with coordinate systems of type
@@ -51,7 +51,7 @@ import static org.opengis.annotation.Specification.*;
  * The ISO 19111 revision published in 2019 still excludes this type.
  * The {@link GeodeticCRS} base type should be used instead.
  */
-@Deprecated(since="3.1", forRemoval=true)
+@Deprecated(since="3.1")
 @UML(identifier="SC_GeocentricCRS", specification=ISO_19111, version=2003)
 public interface GeocentricCRS extends GeodeticCRS {
     /**

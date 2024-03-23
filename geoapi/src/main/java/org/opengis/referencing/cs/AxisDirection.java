@@ -55,13 +55,13 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      *
      * @deprecated Replaced by {@link #UNSPECIFIED} in ISO 19111:2019.
      */
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since = "3.1")
     @UML(identifier="CS_AxisOrientationEnum.CS_AO_Other", obligation=CONDITIONAL, specification=OGC_01009)
     public static final AxisDirection OTHER = new AxisDirection("OTHER");
 
     /**
      * Axis positive direction is north.
-     * In a geographic or projected <abbr>CRS</abbr>, north is defined through the geodetic datum.
+     * In a geographic or projected <abbr>CRS</abbr>, north is defined through the geodetic reference frame.
      * In an engineering <abbr>CRS</abbr>, north may be defined with respect to an engineering object
      * rather than a geographical direction.
      *

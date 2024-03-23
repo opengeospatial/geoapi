@@ -18,6 +18,7 @@
 package org.opengis.referencing.datum;
 
 import java.util.Map;
+import java.util.Optional;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -26,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Identification of a particular reference level surface used as a zero-height surface.
- * The description includes its position with respect to the Earth for any of the height
+ * The description includes its position with respect to the planet for any of the height
  * types recognized by the ISO 19111 standard.
  *
  * <p>There are several types of vertical reference frames, and each may place constraints
@@ -35,23 +36,36 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see DatumAuthorityFactory#createVerticalDatum(String)
  * @see DatumFactory#createVerticalDatum(Map, VerticalDatumType)
  */
-@UML(identifier="CD_VerticalDatum", specification=ISO_19111, version=2007)
+@UML(identifier="VerticalReferenceFrame", specification=ISO_19111)
 public interface VerticalDatum extends Datum {
+    /**
+     * Method through which this vertical reference frame is realized.
+     *
+     * @return method through which this vertical reference frame is realized.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="realizationMethod", obligation=OPTIONAL, specification=ISO_19111)
+    default Optional<RealizationMethod> getRealizationMethod() {
+        return Optional.empty();
+    }
+
     /**
      * The type of this vertical datum.
      *
-     * @todo Renamed {@code RealizationMethod} in ISO 19111:2019.
-     *
      * @return the type of this vertical datum.
      *
-     * @see #getAnchorPoint()
+     * @deprecated Replaced by {@link #getRealizationMethod()} in ISO 19111:2019.
      */
-    @UML(identifier="vertDatumType", obligation=MANDATORY, specification=ISO_19111)
-    VerticalDatumType getVerticalDatumType();
+    @Deprecated(since = "3.1")
+    @UML(identifier="vertDatumType", obligation=MANDATORY, specification=ISO_19111, version=2003)
+    default VerticalDatumType getVerticalDatumType() {
+        return VerticalDatumType.from(getRealizationMethod().orElse(null));
+    }
 }

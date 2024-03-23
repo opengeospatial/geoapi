@@ -182,7 +182,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since = "3.1")
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default Extent getDomainOfValidity() {
         return Legacy.getDomainOfValidity(getDomains());
@@ -201,7 +201,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since = "3.1")
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default InternationalString getScope() {
         return Legacy.getScope(getDomains());

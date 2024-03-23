@@ -19,6 +19,18 @@ package org.opengis.geoapi.internal;
 
 import java.util.Objects;
 import java.util.Collection;
+import java.util.Date;
+import java.time.Instant;
+import java.time.Year;
+import java.time.YearMonth;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
+import java.time.ZonedDateTime;
+import java.time.ZoneOffset;
+import java.time.LocalTime;
+import java.time.OffsetTime;
+import java.time.temporal.Temporal;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ObjectDomain;
@@ -61,5 +73,44 @@ public final class Legacy {
     public static Extent getDomainOfValidity(final Collection<ObjectDomain> domains) {
         if (domains == null) return null;
         return domains.stream().map(ObjectDomain::getDomainOfValidity).filter(Objects::nonNull).findFirst().orElse(null);
+    }
+
+    /**
+     * Converts a {@link java.time} object to a legacy {@link Date} object.
+     * If the time zone is not specified, UTC is assumed.
+     *
+     * @param  t  the date to convert.
+     * @return the given temporal object as a date, or {@code null} if the method doesn't know how to convert.
+     * @throws ArithmeticException if numeric overflow occurs.
+     */
+    public static Date toDate(final Temporal t) {
+        final Instant instant;
+        if (t instanceof Instant) {
+            instant = (Instant) t;
+        } else {
+            final OffsetDateTime odt;
+            if (t instanceof OffsetDateTime) {
+                odt = (OffsetDateTime) t;
+            } else if (t instanceof ZonedDateTime) {
+                odt = ((ZonedDateTime) t).toOffsetDateTime();
+            } else if (t instanceof LocalDateTime) {
+                odt = ((LocalDateTime) t).atOffset(ZoneOffset.UTC);
+            } else {
+                final LocalDate date;
+                if (t instanceof LocalDate) {
+                    date = (LocalDate) t;
+                } else if (t instanceof YearMonth) {
+                    date = ((YearMonth) t).atDay(1);
+                } else if (t instanceof Year) {
+                    date = ((Year) t).atDay(1);
+                } else {
+                    return null;
+                }
+                odt = date.atTime(OffsetTime.of(LocalTime.MIDNIGHT, ZoneOffset.UTC));
+            }
+            instant = odt.toInstant();
+        }
+        // Do not use `Date.from(Instant)` because we want the `ArithmeticException` in case of overflow.
+        return new Date(instant.toEpochMilli());
     }
 }

@@ -222,8 +222,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      *
      * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
      */
-    @SuppressWarnings("removal")
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since="3.1")
     default ImageCRS createImageCRS(final String code) throws FactoryException {
         final CoordinateReferenceSystem crs = createCoordinateReferenceSystem(code);
         try {
@@ -281,8 +280,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @deprecated This method is ambiguous. Use {@link #createCoordinateReferenceSystem(String)} instead.
      */
     @Override
-    @SuppressWarnings("removal")
-    @Deprecated(since = "3.1", forRemoval = true)
+    @Deprecated(since = "3.1")
     default org.opengis.referencing.IdentifiedObject createObject(String code) throws FactoryException {
         return createCoordinateReferenceSystem(code);
     }

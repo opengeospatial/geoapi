@@ -113,12 +113,12 @@ public interface DatumFactory extends ObjectFactory {
     }
 
     /**
-     * Creates geodetic datum from ellipsoid and prime meridian.
+     * Creates geodetic reference frame from ellipsoid and prime meridian.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  ellipsoid  ellipsoid to use in new geodetic datum.
-     * @param  primeMeridian  prime meridian to use in new geodetic datum.
+     * @param  ellipsoid  ellipsoid to use in new geodetic reference frame.
+     * @param  primeMeridian  prime meridian to use in new geodetic reference frame.
      * @return the datum for the given properties.
      * @throws FactoryException if the object creation failed.
      */

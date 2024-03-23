@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @deprecated As of ISO 19111:2019, this interface is renamed as {@link DerivedCRS}.
  */
-@Deprecated(since="3.1", forRemoval=true)
+@Deprecated(since="3.1")
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="SC_GeneralDerivedCRS", specification=ISO_19111, version=2007)
 public interface GeneralDerivedCRS extends SingleCRS {

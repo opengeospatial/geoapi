@@ -27,6 +27,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A 2- or 3-dimensional <abbr>CRS</abbr> used over the whole planet or substantial parts of it.
+ * This is used to describe large portions of the planet's surface up to the entire planet's surface.
  * If the geodetic reference frame is dynamic then the geodetic <abbr>CRS</abbr> is dynamic, else it is static.
  *
  * <h2>Permitted coordinate systems</h2>
@@ -58,7 +59,7 @@ public interface GeodeticCRS extends SingleCRS {
     GeodeticDatum getDatum();
 
     /**
-     * Returns the datum ensemble, which shall have geodetic datum members.
+     * Returns the datum ensemble, whose members shall be geodetic reference frames.
      * This property may be null if this <abbr>CRS</abbr> is related to an object
      * identified only by a single {@linkplain #getDatum() datum}.
      *

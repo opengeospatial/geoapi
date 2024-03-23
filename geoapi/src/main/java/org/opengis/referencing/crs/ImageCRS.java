@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @deprecated Replaced by {@link EngineeringCRS} as of ISO 19111:2019.
  */
-@Deprecated(since="3.1", forRemoval=true)
+@Deprecated(since="3.1")
 @UML(identifier="SC_ImageCRS", specification=ISO_19111, version=2007)
 public interface ImageCRS extends SingleCRS {
     /**

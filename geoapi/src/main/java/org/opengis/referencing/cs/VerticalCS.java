@@ -24,7 +24,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A 1-dimensional coordinate system used to record the heights or depths of points.
- * Such a coordinate system is usually dependent on the Earth's gravity field, perhaps
+ * Such a coordinate system is usually dependent on the planet's gravity field, perhaps
  * loosely as when atmospheric pressure is the basis for the vertical coordinate system axis.
  * An exact definition is deliberately not provided as the complexities of the subject fall
  * outside the scope of the ISO 19111 specification.

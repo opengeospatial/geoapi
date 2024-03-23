@@ -301,8 +301,8 @@ public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
             new ReferenceSystemType("TEMPORAL");
 
     /**
-     * One-dimensional coordinate reference system based on a vertical datum
-     * (datum describing the relation of gravity-related heights or depths to the earth).
+     * One-dimensional coordinate reference system based on a vertical datum.
+     * Vertical datums describe the relation of gravity-related heights or depths to the planet.
      *
      * <div class="note"><b>Example:</b> height or depths.</div>
      */

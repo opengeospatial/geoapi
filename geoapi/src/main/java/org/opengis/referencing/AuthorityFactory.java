@@ -115,7 +115,7 @@ public interface AuthorityFactory extends Factory {
      * @deprecated This method is ambiguous because the EPSG geodetic registry may allocate
      *             the same code to different kinds of object.
      */
-    @Deprecated(since = "3.1", forRemoval = true)
+    @Deprecated(since = "3.1")
     default InternationalString getDescriptionText(String code) throws FactoryException {
         return getDescriptionText(IdentifiedObject.class, code).orElse(null);
     }
@@ -149,7 +149,7 @@ public interface AuthorityFactory extends Factory {
      *             {@code createCoordinateSystem(…)} or {@code createCoordinateReferenceSystem(…)} should
      *             be invoked instead.
      */
-    @Deprecated(since = "3.1", forRemoval = true)
+    @Deprecated(since = "3.1")
     default IdentifiedObject createObject(String code) throws FactoryException {
         throw new UnimplementedServiceException(this, IdentifiedObject.class);
     }

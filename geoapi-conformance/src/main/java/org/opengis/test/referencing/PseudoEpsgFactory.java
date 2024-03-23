@@ -353,7 +353,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
-     * Returns a {@linkplain GeodeticDatum geodetic datum} from a code.
+     * Returns a {@linkplain GeodeticDatum geodetic reference frame} from a code.
      *
      * <table class="ogc">
      *   <caption>Supported codes</caption>

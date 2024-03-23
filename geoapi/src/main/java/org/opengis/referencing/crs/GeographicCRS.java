@@ -29,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A 2- or 3-dimensional <abbr>CRS</abbr> based on an ellipsoidal approximation of the geoid.
- * This provides an accurate representation of the geometry of geographic features for a large portion of the earth's surface.
+ * This provides an accurate representation of the geometry of geographic features for a large portion of the planet's surface.
  * A 2D geographic <abbr>CRS</abbr> is used when positions of features are described on the surface of the reference ellipsoid.
  * A 3D geographic <abbr>CRS</abbr> is used when positions are described on, above or below the reference ellipsoid.
  *

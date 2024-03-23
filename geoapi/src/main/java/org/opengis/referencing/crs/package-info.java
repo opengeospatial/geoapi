@@ -26,8 +26,8 @@
  *
  * <p>{@code CoordinateReferenceSystem} instances and their components shall be immutable.
  * For <abbr>CRS</abbr> defined on moving platforms such as cars, ships, aircraft and spacecraft,
- * transformation to an earth-fixed coordinate reference system may include a time element.
- * For a dynamic <abbr>CRS</abbr>, locations on or near the surface of the Earth will move
+ * transformation to a planet-fixed coordinate reference system may include a time element.
+ * For a dynamic <abbr>CRS</abbr>, locations on or near the surface of the planet will move
  * within the <abbr>CRS</abbr> due to crustal motion or deformation, therefor data needs a
  * {@linkplain org.opengis.coordinate.CoordinateMetadata#getCoordinateEpoch() coordinate epoch}
  * in addition of the <abbr>CRS</abbr>. In both cases, time-variability is handled by

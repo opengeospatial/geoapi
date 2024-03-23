@@ -37,18 +37,17 @@ import static org.opengis.annotation.Specification.*;
  * implementers can get a suitable vertical datum type using {@code VerticalDatumType.valueOf("ELLIPSOIDAL")}.
  * Implementers are encouraged to not expose that datum type in public API however.</div>
  *
- * @todo
- *   This code list was named {@code VerticalDatumType} in an OGC specification published in 2003,
- *   removed in the ISO 19111:2007 standard, then become {@code RealizationMethod} in ISO 19111:2019.
- *
  * @see VerticalDatum#getVerticalDatumType()
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
+ *
+ * @deprecated Replaced by {@link RealizationMethod} in ISO 19111:2019.
  */
 @Vocabulary(capacity=4)
+@Deprecated(since = "3.1")
 @UML(identifier="CD_VerticalDatumType", specification=ISO_19111, version=2003)
 public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     /**
@@ -74,7 +73,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * the nominal river water surface occurring at a quantified river discharge.
      *
      * <p>Depths are measured in the direction perpendicular (approximately) to the actual equipotential
-     * surfaces of the earth's gravity field, using such procedures as echo-sounding.</p>
+     * surfaces of the planet's gravity field, using such procedures as echo-sounding.</p>
      */
     @UML(identifier="depth", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType DEPTH = new VerticalDatumType("DEPTH");
@@ -120,6 +119,19 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      */
     @UML(identifier="other surface", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType OTHER_SURFACE = new VerticalDatumType("OTHER_SURFACE");
+
+
+    /**
+     * Maps a realization method to a vertical datum type.
+     *
+     * @param  method  the realization method, or {@code null}.
+     * @return the vertical datum type.
+     */
+    static VerticalDatumType from(RealizationMethod method) {
+        if (RealizationMethod.GEOID.equals(method)) return GEOIDAL;
+        if (RealizationMethod.TIDAL.equals(method)) return DEPTH;
+        return OTHER_SURFACE;
+    }
 
     /**
      * Constructs an element of the given name.

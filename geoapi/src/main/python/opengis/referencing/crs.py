@@ -196,7 +196,7 @@ class DerivedCRS(SingleCRS):
 
 class GeodeticCRS(SingleCRS):
     """
-    A coordinate reference system associated with a geodetic datum.
+    A coordinate reference system associated with a geodetic reference frame.
     """
 
     @property

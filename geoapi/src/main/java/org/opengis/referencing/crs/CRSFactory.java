@@ -68,7 +68,7 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  geodetic datum to use in created CRS.
+     * @param  datum  geodetic reference frame to use in created CRS.
      * @param  cs  the ellipsoidal coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
@@ -86,7 +86,7 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  geodetic datum to use in created CRS.
+     * @param  datum  geodetic reference frame to use in created CRS.
      * @param  cs  the spherical coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
@@ -103,7 +103,7 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  geodetic datum to use in created CRS.
+     * @param  datum  geodetic reference frame to use in created CRS.
      * @param  cs  the Cartesian coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
@@ -214,8 +214,7 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
      */
-    @SuppressWarnings("removal")
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since="3.1")
     default ImageCRS createImageCRS(Map<String,?> properties,
                                     ImageDatum    datum,
                                     AffineCS      cs) throws FactoryException

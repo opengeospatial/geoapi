@@ -25,12 +25,12 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Identification of the origin of an engineering (or local) coordinate reference system.
  * An engineering datum is used in a region around that origin.
- * This origin can be fixed with respect to the Earth (such as a defined point at a construction site),
+ * This origin can be fixed with respect to the planet (such as a defined point at a construction site),
  * a defined point on a moving object (such as on a road vehicle, vessel, aircraft or spacecraft),
  * or a point used to describe spatial location internally on an image.
  *
- * <p>When used for a region on Earth, engineering <abbr>CRS</abbr>s use a flat-Earth approximation:
- * corrections for Earth-curvature are not applied.
+ * <p>When used for a region on a planet, engineering <abbr>CRS</abbr>s use a flat-Earth approximation:
+ * corrections for planet-curvature are not applied.
  * Typical applications are for civil engineering construction and building information management.
  * Note that these applications are not restricted to using engineering <abbr>CRS</abbr>s:
  * they often utilize projected and sometimes geodetic <abbr>CRS</abbr>s.</p>
