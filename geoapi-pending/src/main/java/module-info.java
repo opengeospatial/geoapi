@@ -19,7 +19,7 @@
 
 /**
  * Java interfaces derived from specifications of <cite>International Organization for Standardization</cite> (ISO)
- * and <cite><a href="http://www.opengeospatial.org">Open Geospatial Consortium</a></cite> (OGC), pending review.
+ * and <cite>Open Geospatial Consortium</cite> (OGC), pending review.
  * Some of those interfaces may migrate to the normative GeoAPI module when they will be considered ready.
  *
  * <p>Every interfaces defined in the <a href="http://www.geoapi.org/snapshot/">normative module</a> are reproduced here.

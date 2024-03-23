@@ -22,7 +22,7 @@ package org.opengis.annotation;
  * ISO/OGC specifications from which an interface, method, enumeration or code list was derived.
  * Some specifications are available both at OGC and ISO.
  *
- * <p><b>Specification versions:</b></p>
+ * <h2>Specification versions</h2>
  * Each specification has a {@linkplain #defaultVersion() default version} number, which identifies
  * more accurately the specification used by the vast majority of non-deprecated GeoAPI elements:
  * <ul>

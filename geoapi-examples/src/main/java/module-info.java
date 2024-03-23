@@ -18,7 +18,7 @@
 
 
 /**
- * An example of a very simple GeoAPI implementation.
+ * Examples of GeoAPI implementations.
  * This implementation is not complete, but can be used as a starting point for implementers.
  * Since every files in this module are placed into the Public Domain,
  * anyone is free to do whatever they wish with those files.

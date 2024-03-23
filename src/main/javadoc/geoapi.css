@@ -1,15 +1,4 @@
 /*
- * Main text.
- */
-:not(td) > div.block {
-  text-align: justify;
-}
-
-p.right-note {
-  text-align: right;
-}
-
-/*
  * Table without vertical space between rows, a little bit of space between columns,
  * a light background color and a header with a darker background color. The header
  * also have a little bit more space, and a border is drawn around the table.
@@ -94,22 +83,6 @@ td.hierarchy code {
 }
 
 /*
- * Bullet and ordered lists. Put some space before and after the list.
- * Listes of the "verbose" class also have some space betweem items.
- */
-ul,
-ol {
-  margin-top:    9px;
-  margin-bottom: 9px;
-}
-
-li > ul,
-li > ol {
-  margin-top:    0;
-  margin-bottom: 6px;
-}
-
-/*
  * Definition of <div class="note">
  *
  * Note or examples.
@@ -119,7 +92,6 @@ div.note {
   margin-right:  40px;
   margin-top:     9px;
   margin-bottom:  9px;
-  text-align: justify;
 }
 
 div.note:before {
@@ -134,12 +106,8 @@ div.note:before {
 /*
  * The note about departures from OGC/ISO specifications.
  */
-dl > dt.departure {
+div.departure {
   color: #839192;
-}
-dl > dd.departure {
-  color:      #839192;
-  text-align: justify;
 }
 
 /*
@@ -155,7 +123,6 @@ div.warning {
   margin:       15px 30px;
   padding:      15px;
   min-height:   34px;
-  text-align:   justify;
 }
 
 div.warning:before {
