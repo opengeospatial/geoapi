@@ -27,19 +27,25 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * An operation on coordinates that does not include any change of Datum. The best-known
- * example of a coordinate conversion is a map projection. The parameters describing
- * coordinate conversions are defined rather than empirically derived.
+ * An operation on coordinates that does not include any change of datum.
+ * Coordinate conversions are coordinate operations that make use of exact,
+ * defined (rather than measured or computed), and therefore error-free parameter values.
+ * Corresponding pairs of coordinate tuples in each of the two coordinate reference systems
+ * connected through a coordinate conversion have a fixed arithmetic relationship.
+ * Additionally one of the two tuples cannot exist without specification of the coordinate conversion
+ * and the source coordinate reference system.
+ * Coordinate conversions are therefore intimately related to the concept of
+ * {@linkplain org.opengis.referencing.crs.DerivedCRS Derived <abbr>CRS</abbr>}.
  *
- * <div class="note"><b>Example:</b>
- * conversion from an ellipsoidal coordinate reference system based on the WGS 84 datum
- * to a Cartesian coordinate reference system also based on the WGS 84 datum, or change
- * of units such as from radians to degrees or feet to meters.</div>
+ * <h2>Examples</h2>
+ * The best-known examples of coordinate conversions are map projections.
+ * A map projection is a conversion from an ellipsoidal coordinate system
+ * to a Cartesian coordinate system in <abbr>CRS</abbr>s associated to the same datum.
+ * Another example is the change of units such as from radians to degrees or feet to meters.
  *
- * <p>Note that some conversions have no parameters.</p>
- *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   1.0
  *
  * @see Transformation

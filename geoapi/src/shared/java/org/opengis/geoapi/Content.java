@@ -260,6 +260,7 @@ public enum Content {
                org.opengis.referencing.operation   .Projection                          .class,
                org.opengis.referencing.operation   .Transformation                      .class,
                org.opengis.referencing.operation   .PassThroughOperation                .class,
+               org.opengis.referencing.operation   .RegisterOperations                  .class,
                org.opengis.referencing.crs         .GeneralDerivedCRS                   .class,
                org.opengis.referencing.crs         .DerivedCRS                          .class,
                org.opengis.referencing.crs         .ProjectedCRS                        .class,

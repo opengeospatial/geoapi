@@ -38,6 +38,11 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A mathematical operation on coordinates that transforms or converts coordinates to another <abbr>CRS</abbr> or epoch.
+ * These {@linkplain #getSourceCRS() source <abbr>CRS</abbr>} and {@linkplain #getTargetCRS() target <abbr>CRS</abbr>}
+ * attributes indicate the <abbr>CRS</abbr> from which coordinates are changed
+ * and the <abbr>CRS</abbr> to which coordinates are changed respectively.
+ * They are mandatory for all subtypes of coordinate operation except {@link Conversion},
+ * but GeoAPI recommends to provide a value even in the latter case.
  *
  * <h2>Inverse operation</h2>
  * Many but not all coordinate operations (from
@@ -46,14 +51,14 @@ import static org.opengis.annotation.Specification.*;
  * also uniquely define the inverse operation (from
  * {@linkplain CoordinateReferenceSystem coordinate reference system} <var>B</var> to
  * {@linkplain CoordinateReferenceSystem coordinate reference system} <var>A</var>).
- * In some cases, the operation method algorithm for the inverse operation is the same
- * as for the forward algorithm, but the signs of some operation parameter values must
- * be reversed. In other cases, different algorithms are required for the forward and
- * inverse operations, but the same operation parameter values are used. If (some)
- * entirely different parameter values are needed, a different coordinate operation
- * shall be defined.
+ * In some cases, the operation method algorithm for the inverse operation is the same as for the forward algorithm,
+ * but the signs of some operation parameter values must be reversed.
+ * In other cases, different algorithms are required for the forward and inverse operations,
+ * but the same operation parameter values are used.
+ * If (some) entirely different parameter values are needed, a different coordinate operation shall be defined.
  *
- * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   1.0
  *

@@ -24,10 +24,18 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A pass-through operation specifies that a subset of a coordinate tuple is subject to a specific
- * coordinate operation.
+ * An operation specifying a subset of a coordinate tuple subjected to a specific coordinate operation.
+ * Coordinates in the coordinate tuple other than the subset remain unchanged.
+ * For example, it may be required to transform only the horizontal or only the vertical component of
+ * a compound three-dimensional coordinate reference system (<abbr>CRS</abbr>).
+ * This operation specifies what subset of a coordinate tuple is subject to a requested operation.
+ * It takes the form of referencing another coordinate operation and specifying a sequence of numbers
+ * defining the positions in the coordinate tuple of the coordinates affected by that operation.
+ * The order of the coordinates in a coordinate tuple shall agree with the order of the coordinate system
+ * axes as defined for the associated coordinate system.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 4.0
  * @since   1.0
  */

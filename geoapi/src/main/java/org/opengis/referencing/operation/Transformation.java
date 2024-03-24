@@ -25,15 +25,19 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * An operation on coordinates that usually includes a change of Datum. The parameters
- * of a coordinate transformation are empirically derived from data containing the coordinates
- * of a series of points in both coordinate reference systems. This computational process
- * is usually "over-determined", allowing derivation of error (or accuracy) estimates
- * for the transformation. Also, the stochastic nature of the parameters may result
- * in multiple (different) versions of the same coordinate transformation.
+ * An operation on coordinates that usually includes a change of datum.
+ * The parameters of a coordinate transformation are empirically derived from data
+ * containing the coordinates of a series of points in both coordinate reference systems.
+ * This computational process is usually "over-determined",
+ * allowing derivation of error (or accuracy) estimates for the transformation.
+ * Also, the stochastic nature of the parameters may result in multiple (different) versions
+ * of the same coordinate transformation.
+ * Because of this, several transformations may exist for a given pair of coordinate reference systems,
+ * differing in their transformation method, parameter values and accuracy characteristics.
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   1.0
  *
  * @see Conversion

@@ -27,29 +27,21 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Definition of an algorithm used to perform a coordinate operation. Most operation methods
- * use a number of operation {@linkplain org.opengis.parameter.ParameterDescriptor parameters},
+ * Definition of an algorithm used to perform a coordinate operation.
+ * Most operation methods use a number of operation {@linkplain org.opengis.parameter.ParameterDescriptor parameters},
  * although some coordinate conversions use none.
  * Each {@linkplain CoordinateOperation coordinate operation} using the method assigns
  * {@linkplain org.opengis.parameter.ParameterValue values} to these parameters.
  *
- * <div class="note"><b>Example:</b>
- * an operation method named <q>Mercator (variant A)</q> (EPSG:9804) declares the following parameters:
- * <ul>
- *   <li><q>Latitude of natural origin</q> in degrees.</li>
- *   <li><q>Longitude of natural origin</q> in degrees.</li>
- *   <li><q>Scale factor at natural origin</q> as a dimensionless number.</li>
- *   <li><q>False easting</q> in metres.</li>
- *   <li><q>False northing</q> in metres.</li>
- * </ul>
- * Implementations can optionally assign {@linkplain org.opengis.parameter.ParameterDescriptor#getDefaultValue()
- * default values} to those parameters.</div>
- *
- * Operation method {@linkplain #getIdentifiers() identifiers} are optional but recommended,
- * since the method {@linkplain #getName() name} is potentially ambiguous.
+ * <p>As this class comes close to the heart of any coordinate transformation software,
+ * it is recommended to make extensive use of {@linkplain #getIdentifiers() identifiers},
+ * referencing well-known datasets wherever possible. The {@linkplain #getName() name} may be ambiguous
+ * because there is yet no standard way of spelling or naming the various coordinate operation methods.
+ * Client software requesting a coordinate operation to be executed by a coordinate transformation implementation may
+ * therefore ask for an operation method this server doesn't recognise, although a perfectly valid method may be available.
  * Some recommended EPSG identifiers are reproduced below
  * (see {@linkplain org.opengis.annotation.Specification#ISO_19162 ISO 19162}
- * or the <a href="https://epsg.org/">EPSG repository</a> for a more complete list):
+ * or the <a href="https://epsg.org/">EPSG repository</a> for a more complete list):</p>
  *
  * <table class="ogc">
  *   <caption>EPSG identifier for some operation method names</caption>
@@ -65,6 +57,18 @@ import static org.opengis.annotation.Specification.*;
  *   <tr><td>Oblique stereographic</td>               <td>Double stereographic</td>        <td>9809</td></tr>
  *   <tr><td>Transverse Mercator</td>                 <td>Gauss-Boaga / Gauss-Krüger</td>  <td>9807</td></tr>
  * </table>
+ *
+ * <h2>Example</h2>
+ * An operation method named <q>Mercator (variant A)</q> (EPSG:9804) declares the following parameters.
+ * Note that implementations can optionally assign
+ * {@linkplain org.opengis.parameter.ParameterDescriptor#getDefaultValue() default values} to those parameters.
+ * <ul>
+ *   <li><q>Latitude of natural origin</q> in degrees.</li>
+ *   <li><q>Longitude of natural origin</q> in degrees.</li>
+ *   <li><q>Scale factor at natural origin</q> as a dimensionless number.</li>
+ *   <li><q>False easting</q> in metres.</li>
+ *   <li><q>False northing</q> in metres.</li>
+ * </ul>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
