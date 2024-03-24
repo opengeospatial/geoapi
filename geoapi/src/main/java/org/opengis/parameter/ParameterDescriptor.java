@@ -48,7 +48,8 @@ import static org.opengis.annotation.Specification.*;
  *   GeoAPI uses a name which contains the "{@code Descriptor}" word for consistency with other
  *   libraries in Java (e.g. {@code ParameterListDescriptor} in Java Advanced Imaging).
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Jody Garnett (Refractions Research)
  * @version 3.1
  * @since   2.0
@@ -56,7 +57,7 @@ import static org.opengis.annotation.Specification.*;
  * @see ParameterValue
  * @see ParameterDescriptorGroup
  */
-@UML(identifier="CC_OperationParameter", specification=ISO_19111, version=2007)
+@UML(identifier="OperationParameter", specification=ISO_19111)
 public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
     /**
      * Returns the name that describes the type of parameter values.

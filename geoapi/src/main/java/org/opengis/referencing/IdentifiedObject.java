@@ -119,7 +119,7 @@ public interface IdentifiedObject {
     String REMARKS_KEY = "remarks";
 
     /**
-     * The primary name by which this object is identified.
+     * Returns the primary name by which this object is identified.
      *
      * @return the primary name.
      */
@@ -127,7 +127,7 @@ public interface IdentifiedObject {
     Identifier getName();
 
     /**
-     * Alternative names by which this object is identified.
+     * Returns alternative names by which this object is identified.
      *
      * @return alternative names and abbreviations, or an empty collection if there is none.
      */
@@ -137,7 +137,7 @@ public interface IdentifiedObject {
     }
 
     /**
-     * An identifier which references elsewhere the object's defining information.
+     * Returns an identifier which references elsewhere the object's defining information.
      * Alternatively, an identifier by which this object can be referenced.
      *
      * @return this object identifiers, or an empty collection if there is none.
@@ -148,7 +148,7 @@ public interface IdentifiedObject {
     }
 
     /**
-     * Usage of this CRS-related object.
+     * Returns the usage of this <abbr>CRS</abbr>-related object.
      * The domain includes a scope (description of the primary purpose of this object) together
      * with a domain of validity (spatial and temporal extent in which the object can be used).
      * Those properties are paired together for facilitating descriptions of usage such as
@@ -181,7 +181,7 @@ public interface IdentifiedObject {
     }
 
     /**
-     * Comments on or information about this object, including data source information.
+     * Returns comments on or information about this object, including data source information.
      *
      * @return the remarks, or {@code null} if none.
      */

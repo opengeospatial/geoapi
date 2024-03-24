@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * An operation on coordinates that does not include any change of datum.
+ * Operation in which the parameter values are defined rather than empirically derived.
  * Coordinate conversions are coordinate operations that make use of exact,
  * defined (rather than measured or computed), and therefore error-free parameter values.
  * Corresponding pairs of coordinate tuples in each of the two coordinate reference systems
@@ -51,32 +51,32 @@ import static org.opengis.annotation.Specification.*;
  * @see Transformation
  * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
  */
-@UML(identifier="CC_Conversion", specification=ISO_19111, version=2007)
+@UML(identifier="Conversion", specification=ISO_19111)
 public interface Conversion extends SingleOperation {
     /**
-     * Returns the source <abbr>CRS</abbr>.
-     * Conversions may have a source <abbr>CRS</abbr> that is not specified here,
-     * but through {@link org.opengis.referencing.crs.DerivedCRS#getBaseCRS()} instead.
+     * Returns the <abbr>CRS</abbr> from which coordinates are changed.
+     * If this conversion is part of a derived <abbr>CRS</abbr>, then the source <abbr>CRS</abbr>
+     * (if not null) shall be the same as the {@link org.opengis.referencing.crs.DerivedCRS#getBaseCRS()} value.
      *
-     * @return the source <abbr>CRS</abbr>, or {@code null} if not available.
+     * @return the <abbr>CRS</abbr> from which coordinates are changed, or {@code null} if not available.
      */
     @Override
     @UML(identifier="sourceCRS", obligation=OPTIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getSourceCRS();
 
     /**
-     * Returns the target <abbr>CRS</abbr>.
-     * Conversions may have a target <abbr>CRS</abbr> that is not specified here,
-     * but through {@link org.opengis.referencing.crs.DerivedCRS} instead.
+     * Returns the <abbr>CRS</abbr> to which coordinates are changed.
+     * If this conversion is part of a derived <abbr>CRS</abbr>, then the target <abbr>CRS</abbr>
+     * (if not null) shall be the same as the {@link org.opengis.referencing.crs.DerivedCRS} instance.
      *
-     * @return the target <abbr>CRS</abbr>, or {@code null} if not available.
+     * @return the <abbr>CRS</abbr> to which coordinates are changed, or {@code null} if not available.
      */
     @Override
     @UML(identifier="targetCRS", obligation=OPTIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getTargetCRS();
 
     /**
-     * This attribute is declared in {@link CoordinateOperation} but is not used in a conversion.
+     * This attribute is declared in {@code CoordinateOperation} but is not used in a conversion.
      *
      * @return usually {@code null}.
      */

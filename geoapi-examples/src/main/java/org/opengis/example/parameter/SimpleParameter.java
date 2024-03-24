@@ -292,7 +292,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
-     * Returns the boolean value of an operation parameter.
+     * Returns the Boolean value of an operation parameter.
      * If {@linkplain #LENIENT lenient}, this method makes the following choice:
      *
      * <ul>
@@ -301,8 +301,8 @@ public class SimpleParameter extends SimpleIdentifiedObject
      *   <li>Throws an exception in all other cases</li>
      * </ul>
      *
-     * @return the boolean value represented by this parameter.
-     * @throws InvalidParameterTypeException if the value cannot be converted to a boolean.
+     * @return the Boolean value represented by this parameter.
+     * @throws InvalidParameterTypeException if the value cannot be converted to a Boolean.
      */
     @Override
     public boolean booleanValue() throws InvalidParameterTypeException {
@@ -310,7 +310,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
             if (value == 0) return false;
             if (value == 1) return true;
         }
-        throw new InvalidParameterTypeException("Value " + value + " is not a boolean.", code);
+        throw new InvalidParameterTypeException("Value " + value + " is not a Boolean.", code);
     }
 
     /**
@@ -490,8 +490,8 @@ public class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
-     * Sets the parameter value as a boolean. If {@linkplain #LENIENT lenient}, the boolean value
-     * {@code true} is stored as the numeric value 1 and the boolean value {@code false} is stored
+     * Sets the parameter value as a Boolean. If {@linkplain #LENIENT lenient}, the Boolean value
+     * {@code true} is stored as the numeric value 1 and the Boolean value {@code false} is stored
      * as the numeric value 0.
      *
      * @throws InvalidParameterValueException if this parameter cannot be set to the given value.
@@ -531,16 +531,15 @@ public class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
-     * Returns a new parameter with the same {@linkplain #authority authority}, {@linkplain #code code}
-     * and {@linkplain #type} than this parameter. The {@linkplain #value} is left to their default
-     * value.
+     * Returns a new parameter with the same authority, code and type than this parameter.
+     * The {@linkplain #value} is left to their default value.
      *
-     * <div class="note"><b>Implementation note:</b>
-     * since this simple class implements both the {@linkplain ParameterValue value} and the
+     * <h4>Implementation note</h4>
+     * Since this simple class implements both the {@linkplain ParameterValue value} and the
      * {@linkplain ParameterDescriptor descriptor} interfaces, this method is very similar to
      * the {@link #clone()} method. However, in more sophisticated libraries, the
      * {@link ParameterDescriptor#createValue()} and {@link ParameterValue#clone()}
-     * methods are likely to be defined in different objects.</div>
+     * methods are likely to be defined in different objects.
      *
      * @return a new parameter with the same authority, code and type than this parameter.
      *
@@ -552,8 +551,8 @@ public class SimpleParameter extends SimpleIdentifiedObject
     }
 
     /**
-     * Returns a copy of this parameter value. This method is similar to {@link #createValue()}
-     * except for the following:
+     * Returns a copy of this parameter value.
+     * This method is similar to {@link #createValue()} except for the following:
      *
      * <ul>
      *   <li>This method returns an instance of the same class.</li>

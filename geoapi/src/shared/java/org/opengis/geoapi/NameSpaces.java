@@ -146,14 +146,15 @@ public final class NameSpaces {
                         prefix = typeName.substring(0, splitAt);
                     } else {
                         switch (type.getPackage().getName()) {
-                            case "org.opengis.util":        prefix = "gco"; break;
-                            case "org.opengis.feature":     prefix = "GF";  break;
-                            case "org.opengis.coordinate":
-                            case "org.opengis.referencing.crs":
-                            case "org.opengis.referencing":           prefix = "RS";  break;
+                            case "org.opengis.util":                  prefix = "gco"; break;
+                            case "org.opengis.feature":               prefix = "GF";  break;
+                            case "org.opengis.coordinate":            // Fall through
+                            case "org.opengis.referencing":           prefix = "RS"; break;
                             case "org.opengis.referencing.cs":        prefix = "CS"; break;
+                            case "org.opengis.referencing.crs":       prefix = "SC"; break;
                             case "org.opengis.referencing.datum":     prefix = "CD"; break;
-                            case "org.opengis.referencing.operation": prefix = "CC"; break;
+                            case "org.opengis.referencing.operation": // Fall through
+                            case "org.opengis.parameter":             prefix = "CC"; break;
                             case "org.opengis.filter":
                             case "org.opengis.filter.capability": return null;
                             default: {

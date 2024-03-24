@@ -37,8 +37,8 @@ package org.opengis.parameter;
  *   <li>{@link ParameterValue#valueFile()}</li>
  * </ul>
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   1.0
  *
  * @see InvalidParameterValueException
@@ -76,6 +76,17 @@ public class InvalidParameterTypeException extends IllegalStateException {
      */
     public InvalidParameterTypeException(String message, Throwable cause, String parameterName) {
         super(message, cause);
+        this.parameterName = parameterName;
+    }
+
+    /**
+     * Creates an exception with a default message, the specified cause and parameter name.
+     *
+     * @param cause      the cause, saved for later retrieval by the {@link #getCause()} method.
+     * @param parameter  the parameter from which to get the parameter name.
+     */
+    InvalidParameterTypeException(Throwable cause, String parameterName) {
+        super("Cannot get the “" + parameterName + "” parameter value.", cause);
         this.parameterName = parameterName;
     }
 

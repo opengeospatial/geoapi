@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2003-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2003-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,6 +17,8 @@
  */
 package org.opengis.referencing.operation;
 
+import java.util.Optional;
+import java.time.temporal.Temporal;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
 
@@ -25,26 +27,20 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Operation in which parameters are empirically derived from a series of points in both <abbr>CRS</abbr>s.
- * This computational process is usually "over-determined",
- * allowing derivation of error (or accuracy) estimates for the transformation.
- * Also, the stochastic nature of the parameters may result in multiple (different) versions
- * of the same coordinate transformation.
- * Because of this, several transformations may exist for a given pair of coordinate reference systems,
- * differing in their transformation method, parameter values and accuracy characteristics.
+ * Change of coordinate values within one <abbr>CRS</abbr> due to the motion of the point between two coordinate epochs.
+ * The motion is typically due to tectonic plate movement or deformation.
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   1.0
- *
- * @see Conversion
+ * @since   3.1
  */
-@UML(identifier="Transformation", specification=ISO_19111)
-public interface Transformation extends SingleOperation {
+@UML(identifier="PointMotionOperation", specification=ISO_19111)
+public interface PointMotionOperation extends CoordinateOperation {
     /**
      * Returns the <abbr>CRS</abbr> from which coordinates are changed.
-     * This attribute is mandatory in all transformations.
+     * This attribute is mandatory in all point motion operations.
+     * It should be the same as the {@linkplain #getTargetCRS() target <abbr>CRS</abbr>}.
      *
      * @return the <abbr>CRS</abbr> from which coordinates are changed. Shall not be {@code null}.
      */
@@ -54,7 +50,8 @@ public interface Transformation extends SingleOperation {
 
     /**
      * Returns the <abbr>CRS</abbr> to which coordinates are changed.
-     * This attribute is mandatory in all transformations.
+     * This attribute is mandatory in all point motion operations.
+     * It should be the same as the {@linkplain #getSourceCRS() source <abbr>CRS</abbr>}.
      *
      * @return the <abbr>CRS</abbr> to which coordinates are changed. Shall not be {@code null}.
      */
@@ -63,11 +60,35 @@ public interface Transformation extends SingleOperation {
     CoordinateReferenceSystem getTargetCRS();
 
     /**
-     * Returns the version of this coordinate transformation.
-     * The version is an identification of the instantiation due to the stochastic nature of the parameters.
-     * This attribute is mandatory in all transformations.
+     * Returns the date at which source coordinate tuples are valid.
+     * This is mandatory for point motion operations.
      *
-     * @return version of the coordinate transformation. Shall not be {@code null}.
+     * @return epoch at which source coordinate tuples are valid. Shall not be empty.
+     *
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="sourceCoordinateEpoch", obligation=MANDATORY, specification=ISO_19111)
+    Optional<Temporal> getSourceEpoch();
+
+    /**
+     * Returns the date at which target coordinate tuples are valid.
+     * This is mandatory for point motion operations.
+     *
+     * @return epoch at which target coordinate tuples are valid. Shall not be empty.
+     *
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="targetCoordinateEpoch", obligation=MANDATORY, specification=ISO_19111)
+    Optional<Temporal> getTargetEpoch();
+
+    /**
+     * Returns the version of this point motion operation.
+     * The version is an identification of the instantiation due to the stochastic nature of the parameters.
+     * This attribute is mandatory in all point motion operations.
+     *
+     * @return version of the point motion operation. Shall not be {@code null}.
      */
     @Override
     @UML(identifier="operationVersion", obligation=MANDATORY, specification=ISO_19111)

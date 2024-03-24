@@ -27,11 +27,10 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A group of related parameter values.
- *
- * <p>The same group can be repeated more than once in an
+ * The same group can be repeated more than once in an
  * {@linkplain org.opengis.referencing.operation.CoordinateOperation coordinate operation}
  * or higher level {@code ParameterValueGroup}, if those instances contain different values
- * of one or more {@link ParameterValue}s which suitably distinguish among those groups.</p>
+ * of one or more {@link ParameterValue}s which suitably distinguish among those groups.
  *
  * <p>The methods adapted from the ISO 19111 standard are {@link #getDescriptor()} and {@link #values()}.
  * Other methods (except {@link #clone()}) are convenience methods:</p>
@@ -42,23 +41,26 @@ import static org.opengis.annotation.Specification.*;
  *   <li>{@link #addGroup(String)} for creating a new subgroup and adding it to the list of subgroups.</li>
  * </ul>
  *
- * <div class="note"><b>Design note:</b>
- * there is no <code>parameter<b><u>s</u></b>(String)</code> method returning a list of parameter values
+ * <h2>Design note:</h2>
+ * There is no <code>parameter<b><u>s</u></b>(String)</code> method returning a list of parameter values
  * because the ISO 19111 standard fixes the {@link ParameterValue}
- * {@linkplain ParameterDescriptor#getMaximumOccurs() maximum occurrence} to 1.</div>
+ * {@linkplain ParameterDescriptor#getMaximumOccurs() maximum occurrence} to 1.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Jody Garnett (Refractions Research)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see ParameterDescriptorGroup
  * @see ParameterValue
  */
-@UML(identifier="CC_ParameterValueGroup", specification=ISO_19111, version=2007)
+@UML(identifier="ParameterValueGroup", specification=ISO_19111)
 public interface ParameterValueGroup extends GeneralParameterValue {
     /**
-     * The abstract definition of this group of parameters.
+     * Returns the abstract definition of this group of parameters.
+     *
+     * @return the abstract definition of this group of parameters.
      *
      * @departure rename
      *   The ISO name was "{@code group}". GeoAPI uses "{@code descriptor}" instead in

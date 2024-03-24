@@ -136,7 +136,8 @@ import static org.opengis.annotation.Specification.*;
  *   GeoAPI uses a name which contains the "{@code Descriptor}" word for consistency with other
  *   libraries in Java (e.g. {@code ParameterListDescriptor} in Java Advanced Imaging).
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Jody Garnett (Refractions Research)
  * @version 3.1
  * @since   2.0
@@ -144,10 +145,10 @@ import static org.opengis.annotation.Specification.*;
  * @see GeneralParameterValue
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="CC_GeneralOperationParameter", specification=ISO_19111, version=2007)
+@UML(identifier="GeneralOperationParameter", specification=ISO_19111)
 public interface GeneralParameterDescriptor extends IdentifiedObject {
     /**
-     * The name, as used by the service or operation for this parameter.
+     * Returns the name, as used by the service or operation for this parameter.
      *
      * <h4>Unified parameter API</h4>
      * The metadata standard ({@linkplain Specification#ISO_19115 ISO 19115}) defines the
@@ -188,7 +189,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
     Identifier getName();
 
     /**
-     * Indication if the parameter is an input to the service, an output or both.
+     * Returns whether the parameter is an input to the service, an output or both.
      * This information applies mostly to <i>service metadata</i>.
      * The default value is {@link ParameterDirection#IN}.
      *
@@ -202,14 +203,14 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
     }
 
     /**
-     * A narrative explanation of the role of the parameter.
+     * Returns a narrative explanation of the role of this parameter.
      *
-     * @return a narrative explanation of the role of the parameter, or {@code null} if none.
-     *
-     * @since 3.1
+     * @return a narrative explanation of the role of this parameter, or {@code null} if none.
      *
      * @see #getName()
      * @see #getRemarks()
+     *
+     * @since 3.1
      */
     @UML(identifier="SV_Parameter.description", obligation=OPTIONAL, specification=ISO_19115)
     default InternationalString getDescription() {
@@ -217,7 +218,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
     }
 
     /**
-     * The minimum number of times that values for this parameter group or parameter are required.
+     * Returns the minimum number of times that values for this parameter group or parameter are required.
      * The default value is 1. A value of 0 means an optional parameter.
      *
      * @return the minimum occurrence.
@@ -230,7 +231,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
     }
 
     /**
-     * The maximum number of times that values for this parameter group or parameter can be included.
+     * Returns the maximum number of times that values for this parameter group or parameter can be included.
      * The default value is 1. A value greater than 1 means a repeatable parameter.
      *
      * <p>If this parameter is an instance of {@link ParameterDescriptor} used for the description of

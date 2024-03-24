@@ -18,14 +18,18 @@
 package org.opengis.referencing.operation;
 
 import java.util.Set;
+import org.opengis.util.FactoryException;
+import org.opengis.referencing.AuthorityFactory;
+import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.datum.DatumEnsemble;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
 /**
- *
+ * Services supported by the coordinate operation packages.
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (Geomatys)
@@ -33,9 +37,32 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * @since   3.1
  */
 @UML(identifier="RegisterOperations", specification=ISO_19111)
-public interface RegisterOperations {
+public interface RegisterOperations extends AuthorityFactory {
     /**
-     * Finds or infers coordinate operations between the given pair of <abbr>CRS</abbr>s.
+     * Extracts <abbr>CRS</abbr> details from the registry.
+     *
+     * @param  code  <abbr>CRS</abbr> identifier allocated by the authority.
+     * @return the <abbr>CRS</abbr> for the given authority code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     */
+    @UML(identifier="findCoordinateReferenceSystem", specification=ISO_19111)
+    CoordinateReferenceSystem findCoordinateReferenceSystem(String code) throws FactoryException;
+
+    /**
+     * Extracts coordinate operation details from the registry.
+     *
+     * @param  code  operation identifier allocated by the authority.
+     * @return the operation for the given authority code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     */
+    @UML(identifier="findCoordinateOperation", specification=ISO_19111)
+    CoordinateOperation findCoordinateOperation(String code) throws FactoryException;
+
+    /**
+     * Finds or infers any coordinate operations for which the given <abbr>CRS</abbr>s are the source and target,
+     * in that order.
      *
      * <h4>Implementation considerations</h4>
      * Coordinate transformation services should be able to automatically derive coordinate operations
@@ -63,6 +90,25 @@ public interface RegisterOperations {
      * @param  source  the source <abbr>CRS</abbr>.
      * @param  target  the target <abbr>CRS</abbr>.
      * @return coordinate operations found or inferred between the given pair <abbr>CRS</abbr>s. May be an empty set.
+     * @throws FactoryException if an error occurred while searching for coordinate operations.
      */
-    Set<CoordinateOperation> findCoordinateOperation(CoordinateReferenceSystem source, CoordinateReferenceSystem target);
+    @UML(identifier="findCoordinateOperations", specification=ISO_19111)
+    Set<CoordinateOperation> findCoordinateOperations(CoordinateReferenceSystem source, CoordinateReferenceSystem target)
+            throws FactoryException;
+
+    /**
+     * Determine whether two <abbr>CRS</abbr>s are members of one ensemble.
+     * If this method returns {@code true}, then for low accuracy purposes coordinate sets referenced
+     * to these <abbr>CRS</abbr>s may be merged without coordinate transformation.
+     * The attribute {@link DatumEnsemble#getEnsembleAccuracy()} gives some indication
+     * of the inaccuracy introduced through such merger.
+     *
+     * @param  source  the source <abbr>CRS</abbr>.
+     * @param  target  the target <abbr>CRS</abbr>.
+     * @return whether the two <abbr>CRS</abbr>s are members of one ensemble.
+     * @throws FactoryException if an error occurred while searching for ensemble information in the registry.
+     */
+    @UML(identifier="areMembersOfSameEnsemble", specification=ISO_19111)
+    boolean areMembersOfSameEnsemble(CoordinateReferenceSystem source, CoordinateReferenceSystem target)
+            throws FactoryException;
 }

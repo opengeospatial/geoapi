@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A rational or polynomial parametric surface that is represented by control points, basis
  * functions and possibly weights. If the weights are all equal then the spline is piecewise
- * polynomial. If they are not equal, then the spline is piecewise rational. If the boolean
+ * polynomial. If they are not equal, then the spline is piecewise rational. If the Boolean
  * {@link #isPolynomial isPolynomial} is set to {@code true} then the weights shall all be
  * set to 1.
  *

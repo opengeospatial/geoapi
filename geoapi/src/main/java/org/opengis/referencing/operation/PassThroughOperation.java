@@ -17,6 +17,11 @@
  */
 package org.opengis.referencing.operation;
 
+import java.util.Optional;
+import java.util.Collection;
+import java.time.temporal.Temporal;
+import org.opengis.metadata.quality.PositionalAccuracy;
+import org.opengis.referencing.ObjectDomain;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -39,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * @version 4.0
  * @since   1.0
  */
-@UML(identifier="CC_PassThroughOperation", specification=ISO_19111, version=2007)
+@UML(identifier="PassThroughOperation", specification=ISO_19111)
 public interface PassThroughOperation extends CoordinateOperation {
     /**
      * Returns the operation to apply on the subset of a coordinate tuple.
@@ -50,11 +55,59 @@ public interface PassThroughOperation extends CoordinateOperation {
     CoordinateOperation getOperation();
 
     /**
-     * Returns the ordered sequence of positive integers defining the positions in a source
-     * coordinate tuple of the coordinates affected by this pass-through operation.
+     * Returns the positions in a source coordinate tuple of the coordinates affected by this pass-through operation.
+     * Values 0 identifies the first source coordinate, value 1 identifies the second source coordinate, <i>etc.</i>
+     * This is an ordered sequence: coordinates will be given to the {@linkplain #getOperation() operation}
+     * in the same order as the indices returned by this method.
      *
-     * @return Zero-based indices of the modified source coordinates.
+     * @return zero-based indices of the modified source coordinates.
      */
     @UML(identifier="modifiedCoordinate", obligation=MANDATORY, specification=ISO_19111)
     int[] getModifiedCoordinates();
+
+    /**
+     * Returns the date at which source coordinate tuples are valid.
+     * By default, this is the source epoch of the {@linkplain #getOperation() operation}.
+     *
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="sourceCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
+    default Optional<Temporal> getSourceEpoch() {
+        return getOperation().getSourceEpoch();
+    }
+
+    /**
+     * Returns the date at which target coordinate tuples are valid.
+     * By default, this is the target epoch of the {@linkplain #getOperation() operation}.
+     *
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="targetCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
+    default Optional<Temporal> getTargetEpoch() {
+        return getOperation().getTargetEpoch();
+    }
+
+    /**
+     * Returns the usage of this <abbr>CRS</abbr>-related object.
+     * By default, this is the domain of the {@linkplain #getOperation() operation}.
+     *
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="ObjectUsage.domain", obligation=OPTIONAL, specification=ISO_19111)
+    default Collection<ObjectDomain> getDomains() {
+        return getOperation().getDomains();
+    }
+
+    /**
+     * Returns estimate(s) of the impact of this operation on point accuracy.
+     * By default, this is the accuracy of the {@linkplain #getOperation() operation}.
+     */
+    @Override
+    @UML(identifier="coordinateOperationAccuracy", obligation=OPTIONAL, specification=ISO_19111)
+    default Collection<PositionalAccuracy> getCoordinateOperationAccuracy() {
+        return getOperation().getCoordinateOperationAccuracy();
+    }
 }

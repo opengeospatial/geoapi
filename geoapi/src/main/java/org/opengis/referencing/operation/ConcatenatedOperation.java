@@ -19,6 +19,9 @@ package org.opengis.referencing.operation;
 
 import java.util.Map;
 import java.util.List;
+import java.util.Optional;
+import java.time.temporal.Temporal;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -45,15 +48,71 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see CoordinateOperationFactory#createConcatenatedOperation(Map, CoordinateOperation[])
  */
-@UML(identifier="CC_ConcatenatedOperation", specification=ISO_19111, version=2007)
+@UML(identifier="ConcatenatedOperation", specification=ISO_19111)
 public interface ConcatenatedOperation extends CoordinateOperation {
     /**
-     * Returns the sequence of operations.
+     * Returns the sequence of operations that are steps in this concatenated operation.
      * The sequence can contain {@link SingleOperation}s or {@link PassThroughOperation}s,
      * but should not contain other {@code ConcatenatedOperation}s.
+     * The sequence shall contain at least two elements.
      *
-     * @return the sequence of operations.
+     * @return the sequence of operation steps in this concatenated operation.
      */
     @UML(identifier="coordOperation", obligation=MANDATORY, specification=ISO_19111)
     List<? extends CoordinateOperation> getOperations();
+
+    /**
+     * Returns the <abbr>CRS</abbr> from which coordinates are changed.
+     * By default, this is the source <abbr>CRS</abbr> of the first operation.
+     */
+    @Override
+    @UML(identifier="sourceCRS", obligation=CONDITIONAL, specification=ISO_19111)
+    default CoordinateReferenceSystem getSourceCRS() {
+        return getOperations().get(0).getSourceCRS();
+    }
+
+    /**
+     * Returns the <abbr>CRS</abbr> to which coordinates are changed.
+     * By default, this is the target <abbr>CRS</abbr> of the last operation.
+     */
+    @Override
+    @UML(identifier="targetCRS", obligation=CONDITIONAL, specification=ISO_19111)
+    default CoordinateReferenceSystem getTargetCRS() {
+        var operations = getOperations();
+        return operations.get(operations.size() - 1).getTargetCRS();
+    }
+
+    /**
+     * Returns the date at which source coordinate tuples are valid.
+     * By default, this is the source epoch of the first operation in which such epoch is defined.
+     *
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="sourceCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
+    default Optional<Temporal> getSourceEpoch() {
+        for (CoordinateOperation step : getOperations()) {
+            Optional<Temporal> epoch = step.getSourceEpoch();
+            if (epoch.isPresent()) return epoch;
+        }
+        return Optional.empty();
+    }
+
+    /**
+     * Returns the date at which target coordinate tuples are valid.
+     * By default, this is the target epoch of the last operation in which such epoch is defined.
+     *
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="targetCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
+    default Optional<Temporal> getTargetEpoch() {
+        var operations = getOperations();
+        for (int i=operations.size(); --i >= 0;) {
+            CoordinateOperation step = operations.get(i);
+            Optional<Temporal> epoch = step.getTargetEpoch();
+            if (epoch.isPresent()) return epoch;
+        }
+        return Optional.empty();
+    }
 }

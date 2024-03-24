@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Definition of an algorithm used to perform a coordinate operation.
+ * Algorithm or procedure used to perform a coordinate operation.
  * Most operation methods use a number of operation {@linkplain org.opengis.parameter.ParameterDescriptor parameters},
  * although some coordinate conversions use none.
  * Each {@linkplain CoordinateOperation coordinate operation} using the method assigns
@@ -70,7 +70,8 @@ import static org.opengis.annotation.Specification.*;
  *   <li><q>False northing</q> in metres.</li>
  * </ul>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  *
@@ -80,7 +81,7 @@ import static org.opengis.annotation.Specification.*;
  * @see CoordinateOperationAuthorityFactory#createOperationMethod(String)
  * @see CoordinateOperationFactory#createOperationMethod(Map, Integer, Integer, ParameterDescriptorGroup)
  */
-@UML(identifier="CC_OperationMethod", specification=ISO_19111, version=2007)
+@UML(identifier="OperationMethod", specification=ISO_19111)
 public interface OperationMethod extends IdentifiedObject {
     /*
      * NOTE FOR JAVADOC WRITER:
@@ -141,9 +142,13 @@ public interface OperationMethod extends IdentifiedObject {
     }
 
     /**
-     * The set of parameters.
+     * Returns the set of parameters.
      *
      * @return the parameters, or an empty group if none.
+     *
+     * @departure easeOfUse
+     *   The sequence if {@code GeneralParameter} is replaced by a {@code ParameterGroup}
+     *   because it provides method for fetching parameters by their names.
      */
     @UML(identifier="parameter", obligation=MANDATORY, specification=ISO_19111)
     ParameterDescriptorGroup getParameters();

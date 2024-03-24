@@ -38,8 +38,8 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A mathematical operation on coordinates that transforms or converts coordinates to another <abbr>CRS</abbr> or epoch.
- * These {@linkplain #getSourceCRS() source <abbr>CRS</abbr>} and {@linkplain #getTargetCRS() target <abbr>CRS</abbr>}
- * attributes indicate the <abbr>CRS</abbr> from which coordinates are changed
+ * The {@linkplain #getSourceCRS() source <abbr>CRS</abbr>} and {@linkplain #getTargetCRS() target <abbr>CRS</abbr>}
+ * properties indicate the <abbr>CRS</abbr> from which coordinates are changed
  * and the <abbr>CRS</abbr> to which coordinates are changed respectively.
  * They are mandatory for all subtypes of coordinate operation except {@link Conversion},
  * but GeoAPI recommends to provide a value even in the latter case.
@@ -67,7 +67,7 @@ import static org.opengis.annotation.Specification.*;
  * @see CoordinateOperationFactory#createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="CC_CoordinateOperation", specification=ISO_19111, version=2007)
+@UML(identifier="CoordinateOperation", specification=ISO_19111)
 public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property.
@@ -105,11 +105,16 @@ public interface CoordinateOperation extends IdentifiedObject {
     String SCOPE_KEY = "scope";
 
     /**
-     * Returns the source CRS. The source CRS is mandatory for {@linkplain Transformation transformations} only.
-     * {@linkplain Conversion Conversions} may have a source CRS that is not specified here, but through
-     * {@link org.opengis.referencing.crs.DerivedCRS#getBaseCRS()} instead.
+     * Returns the <abbr>CRS</abbr> from which coordinates are changed. This property may be {@code null}
+     * for {@link CoordinateOperationFactory#createDefiningConversion defining conversions}, but otherwise
+     * <em>should</em> be specified for other conversions and <em>shall</em> be specified for transformations.
      *
-     * @return the source CRS, or {@code null} if not available.
+     * <h4>Obligation</h4>
+     * ISO 19111 defines this property as optional for {@link Conversion} because the source <abbr>CRS</abbr>
+     * can be specified by the {@link org.opengis.referencing.crs.DerivedCRS#getBaseCRS()} property instead.
+     * However, GeoAPI recommends to provide a value even in the latter case.
+     *
+     * @return the <abbr>CRS</abbr> from which coordinates are changed, or {@code null} if not available.
      *
      * @see Conversion#getSourceCRS()
      * @see Transformation#getSourceCRS()
@@ -118,11 +123,16 @@ public interface CoordinateOperation extends IdentifiedObject {
     CoordinateReferenceSystem getSourceCRS();
 
     /**
-     * Returns the target CRS. The target CRS is mandatory for {@linkplain Transformation transformations} only.
-     * {@linkplain Conversion Conversions} may have a target CRS that is not specified here, but through
-     * {@link org.opengis.referencing.crs.DerivedCRS} instead.
+     * Returns the <abbr>CRS</abbr> to which coordinates are changed. This property may be {@code null}
+     * for {@link CoordinateOperationFactory#createDefiningConversion defining conversions}, but otherwise
+     * <em>should</em> be specified for other conversions and <em>shall</em> be specified for transformations.
      *
-     * @return the target CRS, or {@code null} if not available.
+     * <h4>Obligation</h4>
+     * ISO 19111 defines this property as optional for {@link Conversion} because the target <abbr>CRS</abbr>
+     * can be specified by the {@link org.opengis.referencing.crs.DerivedCRS} instance instead.
+     * However, GeoAPI recommends to provide a value even in the latter case.
+     *
+     * @return the <abbr>CRS</abbr> to which coordinates are changed, or {@code null} if not available.
      *
      * @see Conversion#getTargetCRS()
      * @see Transformation#getTargetCRS()
@@ -132,44 +142,47 @@ public interface CoordinateOperation extends IdentifiedObject {
 
     /**
      * Returns the date at which source coordinate tuples are valid.
-     * This is mandatory of the <abbr>CRS</abbr> is dynamic.
+     * This is mandatory if the <abbr>CRS</abbr> is
+     * {@linkplain org.opengis.referencing.datum.DynamicReferenceFrame dynamic}.
      *
      * @return epoch at which source coordinate tuples are valid.
      *
      * @since 3.1
      */
-    @UML(identifier="sourceEpoch", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="sourceCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
     default Optional<Temporal> getSourceEpoch() {
         return Optional.empty();
     }
 
     /**
      * Returns the date at which target coordinate tuples are valid.
-     * This is mandatory of the <abbr>CRS</abbr> is dynamic.
+     * This is mandatory if the <abbr>CRS</abbr> is
+     * {@linkplain org.opengis.referencing.datum.DynamicReferenceFrame dynamic}.
      *
      * @return epoch at which target coordinate tuples are valid.
      *
      * @since 3.1
      */
-    @UML(identifier="targetEpoch", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="targetCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
     default Optional<Temporal> getTargetEpoch() {
         return Optional.empty();
     }
 
     /**
-     * Version of the coordinate transformation (i.e., instantiation due to the stochastic
-     * nature of the parameters). Mandatory when describing a transformation, and should not
-     * be supplied for a conversion.
+     * Returns the version of this coordinate transformation or point motion operation.
+     * The version is an identification of the instantiation due to the stochastic nature of the parameters.
+     * It is mandatory when describing a transformation or point motion operation,
+     * and should not be supplied for a conversion.
      *
-     * @return the coordinate operation version, or {@code null} in none.
+     * @return version of the coordinate transformation or point motion, or {@code null} in none.
      */
     @UML(identifier="operationVersion", obligation=CONDITIONAL, specification=ISO_19111)
     String getOperationVersion();
 
     /**
-     * Estimate(s) of the impact of this operation on point accuracy. Gives
-     * position error estimates for target coordinates of this coordinate
-     * operation, assuming no errors in source coordinates.
+     * Returns estimate(s) of the impact of this operation on point accuracy.
+     * It gives position error estimates for target coordinates of this coordinate operation,
+     * assuming no errors in source coordinates.
      *
      * @return the position error estimates, or an empty collection if not available.
      */
@@ -179,7 +192,7 @@ public interface CoordinateOperation extends IdentifiedObject {
     }
 
     /**
-     * Area or region or timeframe in which this coordinate operation is valid.
+     * Returns the area or region or timeframe in which this coordinate operation is valid.
      *
      * @return the coordinate operation valid domain, or {@code null} if not available.
      *
@@ -194,7 +207,7 @@ public interface CoordinateOperation extends IdentifiedObject {
     }
 
     /**
-     * Description of domain of usage, or limitations of usage, for which this operation is valid.
+     * Returns a description of domain of usage, or limitations of usage, for which this operation is valid.
      *
      * @return a description of domain of usage, or {@code null} if none.
      *
@@ -213,13 +226,14 @@ public interface CoordinateOperation extends IdentifiedObject {
     }
 
     /**
-     * Gets the math transform. The math transform will transform positions in the
+     * Returns the mathematical operation which performs the actual work of changing coordinate values.
+     * The math transform will transform positions in the
      * {@linkplain #getSourceCRS() source coordinate reference system} into positions in the
      * {@linkplain #getTargetCRS() target coordinate reference system}.
      * It may be {@code null} in the case of
      * {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversions}.
      *
-     * @return the transform from source to target CRS, or {@code null} if not applicable.
+     * @return the transform from source to target <abbr>CRS</abbr>, or {@code null} if not applicable.
      */
     @UML(identifier="CT_CoordinateTransformation.getMathTransform", specification=OGC_01009)
     MathTransform getMathTransform();
@@ -233,22 +247,25 @@ public interface CoordinateOperation extends IdentifiedObject {
      * {@linkplain #getTargetCRS() target CRS} and {@linkplain #getTargetEpoch() target epoch} of this operation.
      * The order of coordinate tuples <em>shall</em> be preserved.
      *
-     * <h4>Implementation flexibility</h4>
-     * If the <abbr>CRS</abbr> and/or epoch of the given data are not equivalent to the source <abbr>CRS</abbr>
-     * and/or epoch of this coordinate operation, implementations can either throw an exception or automatically
-     * prepend an additional transform step.
-     *
-     * <p>Implementations are free to compute the change immediately or to delay the computation.
-     * For example, the changes may be computed on-the-fly in {@link CoordinateSet#stream()}.</p>
-     *
      * <p>This method operates on coordinate tuples and does not deal with interpolation of geometry types.
      * When a coordinate set is subjected to a coordinate operation, its geometry might or might not be preserved.</p>
      *
+     * <h4>Implementation flexibility</h4>
+     * If the <abbr>CRS</abbr> and/or epoch of the given data are not equivalent to the source <abbr>CRS</abbr>
+     * and/or epoch of this coordinate operation, implementations can either throw an exception or automatically
+     * prepend an additional operation step.
+     *
+     * <p>Implementations are free to compute the coordinate changes immediately or to delay the computation.
+     * For example, the coordinate changes may be computed on-the-fly during {@link CoordinateSet#stream()} consumption.
+     * In the latter case, invalid coordinates may not cause a {@link TransformException} to be thrown when this method
+     * is invoked, but instead cause an unchecked exception to be thrown later,
+     * typically during the stream terminal operation.</p>
+     *
      * @param  data  the coordinates to change.
      * @return the result of changing coordinates.
-     * @throws TransformException if some coordinates cannot be changed.
-     *         Note that this exception not being thrown is not a guarantee that the computation
-     *         will not fail later, for example during a stream terminal operation.
+     * @throws TransformException if some coordinates cannot be changed. Note that an absence of exception during
+     *         this method call is not a guarantee that the coordinate changes succeeded, because implementations
+     *         may have deferred the actual computation.
      *
      * @since 3.1
      */
