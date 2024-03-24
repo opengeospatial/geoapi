@@ -33,6 +33,10 @@
  * Then the geodetic or vertical reference frame is
  * {@linkplain org.opengis.referencing.datum.DynamicReferenceFrame dynamic}.
  *
+ * @departure integration
+ *   The {@code Calendar} code list is omitted because the handling of calendar systems
+ *   is delegated to the {@link java.time} framework.
+ *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1

@@ -112,6 +112,7 @@ public final class ContentTest implements FileVisitor<Path> {
         skipDependency(org.opengis.metadata.constraint.LegalConstraints.class,    org.opengis.metadata.identification.BrowseGraphic.class);
         skipDependency(org.opengis.metadata.constraint.SecurityConstraints.class, org.opengis.metadata.identification.BrowseGraphic.class);
         skipDependency(org.opengis.metadata.quality.CoverageResult.class,         org.opengis.metadata.spatial.SpatialRepresentation.class);
+        skipDependency(org.opengis.referencing.datum.DatumEnsemble.class,         org.opengis.metadata.quality.PositionalAccuracy.class);
     }
 
     /**

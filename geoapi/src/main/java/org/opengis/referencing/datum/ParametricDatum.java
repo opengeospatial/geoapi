@@ -18,24 +18,43 @@
 package org.opengis.referencing.datum;
 
 import java.util.Map;
+import java.util.Optional;
+import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Specification.ISO_19111_2;
+import static org.opengis.annotation.Obligation.OPTIONAL;
+import static org.opengis.annotation.Specification.ISO_19111;
 
 
 /**
- * A textual description and/or a set of parameters identifying a particular reference surface
- * used as the origin of a parametric coordinate system.
- * It includes the frame position with respect to the planet.
+ * Identification of a particular reference surface used as the origin of a parametric coordinate system.
+ * The identification includes the frame position with respect to the Earth or other planet.
+ * It may be a textual description and/or a set of parameters.
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Johann Sorel (Geomatys)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  *
  * @see DatumAuthorityFactory#createParametricDatum(String)
  * @see DatumFactory#createParametricDatum(Map)
  */
-@UML(identifier="CD_ParametricDatum", specification=ISO_19111_2)
+@UML(identifier="ParametricDatum", specification=ISO_19111)
 public interface ParametricDatum extends Datum {
+    /**
+     * Parameters used to define the parametric datum.
+     * Each parameter can be a parameter value, an ordered sequence of values,
+     * or a reference to a file of parameter values that define a parametric datum.
+     *
+     * @return parameter used to define the parametric datum.
+     *
+     * @departure harmonization
+     *   ISO 19111 defines a {@code DefiningParameter} class.
+     *   GeoAPI retrofits in the {@link org.opengis.parameter} framework.
+     */
+    @UML(identifier="datumDefiningParameter", obligation=OPTIONAL, specification=ISO_19111)
+    default Optional<ParameterValueGroup> getDatumDefiningParameter() {
+        return Optional.empty();
+    }
 }

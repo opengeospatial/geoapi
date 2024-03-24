@@ -19,7 +19,6 @@ package org.opengis.referencing.datum;
 
 import java.util.Map;
 import java.util.Date;
-import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -27,7 +26,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A temporal datum defines the origin of a temporal coordinate reference system.
+ * Definition of the relationship of a temporal coordinate system to an object.
+ * The object is usually time on Earth.
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
@@ -36,43 +36,23 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see DatumAuthorityFactory#createTemporalDatum(String)
  * @see DatumFactory#createTemporalDatum(Map, Date)
+ *
+ * @departure integration
+ *   The {@code calendar} attribute is omitted because the handling of calendar systems
+ *   is delegated to the {@link java.time} framework.
  */
-@UML(identifier="CD_TemporalDatum", specification=ISO_19111, version=2007)
+@UML(identifier="TemporalDatum", specification=ISO_19111)
 public interface TemporalDatum extends Datum {
     /**
-     * The date and time origin of this temporal datum.
+     * Date and time to which temporal coordinates are referenced.
      *
      * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
+     * The return type of this method may change in GeoAPI 4.0 release.
+     * It may be replaced by {@link java.time.temporal.Temporal}.
      * </div>
      *
-     * @return the date and time origin of this temporal datum.
+     * @return date and time to which temporal coordinates are referenced.
      */
     @UML(identifier="origin", obligation=MANDATORY, specification=ISO_19111)
     Date getOrigin();
-
-    /**
-     * This attribute is defined in the {@link Datum} parent interface,
-     * but is not used by a temporal datum.
-     *
-     * @return always {@code null}.
-     */
-    @Override
-    @UML(identifier="anchorPoint", obligation=FORBIDDEN, specification=ISO_19111)
-    default InternationalString getAnchorPoint() {
-        return null;
-    }
-
-    /**
-     * This attribute is defined in the {@link Datum} parent interface,
-     * but is not used by a temporal datum.
-     *
-     * @return always {@code null}.
-     */
-    @Override
-    @UML(identifier="realizationEpoch", obligation=FORBIDDEN, specification=ISO_19111)
-    default Date getRealizationEpoch() {
-        return null;
-    }
 }

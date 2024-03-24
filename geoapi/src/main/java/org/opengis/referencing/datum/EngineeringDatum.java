@@ -41,12 +41,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see DatumAuthorityFactory#createEngineeringDatum(String)
  * @see DatumFactory#createEngineeringDatum(Map)
  */
-@UML(identifier="CD_EngineeringDatum", specification=ISO_19111, version=2007)
+@UML(identifier="EngineeringDatum", specification=ISO_19111)
 public interface EngineeringDatum extends Datum {
 }

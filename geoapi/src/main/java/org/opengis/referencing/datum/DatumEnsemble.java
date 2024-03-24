@@ -17,20 +17,20 @@
  */
 package org.opengis.referencing.datum;
 
+import java.util.Collection;
+import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.Obligation.MANDATORY;
 
 
 /**
- * Datum ensemble.
- *
- * A datum ensemble is a construct to facilitate the merging of realizations of the same reference system
- * for lower accuracy manipulation. A datum ensemble is a collection of two or more reference frames that
- * are realizations of one Terrestrial or Vertical Reference System and which for all but the highest
- * accuracy requirements may be considered to be insignificantly different from each other.
- * Datasets referenced to the various realizations may be merged without change of coordinates.
+ * Collection of datums which for low accuracy requirements may be considered to be insignificantly different from each other.
+ * Every frame or datum within the datum ensemble must be a realization of the same reference system or datum.
+ * A datum ensemble is a construct to facilitate the merging of realizations of that common datum.
+ * For lower accuracy manipulation, datasets referenced to the various realizations may be merged without change of coordinates.
  *
  * <h2>Constraints</h2>
  * If the datums specify a {@linkplain Datum#getConventionalRS() conventional reference system} (<abbr>RS</abbr>),
@@ -46,4 +46,23 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="DatumEnsemble", specification=ISO_19111)
 public interface DatumEnsemble<D extends Datum> extends IdentifiedObject {
+    /**
+     * Datum or reference frame which are members of this datum ensemble.
+     * This collection shall contain at least 2 elements.
+     * All datum shall have the same {@linkplain Datum#getConventionalRS() conventional reference system} (if any).
+     *
+     * @return datum or reference frame which are members of this datum ensemble.
+     */
+    @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
+    Collection<D> datums();
+
+    /**
+     * Inaccuracy introduced through use of this collection of reference frames or datums.
+     * It is an indication of the differences in coordinate values at all points between
+     * the various realizations that have been grouped into this datum ensemble.
+     *
+     * @return inaccuracy introduced through use of this collection of datums.
+     */
+    @UML(identifier="ensembleAccuracy", obligation=MANDATORY, specification=ISO_19111)
+    PositionalAccuracy getEnsembleAccuracy();
 }

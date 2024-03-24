@@ -201,31 +201,6 @@ public enum Specification {
     ISO_19111((short) 2019),
 
     /**
-     * ISO 19111-2, Part 2: Extension for parametric values
-     * This is the specification for classes {@link org.opengis.referencing.crs.ParametricCRS} and associated parametric classes.
-     *
-     * <p><b>ISO abstract:</b></p>
-     * <div class="note">
-     * <p>Extends the existing spatial referencing standard by defining the schema
-     * required for describing parameterized systems.</p>
-     * </div>
-     *
-     * <p><b>Version numbers used in GeoAPI:</b></p>
-     * <ul>
-     *   <li><b>2009:</b> ISO 19111-2:2009   ({@linkplain #defaultVersion() default version})</li>
-     * </ul>
-     *
-     * @see <a href="https://www.iso.org/fr/standard/44075.html">ISO 19111-2:2009 on standards catalogue</a>
-     *
-     * @since 3.1
-     *
-     * @deprecated To be removed after we upgraded to ISO 19111:2019.
-     * This enumeration was not present in GeoAPI 3.0.2, so it is safe to remove.
-     */
-    @Deprecated(forRemoval=true)
-    ISO_19111_2((short) 2009),
-
-    /**
      * ISO 19112, Spatial referencing by geographic identifiers.
      * This is the specification for package {@link org.opengis.referencing.gazetteer}.
      *

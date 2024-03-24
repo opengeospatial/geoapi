@@ -18,6 +18,8 @@
 package org.opengis.referencing.datum;
 
 import java.time.temporal.Temporal;
+import org.opengis.annotation.Classifier;
+import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -25,15 +27,29 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Reference frame in which some of the parameters describe time evolution of defining station coordinates.
- * Example: defining station coordinates having linear velocities to account for crustal motion.
+ * Reference frame in which some of the defining parameters have time dependency.
+ * The time-varying parameters can describe time evolution of defining station coordinates.
+ * Examples:
+ * <ul>
+ *   <li>Horizontally: defining station coordinates having linear velocities to account for crustal motion.</li>
+ *   <li>Vertically: defining station heights having velocity to account for post-glacial isostatic rebound motion.</li>
+ * </ul>
+ *
+ * This interface should not be implemented alone, but combined with the {@link GeodeticDatum}
+ * or {@link VerticalDatum} interface using multi-inheritance of interfaces.
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
+ *
+ * @departure harmonization
+ *   ISO 19111 defines two distinct interfaces, {@code DynamicGeodeticReferenceFrame} and {@code DynamicVerticalReferenceFrame}.
+ *   GeoAPI defines a single interface for all cases, with the requirement that implementers shall combine this interface with
+ *   {@code GeodeticReferenceFrame} or {@code VerticalReferenceFrame} respectively using multi-inheritance of interfaces.
+ *   This is a design similar to {@link org.opengis.referencing.crs.DerivedCRS}.
  */
-@UML(identifier="DynamicGeodeticReferenceFrame", specification=ISO_19111)
+@Classifier(Stereotype.ABSTRACT)
 public interface DynamicReferenceFrame extends Datum {
     /**
      * Epoch to which the coordinates of stations defining the dynamic geodetic reference frame are referenced.
