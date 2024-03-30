@@ -27,6 +27,9 @@ import org.opengis.util.*;
 import org.opengis.metadata.*;
 import org.opengis.metadata.extent.*;
 import org.opengis.metadata.citation.*;
+import org.opengis.metadata.quality.*;
+import org.opengis.metadata.maintenance.*;
+import org.opengis.metadata.maintenance.Scope;      // Resolve ambiguity.
 import org.opengis.geometry.*;
 import org.opengis.parameter.*;
 import org.opengis.referencing.*;
@@ -95,6 +98,26 @@ public class ValidatorContainer implements Cloneable {
      */
     @SuppressWarnings("this-escape")
     public CitationValidator citation = new CitationValidator(this);
+
+    /**
+     * The validator for {@link DataQuality} and related objects.
+     * Vendors can change this field to a different validator, or change the setting
+     * of the referenced validator. This field shall not be set to {@code null} however.
+     *
+     * @since 3.1
+     */
+    @SuppressWarnings("this-escape")
+    public QualityValidator quality = new QualityValidator(this);
+
+    /**
+     * The validator for {@link MaintenanceInformation} and related objects.
+     * Vendors can change this field to a different validator, or change the setting
+     * of the referenced validator. This field shall not be set to {@code null} however.
+     *
+     * @since 3.1
+     */
+    @SuppressWarnings("this-escape")
+    public MaintenanceValidator maintenance = new MaintenanceValidator(this);
 
     /**
      * The validator for {@link Extent} and related objects.
@@ -372,6 +395,58 @@ public class ValidatorContainer implements Cloneable {
      */
     public final void validate(final OnlineResource object) {
         citation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see MaintenanceValidator#validate(DataQuality)
+     *
+     * @since 3.1
+     */
+    public final void validate(final DataQuality object) {
+        quality.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see MaintenanceValidator#validate(MaintenanceInformation)
+     *
+     * @since 3.1
+     */
+    public final void validate(final PositionalAccuracy object) {
+        quality.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see MaintenanceValidator#validate(MaintenanceInformation)
+     *
+     * @since 3.1
+     */
+    public final void validate(final MaintenanceInformation object) {
+        maintenance.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see MaintenanceValidator#validate(Scope)
+     *
+     * @since 3.1
+     */
+    public final void validate(final Scope object) {
+        maintenance.validate(object);
     }
 
     /**
@@ -803,6 +878,19 @@ public class ValidatorContainer implements Cloneable {
      *
      * @param  object  the object to test, or {@code null}.
      *
+     * @see DatumValidator#validate(DatumEnsemble)
+     *
+     * @since 3.1
+     */
+    public final void validate(final DatumEnsemble<?> object) {
+        datum.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#dispatch(CoordinateOperation)
      */
     public final void validate(final CoordinateOperation object) {
@@ -1073,7 +1161,7 @@ public class ValidatorContainer implements Cloneable {
      *
      * @see ImageValidator#validate(IIOMetadataFormat)
      */
-    public void validate(final IIOMetadataFormat object) {
+    public final void validate(final IIOMetadataFormat object) {
         image.validate(object);
     }
 }

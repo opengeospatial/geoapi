@@ -26,6 +26,9 @@ import org.opengis.metadata.*;
 import org.opengis.metadata.extent.*;
 import org.opengis.metadata.citation.*;
 import org.opengis.geometry.*;
+import org.opengis.metadata.quality.*;
+import org.opengis.metadata.maintenance.*;
+import org.opengis.metadata.maintenance.Scope;      // Resolve ambiguity.
 import org.opengis.parameter.*;
 import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
@@ -213,6 +216,58 @@ public class Validators {
      * @since 3.1
      */
     public static void validate(final OnlineResource object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see MaintenanceValidator#validate(DataQuality)
+     *
+     * @since 3.1
+     */
+    public static void validate(final DataQuality object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see MaintenanceValidator#validate(MaintenanceInformation)
+     *
+     * @since 3.1
+     */
+    public static void validate(final PositionalAccuracy object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see MaintenanceValidator#validate(MaintenanceInformation)
+     *
+     * @since 3.1
+     */
+    public static void validate(final MaintenanceInformation object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see MaintenanceValidator#validate(Scope)
+     *
+     * @since 3.1
+     */
+    public static void validate(final Scope object) {
         DEFAULT.validate(object);
     }
 
@@ -637,6 +692,17 @@ public class Validators {
      * @see DatumValidator#validate(EngineeringDatum)
      */
     public static void validate(final EngineeringDatum object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see DatumValidator#validate(DatumEnsemble)
+     */
+    public static void validate(final DatumEnsemble<?> object) {
         DEFAULT.validate(object);
     }
 

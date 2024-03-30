@@ -17,8 +17,6 @@
  */
 package org.opengis.test.referencing;
 
-import java.util.Collection;
-
 import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
@@ -27,13 +25,11 @@ import org.opengis.referencing.operation.*;
 import org.opengis.parameter.GeneralParameterDescriptor;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.Identifier;
-import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 
 import org.opengis.test.Units;
 import org.opengis.test.Validator;
 import org.opengis.test.ValidatorContainer;
-import static org.junit.jupiter.api.Assertions.*;
 
 
 /**
@@ -86,22 +82,9 @@ public abstract class ReferencingValidator extends Validator {
             if (object instanceof CoordinateOperation)        {container.validate((CoordinateOperation)        object); n++;}
             if (object instanceof OperationMethod)            {container.validate((OperationMethod)            object); n++;}
             if (n == 0) {
-                if (object instanceof ReferenceSystem) {
-                    validateReferenceSystem((ReferenceSystem) object);
-                } else {
-                    validateIdentifiedObject(object);
-                }
+                validateIdentifiedObject(object);
             }
         }
-    }
-
-    /**
-     * Ensures that the given identifier has a {@linkplain Identifier#getCode() code}.
-     *
-     * @param  object  the object to validate, or {@code null}.
-     */
-    public void validate(final Identifier object) {
-        container.validate(object);
     }
 
     /**
@@ -124,20 +107,6 @@ public abstract class ReferencingValidator extends Validator {
     }
 
     /**
-     * Performs the validation that are common to all reference systems. This method is
-     * invoked by {@code validate} methods after they have determined the type of their
-     * argument.
-     *
-     * @param  object  the object to validate (cannot be null).
-     */
-    @SuppressWarnings("removal")
-    final void validateReferenceSystem(final ReferenceSystem object) {
-        validateIdentifiedObject(object);
-        container.validate(object.getScope());
-        container.validate(object.getDomainOfValidity());
-    }
-
-    /**
      * Performs the validation that are common to all identified objects. This method is
      * invoked by {@code validate} methods after they have determined the type of their
      * argument.
@@ -145,31 +114,12 @@ public abstract class ReferencingValidator extends Validator {
      * @param  object  the object to validate (cannot be null).
      */
     final void validateIdentifiedObject(final IdentifiedObject object) {
-        validate(object.getName());
-        final Collection<? extends Identifier> identifiers = object.getIdentifiers();
-        if (identifiers != null) {
-            validate(identifiers);
-            for (final Identifier id : identifiers) {
-                assertNotNull(id, "IdentifiedObject: getIdentifiers() cannot contain null element.");
-                validate(id);
-            }
-        }
-        final Collection<? extends GenericName> alias = object.getAlias();
-        if (alias != null) {
-            validate(alias);
-            for (final GenericName name : alias) {
-                assertNotNull(alias, "IdentifiedObject: getAlias() cannot contain null element.");
-                container.validate(name);
-            }
-        }
-        final Collection<? extends ObjectDomain> domains = object.getDomains();
-        if (domains != null) {
-            validate(domains);
-            for (final ObjectDomain domain : domains) {
-                assertNotNull(domains, "IdentifiedObject: getDomains() cannot contain null element.");
-                container.validate(domain);
-            }
-        }
+        final Identifier name = object.getName();
+        mandatory("IdentifiedObject: shall have a name.", name);
+        container.validate(name);
+        validate("identifier", object.getIdentifiers(), ValidatorContainer::validate, false);
+        validate("alias",      object.getAlias(),       ValidatorContainer::validate, false);
+        validate("domain",     object.getDomains(),     ValidatorContainer::validate, false);
         container.validate(object.getRemarks());
     }
 }

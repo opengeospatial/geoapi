@@ -20,6 +20,7 @@ package org.opengis.test;
 import java.util.BitSet;
 import java.util.Objects;
 import java.util.Collection;
+import java.util.function.BiConsumer;
 import java.util.logging.Logger;
 import org.opengis.annotation.Obligation;
 
@@ -212,11 +213,11 @@ public abstract class Validator {
     }
 
     /**
-     * Ensures that the elements in the given collection are compliant with the {@link Object}
-     * {@code equals(Object)} and {@code hashCode()} contract. This method ensures that the
-     * {@code equals(Object)} methods implement <i>reflexive</i>, <i>symmetric</i>
-     * and <i>transitive</i> relations. It also ensures that if {@code A.equals(B)},
-     * then {@code A.hashCode() == B.hashCode()}.
+     * Ensures that the elements in the given collection are compliant
+     * with the {@code equals(Object)} and {@code hashCode()} contract.
+     * This method ensures that the {@code equals(Object)} methods implement
+     * <i>reflexive</i>, <i>symmetric</i> and <i>transitive</i> relations.
+     * It also ensures that if {@code A.equals(B)}, then {@code A.hashCode() == B.hashCode()}.
      *
      * <p>If the given collection is null, then this method does nothing.
      * If the given collection contains null elements, then those elements are ignored.</p>
@@ -228,6 +229,7 @@ public abstract class Validator {
      *
      * @since 3.1
      */
+    @SuppressWarnings("ObjectEqualsNull")
     protected void validate(final Collection<?> collection) {
         if (collection == null) {
             return;
@@ -277,6 +279,45 @@ public abstract class Validator {
                 assertEquals(equalMask, equalMasks[j], "A.equals(B) shall be symmetric and transitive.");
             }
             assertEquals(hashCodes[i], elements[i].hashCode(), "The hash code value has changed.");
+        }
+    }
+
+    /**
+     * Validates the given collection, then validates each element in that collection.
+     * This method invokes {@link #validate(Collection)} and adds the restriction that
+     * the collection and all its element shall be non-null.
+     * Then the given validate function is invoked for each element.
+     * Example:
+     *
+     * {@snippet lang="java" :
+     * validate("identifiers", object.getIdentifiers(), ValidatorContainer::validate, false);
+     * }
+     *
+     * @param <E>        type of elements to validate.
+     * @param property   name of the property to validate.
+     * @param values     values of the property to validate.
+     * @param validator  the function to invoke for validating each element.
+     * @param mandatory  whether at least one element shall be present.
+     *
+     * @since 3.1
+     */
+    protected <E> void validate(final String property,
+                                final Collection<? extends E> values,
+                                final BiConsumer<ValidatorContainer,E> validator,
+                                final boolean mandatory)
+    {
+        assertNotNull(values, () -> property + " shall not be null. "
+                + (mandatory ? "Expected a collection with at least one element."
+                             : "If absent, it should be an empty collection instead."));
+        validate(values);
+        boolean isPresent = false;
+        for (final E element : values) {
+            assertNotNull(element, () -> property + " shall not contain null elements.");
+            validator.accept(container, element);
+            isPresent = true;
+        }
+        if (mandatory && requireMandatoryAttributes) {
+            assertTrue(isPresent, () -> " is mandatory. The collection shall not be empty.");
         }
     }
 }
