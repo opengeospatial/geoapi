@@ -17,9 +17,7 @@
  */
 package org.opengis.referencing.operation;
 
-import java.util.Optional;
 import org.opengis.parameter.ParameterValueGroup;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
@@ -60,29 +58,4 @@ public interface SingleOperation extends CoordinateOperation {
      */
     @UML(identifier="parameterValue", obligation=MANDATORY, specification=ISO_19111)
     ParameterValueGroup getParameterValues();
-
-    /**
-     * Returns the <abbr>CRS</abbr> to be used for interpolations in a grid.
-     * Some single coordinate operations employ methods which include interpolation within a grid to derive
-     * the values of operation parameters. The <abbr>CRS</abbr> to be used for the interpolation
-     * may be different from either the source <abbr>CRS</abbr> or the target <abbr>CRS</abbr>.
-     *
-     * <h4>Example</h4>
-     * Vertical offsets between two vertical <abbr>CRS</abbr>s interpolated from a grid.
-     * The source and target <abbr>CRS</abbr>s will both be vertical <abbr>CRS</abbr>s,
-     * the interpolation <abbr>CRS</abbr> is a geographic <abbr>CRS</abbr> to which the grid is referenced.
-     *
-     * @return the <abbr>CRS</abbr> to be used for interpolations in a grid.
-     *
-     * @departure integration
-     *   ISO 19111 defines this property in the {@link CoordinateOperation} base class, but interpolation
-     *   <abbr>CRS</abbr> seems to be used only for {@code SingleOperation}. Current version of GeoAPI
-     *   conservatively defines interpolation <abbr>CRS</abbr> for single operations only.
-     *
-     * @since 3.1
-     */
-    @UML(identifier="CoordinateOperation.interpolationCRS", obligation=OPTIONAL, specification=ISO_19111)
-    default Optional<CoordinateReferenceSystem> getInterpolationCRS() {
-        return Optional.empty();
-    }
 }

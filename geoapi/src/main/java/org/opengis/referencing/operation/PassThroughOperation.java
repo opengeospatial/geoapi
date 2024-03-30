@@ -21,6 +21,7 @@ import java.util.Optional;
 import java.util.Collection;
 import java.time.temporal.Temporal;
 import org.opengis.metadata.quality.PositionalAccuracy;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.ObjectDomain;
 import org.opengis.annotation.UML;
 
@@ -87,6 +88,18 @@ public interface PassThroughOperation extends CoordinateOperation {
     @UML(identifier="targetCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
     default Optional<Temporal> getTargetEpoch() {
         return getOperation().getTargetEpoch();
+    }
+
+    /**
+     * Returns the <abbr>CRS</abbr> to be used for interpolations in a grid.
+     * By default, this is the interpolation <abbr>CRS</abbr> of the {@linkplain #getOperation() operation}.
+     *
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="interpolationCRS", obligation=OPTIONAL, specification=ISO_19111)
+    default Optional<CoordinateReferenceSystem> getInterpolationCRS() {
+        return getOperation().getInterpolationCRS();
     }
 
     /**

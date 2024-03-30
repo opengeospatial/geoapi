@@ -83,8 +83,25 @@ public interface ConcatenatedOperation extends CoordinateOperation {
     }
 
     /**
+     * Returns the <abbr>CRS</abbr> to be used for interpolations in a grid.
+     * By default, this is the interpolation <abbr>CRS</abbr> of the first
+     * operation step in which such <abbr>CRS</abbr> is defined
+     *
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="interpolationCRS", obligation=OPTIONAL, specification=ISO_19111)
+    default Optional<CoordinateReferenceSystem> getInterpolationCRS() {
+        for (CoordinateOperation step : getOperations()) {
+            Optional<CoordinateReferenceSystem> crs = step.getInterpolationCRS();
+            if (crs.isPresent()) return crs;
+        }
+        return Optional.empty();
+    }
+
+    /**
      * Returns the date at which source coordinate tuples are valid.
-     * By default, this is the source epoch of the first operation in which such epoch is defined.
+     * By default, this is the source epoch of the first operation step in which such epoch is defined.
      *
      * @since 3.1
      */
@@ -100,7 +117,7 @@ public interface ConcatenatedOperation extends CoordinateOperation {
 
     /**
      * Returns the date at which target coordinate tuples are valid.
-     * By default, this is the target epoch of the last operation in which such epoch is defined.
+     * By default, this is the target epoch of the last operation step in which such epoch is defined.
      *
      * @since 3.1
      */

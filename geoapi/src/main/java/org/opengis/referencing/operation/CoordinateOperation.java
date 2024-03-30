@@ -140,6 +140,26 @@ public interface CoordinateOperation extends IdentifiedObject {
     CoordinateReferenceSystem getTargetCRS();
 
     /**
+     * Returns the <abbr>CRS</abbr> to be used for interpolations in a grid.
+     * Some single coordinate operations employ methods which include interpolation within a grid to derive
+     * the values of operation parameters. The <abbr>CRS</abbr> to be used for the interpolation
+     * may be different from either the source <abbr>CRS</abbr> or the target <abbr>CRS</abbr>.
+     *
+     * <h4>Example</h4>
+     * Vertical offsets between two vertical <abbr>CRS</abbr>s interpolated from a grid.
+     * The source and target <abbr>CRS</abbr>s will both be vertical <abbr>CRS</abbr>s,
+     * the interpolation <abbr>CRS</abbr> is a geographic <abbr>CRS</abbr> to which the grid is referenced.
+     *
+     * @return the <abbr>CRS</abbr> to be used for interpolations in a grid.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="interpolationCRS", obligation=OPTIONAL, specification=ISO_19111)
+    default Optional<CoordinateReferenceSystem> getInterpolationCRS() {
+        return Optional.empty();
+    }
+
+    /**
      * Returns the date at which source coordinate tuples are valid.
      * This is mandatory if the <abbr>CRS</abbr> is
      * {@linkplain org.opengis.referencing.datum.DynamicReferenceFrame dynamic}.
