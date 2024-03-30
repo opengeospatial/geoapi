@@ -55,7 +55,10 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see DatumAuthorityFactory#createImageDatum(String)
  * @see DatumFactory#createImageDatum(Map, PixelInCell)
+ *
+ * @deprecated Replaced by {@link EngineeringDatum} as of ISO 19111:2019.
  */
+@Deprecated(since="3.1")
 @UML(identifier="CD_ImageDatum", specification=ISO_19111, version=2007)
 public interface ImageDatum extends Datum {
     /**

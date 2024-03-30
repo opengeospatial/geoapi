@@ -64,7 +64,7 @@ import org.opengis.referencing.datum.DatumEnsemble;
  * @see CRSAuthorityFactory#createEngineeringCRS(String)
  * @see CRSFactory#createEngineeringCRS(Map, EngineeringDatum, CoordinateSystem)
  */
-@UML(identifier="EngineeringCRS", specification=ISO_19111, version=2007)
+@UML(identifier="EngineeringCRS", specification=ISO_19111)
 public interface EngineeringCRS extends SingleCRS {
     /**
      * Returns the datum, which shall be an engineering one.

@@ -402,6 +402,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is unspecified.
      *
      * @category Other
+     * @since 3.1
      */
     @UML(identifier="unspecified", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection UNSPECIFIED = new AxisDirection("UNSPECIFIED");

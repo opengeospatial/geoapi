@@ -47,14 +47,14 @@ import static org.opengis.annotation.Obligation.MANDATORY;
 @UML(identifier="DatumEnsemble", specification=ISO_19111)
 public interface DatumEnsemble<D extends Datum> extends IdentifiedObject {
     /**
-     * Datum or reference frame which are members of this datum ensemble.
+     * Datum or reference frames which are members of this datum ensemble.
      * This collection shall contain at least 2 elements.
      * All datum shall have the same {@linkplain Datum#getConventionalRS() conventional reference system} (if any).
      *
-     * @return datum or reference frame which are members of this datum ensemble.
+     * @return datum or reference frames which are members of this datum ensemble.
      */
     @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
-    Collection<D> datums();
+    Collection<D> getMembers();
 
     /**
      * Inaccuracy introduced through use of this collection of reference frames or datums.

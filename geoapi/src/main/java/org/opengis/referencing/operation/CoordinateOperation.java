@@ -79,8 +79,7 @@ public interface CoordinateOperation extends IdentifiedObject {
 
     /**
      * Key for the <code>{@value}</code> property.
-     * This property is kept for compatibility with ISO 19111:2007.
-     * However as of ISO 19111:2019, {@link #DOMAINS_KEY} should be preferred.
+     * This is used for setting the value to be returned by {@link #getCoordinateOperationAccuracy()}.
      *
      * @see #getCoordinateOperationAccuracy()
      */
