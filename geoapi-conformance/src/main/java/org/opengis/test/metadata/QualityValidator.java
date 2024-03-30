@@ -60,6 +60,9 @@ public class QualityValidator extends MetadataValidator {
         int n = 0;
         if (object != null) {
             if (object instanceof PositionalAccuracy) {validate((PositionalAccuracy) object); n++;}
+            if (n == 0) {
+                validateElement(object);
+            }
         }
         return n;
     }
@@ -78,6 +81,9 @@ public class QualityValidator extends MetadataValidator {
             if (object instanceof ConformanceResult)  {validate((ConformanceResult)  object); n++;}
             if (object instanceof QuantitativeResult) {validate((QuantitativeResult) object); n++;}
             if (object instanceof CoverageResult)     {validate((CoverageResult)     object); n++;}
+            if (n == 0) {
+                validateResult(object);
+            }
         }
         return n;
     }

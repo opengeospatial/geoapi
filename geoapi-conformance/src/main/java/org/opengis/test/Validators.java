@@ -237,11 +237,89 @@ public class Validators {
      *
      * @param  object  the object to test, or {@code null}.
      *
+     * @see QualityValidator#dispatch(Element)
+     *
+     * @since 3.1
+     */
+    public static void validate(final Element object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see MaintenanceValidator#validate(MaintenanceInformation)
      *
      * @since 3.1
      */
     public static void validate(final PositionalAccuracy object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see QualityValidator#dispatch(Result)
+     *
+     * @since 3.1
+     */
+    public static void validate(final Result object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see QualityValidator#validate(DescriptiveResult)
+     *
+     * @since 3.1
+     */
+    public static void validate(final DescriptiveResult object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see QualityValidator#validate(ConformanceResult)
+     *
+     * @since 3.1
+     */
+    public static void validate(final ConformanceResult object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see QualityValidator#validate(QuantitativeResult)
+     *
+     * @since 3.1
+     */
+    public static void validate(final QuantitativeResult object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see QualityValidator#validate(CoverageResult)
+     *
+     * @since 3.1
+     */
+    public static void validate(final CoverageResult object) {
         DEFAULT.validate(object);
     }
 

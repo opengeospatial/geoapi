@@ -165,11 +165,11 @@ public class OperationParametersReport extends Report {
                     int i=0;
                     final String[] array = new String[size];
                     for (final Map.Entry<String,Boolean> entry : toCopy.entrySet()) {
-                        String name = escape(entry.getKey());
+                        String text = escape(entry.getKey());
                         if (entry.getValue()) {
-                            name = "<em>" + name + "</em>";
+                            text = "<em>" + text + "</em>";
                         }
-                        array[i++] = name;
+                        array[i++] = text;
                     }
                     if (names.put(cs, array) != null) {
                         throw new AssertionError(cs);                       // Should never happen.
@@ -289,9 +289,9 @@ public class OperationParametersReport extends Report {
                 if (codes != null) {
                     // Intentionally no enclosing <ul>.
                     if (!isGroup) out.append("<li>");
-                    for (final String name : codes) {
+                    for (final String code : codes) {
                         if (hasMore) out.append("<br>");
-                        out.append(name);
+                        out.append(code);
                         hasMore = true;
                     }
                     if (!isGroup) out.append("</li>");

@@ -120,6 +120,7 @@ public class CRSValidator extends ReferencingValidator {
             if (n == 0) {
                 if (object instanceof GeodeticCRS) {
                     validate((GeodeticCRS) object, false, false);
+                    n++;
                 } else {
                     validateIdentifiedObject(object);
                     container.validate(object.getCoordinateSystem());

@@ -203,7 +203,7 @@ public class ValidatorContainer implements Cloneable {
         all = new AbstractList<Validator>() {
             /** Returns the number of elements in this list. */
             @Override public int size() {
-                return 11;
+                return 13;
             }
 
             /** Returns the validator at the given index. */
@@ -212,14 +212,16 @@ public class ValidatorContainer implements Cloneable {
                     case  0: return naming;
                     case  1: return metadata;
                     case  2: return citation;
-                    case  3: return extent;
-                    case  4: return datum;
-                    case  5: return cs;
-                    case  6: return crs;
-                    case  7: return parameter;
-                    case  8: return coordinateOperation;
-                    case  9: return geometry;
-                    case 10: return image;
+                    case  3: return quality;
+                    case  4: return maintenance;
+                    case  5: return extent;
+                    case  6: return datum;
+                    case  7: return cs;
+                    case  8: return crs;
+                    case  9: return parameter;
+                    case 10: return coordinateOperation;
+                    case 11: return geometry;
+                    case 12: return image;
                     default: throw new IndexOutOfBoundsException(index);
                 }
             }
@@ -268,15 +270,18 @@ public class ValidatorContainer implements Cloneable {
         if (object instanceof Telephone)             validate((Telephone)             object);
         if (object instanceof Address)               validate((Address)               object);
         if (object instanceof OnlineResource)        validate((OnlineResource)        object);
+        if (object instanceof DataQuality)           validate((DataQuality)           object);
+        if (object instanceof Element)               validate((Element)               object);  // Dispatch according sub-type.
+        if (object instanceof Result)                validate((Result)                object);  // Dispatch according sub-type.
         if (object instanceof Extent)                validate((Extent)                object);
-        if (object instanceof GeographicExtent)      validate((GeographicExtent)      object);
+        if (object instanceof GeographicExtent)      validate((GeographicExtent)      object);  // Dispatch according sub-type.
         if (object instanceof VerticalExtent)        validate((VerticalExtent)        object);
         if (object instanceof TemporalExtent)        validate((TemporalExtent)        object);
-        if (object instanceof IdentifiedObject)      validate((IdentifiedObject)      object);
+        if (object instanceof IdentifiedObject)      validate((IdentifiedObject)      object);  // Dispatch according sub-type.
         if (object instanceof Identifier)            validate((Identifier)            object);
-        if (object instanceof GenericName)           validate((GenericName)           object);
+        if (object instanceof GenericName)           validate((GenericName)           object);  // Dispatch according sub-type.
         if (object instanceof NameSpace)             validate((NameSpace)             object);
-        if (object instanceof GeneralParameterValue) validate((GeneralParameterValue) object);
+        if (object instanceof GeneralParameterValue) validate((GeneralParameterValue) object);  // Dispatch according sub-type.
         if (object instanceof Envelope)              validate((Envelope)              object);
         if (object instanceof DirectPosition)        validate((DirectPosition)        object);
         if (object instanceof InternationalString)   validate((InternationalString)   object);
@@ -402,7 +407,7 @@ public class ValidatorContainer implements Cloneable {
      *
      * @param  object  the object to test, or {@code null}.
      *
-     * @see MaintenanceValidator#validate(DataQuality)
+     * @see QualityValidator#validate(DataQuality)
      *
      * @since 3.1
      */
@@ -415,11 +420,89 @@ public class ValidatorContainer implements Cloneable {
      *
      * @param  object  the object to test, or {@code null}.
      *
+     * @see QualityValidator#dispatch(Element)
+     *
+     * @since 3.1
+     */
+    public final void validate(final Element object) {
+        quality.dispatch(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see MaintenanceValidator#validate(MaintenanceInformation)
      *
      * @since 3.1
      */
     public final void validate(final PositionalAccuracy object) {
+        quality.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see QualityValidator#dispatch(Result)
+     *
+     * @since 3.1
+     */
+    public final void validate(final Result object) {
+        quality.dispatch(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see QualityValidator#validate(DescriptiveResult)
+     *
+     * @since 3.1
+     */
+    public final void validate(final DescriptiveResult object) {
+        quality.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see QualityValidator#validate(ConformanceResult)
+     *
+     * @since 3.1
+     */
+    public final void validate(final ConformanceResult object) {
+        quality.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see QualityValidator#validate(QuantitativeResult)
+     *
+     * @since 3.1
+     */
+    public final void validate(final QuantitativeResult object) {
+        quality.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
+     * @see QualityValidator#validate(CoverageResult)
+     *
+     * @since 3.1
+     */
+    public final void validate(final CoverageResult object) {
         quality.validate(object);
     }
 
