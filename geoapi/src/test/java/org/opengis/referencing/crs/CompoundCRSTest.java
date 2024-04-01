@@ -60,7 +60,7 @@ public final class CompoundCRSTest {
     }
 
     /**
-     * Tests {@link CompoundCRS#getFlattenedComponents()}.
+     * Tests {@link CompoundCRS#getSingleComponents()}.
      */
     @Test
     public void testGetSingleComponents() {
@@ -70,7 +70,7 @@ public final class CompoundCRSTest {
                     new CoordinateSystemMock(1, 1, 2),
                     new CoordinateSystemMock(2, 2, 3)));
 
-        List<SingleCRS> components = crs.getFlattenedComponents();
+        List<SingleCRS> components = crs.getSingleComponents();
         assertEquals(3, components.size());
         verifyAxes(components.get(0).getCoordinateSystem(), "x0:0", "x0:1");
         verifyAxes(components.get(1).getCoordinateSystem(), "x1:2");

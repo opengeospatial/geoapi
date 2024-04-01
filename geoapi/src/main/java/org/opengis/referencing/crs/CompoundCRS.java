@@ -64,7 +64,7 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
     /**
      * Returns the ordered list of <abbr>CRS</abbr> components.
      * The returned list may contain nested compound <abbr>CRS</abbr>.
-     * For a list without nesting, as required by ISO 19111, see {@link #getFlattenedComponents()}.
+     * For a list without nesting, as required by ISO 19111, see {@link #getSingleComponents()}.
      *
      * <h4>Why nested compound <abbr>CRS</abbr></h4>
      * The use of nested compound <abbr>CRS</abbr>s can avoid metadata lost when a temporal <abbr>CRS</abbr>
@@ -80,7 +80,7 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      *
      * @departure generalization
      *   Added as an alternative to the association defined by ISO 19111 for resolving the problem of metadata lost.
-     *   The ISO 19111 requirement is still available as the {@link #getFlattenedComponents()} method.
+     *   The ISO 19111 requirement is still available as the {@link #getSingleComponents()} method.
      */
     List<CoordinateReferenceSystem> getComponents();
 
@@ -94,7 +94,7 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      * @since 3.1
      */
     @UML(identifier="componentReferenceSystem", obligation=MANDATORY, specification=ISO_19111)
-    default List<SingleCRS> getFlattenedComponents() {
+    default List<SingleCRS> getSingleComponents() {
         var singles = new ArrayList<SingleCRS>(5);
         flatten(singles, new LinkedList<>());   // Linked list is cheap to construct and efficient with 0 or 1 element.
         return Collections.unmodifiableList(singles);
