@@ -27,15 +27,10 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Type of a vertical datum.
- *
- * <div class="note"><b>Note:</b>
- * ISO 19111 omits the definition of an {@code ELLIPSOIDAL} vertical height on intent.
+ * Note that ISO 19111 omits the definition of an {@code ELLIPSOIDAL} vertical height on intent.
  * {@link org.opengis.referencing.crs.GeographicCRS} with ellipsoidal height shall be backed by a three-dimensional
- * {@link org.opengis.referencing.cs.EllipsoidalCS}; they should never be built as
- * {@link org.opengis.referencing.crs.CompoundCRS}. If nevertheless an ellipsoidal height is needed
- * (for example, in order to process a CRS in the legacy WKT 1 format),
- * implementers can get a suitable vertical datum type using {@code VerticalDatumType.valueOf("ELLIPSOIDAL")}.
- * Implementers are encouraged to not expose that datum type in public API however.</div>
+ * {@link org.opengis.referencing.cs.EllipsoidalCS}; they should not be built as
+ * {@link org.opengis.referencing.crs.CompoundCRS}.
  *
  * @see VerticalDatum#getVerticalDatumType()
  *
@@ -54,6 +49,15 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -8161084528823937553L;
+
+    /**
+     * The zero value is defined by a method not described by the other enumeration values in this class.
+     * In some cases, for example oil exploration and production, a geological feature, such as the top or
+     * bottom of a geologically identifiable and meaningful subsurface layer, is used as a vertical datum.
+     * Other variations to the above three vertical datum types may exist and are all included in this type.
+     */
+    @UML(identifier="other surface", obligation=CONDITIONAL, specification=ISO_19111)
+    public static final VerticalDatumType OTHER_SURFACE = new VerticalDatumType("OTHER_SURFACE");
 
     /**
      * The zero value is defined to approximate a constant potential surface, usually the geoid.
@@ -85,41 +89,9 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * Barometric values are usually expressed in one of the following units:
      * meters, feet, millibars (used to measure pressure levels),
      * or theta value (units used to measure geopotential height).
-     *
-     * <p>Barometric height determination is routinely used in aircraft.
-     * The altimeter (barometer) on board is set to the altitude of the airfield at the time of take-off,
-     * which corrects simultaneously for instantaneous air pressure and altitude of the airfield.
-     * The measured height value is commonly named "altitude".</p>
-     *
-     * <p>In some land surveying applications, height differences between points are measured with barometers.
-     * To obtain absolute heights the measured height differences are added to the known heights of control points.
-     * In that case the vertical datum type is not barometric, but is the same as that of the vertical control network
-     * used to obtain the heights of the new points and its vertical datum type.
-     * The accuracy of this technique is limited,
-     * as it is affected strongly by the spatial and temporal variability of atmospheric pressure.
-     * This accuracy limitation impacts the precision of the associated vertical datum definition.
-     * The datum is usually the surface of constant atmospheric pressure approximately equating to mean sea level (<abbr>MSL</abbr>).
-     * The origin or anchor point is usually a point of known <abbr>MSL</abbr> height.
-     * The instruments are calibrated at this point by correcting for the instantaneous atmospheric pressure
-     * at sea level and the height of the point above <abbr>MSL</abbr>.</p>
-     *
-     * <p>In meteorology, atmospheric pressure routinely takes the role as vertical coordinate in a <abbr>CRS</abbr>
-     * that is used as a spatial reference frame for meteorological parameters in the upper atmosphere.
-     * The origin of the datum is in that case the (hypothetical) zero atmospheric pressure and the positive
-     * vertical axis points down (to increasing pressure).</p>
      */
     @UML(identifier="barometric", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType BAROMETRIC = new VerticalDatumType("BAROMETRIC");
-
-    /**
-     * The zero value is defined by a method not described by the other enumeration values in this class.
-     * In some cases, for example oil exploration and production, a geological feature, such as the top or
-     * bottom of a geologically identifiable and meaningful subsurface layer, is used as a vertical datum.
-     * Other variations to the above three vertical datum types may exist and are all included in this type.
-     */
-    @UML(identifier="other surface", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final VerticalDatumType OTHER_SURFACE = new VerticalDatumType("OTHER_SURFACE");
-
 
     /**
      * Maps a realization method to a vertical datum type.
