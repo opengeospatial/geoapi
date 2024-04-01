@@ -72,7 +72,7 @@ public interface GeodeticCRS extends SingleCRS {
      * @since 3.1
      */
     @Override
-    @UML(identifier="datum", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="datumEnsemble", obligation=CONDITIONAL, specification=ISO_19111)
     default DatumEnsemble<GeodeticDatum> getDatumEnsemble() {
         return null;
     }

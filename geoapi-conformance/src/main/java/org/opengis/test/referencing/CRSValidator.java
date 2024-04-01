@@ -476,7 +476,7 @@ public class CRSValidator extends ReferencingValidator {
         if (directions != null) {
             assertNotNull("CompoundCRS: missing coordinate system for component.");
             final int dimension = cs.getDimension();
-            assertTrue(index + dimension < directions.length, "CompoundCRS: components have too many dimensions.");
+            assertTrue(index + dimension <= directions.length, "CompoundCRS: components have too many dimensions.");
             for (int i=0; i<dimension; i++) {
                 final AxisDirection expected = directions[index++];
                 if (expected != null) {
