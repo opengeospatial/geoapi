@@ -304,8 +304,11 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
      * @throws FactoryException if this method cannot provide the requested information.
+     *
+     * @deprecated {@code ImageDatum} is replaced by {@link EngineeringDatum} as of ISO 19111:2019.
      */
     @Override
+    @Deprecated(since="3.1")
     public ImageDatum createImageDatum(String code) throws FactoryException {
         final int id = parseCode(code);
         switch (id) {
@@ -994,8 +997,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
      */
     @Override
-    @SuppressWarnings("removal")
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since="3.1")
     public ImageCRS createImageCRS(String code) throws FactoryException {
         final int id = parseCode(code);
         switch (id) {

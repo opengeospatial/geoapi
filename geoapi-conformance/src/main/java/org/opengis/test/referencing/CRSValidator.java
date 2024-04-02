@@ -306,8 +306,7 @@ public class CRSValidator extends ReferencingValidator {
      *
      * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
      */
-    @SuppressWarnings("removal")
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since="3.1")
     public void validate(final ImageCRS object) {
         if (object == null) {
             return;

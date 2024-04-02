@@ -60,7 +60,7 @@ public enum Obligation implements ControlledVocabulary {
     /**
      * The element should always be {@code null}. This obligation code is used only when
      * a sub-interface overrides an association and force it to a {@code null} value.
-     * An example is {@link org.opengis.referencing.datum.TemporalDatum#getAnchorPoint()}.
+     * An example is {@link org.opengis.referencing.datum.TemporalDatum#getAnchorDefinition()}.
      *
      * @departure constraint
      *   ISO specifications sometimes override a parent method with a comment saying that the method

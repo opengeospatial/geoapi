@@ -214,7 +214,10 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createImageCRS(String)
+     *
+     * @deprecated {@code ImageDatum} is replaced by {@link EngineeringDatum} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1")
     default ImageDatum createImageDatum(final String code) throws FactoryException {
         final Datum datum = createDatum(code);
         try {

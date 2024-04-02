@@ -299,8 +299,7 @@ public class CSValidator extends ReferencingValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      */
-    @SuppressWarnings("removal")
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since="3.1")
     public void validate(final UserDefinedCS object) {
         if (object == null) {
             return;

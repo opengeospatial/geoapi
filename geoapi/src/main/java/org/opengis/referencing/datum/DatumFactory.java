@@ -198,7 +198,10 @@ public interface DatumFactory extends ObjectFactory {
      *         with the image data attributes.
      * @return the datum for the given properties.
      * @throws FactoryException if the object creation failed.
+     *
+     * @deprecated {@code ImageDatum} is replaced by {@link EngineeringDatum} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1")
     default ImageDatum createImageDatum(Map<String,?> properties,
                                         PixelInCell   pixelInCell) throws FactoryException
     {

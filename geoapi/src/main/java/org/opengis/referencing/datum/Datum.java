@@ -71,10 +71,10 @@ public interface Datum extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@code DatumFactory.createFoo(Map, ...)} methods.
-     * This is used for setting the value to be returned by {@link #getAnchorPoint()}.
+     * This is used for setting the value to be returned by {@link #getAnchorDefinition()}.
      *
      * @see DatumFactory
-     * @see #getAnchorPoint()
+     * @see #getAnchorDefinition()
      *
      * @deprecated Renamed {@link #ANCHOR_DEFINITION_KEY} for conformance with ISO 19111:2019 revision.
      */
@@ -153,7 +153,7 @@ public interface Datum extends IdentifiedObject {
     String CONVENTIONAL_RS_KEY = "conventionalRS";
 
     /**
-     * A description of the relationship used to anchor the coordinate system to the Earth or alternate object.
+     * Returns a description of the relationship used to anchor the coordinate system to the Earth or alternate object.
      * The definition may include coordinates of an identified point or points.
      * Also known as the "origin", especially for {@link EngineeringDatum}s.
      *
@@ -194,7 +194,7 @@ public interface Datum extends IdentifiedObject {
     }
 
     /**
-     * Epoch at which a static reference frame matches a dynamic reference frame from which it has been derived.
+     * Returns the epoch at which a static datum matches a dynamic datum from which it has been derived.
      * This time may be precise or merely a year (e.g. 1983 for NAD83). In the latter case, the epoch usually
      * refers to the year in which a major recalculation of the geodetic control network, underlying the datum,
      * was executed or initiated.
@@ -203,7 +203,7 @@ public interface Datum extends IdentifiedObject {
      * Nor with the epoch at which a reference frame is defined to be aligned with another reference frame.
      * this information should be included in the datum {@linkplain #getAnchorDefinition() anchor definition}.</p>
      *
-     * @return epoch at which a static reference frame matches a dynamic reference frame from which it has been derived.
+     * @return epoch at which a static datum matches a dynamic datum from which it has been derived.
      *
      * @see java.time.Year
      * @see java.time.YearMonth
@@ -262,7 +262,7 @@ public interface Datum extends IdentifiedObject {
     }
 
     /**
-     * Date on which the datum definition was published.
+     * Returns the date on which the datum definition was published.
      *
      * @return date on which the datum definition was published.
      *
@@ -277,7 +277,7 @@ public interface Datum extends IdentifiedObject {
     }
 
     /**
-     * Name, identifier, alias and remarks for the reference system realized by this reference frame.
+     * Returns the name, identifier, alias and remarks for the reference system realized by this reference frame.
      * Examples: "ITRS" for ITRF88 through ITRF2008 and ITRF2014, or "EVRS" for EVRF2000 and EVRF2007.
      * All datums that are members of a {@linkplain DatumEnsemble datum ensemble} shall have the same
      * conventional reference system.

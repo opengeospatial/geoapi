@@ -52,7 +52,7 @@ import static org.opengis.annotation.Specification.*;
 @Classifier(Stereotype.ABSTRACT)
 public interface DynamicReferenceFrame extends Datum {
     /**
-     * Epoch to which the coordinates of stations defining the dynamic geodetic reference frame are referenced.
+     * Returns the epoch to which the coordinates of stations defining the dynamic geodetic reference frame are referenced.
      *
      * <h4>Temporal object type</h4>
      * The type of the returned object depends on the epoch accuracy and the calendar in use.
