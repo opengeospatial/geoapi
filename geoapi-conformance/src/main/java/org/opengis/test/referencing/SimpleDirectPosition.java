@@ -84,15 +84,6 @@ final class SimpleDirectPosition implements DirectPosition {
     }
 
     /**
-     * Returns always {@code null}, since it is allowed by the specification
-     * and {@link TransformTestCase} doesn't want to test the handling of CRS.
-     */
-    @Override
-    public CoordinateReferenceSystem getCoordinateReferenceSystem() {
-        return null;
-    }
-
-    /**
      * {@inheritDoc}
      */
     @Override
@@ -156,14 +147,6 @@ final class SimpleDirectPosition implements DirectPosition {
     public void setCoordinate(int dimension, double value) throws IndexOutOfBoundsException {
         assertFalse(unmodifiable, "This DirectPosition shall not be modified.");
         coordinates[dimension] = value;
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public DirectPosition getDirectPosition() {
-        return this;
     }
 
     /**

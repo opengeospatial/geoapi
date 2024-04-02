@@ -28,15 +28,18 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Holds the coordinates for a position within some coordinate reference system. Since
- * {@code DirectPosition}s, as data types, will often be included in larger objects (such as
- * {@linkplain org.opengis.geometry.Geometry geometries}) that have references to
- * {@linkplain CoordinateReferenceSystem coordinate reference system}, the
- * {@link #getCoordinateReferenceSystem} method may returns {@code null} if this particular
- * {@code DirectPosition} is included in a larger object with such a reference to a
- * {@linkplain CoordinateReferenceSystem coordinate reference system}. In this case,
- * the coordinate reference system is implicitly assumed to take on the value of the containing
- * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
+ * Holds the coordinates for a position within some coordinate reference system.
+ * Since {@code DirectPosition}s, as data types, will often be included in larger objects
+ * (such as {@linkplain org.opengis.geometry.Geometry geometries}) that have references to
+ * {@linkplain CoordinateReferenceSystem coordinate reference system} (CRS),
+ * the {@link #getCoordinateReferenceSystem()} method may return {@code null} if this particular
+ * {@code DirectPosition} is included in a larger object with such a reference to a CRS.
+ * In this case, the coordinate reference system is implicitly assumed to take on the value
+ * of the containing object's CRS.
+ *
+ * <h2>Optional operation</h2>
+ * A direct position can optionally be modifiable. If this {@code DirectPosition} is unmodifiable,
+ * then all setter methods will throw {@link UnsupportedOperationException}.
  *
  * @departure easeOfUse
  *   The ISO specification defines this interface in the {@code coordinate} sub-package.
@@ -51,16 +54,32 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="DirectPosition", specification=ISO_19107)
 public interface DirectPosition extends Position {
     /**
-     * The coordinate reference system in which the coordinate tuple is given. May be {@code null} if this
-     * particular {@code DirectPosition} is included in a larger object with such a reference to a
-     * {@linkplain CoordinateReferenceSystem coordinate reference system}. In this case, the
-     * coordinate reference system is implicitly assumed to take on the value of the containing
-     * object's {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * Returns this direct position.
      *
-     * @return the coordinate reference system, or {@code null}.
+     * @return {@code this} (usually).
+     */
+    @Override
+    default DirectPosition getDirectPosition() {
+        return this;
+    }
+
+    /**
+     * The coordinate reference system (CRS) in which the coordinate tuple is given.
+     * May be {@code null} if this particular {@code DirectPosition} is included in a larger object
+     * with such a reference to a {@linkplain CoordinateReferenceSystem coordinate reference system}.
+     * In this case, the coordinate reference system is implicitly assumed to take on the value
+     * of the containing object's CRS.
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation returns {@code null}. Implementations should override
+     * this method if the CRS is known or can be taken from the containing object.
+     *
+     * @return the coordinate reference system (CRS), or {@code null}.
      */
     @UML(identifier="coordinateReferenceSystem", obligation=MANDATORY, specification=ISO_19107)
-    CoordinateReferenceSystem getCoordinateReferenceSystem();
+    default CoordinateReferenceSystem getCoordinateReferenceSystem() {
+        return null;
+    }
 
     /**
      * The length of coordinate sequence (the number of entries). This is determined by the
@@ -72,39 +91,13 @@ public interface DirectPosition extends Position {
     int getDimension();
 
     /**
-     * A <b>copy</b> of the coordinates presented as an array of double values.
-     * Please note that this is only a copy (the real values may be stored in another format),
-     * therefor changes to the returned array will not affect the source {@code DirectPosition}.
+     * A <b>copy</b> of the coordinates stored as an array of double values.
+     * Changes to the returned array will not affect this {@code DirectPosition}.
      *
-     * {@snippet lang="java" :
-     * final int dim = position.getDimension();
-     * for (int i=0; i&lt;dim; i++) {
-     *     position.getCoordinate(i);       // no copy overhead
-     * }}
-     *
-     * To manipulate coordinates, the following idiom can be used:
-     *
-     * {@snippet lang="java" :
-     * position.setCoordinate(i, value);    // edit in place
-     * }
-     *
-     * <h4>Design note</h4>
-     * There are a couple reasons for requesting a copy:
-     *
-     * <ul>
-     *   <li>We want an array of coordinates with the intent to modify it for computation purpose
-     *       (without modifying the original {@code DirectPosition}), or we want to protect the
-     *       array from future {@code DirectPosition} changes.</li>
-     *   <li>If {@code DirectPosition.getCoordinates()} is guaranteed to not return the backing array,
-     *       then we can work directly on this array. If we don't have this guarantee, then we must
-     *       conservatively clone the array in every cases.</li>
-     *   <li>Cloning the returned array is useless if the implementation cloned the array or was
-     *       forced to return a new array anyway (for example because the coordinates were
-     *       computed on the fly)</li>
-     * </ul>
-     *
-     * Precedence is given to data integrity over {@code getCoordinates()} performance.
-     * Performance concern can be avoided with usage of {@link #getCoordinate(int)}.
+     * <h4>Default implementation</h4>
+     * The default implementation invokes {@link #getCoordinate(int)} for all indices
+     * from 0 inclusive to {@link #getDimension()} exclusive, and stores the values
+     * in a newly created array.
      *
      * @return a copy of the coordinates. Changes in the returned array will not be reflected back
      *         in this {@code DirectPosition} object.
@@ -112,7 +105,13 @@ public interface DirectPosition extends Position {
      * @since 3.1
      */
     @UML(identifier="coordinate", obligation=MANDATORY, specification=ISO_19107)
-    double[] getCoordinates();
+    default double[] getCoordinates() {
+        final double[] coordinates = new double[getDimension()];
+        for (int i=0; i<coordinates.length; i++) {
+            coordinates[i] = getCoordinate(i);
+        }
+        return coordinates;
+    }
 
     /**
      * A <b>copy</b> of the coordinates presented as an array of double values.
@@ -130,7 +129,7 @@ public interface DirectPosition extends Position {
     /**
      * Returns the coordinate at the specified dimension.
      *
-     * @param  dimension  the dimension in the range 0 to {@linkplain #getDimension dimension}-1.
+     * @param  dimension  the dimension in the range 0 to {@linkplain #getDimension dimension}−1.
      * @return the coordinate at the specified dimension.
      * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() number of dimensions}.
@@ -142,7 +141,7 @@ public interface DirectPosition extends Position {
     /**
      * Returns the coordinate at the specified dimension.
      *
-     * @param  dimension  the dimension in the range 0 to {@linkplain #getDimension dimension}-1.
+     * @param  dimension  the dimension in the range 0 to {@linkplain #getDimension dimension}−1.
      * @return the coordinate at the specified dimension.
      * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() number of dimensions}.
@@ -156,6 +155,11 @@ public interface DirectPosition extends Position {
 
     /**
      * Sets the coordinate value along the specified dimension.
+     * This is an optional operation.
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation throws {@code UnsupportedOperationException}.
+     * Implementations need to override this method if this direct position is mutable.
      *
      * @param  dimension  the dimension for the coordinate of interest.
      * @param  value      the coordinate value of interest.
@@ -165,7 +169,9 @@ public interface DirectPosition extends Position {
      *
      * @since 3.1
      */
-    void setCoordinate(int dimension, double value);
+    default void setCoordinate(int dimension, double value) {
+        throw new UnsupportedOperationException();
+    }
 
     /**
      * Sets the coordinate value along the specified dimension.
@@ -193,7 +199,7 @@ public interface DirectPosition extends Position {
      * <ul>
      *   <li>{@code object} is non-null and is an instance of {@code DirectPosition}.</li>
      *   <li>Both direct positions have the same {@linkplain #getDimension() number of dimensions}.</li>
-     *   <li>Both direct positions have the same or equal {@linkplain #getCoordinateReferenceSystem
+     *   <li>Both direct positions have the same or equal {@linkplain #getCoordinateReferenceSystem()
      *       coordinate reference system}.</li>
      *   <li>For all dimension <var>i</var>, the {@linkplain #getCoordinates coordinate value} of both
      *       direct positions at that dimension are equals in the sense of {@link Double#equals(Object)}.

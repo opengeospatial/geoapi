@@ -78,13 +78,6 @@ public final class ToleranceModifiersTest implements DirectPosition {
     }
 
     /**
-     * {@link DirectPosition} methods which are not of interest to this test case.
-     */
-    @Override public DirectPosition getDirectPosition()            {return this;}
-    @Override public SingleCRS      getCoordinateReferenceSystem() {return null;}
-    @Override public double[]       getCoordinates()               {return null;}
-
-    /**
      * Tests the {@link ToleranceModifiers.Relative} implementation.
      */
     @Test
