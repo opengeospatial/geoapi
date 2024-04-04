@@ -18,7 +18,7 @@
 
 
 /**
- * An example of a very simple GeoAPI implementation.
+ * Examples of GeoAPI implementations.
  * This implementation is not complete, but can be used as a starting point for implementers.
  * Since every files in this module are placed into the Public Domain,
  * anyone is free to do whatever they wish with those files.
@@ -34,7 +34,7 @@
  * For example some libraries make no distinction between:
  *
  * <ul>
- *   <li>Ellipsoid and Geodetic Datum</li>
+ *   <li>Ellipsoid and Geodetic Reference Frame</li>
  *   <li>Coordinate System and Coordinate Reference System</li>
  *   <li>Coordinate Operation and Math Transform</li>
  * </ul>

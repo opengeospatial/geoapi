@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Description of a spatial and temporal reference system used by a dataset.
+ * Base interface of reference systems by coordinates or by identifiers.
  * A reference system contains the metadata required to interpret spatial location information unambiguously.
  * Two methods to describe spatial location are distinguished:
  *
@@ -63,7 +63,8 @@ import static org.opengis.annotation.Specification.*;
  *    ISO 19115:2003 {@code RS_ReferenceSystem} than to
  *    ISO 19115:2015 {@code MD_ReferenceSystem}.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  ISO 19115 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  *
@@ -100,8 +101,8 @@ public interface ReferenceSystem extends IdentifiedObject {
      *
      * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */
-    @Deprecated(since="3.1", forRemoval=true)
-    @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111, version=2007)
+    @Deprecated(since="3.1")
+    @UML(identifier="SC_CRS.domainOfValidity", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default Extent getDomainOfValidity() {
         return Legacy.getDomainOfValidity(getDomains());
     }
@@ -114,7 +115,7 @@ public interface ReferenceSystem extends IdentifiedObject {
      *
      * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since="3.1")
     @UML(identifier="SC_CRS.scope", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default InternationalString getScope() {
         return Legacy.getScope(getDomains());

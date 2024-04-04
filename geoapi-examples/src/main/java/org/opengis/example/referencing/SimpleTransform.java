@@ -7,6 +7,7 @@ package org.opengis.example.referencing;
 
 import java.util.Arrays;
 import java.util.Objects;
+import org.opengis.coordinate.CoordinateSet;
 
 import org.opengis.metadata.citation.Citation;
 import org.opengis.geometry.DirectPosition;
@@ -103,6 +104,22 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     @Override
     public int getTargetDimensions() {
         return targetCRS.getCoordinateSystem().getDimension();
+    }
+
+    /**
+     * Changes coordinates from source <abbr>CRS</abbr> to target <abbr>CRS</abbr>.
+     * The default implementation transform the coordinate tuples immediately and stores the result.
+     * This is okay for small coordinate set, but inefficient for large ones.
+     *
+     * @param  data  the coordinates to change.
+     * @return the result of changing coordinates.
+     * @throws TransformException if some coordinates cannot be changed.
+     *         Note that this exception not being thrown is not a guarantee that the computation
+     *         will not fail later, for example during a stream terminal operation.
+     */
+    @Override
+    public CoordinateSet transform(final CoordinateSet data) throws TransformException {
+        return new TransformedCoordinateSet(this, data);
     }
 
     /**

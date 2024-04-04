@@ -25,12 +25,13 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Defines the location and precise orientation in 3-dimensional space of a defined ellipsoid
- * (or sphere) that approximates the shape of the earth. Used also for Cartesian coordinate
- * system centered in this ellipsoid (or sphere).
+ * Position, scale and orientation of a geocentric Cartesian 3D coordinate system relative to the planet.
+ * It may also identify a defined ellipsoid (or sphere) that approximates the shape of the planet
+ * and which is centred on and aligned to this geocentric coordinate system.
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   1.0
  *
  * @see Ellipsoid
@@ -39,20 +40,34 @@ import static org.opengis.annotation.Specification.*;
  * @see DatumAuthorityFactory#createGeodeticDatum(String)
  * @see DatumFactory#createGeodeticDatum(Map, Ellipsoid, PrimeMeridian)
  */
-@UML(identifier="CD_GeodeticDatum", specification=ISO_19111, version=2007)
+@UML(identifier="GeodeticReferenceFram", specification=ISO_19111)
 public interface GeodeticDatum extends Datum {
     /**
-     * Returns the ellipsoid.
+     * Returns an approximation of the surface of the geoid.
+     * Because of the area for which the approximation is valid
+     * — traditionally regionally, but with the advent of satellite positioning often globally —
+     * the ellipsoid is typically associated with Geographic and Projected <abbr>CRS</abbr>s.
      *
-     * @return the ellipsoid.
+     * <h4>Obligation</h4>
+     * If the <abbr>CRS</abbr> using this frame is associated to an {@link org.opengis.referencing.cs.EllipsoidalCS},
+     * then the ellipsoid is mandatory. This is the case of all {@link org.opengis.referencing.crs.GeographicCRS}.
+     * But if the <abbr>CRS</abbr> is associated to a {@link org.opengis.referencing.cs.CartesianCS} or
+     * {@link org.opengis.referencing.cs.SphericalCS}, then the ellipsoid is optional.
+     * However, if there is a recommended reference ellipsoid for the reference frame
+     * then it is advised to return that ellipsoid.
+     *
+     * @return the approximation of the surface of the geoid, or {@code null} if unspecified.
+     *         A non-null value is mandatory when this frame is used with ellipsoidal coordinate systems,
+     *         and recommended for all other cases.
      */
-    @UML(identifier="ellipsoid", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="ellipsoid", obligation=CONDITIONAL, specification=ISO_19111)
     Ellipsoid getEllipsoid();
 
     /**
-     * Returns the prime meridian.
+     * Returns the origin from which longitude values are specified.
+     * Most geodetic reference frames use Greenwich as their prime meridian.
      *
-     * @return the prime meridian.
+     * @return the origin from which longitude values are specified.
      */
     @UML(identifier="primeMeridian", obligation=MANDATORY, specification=ISO_19111)
     PrimeMeridian getPrimeMeridian();

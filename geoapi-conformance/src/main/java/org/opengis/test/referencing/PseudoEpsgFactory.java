@@ -34,7 +34,6 @@ import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.FactoryException;
-import org.opengis.util.InternationalString;
 import org.opengis.test.util.PseudoFactory;
 import org.opengis.test.ValidatorContainer;
 import org.opengis.test.Units;
@@ -212,24 +211,6 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
-     * Returns a description of the object corresponding to a code.
-     * The default implementation returns {@code null}.
-     *
-     * @param  code  value allocated by authority.
-     * @return a description of the object, or {@code null} if the object
-     *         corresponding to the specified {@code code} has no description.
-     * @throws FactoryException if this method cannot provide the requested information.
-     *
-     * @deprecated This method is ambiguous.
-     */
-    @Override
-    @SuppressWarnings("removal")
-    @Deprecated(since = "3.1", forRemoval = true)
-    public InternationalString getDescriptionText(final String code) throws FactoryException {
-        return null;
-    }
-
-    /**
      * Builds a map of properties for a referencing object to be built. The map shall contain
      * at least the {@link IdentifiedObject#NAME_KEY} identifier associated to the given value.
      * Subclasses can override this method in order to provide more information if they wish.
@@ -323,8 +304,11 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
      * @throws FactoryException if this method cannot provide the requested information.
+     *
+     * @deprecated {@code ImageDatum} is replaced by {@link EngineeringDatum} as of ISO 19111:2019.
      */
     @Override
+    @Deprecated(since="3.1")
     public ImageDatum createImageDatum(String code) throws FactoryException {
         final int id = parseCode(code);
         switch (id) {
@@ -372,7 +356,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
-     * Returns a {@linkplain GeodeticDatum geodetic datum} from a code.
+     * Returns a {@linkplain GeodeticDatum geodetic reference frame} from a code.
      *
      * <table class="ogc">
      *   <caption>Supported codes</caption>
@@ -1009,8 +993,11 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
      *
      * @throws FactoryException if this method cannot provide the requested information.
+     *
+     * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
      */
     @Override
+    @Deprecated(since="3.1")
     public ImageCRS createImageCRS(String code) throws FactoryException {
         final int id = parseCode(code);
         switch (id) {

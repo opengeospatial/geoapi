@@ -31,15 +31,25 @@ import static org.opengis.annotation.Specification.*;
  * usage of the line feature representing a road to describe points on or along that road.
  * </div>
  *
- * <p>This type of CS can be used by coordinate reference systems of type
+ * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
  * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   1.0
  *
  * @see CSFactory#createLinearCS(Map, CoordinateSystemAxis)
  */
-@UML(identifier="CS_LinearCS", specification=ISO_19111, version=2007)
+@UML(identifier="LinearCS", specification=ISO_19111)
 public interface LinearCS extends CoordinateSystem {
+    /**
+     * Returns the number of dimensions, which is 1 for this type of coordinate system.
+     *
+     * @return always 1.
+     */
+    @Override
+    default int getDimension() {
+        return 1;
+    }
 }

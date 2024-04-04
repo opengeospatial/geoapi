@@ -203,7 +203,7 @@ final class JavaElementChanges {
     }
 
     /**
-     * Writes the change in a boolean value, if non-null.
+     * Writes the change in a Boolean value, if non-null.
      */
     private static String writeChange(final Writer out, String separator, final String onTrue,
             final String onFalse, final Boolean newValue) throws IOException

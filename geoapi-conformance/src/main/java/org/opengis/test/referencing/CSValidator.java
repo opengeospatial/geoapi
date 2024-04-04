@@ -46,11 +46,19 @@ import static org.opengis.test.referencing.Utilities.getAxisDirections;
  */
 public class CSValidator extends ReferencingValidator {
     /**
+     * The space in which an axis orientation is defined.
+     * Orientations in the same space can be compared.
+     */
+    static enum Space {
+        GEOGRAPHIC, TEMPORAL, ENGINEERING, MATRIX, DISPLAY;
+    }
+
+    /**
      * Orientation of an {@link AxisDirection}, used to detect if axes are perpendicular.
      */
     static final class Orientation {
         /** Amount of degrees in one angle unit. */ static final double ANGLE_UNIT = 22.5;
-        /** Geographic, matrix or display.       */ final String category;
+        /** Geographic, matrix or display.       */ final Space category;
         /** Orientation as a multiple of 22.5°.  */ final int orientation;
 
         /**
@@ -59,47 +67,52 @@ public class CSValidator extends ReferencingValidator {
          * @param  category     geographic, matrix or display.
          * @param  orientation  orientation as a multiple of 22.5°.
          */
-        Orientation(final String category, final int orientation) {
+        Orientation(final Space category, final int orientation) {
             this.category    = category;
             this.orientation = orientation;
         }
 
         /** {@return a string representation for debugging purpose only}. */
         @Override public String toString() {
-            return category + ':' + (orientation * ANGLE_UNIT) + '°';
+            return category.name() + ':' + (orientation * ANGLE_UNIT) + '°';
         }
     }
 
     /**
-     * The orientation of each {@link AxisDirection} enumeration elements. This is used
-     * by {@link #validate(CartesianCS)} for asserting that axes are perpendicular.
+     * The orientation of {@link AxisDirection} enumeration elements for which the direction will be verified.
+     * This array does not need to contain all axis directions, because it is used only by
+     * {@link #validate(CartesianCS)} for asserting that axes are perpendicular.
      */
-    static final Orientation[] ORIENTATIONS = new Orientation[32];
+    static final Orientation[] ORIENTATIONS = new Orientation[34];
     static {
-        ORIENTATIONS[AxisDirection.NORTH            .ordinal()] = new Orientation("geographic",  0);
-        ORIENTATIONS[AxisDirection.NORTH_NORTH_EAST .ordinal()] = new Orientation("geographic",  1);
-        ORIENTATIONS[AxisDirection.NORTH_EAST       .ordinal()] = new Orientation("geographic",  2);
-        ORIENTATIONS[AxisDirection.EAST_NORTH_EAST  .ordinal()] = new Orientation("geographic",  3);
-        ORIENTATIONS[AxisDirection.EAST             .ordinal()] = new Orientation("geographic",  4);
-        ORIENTATIONS[AxisDirection.EAST_SOUTH_EAST  .ordinal()] = new Orientation("geographic",  5);
-        ORIENTATIONS[AxisDirection.SOUTH_EAST       .ordinal()] = new Orientation("geographic",  6);
-        ORIENTATIONS[AxisDirection.SOUTH_SOUTH_EAST .ordinal()] = new Orientation("geographic",  7);
-        ORIENTATIONS[AxisDirection.SOUTH            .ordinal()] = new Orientation("geographic",  8);
-        ORIENTATIONS[AxisDirection.SOUTH_SOUTH_WEST .ordinal()] = new Orientation("geographic",  9);
-        ORIENTATIONS[AxisDirection.SOUTH_WEST       .ordinal()] = new Orientation("geographic", 10);
-        ORIENTATIONS[AxisDirection.WEST_SOUTH_WEST  .ordinal()] = new Orientation("geographic", 11);
-        ORIENTATIONS[AxisDirection.WEST             .ordinal()] = new Orientation("geographic", 12);
-        ORIENTATIONS[AxisDirection.WEST_NORTH_WEST  .ordinal()] = new Orientation("geographic", 13);
-        ORIENTATIONS[AxisDirection.NORTH_WEST       .ordinal()] = new Orientation("geographic", 14);
-        ORIENTATIONS[AxisDirection.NORTH_NORTH_WEST .ordinal()] = new Orientation("geographic", 15);
-        ORIENTATIONS[AxisDirection.ROW_NEGATIVE     .ordinal()] = new Orientation("matrix",      0);
-        ORIENTATIONS[AxisDirection.COLUMN_POSITIVE  .ordinal()] = new Orientation("matrix",      4);
-        ORIENTATIONS[AxisDirection.ROW_POSITIVE     .ordinal()] = new Orientation("matrix",      8);
-        ORIENTATIONS[AxisDirection.COLUMN_NEGATIVE  .ordinal()] = new Orientation("matrix",     12);
-        ORIENTATIONS[AxisDirection.DISPLAY_UP       .ordinal()] = new Orientation("display",     0);
-        ORIENTATIONS[AxisDirection.DISPLAY_RIGHT    .ordinal()] = new Orientation("display",     4);
-        ORIENTATIONS[AxisDirection.DISPLAY_DOWN     .ordinal()] = new Orientation("display",     8);
-        ORIENTATIONS[AxisDirection.DISPLAY_LEFT     .ordinal()] = new Orientation("display",    12);
+        ORIENTATIONS[AxisDirection.NORTH            .ordinal()] = new Orientation(Space.GEOGRAPHIC,   0);
+        ORIENTATIONS[AxisDirection.NORTH_NORTH_EAST .ordinal()] = new Orientation(Space.GEOGRAPHIC,   1);
+        ORIENTATIONS[AxisDirection.NORTH_EAST       .ordinal()] = new Orientation(Space.GEOGRAPHIC,   2);
+        ORIENTATIONS[AxisDirection.EAST_NORTH_EAST  .ordinal()] = new Orientation(Space.GEOGRAPHIC,   3);
+        ORIENTATIONS[AxisDirection.EAST             .ordinal()] = new Orientation(Space.GEOGRAPHIC,   4);
+        ORIENTATIONS[AxisDirection.EAST_SOUTH_EAST  .ordinal()] = new Orientation(Space.GEOGRAPHIC,   5);
+        ORIENTATIONS[AxisDirection.SOUTH_EAST       .ordinal()] = new Orientation(Space.GEOGRAPHIC,   6);
+        ORIENTATIONS[AxisDirection.SOUTH_SOUTH_EAST .ordinal()] = new Orientation(Space.GEOGRAPHIC,   7);
+        ORIENTATIONS[AxisDirection.SOUTH            .ordinal()] = new Orientation(Space.GEOGRAPHIC,   8);
+        ORIENTATIONS[AxisDirection.SOUTH_SOUTH_WEST .ordinal()] = new Orientation(Space.GEOGRAPHIC,   9);
+        ORIENTATIONS[AxisDirection.SOUTH_WEST       .ordinal()] = new Orientation(Space.GEOGRAPHIC,  10);
+        ORIENTATIONS[AxisDirection.WEST_SOUTH_WEST  .ordinal()] = new Orientation(Space.GEOGRAPHIC,  11);
+        ORIENTATIONS[AxisDirection.WEST             .ordinal()] = new Orientation(Space.GEOGRAPHIC,  12);
+        ORIENTATIONS[AxisDirection.WEST_NORTH_WEST  .ordinal()] = new Orientation(Space.GEOGRAPHIC,  13);
+        ORIENTATIONS[AxisDirection.NORTH_WEST       .ordinal()] = new Orientation(Space.GEOGRAPHIC,  14);
+        ORIENTATIONS[AxisDirection.NORTH_NORTH_WEST .ordinal()] = new Orientation(Space.GEOGRAPHIC,  15);
+        ORIENTATIONS[AxisDirection.ROW_NEGATIVE     .ordinal()] = new Orientation(Space.MATRIX,       0);
+        ORIENTATIONS[AxisDirection.COLUMN_POSITIVE  .ordinal()] = new Orientation(Space.MATRIX,       4);
+        ORIENTATIONS[AxisDirection.ROW_POSITIVE     .ordinal()] = new Orientation(Space.MATRIX,       8);
+        ORIENTATIONS[AxisDirection.COLUMN_NEGATIVE  .ordinal()] = new Orientation(Space.MATRIX,      12);
+        ORIENTATIONS[AxisDirection.DISPLAY_UP       .ordinal()] = new Orientation(Space.DISPLAY,      0);
+        ORIENTATIONS[AxisDirection.DISPLAY_RIGHT    .ordinal()] = new Orientation(Space.DISPLAY,      4);
+        ORIENTATIONS[AxisDirection.DISPLAY_DOWN     .ordinal()] = new Orientation(Space.DISPLAY,      8);
+        ORIENTATIONS[AxisDirection.DISPLAY_LEFT     .ordinal()] = new Orientation(Space.DISPLAY,     12);
+        ORIENTATIONS[AxisDirection.FORWARD          .ordinal()] = new Orientation(Space.ENGINEERING,  0);
+        ORIENTATIONS[AxisDirection.STARBOARD        .ordinal()] = new Orientation(Space.ENGINEERING,  4);
+        ORIENTATIONS[AxisDirection.AFT              .ordinal()] = new Orientation(Space.ENGINEERING,  8);
+        ORIENTATIONS[AxisDirection.PORT             .ordinal()] = new Orientation(Space.ENGINEERING, 12);
     }
 
     /**
@@ -119,6 +132,7 @@ public class CSValidator extends ReferencingValidator {
      * @param  object  the object to dispatch to {@code validate(…)} methods, or {@code null}.
      * @return number of {@code validate(…)} methods invoked in this class for the given object.
      */
+    @SuppressWarnings("deprecation")
     public int dispatch(final CoordinateSystem object) {
         int n = 0;
         if (object != null) {
@@ -285,6 +299,7 @@ public class CSValidator extends ReferencingValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      */
+    @Deprecated(since="3.1")
     public void validate(final UserDefinedCS object) {
         if (object == null) {
             return;

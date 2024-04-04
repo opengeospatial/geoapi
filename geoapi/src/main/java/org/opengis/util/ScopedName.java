@@ -173,8 +173,8 @@ public interface ScopedName extends GenericName {
      * into a legal string representation of the name. There will be variants on this theme.
      * XML aficionados may require URIs. For Java classes, a dotted notation is more appropriate,
      * for C/C++, a double-colon, for directories, a forward or reverse slash,
-     * and for {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem CRS}, it
-     * will depend on the mode of expression: URN or {@code Authority:Identifier} notation.
+     * and for {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem <abbr>CRS</abbr>},
+     * it will depend on the mode of expression: <abbr>URN</abbr> or {@code Authority:Identifier} notation.
      *
      * <div class="note"><b>Analogy:</b>
      * this method is similar in purpose to the {@link java.io.File#toString() File.toString()}

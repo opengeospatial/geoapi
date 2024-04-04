@@ -18,9 +18,7 @@
 package org.opengis.test.metadata;
 
 import java.util.Date;
-import org.opengis.metadata.*;
 import org.opengis.metadata.citation.*;
-import org.opengis.util.InternationalString;
 import org.opengis.test.ValidatorContainer;
 
 import static org.junit.jupiter.api.Assertions.fail;
@@ -60,12 +58,8 @@ public class CitationValidator extends MetadataValidator {
         }
         validateMandatory(object.getTitle());
         validateOptional (object.getEdition());
-        for (final InternationalString e : toArray(InternationalString.class, object.getAlternateTitles())) {
-            container.validate(e);
-        }
-        for (final Identifier e : toArray(Identifier.class, object.getIdentifiers())) {
-            container.validate(e);
-        }
+        validate("alternateTitle", object.getAlternateTitles(), ValidatorContainer::validate, false);
+        validate("identifier",     object.getIdentifiers(),     ValidatorContainer::validate, false);
         container.validate(object.getOtherCitationDetails());
         validate(toArray(CitationDate.class, object.getDates()));
         for (final Responsibility e : toArray(Responsibility.class, object.getCitedResponsibleParties())) {

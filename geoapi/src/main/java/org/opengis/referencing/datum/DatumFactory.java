@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Builds up complex {@linkplain Datum datums} from simpler objects or values.
+ * Builds up complex datum objects from simpler objects or values.
  * {@code DatumFactory} allows applications to make {@linkplain Datum datums}
  * that cannot be created by a {@link DatumAuthorityFactory}.
  * This factory is very flexible, whereas the authority factory is easier to use.
@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * the default is to throw an {@link UnimplementedServiceException}
  * with a message saying that the type or service is not supported.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   1.0
@@ -113,12 +113,12 @@ public interface DatumFactory extends ObjectFactory {
     }
 
     /**
-     * Creates geodetic datum from ellipsoid and prime meridian.
+     * Creates geodetic reference frame from ellipsoid and prime meridian.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  ellipsoid  ellipsoid to use in new geodetic datum.
-     * @param  primeMeridian  prime meridian to use in new geodetic datum.
+     * @param  ellipsoid  ellipsoid to use in new geodetic reference frame.
+     * @param  primeMeridian  prime meridian to use in new geodetic reference frame.
      * @return the datum for the given properties.
      * @throws FactoryException if the object creation failed.
      */
@@ -198,7 +198,10 @@ public interface DatumFactory extends ObjectFactory {
      *         with the image data attributes.
      * @return the datum for the given properties.
      * @throws FactoryException if the object creation failed.
+     *
+     * @deprecated {@code ImageDatum} is replaced by {@link EngineeringDatum} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1")
     default ImageDatum createImageDatum(Map<String,?> properties,
                                         PixelInCell   pixelInCell) throws FactoryException
     {

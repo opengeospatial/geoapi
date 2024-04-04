@@ -23,10 +23,10 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 2- or 3-dimensional coordinate system in which position is specified by
- * geodetic latitude, geodetic longitude, and (in the 3D case) ellipsoidal height.
+ * A 2- or 3-dimensional coordinate system for use with geodetic <abbr>CRS</abbr>.
+ * Position is specified by geodetic latitude, geodetic longitude, and (in the 3D case) ellipsoidal height.
  *
- * <p>This type of CS can be used by coordinate reference systems of type
+ * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
  * {@link org.opengis.referencing.crs.GeographicCRS}.
  * The following examples describe some possible set of axes for ellipsoidal CS used with the above-cited CRS:</p>
  *
@@ -45,7 +45,8 @@ import static org.opengis.annotation.Specification.*;
  *   <tr><td>Ellipsoidal height</td><td>h</td> <td>{@link AxisDirection#UP}</td>   <td>metre</td></tr>
  * </table>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  *
@@ -53,6 +54,6 @@ import static org.opengis.annotation.Specification.*;
  * @see CSFactory#createEllipsoidalCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)
  * @see CSFactory#createEllipsoidalCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
  */
-@UML(identifier="CS_EllipsoidalCS", specification=ISO_19111, version=2007)
+@UML(identifier="EllipsoidalCS", specification=ISO_19111)
 public interface EllipsoidalCS extends CoordinateSystem {
 }

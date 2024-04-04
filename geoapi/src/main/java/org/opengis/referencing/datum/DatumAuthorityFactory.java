@@ -28,10 +28,10 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
 
 
 /**
- * Creates {@linkplain Datum datum} objects using authority codes.
+ * Creates datum objects using authority codes.
  * External authorities are used to manage definitions of objects used in this interface.
  * The definitions of these objects are referenced using code strings.
- * A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
+ * A commonly used authority is the <a href="https://epsg.org">EPSG geodetic registry</a>.
  *
  * <h2>Default methods</h2>
  * All {@code create(…)} methods in this interface are optional.
@@ -43,7 +43,7 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
  *       saying that the type or service is not supported.</li>
  * </ul>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   1.0
@@ -106,7 +106,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
     }
 
     /**
-     * Returns a geodetic datum from a code.
+     * Returns a geodetic reference frame from a code.
      *
      * @param  code  value allocated by authority.
      * @return the datum for the given code.
@@ -214,7 +214,10 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws FactoryException if the object creation failed for some other reason.
      *
      * @see org.opengis.referencing.crs.CRSAuthorityFactory#createImageCRS(String)
+     *
+     * @deprecated {@code ImageDatum} is replaced by {@link EngineeringDatum} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1")
     default ImageDatum createImageDatum(final String code) throws FactoryException {
         final Datum datum = createDatum(code);
         try {
@@ -235,8 +238,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @deprecated This method is ambiguous. Use {@link #createDatum(String)} instead.
      */
     @Override
-    @SuppressWarnings("removal")
-    @Deprecated(since = "3.1", forRemoval = true)
+    @Deprecated(since = "3.1")
     default org.opengis.referencing.IdentifiedObject createObject(String code) throws FactoryException {
         return createDatum(code);
     }

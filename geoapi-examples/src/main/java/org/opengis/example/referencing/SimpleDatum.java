@@ -21,8 +21,7 @@ import static java.lang.Double.doubleToLongBits;
 
 /**
  * A {@link GeodeticDatum} using the <q>Greenwich</q> prime meridian.
- * This class does not distinguish between <i>Geodetic Datum</i> and <i>Ellipsoid</i>,
- * therefor it implements the two interfaces.
+ * This class implements both <i>Geodetic Reference Frame</i> and <i>Ellipsoid</i> in a single class for simplicity.
  */
 public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum, Ellipsoid {
     /**
@@ -89,7 +88,7 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
     protected final double inverseFlattening;
 
     /**
-     * Creates a new geodetic datum for the given authority, name, and ellipsoid axis length.
+     * Creates a new geodetic reference frame for the given authority, name, and ellipsoid axis length.
      *
      * @param authority          organization responsible for definition of the name, or {@code null}.
      * @param name               the name of the new CRS.
@@ -105,8 +104,7 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
     }
 
     /**
-     * Returns the ellipsoid, which is represented directly by {@code this} implementation
-     * class since it does not distinguish geodetic datum and ellipsoid.
+     * Returns the ellipsoid, which is represented directly by {@code this}.
      *
      * @return the ellipsoid.
      */
@@ -161,10 +159,9 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
     }
 
     /**
-     * Indicates if the {@linkplain #getInverseFlattening inverse flattening} is definitive for
-     * this ellipsoid. The default implementation returns {@code true} for if this ellipsoid is
-     * not a sphere, since the constructor of this {@code SimpleDatum} class expects a
-     * {@code inverseFlattening} value.
+     * Indicates if the {@linkplain #getInverseFlattening inverse flattening} is definitive for this ellipsoid.
+     * The default implementation returns {@code true} for if this ellipsoid is not a sphere,
+     * since the constructor of this {@code SimpleDatum} class expects a {@code inverseFlattening} value.
      *
      * @return {@code true} if the {@linkplain #getInverseFlattening() inverse flattening} is definitive,
      *         or {@code false} if the {@linkplain #getSemiMinorAxis() polar radius} is definitive.

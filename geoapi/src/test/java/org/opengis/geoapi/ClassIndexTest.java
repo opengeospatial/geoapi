@@ -101,11 +101,11 @@ public final class ClassIndexTest extends SourceGenerator {
         assertNull(merged.put("MD_ImageDescription",    "MI_ImageDescription"));
         assertNull(merged.put("MD_Metadata",            "MI_Metadata"));
 
-        final String index = createIndex(EnumSet.of(ISO_19115, ISO_19115_2, ISO_19157, ISO_19111), merged);
+        final List<String> index = createIndex(EnumSet.of(ISO_19115, ISO_19115_2, ISO_19157, ISO_19111), merged);
         final InputStream in = UML.class.getResourceAsStream(INDEX_FILENAME);
         if (in != null) {
-            final String actual = load(in);
-            assertEquals(index, actual,
+            final List<String> actual = load(in);
+            assertLinesMatch(index, actual,
                         "The content of the \"" + INDEX_FILENAME + "\" file is different from " +
                         "the content found by scanning the compiled classes.");
         } else {
@@ -125,40 +125,43 @@ public final class ClassIndexTest extends SourceGenerator {
      * @return the full content of the given stream.
      * @throws IOException if an error occurred while reading the given file.
      */
-    private static String load(final InputStream in) throws IOException {
-        final StringBuilder buffer = new StringBuilder(20000);
+    private static List<String> load(final InputStream in) throws IOException {
+        final var lines = new ArrayList<String>(500);
         try (BufferedReader reader = new BufferedReader(new InputStreamReader(in, ENCODING))) {
             String line;
             while ((line = reader.readLine()) != null) {
-                buffer.append(line).append('\n');
+                lines.add(line);
             }
         }
-        return buffer.toString();
+        return lines;
     }
 
     /**
      * Writes the given index if possible, or returns the reason why the index cannot be written.
+     * The line separator is fixed to the Linux one. We don't use the platform-specific line separator
+     * in order to keep the build platform-independent.
      *
-     * @param  index  the full index content to write.
+     * @param  lines  the full index content to write.
      * @return {@code null} on success, or the reason why this method cannot write the index otherwise.
      * @throws IOException if an I/O error occurred while writing the index.
      */
-    private String save(final String index) throws IOException {
+    private String save(final List<String> lines) throws IOException {
         Path file = sourceDirectory("resources").resolve("org").resolve("opengis").resolve("annotation").resolve(INDEX_FILENAME);
         if (Files.exists(file)) {
             return "\"" + file + "\" already exists.";
         }
         try (Writer out = new OutputStreamWriter(new FileOutputStream(file.toFile()), ENCODING)) {
-            out.write(index);
+            for (final String line : lines) {
+                out.write(line);
+                out.write('\n');    // Intentionally not the platform-dependent line separator.
+            }
         }
         return null;
     }
 
     /**
-     * Scans the list of all compiled classes of the given standards, and generate the index
-     * content from it. Lines in the returned string are sorted by alphabetical order. The
-     * line separator is fixed to the Linux one; we don't use the platform-specific line
-     * separator in order to keep the build platform-independent.
+     * Scans the list of all compiled classes of the given standards, and generate the index content from it.
+     * Lines in the returned string are sorted by alphabetical order.
      *
      * @param  standards  the standards to include in the index.
      * @param  merged  list of ISO 19115 interfaces (keys) which were merged with corresponding
@@ -167,9 +170,9 @@ public final class ClassIndexTest extends SourceGenerator {
      *         map will be destroyed by this method.
      * @return the index content.
      */
-    private String createIndex(final Set<Specification> standards, final Map<String,String> merged) {
-        final StringBuilder buffer = new StringBuilder(20000);
-        final List<String> lines = new ArrayList<>();
+    private List<String> createIndex(final Set<Specification> standards, final Map<String,String> merged) {
+        final var buffer = new StringBuilder(80);
+        final var lines = new ArrayList<String>(500);
         for (final Class<?> c : Content.ALL.types()) {
             final UML uml = c.getAnnotation(UML.class);
             if (uml != null && standards.contains(uml.specification())) {
@@ -183,10 +186,7 @@ public final class ClassIndexTest extends SourceGenerator {
         }
         assertTrue(merged.isEmpty(), merged.toString());
         Collections.sort(lines);
-        for (final String line : lines) {
-            buffer.append(line).append('\n');
-        }
-        return buffer.toString();
+        return lines;
     }
 
     /**

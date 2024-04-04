@@ -27,30 +27,34 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A parameterized mathematical operation on coordinates that transforms or converts
- * coordinates to another coordinate reference system. This coordinate operation thus
- * uses an operation method, usually with associated parameter values. This is a
- * single (not {@linkplain ConcatenatedOperation concatenated}) coordinate operation.
+ * A parameterized mathematical operation on coordinates that changes coordinates to another <abbr>CRS</abbr>.
+ * This coordinate operation thus uses an operation method, usually with associated parameter values.
+ * This is a single (not {@linkplain ConcatenatedOperation concatenated}) coordinate operation.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   1.0
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="CC_SingleOperation", specification=ISO_19111, version=2007)
+@UML(identifier="SingleOperation", specification=ISO_19111)
 public interface SingleOperation extends CoordinateOperation {
     /**
-     * Returns the operation method.
+     * Returns the algorithm or procedure used by this single operation.
      *
-     * @return the operation method.
+     * @return algorithm or procedure used by this single operation.
      */
     @UML(identifier="method", obligation=MANDATORY, specification=ISO_19111)
     OperationMethod getMethod();
 
     /**
-     * Returns the parameter values.
+     * Returns the parameter values used by this single operation.
      *
-     * @return the parameter values.
+     * @return the parameter values used by this single operation.
+     *
+     * @departure easeOfUse
+     *   The sequence if {@code GeneralParameterValue} is replaced by a {@code ParameterValueGroup}
+     *   because it provides method for fetching parameters by their names.
      */
     @UML(identifier="parameterValue", obligation=MANDATORY, specification=ISO_19111)
     ParameterValueGroup getParameterValues();

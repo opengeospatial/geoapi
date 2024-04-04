@@ -57,19 +57,31 @@ DOCLET=tools/target/tools-*.jar
 
 javadoc -doctitle "GeoAPI SNAPSHOT" \
  -top '<div class="snapshot-warning"><b>This specification is not final and is subject to change.</b><br/>For OGC standard, see <a href="http://www.geoapi.org/3.0/javadoc/index.html">GeoAPI 3.0.2</a>.</div>' \
- --add-stylesheet src/main/javadoc/geoapi.css -overview src/main/javadoc/overview.html \
- -doclet org.opengis.tools.doclet.FlushableDoclet -docletpath $DOCLET \
- -taglet org.opengis.tools.doclet.Departure -tagletpath $DOCLET \
+ -overview src/main/javadoc/overview.html \
+ -locale en \
+ -breakiterator \
+ -charset UTF-8 \
+ -docencoding UTF-8 \
+ -noqualifier all \
+ -use \
  --since 3.1 \
+ --add-stylesheet src/main/javadoc/geoapi.css \
+ -docletpath $DOCLET -doclet org.opengis.tools.doclet.FlushableDoclet \
+ -tagletpath $DOCLET -taglet org.opengis.tools.doclet.Departure \
  -tag category:X:Category: \
  -tag condition:tfmc:Condition: \
  -tag todo:tfmc:TODO: \
  -tag unitof:fm:Unit: \
- -charset UTF-8 -docencoding UTF-8 -breakiterator -locale en -noqualifier all -use -Xdoclint:syntax \
+ -Xdoclint:html,syntax,missing,accessibility \
  -link https://download.java.net/media/java3d/javadoc/1.5.2/ \
  -link https://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/ \
  -link https://junit.org/junit5/docs/current/api/ \
- -d target/apidocs --module-source-path target/src --module-path $DEPS @target/sources.txt
+ -linksource \
+ -quiet \
+ --module-path $DEPS \
+ --module-source-path target/src \
+ -d target/apidocs \
+ @target/sources.txt
 
 # Copy some resources.
 cp --interactive src/main/javadoc/content.* src/main/javadoc/departure.* src/main/javadoc/*.png target/apidocs/

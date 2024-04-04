@@ -27,27 +27,22 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Type of a vertical datum.
- *
- * <div class="note"><b>Note:</b>
- * ISO 19111 omits the definition of an {@code ELLIPSOIDAL} vertical height on intent.
+ * Note that ISO 19111 omits the definition of an {@code ELLIPSOIDAL} vertical height on intent.
  * {@link org.opengis.referencing.crs.GeographicCRS} with ellipsoidal height shall be backed by a three-dimensional
- * {@link org.opengis.referencing.cs.EllipsoidalCS}; they should never be built as
- * {@link org.opengis.referencing.crs.CompoundCRS}. If nevertheless an ellipsoidal height is needed
- * (for example, in order to process a CRS in the legacy WKT 1 format),
- * implementers can get a suitable vertical datum type using {@code VerticalDatumType.valueOf("ELLIPSOIDAL")}.
- * Implementers are encouraged to not expose that datum type in public API however.</div>
- *
- * @todo
- *   This code list was named {@code VerticalDatumType} in an OGC specification published in 2003,
- *   removed in the ISO 19111:2007 standard, then become {@code RealizationMethod} in ISO 19111:2019.
+ * {@link org.opengis.referencing.cs.EllipsoidalCS}; they should not be built as
+ * {@link org.opengis.referencing.crs.CompoundCRS}.
  *
  * @see VerticalDatum#getVerticalDatumType()
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
+ *
+ * @deprecated Replaced by {@link RealizationMethod} in ISO 19111:2019.
  */
 @Vocabulary(capacity=4)
+@Deprecated(since = "3.1")
 @UML(identifier="CD_VerticalDatumType", specification=ISO_19111, version=2003)
 public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     /**
@@ -56,43 +51,59 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
     private static final long serialVersionUID = -8161084528823937553L;
 
     /**
-     * In some cases, for example oil exploration and production, a geological feature, such as the top
-     * or bottom of a geologically identifiable and meaningful subsurface layer, is used as a
-     * vertical datum. Other variations to the above three vertical datum types may exist
-     * and are all included in this type.
+     * The zero value is defined by a method not described by the other enumeration values in this class.
+     * In some cases, for example oil exploration and production, a geological feature, such as the top or
+     * bottom of a geologically identifiable and meaningful subsurface layer, is used as a vertical datum.
+     * Other variations to the above three vertical datum types may exist and are all included in this type.
      */
     @UML(identifier="other surface", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType OTHER_SURFACE = new VerticalDatumType("OTHER_SURFACE");
 
     /**
-     * The zero value of the associated vertical coordinate system axis is defined to approximate
-     * a constant potential surface, usually the geoid. Such a reference surface is usually
-     * determined by a national or scientific authority, and is then a well-known, named datum.
+     * The zero value is defined to approximate a constant potential surface, usually the geoid.
+     * Such a reference surface is usually determined by a national or scientific authority,
+     * and is then a well-known, named reference frame.
      */
     @UML(identifier="geoidal", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType GEOIDAL = new VerticalDatumType("GEOIDAL");
 
     /**
-     * The zero point of the vertical axis is defined by a surface that has meaning for the
-     * purpose which the associated vertical measurements are used for. For hydrographic charts,
-     * this is often a predicted nominal sea surface (i.e., without waves or other wind and current
-     * effects) that occurs at low tide. Depths are measured in the direction perpendicular
-     * (approximately) to the actual equipotential surfaces of the earth's gravity field,
-     * using such procedures as echo-sounding.
+     * The zero point is defined by a surface that has meaning
+     * for the purpose which the associated vertical measurements are used for.
+     * For hydrographic charts, this is often a predicted nominal sea surface
+     * (i.e., without waves or other wind and current effects) that occurs at low tide.
+     * Examples are Lowest Astronomical Tide and Lowest Low Water Spring.
+     * A different example is a sloping and undulating River Datum defined as
+     * the nominal river water surface occurring at a quantified river discharge.
+     *
+     * <p>Depths are measured in the direction perpendicular (approximately) to the actual equipotential
+     * surfaces of the planet's gravity field, using such procedures as echo-sounding.</p>
      */
     @UML(identifier="depth", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType DEPTH = new VerticalDatumType("DEPTH");
 
     /**
-     * Atmospheric pressure is the basis for the definition of the origin of the
-     * associated vertical coordinate system axis. These are approximations of
-     * orthometric heights obtained with the help of a barometer or a barometric
-     * altimeter. These values are usually expressed in one of the following units:
-     * meters, feet, millibars (used to measure pressure levels), or theta value
-     * (units used to measure geopotential height).
+     * The origin of the vertical axis is based on atmospheric pressure.
+     * Atmospheric pressure may be used as the intermediary to determine height (barometric height determination)
+     * or it may be used directly as the vertical coordinate, against which other parameters are measured.
+     * Barometric values are usually expressed in one of the following units:
+     * meters, feet, millibars (used to measure pressure levels),
+     * or theta value (units used to measure geopotential height).
      */
     @UML(identifier="barometric", obligation=CONDITIONAL, specification=ISO_19111)
     public static final VerticalDatumType BAROMETRIC = new VerticalDatumType("BAROMETRIC");
+
+    /**
+     * Maps a realization method to a vertical datum type.
+     *
+     * @param  method  the realization method, or {@code null}.
+     * @return the vertical datum type.
+     */
+    static VerticalDatumType from(RealizationMethod method) {
+        if (RealizationMethod.GEOID.equals(method)) return GEOIDAL;
+        if (RealizationMethod.TIDAL.equals(method)) return DEPTH;
+        return OTHER_SURFACE;
+    }
 
     /**
      * Constructs an element of the given name.

@@ -29,18 +29,19 @@ import static org.opengis.annotation.Specification.*;
  * The direction of positive increase in the coordinate value for a coordinate system axis.
  * This direction is exact in some cases, and is approximate in other cases.
  *
- * <p>Some coordinate systems use non-standard orientations. For example, the first axis in
- * South African grids usually points West, instead of East. This information is obviously
- * relevant for algorithms converting South African grid coordinates into Lat/Long.</p>
+ * <p>Some coordinate systems use non-standard orientations.
+ * For example, the first axis in South African grids usually points West, instead of East.
+ * This information is relevant for algorithms converting South African grid coordinates into Lat/Long.</p>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  *
  * @see CoordinateSystemAxis#getDirection()
  */
-@Vocabulary(capacity=32)
-@UML(identifier="CS_AxisDirection", specification=ISO_19111, version=2007)
+@Vocabulary(capacity=41)
+@UML(identifier="AxisDirection", specification=ISO_19111)
 public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Serial number for compatibility with different versions.
@@ -51,15 +52,18 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Unknown or unspecified axis orientation.
      *
      * @category Other
+     *
+     * @deprecated Replaced by {@link #UNSPECIFIED} in ISO 19111:2019.
      */
-    @UML(identifier="CS_AxisOrientationEnum.CS_AO_Other", specification=OGC_01009)
+    @Deprecated(since = "3.1")
+    @UML(identifier="CS_AxisOrientationEnum.CS_AO_Other", obligation=CONDITIONAL, specification=OGC_01009)
     public static final AxisDirection OTHER = new AxisDirection("OTHER");
 
     /**
-     * Axis positive direction is north. In a geographic or projected CRS,
-     * north is defined through the geodetic datum. In an engineering CRS,
-     * north may be defined with respect to an engineering object rather
-     * than a geographical direction.
+     * Axis positive direction is north.
+     * In a geographic or projected <abbr>CRS</abbr>, north is defined through the geodetic reference frame.
+     * In an engineering <abbr>CRS</abbr>, north may be defined with respect to an engineering object
+     * rather than a geographical direction.
      *
      * @category Rose
      */
@@ -92,7 +96,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Axis positive direction is π/2 radians clockwise from north.
-     * This is usually used for Grid X coordinates and Longitude.
+     * This is usually used for grid <var>X</var> coordinates and for longitude.
      *
      * @category Rose
      */
@@ -190,7 +194,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Axis positive direction is up relative to gravity.
-     * This is used for {@linkplain VerticalCS vertical} coordinate systems.
+     * This is used for {@linkplain VerticalCS vertical coordinate systems}.
      *
      * @category Vertical
      */
@@ -199,7 +203,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Axis positive direction is down relative to gravity.
-     * This is used for {@linkplain VerticalCS vertical} coordinate systems.
+     * This is used for {@linkplain VerticalCS vertical coordinate systems}.
      *
      * @category Vertical
      */
@@ -207,8 +211,9 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     public static final AxisDirection DOWN = new AxisDirection("DOWN");
 
     /**
-     * Axis positive direction is in the equatorial plane from the centre of the
-     * modelled earth towards the intersection of the equator with the prime meridian.
+     * Axis positive direction is toward geocentric <var>X</var>.
+     * This is the direction in the equatorial plane from the center of the modeled planet
+     * towards the intersection of the equator with the prime meridian.
      *
      * @category Geocentric
      */
@@ -216,9 +221,9 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     public static final AxisDirection GEOCENTRIC_X = new AxisDirection("GEOCENTRIC_X");
 
     /**
-     * Axis positive direction is in the equatorial plane from the centre of the
-     * modelled earth towards the intersection of the equator and the meridian π/2
-     * radians eastwards from the prime meridian.
+     * Axis positive direction is toward geocentric <var>Y</var>.
+     * This is the direction in the equatorial plane from the center of the modeled planet
+     * towards the intersection of the equator and the meridian π/2 radians eastwards from the prime meridian.
      *
      * @category Geocentric
      */
@@ -226,31 +231,14 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     public static final AxisDirection GEOCENTRIC_Y = new AxisDirection("GEOCENTRIC_Y");
 
     /**
-     * Axis positive direction is from the centre of the modelled earth parallel to
-     * its rotation axis and towards its north pole.
+     * Axis positive direction is toward geocentric <var>Z</var>.
+     * This is the direction from the center of the modeled planet
+     * parallel to its rotation axis and towards its north pole.
      *
      * @category Geocentric
      */
     @UML(identifier="geocentricZ", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection GEOCENTRIC_Z = new AxisDirection("GEOCENTRIC_Z");
-
-    /**
-     * Axis positive direction is towards the future.
-     * This is used for {@linkplain TimeCS time} coordinate systems.
-     *
-     * @category Temporal
-     */
-    @UML(identifier="future", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection FUTURE = new AxisDirection("FUTURE");
-
-    /**
-     * Axis positive direction is towards the past.
-     * This is used for {@linkplain TimeCS time} coordinate systems.
-     *
-     * @category Temporal
-     */
-    @UML(identifier="past", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection PAST = new AxisDirection("PAST");
 
     /**
      * Axis positive direction is towards higher pixel column.
@@ -315,6 +303,109 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      */
     @UML(identifier="displayDown", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection DISPLAY_DOWN = new AxisDirection("DISPLAY_DOWN");
+
+    /**
+     * Axis positive direction is forward.
+     * For an observer at the center of the object this will be towards its front, bow or nose.
+     *
+     * @category Engineering
+     * @since 3.1
+     */
+    @UML(identifier="forward", obligation=CONDITIONAL, specification=ISO_19111)
+    public static final AxisDirection FORWARD = new AxisDirection("FORWARD");
+
+    /**
+     * Axis positive direction is aft.
+     * For an observer at the center of the object this will be towards its back, stern or tail.
+     *
+     * @category Engineering
+     * @since 3.1
+     */
+    @UML(identifier="aft", obligation=CONDITIONAL, specification=ISO_19111)
+    public static final AxisDirection AFT = new AxisDirection("AFT");
+
+    /**
+     * Axis positive direction is port.
+     * For an observer looking forward from the center of the object this will be towards its left.
+     *
+     * @category Engineering
+     * @since 3.1
+     */
+    @UML(identifier="port", obligation=CONDITIONAL, specification=ISO_19111)
+    public static final AxisDirection PORT = new AxisDirection("PORT");
+
+    /**
+     * Axis positive direction is starboard.
+     * For an observer looking forward from the center of the object this will be towards its right.
+     *
+     * @category Engineering
+     * @since 3.1
+     */
+    @UML(identifier="starboard", obligation=CONDITIONAL, specification=ISO_19111)
+    public static final AxisDirection STARBOARD = new AxisDirection("STARBOARD");
+
+    /**
+     * Axis positive direction is clockwise from a specified direction.
+     *
+     * @category Engineering
+     * @since 3.1
+     */
+    @UML(identifier="clockwise", obligation=CONDITIONAL, specification=ISO_19111)
+    public static final AxisDirection CLOCKWISE = new AxisDirection("CLOCKWISE");
+
+    /**
+     * Axis positive direction is counter clockwise from a specified direction.
+     *
+     * @category Engineering
+     * @since 3.1
+     */
+    @UML(identifier="counterClockwise", obligation=CONDITIONAL, specification=ISO_19111)
+    public static final AxisDirection COUNTER_CLOCKWISE = new AxisDirection("COUNTER_CLOCKWISE");
+
+    /**
+     * Axis positive direction is towards the object.
+     *
+     * @category Engineering
+     * @since 3.1
+     */
+    @UML(identifier="towards", obligation=CONDITIONAL, specification=ISO_19111)
+    public static final AxisDirection TOWARDS = new AxisDirection("TOWARDS");
+
+    /**
+     * Axis positive direction is away from the object.
+     *
+     * @category Engineering
+     * @since 3.1
+     */
+    @UML(identifier="awayFrom", obligation=CONDITIONAL, specification=ISO_19111)
+    public static final AxisDirection AWAY_FROM = new AxisDirection("AWAY_FROM");
+
+    /**
+     * Axis positive direction is towards the future.
+     * This is used for {@linkplain TimeCS temporal coordinate systems}.
+     *
+     * @category Temporal
+     */
+    @UML(identifier="future", obligation=CONDITIONAL, specification=ISO_19111)
+    public static final AxisDirection FUTURE = new AxisDirection("FUTURE");
+
+    /**
+     * Axis positive direction is towards the past.
+     * This is used for {@linkplain TimeCS temporal coordinate systems}.
+     *
+     * @category Temporal
+     */
+    @UML(identifier="past", obligation=CONDITIONAL, specification=ISO_19111)
+    public static final AxisDirection PAST = new AxisDirection("PAST");
+
+    /**
+     * Axis positive direction is unspecified.
+     *
+     * @category Other
+     * @since 3.1
+     */
+    @UML(identifier="unspecified", obligation=CONDITIONAL, specification=ISO_19111)
+    public static final AxisDirection UNSPECIFIED = new AxisDirection("UNSPECIFIED");
 
     /**
      * Constructs an element of the given name.

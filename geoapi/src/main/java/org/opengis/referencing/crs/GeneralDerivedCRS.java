@@ -27,19 +27,16 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A coordinate reference system that is defined by its coordinate conversion from another coordinate reference system.
- * Derived CRS are not directly associated to a {@linkplain org.opengis.referencing.datum.Datum datum}.
+ * A <abbr>CRS</abbr> that is defined by applying a coordinate conversion to another preexisting <abbr>CRS</abbr>.
+ * The derived <abbr>CRS</abbr> inherits its datum (reference frame) or datum ensemble from its base <abbr>CRS</abbr>.
  *
- * <p>In principle, all sub-types of {@link CoordinateReferenceSystem} may take on the role of either source or
- * derived CRS with the exception of a {@link GeocentricCRS} and a {@link ProjectedCRS}. The latter is modelled
- * as an object class under its own name, rather than as a general derived CRS of type "projected".
- * This has been done to honour common practice, which acknowledges projected CRSs as one of the best known
- * types of coordinate reference systems.</p>
- *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   1.0
+ *
+ * @deprecated As of ISO 19111:2019, this interface is renamed as {@link DerivedCRS}.
  */
+@Deprecated(since="3.1")
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="SC_GeneralDerivedCRS", specification=ISO_19111, version=2007)
 public interface GeneralDerivedCRS extends SingleCRS {
@@ -53,20 +50,14 @@ public interface GeneralDerivedCRS extends SingleCRS {
      *
      * @return the base coordinate reference system.
      */
-    @UML(identifier="baseCRS", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="baseCRS", obligation=MANDATORY, specification=ISO_19111, version=2007)
     CoordinateReferenceSystem getBaseCRS();
 
     /**
      * Returns the conversion from the {@linkplain #getBaseCRS() base CRS} to this CRS.
      *
      * @return the conversion from the base CRS.
-     *
-     * @departure rename
-     *   "{@code conversion}" may be confusing as a method name
-     *   since it does not indicate which CRS is the source or which is the target.
-     *   The OGC 01-009 specification used the {@code toBase()} method name.
-     *   By analogy with 01-009, GeoAPI defines a method name which contains the "{@code FromBase}" expression.
      */
-    @UML(identifier="conversion", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="conversion", obligation=MANDATORY, specification=ISO_19111, version=2007)
     Conversion getConversionFromBase();
 }

@@ -27,8 +27,7 @@ import static org.opengis.test.Assertions.assertBetween;
 
 
 /**
- * Validates {@link Extent} and related objects from the
- * {@code org.opengis.metadata.extent} package.
+ * Validates {@link Extent} and related objects from the {@code org.opengis.metadata.extent} package.
  *
  * <p>This class is provided for users wanting to override the validation methods. When the default
  * behavior is sufficient, the {@link org.opengis.test.Validators} static methods provide a more

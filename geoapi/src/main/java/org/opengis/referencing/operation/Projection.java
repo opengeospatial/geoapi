@@ -31,8 +31,8 @@ import org.opengis.referencing.crs.ProjectedCRS;
  * which is entirely two-dimensional. The same map projection can be applied to many
  * {@linkplain org.opengis.referencing.crs.GeographicCRS geographic CRSs}, resulting in many
  * {@linkplain org.opengis.referencing.crs.ProjectedCRS projected CRSs} each of which is related
- * to the same {@linkplain org.opengis.referencing.datum.GeodeticDatum geodetic datum} as the
- * geographic CRS on which it was based.
+ * to the same {@linkplain org.opengis.referencing.datum.GeodeticDatum geodetic reference frame}
+ * as the geographic CRS on which it was based.
  *
  * <p>An unofficial list of projections and their parameters can
  * be found <a href="http://www.remotesensing.org/geotiff/proj_list/">there</a>.

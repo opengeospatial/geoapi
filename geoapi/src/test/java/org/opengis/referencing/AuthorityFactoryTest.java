@@ -100,7 +100,9 @@ public final class AuthorityFactoryTest {
         final Class<?>[] epts = {String.class};         // Parameters of the methods to test.
         for (Method m : factoryType.getMethods()) {
             final String code = AuthorityFactoryMock.OBJECT_CODE;
-            if (m.isDefault() && Arrays.equals(epts, m.getParameterTypes())) try {
+            if (m.isDefault() && !m.isAnnotationPresent(Deprecated.class)
+                    && Arrays.equals(epts, m.getParameterTypes())) try
+            {
                 /*
                  * Invoke a `createFoo(…)` method on the factory interface to test.
                  * The method shall fail, except if it was overridden for returning

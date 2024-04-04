@@ -18,22 +18,16 @@
 
 
 /**
- * Java interfaces derived from specifications of <cite>International Organization for Standardization</cite> (<abbr>ISO</abbr>)
- * and <cite><a href="http://www.opengeospatial.org">Open Geospatial Consortium</a></cite> (<abbr>OGC</abbr>).
- *
- * <h2>Links</h2>
- * <ul>
- *   <li><a href="https://www.ogc.org/">Open Geospatial Consortium</a></li>
- *   <li><a href="https://www.geoapi.org/">GeoAPI home page</a></li>
- *   <li><a href="https://www.ogc.org/standard/geoapi/"><abbr>OGC</abbr> GeoAPI specification</a></li>
- *   <li><a href="http://docs.opengeospatial.org/is/18-010r7/18-010r7.html">Well-Known Text 2 (<abbr>WKT</abbr> 2) specification</a></li>
- * </ul>
- *
- * <h2>Requirements</h2>
- * <ul>
- *   <li><a href="https://docs.oracle.com/en/java/javase/11/">Java 11</a> or later.</li>
- *   <li><a href="https://jcp.org/en/jsr/detail?id=385"><abbr>JSR</abbr>-385</a> units of measurement API.</li>
- * </ul>
+ * Java interfaces derived from <abbr>OGC</abbr> and <abbr>ISO</abbr> abstract models.
+ * In a series of packages in the <code>org.opengis</code>® namespace, GeoAPI defines
+ * interfaces for metadata handling, for geodetic referencing (map projections),
+ * for the representation of features and for their filtering.
+ * The GeoAPI interfaces closely follow the abstract models published collaboratively by the
+ * <a href="https://www.iso.org/">International Organization for Standardization</a> (<abbr>ISO</abbr>)
+ * in its 19100 series of documents and the Open
+ * <a href="https://www.ogc.org/">Open Geospatial Consortium</a> (<abbr>OGC</abbr>)
+ * in its abstract and implementation specifications.
+ * See the <a href="https://www.geoapi.org/">GeoAPI home page</a> for more information.
  *
  * @version 3.1
  * @since 1.0
@@ -67,6 +61,7 @@ module org.opengis.geoapi {
     exports org.opengis.referencing.cs;
     exports org.opengis.referencing.crs;
     exports org.opengis.referencing.operation;
+    exports org.opengis.coordinate;
     exports org.opengis.geometry;
     exports org.opengis.geometry.coordinate;
     exports org.opengis.feature;

@@ -20,23 +20,35 @@ package org.opengis.referencing.cs;
 import java.util.Map;
 import org.opengis.annotation.UML;
 
-import static org.opengis.annotation.Specification.ISO_19111_2;
+import static org.opengis.annotation.Specification.ISO_19111;
 
 
 /**
- * A 1-dimensional coordinate system containing a single axis.
+ * A 1-dimensional coordinate system in which a physical property or function is used as the dimension.
  * This coordinate system uses parameter values or functions to describe the position of a point.
+ * That parameter is not inherently spatial. It may be for example the atmospheric pressure.
  *
- * <p>This type of CS can be used by coordinate reference systems of type
+ * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
  * {@link org.opengis.referencing.crs.ParametricCRS}.</p>
  *
+ * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Johann Sorel (Geomatys)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   3.1
  *
  * @see CSAuthorityFactory#createParametricCS(String)
  * @see CSFactory#createParametricCS(Map, CoordinateSystemAxis)
  */
-@UML(identifier="CS_ParametricCS", specification=ISO_19111_2)
+@UML(identifier="ParametricCS", specification=ISO_19111)
 public interface ParametricCS extends CoordinateSystem {
+    /**
+     * Returns the number of dimensions, which is 1 for this type of coordinate system.
+     *
+     * @return always 1.
+     */
+    @Override
+    default int getDimension() {
+        return 1;
+    }
 }

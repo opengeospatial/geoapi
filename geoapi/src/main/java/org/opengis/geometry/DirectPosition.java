@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2003-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2003-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -33,9 +33,9 @@ import static org.opengis.annotation.Specification.*;
  * (such as {@linkplain org.opengis.geometry.Geometry geometries}) that have references to
  * {@linkplain CoordinateReferenceSystem coordinate reference system} (CRS),
  * the {@link #getCoordinateReferenceSystem()} method may return {@code null} if this particular
- * {@code DirectPosition} is included in a larger object with such a reference to a CRS.
+ * {@code DirectPosition} is included in a larger object with such a reference to a <abbr>CRS</abbr>.
  * In this case, the coordinate reference system is implicitly assumed to take on the value
- * of the containing object's CRS.
+ * of the containing object's <abbr>CRS</abbr>.
  *
  * <h2>Optional operation</h2>
  * A direct position can optionally be modifiable. If this {@code DirectPosition} is unmodifiable,
@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  *   GeoAPI moved this interface into the {@code org.opengis.geometry} root package for
  *   convenience, because it is extensively used.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  */
@@ -68,11 +68,11 @@ public interface DirectPosition extends Position {
      * May be {@code null} if this particular {@code DirectPosition} is included in a larger object
      * with such a reference to a {@linkplain CoordinateReferenceSystem coordinate reference system}.
      * In this case, the coordinate reference system is implicitly assumed to take on the value
-     * of the containing object's CRS.
+     * of the containing object's <abbr>CRS</abbr>.
      *
      * <h4>Default implementation</h4>
      * The default implementation returns {@code null}. Implementations should override
-     * this method if the CRS is known or can be taken from the containing object.
+     * this method if the <abbr>CRS</abbr> is known or can be taken from the containing object.
      *
      * @return the coordinate reference system (CRS), or {@code null}.
      */
@@ -93,6 +93,7 @@ public interface DirectPosition extends Position {
     /**
      * A <b>copy</b> of the coordinates stored as an array of double values.
      * Changes to the returned array will not affect this {@code DirectPosition}.
+     * The array length shall be equal to the {@linkplain #getDimension() dimension}.
      *
      * <h4>Default implementation</h4>
      * The default implementation invokes {@link #getCoordinate(int)} for all indices
@@ -120,6 +121,7 @@ public interface DirectPosition extends Position {
      *         in this {@code DirectPosition} object.
      *
      * @deprecated Renamed {@link #getCoordinates()}.
+     * To be removed because of the risk of confusion with {@link #getCoordinate(int)}.
      */
     @Deprecated(since="3.1", forRemoval=true)
     default double[] getCoordinate() {
@@ -148,7 +150,7 @@ public interface DirectPosition extends Position {
      *
      * @deprecated Renamed {@link #getCoordinate(int)}.
      */
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since = "3.1")
     default double getOrdinate(int dimension) throws IndexOutOfBoundsException {
         return getCoordinate(dimension);
     }
@@ -184,7 +186,7 @@ public interface DirectPosition extends Position {
      *
      * @deprecated Renamed {@link #setCoordinate(int, double)}.
      */
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since = "3.1")
     default void setOrdinate(int dimension, double value)
             throws IndexOutOfBoundsException, UnsupportedOperationException
     {

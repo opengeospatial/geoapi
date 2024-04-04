@@ -18,25 +18,29 @@
 package org.opengis.referencing;
 
 import java.util.Set;
+import java.util.Optional;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
 import org.opengis.util.UnimplementedServiceException;
 import org.opengis.annotation.UML;
+
+import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Base interface for all authority factories. An <dfn>authority</dfn> is an organization
- * that maintains definitions of authority codes. An <dfn>authority code</dfn> is a compact
- * string defined by an authority to reference a particular spatial reference object.
+ * Base interface for all authority factories.
+ * An <dfn>authority</dfn> is an organization that maintains definitions of authority codes.
+ * An <dfn>authority code</dfn> is a compact string defined by an authority to reference a particular referencing object.
  *
- * <p>For example, the <a href="http://www.epsg.org">European Petroleum Survey Group (EPSG)</a> maintains
- * a database of coordinate systems, and other spatial referencing objects, where each object has a code
- * number ID. For example, the EPSG code for a WGS84 Lat/Lon coordinate system is “4326”.</p>
+ * <p>For example, the <a href="https://epsg.org">EPSG geodetic registry</a> is a database of coordinate
+ * reference systems, and other spatial referencing objects, where each object has a code number ID.
+ * For example, the EPSG code for a <q>WGS84 Lat/Lon</q> <abbr>CRS</abbr> is <q>4326</q>.</p>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  */
@@ -54,26 +58,23 @@ public interface AuthorityFactory extends Factory {
      * Returns the set of authority codes for objects of the given type.
      * The {@code type} argument specifies the base type of identified objects.
      *
-     * <p><b>Example:</b> if this factory is an instance of {@link org.opengis.referencing.crs.CRSAuthorityFactory},
-     * then:</p>
+     * <h4>Example</h4>
+     * Assuming that this factory is an instance of {@link org.opengis.referencing.crs.CRSAuthorityFactory},
+     * if the {@code type} argument value is set to
+     * <code>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem}.class</code>,
+     * then this method should return all authority codes accepted by methods such as
+     * {@link org.opengis.referencing.crs.CRSAuthorityFactory#createGeographicCRS createGeographicCRS(…)},
+     * {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS(…)},
+     * {@link org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS createVerticalCRS(…)},
+     * {@link org.opengis.referencing.crs.CRSAuthorityFactory#createTemporalCRS createTemporalCRS(…)}
+     * and any other method returning a sub-type of {@code CoordinateReferenceSystem}.
+     * By contrast, if the {@code type} argument value is set to
+     * <code>{@linkplain org.opengis.referencing.crs.ProjectedCRS}.class</code>,
+     * then this method should return only the authority codes accepted by
+     * {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS(…)}.
      *
-     * <ul>
-     *   <li><p><code>{@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem}.class</code><br>
-     *       asks for all authority codes accepted by one of
-     *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createGeographicCRS createGeographicCRS},
-     *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS},
-     *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createVerticalCRS createVerticalCRS},
-     *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createTemporalCRS createTemporalCRS}
-     *       and any other method returning a sub-type of {@code CoordinateReferenceSystem}.</p></li>
-     *   <li><p><code>{@linkplain org.opengis.referencing.crs.ProjectedCRS}.class</code><br>
-     *       asks only for authority codes accepted by
-     *       {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS}.</p></li>
-     * </ul>
-     *
-     * @param  type  the spatial reference objects type.
-     * @return the set of authority codes for spatial reference objects of the given type.
-     *         If this factory does not contain any object of the given type, then this method
-     *         returns an {@linkplain java.util.Collections#emptySet() empty set}.
+     * @param  type  the type of referencing object for which to get authority codes.
+     * @return the set of authority codes for referencing objects of the given type.
      * @throws FactoryException if access to the underlying database failed.
      *
      * @departure extension
@@ -85,6 +86,25 @@ public interface AuthorityFactory extends Factory {
     /**
      * Returns a description of the object corresponding to a code.
      * The description may be used in graphical user interfaces.
+     * It may be empty if the object corresponding to the specified code has no description.
+     *
+     * @param  type  the type of objects for which to get a description.
+     * @param  code  value allocated by the authority for an object of the given type.
+     * @return a description of the object.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the query failed for some other reason.
+     *
+     * @since 3.1
+     */
+    @UML(identifier="descriptionText", obligation=OPTIONAL, specification=OGC_01009)
+    default Optional<InternationalString> getDescriptionText(Class<? extends IdentifiedObject> type, String code)
+            throws FactoryException
+    {
+        return Optional.empty();
+    }
+
+    /**
+     * Returns a description of the object corresponding to a code.
      *
      * @param  code  value allocated by authority.
      * @return a description of the object, or {@code null} if the object
@@ -94,13 +114,10 @@ public interface AuthorityFactory extends Factory {
      *
      * @deprecated This method is ambiguous because the EPSG geodetic registry may allocate
      *             the same code to different kinds of object.
-     *
-     * @todo Provide an alternative, maybe with a {@code Class} argument.
      */
-    @Deprecated(since = "3.1", forRemoval = true)
-    @UML(identifier="descriptionText", specification=OGC_01009)
+    @Deprecated(since = "3.1")
     default InternationalString getDescriptionText(String code) throws FactoryException {
-        throw new UnimplementedServiceException(this, InternationalString.class, "description");
+        return getDescriptionText(IdentifiedObject.class, code).orElse(null);
     }
 
     /**
@@ -132,7 +149,7 @@ public interface AuthorityFactory extends Factory {
      *             {@code createCoordinateSystem(…)} or {@code createCoordinateReferenceSystem(…)} should
      *             be invoked instead.
      */
-    @Deprecated(since = "3.1", forRemoval = true)
+    @Deprecated(since = "3.1")
     default IdentifiedObject createObject(String code) throws FactoryException {
         throw new UnimplementedServiceException(this, IdentifiedObject.class);
     }

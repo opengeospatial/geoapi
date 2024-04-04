@@ -38,19 +38,20 @@ import static org.opengis.annotation.Specification.*;
  * {@code Formula} objects are for human reading; the object that actually does the work
  * of applying the formula or procedure to coordinate values is {@link MathTransform}.</p>
  *
+ * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.0
+ * @version 3.1
  * @since   2.3
  *
  * @see MathTransform
  * @see OperationMethod#getFormula()
  */
 @Classifier(Stereotype.UNION)
-@UML(identifier="CC_Formula", specification=ISO_19111, version=2007)
+@UML(identifier="Formula", specification=ISO_19111)
 public interface Formula {
     /**
-     * Formula(s) or procedure used by the operation method.
-     * Only one of {@code getFormula()} and {@link #getCitation()} should be supplied.
+     * Returns the formula(s) or procedure used by this operation method.
+     * At least one of {@code getFormula()} and {@link #getCitation()} shall be supplied.
      *
      * @return the formula used by the operation method, or {@code null} if none.
      */
@@ -58,8 +59,8 @@ public interface Formula {
     InternationalString getFormula();
 
     /**
-     * Reference to a publication giving the formula(s) or procedure used by the coordinate operation method.
-     * Only one of {@link #getFormula()} and {@code getCitation()} should be supplied.
+     * Returns a reference to a publication giving the formula(s) or procedure used by this operation method.
+     * At least one of {@link #getFormula()} and {@code getCitation()} shall be supplied.
      *
      * @return reference to a publication giving the formula, or {@code null} if none.
      */

@@ -19,6 +19,7 @@ package org.opengis.test.wkt;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
@@ -175,7 +176,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     }
 
     /**
-     * Asserts the given character sequence is either null or equals to the given value.
+     * Asserts the given character sequence is either null or equal to the given value.
      * This is used for optional elements like remarks.
      *
      * @param property  the property being tested, for producing a message in case of assertion failure.
@@ -185,6 +186,20 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     private static void assertNullOrEquals(final String property, final String expected, final CharSequence actual) {
         if (actual != null) {
             assertEquals(expected, actual.toString(), property);
+        }
+    }
+
+    /**
+     * Asserts the given character sequence is either empty or equal to the given value.
+     * This is used for optional elements like remarks.
+     *
+     * @param property  the property being tested, for producing a message in case of assertion failure.
+     * @param expected  the expected value.
+     * @param actual    the actual value.
+     */
+    private static void assertEmptyOrEquals(String property, String expected, Optional<? extends CharSequence> actual) {
+        if (actual.isPresent()) {
+            assertEquals(expected, actual.get().toString(), property);
         }
     }
 
@@ -1002,7 +1017,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
 
         verifyIdentification   (crs, "A construction site CRS", null);
         verifyDatum            (crs.getDatum(), "P1");
-        assertNullOrEquals     ("datum.anchor", "Peg in south corner", crs.getDatum().getAnchorPoint());
+        assertEmptyOrEquals    ("datum.anchor", "Peg in south corner", crs.getDatum().getAnchorDefinition());
         verifyCoordinateSystem (crs.getCoordinateSystem(), CartesianCS.class, new AxisDirection[] {SOUTH_WEST, SOUTH_EAST}, metre);
     }
 
@@ -1045,7 +1060,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
 
         verifyIdentification   (crs, "A ship-centred CRS", null);
         verifyDatum            (crs.getDatum(), "Ship reference point");
-        assertNullOrEquals     ("datum.anchor", "Centre of buoyancy", crs.getDatum().getAnchorPoint());
+        assertEmptyOrEquals    ("datum.anchor", "Centre of buoyancy", crs.getDatum().getAnchorDefinition());
         verifyAxisAbbreviations(cs = crs.getCoordinateSystem(), "x", "y", "z");
         verifyCoordinateSystem (cs, CartesianCS.class, new AxisDirection[] {valueOf("forward"), valueOf("starboard"), DOWN}, metre);
     }

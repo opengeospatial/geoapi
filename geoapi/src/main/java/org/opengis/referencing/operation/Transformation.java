@@ -25,44 +25,49 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * An operation on coordinates that usually includes a change of Datum. The parameters
- * of a coordinate transformation are empirically derived from data containing the coordinates
- * of a series of points in both coordinate reference systems. This computational process
- * is usually "over-determined", allowing derivation of error (or accuracy) estimates
- * for the transformation. Also, the stochastic nature of the parameters may result
- * in multiple (different) versions of the same coordinate transformation.
+ * Operation in which parameters are empirically derived from a series of points in both <abbr>CRS</abbr>s.
+ * This computational process is usually "over-determined",
+ * allowing derivation of error (or accuracy) estimates for the transformation.
+ * Also, the stochastic nature of the parameters may result in multiple (different) versions
+ * of the same coordinate transformation.
+ * Because of this, several transformations may exist for a given pair of coordinate reference systems,
+ * differing in their transformation method, parameter values and accuracy characteristics.
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   1.0
  *
  * @see Conversion
  */
-@UML(identifier="CC_Transformation", specification=ISO_19111, version=2007)
+@UML(identifier="Transformation", specification=ISO_19111)
 public interface Transformation extends SingleOperation {
     /**
-     * Returns the source CRS.
+     * Returns the <abbr>CRS</abbr> from which coordinates are changed.
+     * This attribute is mandatory in all transformations.
      *
-     * @return the source CRS (never {@code null}).
+     * @return the <abbr>CRS</abbr> from which coordinates are changed. Shall not be {@code null}.
      */
     @Override
     @UML(identifier="sourceCRS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateReferenceSystem getSourceCRS();
 
     /**
-     * Returns the target CRS.
+     * Returns the <abbr>CRS</abbr> to which coordinates are changed.
+     * This attribute is mandatory in all transformations.
      *
-     * @return the target CRS (never {@code null}).
+     * @return the <abbr>CRS</abbr> to which coordinates are changed. Shall not be {@code null}.
      */
     @Override
     @UML(identifier="targetCRS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateReferenceSystem getTargetCRS();
 
     /**
-     * Version of the coordinate transformation (i.e., instantiation due to the stochastic
-     * nature of the parameters). This attribute is mandatory in a Transformation.
+     * Returns the version of this coordinate transformation.
+     * The version is an identification of the instantiation due to the stochastic nature of the parameters.
+     * This attribute is mandatory in all transformations.
      *
-     * @return the coordinate operation version.
+     * @return version of the coordinate transformation. Shall not be {@code null}.
      */
     @Override
     @UML(identifier="operationVersion", obligation=MANDATORY, specification=ISO_19111)

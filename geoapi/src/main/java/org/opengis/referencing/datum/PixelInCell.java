@@ -27,12 +27,11 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Specification of the way the image grid is associated with the image data attributes.
+ * This code list is similar to {@link org.opengis.metadata.spatial.PixelOrientation}
+ * except that the latter is more clearly restricted to the two-dimensional case.
  *
- * <div class="note"><b>Note:</b>
- * this code list is similar to {@link org.opengis.metadata.spatial.PixelOrientation}
- * except that the latter is more clearly restricted to the two-dimensional case.</div>
- *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  *

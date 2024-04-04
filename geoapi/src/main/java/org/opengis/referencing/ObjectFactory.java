@@ -17,7 +17,6 @@
  */
 package org.opengis.referencing;
 
-import java.util.Map;
 import java.util.Locale;
 
 import org.opengis.metadata.Identifier;
@@ -28,7 +27,7 @@ import org.opengis.util.GenericName;
 
 
 /**
- * Base interface for all factories of {@linkplain IdentifiedObject identified objects}.
+ * Base interface for all factories of identified objects.
  * Factories build up complex objects from simpler objects or values.
  * This factory allows applications to make
  * {@linkplain org.opengis.referencing.cs.CoordinateSystem coordinate systems},
@@ -38,7 +37,7 @@ import org.opengis.util.GenericName;
  * This factory is very flexible, whereas the authority factory is easier to use.
  *
  * <h2>Object properties</h2>
- * Most factory methods expect a {@link Map Map&lt;String,?&gt;} argument.
+ * Most factory methods expect a {@code Map<String,?>} argument.
  * The table below lists the keys that {@code ObjectFactory} implementations shall accept,
  * together with the type of values associated to those keys (the <q>Alternative types</q> column
  * gives examples of types that factory implementations may accept as well for convenience).
@@ -52,32 +51,27 @@ import org.opengis.util.GenericName;
  *     <th>Value type</th>
  *     <th>Alternative types</th>
  *     <th>Value returned by</th>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
  *     <td>{@link Identifier}</td>
  *     <td>{@link String} (see alternatives below)</td>
  *     <td>{@link IdentifiedObject#getName()}</td>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#ALIAS_KEY}</td>
  *     <td><code>{@linkplain GenericName}[]</code></td>
  *     <td>{@link GenericName}, {@link String} or <code>{@linkplain String}[]</code></td>
  *     <td>{@link IdentifiedObject#getAlias()}</td>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#IDENTIFIERS_KEY}</td>
  *     <td><code>{@linkplain Identifier}[]</code></td>
  *     <td>{@link Identifier}</td>
  *     <td>{@link IdentifiedObject#getIdentifiers()}</td>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#DOMAINS_KEY}</td>
  *     <td><code>{@linkplain ObjectDomain}[]</code></td>
  *     <td>{@link ObjectDomain}</td>
  *     <td>{@link IdentifiedObject#getDomains()}</td>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#REMARKS_KEY}</td>
  *     <td>{@link InternationalString}</td>
  *     <td>{@link String} (see localization below)</td>

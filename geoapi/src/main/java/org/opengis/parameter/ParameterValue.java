@@ -19,10 +19,13 @@ package org.opengis.parameter;
 
 import java.net.URI;
 import javax.measure.Unit;
+import javax.measure.UnitConverter;
+import javax.measure.IncommensurableException;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 import org.opengis.metadata.citation.Citation;
+import org.opengis.metadata.Identifier;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -56,9 +59,16 @@ import static org.opengis.annotation.Specification.*;
  * The type and constraints on parameter values are given by the {@linkplain #getDescriptor() descriptor},
  * Instances of {@code ParameterValue} are created by the {@link ParameterDescriptor#createValue()} method.
  *
+ * @departure integration
+ *   This interface merges the {@code OperationParameterValue} interface and {@code ParameterValue} union.
+ *   The {@code valueFileCitation} and {@code geographicObject} properties were omitted because those more
+ *   complex objects can be specified by setting the {@code <T>} parameterized type to
+ *   {@link org.opengis.metadata.Citation} and {@link org.opengis.metadata.Identifier} respectively.
+ *
  * @param  <T>  the type of parameter values.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Jody Garnett (Refractions Research)
  * @version 3.1
  * @since   1.0
@@ -67,7 +77,7 @@ import static org.opengis.annotation.Specification.*;
  * @see ParameterValueGroup
  */
 @Classifier(Stereotype.UNION)
-@UML(identifier="CC_ParameterValue", specification=ISO_19111, version=2007)
+@UML(identifier="OperationParameterValue", specification=ISO_19111)
 public interface ParameterValue<T> extends GeneralParameterValue {
     /**
      * Returns the abstract definition of this parameter value.
@@ -75,8 +85,39 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @return the abstract definition of this parameter value.
      */
     @Override
-    @UML(identifier="CC_OperationParameterValue.parameter", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="parameter", obligation=MANDATORY, specification=ISO_19111)
     ParameterDescriptor<T> getDescriptor();
+
+    /**
+     * Returns the name of this parameter, for error messages only.
+     * All parameter shall have a name since it is a mandatory property,
+     * but if this parameter is nevertheless unnamed, an arbitrary value is returned.
+     *
+     * @return name of this parameter for error message.
+     */
+    private String getName() {
+        ParameterDescriptor<?> descriptor = getDescriptor();
+        if (descriptor != null) {
+            Identifier name = descriptor.getName();
+            if (name != null) {
+                String code = name.getCode();
+                if (code != null) {
+                    return code;
+                }
+            }
+        }
+        return "unnamed";
+    }
+
+    /**
+     * Returns a message saying that the value of this parameter cannot be converted to the specified unit.
+     *
+     * @param  unit  the illegal unit of measurement.
+     * @return a message saying that this parameter value cannot be converted.
+     */
+    private String cannotConvert(final Unit<?> unit) {
+        return "The “" + getName() + "” parameter value cannot be converted to “" + unit + "” units.";
+    }
 
     /**
      * Returns the unit of measure of the parameter value.
@@ -95,6 +136,8 @@ public interface ParameterValue<T> extends GeneralParameterValue {
     /**
      * Returns the numeric value of this parameter in the specified unit of measure.
      * This convenience method applies unit conversion on the fly as needed.
+     * The default implementation invokes {@link #getValue()} and {@link #getUnit()},
+     * then tries to cast and convert the value.
      *
      * @param  unit  the unit of measure for the value to be returned.
      * @return the numeric value represented by this parameter after conversion to type
@@ -107,11 +150,26 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(double,Unit)
      * @see #doubleValueList(Unit)
      */
-    double doubleValue(Unit<?> unit) throws IllegalArgumentException, IllegalStateException;
+    default double doubleValue(final Unit<?> unit) throws IllegalArgumentException, IllegalStateException {
+        final T value = getValue();
+        final Number number;
+        try {
+            number = (Number) value;
+        } catch (ClassCastException cause) {
+            throw new InvalidParameterTypeException(cause, getName());
+        }
+        final Unit<?> source = getUnit();
+        try {
+            return source.getConverterToAny(unit).convert(number).doubleValue();
+        } catch (IncommensurableException cause) {
+            throw new IllegalArgumentException(cannotConvert(unit), cause);
+        }
+    }
 
     /**
      * Returns the numeric value of this operation parameter.
      * The unit of measurement is specified by {@link #getUnit()}.
+     * The default implementation invokes {@link #getValue()}, then tries to cast the value.
      *
      * @return the numeric value represented by this parameter after conversion to type {@code double}.
      * @throws InvalidParameterTypeException if the value is not a numeric type.
@@ -127,12 +185,20 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(double)
      * @see #doubleValueList()
      */
-    @UML(identifier="value", obligation=CONDITIONAL, specification=ISO_19111)
-    double doubleValue() throws IllegalStateException;
+    @UML(identifier="ParameterValue.value", obligation=CONDITIONAL, specification=ISO_19111)
+    default double doubleValue() throws IllegalStateException {
+        final T value = getValue();
+        try {
+            return ((Number) value).doubleValue();
+        } catch (NullPointerException | ClassCastException cause) {
+            throw new InvalidParameterTypeException(cause, getName());
+        }
+    }
 
     /**
      * Returns the integer value of this parameter, usually used for a count.
      * An integer value does not have an associated unit of measure.
+     * The default implementation invokes {@link #getValue()}, then tries to cast the value.
      *
      * @return the numeric value represented by this parameter after conversion to type {@code int}.
      * @throws InvalidParameterTypeException if the value is not an integer type.
@@ -145,25 +211,41 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(int)
      * @see #intValueList()
      */
-    @UML(identifier="integerValue", obligation=CONDITIONAL, specification=ISO_19111)
-    int intValue() throws IllegalStateException;
+    @UML(identifier="ParameterValue.integerValue", obligation=CONDITIONAL, specification=ISO_19111)
+    default int intValue() throws IllegalStateException {
+        final T value = getValue();
+        try {
+            return Math.toIntExact(((Number) value).longValue());
+        } catch (NullPointerException | ClassCastException | ArithmeticException cause) {
+            throw new InvalidParameterTypeException(cause, getName());
+        }
+    }
 
     /**
-     * Returns the boolean value of this parameter.
-     * A boolean value does not have an associated unit of measure.
+     * Returns the Boolean value of this parameter.
+     * A Boolean value does not have an associated unit of measure.
+     * The default implementation invokes {@link #getValue()}, then tries to cast the value.
      *
-     * @return the boolean value represented by this parameter.
-     * @throws InvalidParameterTypeException if the value is not a boolean type.
+     * @return the Boolean value represented by this parameter.
+     * @throws InvalidParameterTypeException if the value is not a Boolean type.
      * @throws IllegalStateException if the value cannot be returned for another reason.
      *
      * @see #setValue(boolean)
      */
-    @UML(identifier="booleanValue", obligation=CONDITIONAL, specification=ISO_19111)
-    boolean booleanValue() throws IllegalStateException;
+    @UML(identifier="ParameterValue.booleanValue", obligation=CONDITIONAL, specification=ISO_19111)
+    default boolean booleanValue() throws IllegalStateException {
+        final T value = getValue();
+        try {
+            return (Boolean) value;
+        } catch (NullPointerException | ClassCastException cause) {
+            throw new InvalidParameterTypeException(cause, getName());
+        }
+    }
 
     /**
      * Returns the string value of this parameter.
      * A string value does not have an associated unit of measure.
+     * The default implementation invokes {@link #getValue()}, then tries to cast the value.
      *
      * @return the string value represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not a string.
@@ -172,12 +254,20 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #getValue()
      * @see #setValue(Object)
      */
-    @UML(identifier="stringValue", obligation=CONDITIONAL, specification=ISO_19111)
-    String stringValue() throws IllegalStateException;
+    @UML(identifier="ParameterValue.stringValue", obligation=CONDITIONAL, specification=ISO_19111)
+    default String stringValue() throws IllegalStateException {
+        final T value = getValue();
+        try {
+            return (String) value;
+        } catch (ClassCastException cause) {
+            throw new InvalidParameterTypeException(cause, getName());
+        }
+    }
 
     /**
      * Returns an ordered sequence of numeric values in the specified unit of measure.
      * This convenience method applies unit conversions on the fly as needed.
+     * The default implementation invokes {@link #doubleValueList()}, then tries to convert the values.
      *
      * @param  unit  the unit of measure for the value to be returned.
      * @return the sequence of values represented by this parameter after conversion to type
@@ -190,11 +280,27 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(double[],Unit)
      * @see #doubleValue(Unit)
      */
-    double[] doubleValueList(Unit<?> unit) throws IllegalArgumentException, IllegalStateException;
+    default double[] doubleValueList(Unit<?> unit) throws IllegalArgumentException, IllegalStateException {
+        double[] values = doubleValueList();
+        final Unit<?> source = getUnit();
+        try {
+            final UnitConverter c = source.getConverterToAny(unit);
+            if (!c.isIdentity()) {
+                values = values.clone();
+                for (int i=0; i < values.length; i++) {
+                    values[i] = c.convert(values[i]);
+                }
+            }
+        } catch (IncommensurableException cause) {
+            throw new InvalidParameterTypeException(cause, getName());
+        }
+        return values;
+    }
 
     /**
      * Returns an ordered sequence of two or more numeric values of this parameter,
      * where each value has the same associated unit of measure.
+     * The default implementation invokes {@link #getValue()}, then tries to cast the value.
      *
      * @return the sequence of values represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not an array of {@code double}s.
@@ -211,12 +317,20 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(Object)
      * @see #doubleValue()
      */
-    @UML(identifier="valueList", obligation=CONDITIONAL, specification=ISO_19111)
-    double[] doubleValueList() throws IllegalStateException;
+    @UML(identifier="ParameterValue.valueList", obligation=CONDITIONAL, specification=ISO_19111)
+    default double[] doubleValueList() throws IllegalStateException {
+        final T value = getValue();
+        try {
+            return (double[]) value;
+        } catch (ClassCastException cause) {
+            throw new InvalidParameterTypeException(cause, getName());
+        }
+    }
 
     /**
      * Returns an ordered sequence of two or more integer values of this parameter, usually used for counts.
      * These integer values do not have an associated unit of measure.
+     * The default implementation invokes {@link #getValue()}, then tries to cast the value.
      *
      * @return the sequence of values represented by this parameter.
      * @throws InvalidParameterTypeException if the value is not an array of {@code int}s.
@@ -229,14 +343,23 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(Object)
      * @see #intValue()
      */
-    @UML(identifier="integerValueList", obligation=CONDITIONAL, specification=ISO_19111)
-    int[] intValueList() throws IllegalStateException;
+    @UML(identifier="ParameterValue.integerValueList", obligation=CONDITIONAL, specification=ISO_19111)
+    default int[] intValueList() throws IllegalStateException {
+        final T value = getValue();
+        try {
+            return (int[]) value;
+        } catch (ClassCastException cause) {
+            throw new InvalidParameterTypeException(cause, getName());
+        }
+    }
 
     /**
      * Returns a reference to a file or a part of a file containing one or more parameter values.
      * When referencing a part of a file, that file must contain multiple identified parts, such
      * as an XML encoded document. Furthermore, the referenced file or part of a file can reference
      * another part of the same or different files, as allowed in XML documents.
+     *
+     * <p>The default implementation invokes {@link #getValue()}, then tries to cast the value.</p>
      *
      * @return the reference to a file containing parameter values.
      * @throws InvalidParameterTypeException if the value is not a reference to a file or a URI.
@@ -245,8 +368,15 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #getValue()
      * @see #setValue(Object)
      */
-    @UML(identifier="valueFile", obligation=CONDITIONAL, specification=ISO_19111)
-    URI valueFile() throws IllegalStateException;
+    @UML(identifier="ParameterValue.valueFile", obligation=CONDITIONAL, specification=ISO_19111)
+    default URI valueFile() throws IllegalStateException {
+        final T value = getValue();
+        try {
+            return (URI) value;
+        } catch (ClassCastException cause) {
+            throw new InvalidParameterTypeException(cause, getName());
+        }
+    }
 
     /**
      * Returns the parameter value as an object. The object type is typically (but not restricted to)
@@ -288,6 +418,7 @@ public interface ParameterValue<T> extends GeneralParameterValue {
 
     /**
      * Sets the parameter value as a floating point.
+     * The default implementation delegates to {@link #setValue(Object)}.
      *
      * @param  value  the parameter value.
      * @throws InvalidParameterValueException if the floating point type is inappropriate for this
@@ -297,10 +428,13 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      * @see #setValue(double,Unit)
      * @see #doubleValue()
      */
-    void setValue(double value) throws InvalidParameterValueException;
+    default void setValue(double value) throws InvalidParameterValueException {
+        setValue((Object) value);
+    }
 
     /**
      * Sets the parameter value as an integer.
+     * The default implementation delegates to {@link #setValue(Object)}.
      *
      * @param  value  the parameter value.
      * @throws InvalidParameterValueException if the integer type is inappropriate for this parameter,
@@ -308,17 +442,22 @@ public interface ParameterValue<T> extends GeneralParameterValue {
      *
      * @see #intValue()
      */
-    void setValue(int value) throws InvalidParameterValueException;
+    default void setValue(int value) throws InvalidParameterValueException {
+        setValue((Object) value);
+    }
 
     /**
-     * Sets the parameter value as a boolean.
+     * Sets the parameter value as a Boolean.
+     * The default implementation delegates to {@link #setValue(Object)}.
      *
      * @param  value  the parameter value.
-     * @throws InvalidParameterValueException if the boolean type is inappropriate for this parameter.
+     * @throws InvalidParameterValueException if the Boolean type is inappropriate for this parameter.
      *
      * @see #booleanValue()
      */
-    void setValue(boolean value) throws InvalidParameterValueException;
+    default void setValue(boolean value) throws InvalidParameterValueException {
+        setValue((Object) value);
+    }
 
     /**
      * Sets the parameter value as an object. The object type is typically (but not restricted to)

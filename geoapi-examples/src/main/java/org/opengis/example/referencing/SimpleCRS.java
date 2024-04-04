@@ -16,6 +16,7 @@ import org.opengis.referencing.cs.VerticalCS;
 import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
+import org.opengis.referencing.cs.CoordinateDataType;
 import org.opengis.referencing.crs.SingleCRS;
 import org.opengis.referencing.crs.TemporalCRS;
 import org.opengis.referencing.crs.VerticalCRS;
@@ -285,6 +286,15 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
         @Override
         public Date getOrigin() {
             return new Date(origin);
+        }
+
+        /**
+         * Returns the type (measure, integer or data-time) of coordinate values.
+         * This simple implementation supports only {@link CoordinateDataType#MEASURE}.
+         */
+        @Override
+        public CoordinateDataType getCoordinateType() {
+            return CoordinateDataType.MEASURE;
         }
     }
 }

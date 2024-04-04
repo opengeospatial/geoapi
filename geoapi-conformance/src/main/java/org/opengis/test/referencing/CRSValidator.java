@@ -21,6 +21,7 @@ import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.function.Supplier;
 
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
@@ -48,13 +49,14 @@ import static org.opengis.test.referencing.Utilities.getAxisDirections;
 public class CRSValidator extends ReferencingValidator {
     /**
      * The axis names mandated by ISO 19111 for some particular kind of CRS.
-     * See ISO 19111:2007 table 16 at page 25.
+     * See ISO 19111:2019 table 16 at page 27.
      */
     private static final String[]
             GEOCENTRIC_AXIS_NAME = {"geocentric X", "geocentric Y", "geocentric Z"},
             GEOGRAPHIC_AXIS_NAME = {"geodetic latitude", "geodetic longitude", "ellipsoidal height"},
-            PROJECTED_AXIS_NAME  = {"northing", "southing", "easting", "westing"},
-            SPHERICAL_AXIS_NAME  = {"spherical latitude", "spherical longitude", "geocentric radius"},
+            PROJECTED_AXIS_NAME  = {"northing", "southing", "easting", "westing", "ellipsoidal height"},
+            SPHERICAL_AXIS_NAME  = {"spherical latitude", "geocentric latitude", "geocentric co-latitude",
+                                    "spherical longitude", "geodetic longitude", "geocentric radius"},
             VERTICAL_AXIS_NAME   = {"depth", "gravity-related height", "gravity-related depth"};
     /*
      * Note: the ISO table does not mention "gravity-related depth" as a standard name.
@@ -63,10 +65,10 @@ public class CRSValidator extends ReferencingValidator {
      */
 
     /**
-     * {@code true} if validation of the conversion by {@link #validateGeneralDerivedCRS}
-     * is under way. Used in order to avoid never-ending recursivity.
+     * {@code true} if validation of the conversion by {@link #validateGeneralDerivedCRS} is under way.
+     * Used in order to avoid never-ending recursivity.
      *
-     * @todo Replace by a more general mechanism straight in {@link ValidatorContainer}.
+     * @todo Replace by a more general mechanism in {@link ValidatorContainer}.
      */
     private final ThreadLocal<Boolean> VALIDATING = new ThreadLocal<>();
 
@@ -102,6 +104,7 @@ public class CRSValidator extends ReferencingValidator {
      * @param  object  the object to dispatch to {@code validate(…)} methods, or {@code null}.
      * @return number of {@code validate(…)} methods invoked in this class for the given object.
      */
+    @SuppressWarnings("deprecation")
     public int dispatch(final CoordinateReferenceSystem object) {
         int n = 0;
         if (object != null) {
@@ -117,8 +120,9 @@ public class CRSValidator extends ReferencingValidator {
             if (n == 0) {
                 if (object instanceof GeodeticCRS) {
                     validate((GeodeticCRS) object, false, false);
+                    n++;
                 } else {
-                    validateReferenceSystem(object);
+                    validateIdentifiedObject(object);
                     container.validate(object.getCoordinateSystem());
                 }
             }
@@ -139,7 +143,10 @@ public class CRSValidator extends ReferencingValidator {
      * </ul>
      *
      * @param  object  the object to validate, or {@code null}.
+     *
+     * @deprecated ISO 19111 does not have a specific type for geocentric CRS. Use geodetic CRS instead.
      */
+    @Deprecated(since="3.1")
     public void validate(final GeocentricCRS object) {
         validate(object, true, false);
     }
@@ -170,7 +177,7 @@ public class CRSValidator extends ReferencingValidator {
         if (object == null) {
             return;
         }
-        validateReferenceSystem(object);
+        validateIdentifiedObject(object);
         final CoordinateSystem cs = object.getCoordinateSystem();
         mandatory("GeodeticCRS: shall have a CoordinateSystem.", cs);
         if (!skipGeographic && cs instanceof EllipsoidalCS) {
@@ -217,7 +224,7 @@ public class CRSValidator extends ReferencingValidator {
         if (object == null) {
             return;
         }
-        validateReferenceSystem(object);
+        validateIdentifiedObject(object);
 
         final GeographicCRS baseCRS = object.getBaseCRS();
         mandatory("ProjectedCRS: shall have a base CRS.", baseCRS);
@@ -245,7 +252,7 @@ public class CRSValidator extends ReferencingValidator {
         if (object == null) {
             return;
         }
-        validateReferenceSystem(object);
+        validateIdentifiedObject(object);
 
         final CoordinateReferenceSystem baseCRS = object.getBaseCRS();
         mandatory("DerivedCRS: shall have a base CRS.", baseCRS);
@@ -269,7 +276,7 @@ public class CRSValidator extends ReferencingValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      */
-    private void validateGeneralDerivedCRS(final GeneralDerivedCRS object) {
+    private void validateGeneralDerivedCRS(final DerivedCRS object) {
         if (!Boolean.TRUE.equals(VALIDATING.get())) try {
             VALIDATING.set(Boolean.TRUE);
             final Conversion conversion = object.getConversionFromBase();
@@ -280,11 +287,11 @@ public class CRSValidator extends ReferencingValidator {
                 final CoordinateReferenceSystem targetCRS = conversion.getTargetCRS();
                 if (baseCRS != null && sourceCRS != null) {
                     assertSame(baseCRS, sourceCRS,
-                            "GeneralDerivedCRS: The base CRS should be the source CRS of the conversion.");
+                            "DerivedCRS: The base CRS should be the source CRS of the conversion.");
                 }
                 if (targetCRS != null) {
                     assertSame(object, targetCRS,
-                            "GeneralDerivedCRS: The derived CRS should be the target CRS of the conversion.");
+                            "DerivedCRS: The derived CRS should be the target CRS of the conversion.");
                 }
             }
         } finally {
@@ -296,12 +303,15 @@ public class CRSValidator extends ReferencingValidator {
      * Validates the given coordinate reference system.
      *
      * @param  object  the object to validate, or {@code null}.
+     *
+     * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1")
     public void validate(final ImageCRS object) {
         if (object == null) {
             return;
         }
-        validateReferenceSystem(object);
+        validateIdentifiedObject(object);
         final AffineCS cs = object.getCoordinateSystem();
         mandatory("ImageCRS: shall have a CoordinateSystem.", cs);
         container.validate(cs);
@@ -316,22 +326,30 @@ public class CRSValidator extends ReferencingValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      */
+    @SuppressWarnings("deprecation")
     public void validate(final EngineeringCRS object) {
         if (object == null) {
             return;
         }
-        validateReferenceSystem(object);
+        validateIdentifiedObject(object);
         final CoordinateSystem cs = object.getCoordinateSystem();
         mandatory("EngineeringCRS: shall have a CoordinateSystem.", cs);
         container.validate(cs);
+        String message = "EngineeringCRS: illegal coordinate system type. Shall be one of"
+                       + " affine, Cartesian, cylindrical, linear, polar, or spherical.";
         assertTrue(cs instanceof AffineCS      ||      // Include the CartesianCS case.
                    cs instanceof CylindricalCS ||
                    cs instanceof LinearCS      ||
                    cs instanceof PolarCS       ||
                    cs instanceof SphericalCS   ||
                    cs instanceof UserDefinedCS,
-                "EngineeringCRS: illegal coordinate system type. Shall be one of affine, "
-                + "Cartesian, cylindrical, linear, polar, spherical or user defined.");
+                message);
+
+        assertFalse(cs instanceof EllipsoidalCS ||
+                    cs instanceof VerticalCS    ||
+                    cs instanceof ParametricCS  ||
+                    cs instanceof TimeCS,
+                message);
 
         final Datum datum = object.getDatum();
         mandatory("EngineeringCRS: shall have a Datum.", datum);
@@ -353,7 +371,7 @@ public class CRSValidator extends ReferencingValidator {
         if (object == null) {
             return;
         }
-        validateReferenceSystem(object);
+        validateIdentifiedObject(object);
         final VerticalCS cs = object.getCoordinateSystem();
         mandatory("VerticalCRS: shall have a CoordinateSystem.", cs);
         container.validate(cs);
@@ -374,7 +392,7 @@ public class CRSValidator extends ReferencingValidator {
         if (object == null) {
             return;
         }
-        validateReferenceSystem(object);
+        validateIdentifiedObject(object);
         final TimeCS cs = object.getCoordinateSystem();
         mandatory("TemporalCRS: shall have a CoordinateSystem.", cs);
         container.validate(cs);
@@ -396,20 +414,80 @@ public class CRSValidator extends ReferencingValidator {
         if (object == null) {
             return;
         }
-        validateReferenceSystem(object);
+        validateIdentifiedObject(object);
         final CoordinateSystem cs = object.getCoordinateSystem();
         mandatory("CompoundCRS: shall have a CoordinateSystem.", cs);
         container.validate(cs);
-
+        AxisDirection[] directions = null;
+        if (cs != null) {
+            directions = new AxisDirection[cs.getDimension()];
+            for (int i=0; i<directions.length; i++) {
+                CoordinateSystemAxis axis = cs.getAxis(i);
+                if (axis != null) {
+                    directions[i] = axis.getDirection();
+                }
+            }
+        }
+        /*
+         * Verify the components, potentially with nested compound CRS.
+         */
         final List<CoordinateReferenceSystem> components = object.getComponents();
         mandatory("CompoundCRS: shall have components.", components);
         if (components != null) {
+            int dimension = 0;
             // If the above 'mandatory(…)' call accepted an empty list, we accept it too.
             assertNotEquals(1, components.size(), "CompoundCRS: shall have at least 2 components.");
             for (final CoordinateReferenceSystem component : components) {
                 dispatch(component);
+                dimension = compareAxes(component.getCoordinateSystem(), directions, dimension);
+            }
+            if (directions != null) {
+                assertEquals(directions.length, dimension, "CompoundCRS: unexpected sum of the dimension of components.");
             }
         }
+        /*
+         * Verify the components again, but without nested compound CRS.
+         */
+        final List<SingleCRS> singles = object.getSingleComponents();
+        mandatory("CompoundCRS: shall have components.", singles);
+        if (singles != null) {
+            int dimension = 0;
+            assertNotEquals(1, singles.size(), "CompoundCRS: shall have at least 2 components.");
+            for (final SingleCRS component : singles) {
+                dispatch(component);
+                dimension = compareAxes(component.getCoordinateSystem(), directions, dimension);
+            }
+            if (directions != null) {
+                assertEquals(directions.length, dimension, "CompoundCRS: unexpected sum of the dimension of components.");
+            }
+        }
+    }
+
+    /**
+     * Checks if the axis directions of the given coordinate system are the expected one.
+     *
+     * @param  cs          the coordinate system to validate, or {@code null} if none.
+     * @param  directions  the expected directions, or {@code null} if unknown.
+     * @param  index       index of the first element in the {@code directions} array.
+     * @return index after the last element in the {@code directions} array.
+     */
+    private static int compareAxes(final CoordinateSystem cs, final AxisDirection[] directions, int index) {
+        if (directions != null) {
+            assertNotNull("CompoundCRS: missing coordinate system for component.");
+            final int dimension = cs.getDimension();
+            assertTrue(index + dimension <= directions.length, "CompoundCRS: components have too many dimensions.");
+            for (int i=0; i<dimension; i++) {
+                final AxisDirection expected = directions[index++];
+                if (expected != null) {
+                    final int d = i;        // Because lambda functions require final values.
+                    final Supplier<String> message = () -> "CompoundCRS: inconsistent axis at dimension " + d + ".";
+                    final CoordinateSystemAxis axis = cs.getAxis(d);
+                    assertNotNull(axis, message);
+                    assertEquals(expected, axis.getDirection(), message);
+                }
+            }
+        }
+        return index;
     }
 
     /**

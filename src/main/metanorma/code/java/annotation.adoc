@@ -15,7 +15,7 @@ and that a non-null value must be provided by every `ProjectedCRS` instance:
 ------------------------------------------------------------
 @Classifier(Stereotype.TYPE)
 @UML(identifier = "ProjectedCRS", specification = ISO_19111)
-public interface ProjectedCRS extends GeneralDerivedCRS {
+public interface ProjectedCRS extends DerivedCRS {
     /**
      * Returns the coordinate system.
      */

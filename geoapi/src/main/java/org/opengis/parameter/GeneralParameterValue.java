@@ -28,7 +28,8 @@ import static org.opengis.annotation.Specification.*;
 /**
  * Abstract parameter value or group of parameter values.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Jody Garnett (Refractions Research)
  * @version 3.1
  * @since   1.0
@@ -36,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  * @see GeneralParameterDescriptor
  */
 @Classifier(Stereotype.ABSTRACT)
-@UML(identifier="CC_GeneralParameterValue", specification=ISO_19111, version=2007)
+@UML(identifier="GeneralParameterValue", specification=ISO_19111)
 public interface GeneralParameterValue {
     /**
      * Returns the abstract definition of this parameter or group of parameters.

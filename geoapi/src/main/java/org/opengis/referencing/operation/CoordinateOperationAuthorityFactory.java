@@ -29,9 +29,8 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Creates coordinate transformation objects from codes. The codes are maintained by an
- * external authority. A commonly used authority is <a href="http://www.epsg.org">EPSG</a>,
- * which is also used in the GeoTIFF standard.
+ * Creates coordinate transformation objects from codes. The codes are maintained by an external authority.
+ * A commonly used authority is the <a href="https://epsg.org">EPSG geodetic registry</a>.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
@@ -73,8 +72,8 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
     CoordinateOperation createCoordinateOperation(String code) throws FactoryException;
 
     /**
-     * Creates operations from {@linkplain CoordinateReferenceSystem coordinate reference system}
-     * codes. This method returns only the operations declared by the authority, with preferred
+     * Creates operations from Coordinate Reference System codes.
+     * This method returns only the operations declared by the authority, with preferred
      * operations first. This method doesn't need to compute operations from {@code source} to
      * {@code target} CRS if no such operations were explicitly defined in the authority database.
      * Computation of arbitrary operations can be performed by

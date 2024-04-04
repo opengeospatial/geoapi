@@ -80,7 +80,7 @@ final class IdentifiedObjectMock implements SingleCRS, CoordinateSystem, Datum, 
      * @return {@code null}.
      */
     @Override
-    @SuppressWarnings("removal")
+    @SuppressWarnings("deprecation")
     public Extent getDomainOfValidity() {
         return null;
     }
@@ -91,7 +91,7 @@ final class IdentifiedObjectMock implements SingleCRS, CoordinateSystem, Datum, 
      * @return {@code null}.
      */
     @Override
-    @SuppressWarnings("removal")
+    @SuppressWarnings("deprecation")
     public InternationalString getScope() {
         return null;
     }

@@ -28,10 +28,10 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
 
 
 /**
- * Creates {@linkplain CoordinateReferenceSystem coordinate reference systems} using authority codes.
+ * Creates coordinate reference systems using authority codes.
  * External authorities are used to manage definitions of objects used in this interface.
  * The definitions of these objects are referenced using code strings.
- * A commonly used authority is <a href="http://www.epsg.org">EPSG</a>.
+ * A commonly used authority is the <a href="https://epsg.org">EPSG geodetic registry</a>.
  *
  * <h2>Default methods</h2>
  * All {@code create(…)} methods in this interface are optional.
@@ -43,7 +43,7 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
  *       saying that the type or service is not supported.</li>
  * </ul>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   1.0
@@ -219,7 +219,10 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @return the coordinate reference system for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1")
     default ImageCRS createImageCRS(final String code) throws FactoryException {
         final CoordinateReferenceSystem crs = createCoordinateReferenceSystem(code);
         try {
@@ -277,8 +280,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @deprecated This method is ambiguous. Use {@link #createCoordinateReferenceSystem(String)} instead.
      */
     @Override
-    @SuppressWarnings("removal")
-    @Deprecated(since = "3.1", forRemoval = true)
+    @Deprecated(since = "3.1")
     default org.opengis.referencing.IdentifiedObject createObject(String code) throws FactoryException {
         return createCoordinateReferenceSystem(code);
     }

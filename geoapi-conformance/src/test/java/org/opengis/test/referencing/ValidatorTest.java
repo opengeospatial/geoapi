@@ -52,15 +52,16 @@ public final class ValidatorTest {
             SOUTH, SOUTH_SOUTH_WEST, SOUTH_WEST, WEST_SOUTH_WEST,
             WEST,  WEST_NORTH_WEST,  NORTH_WEST, NORTH_NORTH_WEST,
             ROW_NEGATIVE, COLUMN_POSITIVE, ROW_POSITIVE, COLUMN_NEGATIVE,
-            DISPLAY_UP, DISPLAY_RIGHT, DISPLAY_DOWN, DISPLAY_LEFT
+            DISPLAY_UP, DISPLAY_RIGHT, DISPLAY_DOWN, DISPLAY_LEFT,
+            FORWARD, STARBOARD, AFT, PORT
         };
-        String type  = "geographic";
-        int    value = 0;
-        int    step  = 1;
+        var type  = CSValidator.Space.GEOGRAPHIC;
+        int value = 0;
+        int step  = 1;
         for (final AxisDirection direction : directions) {
             final CSValidator.Orientation orientation = CSValidator.ORIENTATIONS[direction.ordinal()];
             assertNotNull(orientation, direction.toString());
-            if (!orientation.category.equals(type)) {
+            if (type != orientation.category) {
                 assertEquals(16, value, "Expected orientations in the [0…360]° range.");
                 type  = orientation.category;
                 value = 0;

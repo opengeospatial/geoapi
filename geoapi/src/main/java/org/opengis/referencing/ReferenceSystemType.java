@@ -28,6 +28,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
 /**
  * Defines type of reference system used.
  *
+ * @author  ISO 19115 (for abstract model and documentation)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
  * @since   3.1
@@ -300,8 +301,8 @@ public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
             new ReferenceSystemType("TEMPORAL");
 
     /**
-     * One-dimensional coordinate reference system based on a vertical datum
-     * (datum describing the relation of gravity-related heights or depths to the earth).
+     * One-dimensional coordinate reference system based on a vertical datum.
+     * Vertical datums describe the relation of gravity-related heights or depths to the planet.
      *
      * <div class="note"><b>Example:</b> height or depths.</div>
      */

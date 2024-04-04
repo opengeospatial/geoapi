@@ -313,7 +313,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
 
     /**
      * Verifies the horizontal axis direction of the given coordinate system. The standard
-     * directions are (East,North), but the boolean argument allows to swap and flip those
+     * directions are (East,North), but the Boolean argument allows to swap and flip those
      * directions.
      *
      * @param message  the message to report in case of error.

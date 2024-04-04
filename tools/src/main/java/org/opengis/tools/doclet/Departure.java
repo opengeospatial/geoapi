@@ -68,14 +68,14 @@ public final class Departure extends BlockTaglet implements Flushable {
      * {@link #summary}.
      */
     private static final Map<String,String> CATEGORIES = Map.of(
-            "constraint",     "Departure due to constraint of the Java language",
-            "historic",       "Departure for historical reason",
-            "harmonization",  "Departure for harmonization between different specifications",
-            "integration",    "Departure for closer integration with the Java environment",
-            "rename",         "Change of name without change in functionality",
-            "generalization", "Generalization by relaxation of ISO/OGC restriction",
-            "extension",      "Addition of element not in the ISO/OGC specification",
-            "easeOfUse",      "Extension for convenience without introduction of new functionality");
+            "constraint",     "Departure from OGC/ISO standard due to constraint of the Java language",
+            "historic",       "Departure from OGC/ISO standard for historical reason",
+            "harmonization",  "Departure from OGC/ISO standard for harmonization between different specifications",
+            "integration",    "Departure from OGC/ISO standard for closer integration with the Java environment",
+            "rename",         "Departure from OGC/ISO standard in the name",
+            "generalization", "Departure from OGC/ISO standard by generalization",
+            "extension",      "Extension to OGC/ISO standard",
+            "easeOfUse",      "Convenience extension to OGC/ISO standard");
 
     /**
      * All departures declared in javadoc tags. The keys are the category, and the value
@@ -129,7 +129,6 @@ public final class Departure extends BlockTaglet implements Flushable {
         }
         final StringBuilder buffer = new StringBuilder();
         final String lineSeparator = System.getProperty("line.separator", "\n");
-        buffer.append("<dt class=\"departure\">Departure from OGC/ISO abstract specification:</dt>").append(lineSeparator);
         for (final DocTree tag : tags) {
             String text = text(element, tag);
             String category = "";
@@ -166,9 +165,9 @@ public final class Departure extends BlockTaglet implements Flushable {
             /*
              * Now copies the text.
              */
-            buffer.append("<dd class=\"departure\"><details>").append(lineSeparator)
+            buffer.append("<div class=\"departure\"><details>").append(lineSeparator)
                   .append("<summary>").append(summary).append("</summary>").append(lineSeparator)
-                  .append(text).append(lineSeparator).append("</details></dd>");
+                  .append(text).append(lineSeparator).append("</details></div>");
         }
         return buffer.toString();
     }

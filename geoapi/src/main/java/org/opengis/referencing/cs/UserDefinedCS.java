@@ -35,12 +35,15 @@ import static org.opengis.annotation.Specification.*;
  * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>
  *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see CSFactory#createUserDefinedCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)
  * @see CSFactory#createUserDefinedCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
+ *
+ * @deprecated User-defined coordinate systems should extend {@link CoordinateSystem} directly.
  */
+@Deprecated(since="3.1")
 @UML(identifier="CS_UserDefinedCS", specification=ISO_19111, version=2007)
 public interface UserDefinedCS extends CoordinateSystem {
 }

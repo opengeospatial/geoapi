@@ -26,11 +26,10 @@ import static org.opengis.annotation.Specification.*;
  * A 2- or 3-dimensional coordinate system in Euclidean space with orthogonal straight axes.
  * All axes shall have the same length unit of measure.
  *
- * <p>This type of CS can be used by coordinate reference systems of type
+ * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
  * {@link org.opengis.referencing.crs.GeocentricCRS},
- * {@link org.opengis.referencing.crs.ProjectedCRS},
- * {@link org.opengis.referencing.crs.EngineeringCRS} or
- * {@link org.opengis.referencing.crs.ImageCRS}.
+ * {@link org.opengis.referencing.crs.ProjectedCRS} or
+ * {@link org.opengis.referencing.crs.EngineeringCRS}.
  * The following examples describe some possible set of axes for Cartesian CS used with the above-cited CRS:</p>
  *
  * <table class="ogc">
@@ -58,12 +57,13 @@ import static org.opengis.annotation.Specification.*;
  * <table class="ogc">
  *   <caption>Example 4: used with an Engineering CRS for a moving platform</caption>
  *   <tr><th>Axis name</th> <th>Abbr.</th> <th>Direction</th> <th>Unit</th></tr>
- *   <tr><td>Ahead</td><td>x</td> <td>{@code AxisDirection.valueOf("FORWARD")}</td>  <td>metre</td></tr>
- *   <tr><td>Right</td><td>y</td> <td>{@code AxisDirection.valueOf("STARBOARD")}</td> <td>metre</td></tr>
- *   <tr><td>Down</td> <td>z</td> <td>{@link AxisDirection#DOWN}</td>                 <td>metre</td></tr>
+ *   <tr><td>Ahead</td><td>x</td> <td>{@link AxisDirection#FORWARD}</td>   <td>metre</td></tr>
+ *   <tr><td>Right</td><td>y</td> <td>{@link AxisDirection#STARBOARD}</td> <td>metre</td></tr>
+ *   <tr><td>Down</td> <td>z</td> <td>{@link AxisDirection#DOWN}</td>      <td>metre</td></tr>
  * </table>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  *
@@ -71,6 +71,6 @@ import static org.opengis.annotation.Specification.*;
  * @see CSFactory#createCartesianCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)
  * @see CSFactory#createCartesianCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
  */
-@UML(identifier="CS_CartesianCS", specification=ISO_19111, version=2007)
+@UML(identifier="CartesianCS", specification=ISO_19111)
 public interface CartesianCS extends AffineCS {
 }

@@ -34,7 +34,7 @@ import static org.opengis.geoapi.internal.Errors.cannotParse;
 /**
  * Builds up complex Coordinate Reference Systems from simpler objects or values.
  * {@code CRSFactory} allows applications to make
- * {@linkplain CoordinateReferenceSystem Coordinate Reference Systems}
+ * {@linkplain CoordinateReferenceSystem Coordinate Reference Systems} (<abbr>CRS</abbr>)
  * that cannot be created by a {@link CRSAuthorityFactory}.
  * This factory is very flexible, whereas the authority factory is easier to use.
  * So {@link CRSAuthorityFactory} can be used to make "standard" coordinate reference systems,
@@ -51,7 +51,7 @@ import static org.opengis.geoapi.internal.Errors.cannotParse;
  * the default is to throw an {@link UnimplementedServiceException}
  * with a message saying that the type or service is not supported.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   1.0
@@ -68,7 +68,7 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  geodetic datum to use in created CRS.
+     * @param  datum  geodetic reference frame to use in created CRS.
      * @param  cs  the ellipsoidal coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
@@ -86,7 +86,7 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  geodetic datum to use in created CRS.
+     * @param  datum  geodetic reference frame to use in created CRS.
      * @param  cs  the spherical coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
@@ -103,7 +103,7 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  geodetic datum to use in created CRS.
+     * @param  datum  geodetic reference frame to use in created CRS.
      * @param  cs  the Cartesian coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
@@ -211,7 +211,10 @@ public interface CRSFactory extends ObjectFactory {
      * @param  cs     the Cartesian or Oblique Cartesian coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
+     *
+     * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1")
     default ImageCRS createImageCRS(Map<String,?> properties,
                                     ImageDatum    datum,
                                     AffineCS      cs) throws FactoryException

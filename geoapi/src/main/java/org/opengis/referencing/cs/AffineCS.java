@@ -25,17 +25,17 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A 2- or 3-dimensional coordinate system in Euclidean space with straight axes that are not necessarily orthogonal.
  *
- * <p>This type of CS can be used by coordinate reference systems of type
- * {@link org.opengis.referencing.crs.EngineeringCRS} or
- * {@link org.opengis.referencing.crs.ImageCRS}.</p>
+ * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
+ * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   2.0
  *
  * @see CSFactory#createAffineCS(Map, CoordinateSystemAxis, CoordinateSystemAxis)
  * @see CSFactory#createAffineCS(Map, CoordinateSystemAxis, CoordinateSystemAxis, CoordinateSystemAxis)
  */
-@UML(identifier="CS_AffineCS", specification=ISO_19111, version=2007)
+@UML(identifier="AffineCS", specification=ISO_19111)
 public interface AffineCS extends CoordinateSystem {
 }

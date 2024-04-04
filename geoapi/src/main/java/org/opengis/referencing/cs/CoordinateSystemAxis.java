@@ -28,47 +28,59 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Definition of a coordinate system axis.
+ * Each axis is characterized by a unique combination of name, abbreviation, direction and unit.
  *
  * <h2>Axis name</h2>
  * Usage of coordinate system axis names is constrained by geodetic custom in a number of cases,
- * depending mainly on the coordinate reference system type. These constraints are shown in the
- * table below. This constraint works in two directions; for example the names <q>geodetic
- * latitude</q> and <q>geodetic longitude</q> shall be used to designate the coordinate
- * axis names associated with a geographic coordinate reference system. Conversely, these names
- * shall not be used in any other context.
+ * depending mainly on the coordinate reference system type. These constraints are shown in the table below.
+ * This constraint works in two directions; for example the names <q>geodetic latitude</q> and <q>geodetic longitude</q>
+ * shall be used to designate the coordinate axis names associated with a geographic coordinate reference system.
+ * Conversely, these names shall not be used in any other context.
  *
  * <table class="ogc">
  * <caption>Context of coordinate system axis names usage</caption>
- * <tr><th>CS</th><th>CRS</th><th>Permitted coordinate system axis names</th></tr>
- * <tr><td>Cartesian</td><td>Geocentric</td>
- *     <td><i>Geocentric X</i>,
- *         <i>Geocentric Y</i>,
- *         <i>Geocentric Z</i></td></tr>
- * <tr><td>Spherical</td><td>Geocentric</td>
- *     <td><i>Spherical Latitude</i>,
- *         <i>Spherical Longitude</i>,
- *         <i>Geocentric Radius</i></td></tr>
- * <tr><td>Ellipsoidal</td><td>Geographic</td>
- *     <td><i>Geodetic Latitude</i>,
- *         <i>Geodetic Longitude</i>,
- *         <i>Ellipsoidal height</i> (if 3D)</td></tr>
- * <tr><td>Vertical</td><td>Vertical</td>
- *     <td><i>Gravity-related height</i> or <i>Depth</i></td></tr>
+ * <tr><th><abbr>CS</abbr></th>
+ *     <th><abbr>CRS</abbr></th>
+ *     <th>Permitted coordinate system axis names</th></tr>
+ * <tr><td>Cartesian</td><td>Geodetic</td>
+ *     <td>“geocentric <var>X</var>”,
+ *         “geocentric <var>Y</var>”,
+ *         “geocentric <var>Z</var>”</td></tr>
  * <tr><td>Cartesian</td><td>Projected</td>
- *     <td><i>Easting</i> or <i>Westing</i>,
- *         <i>Northing</i> or <i>Southing</i></td></tr>
+ *     <td>“easting” or “westing”,
+ *         “northing” or “southing”,
+ *         “ellipsoidal height” (if 3D)</td></tr>
+ * <tr><td>Ellipsoidal</td><td>Geographic</td>
+ *     <td>“geodetic latitude”,
+ *         “geodetic longitude”,
+ *         “ellipsoidal height” (if 3D)</td></tr>
+ * <tr><td>Spherical</td><td>Geodetic</td>
+ *     <td>“spherical latitude”,
+ *         “spherical longitude”,
+ *         “geocentric radius” (if 3D)</td></tr>
+ * <tr><td>″</td><td>″</td>
+ *     <td>“geocentric latitude”,
+ *         “geodetic longitude”,
+ *         “geocentric radius” (if 3D)</td></tr>
+ * <tr><td>″</td><td>″</td>
+ *     <td>“geocentric co-latitude”,
+ *         “geodetic longitude”,
+ *         “geocentric radius” (if 3D)</td></tr>
+ * <tr><td>Vertical</td><td>Vertical</td>
+ *     <td>“depth” or “gravity-related height”</td></tr>
  * </table>
  *
- * Image and engineering coordinate reference systems may make use of names specific to the
- * local context or custom and are therefore not included as constraints in the above list.
+ * Parametric, temporal and engineering coordinate reference systems may make use of names specific
+ * to the local context or custom and are therefore not included as constraints in the above list.
  *
  * <h2>Axis direction</h2>
- * The {@linkplain #getDirection() direction} of the coordinate axes is often only approximate;
- * two geographic coordinate reference systems will make use of the same ellipsoidal coordinate
- * system. These coordinate systems are associated with the earth through two different geodetic
- * datums, which may lead to the two systems being slightly rotated with respect to each other.
+ * The {@linkplain #getDirection() direction} of the coordinate axes is often only approximate.
+ * Two geographic coordinate reference systems will make use of the same ellipsoidal coordinate system.
+ * These coordinate systems are associated with the planet through two different geodetic reference frames,
+ * which may lead to the two systems being slightly rotated with respect to each other.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
  *
@@ -76,7 +88,7 @@ import static org.opengis.annotation.Specification.*;
  * @see CSAuthorityFactory#createCoordinateSystemAxis(String)
  * @see CSFactory#createCoordinateSystemAxis(Map, String, AxisDirection, Unit)
  */
-@UML(identifier="CS_CoordinateSystemAxis", specification=ISO_19111, version=2007)
+@UML(identifier="CoordinateSystemAxis", specification=ISO_19111)
 public interface CoordinateSystemAxis extends IdentifiedObject {
     /**
      * Returns the abbreviation used for this coordinate system axes.
@@ -97,9 +109,9 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * {@linkplain AxisDirection#UP    up}    or {@linkplain AxisDirection#DOWN  down}.
      *
      * <p>Within any set of coordinate system axes, only one of each pair of terms can be used.
-     * For earth-fixed coordinate reference systems, this direction is often approximate
+     * For planet-fixed coordinate reference systems, this direction is often approximate
      * and intended to provide a human interpretable meaning to the axis.
-     * When a geodetic datum is used, the precise directions of the axes may therefore
+     * When a geodetic reference frame is used, the precise directions of the axes may therefore
      * vary slightly from this approximate direction.</p>
      *
      * <p>Note that an {@link org.opengis.referencing.crs.EngineeringCRS} often requires
@@ -116,14 +128,20 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
      * whenever those coordinates use a coordinate reference system that uses a coordinate system
      * that uses this axis.
      *
+     * <h4>Obligation</h4>
+     * This element may be {@code null} if this axis is part of an ordinal <abbr>CS</abbr>
+     * (a coordinate system in which axes use {@linkplain CoordinateDataType#INTEGER integer values})
+     * and in the case of a {@link TimeCS} using {@linkplain CoordinateDataType#DATE_TIME date-time}.
+     * This property is mandatory for all other cases.
+     *
      * @return the coordinate system axis unit.
      */
-    @UML(identifier="axisUnitID", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="axisUnitID", obligation=CONDITIONAL, specification=ISO_19111)
     Unit<?> getUnit();
 
     /**
-     * Returns the minimum value normally allowed for this axis,
-     * in the {@linkplain #getUnit() unit of measure for the axis}.
+     * Returns the minimum value normally allowed for this axis.
+     * The value shall be in the {@linkplain #getUnit() unit of measure for the axis}.
      * If there is no minimum value, then this method returns
      * {@linkplain Double#NEGATIVE_INFINITY negative infinity}.
      *
@@ -135,8 +153,8 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
     }
 
     /**
-     * Returns the maximum value normally allowed for this axis,
-     * in the {@linkplain #getUnit() unit of measure for the axis}.
+     * Returns the maximum value normally allowed for this axis.
+     * The value shall be in the {@linkplain #getUnit() unit of measure for the axis}.
      * If there is no maximum value, then this method returns
      * {@linkplain Double#POSITIVE_INFINITY positive infinity}.
      *
@@ -148,11 +166,10 @@ public interface CoordinateSystemAxis extends IdentifiedObject {
     }
 
     /**
-     * Returns the meaning of axis value range specified by the {@linkplain #getMinimumValue()
-     * minimum} and {@linkplain #getMaximumValue() maximum} values. This element shall be omitted
-     * when both minimum and maximum values are omitted. It may be included when minimum and/or
-     * maximum values are included. If this element is omitted when minimum or maximum values are
-     * included, the meaning is unspecified.
+     * Returns the meaning of axis value range specified by the minimum and maximum values.
+     * This element shall be omitted when both minimum and maximum values are omitted.
+     * It may be included when minimum and/or maximum values are included.
+     * If this element is omitted when minimum or maximum values are included, the meaning is unspecified.
      *
      * @return the range meaning, or {@code null} in none.
      *

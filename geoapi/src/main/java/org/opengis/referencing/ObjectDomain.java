@@ -31,6 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * datum or coordinate system is applied. The domain of validity describes the spatial and
  * temporal extent in which the object can be used.
  *
+ * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1

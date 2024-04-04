@@ -27,50 +27,56 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * An operation on coordinates that does not include any change of Datum. The best-known
- * example of a coordinate conversion is a map projection. The parameters describing
- * coordinate conversions are defined rather than empirically derived.
+ * Operation in which the parameter values are defined rather than empirically derived.
+ * Coordinate conversions are coordinate operations that make use of exact,
+ * defined (rather than measured or computed), and therefore error-free parameter values.
+ * Corresponding pairs of coordinate tuples in each of the two coordinate reference systems
+ * connected through a coordinate conversion have a fixed arithmetic relationship.
+ * Additionally one of the two tuples cannot exist without specification of the coordinate conversion
+ * and the source coordinate reference system.
+ * Coordinate conversions are therefore intimately related to the concept of
+ * {@linkplain org.opengis.referencing.crs.DerivedCRS Derived <abbr>CRS</abbr>}.
  *
- * <div class="note"><b>Example:</b>
- * conversion from an ellipsoidal coordinate reference system based on the WGS 84 datum
- * to a Cartesian coordinate reference system also based on the WGS 84 datum, or change
- * of units such as from radians to degrees or feet to meters.</div>
+ * <h2>Examples</h2>
+ * The best-known examples of coordinate conversions are map projections.
+ * A map projection is a conversion from an ellipsoidal coordinate system
+ * to a Cartesian coordinate system in <abbr>CRS</abbr>s associated to the same datum.
+ * Another example is the change of units such as from radians to degrees or feet to meters.
  *
- * <p>Note that some conversions have no parameters.</p>
- *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   1.0
  *
  * @see Transformation
  * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
  */
-@UML(identifier="CC_Conversion", specification=ISO_19111, version=2007)
+@UML(identifier="Conversion", specification=ISO_19111)
 public interface Conversion extends SingleOperation {
     /**
-     * Returns the source CRS. Conversions may have a source CRS that
-     * is not specified here, but through
-     * {@link org.opengis.referencing.crs.GeneralDerivedCRS#getBaseCRS()} instead.
+     * Returns the <abbr>CRS</abbr> from which coordinates are changed.
+     * If this conversion is part of a derived <abbr>CRS</abbr>, then the source <abbr>CRS</abbr>
+     * (if not null) shall be the same as the {@link org.opengis.referencing.crs.DerivedCRS#getBaseCRS()} value.
      *
-     * @return the source CRS, or {@code null} if not available.
+     * @return the <abbr>CRS</abbr> from which coordinates are changed, or {@code null} if not available.
      */
     @Override
     @UML(identifier="sourceCRS", obligation=OPTIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getSourceCRS();
 
     /**
-     * Returns the target CRS. {@linkplain Conversion Conversions} may have a target CRS
-     * that is not specified here, but through
-     * {@link org.opengis.referencing.crs.GeneralDerivedCRS} instead.
+     * Returns the <abbr>CRS</abbr> to which coordinates are changed.
+     * If this conversion is part of a derived <abbr>CRS</abbr>, then the target <abbr>CRS</abbr>
+     * (if not null) shall be the same as the {@link org.opengis.referencing.crs.DerivedCRS} instance.
      *
-     * @return the target CRS, or {@code null} if not available.
+     * @return the <abbr>CRS</abbr> to which coordinates are changed, or {@code null} if not available.
      */
     @Override
     @UML(identifier="targetCRS", obligation=OPTIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getTargetCRS();
 
     /**
-     * This attribute is declared in {@link CoordinateOperation} but is not used in a conversion.
+     * This attribute is declared in {@code CoordinateOperation} but is not used in a conversion.
      *
      * @return usually {@code null}.
      */

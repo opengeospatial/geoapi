@@ -28,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * A 2-dimensional engineering coordinate reference system applied to locations in images.
+ * A 2-dimensional engineering <abbr>CRS</abbr> applied to locations in images.
  *
  * <div class="note"><b>Note:</b>
  * image coordinate reference systems are treated as a separate sub-type because a separate
@@ -39,13 +39,16 @@ import static org.opengis.annotation.Specification.*;
  * {@link org.opengis.referencing.cs.CartesianCS} or
  * {@link org.opengis.referencing.cs.AffineCS}.</p>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.0
  * @since   1.0
  *
  * @see CRSAuthorityFactory#createImageCRS(String)
  * @see CRSFactory#createImageCRS(Map, ImageDatum, AffineCS)
+ *
+ * @deprecated Replaced by {@link EngineeringCRS} as of ISO 19111:2019.
  */
+@Deprecated(since="3.1")
 @UML(identifier="SC_ImageCRS", specification=ISO_19111, version=2007)
 public interface ImageCRS extends SingleCRS {
     /**

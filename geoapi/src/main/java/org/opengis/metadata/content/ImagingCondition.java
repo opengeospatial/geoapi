@@ -53,7 +53,7 @@ public final class ImagingCondition extends CodeList<ImagingCondition> {
     public static final ImagingCondition CLOUD = new ImagingCondition("CLOUD");
 
     /**
-     * Acute angle between the plane of the ecliptic (the plane of the Earth's orbit) and
+     * Acute angle between the plane of the ecliptic (the plane of the planet's orbit) and
      * the plane of the celestial equator.
      */
     @UML(identifier="degradingObliquity", obligation=CONDITIONAL, specification=ISO_19115)

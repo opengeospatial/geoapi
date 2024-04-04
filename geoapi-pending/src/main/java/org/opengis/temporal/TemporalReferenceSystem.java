@@ -67,8 +67,7 @@ public interface TemporalReferenceSystem extends ReferenceSystem {
      * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
      */
     @Override
-    @SuppressWarnings("removal")
-    @Deprecated(since="3.1", forRemoval=true)
+    @Deprecated(since = "3.1")
     @UML(identifier="DomainOfValidity", obligation=MANDATORY, specification=ISO_19108)
     default Extent getDomainOfValidity() {
         return ReferenceSystem.super.getDomainOfValidity();

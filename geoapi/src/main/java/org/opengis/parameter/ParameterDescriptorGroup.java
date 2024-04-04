@@ -32,7 +32,8 @@ import static org.opengis.annotation.Specification.*;
  *   GeoAPI uses a name which contains the "{@code Descriptor}" word for consistency with other
  *   libraries in Java (e.g. {@code ParameterListDescriptor} in Java Advanced Imaging).
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Jody Garnett (Refractions Research)
  * @version 3.1
  * @since   2.0
@@ -40,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
  * @see ParameterValueGroup
  * @see ParameterDescriptor
  */
-@UML(identifier="CC_OperationParameterGroup", specification=ISO_19111, version=2007)
+@UML(identifier="OperationParameterGroup", specification=ISO_19111)
 public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
     /**
      * Returns the parameters in this group.
@@ -51,12 +52,13 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
     List<GeneralParameterDescriptor> descriptors();
 
     /**
-     * Returns the parameter descriptor in this group for the specified
-     * {@linkplain Identifier#getCode() identifier code}.
+     * Returns the parameter descriptor in this group for the specified identifier code.
      *
      * @param  name  the case insensitive identifier code of the parameter to search for.
      * @return the parameter for the given identifier code.
      * @throws ParameterNotFoundException if there is no parameter for the given identifier code.
+     *
+     * @see Identifier#getCode()
      *
      * @departure easeOfUse
      *   This method is not part of the ISO specification.
@@ -65,8 +67,7 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
     GeneralParameterDescriptor descriptor(String name) throws ParameterNotFoundException;
 
     /**
-     * Creates a new instance of {@linkplain ParameterValueGroup parameter value group}
-     * initialized with the {@linkplain ParameterDescriptor#getDefaultValue() default values}.
+     * Creates a new instance of parameter value group initialized with the default values.
      * While not a requirement, the {@linkplain ParameterValueGroup#getDescriptor() parameter
      * value descriptor} for the created group will typically be {@code this} descriptor instance.
      *
@@ -83,6 +84,8 @@ public interface ParameterDescriptorGroup extends GeneralParameterDescriptor {
      * </ul>
      *
      * @return a new parameter instance initialized to the default value.
+     *
+     * @see ParameterDescriptor#getDefaultValue()
      *
      * @departure extension
      *   This method is not part of the ISO specification. It is provided in GeoAPI as a kind of
