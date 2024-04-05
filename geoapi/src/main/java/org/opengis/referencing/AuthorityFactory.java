@@ -88,9 +88,9 @@ public interface AuthorityFactory extends Factory {
      * The description may be used in graphical user interfaces.
      * It may be empty if the object corresponding to the specified code has no description.
      *
-     * @param  type  the type of objects for which to get a description.
+     * @param  type  the type of object for which to get a description.
      * @param  code  value allocated by the authority for an object of the given type.
-     * @return a description of the object.
+     * @return a description of the object, or empty if the object has no description.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the query failed for some other reason.
      *

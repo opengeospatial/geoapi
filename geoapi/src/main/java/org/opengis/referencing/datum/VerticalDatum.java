@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="VerticalReferenceFrame", specification=ISO_19111)
 public interface VerticalDatum extends Datum {
     /**
-     * Method through which this vertical reference frame is realized.
+     * Returns the method through which this vertical reference frame is realized.
      *
      * @return method through which this vertical reference frame is realized.
      *
