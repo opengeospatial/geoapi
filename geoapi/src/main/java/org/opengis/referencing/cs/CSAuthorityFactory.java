@@ -44,7 +44,7 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
  *       saying that the type or service is not supported.</li>
  * </ul>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 3.1
  * @since   1.0
@@ -248,7 +248,8 @@ public interface CSAuthorityFactory extends AuthorityFactory {
      * @deprecated This method is ambiguous. Use {@link #createCoordinateSystem(String)} instead.
      */
     @Override
-    @Deprecated(since = "3.1")
+    @SuppressWarnings("removal")
+    @Deprecated(since="3.1", forRemoval=true)
     default org.opengis.referencing.IdentifiedObject createObject(String code) throws FactoryException {
         return createCoordinateSystem(code);
     }

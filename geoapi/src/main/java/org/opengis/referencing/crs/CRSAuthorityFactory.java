@@ -43,6 +43,7 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
  *       saying that the type or service is not supported.</li>
  * </ul>
  *
+ * @author  OGC 01-009 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 3.1
@@ -280,7 +281,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @deprecated This method is ambiguous. Use {@link #createCoordinateReferenceSystem(String)} instead.
      */
     @Override
-    @Deprecated(since = "3.1")
+    @SuppressWarnings("removal")
+    @Deprecated(since="3.1", forRemoval=true)
     default org.opengis.referencing.IdentifiedObject createObject(String code) throws FactoryException {
         return createCoordinateReferenceSystem(code);
     }

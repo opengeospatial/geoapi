@@ -41,7 +41,7 @@ public final class RealizationMethod extends CodeList<RealizationMethod> {
     /**
      * Serial number for compatibility with different versions.
      */
-//    private static final long serialVersionUID = -8161084528823937553L;
+    private static final long serialVersionUID = -4801740301491126879L;
 
     /**
      * Realization is by adjustment of a levelling network fixed to one or more tide gauges.

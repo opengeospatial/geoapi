@@ -44,6 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * the default is to throw an {@link UnimplementedServiceException}
  * with a message saying that the type or service is not supported.
  *
+ * @author  OGC 01-009 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 3.1

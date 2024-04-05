@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * reference systems, and other spatial referencing objects, where each object has a code number ID.
  * For example, the EPSG code for a <q>WGS84 Lat/Lon</q> <abbr>CRS</abbr> is <q>4326</q>.</p>
  *
- * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  OGC 01-009 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
@@ -88,9 +88,9 @@ public interface AuthorityFactory extends Factory {
      * The description may be used in graphical user interfaces.
      * It may be empty if the object corresponding to the specified code has no description.
      *
-     * @param  type  the type of objects for which to get a description.
+     * @param  type  the type of object for which to get a description.
      * @param  code  value allocated by the authority for an object of the given type.
-     * @return a description of the object.
+     * @return a description of the object, or empty if the object has no description.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the query failed for some other reason.
      *
@@ -115,7 +115,7 @@ public interface AuthorityFactory extends Factory {
      * @deprecated This method is ambiguous because the EPSG geodetic registry may allocate
      *             the same code to different kinds of object.
      */
-    @Deprecated(since = "3.1")
+    @Deprecated(since="3.1", forRemoval=true)
     default InternationalString getDescriptionText(String code) throws FactoryException {
         return getDescriptionText(IdentifiedObject.class, code).orElse(null);
     }
@@ -149,7 +149,7 @@ public interface AuthorityFactory extends Factory {
      *             {@code createCoordinateSystem(…)} or {@code createCoordinateReferenceSystem(…)} should
      *             be invoked instead.
      */
-    @Deprecated(since = "3.1")
+    @Deprecated(since="3.1", forRemoval=true)
     default IdentifiedObject createObject(String code) throws FactoryException {
         throw new UnimplementedServiceException(this, IdentifiedObject.class);
     }
