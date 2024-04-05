@@ -10,7 +10,7 @@ from typing import Sequence
 from opengis.referencing.cs \
     import CoordinateSystem, VerticalCS, TimeCS, AffineCS, CartesianCS, EllipsoidalCS
 from opengis.referencing.datum \
-    import IdentifiedObject, Datum, VerticalDatum, TemporalDatum, ImageDatum, EngineeringDatum, GeodeticDatum
+    import IdentifiedObject, Datum, VerticalDatum, TemporalDatum, EngineeringDatum, GeodeticDatum
 from opengis.metadata.extent import Extent
 
 

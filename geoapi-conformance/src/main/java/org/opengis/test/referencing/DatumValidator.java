@@ -42,7 +42,7 @@ import static org.opengis.test.Assertions.assertBetween;
  * convenient way to validate various kinds of objects.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   2.2
  */
 public class DatumValidator extends ReferencingValidator {
@@ -70,7 +70,6 @@ public class DatumValidator extends ReferencingValidator {
             if (object instanceof GeodeticDatum)    {validate((GeodeticDatum)    object); n++;}
             if (object instanceof VerticalDatum)    {validate((VerticalDatum)    object); n++;}
             if (object instanceof TemporalDatum)    {validate((TemporalDatum)    object); n++;}
-            if (object instanceof ImageDatum)       {validate((ImageDatum)       object); n++;}
             if (object instanceof EngineeringDatum) {validate((EngineeringDatum) object); n++;}
             if (object instanceof DatumEnsemble)    {validate((DatumEnsemble)    object); n++;}
             if (n == 0) {
@@ -200,23 +199,6 @@ public class DatumValidator extends ReferencingValidator {
         validateIdentifiedObject(object);
         final Date origin = object.getOrigin();
         mandatory("TemporalDatum: expected an origin.", origin);
-    }
-
-    /**
-     * Validates the given datum.
-     *
-     * @param  object  the object to validate, or {@code null}.
-     *
-     * @deprecated Replaced by {@link EngineeringDatum} as of ISO 19111:2019.
-     */
-    @Deprecated(since="3.1")
-    public void validate(final ImageDatum object) {
-        if (object == null) {
-            return;
-        }
-        validateIdentifiedObject(object);
-        final PixelInCell pc = object.getPixelInCell();
-        mandatory("ImageDatum: shall specify PixelInCell.", pc);
     }
 
     /**

@@ -69,7 +69,7 @@ import org.opengis.test.coverage.image.*;
  * };}
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   2.2
  */
 public class ValidatorContainer implements Cloneable {
@@ -691,20 +691,6 @@ public class ValidatorContainer implements Cloneable {
      *
      * @param  object  the object to validate, or {@code null}.
      *
-     * @see CRSValidator#validate(ImageCRS)
-     *
-     * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
-     */
-    @Deprecated(since="3.1")
-    public final void validate(final ImageCRS object) {
-        crs.validate(object);
-    }
-
-    /**
-     * Validates the given coordinate reference system.
-     *
-     * @param  object  the object to validate, or {@code null}.
-     *
      * @see CRSValidator#validate(EngineeringCRS)
      */
     public final void validate(final EngineeringCRS object) {
@@ -848,18 +834,6 @@ public class ValidatorContainer implements Cloneable {
      *
      * @param  object  the object to test, or {@code null}.
      *
-     * @see CSValidator#validate(UserDefinedCS)
-     */
-    @Deprecated(since="3.1")
-    public final void validate(final UserDefinedCS object) {
-        cs.validate(object);
-    }
-
-    /**
-     * Tests the conformance of the given object.
-     *
-     * @param  object  the object to test, or {@code null}.
-     *
      * @see CSValidator#validate(CoordinateSystemAxis)
      */
     public final void validate(final CoordinateSystemAxis object) {
@@ -929,21 +903,6 @@ public class ValidatorContainer implements Cloneable {
      * @see DatumValidator#validate(TemporalDatum)
      */
     public final void validate(final TemporalDatum object) {
-        datum.validate(object);
-    }
-
-    /**
-     * Tests the conformance of the given object.
-     *
-     * @param  object  the object to test, or {@code null}.
-     *
-     * @see DatumValidator#validate(ImageDatum)
-     *
-     * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
-     */
-    @Deprecated(since="3.1")
-    @SuppressWarnings("removal")
-    public final void validate(final ImageDatum object) {
         datum.validate(object);
     }
 

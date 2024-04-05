@@ -43,7 +43,7 @@ import static org.opengis.test.referencing.Utilities.getAxisDirections;
  * convenient way to validate various kinds of objects.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   2.2
  */
 public class CRSValidator extends ReferencingValidator {
@@ -112,7 +112,6 @@ public class CRSValidator extends ReferencingValidator {
             if (object instanceof GeographicCRS)  {validate((GeographicCRS)  object); n++;}
             if (object instanceof ProjectedCRS)   {validate((ProjectedCRS)   object); n++;}
             if (object instanceof DerivedCRS)     {validate((DerivedCRS)     object); n++;}
-            if (object instanceof ImageCRS)       {validate((ImageCRS)       object); n++;}
             if (object instanceof EngineeringCRS) {validate((EngineeringCRS) object); n++;}
             if (object instanceof VerticalCRS)    {validate((VerticalCRS)    object); n++;}
             if (object instanceof TemporalCRS)    {validate((TemporalCRS)    object); n++;}
@@ -303,28 +302,6 @@ public class CRSValidator extends ReferencingValidator {
      * Validates the given coordinate reference system.
      *
      * @param  object  the object to validate, or {@code null}.
-     *
-     * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
-     */
-    @Deprecated(since="3.1")
-    public void validate(final ImageCRS object) {
-        if (object == null) {
-            return;
-        }
-        validateIdentifiedObject(object);
-        final AffineCS cs = object.getCoordinateSystem();
-        mandatory("ImageCRS: shall have a CoordinateSystem.", cs);
-        container.validate(cs);
-
-        final ImageDatum datum = object.getDatum();
-        mandatory("ImageCRS: shall have a Datum.", datum);
-        container.validate(datum);
-    }
-
-    /**
-     * Validates the given coordinate reference system.
-     *
-     * @param  object  the object to validate, or {@code null}.
      */
     @SuppressWarnings("deprecation")
     public void validate(final EngineeringCRS object) {
@@ -341,8 +318,7 @@ public class CRSValidator extends ReferencingValidator {
                    cs instanceof CylindricalCS ||
                    cs instanceof LinearCS      ||
                    cs instanceof PolarCS       ||
-                   cs instanceof SphericalCS   ||
-                   cs instanceof UserDefinedCS,
+                   cs instanceof SphericalCS,
                 message);
 
         assertFalse(cs instanceof EllipsoidalCS ||

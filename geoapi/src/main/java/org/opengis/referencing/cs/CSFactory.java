@@ -38,9 +38,10 @@ import org.opengis.util.UnimplementedServiceException;
  * the default is to throw an {@link UnimplementedServiceException}
  * with a message saying that the type or service is not supported.
  *
+ * @author  OGC 01-009 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD)
  * @author  Johann Sorel (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  *
  * @departure historic
@@ -313,49 +314,5 @@ public interface CSFactory extends ObjectFactory {
                                     CoordinateSystemAxis axis) throws FactoryException
     {
         throw new UnimplementedServiceException(this, LinearCS.class);
-    }
-
-    /**
-     * Creates a two-dimensional user defined coordinate system.
-     *
-     * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  axis0  the first  axis.
-     * @param  axis1  the second axis.
-     * @return the coordinate system for the given properties and axes.
-     * @throws FactoryException if the object creation failed.
-     *
-     * @deprecated User-defined <abbr>CS</abbr> needs their own constructor
-     *             for instantiating their specialized type.
-     */
-    @Deprecated(since="3.1")
-    default UserDefinedCS createUserDefinedCS(Map<String,?>  properties,
-                                              CoordinateSystemAxis axis0,
-                                              CoordinateSystemAxis axis1) throws FactoryException
-    {
-        throw new UnimplementedServiceException(this, UserDefinedCS.class, "2D");
-    }
-
-    /**
-     * Creates a three-dimensional user defined coordinate system.
-     *
-     * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  axis0  the first  axis.
-     * @param  axis1  the second axis.
-     * @param  axis2  the third  axis.
-     * @return the coordinate system for the given properties and axes.
-     * @throws FactoryException if the object creation failed.
-     *
-     * @deprecated User-defined <abbr>CS</abbr> needs their own constructor
-     *             for instantiating their specialized type.
-     */
-    @Deprecated(since="3.1")
-    default UserDefinedCS createUserDefinedCS(Map<String,?>  properties,
-                                              CoordinateSystemAxis axis0,
-                                              CoordinateSystemAxis axis1,
-                                              CoordinateSystemAxis axis2) throws FactoryException
-    {
-        throw new UnimplementedServiceException(this, UserDefinedCS.class, "3D");
     }
 }

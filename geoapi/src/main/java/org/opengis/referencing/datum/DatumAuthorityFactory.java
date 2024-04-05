@@ -43,9 +43,10 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
  *       saying that the type or service is not supported.</li>
  * </ul>
  *
+ * @author  OGC 01-009 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CSAuthorityFactory
@@ -203,43 +204,5 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
         } catch (ClassCastException e) {
             throw unexpectedType(this, code, datum, e);
         }
-    }
-
-    /**
-     * Returns a image datum from a code.
-     *
-     * @param  code  value allocated by authority.
-     * @return the datum for the given code.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
-     *
-     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createImageCRS(String)
-     *
-     * @deprecated {@code ImageDatum} is replaced by {@link EngineeringDatum} as of ISO 19111:2019.
-     */
-    @Deprecated(since="3.1")
-    default ImageDatum createImageDatum(final String code) throws FactoryException {
-        final Datum datum = createDatum(code);
-        try {
-            return (ImageDatum) datum;
-        } catch (ClassCastException e) {
-            throw unexpectedType(this, code, datum, e);
-        }
-    }
-
-    /**
-     * Returns an arbitrary object from a code.
-     *
-     * @param  code  value allocated by authority.
-     * @return the object for the given code.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
-     *
-     * @deprecated This method is ambiguous. Use {@link #createDatum(String)} instead.
-     */
-    @Override
-    @Deprecated(since = "3.1")
-    default org.opengis.referencing.IdentifiedObject createObject(String code) throws FactoryException {
-        return createDatum(code);
     }
 }

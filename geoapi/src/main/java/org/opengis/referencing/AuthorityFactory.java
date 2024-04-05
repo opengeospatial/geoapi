@@ -23,7 +23,6 @@ import org.opengis.metadata.citation.Citation;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.InternationalString;
-import org.opengis.util.UnimplementedServiceException;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -39,9 +38,9 @@ import static org.opengis.annotation.Specification.*;
  * reference systems, and other spatial referencing objects, where each object has a code number ID.
  * For example, the EPSG code for a <q>WGS84 Lat/Lon</q> <abbr>CRS</abbr> is <q>4326</q>.</p>
  *
- * @author  OGC Topic 2 (for abstract model and documentation)
+ * @author  OGC 01-009 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  */
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
@@ -101,56 +100,5 @@ public interface AuthorityFactory extends Factory {
             throws FactoryException
     {
         return Optional.empty();
-    }
-
-    /**
-     * Returns a description of the object corresponding to a code.
-     *
-     * @param  code  value allocated by authority.
-     * @return a description of the object, or {@code null} if the object
-     *         corresponding to the specified {@code code} has no description.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
-     * @throws FactoryException if the query failed for some other reason.
-     *
-     * @deprecated This method is ambiguous because the EPSG geodetic registry may allocate
-     *             the same code to different kinds of object.
-     */
-    @Deprecated(since = "3.1")
-    default InternationalString getDescriptionText(String code) throws FactoryException {
-        return getDescriptionText(IdentifiedObject.class, code).orElse(null);
-    }
-
-    /**
-     * Returns an arbitrary object from a code. The returned object will typically be an
-     * instance of {@link org.opengis.referencing.datum.Datum}, {@link org.opengis.referencing.cs.CoordinateSystem},
-     * {@link org.opengis.referencing.ReferenceSystem} or {@link org.opengis.referencing.operation.CoordinateOperation}.
-     *
-     * <p>If the object type is known at compile time, then it is recommended to invoke the
-     * most precise method instead of this one. For example, it is usually better to invoke
-     * <code>{@linkplain org.opengis.referencing.crs.CRSAuthorityFactory#createCoordinateReferenceSystem
-     * createCoordinateReferenceSystem}(code)</code> instead of {@code createObject(code)}
-     * if the requested object is known to be a {@code CoordinateReferenceSystem} instance.</p>
-     *
-     * @param  code  value allocated by authority.
-     * @return the object for the given code.
-     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
-     *
-     * @departure generalization
-     *   This method is not part of the OGC specification. It has been added to leverage the
-     *   capability of factories that can automatically determine the type of the requested
-     *   object at runtime.
-     *
-     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createDatum(String)
-     * @see org.opengis.referencing.crs.CRSAuthorityFactory#createCoordinateReferenceSystem(String)
-     *
-     * @deprecated This method is ambiguous because the EPSG geodetic registry may allocate the same code
-     *             to different kinds of object. A more specialized method such as {@code createDatum(…)},
-     *             {@code createCoordinateSystem(…)} or {@code createCoordinateReferenceSystem(…)} should
-     *             be invoked instead.
-     */
-    @Deprecated(since = "3.1")
-    default IdentifiedObject createObject(String code) throws FactoryException {
-        throw new UnimplementedServiceException(this, IdentifiedObject.class);
     }
 }

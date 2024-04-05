@@ -51,9 +51,10 @@ import static org.opengis.geoapi.internal.Errors.cannotParse;
  * the default is to throw an {@link UnimplementedServiceException}
  * with a message saying that the type or service is not supported.
  *
+ * @author  OGC 01-009 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CSFactory
@@ -200,26 +201,6 @@ public interface CRSFactory extends ObjectFactory {
                                                 CoordinateSystem cs) throws FactoryException
     {
         throw new UnimplementedServiceException(this, EngineeringCRS.class);
-    }
-
-    /**
-     * Creates an image coordinate reference system.
-     *
-     * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  image datum to use in created CRS.
-     * @param  cs     the Cartesian or Oblique Cartesian coordinate system for the created CRS.
-     * @return the coordinate reference system for the given properties.
-     * @throws FactoryException if the object creation failed.
-     *
-     * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
-     */
-    @Deprecated(since="3.1")
-    default ImageCRS createImageCRS(Map<String,?> properties,
-                                    ImageDatum    datum,
-                                    AffineCS      cs) throws FactoryException
-    {
-        throw new UnimplementedServiceException(this, ImageCRS.class);
     }
 
     /**

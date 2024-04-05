@@ -76,7 +76,6 @@ public enum Content {
                org.opengis.metadata.extent         .TemporalExtent                      .class,
                org.opengis.metadata.extent         .SpatialTemporalExtent               .class,
                org.opengis.metadata.extent         .Extent                              .class,
-               org.opengis.referencing             .ReferenceIdentifier                 .class,
                org.opengis.referencing             .ObjectDomain                        .class,     // Depends on Extent
                org.opengis.referencing             .IdentifiedObject                    .class,     // A parameter dependency.
                org.opengis.parameter               .GeneralParameterDescriptor          .class,
@@ -221,7 +220,6 @@ public enum Content {
                org.opengis.referencing.datum       .PrimeMeridian                       .class,
                org.opengis.referencing.datum       .GeodeticDatum                       .class,
                org.opengis.referencing.datum       .EngineeringDatum                    .class,
-               org.opengis.referencing.datum       .ImageDatum                          .class,
                org.opengis.referencing.datum       .ParametricDatum                     .class,
                org.opengis.referencing.datum       .TemporalDatum                       .class,
                org.opengis.referencing.datum       .VerticalDatum                       .class,
@@ -235,7 +233,6 @@ public enum Content {
                org.opengis.referencing.cs          .PolarCS                             .class,
                org.opengis.referencing.cs          .SphericalCS                         .class,
                org.opengis.referencing.cs          .TimeCS                              .class,
-               org.opengis.referencing.cs          .UserDefinedCS                       .class,
                org.opengis.referencing.cs          .VerticalCS                          .class,
                org.opengis.referencing.crs         .SingleCRS                           .class,
                org.opengis.referencing.crs         .CompoundCRS                         .class,
@@ -243,7 +240,6 @@ public enum Content {
                org.opengis.referencing.crs         .GeodeticCRS                         .class,
                org.opengis.referencing.crs         .GeographicCRS                       .class,
                org.opengis.referencing.crs         .GeocentricCRS                       .class,
-               org.opengis.referencing.crs         .ImageCRS                            .class,
                org.opengis.referencing.crs         .ParametricCRS                       .class,
                org.opengis.referencing.crs         .TemporalCRS                         .class,
                org.opengis.referencing.crs         .VerticalCRS                         .class,

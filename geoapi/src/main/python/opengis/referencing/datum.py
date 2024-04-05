@@ -252,20 +252,6 @@ class GeodeticDatum(Datum):
         pass
 
 
-class ImageDatum(Datum):
-    """
-    Defines the origin of an image coordinate reference system.
-    """
-
-    @property
-    @abstractmethod
-    def pixel_in_cell(self) -> PixelInCell:
-        """
-        Specification of the way the image grid is associated with the image data attributes.
-        """
-        pass
-
-
 class EngineeringDatum(Datum):
     """
     Defines the origin of an engineering coordinate reference system.

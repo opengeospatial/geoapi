@@ -52,7 +52,7 @@ import static org.opengis.test.referencing.ObjectFactoryTest.*;
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @author  Michael Arneson (INT)
- * @version 3.1
+ * @version 4.0
  * @since   3.1
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
@@ -226,36 +226,6 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         return properties;
     }
 
-    /**
-     * Returns an arbitrary object from a code.
-     *
-     * <table class="ogc">
-     *   <caption>Supported codes</caption>
-     *   <tr><th>Code</th> <th>Name</th></tr>
-     *   <tr><td>4326</td> <td>WGS 84</td></tr>
-     *   <tr><td>6326</td> <td>World Geodetic System 1984</td></tr>
-     *   <tr><td>6422</td> <td>Ellipsoidal 2D CS. Axes: latitude, longitude. Orientations: north, east. UoM: degree</td></tr>
-     * </table>
-     *
-     * @param  code  value allocated by authority.
-     * @return the datum for the given code.
-     * @throws FactoryException if the object creation failed.
-     *
-     * @deprecated This method is ambiguous.
-     */
-    @Override
-    @SuppressWarnings("removal")
-    @Deprecated(since = "3.1", forRemoval = true)
-    public IdentifiedObject createObject(final String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            case 6326: return createDatum(code);
-            case 6422: return createCoordinateSystem(code);
-            case 4326: return createCoordinateReferenceSystem(code);
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
 
 
 
@@ -294,22 +264,6 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      */
     @Override
     public EngineeringDatum createEngineeringDatum(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     *
-     * @deprecated {@code ImageDatum} is replaced by {@link EngineeringDatum} as of ISO 19111:2019.
-     */
-    @Override
-    @Deprecated(since="3.1")
-    public ImageDatum createImageDatum(String code) throws FactoryException {
         final int id = parseCode(code);
         switch (id) {
             default:   throw noSuchAuthorityCode(id, code);
@@ -983,22 +937,6 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      */
     @Override
     public GeocentricCRS createGeocentricCRS(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     *
-     * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
-     */
-    @Override
-    @Deprecated(since="3.1")
-    public ImageCRS createImageCRS(String code) throws FactoryException {
         final int id = parseCode(code);
         switch (id) {
             default:   throw noSuchAuthorityCode(id, code);

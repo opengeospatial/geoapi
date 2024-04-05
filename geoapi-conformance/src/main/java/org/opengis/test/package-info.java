@@ -49,7 +49,7 @@
  * </ul>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   2.2
  */
 package org.opengis.test;

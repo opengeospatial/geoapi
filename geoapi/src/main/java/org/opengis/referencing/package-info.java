@@ -51,7 +51,7 @@
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  */
 package org.opengis.referencing;

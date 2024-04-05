@@ -44,9 +44,10 @@ import static org.opengis.annotation.Specification.*;
  * the default is to throw an {@link UnimplementedServiceException}
  * with a message saying that the type or service is not supported.
  *
+ * @author  OGC 01-009 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  *
  * @see org.opengis.referencing.cs.CSFactory
@@ -187,24 +188,5 @@ public interface DatumFactory extends ObjectFactory {
     @UML(identifier="createLocalDatum", specification=OGC_01009)
     default EngineeringDatum createEngineeringDatum(Map<String,?> properties) throws FactoryException {
         throw new UnimplementedServiceException(this, EngineeringDatum.class);
-    }
-
-    /**
-     * Creates an image datum.
-     *
-     * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  pixelInCell  specification of the way the image grid is associated
-     *         with the image data attributes.
-     * @return the datum for the given properties.
-     * @throws FactoryException if the object creation failed.
-     *
-     * @deprecated {@code ImageDatum} is replaced by {@link EngineeringDatum} as of ISO 19111:2019.
-     */
-    @Deprecated(since="3.1")
-    default ImageDatum createImageDatum(Map<String,?> properties,
-                                        PixelInCell   pixelInCell) throws FactoryException
-    {
-        throw new UnimplementedServiceException(this, ImageDatum.class);
     }
 }

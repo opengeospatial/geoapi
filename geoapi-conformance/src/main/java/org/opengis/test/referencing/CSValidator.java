@@ -38,7 +38,7 @@ import static org.opengis.test.referencing.Utilities.getAxisDirections;
  * convenient way to validate various kinds of objects.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   2.2
  *
  * @todo Add checks for Unit of Measurement depending on the coordinate system type.
@@ -144,7 +144,6 @@ public class CSValidator extends ReferencingValidator {
             if (object instanceof LinearCS)      {validate((LinearCS)      object); n++;}
             if (object instanceof VerticalCS)    {validate((VerticalCS)    object); n++;}
             if (object instanceof TimeCS)        {validate((TimeCS)        object); n++;}
-            if (object instanceof UserDefinedCS) {validate((UserDefinedCS) object); n++;}
             if (n == 0) {
                 validateIdentifiedObject(object);
                 validateAxes(object);
@@ -292,22 +291,6 @@ public class CSValidator extends ReferencingValidator {
         validateAxes(object);
         final int dimension = object.getDimension();
         assertEquals(1, dimension, "TimeCS: wrong number of dimensions.");
-    }
-
-    /**
-     * Validates the given coordinate system.
-     *
-     * @param  object  the object to validate, or {@code null}.
-     */
-    @Deprecated(since="3.1")
-    public void validate(final UserDefinedCS object) {
-        if (object == null) {
-            return;
-        }
-        validateIdentifiedObject(object);
-        validateAxes(object);
-        final int dimension = object.getDimension();
-        assertBetween(2, 3, dimension, "UserDefinedCS: wrong number of dimensions.");
     }
 
     /**
