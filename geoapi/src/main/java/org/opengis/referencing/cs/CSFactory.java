@@ -38,16 +38,10 @@ import org.opengis.util.UnimplementedServiceException;
  * the default is to throw an {@link UnimplementedServiceException}
  * with a message saying that the type or service is not supported.
  *
- * @author  OGC 01-009 (for abstract model and documentation)
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 4.0
  * @since   1.0
- *
- * @departure historic
- *   Added for consistency with CRS and datum factories. This CS factory was not defined in the
- *   OGC specification because OGC 01-009 was created before ISO 19111 and had no equivalent of
- *   the ISO <i>Coordinate System</i> types.
  *
  * @see org.opengis.referencing.crs.CRSFactory
  * @see org.opengis.referencing.datum.DatumFactory

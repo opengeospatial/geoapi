@@ -132,7 +132,6 @@ public class CSValidator extends ReferencingValidator {
      * @param  object  the object to dispatch to {@code validate(…)} methods, or {@code null}.
      * @return number of {@code validate(…)} methods invoked in this class for the given object.
      */
-    @SuppressWarnings("deprecation")
     public int dispatch(final CoordinateSystem object) {
         int n = 0;
         if (object != null) {

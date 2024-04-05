@@ -303,7 +303,6 @@ public class CRSValidator extends ReferencingValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      */
-    @SuppressWarnings("deprecation")
     public void validate(final EngineeringCRS object) {
         if (object == null) {
             return;
