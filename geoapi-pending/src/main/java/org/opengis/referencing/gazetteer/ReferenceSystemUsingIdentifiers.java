@@ -18,8 +18,6 @@
 package org.opengis.referencing.gazetteer;
 
 import java.util.Collection;
-import org.opengis.metadata.Identifier;
-import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.citation.Party;
 import org.opengis.util.InternationalString;
 import org.opengis.referencing.ReferenceSystem;
@@ -91,29 +89,6 @@ public interface ReferenceSystemUsingIdentifiers extends ReferenceSystem {
     @Override
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19112)
     ReferenceIdentifier getName();
-
-    /**
-     * Geographic area within which the reference system occurs.
-     *
-     * @departure constraint
-     *   ISO 19112 defines <code>domainOfValidity</code> as an <code>EX_GeographicExtent</code>.
-     *   But ISO 19111, which defines the parent type, defines <code>domainOfValidity</code> as an
-     *   <code>EX_Extent</code>. The type in this sub-interface had to be changed to the same type
-     *   than the parent interface.
-     *
-     * @return the reference system valid domain, or {@code null} if not available.
-     *
-     * @see LocationType#getTerritoryOfUse()
-     * @see Gazetteer#getTerritoryOfUse()
-     *
-     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
-     */
-    @Override
-    @Deprecated(since = "3.1")
-    @UML(identifier="domainOfValidity", obligation=MANDATORY, specification=ISO_19112)
-    default Extent getDomainOfValidity() {
-        return ReferenceSystem.super.getDomainOfValidity();
-    }
 
     /**
      * Property used to characterize the spatial reference system.

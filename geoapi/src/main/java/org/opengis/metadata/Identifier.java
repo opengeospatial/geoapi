@@ -47,8 +47,10 @@ public interface Identifier {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(Map, ...)} methods.
-     * This is used for setting the value to be returned by {@link #getAuthority()}.
+     * It can be used as an alternative to {@link org.opengis.referencing.IdentifiedObject#NAME_KEY}
+     * for setting the value to be returned by {@link #getAuthority()}.
      *
+     * @see org.opengis.referencing.ObjectFactory
      * @see #getAuthority()
      */
     String AUTHORITY_KEY = "authority";
@@ -56,8 +58,10 @@ public interface Identifier {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(Map, ...)} methods.
-     * This is used for setting the value to be returned by {@link #getCode()}.
+     * It can be used as an alternative to {@link org.opengis.referencing.IdentifiedObject#NAME_KEY}
+     * for setting the value to be returned by {@link #getCode()}.
      *
+     * @see org.opengis.referencing.ObjectFactory
      * @see #getCode()
      */
     String CODE_KEY = "code";
@@ -65,8 +69,10 @@ public interface Identifier {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(Map, ...)} methods.
-     * This is used for setting the value to be returned by {@link #getCodeSpace()}.
+     * It can be used as an alternative to {@link org.opengis.referencing.IdentifiedObject#NAME_KEY}
+     * for setting the value to be returned by {@link #getCodeSpace()}.
      *
+     * @see org.opengis.referencing.ObjectFactory
      * @see #getCodeSpace()
      */
     String CODESPACE_KEY = "codespace";
@@ -74,8 +80,10 @@ public interface Identifier {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(Map, ...)} methods.
-     * This is used for setting the value to be returned by {@link #getVersion()}.
+     * It can be used as an alternative to {@link org.opengis.referencing.IdentifiedObject#NAME_KEY}
+     * for setting the value to be returned by {@link #getVersion()}.
      *
+     * @see org.opengis.referencing.ObjectFactory
      * @see #getVersion()
      */
     String VERSION_KEY = "version";
@@ -83,8 +91,10 @@ public interface Identifier {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(Map, ...)} methods.
-     * This is used for setting the value to be returned by {@link #getDescription()}.
+     * It can be used as an alternative to {@link org.opengis.referencing.IdentifiedObject#NAME_KEY}
+     * for setting the value to be returned by {@link #getDescription()}.
      *
+     * @see org.opengis.referencing.ObjectFactory
      * @see #getDescription()
      *
      * @since 3.1

@@ -187,7 +187,7 @@ public class OperationValidator extends ReferencingValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      */
-    @SuppressWarnings("removal")
+    @SuppressWarnings("deprecation")
     private void validateCoordinateOperation(final CoordinateOperation object) {
         if (object == null) {
             return;
@@ -197,6 +197,7 @@ public class OperationValidator extends ReferencingValidator {
         validateIdentifiedObject(object);
         container.validate(object.getScope());
         container.validate(object.getDomainOfValidity());
+        validate("domain", object.getDomains(), ValidatorContainer::validate, false);
 
         final CoordinateReferenceSystem sourceCRS = object.getSourceCRS();
         final CoordinateReferenceSystem targetCRS = object.getTargetCRS();
@@ -238,8 +239,8 @@ public class OperationValidator extends ReferencingValidator {
         mandatory("Operation: OperationMethod is mandatory.", method);
         if (method != null) {
             validate(method);
-            @SuppressWarnings("removal") final Integer opSourceDimension = method.getSourceDimensions();
-            @SuppressWarnings("removal") final Integer opTargetDimension = method.getTargetDimensions();
+            @SuppressWarnings("deprecation") final Integer opSourceDimension = method.getSourceDimensions();
+            @SuppressWarnings("deprecation") final Integer opTargetDimension = method.getTargetDimensions();
             final MathTransform transform = object.getMathTransform();
             // Do not validate because it is already done by validateCoordinateOperation(object).
             if (transform != null) {
@@ -311,8 +312,8 @@ public class OperationValidator extends ReferencingValidator {
         if (object == null) {
             return;
         }
-        @SuppressWarnings("removal") final Integer sourceDimension = object.getSourceDimensions();
-        @SuppressWarnings("removal") final Integer targetDimension = object.getTargetDimensions();
+        @SuppressWarnings("deprecation") final Integer sourceDimension = object.getSourceDimensions();
+        @SuppressWarnings("deprecation") final Integer targetDimension = object.getTargetDimensions();
         if (sourceDimension != null) {
             assertStrictlyPositive(sourceDimension, "OperationMethod: source dimension must be greater than zero.");
         }

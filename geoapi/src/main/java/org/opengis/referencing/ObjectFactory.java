@@ -20,6 +20,7 @@ package org.opengis.referencing;
 import java.util.Locale;
 
 import org.opengis.metadata.Identifier;
+import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.Factory;
 import org.opengis.util.InternationalString;
@@ -69,7 +70,7 @@ import org.opengis.util.GenericName;
  *   </tr><tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#DOMAINS_KEY}</td>
  *     <td><code>{@linkplain ObjectDomain}[]</code></td>
- *     <td>{@link ObjectDomain}</td>
+ *     <td>{@link ObjectDomain} (see alternatives below)</td>
  *     <td>{@link IdentifiedObject#getDomains()}</td>
  *   </tr><tr>
  *     <td>{@value org.opengis.referencing.IdentifiedObject#REMARKS_KEY}</td>
@@ -83,7 +84,8 @@ import org.opengis.util.GenericName;
  * multi-values are arrays instead of collections in order to allow implementations to check the element
  * type by Java reflection. Such reflection cannot be performed on collections because of type erasure.</div>
  *
- * <p>Implementations may allow an alternative way to define the {@code "name"} property for user convenience:</p>
+ * <p>Implementations may allow alternative ways to define the {@code "name"} and {@code "domains"} properties
+ * for user convenience:</p>
  * <table class="ogc">
  *   <caption>Convenience keys (non-standard)</caption>
  *   <tr>
@@ -91,30 +93,31 @@ import org.opengis.util.GenericName;
  *     <th>Value type</th>
  *     <th>Alternative types</th>
  *     <th>Value returned by</th>
- *   </tr>
- *   <tr>
- *     <td>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
- *     <td>{@link String}</td>
- *     <td></td>
- *     <td>{@link Identifier#getCode()}</td>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@value org.opengis.metadata.Identifier#AUTHORITY_KEY}</td>
  *     <td>{@link Citation}</td>
  *     <td>{@link String}</td>
  *     <td>{@link Identifier#getAuthority()}</td>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@value org.opengis.metadata.Identifier#CODESPACE_KEY}</td>
  *     <td>{@link String}</td>
  *     <td></td>
  *     <td>{@link Identifier#getCodeSpace()}</td>
- *   </tr>
- *   <tr>
+ *   </tr><tr>
  *     <td>{@value org.opengis.metadata.Identifier#VERSION_KEY}</td>
  *     <td>{@link String}</td>
  *     <td></td>
  *     <td>{@link Identifier#getVersion()}</td>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.ObjectDomain#SCOPE_KEY}</td>
+ *     <td>{@link InternationalString}</td>
+ *     <td>{@link String} (see localization below)</td>
+ *     <td>{@link ObjectDomain#getScope()}</td>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.ObjectDomain#DOMAIN_OF_VALIDITY_KEY}</td>
+ *     <td>{@link Extent}</td>
+ *     <td></td>
+ *     <td>{@link ObjectDomain#getDomainOfValidity()}</td>
  *   </tr>
  * </table>
  *

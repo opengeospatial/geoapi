@@ -109,23 +109,25 @@ public interface Datum extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@code DatumFactory.createFoo(Map, ...)} methods.
-     * This property is kept for compatibility with ISO 19111:2007.
-     * However as of ISO 19111:2019, {@link #DOMAINS_KEY} is preferred.
      *
      * @see DatumFactory
      * @see org.opengis.referencing.ObjectDomain#getDomainOfValidity()
+     *
+     * @deprecated Moved to {@link org.opengis.referencing.ObjectDomain} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1")
     String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@code DatumFactory.createFoo(Map, ...)} methods.
-     * This property is kept for compatibility with ISO 19111:2007.
-     * However as of ISO 19111:2019, {@link #DOMAINS_KEY} is preferred.
      *
      * @see DatumFactory
      * @see org.opengis.referencing.ObjectDomain#getScope()
+     *
+     * @deprecated Moved to {@link org.opengis.referencing.ObjectDomain} as of ISO 19111:2019.
      */
+    @Deprecated(since="3.1")
     String SCOPE_KEY = "scope";
 
     /**

@@ -39,6 +39,28 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="ObjectDomain", specification=ISO_19111)
 public interface ObjectDomain {
     /**
+     * Key for the <code>{@value}</code> property to be given to the
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(Map, ...)} methods.
+     * It can be used as an alternative to {@link org.opengis.referencing.IdentifiedObject#DOMAINS_KEY}
+     * for setting the value to be returned by {@link #getScope()}.
+     *
+     * @see ObjectFactory
+     * @see #getScope()
+     */
+    String SCOPE_KEY = "scope";
+
+    /**
+     * Key for the <code>{@value}</code> property to be given to the
+     * {@linkplain org.opengis.referencing.ObjectFactory CRS factory} {@code createFoo(Map, ...)} methods.
+     * It can be used as an alternative to {@link org.opengis.referencing.IdentifiedObject#DOMAINS_KEY}
+     * for setting the value to be returned by {@link #getDomainOfValidity()}.
+     *
+     * @see ObjectFactory
+     * @see #getDomainOfValidity()
+     */
+    String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
+
+    /**
      * Description of usage, or limitations of usage, for which this object is valid.
      * If unknown, the text should be "not known".
      *
