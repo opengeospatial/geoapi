@@ -25,12 +25,9 @@ import org.opengis.coordinate.CoordinateSet;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.metadata.quality.PositionalAccuracy;
-import org.opengis.metadata.extent.Extent;
-import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
-import org.opengis.geoapi.internal.Legacy;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -84,24 +81,6 @@ public interface CoordinateOperation extends IdentifiedObject {
      * @see #getCoordinateOperationAccuracy()
      */
     String COORDINATE_OPERATION_ACCURACY_KEY = "coordinateOperationAccuracy";
-
-    /**
-     * Key for the <code>{@value}</code> property.
-     * This property is kept for compatibility with ISO 19111:2007.
-     * However as of ISO 19111:2019, {@link #DOMAINS_KEY} is preferred.
-     *
-     * @see org.opengis.referencing.ObjectDomain#getDomainOfValidity()
-     */
-    String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
-
-    /**
-     * Key for the <code>{@value}</code> property.
-     * This property is kept for compatibility with ISO 19111:2007.
-     * However as of ISO 19111:2019, {@link #DOMAINS_KEY} is preferred.
-     *
-     * @see org.opengis.referencing.ObjectDomain#getScope()
-     */
-    String SCOPE_KEY = "scope";
 
     /**
      * Returns the <abbr>CRS</abbr> from which coordinates are changed. This property may be {@code null}
@@ -208,40 +187,6 @@ public interface CoordinateOperation extends IdentifiedObject {
     @UML(identifier="coordinateOperationAccuracy", obligation=OPTIONAL, specification=ISO_19111)
     default Collection<PositionalAccuracy> getCoordinateOperationAccuracy() {
         return Collections.emptyList();
-    }
-
-    /**
-     * Returns the area or region or timeframe in which this coordinate operation is valid.
-     *
-     * @return the coordinate operation valid domain, or {@code null} if not available.
-     *
-     * @see CoordinateReferenceSystem#getDomainOfValidity()
-     *
-     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
-     */
-    @Deprecated(since = "3.1")
-    @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111, version=2007)
-    default Extent getDomainOfValidity() {
-        return Legacy.getDomainOfValidity(getDomains());
-    }
-
-    /**
-     * Returns a description of domain of usage, or limitations of usage, for which this operation is valid.
-     *
-     * @return a description of domain of usage, or {@code null} if none.
-     *
-     * @departure historic
-     *   This method has been kept conformant with the specification published in 2003.
-     *   The revision published in 2007 replaced the singleton by a collection and changed the
-     *   obligation from "optional" to "mandatory", requiring a return value of
-     *   <q>not known</q> if the scope is unknown. This change is still under review.
-     *
-     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
-     */
-    @Deprecated(since = "3.1")
-    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111, version=2007)
-    default InternationalString getScope() {
-        return Legacy.getScope(getDomains());
     }
 
     /**

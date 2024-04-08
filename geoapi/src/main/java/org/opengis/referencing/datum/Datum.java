@@ -17,17 +17,14 @@
  */
 package org.opengis.referencing.datum;
 
-import java.util.Date;
 import java.util.Optional;
 import java.time.temporal.Temporal;
 import org.opengis.referencing.IdentifiedObject;
-import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.citation.CitationDate;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
-import org.opengis.geoapi.internal.Legacy;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -71,19 +68,6 @@ public interface Datum extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
      * {@code DatumFactory.createFoo(Map, ...)} methods.
-     * This is used for setting the value to be returned by {@link #getAnchorDefinition()}.
-     *
-     * @see DatumFactory
-     * @see #getAnchorDefinition()
-     *
-     * @deprecated Renamed {@link #ANCHOR_DEFINITION_KEY} for conformance with ISO 19111:2019 revision.
-     */
-    @Deprecated(since = "3.1")
-    String ANCHOR_POINT_KEY = "anchorPoint";
-
-    /**
-     * Key for the <code>{@value}</code> property to be given to the
-     * {@code DatumFactory.createFoo(Map, ...)} methods.
      * This is used for setting the value to be returned by {@link #getAnchorEpoch()}.
      *
      * @see DatumFactory
@@ -92,41 +76,6 @@ public interface Datum extends IdentifiedObject {
      * @since 3.1
      */
     String ANCHOR_EPOCH_KEY = "anchorEpoch";
-
-    /**
-     * Key for the <code>{@value}</code> property to be given to the
-     * {@code DatumFactory.createFoo(Map, ...)} methods.
-     * This is used for setting the value to be returned by {@link #getRealizationEpoch()}.
-     *
-     * @see DatumFactory
-     * @see #getRealizationEpoch()
-     *
-     * @deprecated Renamed {@link #ANCHOR_EPOCH_KEY} for conformance with ISO 19111:2019 revision.
-     */
-    @Deprecated(since = "3.1")
-    String REALIZATION_EPOCH_KEY = "realizationEpoch";
-
-    /**
-     * Key for the <code>{@value}</code> property to be given to the
-     * {@code DatumFactory.createFoo(Map, ...)} methods.
-     * This property is kept for compatibility with ISO 19111:2007.
-     * However as of ISO 19111:2019, {@link #DOMAINS_KEY} is preferred.
-     *
-     * @see DatumFactory
-     * @see org.opengis.referencing.ObjectDomain#getDomainOfValidity()
-     */
-    String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
-
-    /**
-     * Key for the <code>{@value}</code> property to be given to the
-     * {@code DatumFactory.createFoo(Map, ...)} methods.
-     * This property is kept for compatibility with ISO 19111:2007.
-     * However as of ISO 19111:2019, {@link #DOMAINS_KEY} is preferred.
-     *
-     * @see DatumFactory
-     * @see org.opengis.referencing.ObjectDomain#getScope()
-     */
-    String SCOPE_KEY = "scope";
 
     /**
      * Key for the <code>{@value}</code> property to be given to the
@@ -181,19 +130,6 @@ public interface Datum extends IdentifiedObject {
     }
 
     /**
-     * A description of the relationship used to anchor the coordinate system to the Earth or alternate object.
-     *
-     * @return a description of the anchor point, or {@code null} if none.
-     *
-     * @deprecated Renamed {@link #getAnchorDefinition()} for conformance with ISO 19111:2019 revision.
-     */
-    @Deprecated(since = "3.1")
-    @UML(identifier="anchorPoint", obligation=OPTIONAL, specification=ISO_19111, version=2003)
-    default InternationalString getAnchorPoint() {
-        return getAnchorDefinition().orElse(null);
-    }
-
-    /**
      * Returns the epoch at which a static datum matches a dynamic datum from which it has been derived.
      * This time may be precise or merely a year (e.g. 1983 for NAD83). In the latter case, the epoch usually
      * refers to the year in which a major recalculation of the geodetic control network, underlying the datum,
@@ -214,51 +150,6 @@ public interface Datum extends IdentifiedObject {
     @UML(identifier="anchorEpoch", obligation=OPTIONAL, specification=ISO_19111)
     default Optional<Temporal> getAnchorEpoch() {
         return Optional.empty();
-    }
-
-    /**
-     * The time after which this datum definition is valid.
-     *
-     * @return the datum realization epoch, or {@code null} if not available.
-     *
-     * @deprecated Renamed {@link #getAnchorEpoch()} for conformance with ISO 19111:2019 revision.
-     */
-    @Deprecated(since = "3.1")
-    @UML(identifier="realizationEpoch", obligation=OPTIONAL, specification=ISO_19111, version=2007)
-    default Date getRealizationEpoch() {
-        return getAnchorEpoch().map(Legacy::toDate).orElse(null);
-    }
-
-    /**
-     * Area or region or timeframe in which this datum is valid.
-     *
-     * @return the datum valid domain, or {@code null} if not available.
-     *
-     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
-     */
-    @Deprecated(since = "3.1")
-    @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111, version=2007)
-    default Extent getDomainOfValidity() {
-        return Legacy.getDomainOfValidity(getDomains());
-    }
-
-    /**
-     * Description of domain of usage, or limitations of usage, for which this datum object is valid.
-     *
-     * @return a description of domain of usage, or {@code null} if none.
-     *
-     * @departure historic
-     *   This method has been kept conformant with the specification published in 2003. The revision
-     *   published in 2007 replaced the singleton by a collection and changed the obligation
-     *   from "optional" to "mandatory", requiring a return value of <q>not known</q>
-     *   if the scope is unknown.
-     *
-     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
-     */
-    @Deprecated(since = "3.1")
-    @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19111, version=2007)
-    default InternationalString getScope() {
-        return Legacy.getScope(getDomains());
     }
 
     /**

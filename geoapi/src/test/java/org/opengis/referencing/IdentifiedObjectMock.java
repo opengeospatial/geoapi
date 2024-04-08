@@ -19,12 +19,10 @@ package org.opengis.referencing;
 
 import java.util.Set;
 import org.opengis.metadata.Identifier;
-import org.opengis.metadata.extent.Extent;
 import org.opengis.referencing.datum.Datum;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.crs.SingleCRS;
-import org.opengis.util.InternationalString;
 
 
 /**
@@ -73,28 +71,6 @@ final class IdentifiedObjectMock implements SingleCRS, CoordinateSystem, Datum, 
     @Override
     public String getCode() {
         return code;
-    }
-
-    /**
-     * For resolving a conflict between inherited default methods.
-     *
-     * @return {@code null}.
-     */
-    @Override
-    @SuppressWarnings("deprecation")
-    public Extent getDomainOfValidity() {
-        return null;
-    }
-
-    /**
-     * For resolving a conflict between inherited default methods.
-     *
-     * @return {@code null}.
-     */
-    @Override
-    @SuppressWarnings("deprecation")
-    public InternationalString getScope() {
-        return null;
     }
 
     /**

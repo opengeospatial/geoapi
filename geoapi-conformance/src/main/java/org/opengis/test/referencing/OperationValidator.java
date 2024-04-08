@@ -195,8 +195,7 @@ public class OperationValidator extends ReferencingValidator {
         assertFalse((object instanceof ConcatenatedOperation) && (object instanceof SingleOperation),
                 "CoordinateOperation: cannot be both a ConcatenatedOperation and a SingleOperation.");
         validateIdentifiedObject(object);
-        container.validate(object.getScope());
-        container.validate(object.getDomainOfValidity());
+        validate("domain", object.getDomains(), ValidatorContainer::validate, false);
 
         final CoordinateReferenceSystem sourceCRS = object.getSourceCRS();
         final CoordinateReferenceSystem targetCRS = object.getTargetCRS();

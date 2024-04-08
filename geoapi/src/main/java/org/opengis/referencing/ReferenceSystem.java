@@ -17,12 +17,7 @@
  */
 package org.opengis.referencing;
 
-import org.opengis.metadata.extent.Extent;
-import org.opengis.util.InternationalString;
-import org.opengis.geoapi.internal.Legacy;
 import org.opengis.annotation.UML;
-
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
@@ -72,52 +67,4 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="RS_ReferenceSystem", specification=ISO_19115, version=2003)
 public interface ReferenceSystem extends IdentifiedObject {
-    /**
-     * Key for the <code>{@value}</code> property to be given to the
-     * {@code ObjectFactory.createFoo(Map, ...)} methods.
-     * This property is kept for compatibility with ISO 19111:2007.
-     * However as of ISO 19111:2019, {@link #DOMAINS_KEY} is preferred.
-     *
-     * @see ObjectFactory
-     * @see ObjectDomain#getDomainOfValidity()
-     */
-    String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
-
-    /**
-     * Key for the <code>{@value}</code> property to be given to the
-     * {@code ObjectFactory.createFoo(Map, ...)} methods.
-     * This property is kept for compatibility with ISO 19111:2007.
-     * However as of ISO 19111:2019, {@link #DOMAINS_KEY} is preferred.
-     *
-     * @see ObjectFactory
-     * @see ObjectDomain#getScope()
-     */
-    String SCOPE_KEY = "scope";
-
-    /**
-     * Area or region or timeframe in which this (coordinate) reference system is valid.
-     *
-     * @return the reference system valid domain, or {@code null} if not available.
-     *
-     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
-     */
-    @Deprecated(since="3.1")
-    @UML(identifier="SC_CRS.domainOfValidity", obligation=OPTIONAL, specification=ISO_19111, version=2007)
-    default Extent getDomainOfValidity() {
-        return Legacy.getDomainOfValidity(getDomains());
-    }
-
-    /**
-     * Description of domain of usage, or limitations of usage, for which this
-     * Reference System object is valid.
-     *
-     * @return the domain of usage, or {@code null} if none.
-     *
-     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
-     */
-    @Deprecated(since="3.1")
-    @UML(identifier="SC_CRS.scope", obligation=OPTIONAL, specification=ISO_19111, version=2007)
-    default InternationalString getScope() {
-        return Legacy.getScope(getDomains());
-    }
 }

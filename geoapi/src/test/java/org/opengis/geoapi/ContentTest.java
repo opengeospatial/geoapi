@@ -93,7 +93,6 @@ public final class ContentTest implements FileVisitor<Path> {
         }
         ignoreTypes = new HashSet<>(List.of(
                 org.opengis.geoapi.internal.Errors.class,
-                org.opengis.geoapi.internal.Legacy.class,
                 org.opengis.annotation.Specification.class,
                 org.opengis.annotation.Stereotype.class,
                 org.opengis.annotation.ResourceBundles.class,

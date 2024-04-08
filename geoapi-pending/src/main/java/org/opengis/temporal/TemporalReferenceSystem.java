@@ -18,7 +18,6 @@
 package org.opengis.temporal;
 
 import org.opengis.metadata.Identifier;
-import org.opengis.metadata.extent.Extent;
 import org.opengis.referencing.ReferenceSystem;
 import org.opengis.annotation.UML;
 
@@ -51,24 +50,4 @@ public interface TemporalReferenceSystem extends ReferenceSystem {
     @Override
     @UML(identifier="name", obligation=MANDATORY, specification=ISO_19108)
     Identifier getName();
-
-    /**
-     * Returns the space and time within which the reference system is applicable.
-     * The return type allows for describing both spatial and temporal extent.
-     * This attribute shall be used whenever an application schema includes
-     * {@link TemporalPosition}s referenced to a reference system which has a valid extent
-     * that is less than the extent of a data set containing such values.
-     *
-     * <p>Please note this is very similar to ReferenceSystem.getValidArea() from ISO 19115.</p>
-     *
-     * @return the space and time within which the reference system is applicable.
-     *
-     * @deprecated Replaced by {@link #getDomains()} as of ISO 19111:2019.
-     */
-    @Override
-    @Deprecated(since = "3.1")
-    @UML(identifier="DomainOfValidity", obligation=MANDATORY, specification=ISO_19108)
-    default Extent getDomainOfValidity() {
-        return ReferenceSystem.super.getDomainOfValidity();
-    }
 }
