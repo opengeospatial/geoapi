@@ -115,20 +115,6 @@ public interface DirectPosition extends Position {
     }
 
     /**
-     * A <b>copy</b> of the coordinates presented as an array of double values.
-     *
-     * @return a copy of the coordinates. Changes in the returned array will not be reflected back
-     *         in this {@code DirectPosition} object.
-     *
-     * @deprecated Renamed {@link #getCoordinates()}.
-     * To be removed because of the risk of confusion with {@link #getCoordinate(int)}.
-     */
-    @Deprecated(since="3.1", forRemoval=true)
-    default double[] getCoordinate() {
-        return getCoordinates();
-    }
-
-    /**
      * Returns the coordinate at the specified dimension.
      *
      * @param  dimension  the dimension in the range 0 to {@linkplain #getDimension dimension}−1.
@@ -139,21 +125,6 @@ public interface DirectPosition extends Position {
      * @since 3.1
      */
     double getCoordinate(int dimension);
-
-    /**
-     * Returns the coordinate at the specified dimension.
-     *
-     * @param  dimension  the dimension in the range 0 to {@linkplain #getDimension dimension}−1.
-     * @return the coordinate at the specified dimension.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
-     *         than the {@linkplain #getDimension() number of dimensions}.
-     *
-     * @deprecated Renamed {@link #getCoordinate(int)}.
-     */
-    @Deprecated(since = "3.1")
-    default double getOrdinate(int dimension) throws IndexOutOfBoundsException {
-        return getCoordinate(dimension);
-    }
 
     /**
      * Sets the coordinate value along the specified dimension.
@@ -173,24 +144,6 @@ public interface DirectPosition extends Position {
      */
     default void setCoordinate(int dimension, double value) {
         throw new UnsupportedOperationException();
-    }
-
-    /**
-     * Sets the coordinate value along the specified dimension.
-     *
-     * @param  dimension  the dimension for the coordinate of interest.
-     * @param  value      the coordinate value of interest.
-     * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
-     *         than the {@linkplain #getDimension() position dimension}.
-     * @throws UnsupportedOperationException if this direct position is immutable.
-     *
-     * @deprecated Renamed {@link #setCoordinate(int, double)}.
-     */
-    @Deprecated(since = "3.1")
-    default void setOrdinate(int dimension, double value)
-            throws IndexOutOfBoundsException, UnsupportedOperationException
-    {
-        setCoordinate(dimension, value);
     }
 
     /**

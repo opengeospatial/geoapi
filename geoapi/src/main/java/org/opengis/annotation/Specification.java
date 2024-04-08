@@ -318,21 +318,6 @@ public enum Specification {
     ISO_19162((short) 2015),
 
     /**
-     * GO-1 Application Objects.
-     *
-     * <p><b>Version numbers used in GeoAPI:</b></p>
-     * <ul>
-     *   <li><b>10:</b> OGC 03-064r10   ({@linkplain #defaultVersion() default version})</li>
-     * </ul>
-     *
-     * @see <a href="http://www.opengeospatial.org/standards/go">Download from OGC</a>
-     *
-     * @deprecated This specification has been retired.
-     */
-    @Deprecated(since="3.1")
-    OGC_03064((short) 10),
-
-    /**
      * Coordinate Transformation Services.
      * This is the specification used as a complement of {@linkplain #ISO_19111 ISO 19111}
      * when an aspect was not defined in the ISO specification.
@@ -389,16 +374,7 @@ public enum Specification {
      * @since 3.1
      */
     @Deprecated(forRemoval=true)
-    OGC_07022((short) 1),
-
-    /**
-     * Specification not yet determined. This is a temporary enumeration
-     * for the processing of API submitted by some contributors.
-     *
-     * @deprecated To be removed.
-     */
-    @Deprecated(since="3.1", forRemoval=true)
-    UNSPECIFIED((short) 1);
+    OGC_07022((short) 1);
 
     /**
      * The default version of OGC/ISO standard for this enumeration constant.
