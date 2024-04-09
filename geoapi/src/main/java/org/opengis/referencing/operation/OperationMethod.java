@@ -108,40 +108,6 @@ public interface OperationMethod extends IdentifiedObject {
     Formula getFormula();
 
     /**
-     * Number of dimensions in the source CRS of this operation method.
-     * Note that some operation methods work with an arbitrary number of
-     * dimensions (e.g. <i>Affine Transform</i>) and may return {@code null}.
-     *
-     * @return the dimension of source CRS, or {@code null} if unknown.
-     *
-     * @see MathTransform#getSourceDimensions()
-     *
-     * @deprecated This attribute has been removed from ISO 19111:2019.
-     */
-    @Deprecated(since = "3.1")
-    @UML(identifier="sourceDimensions", obligation=OPTIONAL, specification=ISO_19111, version=2007)
-    default Integer getSourceDimensions() {
-        return null;
-    }
-
-    /**
-     * Number of dimensions in the target CRS of this operation method.
-     * Note that some operation methods work with an arbitrary number of
-     * dimensions (e.g. <i>Affine Transform</i>) and may return {@code null}.
-     *
-     * @return the dimension of target CRS, or {@code null} if unknown.
-     *
-     * @see MathTransform#getTargetDimensions()
-     *
-     * @deprecated This attribute has been removed from ISO 19111:2019.
-     */
-    @Deprecated(since = "3.1")
-    @UML(identifier="targetDimensions", obligation=OPTIONAL, specification=ISO_19111, version=2007)
-    default Integer getTargetDimensions() {
-        return null;
-    }
-
-    /**
      * Returns the set of parameters.
      *
      * @return the parameters, or an empty group if none.

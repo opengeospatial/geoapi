@@ -235,23 +235,7 @@ public class OperationValidator extends ReferencingValidator {
 
         final OperationMethod method = object.getMethod();
         mandatory("Operation: OperationMethod is mandatory.", method);
-        if (method != null) {
-            validate(method);
-            @SuppressWarnings("removal") final Integer opSourceDimension = method.getSourceDimensions();
-            @SuppressWarnings("removal") final Integer opTargetDimension = method.getTargetDimensions();
-            final MathTransform transform = object.getMathTransform();
-            // Do not validate because it is already done by validateCoordinateOperation(object).
-            if (transform != null) {
-                if (opSourceDimension != null) {
-                    assertEquals(opSourceDimension.intValue(), transform.getSourceDimensions(),
-                            "Operation: MathTransform source dimension must match OperationMethod source dimension.");
-                }
-                if (opTargetDimension != null) {
-                    assertEquals(opTargetDimension.intValue(), transform.getTargetDimensions(),
-                            "Operation: MathTransform target dimension must match OperationMethod target dimension.");
-                }
-            }
-        }
+        validate(method);
         final ParameterValueGroup parameters = object.getParameterValues();
         mandatory("Operation: ParameterValues are mandatory.", method);
         container.validate(parameters);
@@ -309,14 +293,6 @@ public class OperationValidator extends ReferencingValidator {
     public void validate(final OperationMethod object) {
         if (object == null) {
             return;
-        }
-        @SuppressWarnings("removal") final Integer sourceDimension = object.getSourceDimensions();
-        @SuppressWarnings("removal") final Integer targetDimension = object.getTargetDimensions();
-        if (sourceDimension != null) {
-            assertStrictlyPositive(sourceDimension, "OperationMethod: source dimension must be greater than zero.");
-        }
-        if (targetDimension != null) {
-            assertStrictlyPositive(targetDimension, "OperationMethod: target dimension must be greater than zero.");
         }
         validate(object.getFormula());
         container.validate(object.getParameters());

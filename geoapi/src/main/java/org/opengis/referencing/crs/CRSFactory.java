@@ -228,12 +228,11 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  baseCRS  coordinate reference system to base the projection on. The number of axes
-     *         must matches the {@linkplain OperationMethod#getSourceDimensions source dimensions}
-     *         of the conversion from base.
+     * @param  baseCRS  coordinate reference system to base the projection on.
+     *         The number of axes must matches the number of source dimensions of the conversion from base.
      * @param  conversionFromBase  the {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversion}.
-     * @param  derivedCS  the coordinate system for the derived CRS. The number of axes must matches the
-     *         {@linkplain OperationMethod#getTargetDimensions target dimensions} of the conversion from base.
+     * @param  derivedCS  the coordinate system for the derived CRS.
+     *         The number of axes must matches the number of target dimensions} of the conversion from base.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
@@ -272,12 +271,11 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  baseCRS  geographic coordinate reference system to base the projection on. The number
-     *         of axes must matches the {@linkplain OperationMethod#getSourceDimensions source dimensions}
-     *         of the conversion from base.
+     * @param  baseCRS  geographic coordinate reference system to base the projection on.
+     *         The number of axes must matches the number of source dimensions of the conversion from base.
      * @param  conversionFromBase  the {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversion}.
-     * @param  derivedCS  the coordinate system for the projected CRS. The number of axes must matches the
-     *         {@linkplain OperationMethod#getTargetDimensions target dimensions} of the conversion from base.
+     * @param  derivedCS  the coordinate system for the projected CRS.
+     *         The number of axes must matches the number of target dimensions of the conversion from base.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
