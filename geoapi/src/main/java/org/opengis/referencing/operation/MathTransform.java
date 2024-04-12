@@ -71,8 +71,6 @@ public interface MathTransform {
      * Returns the number of dimensions of input points.
      *
      * @return the number of dimensions of input points.
-     *
-     * @see OperationMethod#getSourceDimensions()
      */
     @UML(identifier="getDimSource", specification=OGC_01009)
     int getSourceDimensions();
@@ -81,8 +79,6 @@ public interface MathTransform {
      * Returns the number of dimensions of output points.
      *
      * @return the number of dimensions of output points.
-     *
-     * @see OperationMethod#getTargetDimensions()
      */
     @UML(identifier="getDimTarget", specification=OGC_01009)
     int getTargetDimensions();

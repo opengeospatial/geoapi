@@ -237,8 +237,8 @@ public class OperationValidator extends ReferencingValidator {
 
         final OperationMethod method = object.getMethod();
         mandatory("Operation: OperationMethod is mandatory.", method);
+        validate(method);
         if (method != null) {
-            validate(method);
             @SuppressWarnings("deprecation") final Integer opSourceDimension = method.getSourceDimensions();
             @SuppressWarnings("deprecation") final Integer opTargetDimension = method.getTargetDimensions();
             final MathTransform transform = object.getMathTransform();
