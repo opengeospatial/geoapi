@@ -91,12 +91,14 @@ public interface CRSFactory extends ObjectFactory {
      * @param  cs  the spherical coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
      */
-    default GeocentricCRS createGeocentricCRS(Map<String,?> properties,
-                                              GeodeticDatum datum,
-                                              SphericalCS   cs) throws FactoryException
+    default GeodeticCRS createGeodeticCRS(Map<String,?> properties,
+                                          GeodeticDatum datum,
+                                          SphericalCS   cs) throws FactoryException
     {
-        throw new UnimplementedServiceException(this, GeocentricCRS.class);
+        throw new UnimplementedServiceException(this, GeodeticCRS.class, "spherical");
     }
 
     /**
@@ -108,12 +110,14 @@ public interface CRSFactory extends ObjectFactory {
      * @param  cs  the Cartesian coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
      */
-    default GeocentricCRS createGeocentricCRS(Map<String,?> properties,
-                                              GeodeticDatum datum,
-                                              CartesianCS   cs) throws FactoryException
+    default GeodeticCRS createGeodeticCRS(Map<String,?> properties,
+                                          GeodeticDatum datum,
+                                          CartesianCS   cs) throws FactoryException
     {
-        throw new UnimplementedServiceException(this, GeocentricCRS.class, "Cartesian");
+        throw new UnimplementedServiceException(this, GeodeticCRS.class, "Cartesian");
     }
 
     /**

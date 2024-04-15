@@ -931,16 +931,13 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     * The default implementation delegates to {@link #createGeographicCRS(String)}.
      *
      * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
-    public GeocentricCRS createGeocentricCRS(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
+    public GeodeticCRS createGeodeticCRS(final String code) throws FactoryException {
+        return createGeographicCRS(code);
     }
 
     /**

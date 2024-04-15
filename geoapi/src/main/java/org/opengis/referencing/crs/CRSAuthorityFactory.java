@@ -100,7 +100,8 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
     }
 
     /**
-     * Returns a geocentric coordinate reference system from a code.
+     * Returns a geodetic coordinate reference system from a code.
+     * A geodetic CRS can be {@linkplain #createGeographicCRS(String) geographic} or geocentric.
      *
      * @param  code  value allocated by authority.
      * @return the coordinate reference system for the given code.
@@ -108,11 +109,13 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws FactoryException if the object creation failed.
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum(String)
+     *
+     * @since 3.1
      */
-    default GeocentricCRS createGeocentricCRS(final String code) throws FactoryException {
+    default GeodeticCRS createGeodeticCRS(final String code) throws FactoryException {
         final CoordinateReferenceSystem crs = createCoordinateReferenceSystem(code);
         try {
-            return (GeocentricCRS) crs;
+            return (GeodeticCRS) crs;
         } catch (ClassCastException e) {
             throw unexpectedType(this, code, crs, e);
         }

@@ -239,7 +239,6 @@ public enum Content {
                org.opengis.referencing.crs         .EngineeringCRS                      .class,
                org.opengis.referencing.crs         .GeodeticCRS                         .class,
                org.opengis.referencing.crs         .GeographicCRS                       .class,
-               org.opengis.referencing.crs         .GeocentricCRS                       .class,
                org.opengis.referencing.crs         .ParametricCRS                       .class,
                org.opengis.referencing.crs         .TemporalCRS                         .class,
                org.opengis.referencing.crs         .VerticalCRS                         .class,

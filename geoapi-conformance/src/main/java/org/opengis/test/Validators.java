@@ -464,20 +464,11 @@ public class Validators {
      *
      * @param  object  the object to test, or {@code null}.
      *
-     * @see CRSValidator#validate(GeocentricCRS)
-     */
-    public static void validate(final GeocentricCRS object) {
-        DEFAULT.validate(object);
-    }
-
-    /**
-     * Tests the conformance of the given object.
+     * @see CRSValidator#validate(GeodeticCRS)
      *
-     * @param  object  the object to test, or {@code null}.
-     *
-     * @see CRSValidator#validate(GeographicCRS)
+     * @since 3.1
      */
-    public static void validate(final GeographicCRS object) {
+    public static void validate(final GeodeticCRS object) {
         DEFAULT.validate(object);
     }
 

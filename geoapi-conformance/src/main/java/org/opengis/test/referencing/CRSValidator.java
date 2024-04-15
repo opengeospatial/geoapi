@@ -78,8 +78,7 @@ public class CRSValidator extends ReferencingValidator {
      * to <q>geodetic latitude</q>, <q>geodetic longitude</q> and <q>ellipsoidal height</q> (if 3D) names.
      * Those axis names will be verified by this validator, unless this fields is explicitly set to {@code false}.
      *
-     * @see #validate(GeocentricCRS)
-     * @see #validate(GeographicCRS)
+     * @see #validate(GeodeticCRS)
      * @see #validate(ProjectedCRS)
      * @see #validate(VerticalCRS)
      *
@@ -104,26 +103,20 @@ public class CRSValidator extends ReferencingValidator {
      * @param  object  the object to dispatch to {@code validate(…)} methods, or {@code null}.
      * @return number of {@code validate(…)} methods invoked in this class for the given object.
      */
-    @SuppressWarnings("deprecation")
+    @SuppressWarnings("SuspiciousIndentAfterControlStatement")
     public int dispatch(final CoordinateReferenceSystem object) {
         int n = 0;
         if (object != null) {
-            if (object instanceof GeocentricCRS)  {validate((GeocentricCRS)  object); n++;}
-            if (object instanceof GeographicCRS)  {validate((GeographicCRS)  object); n++;}
-            if (object instanceof ProjectedCRS)   {validate((ProjectedCRS)   object); n++;}
-            if (object instanceof DerivedCRS)     {validate((DerivedCRS)     object); n++;}
+            if (object instanceof GeodeticCRS)    {validate((GeodeticCRS)    object); n++;}
+            if (object instanceof ProjectedCRS)   {validate((ProjectedCRS)   object); n++;} else
+            if (object instanceof DerivedCRS)     {validate((DerivedCRS)     object); n++;} // Implied by above case.
             if (object instanceof EngineeringCRS) {validate((EngineeringCRS) object); n++;}
             if (object instanceof VerticalCRS)    {validate((VerticalCRS)    object); n++;}
             if (object instanceof TemporalCRS)    {validate((TemporalCRS)    object); n++;}
             if (object instanceof CompoundCRS)    {validate((CompoundCRS)    object); n++;}
             if (n == 0) {
-                if (object instanceof GeodeticCRS) {
-                    validate((GeodeticCRS) object, false, false);
-                    n++;
-                } else {
-                    validateIdentifiedObject(object);
-                    container.validate(object.getCoordinateSystem());
-                }
+                validateIdentifiedObject(object);
+                container.validate(object.getCoordinateSystem());
             }
         }
         return n;
@@ -135,6 +128,8 @@ public class CRSValidator extends ReferencingValidator {
      * to have the following names:
      *
      * <ul>
+     *   <li>For ellipsoidal coordinate system, <q>geodetic latitude</q>,
+     *       <q>geodetic longitude</q> and <q>ellipsoidal height</q> (if 3D).</li>
      *   <li>For Cartesian coordinate system, <q>geocentric X</q>,
      *       <q>geocentric Y</q> and <q>geocentric Z</q>.</li>
      *   <li>For spherical coordinate system, <q>spherical latitude</q>,
@@ -143,48 +138,21 @@ public class CRSValidator extends ReferencingValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      *
-     * @deprecated ISO 19111 does not have a specific type for geocentric CRS. Use geodetic CRS instead.
+     * @since 3.1
      */
-    @Deprecated(since="3.1")
-    public void validate(final GeocentricCRS object) {
-        validate(object, true, false);
-    }
-
-    /**
-     * Validates the given coordinate reference system. If the {@link #enforceStandardNames}
-     * field is set to {@code true} (which is the default), then this method expects the axes
-     * to have the following names:
-     *
-     * <ul>
-     *   <li><q>geodetic latitude</q>, <q>geodetic longitude</q> and <q>ellipsoidal height</q> (if 3D).</li>
-     * </ul>
-     *
-     * @param  object  the object to validate, or {@code null}.
-     */
-    public void validate(final GeographicCRS object) {
-        validate(object, false, true);
-    }
-
-    /**
-     * Implementation of {@link #validate(GeocentricCRS)} and {@link #validate(GeographicCRS)}.
-     *
-     * @param object          the object to validate, or {@code null}.
-     * @param skipGeographic  whether to skip validation of geographic CRS.
-     * @param skipGeocentric  whether to skip validation of geocentric CRS.
-     */
-    private void validate(final GeodeticCRS object, final boolean skipGeographic, final boolean skipGeocentric) {
+    public void validate(final GeodeticCRS object) {
         if (object == null) {
             return;
         }
         validateIdentifiedObject(object);
         final CoordinateSystem cs = object.getCoordinateSystem();
         mandatory("GeodeticCRS: shall have a CoordinateSystem.", cs);
-        if (!skipGeographic && cs instanceof EllipsoidalCS) {
+        if (cs instanceof EllipsoidalCS) {
             container.validate((EllipsoidalCS) cs);
             if (enforceStandardNames) {
                 assertStandardNames("GeographicCRS", cs, GEOGRAPHIC_AXIS_NAME);
             }
-        } else if (!skipGeocentric && cs instanceof CartesianCS) {
+        } else if (cs instanceof CartesianCS) {
             container.validate((CartesianCS) cs);
             final Set<AxisDirection> axes = getAxisDirections(cs);
             validate(axes);
@@ -195,7 +163,7 @@ public class CRSValidator extends ReferencingValidator {
             if (enforceStandardNames) {
                 assertStandardNames("GeocentricCRS", cs, GEOCENTRIC_AXIS_NAME);
             }
-        } else if (!skipGeocentric && cs instanceof SphericalCS) {
+        } else if (cs instanceof SphericalCS) {
             container.validate((SphericalCS) cs);
             if (enforceStandardNames) {
                 assertStandardNames("GeocentricCRS", cs, SPHERICAL_AXIS_NAME);

@@ -204,8 +204,8 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
     @Test
     public void testGeocentric() throws FactoryException {
         final CoordinateSystemAxis X, Y, Z;
-        final CartesianCS   cs;
-        final GeocentricCRS crs;            // The final product of this method.
+        final CartesianCS cs;
+        final GeodeticCRS crs;              // The final product of this method.
         final GeodeticDatum datum;
         final PrimeMeridian greenwich;
         final Ellipsoid     ellipsoid;
@@ -225,8 +225,8 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         validators.validate(cs = csFactory.createCartesianCS(name("Geocentric CS"), X, Z, Y));
 
         assumeTrue(crsFactory != null, NO_CRS_FACTORY);
-        validators.validate(crs = crsFactory.createGeocentricCRS(name("Geocentric CRS"), datum, cs));
-        assertAxisDirectionsEqual(crs.getCoordinateSystem(), new AxisDirection[] {GEOCENTRIC_X, GEOCENTRIC_Z, GEOCENTRIC_Y}, "GeocentricCRS");
+        validators.validate(crs = crsFactory.createGeodeticCRS(name("Geocentric CRS"), datum, cs));
+        assertAxisDirectionsEqual(crs.getCoordinateSystem(), new AxisDirection[] {GEOCENTRIC_X, GEOCENTRIC_Z, GEOCENTRIC_Y}, "GeodeticCRS");
     }
 
     /**
