@@ -115,12 +115,11 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @since 3.1
      */
-    @SuppressWarnings("deprecation")
     default GeodeticCRS createGeodeticCRS(Map<String,?> properties,
                                           GeodeticDatum datum,
                                           SphericalCS   cs) throws FactoryException
     {
-        return createGeocentricCRS(properties, datum, cs);
+        throw new UnimplementedServiceException(this, GeodeticCRS.class, "spherical");
     }
 
     /**
@@ -156,12 +155,11 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @since 3.1
      */
-    @SuppressWarnings("deprecation")
     default GeodeticCRS createGeodeticCRS(Map<String,?> properties,
                                           GeodeticDatum datum,
                                           CartesianCS   cs) throws FactoryException
     {
-        return createGeocentricCRS(properties, datum, cs);
+        throw new UnimplementedServiceException(this, GeodeticCRS.class, "Cartesian");
     }
 
     /**
