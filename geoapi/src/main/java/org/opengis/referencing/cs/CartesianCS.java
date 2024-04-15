@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  * All axes shall have the same length unit of measure.
  *
  * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
- * {@link org.opengis.referencing.crs.GeocentricCRS},
+ * {@link org.opengis.referencing.crs.GeodeticCRS},
  * {@link org.opengis.referencing.crs.ProjectedCRS} or
  * {@link org.opengis.referencing.crs.EngineeringCRS}.
  * The following examples describe some possible set of axes for Cartesian CS used with the above-cited CRS:</p>

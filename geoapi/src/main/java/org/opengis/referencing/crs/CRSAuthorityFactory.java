@@ -108,11 +108,37 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws FactoryException if the object creation failed.
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum(String)
+     *
+     * @deprecated The {@code GeocentricCRS} type has been removed since ISO 19111:2007.
+     * Use {@link #createGeodeticCRS(String)} instead.
      */
+    @Deprecated(since = "3.1")
     default GeocentricCRS createGeocentricCRS(final String code) throws FactoryException {
         final CoordinateReferenceSystem crs = createCoordinateReferenceSystem(code);
         try {
             return (GeocentricCRS) crs;
+        } catch (ClassCastException e) {
+            throw unexpectedType(this, code, crs, e);
+        }
+    }
+
+    /**
+     * Returns a geodetic coordinate reference system from a code.
+     * A geodetic CRS can be {@linkplain #createGeographicCRS(String) geographic} or geocentric.
+     *
+     * @param  code  value allocated by authority.
+     * @return the coordinate reference system for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum(String)
+     *
+     * @since 3.1
+     */
+    default GeodeticCRS createGeodeticCRS(final String code) throws FactoryException {
+        final CoordinateReferenceSystem crs = createCoordinateReferenceSystem(code);
+        try {
+            return (GeodeticCRS) crs;
         } catch (ClassCastException e) {
             throw unexpectedType(this, code, crs, e);
         }

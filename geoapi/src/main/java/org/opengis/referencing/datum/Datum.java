@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Specifies the relationship of a coordinate system to an object.
- * For {@linkplain org.opengis.referencing.crs.GeocentricCRS geodetic} and
+ * For {@linkplain org.opengis.referencing.crs.GeodeticCRS geodetic} and
  * {@linkplain org.opengis.referencing.crs.VerticalCRS vertical} coordinate reference systems (<abbr>CRS</abbr>),
  * the datum relates the coordinate system to the Earth or other celestial body.
  * With other types of <abbr>CRS</abbr>s,

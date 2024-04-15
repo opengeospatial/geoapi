@@ -982,11 +982,22 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * @throws FactoryException if this method cannot provide the requested information.
      */
     @Override
+    @Deprecated(since = "3.1")
     public GeocentricCRS createGeocentricCRS(String code) throws FactoryException {
         final int id = parseCode(code);
         switch (id) {
             default:   throw noSuchAuthorityCode(id, code);
         }
+    }
+
+    /**
+     * The default implementation delegates to {@link #createGeographicCRS(String)}.
+     *
+     * @throws FactoryException if this method cannot provide the requested information.
+     */
+    @Override
+    public GeodeticCRS createGeodeticCRS(final String code) throws FactoryException {
+        return createGeographicCRS(code);
     }
 
     /**

@@ -28,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  * Not to be confused with an {@link EllipsoidalCS} based on an ellipsoid "degenerated" into a sphere.
  *
  * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
- * {@link org.opengis.referencing.crs.GeocentricCRS} or
+ * {@link org.opengis.referencing.crs.GeodeticCRS} or
  * {@link org.opengis.referencing.crs.EngineeringCRS}.
  * The following examples describe some possible set of axes for spherical CS used with the above-cited CRS:</p>
  *

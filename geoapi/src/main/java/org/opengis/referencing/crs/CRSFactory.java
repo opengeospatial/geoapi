@@ -91,12 +91,36 @@ public interface CRSFactory extends ObjectFactory {
      * @param  cs  the spherical coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
+     *
+     * @deprecated The {@code GeocentricCRS} type has been removed since ISO 19111:2007.
+     * Use {@link #createGeodeticCRS(Map, GeodeticDatum, SphericalCS)} instead.
      */
+    @Deprecated(since = "3.1")
     default GeocentricCRS createGeocentricCRS(Map<String,?> properties,
                                               GeodeticDatum datum,
                                               SphericalCS   cs) throws FactoryException
     {
-        throw new UnimplementedServiceException(this, GeocentricCRS.class);
+        throw new UnimplementedServiceException(this, GeocentricCRS.class, "spherical");
+    }
+
+    /**
+     * Creates a geocentric coordinate reference system from a spherical coordinate system.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum  geodetic reference frame to use in created CRS.
+     * @param  cs  the spherical coordinate system for the created CRS.
+     * @return the coordinate reference system for the given properties.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
+     */
+    @SuppressWarnings("deprecation")
+    default GeodeticCRS createGeodeticCRS(Map<String,?> properties,
+                                          GeodeticDatum datum,
+                                          SphericalCS   cs) throws FactoryException
+    {
+        return createGeocentricCRS(properties, datum, cs);
     }
 
     /**
@@ -108,12 +132,36 @@ public interface CRSFactory extends ObjectFactory {
      * @param  cs  the Cartesian coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
+     *
+     * @deprecated The {@code GeocentricCRS} type has been removed since ISO 19111:2007.
+     * Use {@link #createGeodeticCRS(Map, GeodeticDatum, CartesianCS)} instead.
      */
+    @Deprecated(since = "3.1")
     default GeocentricCRS createGeocentricCRS(Map<String,?> properties,
                                               GeodeticDatum datum,
                                               CartesianCS   cs) throws FactoryException
     {
         throw new UnimplementedServiceException(this, GeocentricCRS.class, "Cartesian");
+    }
+
+    /**
+     * Creates a geocentric coordinate reference system from a Cartesian coordinate system.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum  geodetic reference frame to use in created CRS.
+     * @param  cs  the Cartesian coordinate system for the created CRS.
+     * @return the coordinate reference system for the given properties.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
+     */
+    @SuppressWarnings("deprecation")
+    default GeodeticCRS createGeodeticCRS(Map<String,?> properties,
+                                          GeodeticDatum datum,
+                                          CartesianCS   cs) throws FactoryException
+    {
+        return createGeocentricCRS(properties, datum, cs);
     }
 
     /**
