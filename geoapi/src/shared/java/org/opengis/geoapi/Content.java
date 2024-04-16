@@ -256,7 +256,6 @@ public enum Content {
                org.opengis.referencing.operation   .Transformation                      .class,
                org.opengis.referencing.operation   .PointMotionOperation                .class,
                org.opengis.referencing.operation   .PassThroughOperation                .class,
-               org.opengis.referencing.crs         .GeneralDerivedCRS                   .class,
                org.opengis.referencing.crs         .DerivedCRS                          .class,
                org.opengis.referencing.crs         .ProjectedCRS                        .class,
                org.opengis.referencing.operation   .ConicProjection                     .class,

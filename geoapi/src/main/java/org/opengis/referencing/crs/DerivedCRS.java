@@ -65,7 +65,7 @@ import static org.opengis.annotation.Specification.*;
  */
 @SuppressWarnings("deprecation")
 @UML(identifier="DerivedCRS", specification=ISO_19111)
-public interface DerivedCRS extends GeneralDerivedCRS {
+public interface DerivedCRS extends SingleCRS {
     /**
      * Returns the <abbr>CRS</abbr> that is the base for this derived <abbr>CRS</abbr>.
      * This is the {@linkplain Conversion#getSourceCRS() source <abbr>CRS</abbr>}
@@ -73,7 +73,6 @@ public interface DerivedCRS extends GeneralDerivedCRS {
      *
      * @return the <abbr>CRS</abbr> that is the base for this derived <abbr>CRS</abbr>.
      */
-    @Override
     @UML(identifier="baseCRS", obligation=MANDATORY, specification=ISO_19111)
     SingleCRS getBaseCRS();
 
@@ -90,7 +89,6 @@ public interface DerivedCRS extends GeneralDerivedCRS {
      *   GeoAPI defines a method name which contains the "{@code FromBase}" words
      *   for making clear which <abbr>CRS</abbr> is the source or which one is the target.
      */
-    @Override
     @UML(identifier="derivingConversion", obligation=MANDATORY, specification=ISO_19111)
     Conversion getConversionFromBase();
 
