@@ -58,7 +58,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      *
      * @category Other
      */
-    @UML(identifier="CS_AxisOrientationEnum.CS_AO_Other", specification=OGC_01009)
+    @UML(identifier="CS_AxisOrientationEnum.CS_AO_Other", obligation=CONDITIONAL, specification=OGC_01009)
     public static final AxisDirection OTHER = new AxisDirection("OTHER");
 
     /**
