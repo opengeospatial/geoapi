@@ -251,13 +251,6 @@ public class OperationValidator extends ReferencingValidator {
             return;
         }
         validateOperation(object);
-        assertFalse((object instanceof PlanarProjection) && (object instanceof ConicProjection),
-                    "Projection: cannot be both planar and conic.");
-        assertFalse((object instanceof PlanarProjection) && (object instanceof CylindricalProjection),
-                    "Projection: cannot be both planar and cylindrical.");
-        assertFalse((object instanceof CylindricalProjection) && (object instanceof ConicProjection),
-                    "Projection: cannot be both cylindrical and conic.");
-
         if (object.getMathTransform() != null) {
             mandatory("Conversion: non-defining conversion should have a source CRS.", object.getSourceCRS());
             mandatory("Conversion: non-defining conversion should have a target CRS.", object.getTargetCRS());
