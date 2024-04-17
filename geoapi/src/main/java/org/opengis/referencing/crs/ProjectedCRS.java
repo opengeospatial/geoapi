@@ -22,7 +22,6 @@ import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.datum.DatumEnsemble;
 import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.operation.Conversion;
-import org.opengis.referencing.operation.Projection;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -40,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  *
  * @see CRSAuthorityFactory#createProjectedCRS(String)
@@ -52,21 +51,13 @@ public interface ProjectedCRS extends DerivedCRS {
      * Returns the <abbr>CRS</abbr> that is the base for this projected <abbr>CRS</abbr>.
      * This is the {@linkplain Conversion#getSourceCRS() source <abbr>CRS</abbr>}
      * of the {@linkplain #getConversionFromBase() deriving conversion}.
+     * This type <abbr>CRS</abbr> is usually {@link GeographicCRS}, but not necessarily.
      *
      * @return the <abbr>CRS</abbr> that is the base for this projected <abbr>CRS</abbr>.
      */
     @Override
-    GeographicCRS getBaseCRS();
-
-    /**
-     * Returns the map projection from the base CRS to this projected CRS.
-     * The source <abbr>CRS</abbr> of the conversion, if non null, shall be the {@linkplain #getBaseCRS() base <abbr>CRS</abbr>}.
-     * The target <abbr>CRS</abbr> of the conversion, if non-null, shall be this <abbr>CRS</abbr>.
-     *
-     * @return the map projection from the base <abbr>CRS</abbr> to this projected <abbr>CRS</abbr>.
-     */
-    @Override
-    Projection getConversionFromBase();
+    @UML(identifier="baseCRS", obligation=MANDATORY, specification=ISO_19111)
+    GeodeticCRS getBaseCRS();
 
     /**
      * Returns the coordinate system, which shall be Cartesian.

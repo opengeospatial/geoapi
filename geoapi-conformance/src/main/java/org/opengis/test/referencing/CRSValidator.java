@@ -193,7 +193,7 @@ public class CRSValidator extends ReferencingValidator {
         }
         validateIdentifiedObject(object);
 
-        final GeographicCRS baseCRS = object.getBaseCRS();
+        final GeodeticCRS baseCRS = object.getBaseCRS();
         mandatory("ProjectedCRS: shall have a base CRS.", baseCRS);
         validate(baseCRS);
 

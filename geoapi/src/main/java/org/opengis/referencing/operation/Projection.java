@@ -17,57 +17,45 @@
  */
 package org.opengis.referencing.operation;
 
-import org.opengis.referencing.crs.GeographicCRS;
+import org.opengis.referencing.crs.GeodeticCRS;
 import org.opengis.referencing.crs.ProjectedCRS;
 
 
 /**
- * A {@linkplain org.opengis.referencing.operation.Conversion conversion} transforming
- * (<var>longitude</var>,<var>latitude</var>) coordinates to Cartesian coordinates
- * (<var>x</var>,<var>y</var>). Although some map projections can be represented as a
- * geometric process, in general a map projection is a set of formulae that converts geodetic
- * latitude and longitude to plane (map) coordinates. Height plays no role in this process,
- * which is entirely two-dimensional. The same map projection can be applied to many
- * {@linkplain org.opengis.referencing.crs.GeographicCRS geographic CRSs}, resulting in many
- * {@linkplain org.opengis.referencing.crs.ProjectedCRS projected CRSs} each of which is related
- * to the same {@linkplain org.opengis.referencing.datum.GeodeticDatum geodetic reference frame}
- * as the geographic CRS on which it was based.
- *
- * <p>An unofficial list of projections and their parameters can
- * be found <a href="http://www.remotesensing.org/geotiff/proj_list/">there</a>.
- * Most projections expect the following parameters:
- *  {@code "semi_major"} (mandatory),
- *  {@code "semi_minor"} (mandatory),
- *  {@code "central_meridian"} (default to 0),
- *  {@code "latitude_of_origin"} (default to 0),
- *  {@code "scale_factor"} (default to 1),
- *  {@code "false_easting"} (default to 0) and
- *  {@code "false_northing"} (default to 0).</p>
+ * A conversion from geodetic (<var>longitude</var>,<var>latitude</var>) coordinates
+ * to Cartesian (<var>x</var>,<var>y</var>) coordinates.
+ * Ellipsoidal height plays no role in the conversion process,
+ * but may pass-through in a three-dimensional Cartesian <abbr>CS</abbr>.
  *
  * @departure extension
- *   This interface is not part of the ISO specification. It has been added in GeoAPI at user
- *   request, in order to provide a way to know the kind of map projection.
+ *   This interface is not part of the OGC/ISO abstract specification.
+ *   It has been added in GeoAPI 3.0 for making possible to restrict the type of
+ *   <abbr>CRS</abbr> associated to this conversion, and for use as a filter for
+ *   {@linkplain org.opengis.referencing.operation.MathTransformFactory#getAvailableMethods(Class)
+ *   listing the map projection methods} available in an implementation.
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 4.0
  * @since   1.0
  *
  * @see org.opengis.referencing.crs.ProjectedCRS
- * @see <a href="http://mathworld.wolfram.com/MapProjection.html">Map projections on MathWorld</a>
  */
 public interface Projection extends Conversion {
     /**
-     * Returns the source CRS, which must be geographic or {@code null}.
+     * Returns the source CRS, which must be geodetic or {@code null}.
+     * This type <abbr>CRS</abbr> is usually {@link GeographicCRS}, but not necessarily.
      *
-     * @since 3.1
+     * @see ProjectedCRS#getBaseCRS()
+     *
+     * @since 4.0
      */
     @Override
-    GeographicCRS getSourceCRS();
+    GeodeticCRS getSourceCRS();
 
     /**
      * Returns the target CRS, which must be projected or {@code null}.
      *
-     * @since 3.1
+     * @since 4.0
      */
     @Override
     ProjectedCRS getTargetCRS();
