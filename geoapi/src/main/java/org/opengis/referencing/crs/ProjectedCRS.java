@@ -43,7 +43,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @see CRSAuthorityFactory#createProjectedCRS(String)
- * @see CRSFactory#createProjectedCRS(Map, GeographicCRS, Conversion, CartesianCS)
+ * @see CRSFactory#createProjectedCRS(Map, GeodeticCRS, Conversion, CartesianCS)
  */
 @UML(identifier="ProjectedCRS", specification=ISO_19111)
 public interface ProjectedCRS extends DerivedCRS {

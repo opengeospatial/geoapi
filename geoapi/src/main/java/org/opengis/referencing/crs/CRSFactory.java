@@ -275,7 +275,7 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  baseCRS  geographic coordinate reference system to base the projection on.
+     * @param  baseCRS  geodetic (usually geographic) coordinate reference system to base the projection on.
      *         The number of axes must matches the number of source dimensions of the conversion from base.
      * @param  conversionFromBase  the {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversion}.
      * @param  derivedCS  the coordinate system for the projected CRS.
@@ -288,7 +288,7 @@ public interface CRSFactory extends ObjectFactory {
      */
     @UML(identifier="createProjectedCoordinateSystem", specification=OGC_01009)
     default ProjectedCRS createProjectedCRS(Map<String,?> properties,
-                                            GeographicCRS baseCRS,
+                                            GeodeticCRS   baseCRS,
                                             Conversion    conversionFromBase,
                                             CartesianCS   derivedCS) throws FactoryException
     {

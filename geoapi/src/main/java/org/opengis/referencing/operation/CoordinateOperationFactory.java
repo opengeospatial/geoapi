@@ -159,7 +159,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @return the defining conversion.
      * @throws FactoryException if the object creation failed.
      *
-     * @see CRSFactory#createProjectedCRS(Map, GeographicCRS, Conversion, CartesianCS)
+     * @see CRSFactory#createProjectedCRS(Map, GeodeticCRS, Conversion, CartesianCS)
      * @see CRSFactory#createDerivedCRS(Map, CoordinateReferenceSystem, Conversion, CoordinateSystem)
      *
      * @departure extension
