@@ -17,6 +17,8 @@
  */
 package org.opengis.referencing.operation;
 
+import java.util.Optional;
+import java.time.temporal.Temporal;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
 
@@ -61,6 +63,30 @@ public interface Transformation extends SingleOperation {
     @Override
     @UML(identifier="targetCRS", obligation=MANDATORY, specification=ISO_19111)
     CoordinateReferenceSystem getTargetCRS();
+
+    /**
+     * This attribute is inherited from {@code CoordinateOperation} but is not applicable in a transformation.
+     *
+     * @return always empty.
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="sourceCoordinateEpoch", obligation=FORBIDDEN, specification=ISO_19111)
+    default Optional<Temporal> getSourceEpoch() {
+        return Optional.empty();
+    }
+
+    /**
+     * This attribute is inherited from {@code CoordinateOperation} but is not applicable in a transformation.
+     *
+     * @return always empty.
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="targetCoordinateEpoch", obligation=FORBIDDEN, specification=ISO_19111)
+    default Optional<Temporal> getTargetEpoch() {
+        return Optional.empty();
+    }
 
     /**
      * Returns the version of this coordinate transformation.

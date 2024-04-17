@@ -109,13 +109,16 @@ public interface OperationMethod extends IdentifiedObject {
 
     /**
      * Returns the set of parameters.
+     * If the operation has no parameter, then this method shall return an empty group.
      *
-     * @return the parameters, or an empty group if none.
+     * @return the parameters, or an empty group (never {@code null}) if none.
      *
      * @departure easeOfUse
      *   The sequence if {@code GeneralParameter} is replaced by a {@code ParameterGroup}
      *   because it provides method for fetching parameters by their names.
+     *
+     * @see SingleOperation#getParameterValues()
      */
-    @UML(identifier="parameter", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="parameter", obligation=OPTIONAL, specification=ISO_19111)
     ParameterDescriptorGroup getParameters();
 }

@@ -64,6 +64,7 @@ public class OperationValidator extends ReferencingValidator {
         if (object != null) {
             if (object instanceof Conversion)            {validate((Conversion)            object); n++;}
             if (object instanceof Transformation)        {validate((Transformation)        object); n++;}
+            if (object instanceof PointMotionOperation)  {validate((PointMotionOperation)  object); n++;}
             if (object instanceof ConcatenatedOperation) {validate((ConcatenatedOperation) object); n++;}
             if (object instanceof PassThroughOperation)  {validate((PassThroughOperation)  object); n++;}
             if (n == 0) {
@@ -251,15 +252,16 @@ public class OperationValidator extends ReferencingValidator {
             return;
         }
         validateOperation(object);
-        if (object.getMathTransform() != null) {
+        if (object.getMathTransform() == null) {
+            forbidden("Conversion: defining conversion should not have a source CRS", object.getSourceCRS());
+            forbidden("Conversion: defining conversion should not have a target CRS", object.getTargetCRS());
+        } else {
             mandatory("Conversion: non-defining conversion should have a source CRS.", object.getSourceCRS());
             mandatory("Conversion: non-defining conversion should have a target CRS.", object.getTargetCRS());
         }
+        forbidden("Conversion: should not have a source epoch.", object.getSourceEpoch().orElse(null));
+        forbidden("Conversion: should not have a target epoch.", object.getTargetEpoch().orElse(null));
         forbidden("Conversion: should not have operation version.", object.getOperationVersion());
-        if (object.getMathTransform() == null) {
-            forbidden("Conversion: defining conversion should not have source CRS", object.getSourceCRS());
-            forbidden("Conversion: defining conversion should not have target CRS", object.getTargetCRS());
-        }
     }
 
     /**
@@ -272,10 +274,35 @@ public class OperationValidator extends ReferencingValidator {
             return;
         }
         validateOperation(object);
-        mandatory("Transformation: operationVersion is a mandatory attribute.", object.getOperationVersion());
         mandatory("Transformation: sourceCRS is a mandatory attribute.",        object.getSourceCRS());
         mandatory("Transformation: targetCRS is a mandatory attribute.",        object.getTargetCRS());
+        mandatory("Transformation: operationVersion is a mandatory attribute.", object.getOperationVersion());
         mandatory("Transformation: MathTransform is a mandatory attribute.",    object.getMathTransform());
+        forbidden("Transformation: should not have a source epoch.", object.getSourceEpoch().orElse(null));
+        forbidden("Transformation: should not have a target epoch.", object.getTargetEpoch().orElse(null));
+    }
+
+    /**
+     * Validates the point motion operation.
+     *
+     * @param  object  the object to validate, or {@code null}.
+     * @since 3.1
+     */
+    public void validate(final PointMotionOperation object) {
+        if (object == null) {
+            return;
+        }
+        validateOperation(object);
+        CoordinateReferenceSystem sourceCRS, targetCRS;
+        mandatory("PointMotionOperation: sourceCRS is a mandatory attribute.", sourceCRS = object.getSourceCRS());
+        mandatory("PointMotionOperation: targetCRS is a mandatory attribute.", targetCRS = object.getTargetCRS());
+        if (sourceCRS != null && targetCRS != null) {
+            assertEquals(sourceCRS, targetCRS, "PointMotionOperation: sourceCRS and targetCRS shall be equal.");
+        }
+        mandatory("PointMotionOperation: source epoch is a mandatory attribute.", object.getSourceEpoch().orElse(null));
+        mandatory("PointMotionOperation: target epoch is a mandatory attribute.", object.getTargetEpoch().orElse(null));
+        mandatory("PointMotionOperation: operationVersion is a mandatory attribute.", object.getOperationVersion());
+        mandatory("PointMotionOperation: MathTransform is a mandatory attribute.",    object.getMathTransform());
     }
 
     /**

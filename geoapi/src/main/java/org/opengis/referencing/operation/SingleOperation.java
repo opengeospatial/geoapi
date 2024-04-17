@@ -49,13 +49,17 @@ public interface SingleOperation extends CoordinateOperation {
 
     /**
      * Returns the parameter values used by this single operation.
+     * If the operation has no parameter, then this method shall return an empty group.
      *
      * @return the parameter values used by this single operation.
+     *         Never {@code null} but may be a group with no parameter.
      *
      * @departure easeOfUse
      *   The sequence if {@code GeneralParameterValue} is replaced by a {@code ParameterValueGroup}
      *   because it provides method for fetching parameters by their names.
+     *
+     * @see OperationMethod#getParameters()
      */
-    @UML(identifier="parameterValue", obligation=MANDATORY, specification=ISO_19111)
+    @UML(identifier="parameterValue", obligation=OPTIONAL, specification=ISO_19111)
     ParameterValueGroup getParameterValues();
 }
