@@ -56,6 +56,7 @@ public interface SingleCRS extends CoordinateReferenceSystem {
     /**
      * Returns the coordinate system.
      */
+    @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystem getCoordinateSystem();
 

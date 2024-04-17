@@ -66,12 +66,14 @@ public interface VerticalCRS extends SingleCRS {
     /**
      * Returns the coordinate system, which must be vertical.
      */
+    @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     VerticalCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be vertical.
      */
+    @Override
     @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
     VerticalDatum getDatum();
 }

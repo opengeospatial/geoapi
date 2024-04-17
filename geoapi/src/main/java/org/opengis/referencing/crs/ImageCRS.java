@@ -18,7 +18,6 @@
 package org.opengis.referencing.crs;
 
 import org.opengis.referencing.cs.AffineCS;
-import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.datum.ImageDatum;
 import org.opengis.annotation.UML;
 
@@ -50,12 +49,14 @@ public interface ImageCRS extends SingleCRS {
     /**
      * Returns the cartesian coordinate system.
      */
+    @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     AffineCS getCoordinateSystem();
 
     /**
      * Returns the datum, which must be an image one.
      */
+    @Override
     @UML(identifier="datum", obligation=MANDATORY, specification=ISO_19111)
     ImageDatum getDatum();
 }

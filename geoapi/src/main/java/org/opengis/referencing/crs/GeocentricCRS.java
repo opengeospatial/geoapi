@@ -39,8 +39,8 @@ import static org.opengis.annotation.Specification.*;
  * </TD></TR></TABLE>
  *
  * @departure historic
- *   This interface is kept conformant with the specification published in 2003. 
- *   The 2007 revision of ISO 19111 removed the <code>GeographicCRS</code> and 
+ *   This interface is kept conformant with the specification published in 2003.
+ *   The 2007 revision of ISO 19111 removed the <code>GeographicCRS</code> and
  *   <code>GeocentricCRS</code> types, handling both using the <code>GeodeticCRS</code> parent type.
  *   GeoAPI keeps them since the distinction between those two types is in wide use.
  *
@@ -56,6 +56,7 @@ public interface GeocentricCRS extends GeodeticCRS {
      * Returns the coordinate system, which must be {@linkplain CartesianCS cartesian}
      * or {@linkplain SphericalCS spherical}.
      */
+    @Override
     @UML(identifier="coordinateSystem", obligation=MANDATORY, specification=ISO_19111)
     CoordinateSystem getCoordinateSystem();
 }
