@@ -83,9 +83,9 @@ public interface MathTransformFactory extends Factory {
      * {@code OperationMethod}s. The argument is usually (but not restricted to) one of the following types:</p>
      *
      * <ul>
+     *   <li>{@link Conversion} for coordinate operations described by definitions (including map projections).</li>
      *   <li>{@link Transformation} for coordinate operations described by empirically derived parameters.</li>
-     *   <li>{@link Conversion} for coordinate operations described by definitions.</li>
-     *   <li>{@link Projection} for conversions from geodetic latitudes and longitudes to plane (map) coordinates.</li>
+     *   <li>{@link PointMotionOperation} for changes due to the motion of the point between two coordinate epochs.</li>
      *   <li>{@link SingleOperation} for all coordinate operations, regardless of their type.</li>
      * </ul>
      *
@@ -93,7 +93,7 @@ public interface MathTransformFactory extends Factory {
      * if this {@code MathTransformFactory} does not support filtering by the given type.
      *
      * @param  type <code>{@linkplain SingleOperation}.class</code> for fetching all operation methods,
-     *         <code>{@linkplain Projection}.class</code> for fetching only map projection methods, <i>etc</i>.
+     *         <code>{@linkplain Transformation}.class</code> for fetching only transformation methods, <i>etc</i>.
      * @return methods available in this factory for coordinate operations of the given type.
      *
      * @departure extension

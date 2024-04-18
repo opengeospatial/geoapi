@@ -24,11 +24,14 @@ package org.opengis.referencing.operation;
  * Ellipsoidal height plays no role in the conversion process,
  * but may pass-through in a three-dimensional Cartesian <abbr>CS</abbr>.
  *
- * @departure extension
+ * <div class="warning"><b>Upcoming API change — removal</b><br>
  *   This interface is not part of the OGC/ISO abstract specification.
  *   It has been added in GeoAPI 3.0 as a filter for
  *   {@linkplain org.opengis.referencing.operation.MathTransformFactory#getAvailableMethods(Class)
  *   listing the map projection methods} available in an implementation.
+ *   This interface may be removed in GeoAPI 4.0.
+ *   Users should use the {@link Conversion} parent interface instead.
+ * </div>
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
