@@ -34,7 +34,7 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.TransformException;
 import org.opengis.referencing.operation.MathTransformFactory;
-import org.opengis.referencing.operation.Projection;
+import org.opengis.referencing.operation.Conversion;
 import org.opengis.referencing.operation.Transformation;
 import org.opengis.referencing.operation.SingleOperation;
 import org.opengis.test.ToleranceModifiers;
@@ -272,12 +272,12 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Creates a math transform for the {@linkplain SingleOperation coordinate operation} identified by
-     * {@link SamplePoints#operation} and stores the result in the {@link #transform} field.
+     * Creates a math transform for the coordinate operation identified by {@link SamplePoints#operation}
+     * and stores the result in the {@link #transform} field.
      * The set of allowed codes is documented in second column of the
      * {@link PseudoEpsgFactory#createParameters(int)} method.
      *
-     * @param  type    either {@code Projection.class} or {@code Transformation.class}.
+     * @param  type    either {@code Conversion.class} or {@code Transformation.class}.
      * @param  sample  the points which will be transformed.
      * @throws FactoryException if the math transform cannot be created.
      */
@@ -439,7 +439,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testMercator1SP() throws FactoryException, TransformException {
         description = "Makassar / NEIEZ";
         final SamplePoints sample = SamplePoints.forCRS(3002);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -490,7 +490,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testMercator2SP() throws FactoryException, TransformException {
         description = "Pulkovo 1942 / Caspian Sea Mercator";
         final SamplePoints sample = SamplePoints.forCRS(3388);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -559,7 +559,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         /*
          * Following is common to all tests in this class.
          */
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -615,7 +615,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         parameters.parameter("semi_major").setValue(6371007.0);
         parameters.parameter("semi_minor").setValue(6371007.0);
         validators.validate(parameters);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -666,7 +666,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testPseudoMercator() throws FactoryException, TransformException {
         description = "WGS 84 / Pseudo-Mercator";
         final SamplePoints sample = SamplePoints.forCRS(3857);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -714,7 +714,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testMiller() throws FactoryException, TransformException {
         description = "IGNF:MILLER";
         final SamplePoints sample = SamplePoints.forCRS(310642901);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -768,7 +768,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testHotineObliqueMercator() throws FactoryException, TransformException {
         description = "Timbalai 1948 / RSO Borneo (m)";
         final SamplePoints sample = SamplePoints.forCRS(29873);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -820,7 +820,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testTransverseMercator() throws FactoryException, TransformException {
         description = "OSGB 1936 / British National Grid";
         final SamplePoints sample = SamplePoints.forCRS(27700);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -870,7 +870,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testTransverseMercatorSouthOrientated() throws FactoryException, TransformException {
         description = "Hartebeesthoek94 / Lo29";
         final SamplePoints sample = SamplePoints.forCRS(2053);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         /*
          * In this particular case we have a conflict between the change of axis direction performed by the
@@ -942,7 +942,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testCassiniSoldner() throws FactoryException, TransformException {
         description = "Trinidad 1903 / Trinidad Grid";
         final SamplePoints sample = SamplePoints.forCRS(2314);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -994,7 +994,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testHyperbolicCassiniSoldner() throws FactoryException, TransformException {
         description = "Vanua Levu 1915 / Vanua Levu Grid";
         final SamplePoints sample = SamplePoints.forCRS(3139);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -1046,7 +1046,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testLambertConicConformal1SP() throws FactoryException, TransformException {
         description = "JAD69 / Jamaica National Grid";
         final SamplePoints sample = SamplePoints.forCRS(24200);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -1100,7 +1100,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testLambertConicConformal2SP() throws FactoryException, TransformException {
         description = "NAD27 / Texas South Central";
         final SamplePoints sample = SamplePoints.forCRS(32040);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -1153,7 +1153,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testLambertConicConformalBelgium() throws FactoryException, TransformException {
         description = "Belge 1972 / Belge Lambert 72";
         final SamplePoints sample = SamplePoints.forCRS(31300);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -1205,7 +1205,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testLambertConicConformalMichigan() throws FactoryException, TransformException {
         description = "NAD27 / Michigan Central";
         final SamplePoints sample = SamplePoints.forCRS(6201);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -1256,7 +1256,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testLambertAzimuthalEqualArea() throws FactoryException, TransformException {
         description = "ETRS89 / LAEA Europe";
         final SamplePoints sample = SamplePoints.forCRS(3035);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -1309,7 +1309,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testPolarStereographicA() throws FactoryException, TransformException {
         description = "WGS 84 / UPS North (E,N)";
         final SamplePoints sample = SamplePoints.forCRS(5041);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -1361,7 +1361,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testPolarStereographicB() throws FactoryException, TransformException {
         description = "Australian Antarctic Polar Stereographic";
         final SamplePoints sample = SamplePoints.forCRS(3032);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -1413,7 +1413,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testPolarStereographicC() throws FactoryException, TransformException {
         description = "Petrels 1972 / Terre Adelie Polar Stereographic";
         final SamplePoints sample = SamplePoints.forCRS(2985);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -1465,7 +1465,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testObliqueStereographic() throws FactoryException, TransformException {
         description = "Amersfoort / RD New";
         final SamplePoints sample = SamplePoints.forCRS(28992);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -1512,7 +1512,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         tolerance = max(tolerance, 0.5);                        // The sample points are only accurate to 1 metre.
         description = "American Polyconic";
         final SamplePoints sample = SamplePoints.forCRS(9818);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -1563,7 +1563,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testKrovak() throws FactoryException, TransformException {
         description = "CRS S-JTSK (Ferro) / Krovak";
         final SamplePoints sample = SamplePoints.forCRS(2065);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -1609,7 +1609,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testOrthographic() throws FactoryException, TransformException {
         description = "WGS 84 / Orthographic";
         final SamplePoints sample = SamplePoints.forCRS(9840);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
@@ -1655,7 +1655,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     public void testModifiedAzimuthalEquidistant() throws FactoryException, TransformException {
         description = "Guam 1963 / Yap Islands";
         final SamplePoints sample = SamplePoints.forCRS(3295);
-        createMathTransform(Projection.class, sample);
+        createMathTransform(Conversion.class, sample);
         setTolerance(ToleranceModifier.PROJECTION);
         verifyTransform(sample.sourcePoints, sample.targetPoints);
         verifyInDomainOfValidity(sample.areaOfValidity);
