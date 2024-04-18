@@ -79,10 +79,10 @@ public final class ValidatorTest {
     @Test
     public void testAssertPerpendicularAxes() {
         final var directions = new ArrayList<>(List.of(
-                NORTH, DISPLAY_DOWN, OTHER, WEST, DISPLAY_RIGHT, FUTURE));
+                NORTH, DISPLAY_DOWN, UNSPECIFIED, WEST, DISPLAY_RIGHT, FUTURE));
         CSValidator.assertPerpendicularAxes(directions);
         assertTrue(directions.isEmpty(), "Collection is cleaned as a side effect of internal working.");
-        directions.addAll(List.of(NORTH, DISPLAY_DOWN, OTHER, SOUTH_EAST, DISPLAY_RIGHT, FUTURE));
+        directions.addAll(List.of(NORTH, DISPLAY_DOWN, UNSPECIFIED, SOUTH_EAST, DISPLAY_RIGHT, FUTURE));
         try {
             CSValidator.assertPerpendicularAxes(directions);
             fail("Should have detected the non-perpendicular axes.");

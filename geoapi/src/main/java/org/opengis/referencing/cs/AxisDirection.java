@@ -35,29 +35,18 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  *
  * @see CoordinateSystemAxis#getDirection()
  */
-@Vocabulary(capacity=41)
+@Vocabulary(capacity=40)
 @UML(identifier="AxisDirection", specification=ISO_19111)
 public final class AxisDirection extends CodeList<AxisDirection> {
     /**
      * Serial number for compatibility with different versions.
      */
     private static final long serialVersionUID = -4405275475770755714L;
-
-    /**
-     * Unknown or unspecified axis orientation.
-     *
-     * @category Other
-     *
-     * @deprecated Replaced by {@link #UNSPECIFIED} in ISO 19111:2019.
-     */
-    @Deprecated(since = "3.1")
-    @UML(identifier="CS_AxisOrientationEnum.CS_AO_Other", obligation=CONDITIONAL, specification=OGC_01009)
-    public static final AxisDirection OTHER = new AxisDirection("OTHER");
 
     /**
      * Axis positive direction is north.

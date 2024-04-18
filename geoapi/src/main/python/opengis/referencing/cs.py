@@ -34,7 +34,6 @@ class AxisDirection(Enum):
     NORTH_NORTH_EAST = "northNorthEast"
     NORTH_NORTH_WEST = "northNorthWest"
     NORTH_WEST = "northWest"
-    OTHER = "other"
     PAST = "past"
     ROW_NEGATIVE = "rowNegative"
     ROW_POSITIVE = "rowPositive"
