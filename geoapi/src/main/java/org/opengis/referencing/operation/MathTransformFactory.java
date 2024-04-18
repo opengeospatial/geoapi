@@ -64,8 +64,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   1.0
- *
- * @see <a href="http://www.remotesensing.org/geotiff/proj_list/">Projection transform list on RemoteSensing.org</a>
  */
 @UML(identifier="CT_MathTransformFactory", specification=OGC_01009)
 public interface MathTransformFactory extends Factory {
@@ -139,8 +137,7 @@ public interface MathTransformFactory extends Factory {
      * Returns the default parameter values for a math transform using the given operation method.
      * The {@code method} argument is the name of any {@code OperationMethod} instance returned by
      * <code>{@link #getAvailableMethods(Class) getAvailableMethods}({@linkplain SingleOperation}.class)</code>.
-     * A typical example is
-     * "<a href="http://www.remotesensing.org/geotiff/proj_list/transverse_mercator.html">Transverse Mercator</a>").
+     * A typical example is "Transverse Mercator".
      *
      * <p>The {@linkplain ParameterDescriptorGroup#getName() parameter group name} shall be a method name or identifier
      * that {@link #createParameterizedTransform(ParameterValueGroup)} can recognize without ambiguity.</p>

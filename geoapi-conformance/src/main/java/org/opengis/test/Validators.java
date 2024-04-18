@@ -815,6 +815,18 @@ public class Validators {
      *
      * @param  object  the object to test, or {@code null}.
      *
+     * @see OperationValidator#validate(PointMotionOperation)
+     * @since 3.1
+     */
+    public static void validate(final PointMotionOperation object) {
+        DEFAULT.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(ConcatenatedOperation)
      */
     public static void validate(final ConcatenatedOperation object) {

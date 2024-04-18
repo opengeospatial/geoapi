@@ -40,7 +40,7 @@ import static org.junit.jupiter.api.Assumptions.assumeFalse;
  * of incompatible changes to be expected in the next major GeoAPI release.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 4.0
+ * @version 3.1
  * @since   3.1
  */
 public class CompatibilityVerifier implements Closeable {

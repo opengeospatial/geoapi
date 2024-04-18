@@ -378,7 +378,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
          * have set the Validator.requireMandatoryAttributes to `false`, in which case
          * we need to be lenient as the user wishes.
          */
-        final GeographicCRS baseCRS = crs.getBaseCRS();
+        final GeodeticCRS baseCRS = crs.getBaseCRS();
         if (baseCRS != null) {
             verifyAxisDirection("BaseCRS", baseCRS.getCoordinateSystem(), swapλφ, false);
             final GeodeticDatum datum = baseCRS.getDatum();

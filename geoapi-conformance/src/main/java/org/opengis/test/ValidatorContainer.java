@@ -1000,6 +1000,18 @@ public class ValidatorContainer implements Cloneable {
      *
      * @param  object  the object to test, or {@code null}.
      *
+     * @see OperationValidator#validate(PointMotionOperation)
+     * @since 3.1
+     */
+    public final void validate(final PointMotionOperation object) {
+        coordinateOperation.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see OperationValidator#validate(ConcatenatedOperation)
      */
     public final void validate(final ConcatenatedOperation object) {

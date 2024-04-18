@@ -53,6 +53,11 @@ public interface ProjectedCRS extends DerivedCRS {
      * This is the {@linkplain Conversion#getSourceCRS() source <abbr>CRS</abbr>}
      * of the {@linkplain #getConversionFromBase() deriving conversion}.
      *
+     * <div class="warning"><b>Upcoming API change — conformance</b><br>
+     * The <abbr>CRS</abbr> type should be {@link GeodeticCRS} according ISO 19111:2019.
+     * This change may be applied in GeoAPI 4.0. In preparation for this possible change,
+     * users should assign the returned value to {@code GeodeticCRS} only.</div>
+     *
      * @return the <abbr>CRS</abbr> that is the base for this projected <abbr>CRS</abbr>.
      */
     @Override
@@ -62,6 +67,11 @@ public interface ProjectedCRS extends DerivedCRS {
      * Returns the map projection from the base CRS to this projected CRS.
      * The source <abbr>CRS</abbr> of the conversion, if non null, shall be the {@linkplain #getBaseCRS() base <abbr>CRS</abbr>}.
      * The target <abbr>CRS</abbr> of the conversion, if non-null, shall be this <abbr>CRS</abbr>.
+     *
+     * <div class="warning"><b>Upcoming API change — conformance</b><br>
+     * The {@code Projection} type is not part of OGC/ISO abstract specification.
+     * This change may be applied in GeoAPI 4.0. In preparation for this possible change,
+     * users should assign the returned value to {@code Conversion} only.</div>
      *
      * @return the map projection from the base <abbr>CRS</abbr> to this projected <abbr>CRS</abbr>.
      */

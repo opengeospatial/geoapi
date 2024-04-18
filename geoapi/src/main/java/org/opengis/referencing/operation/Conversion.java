@@ -18,6 +18,8 @@
 package org.opengis.referencing.operation;
 
 import java.util.Map;
+import java.util.Optional;
+import java.time.temporal.Temporal;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
@@ -76,7 +78,31 @@ public interface Conversion extends SingleOperation {
     CoordinateReferenceSystem getTargetCRS();
 
     /**
-     * This attribute is declared in {@code CoordinateOperation} but is not used in a conversion.
+     * This attribute is inherited from {@code CoordinateOperation} but is not applicable in a conversion.
+     *
+     * @return always empty.
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="sourceCoordinateEpoch", obligation=FORBIDDEN, specification=ISO_19111)
+    default Optional<Temporal> getSourceEpoch() {
+        return Optional.empty();
+    }
+
+    /**
+     * This attribute is inherited from {@code CoordinateOperation} but is not applicable in a conversion.
+     *
+     * @return always empty.
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="targetCoordinateEpoch", obligation=FORBIDDEN, specification=ISO_19111)
+    default Optional<Temporal> getTargetEpoch() {
+        return Optional.empty();
+    }
+
+    /**
+     * This attribute is inherited from {@code CoordinateOperation} but is not applicable in a conversion.
      *
      * @return usually {@code null}.
      */

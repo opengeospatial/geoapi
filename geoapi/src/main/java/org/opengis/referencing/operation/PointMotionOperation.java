@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   3.1
  */
 @UML(identifier="PointMotionOperation", specification=ISO_19111)
-public interface PointMotionOperation extends CoordinateOperation {
+public interface PointMotionOperation extends SingleOperation {
     /**
      * Returns the <abbr>CRS</abbr> from which coordinates are changed.
      * This attribute is mandatory in all point motion operations.

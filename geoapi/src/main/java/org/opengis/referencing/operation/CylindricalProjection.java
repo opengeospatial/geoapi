@@ -21,16 +21,17 @@ package org.opengis.referencing.operation;
 /**
  * Base interface for cylindrical map projections.
  *
- * @departure extension
- *   This interface is not part of the ISO specification. It has been added in GeoAPI at user
- *   request, in order to provide a way to know the kind of map projection.
- *
  * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @version 3.1
  * @since   1.0
  *
  * @see org.opengis.referencing.crs.ProjectedCRS
- * @see <a href="http://mathworld.wolfram.com/CylindricalProjection.html">Cylindrical projection on MathWorld</a>
+ *
+ * @deprecated
+ *   This interface is not part of the OGC/ISO abstract specifications. This interface has been added in GeoAPI
+ *   as a way to know the kind of map projection, but it is only one classification scheme among many.
+ *   This way of classifying projections is difficult to implement and rarely used.
  */
+@Deprecated(since = "3.1")
 public interface CylindricalProjection extends Projection {
 }

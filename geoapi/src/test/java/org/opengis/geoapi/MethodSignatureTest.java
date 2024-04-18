@@ -18,6 +18,7 @@
 package org.opengis.geoapi;
 
 import java.util.Collection;
+import java.util.function.Supplier;
 import java.lang.reflect.Type;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
@@ -188,6 +189,13 @@ public final class MethodSignatureTest extends SourceGenerator {
     }
 
     /**
+     * Creates a message for an assertion that failed for a given property in a given class.
+     */
+    private static Supplier<String> message(Class<?> c, Method m, String explanation) {
+        return () -> c.getSimpleName() + '.' + m.getName() + ": " + explanation;
+    }
+
+    /**
      * Verifies that all optional methods have default implementation, and all mandatory methods are abstract.
      */
     @Test
@@ -218,63 +226,68 @@ public final class MethodSignatureTest extends SourceGenerator {
                              * or conversely (with default despite declared mandatory).
                              */
                             if (c == org.opengis.referencing.crs.DerivedCRS.class ||
-                                c == org.opengis.referencing.crs.ProjectedCRS.class)
+                                c == org.opengis.referencing.crs.ProjectedCRS.class ||
+                                c == org.opengis.referencing.crs.CompoundCRS.class)
                             {
                                 switch (m.getName()) {
-                                    case "getDatum": isOptional = true;
+                                    case "getDatum":
+                                    case "getSingleComponents":
+                                        assertFalse(isOptional, message(c, m, "special case not needed anymore."));
+                                        isOptional = true;
                                 }
                             }
-                            if (c == org.opengis.referencing.crs.CompoundCRS.class) {
-                                switch (m.getName()) {
-                                    case "getSingleComponents": isOptional = true;
-                                }
-                            }
-                            if (c == org.opengis.referencing.operation.Conversion.class) {
+                            if (c == org.opengis.referencing.operation.OperationMethod.class ||
+                                c == org.opengis.referencing.operation.SingleOperation.class ||
+                                c == org.opengis.referencing.operation.Conversion.class)
+                            {
                                 switch (m.getName()) {
                                     case "getSourceCRS":
-                                    case "getTargetCRS": isOptional = false;
+                                    case "getTargetCRS":
+                                    case "getParameters":
+                                    case "getParameterValues":
+                                        assertTrue(isOptional, message(c, m, "special case not needed anymore."));
+                                        isOptional = false;
                                 }
                             }
                             if (c == org.opengis.feature.IdentifiedType.class) {
                                 switch (m.getName()) {
-                                    case "getName": isOptional = false;
+                                    case "getName":
+                                        assertTrue(isOptional, message(c, m, "special case not needed anymore."));
+                                        isOptional = false;
                                 }
                             }
                             if (c == org.opengis.feature.FeatureType.class) {
                                 switch (m.getName()) {
                                     case "getSuperTypes":
-                                    case "getProperties": isOptional = false;
+                                    case "getProperties":
+                                        assertTrue(isOptional, message(c, m, "special case not needed anymore."));
+                                        isOptional = false;
                                 }
                             }
                             if (c == org.opengis.filter.BinarySpatialOperator.class ||
-                                c == org.opengis.filter.BinaryComparisonOperator.class)
+                                c == org.opengis.filter.BinaryComparisonOperator.class ||
+                                c == org.opengis.filter.BetweenComparisonOperator.class ||
+                                c == org.opengis.filter.LikeOperator.class)
                             {
                                 switch (m.getName()) {
                                     case "getOperand1":
-                                    case "getOperand2": isOptional = true;
-                                }
-                            }
-                            if (c == org.opengis.filter.BetweenComparisonOperator.class) {
-                                switch (m.getName()) {
+                                    case "getOperand2":
                                     case "getExpression":
                                     case "getLowerBoundary":
-                                    case "getUpperBoundary": isOptional = true;
-                                }
-                            }
-                            if (c == org.opengis.filter.LikeOperator.class) {
-                                switch (m.getName()) {
+                                    case "getUpperBoundary":
                                     case "getWildCard":
                                     case "getSingleChar":
-                                    case "getEscapeChar": isOptional = true;
+                                    case "getEscapeChar":
+                                        assertFalse(isOptional, message(c, m, "special case not needed anymore."));
+                                        isOptional = true;
                                 }
                             }
                         }
-                        if (m.isDefault() != isOptional && m.getReturnType() != Boolean.TYPE
-                                && !m.getName().startsWith("create"))   // Ignore factory methods.
-                        {
-                            fail(c.getSimpleName() + '.' + m.getName() + ": " + (isOptional
-                                    ? "expected a default method."
-                                    : "should not have default method."));
+                        // Ignore factory methods.
+                        if (m.getReturnType() != Boolean.TYPE && !m.getName().startsWith("create")) {
+                            assertEquals(isOptional, m.isDefault(), message(c, m,
+                                         isOptional ? "expected a default method."
+                                                    : "should not have default method."));
                         }
                     }
                 }
