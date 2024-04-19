@@ -262,7 +262,7 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         validators.validate(greenwich   = datumFactory.createPrimeMeridian  (name("Greenwich Meridian"), 0, degree));
         validators.validate(ellipsoid   = datumFactory.createFlattenedSphere(name("WGS84 Ellipsoid"), 6378137, 298.257223563, metre));
         validators.validate(baseDatum   = datumFactory.createGeodeticDatum  (name("WGS84 Datum"), ellipsoid, greenwich));
-        validators.validate(heightDatum = datumFactory.createVerticalDatum  (name("WGS84 geoidal height"), VerticalDatumType.GEOIDAL));
+        validators.validate(heightDatum = datumFactory.createVerticalDatum  (name("WGS84 geoidal height"), RealizationMethod.GEOID));
 
         assumeTrue(csFactory != null, NO_CS_FACTORY);
         validators.validate(axisN       = csFactory.createCoordinateSystemAxis(name("Northing"),               "N", NORTH, metre));

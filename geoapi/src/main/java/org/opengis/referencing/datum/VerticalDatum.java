@@ -36,11 +36,11 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  *
  * @see DatumAuthorityFactory#createVerticalDatum(String)
- * @see DatumFactory#createVerticalDatum(Map, VerticalDatumType)
+ * @see DatumFactory#createVerticalDatum(Map, RealizationMethod)
  */
 @UML(identifier="VerticalReferenceFrame", specification=ISO_19111)
 public interface VerticalDatum extends Datum {
@@ -54,18 +54,5 @@ public interface VerticalDatum extends Datum {
     @UML(identifier="realizationMethod", obligation=OPTIONAL, specification=ISO_19111)
     default Optional<RealizationMethod> getRealizationMethod() {
         return Optional.empty();
-    }
-
-    /**
-     * The type of this vertical datum.
-     *
-     * @return the type of this vertical datum.
-     *
-     * @deprecated Replaced by {@link #getRealizationMethod()} in ISO 19111:2019.
-     */
-    @Deprecated(since = "3.1")
-    @UML(identifier="vertDatumType", obligation=MANDATORY, specification=ISO_19111, version=2003)
-    default VerticalDatumType getVerticalDatumType() {
-        return VerticalDatumType.from(getRealizationMethod().orElse(null));
     }
 }

@@ -361,7 +361,6 @@ public enum Content {
             org.opengis.referencing.cs          .RangeMeaning                 .class,
             org.opengis.referencing.datum       .PixelInCell                  .class,
             org.opengis.referencing.datum       .RealizationMethod            .class,
-            org.opengis.referencing.datum       .VerticalDatumType            .class,
             org.opengis.filter                  .ComparisonOperatorName       .class,
             org.opengis.filter                  .SpatialOperatorName          .class,
             org.opengis.filter                  .DistanceOperatorName         .class,

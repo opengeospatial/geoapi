@@ -13,14 +13,13 @@ from opengis.metadata.citation import Identifier
 
 
 
-class VerticalDatumType(Enum):
+class RealizationMethod(Enum):
     """
-    Type of a vertical datum.
+    Specification of the method by which the vertical reference frame is realized.
     """
-    BAROMETRIC = "barometric"
-    DEPTH = "depth"
-    GEOIDAL = "geoidal"
-    OTHER_SURFACE = "otherSurface"
+    LEVELLING = "levelling"
+    GEOID = "geoid"
+    TIDAL = "tidal"
 
 
 
@@ -138,17 +137,15 @@ class TemporalDatum(Datum):
 
 class VerticalDatum(Datum):
     """
-    A textual description and/or a set of parameters identifying a particular reference level surface used as a
-    zero-height surface.
+    The method through which this vertical reference frame is realized.
     """
 
     @property
-    @abstractmethod
-    def vertical_datum_type(self) -> VerticalDatumType:
+    def realization_method(self) -> RealizationMethod:
         """
         The type of this vertical datum.
         """
-        pass
+        return None
 
 
 class Ellipsoid(IdentifiedObject):
