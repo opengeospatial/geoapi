@@ -8,6 +8,7 @@ package org.opengis.example.referencing;
 import java.util.Date;
 import java.util.Arrays;
 import java.util.Objects;
+import java.util.Optional;
 
 import org.opengis.metadata.citation.Citation;
 import org.opengis.example.metadata.SimpleCitation;
@@ -25,7 +26,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.datum.TemporalDatum;
 import org.opengis.referencing.datum.VerticalDatum;
 import org.opengis.referencing.datum.GeodeticDatum;
-import org.opengis.referencing.datum.VerticalDatumType;
+import org.opengis.referencing.datum.RealizationMethod;
 
 
 /**
@@ -187,21 +188,21 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
         /**
          * The type of this vertical datum.
          */
-        private final VerticalDatumType type;
+        private final RealizationMethod method;
 
         /**
          * Creates a new CRS for the given name, datum and axes.
          *
          * @param authority  organization responsible for definition of the name, or {@code null}.
          * @param name       the name of the new CRS.
-         * @param type       the value to be returned by {@link #getVerticalDatumType()}.
+         * @param method     the value to be returned by {@link #getRealizationMethod()}.
          * @param axis       the axis to be returned by {@link #getAxis(int)}.
          */
         public Vertical(final Citation authority, final String name,
-                final VerticalDatumType type, final CoordinateSystemAxis axis)
+                final RealizationMethod method, final CoordinateSystemAxis axis)
         {
             super(authority, name, axis);
-            this.type = Objects.requireNonNull(type);
+            this.method = method;
         }
 
         /**
@@ -221,13 +222,13 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
         }
 
         /**
-         * Returns the type of this vertical datum.
+         * Returns the method through which this vertical reference frame is realized.
          *
-         * @return the type of this vertical datum.
+         * @return method through which this vertical reference frame is realized.
          */
         @Override
-        public VerticalDatumType getVerticalDatumType() {
-            return type;
+        public Optional<RealizationMethod> getRealizationMethod() {
+            return Optional.ofNullable(method);
         }
     }
 
