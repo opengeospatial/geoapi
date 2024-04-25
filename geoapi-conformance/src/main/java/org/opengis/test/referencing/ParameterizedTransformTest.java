@@ -1616,6 +1616,52 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
+     * Tests the <q>Equidistant Cylindrical</q> (EPSG:1028) projection.
+     * First, this method transforms the point given in the example section of the
+     * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
+     * Next, this method transforms a random set of points in the projection area of validity
+     * and ensures that the {@linkplain MathTransform#inverse() inverse transform} and the
+     * {@linkplain MathTransform#derivative derivatives} are coherent.
+     *
+     * <p>The math transform parameters and the sample coordinates are:</p>
+     *
+     * <div class="horizontal-flow">
+     *   <table class="ogc">
+     *     <caption>CRS characteristics</caption>
+     *     <tr><th>Parameter</th>                                <th>Value</th></tr>
+     *     <tr><td>semi-major axis</td>                          <td>6378137.0 m</td></tr>
+     *     <tr><td>semi-minor axis</td>                          <td>6356752.314247833 m</td></tr>
+     *     <tr><td>Latitude of natural origin</td>               <td>0°</td></tr>
+     *     <tr><td>Longitude of natural origin</td>              <td>0°</td></tr>
+     *     <tr><td>False easting</td>                            <td>0 m</td></tr>
+     *     <tr><td>False northing</td>                           <td>0 m</td></tr>
+     *   </table>
+     *   <table class="ogc">
+     *     <caption>Test points</caption>
+     *     <tr>
+     *       <th>Source coordinates</th>
+     *       <th>Expected results</th>
+     *     </tr><tr class="coordinates">
+     *       <td>10°00'00.000"E<br>55°00'00.000"N</td>
+     *       <td>1113194.91 m<br>6097230.31 m</td>
+     *     </tr>
+     *   </table>
+     * </div>
+     *
+     * @throws FactoryException if the math transform cannot be created.
+     * @throws TransformException if the example point cannot be transformed.
+     */
+    @Test
+    public void testEquidistantCylindrical() throws FactoryException, TransformException {
+        description = "WGS84 / World Equidistant Cylindrical";
+        final SamplePoints sample = SamplePoints.forCRS(4087);
+        createMathTransform(Conversion.class, sample);
+        setTolerance(ToleranceModifier.PROJECTION);
+        verifyTransform(sample.sourcePoints, sample.targetPoints);
+        verifyInDomainOfValidity(sample.areaOfValidity);
+    }
+
+    /**
      * Tests the <q>Modified Azimuthal Equidistant</q> (EPSG:9832) projection.
      * First, this method transforms the point given in the example section of the
      * EPSG guidance note and compares the {@link MathTransform} result with the expected result.
