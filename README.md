@@ -31,7 +31,7 @@ GeoAPI development branches require Java 18 and [Maven 3](http://maven.apache.or
 but the compilation result can be run on Java 11.
 The GeoAPI 3.0 stable release requires only Java 8.
 
-* **[OGC specification](https://opengeospatial.github.io/ogcna-auto-review/23-016.html)**
+* **[OGC specification](https://docs.ogc.org/DRAFTS/23-016.html)**
   is built in HTML format with `mvn pre-site -N`.\
   The output file will be created in the `target/site/` directory.
 * **[Java interfaces](http://www.geoapi.org/snapshot/javadoc/index.html)**
