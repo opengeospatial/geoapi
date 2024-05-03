@@ -17,16 +17,20 @@
  */
 package org.opengis.feature;
 
+import java.time.temporal.Temporal;
+
 
 /**
- * Thrown when the temporal position given to a dynamic attribute {@link DynamicAttribute#valuesAt valuesAt}
- * method is outside the period of validity.
+ * Thrown when the temporal position given to a dynamic attribute is outside the period of validity.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ *
+ * @see DynamicAttribute#valuesAt(Temporal)
+ *
+ * @since 3.1
  */
-public class OutOfTemporalDomainException extends IllegalStateException {
+public class OutOfTemporalDomainException extends IllegalArgumentException {
     /**
      * Serial number for inter-operability with different versions.
      */

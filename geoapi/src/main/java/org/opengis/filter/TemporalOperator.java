@@ -26,12 +26,12 @@ import static org.opengis.annotation.Specification.ISO_19143;
 
 /**
  * Operator that determines whether its time arguments satisfy the stated spatial relationship.
- * The operator {@linkplain #test evaluates} to {@code true} if the spatial relationship is satisfied.
+ * The operator {@linkplain #test evaluates} to {@code true} if the temporal relationship is satisfied.
  * Otherwise, the operator evaluates to {@code false}.
  * The nature of the comparison is dependent on the {@linkplain #getOperatorType() operator type}.
  *
  * <h2>Exceptions</h2>
- * If any input value of {@code TemporalPosition} is indeterminate, an exception shall be raised.
+ * If any temporal position is indeterminate, an exception shall be raised.
  *
  * @author  Johann Sorel (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)

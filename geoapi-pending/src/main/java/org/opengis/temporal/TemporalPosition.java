@@ -17,6 +17,7 @@
  */
 package org.opengis.temporal;
 
+import java.time.temporal.Temporal;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -31,9 +32,11 @@ import static org.opengis.annotation.Specification.*;
  * @author Alexander Petkov
  * @since   2.3
  * @version 4.0
+ *
+ * @todo This interface may be replaced by {@link Temporal} from the standard Java library.
  */
 @UML(identifier="TM_TemporalPosition", specification=ISO_19108)
-public interface TemporalPosition {
+public interface TemporalPosition extends Temporal {
     /**
      * Returns the only value for temporal position unless a subtype of
      * {@link TemporalPosition} is used as the data type, or {@code null} if none.

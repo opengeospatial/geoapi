@@ -30,11 +30,10 @@ import static org.opengis.annotation.Specification.*;
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
  * @since   2.3
- * @version 4.0 
+ * @version 4.0
  */
 @UML(identifier="TM_CalDate", specification=ISO_19108)
 public interface CalendarDate extends TemporalPosition {
-    
     /**
      * Returns the name of the {@linkplain CalendarEra calendar era}
      * to which the date is referenced.
