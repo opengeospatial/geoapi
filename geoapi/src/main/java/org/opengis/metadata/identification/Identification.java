@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.time.temporal.TemporalAmount;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.MetadataScope;
@@ -32,7 +33,6 @@ import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.metadata.constraint.Constraints;
 import org.opengis.metadata.distribution.Format;
 import org.opengis.metadata.extent.Extent;
-import org.opengis.temporal.Duration;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
@@ -148,7 +148,7 @@ public interface Identification {
      * @since 3.1
      */
     @UML(identifier="temporalResolution", obligation=OPTIONAL, specification=ISO_19115)
-    default Collection<? extends Duration> getTemporalResolutions() {
+    default Collection<? extends TemporalAmount> getTemporalResolutions() {
         return Collections.emptyList();
     }
 

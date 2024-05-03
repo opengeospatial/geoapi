@@ -19,8 +19,8 @@ package org.opengis.metadata.distribution;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.time.temporal.TemporalAmount;
 import org.opengis.util.InternationalString;
-import org.opengis.temporal.PeriodDuration;
 import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.annotation.UML;
 
@@ -101,7 +101,7 @@ public interface DigitalTransferOptions {
      * @since 3.1
      */
     @UML(identifier="transferFrequency", obligation=OPTIONAL, specification=ISO_19115)
-    default PeriodDuration getTransferFrequency() {
+    default TemporalAmount getTransferFrequency() {
         return null;
     }
 

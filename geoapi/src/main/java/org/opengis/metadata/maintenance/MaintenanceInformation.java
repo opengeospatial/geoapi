@@ -21,10 +21,10 @@ import java.util.Date;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.LinkedHashSet;
+import java.time.temporal.TemporalAmount;
 import org.opengis.metadata.citation.DateType;
 import org.opengis.metadata.citation.CitationDate;
 import org.opengis.metadata.citation.Responsibility;
-import org.opengis.temporal.PeriodDuration;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 
@@ -98,7 +98,7 @@ public interface MaintenanceInformation {
      * @return the maintenance period, or {@code null}.
      */
     @UML(identifier="userDefinedMaintenanceFrequency", obligation=OPTIONAL, specification=ISO_19115)
-    default PeriodDuration getUserDefinedMaintenanceFrequency() {
+    default TemporalAmount getUserDefinedMaintenanceFrequency() {
         return null;
     }
 

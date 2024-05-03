@@ -17,6 +17,7 @@
  */
 package org.opengis.temporal;
 
+import java.time.temporal.TemporalAmount;
 import java.util.Date;
 import javax.measure.Unit;
 import javax.measure.quantity.Time;
@@ -51,11 +52,11 @@ public interface TemporalCoordinateSystem extends TemporalReferenceSystem {
     Date getOrigin();
 
     /**
-     * Returns standard unit of time used to measure {@link Duration} on the axis of this {@link TemporalCoordinateSystem}.
+     * Returns standard unit of time used to measure {@link TemporalAmount} on the axis of this {@link TemporalCoordinateSystem}.
      * It exprimate as a unit of measure specified by ISO 31-1,
      * or a multiple of one of those units, as specified by ISO 1000.
      *
-     * @return standard unit of time used to measure {@link Duration} on the axis of this {@link TemporalCoordinateSystem}.
+     * @return standard unit of time used to measure {@link TemporalAmount} on the axis of this {@link TemporalCoordinateSystem}.
      */
     @UML(identifier="interval", obligation=MANDATORY, specification=ISO_19108)
     Unit<Time> getInterval();

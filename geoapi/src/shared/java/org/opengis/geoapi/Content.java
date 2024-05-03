@@ -53,8 +53,6 @@ public enum Content {
                org.opengis.util                    .Record                              .class,
                org.opengis.temporal                .TemporalPrimitive                   .class,
                org.opengis.temporal                .TemporalPosition                    .class,
-               org.opengis.temporal                .Duration                            .class,
-               org.opengis.temporal                .PeriodDuration                      .class,
                org.opengis.metadata.citation       .Series                              .class,
                org.opengis.metadata.citation       .Address                             .class,
                org.opengis.metadata.citation       .Telephone                           .class,

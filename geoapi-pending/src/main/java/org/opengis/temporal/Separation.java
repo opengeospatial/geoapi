@@ -17,6 +17,7 @@
  */
 package org.opengis.temporal;
 
+import java.time.temporal.TemporalAmount;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -34,20 +35,20 @@ public interface Separation {
      * Returns the distance from this {@linkplain TemporalGeometricPrimitive temporal geometric
      * primitive} to another {@linkplain TemporalGeometricPrimitive temporal geometric primitive}.
      * This is the absolute value of the difference b/n their temporal positions.
-     * 
+     *
      * @return the distance from this {@linkplain TemporalGeometricPrimitive temporal geometric
      * primitive} to another {@linkplain TemporalGeometricPrimitive temporal geometric primitive}.
      */
     @UML(identifier="distance", obligation=MANDATORY, specification=ISO_19108)
-    Duration distance(TemporalGeometricPrimitive other);
+    TemporalAmount distance(TemporalGeometricPrimitive other);
 
     /**
      * Returns the duration of this {@linkplain TemporalGeometricPrimitive temporal geometric
      * primitive}.
-     * 
+     *
      * @return duration of this {@linkplain TemporalGeometricPrimitive temporal geometric
      * primitive}.
      */
     @UML(identifier="length", obligation=MANDATORY, specification=ISO_19108)
-    Duration length();
+    TemporalAmount length();
 }

@@ -152,18 +152,6 @@ public interface TemporalFactory {
     Instant createInstant(Date date);
 
     /**
-     * Creates an {@link IntervalLength}.
-     *
-     * @param unit   Name of the unit of measure used to express the length of the interval.
-     * @param radix  Base of the multiplier of the unit.
-     * @param factor Exponent of the base.
-     * @param value  Length of the time interval as an integer multiple
-     *               of one radix(exp -factor) of the specified unit.
-     * @return expected {@link IntervalLength}, sub interface of {@link Duration}.
-     */
-    IntervalLength createIntervalLenght(Unit unit, int radix, int factor, int value);
-
-    /**
      * Creates an {@link JulianDate}.
      *
      * @param frame                 The ReferenceSystem associated with this TemporalPosition,
@@ -221,22 +209,6 @@ public interface TemporalFactory {
      * @return expected {@link OrdinalReferenceSystem}.
      */
     Period createPeriod(Instant begin, Instant end);
-
-    /**
-     * Creates an {@link PeriodDuration}.
-     *
-     * @param years   Number of years in the period.
-     * @param months  Number of months in the period.
-     * @param week    Number of week in the period.
-     * @param days    Number of days in the period.
-     * @param hours   number of hours in the period.
-     * @param minutes number of minutes in the period.
-     * @param seconds number of seconds in the period.
-     * @return {@link PeriodDuration} a sub interface of {@link Duration}.
-     */
-    PeriodDuration createPeriodDuration(InternationalString years, InternationalString months,
-            InternationalString week, InternationalString days, InternationalString hours,
-            InternationalString minutes, InternationalString seconds);
 
     /**
      * Creates an {@link TemporalCoordinate}.
