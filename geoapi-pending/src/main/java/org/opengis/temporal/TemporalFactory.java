@@ -17,7 +17,7 @@
  */
 package org.opengis.temporal;
 
-import java.util.Date;
+import java.time.Instant;
 import org.opengis.referencing.crs.TemporalCRS;
 
 /**
@@ -32,17 +32,10 @@ import org.opengis.referencing.crs.TemporalCRS;
  */
 public interface TemporalFactory {
     /**
-     * Creates an instant.
-     *
-     * @param date The date of this {@link Instant}, it shall be associated with a single temporal reference system.
-     */
-    Instant createInstant(Date date);
-
-    /**
      * Creates a period.
      *
-     * @param begin The Instant at which this Period starts.
-     * @param end   The Instant at which this Period ends.
+     * @param begin The instant at which the period starts.
+     * @param end   The instant at which the period ends.
      */
     Period createPeriod(Instant begin, Instant end);
 

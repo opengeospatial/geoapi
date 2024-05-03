@@ -20,6 +20,7 @@ package org.opengis.test.wkt;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.time.Instant;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
@@ -541,8 +542,8 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyCoordinateSystem (cs, CartesianCS.class, new AxisDirection[] {GEOCENTRIC_X, GEOCENTRIC_Y, GEOCENTRIC_Z}, metre);
         for (final ObjectDomain domain : crs.getDomains()) {
             final Extent extent = domain.getDomainOfValidity();
-            verifyGeographicExtent (extent, "Japan", 17.09, 122.38, 46.05, 157.64);
-            verifyTimeExtent       (extent, new Date(1017619200000L), new Date(1319155200000L), 1);
+            verifyGeographicExtent(extent, "Japan", 17.09, 122.38, 46.05, 157.64);
+            verifyTimeExtent(extent, Instant.ofEpochSecond(1017619200L), Instant.ofEpochSecond(1319155200L), 1);
             assertNullOrEquals("scope", "Geodesy, topographic mapping and cadastre", domain.getScope());
         }
         assertNullOrEquals("remark", "注：JGD2000ジオセントリックは現在JGD2011に代わりました。", crs.getRemarks());

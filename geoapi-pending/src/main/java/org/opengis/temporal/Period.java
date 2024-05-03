@@ -17,6 +17,7 @@
  */
 package org.opengis.temporal;
 
+import java.time.Instant;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;

@@ -17,6 +17,7 @@
  */
 package org.opengis.temporal;
 
+import java.time.Instant;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -32,11 +33,11 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="TM_Node", specification=ISO_19108)
 public interface TemporalNode extends TemporalTopologicalPrimitive {
-    
+
     /**
      * Returns an optional association that may link this {@link TemporalNode}
      * to its corresponding {@link Instant}.
-     * 
+     *
      * @return associated {@link Instant}.
      */
     @UML(identifier="Realization", obligation=OPTIONAL, specification=ISO_19108)
@@ -45,16 +46,16 @@ public interface TemporalNode extends TemporalTopologicalPrimitive {
     /**
      * Returns association that links this {@link TemporalNode} to the <i>previous</i> {@link TemporalEdge}.
      * In other word, link this {@link TemporalNode} to the {@link TemporalEdge} for which is the end.
-     * 
+     *
      * @return association that links this {@link TemporalNode} to the <i>previous</i> {@link TemporalEdge}.
      */
     @UML(identifier="previousEdge", obligation=MANDATORY, specification=ISO_19108)
     TemporalEdge getPreviousEdge();
 
     /**
-     * Returns association that links this {@link TemporalNode} to the <i>next</i> {@link TemporalEdge}. 
+     * Returns association that links this {@link TemporalNode} to the <i>next</i> {@link TemporalEdge}.
      * In other word, link this {@link TemporalNode} to the {@link TemporalEdge} for which is the start.
-     * 
+     *
      * @return association that links this {@link TemporalNode} to the <i>next</i> {@link TemporalEdge}.
      */
     @UML(identifier="nextEdge", obligation=MANDATORY, specification=ISO_19108)

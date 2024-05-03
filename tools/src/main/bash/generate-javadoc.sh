@@ -31,10 +31,9 @@ sed "s/geoapi\.pending/geoapi/g" geoapi-examples/src/main/java/module-info.java 
 sed "s/geoapi\.pending/geoapi/g" geoapi-conformance/src/main/java/module-info.java > target/src/org.opengis.geoapi.conformance/module-info.java
 
 #
-# Two pending classes that are used by `ReferencingTestCase`.
+# Pending classes that are used by `ReferencingTestCase`.
 #
-cp --link geoapi-pending/src/main/java/org/opengis/temporal/Instant.java \
-          geoapi-pending/src/main/java/org/opengis/temporal/Period.java  \
+cp --link geoapi-pending/src/main/java/org/opengis/temporal/Period.java  \
           geoapi-pending/src/main/java/org/opengis/temporal/Separation.java  \
           geoapi-pending/src/main/java/org/opengis/temporal/TemporalGeometricPrimitive.java  \
           target/src/org.opengis.geoapi/org/opengis/temporal/

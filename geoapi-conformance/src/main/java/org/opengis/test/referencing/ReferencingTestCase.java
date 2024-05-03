@@ -17,7 +17,7 @@
  */
 package org.opengis.test.referencing;
 
-import java.util.Date;
+import java.time.Instant;
 import javax.measure.Unit;
 import javax.measure.UnitConverter;
 import javax.measure.IncommensurableException;
@@ -43,7 +43,6 @@ import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.crs.VerticalCRS;
 import org.opengis.referencing.cs.VerticalCS;
-import org.opengis.temporal.Instant;
 import org.opengis.temporal.Period;
 import org.opengis.temporal.TemporalPrimitive;
 import org.opengis.test.TestCase;
@@ -87,30 +86,25 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      * @param  time  the date to convert.
      * @return the Julian days for the given date.
      */
-    private static double julian(final Date time) {
-        return (time.getTime() - (-2440588 * (24*60*60*1000L) + (12*60*60*1000L))) / (24*60*60*1000.0);
+    private static double julian(final Instant time) {
+        return (time.getEpochSecond() - (-2440588L * (24*60*60) + (12*60*60))) / (24*60*60.0);
     }
 
     /**
-     * Infers a value from the extent as a {@link Date} object and computes the union with a lower or upper bounds.
+     * Infers a value from the extent as an instant and computes the union with a lower or upper bounds.
      *
      * @param  bound  the current lower ({@code begin == true}) or upper ({@code begin == false}) bound.
      * @param  extent the extent from which to read a bound.
      * @param  begin  {@code true} for the start time, or {@code false} for the end time.
      * @return the new bound value.
      */
-    private static Date union(final Date bound, final TemporalPrimitive extent, final boolean begin) {
-        final Instant instant;
-        if (extent instanceof Instant) {
-            instant = (Instant) extent;
-        } else if (extent instanceof Period) {
-            instant = begin ? ((Period) extent).getBeginning() : ((Period) extent).getEnding();
-        } else {
-            return bound;
-        }
-        final Date t = instant.getDate();
-        if (t != null && (bound == null || (begin ? t.before(bound) : t.after(bound)))) {
-            return t;
+    private static Instant union(final Instant bound, final TemporalPrimitive extent, final boolean begin) {
+        if (extent instanceof Period) {
+            final var period = (Period) extent;
+            final Instant instant = begin ? period.getBeginning() : period.getEnding();
+            if (instant != null && (bound == null || (begin ? instant.isBefore(bound) : instant.isAfter(bound)))) {
+                return instant;
+            }
         }
         return bound;
     }
@@ -474,8 +468,8 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      *       then the union of them is compared against the given bound arguments.</li>
      * </ul>
      *
-     * <p>If the given {@code extent} is {@code null}, then this method does nothing.
-     * Deciding if {@code null} extents are allowed or not is {@link org.opengis.test.Validator}'s job.</p>
+     * If the given {@code extent} is {@code null}, then this method does nothing.
+     * Deciding if {@code null} extents are allowed or not is {@link org.opengis.test.Validator}'s job.
      *
      * @param extent     the extent to verify, or {@code null} if none.
      * @param startTime  the expected start time, or {@code null} if unrestricted.
@@ -484,10 +478,10 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      *
      * @see ObjectDomain#getDomainOfValidity()
      */
-    protected void verifyTimeExtent(final Extent extent, final Date startTime, final Date endTime, final double tolerance) {
+    protected void verifyTimeExtent(final Extent extent, final Instant startTime, final Instant endTime, final double tolerance) {
         if (extent != null) {
-            Date min = null;
-            Date max = null;
+            Instant min = null;
+            Instant max = null;
             for (final TemporalExtent e : extent.getTemporalElements()) {
                 final TemporalPrimitive p = e.getExtent();
                 min = union(min, p, true);
