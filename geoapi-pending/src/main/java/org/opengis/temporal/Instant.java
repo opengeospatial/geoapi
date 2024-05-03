@@ -49,14 +49,5 @@ public interface Instant extends TemporalGeometricPrimitive {
     @UML(identifier="date8601", obligation=OPTIONAL, specification=ISO_19108)
     Date getDate();
 
-    /**
-     * Returns {@link TemporalPosition} which contain an association between one from
-     * four classes and a {@link TemporalReferenceSystem}.
-     * The four possibles classes are {@link TemporalCoordinate}, {@link OrdinalPosition},
-     * {@link CalendarDate}, or {@link ClockTime}.
-     *
-     * @return {@link TemporalPosition} which contain an association between one from
-     * four classes and a {@link TemporalReferenceSystem}.
-     */
     TemporalPosition getTemporalPosition();
 }

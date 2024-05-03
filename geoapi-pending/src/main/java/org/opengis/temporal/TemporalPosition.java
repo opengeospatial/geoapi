@@ -17,16 +17,17 @@
  */
 package org.opengis.temporal;
 
+import java.util.Optional;
 import java.time.temporal.Temporal;
 import org.opengis.annotation.UML;
+import org.opengis.referencing.crs.TemporalCRS;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Used for describing {@link TemporalPosition temporal positions} referenced
- * to other {@linkplain TemporalReferenceSystem temporal reference systems}.
+ * Used for describing temporal positions referenced to a temporal CRS.
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
@@ -38,25 +39,33 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="TM_TemporalPosition", specification=ISO_19108)
 public interface TemporalPosition extends Temporal {
     /**
-     * Returns the only value for temporal position unless a subtype of
-     * {@link TemporalPosition} is used as the data type, or {@code null} if none.
-     * When this attribute is used with a subtype of {@link TemporalPosition},
-     * it provides a qualifier to the specific value for temporal position provided by the subtype.
+     * Returns the only value for temporal position when no temporal field is defined.
+     * When at least one temporal field is defined, this code provides a qualifier
+     * to the specific value for temporal position provided by the subtype.
      *
-     * @return the only value for temporal position unless a subtype of
-     * {@link TemporalPosition} is used as the data type, or {@code null} if none.
+     * @departure integration
+     *   The specification has been changed for removing reference to subtypes.
+     *   Subtypes are replaced by {@link Temporal} fields for integration with
+     *   the Java standard library.
+     *
+     * @return the reason why the position is indeterminate.
      */
     @UML(identifier="indeterminatePosition", obligation=OPTIONAL, specification=ISO_19108)
-    IndeterminateValue getIndeterminatePosition();
+    default Optional<IndeterminateValue> getIndeterminatePosition() {
+        return Optional.empty();
+    }
 
     /**
-     * Returns the association which connect the {@link TemporalPosition} to a {@link TemporalReferenceSystem}.
-     * Every {@link TemporalPosition} shall be associated with a {@link TemporalReferenceSystem}.
+     * Returns temporal CRS in which this temporal position is represented.
+     * Every {@code TemporalPosition} shall be associated with a {@link TemporalCRS}.
      * This association need not be explicit at the instance level.
      * If not specified, it is assumed to be an association to Gregorian Calendar and UTC.
      *
-     * @return the association which connect the {@link TemporalPosition} to a {@link TemporalReferenceSystem}.
+     * @departure harmonization
+     *   ISO 19108 {@code TM_ReferenceSystem} has been replaced by ISO 19111 {@code TemporalCRS}.
+     *
+     * @return the temporal CRS in which this temporal position is represented.
      */
     @UML(identifier="frame", obligation=MANDATORY, specification=ISO_19108)
-    TemporalReferenceSystem getFrame();
+    TemporalCRS getFrame();
 }
