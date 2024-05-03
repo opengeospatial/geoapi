@@ -1093,6 +1093,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      *   <tr><td>19905</td> <td>3002</td>  <td>Makassar / NEIEZ</td>                                <td>Mercator (variant A)</td></tr>
      *   <tr><td>19884</td> <td>3388</td>  <td>Pulkovo 1942 / Caspian Sea Mercator</td>             <td>Mercator (variant B)</td></tr>
      *   <tr><td>3856</td>  <td>3857</td>  <td>WGS 84 / Pseudo-Mercator</td>                        <td>Popular Visualisation Pseudo Mercator</td></tr>
+     *   <tr><td>4085</td>  <td>4087</td>  <td>WGS 84 / World Equidistant Cylindrical</td>          <td>Equidistant Cylindrical</td></tr>
      *   <tr><td><i>310642901</i></td> <td><i>310642901</i></td> <td>IGNF:MILLER</td>               <td><i>Miller_Cylindrical</i></td></tr>
      *   <tr><td>19958</td> <td>29873</td> <td>Timbalai 1948 / RSO Borneo (m)</td>                  <td>Hotine Oblique Mercator (variant B)</td></tr>
      *   <tr><td>19916</td> <td>27700</td> <td>OSGB 1936 / British National Grid</td>               <td>Transverse Mercator</td></tr>
@@ -1164,6 +1165,12 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             case 3856: {        // "WGS 84 / Pseudo-Mercator" using operation method 1024
                 parameters = factory.getDefaultParameters("Popular Visualisation Pseudo Mercator");
+                parameters.parameter("semi_major").setValue(6378137.0);                                 // WGS 84
+                parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
+                break;
+            }
+            case 4085: {        // "WGS 84 / World Equidistant Cylindrical" using operation method 1028
+                parameters = factory.getDefaultParameters("Equidistant Cylindrical");
                 parameters.parameter("semi_major").setValue(6378137.0);                                 // WGS 84
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 break;

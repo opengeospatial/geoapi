@@ -140,6 +140,16 @@ final class SamplePoints {
                 λmax =  180.0; φmax =  85.0;
                 break;
             }
+            case 4087: {                                                    // WGS84 / World Equidistant Cylindrical
+                operation = 4085;
+                fe =         0.00;  λ0 = 0;
+                fn =         0.00;  φ0 = 0;
+                e  =   1113194.91;  λ  = 10.0;                              // 10°00'00.000"E
+                n  =   6097230.31;  φ  = 55.0;                              // 55°00'00.000"N
+                λmin = -180.0; φmin = -85.0;
+                λmax =  180.0; φmax =  85.0;
+                break;
+            }
             case 310642901: {                                               // "IGNF:MILLER"
                 operation = 310642901;
                 fe =         0.00;  λ0 =  0;
