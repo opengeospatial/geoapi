@@ -17,7 +17,6 @@
  */
 package org.opengis.feature;
 
-import java.util.Optional;
 import java.util.Collection;
 import java.time.temporal.Temporal;
 
@@ -66,18 +65,18 @@ public interface DynamicAttribute<V> extends Attribute<V> {
     DynamicAttributeType<V> getType();
 
     /**
-     * Returns the attribute value at the given time.
+     * Returns the attribute value at the given time, or {@code null} if none.
      * This convenience method can be invoked in the common case where the
      * {@linkplain DynamicAttributeType#getMaximumOccurs() maximum number}
      * of dynamic attribute values is restricted to 1 or 0.
      *
      * @param  time  the date, Julian day or other means to represent a position in time.
-     * @return the attribute value at the given time.
+     * @return the attribute value at the given time, or {@code null} if none.
      * @throws IllegalArgumentException if the given time is not a type supported by this implementation.
      * @throws OutOfTemporalDomainException if the given time is outside the period of validity.
      * @throws MultiValuedPropertyException if this attribute contains more than one value at the given time.
      */
-    Optional<V> valueAt(Temporal time) throws OutOfTemporalDomainException, MultiValuedPropertyException;
+    V valueAt(Temporal time) throws OutOfTemporalDomainException, MultiValuedPropertyException;
 
     /**
      * Returns all attribute values at the given time, or an empty collection if none.

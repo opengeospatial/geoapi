@@ -94,8 +94,15 @@ public interface MaintenanceInformation {
 
     /**
      * Maintenance period other than those defined.
+     * If non-null, the returned value should be an instance of {@link java.time.Period}
+     * when a precision in number of years, months and days is sufficient.
      *
      * @return the maintenance period, or {@code null}.
+     *
+     * @departure integration
+     *   The type defined by ISO 19115 is {@code TM_PeriodDuration}, an interface defined by ISO 19108.
+     *   That ISO type should be mapped to {@link java.time.Period} from the standard Java library,
+     *   or to {@link java.time.Duration} if a precision smaller than one day is needed.
      */
     @UML(identifier="userDefinedMaintenanceFrequency", obligation=OPTIONAL, specification=ISO_19115)
     default TemporalAmount getUserDefinedMaintenanceFrequency() {

@@ -145,6 +145,11 @@ public interface Identification {
      *
      * @return smallest resolvable temporal period in a resource.
      *
+     * @departure integration
+     *   The type defined by ISO 19115 is {@code TM_Duration}, an interface defined by ISO 19108.
+     *   That ISO type can be mapped to the {@link java.time.Period} or {@link java.time.Duration}
+     *   classes from the standard Java library.
+     *
      * @since 3.1
      */
     @UML(identifier="temporalResolution", obligation=OPTIONAL, specification=ISO_19115)

@@ -95,8 +95,15 @@ public interface DigitalTransferOptions {
 
     /**
      * Rate of occurrence of distribution.
+     * If non-null, the returned value should be an instance of {@link java.time.Period}
+     * when a precision in number of years, months and days is sufficient.
      *
      * @return rate of occurrence of distribution, or {@code null} if none.
+     *
+     * @departure integration
+     *   The type defined by ISO 19115 is {@code TM_PeriodDuration}, an interface defined by ISO 19108.
+     *   That ISO type should be mapped to {@link java.time.Period} from the standard Java library,
+     *   or to {@link java.time.Duration} if a precision smaller than one day is needed.
      *
      * @since 3.1
      */
