@@ -17,21 +17,21 @@
  */
 package org.opengis.temporal;
 
-import org.opengis.annotation.UML;
-
-import static org.opengis.annotation.Specification.*;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Specification.*;
 
 
 /**
  * An abstract class that represents a non-decomposed element of geometry or topology of time.
  *
- * @author Stephane Fellah (Image Matters)
- * @author Alexander Petkov
- * @author Martin Desruisseaux (Geomatys)
- * @author Remi Marechal (Geomatys).
- * @since   2.3
+ * @author  ISO 19108 (for abstract model and documentation)
+ * @author  Stephane Fellah (Image Matters)
+ * @author  Alexander Petkov
+ * @author  Martin Desruisseaux (Geomatys)
+ * @author  Remi Marechal (Geomatys).
  * @version 4.0
+ * @since   2.3
  */
 @UML(identifier="TM_Primitive", specification=ISO_19108)
 public interface TemporalPrimitive extends IdentifiedObject, TemporalObject, TemporalOrder {

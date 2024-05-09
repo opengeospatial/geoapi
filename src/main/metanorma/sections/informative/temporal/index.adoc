@@ -1,0 +1,46 @@
+[[temporal]]
+=== Temporal packages
+
+The GeoAPI temporal packages use the `opengis​.temporal` namespace
+and implement some of the types defined in the <<ISO19108>> – _Temporal schema_ specification.
+Only the interfaces required by ISO 19115 are currently provided.
+
+The ISO 19108 interfaces overlap with new interfaces introduced in latest ISO 19111 revision.
+In the following table, the interfaces listed in the left column are omitted
+in favor of the ISO 19111 interfaces listed in the right column.
+Those replacements are suggestions, GeoAPI generally does not mandate this mapping.
+
+.ISO 19108 interfaces omitted in favor of ISO 19111 interfaces
+[options="header"]
+|=================================================================================
+|Omitted ISO 19108 interface |Proposed ISO 19111 replacement
+|`JulianDate`                |`Combination of `DirectPosition` and `TemporalCRS`
+|`TM_Calendar`               |`TemporalCRS` with `CoordinateDataType.DATE_TIME`
+|`TM_Clock`                  |`TemporalCRS` with user-defined `CoordinateDataType`
+|`TM_CoordinateSystem`       |`TemporalCRS` with `CoordinateDataType.MEASURE`
+|`TM_Coordinate`             |`Combination of `DirectPosition` and `TemporalCRS`
+|`TM_OrdinalPosition`        |`Combination of `DirectPosition` and `TemporalCRS`
+|`TM_OrdinalReferenceSystem` |`TemporalCRS` with `CoordinateDataType.INTEGER`
+|`TM_ReferenceSystem`        |`TemporalCRS`
+|=================================================================================
+
+Furthermore, other ISO 19108 interfaces overlap with standard API on the target platforms.
+In the following table, the interfaces listed in the left column are omitted
+in favor of the interfaces of target languages listed in the right column.
+Those replacements are suggestions, GeoAPI generally does not mandate this mapping.
+
+.Date and time types mapping
+[options="header"]
+|=============================================================================
+|Omitted ISO 19108 interface |Java class                          |Python type
+|`TM_CalDate`                |`java.time.LocalDate`               |
+|`TM_CalendarEra`            |`java.time.Era`                     |
+|`TM_ClockTime`              |`java.time.LocalTime`               |
+|`TM_DateAndTime`            |`java.time.LocalDateTime`           |
+|`TM_Duration`               |`java.time.temporal.TemporalAmount` |
+|`TM_Instant`                |`java.time.Instant`                 |
+|`TM_IntervalLength`         |`java.time.Duration`                |
+|`TM_OrdinalEra`             |`java.time.Era`                     |
+|`TM_PeriodDuration`         |`java.time.Period`                  |
+|`TM_TemporalPosition`       |`java.time.temporal.Temporal`       |`datetime`
+|=============================================================================

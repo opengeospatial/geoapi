@@ -17,9 +17,25 @@
  */
 package org.opengis.temporal;
 
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Specification.*;
+
 
 /**
- * Temporary placeholder for an interface defined in the <code>geoapi-pending</code> module.
+ * An abstract class that represents a non-decomposed element of geometry or topology of time.
+ *
+ * <div class="warning"><b>Upcoming API change — future development</b><br>
+ * This is a placeholder for an interface defined by ISO 19108 but not yet expressed in GeoAPI.
+ * </div>
+ *
+ * @author  ISO 19108 (for abstract model and documentation)
+ * @author  Stephane Fellah (Image Matters)
+ * @author  Alexander Petkov
+ * @author  Martin Desruisseaux (Geomatys)
+ * @author  Remi Marechal (Geomatys).
+ * @version 3.1
+ * @since   2.3
  */
+@UML(identifier="TM_Primitive", specification=ISO_19108)
 public interface TemporalPrimitive {
 }
