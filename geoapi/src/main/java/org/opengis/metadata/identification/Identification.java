@@ -21,6 +21,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.time.temporal.TemporalAmount;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.MetadataScope;
@@ -33,7 +34,6 @@ import org.opengis.metadata.maintenance.ScopeCode;
 import org.opengis.metadata.constraint.Constraints;
 import org.opengis.metadata.distribution.Format;
 import org.opengis.metadata.extent.Extent;
-import org.opengis.temporal.Duration;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
 import org.opengis.annotation.Classifier;
@@ -161,10 +161,15 @@ public interface Identification {
      *
      * @return smallest resolvable temporal period in a resource.
      *
+     * @departure integration
+     *   The type defined by ISO 19115 is {@code TM_Duration}, an interface defined by ISO 19108.
+     *   That ISO type can be mapped to the {@link java.time.Period} or {@link java.time.Duration}
+     *   classes from the standard Java library.
+     *
      * @since 3.1
      */
     @UML(identifier="temporalResolution", obligation=OPTIONAL, specification=ISO_19115)
-    default Collection<? extends Duration> getTemporalResolutions() {
+    default Collection<? extends TemporalAmount> getTemporalResolutions() {
         return Collections.emptyList();
     }
 

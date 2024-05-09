@@ -19,8 +19,8 @@ package org.opengis.metadata.distribution;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.time.temporal.TemporalAmount;
 import org.opengis.util.InternationalString;
-import org.opengis.temporal.PeriodDuration;
 import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
@@ -98,13 +98,20 @@ public interface DigitalTransferOptions {
 
     /**
      * Rate of occurrence of distribution.
+     * If non-null, the returned value should be an instance of {@link java.time.Period}
+     * when a precision in number of years, months and days is sufficient.
      *
      * @return rate of occurrence of distribution, or {@code null} if none.
+     *
+     * @departure integration
+     *   The type defined by ISO 19115 is {@code TM_PeriodDuration}, an interface defined by ISO 19108.
+     *   That ISO type should be mapped to {@link java.time.Period} from the standard Java library,
+     *   or to {@link java.time.Duration} if a precision smaller than one day is needed.
      *
      * @since 3.1
      */
     @UML(identifier="transferFrequency", obligation=OPTIONAL, specification=ISO_19115)
-    default PeriodDuration getTransferFrequency() {
+    default TemporalAmount getTransferFrequency() {
         return null;
     }
 

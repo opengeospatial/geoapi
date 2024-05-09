@@ -17,9 +17,26 @@
  */
 package org.opengis.temporal;
 
+import java.time.Duration;
+import java.time.temporal.TemporalAmount;
+import org.opengis.annotation.UML;
+import static org.opengis.annotation.Specification.ISO_19108;
+
 
 /**
- * Temporary placeholder for an interface defined in the <code>geoapi-pending</code> module.
+ * <strong>Effectively deprecated</strong> — use {@code java.time.Duration} instead.
+ * This interface defined by ISO 19108 represents the duration of a period in ISO 8601 format.
+ * As of GeoAPI 3.1, this interface is replaced by the {@link TemporalAmount} interface from
+ * the standard Java time API, or by the {@link Duration} specialization.
+ * {@code PeriodDuration} is kept in GeoAPI 3.1 for compatibility reasons but will be removed in GeoAPI 4.0.
+ *
+ * @since 2.3
+ *
+ * @see TemporalAmount
+ * @see Duration
+ *
+ * @version 3.1
  */
-public interface PeriodDuration {
+@UML(identifier="TM_PeriodDuration", specification=ISO_19108)
+public interface PeriodDuration extends TemporalAmount {
 }

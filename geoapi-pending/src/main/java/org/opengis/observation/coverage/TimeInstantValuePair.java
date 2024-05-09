@@ -18,12 +18,12 @@
 package org.opengis.observation.coverage;
 
 import org.opengis.annotation.UML;
-import org.opengis.observation.*;
 
 import static org.opengis.annotation.Specification.*;
+import org.opengis.temporal.TemporalPrimitive;
 
 /**
- * Specialization of ISO 19123 CV_GeometryValuePair. 
+ * Specialization of ISO 19123 CV_GeometryValuePair.
  * Explicit implementation of CV_TimeInstantValuePair - this is the temporal equivalent to CV_PointValuePair.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/om">Implementation specification 1.0</A>
@@ -33,12 +33,12 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="CV_DiscreteTimeInstantCoverage", specification=OGC_07022)
 public interface TimeInstantValuePair {
-    
+
     /**
      * Implicitly xs:anyType. Use xsi:type attribute to indicate the datatype at run-time.
      */
     Object getValue();
 
-    TimeInstant getGeometry();
-    
+    TemporalPrimitive getGeometry();
+
 }

@@ -25,7 +25,6 @@ import org.opengis.metadata.citation.DateType;
 import org.opengis.metadata.citation.CitationDate;
 import org.opengis.metadata.citation.Responsibility;
 import org.opengis.metadata.citation.ResponsibleParty;
-import org.opengis.metadata.maintenance.Scope;
 import org.opengis.temporal.PeriodDuration;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
@@ -96,6 +95,13 @@ public interface MaintenanceInformation {
 
     /**
      * Maintenance period other than those defined.
+     *
+     * <div class="warning"><b>Upcoming API change — standard time API</b><br>
+     * The return type of this method may change in GeoAPI 4.0. It may be replaced by
+     * the {@link java.time.temporal.TemporalAmount} from the standard time Java API.
+     * In order to anticipate that change, callers should assign the returned value
+     * to a {@code TemporalAmount} type instead of {@code PeriodDuration}.
+     * </div>
      *
      * @return the maintenance period, or {@code null}.
      */

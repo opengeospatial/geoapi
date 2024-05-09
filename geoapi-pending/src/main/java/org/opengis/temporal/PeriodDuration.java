@@ -17,100 +17,19 @@
  */
 package org.opengis.temporal;
 
+import java.time.temporal.TemporalAmount;
 import org.opengis.annotation.UML;
-import org.opengis.util.InternationalString;
-import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
 
 /**
- * Uses the format specified by ISO 8601 for exchanging information
- * about the duration of a period.
+ * @deprecated Replaced by {@link TemporalAmount} from the standard Java API.
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
  * @since   2.3
- * @version 4.0
+ * @version 3.1
  */
+@Deprecated(since = "3.1", forRemoval = true)
 @UML(identifier="TM_PeriodDuration", specification=ISO_19108)
-public interface PeriodDuration extends Duration {
-    
-   /**
-    * Returns a mandatory element which designates that the returned string
-    * represents the duration of a period.
-    * 
-    * @return a mandatory element which designates that the returned string
-    * represents the duration of a period.
-    */
-    @UML(identifier="designator", obligation=MANDATORY, specification=ISO_19108)
-    InternationalString getDesignator();
-
-   /**
-    * Returns a positive integer, followed by the character "Y",
-    * which indicated the number of years in the period.
-    * 
-    * @return a positive integer, followed by the character "Y",
-    * which indicated the number of years in the period.
-    */
-    @UML(identifier="years", obligation=OPTIONAL, specification=ISO_19108)
-    InternationalString getYears();
-
-   /**
-    * Returns a positive integer, followed by the character "M",
-    * which indicated the number of months in the period.
-    * 
-    * @return a positive integer, followed by the character "M",
-    * which indicated the number of months in the period.
-    */
-    @UML(identifier="months", obligation=OPTIONAL, specification=ISO_19108)
-    InternationalString getMonths();
-
-   /**
-    * Returns a positive integer, followed by the character "D",
-    * which indicated the number of days in the period.
-    * 
-    * @return a positive integer, followed by the character "D",
-    * which indicated the number of days in the period.
-    */
-    @UML(identifier="days", obligation=OPTIONAL, specification=ISO_19108)
-    InternationalString getDays();
-
-   /**
-    * Returns included element whenever the sequence includes values for
-    * units less than a day.
-    * 
-    * @return included element whenever the sequence includes values for
-    * units less than a day.
-    */
-    @UML(identifier="timeIndicator", obligation=OPTIONAL, specification=ISO_19108)
-    InternationalString getTimeIndicator();
-
-   /**
-    * Returns a positive integer, followed by the character "H",
-    * which indicated the number of hours in the period.
-    * 
-    * @return a positive integer, followed by the character "H",
-    * which indicated the number of hours in the period.
-    */
-    @UML(identifier="hours", obligation=OPTIONAL, specification=ISO_19108)
-    InternationalString getHours();
-
-   /**
-    * Returns a positive integer, followed by the character "M",
-    * which indicated the number of minutes in the period.
-    * 
-    * @return a positive integer, followed by the character "M",
-    * which indicated the number of minutes in the period.
-    */
-    @UML(identifier="minutes", obligation=OPTIONAL, specification=ISO_19108)
-    InternationalString getMinutes();
-
-   /**
-    * Returns a positive integer, followed by the character "S",
-    * which indicated the number of seconds in the period.
-    * 
-    * @return a positive integer, followed by the character "S",
-    * which indicated the number of seconds in the period.
-    */
-    @UML(identifier="seconds", obligation=OPTIONAL, specification=ISO_19108)
-    InternationalString getSeconds();
+public interface PeriodDuration extends TemporalAmount {
 }
