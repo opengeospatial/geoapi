@@ -81,7 +81,7 @@ public interface ProcessStep {
      *
      * @return date on or over which the process step occurred, or {@code null} if none.
      *
-     * @since 1.3
+     * @since 3.1
      */
     @UML(identifier="stepDateTime", obligation=OPTIONAL, specification=ISO_19115)
     default TemporalPrimitive getStepDateTime() {
