@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
 @UML(identifier="Version", specification=ISO_19143)
 public interface Version {
     /**
-     * Indices a version relative to the identified resources.
+     * Indicates a version relative to the identified resources.
      *
      * @return action to do for selecting a version relative to the identified resource.
      */

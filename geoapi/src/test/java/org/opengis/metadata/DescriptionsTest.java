@@ -93,7 +93,7 @@ public final class DescriptionsTest {
          * When this test is finished, the set of keys should be empty.
          */
         final Set<String> keys = new HashSet<>();
-        for (final Enumeration<String> e=resources.getKeys(); e.hasMoreElements();) {
+        for (final Enumeration<String> e = resources.getKeys(); e.hasMoreElements();) {
             final String key = e.nextElement();
             assertTrue(keys.add(key), "Duplicated key");
         }

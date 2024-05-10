@@ -22,12 +22,11 @@ import java.util.Iterator;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.AbstractCollection;
-import java.time.Instant;
-import java.time.temporal.ChronoField;
 import java.time.temporal.Temporal;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.util.InternationalString;
+import org.opengis.geoapi.internal.Legacy;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.UML;
@@ -251,15 +250,7 @@ public interface Element {
                 return new Iterator<Date>() {
                     @Override public void    remove()  {it.remove();}
                     @Override public boolean hasNext() {return it.hasNext();}
-                    @Override public Date next() {
-                        final Temporal t = it.next();
-                        if (t == null) return null;
-                        if (t instanceof Instant) {
-                            return Date.from((Instant) t);
-                        }
-                        // Following may throw `DateTimeException` if the temporal does not support the field.
-                        return new Date(Math.multiplyExact(t.getLong(ChronoField.INSTANT_SECONDS), 1000));
-                    }
+                    @Override public Date    next()    {return Legacy.toDate(it.next());}
                 };
             }
         };

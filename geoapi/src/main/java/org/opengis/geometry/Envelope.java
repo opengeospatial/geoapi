@@ -57,8 +57,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   1.0
- *
- * @see org.opengis.coverage.grid.GridEnvelope
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="GM_Envelope", specification=ISO_19107)

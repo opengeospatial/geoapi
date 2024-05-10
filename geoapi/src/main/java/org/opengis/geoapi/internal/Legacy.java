@@ -30,6 +30,7 @@ import java.time.ZonedDateTime;
 import java.time.ZoneOffset;
 import java.time.LocalTime;
 import java.time.OffsetTime;
+import java.time.temporal.ChronoField;
 import java.time.temporal.Temporal;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.referencing.IdentifiedObject;
@@ -79,11 +80,15 @@ public final class Legacy {
      * Converts a {@link java.time} object to a legacy {@link Date} object.
      * If the time zone is not specified, UTC is assumed.
      *
-     * @param  t  the date to convert.
-     * @return the given temporal object as a date, or {@code null} if the method doesn't know how to convert.
+     * @param  t  the date to convert, or {@code null}.
+     * @return the given temporal object as a date, or {@code null} if the given argument was null.
+     * @throws DateTimeException if this method does not know how to convert the given temporal object.
      * @throws ArithmeticException if numeric overflow occurs.
      */
     public static Date toDate(final Temporal t) {
+        if (t == null) {
+            return null;
+        }
         final Instant instant;
         if (t instanceof Instant) {
             instant = (Instant) t;
@@ -104,7 +109,8 @@ public final class Legacy {
                 } else if (t instanceof Year) {
                     date = ((Year) t).atDay(1);
                 } else {
-                    return null;
+                    // Following may throw `DateTimeException` if the temporal does not support the field.
+                    return new Date(Math.multiplyExact(t.getLong(ChronoField.INSTANT_SECONDS), 1000));
                 }
                 odt = date.atTime(OffsetTime.of(LocalTime.MIDNIGHT, ZoneOffset.UTC));
             }

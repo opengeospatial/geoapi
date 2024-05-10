@@ -16,6 +16,8 @@
 
 * [[[ISO19107,ISO 19107:2003]]], _Geographic information — Spatial schema_
 
+* [[[ISO19107,ISO 19108:2002]]], _Geographic information — Temporal schema_
+
 * [[[ISO19109,ISO 19109:2015]]], _Geographic information — Rules for application schema_
 
 * [[[ISO19111,ISO 19111:2019]]], _Geographic information — Referencing by coordinates_

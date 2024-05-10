@@ -61,7 +61,7 @@ javadoc -doctitle "GeoAPI SNAPSHOT" \
  -breakiterator \
  -charset UTF-8 \
  -docencoding UTF-8 \
- -noqualifier all \
+ -noqualifier java.lang,org.opengis.* \
  -use \
  --since 3.1 \
  --add-stylesheet src/main/javadoc/geoapi.css \
