@@ -24,6 +24,8 @@ import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.Responsibility;
 import org.opengis.metadata.maintenance.Scope;
+import org.opengis.temporal.TemporalPrimitive;
+import org.opengis.geoapi.internal.Legacy;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -61,17 +63,28 @@ public interface ProcessStep {
     }
 
     /**
+     * Date and time on which the process step occurred.
+     *
+     * @return date on which the process step occurred, or {@code null} if none.
+     *
+     * @deprecated Replaced by {@link #getStepDateTime()} as of ISO 19115:2014.
+     */
+    @Deprecated(since = "3.1")
+    @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115, version=2003)
+    default Date getDate() {
+        TemporalPrimitive p = getStepDateTime();
+        return (p != null) ? Legacy.toDate(p.position().orElse(null)) : null;
+    }
+
+    /**
      * Date and time or range of date and time on or over which the process step occurred.
      *
-     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
-     * </div>
-     *
      * @return date on or over which the process step occurred, or {@code null} if none.
+     *
+     * @since 1.3
      */
-    @UML(identifier="stepDateTime", obligation=OPTIONAL, specification=ISO_19115, version=2003)
-    default Date getDate() {
+    @UML(identifier="stepDateTime", obligation=OPTIONAL, specification=ISO_19115)
+    default TemporalPrimitive getStepDateTime() {
         return null;
     }
 

@@ -17,6 +17,8 @@
  */
 package org.opengis.temporal;
 
+import java.util.Optional;
+import java.time.temporal.Temporal;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
@@ -35,4 +37,20 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="TM_Primitive", specification=ISO_19108)
 public interface TemporalPrimitive extends IdentifiedObject, TemporalObject, TemporalOrder {
+    /**
+     * If this primitive is a temporal position (date, time or instant), returns that position.
+     * Otherwise (for example, if this primitive is a period), returns an empty value.
+     *
+     * @return the date, time or instant represented by this primitive,
+     *         or an empty value if this primitive is not a position.
+     *
+     * @departure integration
+     *   This method is not part of the ISO 19108 standard.
+     *   It has been added for interoperability with the Java standard API.
+     *
+     * @since 3.1
+     */
+    default Optional<Temporal> position() {
+        return Optional.empty();
+    }
 }
