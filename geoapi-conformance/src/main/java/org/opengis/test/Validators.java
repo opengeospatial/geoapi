@@ -224,7 +224,7 @@ public class Validators {
      *
      * @param  object  the object to test, or {@code null}.
      *
-     * @see MaintenanceValidator#validate(DataQuality)
+     * @see QualityValidator#validate(DataQuality)
      *
      * @since 3.1
      */

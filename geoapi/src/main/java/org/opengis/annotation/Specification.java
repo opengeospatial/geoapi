@@ -398,7 +398,6 @@ public enum Specification {
      *
      * <div class="note"><b>Examples:</b>
      * <ul>
-     *   <li>For {@link #OGC_03064}, version 10 stands for <cite>OGC 03-064r10</cite>.</li>
      *   <li>For {@link #ISO_19115}, version 2003 stands for <cite>ISO 19115:2003/Cor.1:2006</cite>
      *       and version 2014 stands for <cite>ISO 19115:2014</cite>.</li>
      * </ul></div>

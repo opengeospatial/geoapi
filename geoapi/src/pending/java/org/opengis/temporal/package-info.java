@@ -32,7 +32,7 @@
  *   <tr><th>Omitted ISO 19108 type</th>            <th>Closest equivalence</th></tr>
  *   <tr><td>{@code JulianDate}</td>                <td>Combination of {@link org.opengis.geometry.DirectPosition} and {@link org.opengis.referencing.crs.TemporalCRS}</td></tr>
  *   <tr><td>{@code TM_CalDate}</td>                <td>{@link java.time.LocalDate}</td></tr>
- *   <tr><td>{@code TM_CalendarEra}</td>            <td>{@link java.time.Era}</td></tr>
+ *   <tr><td>{@code TM_CalendarEra}</td>            <td>{@link java.time.chrono.IsoEra}</td></tr>
  *   <tr><td>{@code TM_Calendar}</td>               <td>{@link org.opengis.referencing.crs.TemporalCRS} with {@link org.opengis.referencing.cs.CoordinateDataType#DATE_TIME}</td></tr>
  *   <tr><td>{@code TM_Clock}</td>                  <td>{@link org.opengis.referencing.crs.TemporalCRS} with user-defined {@link org.opengis.referencing.cs.CoordinateDataType}</td></tr>
  *   <tr><td>{@code TM_ClockTime}</td>              <td>{@link java.time.LocalTime}</td></tr>
@@ -42,7 +42,7 @@
  *   <tr><td>{@code TM_Duration}</td>               <td>{@link java.time.temporal.TemporalAmount}</td></tr>
  *   <tr><td>{@code TM_Instant}</td>                <td>{@link java.time.Instant}</td></tr>
  *   <tr><td>{@code TM_IntervalLength}</td>         <td>{@link java.time.Duration}</td></tr>
- *   <tr><td>{@code TM_OrdinalEra}</td>             <td>{@link java.time.Era}</td></tr>
+ *   <tr><td>{@code TM_OrdinalEra}</td>             <td>{@link java.time.chrono.Era}</td></tr>
  *   <tr><td>{@code TM_OrdinalPosition}</td>        <td>Combination of {@link org.opengis.geometry.DirectPosition} and {@link org.opengis.referencing.crs.TemporalCRS}</td></tr>
  *   <tr><td>{@code TM_OrdinalReferenceSystem}</td> <td>{@link org.opengis.referencing.crs.TemporalCRS} with {@link org.opengis.referencing.cs.CoordinateDataType#INTEGER}</td></tr>
  *   <tr><td>{@code TM_PeriodDuration}</td>         <td>{@link java.time.Period}</td></tr>
