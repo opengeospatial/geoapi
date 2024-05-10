@@ -40,7 +40,7 @@ public interface PointMotionOperation extends SingleOperation {
     /**
      * Returns the <abbr>CRS</abbr> from which coordinates are changed.
      * This attribute is mandatory in all point motion operations.
-     * It should be the same as the {@linkplain #getTargetCRS() target <abbr>CRS</abbr>}.
+     * It shall be the same as the {@linkplain #getTargetCRS() target <abbr>CRS</abbr>}.
      *
      * @return the <abbr>CRS</abbr> from which coordinates are changed. Shall not be {@code null}.
      */
@@ -51,21 +51,23 @@ public interface PointMotionOperation extends SingleOperation {
     /**
      * Returns the <abbr>CRS</abbr> to which coordinates are changed.
      * This attribute is mandatory in all point motion operations.
-     * It should be the same as the {@linkplain #getSourceCRS() source <abbr>CRS</abbr>}.
+     * It shall be the same as the {@linkplain #getSourceCRS() source <abbr>CRS</abbr>}.
+     *
+     * <p>The default implementation returns {@link #getSourceCRS()}.</p>
      *
      * @return the <abbr>CRS</abbr> to which coordinates are changed. Shall not be {@code null}.
      */
     @Override
     @UML(identifier="targetCRS", obligation=MANDATORY, specification=ISO_19111)
-    CoordinateReferenceSystem getTargetCRS();
+    default CoordinateReferenceSystem getTargetCRS() {
+        return getSourceCRS();
+    }
 
     /**
      * Returns the date at which source coordinate tuples are valid.
      * This is mandatory for point motion operations.
      *
      * @return epoch at which source coordinate tuples are valid. Shall not be empty.
-     *
-     * @since 3.1
      */
     @Override
     @UML(identifier="sourceCoordinateEpoch", obligation=MANDATORY, specification=ISO_19111)
@@ -76,8 +78,6 @@ public interface PointMotionOperation extends SingleOperation {
      * This is mandatory for point motion operations.
      *
      * @return epoch at which target coordinate tuples are valid. Shall not be empty.
-     *
-     * @since 3.1
      */
     @Override
     @UML(identifier="targetCoordinateEpoch", obligation=MANDATORY, specification=ISO_19111)
@@ -88,9 +88,9 @@ public interface PointMotionOperation extends SingleOperation {
      * The version is an identification of the instantiation due to the stochastic nature of the parameters.
      * This attribute is mandatory in all point motion operations.
      *
-     * @return version of the point motion operation. Shall not be {@code null}.
+     * @return version of the point motion operation. Shall not be empty.
      */
     @Override
     @UML(identifier="operationVersion", obligation=MANDATORY, specification=ISO_19111)
-    String getOperationVersion();
+    Optional<String> getOperationVersion();
 }

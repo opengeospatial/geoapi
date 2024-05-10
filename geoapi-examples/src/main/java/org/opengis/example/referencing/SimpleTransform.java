@@ -375,17 +375,6 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     }
 
     /**
-     * Version of the coordinate transformation (i.e., instantiation due to the stochastic
-     * nature of the parameters). The default implementation returns {@code null}.
-     *
-     * @return the coordinate operation version, or {@code null} in none.
-     */
-    @Override
-    public String getOperationVersion() {
-        return null;
-    }
-
-    /**
      * Compares this transform with the given object for equality.
      *
      * @param  object  the object to compare with this {@code SimpleTransform}.

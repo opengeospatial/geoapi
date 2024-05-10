@@ -85,17 +85,15 @@ public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Returns the <abbr>CRS</abbr> from which coordinates are changed. This property may be {@code null}
      * for {@link CoordinateOperationFactory#createDefiningConversion defining conversions}, but otherwise
-     * <em>should</em> be specified for other conversions and <em>shall</em> be specified for transformations.
+     * <em>should</em> be specified for other conversions and <em>shall</em> be specified for transformations
+     * and point motion operations.
      *
      * <h4>Obligation</h4>
      * ISO 19111 defines this property as optional for {@link Conversion} because the source <abbr>CRS</abbr>
      * can be specified by the {@link org.opengis.referencing.crs.DerivedCRS#getBaseCRS()} property instead.
      * However, GeoAPI recommends to provide a value even in the latter case.
      *
-     * @return the <abbr>CRS</abbr> from which coordinates are changed, or {@code null} if not available.
-     *
-     * @see Conversion#getSourceCRS()
-     * @see Transformation#getSourceCRS()
+     * @return the <abbr>CRS</abbr> from which coordinates are changed, or {@code null} for a defining conversion.
      */
     @UML(identifier="sourceCRS", obligation=CONDITIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getSourceCRS();
@@ -103,17 +101,15 @@ public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Returns the <abbr>CRS</abbr> to which coordinates are changed. This property may be {@code null}
      * for {@link CoordinateOperationFactory#createDefiningConversion defining conversions}, but otherwise
-     * <em>should</em> be specified for other conversions and <em>shall</em> be specified for transformations.
+     * <em>should</em> be specified for other conversions and <em>shall</em> be specified for transformations
+     * and point motion operations.
      *
      * <h4>Obligation</h4>
      * ISO 19111 defines this property as optional for {@link Conversion} because the target <abbr>CRS</abbr>
      * can be specified by the {@link org.opengis.referencing.crs.DerivedCRS} instance instead.
      * However, GeoAPI recommends to provide a value even in the latter case.
      *
-     * @return the <abbr>CRS</abbr> to which coordinates are changed, or {@code null} if not available.
-     *
-     * @see Conversion#getTargetCRS()
-     * @see Transformation#getTargetCRS()
+     * @return the <abbr>CRS</abbr> to which coordinates are changed, or {@code null} for a defining conversion.
      */
     @UML(identifier="targetCRS", obligation=CONDITIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getTargetCRS();
@@ -172,10 +168,12 @@ public interface CoordinateOperation extends IdentifiedObject {
      * It is mandatory when describing a transformation or point motion operation,
      * and should not be supplied for a conversion.
      *
-     * @return version of the coordinate transformation or point motion, or {@code null} in none.
+     * @return version of the coordinate transformation or point motion.
      */
     @UML(identifier="operationVersion", obligation=CONDITIONAL, specification=ISO_19111)
-    String getOperationVersion();
+    default Optional<String> getOperationVersion() {
+        return Optional.empty();
+    }
 
     /**
      * Returns estimate(s) of the impact of this operation on point accuracy.
@@ -192,8 +190,8 @@ public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Returns the mathematical operation which performs the actual work of changing coordinate values.
      * The math transform will transform positions in the
-     * {@linkplain #getSourceCRS() source coordinate reference system} into positions in the
-     * {@linkplain #getTargetCRS() target coordinate reference system}.
+     * {@linkplain #getSourceCRS() source <abbr>CRS</abbr>} into positions in the
+     * {@linkplain #getTargetCRS() target <abbr>CRS</abbr>}.
      * It may be {@code null} in the case of
      * {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversions}.
      *

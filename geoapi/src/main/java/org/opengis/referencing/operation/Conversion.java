@@ -58,7 +58,12 @@ public interface Conversion extends SingleOperation {
     /**
      * Returns the <abbr>CRS</abbr> from which coordinates are changed.
      * If this conversion is part of a derived <abbr>CRS</abbr>, then the source <abbr>CRS</abbr>
-     * (if not null) shall be the same as the {@link org.opengis.referencing.crs.DerivedCRS#getBaseCRS()} value.
+     * should be the same as the {@link org.opengis.referencing.crs.DerivedCRS#getBaseCRS()} value.
+     *
+     * <h4>Obligation</h4>
+     * ISO 19111 declares this property as optional because its value can be inferred from the
+     * {@link org.opengis.referencing.crs.DerivedCRS#getBaseCRS()} property. However, GeoAPI
+     * recommends to provide a non-null value anyway, except for defining conversions.
      *
      * @return the <abbr>CRS</abbr> from which coordinates are changed, or {@code null} if not available.
      */
@@ -69,7 +74,12 @@ public interface Conversion extends SingleOperation {
     /**
      * Returns the <abbr>CRS</abbr> to which coordinates are changed.
      * If this conversion is part of a derived <abbr>CRS</abbr>, then the target <abbr>CRS</abbr>
-     * (if not null) shall be the same as the {@link org.opengis.referencing.crs.DerivedCRS} instance.
+     * should be the same as the {@link org.opengis.referencing.crs.DerivedCRS} instance.
+     *
+     * <h4>Obligation</h4>
+     * ISO 19111 declares this property as optional because its value can be inferred from the
+     * {@link org.opengis.referencing.crs.DerivedCRS}. However, GeoAPI recommends to provide
+     * a non-null value anyway, except for defining conversions.
      *
      * @return the <abbr>CRS</abbr> to which coordinates are changed, or {@code null} if not available.
      */
@@ -104,11 +114,11 @@ public interface Conversion extends SingleOperation {
     /**
      * This attribute is inherited from {@code CoordinateOperation} but is not applicable in a conversion.
      *
-     * @return usually {@code null}.
+     * @return should be empty.
      */
     @Override
     @UML(identifier="operationVersion", obligation=FORBIDDEN, specification=ISO_19111)
-    default String getOperationVersion() {
-        return null;
+    default Optional<String> getOperationVersion() {
+        return Optional.empty();
     }
 }
