@@ -23,7 +23,10 @@ import java.util.Collections;
 import java.time.temporal.Temporal;
 import org.opengis.coordinate.CoordinateSet;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.datum.Datum;
+import org.opengis.referencing.datum.DynamicReferenceFrame;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.crs.SingleCRS;
 import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
@@ -94,6 +97,8 @@ public interface CoordinateOperation extends IdentifiedObject {
      * However, GeoAPI recommends to provide a value even in the latter case.
      *
      * @return the <abbr>CRS</abbr> from which coordinates are changed, or {@code null} for a defining conversion.
+     *
+     * @see #getSourceEpoch()
      */
     @UML(identifier="sourceCRS", obligation=CONDITIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getSourceCRS();
@@ -110,6 +115,8 @@ public interface CoordinateOperation extends IdentifiedObject {
      * However, GeoAPI recommends to provide a value even in the latter case.
      *
      * @return the <abbr>CRS</abbr> to which coordinates are changed, or {@code null} for a defining conversion.
+     *
+     * @see #getTargetEpoch()
      */
     @UML(identifier="targetCRS", obligation=CONDITIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getTargetCRS();
@@ -135,31 +142,61 @@ public interface CoordinateOperation extends IdentifiedObject {
     }
 
     /**
+     * If the given <abbr>CRS</abbr> is dynamic, returns its epoch.
+     *
+     * @param  crs  the <abbr>CRS</abbr> from which to get the epoch, or {@code null}.
+     * @return epoch of the dynamic reference frame of the given <abbr>CRS</abbr>, if any.
+     */
+    private static Optional<Temporal> getEpoch(final CoordinateReferenceSystem crs) {
+        if (crs instanceof SingleCRS) {
+            final Datum datum = ((SingleCRS) crs).getDatum();
+            if (datum instanceof DynamicReferenceFrame) {
+                return Optional.of(((DynamicReferenceFrame) datum).getFrameReferenceEpoch());
+            }
+        }
+        return Optional.empty();
+    }
+
+    /**
      * Returns the date at which source coordinate tuples are valid.
-     * This is mandatory if the <abbr>CRS</abbr> is
-     * {@linkplain org.opengis.referencing.datum.DynamicReferenceFrame dynamic}.
+     * This is mandatory if the <abbr>CRS</abbr> is {@linkplain DynamicReferenceFrame dynamic}.
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation checks if the datum of the {@linkplain #getSourceCRS() source CRS}
+     * is a {@link DynamicReferenceFrame dynamic reference frame}. If {@code true}, then the frame
+     * reference epoch is returned. If {@code false}, then an empty value is returned.
      *
      * @return epoch at which source coordinate tuples are valid.
+     *
+     * @see #getSourceCRS()
+     * @see DynamicReferenceFrame#getFrameReferenceEpoch()
      *
      * @since 3.1
      */
     @UML(identifier="sourceCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
     default Optional<Temporal> getSourceEpoch() {
-        return Optional.empty();
+        return getEpoch(getSourceCRS());
     }
 
     /**
      * Returns the date at which target coordinate tuples are valid.
-     * This is mandatory if the <abbr>CRS</abbr> is
-     * {@linkplain org.opengis.referencing.datum.DynamicReferenceFrame dynamic}.
+     * This is mandatory if the <abbr>CRS</abbr> is {@linkplain DynamicReferenceFrame dynamic}.
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation checks if the datum of the {@linkplain #getTargetCRS() target CRS}
+     * is a {@link DynamicReferenceFrame dynamic reference frame}. If {@code true}, then the frame
+     * reference epoch is returned. If {@code false}, then an empty value is returned.
      *
      * @return epoch at which target coordinate tuples are valid.
+     *
+     * @see #getTargetCRS()
+     * @see DynamicReferenceFrame#getFrameReferenceEpoch()
      *
      * @since 3.1
      */
     @UML(identifier="targetCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
     default Optional<Temporal> getTargetEpoch() {
-        return Optional.empty();
+        return getEpoch(getTargetCRS());
     }
 
     /**

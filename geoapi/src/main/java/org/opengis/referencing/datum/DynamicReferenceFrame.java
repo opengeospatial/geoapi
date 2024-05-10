@@ -65,6 +65,8 @@ public interface DynamicReferenceFrame extends Datum {
      * @return epoch to which the coordinates of stations defining the dynamic geodetic reference frame are referenced.
      *
      * @see org.opengis.coordinate.CoordinateMetadata#getCoordinateEpoch()
+     * @see org.opengis.referencing.operation.CoordinateOperation#getSourceEpoch()
+     * @see org.opengis.referencing.operation.CoordinateOperation#getTargetEpoch()
      */
     @UML(identifier="frameReferenceEpoch", obligation=MANDATORY, specification=ISO_19111)
     Temporal getFrameReferenceEpoch();
