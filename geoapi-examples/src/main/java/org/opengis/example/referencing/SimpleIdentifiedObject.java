@@ -7,37 +7,31 @@ package org.opengis.example.referencing;
 
 import java.util.Objects;
 import org.opengis.util.InternationalString;
-import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ReferenceIdentifier;
+import org.opengis.example.metadata.SimpleIdentifier;
 
 
 /**
  * An {@code IdentifiedObject} abstract base class, which contain only the {@linkplain #getName() name} attribute.
- * All other {@code IdentifiedObject} attributes are {@code null} or empty collections.
- *
- * <p>Since the {@linkplain #getName() name} is the only identifier contained by this class,
- * {@code SimpleIdentifiedObject} implements directly the {@link Identifier} interface.
- * Consequently, this class can also be used as an {@code Identifier} implementation.</p>
+ * All other {@code IdentifiedObject} attributes are {@code null}, empty optional or empty collections.
  */
-public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdentifier {
+public class SimpleIdentifiedObject implements IdentifiedObject {
     /**
-     * The organization or party responsible for definition and maintenance of the {@linkplain #code}.
-     * The {@linkplain Citation#getTitle() citation title} will be used as {@linkplain #getCodeSpace() code space}.
-     *
-     * @see #getAuthority()
-     * @see #getCodeSpace()
+     * The name of this identified object.
      */
-    protected final Citation authority;
+    protected final ReferenceIdentifier name;
 
     /**
-     * Alphanumeric value identifying an instance in the authority name space.
+     * Creates a new object of the given authority and name.
      *
-     * @see #getCode()
+     * @param name  the name of the new object.
      */
-    protected final String code;
+    public SimpleIdentifiedObject(final ReferenceIdentifier name) {
+        this.name = Objects.requireNonNull(name);
+    }
 
     /**
      * Creates a new object of the given authority and name.
@@ -46,50 +40,23 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      * @param name       the name of the new object.
      */
     public SimpleIdentifiedObject(final Citation authority, final String name) {
-        this.authority = authority;
-        this.code = Objects.requireNonNull(name);
+        this.name = new SimpleIdentifier(authority, name);
     }
 
     /**
-     * Returns the name of this identified object,
-     * which is represented directly by {@code this} implementation class.
+     * Returns the name of this identified object.
      */
     @Override
     public ReferenceIdentifier getName() {
-        return this;
+        return name;
     }
 
     /**
-     * Returns the person or party responsible for maintenance of the namespace.
-     * This method returns the citation given to the constructor.
-     *
-     * @return party responsible for definition and maintenance of the code, or {@code null} if none.
+     * {@return a short label for this identified object}.
+     * This is used for formatting error messages.
      */
-    @Override
-    public Citation getAuthority() {
-        return authority;
-    }
-
-    /**
-     * Returns the identifier or namespace in which the code is valid.
-     * The default implementation returns the {@linkplain Citation#getTitle() title} of the
-     * {@linkplain #getAuthority() authority}.
-     *
-     * @return the identifier or namespace in which the code is valid, or {@code null} if none.
-     */
-    @Override
-    public String getCodeSpace() {
-        return (authority != null) ? authority.getTitle().toString() : null;
-    }
-
-    /**
-     * Returns the name given at construction time.
-     *
-     * @return alphanumeric value identifying an instance in the namespace.
-     */
-    @Override
-    public String getCode() {
-        return code;
+    protected String label() {
+        return name.getCode();
     }
 
     /**
@@ -142,11 +109,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
      */
     @Override
     public int hashCode() {
-        int hash = code.hashCode() ^ -86660764;
-        if (authority != null) {
-            hash += authority.hashCode() * 31;
-        }
-        return hash;
+        return name.hashCode() ^ 3;
     }
 
     /**
@@ -158,26 +121,16 @@ public class SimpleIdentifiedObject implements IdentifiedObject, ReferenceIdenti
     @Override
     public boolean equals(final Object object) {
         if (object != null && object.getClass() == getClass()) {
-            final SimpleIdentifiedObject other = (SimpleIdentifiedObject) object;
-            return code.equals(other.code) && Objects.equals(authority, other.authority);
+            return name.equals(((SimpleIdentifiedObject) object).name);
         }
         return false;
     }
 
     /**
-     * Returns a string representation of the {@linkplain #getName() name} identifier.
-     * The default implementation build the string representation as below:
-     *
-     * <ul>
-     *   <li>If this identifier has a {@linkplain #getCodeSpace() code space}, then returns
-     *       the concatenation of the code space, the {@code ':'} character, then the
-     *       {@linkplain #code}.</li>
-     *   <li>Otherwise returns the {@linkplain #code} directly.</li>
-     * </ul>
+     * Returns a string representation of this identified object.
      */
     @Override
     public String toString() {
-        final String codespace = getCodeSpace();
-        return (codespace != null) ? codespace + ':' + code : code;
+        return getClass().getSimpleName() + '[' + name + ']';
     }
 }

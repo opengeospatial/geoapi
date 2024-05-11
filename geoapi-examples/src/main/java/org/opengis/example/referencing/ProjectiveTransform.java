@@ -172,9 +172,9 @@ public class ProjectiveTransform extends SimpleTransform {
             try {
                 invert.invert();
             } catch (RuntimeException e) {      // SingularMatrixException & MismatchedSizeException
-                throw new NoninvertibleTransformException("Cannot invert \"" + code + '"', e);
+                throw new NoninvertibleTransformException("Cannot invert \"" + label() + '"', e);
             }
-            inverse = new ProjectiveTransform(authority, "Inverse of " + code, targetCRS, sourceCRS, invert);
+            inverse = new ProjectiveTransform(name.getAuthority(), "Inverse of " + label(), targetCRS, sourceCRS, invert);
             inverse.inverse = this;
         }
         return inverse;

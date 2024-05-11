@@ -12,8 +12,8 @@ import javax.measure.IncommensurableException;
 import tech.uom.seshat.Units;
 
 import org.opengis.util.TypeName;
-import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
+import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.parameter.InvalidParameterValueException;
 import org.opengis.parameter.InvalidParameterTypeException;
 import org.opengis.parameter.ParameterDescriptor;
@@ -141,6 +141,18 @@ public class SimpleParameter extends SimpleIdentifiedObject
     protected double value;
 
     /**
+     * Creates a new parameter of the given identifier.
+     *
+     * @param name the parameter authority and name.
+     * @param type the parameter type, which determines the range of values and the unit of measurement.
+     *             this argument can be {@code null} if the parameter type is none of the enumerated ones.
+     */
+    public SimpleParameter(final ReferenceIdentifier name, final Type type) {
+        super(name);
+        this.type = type;
+    }
+
+    /**
      * Creates a new parameter of the given authority and name.
      *
      * @param authority  organization responsible for definition of the parameter, or {@code null}.
@@ -164,17 +176,6 @@ public class SimpleParameter extends SimpleIdentifiedObject
     @Override
     public ParameterDescriptor<Double> getDescriptor() {
         return this;
-    }
-
-    /**
-     * Returns a natural language description of this object.
-     * The default implementation returns {@code null}.
-     *
-     * @return the natural language description, or {@code null} if none.
-     */
-    @Override
-    public InternationalString getDescription() {
-        return null;
     }
 
     /**
@@ -262,7 +263,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
     @Override
     public double doubleValue(final Unit<?> unit) throws IllegalArgumentException, IllegalStateException {
         if (type == null) {
-            throw new IllegalStateException("No unit for parameter " + code + '.');
+            throw new IllegalStateException("No unit for parameter " + label() + '.');
         }
         try {
             return type.unit.getConverterToAny(unit).convert(value);
@@ -288,7 +289,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
                 return candidate;
             }
         }
-        throw new InvalidParameterTypeException("Value " + value + " is not an integer.", code);
+        throw new InvalidParameterTypeException("Value " + value + " is not an integer.", label());
     }
 
     /**
@@ -310,7 +311,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
             if (value == 0) return false;
             if (value == 1) return true;
         }
-        throw new InvalidParameterTypeException("Value " + value + " is not a Boolean.", code);
+        throw new InvalidParameterTypeException("Value " + value + " is not a Boolean.", label());
     }
 
     /**
@@ -332,7 +333,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
             }
             return s;
         }
-        throw new InvalidParameterTypeException("This parameter is not for strings.", code);
+        throw new InvalidParameterTypeException("This parameter is not for strings.", label());
     }
 
     /**
@@ -365,7 +366,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
         if (LENIENT) {
             return new double[] {doubleValue(unit)};
         }
-        throw new InvalidParameterTypeException("This parameter is not for arrays.", code);
+        throw new InvalidParameterTypeException("This parameter is not for arrays.", label());
     }
 
     /**
@@ -381,7 +382,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
         if (LENIENT) {
             return new double[] {doubleValue()};
         }
-        throw new InvalidParameterTypeException("This parameter is not for arrays.", code);
+        throw new InvalidParameterTypeException("This parameter is not for arrays.", label());
     }
 
     /**
@@ -397,7 +398,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
         if (LENIENT) {
             return new int[] {intValue()};
         }
-        throw new InvalidParameterTypeException("This parameter is not for arrays.", code);
+        throw new InvalidParameterTypeException("This parameter is not for arrays.", label());
     }
 
     /**
@@ -409,7 +410,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      */
     @Override
     public URI valueFile() throws InvalidParameterTypeException {
-        throw new InvalidParameterTypeException("This parameter is not for files.", code);
+        throw new InvalidParameterTypeException("This parameter is not for files.", label());
     }
 
     /**
@@ -424,12 +425,13 @@ public class SimpleParameter extends SimpleIdentifiedObject
     @Override
     public void setValue(final double value, final Unit<?> unit) throws InvalidParameterValueException {
         if (type == null) {
+            String code = label();
             throw new InvalidParameterValueException("No unit expected for parameter " + code, code, unit);
         }
         try {
             setValue(unit.getConverterToAny(type.unit).convert(value));
         } catch (IncommensurableException e) {
-            throw new InvalidParameterValueException(e.getLocalizedMessage(), code, unit);
+            throw new InvalidParameterValueException(e.getLocalizedMessage(), label(), unit);
         }
     }
 
@@ -445,12 +447,12 @@ public class SimpleParameter extends SimpleIdentifiedObject
             Double limit = type.minimum;
             if (limit != null && value < limit) {
                 throw new InvalidParameterValueException("Value " + value
-                        + " shall be greater than or equals to " + limit, code, value);
+                        + " shall be greater than or equals to " + limit, label(), value);
             }
             limit = type.maximum;
             if (limit != null && value > limit) {
                 throw new InvalidParameterValueException("Value " + value
-                        + " shall be less than or equals to " + limit, code, value);
+                        + " shall be less than or equals to " + limit, label(), value);
             }
         }
         this.value = value;
@@ -470,7 +472,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
         if (LENIENT && values.length == 1) {
             setValue(values[0], unit);
         } else {
-            throw new InvalidParameterValueException("This parameter is not for arrays.", code, values);
+            throw new InvalidParameterValueException("This parameter is not for arrays.", label(), values);
         }
     }
 
@@ -485,7 +487,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
         if (LENIENT) {
             setValue((double) value);
         } else {
-            throw new InvalidParameterValueException("This parameter is not for integers.", code, value);
+            throw new InvalidParameterValueException("This parameter is not for integers.", label(), value);
         }
     }
 
@@ -501,7 +503,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
         if (LENIENT) {
             setValue(value ? 1 : 0);
         } else {
-            throw new InvalidParameterValueException("This parameter is not for booleans.", code, value);
+            throw new InvalidParameterValueException("This parameter is not for booleans.", label(), value);
         }
     }
 
@@ -525,7 +527,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
                 number = ((Number) value).doubleValue();
             }
         } catch (NumberFormatException | ClassCastException e) {
-            throw new InvalidParameterValueException(e.toString(), code, value);
+            throw new InvalidParameterValueException(e.toString(), label(), value);
         }
         setValue(number);
     }
@@ -547,7 +549,7 @@ public class SimpleParameter extends SimpleIdentifiedObject
      */
     @Override
     public SimpleParameter createValue() {
-        return new SimpleParameter(authority, code, type);
+        return new SimpleParameter(name, type);
     }
 
     /**

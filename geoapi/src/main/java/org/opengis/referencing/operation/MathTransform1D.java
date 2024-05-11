@@ -30,8 +30,8 @@ package org.opengis.referencing.operation;
  *   of {@code MathTransform2D} and because the 1D case provides opportunities for optimization
  *   through a {@code transform} method accepting a single {@code double} primitive type.
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   1.0
  */
 public interface MathTransform1D extends MathTransform {
@@ -62,5 +62,7 @@ public interface MathTransform1D extends MathTransform {
      * @throws NoninvertibleTransformException if the transform cannot be inverted.
      */
     @Override
-    MathTransform1D inverse() throws NoninvertibleTransformException;
+    default MathTransform1D inverse() throws NoninvertibleTransformException {
+        throw new NoninvertibleTransformException();
+    }
 }

@@ -704,7 +704,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyAxisAbbreviations(cs = crs.getCoordinateSystem(), "X", "Y");
         verifyCoordinateSystem (cs, CartesianCS.class, new AxisDirection[] {EAST,NORTH}, footSurveyUS);
         verifyTexasSouthCentral(crs, degree, footSurveyUS);
-        assertNullOrEquals("remark", "Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686\"N, longitude 98°32'30.506\"W.", crs.getRemarks());
+        assertNullOrEquals("remark",
+                "Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686\"N, longitude 98°32'30.506\"W.",
+                crs.getRemarks());
     }
 
     /**

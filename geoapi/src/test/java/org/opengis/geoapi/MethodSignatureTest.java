@@ -249,6 +249,21 @@ public final class MethodSignatureTest extends SourceGenerator {
                                         isOptional = false;
                                 }
                             }
+                            if (c == org.opengis.referencing.operation.PointMotionOperation.class) {
+                                switch (m.getName()) {
+                                    case "getTargetCRS":
+                                        assertFalse(isOptional, message(c, m, "special case not needed anymore."));
+                                        isOptional = true;
+                                }
+                            }
+                            if (c == org.opengis.referencing.operation.MathTransform.class) {
+                                switch (m.getName()) {
+                                    case "inverse":
+                                    case "toWKT":
+                                        assertFalse(isOptional, message(c, m, "special case not needed anymore."));
+                                        isOptional = true;
+                                }
+                            }
                             if (c == org.opengis.feature.IdentifiedType.class) {
                                 switch (m.getName()) {
                                     case "getName":

@@ -33,8 +33,8 @@ import java.awt.geom.AffineTransform;
  *   close integration with the <cite>Java2D</cite> library. The API defined in this
  *   interface matches the {@code java.awt.geom.AffineTransform} API.
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   1.0
  */
 public interface MathTransform2D extends MathTransform {
@@ -97,5 +97,7 @@ public interface MathTransform2D extends MathTransform {
      * @see AffineTransform#createInverse()
      */
     @Override
-    MathTransform2D inverse() throws NoninvertibleTransformException;
+    default MathTransform2D inverse() throws NoninvertibleTransformException {
+        throw new NoninvertibleTransformException();
+    }
 }

@@ -23,7 +23,10 @@ import java.util.Collections;
 import java.time.temporal.Temporal;
 import org.opengis.coordinate.CoordinateSet;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.datum.Datum;
+import org.opengis.referencing.datum.DynamicReferenceFrame;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.crs.SingleCRS;
 import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.util.InternationalString;
@@ -108,17 +111,17 @@ public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Returns the <abbr>CRS</abbr> from which coordinates are changed. This property may be {@code null}
      * for {@link CoordinateOperationFactory#createDefiningConversion defining conversions}, but otherwise
-     * <em>should</em> be specified for other conversions and <em>shall</em> be specified for transformations.
+     * <em>should</em> be specified for other conversions and <em>shall</em> be specified for transformations
+     * and point motion operations.
      *
      * <h4>Obligation</h4>
      * ISO 19111 defines this property as optional for {@link Conversion} because the source <abbr>CRS</abbr>
      * can be specified by the {@link org.opengis.referencing.crs.DerivedCRS#getBaseCRS()} property instead.
      * However, GeoAPI recommends to provide a value even in the latter case.
      *
-     * @return the <abbr>CRS</abbr> from which coordinates are changed, or {@code null} if not available.
+     * @return the <abbr>CRS</abbr> from which coordinates are changed, or {@code null} for a defining conversion.
      *
-     * @see Conversion#getSourceCRS()
-     * @see Transformation#getSourceCRS()
+     * @see #getSourceEpoch()
      */
     @UML(identifier="sourceCRS", obligation=CONDITIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getSourceCRS();
@@ -126,17 +129,17 @@ public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Returns the <abbr>CRS</abbr> to which coordinates are changed. This property may be {@code null}
      * for {@link CoordinateOperationFactory#createDefiningConversion defining conversions}, but otherwise
-     * <em>should</em> be specified for other conversions and <em>shall</em> be specified for transformations.
+     * <em>should</em> be specified for other conversions and <em>shall</em> be specified for transformations
+     * and point motion operations.
      *
      * <h4>Obligation</h4>
      * ISO 19111 defines this property as optional for {@link Conversion} because the target <abbr>CRS</abbr>
      * can be specified by the {@link org.opengis.referencing.crs.DerivedCRS} instance instead.
      * However, GeoAPI recommends to provide a value even in the latter case.
      *
-     * @return the <abbr>CRS</abbr> to which coordinates are changed, or {@code null} if not available.
+     * @return the <abbr>CRS</abbr> to which coordinates are changed, or {@code null} for a defining conversion.
      *
-     * @see Conversion#getTargetCRS()
-     * @see Transformation#getTargetCRS()
+     * @see #getTargetEpoch()
      */
     @UML(identifier="targetCRS", obligation=CONDITIONAL, specification=ISO_19111)
     CoordinateReferenceSystem getTargetCRS();
@@ -162,31 +165,61 @@ public interface CoordinateOperation extends IdentifiedObject {
     }
 
     /**
+     * If the given <abbr>CRS</abbr> is dynamic, returns its epoch.
+     *
+     * @param  crs  the <abbr>CRS</abbr> from which to get the epoch, or {@code null}.
+     * @return epoch of the dynamic reference frame of the given <abbr>CRS</abbr>, if any.
+     */
+    private static Optional<Temporal> getEpoch(final CoordinateReferenceSystem crs) {
+        if (crs instanceof SingleCRS) {
+            final Datum datum = ((SingleCRS) crs).getDatum();
+            if (datum instanceof DynamicReferenceFrame) {
+                return Optional.of(((DynamicReferenceFrame) datum).getFrameReferenceEpoch());
+            }
+        }
+        return Optional.empty();
+    }
+
+    /**
      * Returns the date at which source coordinate tuples are valid.
-     * This is mandatory if the <abbr>CRS</abbr> is
-     * {@linkplain org.opengis.referencing.datum.DynamicReferenceFrame dynamic}.
+     * This is mandatory if the <abbr>CRS</abbr> is {@linkplain DynamicReferenceFrame dynamic}.
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation checks if the datum of the {@linkplain #getSourceCRS() source CRS}
+     * is a {@link DynamicReferenceFrame dynamic reference frame}. If {@code true}, then the frame
+     * reference epoch is returned. If {@code false}, then an empty value is returned.
      *
      * @return epoch at which source coordinate tuples are valid.
+     *
+     * @see #getSourceCRS()
+     * @see DynamicReferenceFrame#getFrameReferenceEpoch()
      *
      * @since 3.1
      */
     @UML(identifier="sourceCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
     default Optional<Temporal> getSourceEpoch() {
-        return Optional.empty();
+        return getEpoch(getSourceCRS());
     }
 
     /**
      * Returns the date at which target coordinate tuples are valid.
-     * This is mandatory if the <abbr>CRS</abbr> is
-     * {@linkplain org.opengis.referencing.datum.DynamicReferenceFrame dynamic}.
+     * This is mandatory if the <abbr>CRS</abbr> is {@linkplain DynamicReferenceFrame dynamic}.
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation checks if the datum of the {@linkplain #getTargetCRS() target CRS}
+     * is a {@link DynamicReferenceFrame dynamic reference frame}. If {@code true}, then the frame
+     * reference epoch is returned. If {@code false}, then an empty value is returned.
      *
      * @return epoch at which target coordinate tuples are valid.
+     *
+     * @see #getTargetCRS()
+     * @see DynamicReferenceFrame#getFrameReferenceEpoch()
      *
      * @since 3.1
      */
     @UML(identifier="targetCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
     default Optional<Temporal> getTargetEpoch() {
-        return Optional.empty();
+        return getEpoch(getTargetCRS());
     }
 
     /**
@@ -195,10 +228,12 @@ public interface CoordinateOperation extends IdentifiedObject {
      * It is mandatory when describing a transformation or point motion operation,
      * and should not be supplied for a conversion.
      *
-     * @return version of the coordinate transformation or point motion, or {@code null} in none.
+     * @return version of the coordinate transformation or point motion.
      */
     @UML(identifier="operationVersion", obligation=CONDITIONAL, specification=ISO_19111)
-    String getOperationVersion();
+    default Optional<String> getOperationVersion() {
+        return Optional.empty();
+    }
 
     /**
      * Returns estimate(s) of the impact of this operation on point accuracy.
@@ -249,8 +284,8 @@ public interface CoordinateOperation extends IdentifiedObject {
     /**
      * Returns the mathematical operation which performs the actual work of changing coordinate values.
      * The math transform will transform positions in the
-     * {@linkplain #getSourceCRS() source coordinate reference system} into positions in the
-     * {@linkplain #getTargetCRS() target coordinate reference system}.
+     * {@linkplain #getSourceCRS() source <abbr>CRS</abbr>} into positions in the
+     * {@linkplain #getTargetCRS() target <abbr>CRS</abbr>}.
      * It may be {@code null} in the case of
      * {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversions}.
      *

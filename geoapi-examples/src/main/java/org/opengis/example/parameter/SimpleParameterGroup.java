@@ -13,6 +13,7 @@ import java.lang.reflect.Field;
 
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
+import org.opengis.referencing.ReferenceIdentifier;
 import org.opengis.parameter.GeneralParameterDescriptor;
 import org.opengis.parameter.GeneralParameterValue;
 import org.opengis.parameter.ParameterDescriptor;
@@ -21,7 +22,6 @@ import org.opengis.parameter.ParameterValue;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterNotFoundException;
 import org.opengis.example.referencing.SimpleIdentifiedObject;
-import org.opengis.util.InternationalString;
 
 
 /**
@@ -59,6 +59,18 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
     private List<SimpleParameter> unmodifiable;
 
     /**
+     * Creates a new parameter group of the given identifier.
+     *
+     * @param name   the parameter group name.
+     * @param param  the parameters to be included in this group.
+     */
+    public SimpleParameterGroup(final ReferenceIdentifier name, final SimpleParameter... param) {
+        super(name);
+        parameters = new ArrayList<>(Arrays.asList(param));
+        unmodifiable = Collections.unmodifiableList(parameters);
+    }
+
+    /**
      * Creates a new parameter group of the given authority and name.
      *
      * @param authority  organization responsible for definition of the parameters, or {@code null}.
@@ -82,17 +94,6 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
     @Override
     public ParameterDescriptorGroup getDescriptor() {
         return this;
-    }
-
-    /**
-     * Returns a natural language description of this object.
-     * The default implementation returns {@code null}.
-     *
-     * @return the natural language description, or {@code null} if none.
-     */
-    @Override
-    public InternationalString getDescription() {
-        return null;
     }
 
     /**
@@ -242,7 +243,7 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
         for (int i=0; i<param.length; i++) {
             param[i] = parameters.get(i).createValue();
         }
-        return new SimpleParameterGroup(authority, code, param);
+        return new SimpleParameterGroup(name, param);
     }
 
     /**

@@ -193,6 +193,11 @@ public interface IdentifiedObject {
     /**
      * Returns comments on or information about this object, including data source information.
      *
+     * <div class="warning"><b>Upcoming API change — integration</b><br>
+     * The return type will become {@code Optional<InternationalString>} in GeoAPI 4
+     * for consistency with other optional properties in the referencing packages.
+     * </div>
+     *
      * @return the remarks, or {@code null} if none.
      */
     @UML(identifier="remarks", obligation=OPTIONAL, specification=ISO_19111)

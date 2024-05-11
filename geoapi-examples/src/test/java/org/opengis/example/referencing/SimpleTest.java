@@ -32,7 +32,7 @@ public class SimpleTest {
     public void testDatum() {
         final GeodeticDatum datum = SimpleDatum.WGS84;
         assertEquals(0, datum.getPrimeMeridian().getGreenwichLongitude(), 0);
-        assertEquals("EPSG:World Geodetic System 1984", datum.toString());
+        assertEquals("EPSG:World Geodetic System 1984", datum.getName().toString());
         assertEquals(datum, datum, "Object shall be equal to itself.");
     }
 
@@ -49,7 +49,7 @@ public class SimpleTest {
         assertSame  (AxisDirection.EAST,      cs.getAxis(1).getDirection());
         assertSame  (RangeMeaning.EXACT,      cs.getAxis(0).getRangeMeaning());
         assertSame  (RangeMeaning.WRAPAROUND, cs.getAxis(1).getRangeMeaning());
-        assertEquals("EPSG:WGS 84", crs.toString());
+        assertEquals("EPSG:WGS 84", crs.getName().toString());
         assertEquals(crs, crs, "Object shall be equal to itself.");
     }
 }

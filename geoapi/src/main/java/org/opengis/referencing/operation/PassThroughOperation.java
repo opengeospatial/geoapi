@@ -79,6 +79,18 @@ public interface PassThroughOperation extends SingleOperation {
     int[] getModifiedCoordinates();
 
     /**
+     * Returns the <abbr>CRS</abbr> to be used for interpolations in a grid.
+     * By default, this is the interpolation <abbr>CRS</abbr> of the {@linkplain #getOperation() operation}.
+     *
+     * @since 3.1
+     */
+    @Override
+    @UML(identifier="interpolationCRS", obligation=OPTIONAL, specification=ISO_19111)
+    default Optional<CoordinateReferenceSystem> getInterpolationCRS() {
+        return getOperation().getInterpolationCRS();
+    }
+
+    /**
      * Returns the date at which source coordinate tuples are valid.
      * By default, this is the source epoch of the {@linkplain #getOperation() operation}.
      *
@@ -100,18 +112,6 @@ public interface PassThroughOperation extends SingleOperation {
     @UML(identifier="targetCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
     default Optional<Temporal> getTargetEpoch() {
         return getOperation().getTargetEpoch();
-    }
-
-    /**
-     * Returns the <abbr>CRS</abbr> to be used for interpolations in a grid.
-     * By default, this is the interpolation <abbr>CRS</abbr> of the {@linkplain #getOperation() operation}.
-     *
-     * @since 3.1
-     */
-    @Override
-    @UML(identifier="interpolationCRS", obligation=OPTIONAL, specification=ISO_19111)
-    default Optional<CoordinateReferenceSystem> getInterpolationCRS() {
-        return getOperation().getInterpolationCRS();
     }
 
     /**

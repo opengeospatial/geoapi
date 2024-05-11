@@ -30,7 +30,7 @@ public class SimpleParameterTest {
      */
     @Test
     public void testLatitude() {
-        final SimpleParameter param = new SimpleParameter(null, "latitude", SimpleParameter.Type.LATITUDE);
+        final var param = new SimpleParameter(null, "latitude", SimpleParameter.Type.LATITUDE);
         assertEquals(Double.valueOf(-90),  param.getMinimumValue(),           "Minimum");
         assertEquals(Double.valueOf(+90),  param.getMaximumValue(),           "Maximum");
         assertEquals(0.0,                  param.doubleValue(),               "Initial value");

@@ -17,6 +17,7 @@
  */
 package org.opengis.parameter;
 
+import java.util.Optional;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
@@ -211,7 +212,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
     /**
      * Returns a narrative explanation of the role of this parameter.
      *
-     * @return a narrative explanation of the role of this parameter, or {@code null} if none.
+     * @return a narrative explanation of the role of this parameter.
      *
      * @see #getName()
      * @see #getRemarks()
@@ -219,8 +220,8 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * @since 3.1
      */
     @UML(identifier="SV_Parameter.description", obligation=OPTIONAL, specification=ISO_19115)
-    default InternationalString getDescription() {
-        return null;
+    default Optional<InternationalString> getDescription() {
+        return Optional.empty();
     }
 
     /**
