@@ -7,10 +7,10 @@
 /**
  * Implementation of some interfaces from the {@link org.opengis.referencing} package.
  * In order to provide a simpler model, some classes in this package merge many distinct
- * GeoAPI concepts. For example, many existing projection libraries make no distinction between
- * <i>Coordinate System</i> (CS) and <i>Coordinate Reference System</i> (CRS).
+ * GeoAPI concepts. For example, some existing projection libraries make no distinction between
+ * <i>Coordinate System</i> (<abbr>CS</abbr>) and <i>Coordinate Reference System</i> (<abbr>CRS</abbr>).
  * This package follows this simplified model by providing a single class implementing both
- * the CS and CRS interfaces.
+ * the <abbr>CS</abbr> and <abbr>CRS</abbr> interfaces.
  *
  * <p>The following table lists the classes that implement more than one GeoAPI interface:</p>
  *
@@ -31,10 +31,6 @@
  * <td>{@link org.opengis.example.referencing.SimpleTransform}:</td>
  * <td>{@link org.opengis.referencing.operation.CoordinateOperation},</td>
  * <td>{@link org.opengis.referencing.operation.MathTransform}</td>
- * </tr><tr>
- * <td>{@link org.opengis.example.referencing.SimpleIdentifiedObject}:</td>
- * <td>{@link org.opengis.referencing.IdentifiedObject},</td>
- * <td>{@link org.opengis.metadata.Identifier}</td>
  * </tr><tr>
  * <td>{@link org.opengis.example.metadata.SimpleCitation}:</td>
  * <td>{@link org.opengis.metadata.citation.Citation},</td>

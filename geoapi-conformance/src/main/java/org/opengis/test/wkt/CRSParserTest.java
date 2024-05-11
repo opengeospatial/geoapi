@@ -365,7 +365,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyFlattenedSphere (datum.getEllipsoid(), "Krassowsky 1940", 6378245, 298.3, metre);
         verifyPrimeMeridian   (datum.getPrimeMeridian(), null, 0, degree);
         verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {NORTH,EAST}, degree);
-        assertNullOrEquals("remark", "Система Геодеэических Координвт года 1995(СК-95)", crs.getRemarks());
+        assertNullOrEquals("remark", "Система Геодеэических Координвт года 1995(СК-95)", crs.getRemarks().orElse(null));
     }
 
     /**
@@ -407,7 +407,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
             configurationTip = null;
         }
         verifyNAD23(crs, true, units.degree(), units.metre());
-        assertNullOrEquals("remark", "1986 realisation", crs.getRemarks());
+        assertNullOrEquals("remark", "1986 realisation", crs.getRemarks().orElse(null));
     }
 
     /**
@@ -478,7 +478,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyFlattenedSphere (datum.getEllipsoid(), "Clarke 1880 (IGN)", 6378249.2, 293.4660213, metre);
         verifyPrimeMeridian   (datum.getPrimeMeridian(), "Paris", 2.5969213, grad);
         verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {NORTH,EAST}, grad);
-        assertNullOrEquals("remark", "Nouvelle Triangulation Française", crs.getRemarks());
+        assertNullOrEquals("remark", "Nouvelle Triangulation Française", crs.getRemarks().orElse(null));
     }
 
     /**
@@ -546,7 +546,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
             verifyTimeExtent(extent, Instant.ofEpochSecond(1017619200L), Instant.ofEpochSecond(1319155200L), 1);
             assertNullOrEquals("scope", "Geodesy, topographic mapping and cadastre", domain.getScope());
         }
-        assertNullOrEquals("remark", "注：JGD2000ジオセントリックは現在JGD2011に代わりました。", crs.getRemarks());
+        assertNullOrEquals("remark", "注：JGD2000ジオセントリックは現在JGD2011に代わりました。", crs.getRemarks().orElse(null));
     }
 
     /**
@@ -704,7 +704,9 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyAxisAbbreviations(cs = crs.getCoordinateSystem(), "X", "Y");
         verifyCoordinateSystem (cs, CartesianCS.class, new AxisDirection[] {EAST,NORTH}, footSurveyUS);
         verifyTexasSouthCentral(crs, degree, footSurveyUS);
-        assertNullOrEquals("remark", "Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686\"N, longitude 98°32'30.506\"W.", crs.getRemarks());
+        assertNullOrEquals("remark",
+                "Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686\"N, longitude 98°32'30.506\"W.",
+                crs.getRemarks().orElse(null));
     }
 
     /**

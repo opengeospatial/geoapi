@@ -17,7 +17,6 @@ import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.TransformException;
-import org.opengis.referencing.operation.NoninvertibleTransformException;
 
 import org.opengis.example.geometry.SimpleDirectPosition;
 
@@ -352,18 +351,6 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     }
 
     /**
-     * Creates the inverse transform of this object. The default implementation throws
-     * an exception in all cases.
-     *
-     * @return the inverse transform.
-     * @throws NoninvertibleTransformException if the transform cannot be inverted.
-     */
-    @Override
-    public MathTransform inverse() throws NoninvertibleTransformException {
-        throw new NoninvertibleTransformException();
-    }
-
-    /**
      * Tests whether this transform does not move any points. The default implementation
      * tests if the source and target CRS are equals.
      *
@@ -372,6 +359,14 @@ public abstract class SimpleTransform extends SimpleIdentifiedObject implements 
     @Override
     public boolean isIdentity() {
         return Objects.equals(sourceCRS, targetCRS);
+    }
+
+    /**
+     * {@return a hash code value calculated from the name and the CRS}.
+     */
+    @Override
+    public int hashCode() {
+        return super.hashCode() + Objects.hash(sourceCRS, targetCRS);
     }
 
     /**

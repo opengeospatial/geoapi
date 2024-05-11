@@ -18,7 +18,6 @@ import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.TransformException;
-import org.opengis.referencing.operation.NoninvertibleTransformException;
 
 import org.opengis.example.geometry.SimpleDirectPosition;
 
@@ -164,13 +163,5 @@ public abstract class SimpleTransform2D extends SimpleTransform implements MathT
     @Override
     public Matrix derivative(final Point2D point) throws TransformException {
         throw new TransformException();
-    }
-
-    /**
-     * {@inheritDoc}
-     */
-    @Override
-    public MathTransform2D inverse() throws NoninvertibleTransformException {
-        throw new NoninvertibleTransformException();
     }
 }

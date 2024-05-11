@@ -20,6 +20,7 @@ package org.opengis.referencing;
 import java.util.Set;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.Optional;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.Identifier;
@@ -60,7 +61,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   2.0
  */
 @Classifier(Stereotype.ABSTRACT)
@@ -183,11 +184,11 @@ public interface IdentifiedObject {
     /**
      * Returns comments on or information about this object, including data source information.
      *
-     * @return the remarks, or {@code null} if none.
+     * @return the remarks.
      */
     @UML(identifier="remarks", obligation=OPTIONAL, specification=ISO_19111)
-    default InternationalString getRemarks() {
-        return null;
+    default Optional<InternationalString> getRemarks() {
+        return Optional.empty();
     }
 
     /**

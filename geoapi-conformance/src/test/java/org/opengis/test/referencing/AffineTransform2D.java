@@ -169,16 +169,4 @@ class AffineTransform2D extends AffineTransform implements MathTransform2D {
         }
         return inverse;
     }
-
-    /**
-     * Returns the Well-Known Text of this math transform. Current implementation
-     * thrown a {@link UnsupportedOperationException} in all cases.
-     *
-     * @return the WKT of this transform.
-     * @throws UnsupportedOperationException if this operation is not supported.
-     */
-    @Override
-    public String toWKT() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

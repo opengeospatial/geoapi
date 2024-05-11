@@ -6,7 +6,6 @@
 package org.opengis.example.parameter;
 
 import org.opengis.parameter.ParameterValueGroup;
-import org.opengis.metadata.citation.Citation;
 import org.opengis.example.metadata.SimpleCitation;
 import tech.uom.seshat.Units;
 
@@ -29,8 +28,8 @@ public class SimpleParameterGroupTest {
      */
     @Test
     public void testMercator() {
-        final Citation authority = new SimpleCitation("EPSG");
-        final ParameterValueGroup group = new SimpleParameterGroup(authority, "Mercator (variant A)",
+        final var authority = new SimpleCitation("EPSG");
+        final var group = new SimpleParameterGroup(authority, "Mercator (variant A)",
                 new SimpleParameter(authority, "Latitude of natural origin",     SimpleParameter.Type.LATITUDE),
                 new SimpleParameter(authority, "Longitude of natural origin",    SimpleParameter.Type.LONGITUDE),
                 new SimpleParameter(authority, "Scale factor at natural origin", SimpleParameter.Type.SCALE),

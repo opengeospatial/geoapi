@@ -56,8 +56,8 @@ import static org.opengis.annotation.Specification.*;
  * of an operation, then it should keep hold of the {@link CoordinateOperation} interface,
  * and use the contained math transform object whenever it wishes to perform a transform.
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   1.0
  *
  * @see AffineTransform
@@ -270,7 +270,9 @@ public interface MathTransform {
      * @see AffineTransform#createInverse()
      */
     @UML(identifier="inverse", specification=OGC_01009)
-    MathTransform inverse() throws NoninvertibleTransformException;
+    default MathTransform inverse() throws NoninvertibleTransformException {
+        throw new NoninvertibleTransformException();
+    }
 
     /**
      * Tests whether this transform does not move any points.
@@ -294,5 +296,7 @@ public interface MathTransform {
      * @see MathTransformFactory#createFromWKT(String)
      */
     @UML(identifier="getWKT", specification=OGC_01009)
-    String toWKT();
+    default String toWKT() {
+        throw new UnsupportedOperationException();
+    }
 }

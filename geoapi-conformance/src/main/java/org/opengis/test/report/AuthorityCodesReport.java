@@ -334,7 +334,7 @@ public class AuthorityCodesReport extends Report {
             if (name != null) {
                 row.name = escape(name.getCode());
             }
-            row.remark = escape(toString(object.getRemarks()));
+            row.remark = escape(toString(object.getRemarks().orElse(null)));
         }
         return row;
     }

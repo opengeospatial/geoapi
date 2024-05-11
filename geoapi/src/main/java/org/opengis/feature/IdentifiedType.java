@@ -17,6 +17,7 @@
  */
 package org.opengis.feature;
 
+import java.util.Optional;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.UML;
@@ -63,22 +64,22 @@ public interface IdentifiedType {
      * Returns a natural language designator for the element.
      * This can be used as an alternative to the {@linkplain #getName() name} in user interfaces.
      *
-     * @return natural language designator for the element, or {@code null} if none.
+     * @return natural language designator for the element.
      */
     @UML(identifier="designation", obligation=OPTIONAL, specification=ISO_19109)
-    default InternationalString getDesignation() {
-        return null;
+    default Optional<InternationalString> getDesignation() {
+        return Optional.empty();
     }
 
     /**
      * Returns optional information beyond that required for concise definition of the element.
      * The description may assist in understanding the element scope and application.
      *
-     * @return information beyond that required for concise definition of the element, or {@code null} if none.
+     * @return information beyond that required for concise definition of the element.
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19109)
-    default InternationalString getDescription() {
-        return null;
+    default Optional<InternationalString> getDescription() {
+        return Optional.empty();
     }
 
     /*

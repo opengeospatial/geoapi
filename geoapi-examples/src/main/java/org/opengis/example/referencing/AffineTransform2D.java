@@ -205,12 +205,4 @@ public class AffineTransform2D extends AffineTransform implements MathTransform2
         }
         return inverse;
     }
-
-    /**
-     * Unsupported operation.
-     */
-    @Override
-    public String toWKT() throws UnsupportedOperationException {
-        throw new UnsupportedOperationException("Not supported yet.");
-    }
 }

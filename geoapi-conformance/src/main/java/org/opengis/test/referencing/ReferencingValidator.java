@@ -120,6 +120,6 @@ public abstract class ReferencingValidator extends Validator {
         validate("identifier", object.getIdentifiers(), ValidatorContainer::validate, false);
         validate("alias",      object.getAlias(),       ValidatorContainer::validate, false);
         validate("domain",     object.getDomains(),     ValidatorContainer::validate, false);
-        container.validate(object.getRemarks());
+        container.validate(object.getRemarks().orElse(null));
     }
 }
