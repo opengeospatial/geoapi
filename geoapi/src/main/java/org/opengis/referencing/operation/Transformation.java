@@ -93,9 +93,9 @@ public interface Transformation extends SingleOperation {
      * The version is an identification of the instantiation due to the stochastic nature of the parameters.
      * This attribute is mandatory in all transformations.
      *
-     * @return version of the coordinate transformation. Shall not be empty.
+     * @return version of the coordinate transformation. Shall not be null.
      */
     @Override
     @UML(identifier="operationVersion", obligation=MANDATORY, specification=ISO_19111)
-    Optional<String> getOperationVersion();
+    String getOperationVersion();
 }

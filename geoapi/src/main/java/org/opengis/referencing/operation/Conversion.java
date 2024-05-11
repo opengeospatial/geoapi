@@ -118,7 +118,7 @@ public interface Conversion extends SingleOperation {
      */
     @Override
     @UML(identifier="operationVersion", obligation=FORBIDDEN, specification=ISO_19111)
-    default Optional<String> getOperationVersion() {
-        return Optional.empty();
+    default String getOperationVersion() {
+        return null;
     }
 }

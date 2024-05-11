@@ -277,9 +277,9 @@ public class OperationValidator extends ReferencingValidator {
             mandatory("Conversion: non-defining conversion should have a source CRS.", object.getSourceCRS());
             mandatory("Conversion: non-defining conversion should have a target CRS.", object.getTargetCRS());
         }
-        forbidden("Conversion: should not have a source epoch.",    object.getSourceEpoch()     .orElse(null));
-        forbidden("Conversion: should not have a target epoch.",    object.getTargetEpoch()     .orElse(null));
-        forbidden("Conversion: should not have operation version.", object.getOperationVersion().orElse(null));
+        forbidden("Conversion: should not have a source epoch.",    object.getSourceEpoch().orElse(null));
+        forbidden("Conversion: should not have a target epoch.",    object.getTargetEpoch().orElse(null));
+        forbidden("Conversion: should not have operation version.", object.getOperationVersion());
     }
 
     /**
@@ -295,7 +295,7 @@ public class OperationValidator extends ReferencingValidator {
         mandatory("Transformation: sourceCRS is a mandatory attribute.",        object.getSourceCRS());
         mandatory("Transformation: targetCRS is a mandatory attribute.",        object.getTargetCRS());
         mandatory("Transformation: MathTransform is a mandatory attribute.",    object.getMathTransform());
-        mandatory("Transformation: operationVersion is a mandatory attribute.", object.getOperationVersion().orElse(null));
+        mandatory("Transformation: operationVersion is a mandatory attribute.", object.getOperationVersion());
         forbidden("Transformation: should not have a source epoch.", object.getSourceEpoch().orElse(null));
         forbidden("Transformation: should not have a target epoch.", object.getTargetEpoch().orElse(null));
     }
@@ -319,7 +319,7 @@ public class OperationValidator extends ReferencingValidator {
         }
         mandatory("PointMotionOperation: source epoch is a mandatory attribute.",     object.getSourceEpoch().orElse(null));
         mandatory("PointMotionOperation: target epoch is a mandatory attribute.",     object.getTargetEpoch().orElse(null));
-        mandatory("PointMotionOperation: operationVersion is a mandatory attribute.", object.getOperationVersion().orElse(null));
+        mandatory("PointMotionOperation: operationVersion is a mandatory attribute.", object.getOperationVersion());
         mandatory("PointMotionOperation: MathTransform is a mandatory attribute.",    object.getMathTransform());
     }
 

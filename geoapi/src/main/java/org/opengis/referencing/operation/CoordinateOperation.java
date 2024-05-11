@@ -228,11 +228,11 @@ public interface CoordinateOperation extends IdentifiedObject {
      * It is mandatory when describing a transformation or point motion operation,
      * and should not be supplied for a conversion.
      *
-     * @return version of the coordinate transformation or point motion.
+     * @return version of the coordinate transformation or point motion, or {@code null} if none.
      */
     @UML(identifier="operationVersion", obligation=CONDITIONAL, specification=ISO_19111)
-    default Optional<String> getOperationVersion() {
-        return Optional.empty();
+    default String getOperationVersion() {
+        return null;
     }
 
     /**
