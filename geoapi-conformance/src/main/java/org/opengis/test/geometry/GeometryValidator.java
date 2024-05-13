@@ -117,8 +117,8 @@ public class GeometryValidator extends Validator {
          */
         final DirectPosition lowerCorner = object.getLowerCorner();
         final DirectPosition upperCorner = object.getUpperCorner();
-        mandatory("Envelope: shall have a lower corner.",  lowerCorner);
-        mandatory("Envelope: shall have an upper corner.", upperCorner);
+        mandatory(lowerCorner, "Envelope: shall have a lower corner.");
+        mandatory(upperCorner, "Envelope: shall have an upper corner.");
         validate(lowerCorner);
         validate(upperCorner);
         CoordinateReferenceSystem lowerCRS = null;
@@ -205,7 +205,7 @@ public class GeometryValidator extends Validator {
         final int dimension = object.getDimension();
         assertPositive(dimension, "DirectPosition: dimension cannot be negative.");
         final double[] coordinates = object.getCoordinates();
-        mandatory("DirectPosition: coordinate array cannot be null.", coordinates);
+        mandatory(coordinates, "DirectPosition: coordinate array cannot be null.");
         if (coordinates != null) {
             assertEquals(dimension, coordinates.length,
                     "DirectPosition: coordinate array length shall be equal to the dimension.");

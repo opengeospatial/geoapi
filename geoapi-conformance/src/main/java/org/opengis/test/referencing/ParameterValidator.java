@@ -102,7 +102,7 @@ public class ParameterValidator extends ReferencingValidator {
         }
         validateIdentifiedObject(object);
         final Class<T> valueClass = object.getValueClass();
-        mandatory("ParameterDescriptor: getValueClass() cannot return null.", valueClass);
+        mandatory(valueClass, "ParameterDescriptor: getValueClass() cannot return null.");
         Set<T> validValues = object.getValidValues();
         if (validValues != null) {
             validate(validValues);
@@ -151,7 +151,7 @@ public class ParameterValidator extends ReferencingValidator {
                 assertNotNull(descriptor, "ParameterDescriptorGroup: descriptors() cannot contain null element.");
                 dispatch(descriptor);
                 final GeneralParameterDescriptor byName = object.descriptor(descriptor.getName().getCode());
-                mandatory("ParameterDescriptorGroup: descriptor(String) should returns a value.", byName);
+                mandatory(byName, "ParameterDescriptorGroup: descriptor(String) should returns a value.");
                 if (byName != null) {
                     assertEquals(descriptor, byName, "ParameterDescriptorGroup: descriptor(String) inconsistent with descriptors().");
                 }
@@ -174,7 +174,7 @@ public class ParameterValidator extends ReferencingValidator {
             return;
         }
         final ParameterDescriptor<T> descriptor = object.getDescriptor();
-        mandatory("ParameterValue: shall have a descriptor.", descriptor);
+        mandatory(descriptor, "ParameterValue: shall have a descriptor.");
         validate(descriptor);
         final T value = object.getValue();
         if (value != null) {
@@ -202,7 +202,7 @@ public class ParameterValidator extends ReferencingValidator {
             return;
         }
         final ParameterDescriptorGroup descriptors = object.getDescriptor();
-        mandatory("ParameterValueGroup: shall have a descriptor.", descriptors);
+        mandatory(descriptors, "ParameterValueGroup: shall have a descriptor.");
         validate(descriptors);
         final List<GeneralParameterValue> values = object.values();
         if (requireMandatoryAttributes) {
@@ -217,18 +217,18 @@ public class ParameterValidator extends ReferencingValidator {
             assertNotNull(value, "ParameterValueGroup: values() cannot contain null element.");
             dispatch(value);
             final GeneralParameterDescriptor descriptor = value.getDescriptor();
-            mandatory("GeneralParameterValue: expected a descriptor.", descriptor);
+            mandatory(descriptor, "GeneralParameterValue: expected a descriptor.");
             if (descriptor == null) {
                 continue;
             }
             final String name = descriptor.getName().getCode();
-            mandatory("GeneralParameterDescriptor: expected a name.", name);
+            mandatory(name, "GeneralParameterDescriptor: expected a name.");
             if (name == null) {
                 continue;
             }
             if (descriptors != null) {
                 final GeneralParameterDescriptor byName = descriptors.descriptor(name);
-                mandatory("ParameterDescriptorGroup: should never return null.", byName);
+                mandatory(byName, "ParameterDescriptorGroup: should never return null.");
                 if (byName != null) {
                     assertEquals(descriptor, byName,
                             "ParameterValueGroup: descriptor(String) inconsistent with value.getDescriptor().");
@@ -236,7 +236,7 @@ public class ParameterValidator extends ReferencingValidator {
             }
             if (value instanceof ParameterValue<?>) {
                 final ParameterValue<?> byName = object.parameter(name);
-                mandatory("ParameterValueGroup: parameter(String) should returns a value.", byName);
+                mandatory(byName, "ParameterValueGroup: parameter(String) should returns a value.");
                 if (byName != null) {
                     assertEquals(value, byName, "ParameterValueGroup: value(String) inconsistent with values().");
                 }

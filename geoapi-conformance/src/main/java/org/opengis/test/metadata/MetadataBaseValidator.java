@@ -61,7 +61,7 @@ public class MetadataBaseValidator extends MetadataValidator {
         validate(object.getMetadataIdentifier());
         container.validate(object.getParentMetadata());
         for (final MetadataScope scope : toArray(MetadataScope.class, object.getMetadataScopes())) {
-            mandatory("Metadata: shall have a scope code.", scope.getResourceScope());
+            mandatory(scope.getResourceScope(), "Metadata: shall have a scope code.");
         }
         for (final Responsibility e : toArray(Responsibility.class, object.getContacts())) {
             container.validate(e);
@@ -76,7 +76,7 @@ public class MetadataBaseValidator extends MetadataValidator {
                 if (creationDate != null) break;
             }
         }
-        mandatory("Metadata: shall have a creation date.", creationDate);
+        mandatory(creationDate, "Metadata: shall have a creation date.");
 
         for (final Citation e : toArray(Citation.class, object.getMetadataStandards())) {
             container.validate(e);
@@ -95,8 +95,8 @@ public class MetadataBaseValidator extends MetadataValidator {
         validate(object.getMetadataExtensionInfo());
 
         final Collection<? extends Identification> identifications = object.getIdentificationInfo();
-        mandatory("Metadata: shall have an identification information.",
-                (identifications != null && identifications.isEmpty()) ? null : identifications);
+        mandatory(identifications != null && identifications.isEmpty() ? null : identifications,
+                  "Metadata: shall have an identification information.");
         validate(identifications);
 
         validate(object.getContentInfo());
@@ -118,7 +118,7 @@ public class MetadataBaseValidator extends MetadataValidator {
         if (object == null) {
             return;
         }
-        mandatory("Identifier: shall have a code.", object.getCode());
+        mandatory(object.getCode(), "Identifier: shall have a code.");
         final Citation citation = object.getAuthority();
         if (citation != this) {                 // Avoid never ending loop.
             container.validate(citation);

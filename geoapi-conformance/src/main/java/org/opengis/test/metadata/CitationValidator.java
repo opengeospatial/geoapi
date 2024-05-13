@@ -96,8 +96,8 @@ public class CitationValidator extends MetadataValidator {
             if (date != null) {
                 final DateType type = date.getDateType();
                 final Date     time = date.getDate();
-                mandatory("CitationDate: shall have a date type.", type);
-                mandatory("CitationDate: shall have a timestamp.", time);
+                mandatory(type, "CitationDate: shall have a date type.");
+                mandatory(time, "CitationDate: shall have a timestamp.");
                 if (type != null && time != null) {
                     if (type.equals(DateType.CREATION)) {
                         creation = time;
@@ -144,7 +144,7 @@ public class CitationValidator extends MetadataValidator {
         if (object == null) {
             return;
         }
-        mandatory("Responsibility: shall have a role.", object.getRole());
+        mandatory(object.getRole(), "Responsibility: shall have a role.");
         for (final Party e : toArray(Party.class, object.getParties())) {
             validate(e);
         }
@@ -169,7 +169,7 @@ public class CitationValidator extends MetadataValidator {
             isMandatory &= isNullOrEmpty(((Organisation) object).getLogo());
         }
         if (isMandatory) {
-            mandatory("Party: shall have a name.", object.getName());
+            mandatory(object.getName(), "Party: shall have a name.");
         }
         for (final Contact e : toArray(Contact.class, object.getContactInfo())) {
             validate(e);
@@ -211,7 +211,7 @@ public class CitationValidator extends MetadataValidator {
         if (object == null) {
             return;
         }
-        mandatory("Telephone: shall have a number.", object.getNumber());
+        mandatory(object.getNumber(), "Telephone: shall have a number.");
     }
 
     /**
@@ -243,7 +243,7 @@ public class CitationValidator extends MetadataValidator {
         if (object == null) {
             return;
         }
-        mandatory("OnlineResource: shall have a linkage.", object.getLinkage());
+        mandatory(object.getLinkage(), "OnlineResource: shall have a linkage.");
         validateOptional(object.getDescription());
     }
 }

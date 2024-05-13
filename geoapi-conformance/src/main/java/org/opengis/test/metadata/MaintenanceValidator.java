@@ -72,7 +72,7 @@ public class MaintenanceValidator extends MetadataValidator {
         if (object == null) {
             return;
         }
-        mandatory("Scope: must have a level.", object.getLevel());
+        mandatory(object.getLevel(), "Scope: must have a level.");
         validate("extent", object.getExtents(), ValidatorContainer::validate, false);
     }
 }

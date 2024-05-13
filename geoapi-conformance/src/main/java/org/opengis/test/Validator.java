@@ -19,6 +19,7 @@ package org.opengis.test;
 
 import java.util.BitSet;
 import java.util.Objects;
+import java.util.Optional;
 import java.util.Collection;
 import java.util.function.BiConsumer;
 import java.util.logging.Logger;
@@ -45,7 +46,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * provided that their configuration is not modified.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   2.2
  */
 public abstract class Validator {
@@ -148,19 +149,33 @@ public abstract class Validator {
      *
      * Subclasses can override this method if they want more control.
      *
-     * @param message  the message to send in case of failure.
      * @param value    the value to test for non-nullity.
+     * @param message  the message to send in case of failure.
      *
      * @see #requireMandatoryAttributes
      * @see Obligation#MANDATORY
      */
-    protected void mandatory(final String message, final Object value) {
+    protected void mandatory(final Object value, final String message) {
+        assertFalse(value instanceof Optional, "This method should not be invoked for instances of `Optional`.");
         if (requireMandatoryAttributes) {
             assertNotNull(value, message);
             assertFalse(isEmptyCollection(value), message);
         } else if (value == null || isEmptyCollection(value)) {
             WarningMessage.log(logger, message, true);
         }
+    }
+
+    /**
+     * Invoked when the existence of an optional attribute needs to be verified.
+     * This method is invoked when an attribute is optional in a parent interface,
+     * but become mandatory in a sub-interface.
+     *
+     * @param value    the value to test for non-nullity.
+     * @param message  the message to send in case of failure.
+     */
+    protected final void mandatory(final Optional<?> value, final String message) {
+        assertNotNull(value, "`Optional` cannot be null.");
+        mandatory(value.orElse(null), message);
     }
 
     /**
@@ -176,13 +191,14 @@ public abstract class Validator {
      *
      * Subclasses can override this method if they want more control.
      *
-     * @param message  the message to send in case of failure.
      * @param value    the value to test for nullity.
+     * @param message  the message to send in case of failure.
      *
      * @see #enforceForbiddenAttributes
      * @see Obligation#FORBIDDEN
      */
-    protected void forbidden(final String message, final Object value) {
+    protected void forbidden(final Object value, final String message) {
+        assertFalse(value instanceof Optional, "This method should not be invoked for instances of `Optional`.");
         if (enforceForbiddenAttributes) {
             if (value instanceof Collection<?>) {
                 assertTrue(((Collection<?>) value).isEmpty(), message);
@@ -195,21 +211,16 @@ public abstract class Validator {
     }
 
     /**
-     * Delegates to {@link #mandatory(String, Object)} or {@link #forbidden(String, Object)}
-     * depending on a condition.
+     * Invoked when the existence of a forbidden attribute needs to be verified.
+     * This method is invoked when an attribute is optional in a parent interface,
+     * but become forbidden in a sub-interface.
      *
-     * @param message    the message to send in case of failure.
-     * @param value      the value to test for (non)-nullity.
-     * @param condition  {@code true} if the given value is mandatory, or {@code false} if it is forbidden.
-     *
-     * @see Obligation#CONDITIONAL
+     * @param value    the value to test for nullity.
+     * @param message  the message to send in case of failure.
      */
-    protected void conditional(final String message, final Object value, final boolean condition) {
-        if (condition) {
-            mandatory(message, value);
-        } else {
-            forbidden(message, value);
-        }
+    protected final void forbidden(final Optional<?> value, final String message) {
+        assertNotNull(value, "`Optional` cannot be null.");
+        forbidden(value.orElse(null), message);
     }
 
     /**

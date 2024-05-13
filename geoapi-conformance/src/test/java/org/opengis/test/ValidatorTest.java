@@ -51,14 +51,14 @@ public final class ValidatorTest {
      */
     @Test
     public void testMandatory() {
-        validator.mandatory("Should not fail.", "dummy");
-        validator.mandatory("Should not fail.", Collections.singleton("dummy"));
+        validator.mandatory("dummy", "Should not fail.");
+        validator.mandatory(Collections.singleton("dummy"), "Should not fail.");
 
         AssertionError e;
-        e = assertThrows(AssertionError.class, () -> validator.mandatory("Should fail.", null));
+        e = assertThrows(AssertionError.class, () -> validator.mandatory((Object) null, "Should fail."));
         assertTrue(e.getMessage().startsWith("Should fail."));
 
-        e = assertThrows(AssertionError.class, () -> validator.mandatory("Should fail.", Collections.emptySet()));
+        e = assertThrows(AssertionError.class, () -> validator.mandatory(Collections.emptySet(), "Should fail."));
         assertTrue(e.getMessage().startsWith("Should fail."));
     }
 
@@ -67,14 +67,14 @@ public final class ValidatorTest {
      */
     @Test
     public void testForbidden() {
-        validator.forbidden("Should not fail.", null);
-        validator.forbidden("Should not fail.", Collections.emptySet());
+        validator.forbidden((Object) null, "Should not fail.");
+        validator.forbidden(Collections.emptySet(), "Should not fail.");
 
         AssertionError e;
-        e = assertThrows(AssertionError.class, () -> validator.forbidden("Should fail.", "dummy"));
+        e = assertThrows(AssertionError.class, () -> validator.forbidden("dummy", "Should fail."));
         assertTrue(e.getMessage().startsWith("Should fail."));
 
-        e = assertThrows(AssertionError.class, () -> validator.forbidden("Should fail.", Collections.singleton("dummy")));
+        e = assertThrows(AssertionError.class, () -> validator.forbidden(Collections.singleton("dummy"), "Should fail."));
         assertTrue(e.getMessage().startsWith("Should fail."));
     }
 

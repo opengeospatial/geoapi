@@ -27,6 +27,7 @@ import javax.measure.quantity.Length;
 import javax.measure.quantity.Dimensionless;
 
 import org.opengis.util.FactoryException;
+import org.opengis.util.InternationalString;
 import org.opengis.referencing.ObjectDomain;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.*;
@@ -205,6 +206,18 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
     }
 
     /**
+     * Returns the remarks of the given object.
+     *
+     * @param  object  the object for which to get the remarks.
+     * @return the remarks, or {@code null} if none.
+     */
+    private static InternationalString getRemarks(final IdentifiedObject object) {
+        Optional<InternationalString> remarks = object.getRemarks();
+        assertNotNull(remarks, "`Optional` cannot be null.");
+        return remarks.orElse(null);
+    }
+
+    /**
      * Pre-process the WKT string before parsing.
      * The default implementation performs the following changes for strict ISO 19162 compliance:
      *
@@ -365,7 +378,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyFlattenedSphere (datum.getEllipsoid(), "Krassowsky 1940", 6378245, 298.3, metre);
         verifyPrimeMeridian   (datum.getPrimeMeridian(), null, 0, degree);
         verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {NORTH,EAST}, degree);
-        assertNullOrEquals("remark", "Система Геодеэических Координвт года 1995(СК-95)", crs.getRemarks().orElse(null));
+        assertNullOrEquals("remark", "Система Геодеэических Координвт года 1995(СК-95)", getRemarks(crs));
     }
 
     /**
@@ -407,7 +420,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
             configurationTip = null;
         }
         verifyNAD23(crs, true, units.degree(), units.metre());
-        assertNullOrEquals("remark", "1986 realisation", crs.getRemarks().orElse(null));
+        assertNullOrEquals("remark", "1986 realisation", getRemarks(crs));
     }
 
     /**
@@ -478,7 +491,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyFlattenedSphere (datum.getEllipsoid(), "Clarke 1880 (IGN)", 6378249.2, 293.4660213, metre);
         verifyPrimeMeridian   (datum.getPrimeMeridian(), "Paris", 2.5969213, grad);
         verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {NORTH,EAST}, grad);
-        assertNullOrEquals("remark", "Nouvelle Triangulation Française", crs.getRemarks().orElse(null));
+        assertNullOrEquals("remark", "Nouvelle Triangulation Française", getRemarks(crs));
     }
 
     /**
@@ -546,7 +559,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
             verifyTimeExtent(extent, Instant.ofEpochSecond(1017619200L), Instant.ofEpochSecond(1319155200L), 1);
             assertNullOrEquals("scope", "Geodesy, topographic mapping and cadastre", domain.getScope());
         }
-        assertNullOrEquals("remark", "注：JGD2000ジオセントリックは現在JGD2011に代わりました。", crs.getRemarks().orElse(null));
+        assertNullOrEquals("remark", "注：JGD2000ジオセントリックは現在JGD2011に代わりました。", getRemarks(crs));
     }
 
     /**
@@ -706,7 +719,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyTexasSouthCentral(crs, degree, footSurveyUS);
         assertNullOrEquals("remark",
                 "Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686\"N, longitude 98°32'30.506\"W.",
-                crs.getRemarks().orElse(null));
+                getRemarks(crs));
     }
 
     /**
