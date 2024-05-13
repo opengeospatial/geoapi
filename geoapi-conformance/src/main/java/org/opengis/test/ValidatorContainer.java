@@ -72,7 +72,7 @@ import org.opengis.test.coverage.image.*;
  * @version 4.0
  * @since   2.2
  */
-public class ValidatorContainer implements Cloneable {
+public class ValidatorContainer {
     /**
      * The validator for {@link GenericName} and related objects.
      * Vendors can change this field to a different validator, or change the setting
@@ -195,9 +195,7 @@ public class ValidatorContainer implements Cloneable {
 
     /**
      * Creates a new {@code ValidatorContainer} initialized with new {@link Validator} instances.
-     * Note that this constructor does not inherit the configuration of the {@link Validators#DEFAULT}
-     * instance. To inherit that default configuration, use <code>DEFAULT.{@linkplain #clone()}</code>
-     * instead.
+     * Note that this constructor does not inherit the configuration of the {@link Validators#DEFAULT} instance.
      */
     public ValidatorContainer() {
         all = new AbstractList<Validator>() {
@@ -226,30 +224,6 @@ public class ValidatorContainer implements Cloneable {
                 }
             }
         };
-    }
-
-    /**
-     * Returns a new container using the same validators as this instance. After this method call,
-     * the two {@code ValidatorContainer} instances will share the same {@link Validator} instances.
-     *
-     * <p>This method is typically used in order to use the default configuration with a few
-     * changes, as in the example below:</p>
-     *
-     * {@snippet lang="java" :
-     * ValidatorContainer myContainer = Validators.DEFAULT.clone();
-     * myContainer.crs = new CRSValidator();
-     * myContainer.crs.enforceStandardNames = false;
-     * }
-     *
-     * @return a new {@code ValidatorContainer} instance using the same {@link Validator} instances.
-     */
-    @Override
-    public ValidatorContainer clone() {
-        try {
-            return (ValidatorContainer) super.clone();
-        } catch (CloneNotSupportedException e) {
-            throw new AssertionError(e);                    // Should never happen.
-        }
     }
 
     /**
