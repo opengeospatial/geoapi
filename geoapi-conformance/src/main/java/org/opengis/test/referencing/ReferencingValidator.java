@@ -17,6 +17,7 @@
  */
 package org.opengis.test.referencing;
 
+import java.util.Optional;
 import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
@@ -30,6 +31,7 @@ import org.opengis.util.InternationalString;
 import org.opengis.test.Units;
 import org.opengis.test.Validator;
 import org.opengis.test.ValidatorContainer;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -120,6 +122,18 @@ public abstract class ReferencingValidator extends Validator {
         validate("identifier", object.getIdentifiers(), ValidatorContainer::validate, false);
         validate("alias",      object.getAlias(),       ValidatorContainer::validate, false);
         validate("domain",     object.getDomains(),     ValidatorContainer::validate, false);
-        container.validate(object.getRemarks().orElse(null));
+        container.validate(getRemarks(object));
+    }
+
+    /**
+     * Returns the remarks of the given object.
+     *
+     * @param  object  the object for which to get the remarks.
+     * @return the remarks, or {@code null} if none.
+     */
+    static InternationalString getRemarks(final IdentifiedObject object) {
+        Optional<InternationalString> remarks = object.getRemarks();
+        assertNotNull(remarks, "`Optional` cannot be null.");
+        return remarks.orElse(null);
     }
 }

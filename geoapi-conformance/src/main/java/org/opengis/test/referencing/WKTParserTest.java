@@ -15,7 +15,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.opengis.test.wkt;
+package org.opengis.test.referencing;
 
 import java.util.Date;
 import java.util.List;
@@ -27,7 +27,6 @@ import javax.measure.quantity.Length;
 import javax.measure.quantity.Dimensionless;
 
 import org.opengis.util.FactoryException;
-import org.opengis.util.InternationalString;
 import org.opengis.referencing.ObjectDomain;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.crs.*;
@@ -35,7 +34,6 @@ import org.opengis.referencing.cs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.metadata.extent.Extent;
-import org.opengis.test.referencing.ReferencingTestCase;
 import org.opengis.test.Configuration;
 import org.junit.jupiter.api.Test;
 
@@ -43,6 +41,7 @@ import static java.lang.Double.NaN;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.opengis.referencing.cs.AxisDirection.*;
+import static org.opengis.test.referencing.ReferencingValidator.getRemarks;
 
 
 /**
@@ -69,9 +68,9 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * define a subclass in their own test suite as in the example below:
  *
  * {@snippet lang="java" :
- * import org.opengis.test.wkt.CRSParserTest;
+ * import org.opengis.test.referencing.WKTParserTest;
  *
- * public class MyTest extends CRSParserTest {
+ * public class MyTest extends WKTParserTest {
  *     public MyTest() {
  *         super(new MyCRSFactory());
  *     }
@@ -85,17 +84,17 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html">WKT 2 specification</a>
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
-public strictfp class CRSParserTest extends ReferencingTestCase {
+public strictfp class WKTParserTest extends ReferencingTestCase {
     /**
      * The factory to use for parsing WKT strings. The {@link CRSFactory#createFromWKT(String)} method
-     * of this factory will be invoked for each test defined in this {@code CRSParserTest} class.
+     * of this factory will be invoked for each test defined in this {@code WKTParserTest} class.
      */
     protected final CRSFactory crsFactory;
 
     /**
      * The instance returned by {@link CRSFactory#createFromWKT(String)} after parsing the WKT.
      * Subclasses can use this field if they wish to verify additional properties after the
-     * verifications done by this {@code CRSParserTest} class.
+     * verifications done by this {@code WKTParserTest} class.
      */
     protected CoordinateReferenceSystem object;
 
@@ -113,7 +112,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @param crsFactory  factory for parsing {@link CoordinateReferenceSystem} instances.
      */
     @SuppressWarnings("this-escape")
-    public CRSParserTest(final CRSFactory crsFactory) {
+    public WKTParserTest(final CRSFactory crsFactory) {
         this.crsFactory = crsFactory;
         final boolean[] isEnabled = getEnabledFlags(
                 Configuration.Key.isValidationEnabled);
@@ -203,18 +202,6 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         if (actual.isPresent()) {
             assertEquals(expected, actual.get().toString(), property);
         }
-    }
-
-    /**
-     * Returns the remarks of the given object.
-     *
-     * @param  object  the object for which to get the remarks.
-     * @return the remarks, or {@code null} if none.
-     */
-    private static InternationalString getRemarks(final IdentifiedObject object) {
-        Optional<InternationalString> remarks = object.getRemarks();
-        assertNotNull(remarks, "`Optional` cannot be null.");
-        return remarks.orElse(null);
     }
 
     /**
