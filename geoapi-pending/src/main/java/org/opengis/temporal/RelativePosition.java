@@ -30,8 +30,6 @@ import static org.opengis.annotation.Specification.*;
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
  * @author Martin Desruisseaux (IRD)
- * @since   2.3
- * @version 4.0
  */
 @Vocabulary(capacity=13)
 @UML(identifier="TM_RelativePosition", specification=ISO_19108)

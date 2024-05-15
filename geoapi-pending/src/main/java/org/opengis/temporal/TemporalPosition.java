@@ -31,8 +31,6 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author Stephane Fellah (Image Matters)
  * @author Alexander Petkov
- * @since   2.3
- * @version 4.0
  *
  * @todo This interface may be replaced by {@link Temporal} from the standard Java library.
  */

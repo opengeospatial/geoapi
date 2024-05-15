@@ -37,8 +37,11 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see Position
  * @see PointArray
+ *
+ * @deprecated This interface has been removed in ISO 19107:2019.
  */
-@UML(identifier="GM_PointGrid", specification=ISO_19107)
+@Deprecated(forRemoval = true)
+@UML(identifier="GM_PointGrid", specification=ISO_19107, version=2003)
 public interface PointGrid {
     /**
      * Returns the width of this grid. All {@linkplain PointArray point array}

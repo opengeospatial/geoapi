@@ -32,8 +32,6 @@ import static org.opengis.annotation.Specification.*;
  * @author Alexander Petkov
  * @author Martin Desruisseaux (Geomatys)
  * @author Remi Marechal (Geomatys).
- * @since   2.3
- * @version 4.0
  */
  @UML(identifier="TM_Period", specification=ISO_19108)
 public interface Period extends TemporalGeometricPrimitive {
