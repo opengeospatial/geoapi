@@ -11,7 +11,6 @@ import java.util.Collections;
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.metadata.citation.Citation;
-import org.opengis.example.metadata.SimpleCitation;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.cs.CoordinateSystem;
@@ -20,6 +19,7 @@ import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransformFactory;
 import org.opengis.referencing.operation.OperationMethod;
 import org.opengis.referencing.operation.SingleOperation;
+import org.opengis.example.metadata.SimpleCitation;
 
 
 /**
@@ -31,27 +31,46 @@ import org.opengis.referencing.operation.SingleOperation;
  *   <li>{@link #getAvailableMethods(Class)}, which returns an empty set.</li>
  *   <li>{@link #getLastMethodUsed()}, which returns {@code null}.</li>
  *   <li>{@link #createAffineTransform(Matrix)}</li>
+ *   <li>{@link #createMatrix(int, int)}</li>
  * </ul>
+ *
+ * This base class is immutable and safe for multi-threading.
  */
 public class SimpleTransformFactory implements MathTransformFactory {
     /**
-     * The value to be returned by {@link #getVendor()}.
-     * Implementations should replace {@code "GeoAPI-example"} by their name.
+     * A shared instance of this factory.
+     *
+     * @see #provider()
      */
-    private static final Citation VENDOR = new SimpleCitation("GeoAPI-example");
+    private static final SimpleTransformFactory INSTANCE = new SimpleTransformFactory();
 
     /**
      * Creates a new factory.
+     *
+     * @see #provider()
      */
-    public SimpleTransformFactory() {
+    protected SimpleTransformFactory() {
+    }
+
+    /**
+     * Returns a shared instance of this factory.
+     *
+     * <p><b>API note:</b>
+     * This method is invoked by {@link java.util.ServiceLoader} when this factory is fetched as a service.</p>
+     *
+     * @return a shared instance of this factory.
+     */
+    public static MathTransformFactory provider() {
+        return INSTANCE;
     }
 
     /**
      * Returns the implementer of this factory.
+     * Subclasses should replace {@code "GeoAPI example"} by their vendor name.
      */
     @Override
     public Citation getVendor() {
-        return VENDOR;
+        return SimpleCitation.GEOAPI;
     }
 
     /**
@@ -140,8 +159,22 @@ public class SimpleTransformFactory implements MathTransformFactory {
         {
             return new AffineTransform2D(matrix);
         }
-        return new ProjectiveTransform(VENDOR, "Projective transform", null, null,
+        return new ProjectiveTransform(SimpleCitation.GEOAPI, "Projective transform", null, null,
                 (matrix instanceof SimpleMatrix) ? (SimpleMatrix) matrix : new SimpleMatrix(matrix));
+    }
+
+    /**
+     * Creates a matrix of size {@code numRow}&nbsp;×&nbsp;{@code numCol}.
+     * Elements on the diagonal (<var>j</var> == <var>i</var>) are set to 1.
+     *
+     * @param  numRow  number of rows.
+     * @param  numCol  number of columns.
+     * @return a new matrix of the given size.
+     * @throws FactoryException if the matrix creation failed.
+     */
+    @Override
+    public Matrix createMatrix(int numRow, int numCol) throws FactoryException {
+        return new SimpleMatrix(numRow, numCol);
     }
 
     /**

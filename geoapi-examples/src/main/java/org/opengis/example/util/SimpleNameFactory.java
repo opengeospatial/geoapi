@@ -32,8 +32,10 @@ public class SimpleNameFactory implements NameFactory {
     /**
      * The default factory instance.
      * This factory uses the {@code ":"} separator between name components.
+     *
+     * @see #provider()
      */
-    public static final SimpleNameFactory DEFAULT = new SimpleNameFactory();
+    static final SimpleNameFactory DEFAULT = new SimpleNameFactory();
 
     /**
      * The JNDI syntax of names. By default, this map contains the following entries:
@@ -60,8 +62,10 @@ public class SimpleNameFactory implements NameFactory {
 
     /**
      * Creates a new factory initialized to the default {@linkplain #syntax}.
+     *
+     * @see #provider()
      */
-    public SimpleNameFactory() {
+    protected SimpleNameFactory() {
         locale = Locale.getDefault();
         syntax = new Properties();
         syntax.setProperty("jndi.syntax.direction", "left_to_right");
@@ -80,11 +84,25 @@ public class SimpleNameFactory implements NameFactory {
     }
 
     /**
+     * Returns the default factory instance.
+     * This factory uses the {@code ":"} separator between name components.
+     *
+     * <p><b>API note:</b>
+     * This method is invoked by {@link java.util.ServiceLoader} when this factory is fetched as a service.</p>
+     *
+     * @return the default factory instance.
+     */
+    public static NameFactory provider() {
+        return DEFAULT;
+    }
+
+    /**
      * Returns the implementer responsible for creating the factory implementation.
+     * Subclasses should replace {@code "GeoAPI example"} by their vendor name.
      */
     @Override
     public Citation getVendor() {
-        return SimpleCitation.OGC;
+        return SimpleCitation.GEOAPI;
     }
 
     /**

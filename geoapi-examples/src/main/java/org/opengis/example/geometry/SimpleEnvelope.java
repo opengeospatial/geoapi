@@ -20,8 +20,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  * {@linkplain CoordinateReferenceSystem Coordinate Reference System}.
  *
  * <p>This simple implementation does not support envelopes crossing the anti-meridian.
- * Consequently, lower coordinate values shall not be greater than corresponding upper
- * coordinate values.</p>
+ * Therefore, lower coordinate values shall not be greater than corresponding upper coordinate values.</p>
  */
 public class SimpleEnvelope implements Envelope {
     /**

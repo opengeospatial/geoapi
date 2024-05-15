@@ -23,6 +23,11 @@ import org.opengis.util.InternationalString;
  */
 public class SimpleCitation implements Citation, InternationalString {
     /**
+     * The implementer of the factory provided in this module.
+     */
+    public static final Citation GEOAPI = new SimpleCitation("GeoAPI example");
+
+    /**
      * The <cite>Open Geospatial Consortium</cite> authority.
      *
      * @see org.opengis.util.Factory#getVendor()
@@ -30,13 +35,15 @@ public class SimpleCitation implements Citation, InternationalString {
     public static final SimpleCitation OGC = new SimpleCitation("OGC");
 
     /**
-     * The <cite>European Petroleum Survey Group</cite> authority.
-     * This authority provides many CRS definitions.
+     * Subset of the <cite>European Petroleum Survey Group</cite> registry.
+     * The <abbr>EPSG</abbr> authority provides many <abbr>CRS</abbr> definitions.
+     * The examples in this module use only a small subset of <abbr>EPSG</abbr> definitions.
+     * For clarity, the title of this citation is <q><abbr>EPSG</abbr> subset</q>.
      *
      * @see Identifier#getAuthority()
      * @see org.opengis.referencing.AuthorityFactory#getAuthority()
      */
-    public static final SimpleCitation EPSG = new SimpleCitation("EPSG");
+    public static final SimpleCitation EPSG = new SimpleCitation("EPSG subset");
 
     /**
      * The citation title to be returned by {@link #getTitle()} as an {@link InternationalString}.

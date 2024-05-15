@@ -223,9 +223,8 @@ public class SimpleParameterGroup extends SimpleIdentifiedObject
     }
 
     /**
-     * Returns a new group with the same {@linkplain #authority authority}, {@linkplain #code code}
-     * and {@linkplain #parameters} than this group. The {@linkplain SimpleParameter#getValue() value}
-     * of each parameter is left to their default value.
+     * Returns a new group with the same authority, code and parameters than this group.
+     * The {@linkplain SimpleParameter#getValue() value} of each parameter is left to their default value.
      *
      * <div class="note"><b>Implementation note:</b>
      * since this simple class implements both the {@linkplain ParameterValueGroup value} and the

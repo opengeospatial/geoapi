@@ -10,6 +10,7 @@ import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.crs.GeographicCRS;
 import org.opengis.referencing.datum.GeodeticDatum;
+import org.opengis.example.Referencing;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -32,7 +33,7 @@ public class SimpleTest {
     public void testDatum() {
         final GeodeticDatum datum = SimpleDatum.WGS84;
         assertEquals(0, datum.getPrimeMeridian().getGreenwichLongitude(), 0);
-        assertEquals("EPSG:World Geodetic System 1984", datum.getName().toString());
+        assertEquals("EPSG subset:World Geodetic System 1984", datum.getName().toString());
         assertEquals(datum, datum, "Object shall be equal to itself.");
     }
 
@@ -41,7 +42,7 @@ public class SimpleTest {
      */
     @Test
     public void testGeographicCRS() {
-        final GeographicCRS crs = SimpleCRS.Geographic.WGS84;
+        final GeographicCRS crs = Referencing.WGS84();
         assertSame(SimpleDatum.WGS84, crs.getDatum());
         final EllipsoidalCS cs = crs.getCoordinateSystem();
         assertEquals(2, cs.getDimension());
@@ -49,7 +50,7 @@ public class SimpleTest {
         assertSame  (AxisDirection.EAST,      cs.getAxis(1).getDirection());
         assertSame  (RangeMeaning.EXACT,      cs.getAxis(0).getRangeMeaning());
         assertSame  (RangeMeaning.WRAPAROUND, cs.getAxis(1).getRangeMeaning());
-        assertEquals("EPSG:WGS 84", crs.getName().toString());
+        assertEquals("EPSG subset:WGS 84", crs.getName().toString());
         assertEquals(crs, crs, "Object shall be equal to itself.");
     }
 }
