@@ -17,6 +17,7 @@
  */
 package org.opengis.test.referencing;
 
+import java.util.Optional;
 import org.opengis.referencing.*;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
@@ -30,6 +31,7 @@ import org.opengis.util.InternationalString;
 import org.opengis.test.Units;
 import org.opengis.test.Validator;
 import org.opengis.test.ValidatorContainer;
+import static org.junit.jupiter.api.Assertions.assertNotNull;
 
 
 /**
@@ -99,9 +101,9 @@ public abstract class ReferencingValidator extends Validator {
             return;
         }
         final InternationalString scope = object.getScope();
-        mandatory("ObjectDomain: shall have a scope.", scope);
+        mandatory(scope, "ObjectDomain: shall have a scope.");
         final Extent domain = object.getDomainOfValidity();
-        mandatory("ObjectDomain: shall have a domain of validity.", domain);
+        mandatory(domain, "ObjectDomain: shall have a domain of validity.");
         container.validate(scope);
         container.validate(domain);
     }
@@ -115,11 +117,21 @@ public abstract class ReferencingValidator extends Validator {
      */
     final void validateIdentifiedObject(final IdentifiedObject object) {
         final Identifier name = object.getName();
-        mandatory("IdentifiedObject: shall have a name.", name);
+        mandatory(name, "IdentifiedObject: shall have a name.");
         container.validate(name);
         validate("identifier", object.getIdentifiers(), ValidatorContainer::validate, false);
         validate("alias",      object.getAlias(),       ValidatorContainer::validate, false);
         validate("domain",     object.getDomains(),     ValidatorContainer::validate, false);
-        container.validate(object.getRemarks());
+        container.validate(getRemarks(object));
+    }
+
+    /**
+     * Returns the remarks of the given object.
+     *
+     * @param  object  the object for which to get the remarks.
+     * @return the remarks, or {@code null} if none.
+     */
+    static InternationalString getRemarks(final IdentifiedObject object) {
+        return object.getRemarks();
     }
 }

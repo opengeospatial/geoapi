@@ -80,7 +80,7 @@ public abstract class MetadataValidator extends Validator {
      * @param  object  the object to validate.
      */
     final void validateMandatory(final InternationalString object) {
-        mandatory("Missing mandatory metadata attribute.", object);
+        mandatory(object, "Missing mandatory metadata attribute.");
         container.validate(object);
     }
 

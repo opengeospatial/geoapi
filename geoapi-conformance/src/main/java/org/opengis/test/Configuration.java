@@ -427,7 +427,7 @@ public class Configuration implements Serializable {
          * conformance module allows implementer to disable the check for ISO 19111 conformance if their WKT
          * parser does not adapt the parsed CRS objects to the ISO 19111 axis naming.</div>
          *
-         * @see org.opengis.test.wkt.CRSParserTest#isValidationEnabled
+         * @see org.opengis.test.referencing.WKTParserTest#isValidationEnabled
          */
         public static final Key<Boolean> isValidationEnabled =
                 new Key<>(Boolean.class, "isValidationEnabled");

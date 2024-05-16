@@ -91,7 +91,7 @@ public class DatumValidator extends ReferencingValidator {
         }
         validateIdentifiedObject(object);
         final Unit<Angle> unit = object.getAngularUnit();
-        mandatory("PrimeMeridian: shall have a unit of measurement.", unit);
+        mandatory(unit, "PrimeMeridian: shall have a unit of measurement.");
         double longitude = object.getGreenwichLongitude();
         if (unit != null) {
             final Unit<Angle> degree = units.degree();
@@ -120,7 +120,7 @@ public class DatumValidator extends ReferencingValidator {
         }
         validateIdentifiedObject(object);
         final Unit<Length> unit = object.getAxisUnit();
-        mandatory("Ellipsoid: shall have a unit of measurement.", unit);
+        mandatory(unit, "Ellipsoid: shall have a unit of measurement.");
         if (unit != null) {
             assertTrue(unit.isCompatible(units.metre()), "Ellipsoid: unit must be compatible with metres.");
         }
@@ -168,11 +168,11 @@ public class DatumValidator extends ReferencingValidator {
         }
         validateIdentifiedObject(object);
         final PrimeMeridian meridian = object.getPrimeMeridian();
-        mandatory("GeodeticDatum: shall have a prime meridian.", meridian);
+        mandatory(meridian, "GeodeticDatum: shall have a prime meridian.");
         validate(meridian);
 
         final Ellipsoid ellipsoid = object.getEllipsoid();
-        mandatory("GeodeticDatum: shall have an ellipsoid.", ellipsoid);
+        mandatory(ellipsoid, "GeodeticDatum: shall have an ellipsoid.");
         validate(ellipsoid);
     }
 
@@ -199,7 +199,7 @@ public class DatumValidator extends ReferencingValidator {
         }
         validateIdentifiedObject(object);
         final Date origin = object.getOrigin();
-        mandatory("TemporalDatum: expected an origin.", origin);
+        mandatory(origin, "TemporalDatum: expected an origin.");
     }
 
     /**
@@ -216,7 +216,7 @@ public class DatumValidator extends ReferencingValidator {
         }
         validateIdentifiedObject(object);
         final PixelInCell pc = object.getPixelInCell();
-        mandatory("ImageDatum: shall specify PixelInCell.", pc);
+        mandatory(pc, "ImageDatum: shall specify PixelInCell.");
     }
 
     /**

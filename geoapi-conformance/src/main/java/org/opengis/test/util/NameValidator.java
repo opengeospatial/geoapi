@@ -57,7 +57,7 @@ public class NameValidator extends Validator {
         }
         final int length = object.length();
         final String s = object.toString();
-        mandatory("CharSequence: toString() shall never returns null.", s);
+        mandatory(s, "CharSequence: toString() shall never returns null.");
         if (s != null) {
             assertEquals(s.length(), length, "CharSequence: length is inconsistent with toString() length.");
             boolean expectLowSurrogate = false;
@@ -71,7 +71,7 @@ public class NameValidator extends Validator {
             }
             assertFalse(expectLowSurrogate, "CharSequence: High surrogate shall be followed by low surrogate.");
         }
-        mandatory("InternationalString: toString(Locale) shall not return null.", object.toString(null));
+        mandatory(object.toString(null), "InternationalString: toString(Locale) shall not return null.");
         assertEquals(object, object, "InternationalString: shall be equal to itself.");
         assertEquals(0, object.compareTo(object), "InternationalString: shall be comparable to itself.");
     }
@@ -86,10 +86,10 @@ public class NameValidator extends Validator {
             return;
         }
         final GenericName name = object.name();
-        mandatory("NameSpace: shall have a name.", name);
+        mandatory(name, "NameSpace: shall have a name.");
         if (name != null) {
             final NameSpace scope = name.scope();
-            mandatory("NameSpace: identifier shall have a global scope.", scope);
+            mandatory(scope, "NameSpace: identifier shall have a global scope.");
             if (scope != null) {
                 assertTrue(scope.isGlobal(), "NameSpace: identifier scope shall be global.");
             }
@@ -135,7 +135,7 @@ public class NameValidator extends Validator {
      * @param parsedNames  expected parsed names.
      */
     private void validate(final GenericName object, final List<? extends LocalName> parsedNames) {
-        mandatory("GenericName: getParsedNames() shall not return null.", parsedNames);
+        mandatory(parsedNames, "GenericName: getParsedNames() shall not return null.");
         if (parsedNames != null) {
             validate(parsedNames);
             assertFalse(parsedNames.isEmpty(),
@@ -152,7 +152,7 @@ public class NameValidator extends Validator {
          * Validates fully qualified name.
          */
         final GenericName fullyQualified = object.toFullyQualifiedName();
-        mandatory("GenericName: toFullyQualifiedName() shall not return null.", fullyQualified);
+        mandatory(fullyQualified, "GenericName: toFullyQualifiedName() shall not return null.");
         if (fullyQualified != null) {
             assertEquals(object.scope().isGlobal(), fullyQualified == object,
                     "GenericName: toFullyQualifiedName() inconsistent with the global scope status.");
@@ -161,7 +161,7 @@ public class NameValidator extends Validator {
          * Validates string representations.
          */
         final String unlocalized = object.toString();
-        mandatory("GenericName: toString() shall never returns null.", unlocalized);
+        mandatory(unlocalized, "GenericName: toString() shall never returns null.");
         if (unlocalized != null && fullyQualified != null) {
             assertTrue(fullyQualified.toString().endsWith(unlocalized),
                     "GenericName: fully qualified name shall end with the name.");
@@ -229,7 +229,7 @@ public class NameValidator extends Validator {
          */
         final int depth = object.depth();
         final GenericName tail = object.tail();
-        mandatory("ScopedName: tail() shall not return null.", tail);
+        mandatory(tail, "ScopedName: tail() shall not return null.");
         if (tail != null) {
             assertEquals(depth-1, tail.depth(),
                     "ScopedName: tail() shall have one less element than the enclosing scoped name.");
@@ -244,7 +244,7 @@ public class NameValidator extends Validator {
          * Validates path.
          */
         final GenericName path = object.path();
-        mandatory("ScopedName: the path shall not be null.", path);
+        mandatory(path, "ScopedName: the path shall not be null.");
         if (path != null) {
             assertEquals(depth-1, path.depth(),
                     "ScopedName: path() shall have one less element than the enclosing scoped name.");

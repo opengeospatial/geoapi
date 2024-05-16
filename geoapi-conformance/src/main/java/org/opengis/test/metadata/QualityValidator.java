@@ -98,7 +98,7 @@ public class QualityValidator extends MetadataValidator {
             return;
         }
         final Scope scope = object.getScope();
-        mandatory("DataQuality: must have a scope.", scope);
+        mandatory(scope, "DataQuality: must have a scope.");
         container.validate(scope);
         final Element[] reports = toArray(Element.class, object.getReports());
         if (requireMandatoryAttributes) {
@@ -157,10 +157,10 @@ public class QualityValidator extends MetadataValidator {
         }
         validateResult(object);
         Citation specification = object.getSpecification();
-        mandatory("ConformanceResult: must have a specification.", specification);
+        mandatory(specification, "ConformanceResult: must have a specification.");
         container.validate(specification);
         container.validate(object.getExplanation());
-        mandatory("ConformanceResult: must have a Boolean.", object.pass());
+        mandatory(object.pass(), "ConformanceResult: must have a Boolean.");
     }
 
     /**
@@ -189,8 +189,8 @@ public class QualityValidator extends MetadataValidator {
             return;
         }
         validateResult(object);
-        mandatory("CoverageResult: must have a spatial representation type.",   object.getSpatialRepresentationType());
-        mandatory("CoverageResult: must have a result spatial representation.", object.getResultSpatialRepresentation());
+        mandatory(object.getSpatialRepresentationType(),   "CoverageResult: must have a spatial representation type.");
+        mandatory(object.getResultSpatialRepresentation(), "CoverageResult: must have a result spatial representation.");
         final RangeDimension[] ranges = toArray(RangeDimension.class, object.getResultContent());
         if (object.getResultFormat() == null && object.getResultFile() == null && requireMandatoryAttributes) {
             assertNotEquals(0, ranges.length, "CoverageResult: must have at least one range dimension"

@@ -36,6 +36,7 @@ public interface Separation {
      * primitive} to another {@linkplain TemporalGeometricPrimitive temporal geometric primitive}.
      * This is the absolute value of the difference b/n their temporal positions.
      *
+     * @param  other the other object from which to measure the distance.
      * @return the distance from this {@linkplain TemporalGeometricPrimitive temporal geometric
      * primitive} to another {@linkplain TemporalGeometricPrimitive temporal geometric primitive}.
      */

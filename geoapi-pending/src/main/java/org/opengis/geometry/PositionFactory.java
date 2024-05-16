@@ -18,6 +18,7 @@
 package org.opengis.geometry;
 
 import java.util.List;
+import org.opengis.coordinate.MismatchedDimensionException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.geometry.coordinate.PointArray;
 import org.opengis.geometry.coordinate.Position;

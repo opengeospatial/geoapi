@@ -163,8 +163,8 @@ public class CSValidator extends ReferencingValidator {
             return;
         }
         validateIdentifiedObject(object);
-        mandatory("CoordinateSystemAxis: abbreviation is mandatory.", object.getAbbreviation());
-        mandatory("CoordinateSystemAxis: unit is mandatory.", object.getUnit());
+        mandatory(object.getAbbreviation(), "CoordinateSystemAxis: abbreviation is mandatory.");
+        mandatory(object.getUnit(),         "CoordinateSystemAxis: unit is mandatory.");
         assertValidRange(object.getMinimumValue(), object.getMaximumValue(),
                 "CoordinateSystemAxis: expected maximum >= minimum.");
     }
@@ -322,7 +322,7 @@ public class CSValidator extends ReferencingValidator {
         assertStrictlyPositive(dimension, "CoordinateSystem: dimension must be greater than zero.");
         for (int i=0; i<dimension; i++) {
             final CoordinateSystemAxis axis = object.getAxis(i);
-            mandatory("CoordinateSystem: axis cannot be null.", axis);
+            mandatory(axis, "CoordinateSystem: axis cannot be null.");
             validate(axis);
         }
     }

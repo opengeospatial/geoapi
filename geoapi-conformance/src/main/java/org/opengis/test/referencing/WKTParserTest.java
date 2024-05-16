@@ -15,7 +15,7 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.opengis.test.wkt;
+package org.opengis.test.referencing;
 
 import java.util.Date;
 import java.util.List;
@@ -34,7 +34,6 @@ import org.opengis.referencing.cs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.metadata.extent.Extent;
-import org.opengis.test.referencing.ReferencingTestCase;
 import org.opengis.test.Configuration;
 import org.junit.jupiter.api.Test;
 
@@ -42,6 +41,7 @@ import static java.lang.Double.NaN;
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.opengis.referencing.cs.AxisDirection.*;
+import static org.opengis.test.referencing.ReferencingValidator.getRemarks;
 
 
 /**
@@ -68,9 +68,9 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * define a subclass in their own test suite as in the example below:
  *
  * {@snippet lang="java" :
- * import org.opengis.test.wkt.CRSParserTest;
+ * import org.opengis.test.referencing.WKTParserTest;
  *
- * public class MyTest extends CRSParserTest {
+ * public class MyTest extends WKTParserTest {
  *     public MyTest() {
  *         super(new MyCRSFactory());
  *     }
@@ -84,17 +84,17 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html">WKT 2 specification</a>
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
-public strictfp class CRSParserTest extends ReferencingTestCase {
+public strictfp class WKTParserTest extends ReferencingTestCase {
     /**
      * The factory to use for parsing WKT strings. The {@link CRSFactory#createFromWKT(String)} method
-     * of this factory will be invoked for each test defined in this {@code CRSParserTest} class.
+     * of this factory will be invoked for each test defined in this {@code WKTParserTest} class.
      */
     protected final CRSFactory crsFactory;
 
     /**
      * The instance returned by {@link CRSFactory#createFromWKT(String)} after parsing the WKT.
      * Subclasses can use this field if they wish to verify additional properties after the
-     * verifications done by this {@code CRSParserTest} class.
+     * verifications done by this {@code WKTParserTest} class.
      */
     protected CoordinateReferenceSystem object;
 
@@ -112,7 +112,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
      * @param crsFactory  factory for parsing {@link CoordinateReferenceSystem} instances.
      */
     @SuppressWarnings("this-escape")
-    public CRSParserTest(final CRSFactory crsFactory) {
+    public WKTParserTest(final CRSFactory crsFactory) {
         this.crsFactory = crsFactory;
         final boolean[] isEnabled = getEnabledFlags(
                 Configuration.Key.isValidationEnabled);
@@ -365,7 +365,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyFlattenedSphere (datum.getEllipsoid(), "Krassowsky 1940", 6378245, 298.3, metre);
         verifyPrimeMeridian   (datum.getPrimeMeridian(), null, 0, degree);
         verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {NORTH,EAST}, degree);
-        assertNullOrEquals("remark", "Система Геодеэических Координвт года 1995(СК-95)", crs.getRemarks());
+        assertNullOrEquals("remark", "Система Геодеэических Координвт года 1995(СК-95)", getRemarks(crs));
     }
 
     /**
@@ -407,7 +407,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
             configurationTip = null;
         }
         verifyNAD23(crs, true, units.degree(), units.metre());
-        assertNullOrEquals("remark", "1986 realisation", crs.getRemarks());
+        assertNullOrEquals("remark", "1986 realisation", getRemarks(crs));
     }
 
     /**
@@ -478,7 +478,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyFlattenedSphere (datum.getEllipsoid(), "Clarke 1880 (IGN)", 6378249.2, 293.4660213, metre);
         verifyPrimeMeridian   (datum.getPrimeMeridian(), "Paris", 2.5969213, grad);
         verifyCoordinateSystem(crs.getCoordinateSystem(), EllipsoidalCS.class, new AxisDirection[] {NORTH,EAST}, grad);
-        assertNullOrEquals("remark", "Nouvelle Triangulation Française", crs.getRemarks());
+        assertNullOrEquals("remark", "Nouvelle Triangulation Française", getRemarks(crs));
     }
 
     /**
@@ -546,7 +546,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
             verifyTimeExtent(extent, Instant.ofEpochSecond(1017619200L), Instant.ofEpochSecond(1319155200L), 1);
             assertNullOrEquals("scope", "Geodesy, topographic mapping and cadastre", domain.getScope());
         }
-        assertNullOrEquals("remark", "注：JGD2000ジオセントリックは現在JGD2011に代わりました。", crs.getRemarks());
+        assertNullOrEquals("remark", "注：JGD2000ジオセントリックは現在JGD2011に代わりました。", getRemarks(crs));
     }
 
     /**
@@ -706,7 +706,7 @@ public strictfp class CRSParserTest extends ReferencingTestCase {
         verifyTexasSouthCentral(crs, degree, footSurveyUS);
         assertNullOrEquals("remark",
                 "Fundamental point: Meade’s Ranch KS, latitude 39°13'26.686\"N, longitude 98°32'30.506\"W.",
-                crs.getRemarks());
+                getRemarks(crs));
     }
 
     /**

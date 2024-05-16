@@ -22,6 +22,13 @@ import static java.lang.Double.doubleToLongBits;
 /**
  * A {@link GeodeticDatum} using the <q>Greenwich</q> prime meridian.
  * This class implements both <i>Geodetic Reference Frame</i> and <i>Ellipsoid</i> in a single class for simplicity.
+ *
+ * <h2>Shortcoming</h2>
+ * In order to keep the example simple, this geodetic reference frame shares its name with the ellipsoid.
+ * This is not a recommended practice because many geodetic reference frames can have the same ellipsoid.
+ * However, this particular package takes this approach because the GeoAPI example module is only
+ * a demonstration of how GeoAPI can be implemented in a few simple cases.
+ * Real applications should store the ellipsoid in separated objects.
  */
 public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum, Ellipsoid {
     /**
@@ -90,10 +97,10 @@ public class SimpleDatum extends SimpleIdentifiedObject implements GeodeticDatum
     /**
      * Creates a new geodetic reference frame for the given authority, name, and ellipsoid axis length.
      *
-     * @param authority          organization responsible for definition of the name, or {@code null}.
-     * @param name               the name of the new CRS.
-     * @param semiMajorAxis      the value to be returned by {@link #getSemiMajorAxis()}, in metres.
-     * @param inverseFlattening  the value to be returned by {@link #getInverseFlattening()}.
+     * @param  authority          organization responsible for definition of the name, or {@code null}.
+     * @param  name               the name for both the reference frame and the associated ellipsoid.
+     * @param  semiMajorAxis      the semi-major axis length, in metres.
+     * @param  inverseFlattening  the inverse flattening factor.
      */
     public SimpleDatum(final Citation authority, final String name,
             final double semiMajorAxis, final double inverseFlattening)

@@ -50,8 +50,12 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see Position
  * @see PointGrid
+ *
+ * @deprecated This interface has been removed in ISO 19107:2019.
+ * Furthermore, it overlaps with {@link org.opengis.coordinate.CoordinateSet}.
  */
-@UML(identifier="GM_PointArray", specification=ISO_19107)
+@Deprecated(forRemoval = true)
+@UML(identifier="GM_PointArray", specification=ISO_19107, version=2003)
 public interface PointArray extends List<Position> {
     /**
      * Returns the dimensionality of the coordinates in this array. It shall be equal to the
@@ -84,8 +88,8 @@ public interface PointArray extends List<Position> {
     /**
      * Gets a copy of the {@linkplain DirectPosition direct position} at the particular location in
      * this {@code PointArray}. If the {@code dest} argument is non-null, that object will be
-     * populated with the value from the array. In all cases, the position in insulated from changes
-     * in the {@code PointArray}, and vice-versa. Consequently, the same {@code DirectPosition}
+     * populated with the value from the array. In all cases, the position is insulated from changes
+     * in the {@code PointArray}, and vice-versa. Therefore, the same {@code DirectPosition}
      * object can be reused for fetching many points from this array. Example:
      *
      * <blockquote><pre>

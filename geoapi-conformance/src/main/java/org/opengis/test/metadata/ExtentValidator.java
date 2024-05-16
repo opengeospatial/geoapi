@@ -75,7 +75,7 @@ public class ExtentValidator extends MetadataValidator {
             return;
         }
         final Identifier identifier = object.getGeographicIdentifier();
-        mandatory("GeographicDescription: must have an identifier.", identifier);
+        mandatory(identifier, "GeographicDescription: must have an identifier.");
     }
 
     /**
@@ -129,8 +129,8 @@ public class ExtentValidator extends MetadataValidator {
         }
         final Double minimum = object.getMinimumValue();
         final Double maximum = object.getMaximumValue();
-        mandatory("VerticalExtent: must have a minimum value.", minimum);
-        mandatory("VerticalExtent: must have a maximum value.", maximum);
+        mandatory(minimum, "VerticalExtent: must have a minimum value.");
+        mandatory(maximum, "VerticalExtent: must have a maximum value.");
         if (minimum != null && maximum != null) {
             assertTrue(minimum <= maximum, "VerticalExtent: invalid range.");
         }

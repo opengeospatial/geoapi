@@ -21,7 +21,7 @@ import java.awt.geom.Point2D;
 import java.awt.geom.AffineTransform;
 
 import org.opengis.geometry.DirectPosition;
-import org.opengis.geometry.MismatchedDimensionException;
+import org.opengis.coordinate.MismatchedDimensionException;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.NoninvertibleTransformException;
@@ -93,7 +93,7 @@ class AffineTransform2D extends AffineTransform implements MathTransform2D {
             throws MismatchedDimensionException
     {
         if (point.getDimension() != 2) {
-            throw new MismatchedDimensionException();
+            throw new org.opengis.geometry.MismatchedDimensionException();
         }
         return new Point2D.Double(point.getCoordinate(0), point.getCoordinate(1));
     }
@@ -117,7 +117,7 @@ class AffineTransform2D extends AffineTransform implements MathTransform2D {
                 return new SimpleDirectPosition(point);
             }
             if (ptDst.getDimension() != 2) {
-                throw new MismatchedDimensionException();
+                throw new org.opengis.geometry.MismatchedDimensionException();
             }
         }
         ptDst.setCoordinate(0, point.x);

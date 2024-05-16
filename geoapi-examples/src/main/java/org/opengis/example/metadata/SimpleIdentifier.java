@@ -31,7 +31,7 @@ public class SimpleIdentifier implements ReferenceIdentifier {
     protected final String code;
 
     /**
-     * Creates a new identifier of the given authority and name.
+     * Creates a new identifier of the given authority and code.
      *
      * @param authority  the value to be returned by {@link #getAuthority()}, or {@code null} if none.
      * @param code       the value to be returned by {@link #getCode()}.

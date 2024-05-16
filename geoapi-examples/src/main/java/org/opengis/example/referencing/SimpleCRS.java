@@ -32,6 +32,14 @@ import org.opengis.referencing.datum.RealizationMethod;
 /**
  * A {@link CoordinateReferenceSystem} abstract base class. This class does not distinguish between
  * <i>Coordinate System</i> and <i>Coordinate Reference System</i>, therefor it implements the two interfaces.
+ *
+ * <h2>Shortcoming</h2>
+ * In order to keep the example simple,
+ * this <abbr>CRS</abbr> shares its name with the coordinate system (<abbr>CS</abbr>) and sometime the datum.
+ * This is not a recommended practice because many coordinate reference systems can have the same coordinate
+ * system and datum. However, this particular package takes this approach because the GeoAPI example module
+ * is only a demonstration of how GeoAPI can be implemented in a few simple cases.
+ * Real applications should store the datum and coordinate system in separated objects.
  */
 public abstract class SimpleCRS extends SimpleIdentifiedObject implements SingleCRS, CoordinateSystem {
     /**
@@ -43,14 +51,14 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
     protected final CoordinateSystemAxis[] axes;
 
     /**
-     * Creates a new CRS for the given name, datum and axes.
+     * Creates a new CRS for the given name and axes.
      *
      * @param authority  organization responsible for definition of the CRS, or {@code null}.
      * @param name       the name of the new CRS.
      * @param axes       the axes to be returned by {@link #getAxis(int)}.
      *                   The length of this array is the coordinate system dimension.
      */
-    public SimpleCRS(final Citation authority, final String name, final CoordinateSystemAxis... axes) {
+    protected SimpleCRS(final Citation authority, final String name, final CoordinateSystemAxis... axes) {
         super(authority, name);
         this.axes = axes.clone();
     }
@@ -104,16 +112,23 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
 
     /**
      * A {@link GeographicCRS} specialization of {@link SimpleCRS}.
+     *
+     * <h2>Shortcoming</h2>
+     * In order to keep the example simple, this <abbr>CRS</abbr> shares its name with the coordinate system.
+     * This is not a recommended practice because many <abbr>CRS</abbr> can have the same coordinate system.
+     * However, this particular package takes this approach because the GeoAPI example module is only
+     * a demonstration of how GeoAPI can be implemented in a few simple cases.
+     * Real applications should store the coordinate system in separated objects.
      */
     public static class Geographic extends SimpleCRS implements GeographicCRS, EllipsoidalCS {
         /**
-         * The WGS84 CRS, as defined by EPSG:4326. The axis order is (φ,λ).
+         * The WGS84 CRS, based on EPSG:4326. The axis order is (φ,λ).
          */
         public static final GeographicCRS WGS84 = new Geographic(SimpleCitation.EPSG, "WGS 84",
                 SimpleDatum.WGS84, SimpleAxis.LATITUDE, SimpleAxis.LONGITUDE);
 
         /**
-         * A spherical CRS used when the datum is unknown, as defined by EPSG:4047.
+         * A spherical CRS used when the datum is unknown, based on EPSG:4047.
          * The axis order is (φ,λ).
          */
         public static final GeographicCRS SPHERE = new Geographic(SimpleCitation.EPSG, "GRS 1980 Authalic Sphere",
@@ -129,11 +144,10 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
         /**
          * Creates a new CRS for the given name, datum and axes.
          *
-         * @param authority  organization responsible for definition of the name, or {@code null}.
-         * @param name       the name of the new CRS.
-         * @param datum      the value to be returned by {@link #getDatum()}.
-         * @param axes       the axes to be returned by {@link #getAxis(int)}. The length of this array
-         *                   is the coordinate system dimension, which should be restricted to 2 or 3.
+         * @param  authority  organization responsible for definition of the name, or {@code null}.
+         * @param  name       the name of the geodetic <abbr>CRS</abbr> and the coordinate system.
+         * @param  datum      the <abbr>CRS</abbr> geodetic reference frame.
+         * @param  axes       the <abbr>CRS</abbr> axes. The length of this array is the coordinate system dimension, 2 or 3.
          */
         public Geographic(final Citation authority, final String name,
                 final GeodeticDatum datum, final CoordinateSystemAxis... axes)
@@ -178,25 +192,33 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
     /**
      * A {@link VerticalCRS} specialization of {@link SimpleCRS} with its own datum.
      *
-     * <p>In order to keep the model simpler, this vertical CRS is also its own datum. Merging the CRS
-     * and datum interfaces is usually not a recommended practice since many vertical CRS can have
-     * the same datum. However, this particular class takes this approach because the {@code geoapi-examples}
-     * module is only a demonstration of how GeoAPI can be implemented in a few simple cases.
-     * More complex applications are encouraged to store the datum in a separated object.</p>
+     * <h2>Shortcoming</h2>
+     * In order to keep the example simple,
+     * this vertical <abbr>CRS</abbr> shares its name with the reference frame and coordinate system (<abbr>CS</abbr>).
+     * This is not a recommended practice because many coordinate reference systems can have the same reference frame.
+     * However, this particular package takes this approach because the GeoAPI example module is only a demonstration
+     * of how GeoAPI can be implemented in a few simple cases.
+     * Real applications should store the reference frame and coordinate system in separated objects.
      */
     public static class Vertical extends SimpleCRS implements VerticalCRS, VerticalCS, VerticalDatum {
+        /**
+         * A vertical CRS for Mean Sea Level, based on EPSG:5714.
+         */
+        public static final VerticalCRS MSL = new Vertical(
+                SimpleCitation.EPSG, "Mean Sea Level (MSL) height", RealizationMethod.TIDAL, SimpleAxis.HEIGHT);
+
         /**
          * The type of this vertical datum.
          */
         private final RealizationMethod method;
 
         /**
-         * Creates a new CRS for the given name, datum and axes.
+         * Creates a new CRS for the given name and axis.
          *
          * @param authority  organization responsible for definition of the name, or {@code null}.
-         * @param name       the name of the new CRS.
-         * @param method     the value to be returned by {@link #getRealizationMethod()}.
-         * @param axis       the axis to be returned by {@link #getAxis(int)}.
+         * @param name       the name for the <abbr>CRS</abbr>, the vertical reference frame and the coordinate system.
+         * @param method     the realization method of the vertical reference frame, or {@code null} if none.
+         * @param axis       the single <abbr>CRS</abbr> axis.
          */
         public Vertical(final Citation authority, final String name,
                 final RealizationMethod method, final CoordinateSystemAxis axis)
@@ -235,25 +257,33 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
     /**
      * A {@link TemporalCRS} specialization of {@link SimpleCRS} with its own datum.
      *
-     * <p>In order to keep the model simpler, this temporal CRS is also its own datum. Merging the CRS
-     * and datum interfaces is usually not a recommended practice since many temporal CRS can have
-     * the same datum. However, this particular class takes this approach because the {@code geoapi-examples}
-     * module is only a demonstration of how GeoAPI can be implemented in a few simple cases.
-     * More complex applications are encouraged to store the datum in a separated object.</p>
+     * <h2>Shortcoming</h2>
+     * In order to keep the example simple,
+     * this temporal <abbr>CRS</abbr> shares its name with the datum and coordinate system (<abbr>CS</abbr>).
+     * This is not a recommended practice because many coordinate reference systems can have the same datum.
+     * However, this particular package takes this approach because the GeoAPI example module is only a
+     * demonstration of how GeoAPI can be implemented in a few simple cases.
+     * Real applications should store the datum and coordinate system in separated objects.
      */
     public static class Temporal extends SimpleCRS implements TemporalCRS, TimeCS, TemporalDatum {
+        /**
+         * A temporal CRS for Julian date, based on OGC:JulianDate.
+         */
+        public static final TemporalCRS JULIAN = new Temporal(
+                SimpleCitation.OGC, "Julian Date", new Date(-210866760000000L), SimpleAxis.HEIGHT);
+
         /**
          * The date and time origin of this temporal datum.
          */
         private final long origin;
 
         /**
-         * Creates a new CRS for the given name, datum and axes.
+         * Creates a new CRS for the given name, datum and axis.
          *
          * @param authority  organization responsible for definition of the name, or {@code null}.
-         * @param name       the name of the new CRS.
-         * @param origin     the value to be returned by {@link #getOrigin()}.
-         * @param axis       the axis to be returned by {@link #getAxis(int)}.
+         * @param name       the name for the <abbr>CRS</abbr>, the temporal datum and the coordinate system.
+         * @param origin     the date and time origin of the temporal datum.
+         * @param axis       the single <abbr>CRS</abbr> axis.
          */
         public Temporal(final Citation authority, final String name, final Date origin,
                 final CoordinateSystemAxis axis)

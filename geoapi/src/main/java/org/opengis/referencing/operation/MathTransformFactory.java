@@ -178,8 +178,8 @@ public interface MathTransformFactory extends Factory {
      * @return the parameterized transform from {@code baseCRS} to {@code derivedCS},
      *         including unit conversions and axis swapping.
      * @throws NoSuchIdentifierException if there is no transform registered for the coordinate operation method.
-     * @throws FactoryException if the object creation failed. This exception is thrown
-     *         if some required parameter has not been supplied, or has illegal value.
+     * @throws FactoryException if the transform creation failed.
+     *         This exception is thrown if some required parameter has not been supplied, or has illegal value.
      *
      * @departure extension
      *   This method is part of the GeoAPI mechanism for defining the math transform parameters
@@ -233,8 +233,8 @@ public interface MathTransformFactory extends Factory {
      * @param  parameters  the parameter values.
      * @return the parameterized transform.
      * @throws NoSuchIdentifierException if there is no transform registered for the coordinate operation method.
-     * @throws FactoryException if the object creation failed. This exception is thrown
-     *         if some required parameter has not been supplied, or has illegal value.
+     * @throws FactoryException if the transform creation failed.
+     *         This exception is thrown if some required parameter has not been supplied, or has illegal value.
      *
      * @see #getDefaultParameters(String)
      * @see #getAvailableMethods(Class)
@@ -255,10 +255,23 @@ public interface MathTransformFactory extends Factory {
      *
      * @param  matrix  the matrix used to define the affine transform.
      * @return the affine transform.
-     * @throws FactoryException if the object creation failed.
+     * @throws FactoryException if the transform creation failed.
      */
     @UML(identifier="createAffineTransform", obligation=MANDATORY, specification=OGC_01009)
     MathTransform createAffineTransform(Matrix matrix) throws FactoryException;
+
+    /**
+     * Creates a matrix of size {@code numRow}&nbsp;×&nbsp;{@code numCol}.
+     * Elements on the diagonal (<var>j</var> == <var>i</var>) are set to 1.
+     *
+     * @param  numRow  number of rows.
+     * @param  numCol  number of columns.
+     * @return a new matrix of the given size.
+     * @throws FactoryException if the matrix creation failed.
+     *
+     * @since 3.1
+     */
+    Matrix createMatrix(int numRow, int numCol) throws FactoryException;
 
     /**
      * Creates a transform by concatenating two existing transforms.
@@ -272,7 +285,7 @@ public interface MathTransformFactory extends Factory {
      * @param  transform1  the first transform to apply to points.
      * @param  transform2  the second transform to apply to points.
      * @return the concatenated transform.
-     * @throws FactoryException if the object creation failed.
+     * @throws FactoryException if the transform creation failed.
      */
     @UML(identifier="createConcatenatedTransform", obligation=MANDATORY, specification=OGC_01009)
     MathTransform createConcatenatedTransform(MathTransform transform1,
@@ -294,7 +307,7 @@ public interface MathTransformFactory extends Factory {
      *         <pre>
      * Source: firstAffectedCoordinate + subTransform.getDimSource() + numTrailingCoordinates
      * Target: firstAffectedCoordinate + subTransform.getDimTarget() + numTrailingCoordinates</pre>
-     * @throws FactoryException if the object creation failed.
+     * @throws FactoryException if the transform creation failed.
      */
     @UML(identifier="createPassThroughTransform", obligation=MANDATORY, specification=OGC_01009)
     MathTransform createPassThroughTransform(int firstAffectedCoordinate,

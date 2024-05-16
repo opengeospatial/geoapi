@@ -11,8 +11,8 @@ set -o errexit
 # because we need to replace the "pending" module requirement.
 #
 mkdir --parents target/src/org.opengis.geoapi
-mkdir           target/src/org.opengis.geoapi.example
-mkdir           target/src/org.opengis.geoapi.conformance
+mkdir --parents target/src/org.opengis.geoapi.example
+mkdir --parents target/src/org.opengis.geoapi.conformance
 
 cp --link --recursive geoapi/src/main/java/*               target/src/org.opengis.geoapi/
 cp --link --recursive geoapi/src/pending/java/*            target/src/org.opengis.geoapi/
@@ -22,10 +22,9 @@ cp --link --recursive geoapi-conformance/src/main/java/org target/src/org.opengi
 
 #
 # Remove the classes that depend on geoapi-pending.
-# Then copy the "module-info" without the dependency replaced.
+# Then copy the `module-info` with the `geoapi-pending` dependency replaced by `geoapi`.
 #
 rm target/src/org.opengis.geoapi.example/org/opengis/example/coverage/*.java
-rm target/src/org.opengis.geoapi.example/org/opengis/example/geometry/SimpleEnvelope.java
 rm target/src/org.opengis.geoapi.conformance/org/opengis/test/coverage/image/ImageReaderTestCase.java
 sed "s/geoapi\.pending/geoapi/g" geoapi-examples/src/main/java/module-info.java    > target/src/org.opengis.geoapi.example/module-info.java
 sed "s/geoapi\.pending/geoapi/g" geoapi-conformance/src/main/java/module-info.java > target/src/org.opengis.geoapi.conformance/module-info.java
@@ -38,7 +37,12 @@ cp --link geoapi-pending/src/main/java/org/opengis/temporal/Period.java  \
           geoapi-pending/src/main/java/org/opengis/temporal/TemporalGeometricPrimitive.java  \
           target/src/org.opengis.geoapi/org/opengis/temporal/
 
-find target/src/ -name "*.java" > target/sources.txt
+#
+# Build the list of source files, excluding non-exported packages.
+#
+find target/src/ -name "*.java" \
+ | grep --invert-match --fixed-strings "/internal/" \
+ | grep --invert-match "/example/[a-z]" > target/sources.txt
 
 #
 # Build the list of dependencies for all documented modules.
@@ -72,8 +76,6 @@ javadoc -doctitle "GeoAPI SNAPSHOT" \
  -tag todo:tfmc:TODO: \
  -tag unitof:fm:Unit: \
  -Xdoclint:html,syntax,missing,accessibility \
- -link https://download.java.net/media/java3d/javadoc/1.5.2/ \
- -link https://download.java.net/media/jai/javadoc/1.1.3/jai-apidocs/ \
  -link https://junit.org/junit5/docs/current/api/ \
  -linksource \
  -quiet \

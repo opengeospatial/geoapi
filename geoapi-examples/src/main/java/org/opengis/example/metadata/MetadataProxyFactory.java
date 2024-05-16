@@ -20,7 +20,7 @@ import org.opengis.annotation.UML;
  * <p><b>Example:</b> create an {@code Individual} instance:</p>
  *
  * {@snippet lang="java" :
- * Map<String,Object> attributes = new HashMap<String,Object>();
+ * var attributes = new HashMap<String,Object>();
  * attributes.put("name", new SimpleInternationalString("Aristotle"));
  * Individual party = factory.create(Individual.class, attributes);
  * }
@@ -30,9 +30,14 @@ import org.opengis.annotation.UML;
  */
 public class MetadataProxyFactory {
     /**
+     * Shared instance of this factory.
+     */
+    public static final MetadataProxyFactory INSTANCE = new MetadataProxyFactory();
+
+    /**
      * Creates a new factory.
      */
-    public MetadataProxyFactory() {
+    protected MetadataProxyFactory() {
     }
 
     /**

@@ -132,6 +132,14 @@ public class SimpleName implements GenericName {
         public boolean equals(final Object other) {
             return super.equals(other) && attributeType.equals(((Member) other).attributeType);
         }
+
+        /**
+         * Returns a hash code value for this member name.
+         */
+        @Override
+        public int hashCode() {
+            return super.hashCode() + 7*attributeType.hashCode();
+        }
     }
 
     /**
@@ -502,7 +510,7 @@ public class SimpleName implements GenericName {
     @Override
     public boolean equals(final Object other) {
         if (other != null && getClass().equals(other.getClass())) {
-            final SimpleName that = (SimpleName) other;
+            final var that = (SimpleName) other;
             return name.equals(that.name) && Objects.equals(scope, that.scope);
         }
         return false;

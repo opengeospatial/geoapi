@@ -36,7 +36,7 @@ public class SimpleIdentifiedObject implements IdentifiedObject {
     /**
      * Creates a new object of the given authority and name.
      *
-     * @param authority  the value to be returned by {@link #getAuthority()}, or {@code null} if none.
+     * @param authority  the value to be returned by {@link Identifier#getAuthority()}, or {@code null} if none.
      * @param name       the name of the new object.
      */
     public SimpleIdentifiedObject(final Citation authority, final String name) {
