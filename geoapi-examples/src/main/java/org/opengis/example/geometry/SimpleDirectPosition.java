@@ -9,7 +9,7 @@ import java.util.Arrays;
 import java.util.Objects;
 
 import org.opengis.geometry.DirectPosition;
-import org.opengis.geometry.MismatchedDimensionException;
+import org.opengis.coordinate.MismatchedDimensionException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 

@@ -9,8 +9,8 @@ import java.util.Arrays;
 import java.util.Objects;
 import org.opengis.geometry.Envelope;
 import org.opengis.geometry.DirectPosition;
-import org.opengis.geometry.MismatchedDimensionException;
-import org.opengis.geometry.MismatchedReferenceSystemException;
+import org.opengis.coordinate.MismatchedDimensionException;
+import org.opengis.coordinate.MismatchedCoordinateMetadataException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 
 
@@ -44,17 +44,17 @@ public class SimpleEnvelope implements Envelope {
      *
      * @param  lowerCorner  the limits in the direction of decreasing coordinate values for each dimension.
      * @param  upperCorner  the limits in the direction of increasing coordinate values for each dimension.
-     * @throws MismatchedReferenceSystemException if the CRS of the two position are not equal.
+     * @throws MismatchedCoordinateMetadataException if the CRS of the two position are not equal.
      * @throws MismatchedDimensionException if the two positions do not have the same dimension.
      * @throws IllegalArgumentException if an coordinate value in the lower corner is greater than
      *         the corresponding coordinate value in the upper corner.
      */
     public SimpleEnvelope(final DirectPosition lowerCorner, final DirectPosition upperCorner)
-            throws MismatchedDimensionException, MismatchedReferenceSystemException
+            throws MismatchedDimensionException, MismatchedCoordinateMetadataException
     {
         crs = lowerCorner.getCoordinateReferenceSystem();                           // May be null.
         if (!Objects.equals(crs, upperCorner.getCoordinateReferenceSystem())) {
-            throw new MismatchedReferenceSystemException();
+            throw new MismatchedCoordinateMetadataException();
         }
         final int dimension = lowerCorner.getDimension();
         if (dimension != upperCorner.getDimension()) {

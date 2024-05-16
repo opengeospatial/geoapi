@@ -9,7 +9,7 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Point2D;
 
 import org.opengis.geometry.DirectPosition;
-import org.opengis.geometry.MismatchedDimensionException;
+import org.opengis.coordinate.MismatchedDimensionException;
 import org.opengis.referencing.operation.MathTransform2D;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.NoninvertibleTransformException;

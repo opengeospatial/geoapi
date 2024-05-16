@@ -19,7 +19,7 @@ package org.opengis.referencing.operation;
 
 import java.awt.geom.AffineTransform;
 import org.opengis.geometry.DirectPosition;
-import org.opengis.geometry.MismatchedDimensionException;
+import org.opengis.coordinate.MismatchedDimensionException;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;

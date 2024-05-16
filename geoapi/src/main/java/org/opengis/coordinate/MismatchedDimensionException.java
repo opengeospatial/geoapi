@@ -15,20 +15,22 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.opengis.geometry;
+package org.opengis.coordinate;
+
+import org.opengis.geometry.DirectPosition;
 
 
 /**
- * Indicates that an operation cannot be completed properly because
- * of a mismatch in the dimensions of an argument given to a method.
+ * Indicates that an operation cannot be completed properly because of a
+ * mismatch in the number of dimensions of an argument given to a method.
  * For example, this exception may be thrown if a method expects a two-dimensional {@link DirectPosition}
- * but the {@linkplain DirectPosition#getDimension() dimension} of a given position is 3.
+ * argument but the {@linkplain DirectPosition#getDimension() dimension} of a given position was 3.
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
- * @since   1.0
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
+ * @since   3.1
  */
-public class MismatchedDimensionException extends IllegalArgumentException {
+public class MismatchedDimensionException extends MismatchedCoordinateMetadataException {
     /**
      * Serial number for inter-operability with different versions.
      */
@@ -38,7 +40,6 @@ public class MismatchedDimensionException extends IllegalArgumentException {
      * Creates an exception with no message.
      */
     public MismatchedDimensionException() {
-        super();
     }
 
     /**
@@ -46,7 +47,7 @@ public class MismatchedDimensionException extends IllegalArgumentException {
      *
      * @param message  the detail message, saved for later retrieval by the {@link #getMessage()} method.
      */
-    public MismatchedDimensionException(final String message) {
+    public MismatchedDimensionException(String message) {
         super(message);
     }
 
@@ -56,7 +57,7 @@ public class MismatchedDimensionException extends IllegalArgumentException {
      * @param message  the detail message, saved for later retrieval by the {@link #getMessage()} method.
      * @param cause    the cause, saved for later retrieval by the {@link #getCause()} method.
      */
-    public MismatchedDimensionException(final String message, final Throwable cause) {
+    public MismatchedDimensionException(String message, Throwable cause) {
         super(message, cause);
     }
 }

@@ -15,18 +15,20 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.opengis.geometry;
+package org.opengis.coordinate;
 
 
 /**
- * Indicates that an object cannot be constructed because of a mismatch in the
- * {@linkplain org.opengis.referencing.ReferenceSystem reference systems} of
- * geometric components.
+ * Indicates that an operation cannot be completed properly because of a
+ * mismatch in the coordinate reference systems or epoch of components.
+ * For example, this exception may be thrown on attempts to construct
+ * an envelope with lower and upper corners in different <abbr>CRS</abbr>.
  *
- * @author Martin Desruisseaux (IRD)
- * @since GeoAPI 2.0
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
+ * @since   3.1
  */
-public class MismatchedReferenceSystemException extends IllegalArgumentException {
+public class MismatchedCoordinateMetadataException extends IllegalArgumentException {
     /**
      * Serial number for inter-operability with different versions.
      */
@@ -35,8 +37,7 @@ public class MismatchedReferenceSystemException extends IllegalArgumentException
     /**
      * Creates an exception with no message.
      */
-    public MismatchedReferenceSystemException() {
-        super();
+    public MismatchedCoordinateMetadataException() {
     }
 
     /**
@@ -45,7 +46,7 @@ public class MismatchedReferenceSystemException extends IllegalArgumentException
      * @param  message  the detail message. The detail message is saved for
      *         later retrieval by the {@link #getMessage()} method.
      */
-    public MismatchedReferenceSystemException(final String message) {
+    public MismatchedCoordinateMetadataException(String message) {
         super(message);
     }
 
@@ -56,7 +57,7 @@ public class MismatchedReferenceSystemException extends IllegalArgumentException
      *         later retrieval by the {@link #getMessage()} method.
      * @param  cause  the cause.
      */
-    public MismatchedReferenceSystemException(final String message, final Throwable cause) {
+    public MismatchedCoordinateMetadataException(String message, Throwable cause) {
         super(message, cause);
     }
 }
