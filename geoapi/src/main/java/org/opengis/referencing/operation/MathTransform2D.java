@@ -39,6 +39,26 @@ import java.awt.geom.AffineTransform;
  */
 public interface MathTransform2D extends MathTransform {
     /**
+     * Returns the number of dimensions of input points, which shall be 2.
+     *
+     * @return always 2.
+     */
+    @Override
+    default int getSourceDimensions() {
+        return 2;
+    }
+
+    /**
+     * Returns the number of dimensions of output points, which shall be 2.
+     *
+     * @return always 2.
+     */
+    @Override
+    default int getTargetDimensions() {
+        return 2;
+    }
+
+    /**
      * Transforms the specified {@code ptSrc} and stores the result in {@code ptDst}.
      * If {@code ptDst} is {@code null}, a new {@link Point2D} object is allocated
      * and then the result of the transformation is stored in this object. In either case,
@@ -55,7 +75,7 @@ public interface MathTransform2D extends MathTransform {
      *
      * @see AffineTransform#transform(Point2D, Point2D)
      */
-    Point2D transform(final Point2D ptSrc, final Point2D ptDst) throws TransformException;
+    Point2D transform(Point2D ptSrc, Point2D ptDst) throws TransformException;
 
     /**
      * Transforms the specified shape. This method may replace straight lines by quadratic curves
@@ -69,7 +89,7 @@ public interface MathTransform2D extends MathTransform {
      *
      * @see AffineTransform#createTransformedShape(Shape)
      */
-    Shape createTransformedShape(final Shape shape) throws TransformException;
+    Shape createTransformedShape(Shape shape) throws TransformException;
 
     /**
      * Gets the derivative of this transform at a point. The derivative is the
@@ -86,10 +106,10 @@ public interface MathTransform2D extends MathTransform {
      * @throws NullPointerException if the derivative dependents on coordinate and {@code point} is {@code null}.
      * @throws TransformException if the derivative cannot be evaluated at the specified point.
      */
-    Matrix derivative(final Point2D point) throws TransformException;
+    Matrix derivative(Point2D point) throws TransformException;
 
     /**
-     * Creates the inverse transform of this object.
+     * Returns the inverse transform of this object.
      *
      * @return the inverse transform.
      * @throws NoninvertibleTransformException if the transform cannot be inverted.
@@ -98,6 +118,9 @@ public interface MathTransform2D extends MathTransform {
      */
     @Override
     default MathTransform2D inverse() throws NoninvertibleTransformException {
+        if (isIdentity()) {
+            return this;
+        }
         throw new NoninvertibleTransformException();
     }
 }

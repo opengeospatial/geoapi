@@ -66,7 +66,7 @@ public final class TransformCaseTest extends TransformTestCase {
      */
     @BeforeEach
     public void initTransform() {
-        final BogusAffineTransform2D work = new BogusAffineTransform2D();
+        final var work = new BogusAffineTransform2D();
         work.rotate(rotation += toRadians(5));
         work.scale(10, 20);
         work.translate(4, 6);
@@ -132,7 +132,8 @@ public final class TransformCaseTest extends TransformTestCase {
         tolerance = 0;
         validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongFloatToFloat = true;
-        assertThrows(TransformFailure.class, () -> verifyConsistency(coordinates));
+        var e = assertThrows(TransformFailure.class, () -> verifyConsistency(coordinates));
+        assertNotNull(e.getMessage());
     }
 
     /**
@@ -158,7 +159,8 @@ public final class TransformCaseTest extends TransformTestCase {
         tolerance = 1E-10;
         validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongInverse = true;
-        assertThrows(TransformFailure.class, () -> verifyInverse(coordinates));
+        var e = assertThrows(TransformFailure.class, () -> verifyInverse(coordinates));
+        assertNotNull(e.getMessage());
     }
 
     /**
@@ -189,7 +191,8 @@ public final class TransformCaseTest extends TransformTestCase {
         derivativeDeltas = new double[] {0.1};
         validators.validate(transform);
         ((BogusAffineTransform2D) transform).wrongDerivative = true;
-        assertThrows(DerivativeFailure.class, () -> verifyDerivative(0, 0));
+        var e = assertThrows(DerivativeFailure.class, () -> verifyDerivative(0, 0));
+        assertNotNull(e.getMessage());
     }
 
     /**
@@ -225,10 +228,10 @@ public final class TransformCaseTest extends TransformTestCase {
         for (int s : num) {
             expectedLength *= s;
         }
-        final float[] coordinates = verifyInDomain(min, max, num, random);
-        assertEquals(expectedLength, coordinates.length);
-        for (int i=0; i<coordinates.length; i++) {
-            final float c = coordinates[i];
+        final float[] generated = verifyInDomain(min, max, num, random);
+        assertEquals(expectedLength, generated.length);
+        for (int i=0; i<generated.length; i++) {
+            final float c = generated[i];
             final int   j = i % num.length;
             assertTrue(c >= min[j] && c <= max[j]);
         }

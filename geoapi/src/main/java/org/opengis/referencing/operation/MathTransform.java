@@ -17,6 +17,7 @@
  */
 package org.opengis.referencing.operation;
 
+import java.nio.DoubleBuffer;
 import java.awt.geom.AffineTransform;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.coordinate.MismatchedDimensionException;
@@ -105,23 +106,22 @@ public interface MathTransform {
             throws MismatchedDimensionException, TransformException;
 
     /**
-     * Transforms a list of coordinate point ordinal values.
+     * Transforms an array of double-precision coordinate tuples.
      * This method is provided for efficiently transforming many points.
-     * The supplied array of ordinal values will contain packed ordinal
-     * values. For example, if the source dimension is 3, then the ordinals
-     * will be packed in this order:
+     * The supplied array will contain packed coordinate tuples.
+     * For example, if the source dimension is 3, then the coordinates will be packed in this order:
      *
      * (<var>x₀</var>,<var>y₀</var>,<var>z₀</var>,
      *  <var>x₁</var>,<var>y₁</var>,<var>z₁</var> …).
      *
-     * @param  srcPts the array containing the source point coordinates.
-     * @param  srcOff the offset to the first point to be transformed in the source array.
-     * @param  dstPts the array into which the transformed point coordinates are returned.
-     *                May be the same as {@code srcPts}.
-     * @param  dstOff the offset to the location of the first transformed point that is stored in the destination array.
-     * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point cannot be transformed. Some implementations will stop at the first failure,
-     *         wile some other implementations will fill the untransformable points with {@linkplain Double#NaN} values,
+     * @param  srcPts the array containing the source coordinate tuples.
+     * @param  srcOff the offset to the first tuple to be transformed in the source array.
+     * @param  dstPts the array into which the transformed coordinate tuples are stored.
+     *                May be the same array as {@code srcPts}.
+     * @param  dstOff the offset to the first transformed coordinate that is stored in the destination array.
+     * @param  numPts the number of coordinate <em>tuples</em> to be transformed.
+     * @throws TransformException if a point cannot be transformed. Some implementations may stop at the first failure,
+     *         while some other implementations may fill the untransformable points with {@linkplain Double#NaN} values,
      *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
@@ -132,23 +132,25 @@ public interface MathTransform {
                    double[] dstPts, int dstOff, int numPts) throws TransformException;
 
     /**
-     * Transforms a list of coordinate point ordinal values.
+     * Transforms an array of single-precision coordinate tuples.
      * This method is provided for efficiently transforming many points.
-     * The supplied array of ordinal values will contain packed ordinal
-     * values.  For example, if the source dimension is 3, then the ordinals
-     * will be packed in this order:
+     * The supplied array will contain packed coordinate tuples.
+     * For example, if the source dimension is 3, then the coordinates will be packed in this order:
      *
      * (<var>x₀</var>,<var>y₀</var>,<var>z₀</var>,
      *  <var>x₁</var>,<var>y₁</var>,<var>z₁</var> …).
      *
-     * @param  srcPts the array containing the source point coordinates.
-     * @param  srcOff the offset to the first point to be transformed in the source array.
-     * @param  dstPts the array into which the transformed point coordinates are returned.
-     *                May be the same as {@code srcPts}.
-     * @param  dstOff the offset to the location of the first transformed point that is stored in the destination array.
-     * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point cannot be transformed. Some implementations will stop at the first failure,
-     *         wile some other implementations will fill the untransformable points with {@linkplain Float#NaN} values,
+     * <p>Note: while the source and destination arrays use single-precision floating point numbers,
+     * implementation should perform intermediate calculations in double-precision.</p>
+     *
+     * @param  srcPts the array containing the source coordinate tuples.
+     * @param  srcOff the offset to the first tuple to be transformed in the source array.
+     * @param  dstPts the array into which the transformed coordinate tuples are stored.
+     *                May be the same array as {@code srcPts}.
+     * @param  dstOff the offset to the first transformed coordinate that is stored in the destination array.
+     * @param  numPts the number of coordinate <em>tuples</em> to be transformed.
+     * @throws TransformException if a point cannot be transformed. Some implementations may stop at the first failure,
+     *         while some other implementations may fill the untransformable points with {@linkplain Double#NaN} values,
      *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
@@ -158,22 +160,22 @@ public interface MathTransform {
                    float[] dstPts, int dstOff, int numPts) throws TransformException;
 
     /**
-     * Transforms a list of coordinate point ordinal values.
+     * Converts an array of single-precision coordinate tuples to double precision, then transform.
      * This method is provided for efficiently transforming many points.
-     * The supplied array of ordinal values will contain packed ordinal
-     * values.  For example, if the source dimension is 3, then the ordinals
-     * will be packed in this order:
+     * The supplied array will contain packed coordinate tuples.
+     * For example, if the source dimension is 3, then the coordinates will be packed in this order:
      *
      * (<var>x₀</var>,<var>y₀</var>,<var>z₀</var>,
      *  <var>x₁</var>,<var>y₁</var>,<var>z₁</var> …).
      *
-     * @param  srcPts the array containing the source point coordinates.
-     * @param  srcOff the offset to the first point to be transformed in the source array.
-     * @param  dstPts the array into which the transformed point coordinates are returned.
-     * @param  dstOff the offset to the location of the first transformed point that is stored in the destination array.
-     * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point cannot be transformed. Some implementations will stop at the first failure,
-     *         wile some other implementations will fill the untransformable points with {@linkplain Double#NaN} values,
+     * @param  srcPts the array containing the source coordinate tuples.
+     * @param  srcOff the offset to the first tuple to be transformed in the source array.
+     * @param  dstPts the array into which the transformed coordinate tuples are stored.
+     *                May be the same array as {@code srcPts}.
+     * @param  dstOff the offset to the first transformed coordinate that is stored in the destination array.
+     * @param  numPts the number of coordinate <em>tuples</em> to be transformed.
+     * @throws TransformException if a point cannot be transformed. Some implementations may stop at the first failure,
+     *         while some other implementations may fill the untransformable points with {@linkplain Double#NaN} values,
      *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
@@ -183,23 +185,22 @@ public interface MathTransform {
                    double[] dstPts, int dstOff, int numPts) throws TransformException;
 
     /**
-     * Transforms a list of coordinate point ordinal values.
+     * Transforms an array of double-precision coordinate tuples, then converts to single-precision.
      * This method is provided for efficiently transforming many points.
-     * The supplied array of ordinal values will contain packed ordinal
-     * values.  For example, if the source dimension is 3, then the ordinals
-     * will be packed in this order:
+     * The supplied array will contain packed coordinate tuples.
+     * For example, if the source dimension is 3, then the coordinates will be packed in this order:
      *
      * (<var>x₀</var>,<var>y₀</var>,<var>z₀</var>,
      *  <var>x₁</var>,<var>y₁</var>,<var>z₁</var> …).
      *
-     * @param  srcPts the array containing the source point coordinates.
-     * @param  srcOff the offset to the first point to be transformed in the source array.
-     * @param  dstPts the array into which the transformed point coordinates are returned.
-     * @param  dstOff the offset to the location of the first transformed point that is
-     *                stored in the destination array.
-     * @param  numPts the number of point objects to be transformed.
-     * @throws TransformException if a point cannot be transformed. Some implementations will stop at the first failure,
-     *         wile some other implementations will fill the untransformable points with {@linkplain Float#NaN} values,
+     * @param  srcPts the array containing the source coordinate tuples.
+     * @param  srcOff the offset to the first tuple to be transformed in the source array.
+     * @param  dstPts the array into which the transformed coordinate tuples are stored.
+     *                May be the same array as {@code srcPts}.
+     * @param  dstOff the offset to the first transformed coordinate that is stored in the destination array.
+     * @param  numPts the number of coordinate <em>tuples</em> to be transformed.
+     * @throws TransformException if a point cannot be transformed. Some implementations may stop at the first failure,
+     *         while some other implementations may fill the untransformable points with {@linkplain Double#NaN} values,
      *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
@@ -207,6 +208,65 @@ public interface MathTransform {
      */
     void transform(double[] srcPts, int srcOff,
                    float [] dstPts, int dstOff, int numPts) throws TransformException;
+
+    /**
+     * Transforms a buffer of double-precision coordinate tuples.
+     * This method is provided for efficiently transforming many points,
+     * either in Java heap or in the memory of native applications (e.g. C/C++).
+     * The supplied buffer will contain packed coordinate tuples.
+     * For example, if the source dimension is 3, then the coordinates will be packed in this order:
+     *
+     * (<var>x₀</var>,<var>y₀</var>,<var>z₀</var>,
+     *  <var>x₁</var>,<var>y₁</var>,<var>z₁</var> …).
+     *
+     * <p>The first coordinate to transform is read at index {@code srcPts.position()} and
+     * the first transformed coordinate will be stored at index {@code dstPts.position()}.
+     * The maximal number of coordinate <em>tuples</em> to transform is:</p>
+     *
+     * {@snippet lang="java" :
+     * int numPts = Math.min(srcPts.remaining() / getSourceDimensions(),
+     *                       dstPts.remaining() / getTargetDimensions());
+     * }
+     *
+     * <p>If above maximum is zero, then this method returns 0.
+     * Otherwise, this method <em>shall</em> transform at least one coordinate tuple.
+     * It may transform any number of coordinate tuples between 1 and the above-cited maximum,
+     * at implementation choice. On success, the position of the source and destination buffer
+     * will be set to the index after the last coordinate read and stored respectively.
+     * If an exception has been thrown, then the buffer positions are undetermined.</p>
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation delegates to {@link #transform(double[], int, double[], int, int)}.
+     * Therefore, the default implementation supports only buffers on Java heap.
+     * Implementations should override this method if they want to support native heaps.
+     *
+     * @param  srcPts the buffer containing the source coordinate tuples.
+     * @param  dstPts the buffer into which the transformed coordinate tuples are stored.
+     *                May be the same buffer as {@code srcPts}.
+     * @return number of coordinate <em>tuples</em> actually transformed.
+     * @throws UnsupportedOperationException if this implementation supports only buffers backed
+     *         by accessible Java arrays, and at least one buffer is backed by native memory.
+     * @throws java.nio.ReadOnlyBufferException if the destination buffer is read-only.
+     * @throws TransformException if a point cannot be transformed. Some implementations may stop at the first failure,
+     *         while some other implementations may fill the untransformable points with {@linkplain Double#NaN} values,
+     *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
+     *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
+     *
+     * @since 3.1
+     */
+    default int transform(final DoubleBuffer srcPts, final DoubleBuffer dstPts) throws TransformException {
+        final int srcDim = getSourceDimensions();
+        final int tgtDim = getTargetDimensions();
+        final int srcOff = srcPts.position();
+        final int dstOff = dstPts.position();
+        final int numPts = Math.min(srcPts.remaining() / srcDim,
+                                    dstPts.remaining() / tgtDim);
+        transform(srcPts.array(), srcPts.arrayOffset() + srcOff,
+                  dstPts.array(), dstPts.arrayOffset() + dstOff, numPts);
+        srcPts.position(srcOff + numPts * srcDim);
+        dstPts.position(dstOff + numPts * tgtDim);      // Must be last.
+        return numPts;
+    }
 
     /**
      * Gets the derivative of this transform at a point.
@@ -253,11 +313,11 @@ public interface MathTransform {
      * @throws TransformException if the derivative cannot be evaluated at the specified point.
      */
     @UML(identifier="derivative", specification=OGC_01009)
-    Matrix derivative(final DirectPosition point)
+    Matrix derivative(DirectPosition point)
             throws MismatchedDimensionException, TransformException;
 
     /**
-     * Creates the inverse transform of this object. The target of the inverse transform
+     * Returns the inverse transform of this object. The target of the inverse transform
      * is the source of the original. The source of the inverse transform is the target
      * of the original. Using the original transform followed by the inverse's transform
      * will result in an identity map on the source coordinate space, when allowances for
@@ -271,6 +331,9 @@ public interface MathTransform {
      */
     @UML(identifier="inverse", specification=OGC_01009)
     default MathTransform inverse() throws NoninvertibleTransformException {
+        if (isIdentity()) {
+            return this;
+        }
         throw new NoninvertibleTransformException();
     }
 
