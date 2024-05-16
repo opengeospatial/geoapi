@@ -228,7 +228,7 @@ public interface Datum extends IdentifiedObject {
     @Deprecated(since = "3.1")
     @UML(identifier="realizationEpoch", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default Date getRealizationEpoch() {
-        return getAnchorEpoch().map(Legacy::toDate).orElse(null);
+        return Legacy.toDate(getAnchorEpoch().orElse(null));
     }
 
     /**
