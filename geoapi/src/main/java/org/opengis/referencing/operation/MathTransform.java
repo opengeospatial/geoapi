@@ -20,6 +20,7 @@ package org.opengis.referencing.operation;
 import java.nio.DoubleBuffer;
 import java.awt.geom.AffineTransform;
 import org.opengis.geometry.DirectPosition;
+import org.opengis.coordinate.CoordinateSet;
 import org.opengis.coordinate.MismatchedDimensionException;
 import org.opengis.annotation.UML;
 
@@ -251,6 +252,8 @@ public interface MathTransform {
      *         while some other implementations may fill the untransformable points with {@linkplain Double#NaN} values,
      *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
+     *
+     * @see CoordinateSet#asDoubleBuffers()
      *
      * @since 3.1
      */

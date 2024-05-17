@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assumptions.assumeTrue;
 
 /**
  * Generates or verifies Python abstract classes from Java interfaces.
- * This test is executed only if at least one of the following conditions is meet:
+ * This test is executed only if at least one of the following conditions is met:
  *
  * <ul>
  *   <li>The {@code "ISO_SCHEMAS_DIR"} environment variable is set to the path of a directory containing a copy of
