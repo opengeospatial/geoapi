@@ -25,8 +25,8 @@ import java.io.InputStreamReader;
 import java.io.LineNumberReader;
 import javax.xml.parsers.ParserConfigurationException;
 import org.xml.sax.SAXException;
-import org.opengis.geoapi.SchemaException;
-import org.opengis.geoapi.SchemaInformation;
+import org.opengis.geoapi.schema.SchemaException;
+import org.opengis.geoapi.schema.SchemaInformation;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;

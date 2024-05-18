@@ -21,7 +21,7 @@ import java.util.Map;
 import java.lang.reflect.Method;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Obligation;
-import org.opengis.geoapi.SchemaInformation;
+import org.opengis.geoapi.schema.SchemaInformation;
 import org.opengis.util.GenericName;
 
 

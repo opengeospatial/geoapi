@@ -39,11 +39,11 @@ import org.opengis.geoapi.SourceGenerator;
 import org.opengis.annotation.UML;
 import org.opengis.util.ControlledVocabulary;
 import org.opengis.util.InternationalString;
-import org.opengis.geoapi.NameSpaces;
-import org.opengis.geoapi.Departures;
-import org.opengis.geoapi.DocumentationStyle;
-import org.opengis.geoapi.SchemaInformation;
-import org.opengis.geoapi.SchemaException;
+import org.opengis.geoapi.schema.NameSpaces;
+import org.opengis.geoapi.schema.Departures;
+import org.opengis.geoapi.schema.DocumentationStyle;
+import org.opengis.geoapi.schema.SchemaInformation;
+import org.opengis.geoapi.schema.SchemaException;
 import org.xml.sax.SAXException;
 import org.junit.jupiter.api.Test;
 
