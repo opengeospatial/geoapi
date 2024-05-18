@@ -71,6 +71,7 @@ public final class Restriction extends CodeList<Restriction> {
 
     /**
      * Formal permission to do something.
+     * Note: it was spelled "license" in ISO 19115:2003.
      *
      * @since 3.1
      */

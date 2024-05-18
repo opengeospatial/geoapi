@@ -36,6 +36,26 @@ package org.opengis.referencing.operation;
  */
 public interface MathTransform1D extends MathTransform {
     /**
+     * Returns the number of dimensions of input points, which shall be 1.
+     *
+     * @return always 1.
+     */
+    @Override
+    default int getSourceDimensions() {
+        return 1;
+    }
+
+    /**
+     * Returns the number of dimensions of output points, which shall be 1.
+     *
+     * @return always 1.
+     */
+    @Override
+    default int getTargetDimensions() {
+        return 1;
+    }
+
+    /**
      * Transforms the specified value.
      *
      * @param  value  the value to transform.
@@ -56,13 +76,16 @@ public interface MathTransform1D extends MathTransform {
     double derivative(double value) throws TransformException;
 
     /**
-     * Creates the inverse transform of this object.
+     * Returns the inverse transform of this object.
      *
      * @return the inverse transform.
      * @throws NoninvertibleTransformException if the transform cannot be inverted.
      */
     @Override
     default MathTransform1D inverse() throws NoninvertibleTransformException {
+        if (isIdentity()) {
+            return this;
+        }
         throw new NoninvertibleTransformException();
     }
 }

@@ -39,6 +39,7 @@ module org.opengis.geoapi.conformance {
     requires transitive org.junit.jupiter.api;
 
     exports org.opengis.geoapi;
+    exports org.opengis.geoapi.schema;
     exports org.opengis.test;
     exports org.opengis.test.util;
     exports org.opengis.test.metadata;

@@ -36,7 +36,11 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @see org.opengis.metadata.spatial.PixelOrientation
+ *
+ * @deprecated This code list has been removed from ISO 19111:2019 together with {@code ImageDatum}.
+ * The "pixel in corner" versus "pixel in center" problematic will be handled by ISO 19123 instead.
  */
+@Deprecated(since = "3.1")
 @Vocabulary(capacity=2)
 @UML(identifier="CD_PixelInCell", specification=ISO_19111, version=2007)
 public final class PixelInCell extends CodeList<PixelInCell> {

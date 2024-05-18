@@ -10,7 +10,6 @@ import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.crs.GeographicCRS;
 import org.opengis.referencing.datum.GeodeticDatum;
-import org.opengis.example.Referencing;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -42,7 +41,7 @@ public class SimpleTest {
      */
     @Test
     public void testGeographicCRS() {
-        final GeographicCRS crs = Referencing.WGS84();
+        final GeographicCRS crs = SimpleCRS.Geographic.WGS84;
         assertSame(SimpleDatum.WGS84, crs.getDatum());
         final EllipsoidalCS cs = crs.getCoordinateSystem();
         assertEquals(2, cs.getDimension());

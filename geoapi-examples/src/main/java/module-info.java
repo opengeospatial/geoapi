@@ -66,6 +66,9 @@ module org.opengis.geoapi.example {
     provides org.opengis.util.NameFactory
         with org.opengis.example.util.SimpleNameFactory;
 
+    provides org.opengis.referencing.crs.CRSAuthorityFactory
+        with org.opengis.example.referencing.SimpleAuthorityFactory;
+
     provides org.opengis.referencing.operation.MathTransformFactory
         with org.opengis.example.referencing.SimpleTransformFactory;
 }

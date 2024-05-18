@@ -28,10 +28,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Point in a pixel corresponding to the Earth location of the pixel.
- *
- * <p>This code list is restricted to the two-dimensional case. A similar code
- * list, {@link org.opengis.referencing.datum.PixelInCell}, can be used for
- * <var>n</var>-dimensional grid cell.</p>
+ * This code-list assumes a two-dimensional case.
  *
  * <div class="warning"><b>Upcoming API change — enumeration</b><br>
  * According ISO 19115, {@code PixelOrientation} shall be an enumeration, not a code list.
@@ -42,8 +39,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   2.0
- *
- * @see org.opengis.referencing.datum.PixelInCell
  */
 @Vocabulary(capacity=5)
 @UML(identifier="MD_PixelOrientationCode", specification=ISO_19115)
@@ -55,8 +50,6 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
 
     /**
      * Point in a pixel corresponding to the Earth location of the pixel.
-     *
-     * @see org.opengis.referencing.datum.PixelInCell#CELL_CENTER
      */
     @UML(identifier="center", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation CENTER = new PixelOrientation("CENTER");
@@ -64,13 +57,6 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
     /**
      * The corner in the pixel closest to the origin of the SRS.
      * If two are at the same distance from the origin, the one with the smallest <var>x</var>-value.
-     *
-     * @todo The sentence <q>closest to the origin of the SRS</q> probably applies to
-     *       positive coordinates only. For the general case including both positive and negative
-     *       coordinates, we should probably read "in the direction of negative infinity". This
-     *       interpretation should be clarified with ISO.
-     *
-     * @see org.opengis.referencing.datum.PixelInCell#CELL_CORNER
      */
     @UML(identifier="lowerLeft", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PixelOrientation LOWER_LEFT = new PixelOrientation("LOWER_LEFT");

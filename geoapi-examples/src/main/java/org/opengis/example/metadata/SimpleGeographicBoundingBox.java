@@ -7,7 +7,7 @@ package org.opengis.example.metadata;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.awt.geom.Rectangle2D;
+import java.awt.geom.RectangularShape;
 
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.extent.GeographicExtent;
@@ -60,12 +60,12 @@ public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Exten
     }
 
     /**
-     * Constructs a geographic bounding box from the specified rectangle. The rectangle is assumed
-     * in {@linkplain org.opengis.example.referencing.SimpleCRS.Geographic#WGS84 WGS84} CRS.
+     * Constructs a geographic bounding box from the specified rectangular area. The coordinate values
+     * are assumed in {@linkplain org.opengis.example.referencing.SimpleCRS.Geographic#WGS84 WGS84} CRS.
      *
      * @param bounds  the rectangle to use for initializing this geographic bounding box.
      */
-    public SimpleGeographicBoundingBox(final Rectangle2D bounds) {
+    public SimpleGeographicBoundingBox(final RectangularShape bounds) {
         this(bounds.getMinX(), bounds.getMaxX(),
              bounds.getMinY(), bounds.getMaxY());
     }

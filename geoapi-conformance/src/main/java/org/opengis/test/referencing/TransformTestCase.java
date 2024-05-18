@@ -19,6 +19,7 @@ package org.opengis.test.referencing;
 
 import java.util.Random;
 import java.util.Arrays;
+import java.nio.DoubleBuffer;
 import java.awt.geom.Point2D;
 
 import org.opengis.geometry.DirectPosition;
@@ -36,6 +37,7 @@ import org.opengis.test.TestCase;
 
 import static java.lang.StrictMath.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.opengis.test.Assertions.assertBetween;
 import static org.opengis.test.Assertions.assertStrictlyPositive;
 
 
@@ -735,26 +737,53 @@ public strictfp abstract class TransformTestCase extends TestCase {
                                    "MathTransform.transform(float[],0,double[],0,n) error.");
         }
         /*
+         * Tests transformation in distincts (non-overlapping) buffers.
+         */
+        if (isDoubleToDoubleSupported) {
+            configurationTip = Configuration.Key.isDoubleToDoubleSupported;
+            Arrays.fill(targetDoubles, Double.NaN);
+            final DoubleBuffer src = DoubleBuffer.wrap(sourceDoubles);
+            final DoubleBuffer dst = DoubleBuffer.wrap(targetDoubles);
+            final int n = transform.transform(src, dst);
+            assertBetween(Math.min(1, numPts), numPts, n, "MathTransform.transform(DoubleBuffer,DoubleBuffer) number of transformed points.");
+            assertEquals(n * sourceDimension, src.position(), "MathTransform.transform(DoubleBuffer,DoubleBuffer) source buffer position.");
+            assertEquals(n * targetDimension, dst.position(), "MathTransform.transform(DoubleBuffer,DoubleBuffer) destination buffer position.");
+            assertCoordinatesEqual(sourceDimension,
+                                   sourceFloats, 0,                     // Expected coordinates
+                                   sourceDoubles, 0, n,                 // Actual coordinates
+                                   CalculationType.IDENTITY,
+                                   "MathTransform.transform(DoubleBuffer,DoubleBuffer) modified a source coordinate.");
+            assertCoordinatesEqual(targetDimension,
+                                   expectedDoubles, 0,                  // Expected coordinates
+                                   targetDoubles, 0, n,                 // Actual coordinates
+                                   CalculationType.DIRECT_TRANSFORM,
+                                   "MathTransform.transform(DoubleBuffer,DoubleBuffer) error.");
+        }
+        /*
          * Tests transformation in overlapping arrays.
          */
         if (isOverlappingArraySupported) {
             configurationTip = Configuration.Key.isOverlappingArraySupported;
             for (int sourceOffset=0; sourceOffset < POINTS_OFFSET*sourceDimension; sourceOffset += sourceDimension) {
                 for (int targetOffset=0; targetOffset < POINTS_OFFSET*targetDimension; targetOffset += targetDimension) {
-                    System.arraycopy(sourceFloats,  0, targetFloats,  sourceOffset, sourceFloats .length);
-                    System.arraycopy(sourceDoubles, 0, targetDoubles, sourceOffset, sourceDoubles.length);
-                    transform.transform(targetFloats,  sourceOffset, targetFloats,  targetOffset, numPts);
-                    transform.transform(targetDoubles, sourceOffset, targetDoubles, targetOffset, numPts);
-                    assertCoordinatesEqual(targetDimension,
-                                           expectedFloats, 0,                       // Expected coordinates
-                                           targetFloats, targetOffset, numPts,      // Actual coordinates
-                                           CalculationType.DIRECT_TRANSFORM,
-                                           "MathTransform.transform(float[],0,float[],0,n) error.");
-                    assertCoordinatesEqual(targetDimension,
-                                           expectedFloats, 0,                       // Expected coordinates
-                                           targetDoubles, targetOffset, numPts,     // Actual coordinates
-                                           CalculationType.DIRECT_TRANSFORM,
-                                           "MathTransform.transform(double[],0,double[],0,n) error.");
+                    if (isFloatToFloatSupported) {
+                        System.arraycopy(sourceFloats, 0, targetFloats, sourceOffset, sourceFloats.length);
+                        transform.transform(targetFloats, sourceOffset, targetFloats, targetOffset, numPts);
+                        assertCoordinatesEqual(targetDimension,
+                                               expectedFloats, 0,                       // Expected coordinates
+                                               targetFloats, targetOffset, numPts,      // Actual coordinates
+                                               CalculationType.DIRECT_TRANSFORM,
+                                               "MathTransform.transform(float[],0,float[],0,n) error.");
+                    }
+                    if (isDoubleToDoubleSupported) {
+                        System.arraycopy(sourceDoubles, 0, targetDoubles, sourceOffset, sourceDoubles.length);
+                        transform.transform(targetDoubles, sourceOffset, targetDoubles, targetOffset, numPts);
+                        assertCoordinatesEqual(targetDimension,
+                                               expectedFloats, 0,                       // Expected coordinates
+                                               targetDoubles, targetOffset, numPts,     // Actual coordinates
+                                               CalculationType.DIRECT_TRANSFORM,
+                                               "MathTransform.transform(double[],0,double[],0,n) error.");
+                    }
                 }
             }
         }

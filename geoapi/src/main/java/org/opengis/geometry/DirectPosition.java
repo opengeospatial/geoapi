@@ -195,8 +195,7 @@ public interface DirectPosition extends Position {
 
     /**
      * Compares this direct position with the specified object for equality.
-     * Two direct positions are considered equal if the following conditions
-     * are meet:
+     * Two direct positions are considered equal if the following conditions are met:
      *
      * <ul>
      *   <li>{@code object} is non-null and is an instance of {@code DirectPosition}.</li>
@@ -204,11 +203,18 @@ public interface DirectPosition extends Position {
      *   <li>Both direct positions have the same or equal {@linkplain #getCoordinateReferenceSystem()
      *       coordinate reference system}.</li>
      *   <li>For all dimension <var>i</var>, the {@linkplain #getCoordinates coordinate value} of both
-     *       direct positions at that dimension are equals in the sense of {@link Double#equals(Object)}.
-     *       In other words, <code>{@linkplain java.util.Arrays#equals(double[],double[])
-     *       Arrays.equals}({@linkplain #getCoordinates()}, object.getCoordinates())</code>
-     *       returns {@code true}.</li>
+     *       direct positions at that dimension are equals in the sense of {@link Double#equals(Object)}.</li>
      * </ul>
+     *
+     * In other words, this method shall be equivalent to the following code:
+     *
+     * {@snippet lang="java" :
+     * public boolean equals(Object obj) {
+     *     return (obj instanceof DirectPosition other)
+     *             && Arrays.equals(getCoordinates(), other.getCoordinates())
+     *             && Objects.equals(getCoordinateReferenceSystem(), other.getCoordinateReferenceSystem());
+     * }
+     * }
      *
      * @param  object  the object to compare with this direct position for equality.
      * @return {@code true} if the given object is equal to this direct position.
@@ -217,14 +223,14 @@ public interface DirectPosition extends Position {
     boolean equals(Object object);
 
     /**
-     * Returns a hash code value for this direct position. This method should returns
-     * the same value as:
+     * Returns a hash code value for this direct position.
+     * This method shall be equivalent to the following code:
      *
-     * <code>{@linkplain java.util.Arrays#hashCode(double[]) Arrays.hashCode}({@linkplain
-     * #getCoordinates()}) + {@linkplain #getCoordinateReferenceSystem()}.hashCode()</code>
-     *
-     * where the right hand side of the addition is omitted if the coordinate reference
-     * system is null.
+     * {@snippet lang="java" :
+     * public int hashCode() {
+     *     return Arrays.hashCode(getCoordinates()) + Objects.hashCode(getCoordinateReferenceSystem());
+     * }
+     * }
      *
      * @return a hash code value for this direct position.
      */
