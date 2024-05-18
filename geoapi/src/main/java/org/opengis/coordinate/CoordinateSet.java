@@ -191,6 +191,7 @@ public interface CoordinateSet extends Iterable<DirectPosition> {
      *
      * @see #stream()
      * @see MathTransform#transform(DoubleBuffer, DoubleBuffer)
+     * @see MathTransform#transform(DoubleBuffer, FloatBuffer)
      */
     default Optional<Stream<DoubleBuffer>> asDoubleBuffers() {
         return Optional.empty();
@@ -212,6 +213,8 @@ public interface CoordinateSet extends Iterable<DirectPosition> {
      * @return a view over the sequences of coordinates as single-precision floating point values.
      *
      * @see #stream()
+     * @see MathTransform#transform(FloatBuffer, FloatBuffer)
+     * @see MathTransform#transform(FloatBuffer, DoubleBuffer)
      */
     default Optional<Stream<FloatBuffer>> asFloatBuffers() {
         return Optional.empty();

@@ -17,6 +17,7 @@
  */
 package org.opengis.referencing.operation;
 
+import java.nio.FloatBuffer;
 import java.nio.DoubleBuffer;
 import java.awt.geom.AffineTransform;
 import org.opengis.geometry.DirectPosition;
@@ -126,6 +127,7 @@ public interface MathTransform {
      *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
+     * @see #transform(DoubleBuffer, DoubleBuffer)
      * @see AffineTransform#transform(double[], int, double[], int, int)
      */
     @UML(identifier="transformList", specification=OGC_01009)
@@ -155,6 +157,7 @@ public interface MathTransform {
      *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
+     * @see #transform(FloatBuffer, FloatBuffer)
      * @see AffineTransform#transform(float[], int, float[], int, int)
      */
     void transform(float[] srcPts, int srcOff,
@@ -180,6 +183,7 @@ public interface MathTransform {
      *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
+     * @see #transform(FloatBuffer, DoubleBuffer)
      * @see AffineTransform#transform(float[], int, double[], int, int)
      */
     void transform(float [] srcPts, int srcOff,
@@ -205,6 +209,7 @@ public interface MathTransform {
      *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
+     * @see #transform(DoubleBuffer, FloatBuffer)
      * @see AffineTransform#transform(double[], int, float[], int, int)
      */
     void transform(double[] srcPts, int srcOff,
@@ -253,11 +258,146 @@ public interface MathTransform {
      *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
      *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
+     * @see #transform(double[], int, double[], int, int)
      * @see CoordinateSet#asDoubleBuffers()
      *
      * @since 3.1
      */
     default int transform(final DoubleBuffer srcPts, final DoubleBuffer dstPts) throws TransformException {
+        // The source code looks identical in the 4 variants of this method, but the compiled code differs.
+        // Trying to factorize this code actually make the `MathTransform.class` file bigger.
+        final int srcDim = getSourceDimensions();
+        final int tgtDim = getTargetDimensions();
+        final int srcOff = srcPts.position();
+        final int dstOff = dstPts.position();
+        final int numPts = Math.min(srcPts.remaining() / srcDim,
+                                    dstPts.remaining() / tgtDim);
+        transform(srcPts.array(), srcPts.arrayOffset() + srcOff,
+                  dstPts.array(), dstPts.arrayOffset() + dstOff, numPts);
+        srcPts.position(srcOff + numPts * srcDim);
+        dstPts.position(dstOff + numPts * tgtDim);      // Must be last.
+        return numPts;
+    }
+
+    /**
+     * Transforms a buffer of single-precision coordinate tuples.
+     * This method follows the same contract as {@link #transform(DoubleBuffer, DoubleBuffer)},
+     * except that the floating-point precision of source and destination buffers are different.
+     * See the double-precision variant of this method for details.
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation delegates to {@link #transform(float[], int, float[], int, int)}.
+     * Therefore, the default implementation supports only buffers on Java heap.
+     * Implementations should override this method if they want to support native heaps.
+     *
+     * @param  srcPts the buffer containing the source coordinate tuples.
+     * @param  dstPts the buffer into which the transformed coordinate tuples are stored.
+     *                May be the same buffer as {@code srcPts}.
+     * @return number of coordinate <em>tuples</em> actually transformed.
+     * @throws UnsupportedOperationException if this implementation supports only buffers backed
+     *         by accessible Java arrays, and at least one buffer is backed by native memory.
+     * @throws java.nio.ReadOnlyBufferException if the destination buffer is read-only.
+     * @throws TransformException if a point cannot be transformed. Some implementations may stop at the first failure,
+     *         while some other implementations may fill the untransformable points with {@linkplain Float#NaN} values,
+     *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
+     *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
+     *
+     * @see #transform(float[], int, float[], int, int)
+     * @see CoordinateSet#asFloatBuffers()
+     *
+     * @since 3.1
+     */
+    default int transform(final FloatBuffer srcPts, final FloatBuffer dstPts) throws TransformException {
+        // The source code looks identical in the 4 variants of this method, but the compiled code differs.
+        // Trying to factorize this code actually make the `MathTransform.class` file bigger.
+        final int srcDim = getSourceDimensions();
+        final int tgtDim = getTargetDimensions();
+        final int srcOff = srcPts.position();
+        final int dstOff = dstPts.position();
+        final int numPts = Math.min(srcPts.remaining() / srcDim,
+                                    dstPts.remaining() / tgtDim);
+        transform(srcPts.array(), srcPts.arrayOffset() + srcOff,
+                  dstPts.array(), dstPts.arrayOffset() + dstOff, numPts);
+        srcPts.position(srcOff + numPts * srcDim);
+        dstPts.position(dstOff + numPts * tgtDim);      // Must be last.
+        return numPts;
+    }
+
+    /**
+     * Converts simple-precision coordinate tuples to double-precision and transform them.
+     * This method follows the same contract as {@link #transform(DoubleBuffer, DoubleBuffer)},
+     * except that the floating-point precision of the source buffer is different.
+     * See the double-precision variant of this method for details.
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation delegates to {@link #transform(float[], int, double[], int, int)}.
+     * Therefore, the default implementation supports only buffers on Java heap.
+     * Implementations should override this method if they want to support native heaps.
+     *
+     * @param  srcPts the buffer containing the source coordinate tuples.
+     * @param  dstPts the buffer into which the transformed coordinate tuples are stored.
+     *                May be the same buffer as {@code srcPts}.
+     * @return number of coordinate <em>tuples</em> actually transformed.
+     * @throws UnsupportedOperationException if this implementation supports only buffers backed
+     *         by accessible Java arrays, and at least one buffer is backed by native memory.
+     * @throws java.nio.ReadOnlyBufferException if the destination buffer is read-only.
+     * @throws TransformException if a point cannot be transformed. Some implementations may stop at the first failure,
+     *         while some other implementations may fill the untransformable points with {@linkplain Double#NaN} values,
+     *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
+     *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
+     *
+     * @see #transform(float[], int, double[], int, int)
+     * @see CoordinateSet#asFloatBuffers()
+     *
+     * @since 3.1
+     */
+    default int transform(final FloatBuffer srcPts, final DoubleBuffer dstPts) throws TransformException {
+        // The source code looks identical in the 4 variants of this method, but the compiled code differs.
+        // Trying to factorize this code actually make the `MathTransform.class` file bigger.
+        final int srcDim = getSourceDimensions();
+        final int tgtDim = getTargetDimensions();
+        final int srcOff = srcPts.position();
+        final int dstOff = dstPts.position();
+        final int numPts = Math.min(srcPts.remaining() / srcDim,
+                                    dstPts.remaining() / tgtDim);
+        transform(srcPts.array(), srcPts.arrayOffset() + srcOff,
+                  dstPts.array(), dstPts.arrayOffset() + dstOff, numPts);
+        srcPts.position(srcOff + numPts * srcDim);
+        dstPts.position(dstOff + numPts * tgtDim);      // Must be last.
+        return numPts;
+    }
+
+    /**
+     * Transforms coordinate tuples and converts the result to single-precision.
+     * This method follows the same contract as {@link #transform(DoubleBuffer, DoubleBuffer)},
+     * except that the floating-point precision of the destination buffer is different.
+     * See the double-precision variant of this method for details.
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation delegates to {@link #transform(double[], int, float[], int, int)}.
+     * Therefore, the default implementation supports only buffers on Java heap.
+     * Implementations should override this method if they want to support native heaps.
+     *
+     * @param  srcPts the buffer containing the source coordinate tuples.
+     * @param  dstPts the buffer into which the transformed coordinate tuples are stored.
+     *                May be the same buffer as {@code srcPts}.
+     * @return number of coordinate <em>tuples</em> actually transformed.
+     * @throws UnsupportedOperationException if this implementation supports only buffers backed
+     *         by accessible Java arrays, and at least one buffer is backed by native memory.
+     * @throws java.nio.ReadOnlyBufferException if the destination buffer is read-only.
+     * @throws TransformException if a point cannot be transformed. Some implementations may stop at the first failure,
+     *         while some other implementations may fill the untransformable points with {@linkplain Float#NaN} values,
+     *         continue and throw the exception only at end. Implementations that fall in the latter case should set the
+     *         {@linkplain TransformException#getLastCompletedTransform last completed transform} to {@code this}.
+     *
+     * @see #transform(double[], int, float[], int, int)
+     * @see CoordinateSet#asDoubleBuffers()
+     *
+     * @since 3.1
+     */
+    default int transform(final DoubleBuffer srcPts, final FloatBuffer dstPts) throws TransformException {
+        // The source code looks identical in the 4 variants of this method, but the compiled code differs.
+        // Trying to factorize this code actually make the `MathTransform.class` file bigger.
         final int srcDim = getSourceDimensions();
         final int tgtDim = getTargetDimensions();
         final int srcOff = srcPts.position();
