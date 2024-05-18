@@ -356,7 +356,6 @@ public enum Content {
             org.opengis.referencing.cs          .CoordinateDataType           .class,
             org.opengis.referencing.cs          .AxisDirection                .class,
             org.opengis.referencing.cs          .RangeMeaning                 .class,
-            org.opengis.referencing.datum       .PixelInCell                  .class,
             org.opengis.referencing.datum       .RealizationMethod            .class,
             org.opengis.filter                  .ComparisonOperatorName       .class,
             org.opengis.filter                  .SpatialOperatorName          .class,

@@ -23,15 +23,6 @@ class RealizationMethod(Enum):
 
 
 
-class PixelInCell(Enum):
-    """
-    Specification of the way the image grid is associated with the image data attributes.
-    """
-    CELL_CENTER = "cellCenter"
-    CELL_CORNER = "cellCorner"
-
-
-
 class IdentifiedObject(ABC):
     """
     Identification and remarks information for a reference system or CRS-related object.

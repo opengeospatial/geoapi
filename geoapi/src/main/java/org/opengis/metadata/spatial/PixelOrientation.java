@@ -26,23 +26,16 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * Point in a pixel corresponding to the Earth location of the pixel.
- *
- * <p>This code list is restricted to the two-dimensional case. A similar code
- * list, {@link org.opengis.referencing.datum.PixelInCell}, can be used for
- * <var>n</var>-dimensional grid cell.</p>
+ * This code-list assumes a two-dimensional case.
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 4.0
  * @since   2.0
- *
- * @see org.opengis.referencing.datum.PixelInCell
  */
 @UML(identifier="MD_PixelOrientationCode", specification=ISO_19115)
 public enum PixelOrientation implements ControlledVocabulary {
     /**
      * Point in a pixel corresponding to the Earth location of the pixel.
-     *
-     * @see org.opengis.referencing.datum.PixelInCell#CELL_CENTER
      */
     @UML(identifier="center", obligation=CONDITIONAL, specification=ISO_19115)
     CENTER("center"),
@@ -50,13 +43,6 @@ public enum PixelOrientation implements ControlledVocabulary {
     /**
      * The corner in the pixel closest to the origin of the SRS.
      * If two are at the same distance from the origin, the one with the smallest <var>x</var>-value.
-     *
-     * @todo The sentence <q>closest to the origin of the SRS</q> probably applies to
-     *       positive coordinates only. For the general case including both positive and negative
-     *       coordinates, we should probably read "in the direction of negative infinity". This
-     *       interpretation should be clarified with ISO.
-     *
-     * @see org.opengis.referencing.datum.PixelInCell#CELL_CORNER
      */
     @UML(identifier="lowerLeft", obligation=CONDITIONAL, specification=ISO_19115)
     LOWER_LEFT("lowerLeft"),
