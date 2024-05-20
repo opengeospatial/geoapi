@@ -36,8 +36,6 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
- * @see PrimitiveFactory#createPoint
- *
  * @todo Some associations are commented out for now.
  */
 @UML(identifier="GM_Point", specification=ISO_19107)

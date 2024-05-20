@@ -31,8 +31,6 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
- * @see PrimitiveFactory#createSolid
- *
  * @todo Some associations are commented out for now.
  */
 @UML(identifier="GM_Solid", specification=ISO_19107)
