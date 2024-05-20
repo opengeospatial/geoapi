@@ -19,6 +19,7 @@ package org.opengis.referencing.datum;
 
 import java.util.Map;
 import java.util.Date;
+import java.time.temporal.Temporal;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -31,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  *
  * @see DatumAuthorityFactory#createTemporalDatum(String)
@@ -45,14 +46,10 @@ import static org.opengis.annotation.Specification.*;
 public interface TemporalDatum extends Datum {
     /**
      * Date and time to which temporal coordinates are referenced.
-     *
-     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release.
-     * It may be replaced by {@link java.time.temporal.Temporal}.
-     * </div>
+     * The {@link java.time.Instant} type is recommended, but other types are allowed.
      *
      * @return date and time to which temporal coordinates are referenced.
      */
     @UML(identifier="origin", obligation=MANDATORY, specification=ISO_19111)
-    Date getOrigin();
+    Temporal getOrigin();
 }
