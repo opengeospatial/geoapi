@@ -61,9 +61,6 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
- *
- * @see GeometryFactory#createArc(Position,Position,Position)
- * @see GeometryFactory#createArc(Position,Position,double,double[])
  */
 @UML(identifier="GM_Arc", specification=ISO_19107)
 public interface Arc extends ArcString {

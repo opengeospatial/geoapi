@@ -35,8 +35,6 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
- *
- * @see GeometryFactory#createTin
  */
 @UML(identifier="GM_Tin", specification=ISO_19107)
 public interface Tin extends TriangulatedSurface {
