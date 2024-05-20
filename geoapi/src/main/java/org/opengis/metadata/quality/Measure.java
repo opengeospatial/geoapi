@@ -245,9 +245,9 @@ public interface Measure {
      *
      * @departure harmonization
      *   Usage of the ISO 19157 {@code DQM_Parameter} type has been replaced by usage of the ISO 19111
-     *   {@code CC_OperationParameter} type, completed with some new {@code DQM_Parameter} properties,
-     *   in order to provide a unified parameter API. Note that {@code CC_OperationParameter} is named
-     *   {@code ParameterDescriptor} in GeoAPI to reflect its extended scope.
+     *   {@code OperationParameter} type, completed with some new {@code DQM_Parameter} properties,
+     *   in order to provide a unified parameter API. Note that {@code OperationParameter} is named
+     *   {@link org.opengis.parameter.ParameterDescriptor} in GeoAPI to reflect its extended scope.
      *
      * @return auxiliary variable(s) used by data quality measure, or an empty collection if none.
      *

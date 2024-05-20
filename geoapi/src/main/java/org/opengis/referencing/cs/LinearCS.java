@@ -32,7 +32,8 @@ import static org.opengis.annotation.Specification.*;
  * </div>
  *
  * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
- * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>
+ * {@link org.opengis.referencing.crs.EngineeringCRS}, potentially in combination with
+ * {@link org.opengis.referencing.crs.DerivedCRS}.</p>
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)

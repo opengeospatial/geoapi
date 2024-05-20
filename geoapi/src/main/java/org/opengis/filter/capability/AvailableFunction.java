@@ -86,7 +86,7 @@ public interface AvailableFunction {
      *
      * @departure harmonization
      *   Usage of the ISO 19143 {@code Argument} type has been replaced by usage of the ISO 19111
-     *   {@code CC_OperationParameter} type in order to provide a unified parameter API.
+     *   {@code OperationParameter} type in order to provide a unified parameter API.
      *
      * @return arguments that the function accepts.
      */

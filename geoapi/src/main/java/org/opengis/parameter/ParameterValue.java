@@ -26,6 +26,7 @@ import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.Identifier;
+import org.opengis.geometry.Geometry;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -54,6 +55,7 @@ import static org.opengis.annotation.Specification.*;
  *   <tr><td>booleanValue</td>      <td>{@code boolean}</td>  <td>{@link #booleanValue()}</td>        <td>{@link #setValue(boolean)}</td></tr>
  *   <tr><td>valueFile</td>         <td>{@link URI}</td>      <td>{@link #valueFile()}</td>           <td>{@link #setValue(Object)}</td></tr>
  *   <tr><td>valueFileCitation</td> <td>{@link Citation}</td> <td>{@link #getValue()}</td>            <td>{@link #setValue(Object)}</td></tr>
+ *   <tr><td>geographicObject</td>  <td>{@link Geometry}</td> <td>{@link #getValue()}</td>            <td>{@link #setValue(Object)}</td></tr>
  * </table>
  *
  * The type and constraints on parameter values are given by the {@linkplain #getDescriptor() descriptor},
@@ -63,7 +65,7 @@ import static org.opengis.annotation.Specification.*;
  *   This interface merges the {@code OperationParameterValue} interface and {@code ParameterValue} union.
  *   The {@code valueFileCitation} and {@code geographicObject} properties were omitted because those more
  *   complex objects can be specified by setting the {@code <T>} parameterized type to
- *   {@link org.opengis.metadata.Citation} and {@link org.opengis.metadata.Identifier} respectively.
+ *   {@link Citation} and {@link Geometry} respectively.
  *
  * @param  <T>  the type of parameter values.
  *

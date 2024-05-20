@@ -27,7 +27,8 @@ import static org.opengis.annotation.Specification.*;
  * Position is specified by geodetic latitude, geodetic longitude, and (in the 3D case) ellipsoidal height.
  *
  * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
- * {@link org.opengis.referencing.crs.GeographicCRS}.
+ * {@link org.opengis.referencing.crs.GeographicCRS}, potentially in combination with
+ * {@link org.opengis.referencing.crs.DerivedCRS}.
  * The following examples describe some possible set of axes for ellipsoidal CS used with the above-cited CRS:</p>
  *
  * <table class="ogc">

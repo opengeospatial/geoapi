@@ -30,7 +30,8 @@ import static org.opengis.annotation.Specification.*;
  * outside the scope of the ISO 19111 specification.
  *
  * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
- * {@link org.opengis.referencing.crs.VerticalCRS}.
+ * {@link org.opengis.referencing.crs.VerticalCRS}, potentially in combination with
+ * {@link org.opengis.referencing.crs.DerivedCRS}.
  * The following examples describe some possible axes for vertical CS used with the above-cited CRS:</p>
  *
  * <table class="ogc">

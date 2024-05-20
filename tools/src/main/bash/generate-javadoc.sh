@@ -67,6 +67,7 @@ javadoc -doctitle "GeoAPI SNAPSHOT" \
  -docencoding UTF-8 \
  -noqualifier java.lang,org.opengis.* \
  -use \
+ -linksource \
  --since 3.1,4.0 \
  --add-stylesheet src/main/javadoc/geoapi.css \
  -docletpath $DOCLET -doclet org.opengis.tools.doclet.FlushableDoclet \
