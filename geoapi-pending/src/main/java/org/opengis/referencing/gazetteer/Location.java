@@ -20,7 +20,7 @@ package org.opengis.referencing.gazetteer;
 import java.util.Collection;
 import org.opengis.util.InternationalString;
 import org.opengis.geometry.Envelope;
-import org.opengis.geometry.coordinate.Position;
+import org.opengis.geometry.DirectPosition;
 import org.opengis.metadata.extent.TemporalExtent;
 import org.opengis.metadata.extent.GeographicExtent;
 import org.opengis.metadata.citation.Party;
@@ -143,13 +143,13 @@ public interface Location {
      * to identify location.</p>
      *
      * @departure generalization
-     *   ISO 19112 declares the <code>GM_Point</code> type. GeoAPI uses the <code>Position</code> union
-     *   for allowing the use of either <code>GM_Point</code> or <code>DirectPosition</code>.
+     *   ISO 19112 declares the {@code GM_Point} type.
+     *   GeoAPI uses the more lightweight {@code DirectPosition} type instead.
      *
      * @return coordinates of a representative point for the location instance, or {@code null} if none.
      */
     @UML(identifier="position", obligation=CONDITIONAL, specification=ISO_19112)
-    Position getPosition();
+    DirectPosition getPosition();
 
     /**
      * A description of the nature of this geographic identifier.

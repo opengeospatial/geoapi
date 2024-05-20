@@ -18,7 +18,6 @@
 package org.opengis.geometry.primitive;
 
 import org.opengis.geometry.DirectPosition;
-import org.opengis.geometry.coordinate.Position;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -39,19 +38,12 @@ import static org.opengis.annotation.Specification.*;
  * @todo Some associations are commented out for now.
  */
 @UML(identifier="GM_Point", specification=ISO_19107)
-public interface Point extends Primitive, Position {
+public interface Point extends Primitive {
     /**
-     * Returns the direct position of this point. {@code Point} is the only subclass
-     * of {@linkplain Primitive primitive} that cannot use {@linkplain Position positions}
-     * to represent its defining geometry. A {@linkplain Position position} is either a
-     * {@linkplain DirectPosition direct position} or a reference to a {@code Point}
-     * (from which a {@linkplain DirectPosition direct position} may be obtained). By not
-     * allowing {@code Point} to use this technique, infinitely recursive references
-     * are prevented.
+     * Returns the direct position of this point.
      *
      * @return the direct position.
      */
-    @Override
     @UML(identifier="position", obligation=MANDATORY, specification=ISO_19107)
     DirectPosition getDirectPosition();
 
@@ -65,7 +57,7 @@ public interface Point extends Primitive, Position {
 
     /**
      * Returns the bearing, as a unit vector, of the tangent (at this {@code Point}) to
-     * the curve between this {@code Point} and a passed {@linkplain Position position}.
+     * the curve between this {@code Point} and a passed position.
      * The choice of the curve type for defining the bearing is dependent on the
      * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system}
      * in which this {@code Point} is defined.
@@ -78,7 +70,7 @@ public interface Point extends Primitive, Position {
      * @return the tangent to the curve between this point and the passed position.
      */
     @UML(identifier="bearing", obligation=MANDATORY, specification=ISO_19107)
-    Bearing getBearing(Position toPoint);
+    Bearing getBearing(DirectPosition toPoint);
 
     /**
      * Returns always {@code null}, since points have no proxy.

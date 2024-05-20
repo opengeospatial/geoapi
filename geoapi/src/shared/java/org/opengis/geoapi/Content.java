@@ -115,7 +115,6 @@ public enum Content {
                org.opengis.referencing.cs          .CoordinateSystemAxis                .class,
                org.opengis.referencing.cs          .CoordinateSystem                    .class,
                org.opengis.referencing.crs         .CoordinateReferenceSystem           .class,
-               org.opengis.geometry.coordinate     .Position                            .class,
                org.opengis.geometry                .DirectPosition                      .class,
                org.opengis.geometry                .Envelope                            .class,
                org.opengis.geometry                .Geometry                            .class,

@@ -18,6 +18,7 @@
 package org.opengis.geometry.coordinate;
 
 import java.util.List;
+import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -27,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
 /**
  * A planar polygon defined by 3 corners. That is, a triangle would be the result of a constructor
  * of the form: {@code Polygon(LineString({P1, P2, P3, P1}))} where <var>P₁</var>,
- * <var>P₂</var>, and <var>P₃</var> are three {@linkplain Position positions}.
+ * <var>P₂</var>, and <var>P₃</var> are three positions.
  * Triangles have no holes. Triangle shall be used to construct
  * {@linkplain TriangulatedSurface triangulated surfaces}.
  * <p>
@@ -55,7 +56,7 @@ public interface Triangle extends Polygon {
      * Returns the triangle corner. The list must contains exactly 3 elements.
      */
     @UML(identifier="corners", obligation=MANDATORY, specification=ISO_19107)
-    List<Position> getCorners();
+    List<DirectPosition> getCorners();
 
     /**
      * Returns the patch which own this surface patch.

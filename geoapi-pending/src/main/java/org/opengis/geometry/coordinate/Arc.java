@@ -51,10 +51,10 @@ import static org.opengis.annotation.Specification.*;
  * the arc.
  *
  * <div class="note"><b>Note:</b>
- * the use of the term "midPoint" for the center {@linkplain Position position}
+ * the use of the term "midPoint" for the center position
  * of the {@linkplain #getControlPoints control point} sequence is not meant to require that
- * the {@linkplain Position position} be the geometric midpoint of the arc. This is the best
- * choice for this {@linkplain Position position} from a computational stability perspective,
+ * the position be the geometric midpoint of the arc. This is the best
+ * choice for this position from a computational stability perspective,
  * but it is not absolutely necessary for the mathematics to work.
  * </div>
  *

@@ -17,6 +17,7 @@
  */
 package org.opengis.geometry.coordinate;
 
+import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -57,7 +58,7 @@ public interface AffinePlacement extends Placement {
      * @return the target of the parameter space origin.
      */
     @UML(identifier="location", obligation=MANDATORY, specification=ISO_19107)
-    Position getLocation();
+    DirectPosition getLocation();
 
     /**
      * Gives the target directions for the coordinate basis vectors of the parameter space.

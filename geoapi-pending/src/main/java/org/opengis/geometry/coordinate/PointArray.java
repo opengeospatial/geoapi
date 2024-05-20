@@ -27,16 +27,15 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A sequence of points.
- * <p>
  * The {@code PointArray} interface outlines a means of efficiently storing large numbers of usually
- * homogeneous {@linkplain Position positions}; i.e. all having the same
+ * homogeneous positions; i.e. all having the same
  * {@linkplain CoordinateReferenceSystem coordinate reference system}. While a point array
- * conceptually contains {@linkplain Position positions}, it provides convenience methods for
+ * conceptually contains positions, it provides convenience methods for
  * fetching directly the {@linkplain DirectPosition direct positions} instead.
  * <p>
  * A simple implementation of {@code PointArray} will generally be no more efficient than a simple
- * array of {@link Position}s. More efficient implementations may store coordinates in a more
- * compact form (e.g. in a single {@code float[]} array) and creates {@link Position} objects on the
+ * array of positions. More efficient implementations may store coordinates in a more
+ * compact form (e.g. in a single {@code float[]} array) and creates {@code DirectPosition} objects on the
  * fly when needed.
  * <p>
  * If a particular {@code PointArray} implementation supports efficiently random access through any
@@ -48,15 +47,12 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
- * @see Position
- * @see PointGrid
- *
  * @deprecated This interface has been removed in ISO 19107:2019.
  * Furthermore, it overlaps with {@link org.opengis.coordinate.CoordinateSet}.
  */
 @Deprecated(forRemoval = true)
 @UML(identifier="GM_PointArray", specification=ISO_19107, version=2003)
-public interface PointArray extends List<Position> {
+public interface PointArray extends List<DirectPosition> {
     /**
      * Returns the dimensionality of the coordinates in this array. It shall be equal to the
      * dimensionality of the {@linkplain #getCoordinateReferenceSystem() coordinate reference system}

@@ -17,7 +17,6 @@
  */
 package org.opengis.geometry;
 
-import org.opengis.geometry.coordinate.Position;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
@@ -47,22 +46,12 @@ import static org.opengis.annotation.Specification.*;
  *   convenience, because it is extensively used.
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="DirectPosition", specification=ISO_19107)
-public interface DirectPosition extends Position {
-    /**
-     * Returns this direct position.
-     *
-     * @return {@code this} (usually).
-     */
-    @Override
-    default DirectPosition getDirectPosition() {
-        return this;
-    }
-
+public interface DirectPosition {
     /**
      * The coordinate reference system (CRS) in which the coordinate tuple is given.
      * May be {@code null} if this particular {@code DirectPosition} is included in a larger object

@@ -14,7 +14,6 @@ Other types are expected to be added in future GeoAPI versions.
 [options="header"]
 |============================================================================
 |ISO 19107 interface |Java type                                  |Python type
-|`GM_Position`       |`org.opengis.geometry.coordinate.Position` |
 |`DirectPosition`    |`org.opengis.geometry.DirectPosition`      |
 |`GM_Envelope`       |`org.opengis.geometry.Envelope`            |
 |============================================================================
@@ -41,14 +40,5 @@ Although a parent relationship exists conceptually between these interfaces,
 GeoAPI does not define `Transfinite­Set` as a sub-interface of `java​.util​.Set`,
 as the definition of certain methods such as `size()` and `iterator()` would be problematic.
 However, we find very similar methods such as `contains(…)` and `intersects(…)`.
-
-ISO 19107 defines two types of structures to represent a point: `GM​_Point` and `Direct­Position`.
-The first type is a true geometry and may therefore be relatively cumbersome, depending on the implementation.
-The second type is not formally considered to be a geometry; it extends neither `GM​_Object` nor `Transfinite­Set`.
-It barely defines any operations besides the storing of a sequence of numbers representing a coordinate.
-It may therefore be a more lightweight object.
-In order to allow API to work equally with these two types of positions,
-ISO 19107 defines `Position` as a union of `Direct­Position` and `GM​_Point`.
-GeoAPI represents the union as parent interface for compatibility with languages that do not support union.
 
 include::departures.adoc[]

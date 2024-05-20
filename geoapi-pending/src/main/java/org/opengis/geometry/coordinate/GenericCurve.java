@@ -229,11 +229,6 @@ public interface GenericCurve {
      * passes through either of the two points more than once, the distance shall be the minimal distance
      * between the two points on this {@linkplain org.opengis.geometry.primitive.Curve curve}.
      *
-     * @departure draft
-     *   In the ISO 19107:2003 specification, the arguments were
-     *   {@link org.opengis.geometry.coordinate.Position} objects. However, in the ISO 19107:2008
-     *   draft specification, the type has been changed to {@link DirectPosition}.
-     *
      * @param point1 The first point, or {@code null} for the
      *               {@linkplain #getStartPoint start point}.
      * @param point2 The second point, or {@code null} for the

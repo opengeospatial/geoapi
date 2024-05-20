@@ -21,7 +21,6 @@ import java.util.List;
 import org.opengis.coordinate.MismatchedDimensionException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.geometry.coordinate.PointArray;
-import org.opengis.geometry.coordinate.Position;
 
 
 /**
@@ -56,15 +55,6 @@ public interface PositionFactory {
      */
     DirectPosition createDirectPosition(double[] coordinates)
             throws MismatchedDimensionException;
-
-    /**
-     * Constructs a position from another position by copying the coordinate values of the
-     * position. There will be no further reference to the position instance.
-     *
-     * @param position A position.
-     * @return the position which defines the coordinates for the other position.
-     */
-    Position createPosition(Position position);
 
     /**
      * Creates a (possibly optimized) list for positions. The list is initially

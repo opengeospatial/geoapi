@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * the component {@linkplain Arc arcs} and recalculates the other attributes of
  * the standard arc. The {@linkplain ArcString#getControlPoints control point} sequence
  * is similar to that in {@linkplain ArcString arc string}, but the midPoint
- * {@linkplain Position position} is not needed since it is to be calculated.
+ * position is not needed since it is to be calculated.
  * The control point sequence shall consist of the start and end points of each arc.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>

@@ -27,16 +27,13 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A grid of points. The grid may be see as a sequences of equal length {@linkplain PointArray
- * point arrays}. While a point grid conceptually contains {@linkplain Position positions}, it
+ * point arrays}. While a point grid conceptually contains positions, it
  * provides convenience methods for fetching directly the {@linkplain DirectPosition direct positions}
  * instead.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
- *
- * @see Position
- * @see PointArray
  *
  * @deprecated This interface has been removed in ISO 19107:2019.
  */
