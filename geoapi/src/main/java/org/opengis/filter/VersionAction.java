@@ -17,6 +17,7 @@
  */
 package org.opengis.filter;
 
+import java.util.Optional;
 import org.opengis.util.ControlledVocabulary;
 import org.opengis.annotation.UML;
 
@@ -84,16 +85,8 @@ public enum VersionAction implements ControlledVocabulary {
      * Returns the UML identifier for this enumeration constant.
      */
     @Override
-    public String identifier() {
-        return identifier;
-    }
-
-    /**
-     * Returns the programmatic name of this constant together with its {@linkplain #identifier() identifier}.
-     */
-    @Override
-    public String[] names() {
-        return new String[] {name(), identifier};
+    public Optional<String> identifier() {
+        return Optional.ofNullable(identifier);
     }
 
     /**

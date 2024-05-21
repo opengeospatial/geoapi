@@ -17,6 +17,7 @@
  */
 package org.opengis.filter;
 
+import java.util.Optional;
 import org.opengis.util.ControlledVocabulary;
 import org.opengis.annotation.UML;
 
@@ -72,8 +73,8 @@ public enum SortOrder implements ControlledVocabulary {
      * Returns the UML identifier for this enumeration constant.
      */
     @Override
-    public String identifier() {
-        return identifier;
+    public Optional<String> identifier() {
+        return Optional.ofNullable(identifier);
     }
 
     /**
@@ -87,8 +88,7 @@ public enum SortOrder implements ControlledVocabulary {
     }
 
     /**
-     * Returns the programmatic name of this constant together with its {@linkplain #identifier() identifier}
-     * and SQL name.
+     * Returns the programmatic name of this constant together with its identifier and SQL name.
      */
     @Override
     public String[] names() {

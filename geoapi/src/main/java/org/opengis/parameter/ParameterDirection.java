@@ -17,6 +17,7 @@
  */
 package org.opengis.parameter;
 
+import java.util.Optional;
 import org.opengis.annotation.UML;
 import org.opengis.util.ControlledVocabulary;
 
@@ -67,18 +68,12 @@ public enum ParameterDirection implements ControlledVocabulary {
 
     /**
      * Returns the UML identifier for this enumeration constant.
+     *
+     * @since 3.1
      */
     @Override
-    public String identifier() {
-        return identifier;
-    }
-
-    /**
-     * Returns the programmatic name of this constant together with its {@linkplain #identifier() identifier}.
-     */
-    @Override
-    public String[] names() {
-        return new String[] {name(), identifier};
+    public Optional<String> identifier() {
+        return Optional.ofNullable(identifier);
     }
 
     /**

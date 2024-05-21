@@ -201,7 +201,7 @@ public final class Restriction extends CodeList<Restriction> {
     @Override
     public String[] names() {
         if (this == LICENSE) {
-            return new String[] {name(), "LICENSE", identifier(), "license"};
+            return new String[] {"LICENCE", "LICENSE", "licence", "license"};
         }
         return super.names();
     }

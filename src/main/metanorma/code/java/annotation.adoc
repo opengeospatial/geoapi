@@ -34,7 +34,7 @@ taking as an example the method `getCoordinate­System()` in the `ProjectedCRS` 
 Class<?>      type          = ProjectedCRS.class;
 Method        method        = type.getMethod("getCoordinateSystem");
 UML           annotation    = method.getAnnotation(UML.class);
-String        identifier    = annotation.identifier();          // = "coordinateSystem"
+String        identifier    = annotation.identifier().get();    // = "coordinateSystem"
 Specification specification = annotation.specification();       // = ISO 19111
 Obligation    obligation    = annotation.obligation();          // = mandatory
 ---------------------------------------------------------------------------------------

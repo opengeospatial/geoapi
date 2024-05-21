@@ -412,36 +412,6 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
     // We do not provide default implementation because casting to `CodeList<E>` is unsafe.
 
     /**
-     * Returns all the names of this code. The returned array contains the
-     * following elements, with duplicated values and null values removed:
-     *
-     * <ul>
-     *   <li>The programmatic {@linkplain #name() name}</li>
-     *   <li>The UML {@linkplain #identifier() identifier}</li>
-     *   <li>Any other special case, if any. Examples:
-     *     <ul>
-     *       <li>The legacy name of {@link org.opengis.metadata.constraint.Restriction#LICENCE}.</li>
-     *       <li>American spelling such as "cell center" as an alternative to "cell centre".</li>
-     *     </ul>
-     *   </li>
-     * </ul>
-     *
-     * Those names are typically equal except for the case (programmatic names are upper case
-     * while UML names are lower case) and special characters like {@code '-'}.
-     *
-     * @return all names of this code constant. This array is never null and never empty.
-     */
-    @Override
-    public String[] names() {
-        final String id = identifier();
-        if (id != null && !id.equals(name)) {
-            return new String[] {name, id};
-        } else {
-            return new String[] {name};
-        }
-    }
-
-    /**
      * Returns the programmatic name of this code list element.
      * If this element is a constant defined in a {@code CodeList} subclass,
      * then this is the name of the public static field for that constant.
@@ -454,15 +424,15 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
     }
 
     /**
-     * Returns the identifier declared in the UML annotation, or {@code null} if none.
+     * Returns the identifier declared in the UML annotation.
      * The UML identifier shall be the ISO or OGC name for this code constant.
      *
-     * @return the ISO/OGC identifier for this code, or {@code null} if none.
+     * @return the ISO/OGC identifier for this code.
      *
      * @see UML#identifier()
      */
     @Override
-    public String identifier() {
+    public Optional<String> identifier() {
         /*
          * Save the field in a local variable for protection against concurrent change (this
          * operation is guaranteed atomic according Java specification). We don't synchronize
@@ -504,7 +474,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
             }
             identifier = id;
         }
-        return id.isEmpty() ? null : id;
+        return id.isEmpty() ? Optional.empty() : Optional.of(id);
     }
 
     /**

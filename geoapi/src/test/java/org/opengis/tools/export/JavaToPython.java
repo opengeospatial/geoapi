@@ -480,7 +480,7 @@ class JavaToPython extends SourceGenerator {
                     content.append("class ").append(typeName).append("(Enum):").append(lineSeparator);
                     for (int i=0; i<values.length; i++) {
                         final ControlledVocabulary item = (ControlledVocabulary) values[i];
-                        final String id = item.identifier();
+                        String id = item.identifier().orElse(null);
                         if (id != null) {
                             indent(content, 1).append(item.name()).append(" = \"").append(id).append('"').append(lineSeparator);
                         }

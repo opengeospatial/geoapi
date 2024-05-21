@@ -17,6 +17,7 @@
  */
 package org.opengis.metadata.identification;
 
+import java.util.Optional;
 import org.opengis.annotation.UML;
 import org.opengis.util.ControlledVocabulary;
 
@@ -279,10 +280,12 @@ public enum TopicCategory implements ControlledVocabulary {
 
     /**
      * Returns the UML identifier for this enumeration constant.
+     *
+     * @since 3.1
      */
     @Override
-    public String identifier() {
-        return identifier;
+    public Optional<String> identifier() {
+        return Optional.ofNullable(identifier);
     }
 
     /**
