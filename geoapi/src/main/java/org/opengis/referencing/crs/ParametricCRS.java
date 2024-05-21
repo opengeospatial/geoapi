@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.ISO_19111;
  * @since   3.1
  *
  * @see CRSAuthorityFactory#createParametricCRS(String)
- * @see CRSFactory#createParametricCRS(Map, ParametricDatum, ParametricCS)
+ * @see CRSFactory#createParametricCRS(Map, ParametricDatum, DatumEnsemble, ParametricCS)
  */
 @UML(identifier="ParametricCRS", specification=ISO_19111)
 public interface ParametricCRS extends SingleCRS {
