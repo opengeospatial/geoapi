@@ -4,7 +4,8 @@ _From <<ISO19111>> §11.2, <<ISO19115-1>> §6.5.12, <<ISO19157>> §C.2.2.4_
 
 The concept of operation parameters is defined in many OGC/ISO standards:
 
-* <<ISO19111>> provides `CC​_Operation­Parameter`,
+* <<ISO19111>> provides `Operation­Parameter` for coordinate operations,
+* <<ISO19111>> provides `Defining­Parameter` for parametric CRS,
 * <<ISO19115-1>> provides `SV​_Parameter`,
 * <<ISO19157>> provides `DQM​_Parameter`,
 * <<ISO19143>> provides `Argument`, and

@@ -232,11 +232,7 @@ public final class Departure extends BlockTaglet implements Flushable {
                 out.write("  </ul>");
                 out.newLine();
                 /*
-                 * Write all sections. The result should looks like:
-                 *
-                 * Constraints of the Java language
-                 *   Position
-                 *     ISO 19107 defines Position as a C/C++ union (etc...)
+                 * Write all sections.
                  */
                 out.write("  <section class=\"categories\">"); out.newLine();
                 for (final String category : categories) {

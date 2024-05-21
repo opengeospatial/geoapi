@@ -31,14 +31,12 @@ import static org.opengis.annotation.Specification.*;
  * the component {@linkplain Arc arcs} and recalculates the other attributes of
  * the standard arc. The {@linkplain ArcString#getControlPoints control point} sequence
  * is similar to that in {@linkplain ArcString arc string}, but the midPoint
- * {@linkplain Position position} is not needed since it is to be calculated.
+ * position is not needed since it is to be calculated.
  * The control point sequence shall consist of the start and end points of each arc.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
- *
- * @see GeometryFactory#createArcStringByBulge
  */
 @UML(identifier="GM_ArcStringByBulge", specification=ISO_19107)
 public interface ArcStringByBulge extends CurveSegment {

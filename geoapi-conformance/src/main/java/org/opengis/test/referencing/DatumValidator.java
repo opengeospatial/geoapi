@@ -17,7 +17,6 @@
  */
 package org.opengis.test.referencing;
 
-import java.util.Date;
 import java.util.Collection;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
@@ -198,7 +197,7 @@ public class DatumValidator extends ReferencingValidator {
             return;
         }
         validateIdentifiedObject(object);
-        final Date origin = object.getOrigin();
+        final var origin = object.getOrigin();
         mandatory(origin, "TemporalDatum: expected an origin.");
     }
 

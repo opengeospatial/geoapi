@@ -26,7 +26,8 @@ import static org.opengis.annotation.Specification.*;
  * A 2- or 3-dimensional coordinate system in Euclidean space with straight axes that are not necessarily orthogonal.
  *
  * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
- * {@link org.opengis.referencing.crs.EngineeringCRS}.</p>
+ * {@link org.opengis.referencing.crs.EngineeringCRS}, potentially in combination with
+ * {@link org.opengis.referencing.crs.DerivedCRS}.</p>
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)

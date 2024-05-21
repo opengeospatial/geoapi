@@ -9,6 +9,7 @@ import java.util.Date;
 import java.util.Arrays;
 import java.util.Objects;
 import java.util.Optional;
+import java.time.Instant;
 
 import org.opengis.metadata.citation.Citation;
 import org.opengis.example.metadata.SimpleCitation;
@@ -270,12 +271,12 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
          * A temporal CRS for Julian date, based on OGC:JulianDate.
          */
         public static final TemporalCRS JULIAN = new Temporal(
-                SimpleCitation.OGC, "Julian Date", new Date(-210866760000000L), SimpleAxis.HEIGHT);
+                SimpleCitation.OGC, "Julian Date", Instant.ofEpochMilli(-210866760000000L), SimpleAxis.HEIGHT);
 
         /**
          * The date and time origin of this temporal datum.
          */
-        private final long origin;
+        private final Instant origin;
 
         /**
          * Creates a new CRS for the given name, datum and axis.
@@ -285,11 +286,11 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
          * @param origin     the date and time origin of the temporal datum.
          * @param axis       the single <abbr>CRS</abbr> axis.
          */
-        public Temporal(final Citation authority, final String name, final Date origin,
+        public Temporal(final Citation authority, final String name, final Instant origin,
                 final CoordinateSystemAxis axis)
         {
             super(authority, name, axis);
-            this.origin = origin.getTime();
+            this.origin = origin;
         }
 
         /**
@@ -316,7 +317,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
          */
         @Override
         public Date getOrigin() {
-            return new Date(origin);
+            return Date.from(origin);
         }
 
         /**

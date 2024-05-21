@@ -225,7 +225,7 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         validators.validate(cs = csFactory.createCartesianCS(name("Geocentric CS"), X, Z, Y));
 
         assumeTrue(crsFactory != null, NO_CRS_FACTORY);
-        validators.validate(crs = crsFactory.createGeodeticCRS(name("Geocentric CRS"), datum, cs));
+        validators.validate(crs = crsFactory.createGeodeticCRS(name("Geocentric CRS"), datum, null, cs));
         assertAxisDirectionsEqual(crs.getCoordinateSystem(), new AxisDirection[] {GEOCENTRIC_X, GEOCENTRIC_Z, GEOCENTRIC_Y}, "GeodeticCRS");
     }
 

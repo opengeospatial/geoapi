@@ -57,8 +57,11 @@ public interface DirectPosition extends Position {
      * Returns this direct position.
      *
      * @return {@code this} (usually).
+     *
+     * @deprecated This method is inherited from {@code GM_Position}, which has been removed in ISO 19107:2019.
      */
     @Override
+    @Deprecated(since = "3.1")
     default DirectPosition getDirectPosition() {
         return this;
     }

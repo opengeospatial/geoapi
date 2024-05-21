@@ -28,7 +28,8 @@ import static org.opengis.annotation.Specification.*;
  * between the line from the origin to a point and a reference direction.
  *
  * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
- * {@link org.opengis.referencing.crs.EngineeringCRS}.
+ * {@link org.opengis.referencing.crs.EngineeringCRS}, potentially in combination with
+ * {@link org.opengis.referencing.crs.DerivedCRS}.
  * The following examples describe some possible set of axes for polar CS used with the above-cited CRS:</p>
  *
  * <table class="ogc">

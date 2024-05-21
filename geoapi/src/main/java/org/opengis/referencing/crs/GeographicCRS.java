@@ -21,6 +21,7 @@ import java.util.Map;
 import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.datum.GeodeticDatum;
+import org.opengis.referencing.datum.DatumEnsemble;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -50,7 +51,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @see CRSAuthorityFactory#createGeographicCRS(String)
- * @see CRSFactory#createGeographicCRS(Map, GeodeticDatum, EllipsoidalCS)
+ * @see CRSFactory#createGeographicCRS(Map, GeodeticDatum, DatumEnsemble, EllipsoidalCS)
  */
 @UML(identifier="GeographicCRS", specification=ISO_19111)
 public interface GeographicCRS extends GeodeticCRS {

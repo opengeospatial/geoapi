@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @see CRSAuthorityFactory#createTemporalCRS(String)
- * @see CRSFactory#createTemporalCRS(Map, TemporalDatum, TimeCS)
+ * @see CRSFactory#createTemporalCRS(Map, TemporalDatum, DatumEnsemble, TimeCS)
  */
 @UML(identifier="TemporalCRS", specification=ISO_19111)
 public interface TemporalCRS extends SingleCRS {

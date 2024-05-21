@@ -40,9 +40,12 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   1.0
+ *
+ * @deprecated The {@code GM_Position} union has been removed in ISO 19107:2019.
  */
+@Deprecated(since = "3.1")
 @Classifier(Stereotype.UNION)
-@UML(identifier="GM_Position", specification=ISO_19107)
+@UML(identifier="GM_Position", specification=ISO_19107, version=2003)
 public interface Position {
     /**
      * Returns the direct position. This method shall never return {@code null}, but may return

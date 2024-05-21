@@ -225,25 +225,27 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
     }
 
     /**
-     * Returns the minimum number of times that values for this parameter group or parameter are required.
+     * Returns the minimum number of times that values for this parameter or parameter group are required.
      * The default value is 1. A value of 0 means an optional parameter.
      *
      * @return the minimum occurrence.
      *
      * @see #getMaximumOccurs()
      */
-    @UML(identifier="minimumOccurs", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="OperationParameterGroup.minimumOccurs", obligation=OPTIONAL, specification=ISO_19111)
     default int getMinimumOccurs() {
         return 1;
     }
 
     /**
-     * Returns the maximum number of times that values for this parameter group or parameter can be included.
+     * Returns the maximum number of times that values for this parameter or parameter group can be included.
      * The default value is 1. A value greater than 1 means a repeatable parameter.
      *
      * <p>If this parameter is an instance of {@link ParameterDescriptor} used for the description of
-     * {@link org.opengis.referencing.operation.OperationMethod} parameters, then the value is always 1.
-     * In other contexts (e.g. parameter group or service metadata) it may vary.
+     * {@link org.opengis.referencing.operation.OperationMethod} parameters, then the value shall be 1.
+     * If this parameter is an instance of {@link ParameterDescriptorGroup}, or if this parameter is used
+     * {@linkplain org.opengis.metadata.identification.OperationMetadata#getParameters() in the context of
+     * service metadata}, then {@code maximumOccurs} value may vary.</p>
      *
      * @departure generalization
      *   Moved up (in the interface hierarchy) the {@code maximumOccurs} method from
@@ -254,7 +256,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *
      * @see #getMinimumOccurs()
      */
-    @UML(identifier="CC_OperationParameterGroup.maximumOccurs", obligation=OPTIONAL, specification=ISO_19111)
+    @UML(identifier="OperationParameterGroup.maximumOccurs", obligation=OPTIONAL, specification=ISO_19111)
     default int getMaximumOccurs() {
         return 1;
     }

@@ -161,14 +161,6 @@ public class SimpleDirectPosition implements DirectPosition {
     }
 
     /**
-     * Unconditionally returns {@code this}, since this object is already a direct position.
-     */
-    @Override
-    public DirectPosition getDirectPosition() {
-        return this;
-    }
-
-    /**
      * Returns {@code true} if the specified object is also a {@code DirectPosition}
      * with equal coordinate and equal CRS.
      *

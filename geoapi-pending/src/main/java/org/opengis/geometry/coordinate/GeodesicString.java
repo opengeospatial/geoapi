@@ -34,8 +34,6 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
- *
- * @see GeometryFactory#createGeodesicString
  */
 @UML(identifier="GM_GeodesicString", specification=ISO_19107)
 public interface GeodesicString extends CurveSegment {

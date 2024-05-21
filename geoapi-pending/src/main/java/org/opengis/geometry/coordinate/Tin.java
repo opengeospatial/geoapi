@@ -19,6 +19,7 @@ package org.opengis.geometry.coordinate;
 
 import java.util.List;
 import java.util.Set;
+import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -35,8 +36,6 @@ import static org.opengis.annotation.Specification.*;
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
- *
- * @see GeometryFactory#createTin
  */
 @UML(identifier="GM_Tin", specification=ISO_19107)
 public interface Tin extends TriangulatedSurface {
@@ -71,12 +70,12 @@ public interface Tin extends TriangulatedSurface {
 
     /**
      * The corners of the triangles in the TIN are often referred to as posts. The attribute
-     * {@code controlPoint} shall contain a set of the {@linkplain Position positions} used
+     * {@code controlPoint} shall contain a set of the positions used
      * as posts for this TIN. Since each TIN contains triangles, there must be at least 3 posts.
      * The order in which these points are given does not affect the surface that is represented.
      * Application schemas may add information based on the ordering of the control points to
      * facilitate the reconstruction of the TIN from the control points.
      */
     @UML(identifier="controlPoint", obligation=MANDATORY, specification=ISO_19107)
-    List<Position> getControlPoints();
+    List<DirectPosition> getControlPoints();
 }

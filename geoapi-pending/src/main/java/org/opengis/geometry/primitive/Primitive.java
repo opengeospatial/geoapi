@@ -47,8 +47,6 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  *
- * @see PrimitiveFactory#createPrimitive(org.opengis.geometry.Envelope)
- *
  * @todo Some associations are commented out for now.
  */
 @UML(identifier="GM_Primitive", specification=ISO_19107)

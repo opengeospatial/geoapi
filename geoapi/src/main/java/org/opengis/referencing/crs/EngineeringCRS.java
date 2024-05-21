@@ -19,12 +19,12 @@ package org.opengis.referencing.crs;
 
 import java.util.Map;
 import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.referencing.datum.DatumEnsemble;
 import org.opengis.referencing.datum.EngineeringDatum;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
-import org.opengis.referencing.datum.DatumEnsemble;
 
 
 /**
@@ -62,7 +62,7 @@ import org.opengis.referencing.datum.DatumEnsemble;
  * @since   1.0
  *
  * @see CRSAuthorityFactory#createEngineeringCRS(String)
- * @see CRSFactory#createEngineeringCRS(Map, EngineeringDatum, CoordinateSystem)
+ * @see CRSFactory#createEngineeringCRS(Map, EngineeringDatum, DatumEnsemble, CoordinateSystem)
  */
 @UML(identifier="EngineeringCRS", specification=ISO_19111)
 public interface EngineeringCRS extends SingleCRS {

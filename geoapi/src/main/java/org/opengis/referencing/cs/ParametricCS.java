@@ -29,7 +29,8 @@ import static org.opengis.annotation.Specification.ISO_19111;
  * That parameter is not inherently spatial. It may be for example the atmospheric pressure.
  *
  * <p>This type of <abbr>CS</abbr> can be used by coordinate reference systems of type
- * {@link org.opengis.referencing.crs.ParametricCRS}.</p>
+ * {@link org.opengis.referencing.crs.ParametricCRS}, potentially in combination with
+ * {@link org.opengis.referencing.crs.DerivedCRS}.</p>
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Johann Sorel (Geomatys)

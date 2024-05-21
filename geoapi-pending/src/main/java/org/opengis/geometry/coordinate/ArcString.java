@@ -30,17 +30,14 @@ import static org.opengis.annotation.Specification.*;
  * Similar to a {@linkplain LineString line string} except that the interpolation is
  * by circular arcs. Since it requires 3 points to determine a circular arc, the
  * {@linkplain #getControlPoints control points} are treated as a sequence of overlapping
- * sets of 3 {@linkplain Position positions}, the start of each arc, some point between the
+ * sets of 3 positions, the start of each arc, some point between the
  * start and end, and the end of each arc. Since the end of each arc is the start of the next,
- * this {@linkplain Position position} is not repeated in the {@linkplain #getControlPoints
+ * this position is not repeated in the {@linkplain #getControlPoints
  * control points} sequence.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/as">ISO 19107</A>
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
- *
- * @see GeometryFactory#createArcString
- * @see ArcStringByBulge#asArcString
  */
 @UML(identifier="GM_ArcString", specification=ISO_19107)
 public interface ArcString extends CurveSegment {
@@ -60,8 +57,8 @@ public interface ArcString extends CurveSegment {
 
     /**
      * Returns the sequence of points used to control the arcs in this string. The first three
-     * {@linkplain Position positions} in the sequence determines the first arc. Any three
-     * consecutive {@linkplain Position positions} beginning with an odd offset, determine
+     * positions in the sequence determines the first arc. Any three
+     * consecutive positions beginning with an odd offset, determine
      * another arc in the string.
      *
      * @return the control points. The array size is <code>2*{@link #getNumArc numArc}&nbsp;+1</code>.
