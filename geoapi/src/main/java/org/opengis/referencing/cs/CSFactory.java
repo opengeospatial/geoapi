@@ -288,6 +288,8 @@ public interface CSFactory extends ObjectFactory {
      * @param  axis  the axis.
      * @return the coordinate system for the given properties and axes.
      * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
      */
     default ParametricCS createParametricCS(Map<String,?> properties,
                                             CoordinateSystemAxis axis) throws FactoryException

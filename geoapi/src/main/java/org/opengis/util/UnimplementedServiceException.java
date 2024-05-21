@@ -26,7 +26,7 @@ import org.opengis.geoapi.internal.Errors;
  * or the parsing of texts in <i>Well-Known Text</i> (<abbr>WKT</abbr>)
  * or <i>Geographic Markup Language</i> (<abbr>GML</abbr>) formats.
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
  * @since   3.1
  */

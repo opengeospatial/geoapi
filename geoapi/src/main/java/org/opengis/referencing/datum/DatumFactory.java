@@ -18,13 +18,15 @@
 package org.opengis.referencing.datum;
 
 import java.util.Map;
-import java.util.Date;
+import java.util.Collection;
+import java.time.temporal.Temporal;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
 import org.opengis.referencing.ObjectFactory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.UnimplementedServiceException;
+import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
@@ -57,6 +59,7 @@ import static org.opengis.annotation.Specification.*;
 public interface DatumFactory extends ObjectFactory {
     /**
      * Creates an ellipsoid from radius values.
+     * The {@code properties} map shall contain at least an entry for the {@value Ellipsoid#NAME_KEY} key.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -77,6 +80,7 @@ public interface DatumFactory extends ObjectFactory {
 
     /**
      * Creates an ellipsoid from an major radius, and inverse flattening.
+     * The {@code properties} map shall contain at least an entry for the {@value Ellipsoid#NAME_KEY} key.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -97,6 +101,7 @@ public interface DatumFactory extends ObjectFactory {
 
     /**
      * Creates a prime meridian, relative to Greenwich.
+     * The {@code properties} map shall contain at least an entry for the {@value PrimeMeridian#NAME_KEY} key.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -115,6 +120,7 @@ public interface DatumFactory extends ObjectFactory {
 
     /**
      * Creates geodetic reference frame from ellipsoid and prime meridian.
+     * The {@code properties} map shall contain at least an entry for the {@value Datum#NAME_KEY} key.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -133,6 +139,7 @@ public interface DatumFactory extends ObjectFactory {
 
     /**
      * Creates a vertical datum from an enumerated type value.
+     * The {@code properties} map shall contain at least an entry for the {@value Datum#NAME_KEY} key.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -150,30 +157,32 @@ public interface DatumFactory extends ObjectFactory {
     }
 
     /**
-     * Creates a temporal datum from an enumerated type value.
-     *
-     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The argument type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
-     * </div>
+     * Creates a temporal datum from a temporal origin.
+     * The {@code properties} map shall contain at least an entry for the {@value Datum#NAME_KEY} key.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  origin  the date and time origin of this temporal datum.
+     *         The {@link java.time.Instant} sub-type is recommended.
      * @return the datum for the given properties.
      * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
      */
-    default TemporalDatum createTemporalDatum(Map<String,?> properties, Date origin) throws FactoryException {
+    default TemporalDatum createTemporalDatum(Map<String,?> properties, Temporal origin) throws FactoryException {
         throw new UnimplementedServiceException(this, TemporalDatum.class);
     }
 
     /**
      * Creates a parametric datum.
+     * The {@code properties} map shall contain at least an entry for the {@value Datum#NAME_KEY} key.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @return the datum for the given properties.
      * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
      */
     default ParametricDatum createParametricDatum(Map<String,?> properties) throws FactoryException {
         throw new UnimplementedServiceException(this, ParametricDatum.class);
@@ -181,6 +190,7 @@ public interface DatumFactory extends ObjectFactory {
 
     /**
      * Creates an engineering datum.
+     * The {@code properties} map shall contain at least an entry for the {@value Datum#NAME_KEY} key.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -190,5 +200,25 @@ public interface DatumFactory extends ObjectFactory {
     @UML(identifier="createLocalDatum", specification=OGC_01009)
     default EngineeringDatum createEngineeringDatum(Map<String,?> properties) throws FactoryException {
         throw new UnimplementedServiceException(this, EngineeringDatum.class);
+    }
+
+    /**
+     * Creates a datum ensemble from a collection of members.
+     * The {@code properties} map shall contain at least an entry for the {@value DatumEnsemble#NAME_KEY} key.
+     *
+     * @param  <D>         the type of datum contained in the ensemble.
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  members     datum or reference frames which are members of the datum ensemble.
+     * @param  accuracy    inaccuracy introduced through use of the given collection of datums.
+     * @return the datum ensemble for the given properties.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
+     */
+    default <D extends Datum> DatumEnsemble<D> createDatumEnsemble(Map<String,?> properties,
+            Collection<D> members, PositionalAccuracy accuracy) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, DatumEnsemble.class);
     }
 }

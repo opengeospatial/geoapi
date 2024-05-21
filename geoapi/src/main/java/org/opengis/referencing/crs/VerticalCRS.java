@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @see CRSAuthorityFactory#createVerticalCRS(String)
- * @see CRSFactory#createVerticalCRS(Map, VerticalDatum, VerticalCS)
+ * @see CRSFactory#createVerticalCRS(Map, VerticalDatum, DatumEnsemble, VerticalCS)
  */
 @UML(identifier="VerticalCRS", specification=ISO_19111)
 public interface VerticalCRS extends SingleCRS {

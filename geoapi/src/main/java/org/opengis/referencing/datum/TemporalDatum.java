@@ -18,7 +18,6 @@
 package org.opengis.referencing.datum;
 
 import java.util.Map;
-import java.util.Date;
 import java.time.temporal.Temporal;
 import org.opengis.annotation.UML;
 
@@ -36,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  *
  * @see DatumAuthorityFactory#createTemporalDatum(String)
- * @see DatumFactory#createTemporalDatum(Map, Date)
+ * @see DatumFactory#createTemporalDatum(Map, Temporal)
  *
  * @departure integration
  *   The {@code calendar} attribute is omitted because the handling of calendar systems

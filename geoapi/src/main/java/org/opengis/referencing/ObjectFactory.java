@@ -40,8 +40,8 @@ import org.opengis.util.GenericName;
  * <h2>Object properties</h2>
  * Most factory methods expect a {@code Map<String,?>} argument.
  * The table below lists the keys that {@code ObjectFactory} implementations shall accept,
- * together with the type of values associated to those keys (the <q>Alternative types</q> column
- * gives examples of types that factory implementations may accept as well for convenience).
+ * together with the type of values associated to those keys. The <q>Alternative types</q> column
+ * gives examples of types that factory implementations may accept as well for convenience.
  * A value for the {@code "name"} key is mandatory, while all other properties are optional.
  * Factory methods shall ignore unknown properties.
  *
