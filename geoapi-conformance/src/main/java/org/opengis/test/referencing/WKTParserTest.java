@@ -17,7 +17,6 @@
  */
 package org.opengis.test.referencing;
 
-import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.time.Instant;
@@ -902,7 +901,7 @@ public strictfp class WKTParserTest extends ReferencingTestCase {
         verifyIdentification   (crs, "GPS Time", null);
         verifyDatum            (crs.getDatum(), "Time origin");
         verifyCoordinateSystem (crs.getCoordinateSystem(), TimeCS.class, new AxisDirection[] {FUTURE}, units.day());
-        assertEquals(new Date(315532800000L), crs.getDatum().getOrigin(), "TimeOrigin");
+        assertEquals(Instant.ofEpochMilli(315532800000L), crs.getDatum().getOrigin(), "TimeOrigin");
     }
 
     /**
