@@ -177,7 +177,7 @@ class CartesianCS(CoordinateSystem):
     """
 
 
-class CylindralCS(CoordinateSystem):
+class CylindricalCS(CoordinateSystem):
     """
     A 3-dimensional coordinate system consisting of a PolarCS extended by a straight axis perpendicular to the plane
     spanned by the polar CS.
