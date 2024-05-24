@@ -4,6 +4,7 @@
 The GeoAPI temporal package uses the `opengis​.temporal` namespace
 and implements some of the types defined in the <<ISO19108>> – _Temporal schema_ specification.
 Only the interfaces required by ISO 19115 are currently provided.
+Those interfaces complete the ones defined by ISO 19103 in <<datetime>>.
 
 The ISO 19108 interfaces overlap with new interfaces introduced in latest ISO 19111 revision.
 In the following table, the interfaces listed in the left column are omitted
@@ -13,13 +14,13 @@ Those replacements are suggestions, GeoAPI generally does not mandate this mappi
 .ISO 19108 interfaces omitted in favor of ISO 19111 interfaces
 [options="header"]
 |=================================================================================
-|Omitted ISO 19108 interface |Proposed ISO 19111 replacement
-|`JulianDate`                |`Combination of `DirectPosition` and `TemporalCRS`
+|Omitted ISO 19108 interface |Suggested ISO 19111 replacement
+|`JulianDate`                |Combination of `DirectPosition` and `TemporalCRS`
 |`TM_Calendar`               |`TemporalCRS` with `CoordinateDataType.DATE_TIME`
 |`TM_Clock`                  |`TemporalCRS` with user-defined `CoordinateDataType`
 |`TM_CoordinateSystem`       |`TemporalCRS` with `CoordinateDataType.MEASURE`
-|`TM_Coordinate`             |`Combination of `DirectPosition` and `TemporalCRS`
-|`TM_OrdinalPosition`        |`Combination of `DirectPosition` and `TemporalCRS`
+|`TM_Coordinate`             |Combination of `DirectPosition` and `TemporalCRS`
+|`TM_OrdinalPosition`        |Combination of `DirectPosition` and `TemporalCRS`
 |`TM_OrdinalReferenceSystem` |`TemporalCRS` with `CoordinateDataType.INTEGER`
 |`TM_ReferenceSystem`        |`TemporalCRS`
 |=================================================================================
@@ -32,7 +33,7 @@ Those replacements are suggestions, GeoAPI generally does not mandate this mappi
 .ISO 19108 interfaces omitted in favor of standard interfaces of target languages
 [options="header"]
 |=============================================================================
-|Omitted ISO 19108 interface |Java class                          |Python type
+|Omitted ISO 19108 interface |Suggested Java class                |Python type
 |`TM_CalDate`                |`java.time.LocalDate`               |
 |`TM_CalendarEra`            |`java.time.chrono.IsoEra`           |
 |`TM_ClockTime`              |`java.time.LocalTime`               |
@@ -44,3 +45,10 @@ Those replacements are suggestions, GeoAPI generally does not mandate this mappi
 |`TM_PeriodDuration`         |`java.time.Period`                  |
 |`TM_TemporalPosition`       |`java.time.temporal.Temporal`       |`datetime`
 |=============================================================================
+
+Above tables are not a one-to-one relationship.
+For example, the ISO 19108 `TM_Instant` type is actually much more generic than the `java.time.Instant` class.
+This is because `TM_Instant` can contain (indirectly) a `TM_TemporalPosition`,
+which is the base type of Julian day, ordinal position, temporal coordinate value and more.
+Therefore, above tables suggest mappings suitable for the majority of cases,
+but the GeoAPI interfaces actually declare more generic types than the above-listed ones.

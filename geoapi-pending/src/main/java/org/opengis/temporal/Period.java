@@ -18,6 +18,7 @@
 package org.opengis.temporal;
 
 import java.time.Instant;
+import java.time.temporal.Temporal;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -35,14 +36,13 @@ import static org.opengis.annotation.Specification.*;
  */
  @UML(identifier="TM_Period", specification=ISO_19108)
 public interface Period extends TemporalGeometricPrimitive {
-
      /**
       * Returns the beginning {@link Instant} at which this {@link Period} starts.
       *
       * @return the beginning {@link Instant} at which this {@link Period} starts.
       */
     @UML(identifier="Beginning", obligation=MANDATORY, specification=ISO_19108)
-    Instant getBeginning();
+    Temporal getBeginning();
 
     /**
       * Returns the ending {@link Instant} at which this {@link Period} ends.
@@ -50,5 +50,5 @@ public interface Period extends TemporalGeometricPrimitive {
       * @return the ending {@link Instant} at which this {@link Period} ends.
       */
     @UML(identifier="Ending", obligation=MANDATORY, specification=ISO_19108)
-    Instant getEnding();
+    Temporal getEnding();
 }

@@ -31,6 +31,7 @@ import java.time.OffsetTime;
 import java.time.DateTimeException;
 import java.time.temporal.ChronoField;
 import java.time.temporal.Temporal;
+import java.time.chrono.ChronoZonedDateTime;
 
 
 /**
@@ -51,7 +52,9 @@ public final class Legacy {
 
     /**
      * Converts a {@link java.time} object to a legacy {@link Date} object.
-     * If the time zone is not specified, UTC is assumed.
+     * If the timezone is not specified, UTC is assumed.
+     * This method is invoked only by the default implementation of deprecated methods
+     * and may be removed in a future GeoAPI version.
      *
      * @param  t  the date to convert, or {@code null}.
      * @return the given temporal object as a date, or {@code null} if the given argument was null.
@@ -65,6 +68,8 @@ public final class Legacy {
         final Instant instant;
         if (t instanceof Instant) {
             instant = (Instant) t;
+        } else if (t instanceof ChronoZonedDateTime) {
+            instant = ((ChronoZonedDateTime) t).toInstant();
         } else {
             final OffsetDateTime odt;
             if (t instanceof OffsetDateTime) {

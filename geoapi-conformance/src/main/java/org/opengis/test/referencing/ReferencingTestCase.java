@@ -18,6 +18,9 @@
 package org.opengis.test.referencing;
 
 import java.time.Instant;
+import java.time.OffsetDateTime;
+import java.time.temporal.Temporal;
+import java.time.chrono.ChronoZonedDateTime;
 import javax.measure.Unit;
 import javax.measure.UnitConverter;
 import javax.measure.IncommensurableException;
@@ -101,7 +104,17 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
     private static Instant union(final Instant bound, final TemporalPrimitive extent, final boolean begin) {
         if (extent instanceof Period) {
             final var period = (Period) extent;
-            final Instant instant = begin ? period.getBeginning() : period.getEnding();
+            final Temporal date = begin ? period.getBeginning() : period.getEnding();
+            final Instant instant;
+            if (date instanceof Instant) {
+                instant = (Instant) date;
+            } else if (date instanceof OffsetDateTime) {
+                instant = ((OffsetDateTime) date).toInstant();
+            } else if (date instanceof ChronoZonedDateTime) {
+                instant = ((ChronoZonedDateTime) date).toInstant();
+            } else {
+                return bound;
+            }
             if (instant != null && (bound == null || (begin ? instant.isBefore(bound) : instant.isAfter(bound)))) {
                 return instant;
             }
@@ -463,7 +476,8 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      *
      * <ul>
      *   <li>Temporal extents are considered optional. If the given {@code extent} does not contain any
-     *       {@code TemporalExtent} element, then this method does nothing.</li>
+     *       {@code TemporalExtent} element, or if extent bounds can not be represented as {@link Instant}
+     *       objects, then this method does nothing.</li>
      *   <li>If the given {@code extent} contains more than one {@code TemporalExtent} element,
      *       then the union of them is compared against the given bound arguments.</li>
      * </ul>
