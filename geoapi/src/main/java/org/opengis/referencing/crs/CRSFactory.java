@@ -114,7 +114,7 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  geodetic reference frame, or {@code null} if the CRS is associated only to a datum ensemble.
+     * @param  datum  geodetic reference frame.
      * @param  cs  the spherical coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
@@ -160,7 +160,7 @@ public interface CRSFactory extends ObjectFactory {
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  geodetic reference frame, or {@code null} if the CRS is associated only to a datum ensemble.
+     * @param  datum  geodetic reference frame.
      * @param  cs  the Cartesian coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
