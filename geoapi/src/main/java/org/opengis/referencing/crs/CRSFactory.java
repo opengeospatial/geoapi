@@ -108,11 +108,13 @@ public interface CRSFactory extends ObjectFactory {
     }
 
     /**
-     * Creates a geocentric coordinate reference system from a spherical coordinate system.
+     * Creates a geocentric <abbr>CRS</abbr> from a spherical coordinate system.
+     * At least one of the {@code datum} and {@code datumEnsemble} arguments shall be non-null.
+     * If both are non-null, then {@code datum} <em>shall</em> be a member of the datum ensemble.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  geodetic reference frame to use in created CRS.
+     * @param  datum  geodetic reference frame, or {@code null} if the CRS is associated only to a datum ensemble.
      * @param  cs  the spherical coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
@@ -152,11 +154,13 @@ public interface CRSFactory extends ObjectFactory {
     }
 
     /**
-     * Creates a geocentric coordinate reference system from a Cartesian coordinate system.
+     * Creates a geocentric <abbr>CRS</abbr> from a Cartesian coordinate system.
+     * At least one of the {@code datum} and {@code datumEnsemble} arguments shall be non-null.
+     * If both are non-null, then {@code datum} <em>shall</em> be a member of the datum ensemble.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  geodetic reference frame to use in created CRS.
+     * @param  datum  geodetic reference frame, or {@code null} if the CRS is associated only to a datum ensemble.
      * @param  cs  the Cartesian coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
@@ -265,7 +269,7 @@ public interface CRSFactory extends ObjectFactory {
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  datum  temporal datum, or {@code null} if the CRS is associated only to a datum ensemble.
-     * @param  datumEnsemble  collection of reference frames which for low accuracy requirements may be considered
+     * @param  datumEnsemble  collection of datum which for low accuracy requirements may be considered
      *         to be insignificantly different from each other, or {@code null} if there is no such ensemble.
      * @param  cs  the temporal coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
@@ -288,7 +292,7 @@ public interface CRSFactory extends ObjectFactory {
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  datum  parametric datum, or {@code null} if the CRS is associated only to a datum ensemble.
-     * @param  datumEnsemble  collection of reference frames which for low accuracy requirements may be considered
+     * @param  datumEnsemble  collection of datum which for low accuracy requirements may be considered
      *         to be insignificantly different from each other, or {@code null} if there is no such ensemble.
      * @param  cs  the parametric coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
@@ -331,7 +335,7 @@ public interface CRSFactory extends ObjectFactory {
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  datum  engineering datum, or {@code null} if the CRS is associated only to a datum ensemble.
-     * @param  datumEnsemble  collection of reference frames which for low accuracy requirements may be considered
+     * @param  datumEnsemble  collection of datum which for low accuracy requirements may be considered
      *         to be insignificantly different from each other, or {@code null} if there is no such ensemble.
      * @param  cs     the coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.

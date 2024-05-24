@@ -160,6 +160,7 @@ public interface DatumFactory extends ObjectFactory {
 
     /**
      * Creates a vertical datum from an enumerated type value.
+     * The {@code properties} map shall contain at least an entry for the {@value Datum#NAME_KEY} key.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
@@ -181,6 +182,7 @@ public interface DatumFactory extends ObjectFactory {
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  origin  the date and time origin of this temporal datum.
+     *         The {@link java.time.Instant} sub-type is recommended.
      * @return the datum for the given properties.
      * @throws FactoryException if the object creation failed.
      *
