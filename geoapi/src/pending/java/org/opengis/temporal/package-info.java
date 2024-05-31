@@ -25,7 +25,7 @@
  * But that standard overlaps with ISO 19111:2019 and with the {@link java.time} standard API.
  * In other to provide a more harmonized <abbr>API</abbr>, GeoAPI omits the interfaces listed below.
  * The column on the right side shows the closest matches in other standards,
- * but the actual type used by GeoAPI is sometime the parent type.
+ * but the actual type used by GeoAPI is generally a parent type for allowing flexibility.
  *
  * <table class="ogc">
  *   <caption>Mapping from omitted interfaces to their replacements</caption>
