@@ -69,9 +69,8 @@ public interface Result {
 
     /**
      * Date when the result was generated.
-     * This is typically a {@link java.time.LocalDate}, {@link java.time.LocalDateTime}
-     * or {@link java.time.ZonedDateTime} depending on whether the hour of the day and
-     * the time zone are provided.
+     * Should be an instance of {@link java.time.LocalDateTime}, {@link java.time.OffsetDateTime} or
+     * {@link java.time.ZonedDateTime}, depending how timezone is defined. Other types are also allowed.
      *
      * @return date of the result, or {@code null} if none.
      *

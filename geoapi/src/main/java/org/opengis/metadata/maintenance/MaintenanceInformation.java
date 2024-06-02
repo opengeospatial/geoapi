@@ -26,6 +26,7 @@ import org.opengis.metadata.citation.DateType;
 import org.opengis.metadata.citation.CitationDate;
 import org.opengis.metadata.citation.Responsibility;
 import org.opengis.util.InternationalString;
+import org.opengis.geoapi.internal.Legacy;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -79,17 +80,7 @@ public interface MaintenanceInformation {
     @Deprecated(since="3.1")
     @UML(identifier="dateOfNextUpdate", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Date getDateOfNextUpdate() {
-        Date fallback = null;
-        for (CitationDate info : getMaintenanceDates()) {
-            Date date = info.getDate();
-            DateType type = info.getDateType();
-            if (DateType.NEXT_UPDATE.equals(type)) {
-                return date;
-            } else if (fallback == null) {
-                fallback = date;
-            }
-        }
-        return fallback;
+        return Legacy.getDate(getMaintenanceDates(), DateType.NEXT_UPDATE);
     }
 
     /**

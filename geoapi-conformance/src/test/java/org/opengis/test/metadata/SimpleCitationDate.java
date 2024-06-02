@@ -17,12 +17,8 @@
  */
 package org.opengis.test.metadata;
 
-import java.util.Date;
-import java.util.Locale;
-import java.util.TimeZone;
-import java.text.DateFormat;
-import java.text.ParseException;
-import java.text.SimpleDateFormat;
+import java.time.LocalDate;
+import java.time.temporal.Temporal;
 import org.opengis.metadata.citation.DateType;
 import org.opengis.metadata.citation.CitationDate;
 
@@ -36,22 +32,14 @@ import org.opengis.metadata.citation.CitationDate;
  */
 final class SimpleCitationDate implements CitationDate {
     /**
-     * The format to use for parsing the dates given to the constructor.
-     */
-    private static final DateFormat FORMAT = new SimpleDateFormat("yyyy-MM-dd", Locale.US);
-    static {
-        FORMAT.setTimeZone(TimeZone.getTimeZone("UTC"));
-    }
-
-    /**
      * The value to be returned by {@link #getDateType()}.
      */
     private final DateType type;
 
     /**
-     * The value to be returned by {@link #getDate()}.
+     * The value to be returned by {@link #getReferenceDate()}.
      */
-    private final Date time;
+    private final LocalDate time;
 
     /**
      * Creates a new citation date.
@@ -61,11 +49,7 @@ final class SimpleCitationDate implements CitationDate {
      */
     SimpleCitationDate(final DateType type, final String time) {
         this.type = type;
-        try {
-            this.time = FORMAT.parse(time);
-        } catch (ParseException e) {
-            throw new AssertionError(e);
-        }
+        this.time = LocalDate.parse(time);
     }
 
     /**
@@ -80,7 +64,7 @@ final class SimpleCitationDate implements CitationDate {
      * {@inheritDoc}
      */
     @Override
-    public Date getDate() {
+    public Temporal getReferenceDate() {
         return time;
     }
 }

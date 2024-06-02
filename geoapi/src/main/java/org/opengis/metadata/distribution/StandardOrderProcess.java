@@ -19,9 +19,11 @@ package org.opengis.metadata.distribution;
 
 import java.util.Date;
 import java.util.Currency;
+import java.time.temporal.Temporal;
 import org.opengis.util.Record;
 import org.opengis.util.RecordType;
 import org.opengis.util.InternationalString;
+import org.opengis.geoapi.internal.Legacy;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -74,15 +76,26 @@ public interface StandardOrderProcess {
     /**
      * Date and time when the dataset will be available.
      *
-     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
-     * </div>
+     * @return date and time when the dataset will be available, or {@code null}.
+     *
+     * @deprecated Replaced by {@link #getPlannedAvailableDate()}.
+     */
+    @Deprecated(since="3.1")
+    default Date getPlannedAvailableDateTime() {
+        return Legacy.toDate(getPlannedAvailableDate());
+    }
+
+    /**
+     * Date and time when the dataset will be available.
+     * Should be an instance of {@link java.time.LocalDateTime}, {@link java.time.OffsetDateTime} or
+     * {@link java.time.ZonedDateTime}, depending how timezone is defined. Other types are also allowed.
      *
      * @return date and time when the dataset will be available, or {@code null}.
+     *
+     * @since 3.1
      */
     @UML(identifier="plannedAvailableDateTime", obligation=OPTIONAL, specification=ISO_19115)
-    default Date getPlannedAvailableDateTime() {
+    default Temporal getPlannedAvailableDate() {
         return null;
     }
 

@@ -32,6 +32,8 @@ import java.time.DateTimeException;
 import java.time.temporal.ChronoField;
 import java.time.temporal.Temporal;
 import java.time.chrono.ChronoZonedDateTime;
+import org.opengis.metadata.citation.CitationDate;
+import org.opengis.metadata.citation.DateType;
 
 
 /**
@@ -96,5 +98,31 @@ public final class Legacy {
         }
         // Do not use `Date.from(Instant)` because we want the `ArithmeticException` in case of overflow.
         return new Date(instant.toEpochMilli());
+    }
+
+    /**
+     * Returns the first date of the specified type in the given collection of citation dates.
+     * This is used for default implementation of deprecated methods inherited from older standards.
+     *
+     * @param  dates  the citation dates from which to get a date of the specified type.
+     * @param  type   the type of date to search.
+     * @return first occurrence of a date of the specified type.
+     */
+    @SuppressWarnings("deprecation")
+    public static Date getDate(final Iterable<? extends CitationDate> dates, final DateType type) {
+        if (dates != null) {
+            CitationDate fallback = null;
+            for (CitationDate info : dates) {
+                if (type.equals(info.getDateType())) {
+                    return info.getDate();
+                } else if (fallback == null) {
+                    fallback = info;
+                }
+            }
+            if (fallback != null) {
+                return fallback.getDate();
+            }
+        }
+        return null;
     }
 }

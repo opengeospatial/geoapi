@@ -17,7 +17,7 @@
  */
 package org.opengis.metadata.acquisition;
 
-import java.util.Date;
+import java.time.temporal.Temporal;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
@@ -38,27 +38,21 @@ import static org.opengis.annotation.Specification.*;
 public interface RequestedDate {
     /**
      * Preferred date and time of collection.
-     *
-     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
-     * </div>
+     * Should be an instance of {@link java.time.LocalDateTime}, {@link java.time.OffsetDateTime} or
+     * {@link java.time.ZonedDateTime}, depending how timezone is defined. Other types are also allowed.
      *
      * @return preferred date and time.
      */
     @UML(identifier="requestedDateOfCollection", obligation=MANDATORY, specification=ISO_19115_2)
-    Date getRequestedDateOfCollection();
+    Temporal getRequestedDateOfCollection();
 
     /**
      * Latest date and time collection must be completed.
-     *
-     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
-     * </div>
+     * Should be an instance of {@link java.time.LocalDateTime}, {@link java.time.OffsetDateTime} or
+     * {@link java.time.ZonedDateTime}, depending how timezone is defined. Other types are also allowed.
      *
      * @return latest date and time.
      */
     @UML(identifier="latestAcceptableDate", obligation=MANDATORY, specification=ISO_19115_2)
-    Date getLatestAcceptableDate();
+    Temporal getLatestAcceptableDate();
 }

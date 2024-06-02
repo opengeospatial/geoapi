@@ -19,7 +19,7 @@ package org.opengis.metadata.citation;
 
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
+import java.time.temporal.Temporal;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.identification.BrowseGraphic;
 import org.opengis.util.InternationalString;
@@ -88,16 +88,14 @@ public interface Citation {
 
     /**
      * Date of the edition, or {@code null} if none.
-     *
-     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
-     * </div>
+     * Should be an instance of {@link java.time.LocalDateTime}, {@link java.time.OffsetDateTime} or
+     * {@link java.time.ZonedDateTime}, depending how timezone is defined. Other types are also allowed.
+     * For example, an edition date may be merely a {@link java.time.Year}.
      *
      * @return the edition date, or {@code null} if none.
      */
     @UML(identifier="editionDate", obligation=OPTIONAL, specification=ISO_19115)
-    default Date getEditionDate() {
+    default Temporal getEditionDate() {
         return null;
     }
 

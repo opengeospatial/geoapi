@@ -45,6 +45,7 @@ import org.opengis.metadata.identification.Identification;
 import org.opengis.metadata.maintenance.MaintenanceInformation;
 import org.opengis.metadata.lineage.Lineage;
 import org.opengis.referencing.ReferenceSystem;
+import org.opengis.geoapi.internal.Legacy;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -351,17 +352,7 @@ public interface Metadata {
     @Deprecated(since="3.1")
     @UML(identifier="dateStamp", obligation=MANDATORY, specification=ISO_19115, version=2003)
     default Date getDateStamp() {
-        Date fallback = null;
-        for (CitationDate info : getDateInfo()) {
-            Date date = info.getDate();
-            DateType type = info.getDateType();
-            if (DateType.CREATION.equals(type)) {
-                return date;
-            } else if (fallback == null) {
-                fallback = date;
-            }
-        }
-        return fallback;
+        return Legacy.getDate(getDateInfo(), DateType.CREATION);
     }
 
     /**

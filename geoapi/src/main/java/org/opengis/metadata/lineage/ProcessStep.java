@@ -69,7 +69,7 @@ public interface ProcessStep {
      *
      * @deprecated Replaced by {@link #getStepDateTime()} as of ISO 19115:2014.
      */
-    @Deprecated(since = "3.1")
+    @Deprecated(since="3.1")
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Date getDate() {
         TemporalPrimitive p = getStepDateTime();

@@ -20,9 +20,10 @@ package org.opengis.metadata.acquisition;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Date;
-
-import org.opengis.annotation.UML;
+import java.time.temporal.Temporal;
 import org.opengis.metadata.Identifier;
+import org.opengis.geoapi.internal.Legacy;
+import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -72,15 +73,29 @@ public interface Event {
     /**
      * Time the event occurred.
      *
-     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
-     * </div>
+     * @return time the event occurred.
+     *
+     * @deprecated Replaced by {@link #getDateOfOccurrence()}.
+     */
+    @Deprecated(since="3.1")
+    default Date getTime() {
+        return Legacy.toDate(getDateOfOccurrence());
+    }
+
+    /**
+     * Date and time the event occurred.
+     * Should be an instance of {@link java.time.LocalDateTime}, {@link java.time.OffsetDateTime} or
+     * {@link java.time.ZonedDateTime}, depending how timezone is defined. Other types are also allowed.
      *
      * @return time the event occurred.
+     *
+     * @departure historical
+     *   Renamed for avoiding a conflict with the {@code getTime()} method defined in GeoAPI 3.0.
+     *
+     * @since 3.1
      */
     @UML(identifier="time", obligation=MANDATORY, specification=ISO_19115_2)
-    Date getTime();
+    Temporal getDateOfOccurrence();
 
     /**
      * Objective or objectives satisfied by an event.

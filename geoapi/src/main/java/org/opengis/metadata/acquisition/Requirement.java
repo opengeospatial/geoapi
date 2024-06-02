@@ -17,10 +17,9 @@
  */
 package org.opengis.metadata.acquisition;
 
-import java.util.Date;
 import java.util.Collection;
 import java.util.Collections;
-
+import java.time.temporal.Temporal;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
@@ -91,16 +90,13 @@ public interface Requirement {
 
     /**
      * Date and time after which collection is no longer valid.
-     *
-     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
-     * </div>
+     * Should be an instance of {@link java.time.LocalDateTime}, {@link java.time.OffsetDateTime} or
+     * {@link java.time.ZonedDateTime}, depending how timezone is defined. Other types are also allowed.
      *
      * @return date and time after which collection is no longer valid.
      */
     @UML(identifier="expiryDate", obligation=MANDATORY, specification=ISO_19115_2)
-    Date getExpiryDate();
+    Temporal getExpiryDate();
 
     /**
      * Plan that identifies solution to satisfy the requirement.

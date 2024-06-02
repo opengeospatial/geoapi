@@ -25,6 +25,7 @@ import java.util.LinkedHashMap;
 import java.util.Collection;
 import java.util.Date;
 import java.util.GregorianCalendar;
+import java.time.temporal.Temporal;
 import java.math.BigInteger;
 import java.lang.reflect.Method;
 import java.io.Writer;
@@ -170,6 +171,7 @@ class JavaToPython extends SourceGenerator {
         primitiveTypes.put(Double              .class, "float");
         primitiveTypes.put(Double              .TYPE,  "float");
         primitiveTypes.put(Date                .class, "datetime");
+        primitiveTypes.put(Temporal            .class, "datetime");
         declaredTypes .put(Date                .class, "datetime");     // Module of datetime type.
 
         keywords = new HashMap<>(4);
