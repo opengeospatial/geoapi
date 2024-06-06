@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @author  Rémi Maréchal (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  */
 @Classifier(Stereotype.DATATYPE)
@@ -88,11 +88,13 @@ public interface Citation {
 
     /**
      * Date of the edition, or {@code null} if none.
-     * Should be an instance of {@link java.time.LocalDateTime}, {@link java.time.OffsetDateTime} or
-     * {@link java.time.ZonedDateTime}, depending how timezone is defined. Other types are also allowed.
+     * The returned value should be an instance of {@link java.time.LocalDate}, {@link java.time.LocalDateTime},
+     * {@link java.time.OffsetDateTime} or {@link java.time.ZonedDateTime}, depending whether hours are defined
+     * and how the timezone (if any) is defined. But other types are also allowed.
      * For example, an edition date may be merely a {@link java.time.Year}.
      *
      * @return the edition date, or {@code null} if none.
+     * @version 4.0
      */
     @UML(identifier="editionDate", obligation=OPTIONAL, specification=ISO_19115)
     default Temporal getEditionDate() {

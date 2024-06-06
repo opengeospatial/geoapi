@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  * Requirement to be satisfied by the planned data acquisition.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   2.3
  */
 @UML(identifier="MI_Requirement", specification=ISO_19115_2)
@@ -90,10 +90,12 @@ public interface Requirement {
 
     /**
      * Date and time after which collection is no longer valid.
-     * Should be an instance of {@link java.time.LocalDateTime}, {@link java.time.OffsetDateTime} or
-     * {@link java.time.ZonedDateTime}, depending how timezone is defined. Other types are also allowed.
+     * The returned value should be an instance of {@link java.time.LocalDate}, {@link java.time.LocalDateTime},
+     * {@link java.time.OffsetDateTime} or {@link java.time.ZonedDateTime}, depending whether hours are defined
+     * and how the timezone (if any) is defined. But other types are also allowed.
      *
      * @return date and time after which collection is no longer valid.
+     * @version 4.0
      */
     @UML(identifier="expiryDate", obligation=MANDATORY, specification=ISO_19115_2)
     Temporal getExpiryDate();

@@ -52,8 +52,9 @@ public interface CitationDate {
 
     /**
      * Reference date for the cited resource.
-     * Should be an instance of {@link java.time.LocalDateTime}, {@link java.time.OffsetDateTime} or
-     * {@link java.time.ZonedDateTime}, depending how timezone is defined. Other types are also allowed.
+     * The returned value should be an instance of {@link java.time.LocalDate}, {@link java.time.LocalDateTime},
+     * {@link java.time.OffsetDateTime} or {@link java.time.ZonedDateTime}, depending whether hours are defined
+     * and how the timezone (if any) is defined. But other types are also allowed.
      * For example, a citation date may be merely a {@link java.time.Year}.
      *
      * @return reference date for the cited resource.

@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * Range of date validity.
  *
  * @author  Cédric Briançon (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   2.3
  */
 @Classifier(Stereotype.DATATYPE)
@@ -38,20 +38,24 @@ import static org.opengis.annotation.Specification.*;
 public interface RequestedDate {
     /**
      * Preferred date and time of collection.
-     * Should be an instance of {@link java.time.LocalDateTime}, {@link java.time.OffsetDateTime} or
-     * {@link java.time.ZonedDateTime}, depending how timezone is defined. Other types are also allowed.
+     * The returned value should be an instance of {@link java.time.LocalDate}, {@link java.time.LocalDateTime},
+     * {@link java.time.OffsetDateTime} or {@link java.time.ZonedDateTime}, depending whether hours are defined
+     * and how the timezone (if any) is defined. But other types are also allowed.
      *
      * @return preferred date and time.
+     * @version 4.0
      */
     @UML(identifier="requestedDateOfCollection", obligation=MANDATORY, specification=ISO_19115_2)
     Temporal getRequestedDateOfCollection();
 
     /**
      * Latest date and time collection must be completed.
-     * Should be an instance of {@link java.time.LocalDateTime}, {@link java.time.OffsetDateTime} or
-     * {@link java.time.ZonedDateTime}, depending how timezone is defined. Other types are also allowed.
+     * The returned value should be an instance of {@link java.time.LocalDate}, {@link java.time.LocalDateTime},
+     * {@link java.time.OffsetDateTime} or {@link java.time.ZonedDateTime}, depending whether hours are defined
+     * and how the timezone (if any) is defined. But other types are also allowed.
      *
      * @return latest date and time.
+     * @version 4.0
      */
     @UML(identifier="latestAcceptableDate", obligation=MANDATORY, specification=ISO_19115_2)
     Temporal getLatestAcceptableDate();

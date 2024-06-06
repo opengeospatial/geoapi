@@ -87,8 +87,9 @@ public interface StandardOrderProcess {
 
     /**
      * Date and time when the dataset will be available.
-     * Should be an instance of {@link java.time.LocalDateTime}, {@link java.time.OffsetDateTime} or
-     * {@link java.time.ZonedDateTime}, depending how timezone is defined. Other types are also allowed.
+     * The returned value should be an instance of {@link java.time.LocalDate}, {@link java.time.LocalDateTime},
+     * {@link java.time.OffsetDateTime} or {@link java.time.ZonedDateTime}, depending whether hours are defined
+     * and how the timezone (if any) is defined. But other types are also allowed.
      *
      * @return date and time when the dataset will be available, or {@code null}.
      *

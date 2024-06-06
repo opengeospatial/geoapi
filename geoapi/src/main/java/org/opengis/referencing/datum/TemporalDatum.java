@@ -48,6 +48,7 @@ public interface TemporalDatum extends Datum {
      * The {@link java.time.Instant} type is recommended, but other types are allowed.
      *
      * @return date and time to which temporal coordinates are referenced.
+     * @version 4.0
      */
     @UML(identifier="origin", obligation=MANDATORY, specification=ISO_19111)
     Temporal getOrigin();
