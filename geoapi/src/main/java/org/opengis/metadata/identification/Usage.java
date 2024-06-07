@@ -17,13 +17,15 @@
  */
 package org.opengis.metadata.identification;
 
+import java.util.Date;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Date;
 import org.opengis.util.InternationalString;
+import org.opengis.temporal.TemporalPrimitive;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.Responsibility;
 import org.opengis.metadata.citation.ResponsibleParty;
+import org.opengis.geoapi.internal.Legacy;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -51,18 +53,31 @@ public interface Usage {
     /**
      * Date and time of the first use or range of uses of the resource and/or resource series.
      *
-     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
-     * </div>
-     *
      * @return date of the first use of the resource, or {@code null}.
      *
-     * @todo This become a collection in ISO 19115:2014.
+     * @deprecated Replaced by {@link #getUsageDates()} as of ISO 19115:2014.
+     */
+    @Deprecated(since="3.1")
+    default Date getUsageDate() {
+        for (TemporalPrimitive t : getUsageDates()) {
+            Date p = Legacy.toDate(t.position().orElse(null));
+            if (p != null) {
+                return p;
+            }
+        }
+        return null;
+    }
+
+    /**
+     * Date and time of the first use or range of uses of the resource and/or resource series.
+     *
+     * @return date of the first use of the resource.
+     *
+     * @since 3.1
      */
     @UML(identifier="usageDateTime", obligation=OPTIONAL, specification=ISO_19115)
-    default Date getUsageDate() {
-        return null;
+    default Collection<? extends TemporalPrimitive> getUsageDates() {
+        return Collections.emptySet();
     }
 
     /**

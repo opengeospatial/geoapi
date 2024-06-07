@@ -18,6 +18,8 @@
 package org.opengis.metadata.citation;
 
 import java.util.Date;
+import java.time.temporal.Temporal;
+import org.opengis.geoapi.internal.Legacy;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
 import org.opengis.annotation.Classifier;
@@ -41,16 +43,32 @@ public interface CitationDate {
     /**
      * Reference date for the cited resource.
      *
-     * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
-     * </div>
+     * @return reference date for the cited resource.
+     *
+     * @deprecated Replaced by {@link #getReferenceDate()}.
+     */
+    @Deprecated(since="3.1")
+    default Date getDate() {
+        return Legacy.toDate(getReferenceDate());
+    }
+
+    /**
+     * Reference date for the cited resource.
+     * The returned value should be an instance of {@link java.time.LocalDate}, {@link java.time.LocalDateTime},
+     * {@link java.time.OffsetDateTime} or {@link java.time.ZonedDateTime}, depending whether hours are defined
+     * and how the timezone (if any) is defined. But other types are also allowed.
+     * For example, a citation date may be merely a {@link java.time.Year}.
      *
      * @return reference date for the cited resource.
+     *
+     * @departure historical
+     *   Renamed for avoiding a conflict with the {@code getDate()} method defined in GeoAPI 3.0.
+     *
+     * @since 3.1
      */
     @Profile(level=CORE)
     @UML(identifier="date", obligation=MANDATORY, specification=ISO_19115)
-    Date getDate();
+    Temporal getReferenceDate();
 
     /**
      * Event used for reference date.

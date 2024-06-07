@@ -94,8 +94,9 @@ public interface Citation {
      * Date of the edition, or {@code null} if none.
      *
      * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
+     * As of Java 8, the {@code java.time} package is a better match for the different
+     * types of date defined by ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
+     * The return value of this method may be changed to {@link java.time.temporal.Temporal} in GeoAPI 4.0.
      * </div>
      *
      * @return the edition date, or {@code null} if none.

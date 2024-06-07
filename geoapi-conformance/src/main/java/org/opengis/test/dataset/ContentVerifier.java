@@ -154,8 +154,9 @@ public class ContentVerifier {
          * @return the given buffer for method calls chaining.
          */
         final StringBuilder toString(final StringBuilder appendTo) {
-            formatValue(expected, appendTo.append("expected "));
-            formatValue(actual,   appendTo.append(" but was "));
+            final boolean showType = expected != null && actual != null && expected.getClass() != actual.getClass();
+            formatValue(expected, showType, appendTo.append("expected "));
+            formatValue(actual,   showType, appendTo.append(" but was "));
             return appendTo;
         }
     }
@@ -631,7 +632,7 @@ public class ContentVerifier {
                 if (value instanceof Mismatch) {
                     ((Mismatch) value).toString(appendTo);
                 } else {
-                    formatValue(value, appendTo);
+                    formatValue(value, false, appendTo);
                 }
                 appendTo.append(',').append(lineSeparator);
             }
@@ -646,12 +647,16 @@ public class ContentVerifier {
      * Formats the given value in the given buffer, eventually between quotes.
      *
      * @param value     value to format.
+     * @param showType  whether to format the value type.
      * @param appendTo  where to write the value.
      */
-    private static void formatValue(final Object value, final StringBuilder appendTo) {
+    private static void formatValue(final Object value, final boolean showType, final StringBuilder appendTo) {
         final boolean quote = !isPrimitive(value);
         if (quote) appendTo.append('"');
         appendTo.append(value);
         if (quote) appendTo.append('"');
+        if (showType) {
+            appendTo.append(" (an instance of ").append(value.getClass().getSimpleName()).append(')');
+        }
     }
 }

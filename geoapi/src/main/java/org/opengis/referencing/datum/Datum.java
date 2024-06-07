@@ -22,7 +22,6 @@ import java.util.Optional;
 import java.time.temporal.Temporal;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.metadata.extent.Extent;
-import org.opengis.metadata.citation.CitationDate;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
@@ -265,16 +264,15 @@ public interface Datum extends IdentifiedObject {
 
     /**
      * Returns the date on which the datum definition was published.
+     * Should be an instance of {@link java.time.LocalDate}, but other types are also allowed.
+     * For example, a publication date may be merely a {@link java.time.Year}.
      *
      * @return date on which the datum definition was published.
      *
      * @since 3.1
-     *
-     * @departure harmonization
-     *   Type replaced from {@code Date} to {@code CitationDate}.
      */
     @UML(identifier="publicationDate", obligation=OPTIONAL, specification=ISO_19111)
-    default Optional<CitationDate> getPublicationDate() {
+    default Optional<Temporal> getPublicationDate() {
         return Optional.empty();
     }
 

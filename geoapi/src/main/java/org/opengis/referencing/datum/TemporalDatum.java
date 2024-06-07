@@ -48,8 +48,9 @@ public interface TemporalDatum extends Datum {
      * Date and time to which temporal coordinates are referenced.
      *
      * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release.
-     * It may be replaced by {@link java.time.temporal.Temporal}.
+     * As of Java 8, the {@code java.time} package is a better match for the different
+     * types of date defined by ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
+     * The return value of this method may be changed to {@link java.time.temporal.Temporal} in GeoAPI 4.0.
      * </div>
      *
      * @return date and time to which temporal coordinates are referenced.

@@ -8,7 +8,7 @@ while the `Time` interface gives values for hour, minute and second.
 GeoAPI maps the ISO date and time interfaces to the types provided in the standard library of target languages.
 However, this mapping is not a one-to-one relationship.
 For example, the ISO `DateTime` interface can map to three different standard Java interfaces
-(`LocalDateTime`, `ZonedDateTime` or `OffsetDateTime`)
+(`LocalDateTime`, `OffsetDateTime` or `ZonedDateTime`)
 depending on whether or not a timezone is present, and how the timezone is represented (by identifier or by offset).
 The timezone information is often desired for geospatial data
 (for example, in the acquisition time of a remote sensing image),

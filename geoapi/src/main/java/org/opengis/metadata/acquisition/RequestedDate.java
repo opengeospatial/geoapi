@@ -40,8 +40,9 @@ public interface RequestedDate {
      * Preferred date and time of collection.
      *
      * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
+     * As of Java 8, the {@code java.time} package is a better match for the different
+     * types of date defined by ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
+     * The return value of this method may be changed to {@link java.time.temporal.Temporal} in GeoAPI 4.0.
      * </div>
      *
      * @return preferred date and time.
@@ -53,8 +54,9 @@ public interface RequestedDate {
      * Latest date and time collection must be completed.
      *
      * <div class="warning"><b>Upcoming API change — temporal schema</b><br>
-     * The return type of this method may change in GeoAPI 4.0 release. It may be replaced by a
-     * type matching more closely either ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
+     * As of Java 8, the {@code java.time} package is a better match for the different
+     * types of date defined by ISO 19108 (<cite>Temporal Schema</cite>) or ISO 19103.
+     * The return value of this method may be changed to {@link java.time.temporal.Temporal} in GeoAPI 4.0.
      * </div>
      *
      * @return latest date and time.
