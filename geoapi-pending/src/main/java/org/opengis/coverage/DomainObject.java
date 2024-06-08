@@ -19,7 +19,7 @@ package org.opengis.coverage;
 
 import java.util.Set;
 import org.opengis.geometry.Geometry;
-import org.opengis.temporal.TemporalGeometricPrimitive;
+import org.opengis.temporal.TemporalPrimitive;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -58,5 +58,5 @@ public interface DomainObject<G extends Geometry> {
      * @return the temporal component of the domain.
      */
     @UML(identifier="temporalElement", obligation=OPTIONAL, specification=ISO_19123)
-    Set<TemporalGeometricPrimitive> getTemporalElements();
+    Set<TemporalPrimitive> getTemporalElements();
 }

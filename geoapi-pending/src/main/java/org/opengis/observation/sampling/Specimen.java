@@ -19,7 +19,7 @@ package org.opengis.observation.sampling;
 
 import org.opengis.observation.Measure;
 import org.opengis.observation.ProcessModel;
-import org.opengis.temporal.TemporalGeometricPrimitive;
+import org.opengis.temporal.TemporalPrimitive;
 import org.opengis.util.GenericName;
 import org.opengis.annotation.UML;
 
@@ -68,12 +68,12 @@ public interface Specimen extends SamplingFeature {
      * Time and date when the specimen was initially retrieved
      */
     @UML(identifier="samplingTime", obligation=MANDATORY, specification=OGC_07022)
-    TemporalGeometricPrimitive getSamplingTime();
+    TemporalPrimitive getSamplingTime();
 
     /**
      * The size of the specimen: mass, length, volume, etc.
      */
     @UML(identifier="size", obligation=OPTIONAL, specification=OGC_07022)
     Measure getSize();
-    
+
 }

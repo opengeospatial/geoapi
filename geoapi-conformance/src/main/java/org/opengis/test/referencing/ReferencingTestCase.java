@@ -104,7 +104,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
     private static Instant union(final Instant bound, final TemporalPrimitive extent, final boolean begin) {
         if (extent instanceof Period) {
             final var period = (Period) extent;
-            final Temporal date = begin ? period.getBeginning() : period.getEnding();
+            final Temporal date = (begin ? period.getBeginning() : period.getEnding()).getPosition();
             final Instant instant;
             if (date instanceof Instant) {
                 instant = (Instant) date;

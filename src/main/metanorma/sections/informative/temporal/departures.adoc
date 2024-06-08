@@ -1,0 +1,18 @@
+[[temporal_departures]]
+==== Departures from ISO 19108
+
+Significant departures of GeoAPI from the ISO 19108 standard are the omission of the
+`TM_ReferenceSystem` and `TM_TemporalPosition` interfaces, as described in above tables.
+The former interface is replaced by `TemporalCRS`, which has been added to ISO 19111 after the publication of ISO 19108.
+As a consequence of this replacement, the `TM_TemporalPosition` interface become similar to `DirectPosition`
+and can be replaced by the latter with the following substitutions:
+
+* The `TM_TemporalPosition.frame` association is replaced by `DirectPosition.coordinateReferenceSystem`.
+* The `TM_Coordinate.coordinateValue` property is replaced by `DirectPosition.coordinate`.
+* The `TM_TemporalPosition.indeterminatePosition` property moved to `TM_Instant`.
+
+The latter change is because `TM_TemporalPosition` is replaced by the temporal objects of the standard library
+of the target programming languages, and those standard objects do not have an `indeterminatePosition` property.
+
+Another harmonization is the omission of the `TM_RelativePosition` code list.
+That code list is identical to the ISO 19143 `TemporalOperatorName` code list, except for one value.

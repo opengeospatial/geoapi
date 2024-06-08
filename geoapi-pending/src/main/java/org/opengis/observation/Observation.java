@@ -19,7 +19,7 @@ package org.opengis.observation;
 
 import org.opengis.metadata.Metadata;
 import org.opengis.metadata.quality.Element;
-import org.opengis.temporal.TemporalObject;
+import org.opengis.temporal.TemporalPrimitive;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
@@ -64,7 +64,7 @@ public interface Observation {
     Object getProcedureParameter();
 
     @UML(identifier="resultTime", obligation=OPTIONAL, specification=OGC_07022)
-    TemporalObject getProcedureTime();
+    TemporalPrimitive getProcedureTime();
 
     /**
      * Instance-specific quality assessment or measure.
@@ -81,7 +81,7 @@ public interface Observation {
     * This is the time usually required for geospatial analysis of the result.
     */
     @UML(identifier="samplingTime", obligation=MANDATORY, specification=OGC_07022)
-    TemporalObject getSamplingTime();
+    TemporalPrimitive getSamplingTime();
 
      /**
      * The featureOfInterest is a feature of any type (ISO 19109, ISO 19101),
@@ -124,5 +124,4 @@ public interface Observation {
      */
     @UML(identifier="procedure", obligation=MANDATORY, specification=OGC_07022)
     Process getProcedure();
-    
 }

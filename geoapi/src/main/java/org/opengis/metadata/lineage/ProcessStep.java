@@ -72,8 +72,7 @@ public interface ProcessStep {
     @Deprecated(since="3.1")
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Date getDate() {
-        TemporalPrimitive p = getStepDateTime();
-        return (p != null) ? Legacy.toDate(p.position().orElse(null)) : null;
+        return Legacy.toDate(getStepDateTime());
     }
 
     /**

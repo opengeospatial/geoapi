@@ -34,6 +34,7 @@ import java.time.temporal.Temporal;
 import java.time.chrono.ChronoZonedDateTime;
 import org.opengis.metadata.citation.CitationDate;
 import org.opengis.metadata.citation.DateType;
+import org.opengis.temporal.TemporalPrimitive;
 
 
 /**
@@ -50,6 +51,19 @@ public final class Legacy {
      * Do not allow instantiation of this class.
      */
     private Legacy() {
+    }
+
+    /**
+     * Converts a temporal primitive to a legacy {@link Date} object.
+     * See {@link #toDate(Temporal)} for more information.
+     *
+     * @param  t  the temporal primitive to convert, or {@code null}.
+     * @return the given temporal primitive as a date, or {@code null} if none.
+     * @throws DateTimeException if this method does not know how to convert the given temporal object.
+     * @throws ArithmeticException if numeric overflow occurs.
+     */
+    public static Date toDate(final TemporalPrimitive t) {
+        return (t instanceof org.opengis.temporal.Instant) ? toDate(((org.opengis.temporal.Instant) t).getPosition()) : null;
     }
 
     /**

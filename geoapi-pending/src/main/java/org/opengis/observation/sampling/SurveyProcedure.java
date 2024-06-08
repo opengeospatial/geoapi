@@ -20,7 +20,7 @@ package org.opengis.observation.sampling;
 import org.opengis.observation.Measure;
 import org.opengis.metadata.citation.ResponsibleParty;
 import org.opengis.referencing.datum.Datum;
-import org.opengis.temporal.TemporalObject;
+import org.opengis.temporal.TemporalPrimitive;
 import org.opengis.util.GenericName;
 import org.opengis.annotation.UML;
 
@@ -63,6 +63,6 @@ public interface SurveyProcedure {
     GenericName getProjection() ;
 
     @UML(identifier="surveyTime", obligation=OPTIONAL, specification=OGC_07022)
-    TemporalObject getSurveyTime();
+    TemporalPrimitive getSurveyTime();
 
 }

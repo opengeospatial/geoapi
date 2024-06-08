@@ -1,7 +1,7 @@
 [[referencing_departures]]
 ==== Departures from ISO 19111
 
-The main departures of GeoAPI from the ISO 19111 standards are inspired by the legacy OGC 01-009 standard published in 2001.
+The main departures of GeoAPI from the ISO 19111 standard are inspired by the legacy OGC 01-009 standard published in 2001.
 That legacy standard included COM, CORBA and Java profiles. In support for those profiles, some aspects of the legacy model
 were better suited to programming languages compared to the more web-focused standards published the following years.
 GeoAPI retains some OGC 01-009 aspects when appropriate and adapt them to the ISO 19111 interfaces.
