@@ -71,9 +71,9 @@ public interface TemporalPrimitive {
      * any of the 13 values except {@link TemporalOperatorName#ANY_INTERACTS any interacts}.</p>
      *
      * <h4>Exceptions</h4>
-     * This method shall throw a {@link DateTimeException} if any input value is indeterminate.
-     * {@code DateTimeException} can also be thrown if the temporal objects used by the primitives do not
-     * support {@linkplain java.time.temporal.TemporalField temporal fields} that this method can compare.
+     * This method shall throw an {@link IndeterminatePositionException} if any input value is indeterminate.
+     * A {@link DateTimeException} can also be thrown if the temporal objects used by the primitives do not
+     * support the {@linkplain java.time.temporal.TemporalField temporal fields} that this method can compare.
      *
      * @departure harmonization
      *   ISO 19108 defines a {@code TM_RelativePosition} code list which is identical to the
@@ -83,7 +83,8 @@ public interface TemporalPrimitive {
      * @param  other the other primitive for which to determine the relative position.
      * @return a temporal operator which is true when evaluated between this primitive and the other primitive.
      * @throws UnsupportedOperationException if this operation is not supported.
-     * @throws DateTimeException if the temporal objects cannot be compared.
+     * @throws IndeterminatePositionException if at least one temporal position is indeterminate.
+     * @throws DateTimeException if the two temporal primitives cannot be compared.
      *
      * @since 3.1
      */

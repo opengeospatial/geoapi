@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.ISO_19108;
 @UML(identifier="TM_Instant", specification=ISO_19108)
 public interface Instant extends TemporalPrimitive {
     /**
-     * The date, time or position on the time-scale represented by this primitive.
+     * Returns the date, time or position on the time-scale represented by this primitive.
      * The position can be of the following types:
      *
      * <ul>
@@ -61,8 +61,9 @@ public interface Instant extends TemporalPrimitive {
      *       the coordinate value together with its coordinate reference system (<abbr>CRS</abbr>).</li>
      * </ul>
      *
-     * The returned value should not be null, except if {@link #getIndeterminatePosition()} returns
-     * {@link IndeterminateValue#UNKNOWN UNKNOWN} or {@link IndeterminateValue#NOW NOW}.
+     * The returned value should not be null,
+     * except if {@link #getIndeterminatePosition()} returns {@link IndeterminateValue#UNKNOWN}.
+     * In the case of {@link IndeterminateValue#NOW}, this method should return the current time.
      *
      * @departure harmonization
      *   ISO 19108 defines this property as an union of {@code date8601}, {@code time8601}, {@code dateTime8601} or
@@ -72,8 +73,7 @@ public interface Instant extends TemporalPrimitive {
      *   property is replaced by a vendor-specific {@link Temporal} implementation.
      *
      * @return the date, time or instant represented by this primitive.
-     *         Should not be null, except if the temporal position is indeterminate for
-     *         {@linkplain IndeterminateValue#UNKNOWN unknown} or {@linkplain IndeterminateValue#NOW now} reasons.
+     *         Should not be null, except if {@linkplain IndeterminateValue#UNKNOWN unknown}.
      */
     @UML(identifier="position", obligation=MANDATORY, specification=ISO_19108)
     Temporal getPosition();
@@ -102,17 +102,19 @@ public interface Instant extends TemporalPrimitive {
      * then this method shall return a distance of zero.
      *
      * <h4>Exceptions</h4>
-     * This method may throw a {@link DateTimeException}
-     * if at least one temporal position is {@linkplain #getIndeterminatePosition() indeterminate},
-     * or if the temporal positions are associated to different {@link TemporalCRS},
+     * This method shall throw an {@link IndeterminatePositionException}
+     * if at least one temporal position is {@linkplain #getIndeterminatePosition() indeterminate}.
+     * A {@link DateTimeException} may also be thrown
+     * if the temporal positions are associated to different {@link TemporalCRS},
      * or if the coordinates are {@linkplain CoordinateDataType#INTEGER ordinal values},
      * or if the {@link Temporal} objects do not support required {@linkplain TemporalField temporal fields}.
      *
      * @param  other the other object from which to measure the distance.
-     * @return the distance from this instant to another instant.
-     * @throws DateTimeException if the duration cannot be computed because
-     *         of incompatibility between the two temporal primitives.
+     * @return the distance from this instant to another instant or period.
      * @throws UnsupportedOperationException if this operation is not supported.
+     * @throws IndeterminatePositionException if at least one temporal position is indeterminate.
+     * @throws DateTimeException if the duration cannot be computed between the two temporal primitives.
+     * @throws ArithmeticException if the duration exceeds the capacity of the implementation.
      *
      * @see java.time.Duration#between(Temporal, Temporal)
      */

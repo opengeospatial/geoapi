@@ -391,6 +391,7 @@ public enum Content {
                org.opengis.referencing.operation .OperationNotFoundException           .class,
                org.opengis.referencing.operation .TransformException                   .class,
                org.opengis.referencing.operation .NoninvertibleTransformException      .class,
+               org.opengis.temporal              .IndeterminatePositionException       .class,
                org.opengis.parameter             .ParameterNotFoundException           .class,
                org.opengis.parameter             .InvalidParameterNameException        .class,
                org.opengis.parameter             .InvalidParameterTypeException        .class,

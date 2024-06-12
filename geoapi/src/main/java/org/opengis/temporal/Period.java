@@ -66,17 +66,23 @@ public interface Period extends TemporalPrimitive {
      * Returns the duration of this period (optional operation).
      * This is the {@linkplain Instant#distance(TemporalPrimitive) distance}
      * between the period beginning and ending positions.
+     * The default implementation is as below:
+     *
+     * {@snippet lang="java" :
+     * return getBeginning().distance(getEnding());
+     * }
      *
      * <h4>Exceptions</h4>
-     * This method may throw a {@link DateTimeException} if a temporal position is
-     * {@linkplain Instant#getIndeterminatePosition() indeterminate}, or if the coordinates
-     * are {@link org.opengis.referencing.cs.CoordinateDataType#INTEGER ordinal values}.
+     * This method shall throw an {@link IndeterminatePositionException} if the temporal
+     * position of a bound is {@linkplain #getIndeterminatePosition() indeterminate}.
+     * A {@link DateTimeException} may also be thrown if the coordinates are
+     * {@link org.opengis.referencing.cs.CoordinateDataType#INTEGER ordinal values}.
      *
      * @return duration of this period.
-     * @throws DateTimeException if the duration cannot be computed
-     *         between the temporal objects used for defining this period position.
-     * @throws ArithmeticException if the duration exceeds the capacity of the implementation.
      * @throws UnsupportedOperationException if this operation is not supported.
+     * @throws IndeterminatePositionException if the temporal position of a bound is indeterminate.
+     * @throws DateTimeException if the duration cannot be computed between the temporal objects used as bounds.
+     * @throws ArithmeticException if the duration exceeds the capacity of the implementation.
      *
      * @see Instant#distance(TemporalPrimitive)
      * @see java.time.Duration#between(Temporal, Temporal)
