@@ -123,3 +123,11 @@ this type is an abstract definition of parameters - not their actual values.
 It is also consistent with usage in other libraries
 (e.g. `ParameterListDescriptor` in _Java Advanced Imaging_).
 ======
+
+
+[[referencing_departures_for_convenience]]
+===== Convenience methods
+
+The `AxisDirection` code list has an additional property, `opposite` (optional),
+which gives the direction of negative coordinate values.
+This property has been added because the opposite direction is a frequently needed information.
