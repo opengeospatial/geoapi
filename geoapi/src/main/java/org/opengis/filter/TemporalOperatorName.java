@@ -143,20 +143,6 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
     public static final TemporalOperatorName MEETS = new TemporalOperatorName("MEETS");
 
     /**
-     * Operator evaluates to {@code true} if the first expression ends at the second.
-     * In pseudo-code:
-     * <ul>
-     *   <li>When comparing two periods: {@code self.begin > other.begin} AND {@code self.end = other.end}</li>
-     * </ul>
-     */
-    /*
-     * This value is missing from UML and table 4 of ISO 19143:2010 but is present
-     * in the XML schema definition. We presume that it has been forgotten.
-     */
-    @UML(identifier="Ends", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName ENDS = new TemporalOperatorName("ENDS");
-
-    /**
      * Operator evaluates to {@code true} if the first expression is overlapped by the second.
      * In pseudo-code:
      * <ul>
@@ -177,6 +163,20 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      */
     @UML(identifier="MetBy", obligation=CONDITIONAL, specification=ISO_19143)
     public static final TemporalOperatorName MET_BY = new TemporalOperatorName("MET_BY");
+
+    /**
+     * Operator evaluates to {@code true} if the first expression ends at the second.
+     * In pseudo-code:
+     * <ul>
+     *   <li>When comparing two periods: {@code self.begin > other.begin} AND {@code self.end = other.end}</li>
+     * </ul>
+     */
+    /*
+     * This value is missing from UML and table 4 of ISO 19143:2010 but is present
+     * in the XML schema definition. We presume that it has been forgotten.
+     */
+    @UML(identifier="Ends", obligation=CONDITIONAL, specification=ISO_19143)
+    public static final TemporalOperatorName ENDS = new TemporalOperatorName("ENDS");
 
     /**
      * Operator evaluates to {@code true} if the first expression is ended by the second.

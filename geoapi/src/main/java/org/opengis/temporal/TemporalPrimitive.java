@@ -71,7 +71,7 @@ public interface TemporalPrimitive {
      * any of the 13 values except {@link TemporalOperatorName#ANY_INTERACTS any interacts}.</p>
      *
      * <h4>Exceptions</h4>
-     * This method shall throw an {@link IndeterminatePositionException} if any input value is indeterminate.
+     * This method may throw an {@link IndeterminatePositionException} if an input value is indeterminate.
      * A {@link DateTimeException} can also be thrown if the temporal objects used by the primitives do not
      * support the {@linkplain java.time.temporal.TemporalField temporal fields} that this method can compare.
      *
@@ -83,7 +83,7 @@ public interface TemporalPrimitive {
      * @param  other the other primitive for which to determine the relative position.
      * @return a temporal operator which is true when evaluated between this primitive and the other primitive.
      * @throws UnsupportedOperationException if this operation is not supported.
-     * @throws IndeterminatePositionException if at least one temporal position is indeterminate.
+     * @throws IndeterminatePositionException if a temporal position is indeterminate.
      * @throws DateTimeException if the two temporal primitives cannot be compared.
      *
      * @since 3.1
