@@ -79,7 +79,7 @@ import static org.opengis.annotation.Specification.*;
  * @see MathTransformFactory#getAvailableMethods(Class)
  * @see CoordinateOperationFactory#getOperationMethod(String)
  * @see CoordinateOperationAuthorityFactory#createOperationMethod(String)
- * @see CoordinateOperationFactory#createOperationMethod(Map, Integer, Integer, ParameterDescriptorGroup)
+ * @see CoordinateOperationFactory#createOperationMethod(Map, ParameterDescriptorGroup)
  */
 @UML(identifier="OperationMethod", specification=ISO_19111)
 public interface OperationMethod extends IdentifiedObject {

@@ -36,9 +36,7 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Creates {@linkplain CoordinateOperation coordinate operations} from
- * {@linkplain org.opengis.parameter.ParameterValueGroup parameter values},
- * or infers operations from source and target CRS.
+ * Creates coordinate operations from parameter values, or infers operations from source and target CRS.
  * This factory provides two groups of methods:
  *
  * <ul>
@@ -48,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  *     <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod)}</li>
  *   </ul></li>
  *   <li>Creating new instances from user supplied parameters:<ul>
- *     <li>{@link #createOperationMethod(Map, Integer, Integer, ParameterDescriptorGroup)}</li>
+ *     <li>{@link #createOperationMethod(Map, ParameterDescriptorGroup)}</li>
  *     <li>{@link #createDefiningConversion(Map, OperationMethod, ParameterValueGroup)}</li>
  *     <li>{@link #createConcatenatedOperation(Map, CoordinateOperation[])}</li>
  *   </ul></li>
@@ -174,11 +172,8 @@ public interface CoordinateOperationFactory extends ObjectFactory {
     /**
      * Creates an operation method from a set of properties and a descriptor group.
      * This factory method allows the creation of arbitrary {@code OperationMethod} instances.
-     * However, some implementations may have a collection of build-in operation methods.
-     * For obtaining such build-in instance, see {@link #getOperationMethod(String)} instead.
-     *
-     * <p>Some available properties are {@linkplain ObjectFactory listed there}.
-     * Additionally, the following properties are understood by this constructor:</p>
+     * Some available properties are {@linkplain ObjectFactory listed there}.
+     * Additionally, the following properties should be accepted by this constructor:
      *
      * <table class="ogc">
      *   <caption>Keys for additional standard properties</caption>
@@ -186,18 +181,18 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *     <th>Property name</th>
      *     <th>Value type</th>
      *     <th>Returned by</th>
-     *   </tr>
-     *   <tr>
+     *   </tr><tr>
      *     <td>{@value org.opengis.referencing.operation.OperationMethod#FORMULA_KEY}</td>
      *     <td>{@link Formula}</td>
      *     <td>{@link OperationMethod#getFormula()}</td>
      *   </tr>
      * </table>
      *
-     * @param  properties       set of properties. Shall contain at least {@code "name"}.
-     * @param  sourceDimension  number of dimensions in the source CRS of the operation method, or {@code null}.
-     * @param  targetDimension  number of dimensions in the target CRS of the operation method, or {@code null}.
-     * @param  parameters       a description of the parameters for the operation method.
+     * Note that implementations may have a build-in list of predefined operation methods.
+     * For obtaining a build-in instance, see {@link #getOperationMethod(String)} instead.
+     *
+     * @param  properties  set of properties. Shall contain at least {@code "name"}.
+     * @param  parameters  a description of the parameters for the operation method.
      * @return the operation method.
      * @throws FactoryException if the object creation failed.
      *
@@ -206,12 +201,8 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   method for creating such object.
      *
      * @since 3.1
-     *
-     * @todo Remove dimension arguments.
      */
     OperationMethod createOperationMethod(Map<String,?> properties,
-                                          Integer  sourceDimension,
-                                          Integer  targetDimension,
                                           ParameterDescriptorGroup parameters) throws FactoryException;
 
     /**

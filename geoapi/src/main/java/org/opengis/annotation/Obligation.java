@@ -17,6 +17,7 @@
  */
 package org.opengis.annotation;
 
+import java.util.Optional;
 import org.opengis.util.ControlledVocabulary;
 
 import static org.opengis.annotation.Specification.*;
@@ -86,27 +87,13 @@ public enum Obligation implements ControlledVocabulary {
     }
 
     /**
-     * Returns the UML identifier for this enumeration constant, or {@code null} if none.
+     * Returns the UML identifier for this enumeration constant.
      *
      * @since 3.1
      */
     @Override
-    public String identifier() {
-        return identifier;
-    }
-
-    /**
-     * Returns the programmatic name of this constant together with its {@linkplain #identifier() identifier}, if any.
-     *
-     * @since 3.1
-     */
-    @Override
-    public String[] names() {
-        if (identifier != null) {
-            return new String[] {name(), identifier};
-        } else {
-            return new String[] {name()};
-        }
+    public Optional<String> identifier() {
+        return Optional.ofNullable(identifier);
     }
 
     /**

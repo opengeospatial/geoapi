@@ -85,7 +85,7 @@ public final class PixelInCell extends CodeList<PixelInCell> {
     @Override
     public String[] names() {
         if (this == CELL_CENTER) {
-            return new String[] {name(), identifier(), "cell centre"};
+            return new String[] {name(), "cell center", "cell centre"};
         }
         return super.names();
     }

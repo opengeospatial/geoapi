@@ -365,7 +365,7 @@ public final class CharacterSet extends CodeList<CharacterSet> {
         if (charset.equals(name)) {
             return super.names();
         }
-        final String identifier = identifier();
+        final String identifier = identifier().orElse(null);
         if (identifier != null && !identifier.equals(name)) {
             return new String[] {name, identifier, charset};
         } else {

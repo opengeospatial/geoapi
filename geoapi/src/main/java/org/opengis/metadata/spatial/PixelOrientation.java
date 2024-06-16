@@ -17,7 +17,6 @@
  */
 package org.opengis.metadata.spatial;
 
-
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.geoapi.internal.Vocabulary;

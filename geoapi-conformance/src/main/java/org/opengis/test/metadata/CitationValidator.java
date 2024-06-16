@@ -128,8 +128,8 @@ public class CitationValidator extends MetadataValidator {
      */
     private static void assertOrdered(final DateType t1, final Date d1, final DateType t2, final Date d2) {
         if (d1 != null && d2.before(d1)) {
-            fail("The ‘" + t2.identifier() + "’ date (" + d2 + ") shall be equal or after "
-               + "the ‘" + t1.identifier() + "’ date (" + d1 + ").");
+            fail("The ‘" + t2.identifier().orElse("<?>") + "’ date (" + d2 + ") shall be equal or after "
+               + "the ‘" + t1.identifier().orElse("<?>") + "’ date (" + d1 + ").");
         }
     }
 

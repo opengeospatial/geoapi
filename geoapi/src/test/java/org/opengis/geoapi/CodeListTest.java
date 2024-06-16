@@ -134,7 +134,7 @@ public final class CodeListTest {
     public void testCharacterSet() {
         final CodeList<CharacterSet> code = CharacterSet.UTF_8;
         assertEquals ("UTF_8", code.name());
-        assertEquals ("utf8",  code.identifier());
+        assertEquals ("utf8",  code.identifier().orElseThrow());
         assertSame   (code, CharacterSet.valueOf("UTF_8"));
         assertNotSame(code, CharacterSet.valueOf("UTF_7"));
     }
