@@ -17,6 +17,7 @@
  */
 package org.opengis.referencing.cs;
 
+import java.util.Optional;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.geoapi.internal.Vocabulary;
@@ -133,7 +134,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Rose
      */
     @UML(identifier="south", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection SOUTH = new AxisDirection("SOUTH");
+    public static final AxisDirection SOUTH = new AxisDirection("SOUTH", NORTH);
 
     /**
      * Axis positive direction is approximately south-south-west.
@@ -141,7 +142,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Rose
      */
     @UML(identifier="southSouthWest", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection SOUTH_SOUTH_WEST = new AxisDirection("SOUTH_SOUTH_WEST");
+    public static final AxisDirection SOUTH_SOUTH_WEST = new AxisDirection("SOUTH_SOUTH_WEST", NORTH_NORTH_EAST);
 
     /**
      * Axis positive direction is approximately south-west.
@@ -149,7 +150,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Rose
      */
     @UML(identifier="southWest", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection SOUTH_WEST = new AxisDirection("SOUTH_WEST");
+    public static final AxisDirection SOUTH_WEST = new AxisDirection("SOUTH_WEST", NORTH_EAST);
 
     /**
      * Axis positive direction is approximately west-south-west.
@@ -157,7 +158,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Rose
      */
     @UML(identifier="westSouthWest", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection WEST_SOUTH_WEST = new AxisDirection("WEST_SOUTH_WEST");
+    public static final AxisDirection WEST_SOUTH_WEST = new AxisDirection("WEST_SOUTH_WEST", EAST_NORTH_EAST);
 
     /**
      * Axis positive direction is 3π/2 radians clockwise from north.
@@ -166,7 +167,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Rose
      */
     @UML(identifier="west", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection WEST = new AxisDirection("WEST");
+    public static final AxisDirection WEST = new AxisDirection("WEST", EAST);
 
     /**
      * Axis positive direction is approximately west-north-west.
@@ -174,7 +175,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Rose
      */
     @UML(identifier="westNorthWest", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection WEST_NORTH_WEST = new AxisDirection("WEST_NORTH_WEST");
+    public static final AxisDirection WEST_NORTH_WEST = new AxisDirection("WEST_NORTH_WEST", EAST_SOUTH_EAST);
 
     /**
      * Axis positive direction is approximately north-west.
@@ -182,7 +183,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Rose
      */
     @UML(identifier="northWest", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection NORTH_WEST = new AxisDirection("NORTH_WEST");
+    public static final AxisDirection NORTH_WEST = new AxisDirection("NORTH_WEST", SOUTH_EAST);
 
     /**
      * Axis positive direction is approximately north-north-west.
@@ -190,7 +191,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Rose
      */
     @UML(identifier="northNorthWest", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection NORTH_NORTH_WEST = new AxisDirection("NORTH_NORTH_WEST");
+    public static final AxisDirection NORTH_NORTH_WEST = new AxisDirection("NORTH_NORTH_WEST", SOUTH_SOUTH_EAST);
 
     /**
      * Axis positive direction is up relative to gravity.
@@ -208,7 +209,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Vertical
      */
     @UML(identifier="down", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection DOWN = new AxisDirection("DOWN");
+    public static final AxisDirection DOWN = new AxisDirection("DOWN", UP);
 
     /**
      * Axis positive direction is toward geocentric <var>X</var>.
@@ -254,7 +255,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Image
      */
     @UML(identifier="columnNegative", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection COLUMN_NEGATIVE = new AxisDirection("COLUMN_NEGATIVE");
+    public static final AxisDirection COLUMN_NEGATIVE = new AxisDirection("COLUMN_NEGATIVE", COLUMN_POSITIVE);
 
     /**
      * Axis positive direction is towards higher pixel row.
@@ -270,7 +271,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Image
      */
     @UML(identifier="rowNegative", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection ROW_NEGATIVE = new AxisDirection("ROW_NEGATIVE");
+    public static final AxisDirection ROW_NEGATIVE = new AxisDirection("ROW_NEGATIVE", ROW_POSITIVE);
 
     /**
      * Axis positive direction is right in display.
@@ -286,7 +287,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Display
      */
     @UML(identifier="displayLeft", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection DISPLAY_LEFT = new AxisDirection("DISPLAY_LEFT");
+    public static final AxisDirection DISPLAY_LEFT = new AxisDirection("DISPLAY_LEFT", DISPLAY_RIGHT);
 
     /**
      * Axis positive direction is towards top of approximately vertical display surface.
@@ -302,7 +303,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Display
      */
     @UML(identifier="displayDown", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection DISPLAY_DOWN = new AxisDirection("DISPLAY_DOWN");
+    public static final AxisDirection DISPLAY_DOWN = new AxisDirection("DISPLAY_DOWN", DISPLAY_UP);
 
     /**
      * Axis positive direction is forward.
@@ -322,7 +323,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @since 3.1
      */
     @UML(identifier="aft", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection AFT = new AxisDirection("AFT");
+    public static final AxisDirection AFT = new AxisDirection("AFT", FORWARD);
 
     /**
      * Axis positive direction is port.
@@ -342,7 +343,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @since 3.1
      */
     @UML(identifier="starboard", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection STARBOARD = new AxisDirection("STARBOARD");
+    public static final AxisDirection STARBOARD = new AxisDirection("STARBOARD", PORT);
 
     /**
      * Axis positive direction is clockwise from a specified direction.
@@ -360,7 +361,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @since 3.1
      */
     @UML(identifier="counterClockwise", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection COUNTER_CLOCKWISE = new AxisDirection("COUNTER_CLOCKWISE");
+    public static final AxisDirection COUNTER_CLOCKWISE = new AxisDirection("COUNTER_CLOCKWISE", CLOCKWISE);
 
     /**
      * Axis positive direction is towards the object.
@@ -378,7 +379,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @since 3.1
      */
     @UML(identifier="awayFrom", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection AWAY_FROM = new AxisDirection("AWAY_FROM");
+    public static final AxisDirection AWAY_FROM = new AxisDirection("AWAY_FROM", TOWARDS);
 
     /**
      * Axis positive direction is towards the future.
@@ -396,7 +397,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * @category Temporal
      */
     @UML(identifier="past", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final AxisDirection PAST = new AxisDirection("PAST");
+    public static final AxisDirection PAST = new AxisDirection("PAST", FUTURE);
 
     /**
      * Axis positive direction is unspecified.
@@ -406,6 +407,14 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      */
     @UML(identifier="unspecified", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection UNSPECIFIED = new AxisDirection("UNSPECIFIED");
+    static {
+        UNSPECIFIED.opposite = UNSPECIFIED;
+    }
+
+    /**
+     * The direction of negative coordinate values, or {@code null} if unknown.
+     */
+    private AxisDirection opposite;
 
     /**
      * Constructs an element of the given name.
@@ -414,6 +423,31 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      */
     private AxisDirection(final String name) {
         super(name);
+    }
+
+    /**
+     * Constructs an element of the given name.
+     *
+     * @param name  the name of the new element. This name shall not be in use by another element of this type.
+     * @param opposite  the direction of negative coordinate values.
+     */
+    private AxisDirection(final String name, final AxisDirection opposite) {
+        super(name);
+        this.opposite = opposite;
+        opposite.opposite = this;
+    }
+
+    /**
+     * Returns the direction of negative coordinate values.
+     * For example, the opposite of {@link #NORTH} is {@link #SOUTH} and the opposite of {@link #FUTURE} is {@link #PAST}.
+     * The opposite of the opposite (if present) is always {@code this}.
+     *
+     * @return direction of negative coordinate values.
+     *
+     * @since 3.1
+     */
+    public Optional<AxisDirection> opposite() {
+        return Optional.ofNullable(opposite);
     }
 
     /**

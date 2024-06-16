@@ -30,14 +30,6 @@ sed "s/geoapi\.pending/geoapi/g" geoapi-examples/src/main/java/module-info.java 
 sed "s/geoapi\.pending/geoapi/g" geoapi-conformance/src/main/java/module-info.java > target/src/org.opengis.geoapi.conformance/module-info.java
 
 #
-# Pending classes that are used by `ReferencingTestCase`.
-#
-cp --link geoapi-pending/src/main/java/org/opengis/temporal/Period.java  \
-          geoapi-pending/src/main/java/org/opengis/temporal/Separation.java  \
-          geoapi-pending/src/main/java/org/opengis/temporal/TemporalGeometricPrimitive.java  \
-          target/src/org.opengis.geoapi/org/opengis/temporal/
-
-#
 # Build the list of source files, excluding non-exported packages.
 #
 find target/src/ -name "*.java" \

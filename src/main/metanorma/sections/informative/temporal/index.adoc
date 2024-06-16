@@ -39,16 +39,14 @@ Those replacements are suggestions, GeoAPI generally does not mandate this mappi
 |`TM_ClockTime`              |`java.time.LocalTime`               |
 |`TM_DateAndTime`            |`java.time.LocalDateTime`           |
 |`TM_Duration`               |`java.time.temporal.TemporalAmount` |
-|`TM_Instant`                |`java.time.Instant`                 |
 |`TM_IntervalLength`         |`java.time.Duration`                |
 |`TM_OrdinalEra`             |`java.time.chrono.Era`              |
 |`TM_PeriodDuration`         |`java.time.Period`                  |
 |`TM_TemporalPosition`       |`java.time.temporal.Temporal`       |`datetime`
 |=============================================================================
 
-Above tables are not a one-to-one relationship.
-For example, the ISO 19108 `TM_Instant` type is actually much more generic than the `java.time.Instant` class.
-This is because `TM_Instant` can contain (indirectly) a `TM_TemporalPosition`,
-which is the base type of Julian day, ordinal position, temporal coordinate value and more.
-Therefore, above tables suggest mappings suitable for the majority of cases,
-but the GeoAPI interfaces actually declare more generic types than the above-listed ones.
+Note that despite their similar names,
+`java.time.Instant` is not equivalent to `TM_Instant` and
+`java.time.Period` is not equivalent to `TM_Period`.
+
+include::departures.adoc[]

@@ -17,6 +17,7 @@
  */
 package org.opengis.filter;
 
+import java.util.Optional;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.geoapi.internal.Vocabulary;
@@ -27,6 +28,8 @@ import static org.opengis.annotation.Specification.ISO_19143;
 
 /**
  * Nature of the temporal operation between two geometries.
+ * Values are based on the 13 temporal relationships identified by Allen (1993),
+ * with the addition of {@link #ANY_INTERACTS}.
  *
  * @author  Chris Dillard (SYS Technologies)
  * @author  Martin Desruisseaux (Geomatys)
@@ -43,60 +46,134 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
 
     /**
      * Operator evaluates to {@code true} if the first expression is after the second.
+     * In pseudo-code:
+     * <ul>
+     *   <li>When comparing two instants: {@code self > other}</li>
+     *   <li>When comparing a period with an instant: {@code self.begin > other}</li>
+     *   <li>When comparing two periods: {@code self.begin > other.end}</li>
+     * </ul>
      */
     @UML(identifier="After", obligation=CONDITIONAL, specification=ISO_19143)
     public static final TemporalOperatorName AFTER = new TemporalOperatorName("AFTER");
 
     /**
      * Operator evaluates to {@code true} if the first expression is before the second.
+     * In pseudo-code:
+     * <ul>
+     *   <li>When comparing two instants: {@code self < other}</li>
+     *   <li>When comparing a period with an instant: {@code self.end < other}</li>
+     *   <li>When comparing two periods: {@code self.end < other.begin}</li>
+     * </ul>
      */
     @UML(identifier="Before", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName BEFORE = new TemporalOperatorName("BEFORE");
+    public static final TemporalOperatorName BEFORE = new TemporalOperatorName("BEFORE", AFTER);
 
     /**
      * Operator evaluates to {@code true} if the first expression begins at the second.
+     * In pseudo-code:
+     * <ul>
+     *   <li>When comparing two periods: {@code self.begin = other.begin} AND {@code self.end < other.end}</li>
+     * </ul>
      */
     @UML(identifier="Begins", obligation=CONDITIONAL, specification=ISO_19143)
     public static final TemporalOperatorName BEGINS = new TemporalOperatorName("BEGINS");
 
     /**
      * Operator evaluates to {@code true} if the first expression begun by the second.
+     * In pseudo-code:
+     * <ul>
+     *   <li>When comparing a period with an instant: {@code self.begin = other}</li>
+     *   <li>When comparing two periods: {@code self.begin = other.begin} AND {@code self.end > other.end}</li>
+     * </ul>
      */
     @UML(identifier="BegunBy", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName BEGUN_BY = new TemporalOperatorName("BEGUN_BY");
+    public static final TemporalOperatorName BEGUN_BY = new TemporalOperatorName("BEGUN_BY", BEGINS);
 
     /**
      * Operator evaluates to {@code true} if the first expression is contained by the second.
+     * In pseudo-code:
+     * <ul>
+     *   <li>When comparing a period with an instant: {@code self.begin < other} AND {@code self.end > other}</li>
+     *   <li>When comparing two periods: {@code self.begin < other.begin} AND {@code self.end > other.end}</li>
+     * </ul>
      */
     @UML(identifier="TContains", obligation=CONDITIONAL, specification=ISO_19143)
     public static final TemporalOperatorName CONTAINS = new TemporalOperatorName("CONTAINS");
 
     /**
      * Operator evaluates to {@code true} if the first expression is during the second.
+     * In pseudo-code:
+     * <ul>
+     *   <li>When comparing two periods: {@code self.begin > other.begin} AND {@code self.end < other.end}</li>
+     * </ul>
      */
     @UML(identifier="During", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName DURING = new TemporalOperatorName("DURING");
+    public static final TemporalOperatorName DURING = new TemporalOperatorName("DURING", CONTAINS);
 
     /**
      * Operator evaluates to {@code true} if the first expression is equal to the second.
+     * In pseudo-code:
+     * <ul>
+     *   <li>When comparing two instants: {@code self = other}</li>
+     *   <li>When comparing two periods: {@code self.begin = other.begin} AND {@code self.end = other.end}</li>
+     * </ul>
      */
     @UML(identifier="TEquals", obligation=CONDITIONAL, specification=ISO_19143)
     public static final TemporalOperatorName EQUALS = new TemporalOperatorName("EQUALS");
+    static {
+        EQUALS.reversed = EQUALS;
+    }
 
     /**
      * Operator evaluates to {@code true} if the first expression overlaps the second.
+     * In pseudo-code:
+     * <ul>
+     *   <li>When comparing two periods: {@code self.begin < other.begin}
+     *       AND {@code self.end > other.begin}
+     *       AND {@code self.end < other.end}</li>
+     * </ul>
      */
     @UML(identifier="TOverlaps", obligation=CONDITIONAL, specification=ISO_19143)
     public static final TemporalOperatorName OVERLAPS = new TemporalOperatorName("OVERLAPS");
 
     /**
      * Operator evaluates to {@code true} if the first expression meets the second.
+     * In pseudo-code:
+     * <ul>
+     *   <li>When comparing two periods: {@code self.end = other.begin}</li>
+     * </ul>
      */
     @UML(identifier="Meets", obligation=CONDITIONAL, specification=ISO_19143)
     public static final TemporalOperatorName MEETS = new TemporalOperatorName("MEETS");
 
     /**
+     * Operator evaluates to {@code true} if the first expression is overlapped by the second.
+     * In pseudo-code:
+     * <ul>
+     *   <li>When comparing two periods: {@code self.begin > other.begin}
+     *       AND {@code self.begin < other.end}
+     *       AND {@code self.end > other.end}</li>
+     * </ul>
+     */
+    @UML(identifier="OverlappedBy", obligation=CONDITIONAL, specification=ISO_19143)
+    public static final TemporalOperatorName OVERLAPPED_BY = new TemporalOperatorName("OVERLAPPED_BY", OVERLAPS);
+
+    /**
+     * Operator evaluates to {@code true} if the first expression is met by the second.
+     * In pseudo-code:
+     * <ul>
+     *   <li>When comparing two periods: {@code self.begin = other.end}</li>
+     * </ul>
+     */
+    @UML(identifier="MetBy", obligation=CONDITIONAL, specification=ISO_19143)
+    public static final TemporalOperatorName MET_BY = new TemporalOperatorName("MET_BY", MEETS);
+
+    /**
      * Operator evaluates to {@code true} if the first expression ends at the second.
+     * In pseudo-code:
+     * <ul>
+     *   <li>When comparing two periods: {@code self.begin > other.begin} AND {@code self.end = other.end}</li>
+     * </ul>
      */
     /*
      * This value is missing from UML and table 4 of ISO 19143:2010 but is present
@@ -106,22 +183,15 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
     public static final TemporalOperatorName ENDS = new TemporalOperatorName("ENDS");
 
     /**
-     * Operator evaluates to {@code true} if the first expression is overlapped by the second.
-     */
-    @UML(identifier="OverlappedBy", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName OVERLAPPED_BY = new TemporalOperatorName("OVERLAPPED_BY");
-
-    /**
-     * Operator evaluates to {@code true} if the first expression is met by the second.
-     */
-    @UML(identifier="MetBy", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName MET_BY = new TemporalOperatorName("MET_BY");
-
-    /**
      * Operator evaluates to {@code true} if the first expression is ended by the second.
+     * In pseudo-code:
+     * <ul>
+     *   <li>When comparing a period with an instant: {@code self.end = other}</li>
+     *   <li>When comparing two periods: {@code self.begin < other.begin} AND {@code self.end = other.end}</li>
+     * </ul>
      */
     @UML(identifier="EndedBy", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName ENDED_BY = new TemporalOperatorName("ENDED_BY");
+    public static final TemporalOperatorName ENDED_BY = new TemporalOperatorName("ENDED_BY", ENDS);
 
     /**
      * Shortcut operator semantically equivalent to NOT (Before OR Meets OR MetBy OR After).
@@ -129,6 +199,15 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      */
     @UML(identifier="AnyInteracts", obligation=CONDITIONAL, specification=ISO_19143)
     public static final TemporalOperatorName ANY_INTERACTS = new TemporalOperatorName("ANY_INTERACTS");
+    static {
+        ANY_INTERACTS.reversed = ANY_INTERACTS;
+    }
+
+    /**
+     * The temporal operator which produces the same results than this operator when the argument order is reversed.
+     * May be {@code null} if unknown.
+     */
+    private TemporalOperatorName reversed;
 
     /**
      * Constructs an element of the given name.
@@ -137,6 +216,29 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      */
     private TemporalOperatorName(final String name) {
         super(name);
+    }
+
+    /**
+     * Constructs an element of the given name.
+     *
+     * @param name     the name of the new element. This name shall not be in use by another element of this type.
+     * @param reverse  the temporal operator which produces the same results when the argument order is reversed.
+     */
+    private TemporalOperatorName(final String name, final TemporalOperatorName reverse) {
+        super(name);
+        this.reversed = reverse;
+        reverse.reversed = this;
+    }
+
+    /**
+     * Returns the operator which produces the same results than this operator when the argument order is reversed.
+     * For example, the reverse of {@link #BEFORE} is {@link #AFTER} and the reverse of {@link #CONTAINS} is {@link #DURING}.
+     * The reverse of the reverse (if present) is always {@code this}.
+     *
+     * @return the operator when argument order is reversed.
+     */
+    public Optional<TemporalOperatorName> reversed() {
+        return Optional.ofNullable(reversed);
     }
 
     /**

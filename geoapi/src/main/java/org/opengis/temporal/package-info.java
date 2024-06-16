@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2009-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2009-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -18,12 +18,13 @@
 
 /**
  * Temporal position and duration.
- * The content of this package will be developed in future GeoAPI releases.
+ * The current GeoAPI version contains only the minimal amount of ISO 19108 (Temporal schema)
+ * interfaces required for supporting metadata and referencing by coordinates.
  *
  * <h2>Integration with other standards</h2>
- * This package is derived from ISO 19108:2002.
+ * This package is derived from ISO 19108:2002 (Temporal schema).
  * But that standard overlaps with ISO 19111:2019 and with the {@link java.time} standard API.
- * In other to provide a more harmonized <abbr>API</abbr>, GeoAPI omits the interfaces listed below.
+ * In order to provide a more harmonized <abbr>API</abbr>, GeoAPI omits the interfaces listed below.
  * The column on the right side shows the closest matches in other standards,
  * but the actual type used by GeoAPI is generally a parent type for allowing flexibility.
  *
@@ -40,7 +41,6 @@
  *   <tr><td>{@code TM_Coordinate}</td>             <td>Combination of {@link org.opengis.geometry.DirectPosition} and {@link org.opengis.referencing.crs.TemporalCRS}</td></tr>
  *   <tr><td>{@code TM_DateAndTime}</td>            <td>{@link java.time.LocalDateTime}</td></tr>
  *   <tr><td>{@code TM_Duration}</td>               <td>{@link java.time.temporal.TemporalAmount}</td></tr>
- *   <tr><td>{@code TM_Instant}</td>                <td>{@link java.time.Instant}</td></tr>
  *   <tr><td>{@code TM_IntervalLength}</td>         <td>{@link java.time.Duration}</td></tr>
  *   <tr><td>{@code TM_OrdinalEra}</td>             <td>{@link java.time.chrono.Era}</td></tr>
  *   <tr><td>{@code TM_OrdinalPosition}</td>        <td>Combination of {@link org.opengis.geometry.DirectPosition} and {@link org.opengis.referencing.crs.TemporalCRS}</td></tr>

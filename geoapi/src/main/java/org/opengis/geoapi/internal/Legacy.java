@@ -40,6 +40,7 @@ import org.opengis.metadata.extent.Extent;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ObjectDomain;
 import org.opengis.util.InternationalString;
+import org.opengis.temporal.TemporalPrimitive;
 
 
 /**
@@ -78,6 +79,19 @@ public final class Legacy {
     public static Extent getDomainOfValidity(final Collection<ObjectDomain> domains) {
         if (domains == null) return null;
         return domains.stream().map(ObjectDomain::getDomainOfValidity).filter(Objects::nonNull).findFirst().orElse(null);
+    }
+
+    /**
+     * Converts a temporal primitive to a legacy {@link Date} object.
+     * See {@link #toDate(Temporal)} for more information.
+     *
+     * @param  t  the temporal primitive to convert, or {@code null}.
+     * @return the given temporal primitive as a date, or {@code null} if none.
+     * @throws DateTimeException if this method does not know how to convert the given temporal object.
+     * @throws ArithmeticException if numeric overflow occurs.
+     */
+    public static Date toDate(final TemporalPrimitive t) {
+        return (t instanceof org.opengis.temporal.Instant) ? toDate(((org.opengis.temporal.Instant) t).getPosition()) : null;
     }
 
     /**

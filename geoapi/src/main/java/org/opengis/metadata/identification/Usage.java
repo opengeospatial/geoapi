@@ -60,7 +60,7 @@ public interface Usage {
     @Deprecated(since="3.1")
     default Date getUsageDate() {
         for (TemporalPrimitive t : getUsageDates()) {
-            Date p = Legacy.toDate(t.position().orElse(null));
+            Date p = Legacy.toDate(t);
             if (p != null) {
                 return p;
             }

@@ -21,14 +21,19 @@ import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.geoapi.internal.Vocabulary;
 
-import static org.opengis.annotation.Specification.*;
+import static org.opengis.annotation.Specification.ISO_19108;
+import static org.opengis.annotation.Obligation.CONDITIONAL;
+
 
 /**
- * Provides 4 values for indeterminate positions.
+ * Indications that a temporal position is not precisely known.
  *
- * @author Stephane Fellah (Image Matters)
- * @author Alexander Petkov
- * @author Martin Desruisseaux (IRD)
+ * @author  ISO 19108 (for abstract model and documentation)
+ * @author  Stephane Fellah (Image Matters)
+ * @author  Alexander Petkov
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @since   3.1
+ * @version 3.1
  */
 @Vocabulary(capacity=4)
 @UML(identifier="TM_IndeterminateValue", specification=ISO_19108)
@@ -39,34 +44,34 @@ public final class IndeterminateValue extends CodeList<IndeterminateValue> {
     private static final long serialVersionUID = 1399031922917754577L;
 
     /**
-     * Shall be used with the parent class {@link TemporalPosition} to indicate that
-     * not specific value for temporal position is provided.
+     * Indicates that no specific value for temporal position is provided.
      */
+    @UML(identifier="unknown", obligation=CONDITIONAL, specification=ISO_19108)
     public static final IndeterminateValue UNKNOWN = new IndeterminateValue("UNKNOWN");
 
     /**
-     * Shall be used with any subtype of {@link TemporalPosition} to indicate that
-     * the specified value shall be replaced with the current temporal position whenever the value is accessed.
+     * Indicates that the specified value shall be replaced with the
+     * current temporal position whenever the value is accessed.
      */
+    @UML(identifier="now", obligation=CONDITIONAL, specification=ISO_19108)
     public static final IndeterminateValue NOW = new IndeterminateValue("NOW");
 
     /**
-     * Shall be used with any subtype of {@link TemporalPosition} to indicate that the actual
-     * temporal position is unknown, but it is known to be before the specified value.
+     * Indicate that the actual temporal position is unknown, but it is known to be before the specified value.
      */
+    @UML(identifier="before", obligation=CONDITIONAL, specification=ISO_19108)
     public static final IndeterminateValue BEFORE = new IndeterminateValue("BEFORE");
 
     /**
-     * Shall be used with any subtype of {@link TemporalPosition} to indicate that the actual
-     * temporal position is unknown, but it is known to be after the specified value.
+     * Indicates that the actual temporal position is unknown, but it is known to be after the specified value.
      */
+    @UML(identifier="after", obligation=CONDITIONAL, specification=ISO_19108)
     public static final IndeterminateValue AFTER = new IndeterminateValue("AFTER");
 
     /**
      * Constructs an element of the given name.
      *
-     * @param  name  the name of the new element.
-     *        This name must not be in use by another element of this type.
+     * @param name  the name of the new element. This name shall not be in use by another element of this type.
      */
     private IndeterminateValue(final String name) {
         super(name);

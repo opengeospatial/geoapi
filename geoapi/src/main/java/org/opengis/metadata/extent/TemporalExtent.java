@@ -35,6 +35,7 @@ import static org.opengis.annotation.Specification.*;
 public interface TemporalExtent {
     /**
      * Period for the content of the resource.
+     * Should be an instance of {@link org.opengis.temporal.Period}.
      *
      * @return the period for the content.
      */
