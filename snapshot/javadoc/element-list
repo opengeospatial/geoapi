@@ -1,5 +1,6 @@
 module:org.opengis.geoapi
 org.opengis.annotation
+org.opengis.coordinate
 org.opengis.feature
 org.opengis.feature.type
 org.opengis.filter
@@ -28,6 +29,8 @@ org.opengis.referencing.operation
 org.opengis.temporal
 org.opengis.util
 module:org.opengis.geoapi.conformance
+org.opengis.geoapi
+org.opengis.geoapi.schema
 org.opengis.test
 org.opengis.test.coverage.image
 org.opengis.test.dataset
@@ -36,9 +39,5 @@ org.opengis.test.metadata
 org.opengis.test.referencing
 org.opengis.test.report
 org.opengis.test.util
-org.opengis.test.wkt
 module:org.opengis.geoapi.example
-org.opengis.example.geometry
-org.opengis.example.metadata
-org.opengis.example.parameter
-org.opengis.example.referencing
+org.opengis.example
