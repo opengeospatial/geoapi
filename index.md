@@ -34,5 +34,3 @@ Clients can use the API without concern for the particular implementation which 
 In order to use GeoAPI, developers must select a third-party implementation.
 Examples about how to use GeoAPI with some third-party libraries are available
 in [Java](java/examples/index.html) and [Python](python/examples/index.html).
-There is also some more examples about how to [implement and test](java/examples/index.html)
-a new GeoAPI implementation.
