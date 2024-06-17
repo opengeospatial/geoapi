@@ -88,7 +88,7 @@ defaults:
         - text: "Developments"
           link: "/snapshot/index.html"
         - text: Specification draft
-          link: "https://opengeospatial.github.io/ogcna-auto-review/23-016.html"
+          link: "https://docs.ogc.org/DRAFTS/23-016.html"
           is_external: true
         - text: "Java API preview"
           link: "/snapshot/javadoc/index.html"

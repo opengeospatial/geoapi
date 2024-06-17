@@ -35,7 +35,7 @@ Furthermore each branch contains the following directories:
 
 All documents listed below are snapshots and may change at any time before release.
 
-* [Specification draft](https://opengeospatial.github.io/ogcna-auto-review/23-016.html)
+* [Specification draft](https://docs.ogc.org/DRAFTS/23-016.html)
 * [Issues tracker on GitHub](https://github.com/opengeospatial/geoapi/issues)
 * **Java**
   * [Java ↔︎ OGC/ISO mapping](javadoc/content.html)
@@ -57,4 +57,4 @@ But most of the work is done publicly on the GitHub repository.
 GeoAPI has a [wiki restricted to OGC members](https://portal.opengeospatial.org/twiki/bin/view/Member/GeoAPI),
 but it is used mostly for OGC-specific instructions about deployment to Maven Central.
 The [public wiki on GitHub](https://github.com/opengeospatial/geoapi/wiki) is used for GeoAPI roadmap.
-Specification draft is [available online](https://opengeospatial.github.io/ogcna-auto-review/23-016.html).
+Specification draft is [available online](https://docs.ogc.org/DRAFTS/23-016.html).
