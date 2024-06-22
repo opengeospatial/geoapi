@@ -15,12 +15,11 @@
  *    See the License for the specific language governing permissions and
  *    limitations under the License.
  */
-package org.opengis.referencing.operation;
+package org.opengis.referencing;
 
 import java.util.Set;
 import org.opengis.util.FactoryException;
-import org.opengis.referencing.AuthorityFactory;
-import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.datum.DatumEnsemble;
 import org.opengis.annotation.UML;
@@ -29,7 +28,18 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Services supported by the coordinate operation packages.
+ * Services supported by the referencing packages.
+ * The services include finding a <abbr>CRS</abbr> from an authority code,
+ * or finding a set of coordinate operations between two <abbr>CRS</abbr>s.
+ * Those operations generally require the use of a geodetic registry.
+ *
+ * <h2>Getting an instance</h2>
+ * Implementers are encouraged to declare their implementations in their {@code module-info} file.
+ * Then, users can discover an implementation at runtime using {@link java.util.ServiceLoader} like below:
+ *
+ * {@snippet lang="java" :
+ * RegisterOperations services = ServiceLoader.load(RegisterOperations.class).findFirst().orElseThrow();
+ * }
  *
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (Geomatys)

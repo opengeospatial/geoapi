@@ -280,7 +280,7 @@ public enum Content {
                org.opengis.referencing.operation   .MathTransformFactory                .class,
                org.opengis.referencing.operation   .CoordinateOperationFactory          .class,
                org.opengis.referencing.operation   .CoordinateOperationAuthorityFactory .class,
-               org.opengis.referencing.operation   .RegisterOperations                  .class,
+               org.opengis.referencing             .RegisterOperations                  .class,
                org.opengis.filter                  .Expression                          .class,
                org.opengis.filter                  .Literal                             .class,
                org.opengis.filter                  .ValueReference                      .class,
