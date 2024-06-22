@@ -21,8 +21,9 @@ import java.util.Map;
 
 import org.opengis.annotation.UML;
 import org.opengis.util.FactoryException;
-import org.opengis.util.NoSuchIdentifierException;
+import org.opengis.util.UnimplementedServiceException;
 import org.opengis.referencing.ObjectFactory;
+import org.opengis.referencing.RegisterOperations;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -36,21 +37,16 @@ import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Creates coordinate operations from parameter values, or infers operations from source and target CRS.
- * This factory provides two groups of methods:
+ * Creates coordinate operations from parameter values. {@code CoordinateOperationFactory}
+ * allows applications to make {@linkplain CoordinateOperation coordinate operations}
+ * that cannot be created by a {@link CoordinateOperationAuthorityFactory}.
+ * This factory is very flexible, whereas the authority factory is easier to use.
  *
- * <ul>
- *   <li>Finding instances provided by the implementation:<ul>
- *     <li>{@link #getOperationMethod(String)}</li>
- *     <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)}</li>
- *     <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod)}</li>
- *   </ul></li>
- *   <li>Creating new instances from user supplied parameters:<ul>
- *     <li>{@link #createOperationMethod(Map, ParameterDescriptorGroup)}</li>
- *     <li>{@link #createDefiningConversion(Map, OperationMethod, ParameterValueGroup)}</li>
- *     <li>{@link #createConcatenatedOperation(Map, CoordinateOperation[])}</li>
- *   </ul></li>
- * </ul>
+ * <h2>Default methods</h2>
+ * All {@code create(…)} methods in this interface are optional.
+ * If a method is not overridden by the implementer,
+ * the default is to throw an {@link UnimplementedServiceException}
+ * with a message saying that the type or service is not supported.
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
@@ -67,9 +63,8 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   <li>If no operation exists, then the exception is thrown.</li>
      * </ul>
      *
-     * Implementations may try to
-     * {@linkplain CoordinateOperationAuthorityFactory#createFromCoordinateReferenceSystemCodes
-     * query an authority factory} first, and compute the operation next if no operation from
+     * Implementations may try to query an authority factory first,
+     * and compute the operation next if no operation from
      * {@code source} to {@code target} code was explicitly defined by the authority.
      *
      * @param  sourceCRS  input coordinate reference system.
@@ -78,11 +73,18 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @throws OperationNotFoundException if no operation path was found from {@code sourceCRS}
      *         to {@code targetCRS}.
      * @throws FactoryException if the operation creation failed for some other reason.
+     *
+     * @deprecated Moved to {@link RegisterOperations#findCoordinateOperations(CoordinateReferenceSystem,
+     * CoordinateReferenceSystem) RegisterOperations}. The latter is defined by the ISO 19111:2019 standard.
+     * Another reason is that this method requires the use of a geodetic registry.
      */
+    @Deprecated(since = "3.1")
     @UML(identifier="createFromCoordinateSystems", specification=OGC_01009)
-    CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
-                                        CoordinateReferenceSystem targetCRS)
-            throws FactoryException;
+    default CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
+                                                CoordinateReferenceSystem targetCRS) throws FactoryException
+    {
+        throw new UnimplementedServiceException("Cannot infer coordinate operations between a pair of CRSs.");
+    }
 
     /**
      * Returns an operation using a particular method for conversion or transformation
@@ -116,11 +118,18 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @departure extension
      *   This method has been added at user request, in order to specify the desired
      *   transformation path when many are available.
+     *
+     * @deprecated Replaced by {@link RegisterOperations#findCoordinateOperations(CoordinateReferenceSystem,
+     * CoordinateReferenceSystem) RegisterOperations}. The latter is defined by the ISO 19111:2019 standard.
+     * Another reason is that this method requires the use of a geodetic registry.
      */
-    CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
-                                        CoordinateReferenceSystem targetCRS,
-                                        OperationMethod           method)
-            throws FactoryException;
+    @Deprecated(since = "3.1")
+    default CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
+                                                CoordinateReferenceSystem targetCRS,
+                                                OperationMethod           method) throws FactoryException
+    {
+        throw new UnimplementedServiceException("Cannot infer coordinate operations between a pair of CRSs.");
+    }
 
     /**
      * Creates a concatenated operation from a sequence of operations.
@@ -135,11 +144,13 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *
      * @departure extension
      *   This method has been added because OGC 01-009 does not define a factory
-     *   method for creating such object.
+     *   method for creating concatenated operations.
      */
-    CoordinateOperation createConcatenatedOperation(Map<String, ?> properties,
-                                                    CoordinateOperation... operations)
-            throws FactoryException;
+    default CoordinateOperation createConcatenatedOperation(Map<String, ?> properties,
+            CoordinateOperation... operations) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, ConcatenatedOperation.class);
+    }
 
     /**
      * Creates a defining conversion from a set of properties. Defining conversions have no
@@ -151,7 +162,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * <p>Some available properties are {@linkplain ObjectFactory listed there}.</p>
      *
      * @param  properties  set of properties. Shall contain at least {@code "name"}.
-     * @param  method      the operation method. A value can be obtained by {@link #getOperationMethod(String)}.
+     * @param  method      the operation method. A value can be obtained by {@link RegisterOperations#findOperationMethod(String)}.
      * @param  parameters  the parameter values. A default set of parameters can be obtained by
      *         {@code method.getParameters().createValue()} and modified before to be given to this constructor.
      * @return the defining conversion.
@@ -162,12 +173,14 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *
      * @departure extension
      *   The <i>defining conversion</i> concept appears in ISO 19111 specification without formalization in UML diagrams.
-     *   This concept has been formalized in GeoAPI in order to allow the creation of {@code ProjectedCRS} instances.
+     *   A constructor for this concept is added in GeoAPI for allowing the creation of {@code ProjectedCRS} instances.
      */
-    Conversion createDefiningConversion(Map<String,?>       properties,
-                                        OperationMethod     method,
-                                        ParameterValueGroup parameters)
-            throws FactoryException;
+    default Conversion createDefiningConversion(Map<String,?>       properties,
+                                                OperationMethod     method,
+                                                ParameterValueGroup parameters) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, Conversion.class);
+    }
 
     /**
      * Creates an operation method from a set of properties and a descriptor group.
@@ -189,7 +202,8 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * </table>
      *
      * Note that implementations may have a build-in list of predefined operation methods.
-     * For obtaining a build-in instance, see {@link #getOperationMethod(String)} instead.
+     * For obtaining a build-in instance, see {@link CoordinateOperationAuthorityFactory#createOperationMethod(String)}
+     * instead.
      *
      * @param  properties  set of properties. Shall contain at least {@code "name"}.
      * @param  parameters  a description of the parameters for the operation method.
@@ -198,59 +212,13 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *
      * @departure extension
      *   This method has been added because OGC 01-009 does not define a factory
-     *   method for creating such object.
+     *   method for creating operation methods.
      *
      * @since 3.1
      */
-    OperationMethod createOperationMethod(Map<String,?> properties,
-                                          ParameterDescriptorGroup parameters) throws FactoryException;
-
-    /**
-     * Returns the build-in operation method of the given name.
-     * This is a helper method for usage of the following methods:
-     *
-     * <ul>
-     *   <li>{@link #createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem, OperationMethod)}</li>
-     *   <li>{@link #createDefiningConversion(Map, OperationMethod, ParameterValueGroup)}</li>
-     * </ul>
-     *
-     * Examples of typical operation method names are:
-     *
-     * <table class="ogc">
-     *   <caption>Example of operation method names</caption>
-     *   <tr>
-     *     <th>OGC name</th>
-     *     <th>EPSG name</th>
-     *   </tr>
-     *   <tr><td>Mercator_1SP</td>                  <td>Mercator (variant A)</td></tr>
-     *   <tr><td>Mercator_2SP</td>                  <td>Mercator (variant B)</td></tr>
-     *   <tr><td>Transverse_Mercator</td>           <td>Transverse Mercator</td></tr>
-     *   <tr><td>Lambert_Conformal_Conic_1SP</td>   <td>Lambert Conic Conformal (1SP)</td></tr>
-     *   <tr><td>Lambert_Conformal_Conic_2SP</td>   <td>Lambert Conic Conformal (2SP)</td></tr>
-     *   <tr><td>Lambert_Azimuthal_Equal_Area</td>  <td>Lambert Azimuthal Equal Area</td></tr>
-     *   <tr><td>Albers_Conic_Equal_Area</td>       <td>Albers Equal Area</td></tr>
-     *   <tr><td>Cassini_Soldner</td>               <td>Cassini-Soldner</td></tr>
-     *   <tr><td>Orthographic</td>                  <td>Orthographic</td></tr>
-     * </table>
-     *
-     * Implementations may delegate to their {@link MathTransformFactory}, or delegate to their
-     * {@link CoordinateOperationAuthorityFactory}, or get the operation method in some other way
-     * at implementer choice.
-     *
-     * @param  name  the name of the operation method to fetch.
-     * @return the operation method of the given name.
-     * @throws NoSuchIdentifierException if no operation method of the given name is known to this factory.
-     * @throws FactoryException if the method failed for some other reason.
-     *
-     * @departure easeOfUse
-     *   This method has been added in order to free the user from choosing whether he should
-     *   get the operation method from {@code CoordinateOperationAuthorityFactory}, or from
-     *   {@code MathTransformFactory}, or creating it himself.
-     *
-     * @see MathTransformFactory#getAvailableMethods(Class)
-     * @see CoordinateOperationAuthorityFactory#createOperationMethod(String)
-     *
-     * @since 3.1
-     */
-    OperationMethod getOperationMethod(String name) throws FactoryException;
+    default OperationMethod createOperationMethod(Map<String,?> properties,
+                ParameterDescriptorGroup parameters) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, OperationMethod.class);
+    }
 }

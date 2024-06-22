@@ -64,6 +64,8 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
  * @since   1.0
+ *
+ * @see org.opengis.referencing.RegisterOperations#getFactory(Class)
  */
 @UML(identifier="CT_MathTransformFactory", specification=OGC_01009)
 public interface MathTransformFactory extends Factory {
@@ -102,7 +104,6 @@ public interface MathTransformFactory extends Factory {
      *
      * @see #getDefaultParameters(String)
      * @see #createParameterizedTransform(ParameterValueGroup)
-     * @see CoordinateOperationFactory#getOperationMethod(String)
      */
     Set<OperationMethod> getAvailableMethods(Class<? extends SingleOperation> type);
 

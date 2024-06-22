@@ -261,6 +261,14 @@ public final class MethodSignatureTest extends SourceGenerator {
                                         isOptional = true;
                                 }
                             }
+                            if (c == org.opengis.referencing.RegisterOperations.class) {
+                                switch (m.getName()) {
+                                    case "findCoordinateReferenceSystem":
+                                    case "findCoordinateOperation":
+                                        assertFalse(isOptional, message(c, m, "special case not needed anymore."));
+                                        isOptional = true;
+                                }
+                            }
                             if (c == org.opengis.feature.IdentifiedType.class) {
                                 switch (m.getName()) {
                                     case "getName":

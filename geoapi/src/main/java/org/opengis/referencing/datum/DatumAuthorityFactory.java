@@ -51,6 +51,7 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
  *
  * @see org.opengis.referencing.cs.CSAuthorityFactory
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
+ * @see org.opengis.referencing.RegisterOperations#getFactory(Class)
  */
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
 public interface DatumAuthorityFactory extends AuthorityFactory {

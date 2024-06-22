@@ -18,9 +18,14 @@
 package org.opengis.referencing;
 
 import java.util.Set;
+import java.util.Optional;
+import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
+import org.opengis.util.UnimplementedServiceException;
 import org.opengis.referencing.operation.CoordinateOperation;
+import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.datum.DatumEnsemble;
 import org.opengis.annotation.UML;
 
@@ -32,6 +37,16 @@ import static org.opengis.annotation.Specification.*;
  * The services include finding a <abbr>CRS</abbr> from an authority code,
  * or finding a set of coordinate operations between two <abbr>CRS</abbr>s.
  * Those operations generally require the use of a geodetic registry.
+ *
+ * <h2>Relationship with factory interfaces</h2>
+ * This interface is often the only one needed by users for extracting
+ * <abbr>CRS</abbr> and coordinate operation instances from authority codes.
+ * For extracting more specific types of <abbr>CRS</abbr>s,
+ * or for extracting <abbr>CRS</abbr> components such as coordinate systems or datum,
+ * various {@link AuthorityFactory} services may be used.
+ * The latter services are often underlying the implementation of a {@code RegisterOperations}
+ * and can be made available by the {@link #getFactory(Class)} method.
+ * More low-level constructors provided by {@link ObjectFactory} services can also be available.
  *
  * <h2>Getting an instance</h2>
  * Implementers are encouraged to declare their implementations in their {@code module-info} file.
@@ -50,25 +65,40 @@ import static org.opengis.annotation.Specification.*;
 public interface RegisterOperations extends AuthorityFactory {
     /**
      * Extracts <abbr>CRS</abbr> details from the registry.
+     * By default, this method delegates to the {@linkplain CRSAuthorityFactory CRS authority factory}.
      *
      * @param  code  <abbr>CRS</abbr> identifier allocated by the authority.
      * @return the <abbr>CRS</abbr> for the given authority code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
+     * @throws FactoryException if the search failed for some other reason.
+     *
+     * @see CRSAuthorityFactory#createCoordinateReferenceSystem(String)
      */
     @UML(identifier="findCoordinateReferenceSystem", specification=ISO_19111)
-    CoordinateReferenceSystem findCoordinateReferenceSystem(String code) throws FactoryException;
+    default CoordinateReferenceSystem findCoordinateReferenceSystem(final String code) throws FactoryException {
+        return getFactory(CRSAuthorityFactory.class)
+                .orElseThrow(() -> new UnimplementedServiceException(this, CoordinateReferenceSystem.class))
+                .createCoordinateReferenceSystem(code);
+    }
 
     /**
      * Extracts coordinate operation details from the registry.
+     * By default, this method delegates to the
+     * {@linkplain CoordinateOperationAuthorityFactory coordinate operation authority factory}.
      *
      * @param  code  operation identifier allocated by the authority.
      * @return the operation for the given authority code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
-     * @throws FactoryException if the object creation failed for some other reason.
+     * @throws FactoryException if the search failed for some other reason.
+     *
+     * @see CoordinateOperationAuthorityFactory#createCoordinateOperation(String)
      */
     @UML(identifier="findCoordinateOperation", specification=ISO_19111)
-    CoordinateOperation findCoordinateOperation(String code) throws FactoryException;
+    default CoordinateOperation findCoordinateOperation(String code) throws FactoryException {
+        return getFactory(CoordinateOperationAuthorityFactory.class)
+                .orElseThrow(() -> new UnimplementedServiceException(this, CoordinateOperation.class))
+                .createCoordinateOperation(code);
+    }
 
     /**
      * Finds or infers any coordinate operations for which the given <abbr>CRS</abbr>s are the source and target,
@@ -107,7 +137,7 @@ public interface RegisterOperations extends AuthorityFactory {
             throws FactoryException;
 
     /**
-     * Determine whether two <abbr>CRS</abbr>s are members of one ensemble.
+     * Determines whether two <abbr>CRS</abbr>s are members of one ensemble.
      * If this method returns {@code true}, then for low accuracy purposes coordinate sets referenced
      * to these <abbr>CRS</abbr>s may be merged without coordinate transformation.
      * The attribute {@link DatumEnsemble#getEnsembleAccuracy()} gives some indication
@@ -121,4 +151,52 @@ public interface RegisterOperations extends AuthorityFactory {
     @UML(identifier="areMembersOfSameEnsemble", specification=ISO_19111)
     boolean areMembersOfSameEnsemble(CoordinateReferenceSystem source, CoordinateReferenceSystem target)
             throws FactoryException;
+
+    /**
+     * Returns a factory used for building components of <abbr>CRS</abbr> or coordinate operations.
+     * The factories returned by this method provide accesses to the low-level services used by this
+     * {@code RegisterOperations} instance for implementing its high-level services.
+     * The desired factory is identified by the {@code type} argument,
+     * which can be one of the following values:
+     *
+     * <ul>
+     *   <li>{@link AuthorityFactory} for extracting low-level components from authority codes <em>usually</em>
+     *       defined by the same {@linkplain #getAuthority() authority} than this {@code RegisterOperations}:
+     *     <ul>
+     *       <li>{@link org.opengis.referencing.cs.CSAuthorityFactory} for coordinate systems and axes.</li>
+     *       <li>{@link org.opengis.referencing.datum.DatumAuthorityFactory} for datum and reference frames.</li>
+     *       <li>{@link org.opengis.referencing.crs.CRSAuthorityFactory} for coordinate reference systems.</li>
+     *       <li>{@link org.opengis.referencing.operation.CoordinateOperationAuthorityFactory} for coordinate operations.</li>
+     *     </ul>
+     *   </li><li>{@link ObjectFactory} for instantiating the components defined by above authority factories:
+     *     <ul>
+     *       <li>{@link org.opengis.referencing.cs.CSFactory} for coordinate systems and axes.</li>
+     *       <li>{@link org.opengis.referencing.datum.DatumFactory} for datum and reference frames.</li>
+     *       <li>{@link org.opengis.referencing.crs.CRSFactory} for coordinate reference systems.</li>
+     *       <li>{@link org.opengis.referencing.operation.CoordinateOperationFactory} for coordinate operations.</li>
+     *     </ul>
+     *   </li><li>Others factories potentially used or made available by this {@code RegisterOperations}:
+     *     <ul>
+     *       <li>{@link org.opengis.referencing.operation.MathTransformFactory} for math transforms.</li>
+     *       <li>Any other types documented as an extension by the {@code RegisterOperations} implementation.</li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     *
+     * @param  <T>   compile-time value of the {@code type} argument.
+     * @param  type  the desired type of factory.
+     * @return factory of the specified type.
+     * @throws NullPointerException if the specified type is null.
+     * @throws IllegalArgumentException if the specified type is not one of the above-cited values.
+     *
+     * @departure integration
+     *   Added for making possible to use the {@code RegisterOperations} as the single entry point
+     *   where to fetch all other services.
+     */
+    default <T extends Factory> Optional<T> getFactory(Class<T> type) {
+        if (type.isInterface() && type.getName().startsWith("org.opengis.referencing.")) {
+            return Optional.empty();
+        }
+        throw new IllegalArgumentException("Illegal authority factory type: " + type.getCanonicalName());
+    }
 }

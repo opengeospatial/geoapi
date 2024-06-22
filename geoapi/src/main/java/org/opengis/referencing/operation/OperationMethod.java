@@ -77,7 +77,6 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see CoordinateOperation
  * @see MathTransformFactory#getAvailableMethods(Class)
- * @see CoordinateOperationFactory#getOperationMethod(String)
  * @see CoordinateOperationAuthorityFactory#createOperationMethod(String)
  * @see CoordinateOperationFactory#createOperationMethod(Map, ParameterDescriptorGroup)
  */
