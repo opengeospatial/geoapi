@@ -74,7 +74,7 @@ public interface Period extends TemporalPrimitive {
      *
      * <h4>Exceptions</h4>
      * This method shall throw an {@link IndeterminatePositionException} if the temporal
-     * position of a bound is {@linkplain #getIndeterminatePosition() indeterminate}.
+     * position of a bound is {@linkplain Instant#getIndeterminatePosition() indeterminate}.
      * A {@link DateTimeException} may also be thrown if the coordinates are
      * {@link org.opengis.referencing.cs.CoordinateDataType#INTEGER ordinal values}.
      *

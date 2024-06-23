@@ -17,7 +17,7 @@
  */
 
 /**
- * @deprecated {@code FeatureType} is now defined in the {@link org.opengis.feature} package.
+ * <b>Deprecated</b> — {@code FeatureType} is now defined in the {@link org.opengis.feature} package.
  */
 @Deprecated
 package org.opengis.feature.type;
