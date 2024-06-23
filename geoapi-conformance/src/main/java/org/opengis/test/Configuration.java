@@ -28,17 +28,11 @@ import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.referencing.IdentifiedObject;
-import org.opengis.referencing.cs.CSFactory;
-import org.opengis.referencing.cs.CSAuthorityFactory;
+import org.opengis.referencing.RegisterOperations;
 import org.opengis.referencing.crs.CRSFactory;
-import org.opengis.referencing.crs.CRSAuthorityFactory;
-import org.opengis.referencing.datum.DatumFactory;
-import org.opengis.referencing.datum.DatumAuthorityFactory;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransformFactory;
-import org.opengis.referencing.operation.CoordinateOperationFactory;
-import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 
 
 /**
@@ -79,14 +73,8 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  * {@link Key#isNonBidimensionalSpaceSupported    isNonBidimensionalSpaceSupported}<br>
  * {@link Key#isAxisSwappingSupported             isAxisSwappingSupported}</td><td>
  * {@link Key#mtFactory                           mtFactory}<br>
- * {@link Key#copFactory                          copFactory}<br>
- * {@link Key#copAuthorityFactory                 copAuthorityFactory}<br>
  * {@link Key#crsFactory                          crsFactory}<br>
- * {@link Key#crsAuthorityFactory                 crsAuthorityFactory}<br>
- * {@link Key#csFactory                           csFactory}<br>
- * {@link Key#csAuthorityFactory                  csAuthorityFactory}<br>
- * {@link Key#datumFactory                        datumFactory}<br>
- * {@link Key#datumAuthorityFactory               datumAuthorityFactory}<br>
+ * {@link Key#registerOperations                  registerOperations}<br>
  * {@link Key#isFactoryPreservingUserValues       isFactoryPreservingUserValues}</td><td>
  * {@link Key#validators                          validators}<br>
  * {@link Key#isValidationEnabled                 isValidationEnabled}<br>
@@ -450,77 +438,25 @@ public class Configuration implements Serializable {
          *
          * @see org.opengis.test.referencing.AffineTransformTest#mtFactory
          * @see org.opengis.test.referencing.ParameterizedTransformTest#mtFactory
-         * @see org.opengis.test.referencing.PseudoEpsgFactory#mtFactory
          */
         public static final Key<MathTransformFactory> mtFactory =
                 new Key<>(MathTransformFactory.class, "mtFactory");
 
         /**
-         * The {@linkplain CoordinateOperationFactory Coordinate Operation factory} instance used for a test.
-         *
-         * @see org.opengis.test.referencing.PseudoEpsgFactory#copFactory
-         */
-        public static final Key<CoordinateOperationFactory> copFactory =
-                new Key<>(CoordinateOperationFactory.class, "copFactory");
-
-        /**
-         * The {@linkplain CoordinateOperationAuthorityFactory Coordinate Operation authority factory}
-         * instance used for a test.
-         */
-        public static final Key<CoordinateOperationAuthorityFactory> copAuthorityFactory =
-                new Key<>(CoordinateOperationAuthorityFactory.class, "copAuthorityFactory");
-
-        /**
          * The {@linkplain CRSFactory Coordinate Reference System factory} instance used for a test.
+         * This is used mostly for parsing of documents in <abbr>WKT</abbr> or <abbr>XML</abbr> formats.
          *
-         * @see org.opengis.test.referencing.ObjectFactoryTest#crsFactory
-         * @see org.opengis.test.referencing.PseudoEpsgFactory#crsFactory
+         * @see org.opengis.test.referencing.WKTParserTest#crsFactory
          */
         public static final Key<CRSFactory> crsFactory =
                 new Key<>(CRSFactory.class, "crsFactory");
 
         /**
-         * The {@linkplain CRSAuthorityFactory Coordinate Reference System authority factory}
-         * instance used for a test.
-         *
-         * @see org.opengis.test.referencing.AuthorityFactoryTest#crsAuthorityFactory
+         * The {@linkplain RegisterOperations register operations} instance used for a test.
+         * Provides also factories for building CRS components from authority codes.
          */
-        public static final Key<CRSAuthorityFactory> crsAuthorityFactory =
-                new Key<>(CRSAuthorityFactory.class, "crsAuthorityFactory");
-
-        /**
-         * The {@linkplain CSFactory Coordinate System factory} instance used for a test.
-         *
-         * @see org.opengis.test.referencing.ObjectFactoryTest#csFactory
-         * @see org.opengis.test.referencing.PseudoEpsgFactory#csFactory
-         */
-        public static final Key<CSFactory> csFactory =
-                new Key<>(CSFactory.class, "csFactory");
-
-        /**
-         * The {@linkplain CSAuthorityFactory Coordinate System authority factory} instance used for a test.
-         *
-         * @see org.opengis.test.referencing.AuthorityFactoryTest#csAuthorityFactory
-         */
-        public static final Key<CSAuthorityFactory> csAuthorityFactory =
-                new Key<>(CSAuthorityFactory.class, "csAuthorityFactory");
-
-        /**
-         * The {@linkplain DatumFactory Datum factory} instance used for a test.
-         *
-         * @see org.opengis.test.referencing.ObjectFactoryTest#datumFactory
-         * @see org.opengis.test.referencing.PseudoEpsgFactory#datumFactory
-         */
-        public static final Key<DatumFactory> datumFactory =
-                new Key<>(DatumFactory.class, "datumFactory");
-
-        /**
-         * The {@linkplain DatumAuthorityFactory Datum authority factory} instance used for a test.
-         *
-         * @see org.opengis.test.referencing.AuthorityFactoryTest#datumAuthorityFactory
-         */
-        public static final Key<DatumAuthorityFactory> datumAuthorityFactory =
-                new Key<>(DatumAuthorityFactory.class, "datumAuthorityFactory");
+        public static final Key<RegisterOperations> registerOperations =
+                new Key<>(RegisterOperations.class, "registerOperations");
 
         /**
          * Whether the objects created by the tested {@link org.opengis.referencing.ObjectFactory} use the

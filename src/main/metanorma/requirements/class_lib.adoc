@@ -26,6 +26,10 @@ include::req_signatures.adoc[]
 ==== Behavioral compatibility
 include::req_behavior.adoc[]
 
+[[req-implementation-discovery]]
+==== Implementation discovery
+include::req_implementation_discovery.adoc[]
+
 [[req-factory-methods]]
 ==== Factory methods
 include::req_factory_methods.adoc[]
