@@ -12,8 +12,6 @@ import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.parameter.ParameterValueGroup;
-import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransformFactory;
@@ -29,7 +27,6 @@ import org.opengis.example.metadata.SimpleCitation;
  * <ul>
  *   <li>{@link #getVendor()}</li>
  *   <li>{@link #getAvailableMethods(Class)}, which returns an empty set.</li>
- *   <li>{@link #getLastMethodUsed()}, which returns {@code null}.</li>
  *   <li>{@link #createAffineTransform(Matrix)}</li>
  *   <li>{@link #createMatrix(int, int)}</li>
  * </ul>
@@ -83,16 +80,6 @@ public class SimpleTransformFactory implements MathTransformFactory {
     }
 
     /**
-     * Returns the operation method used for the latest call to
-     * {@link #createParameterizedTransform createParameterizedTransform}, or {@code null}
-     * if not applicable. The default implementation returns {@code null} in all cases.
-     */
-    @Override
-    public OperationMethod getLastMethodUsed() {
-        return null;
-    }
-
-    /**
      * Returns the default parameter values for a math transform using the given method.
      * The default implementation throws an exception in all cases since parameterized
      * transforms are not implemented by this simple factory.
@@ -103,35 +90,12 @@ public class SimpleTransformFactory implements MathTransformFactory {
     }
 
     /**
-     * {@return the exception to throw when a transform for the given parameters is requested}.
-     *
-     * @param  parameters  the unsupported parameters.
-     */
-    private static NoSuchIdentifierException unsupported(final ParameterValueGroup parameters) {
-        return new NoSuchIdentifierException("Parameterized transforms are not implemented.",
-                parameters.getDescriptor().getName().getCode());
-    }
-
-    /**
-     * Creates a {@linkplain #createParameterizedTransform parameterized transform} from a base CRS
-     * to a derived CS. The default implementation throws an exception in all cases since parameterized
-     * transforms are not implemented by this simple factory.
+     * Creates a builder for a parameterized transform. The default implementation throws an exception
+     * in all cases since parameterized transforms are not implemented by this simple factory.
      */
     @Override
-    public MathTransform createBaseToDerived(CoordinateReferenceSystem baseCRS,
-            ParameterValueGroup parameters, CoordinateSystem derivedCS) throws FactoryException
-    {
-        throw unsupported(parameters);
-    }
-
-    /**
-     * Creates a transform from a group of parameters. The default implementation throws an
-     * exception in all cases since parameterized transforms are not implemented by this simple
-     * factory.
-     */
-    @Override
-    public MathTransform createParameterizedTransform(ParameterValueGroup parameters) throws FactoryException {
-        throw unsupported(parameters);
+    public MathTransform.Builder builder(String method) throws NoSuchIdentifierException {
+        throw new NoSuchIdentifierException("Parameterized transforms are not implemented.", method);
     }
 
     /**

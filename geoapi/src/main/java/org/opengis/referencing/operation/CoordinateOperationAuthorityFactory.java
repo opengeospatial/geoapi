@@ -50,23 +50,9 @@ import static org.opengis.annotation.Specification.*;
 public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an operation method from a code.
-     * While the {@code code} argument should be an authority code, implementations may also accept method names if
-     * the argument is not a valid code and if the name is unambiguous (i.e., has exactly one match in this registry).
-     * This flexibility is allowing the parsing of some formats such as version 1 of Well Known Text (<abbr>WKT</abbr>).
-     *
-     * <table class="ogc">
-     *   <caption>Example of operation methods</caption>
-     *   <tr><th>EPSG code</th><th>EPSG name</th>                      <th>OGC name</th></tr>
-     *   <tr><td>9804</td>     <td>Mercator (variant A)</td>           <td>{@code Mercator_1SP}</td></tr>
-     *   <tr><td>9805</td>     <td>Mercator (variant B)</td>           <td>{@code Mercator_2SP}</td></tr>
-     *   <tr><td>9807</td>     <td>Transverse Mercator</td>            <td>{@code Transverse_Mercator}</td></tr>
-     *   <tr><td>9801</td>     <td>Lambert Conic Conformal (1SP)</td>  <td>{@code Lambert_Conformal_Conic_1SP}</td></tr>
-     *   <tr><td>9802</td>     <td>Lambert Conic Conformal (2SP)</td>  <td>{@code Lambert_Conformal_Conic_2SP}</td></tr>
-     *   <tr><td>9820</td>     <td>Lambert Azimuthal Equal Area</td>   <td>{@code Lambert_Azimuthal_Equal_Area}</td></tr>
-     *   <tr><td>9822</td>     <td>Albers Equal Area</td>              <td>{@code Albers_Conic_Equal_Area}</td></tr>
-     *   <tr><td>9806</td>     <td>Cassini-Soldner</td>                <td>{@code Cassini_Soldner}</td></tr>
-     *   <tr><td>9840</td>     <td>Orthographic</td>                   <td>{@code Orthographic}</td></tr>
-     * </table>
+     * This method returns details based on the content of the registry. The operation method may or
+     * may not be supported by the implementation for performing the actual coordinate operations.
+     * For operations supported by the implementation, see {@link MathTransformFactory}.
      *
      * @param  code  the method identifier allocated by the authority.
      * @return the operation method for the given code.
@@ -101,7 +87,7 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
     }
 
     /**
-     * Returns registered operations between two Coordinate Reference System (<abbr>CRS</abbr>) codes.
+     * Returns the registered operations between two Coordinate Reference System (<abbr>CRS</abbr>) codes.
      * This method returns only the operations declared by the authority, with preferred operations first.
      * This method doesn't need to compute operations from {@code source} to {@code target} <abbr>CRS</abbr>
      * if no such operations were explicitly defined in the authority database.

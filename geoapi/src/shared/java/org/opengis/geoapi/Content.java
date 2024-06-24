@@ -246,6 +246,7 @@ public enum Content {
                org.opengis.referencing.operation   .MathTransform                       .class,
                org.opengis.referencing.operation   .MathTransform1D                     .class,
                org.opengis.referencing.operation   .MathTransform2D                     .class,
+               org.opengis.referencing.operation   .MathTransform.Builder               .class,
                org.opengis.referencing.operation   .CoordinateOperation                 .class,
                org.opengis.referencing.operation   .SingleOperation                     .class,
                org.opengis.referencing.operation   .ConcatenatedOperation               .class,

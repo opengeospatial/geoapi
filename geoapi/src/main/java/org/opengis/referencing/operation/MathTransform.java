@@ -17,12 +17,17 @@
  */
 package org.opengis.referencing.operation;
 
+import java.util.Optional;
 import java.nio.FloatBuffer;
 import java.nio.DoubleBuffer;
 import java.awt.geom.AffineTransform;
+import org.opengis.util.FactoryException;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.coordinate.CoordinateSet;
 import org.opengis.coordinate.MismatchedDimensionException;
+import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.referencing.datum.Ellipsoid;
+import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
@@ -504,5 +509,130 @@ public interface MathTransform {
     @UML(identifier="getWKT", specification=OGC_01009)
     default String toWKT() {
         throw new UnsupportedOperationException();
+    }
+
+    /**
+     * Builder of a parameterized math transform identified by a name or code.
+     * A builder instance is created by a call to {@link MathTransformFactory#builder(String)}.
+     * The parameter values are set directly on the parameter value group returned by {@link #parameters()},
+     * and finally the transform is created by a call to {@link #create()}.
+     * Example:
+     *
+     * {@snippet lang="java" :
+     * MathTransformFactory  factory = ...;
+     * MathTransform.Builder builder = factory.builder("Transverse Mercator");
+     * ParameterValueGroup   pvGroup = builder.parameters();
+     *
+     * // Set the parameter values for UTM zone 54N.
+     * pvGroup.parameter("semi_major").setValue(6378137.000);
+     * pvGroup.parameter("semi_minor").setValue(6356752.314);
+     * pvGroup.parameter("Longitude of natural origin").setValue(141);
+     * pvGroup.parameter("Scale factor at natural origin").setValue(0.9996);
+     * pvGroup.parameter("False easting").setValue(500000);
+     *
+     * // Get the results.
+     * MathTransform mt = builder.create();
+     * OperationMethod method = builder.getMethod().get();
+     * }
+     *
+     * Note that no datum is specified. Instead, semi-axis lengths are specified directly.
+     * It is not the responsibility of this builder to infer the datum shifts between pair
+     * of coordinate reference systems.
+     *
+     * <h2>Axis order, units and direction</h2>
+     * By default, the source and target axes of a parameterized transform are normalized to
+     * <var>east</var>, <var>north</var>, <var>up</var> (if applicable) directions in that order,
+     * with angular and linear units in degrees and meters respectively (see the
+     * {@linkplain MathTransformFactory#createParameterizedTransform note on cartographic projections}).
+     * However, this requirement becomes ambiguous when different axis orientations are embedded
+     * in operation methods such as <cite>Transverse Mercator (South Orientated)</cite> (EPSG::9808),
+     * or if the operation method uses axis directions or units that are incompatible with the
+     * above-cited normalization. For avoiding ambiguities, the source and target axes can be
+     * {@linkplain #setSourceAxes explicitly specified}.
+     *
+     * @author  Martin Desruisseaux (Geomatys)
+     * @version 3.1
+     * @since   3.1
+     *
+     * @see MathTransformFactory#builder(String)
+     */
+    interface Builder {
+        /**
+         * Returns the operation method used for creating the math transform from the parameter values.
+         * This information may be known or accurate only after {@link #create()} has been invoked.
+         *
+         * @return the operation method used for creating the math transform from the parameter values.
+         */
+        default Optional<OperationMethod> getMethod() {
+            return Optional.empty();
+        }
+
+        /**
+         * Returns the parameter values of the transform to create.
+         * Those parameters are initialized to default values, which may be implementation or method depend.
+         * User-supplied values should be set directly in the returned instance with codes like
+         * <code>parameter(</code><var>name</var><code>).setValue(</code><var>value</var><code>)</code>.
+         *
+         * @return the parameter values of the transform to create. Values should be set in-place.
+         */
+        ParameterValueGroup parameters();
+
+        /**
+         * Gives hints about axis lengths and their orientations in input coordinates.
+         * The action performed by this call depends on the {@linkplain #getMethod() operation method}.
+         * For map projections, the action may include something equivalent to the following code:
+         *
+         * {@snippet lang="java" :
+         * parameters().parameter("semi_major").setValue(ellipsoid.getSemiMajorAxis(), ellipsoid.getAxisUnit());
+         * parameters().parameter("semi_minor").setValue(ellipsoid.getSemiMinorAxis(), ellipsoid.getAxisUnit());
+         * }
+         *
+         * For geodetic datum shifts, the action may be similar to above code but with different parameter names:
+         * {@code "src_semi_major"} and {@code "src_semi_minor"}. Other operation methods may ignore the arguments.
+         *
+         * <h4>Axis order, units and direction</h4>
+         * By default, the source axes of a parameterized transform are normalized to <var>east</var>,
+         * <var>north</var>, <var>up</var> (if applicable) directions with units in degrees and meters.
+         * If this requirement is ambiguous, for example because the operation method uses incompatible
+         * axis directions or units, then the {@code cs} argument should be non-null for allowing the
+         * implementation to resolve that ambiguity.
+         *
+         * @param  cs         the coordinate system defining source axis order and units, or {@code null} if none.
+         * @param  ellipsoid  the ellipsoid providing source semi-axis lengths, or {@code null} if none.
+         */
+        void setSourceAxes(CoordinateSystem cs, Ellipsoid ellipsoid);
+
+        /**
+         * Gives hints about axis lengths and their orientations in output coordinates.
+         * The action performed by this call depends on the {@linkplain #getMethod() operation method}.
+         * For datum shifts, the action may include something equivalent to the following code:
+         *
+         * {@snippet lang="java" :
+         * parameters().parameter("tgt_semi_major").setValue(ellipsoid.getSemiMajorAxis(), ellipsoid.getAxisUnit());
+         * parameters().parameter("tgt_semi_minor").setValue(ellipsoid.getSemiMinorAxis(), ellipsoid.getAxisUnit());
+         * }
+         *
+         * <h4>Axis order, units and direction</h4>
+         * By default, the target axes of a parameterized transform are normalized to <var>east</var>,
+         * <var>north</var>, <var>up</var> (if applicable) directions with units in degrees and meters.
+         * If this requirement is ambiguous, for example because the operation method uses incompatible
+         * axis directions or units, then the {@code cs} argument should be non-null for allowing the
+         * implementation to resolve that ambiguity.
+         *
+         * @param  cs         the coordinate system defining target axis order and units, or {@code null} if none.
+         * @param  ellipsoid  the ellipsoid providing target semi-axis lengths, or {@code null} if none.
+         */
+        void setTargetAxes(CoordinateSystem cs, Ellipsoid ellipsoid);
+
+        /**
+         * Creates the parameterized transform. The operation method is given by {@link #getMethod()}
+         * and the parameter values should have been set on the group returned by {@link #parameters()}
+         * before to invoke this constructor.
+         *
+         * @return the parameterized transform.
+         * @throws FactoryException if the transform creation failed.
+         *         This exception is thrown if some required parameters have not been supplied, or have illegal values.
+         */
+        MathTransform create() throws FactoryException;
     }
 }

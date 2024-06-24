@@ -202,8 +202,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * </table>
      *
      * Note that implementations may have a build-in list of predefined operation methods.
-     * For obtaining a build-in instance, see {@link CoordinateOperationAuthorityFactory#createOperationMethod(String)}
-     * instead.
+     * For obtaining a build-in instance, see {@link MathTransformFactory} instead.
      *
      * @param  properties  set of properties. Shall contain at least {@code "name"}.
      * @param  parameters  a description of the parameters for the operation method.
