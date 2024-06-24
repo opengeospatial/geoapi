@@ -18,6 +18,7 @@
 package org.opengis.test.referencing;
 
 import java.util.Set;
+import java.util.Optional;
 import java.awt.geom.Rectangle2D;
 
 import org.opengis.util.FactoryException;
@@ -26,6 +27,7 @@ import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.ObjectDomain;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.RegisterOperations;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.operation.TransformException;
@@ -48,16 +50,19 @@ import static org.opengis.test.Assertions.assertAxisDirectionsEqual;
 
 
 /**
- * Tests the creation of referencing objects from the {@linkplain AuthorityFactory authority factories}
- * given at construction time.
+ * Tests the creation of referencing objects from authority factories.
+ * The factories to test are obtained by calls to {@link RegisterOperations#getFactory(Class)}
+ * with subtypes of {@link AuthorityFactory} in argument.
  *
- * <p>Many {@link ProjectedCRS} instances tested in this class use the same projections as the
- * {@link MathTransform} instances tested in {@link ParameterizedTransformTest}. However, the latter
- * test class expects (λ,φ) input coordinates in degrees and (<var>x</var>,<var>y</var>)
- * output coordinates in metres, while this {@code AuthorityFactoryTest} class expects
- * input and output coordinates in CRS-dependent units and axis order.</p>
+ * <h2>Note on axis order</h2>
+ * Many {@link ProjectedCRS} instances tested in this class use the same projections
+ * as the {@link MathTransform} instances tested in {@link ParameterizedTransformTest}.
+ * However, the latter test class expects (λ,φ) input coordinates in degrees and
+ * (<var>x</var>,<var>y</var>) output coordinates in metres,
+ * while this {@code AuthorityFactoryTest} class expects input and output coordinates
+ * in CRS-dependent units and axis order.
  *
- * <h2>Usage example:</h2>
+ * <h2>Usage example</h2>
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
  * define a subclass in their own test suite as in the example below:
  *
@@ -66,7 +71,7 @@ import static org.opengis.test.Assertions.assertAxisDirectionsEqual;
  *
  * public class MyTest extends AuthorityFactoryTest {
  *     public MyTest() {
- *         super(new MyCRSAuthorityFactory(), new MyCSAuthorityFactory(), new MyDatumAuthorityFactory());
+ *         super(new MyRegisterOperations());
  *     }
  * }}
  *
@@ -86,19 +91,14 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     private static final String NO_CRS_FACTORY = "No CRS authority factory found.";
 
     /**
-     * Factory to use for building {@link CoordinateReferenceSystem} instances, or {@code null} if none.
+     * Provider of factories to use for building geodetic objects.
+     * {@code AuthorityFactoryTest} will use only {@link AuthorityFactory} subtypes.
+     *
+     * @see RegisterOperations#getFactory(Class)
+     *
+     * @since 3.1
      */
-    protected final CRSAuthorityFactory crsAuthorityFactory;
-
-    /**
-     * Factory to use for building {@link CoordinateSystem} instances, or {@code null} if none.
-     */
-    protected final CSAuthorityFactory csAuthorityFactory;
-
-    /**
-     * Factory to use for building {@link Datum} instances, or {@code null} if none.
-     */
-    protected final DatumAuthorityFactory datumAuthorityFactory;
+    protected final RegisterOperations factories;
 
     /**
      * The identified object (typically a {@link CoordinateReferenceSystem}) being tested.
@@ -110,8 +110,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     protected IdentifiedObject object;
 
     /**
-     * {@code true} if the longitude and latitude axes shall be swapped. This flag applies
-     * only to geographic coordinates.
+     * {@code true} if the longitude and latitude axes shall be swapped.
+     * This flag applies only to geographic coordinates.
      *
      * <p><b>Default value:</b> {@code true}, since the majority of {@link GeographicCRS}
      * defined in the EPSG database uses the (φλ) axis order.</p>
@@ -121,8 +121,8 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     protected boolean swapλφ = true;
 
     /**
-     * {@code true} if the easting and northing axes shall be swapped. This flag applies only
-     * to projected coordinates.
+     * {@code true} if the easting and northing axes shall be swapped.
+     * This flag applies only to projected coordinates.
      *
      * <p><b>Default value:</b> {@code false}, since the majority of {@link ProjectedCRS} defined
      * in the EPSG database uses the (<var>x</var>,<var>y</var>) axis order.</p>
@@ -185,11 +185,11 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     protected double toLinearUnit = 1.0;
 
     /**
-     * {@code true} if {@link #crsAuthorityFactory} and {@link #csAuthorityFactory} supports the
-     * creation of coordinate system with (<var>y</var>,<var>x</var>) axis order. If this field is
-     * set to {@code false}, then the tests that would normally expect (<var>y</var>,<var>x</var>)
-     * axis order or <i>South Oriented</i> CRS will rather use the (<var>x</var>,<var>y</var>)
-     * axis order and <i>North Oriented</i> CRS in their test.
+     * Whether the CRS and CS authority factories support
+     * creation of coordinate system with (<var>y</var>,<var>x</var>) axis order.
+     * If this field is set to {@code false}, then the tests that would normally expect
+     * (<var>y</var>,<var>x</var>) axis order or <i>South Oriented</i> CRS will rather use the
+     * (<var>x</var>,<var>y</var>) axis order and <i>North Oriented</i> CRS in their test.
      *
      * @since 3.1
      */
@@ -207,20 +207,18 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
     private final ParameterizedTransformTest test;
 
     /**
-     * Creates a new test using the given factories. If a given factory is {@code null},
-     * then the tests which depend on it will be skipped.
+     * Creates a new test which will use authority factories provided by the given {@code factories} argument.
+     * The {@link AuthorityFactory} instances will be obtained by calls to {@link RegisterOperations#getFactory(Class)}.
+     * If the latter method returns an empty value, then the tests that depend on the missing factory will throw
+     * {@link org.opentest4j.TestAbortedException}.
      *
-     * @param crsFactory    factory for creating {@link CoordinateReferenceSystem} instances.
-     * @param csFactory     factory for creating {@link CoordinateSystem} instances.
-     * @param datumFactory  factory for creating {@link Datum} instances.
+     * @param  factories   provider of factories for creating the geodetic objects to test.
+     *
+     * @since 3.1
      */
     @SuppressWarnings("this-escape")
-    public AuthorityFactoryTest(final CRSAuthorityFactory crsFactory,
-            final CSAuthorityFactory csFactory, final DatumAuthorityFactory datumFactory)
-    {
-        crsAuthorityFactory   = crsFactory;
-        csAuthorityFactory    = csFactory;
-        datumAuthorityFactory = datumFactory;
+    public AuthorityFactoryTest(final RegisterOperations factories) {
+        this.factories = factories;
         final Configuration.Key<Boolean>[] keys = ParameterizedTransformTest.getEnabledKeys(1);
         final int offset = keys.length - 1;                     // First free slot for our keys.
         keys[offset] = Configuration.Key.isAxisSwappingSupported;
@@ -236,12 +234,11 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <ul>
      *   <li>All the entries defined in the {@link ParameterizedTransformTest#configuration()
      *       ParameterizedTransformTest} class except {@code mtFactory}.</li>
-     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key} of the same name:
+     *   <li>All the following values associated to the {@link org.opengis.test.Configuration.Key}
+     *       of the same name (unless otherwise specified):
      *     <ul>
      *       <li>{@link #isAxisSwappingSupported}</li>
-     *       <li>{@link #crsAuthorityFactory}</li>
-     *       <li>{@link #csAuthorityFactory}</li>
-     *       <li>{@link #datumAuthorityFactory}</li>
+     *       <li>{@link #factories} (associated to {@link org.opengis.test.Configuration.Key#registerOperations})</li>
      *     </ul>
      *   </li>
      * </ul>
@@ -255,10 +252,22 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
         final Configuration op = test.configuration();
         assertNull(op.remove(Configuration.Key.mtFactory));
         assertNull(op.put(Configuration.Key.isAxisSwappingSupported, isAxisSwappingSupported));
-        assertNull(op.put(Configuration.Key.crsAuthorityFactory,     crsAuthorityFactory));
-        assertNull(op.put(Configuration.Key.csAuthorityFactory,      csAuthorityFactory));
-        assertNull(op.put(Configuration.Key.datumAuthorityFactory,   datumAuthorityFactory));
+        assertNull(op.put(Configuration.Key.registerOperations,      factories));
         return op;
+    }
+
+    /**
+     * Returns the factory of the given type if present, or interrupts the test otherwise.
+     *
+     * @param  <T>      compile-time value of the {@code type} argument.
+     * @param  type     the desired type of factory.
+     * @param  message  message to report if the desired factory is not present.
+     * @return factory of the specified type.
+     */
+    private <T extends AuthorityFactory> T getFactoryOrAbort(final Class<T> type, final String message) {
+        final Optional<T> factory = factories.getFactory(type);
+        assumeTrue(factory.isPresent(), message);
+        return factory.get();
     }
 
     /**
@@ -279,7 +288,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      */
     @Test
     public void testWGS84() throws NoSuchAuthorityCodeException, FactoryException {
-        assumeTrue(crsAuthorityFactory != null, NO_CRS_FACTORY);
+        final var crsAuthorityFactory = getFactoryOrAbort(CRSAuthorityFactory.class, NO_CRS_FACTORY);
         final GeographicCRS crs = crsAuthorityFactory.createGeographicCRS("EPSG:4326");
         assertNotNull(crs, "CRSAuthorityFactory.createGeographicCRS()");
         object = crs;
@@ -354,7 +363,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
         if (!isAxisSwappingSupported) {
             swapλφ = swapxy = flipxy = false;
         }
-        assumeTrue(crsAuthorityFactory != null, NO_CRS_FACTORY);
+        final var crsAuthorityFactory = getFactoryOrAbort(CRSAuthorityFactory.class, NO_CRS_FACTORY);
         final ProjectedCRS crs;
         try {
             crs = crsAuthorityFactory.createProjectedCRS("EPSG:" + code);

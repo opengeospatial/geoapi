@@ -19,6 +19,7 @@ package org.opengis.test.referencing;
 
 import java.util.Map;
 import java.util.Collections;
+import java.util.Optional;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
@@ -30,19 +31,24 @@ import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.ObjectFactory;
+import org.opengis.referencing.RegisterOperations;
+import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
+import org.opengis.test.Configuration;
 import org.opengis.test.Units;
 
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.*;
 import static org.junit.jupiter.api.Assumptions.assumeTrue;
 import static org.opengis.test.Assertions.assertAxisDirectionsEqual;
 import static org.opengis.referencing.cs.AxisDirection.*;
 
 
 /**
- * Tests the creation of referencing objects from the {@linkplain ObjectFactory object factories}
- * given at construction time.
+ * Tests the creation of referencing objects from object factories.
+ * The factories to test are obtained by calls to {@link RegisterOperations#getFactory(Class)}
+ * with subtypes of {@link ObjectFactory} in argument.
  *
  * <h2>Usage example:</h2>
  * in order to specify their factories and run the tests in a JUnit framework, implementers can
@@ -53,7 +59,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  *
  * public class MyTest extends ObjectFactoryTest {
  *     public MyTest() {
- *         super(new MyDatumFactory(), new MyCSFactory(), new MyCRSFactory(), new MyOpFactory());
+ *         super(new MyRegisterOperations());
  *     }
  * }}
  *
@@ -75,53 +81,73 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
                         NO_COP_FACTORY   = "No Coordinate Operation factory found.";
 
     /**
-     * Factory to use for building {@link Datum} instances, or {@code null} if none.
-     */
-    protected final DatumFactory datumFactory;
-
-    /**
-     * Factory to use for building {@link CoordinateSystem} instances, or {@code null} if none.
-     */
-    protected final CSFactory csFactory;
-
-    /**
-     * Factory to use for building {@link CoordinateReferenceSystem} instances, or {@code null} if none.
-     */
-    protected final CRSFactory crsFactory;
-
-    /**
-     * Factory to use for building {@link Conversion} instances, or {@code null} if none.
-     */
-    protected final CoordinateOperationFactory copFactory;
-
-    /**
-     * Creates a new test using the given factories. If a given factory is {@code null},
-     * then the tests which depend on it will be skipped.
+     * Provider of factories to use for building geodetic objects.
+     * {@code ObjectFactoryTest} will use only {@link ObjectFactory} subtypes
+     * and {@link CoordinateOperationAuthorityFactory} for operation methods.
      *
-     * @param datumFactory  factory for creating {@link Datum} instances.
-     * @param csFactory     factory for creating {@link CoordinateSystem} instances.
-     * @param crsFactory    factory for creating {@link CoordinateReferenceSystem} instances.
-     * @param copFactory    factory for creating {@link Conversion} instances.
+     * @see RegisterOperations#getFactory(Class)
+     *
+     * @since 3.1
      */
-    public ObjectFactoryTest(
-            final DatumFactory             datumFactory,
-            final CSFactory                   csFactory,
-            final CRSFactory                 crsFactory,
-            final CoordinateOperationFactory copFactory)
-    {
-        this.datumFactory = datumFactory;
-        this.csFactory    = csFactory;
-        this.crsFactory   = crsFactory;
-        this.copFactory   = copFactory;
+    protected final RegisterOperations factories;
+
+    /**
+     * Creates a new test which will use object factories provided by the given {@code factories} argument.
+     * The {@link ObjectFactory} instances will be obtained by calls to {@link RegisterOperations#getFactory(Class)}.
+     * If the latter method returns an empty value, then the tests that depend on the missing factory will throw
+     * {@link org.opentest4j.TestAbortedException}.
+     *
+     * @param  factories   provider of factories for creating the geodetic objects to test.
+     *
+     * @since 3.1
+     */
+    public ObjectFactoryTest(final RegisterOperations factories) {
+        this.factories = factories;
+    }
+
+    /**
+     * Returns information about the configuration of the test which has been run.
+     * This method returns a map containing:
+     *
+     * <ul>
+     *   <li>All the entries defined in the {@link ReferencingTestCase#configuration() ReferencingTestCase} class.</li>
+     *   <li>All the following values:
+     *     <ul>
+     *       <li>{@link #factories} (associated to {@link org.opengis.test.Configuration.Key#registerOperations})</li>
+     *     </ul>
+     *   </li>
+     * </ul>
+     *
+     * @return the configuration of the test being run.
+     *
+     * @since 3.1
+     */
+    @Override
+    public Configuration configuration() {
+        final Configuration op = super.configuration();
+        assertNull(op.put(Configuration.Key.registerOperations, factories));
+        return op;
+    }
+
+    /**
+     * Returns the factory of the given type if present, or interrupts the test otherwise.
+     *
+     * @param  <T>      compile-time value of the {@code type} argument.
+     * @param  type     the desired type of factory.
+     * @param  message  message to report if the desired factory is not present.
+     * @return factory of the specified type.
+     */
+    private <T extends Factory> T getFactoryOrAbort(final Class<T> type, final String message) {
+        final Optional<T> factory = factories.getFactory(type);
+        assumeTrue(factory.isPresent(), message);
+        return factory.get();
     }
 
     /**
      * {@return the authority factory tests backed by the object factories}.
      */
     private AuthorityFactoryTest createAuthorityFactoryTest() {
-        final PseudoEpsgFactory factory = new PseudoEpsgFactory(Units.getDefault(),
-                datumFactory, csFactory, crsFactory, copFactory, null, validators);
-        return new AuthorityFactoryTest(factory, factory, factory);
+        return new AuthorityFactoryTest(new PseudoEpsgFactory(Units.getDefault(), factories, validators));
     }
 
     /**
@@ -164,20 +190,20 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         final Unit<Angle> degree = units.degree();
 
         // Build a geodetic reference frame.
-        assumeTrue(datumFactory != null, NO_DATUM_FACTORY);
+        final var datumFactory = getFactoryOrAbort(DatumFactory.class, NO_DATUM_FACTORY);
         validators.validate(datum = datumFactory.createGeodeticDatum(name("World Geodetic System 1984"),
                                     datumFactory.createEllipsoid    (name("WGS 84"), 6378137.0, 298.257223563, metre),
                                     datumFactory.createPrimeMeridian(name("Greenwich"), 0.0, degree)));
 
         // Build an ellipsoidal coordinate system.
-        assumeTrue(csFactory != null, NO_CS_FACTORY);
+        final var csFactory = getFactoryOrAbort(CSFactory.class, NO_CS_FACTORY);
         validators.validate(λ  = csFactory.createCoordinateSystemAxis(name("Geodetic longitude"), "λ", EAST,  degree));
         validators.validate(φ  = csFactory.createCoordinateSystemAxis(name("Geodetic latitude"),  "φ", NORTH, degree));
         validators.validate(h  = csFactory.createCoordinateSystemAxis(name("Ellipsoidal height"), "h", UP,    metre));
         validators.validate(cs = csFactory.createEllipsoidalCS(name("WGS 84"), φ, λ, h));
 
         // Finally build the geographic coordinate reference system.
-        assumeTrue(crsFactory != null, NO_CRS_FACTORY);
+        final var crsFactory = getFactoryOrAbort(CRSFactory.class, NO_CRS_FACTORY);
         validators.validate(crs = crsFactory.createGeographicCRS(name("WGS84(DD)"), datum, cs));
 
         datum = crs.getDatum();
@@ -213,18 +239,18 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         final Unit<Length> metre = units.metre();
         final Unit<Angle> degree = units.degree();
 
-        assumeTrue(datumFactory != null, NO_DATUM_FACTORY);
+        final var datumFactory = getFactoryOrAbort(DatumFactory.class, NO_DATUM_FACTORY);
         validators.validate(greenwich = datumFactory.createPrimeMeridian  (name("Greenwich Meridian"), 0, degree));
         validators.validate(ellipsoid = datumFactory.createFlattenedSphere(name("WGS84 Ellipsoid"), 6378137, 298.257223563, metre));
         validators.validate(datum     = datumFactory.createGeodeticDatum  (name("WGS84 Datum"), ellipsoid, greenwich));
 
-        assumeTrue(csFactory != null, NO_CS_FACTORY);
+        final var csFactory = getFactoryOrAbort(CSFactory.class, NO_CS_FACTORY);
         validators.validate(X  = csFactory.createCoordinateSystemAxis(name("Geocentric X"), "X", GEOCENTRIC_X, metre));
         validators.validate(Y  = csFactory.createCoordinateSystemAxis(name("Geocentric Y"), "Y", GEOCENTRIC_Y, metre));
         validators.validate(Z  = csFactory.createCoordinateSystemAxis(name("Geocentric Z"), "Z", GEOCENTRIC_Z, metre));
         validators.validate(cs = csFactory.createCartesianCS(name("Geocentric CS"), X, Z, Y));
 
-        assumeTrue(crsFactory != null, NO_CRS_FACTORY);
+        final var crsFactory = getFactoryOrAbort(CRSFactory.class, NO_CRS_FACTORY);
         validators.validate(crs = crsFactory.createGeodeticCRS(name("Geocentric CRS"), datum, null, cs));
         assertAxisDirectionsEqual(crs.getCoordinateSystem(), new AxisDirection[] {GEOCENTRIC_X, GEOCENTRIC_Z, GEOCENTRIC_Y}, "GeodeticCRS");
     }
@@ -258,13 +284,13 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         final Unit<Length> metre = units.metre();
         final Unit<Angle> degree = units.degree();
 
-        assumeTrue(datumFactory != null, NO_DATUM_FACTORY);
+        final var datumFactory = getFactoryOrAbort(DatumFactory.class, NO_DATUM_FACTORY);
         validators.validate(greenwich   = datumFactory.createPrimeMeridian  (name("Greenwich Meridian"), 0, degree));
         validators.validate(ellipsoid   = datumFactory.createFlattenedSphere(name("WGS84 Ellipsoid"), 6378137, 298.257223563, metre));
         validators.validate(baseDatum   = datumFactory.createGeodeticDatum  (name("WGS84 Datum"), ellipsoid, greenwich));
         validators.validate(heightDatum = datumFactory.createVerticalDatum  (name("WGS84 geoidal height"), RealizationMethod.GEOID));
 
-        assumeTrue(csFactory != null, NO_CS_FACTORY);
+        final var csFactory = getFactoryOrAbort(CSFactory.class, NO_CS_FACTORY);
         validators.validate(axisN       = csFactory.createCoordinateSystemAxis(name("Northing"),               "N", NORTH, metre));
         validators.validate(axisE       = csFactory.createCoordinateSystemAxis(name("Easting"),                "E", EAST,  metre));
         validators.validate(axisH       = csFactory.createCoordinateSystemAxis(name("Gravity-related Height"), "H", UP,    metre));
@@ -274,12 +300,12 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         validators.validate(projectedCS = csFactory.createCartesianCS         (name("2D Cartesian CS"), axisN, axisE));
         validators.validate(heightCS    = csFactory.createVerticalCS          (name("Height CS"),       axisH));
 
-        assumeTrue(crsFactory != null, NO_CRS_FACTORY);
+        final var crsFactory = getFactoryOrAbort(CRSFactory.class, NO_CRS_FACTORY);
         baseCRS   = crsFactory.createGeographicCRS(name("2D geographic CRS"), baseDatum, baseCS);
         heightCRS = crsFactory.createVerticalCRS  (name("Height CRS"),      heightDatum, heightCS);
 
-        assumeTrue(copFactory != null, NO_COP_FACTORY);
-        validators.validate(projectionMethod = copFactory.getOperationMethod("Transverse_Mercator"));
+        final var copAuthorityFactory = getFactoryOrAbort(CoordinateOperationAuthorityFactory.class, NO_COP_FACTORY);
+        validators.validate(projectionMethod = copAuthorityFactory.createOperationMethod("Transverse_Mercator"));
         final ParameterValueGroup paramUTM = projectionMethod.getParameters().createValue();
         paramUTM.parameter("central_meridian")  .setValue(-180 + utmZone*6 - 3);
         paramUTM.parameter("latitude_of_origin").setValue(0.0);
@@ -288,7 +314,8 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
         paramUTM.parameter("false_northing")    .setValue(0.0);
         validators.validate(paramUTM);
 
-        validators.validate(baseToUTM    = copFactory .createDefiningConversion(name("Transverse_Mercator"), projectionMethod, paramUTM));
+        final var copFactory = getFactoryOrAbort(CoordinateOperationFactory.class, NO_COP_FACTORY);
+        validators.validate(baseToUTM    = copFactory.createDefiningConversion(name("Transverse_Mercator"), projectionMethod, paramUTM));
         validators.validate(projectedCRS = crsFactory.createProjectedCRS(name("WGS 84 / UTM Zone 12 (2D)"), baseCRS, baseToUTM, projectedCS));
         validators.validate(crs3D        = crsFactory.createCompoundCRS(name("3D Compound WGS 84 / UTM Zone 12"), projectedCRS, heightCRS));
         assertAxisDirectionsEqual(crs3D.getCoordinateSystem(), new AxisDirection[] {NORTH, EAST, UP}, "CompoundCRS");

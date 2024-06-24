@@ -67,14 +67,12 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      * For a list without nesting, as required by ISO 19111, see {@link #getSingleComponents()}.
      *
      * <h4>Why nested compound <abbr>CRS</abbr></h4>
-     * The use of nested compound <abbr>CRS</abbr>s can avoid metadata lost when a temporal <abbr>CRS</abbr>
-     * is appended to spatial components defined in a preexisting compound <abbr>CRS</abbr>.
-     * A three-dimensional compound <abbr>CRS</abbr> has its own metadata (e.g., an <abbr>EPSG</abbr> code)
-     * that may not be found in the individual horizontal and vertical components.
-     * A flatten list of horizontal, vertical and temporal components would lost those metadata.
-     * In particular, the lost of authority code reduces the scope of the
-     * {@linkplain org.opengis.referencing.operation.CoordinateOperationAuthorityFactory#createFromCoordinateReferenceSystemCodes
-     * search for coordinate operations} that an application can do.
+     * A four dimensional compound <abbr>CRS</abbr>s can be made of three single <abbr>CRS</abbr>s:
+     * an horizontal, a vertical and a temporal one. The horizontal and vertical <abbr>CRS</abbr>s
+     * are often grouped in three-dimensional compound <abbr>CRS</abbr> with its own metadata,
+     * in particular an <abbr>EPSG</abbr> code. If nested compound <abbr>CRS</abbr>s were not allowed,
+     * the metadata of the 3D part would be lost. This lost can reduce the capability to search for the
+     * best transformation in a registry.
      *
      * @return the ordered list of components of this compound <abbr>CRS</abbr>.
      *

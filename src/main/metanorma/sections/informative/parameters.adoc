@@ -1,6 +1,6 @@
 [[parameters]]
 ==== Parameters
-_From <<ISO19111>> §11.2, <<ISO19115-1>> §6.5.12, <<ISO19157>> §C.2.2.4_
+_From <<ISO19111>> §12.2, <<ISO19115-1>> §6.5.12, <<ISO19157>> §C.2.2.4_
 
 The concept of operation parameters is defined in many OGC/ISO standards:
 

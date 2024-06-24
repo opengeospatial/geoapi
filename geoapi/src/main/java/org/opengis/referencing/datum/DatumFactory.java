@@ -54,6 +54,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see org.opengis.referencing.cs.CSFactory
  * @see org.opengis.referencing.crs.CRSFactory
+ * @see org.opengis.referencing.RegisterOperations#getFactory(Class)
  */
 @UML(identifier="CS_CoordinateSystemFactory", specification=OGC_01009)
 public interface DatumFactory extends ObjectFactory {

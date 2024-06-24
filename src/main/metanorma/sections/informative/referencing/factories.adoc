@@ -1,3 +1,28 @@
+[[register_operations]]
+==== Register operations
+_From <<ISO19111>> §12 and §C.5.6_
+
+`RegisterOperations` provides methods for retrieving the definition
+of a coordinate reference system (CRS) or a coordinate operation from a geodetic registry.
+It also provides a method for finding a set of coordinate operations between two CRS instances.
+The latter operation generally requires the use of a geodetic registry when the operation is a transformation.
+
+`RegisterOperations` is often the only interface needed by users as an entry point for referencing services.
+The way to obtain an instance of this interface is language-specific.
+On the Java platform, implementers shall declare their class in `module-info` (<<req_implementation_discovery>>).
+Users can obtain an instance of that class using `java.util.ServiceLoader` like below:
+
+[source,java,options="unnumbered"]
+-----------------------------------------------------------------------------------------------------
+RegisterOperations services = ServiceLoader.load(RegisterOperations.class).findFirst().orElseThrow();
+-----------------------------------------------------------------------------------------------------
+
+`RegisterOperations` provides a high-level API. A lower-level API is described in <<factories>>
+for extracting CRS components such as coordinate systems or datum, or for building CRS instances from scratch.
+Those low-level interfaces can be obtained by `RegisterOperations.getFactory(…)`,
+as they are (at least conceptually) the interfaces to which `RegisterOperations` delegates its work.
+
+
 [[factories]]
 ==== Factories
 _From <<OGC01-009>> §12.3.[6…7] and §12.4.6_
@@ -12,16 +37,10 @@ notably those in the EPSG geodetic dataset.
 .Factory interfaces partially derived from OGC 01-009
 image::factories.svg[UML of factories]
 
-#TODO: Some methods of `CRSAuthorityFactory` and
-`CoordinateOperationAuthorityFactory` to be replaced by ISO 19111:2019 `RegisterOperations`.#
-
 Code that needs to instantiate one of the objects defined in GeoAPI referencing packages
-should first obtain the factory in some platform dependent manner
+should first obtain the factory with `RegisterOperations.getFactory(…)` (<<register_operations>>)
 and then use the factory methods to instantiate the desired object instances.
 These instances can then be used through the interfaces defined in the GeoAPI library.
-
-In Java, factory implementations are discovered by `java​.util​.Service­Loader`.
-In Python, GeoAPI does not have a recommended mechanism yet.
 
 
 [[axis_order]]
@@ -30,7 +49,6 @@ The order of coordinate system axes in every objects obtained from an `Authority
 The order depends on the Coordinate Reference System (CRS) type and the country defining the CRS.
 In the case of geographic CRS, this is often – but not always – the (_latitude_, _longitude_) axis order.
 In particular the following method call:
-
 
 [source,java,options="unnumbered"]
 ----------------------------------------------------------------------------

@@ -43,9 +43,9 @@ import org.opengis.metadata.citation.Citation;
  */
 public interface Factory {
     /**
-     * Returns the vendor responsible for creating this factory implementation. Many implementations
-     * may be available for the same factory interface. Implementations can be managed by a
-     * {@linkplain java.util.ServiceLoader service loader}.
+     * Returns the vendor responsible for creating this factory implementation.
+     * Many implementations may be available for the same factory interface.
+     * Implementations can be managed by a {@linkplain java.util.ServiceLoader service loader}.
      *
      * @return the vendor for this factory implementation.
      */
