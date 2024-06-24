@@ -23,10 +23,10 @@ because the naming convention can be a compensation for the absence of compile-t
 ===== Properties
 The name adaptations depend on the target programming language and on the multiplicity.
 In Java, accessor methods start with the `"get"` prefix and are followed by their property name in camel cases.
-But in Python, no prefix is added and the camel cases convention is replaced by the snake cases convention
+But in Python, no prefix is added and the camel case convention is replaced by the snake case convention
 (see the `"coordinateSystem"` example below).
 If a property allows more than one value, then the plural form of its noun may be used.
-The plural form hints the developers that they may need to use indexes or iterators for accessing elements.
+The plural form gives a hint to developers that they may need to use indexes or iterators for accessing elements.
 
 .Example of name adaptations in programming elements
 [options="header"]

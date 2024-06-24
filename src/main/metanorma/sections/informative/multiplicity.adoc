@@ -7,7 +7,7 @@ materialized in the API as annotations (<<annotations>>) and in the method signa
 If a different multiplicity is needed, then [0 … ∞] should be used
 with a restriction documented in the text attached to the property.
 
-* *[0 … 0]* — the property cannot be set (this happen sometimes in subtypes).
+* *[0 … 0]* — the property cannot be set (this sometimes happens in subtypes).
 * *[0 … 1]* — the property is optional or conditional.
 * *[1 … 1]* — the property is mandatory.
 * *[0 … ∞]* — the property can appear an arbitrary number of times, including zero or one.
@@ -16,7 +16,7 @@ Some programming languages have an `Optional` construct for differentiating the 
 This construct is used where appropriate, but shall be considered only as a hint.
 It may appear in a mandatory property if that property was optional in the parent interface.
 Conversely, absence of `Optional` construct is not a guarantee that the value will never be null.
-Some properties fall in gray area, where they are _usually_ not null but may be null in some rare situations.
+Some properties fall in a gray area, where they are _usually_ not null but may be null in some rare situations.
 For example, the `ellipsoid` property of a Geodetic Reference Frame is mandatory when used in the context of
 geographic or projected coordinate reference systems, which are by far the most common cases.
 Even when used in other contexts, the ellipsoid is optional but still recommended.
@@ -25,6 +25,6 @@ in order to keep the most common usages simpler, but robust applications should 
 Developers should refer to the API documentation for the policy on null values.
 
 When the multiplicity is [0 … ∞], the property type is a collection such as a list.
-In such case an absent property is represented by an empty collection, not a null value.
+In such a case, an absent property is represented by an empty collection, not a null value.
 When the multiplicity is [1 … ∞] the collection shall never be empty,
 but there is no language construct in {supported-languages} for enforcing that requirement.

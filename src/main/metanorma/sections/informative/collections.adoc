@@ -19,7 +19,7 @@ A `Sequence` is similar to a `Bag` except that elements are ordered.
 |`Dictionary`        |`java.util.Map`        |
 |========================================================
 
-Unless otherwise required by the semantic of a property, GeoAPI preferably uses the `Collection` type in Java method signatures.
+Unless otherwise required by the semantic of a property, GeoAPI prefers to use the `Collection` type in Java method signatures.
 This allows implementers to choose their preferred subtypes, usually `Set` or `Sequence`.
 The `Set` type is not the default type because enforcing element uniqueness may constraint implementations to use hash tables
 or similar algorithms, which is not always practical.
