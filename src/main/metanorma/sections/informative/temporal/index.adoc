@@ -4,12 +4,12 @@
 The GeoAPI temporal package uses the `opengis​.temporal` namespace
 and implements some of the types defined in the <<ISO19108>> – _Temporal schema_ specification.
 Only the interfaces required by ISO 19115 are currently provided.
-Those interfaces complete the ones defined by ISO 19103 in <<datetime>>.
+These interfaces complete the ones defined by ISO 19103 in <<datetime>>.
 
-The ISO 19108 interfaces overlap with new interfaces introduced in latest ISO 19111 revision.
+The ISO 19108 interfaces overlap with new interfaces introduced in the latest ISO 19111 revision.
 In the following table, the interfaces listed in the left column are omitted
 in favor of the ISO 19111 interfaces listed in the right column.
-Those replacements are suggestions, GeoAPI generally does not mandate this mapping.
+These replacements are suggestions; GeoAPI generally does not mandate this mapping.
 
 .ISO 19108 interfaces omitted in favor of ISO 19111 interfaces
 [options="header"]
@@ -25,10 +25,10 @@ Those replacements are suggestions, GeoAPI generally does not mandate this mappi
 |`TM_ReferenceSystem`        |`TemporalCRS`
 |=================================================================================
 
-Furthermore, other ISO 19108 interfaces overlap with standard API in the target languages.
+Furthermore, other ISO 19108 interfaces overlap with standard APIs in the target languages.
 In the following table, the interfaces listed in the left column are omitted
-in favor of interfaces of target languages listed in the right column.
-Those replacements are suggestions, GeoAPI generally does not mandate this mapping.
+in favor of interfaces of the target language listed in the right-most columns.
+These replacements are suggestions; GeoAPI generally does not mandate this mapping.
 
 .ISO 19108 interfaces omitted in favor of standard interfaces of target languages
 [options="header"]

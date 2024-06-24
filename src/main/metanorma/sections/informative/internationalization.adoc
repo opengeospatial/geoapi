@@ -4,8 +4,8 @@ _From <<ISO19103>> §C.2_
 
 The `International­String` interface is defined by GeoAPI to handle textual sequences
 which may potentially need to be translated for users of different locales.
-Conceptually this act as a `Character­String` but may, depending on the implementation,
-provide access to locale specific representations of that string.
+Conceptually this acts as a `Character­String` but may, depending on the implementation,
+provide access to locale-specific representations of that string.
 GeoAPI `International­String` is closely related, but not identical, to ISO 19103 `Language­String`.
 The main difference is that the latter is a character string in one specific language,
 while `International­String` can be a collection of character strings in different locales.
@@ -16,10 +16,10 @@ to allow sending string representations in the locale of the client rather than 
 .Cultural and linguistic adaptability
 image::localization.svg[UML of InternationalString]
 
-The `toString()` method (`+__str__+` in Python) returns the text in a language at implementer's choice.
+The `toString()` method (`+__str__+` in Python) returns the text in a language of the implementer's choosing.
 The `toString(Locale)` method tries to return the text in the specified language if available,
-and otherwise fallbacks on a language at implementer's choice.
-This specification makes no recommendation about the default or fallback languages
+and otherwise falls back on a language of the implementer's choosing.
+This specification makes no recommendation about the default or fallback languages,
 because some programming languages provide their own mechanism
 (e.g. using _Language Range_ as defined by <<RFC4647>>).
 Consequently, GeoAPI delegates most internationalization types to the target language standard library, as shown in the following table.

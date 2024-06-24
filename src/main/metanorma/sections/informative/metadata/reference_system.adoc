@@ -3,10 +3,10 @@
 _Derived from <<ISO19115-1>> §6.5.8_
 
 The way GeoAPI handles reference systems in metadata differs significantly from ISO 19115.
-Coordinate Reference Systems (CRS) are defined in details by the ISO 19111 standard.
-But the ISO 19115 metadata standards do not reference those CRS interfaces directly
+Coordinate Reference Systems (CRS) are defined in detail by the ISO 19111 standard.
+But the ISO 19115 metadata standards do not reference the CRS interfaces directly
 (except in one case), at the cost of some overlaps.
-By contrast GeoAPI does not enforce such separation between standards when a bidirectional dependency can bring harmonization.
+In contrast, GeoAPI does not enforce such separation between standards when a bidirectional dependency can bring harmonization.
 A bidirectional dependency does not imply that implementers have to support both ISO standards.
 
 Reference Systems interfaces are defined in GeoAPI `referencing` packages.
