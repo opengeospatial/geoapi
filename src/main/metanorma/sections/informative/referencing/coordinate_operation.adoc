@@ -9,13 +9,13 @@ There are four kinds of coordinate operations in GeoAPI:
   Conversions can be as accurate as floating point computations allow.
   Map projections are kinds of coordinate conversions.
 * A _coordinate transformation_ involves empirically derived parameters.
-  Because those parameters have observational error
+  Because the parameters have observational error
   and because transformation methods are only approximations of a complex reality,
   the coordinate transformation results also have errors.
   Furthermore, several transformations may exist for the same pair of coordinate reference systems,
   differing in their method, parameter values, domain of validity and accuracy characteristics.
 * #TODO: Point motion operation.#
-* A _concatenated operation_ defines a sequential execution of any of above operations.
+* A _concatenated operation_ defines a sequential execution of any of the above operations.
 
 GeoAPI provides three ways to create a coordinate operation,
 described in the following sub-sections.
@@ -38,13 +38,13 @@ the `Coordinate­Operation.toWKT()` method.
 
 [[coordinate_operation_from_authority_code]]
 ===== From an authority code
-If a determinist operation is required and if that operation is identified by an authority code,
-then that operation can be obtained with `Coordinate­Operation­Authority­Factory`.
-This approach avoids the implementation-dependent variability of the approach described in previous paragraph.
+If a deterministic operation is required and if that operation is identified by an authority code,
+then the operation can be obtained with `Coordinate­Operation­Authority­Factory`.
+This approach avoids the implementation-dependent variability of the approach described in the previous paragraph.
 
 [[coordinate_operation_from_parameters]]
 ===== From operation parameter values
-The `Parameter­Value` interface provides methods to set the value of the operation parameter.
+The `Parameter­Value` interface provides methods to set the value of an operation parameter.
 In the general use pattern for these types, a `Parameter­Value­Group` containing all the named parameters
 for an operation method is first obtained from the `Operation­Method` or the `Math­Transform­Factory`,
 and then each `Parameter­Value` instance is obtained in turn and its value set.

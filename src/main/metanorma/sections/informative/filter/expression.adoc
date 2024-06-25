@@ -13,7 +13,7 @@ interface (<<java_filter>>).
 An expression can be a literal, a reference to the values of a particular property in resources,
 or a named procedure (for example arithmetic operations between the results of two sub-expressions).
 An expression can have zero or more parameters and generates a single result.
-The parameters themselves are in-turn expressions and shall appear in the order in which
+The parameters are themselves in turn expressions, and shall appear in the order in which
 they are defined in the `Filter­Capabilities` (<<filter_capabilities>>).
 
 [[expression_UML]]
