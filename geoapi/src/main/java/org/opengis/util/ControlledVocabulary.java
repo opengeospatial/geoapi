@@ -17,8 +17,6 @@
  */
 package org.opengis.util;
 
-import java.util.Optional;
-
 
 /**
  * Common interface of all {@linkplain Enum enumerations} and {@linkplain CodeList code lists} defined in GeoAPI.
@@ -64,25 +62,7 @@ public interface ControlledVocabulary {
      *
      * @return all names of this constant. This array is never null and never empty.
      */
-    default String[] names() {
-        final String name = name();
-        final String id = identifier().orElse(null);
-        if (id != null && !id.equals(name)) {
-            return new String[] {name, id};
-        } else {
-            return new String[] {name};
-        }
-    }
-
-    /**
-     * Returns the identifier declared in the {@link org.opengis.annotation.UML} annotation.
-     * The UML identifier shall be the ISO or OGC name for this enumeration or code list constant.
-     *
-     * @return the ISO/OGC identifier for this constant.
-     */
-    default Optional<String> identifier() {
-        return Optional.empty();
-    }
+    String[] names();
 
     /**
      * Returns the ordinal of this constant. This is its position in its elements declaration,

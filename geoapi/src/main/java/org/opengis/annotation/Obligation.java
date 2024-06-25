@@ -89,11 +89,24 @@ public enum Obligation implements ControlledVocabulary {
     /**
      * Returns the UML identifier for this enumeration constant.
      *
+     * @return the ISO/OGC identifier for this constant.
+     *
      * @since 3.1
      */
-    @Override
     public Optional<String> identifier() {
         return Optional.ofNullable(identifier);
+    }
+
+    /**
+     * Returns the programmatic name of this constant together with its identifier.
+     */
+    @Override
+    public String[] names() {
+        if (identifier != null) {
+            return new String[] {name(), identifier};
+        } else {
+            return new String[] {name()};
+        }
     }
 
     /**

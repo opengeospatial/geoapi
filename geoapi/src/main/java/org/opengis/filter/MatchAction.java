@@ -73,10 +73,19 @@ public enum MatchAction implements ControlledVocabulary {
 
     /**
      * Returns the UML identifier for this enumeration constant.
+     *
+     * @return the ISO/OGC identifier for this constant.
+     */
+    public Optional<String> identifier() {
+        return Optional.of(identifier);
+    }
+
+    /**
+     * Returns the programmatic name of this constant together with its identifier.
      */
     @Override
-    public Optional<String> identifier() {
-        return Optional.ofNullable(identifier);
+    public String[] names() {
+        return new String[] {name(), identifier};
     }
 
     /**

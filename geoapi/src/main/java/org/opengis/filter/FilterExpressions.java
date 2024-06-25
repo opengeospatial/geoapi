@@ -20,7 +20,6 @@ package org.opengis.filter;
 import java.util.List;
 import java.util.Objects;
 import java.util.AbstractList;
-import java.util.Optional;
 import org.opengis.util.CodeList;
 import org.opengis.util.ScopedName;
 
@@ -104,9 +103,9 @@ final class FilterExpressions<R> extends AbstractList<Expression<R,?>> {
         @Override
         public ScopedName getFunctionName() {
             final CodeList<?> type = filter.getOperatorType();
-            final Optional<String> identifier = type.identifier();
-            if (identifier.isPresent()) {
-                return new Name(Name.STANDARD, identifier.get());
+            final String identifier = type.identifier();
+            if (identifier != null) {
+                return new Name(Name.STANDARD, identifier);
             } else {
                 return new Name(Name.EXTENSION, type.name());
             }

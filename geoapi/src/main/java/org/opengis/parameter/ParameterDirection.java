@@ -69,11 +69,20 @@ public enum ParameterDirection implements ControlledVocabulary {
     /**
      * Returns the UML identifier for this enumeration constant.
      *
+     * @return the ISO/OGC identifier for this constant.
+     *
      * @since 3.1
      */
-    @Override
     public Optional<String> identifier() {
-        return Optional.ofNullable(identifier);
+        return Optional.of(identifier);
+    }
+
+    /**
+     * Returns the programmatic name of this constant together with its identifier.
+     */
+    @Override
+    public String[] names() {
+        return new String[] {name(), identifier};
     }
 
     /**

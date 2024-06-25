@@ -566,6 +566,19 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
     // We do not provide default implementation because casting to `CodeList<E>` is unsafe.
 
     /**
+     * {@inheritDoc}
+     */
+    @Override
+    public String[] names() {
+        final String id = identifier();
+        if (id != null && !id.equals(name)) {
+            return new String[] {name, id};
+        } else {
+            return new String[] {name};
+        }
+    }
+
+    /**
      * Returns the programmatic name of this code list element.
      * If this element is a constant defined in a {@code CodeList} subclass,
      * then this is the name of the public static field for that constant.
@@ -578,15 +591,19 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
     }
 
     /**
-     * Returns the identifier declared in the UML annotation.
+     * Returns the identifier declared in the UML annotation, or {@code null} if none.
      * The UML identifier shall be the ISO or OGC name for this code constant.
      *
-     * @return the ISO/OGC identifier for this code.
+     * <div class="warning"><b>Upcoming API change</b><br>
+     * The return value may be replaced by {@code Optional<String>} in GeoAPI 4.0
+     * for reducing the risk of {@code NullPointerException}.
+     * </div>
+     *
+     * @return the ISO/OGC identifier for this code, or {@code null} if none.
      *
      * @see UML#identifier()
      */
-    @Override
-    public Optional<String> identifier() {
+    public String identifier() {
         /*
          * Save the field in a local variable for protection against concurrent change (this
          * operation is guaranteed atomic according Java specification). We don't synchronize
@@ -628,7 +645,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
             }
             identifier = id;
         }
-        return id.isEmpty() ? Optional.empty() : Optional.of(id);
+        return id.isEmpty() ? null : id;
     }
 
     /**
