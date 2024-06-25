@@ -17,7 +17,7 @@ Having `Math­Transform` separated from `Coordinate­Operation` gives more flexi
 
 [[math_transform_UML]]
 .Association between Coordinate Operation and Math Transform
-image::math_transform.svg["urn:ogc:def:crs:EPSG:10" Partial UML of MathTransform]
+image::math_transform.svg[Partial UML of MathTransform]
 
 `MathTransform` has a method taking a `DirectPosition` (the coordinates in source CRS) in input
 and returning a `Direct­Position` (the coordinates in target CRS) in output.
