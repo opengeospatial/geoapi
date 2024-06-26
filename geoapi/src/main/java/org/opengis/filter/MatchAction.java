@@ -76,7 +76,7 @@ public enum MatchAction implements ControlledVocabulary {
      */
     @Override
     public Optional<String> identifier() {
-        return Optional.ofNullable(identifier);
+        return Optional.of(identifier);
     }
 
     /**

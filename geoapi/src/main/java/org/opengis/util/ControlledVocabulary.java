@@ -29,7 +29,7 @@ import java.util.Optional;
  * but users are free to add new members at runtime.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   3.1
  *
  * @departure integration
@@ -79,6 +79,8 @@ public interface ControlledVocabulary {
      * The UML identifier shall be the ISO or OGC name for this enumeration or code list constant.
      *
      * @return the ISO/OGC identifier for this constant.
+     *
+     * @since 4.0
      */
     default Optional<String> identifier() {
         return Optional.empty();
