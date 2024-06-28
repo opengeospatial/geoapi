@@ -18,8 +18,6 @@
 
 /**
  * Non-public helper methods for default implementation of some GeoAPI methods.
- * Those defaults consist mostly in throwing an exception saying that a feature
- * is not implemented.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

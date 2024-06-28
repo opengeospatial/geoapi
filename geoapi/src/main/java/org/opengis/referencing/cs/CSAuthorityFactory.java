@@ -22,6 +22,7 @@ import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.util.UnimplementedServiceException;
 import org.opengis.util.FactoryException;
+import org.opengis.geoapi.internal.Produces;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
@@ -53,6 +54,7 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
  * @see org.opengis.referencing.datum.DatumAuthorityFactory
  * @see org.opengis.referencing.RegisterOperations#getFactory(Class)
  */
+@Produces({CoordinateSystem.class, CoordinateSystemAxis.class, Unit.class})
 public interface CSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an unit of measurement from a code.

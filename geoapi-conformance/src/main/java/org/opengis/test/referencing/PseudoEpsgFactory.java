@@ -134,7 +134,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
      * @throws IllegalArgumentException if the specified type is not one of the above-cited values.
      */
     @Override
-    public <T extends Factory> Optional<T> getFactory(final Class<T> type) {
+    public <T extends Factory> Optional<T> getFactory(final Class<? extends T> type) {
         if (type == CRSAuthorityFactory.class || type == CSAuthorityFactory.class || type == DatumAuthorityFactory.class) {
             return Optional.of(type.cast(this));
         } else {

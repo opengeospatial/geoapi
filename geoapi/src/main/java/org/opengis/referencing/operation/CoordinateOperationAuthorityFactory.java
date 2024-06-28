@@ -24,6 +24,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.RegisterOperations;
 import org.opengis.util.UnimplementedServiceException;
 import org.opengis.util.FactoryException;
+import org.opengis.geoapi.internal.Produces;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
@@ -47,6 +48,7 @@ import static org.opengis.annotation.Specification.*;
  * @since   1.0
  */
 @UML(identifier="CT_CoordinateTransformationAuthorityFactory", specification=OGC_01009)
+@Produces({CoordinateOperation.class, OperationMethod.class})
 public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an operation method from a code.

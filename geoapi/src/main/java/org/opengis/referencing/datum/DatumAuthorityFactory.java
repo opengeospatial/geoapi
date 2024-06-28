@@ -21,6 +21,7 @@ import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.util.UnimplementedServiceException;
 import org.opengis.util.FactoryException;
+import org.opengis.geoapi.internal.Produces;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
@@ -54,6 +55,7 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
  * @see org.opengis.referencing.RegisterOperations#getFactory(Class)
  */
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
+@Produces({Datum.class, Ellipsoid.class, PrimeMeridian.class})
 public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an ellipsoid from a code.

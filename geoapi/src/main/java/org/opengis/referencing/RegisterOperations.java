@@ -19,14 +19,20 @@ package org.opengis.referencing;
 
 import java.util.Set;
 import java.util.Optional;
+import java.util.function.Function;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.UnimplementedServiceException;
+import org.opengis.util.InternationalString;
 import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
+import org.opengis.referencing.cs.CSAuthorityFactory;
 import org.opengis.referencing.datum.DatumEnsemble;
+import org.opengis.referencing.datum.DatumAuthorityFactory;
+import org.opengis.metadata.citation.Citation;
+import org.opengis.geoapi.internal.Produces;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
@@ -44,13 +50,19 @@ import static org.opengis.annotation.Specification.*;
  * For extracting more specific types of <abbr>CRS</abbr>s,
  * or for extracting <abbr>CRS</abbr> components such as coordinate systems or datum,
  * various {@link AuthorityFactory} services may be used.
- * The latter services are often underlying the implementation of a {@code RegisterOperations}
+ * The latter services are often the underlying implementation of a {@code RegisterOperations}
  * and can be made available by the {@link #getFactory(Class)} method.
  * More low-level constructors provided by {@link ObjectFactory} services can also be available.
  *
- * <h2>Getting an instance</h2>
- * Implementers are encouraged to declare their implementations in their {@code module-info} file.
- * Then, users can discover an implementation at runtime using {@link java.util.ServiceLoader} like below:
+ * <h2>Notes for implementers</h2>
+ * Implementations shall override all abstract methods, and <em>should</em> override the default implementation of
+ * {@link #getFactory(Class)} with {@link CRSAuthorityFactory} and/or {@link CoordinateOperationAuthorityFactory}
+ * support. Alternatively, the above-cited authority factories do not need to be supported if, instead, at least
+ * the {@link #findCoordinateReferenceSystem(String)} and/or {@link #findCoordinateOperation(String)} methods
+ * are overridden.
+ *
+ * <p>Implementers are encouraged to declare their implementations in their {@code module-info} file.
+ * Then, users can discover an implementation at runtime using {@link java.util.ServiceLoader} like below:</p>
  *
  * {@snippet lang="java" :
  * RegisterOperations services = ServiceLoader.load(RegisterOperations.class).findFirst().orElseThrow();
@@ -64,8 +76,129 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="RegisterOperations", specification=ISO_19111)
 public interface RegisterOperations extends AuthorityFactory {
     /**
+     * Returns the vendor responsible for creating this implementation.
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation {@linkplain #getFactory(Class) delegates} to {@link CRSAuthorityFactory}
+     * if present, or to {@link CoordinateOperationAuthorityFactory} otherwise, or returns {@code null} if
+     * none of these factories is present.
+     *
+     * @return the vendor for this factory implementation.
+     */
+    @Override
+    default Citation getVendor() {
+        return citation(AuthorityFactory::getVendor);
+    }
+
+    /**
+     * Returns the organization or party responsible for definition and maintenance of the register.
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation {@linkplain #getFactory(Class) delegates} to {@link CRSAuthorityFactory}
+     * if present, or to {@link CoordinateOperationAuthorityFactory} otherwise, or returns {@code null} if
+     * none of these factories is present.
+     *
+     * @return the organization responsible for definition of the register.
+     */
+    @Override
+    default Citation getAuthority() {
+        return citation(AuthorityFactory::getAuthority);
+    }
+
+    /**
+     * Default implementation of {@link #getVendor()} and {@link #getAuthority()}.
+     *
+     * @param  mapper the {@code getVendor()} or {@code getAuthority()} method to invoke.
+     * @return the citation, or {@code null} if none.
+     */
+    private Citation citation(final Function<AuthorityFactory, Citation> mapper) {
+        return this.<AuthorityFactory>getFactory(CRSAuthorityFactory.class)
+                .or(() -> getFactory(CoordinateOperationAuthorityFactory.class))
+                .map(mapper).orElse(null);
+    }
+
+    /**
+     * Returns the set of authority codes for objects of the given type.
+     * The {@code type} argument specifies the base type of identified objects.
+     * For example, {@code CoordinateReferenceSystem.class} is for requesting the <abbr>CRS</abbr> codes.
+     * See the {@linkplain AuthorityFactory#getAuthorityCodes parent interface} for more details.
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation {@linkplain #getFactory(Class) delegates to the factory}
+     * for objects of the given type. For example, it delegates to {@link CSAuthorityFactory}
+     * if {@code type} is assignable to {@link org.opengis.referencing.cs.CoordinateSystem}.
+     * If no factory is available for the given type, then an empty set is returned.
+     *
+     * @param  type  the type of referencing object for which to get authority codes.
+     * @return the set of authority codes for referencing objects of the given type.
+     * @throws FactoryException if access to the underlying database failed.
+     */
+    @Override
+    default Set<String> getAuthorityCodes(Class<? extends IdentifiedObject> type) throws FactoryException {
+        final Optional<? extends AuthorityFactory> factory = getFactory(toFactoryType(type));
+        return factory.isPresent() ? factory.get().getAuthorityCodes(type) : Set.of();
+    }
+
+    /**
+     * Returns a textual description of the object corresponding to a code.
+     * The returned optional may be empty if the given type is not supported,
+     * or if the object corresponding to the specified code has no description.
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation {@linkplain #getFactory(Class) delegates to the factory}
+     * for objects of the given type. For example, it delegates to {@link CSAuthorityFactory}
+     * if {@code type} is assignable to {@link org.opengis.referencing.cs.CoordinateSystem}.
+     * If no factory is available for the given type, then an empty optional is returned.
+     *
+     * @param  type  the type of object for which to get a description.
+     * @param  code  value allocated by the authority for an object of the given type.
+     * @return a description of the object, or empty if the object has no description.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the query failed for some other reason.
+     */
+    @Override
+    default Optional<InternationalString> getDescriptionText(Class<? extends IdentifiedObject> type, String code)
+            throws FactoryException
+    {
+        final Optional<? extends AuthorityFactory> factory = getFactory(toFactoryType(type));
+        return factory.isPresent() ? factory.get().getDescriptionText(type, code) : Optional.empty();
+    }
+
+    /**
+     * Returns the type of authority factory that may be able to create objects of the given type.
+     *
+     * @param  object  the type of object for which to get a factory.
+     * @return the type of factory that may be able to create instances of the given object.
+     * @throws IllegalArgumentException if the given type is unrecognized or ambiguous.
+     */
+    private static Class<? extends AuthorityFactory> toFactoryType(final Class<? extends IdentifiedObject> object) {
+        Class<? extends AuthorityFactory> found = null;
+loop:   for (int i=0; ; i++) {
+            final Class<? extends AuthorityFactory> factory;
+            switch (i) {
+                case 0:  factory = CRSAuthorityFactory.class; break;
+                case 1:  factory = CoordinateOperationAuthorityFactory.class; break;
+                case 2:  factory = CSAuthorityFactory.class; break;
+                case 3:  factory = DatumAuthorityFactory.class; break;
+                default: if (found != null) return found; else break loop;
+            }
+            for (final Class<?> produces : factory.getAnnotation(Produces.class).value()) {
+                if (produces.isAssignableFrom(object)) {
+                    if (found != null) break loop;
+                    found = factory;
+                }
+            }
+        }
+        throw new IllegalArgumentException((found != null ? "Ambiguous" : "Unrecognized")
+                + " object type: " + object.getCanonicalName());
+    }
+
+    /**
      * Extracts <abbr>CRS</abbr> details from the registry.
-     * By default, this method delegates to the {@linkplain CRSAuthorityFactory CRS authority factory}.
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation {@linkplain #getFactory(Class) delegates} to {@link CRSAuthorityFactory},
+     * or throws {@link UnimplementedServiceException} if there is no such factory.
      *
      * @param  code  <abbr>CRS</abbr> identifier allocated by the authority.
      * @return the <abbr>CRS</abbr> for the given authority code.
@@ -83,8 +216,10 @@ public interface RegisterOperations extends AuthorityFactory {
 
     /**
      * Extracts coordinate operation details from the registry.
-     * By default, this method delegates to the
-     * {@linkplain CoordinateOperationAuthorityFactory coordinate operation authority factory}.
+     *
+     * <h4>Default implementation</h4>
+     * The default implementation {@linkplain #getFactory(Class) delegates} to {@link CoordinateOperationAuthorityFactory},
+     * or throws {@link UnimplementedServiceException} if there is no such factory.
      *
      * @param  code  operation identifier allocated by the authority.
      * @return the operation for the given authority code.
@@ -193,10 +328,12 @@ public interface RegisterOperations extends AuthorityFactory {
      *   Added for making possible to use the {@code RegisterOperations} as the single entry point
      *   where to fetch all other services.
      */
-    default <T extends Factory> Optional<T> getFactory(Class<T> type) {
-        if (type.isInterface() && type.getName().startsWith("org.opengis.referencing.")) {
+    default <T extends Factory> Optional<T> getFactory(Class<? extends T> type) {
+        if (type.isInterface() && type != AuthorityFactory.class && type != RegisterOperations.class
+                && type.getName().startsWith("org.opengis.referencing."))
+        {
             return Optional.empty();
         }
-        throw new IllegalArgumentException("Illegal authority factory type: " + type.getCanonicalName());
+        throw new IllegalArgumentException("Illegal factory type: " + type.getCanonicalName());
     }
 }
