@@ -3,13 +3,13 @@
 [[preface]]
 == Preface
 
-There is various libraries for helping developers to process geospatial data from programming languages like {supported-languages}.
+There are various libraries for helping developers to process geospatial data from programming languages like {supported-languages}.
 But the proliferation of API variations degrade interoperability.
 Since each library defines its own Application Programming Interface (API),
-the choice of a particular library result in a vendor lock-in situation even with open-source softwares.
+the choice of a particular library results in a vendor lock-in situation even with open-source software.
 For example, it is difficult for a Web Map Service (WMS) implementation to replace its map projection engine
 if all available engines use incompatible APIs.
-Standard API in programmatic language can reduce such vendor lock-in by providing a layer which separates client code,
+Standard APIs in programming languages can reduce such vendor lock-in by providing a layer which separates client code,
 which call the API, from library code, which implements the API.
 This follows a similar pattern to the well known JDBC (in Java language) or ODBC (in C/C++ language) API
 which provides standardized interfaces to databases.
@@ -26,10 +26,9 @@ from Geographic Markup Language (GML) schema instead of from the UML diagrams of
 OGC Declaration
 ////
 
-The interfaces described in this standard follow closely, without introducing new concepts,
-from the previously published standards of
+The interfaces described in this standard follow previously published standards of
 the Open Geospatial Consortium (OGC) and
-the International Organization for Standardization (ISO).
+the International Organization for Standardization (ISO) closely, without introducing new concepts.
 Nonetheless, attention is drawn to the possibility that some of the elements of this document may be the subject of patent rights.
 The Open Geospatial Consortium shall not be held responsible for identifying any or all such patent rights.
 Recipients of this document are requested to submit, with their comments, notification of any relevant patent claims
@@ -51,7 +50,7 @@ which manipulates normalized data structures of geographic information based on 
 and the library code able both to instantiate and operate on these data structures
 according to the rules required by the published API and by the ISO and OGC standards.
 
-This standard is a _realization_ of OGC/ISO abstract specifications: it defines a language specific layers of normalization.
+This standard is a _realization_ of OGC/ISO abstract specifications: it defines language-specific layers of normalization.
 By comparison, the Geographic Markup Language (GML) is another realization of the same abstract specifications
 (ignoring version numbers) but targeting a different language (XML).
 GeoAPI documents the mapping of types and methods from the abstract model into {supported-languages} programming languages,

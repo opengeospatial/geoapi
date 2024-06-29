@@ -3,12 +3,12 @@
 
 The ISO 19143 model is slightly modified in GeoAPI for retrofitting with existing interfaces in {supported-languages}.
 Some modifications are also applied for generalization when non-encoded property values can be computed.
-The aim is to facilitate computational operations without preventing the encoding of ISO 19143 compliant XML documents,
+The aim is to facilitate computational operations without preventing the encoding of ISO 19143-compliant XML documents,
 as omitted types (for example) can be inferred.
 
 [[expression_omissions]]
 ===== Omissions relative to expressions
-`Function` interface is omitted (actually retrofitted into the base `Expression` interface) for avoiding confusion with
+The `Function` interface is omitted (actually retrofitted into the base `Expression` interface) to avoid confusion with
 function interfaces provided natively by target platforms (such as the `java​.util​.function` package).
 Instead, the `Function` properties are moved into the `Expression` parent interface because from a programming
 language point of view, all expressions – including `Literal` – can be viewed as a kind of function.
@@ -19,11 +19,11 @@ image::filter_function.svg[Partial UML for ISO and GeoAPI filter function]
 
 [[filter_omissions]]
 ===== Omissions relative to filters
-`Operator`, `UnaryLogicOperator` and `BinaryLogicOperator` interfaces are omitted for simplicity reason.
+`Operator`, `UnaryLogicOperator` and `BinaryLogicOperator` interfaces are omitted for simplicity reasons.
 The operator base interface is replaced by direct inheritance of the `Filter` interface,
-for avoiding an indirection level.
+to avoid a level of indirection.
 The unary and binary logic operators are unnecessary
-since they can be handle by the `Logical­Operator` parent interface,
+since they can be handled by the `Logical­Operator` parent interface,
 with arity determined by the length of the operands list.
 If 1, the operator is an `Unary­Logic­Operator`.
 If 2 or more, the operator is a `Binary­Logic­Operator`.
@@ -39,17 +39,17 @@ They are replaced by recommendations in the API documentation.
 [[filter_capability_omissions]]
 ===== Omissions relative to capabilities
 `SpatialOperatorDescription` and `TemporalOperatorDescription` in the capabilities section are omitted.
-The are replaced by the dictionary of target platforms (for example `Map​.Entry` in Java).
-It reduces the number of GeoAPI defined interfaces by leveraging platform API
-and also makes easier to get the operands for a specific operator.
+They are replaced by the dictionary of target platforms (for example `Map​.Entry` in Java).
+This reduces the number of GeoAPI-defined interfaces by leveraging platform API
+and also makes it easier to get the operands for a specific operator.
 
 [[filter_departures_as_renaming]]
 ===== Renaming
-* The `expression` association in `Function` is renamed `parameter` for making clearer that they are function inputs.
+* The `expression` association in `Function` is renamed `parameter` to make clearer the fact that they are function inputs.
 * The `name` property in `Function` is renamed `function­Name` for making its purpose clearer,
   since GeoAPI declares that property in the `Expression` parent interface.
 * The `Binary­Comparison­Name` type is renamed `Comparison­Operator­Name` for consistency with other operator names
-  and for making possible to name other kinds of comparison than binary operators.
+  and for making it possible to name other kinds of comparison than binary operators.
 
 [[filter_departures_as_generalization]]
 ===== Generalization of filter metadata
@@ -61,15 +61,15 @@ GeoAPI generalizes by declaring a `getOperator­Type()` method in the base `Filt
 It provides a single access point for type information without the need to check for each specialized interface.
 
 Likewise <<ISO19143>> specification provides different properties for getting the expressions used by a filter.
-Those properties have different names depending on the sub-type:
+These properties have different names depending on the sub-type:
 `expression` (with a cardinality of 1, 2 or unlimited), `operand1`, `operand2`, or `valueReference`.
 GeoAPI provides a `getExpressions()` method in the parent `Filter` interface
-as a way to access those expressions without the need to make special cases for each sub-interfaces.
+as a way to access these expressions without the need to make special cases for each sub-interfaces.
 
 [NOTE]
 ======
 The operand names vary in ISO 19143 specification because their types vary.
 But those types are often unions, which are materialized only by documentation in GeoAPI.
 Consequently, the base `Expression` type is used almost everywhere,
-which make less useful to have heterogynous properties in sub-interfaces.
+which makes it less useful to have heterogeneous properties in sub-interfaces.
 ======

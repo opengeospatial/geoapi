@@ -5,13 +5,13 @@ _From <<ISO19103>> §C.4_
 ISO 19103 represents measurements and their units by two base interfaces:
 `Measure` for the result from performing the act of ascertaining the value of a characteristic of some entity,
 and `UnitOf­Measure` as a quantity adopted as a standard of measurement for other quantities of the same kind.
-Those two base interfaces have a parallel set of subtypes.
+These two base interfaces have a parallel set of subtypes.
 For example, `Length` as a `Measure` specialization for distances,
-accompanied by `UomLength` as an `UnitOf­Measure` specialization for length units.
+accompanied by `UomLength` as a `UnitOf­Measure` specialization for length units.
 Likewise `Area` is accompanied with `UomArea`, `Time` is accompanied with `UomTime`, _etc._
 
 GeoAPI does not define any interface for the ISO 19103 `Measure` and `UnitOf­Measure` types
 because {supported-languages} already have their own library for units of measurement.
 For example, Java has standardized a set of quantity interfaces in the Java Specification Request <<JSR385>>.
-When such language-specific standard exists and provides equivalent functionality to ISO 19103, that external standard is used.
+When such a language-specific standard exists and provides equivalent functionality to ISO 19103, that external standard is used.
 See Java profile (<<uom_jsr>>) or Java example code (<<parameterized_units>>) for more information.

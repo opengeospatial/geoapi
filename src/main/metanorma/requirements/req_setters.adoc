@@ -21,7 +21,7 @@ This list of exception types is not exclusive.
 
 *Example:*
 A call to `parameter​.setValue(-10.25)` in Java
-may have the first of following results which is applicable:
+may have the first of the following results which is applicable:
 
 * The method is supported and the -10.25 value is valid:
   The setter method returns silently.

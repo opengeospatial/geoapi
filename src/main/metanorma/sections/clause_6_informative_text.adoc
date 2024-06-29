@@ -2,9 +2,9 @@
 [[overview]]
 == Geospatial API overview
 
-The GeoAPI interfaces formalizes the handling of types defined in OGC/ISO abstract specifications.
-Whereas the specifications define types, operations and relationships using the general UML notation,
-the GeoAPI types implement those standards as programming language interfaces or simple classes.
+GeoAPI interfaces formalize the handling of types defined in OGC/ISO abstract specifications.
+Whereas the OGC/ISO standards define types, operations and relationships using the general UML notation,
+GeoAPI types implement the standards as programming language interfaces or simple classes.
 The structure of the GeoAPI library mirrors the packaging and separation of the different ISO and OGC specifications
 by grouping different types and functionality in separated {supported-languages} language packages.
 

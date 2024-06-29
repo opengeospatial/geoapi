@@ -26,12 +26,12 @@ Python: http://www.geoapi.org/snapshot/python/ #TODO: update URL.#
 ====
 
 Note that this requirement does not mean that vendors must implement all types and methods,
-or cannot implement their own API in addition of GeoAPI.
+or cannot implement their own API in addition to GeoAPI.
 This requirement only means that modules or packages inside the `org​.opengis` or `opengis` namespaces
-shall contain the exact same set of types as published at above links,
+shall contain the exact same set of types as published at the above links,
 and each of those types shall contain the exact same set of properties as published.
 But vendors are still free to implement only a subset of their choice
-and throw exception for unimplemented types and methods.
+and throw exceptions for unimplemented types and methods.
 Vendors can also add new types and methods, provided that those additions are in a namespace
 different than `org​.opengis` and `opengis`.
 Finally, this requirement applies only to libraries redistributed for use by other developers.

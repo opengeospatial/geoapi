@@ -2,8 +2,8 @@
 ==== Record types
 _From <<ISO19103>> §7.7_
 
-Records define new data type as an heterogeneous aggregation of component data types (the fields).
-A `Record­Type` defines dynamically constructed data type.
+Records define new data type as a heterogeneous aggregation of component data types (the fields).
+A `Record­Type` defines a dynamically constructed data type.
 It is identified by a `Type­Name` and contains an arbitrary number of fields as (_name_, _type_) pairs.
 A `Record` is an instance of `Record­Type` containing the actual field values.
 
@@ -15,7 +15,7 @@ Field names are locally mapped, and field types are most often primitives.
 Because the `Record­Type` describes the structure of a set of records,
 it is essentially a metaclass for that set of records viewed as a class.
 In dynamic languages such as Python, the `Record` and `Record­Type` interfaces are not really needed
-because those languages can handle dynamically constructed data types natively,
+because such languages can handle dynamically constructed data types natively,
 but they can nevertheless be useful as marker interfaces.
 
 .Record types mapping
@@ -50,6 +50,6 @@ The ISO 19103 `Field` and `Field­Type` interfaces are omitted because the same 
 with `Dictionary<Member­Name, Type>` and `Dictionary<Member­Name, Any>` respectively.
 Dictionaries are realized by language-specific types such as `java​.util​.Map`
 (see collection types in <<collections>>) which offer more flexibility.
-In particular dictionaries provide functionality equivalent to the ISO 19103:2005 `locate(name : Member­Name)` method.
-That method was defined in older ISO standard but removed in ISO 19103:2015 revision.
-The use of dictionaries allows GeoAPI to keep the `locate` functionality despite the method removal.
+In particular, dictionaries provide functionality equivalent to the ISO 19103:2005 `locate(name : Member­Name)` method.
+That method was defined in an older ISO standard but was removed in the ISO 19103:2015 revision.
+The use of dictionaries allows GeoAPI to keep the `locate` functionality despite this method removal.

@@ -3,7 +3,7 @@
 
 The main departures of GeoAPI from the ISO 19111 standard are inspired by the legacy OGC 01-009 standard published in 2001.
 That legacy standard included COM, CORBA and Java profiles. In support for those profiles, some aspects of the legacy model
-were better suited to programming languages compared to the more web-focused standards published the following years.
+were better suited to programming languages compared to the more web-focused standards published in the following years.
 GeoAPI retains some OGC 01-009 aspects when appropriate and adapt them to the ISO 19111 interfaces.
 References to OGC 01-009 clauses are given in sub-sections below.
 
@@ -15,9 +15,9 @@ _From <<OGC01-009>> §12.4.[1,5] and figure 11_
 A major extension of GeoAPI compared the ISO 19111 standard comes from the inclusion,
 directly in the `Coordinate­Operation` interface,
 of a method providing access to the `Math­Transform` interface from the older OGC 01-009 specification.
-That interface performs the actual computation of coordinates in target CRS from the coordinates in source CRS.
+That interface performs the actual computation of coordinates in a target CRS from the coordinates in a source CRS.
 This separation – between a type providing operation metadata and a type doing the actual work –
-existed in OGC 01-009 and has been kept by GeoAPI for giving to developers more flexibility regarding optimizations.
+existed in OGC 01-009 and has been kept by GeoAPI to give developers more flexibility regarding optimizations.
 The operations that are really executed by `Math­Transform` may be very different than the operations described by
 `CoordinateOperation`, provided that they are mathematically equivalent.
 An example is given in <<referencing_wkt>>.
@@ -32,7 +32,7 @@ _From <<OGC01-009>> §12.3.5.3 and figure 7_
 
 In the ISO 19111 specification, only `SingleCRS` has an association to `coordinate­System`.
 GeoAPI moves this association to the `Coordinate­Reference­System` parent interface for user convenience,
-because coordinate system (CS) dimension and axes are frequently requested information
+because coordinate system (CS) dimensions and axes are frequently requested information
 and will always be available, directly or indirectly, even for `CompoundCRS`.
 However, only coordinate systems associated to `SingleCRS` can be instances of ISO 19111 concrete subtypes
 (`CartesianCS`, `SphericalCS`, `VerticalCS`, _etc._).
@@ -57,7 +57,7 @@ _From <<OGC01-009>> §12.3.11.2_
 
 The ISO 19111 `CRS` type name has been expanded to the `Coordinate­Reference­System` name in GeoAPI
 for compatibility with previous GeoAPI versions.
-It is also common practice in Java language to avoid abbreviations.
+It is also common practice in the Java language to avoid abbreviations.
 
 In the `General­DerivedCRS` interface, the `conversion` association to `Conversion`
 has been renamed `conversion­From­Base` for making clear that the source CRS is the `baseCRS`.
@@ -72,7 +72,7 @@ ISO 19111 defines the union named `Second­Defining­Parameter` as being either 
 The union construct (defined in some languages like C/C++) does not exist in Java.
 GeoAPI changed the interface to require both ellipsoidal parameters
 (in addition to the `semiMajorAxis` parameter which is mandatory in any case), as was done in OGC 01-009.
-However, implementors could readily permit users to only provide one of the two parameters
+However, implementers could readily permit users to only provide one of the two parameters
 by creating a class which calculates the second parameter from the first.
 For precision, GeoAPI imports the `isIvf­Definitive` boolean property from <<OGC01-009>>
 to enable the user to establish which of the two parameters was used to define the instance.
@@ -111,8 +111,8 @@ and the Python language does not enforce type safety.
 
 ISO 19111 defines seven types for representing coordinate operation parameters,
 but those types are generic enough for use in other contexts.
-GeoAPI moves those types in a separated `parameter` package
-and rename `Operation­Parameter` as `Parameter­Descriptor`.
+GeoAPI moves those types into a separate `parameter` package
+and renames `Operation­Parameter` as `Parameter­Descriptor`.
 
 [NOTE]
 ======
@@ -130,4 +130,4 @@ It is also consistent with usage in other libraries
 
 The `AxisDirection` code list has an additional property, `opposite` (optional),
 which gives the direction of negative coordinate values.
-This property has been added because the opposite direction is a frequently needed information.
+This property has been added because the opposite direction is a frequently needed piece of information.

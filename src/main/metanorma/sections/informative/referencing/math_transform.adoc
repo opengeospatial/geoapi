@@ -4,12 +4,12 @@ _From <<OGC01-009>> §12.4.5_
 
 The `Coordinate­Operation` object introduced in previous section provides high-level information
 (source and target CRS, domain of validity, positional accuracy, operation parameter values, _etc_).
-The actual mathematical work is performed by a separated object obtained by a call to `getMath­Transform()`.
-At the difference of `Coordinate­Operation` instances, `Math­Transform` instances do not carry any metadata.
-They are kind of black box which know nothing about the source and target CRS, the domain or the accuracy
+The actual mathematical work is performed by a separate object obtained by a call to `getMath­Transform()`.
+In different `Coordinate­Operation` instances, `Math­Transform` instances do not carry any metadata.
+They are a kind of black box which knows nothing about the source and target CRS, the domain or the accuracy
 (actually the same `MathTransform` can be used for different pairs of CRS if the mathematical work is the same),
-Furthermore, `Math­Transform` may be implemented in a very different way than what `Coordinate­Operation` said.
-In particular many conceptually different coordinate operations such as unit conversions, axis swapping, _etc._
+Furthermore, `Math­Transform` may be implemented in a very different way than what `Coordinate­Operation` returns.
+In particular, many conceptually different coordinate operations such as unit conversions, axis swapping, _etc._
 can be implemented by `Math­Transform` as affine transforms and concatenated for efficiency.
 The result may be a `Math­Transform` doing in a single step a calculation
 described by `Coordinate­Operation` as a chain of distinct operations.
@@ -19,12 +19,12 @@ Having `Math­Transform` separated from `Coordinate­Operation` gives more flexi
 .Association between Coordinate Operation and Math Transform
 image::math_transform.svg[Partial UML of MathTransform]
 
-`MathTransform` has a method taking a `DirectPosition` (the coordinates in source CRS) in input
-and returning a `Direct­Position` (the coordinates in target CRS) in output.
-But `Math­Transform` provides also various methods operating on an arbitrary number of coordinate tuples
-packed in arrays of `float` or `double` types. If there is many points to transform,
-the methods operating on arrays will generally be much more efficient than the method operating on `Direct­Position`.
-The example in <<java_coordinate_operation>> shows how to transform in Java the coordinates of 6 cities.
+`MathTransform` has a method taking a `DirectPosition` (the coordinates in the source CRS) in input
+and returning a `Direct­Position` (the coordinates in the target CRS) in output.
+But `Math­Transform` also provides various methods operating on an arbitrary number of coordinate tuples
+packed in arrays of `float` or `double` types. If there are many points to transform,
+the methods operating on arrays will generally be much more efficient than methods operating on `Direct­Position`.
+The example in <<java_coordinate_operation>> shows in Java how to transform the coordinates of 6 cities.
 
 
 [[math_transform_derivatives]]
@@ -34,9 +34,9 @@ _From <<OGC01-009>> §12.4.5.6_
 `MathTransform` can also provide the derivative of the transform function at a point.
 For example, if _P_ is a map projection converting degrees of latitude and longitude (_φ_, _λ_)
 into projected coordinates (_x_, _y_) in metres,
-then the derivative said what would be the displacement _V⃗_ in metres if the latitude is increased by 1° north,
-and what would be the displacement _U⃗_ in metres if the longitude is increased by 1° east.
-Those vectors are potentially different for every locations on the map.
+then the derivative yields the displacement _V⃗_ in metres if the latitude is increased by 1° north,
+and the displacement _U⃗_ in metres if the longitude is increased by 1° east.
+These vectors are potentially different for all locations on the map.
 The figure below illustrates the vectors evaluated at two locations, P₁ and P₂:
 
 [[map_projection_derivative]]

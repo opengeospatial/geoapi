@@ -3,12 +3,12 @@
 
 The `opengis​.annotation` package allows GeoAPI to document the UML elements
 from the various specification documents used for defining the {supported-languages} constructs.
-Those annotations encode the source document, stereotype, original name, and obligation level
+These annotations encode the source document, stereotype, original name, and obligation level
 of the various types, properties and operations published by GeoAPI.
 The source document may be completed by a version number when the GeoAPI construct
 is based on a different edition of a normative document than the dated references
 listed in <<references>>.
-GeoAPI defines two annotations in the Java language (no annotation in Python):
+GeoAPI defines two annotations in the Java language (not in Python):
 `@UML` which is applied on types and properties (fields or methods), and
 `@Classifier` which can be applied only on types.
 Those annotations are shown in the figure below:

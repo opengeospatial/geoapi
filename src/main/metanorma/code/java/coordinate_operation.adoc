@@ -1,7 +1,7 @@
 [[java_coordinate_operation]]
 ==== Coordinate operation
 
-This usage examples lets implementation infers a coordinate operation (<<coordinate_operation>>)
+This usage examples lets implementations infer a coordinate operation (<<coordinate_operation>>)
 for a pair of coordinate reference systems.
 The `Coordinate­Operation­Factory` does all the work of establishing
 which parameters should be used and correctly instantiating the operation.
@@ -18,7 +18,7 @@ CoordinateOperation op = opFactory.createOperation(sourceCRS, targetCRS);
 ---------------------------------------------------------------------------
 
 The following example uses the operation we just created for transforming coordinate tuples.
-It is possible to transform `Direct­Position` instances, but if there is many points to transform
+It is possible to transform `Direct­Position` instances, but if there are many points to transform
 then packing them in a single array is generally more efficient.
 For simplicity reasons, this example performs the coordinate operation in-place
 (i.e. transformed coordinates overwrite source coordinates)

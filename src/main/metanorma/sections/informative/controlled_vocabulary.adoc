@@ -7,14 +7,14 @@ A controlled vocabulary is an established list of standardized terminology
 describe, index or retrieve information.
 A controlled vocabulary implementation commonly found in many programming languages is enumeration.
 
-GeoAPI distinguishes two different types of controlled vocabularies:
-enumerations are _closed_ controlled vocabularies:
+GeoAPI distinguishes two different types of controlled vocabularies: open and closed.
+Enumerations are _closed_ controlled vocabularies:
 it is not possible to add new members (except by releasing new GeoAPI versions).
-By contrast, code lists are _open_ vocabularies:
+In contrast, code lists are _open_ vocabularies:
 they provide a basic set of members defined at compile-time,
 but users are free to add new members at runtime.
 Many programming languages provide an `enum` construct for the closed case.
-For the opened case, GeoAPI defines the `Code­List` abstract class in Java.
+For the open case, GeoAPI defines the `Code­List` abstract class in Java.
 
 .Enumerated types mapping
 [options="header"]
@@ -38,13 +38,13 @@ Extensions of a code list use the existing code list values and merely add addit
 These additional values should not replace an existing code by changing the name or definition,
 or have the same definition as an existing value.
 
-The figure below shows one closed (on the left side) and one opened (on the right side) enumeration derived from ISO 19115.
+The figure below shows one closed (on the left side) and one open (on the right side) enumeration derived from ISO 19115.
 The `Controlled­Vocabulary` parent interface is a GeoAPI addition. Its indirect inheritance by `Pixel­Orientation` is because
 the `Enum` class is defined by programming language standard library and cannot be modified directly.
 An example in <<java_code_list>> shows how code lists are used in the Java language.
 
 [[vocabulary_UML]]
-.Closed and opened enumeration examples
+.Closed and open enumeration examples
 image::enumeration_examples.svg[Enumeration and CodeList examples]
 
 

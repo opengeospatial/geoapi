@@ -4,10 +4,10 @@
 The GeoAPI geometry packages use the `opengis​.geometry` namespace
 and are placeholder for types defined in the <<ISO19107>> - _Spatial schema_ specification.
 #TODO: upgrade to ISO 19107:2019.#
-The geometry specification provides a vector based spatial representation of elements.
-The geometry types defined in GeoAPI include only the two simplest types from ISO specification
+The geometry specification provides a vector-based spatial representation of elements.
+The geometry types defined in GeoAPI include only the two simplest types from the ISO specification
 along with their abstract parent interfaces.
-Those types are defined because they are needed by the referencing package.
+These types are defined because they are needed by the referencing package.
 Other types are expected to be added in future GeoAPI versions.
 
 .Mapping of types from the geometry package
@@ -35,10 +35,10 @@ As a set, their most fundamental operations are of the same nature as the standa
 We could therefore see a geometry as a kind of `java​.util​.Set` in which the elements are points,
 except that the number of elements contained in the set is infinite (with the exception of geometries representing a simple point).
 To better represent this concept, the ISO standard and GeoAPI define a `Transfinite­Set` interface
-which we could see as a `Set` of potentially infinite size.
+which we can consider as a `Set` of potentially infinite size.
 Although a parent relationship exists conceptually between these interfaces,
 GeoAPI does not define `Transfinite­Set` as a sub-interface of `java​.util​.Set`,
 as the definition of certain methods such as `size()` and `iterator()` would be problematic.
-However, we find very similar methods such as `contains(…)` and `intersects(…)`.
+However, we define very similar methods such as `contains(…)` and `intersects(…)`.
 
 include::departures.adoc[]

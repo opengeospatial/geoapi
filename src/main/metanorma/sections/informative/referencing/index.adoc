@@ -5,12 +5,12 @@ The GeoAPI referencing packages use the `opengis​.referencing` and `opengis​
 and implement the types defined in the <<ISO19111>> - _Referencing by coordinates_ specification.
 The referencing package also includes the types describing object factories and mathematical transformation operators
 defined in the legacy standard <<OGC01-009>> - _Coordinate Transformation Services_ from 2003.
-Those types can be used to define various datums, define various coordinate systems,
-and combine those to define the coordinate referencing systems (CRS) generally encountered in geospatial science.
-The UML below (incomplete for brevity) shows a few commonly used GeoAPI types.
+Those types can be used to define various datums and coordinate systems,
+and to combine them to define the coordinate referencing systems (CRS) generally encountered in geospatial science.
+The UML below (incomplete for brevity) shows a few commonly-used GeoAPI types.
 Differences compared to ISO 19111
 (notably inheritance from `ReferenceSystem` type, location of `coordinateSystem` association and inclusion of `MathTransform` interface)
-are discussed in following sections and in the departures section (<<referencing_departures>>).
+are discussed in the following sections and in the departures section (<<referencing_departures>>).
 
 .Subset of interfaces derived from ISO 19111 and other standards
 image::referencing.svg[Partial UML of Coordinate Reference Systems]

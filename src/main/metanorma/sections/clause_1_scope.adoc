@@ -1,26 +1,27 @@
 [[scope]]
 == Scope
 
-GeoAPI contains a series of interfaces and classes in several packages which interpret into some programming languages
-(currently {supported-languages}) the data model and UML types of the ISO and OGC standards documents.
+GeoAPI contains a series of interfaces and classes in several packages which interpret 
+the data model and UML types of the ISO and OGC standards documents into some programming languages
+(currently {supported-languages}) .
 The interfaces includes documentation which complement the injunctions of the OGC/ISO specifications by explaining
 particularities of GeoAPI: interpretations made of the specifications where there was room for choice,
 constraints specific to each programming language,
 or standard patterns of behavior expected by the community of a programming language.
-This document explains GeoAPI interfaces and defines its use by library code implementing the API and by client code calling the API.
+This document explains the GeoAPI interfaces and defines its use by library code that implements the API and by client code calling the API.
 Jointly with the interface definitions, this work aims to provide:
 
 * a carefully considered interpretation of the OGC specifications for {supported-languages} languages,
 * a base structure to facilitate the creation of software libraries which implement OGC standards,
-* a well defined, full documented binding reducing the programming effort of using the OGC abstract model,
+* a well defined, fully documented binding that reduces the programming effort of using the OGC abstract model,
 * and to facilitate the portability of application code between different implementations.
 
 The interfaces defined in this standard provide one way to structure the use of the {supported-languages} languages
-to implement softwares which follow the design and intents of the OGC/ISO specifications.
+to implement software which follows the design and intent of the OGC/ISO specifications.
 The creators of the GeoAPI interfaces consider this approach as an effective compromise between the OGC specifications,
 the requirements of above-cited programming languages, and the tradition of the core libraries of those languages.
 
-Version 3.1 and 4.0 of GeoAPI covers the base of the OGC/ISO Abstract Model for geographic information.
+Versions 3.1 and 4.0 of GeoAPI cover the base of the OGC/ISO Abstract Model for geographic information.
 GeoAPI provides utilities, base types, metadata structures, geo-referencing, a feature model and filters.
 The geo-referencing data elements enable the creation of reference systems for spatiotemporal coordinates
 and mathematical operators to convert coordinates from one coordinate reference system to another.
