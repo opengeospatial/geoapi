@@ -196,7 +196,11 @@ public interface MathTransformFactory extends Factory {
      *
      * @see #getAvailableMethods(Class)
      * @see #createParameterizedTransform(ParameterValueGroup)
+     *
+     * @deprecated This {@linkplain #createParameterizedTransform way to create parameterized transform} is ambiguous.
+     * Use {@link #builder(String)} instead.
      */
+    @Deprecated(since="3.1")
     default ParameterValueGroup getDefaultParameters(String method) throws NoSuchIdentifierException {
         return builder(method).parameters();
     }
@@ -291,7 +295,12 @@ public interface MathTransformFactory extends Factory {
      *
      * @see #getDefaultParameters(String)
      * @see #getAvailableMethods(Class)
+     *
+     * @deprecated This constructor is ambiguous when axis directions are parts of the map projection definition
+     * as in <q>Transverse Mercator (South Orientated)</q>.
+     * Use {@link #builder(String)} instead for allowing the implementation to resolve such ambiguities.
      */
+    @Deprecated(since = "3.1")
     @UML(identifier="createParameterizedTransform", obligation=MANDATORY, specification=OGC_01009)
     default MathTransform createParameterizedTransform(final ParameterValueGroup parameters)
             throws NoSuchIdentifierException, FactoryException

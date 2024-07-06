@@ -26,6 +26,7 @@ import org.opengis.geometry.DirectPosition;
 import org.opengis.coordinate.CoordinateSet;
 import org.opengis.coordinate.MismatchedDimensionException;
 import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.referencing.crs.ProjectedCRS;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.annotation.UML;
@@ -512,10 +513,12 @@ public interface MathTransform {
     }
 
     /**
-     * Builder of a parameterized math transform identified by a name or code.
+     * Builder of a parameterized math transform using a method identified by a name or code.
      * A builder instance is created by a call to {@link MathTransformFactory#builder(String)}.
-     * The parameter values are set directly on the parameter value group returned by {@link #parameters()},
-     * and finally the transform is created by a call to {@link #create()}.
+     * The {@linkplain #parameters() parameters} are set to default values and should be modified
+     * in-place by the caller. If the transform requires semi-major and semi-minor axis lengths,
+     * those parameters can be set directly or {@linkplain #setSourceAxes indirectly}.
+     * Then, the transform is created by a call to {@link #create()}.
      * Example:
      *
      * {@snippet lang="java" :
@@ -524,20 +527,18 @@ public interface MathTransform {
      * ParameterValueGroup   pvGroup = builder.parameters();
      *
      * // Set the parameter values for UTM zone 54N.
-     * pvGroup.parameter("semi_major").setValue(6378137.000);
-     * pvGroup.parameter("semi_minor").setValue(6356752.314);
      * pvGroup.parameter("Longitude of natural origin").setValue(141);
      * pvGroup.parameter("Scale factor at natural origin").setValue(0.9996);
      * pvGroup.parameter("False easting").setValue(500000);
      *
+     * // Set indirectly the "semi_major" and "semi_minor" parameters.
+     * Ellipdoid ellipsoid = ...;
+     * builder.setSourceAxes(null, ellipsoid);
+     *
      * // Get the results.
      * MathTransform mt = builder.create();
-     * OperationMethod method = builder.getMethod().get();
+     * OperationMethod method = builder.getMethod().orElseThrow();
      * }
-     *
-     * Note that no datum is specified. Instead, semi-axis lengths are specified directly.
-     * It is not the responsibility of this builder to infer the datum shifts between pair
-     * of coordinate reference systems.
      *
      * <h2>Axis order, units and direction</h2>
      * By default, the source and target axes of a parameterized transform are normalized to
@@ -549,6 +550,11 @@ public interface MathTransform {
      * or if the operation method uses axis directions or units that are incompatible with the
      * above-cited normalization. For avoiding ambiguities, the source and target axes can be
      * {@linkplain #setSourceAxes explicitly specified}.
+     *
+     * <h2>Prime meridians</h2>
+     * The builder does <strong>not</strong> handle changes of prime meridian or anything else related to datum.
+     * Datum changes have dedicated {@link OperationMethod}, for example <q>Longitude rotation</q> (EPSG:9601)
+     * for changing the prime meridian.
      *
      * @author  Martin Desruisseaux (Geomatys)
      * @version 3.1
@@ -600,7 +606,8 @@ public interface MathTransform {
          * @param  cs         the coordinate system defining source axis order and units, or {@code null} if none.
          * @param  ellipsoid  the ellipsoid providing source semi-axis lengths, or {@code null} if none.
          */
-        void setSourceAxes(CoordinateSystem cs, Ellipsoid ellipsoid);
+        default void setSourceAxes(CoordinateSystem cs, Ellipsoid ellipsoid) {
+        }
 
         /**
          * Gives hints about axis lengths and their orientations in output coordinates.
@@ -622,17 +629,61 @@ public interface MathTransform {
          * @param  cs         the coordinate system defining target axis order and units, or {@code null} if none.
          * @param  ellipsoid  the ellipsoid providing target semi-axis lengths, or {@code null} if none.
          */
-        void setTargetAxes(CoordinateSystem cs, Ellipsoid ellipsoid);
+        default void setTargetAxes(CoordinateSystem cs, Ellipsoid ellipsoid) {
+        }
 
         /**
          * Creates the parameterized transform. The operation method is given by {@link #getMethod()}
          * and the parameter values should have been set on the group returned by {@link #parameters()}
          * before to invoke this constructor.
+         * Example:
+         *
+         * {@snippet lang="java" :
+         * MathTransformFactory  factory = ...;
+         * MathTransform.Builder builder = factory.builder("Transverse_Mercator");
+         * ParameterValueGroup   pg = builder.parameters();
+         * pg.parameter("semi_major").setValue(6378137.000);
+         * pg.parameter("semi_minor").setValue(6356752.314);
+         * MathTransform mt = builder.create();
+         * }
+         *
+         * <h4>Note on cartographic projections</h4>
+         * Cartographic projection are used by {@link ProjectedCRS} to map geographic coordinates
+         * (e.g., <var>longitude</var> and <var>latitude</var>) into (<var>easting</var>, <var>northing</var>) coordinates.
+         * The latter coordinates can be imagined to lie on a plane, such as a paper map or a screen.
+         * By default, cartographic projections created through this constructor will have the following properties:
+         *
+         * <ul>
+         *   <li>Converts from (<var>longitude</var>, <var>latitude</var>) coordinates to (<var>easting</var>, <var>northing</var>).</li>
+         *   <li>All angles are assumed to be degrees, and all distances are assumed to be meters.</li>
+         *   <li>The domain shall be a subset of {[-180,180)×(-90,90)}.</li>
+         *   <li>Axis directions are usually ({@linkplain org.opengis.referencing.cs.AxisDirection#EAST east},
+         *       {@linkplain org.opengis.referencing.cs.AxisDirection#NORTH north}), but exceptions may exist
+         *       for some operation methods like <cite>Lambert Conic Conformal (West Orientated)</cite>
+         *       (EPSG:9826) or <cite>Transverse Mercator (South Orientated)</cite> (EPSG:9808).</li>
+         * </ul>
+         *
+         * Although cartographic projections created by this constructor should have the properties listed above,
+         * some projected coordinate reference systems have different properties.
+         * For example, in Europe some projected <abbr>CRS</abbr>s use grads instead of degrees,
+         * and often the {@linkplain ProjectedCRS#getBaseCRS() base geographic CRS}
+         * is (<var>latitude</var>, <var>longitude</var>) instead of (<var>longitude</var>, <var>latitude</var>).
+         * This means that the cartographic projection is often used as a single step in a series of conversions,
+         * where the other steps change units and swap coordinates.
+         * If {@linkplain #setSourceAxes source axes} and/or {@linkplain #setTargetAxes target axes}
+         * have been specified, then this constructor shall concatenate those other steps.
+         *
+         * <h4>Ambiguity resolutions</h4>
+         * When the change of axis directions is part of the map projection definition as in <cite>Transverse Mercator
+         * (South Orientated)</cite>, there is a conflict with the above-cited (<var>east</var>, <var>north</var>) directions.
+         * In such cases, the {@linkplain #setSourceAxes source axes} and/or {@linkplain #setTargetAxes target axes}
+         * <em>should</em> be specified by the user for allowing implementations to resolve this ambiguity.
          *
          * @return the parameterized transform.
          * @throws FactoryException if the transform creation failed.
          *         This exception is thrown if some required parameters have not been supplied, or have illegal values.
          */
+        @UML(identifier="MathTransformFactory.createParameterizedTransform", specification=OGC_01009)
         MathTransform create() throws FactoryException;
     }
 }
