@@ -17,10 +17,15 @@
  */
 package org.opengis.test.referencing;
 
-import org.opengis.referencing.crs.*;
+import java.util.Set;
+import java.util.Optional;
+import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
+import org.opengis.referencing.RegisterOperations;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
-
+import org.opengis.referencing.crs.CRSAuthorityFactory;
+import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.operation.CoordinateOperation;
 import org.junit.jupiter.api.Test;
 
 
@@ -77,6 +82,25 @@ public strictfp class CRSTest extends ReferencingTestCase {
      */
     @Test
     public void testCRSAuthorityCreation() throws NoSuchAuthorityCodeException, FactoryException {
-        new AuthorityFactoryTest(factory, null, null).testWGS84();
+        new AuthorityFactoryTest(new RegisterOperations() {
+            @Override
+            public <T extends Factory> Optional<T> getFactory(Class<? extends T> type) {
+                if (type == CRSAuthorityFactory.class) {
+                    return Optional.ofNullable(type.cast(factory));
+                } else {
+                    return RegisterOperations.super.getFactory(type);
+                }
+            }
+
+            @Override
+            public Set<CoordinateOperation> findCoordinateOperations(CoordinateReferenceSystem source, CoordinateReferenceSystem target) {
+                return Set.of();
+            }
+
+            @Override
+            public boolean areMembersOfSameEnsemble(CoordinateReferenceSystem source, CoordinateReferenceSystem target) {
+                return false;
+            }
+        }).testWGS84();
     }
 }

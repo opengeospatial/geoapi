@@ -13,4 +13,4 @@ with the `java​.util​.stream` interfaces. In particular:
   Consequently, sort order can be used with the Java standard `Stream​.sorted(Comparator)` method.
 
 Note that GeoAPI aims for interoperability with streams, but does not mandate their use.
-implementations are free to ignore streams.
+Implementations are free to ignore streams.

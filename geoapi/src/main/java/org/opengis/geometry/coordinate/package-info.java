@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2011-2023 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,10 +17,12 @@
  */
 
 /**
- * Non-public helper methods for default implementation of some GeoAPI methods.
+ * <b>Deprecated</b> — {@code Position} has been removed in ISO 19107:2019.
  *
- * @author  Martin Desruisseaux (Geomatys)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @author  Axel Francois (LSIS/Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since   1.0
  */
-package org.opengis.geoapi.internal;
+@Deprecated
+package org.opengis.geometry.coordinate;

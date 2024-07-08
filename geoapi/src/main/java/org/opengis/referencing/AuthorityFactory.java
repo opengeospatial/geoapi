@@ -84,9 +84,15 @@ public interface AuthorityFactory extends Factory {
     Set<String> getAuthorityCodes(Class<? extends IdentifiedObject> type) throws FactoryException;
 
     /**
-     * Returns a description of the object corresponding to a code.
+     * Returns a textual description of the object corresponding to a code.
      * The description may be used in graphical user interfaces.
-     * It may be empty if the object corresponding to the specified code has no description.
+     *
+     * <p>The {@code type} argument can be used for resolving ambiguities,
+     * for example, if a <abbr>CRS</abbr> and a datum have the same code.
+     * If no object is found for the (<var>type</var>, <var>code</var>) tuple, then this
+     * method may return an empty optional or throw {@link NoSuchAuthorityCodeException},
+     * at implementation choice. If an object is found but have no textual description,
+     * then this method shall return an empty optional.</p>
      *
      * @param  type  the type of object for which to get a description.
      * @param  code  value allocated by the authority for an object of the given type.

@@ -22,6 +22,8 @@ import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.referencing.datum.Datum;
+import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.referencing.datum.Ellipsoid;
 import org.opengis.referencing.crs.*;                   // Contains some import for javadoc.
 import org.opengis.parameter.*;                         // Contains some import for javadoc.
@@ -41,10 +43,8 @@ import static org.opengis.annotation.Specification.*;
  *
  * <p>A {@link MathTransform} is an object that actually does the work of applying {@link Formula} to coordinate values.
  * The math transform does not know or care how the coordinates relate to positions in the real world.
- * This lack of semantics makes implementing {@code MathTransformFactory} significantly easier
- * than it would be otherwise.</p>
- *
- * <p>For example, the affine transform applies a matrix to the coordinates
+ * This lack of semantics makes implementing {@code MathTransformFactory} significantly easier than it would be otherwise.
+ * For example, the {@linkplain #createAffineTransform(Matrix) affine transform} applies a matrix to the coordinates
  * without knowing how what it is doing relates to the real world.
  * So if the matrix scales <var>z</var> values by a factor of 1000, then it could be
  * converting metres into millimetres, or it could be converting kilometres into metres.</p>
@@ -61,9 +61,11 @@ import static org.opengis.annotation.Specification.*;
  * it is not necessary or desirable for a math transform object to keep information on its source and
  * target coordinate systems.</p>
  *
- * @author  Martin Desruisseaux (IRD)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
+ *
+ * @see org.opengis.referencing.RegisterOperations#getFactory(Class)
  */
 @UML(identifier="CT_MathTransformFactory", specification=OGC_01009)
 public interface MathTransformFactory extends Factory {
@@ -71,13 +73,13 @@ public interface MathTransformFactory extends Factory {
      * NOTE FOR JAVADOC WRITER:
      * The "method" word is ambiguous here, because it can be "Java method" or "coordinate operation method".
      * In this interface, we reserve "method" for coordinate operation methods as much as possible. For Java
-     * methods, we rather use "constructor" or "function".
+     * methods, we rather use "constructor".
      */
 
     /**
      * Returns a set of available methods for coordinate operations of the given type.
      * For each element in this set, the {@linkplain OperationMethod#getName() operation method name}
-     * must be a valid argument for {@link #getDefaultParameters(String)}.
+     * should be a valid argument for {@link #builder(String)} or {@link #getDefaultParameters(String)}.
      *
      * <p>The {@code type} argument can be used for filtering the kind of operations described by the returned
      * {@code OperationMethod}s. The argument is usually (but not restricted to) one of the following types:</p>
@@ -92,17 +94,16 @@ public interface MathTransformFactory extends Factory {
      * The returned set may conservatively contain more {@code OperationMethod} elements than requested
      * if this {@code MathTransformFactory} does not support filtering by the given type.
      *
-     * @param  type <code>{@linkplain SingleOperation}.class</code> for fetching all operation methods,
-     *         <code>{@linkplain Transformation}.class</code> for fetching only transformation methods, <i>etc</i>.
+     * @param  type  the base type of the desired coordinate operations, or {@code null} for no filtering.
      * @return methods available in this factory for coordinate operations of the given type.
      *
      * @departure extension
-     *   This method is not part of the OGC specification.
-     *   It has been added as a way to publish the capabilities of a factory.
+     *   This is an addition to the {@link org.opengis.annotation.Specification#OGC_01009 OGC 01-009}
+     *   specification for providing a way to declare the capabilities of a math transform factory.
      *
+     * @see #builder(String)
      * @see #getDefaultParameters(String)
      * @see #createParameterizedTransform(ParameterValueGroup)
-     * @see CoordinateOperationFactory#getOperationMethod(String)
      */
     Set<OperationMethod> getAvailableMethods(Class<? extends SingleOperation> type);
 
@@ -110,58 +111,103 @@ public interface MathTransformFactory extends Factory {
      * Returns the operation method used by the latest call to a {@code create(…)} constructor,
      * or {@code null} if not applicable.
      *
-     * <p>Implementers should document how their implementation behave in a multi-threads environment.
+     * <h4>Implementation note</h4>
+     * Implementers should document how their implementation behave in a multi-threads environment.
      * For example, some implementations use {@linkplain java.lang.ThreadLocal thread local variables},
-     * while other can choose to return {@code null} in all cases since {@code getLastMethodUsed()}
-     * is optional.</p>
-     *
-     * <p>Invoking {@code getLastMethodUsed()} can be useful after a call to
-     * {@link #createParameterizedTransform createParameterizedTransform(…)}, or after a call to another
-     * constructor that delegates its work to {@code createParameterizedTransform(…)}, for example
-     * {@link #createBaseToDerived createBaseToDerived(…)}.</p>
+     * while other can choose to return {@code null} in all cases since {@code getLastMethodUsed()} is optional.
      *
      * @return the last method used by a {@code create(…)} constructor, or {@code null} if unknown of unsupported.
      *
-     * @see #createParameterizedTransform(ParameterValueGroup)
-     *
-     * @departure extension
-     *   This method is not part of the OGC specification.
-     *   It has been added because this information appears to be important in some situations.
-     *   We did not defined a {{@code MathTransform}, {@code OperationMethod}} tuple in order
-     *   to keep {@code create(…)} simpler in the common case where the operation method is not needed,
-     *   and for historical reasons (conformance to OGC 01-009).
+     * @deprecated Replaced by {@link MathTransform.Builder#getMethod()} for avoiding ambiguities and for thread safety.
      */
-    OperationMethod getLastMethodUsed();
+    @Deprecated(since = "3.1")
+    default OperationMethod getLastMethodUsed() {
+        return null;
+    }
 
     /**
-     * Returns the default parameter values for a math transform using the given operation method.
-     * The {@code method} argument is the name of any {@code OperationMethod} instance returned by
-     * <code>{@link #getAvailableMethods(Class) getAvailableMethods}({@linkplain SingleOperation}.class)</code>.
-     * A typical example is "Transverse Mercator".
+     * Returns a builder for a parameterized math transform using the specified operation method.
+     * The {@code method} argument should be the name or authority code of an {@link OperationMethod}
+     * instance returned by <code>{@link #getAvailableMethods(Class) getAvailableMethods}(null)</code>.
+     * A typical example is <cite>"Transverse Mercator"</cite>.
      *
-     * <p>The {@linkplain ParameterDescriptorGroup#getName() parameter group name} shall be a method name or identifier
-     * that {@link #createParameterizedTransform(ParameterValueGroup)} can recognize without ambiguity.</p>
+     * <p>While the use of authority codes is recommended for the {@code method} argument,
+     * implementations should also accept method names when they are unambiguous (i.e., have exactly one match).
+     * This flexibility is for allowing the parsing of map projections in formats
+     * such as Well Known Text (<abbr>WKT</abbr>) version 1.</p>
      *
-     * <p>This function creates new parameter instances at every call.
-     * Parameters are intended to be modified by the user before to be given to the above-cited
-     * {@code createParameterizedTransform(…)} constructor.</p>
+     * <table class="ogc">
+     *   <caption>Example of operation methods</caption>
+     *   <tr><th>EPSG code</th><th>EPSG name</th>                      <th>OGC name</th></tr>
+     *   <tr><td>9804</td>     <td>Mercator (variant A)</td>           <td>{@code Mercator_1SP}</td></tr>
+     *   <tr><td>9805</td>     <td>Mercator (variant B)</td>           <td>{@code Mercator_2SP}</td></tr>
+     *   <tr><td>9807</td>     <td>Transverse Mercator</td>            <td>{@code Transverse_Mercator}</td></tr>
+     *   <tr><td>9801</td>     <td>Lambert Conic Conformal (1SP)</td>  <td>{@code Lambert_Conformal_Conic_1SP}</td></tr>
+     *   <tr><td>9802</td>     <td>Lambert Conic Conformal (2SP)</td>  <td>{@code Lambert_Conformal_Conic_2SP}</td></tr>
+     *   <tr><td>9820</td>     <td>Lambert Azimuthal Equal Area</td>   <td>{@code Lambert_Azimuthal_Equal_Area}</td></tr>
+     *   <tr><td>9822</td>     <td>Albers Equal Area</td>              <td>{@code Albers_Conic_Equal_Area}</td></tr>
+     *   <tr><td>9806</td>     <td>Cassini-Soldner</td>                <td>{@code Cassini_Soldner}</td></tr>
+     *   <tr><td>9840</td>     <td>Orthographic</td>                   <td>{@code Orthographic}</td></tr>
+     * </table>
      *
-     * @param  method  the case insensitive name of the coordinate operation method to search for.
-     * @return a new group of parameter values for the {@code OperationMethod} identified by the given name.
-     * @throws NoSuchIdentifierException if there is no method registered for the given name or identifier.
+     * The list of supported methods is typically hard-coded by the implementation rather than extracted from a registry,
+     * because those operations usually need to be associated (directly or indirectly) to executable Java codes doing the
+     * actual coordinate operations. The names of all supported methods can be obtained by the following code:
+     *
+     * {@snippet lang="java" :
+     * String[] methodNames = getAvailableMethods(null).stream().map((m) -> m.getName().getCode()).toArray();
+     * }
+     *
+     * @param  method  the case insensitive name or identifier of the desired coordinate operation method.
+     * @return a builder for a meth transform implementing the formulas identified by the given method.
+     * @throws NoSuchIdentifierException if there is no supported method for the given name or identifier.
+     *
+     * @see #getAvailableMethods(Class)
      *
      * @departure extension
-     *   This method is part of the GeoAPI mechanism for defining the math transform parameters
-     *   or deriving other transforms.
+     *   This is an addition to the {@link org.opengis.annotation.Specification#OGC_01009 OGC 01-009}
+     *   specification for facilitating the resolution of ambiguities in some situations such as west-
+     *   or south-orientated map projections, and for thread-safety.
+     *
+     * @since 3.1
+     */
+    MathTransform.Builder builder(String method) throws NoSuchIdentifierException;
+
+    /**
+     * Returns the default parameter values for a math transform which uses the given operation method.
+     * A new group of parameter values is created at every call. The values should be modified in-place,
+     * then given to the {@link #createParameterizedTransform(ParameterValueGroup)} constructor.
+     * The {@linkplain ParameterDescriptorGroup#getName() name of the returned parameter group}
+     * may differ from the specified method name as it shall be a method name or identifier that
+     * {@code createParameterizedTransform(…)} can recognize without ambiguity.
+     *
+     * <h4>Recommended alternative</h4>
+     * This approach is a shortcut good enough for most map projections,
+     * but may be ambiguous in some cases such as west- or south-orientated projections.
+     * For more deterministic results, consider using {@link #builder(String)} instead.
+     *
+     * @param  method  the case insensitive name or identifier of the desired coordinate operation method.
+     * @return a new group of parameter values for the {@code OperationMethod} identified by the given name.
+     * @throws NoSuchIdentifierException if there is no supported method for the given name or identifier.
+     *
+     * @departure extension
+     *   This is an addition to the {@link org.opengis.annotation.Specification#OGC_01009 OGC 01-009}
+     *   for facilitating the creation of parameterized transforms.
      *
      * @see #getAvailableMethods(Class)
      * @see #createParameterizedTransform(ParameterValueGroup)
+     *
+     * @deprecated This {@linkplain #createParameterizedTransform way to create parameterized transform} is ambiguous.
+     * Use {@link #builder(String)} instead.
      */
-    ParameterValueGroup getDefaultParameters(String method) throws NoSuchIdentifierException;
+    @Deprecated(since="3.1")
+    default ParameterValueGroup getDefaultParameters(String method) throws NoSuchIdentifierException {
+        return builder(method).parameters();
+    }
 
     /**
-     * Creates a {@linkplain #createParameterizedTransform parameterized transform} from a base CRS
-     * to a derived CS. This convenience constructor {@linkplain #createConcatenatedTransform concatenates}
+     * Creates a parameterized transform from a base CRS to a derived CS.
+     * This convenience constructor {@linkplain #createConcatenatedTransform concatenates}
      * the parameterized transform with any other transform required for performing units changes and
      * coordinates swapping, as described in the {@linkplain #createParameterizedTransform note on
      * cartographic projections}.
@@ -181,14 +227,24 @@ public interface MathTransformFactory extends Factory {
      * @throws FactoryException if the transform creation failed.
      *         This exception is thrown if some required parameter has not been supplied, or has illegal value.
      *
-     * @departure extension
-     *   This method is part of the GeoAPI mechanism for defining the math transform parameters
-     *   or deriving other transforms.
+     * @deprecated Replaced by {@link #builder(String)}.
      */
-    MathTransform createBaseToDerived(CoordinateReferenceSystem baseCRS,
-                                      ParameterValueGroup       parameters,
-                                      CoordinateSystem          derivedCS)
-            throws NoSuchIdentifierException, FactoryException;
+    @Deprecated(since = "3.1")
+    default MathTransform createBaseToDerived(CoordinateReferenceSystem baseCRS,
+                                              ParameterValueGroup       parameters,
+                                              CoordinateSystem          derivedCS)
+            throws NoSuchIdentifierException, FactoryException
+    {
+        final var builder = builder(parameters.getDescriptor().getName().getCode());
+        copy(parameters, builder.parameters());
+        if (baseCRS != null) {
+            Datum     rfm = (baseCRS instanceof SingleCRS) ? ((SingleCRS) baseCRS).getDatum()     : null;
+            Ellipsoid eld = (rfm instanceof GeodeticDatum) ? ((GeodeticDatum) rfm).getEllipsoid() : null;
+            builder.setSourceAxes(baseCRS.getCoordinateSystem(), eld);
+        }
+        builder.setTargetAxes(derivedCS, null);
+        return builder.create();
+    }
 
     /**
      * Creates a transform from a group of parameters. The {@link OperationMethod} name is inferred from
@@ -201,15 +257,14 @@ public interface MathTransformFactory extends Factory {
      * MathTransform mt = factory.createParameterizedTransform(p);
      * }
      *
-     * <h4>Note on cartographic projections:</h4>
-     * Cartographic projection transforms are used by {@linkplain ProjectedCRS projected coordinate reference systems}
-     * to map geographic coordinates (e.g. <var>longitude</var> and <var>latitude</var>) into (<var>x</var>,<var>y</var>)
-     * coordinates. These (<var>x</var>,<var>y</var>) coordinates can be imagined to lie on a plane, such as a paper map
-     * or a screen. All cartographic projection transforms created through this constructor will have the following
-     * properties:
+     * <h4>Note on cartographic projections</h4>
+     * Cartographic projection are used by {@link ProjectedCRS} to map geographic coordinates
+     * (e.g., <var>longitude</var> and <var>latitude</var>) into (<var>easting</var>, <var>northing</var>) coordinates.
+     * The latter coordinates can be imagined to lie on a plane, such as a paper map or a screen.
+     * All cartographic projections created through this constructor will have the following properties:
      *
      * <ul>
-     *   <li>Converts from (<var>longitude</var>,<var>latitude</var>) coordinates to (<var>x</var>,<var>y</var>).</li>
+     *   <li>Converts from (<var>longitude</var>, <var>latitude</var>) coordinates to (<var>easting</var>, <var>northing</var>).</li>
      *   <li>All angles are assumed to be degrees, and all distances are assumed to be meters.</li>
      *   <li>The domain shall be a subset of {[-180,180)×(-90,90)}.</li>
      *   <li>Axis directions are usually ({@linkplain org.opengis.referencing.cs.AxisDirection#EAST east},
@@ -218,31 +273,66 @@ public interface MathTransformFactory extends Factory {
      *       (EPSG:9826) or <cite>Transverse Mercator (South Orientated)</cite> (EPSG:9808).</li>
      * </ul>
      *
-     * Although all cartographic projection transforms must have the properties listed above, many projected coordinate
-     * reference systems have different properties. For example, in Europe some projected CRSs use grads instead of degrees,
+     * Although all cartographic projections created by this constructor should have the properties listed above,
+     * some projected coordinate reference systems have different properties.
+     * For example, in Europe some projected CRSs use grads instead of degrees,
      * and often the {@linkplain ProjectedCRS#getBaseCRS() base geographic CRS} is (<var>latitude</var>, <var>longitude</var>)
-     * instead of (<var>longitude</var>, <var>latitude</var>). This means that the cartographic projected transform is often
-     * used as a single step in a series of transforms, where the other steps change units and swap coordinates.
+     * instead of (<var>longitude</var>, <var>latitude</var>). This means that the cartographic projection is often
+     * used as a single step in a series of conversions, where the other steps change units and swap coordinates.
      *
-     * <p>When the change of axis directions is part of the map projection definition as in <cite>Transverse Mercator
+     * <h4>Recommended alternative</h4>
+     * When the change of axis directions is part of the map projection definition as in <cite>Transverse Mercator
      * (South Orientated)</cite>, there is a conflict with the above-cited (<var>east</var>, <var>north</var>) directions.
-     * In such cases the {@code createParameterizedTransform(…)} behavior is implementation specific, since different
-     * libraries may resolve this conflict in different ways.
-     * Users can invoke {@link #createBaseToDerived createBaseToDerived(…)} instead for more determinist results.</p>
+     * In such cases, the {@code createParameterizedTransform(…)} behavior is implementation specific,
+     * since different libraries may resolve this conflict in different ways.
+     * For more reliable results, users should invoke {@link #builder(String)} instead.
      *
      * @param  parameters  the parameter values.
      * @return the parameterized transform.
      * @throws NoSuchIdentifierException if there is no transform registered for the coordinate operation method.
      * @throws FactoryException if the transform creation failed.
-     *         This exception is thrown if some required parameter has not been supplied, or has illegal value.
+     *         This exception is thrown if some required parameters have not been supplied, or have illegal values.
      *
      * @see #getDefaultParameters(String)
      * @see #getAvailableMethods(Class)
-     * @see #getLastMethodUsed()
+     *
+     * @deprecated This constructor is ambiguous when axis directions are parts of the map projection definition
+     * as in <q>Transverse Mercator (South Orientated)</q>.
+     * Use {@link #builder(String)} instead for allowing the implementation to resolve such ambiguities.
      */
+    @Deprecated(since = "3.1")
     @UML(identifier="createParameterizedTransform", obligation=MANDATORY, specification=OGC_01009)
-    MathTransform createParameterizedTransform(ParameterValueGroup parameters)
-            throws NoSuchIdentifierException, FactoryException;
+    default MathTransform createParameterizedTransform(final ParameterValueGroup parameters)
+            throws NoSuchIdentifierException, FactoryException
+    {
+        final var builder = builder(parameters.getDescriptor().getName().getCode());
+        copy(parameters, builder.parameters());
+        return builder.create();
+    }
+
+    /**
+     * Copies the parameter values from one group to another group.
+     *
+     * @param  source  user-supplied parameter values.
+     * @param  target  where to copy the parameters.
+     */
+    private static void copy(final ParameterValueGroup source, final ParameterValueGroup target) {
+        for (final GeneralParameterValue value : source.values()) {
+            final String name = value.getDescriptor().getName().getCode();
+            if (value instanceof ParameterValueGroup) {
+                copy((ParameterValueGroup) value, target.addGroup(name));
+            } else {
+                final var src  = (ParameterValue) value;
+                final var tgt  = target.parameter(name);
+                final var unit = src.getUnit();
+                if (unit != null) {
+                    tgt.setValue(src.doubleValue(), unit);
+                } else {
+                    tgt.setValue(src.getValue());
+                }
+            }
+        }
+    }
 
     /**
      * Creates an affine transform from a matrix.
@@ -262,7 +352,7 @@ public interface MathTransformFactory extends Factory {
 
     /**
      * Creates a matrix of size {@code numRow}&nbsp;×&nbsp;{@code numCol}.
-     * Elements on the diagonal (<var>j</var> == <var>i</var>) are set to 1.
+     * Elements on the diagonal (<var>j</var> = <var>i</var>) are set to 1.
      *
      * @param  numRow  number of rows.
      * @param  numCol  number of columns.
@@ -275,12 +365,10 @@ public interface MathTransformFactory extends Factory {
 
     /**
      * Creates a transform by concatenating two existing transforms.
-     * A concatenated transform acts in the same way as applying two
-     * transforms, one after the other.
-     *
-     * <p>The dimension of the output space of the first transform must match the dimension
-     * of the input space in the second transform. If you wish to concatenate more than two
-     * transforms, then you can repeatedly use this constructor.</p>
+     * A concatenated transform acts in the same way as applying two transforms, one after the other.
+     * The dimension of the output space of the first transform
+     * must match the dimension of the input space in the second transform.
+     * For concatenating more than two transforms, this constructor can be invoked repeatedly.
      *
      * @param  transform1  the first transform to apply to points.
      * @param  transform2  the second transform to apply to points.
@@ -298,15 +386,20 @@ public interface MathTransformFactory extends Factory {
      * through transform can convert the height values from meters to feet without affecting
      * the (<var>latitude</var>, <var>longitude</var>) values.
      *
+     * <h4>Number of dimensions</h4>
+     * Affected coordinates will range from {@code firstAffectedCoordinate} inclusive
+     * to {@code dimTarget-numTrailingCoordinates} exclusive.
+     * The returned transform will have the following number of dimensions:
+     *
+     * <ul>
+     *   <li>Source: {@code firstAffectedCoordinate + subTransform.getDimSource() + numTrailingCoordinates}</li>
+     *   <li>Target: {@code firstAffectedCoordinate + subTransform.getDimTarget() + numTrailingCoordinates}</li>
+     * </ul>
+     *
      * @param  firstAffectedCoordinate  the lowest index of the affected coordinates.
      * @param  subTransform             transform to use for affected coordinates.
      * @param  numTrailingCoordinates   number of trailing coordinates to pass through.
-     *         Affected coordinates will range from {@code firstAffectedCoordinate}
-     *         inclusive to {@code dimTarget-numTrailingCoordinates} exclusive.
-     * @return a pass through transform with the following dimensions:<br>
-     *         <pre>
-     * Source: firstAffectedCoordinate + subTransform.getDimSource() + numTrailingCoordinates
-     * Target: firstAffectedCoordinate + subTransform.getDimTarget() + numTrailingCoordinates</pre>
+     * @return a pass through transform with the dimensions documented above.
      * @throws FactoryException if the transform creation failed.
      */
     @UML(identifier="createPassThroughTransform", obligation=MANDATORY, specification=OGC_01009)

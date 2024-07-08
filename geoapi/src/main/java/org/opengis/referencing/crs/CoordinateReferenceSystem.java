@@ -18,6 +18,7 @@
 package org.opengis.referencing.crs;
 
 import org.opengis.referencing.ReferenceSystem;
+import org.opengis.referencing.RegisterOperations;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
@@ -58,6 +59,10 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  * @since   1.0
+ *
+ * @see RegisterOperations#findCoordinateReferenceSystem(String)
+ * @see CRSFactory#createFromWKT(String)
+ * @see CRSFactory#createFromXML(String)
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="CRS", specification=ISO_19111)

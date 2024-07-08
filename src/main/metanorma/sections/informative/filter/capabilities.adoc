@@ -3,7 +3,7 @@
 _From <<ISO19143>> §7.13_
 
 `FilterCapabilities` is the entry point for listing which expressions and filter operators are available.
-It capabilities are separated in the following categories:
+Its capabilities are separated in the following categories:
 
 * `IdCapabilities` lists names that represent the resource identifier elements that the service supports.
 * `Scalar­Capabilities` advertises which logical, comparison and arithmetic operators the service supports.
@@ -12,5 +12,5 @@ It capabilities are separated in the following categories:
 * `Available­Function` describes functions that may be used in filter expressions.
 * `Extended­Capabilities` advertises any additional operators added to the filter syntax.
 
-The enumeration of scalar, spatial and temporal capabilities use de code lists shown in <<filter>>.
+The enumeration of scalar, spatial and temporal capabilities use the code lists shown in <<filter>>.
 The arguments of available functions are described by the unified parameter API (<<parameters>>).

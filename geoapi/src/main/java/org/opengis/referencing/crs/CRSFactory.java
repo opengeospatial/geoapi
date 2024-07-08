@@ -58,6 +58,7 @@ import static org.opengis.geoapi.internal.Errors.cannotParse;
  *
  * @see org.opengis.referencing.cs.CSFactory
  * @see org.opengis.referencing.datum.DatumFactory
+ * @see org.opengis.referencing.RegisterOperations#getFactory(Class)
  */
 @UML(identifier="CS_CoordinateSystemFactory", specification=OGC_01009)
 public interface CRSFactory extends ObjectFactory {

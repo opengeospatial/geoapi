@@ -16,7 +16,7 @@ GeoAPI provides two `toWKT()` methods for producing a WKT representation of an o
 
 Difference between the two WKT representations is illustrated below.
 For a very simple operation doing only a swapping of latitude and longitude axes,
-the ISO 19162 representation of the `Coordinate­Operation` object can be as below:
+the ISO 19162 representation of the `Coordinate­Operation` object can be as shown below:
 
 .ISO 19162 representation of a coordinate operation
 [source]
@@ -28,7 +28,7 @@ COORDINATEOPERATION["Axis order change (2D)",
   AREA["World."], BBOX[-90.00, -180.00, 90.00, 180.00]]
 --------------------------------------------
 
-The <<OGC01-009>> §7.1 representation of the `Math­Transform` associated to above coordinate operation can be as below.
+The <<OGC01-009>> §7.1 representation of the `Math­Transform` associated to the above coordinate operation can be as shown below.
 All metadata information (source and target CRS, domain of validity, _etc._) are lost, and the human-readable
 _"Axis Order Reversal"_ operation is replaced by a more mathematical _"Affine parametric transformation"_ operation.
 
@@ -44,10 +44,10 @@ PARAM_MT["Affine",
   PARAMETER["elt_1_1", 0.0]]
 --------------------------------------------
 
-Those two representations are complementary.
+These two representations are complementary.
 `CoordinateOperation.toWKT()` provides high-level information about the operation
 together with metadata for understanding the context.
-`MathTransform.toWKT()` said more information about how the operation is implemented,
+`MathTransform.toWKT()` returns more information about how the operation is implemented,
 which is useful for analyzing the validity of transformation results.
 
 The converse operation – creating an object from a WKT definition – is done by `create­FromWKT(…)` methods

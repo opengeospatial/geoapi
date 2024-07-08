@@ -17,9 +17,14 @@
  */
 package org.opengis.test.referencing;
 
+import java.util.Optional;
+import java.util.Set;
 import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
+import org.opengis.referencing.operation.CoordinateOperation;
+import org.opengis.referencing.RegisterOperations;
+import org.opengis.util.Factory;
 
 
 /**
@@ -58,6 +63,26 @@ public strictfp class ReferencingTest extends ObjectFactoryTest {
      * @param datumFactory  factory for creating {@link Datum} instances.
      */
     public ReferencingTest(final CRSFactory crsFactory, final CSFactory csFactory, final DatumFactory datumFactory) {
-        super(datumFactory, csFactory, crsFactory, null);
+        super(new RegisterOperations() {
+            @Override
+            public <T extends Factory> Optional<T> getFactory(Class<? extends T> type) {
+                final Factory factory;
+                if (type == CRSFactory.class) factory = crsFactory;
+                else if (type == CSFactory.class) factory = csFactory;
+                else if (type == DatumFactory.class) factory = datumFactory;
+                else return RegisterOperations.super.getFactory(type);
+                return Optional.ofNullable(type.cast(factory));
+            }
+
+            @Override
+            public Set<CoordinateOperation> findCoordinateOperations(CoordinateReferenceSystem source, CoordinateReferenceSystem target) {
+                return Set.of();
+            }
+
+            @Override
+            public boolean areMembersOfSameEnsemble(CoordinateReferenceSystem source, CoordinateReferenceSystem target) {
+                return false;
+            }
+        });
     }
 }

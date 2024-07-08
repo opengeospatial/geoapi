@@ -17,6 +17,7 @@
  */
 package org.opengis.geoapi;
 
+import java.util.Set;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -92,6 +93,11 @@ public final class CodeListTest {
                 assertEquals(valueName, field.getName(),   () -> fullName  + " name mismatch.");
                 assertSame  (value,     field.get(null),   () -> fullName  + " is not the expected instance.");
                 assertArrayEquals(values, value.family(),  () -> className + ".family() mismatch.");
+                /*
+                 * Verify names and identifier.
+                 */
+                final Set<String> names = Set.of(value.names());        // NullPointerException if a name is null.
+                assertTrue(names.contains(valueName), () -> fullName  + ".names() is missing the name.");
             }
             /*
              * Verifies if the ArrayList initial capacity match the actual list size.

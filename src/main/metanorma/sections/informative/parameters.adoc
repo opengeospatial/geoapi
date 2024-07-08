@@ -1,6 +1,6 @@
 [[parameters]]
 ==== Parameters
-_From <<ISO19111>> §11.2, <<ISO19115-1>> §6.5.12, <<ISO19157>> §C.2.2.4_
+_From <<ISO19111>> §12.2, <<ISO19115-1>> §6.5.12, <<ISO19157>> §C.2.2.4_
 
 The concept of operation parameters is defined in many OGC/ISO standards:
 
@@ -37,13 +37,13 @@ in `CC​_Operation­Parameter` are retrofitted in the GeoAPI parameter framewor
 ISO 19157 `Description` type contains a mandatory text and an optional illustration.
 Only the text description is explicitly stored in the GeoAPI unified parameter type.
 However, if needed implementations can associate the `description` property to an
-object that implement both the `International­String` and `Description` interfaces.
+object that implements both the `International­String` and `Description` interfaces.
 
 
 
 [[parameter_departures]]
 ===== Departures from ISO model
 
-`OperationParameter` has been renamed as `ParameterDescriptor`
+`OperationParameter` has been renamed to `ParameterDescriptor`
 to emphasize that it only describes the parameters without providing values.
 The `Descriptor` suffix is found in other Java libraries such as Java­Beans and Java Advanced Imaging.

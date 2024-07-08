@@ -22,6 +22,7 @@ import java.util.Map;
 import java.util.HashMap;
 import java.util.Collections;
 import java.util.Objects;
+import java.util.Optional;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
@@ -32,8 +33,11 @@ import org.opengis.referencing.cs.*;
 import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.*;
+import org.opengis.referencing.RegisterOperations;
 import org.opengis.metadata.citation.Citation;
+import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
+import org.opengis.util.UnimplementedServiceException;
 import org.opengis.test.util.PseudoFactory;
 import org.opengis.test.ValidatorContainer;
 import org.opengis.test.Units;
@@ -56,8 +60,8 @@ import static org.opengis.test.referencing.ObjectFactoryTest.*;
  * @since   3.1
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
-public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAuthorityFactory,
-        CSAuthorityFactory, CRSAuthorityFactory
+public strictfp class PseudoEpsgFactory extends PseudoFactory implements RegisterOperations,
+        CRSAuthorityFactory, CSAuthorityFactory, DatumAuthorityFactory
 {
     /**
      * The reciprocal of the conversion from US feets to metres.
@@ -85,29 +89,14 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     protected final Units units;
 
     /**
-     * Factory to use for building {@link Datum} instances, or {@code null} if none.
+     * Provider of factories to use for building geodetic objects.
+     * {@code PseudoEpsgFactory} will use only the following factories:
+     * {@link ObjectFactory} subtypes, {@link CoordinateOperationAuthorityFactory}
+     * (only for fetching {@link OperationMethod}) and {@link MathTransformFactory}.
+     *
+     * @see RegisterOperations#getFactory(Class)
      */
-    protected final DatumFactory datumFactory;
-
-    /**
-     * Factory to use for building {@link CoordinateSystem} instances, or {@code null} if none.
-     */
-    protected final CSFactory csFactory;
-
-    /**
-     * Factory to use for building {@link CoordinateReferenceSystem} instances, or {@code null} if none.
-     */
-    protected final CRSFactory crsFactory;
-
-    /**
-     * Factory to use for building {@link Conversion} instances, or {@code null} if none.
-     */
-    protected final CoordinateOperationFactory copFactory;
-
-    /**
-     * Factory to use for building {@link MathTransform} instances, or {@code null} if none.
-     */
-    protected final MathTransformFactory mtFactory;
+    protected final RegisterOperations factories;
 
     /**
      * The set of validators to use for verifying objects conformance (never {@code null}).
@@ -115,34 +104,56 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     protected final ValidatorContainer validators;
 
     /**
-     * Creates a new pseudo-factory which will use the given factories.
+     * Creates a new pseudo-factory which will use object factories provided by the given {@code factories} argument.
+     * The {@link ObjectFactory} instances will be obtained by calls to {@link RegisterOperations#getFactory(Class)}.
+     * If the latter method returns an empty value, then the {@code createFoo(…)} methods that depend on the missing
+     * factory will throw {@link org.opentest4j.TestAbortedException}.
      *
-     * @param  units         provider of predefined {@link Unit} instances.
-     * @param  datumFactory  factory for creating {@link Datum} instances.
-     * @param  csFactory     factory for creating {@link CoordinateSystem} instances.
-     * @param  crsFactory    factory for creating {@link CoordinateReferenceSystem} instances.
-     * @param  copFactory    factory for creating {@link Conversion} instances.
-     * @param  mtFactory     factory for creating {@link MathTransform} instances.
-     * @param  validators    the set of validators to use for verifying objects conformance,
-     *                       Cannot be {@code null}; if there is no particular validators,
-     *                       use {@link org.opengis.test.Validators#DEFAULT}.
+     * @param  units       provider of predefined {@link Unit} instances.
+     * @param  factories   provider of factories for creating geodetic objects.
+     * @param  validators  the set of validators to use for verifying objects conformance,
+     *                     Cannot be {@code null}. If there is no particular validators,
+     *                     use {@link org.opengis.test.Validators#DEFAULT}.
      */
-    public PseudoEpsgFactory(
-            final Units                           units,
-            final DatumFactory             datumFactory,
-            final CSFactory                   csFactory,
-            final CRSFactory                 crsFactory,
-            final CoordinateOperationFactory copFactory,
-            final MathTransformFactory        mtFactory,
-            final ValidatorContainer         validators)
-    {
-        this.units        = Objects.requireNonNull(units, "The units cannot be null. Do you mean Units.getDefault()?");
-        this.datumFactory = datumFactory;
-        this.csFactory    = csFactory;
-        this.crsFactory   = crsFactory;
-        this.copFactory   = copFactory;
-        this.mtFactory    = mtFactory;
-        this.validators   = Objects.requireNonNull(validators, "The validators cannot be null. Do you mean Validators.DEFAULT?");
+    public PseudoEpsgFactory(Units units, RegisterOperations factories, ValidatorContainer validators) {
+        this.units      = Objects.requireNonNull(units, "The units cannot be null. Do you mean Units.getDefault()?");
+        this.factories  = Objects.requireNonNull(factories, "The provider of factories cannot be null.");
+        this.validators = Objects.requireNonNull(validators, "The validators cannot be null. Do you mean Validators.DEFAULT?");
+    }
+
+    /**
+     * Returns a component factory implemented by this {@code PseudoEpsgFactory}. If the {@code type} argument is
+     * {@link CRSAuthorityFactory}, {@link CSAuthorityFactory} or {@link DatumAuthorityFactory}, then this method
+     * returns {@code this}. Otherwise this method returns an empty value (it does not delegate to the wrapped
+     * {@link #factories} instance).
+     *
+     * @param  <T>   compile-time value of the {@code type} argument.
+     * @param  type  the desired type of factory.
+     * @return factory of the specified type.
+     * @throws NullPointerException if the specified type is null.
+     * @throws IllegalArgumentException if the specified type is not one of the above-cited values.
+     */
+    @Override
+    public <T extends Factory> Optional<T> getFactory(final Class<? extends T> type) {
+        if (type == CRSAuthorityFactory.class || type == CSAuthorityFactory.class || type == DatumAuthorityFactory.class) {
+            return Optional.of(type.cast(this));
+        } else {
+            return Optional.empty();
+        }
+    }
+
+    /**
+     * Returns the factory of the given type if present, or interrupts the test otherwise.
+     *
+     * @param  <T>      compile-time value of the {@code type} argument.
+     * @param  type     the desired type of factory.
+     * @param  message  message to report if the desired factory is not present.
+     * @return factory of the specified type.
+     */
+    private <T extends Factory> T getFactoryOrAbort(final Class<T> type, final String message) {
+        final Optional<T> factory = factories.getFactory(type);
+        assumeTrue(factory.isPresent(), message);
+        return factory.get();
     }
 
     /**
@@ -215,8 +226,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * at least the {@link IdentifiedObject#NAME_KEY} identifier associated to the given value.
      * Subclasses can override this method in order to provide more information if they wish.
      *
-     * @param  code  The EPSG code of the object being built.
-     * @param  name  The name of the object being built.
+     * @param  code  the EPSG code of the object being built.
+     * @param  name  the name of the object being built.
      * @return a map containing the properties for the object to create.
      */
     protected Map<String,Object> createPropertiesMap(final int code, final String name) {
@@ -266,7 +277,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Returns an arbitrary {@linkplain Datum datum} from a code.
+     * Creates an arbitrary datum from a code. The current implementation supports
+     * only a subset of the codes supported by more specialized methods.
      *
      * <table class="ogc">
      *   <caption>Supported codes</caption>
@@ -288,75 +300,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public EngineeringDatum createEngineeringDatum(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     *
-     * @deprecated {@code ImageDatum} is replaced by {@link EngineeringDatum} as of ISO 19111:2019.
-     */
-    @Override
-    @Deprecated(since="3.1")
-    public ImageDatum createImageDatum(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public VerticalDatum createVerticalDatum(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public TemporalDatum createTemporalDatum(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public ParametricDatum createParametricDatum(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * Returns a {@linkplain GeodeticDatum geodetic reference frame} from a code.
+     * Creates a geodetic reference frame from a code.
      *
      * <table class="ogc">
      *   <caption>Supported codes</caption>
@@ -380,7 +324,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             case 6284: name="Pulkovo 1942";               ellipsoid=7024; primeMeridian=8901; break;
             default:   throw noSuchAuthorityCode(id, code);
         }
-        assumeTrue(datumFactory != null, NO_DATUM_FACTORY);
+        final var datumFactory = getFactoryOrAbort(DatumFactory.class, NO_DATUM_FACTORY);
         final GeodeticDatum object = datumFactory.createGeodeticDatum(createPropertiesMap(id, name),
                 createEllipsoid    (String.valueOf(ellipsoid)),
                 createPrimeMeridian(String.valueOf(primeMeridian)));
@@ -389,7 +333,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
-     * Returns an {@linkplain Ellipsoid ellipsoid} from a code.
+     * Creates an ellipsoid from a code.
      *
      * <table class="ogc">
      *   <caption>Supported codes</caption>
@@ -425,7 +369,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             case 7011: name="Clarke 1880 (IGN)";  semiMajorAxis=6378249.2;   semiMinorAxis=6356515;           break;
             default:   throw noSuchAuthorityCode(id, code);
         }
-        assumeTrue(datumFactory != null, NO_DATUM_FACTORY);
+        final var datumFactory = getFactoryOrAbort(DatumFactory.class, NO_DATUM_FACTORY);
         final Map<String,?> properties = createPropertiesMap(id, name);
         final Unit<Length> unit = createUnit(String.valueOf(unitCode)).asType(Length.class);
         final Ellipsoid object;
@@ -439,7 +383,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
-     * Returns a {@linkplain PrimeMeridian prime meridian} from a EPSG code.
+     * Creates a prime meridian from a code.
      *
      * <table class="ogc">
      *   <caption>Supported codes</caption>
@@ -465,7 +409,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             case 8908: name="Jakarta";   longitude=106.80771944444444; unit=9102; break;
             default:   throw noSuchAuthorityCode(id, code);
         }
-        assumeTrue(datumFactory != null, NO_DATUM_FACTORY);
+        final var datumFactory = getFactoryOrAbort(DatumFactory.class, NO_DATUM_FACTORY);
         final PrimeMeridian object = datumFactory.createPrimeMeridian(createPropertiesMap(id, name),
                 longitude, createUnit(String.valueOf(unit)).asType(Angle.class));
         validators.validate(object);
@@ -482,7 +426,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Returns an arbitrary {@linkplain CoordinateSystem coordinate system} from a code.
+     * Creates an arbitrary coordinate system from a code. The current implementation
+     * supports only a subset of the codes supported by more specialized methods.
      *
      * <table class="ogc">
      *   <caption>Supported codes</caption>
@@ -555,7 +500,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             default: throw noSuchAuthorityCode(id, code);
         }
-        assumeTrue(csFactory != null, NO_CS_FACTORY);
+        final var csFactory = getFactoryOrAbort(CSFactory.class, NO_CS_FACTORY);
         final Map<String,?> properties = createPropertiesMap(id, name);
         final CartesianCS object;
         if (axes.length >= 3) {
@@ -570,54 +515,6 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
         }
         validators.validate(object);
         return object;
-    }
-
-    /**
-     * Creates a polar coordinate system from a code.
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @param  code  value allocated by authority.
-     * @return the coordinate system for the given code.
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public PolarCS createPolarCS(final String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default: throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * Creates a cylindrical coordinate system from a code.
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @param  code  value allocated by authority.
-     * @return the coordinate system for the given code.
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public CylindricalCS createCylindricalCS(final String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default: throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * Creates a spherocal coordinate system from a code.
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @param  code  value allocated by authority.
-     * @return the coordinate system for the given code.
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public SphericalCS createSphericalCS(final String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default: throw noSuchAuthorityCode(id, code);
-        }
     }
 
     /**
@@ -672,7 +569,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
             default: throw noSuchAuthorityCode(id, code);
         }
-        assumeTrue(csFactory != null, NO_CS_FACTORY);
+        final var csFactory = getFactoryOrAbort(CSFactory.class, NO_CS_FACTORY);
         final Map<String,?> properties = createPropertiesMap(id, name);
         final EllipsoidalCS object;
         if (axes.length >= 3) {
@@ -719,7 +616,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             case 6499: name = "Vertical CS. Axis: height (H). Orientation: up. UoM: m.";    axis =  114; break;
             default: throw noSuchAuthorityCode(id, code);
         }
-        assumeTrue(csFactory != null, NO_CS_FACTORY);
+        final var csFactory = getFactoryOrAbort(CSFactory.class, NO_CS_FACTORY);
         final Map<String,?> properties = createPropertiesMap(id, name);
         final VerticalCS object = csFactory.createVerticalCS(properties,
                 createCoordinateSystemAxis(String.valueOf(axis)));
@@ -728,36 +625,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
-     * Creates a temporal coordinate system from a code.
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @param  code  value allocated by authority.
-     * @return the coordinate system for the given code.
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public TimeCS createTimeCS(final String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public ParametricCS createParametricCS(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * Returns a {@linkplain CoordinateSystemAxis coordinate system axis} from a code.
+     * Creates a coordinate system axis from a code.
      *
      * <table class="ogc">
      *   <caption>Supported codes</caption>
@@ -834,7 +702,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             case 1082: name="Gravity-related height"; abbreviation="H";    direction=AxisDirection.UP;           unit=9002; break;
             default:  throw noSuchAuthorityCode(id, code);
         }
-        assumeTrue(csFactory != null, NO_CS_FACTORY);
+        final var csFactory = getFactoryOrAbort(CSFactory.class, NO_CS_FACTORY);
         final CoordinateSystemAxis object = csFactory.createCoordinateSystemAxis(createPropertiesMap(id, name),
                 abbreviation, direction, createUnit(String.valueOf(unit)));
         validators.validate(object);
@@ -842,7 +710,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
-     * Returns an {@linkplain Unit unit} from a code.
+     * Returns a predefined unit of measurement from a code.
      *
      * <table class="ogc">
      *   <caption>Supported codes</caption>
@@ -883,7 +751,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     ///////////////////////////////////////////////////////////////////////////////////////////////
 
     /**
-     * Returns an arbitrary {@linkplain CoordinateReferenceSystem coordinate reference system} from a code.
+     * Creates an arbitrary coordinate reference system from a code. The current implementation
+     * supports only a subset of the codes supported by more specialized methods.
      *
      * <table class="ogc">
      *   <caption>Supported codes</caption>
@@ -905,46 +774,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public CompoundCRS createCompoundCRS(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public DerivedCRS createDerivedCRS(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public EngineeringCRS createEngineeringCRS(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * Returns a {@linkplain GeographicCRS geographic coordinate reference system} from a code.
+     * Creates a geographic coordinate reference system from a code.
      *
      * <table class="ogc">
      *   <caption>Supported codes</caption>
@@ -968,7 +798,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             case 4284: name="Pulkovo 1942"; datum=6284; coordinateSystem=6422; break;
             default:   throw noSuchAuthorityCode(id, code);
         }
-        assumeTrue(crsFactory != null, NO_CRS_FACTORY);
+        final var crsFactory = getFactoryOrAbort(CRSFactory.class, NO_CRS_FACTORY);
         final GeographicCRS object = crsFactory.createGeographicCRS(createPropertiesMap(id, name),
                 createGeodeticDatum(String.valueOf(datum)),
                 createEllipsoidalCS(String.valueOf(coordinateSystem)));
@@ -977,20 +807,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     }
 
     /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    @Deprecated(since = "3.1")
-    public GeocentricCRS createGeocentricCRS(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
+     * Creates a geodetic coordinate reference system from a code.
      * The default implementation delegates to {@link #createGeographicCRS(String)}.
      *
      * @throws FactoryException if this method cannot provide the requested information.
@@ -998,74 +815,6 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
     @Override
     public GeodeticCRS createGeodeticCRS(final String code) throws FactoryException {
         return createGeographicCRS(code);
-    }
-
-    /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     *
-     * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
-     */
-    @Override
-    @Deprecated(since="3.1")
-    public ImageCRS createImageCRS(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public ProjectedCRS createProjectedCRS(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public TemporalCRS createTemporalCRS(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public VerticalCRS createVerticalCRS(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
-    }
-
-    /**
-     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
-     *
-     * @throws FactoryException if this method cannot provide the requested information.
-     */
-    @Override
-    public ParametricCRS createParametricCRS(String code) throws FactoryException {
-        final int id = parseCode(code);
-        switch (id) {
-            default:   throw noSuchAuthorityCode(id, code);
-        }
     }
 
 
@@ -1125,6 +874,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
      * @see AuthorityFactoryTest
      */
     protected ParameterValueGroup createParameters(final int code) throws FactoryException {
+        final var mtFactory = getFactoryOrAbort(MathTransformFactory.class, "No math transform factory found.");
         final ParameterValueGroup parameters = createParameters(mtFactory, code);
         validators.validate(parameters);
         return parameters;
@@ -1420,5 +1170,33 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements DatumAu
             }
         }
         return parameters;
+    }
+
+    /**
+     * Creates a coordinate operation from a pair of coordinate reference systems.
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method cannot provide the requested information.
+     */
+    @Override
+    public Set<CoordinateOperation> findCoordinateOperations(final CoordinateReferenceSystem source,
+                                                             final CoordinateReferenceSystem target)
+            throws FactoryException
+    {
+        throw new UnimplementedServiceException("Unsupported operation.");
+    }
+
+    /**
+     * Determine whether two <abbr>CRS</abbr>s are members of one ensemble.
+     * The default implementation throws {@link NoSuchAuthorityCodeException} unconditionally.
+     *
+     * @throws FactoryException if this method cannot provide the requested information.
+     */
+    @Override
+    public boolean areMembersOfSameEnsemble(final CoordinateReferenceSystem source,
+                                            final CoordinateReferenceSystem target)
+            throws FactoryException
+    {
+        throw new UnimplementedServiceException("Unsupported operation.");
     }
 }

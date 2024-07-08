@@ -3,7 +3,7 @@
 _From <<ISO19103>> §C.3_
 
 ISO 19103 defines the following data types for use in World Wide Web environments.
-Those types are often found in XML documents.
+These types are often found in XML documents.
 GeoAPI maps the ISO types to standard types of the target languages without introducing new interfaces.
 
 .Web types mapping
@@ -21,5 +21,5 @@ GeoAPI maps the ISO types to standard types of the target languages without intr
 ===== Departures from ISO model
 
 All ISO 19103 web types extend `Character­String`.
-But it is not the case of equivalent objects provided by the standard Java library.
+But this is not the case for equivalent objects provided by the standard Java library.
 Consequently, a character string cannot easily be substituted by an anchor, file name or URI in GeoAPI for Java.

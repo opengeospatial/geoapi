@@ -23,6 +23,7 @@ import java.util.Collections;
 import java.time.temporal.Temporal;
 import org.opengis.coordinate.CoordinateSet;
 import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.RegisterOperations;
 import org.opengis.referencing.datum.Datum;
 import org.opengis.referencing.datum.DynamicReferenceFrame;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -65,9 +66,9 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   1.0
  *
- * @see CoordinateOperationAuthorityFactory#createCoordinateOperation(String)
+ * @see RegisterOperations#findCoordinateOperation(String)
+ * @see RegisterOperations#findCoordinateOperations(CoordinateReferenceSystem, CoordinateReferenceSystem)
  * @see CoordinateOperationAuthorityFactory#createFromCoordinateReferenceSystemCodes(String, String)
- * @see CoordinateOperationFactory#createOperation(CoordinateReferenceSystem, CoordinateReferenceSystem)
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="CoordinateOperation", specification=ISO_19111)

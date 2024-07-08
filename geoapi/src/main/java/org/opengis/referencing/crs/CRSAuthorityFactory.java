@@ -18,9 +18,11 @@
 package org.opengis.referencing.crs;
 
 import org.opengis.referencing.AuthorityFactory;
+import org.opengis.referencing.RegisterOperations;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.util.UnimplementedServiceException;
 import org.opengis.util.FactoryException;
+import org.opengis.geoapi.internal.Produces;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
@@ -51,11 +53,15 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
  *
  * @see org.opengis.referencing.cs.CSAuthorityFactory
  * @see org.opengis.referencing.datum.DatumAuthorityFactory
+ * @see org.opengis.referencing.RegisterOperations#getFactory(Class)
  */
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
+@Produces(CoordinateReferenceSystem.class)
 public interface CRSAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an arbitrary coordinate reference system from a code.
+     * This <abbr>API</abbr> is for advanced applications.
+     * The preferred interface for extracting a <abbr>CRS</abbr> is {@link RegisterOperations}.
      *
      * <p>If the coordinate reference system type is known at compile time, then it is recommended
      * to invoke the most precise method instead of this one. For example, it is usually better to
@@ -68,11 +74,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see #createGeographicCRS(String)
-     * @see #createProjectedCRS(String)
-     * @see #createVerticalCRS(String)
-     * @see #createTemporalCRS(String)
-     * @see #createCompoundCRS(String)
+     * @see RegisterOperations#findCoordinateReferenceSystem(String)
      */
     @UML(identifier="createHorizontalCoordinateSystem", specification=OGC_01009)
     default CoordinateReferenceSystem createCoordinateReferenceSystem(String code) throws FactoryException {

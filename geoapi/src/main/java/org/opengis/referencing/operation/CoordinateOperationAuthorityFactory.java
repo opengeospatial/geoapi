@@ -18,67 +18,84 @@
 package org.opengis.referencing.operation;
 
 import java.util.Set;
-import org.opengis.metadata.Identifier;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
+import org.opengis.referencing.RegisterOperations;
+import org.opengis.util.UnimplementedServiceException;
 import org.opengis.util.FactoryException;
+import org.opengis.geoapi.internal.Produces;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Specification.*;
 
 
 /**
- * Creates coordinate transformation objects from codes. The codes are maintained by an external authority.
+ * Creates coordinate operation objects using authority codes.
+ * External authorities are used to manage definitions of objects used in this interface.
+ * The definitions of these objects are referenced using code strings.
  * A commonly used authority is the <a href="https://epsg.org">EPSG geodetic registry</a>.
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * <h2>Default methods</h2>
+ * All {@code create(…)} methods in this interface are optional.
+ * If a method is not overridden by the implementer,
+ * the default is to return an empty {@link Set} when possible,
+ * or otherwise to throw an {@link UnimplementedServiceException}
+ * with a message saying that the service is not supported.
+ *
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 3.1
  * @since   1.0
  */
 @UML(identifier="CT_CoordinateTransformationAuthorityFactory", specification=OGC_01009)
+@Produces({CoordinateOperation.class, OperationMethod.class})
 public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
     /**
-     * Creates an operation method from a single code. The "{@linkplain Identifier#getAuthority
-     * authority}" and "{@linkplain Identifier#getCode code}" values of the created object will be
-     * set to the authority of this object, and the code specified by the client, respectively. The
-     * other metadata values may or may not be set.
+     * Returns an operation method from a code.
+     * This method returns details based on the content of the registry. The operation method may or
+     * may not be supported by the implementation for performing the actual coordinate operations.
+     * For operations supported by the implementation, see {@link MathTransformFactory}.
      *
-     * @param  code  coded value for operation method.
+     * @param  code  the method identifier allocated by the authority.
      * @return the operation method for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @see CoordinateOperationFactory#getOperationMethod(String)
+     * @see MathTransformFactory#getAvailableMethods(Class)
      *
      * @departure extension
      *   This method has been added because OGC 01-009 does not define a factory
-     *   method for creating such object.
+     *   method for creating operation methods.
      */
-    OperationMethod createOperationMethod(String code) throws FactoryException;
+    default OperationMethod createOperationMethod(String code) throws FactoryException {
+        throw new UnimplementedServiceException(this, OperationMethod.class);
+    }
 
     /**
-     * Creates an operation from a single operation code. The "{@linkplain Identifier#getAuthority
-     * authority}" and "{@linkplain Identifier#getCode code}" values of the created object will be
-     * set to the authority of this object, and the code specified by the client, respectively. The
-     * other metadata values may or may not be set.
+     * Returns a coordinate operation from a code.
+     * This <abbr>API</abbr> is for advanced applications.
+     * The preferred interface for extracting a coordinate operation is {@link RegisterOperations}.
      *
-     * @param  code  coded value for coordinate operation.
+     * @param  code  value allocated by authority.
      * @return the operation for the given code.
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @see RegisterOperations#findCoordinateOperation(String)
      */
     @UML(identifier="createFromTransformationCode", specification=OGC_01009)
-    CoordinateOperation createCoordinateOperation(String code) throws FactoryException;
+    default CoordinateOperation createCoordinateOperation(String code) throws FactoryException {
+        throw new UnimplementedServiceException(this, CoordinateOperation.class);
+    }
 
     /**
-     * Creates operations from Coordinate Reference System codes.
-     * This method returns only the operations declared by the authority, with preferred
-     * operations first. This method doesn't need to compute operations from {@code source} to
-     * {@code target} CRS if no such operations were explicitly defined in the authority database.
+     * Returns the registered operations between two Coordinate Reference System (<abbr>CRS</abbr>) codes.
+     * This method returns only the operations declared by the authority, with preferred operations first.
+     * This method doesn't need to compute operations from {@code source} to {@code target} <abbr>CRS</abbr>
+     * if no such operations were explicitly defined in the authority database.
      * Computation of arbitrary operations can be performed by
-     * <code>{@linkplain CoordinateOperationFactory#createOperation(CoordinateReferenceSystem,
-     * CoordinateReferenceSystem) CoordinateOperationFactory.createOperation}(sourceCRS, targetCRS)</code>
+     * <code>{@linkplain RegisterOperations#findCoordinateOperations(CoordinateReferenceSystem,
+     * CoordinateReferenceSystem) RegisterOperations.findCoordinateOperations}(sourceCRS, targetCRS)</code>
      * instead.
      *
      * @param  sourceCRS  coded value of source coordinate reference system.
@@ -86,8 +103,13 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      * @return the operations from {@code sourceCRS} to {@code targetCRS}.
      * @throws NoSuchAuthorityCodeException if a specified code was not found.
      * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @see RegisterOperations#findCoordinateOperations(CoordinateReferenceSystem, CoordinateReferenceSystem)
      */
     @UML(identifier="createFromCoordinateSystemCodes", specification=OGC_01009)
-    Set<CoordinateOperation> createFromCoordinateReferenceSystemCodes(String sourceCRS, String targetCRS)
-            throws FactoryException;
+    default Set<CoordinateOperation> createFromCoordinateReferenceSystemCodes(String sourceCRS, String targetCRS)
+            throws FactoryException
+    {
+        return Set.of();
+    }
 }

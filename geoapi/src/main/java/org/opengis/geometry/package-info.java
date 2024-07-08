@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2011-2023 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,10 +17,15 @@
  */
 
 /**
- * Non-public helper methods for default implementation of some GeoAPI methods.
+ * Core interfaces needed to investigate coordinate-defined geometry.
+ * Those interfaces inherit an optional association to a
+ * {@linkplain org.opengis.referencing.crs.CoordinateReferenceSystem coordinate reference system}.
+ * All {@linkplain org.opengis.geometry.DirectPosition direct positions} exposed through the interfaces
+ * shall be in the coordinate reference system of the geometric object accessed.
  *
- * @author  Martin Desruisseaux (Geomatys)
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @author  Axel Francois (LSIS/Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since   1.0
  */
-package org.opengis.geoapi.internal;
+package org.opengis.geometry;

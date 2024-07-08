@@ -1,0 +1,24 @@
+[[req_implementation_discovery]]
+[requirement]
+====
+[%metadata]
+label:: /req/req-class-lib/req-implementation_discovery
+[.component,class=conditions]
+--
+. Java implementations of `RegisterOperations` (if any) shall be declared in `module-info`.
+--
+
+[.component,class=part]
+--
+If a Java implementation of `RegisterOperations` exists,
+it shall be declared in `module-info.java` like below
+(replace `my.implementation` by the actual class name):
+
+[source,java,options="unnumbered"]
+----------------------------------------------------------------------------
+provides org.opengis.referencing.RegisterOperations
+    with my.implementation.classname
+----------------------------------------------------------------------------
+
+--
+====

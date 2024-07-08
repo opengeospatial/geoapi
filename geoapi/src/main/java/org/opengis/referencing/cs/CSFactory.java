@@ -45,6 +45,7 @@ import org.opengis.util.UnimplementedServiceException;
  *
  * @see org.opengis.referencing.crs.CRSFactory
  * @see org.opengis.referencing.datum.DatumFactory
+ * @see org.opengis.referencing.RegisterOperations#getFactory(Class)
  */
 public interface CSFactory extends ObjectFactory {
     /**
