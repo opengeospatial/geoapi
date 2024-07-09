@@ -543,8 +543,8 @@ public interface MathTransform {
      * <h2>Axis order, units and direction</h2>
      * By default, the source and target axes of a parameterized transform are normalized to
      * <var>east</var>, <var>north</var>, <var>up</var> (if applicable) directions in that order,
-     * with angular and linear units in degrees and meters respectively (see the
-     * {@linkplain MathTransformFactory#createParameterizedTransform note on cartographic projections}).
+     * with angular and linear units in degrees and meters respectively
+     * (see the {@linkplain #create() note on cartographic projections}).
      * However, this requirement becomes ambiguous when different axis orientations are embedded
      * in operation methods such as <cite>Transverse Mercator (South Orientated)</cite> (EPSG::9808),
      * or if the operation method uses axis directions or units that are incompatible with the

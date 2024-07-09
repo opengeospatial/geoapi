@@ -26,7 +26,6 @@ import java.awt.geom.Rectangle2D;
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.geometry.DirectPosition;
-import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterDescriptorGroup;
 import org.opengis.referencing.crs.ProjectedCRS;
 import org.opengis.referencing.operation.Matrix;
@@ -52,21 +51,13 @@ import static org.opengis.test.referencing.AffineTransformTest.NO_FACTORY;
 
 
 /**
- * Tests {@linkplain MathTransformFactory#createParameterizedTransform(ParameterValueGroup)
- * parameterized math transforms} from the {@code org.opengis.referencing.operation} package.
+ * Tests parameterized math transforms from the {@code org.opengis.referencing.operation} package.
  * Math transform instances are created using the factory given at construction time.
  *
  * <h2>Skipping tests for unsupported operations</h2>
  * If the tested factory throws a {@link NoSuchIdentifierException} during the invocation
- * of one of the following methods:
- *
- * <ul>
- *   <li>{@link MathTransformFactory#getDefaultParameters(String)}</li>
- *   <li>{@link MathTransformFactory#createParameterizedTransform(ParameterValueGroup)}</li>
- * </ul>
- *
- * then the tests is skipped. If any other kind of exception is thrown, or if {@code NoSuchIdentifierException}
- * is thrown under other circumstances than the invocation of above methods, then the test fails.
+ * of {@link MathTransformFactory#builder(String)}, then the tests is skipped.
+ * If any other kind of exception is thrown, then the test fails.
  *
  * <h2>Tests and accuracy</h2>
  * By default, every tests expect an accuracy of 1 centimetre. This accuracy matches the precision
@@ -103,13 +94,6 @@ import static org.opengis.test.referencing.AffineTransformTest.NO_FACTORY;
  *     @Override
  *     public void testLambertAzimuthalEqualArea() throws FactoryException, TransformException {
  *         tolerance = 0.1;                              // Increase the tolerance value to 10 cm.
- *         super.testLambertAzimuthalEqualArea();
- *         // If more tests specific to this projection are wanted, do them here.
- *         // In this example, we replace the ellipsoid by a sphere and test again.
- *         // Note that spherical formulas can have an error up to 30 km compared
- *         // to ellipsoidal formulas, so we have to relax again the tolerance threshold.
- *         parameters.parameter("semi_minor").setValue(parameters.parameter("semi_major").doubleValue());
- *         tolerance = 30000;                            // Increase the tolerance value to 30 km.
  *         super.testLambertAzimuthalEqualArea();
  *     }
  *
@@ -165,14 +149,11 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     protected final MathTransformFactory mtFactory;
 
     /**
-     * The parameters of the math transform being tested. This field is set, together with the
-     * {@link #transform transform} field, during the execution of every {@code testFoo()} method
-     * in this class.
-     *
-     * <p>If this field is non-null before a test is run, then those parameters will be used directly.
-     * This allow implementers to alter the parameters before to run the test one more time.</p>
+     * Builder of the math transform being tested. This field is set, together with the
+     * {@link #transform transform} field, during the execution of every {@code testFoo()}
+     * method in this class.
      */
-    protected ParameterValueGroup parameters;
+    private MathTransform.Builder builder;
 
     /**
      * A description of the test being run. This field is provided only for information purpose
@@ -256,16 +237,16 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Initialized the {@link #parameters} field to the default values for the given operation method.
-     * If the tested implementation does not support the specified operation method, then the test will
-     * be skipped.
+     * Initialized the {@link #builder} field to the default values for the given operation method.
+     * If the tested implementation does not support the specified operation method, then the test
+     * will be skipped.
      *
      * @param  method  the operation method for which to set parameter values.
      */
-    private void createParameters(final String method) {
+    private void createBuilder(final String method) {
         assumeTrue(mtFactory != null, NO_FACTORY);
         try {
-            parameters = mtFactory.getDefaultParameters(method);
+            builder = mtFactory.builder(method);
         } catch (NoSuchIdentifierException e) {
             abort(unsupportedMethod(method));           // Will mark the test as "ignored".
         }
@@ -284,26 +265,22 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     private void createMathTransform(final Class<? extends SingleOperation> type, final SamplePoints sample)
             throws FactoryException
     {
-        try {
-            if (parameters == null) {
-                assumeTrue(mtFactory != null, NO_FACTORY);
-                parameters = PseudoEpsgFactory.createParameters(mtFactory, sample.operation);
-                validators.validate(parameters);
+        if (transform == null) try {
+            if (builder == null) {
+                final var epsg = new PseudoEpsgFactory(units, new RegisterOperationsMock(mtFactory), validators);
+                builder = epsg.createParameters(sample.operation);
             }
-            if (transform == null) {
-                assumeTrue(mtFactory != null, NO_FACTORY);
-                transform = mtFactory.createParameterizedTransform(parameters);
-                assertNotNull(transform, description);
-                validators.validate(transform);
-            }
+            transform = builder.create();
+            assertNotNull(transform, description);
+            validators.validate(transform);
         } catch (NoSuchIdentifierException e) {
             /*
              * If a code was not found, ensure that the factory does not declare that it was
              * a supported code. If the code was unsupported, then the test will be ignored.
              */
             final String message;
-            if (parameters != null) {
-                final ParameterDescriptorGroup descriptor = parameters.getDescriptor();
+            if (builder != null) {
+                final ParameterDescriptorGroup descriptor = builder.parameters().getDescriptor();
                 if (!Collections.disjoint(Utilities.getNameAndAliases(descriptor),
                         Utilities.getNameAndAliases(mtFactory.getAvailableMethods(type))))
                 {
@@ -545,11 +522,12 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         sample.targetPoints[1] = 1351950.22;    // New Northing value for 53°N.
         sample.sourcePoints[3] = 42;            // New latitude where we expect a northing of 0 m.
         /*
-         * Following is basically a copy-and-paste of PseudoEpsgFactory.createParameters(mtFactory, 3388)
+         * Following is basically a copy-and-paste of `PseudoEpsgFactory.createParameters(3388)`
          * with a different projection ("variant C" instead of "variant B") and one more parameter value
          * (the "Latitude of false origin").
          */
-        createParameters("Mercator (variant C)");
+        createBuilder("Mercator (variant C)");
+        final var parameters = builder.parameters();
         parameters.parameter("semi_major").setValue(6378245.0);                         // Krassowski 1940
         parameters.parameter("semi_minor").setValue(6378245.0 * (1 - 1/298.3));
         parameters.parameter("Latitude of 1st standard parallel").setValue(42.0);
@@ -611,7 +589,8 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         final SamplePoints sample = SamplePoints.forCRS(3857);
         sample.targetPoints[0] = -11156569.90;    // New Easting value.
         sample.targetPoints[1] =   2796869.94;    // New Northing value.
-        createParameters("Mercator (Spherical)");
+        createBuilder("Mercator (Spherical)");
+        final var parameters = builder.parameters();
         parameters.parameter("semi_major").setValue(6371007.0);
         parameters.parameter("semi_minor").setValue(6371007.0);
         validators.validate(parameters);
@@ -874,10 +853,10 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
         setTolerance(ToleranceModifier.PROJECTION);
         /*
          * In this particular case we have a conflict between the change of axis direction performed by the
-         * "Transverse Mercator (South Orientated)" operation method  and the (east, north) axis directions
-         * documented in the MathTransformFactory.createParameterizedTransform(…) method. We do not mandate
-         * any particular behavior at this time, so we have to determine what the implementer choose to do,
-         * by projecting a point in the south hemisphere and checking the sign of the result.
+         * "Transverse Mercator (South Orientated)" operation method and the (east, north) axis directions
+         * documented in the MathTransform.Builder.create() method. We do not mandate any particular behavior
+         * at this time. Therefore, we have to determine what the implementer choose to do by projecting
+         * a point in the south hemisphere and checking the sign of the result.
          */
         double[] expected = sample.targetPoints;
         final double[] check = new double[] {-0.5, -0.5};

@@ -27,9 +27,7 @@ import org.opengis.referencing.RegisterOperations;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
-import org.opengis.referencing.crs.GeographicCRS;
 import org.opengis.referencing.crs.CRSFactory;
-import org.opengis.referencing.datum.GeodeticDatum;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterDescriptorGroup;
 
@@ -49,88 +47,11 @@ import static org.opengis.annotation.Specification.*;
  * with a message saying that the type or service is not supported.
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  */
 @UML(identifier="CT_CoordinateTransformationFactory", specification=OGC_01009)
 public interface CoordinateOperationFactory extends ObjectFactory {
-    /**
-     * Returns an operation for conversion or transformation between two coordinate reference systems.
-     *
-     * <ul>
-     *   <li>If an operation exists, it is returned.</li>
-     *   <li>If more than one operation exists, the default is returned.</li>
-     *   <li>If no operation exists, then the exception is thrown.</li>
-     * </ul>
-     *
-     * Implementations may try to query an authority factory first,
-     * and compute the operation next if no operation from
-     * {@code source} to {@code target} code was explicitly defined by the authority.
-     *
-     * @param  sourceCRS  input coordinate reference system.
-     * @param  targetCRS  output coordinate reference system.
-     * @return a coordinate operation from {@code sourceCRS} to {@code targetCRS}.
-     * @throws OperationNotFoundException if no operation path was found from {@code sourceCRS}
-     *         to {@code targetCRS}.
-     * @throws FactoryException if the operation creation failed for some other reason.
-     *
-     * @deprecated Moved to {@link RegisterOperations#findCoordinateOperations(CoordinateReferenceSystem,
-     * CoordinateReferenceSystem) RegisterOperations}. The latter is defined by the ISO 19111:2019 standard.
-     * Another reason is that this method requires the use of a geodetic registry.
-     */
-    @Deprecated(since = "3.1")
-    @UML(identifier="createFromCoordinateSystems", specification=OGC_01009)
-    default CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
-                                                CoordinateReferenceSystem targetCRS) throws FactoryException
-    {
-        throw new UnimplementedServiceException("Cannot infer coordinate operations between a pair of CRSs.");
-    }
-
-    /**
-     * Returns an operation using a particular method for conversion or transformation
-     * between two coordinate reference systems.
-     *
-     * <ul>
-     *   <li>If the operation exists on the implementation, then it is returned.</li>
-     *   <li>If the operation does not exist on the implementation, then the implementation
-     *       has the option of inferring the operation from the argument objects.</li>
-     *   <li>If for whatever reason the specified operation will not be returned, then
-     *       the exception is thrown.</li>
-     * </ul>
-     *
-     * <b>Example:</b> A transformation between two {@linkplain GeographicCRS geographic CRS} using
-     * different {@linkplain GeodeticDatum datum} requires a <i>datum shift</i>.
-     * Many methods exist for this purpose, including interpolations in a grid,
-     * a scale/rotation/translation in geocentric coordinates or the Molodenski approximation.
-     * When invoking {@code createOperation(…)} without operation method,
-     * this factory may select by default the transformation specified by the authority.
-     * When invoking {@code createOperation(…)} with an operation method,
-     * user can force usage of Molodenski approximation for instance.
-     *
-     * @param  sourceCRS  input coordinate reference system.
-     * @param  targetCRS  output coordinate reference system.
-     * @param  method     the algorithmic method for conversion or transformation.
-     * @return a coordinate operation from {@code sourceCRS} to {@code targetCRS}.
-     * @throws OperationNotFoundException if no operation path was found from {@code sourceCRS}
-     *         to {@code targetCRS}.
-     * @throws FactoryException if the operation creation failed for some other reason.
-     *
-     * @departure extension
-     *   This method has been added at user request, in order to specify the desired
-     *   transformation path when many are available.
-     *
-     * @deprecated Replaced by {@link RegisterOperations#findCoordinateOperations(CoordinateReferenceSystem,
-     * CoordinateReferenceSystem) RegisterOperations}. The latter is defined by the ISO 19111:2019 standard.
-     * Another reason is that this method requires the use of a geodetic registry.
-     */
-    @Deprecated(since = "3.1")
-    default CoordinateOperation createOperation(CoordinateReferenceSystem sourceCRS,
-                                                CoordinateReferenceSystem targetCRS,
-                                                OperationMethod           method) throws FactoryException
-    {
-        throw new UnimplementedServiceException("Cannot infer coordinate operations between a pair of CRSs.");
-    }
-
     /**
      * Creates a concatenated operation from a sequence of operations.
      * The source coordinate reference system of the first step and the target coordinate reference system of the

@@ -21,12 +21,6 @@ import java.util.Set;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
-import org.opengis.referencing.cs.CoordinateSystem;
-import org.opengis.referencing.datum.Datum;
-import org.opengis.referencing.datum.GeodeticDatum;
-import org.opengis.referencing.datum.Ellipsoid;
-import org.opengis.referencing.crs.*;                   // Contains some import for javadoc.
-import org.opengis.parameter.*;                         // Contains some import for javadoc.
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -62,7 +56,7 @@ import static org.opengis.annotation.Specification.*;
  * target coordinate systems.</p>
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @version 3.1
+ * @version 4.0
  * @since   1.0
  *
  * @see org.opengis.referencing.RegisterOperations#getFactory(Class)
@@ -103,27 +97,8 @@ public interface MathTransformFactory extends Factory {
      *
      * @see #builder(String)
      * @see #getDefaultParameters(String)
-     * @see #createParameterizedTransform(ParameterValueGroup)
      */
     Set<OperationMethod> getAvailableMethods(Class<? extends SingleOperation> type);
-
-    /**
-     * Returns the operation method used by the latest call to a {@code create(…)} constructor,
-     * or {@code null} if not applicable.
-     *
-     * <h4>Implementation note</h4>
-     * Implementers should document how their implementation behave in a multi-threads environment.
-     * For example, some implementations use {@linkplain java.lang.ThreadLocal thread local variables},
-     * while other can choose to return {@code null} in all cases since {@code getLastMethodUsed()} is optional.
-     *
-     * @return the last method used by a {@code create(…)} constructor, or {@code null} if unknown of unsupported.
-     *
-     * @deprecated Replaced by {@link MathTransform.Builder#getMethod()} for avoiding ambiguities and for thread safety.
-     */
-    @Deprecated(since = "3.1")
-    default OperationMethod getLastMethodUsed() {
-        return null;
-    }
 
     /**
      * Returns a builder for a parameterized math transform using the specified operation method.
@@ -172,167 +147,6 @@ public interface MathTransformFactory extends Factory {
      * @since 3.1
      */
     MathTransform.Builder builder(String method) throws NoSuchIdentifierException;
-
-    /**
-     * Returns the default parameter values for a math transform which uses the given operation method.
-     * A new group of parameter values is created at every call. The values should be modified in-place,
-     * then given to the {@link #createParameterizedTransform(ParameterValueGroup)} constructor.
-     * The {@linkplain ParameterDescriptorGroup#getName() name of the returned parameter group}
-     * may differ from the specified method name as it shall be a method name or identifier that
-     * {@code createParameterizedTransform(…)} can recognize without ambiguity.
-     *
-     * <h4>Recommended alternative</h4>
-     * This approach is a shortcut good enough for most map projections,
-     * but may be ambiguous in some cases such as west- or south-orientated projections.
-     * For more deterministic results, consider using {@link #builder(String)} instead.
-     *
-     * @param  method  the case insensitive name or identifier of the desired coordinate operation method.
-     * @return a new group of parameter values for the {@code OperationMethod} identified by the given name.
-     * @throws NoSuchIdentifierException if there is no supported method for the given name or identifier.
-     *
-     * @departure extension
-     *   This is an addition to the {@link org.opengis.annotation.Specification#OGC_01009 OGC 01-009}
-     *   for facilitating the creation of parameterized transforms.
-     *
-     * @see #getAvailableMethods(Class)
-     * @see #createParameterizedTransform(ParameterValueGroup)
-     *
-     * @deprecated This {@linkplain #createParameterizedTransform way to create parameterized transform} is ambiguous.
-     * Use {@link #builder(String)} instead.
-     */
-    @Deprecated(since="3.1")
-    default ParameterValueGroup getDefaultParameters(String method) throws NoSuchIdentifierException {
-        return builder(method).parameters();
-    }
-
-    /**
-     * Creates a parameterized transform from a base CRS to a derived CS.
-     * This convenience constructor {@linkplain #createConcatenatedTransform concatenates}
-     * the parameterized transform with any other transform required for performing units changes and
-     * coordinates swapping, as described in the {@linkplain #createParameterizedTransform note on
-     * cartographic projections}.
-     *
-     * <p>In addition, implementations are encouraged to infer the {@code "semi_major"} and
-     * {@code "semi_minor"} parameter values from the {@linkplain Ellipsoid ellipsoid}
-     * associated to the {@code baseCRS}, if those parameters are not explicitly given
-     * and if they are applicable (typically for cartographic projections).
-     * This inference is consistent with the EPSG database model.</p>
-     *
-     * @param  baseCRS     the source coordinate reference system.
-     * @param  parameters  the parameter values for the transform.
-     * @param  derivedCS   the target coordinate system.
-     * @return the parameterized transform from {@code baseCRS} to {@code derivedCS},
-     *         including unit conversions and axis swapping.
-     * @throws NoSuchIdentifierException if there is no transform registered for the coordinate operation method.
-     * @throws FactoryException if the transform creation failed.
-     *         This exception is thrown if some required parameter has not been supplied, or has illegal value.
-     *
-     * @deprecated Replaced by {@link #builder(String)}.
-     */
-    @Deprecated(since = "3.1")
-    default MathTransform createBaseToDerived(CoordinateReferenceSystem baseCRS,
-                                              ParameterValueGroup       parameters,
-                                              CoordinateSystem          derivedCS)
-            throws NoSuchIdentifierException, FactoryException
-    {
-        final var builder = builder(parameters.getDescriptor().getName().getCode());
-        copy(parameters, builder.parameters());
-        if (baseCRS != null) {
-            Datum     rfm = (baseCRS instanceof SingleCRS) ? ((SingleCRS) baseCRS).getDatum()     : null;
-            Ellipsoid eld = (rfm instanceof GeodeticDatum) ? ((GeodeticDatum) rfm).getEllipsoid() : null;
-            builder.setSourceAxes(baseCRS.getCoordinateSystem(), eld);
-        }
-        builder.setTargetAxes(derivedCS, null);
-        return builder.create();
-    }
-
-    /**
-     * Creates a transform from a group of parameters. The {@link OperationMethod} name is inferred from
-     * the {@linkplain ParameterDescriptorGroup#getName() parameter group name}. Example:
-     *
-     * {@snippet lang="java" :
-     * ParameterValueGroup p = factory.getDefaultParameters("Transverse_Mercator");
-     * p.parameter("semi_major").setValue(6378137.000);
-     * p.parameter("semi_minor").setValue(6356752.314);
-     * MathTransform mt = factory.createParameterizedTransform(p);
-     * }
-     *
-     * <h4>Note on cartographic projections</h4>
-     * Cartographic projection are used by {@link ProjectedCRS} to map geographic coordinates
-     * (e.g., <var>longitude</var> and <var>latitude</var>) into (<var>easting</var>, <var>northing</var>) coordinates.
-     * The latter coordinates can be imagined to lie on a plane, such as a paper map or a screen.
-     * All cartographic projections created through this constructor will have the following properties:
-     *
-     * <ul>
-     *   <li>Converts from (<var>longitude</var>, <var>latitude</var>) coordinates to (<var>easting</var>, <var>northing</var>).</li>
-     *   <li>All angles are assumed to be degrees, and all distances are assumed to be meters.</li>
-     *   <li>The domain shall be a subset of {[-180,180)×(-90,90)}.</li>
-     *   <li>Axis directions are usually ({@linkplain org.opengis.referencing.cs.AxisDirection#EAST east},
-     *       {@linkplain org.opengis.referencing.cs.AxisDirection#NORTH north}), but exceptions may exist
-     *       for some operation methods like <cite>Lambert Conic Conformal (West Orientated)</cite>
-     *       (EPSG:9826) or <cite>Transverse Mercator (South Orientated)</cite> (EPSG:9808).</li>
-     * </ul>
-     *
-     * Although all cartographic projections created by this constructor should have the properties listed above,
-     * some projected coordinate reference systems have different properties.
-     * For example, in Europe some projected CRSs use grads instead of degrees,
-     * and often the {@linkplain ProjectedCRS#getBaseCRS() base geographic CRS} is (<var>latitude</var>, <var>longitude</var>)
-     * instead of (<var>longitude</var>, <var>latitude</var>). This means that the cartographic projection is often
-     * used as a single step in a series of conversions, where the other steps change units and swap coordinates.
-     *
-     * <h4>Recommended alternative</h4>
-     * When the change of axis directions is part of the map projection definition as in <cite>Transverse Mercator
-     * (South Orientated)</cite>, there is a conflict with the above-cited (<var>east</var>, <var>north</var>) directions.
-     * In such cases, the {@code createParameterizedTransform(…)} behavior is implementation specific,
-     * since different libraries may resolve this conflict in different ways.
-     * For more reliable results, users should invoke {@link #builder(String)} instead.
-     *
-     * @param  parameters  the parameter values.
-     * @return the parameterized transform.
-     * @throws NoSuchIdentifierException if there is no transform registered for the coordinate operation method.
-     * @throws FactoryException if the transform creation failed.
-     *         This exception is thrown if some required parameters have not been supplied, or have illegal values.
-     *
-     * @see #getDefaultParameters(String)
-     * @see #getAvailableMethods(Class)
-     *
-     * @deprecated This constructor is ambiguous when axis directions are parts of the map projection definition
-     * as in <q>Transverse Mercator (South Orientated)</q>.
-     * Use {@link #builder(String)} instead for allowing the implementation to resolve such ambiguities.
-     */
-    @Deprecated(since = "3.1")
-    @UML(identifier="createParameterizedTransform", obligation=MANDATORY, specification=OGC_01009)
-    default MathTransform createParameterizedTransform(final ParameterValueGroup parameters)
-            throws NoSuchIdentifierException, FactoryException
-    {
-        final var builder = builder(parameters.getDescriptor().getName().getCode());
-        copy(parameters, builder.parameters());
-        return builder.create();
-    }
-
-    /**
-     * Copies the parameter values from one group to another group.
-     *
-     * @param  source  user-supplied parameter values.
-     * @param  target  where to copy the parameters.
-     */
-    private static void copy(final ParameterValueGroup source, final ParameterValueGroup target) {
-        for (final GeneralParameterValue value : source.values()) {
-            final String name = value.getDescriptor().getName().getCode();
-            if (value instanceof ParameterValueGroup) {
-                copy((ParameterValueGroup) value, target.addGroup(name));
-            } else {
-                final var src  = (ParameterValue) value;
-                final var tgt  = target.parameter(name);
-                final var unit = src.getUnit();
-                if (unit != null) {
-                    tgt.setValue(src.doubleValue(), unit);
-                } else {
-                    tgt.setValue(src.getValue());
-                }
-            }
-        }
-    }
 
     /**
      * Creates an affine transform from a matrix.

@@ -11,7 +11,6 @@ import java.util.Collections;
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
 import org.opengis.metadata.citation.Citation;
-import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.referencing.operation.Matrix;
 import org.opengis.referencing.operation.MathTransform;
 import org.opengis.referencing.operation.MathTransformFactory;
@@ -77,16 +76,6 @@ public class SimpleTransformFactory implements MathTransformFactory {
     @Override
     public Set<OperationMethod> getAvailableMethods(Class<? extends SingleOperation> type) {
         return Collections.emptySet();
-    }
-
-    /**
-     * Returns the default parameter values for a math transform using the given method.
-     * The default implementation throws an exception in all cases since parameterized
-     * transforms are not implemented by this simple factory.
-     */
-    @Override
-    public ParameterValueGroup getDefaultParameters(String method) throws NoSuchIdentifierException {
-        throw new NoSuchIdentifierException("Parameterized transforms are not implemented.", method);
     }
 
     /**

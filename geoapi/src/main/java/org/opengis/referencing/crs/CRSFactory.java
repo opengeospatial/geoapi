@@ -375,18 +375,9 @@ public interface CRSFactory extends ObjectFactory {
      * If a math transform is provided, this method may or may not use it at implementation choice.
      * Otherwise this method shall create a math transform from the parameters.
      *
-     * <p>The supplied conversion should <strong>not</strong> includes the operation steps for
-     * performing {@linkplain CoordinateSystemAxis#getUnit() axis unit} conversions and change
-     * of axis order; those operations shall be inferred by this constructor by some code equivalent to:</p>
-     *
-     * <blockquote><code>
-     * MathTransform baseToDerived = {@linkplain MathTransformFactory#createBaseToDerived
-     * MathTransformFactory.createBaseToDerived}(baseCRS, parameters, derivedCS)
-     * </code></blockquote>
-     *
-     * This behavior is different than {@link #createDerivedCRS createDerivedCRS(…)} because parameterized transforms
-     * are standardized for projections. See the {@linkplain MathTransformFactory#createParameterizedTransform note on
-     * cartographic projections}.
+     * <p>The supplied conversion should <strong>not</strong> includes the operation steps for performing
+     * {@linkplain CoordinateSystemAxis#getUnit() axis unit} conversions and change of axis order.
+     * Those operations shall be inferred by this constructor.</p>
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
