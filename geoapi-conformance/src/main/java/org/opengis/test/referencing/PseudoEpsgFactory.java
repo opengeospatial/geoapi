@@ -867,35 +867,20 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
      * </table>
      *
      * @param  code  the EPSG code of the {@linkplain CoordinateOperation coordinate operation} to create.
-     * @return the coordinate operation (typically a map projection) parameters.
+     * @return a builder initialized with the coordinate operation (typically a map projection) parameters.
      * @throws FactoryException if the given EPSG code is unknown to this factory.
      *
      * @see ParameterizedTransformTest
      * @see AuthorityFactoryTest
      */
-    protected ParameterValueGroup createParameters(final int code) throws FactoryException {
-        final var mtFactory = getFactoryOrAbort(MathTransformFactory.class, "No math transform factory found.");
-        final ParameterValueGroup parameters = createParameters(mtFactory, code);
-        validators.validate(parameters);
-        return parameters;
-    }
-
-    /**
-     * Implementation of the above {@link #createParameters(int)} method,
-     * as a static method for direct access by {@link ParameterizedTransformTest}.
-     *
-     * @param  factory  the factory to use for creating the parameters.
-     * @param  code     authority code of the parameter to create.
-     * @return parameter for the given authority code.
-     * @throws FactoryException if the given EPSG code is unknown to this factory.
-     */
-    static ParameterValueGroup createParameters(final MathTransformFactory factory, final int code)
-            throws FactoryException
-    {
+    protected MathTransform.Builder createParameters(final int code) throws FactoryException {
+        final var factory = getFactoryOrAbort(MathTransformFactory.class, "No math transform factory found.");
+        final MathTransform.Builder builder;
         final ParameterValueGroup parameters;
         switch (code) {
             case 19905: {       // "Makassar / NEIEZ" using operation method 9804
-                parameters = factory.getDefaultParameters("Mercator (variant A)");                      // Alias "Mercator (1SP)"
+                builder = factory.builder("Mercator (variant A)");                                      // Alias "Mercator (1SP)"
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6377397.155);                               // Bessel 1841
                 parameters.parameter("semi_minor").setValue(6377397.155 * (1 - 1/299.1528128));
                 parameters.parameter("Latitude of natural origin")    .setValue(  0.0);
@@ -906,7 +891,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 19884: {       // "Pulkovo 1942 / Caspian Sea Mercator" using operation method 9805
-                parameters = factory.getDefaultParameters("Mercator (variant B) ");                     // Alias "Mercator (2SP)"
+                builder = factory.builder("Mercator (variant B) ");                                     // Alias "Mercator (2SP)"
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378245.0);                                 // Krassowski 1940
                 parameters.parameter("semi_minor").setValue(6378245.0 * (1 - 1/298.3));
                 parameters.parameter("Latitude of 1st standard parallel").setValue(42.0);
@@ -914,26 +900,30 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 3856: {        // "WGS 84 / Pseudo-Mercator" using operation method 1024
-                parameters = factory.getDefaultParameters("Popular Visualisation Pseudo Mercator");
+                builder = factory.builder("Popular Visualisation Pseudo Mercator");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378137.0);                                 // WGS 84
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 break;
             }
             case 4085: {        // "WGS 84 / World Equidistant Cylindrical" using operation method 1028
-                parameters = factory.getDefaultParameters("Equidistant Cylindrical");
+                builder = factory.builder("Equidistant Cylindrical");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378137.0);                                 // WGS 84
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 break;
             }
             case 310642901: {   // "IGNF:MILLER" (not an official EPSG code)
-                parameters = factory.getDefaultParameters("Miller_Cylindrical");
+                builder = factory.builder("Miller_Cylindrical");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378137.0);
                 parameters.parameter("semi_minor").setValue(6378137.0);
                 break;
             }
             case 19958: {       // "Rectified Skew Orthomorphic Borneo Grid (metres)" using operation method 9815
-                parameters = factory.getDefaultParameters("Hotine Oblique Mercator (variant B)");
-                parameters.parameter("semi_major").setValue(6377298.556);                               // Everest 1830
+                builder = factory.builder("Hotine Oblique Mercator (variant B)");
+                parameters = builder.parameters();
+                parameters.parameter("semi_major").setValue(6377298.556);                                       // Everest 1830
                 parameters.parameter("semi_minor").setValue(6377298.556 * (1 - 1/300.8017));
                 parameters.parameter("Latitude of projection centre") .setValue(  4.0);                         //   4°00'00"N
                 parameters.parameter("Longitude of projection centre").setValue(115.0);                         // 115°00'00"E
@@ -945,7 +935,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 19916: {       // "British National Grid" using operation method 9807
-                parameters = factory.getDefaultParameters("Transverse Mercator");
+                builder = factory.builder("Transverse Mercator");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6377563.396);                               // Airy
                 parameters.parameter("semi_minor").setValue(6377563.396 * (1 - 1/299.32496));
                 parameters.parameter("Latitude of natural origin") .setValue(49.0);
@@ -956,7 +947,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 17529: {       // "South African Survey Grid zone 29" using operation method 9808
-                parameters = factory.getDefaultParameters("Transverse Mercator (South Orientated)");
+                builder = factory.builder("Transverse Mercator (South Orientated)");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378137.0);                                 // WGS 84
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 parameters.parameter("Latitude of natural origin").setValue(0.0);
@@ -975,7 +967,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                  * The differences in easting/northing parameters is up to 0.8 metre. We keep the values published
                  * in IOGP 373-7-2 because the sample point tested in map projection is computed with those values.
                  */
-                parameters = factory.getDefaultParameters("Cassini-Soldner");
+                builder = factory.builder("Cassini-Soldner");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(20926348.0 * FEET);                         // Clarke 1858
                 parameters.parameter("semi_minor").setValue(20855233.0 * FEET);
                 parameters.parameter("Latitude of natural origin") .setValue(10 + (26 + 30.0/60)/60);   // 10°26'30"N
@@ -985,7 +978,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 19878: {       // "Vanua Levu Grid" using operation method 9833
-                parameters = factory.getDefaultParameters("Hyperbolic Cassini-Soldner");
+                builder = factory.builder("Hyperbolic Cassini-Soldner");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(20926202.0 * FEET);                         // Clarke 1880
                 parameters.parameter("semi_minor").setValue(20854895.0 * FEET);
                 parameters.parameter("Latitude of natural origin") .setValue(-(16 + 15./60));           // 16°15'00"S
@@ -995,7 +989,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 19910: {       // "JAD69 / Jamaica National Grid" using operation method 9801
-                parameters = factory.getDefaultParameters("Lambert Conic Conformal (1SP)");
+                builder = factory.builder("Lambert Conic Conformal (1SP)");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378206.4);                                 // Clarke 1866
                 parameters.parameter("semi_minor").setValue(6356583.8);
                 parameters.parameter("Latitude of natural origin")    .setValue( 18.0);
@@ -1006,7 +1001,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 14204: {       // "NAD27 / Texas South Central" using operation method 9802
-                parameters = factory.getDefaultParameters("Lambert Conic Conformal (2SP)");
+                builder = factory.builder("Lambert Conic Conformal (2SP)");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378206.4);                                 // Clarke 1866
                 parameters.parameter("semi_minor").setValue(6356583.8);
                 parameters.parameter("Latitude of 1st standard parallel").setValue(28 + 23.0/60);       // 28°23'00"N
@@ -1018,7 +1014,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 6198: {        // "Michigan CS27 Central zone" using operation method 1051
-                parameters = factory.getDefaultParameters("Lambert Conic Conformal (2SP Michigan)");
+                builder = factory.builder("Lambert Conic Conformal (2SP Michigan)");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378206.4);                                 // Clarke 1866
                 parameters.parameter("semi_minor").setValue(6356583.8);
                 parameters.parameter("Latitude of 1st standard parallel").setValue( 44 + 11.0/60);      // 44°11' N
@@ -1031,7 +1028,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 19902: {       // "Belge 1972 / Belge Lambert 72" using operation method 9803
-                parameters = factory.getDefaultParameters("Lambert Conic Conformal (2SP Belgium)");
+                builder = factory.builder("Lambert Conic Conformal (2SP Belgium)");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378388.0);                                 // International 1924
                 parameters.parameter("semi_minor").setValue(6378388.0 * (1 - 1/297.0));
                 parameters.parameter("Latitude of 1st standard parallel").setValue(49 + 50.0/60);       // 49°50'00.000"N
@@ -1043,7 +1041,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 19986: {       // "Europe Equal Area 2001" using operation method 9820
-                parameters = factory.getDefaultParameters("Lambert Azimuthal Equal Area");
+                builder = factory.builder("Lambert Azimuthal Equal Area");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378137.0);
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572221));
                 parameters.parameter("Latitude of natural origin") .setValue(52.0);
@@ -1053,7 +1052,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 16061: {       // "Universal Polar Stereographic North" using operation method 9810
-                parameters = factory.getDefaultParameters("Polar Stereographic (variant A)");
+                builder = factory.builder("Polar Stereographic (variant A)");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378137.0);                                 // WGS84
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 parameters.parameter("Latitude of natural origin").setValue(90.0);
@@ -1064,7 +1064,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 19993: {       // "Australian Antarctic Polar Stereographic" using operation method 9829
-                parameters = factory.getDefaultParameters("Polar Stereographic (variant B)");
+                builder = factory.builder("Polar Stereographic (variant B)");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378137.0);                                 // WGS84
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 parameters.parameter("Latitude of standard parallel").setValue(-71.0);
@@ -1074,7 +1075,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 19983: {       // "Petrels 1972 / Terre Adelie Polar Stereographic" using operation method 9830
-                parameters = factory.getDefaultParameters("Polar Stereographic (variant C)");
+                builder = factory.builder("Polar Stereographic (variant C)");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378388.0);                                 // International 1924
                 parameters.parameter("semi_minor").setValue(6378388.0 * (1 - 1/297.0));
                 parameters.parameter("Latitude of standard parallel").setValue(-67.0);
@@ -1084,7 +1086,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 19914: {       // "RD New" using operation method 9809
-                parameters = factory.getDefaultParameters("Oblique Stereographic");
+                builder = factory.builder("Oblique Stereographic");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6377397.155);                               // Bessel 1841
                 parameters.parameter("semi_minor").setValue(6377397.155 * (1 - 1/299.15281));
                 parameters.parameter("Latitude of natural origin").setValue(52 + ( 9 + 22.178/60)/60);  // 52°09'22.178"N
@@ -1095,7 +1098,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 9818: {        // (not an official EPSG code) using operation method 9818
-                parameters = factory.getDefaultParameters("Polyconic");
+                builder = factory.builder("Polyconic");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378206.4);
                 parameters.parameter("semi_minor").setValue(6356583.8);
                 parameters.parameter("Latitude of natural origin") .setValue(0.0);
@@ -1105,7 +1109,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 9840: {        // (not an official EPSG code) using operation method 9840
-                parameters = factory.getDefaultParameters("Orthographic");
+                builder = factory.builder("Orthographic");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378137.0);                                 // WGS84
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 parameters.parameter("Latitude of natural origin").setValue(55.0);
@@ -1115,7 +1120,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 15399: {       // "Guam 1963 / Yap Islands" using operation method 9832
-                parameters = factory.getDefaultParameters("Modified Azimuthal Equidistant");
+                builder = factory.builder("Modified Azimuthal Equidistant");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378206.4);                                 // Clarke 1866
                 parameters.parameter("semi_minor").setValue(6356583.8);
                 parameters.parameter("Latitude of natural origin").setValue(9 + (32 + 48.15/60)/60);
@@ -1125,7 +1131,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 19952: {       // "CRS S-JTSK (Ferro) / Krovak" using operation method 9819
-                parameters = factory.getDefaultParameters("Krovak");
+                builder = factory.builder("Krovak");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6377397.155);                               // Bessel
                 parameters.parameter("semi_minor").setValue(6377397.155 * (1 - 1/299.15281));
                 parameters.parameter("Latitude of projection centre").setValue(49.5);                   // 49°30'00"N
@@ -1136,7 +1143,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 9605: {        // (not an official EPSG code) using operation method 9605
-                parameters = factory.getDefaultParameters("Abridged Molodensky");
+                builder = factory.builder("Abridged Molodensky");
+                parameters = builder.parameters();
                 parameters.parameter("dim").setValue(3);                                                // Parameter defined by OGC 01-009
                 parameters.parameter("src_semi_major").setValue(6378137.0);                             // WGS84
                 parameters.parameter("src_semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
@@ -1148,7 +1156,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 15594: {       // EPSG topocentric example A
-                parameters = factory.getDefaultParameters("Geographic/topocentric conversions");
+                builder = factory.builder("Geographic/topocentric conversions");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378137.0);                               // WGS84
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 parameters.parameter("Latitude of topocentric origin").setValue(55);
@@ -1157,7 +1166,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 break;
             }
             case 15595: {       // EPSG topocentric example B
-                parameters = factory.getDefaultParameters("Geocentric/topocentric conversions");
+                builder = factory.builder("Geocentric/topocentric conversions");
+                parameters = builder.parameters();
                 parameters.parameter("semi_major").setValue(6378137.0);                               // WGS84
                 parameters.parameter("semi_minor").setValue(6378137.0 * (1 - 1/298.2572236));
                 parameters.parameter("Geocentric X of topocentric origin").setValue(3652755.3058);
@@ -1169,7 +1179,8 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
                 throw noSuchAuthorityCode(code, String.valueOf(code));
             }
         }
-        return parameters;
+        validators.validate(parameters);
+        return builder;
     }
 
     /**

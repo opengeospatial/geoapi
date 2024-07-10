@@ -50,9 +50,9 @@ public interface ToleranceModifier {
      * the φ coordinate value to the pole. In the extreme case where the coordinate to compare
      * is located at a pole, then the tolerance is 360° in longitude values.
      *
-     * <p>This modifier assumes that geographic coordinates are expressed in decimal degrees in
-     * (<var>longitude</var>, <var>latitude</var>) order, as documented in the {@linkplain
-     * org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform
+     * <p>This modifier assumes that geographic coordinates are expressed in decimal degrees
+     * and in (<var>longitude</var>, <var>latitude</var>) order, as documented in the
+     * {@linkplain org.opengis.referencing.operation.MathTransform.Builder#create
      * parameterized transform contructor}.</p>
      *
      * @see ToleranceModifiers#geographic(int, int)

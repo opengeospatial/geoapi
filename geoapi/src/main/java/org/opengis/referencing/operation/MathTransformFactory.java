@@ -103,7 +103,6 @@ public interface MathTransformFactory extends Factory {
      *
      * @see #builder(String)
      * @see #getDefaultParameters(String)
-     * @see #createParameterizedTransform(ParameterValueGroup)
      */
     Set<OperationMethod> getAvailableMethods(Class<? extends SingleOperation> type);
 

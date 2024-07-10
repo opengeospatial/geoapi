@@ -18,7 +18,6 @@
 package org.opengis.util;
 
 import org.opengis.metadata.Identifier;
-import org.opengis.parameter.ParameterValueGroup;  // For javadoc
 
 
 /**
@@ -36,7 +35,7 @@ import org.opengis.parameter.ParameterValueGroup;  // For javadoc
  * @version 3.1
  * @since   1.0
  *
- * @see org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform(ParameterValueGroup)
+ * @see org.opengis.referencing.operation.MathTransformFactory#builder(String)
  */
 public class NoSuchIdentifierException extends FactoryException {
     /**
