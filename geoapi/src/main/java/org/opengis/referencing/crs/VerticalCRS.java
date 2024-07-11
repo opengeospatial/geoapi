@@ -59,7 +59,7 @@ public interface VerticalCRS extends SingleCRS {
     VerticalCS getCoordinateSystem();
 
     /**
-     * Returns the reference frame, which shall be vertical.
+     * Returns an identification of a particular reference level surface used as a zero-height surface.
      * This property may be null if this <abbr>CRS</abbr> is related to an object
      * identified only by a {@linkplain #getDatumEnsemble() datum ensemble}.
      *
@@ -73,7 +73,8 @@ public interface VerticalCRS extends SingleCRS {
     VerticalDatum getDatum();
 
     /**
-     * Returns the datum ensemble, which shall have vertical datum members.
+     * Returns a collection of datums which, for low accuracy requirements,
+     * may be considered to be insignificantly different from each other.
      * This property may be null if this <abbr>CRS</abbr> is related to an object
      * identified only by a single {@linkplain #getDatum() datum}.
      *
@@ -86,7 +87,7 @@ public interface VerticalCRS extends SingleCRS {
      * @since 3.1
      */
     @Override
-    @UML(identifier="datum", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="datumEnsemble", obligation=CONDITIONAL, specification=ISO_19111)
     default DatumEnsemble<VerticalDatum> getDatumEnsemble() {
         return null;
     }

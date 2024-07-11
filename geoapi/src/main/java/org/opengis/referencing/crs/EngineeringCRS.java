@@ -67,7 +67,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="EngineeringCRS", specification=ISO_19111)
 public interface EngineeringCRS extends SingleCRS {
     /**
-     * Returns the datum, which shall be an engineering one.
+     * Returns the identification of the origin of this engineering (or local) <abbr>CRS</abbr>.
      * This property may be null if this <abbr>CRS</abbr> is related to an object
      * identified only by a {@linkplain #getDatumEnsemble() datum ensemble}.
      *
@@ -81,7 +81,8 @@ public interface EngineeringCRS extends SingleCRS {
     EngineeringDatum getDatum();
 
     /**
-     * Returns the datum ensemble, which shall have engineering datum members.
+     * Returns a collection of datums which, for low accuracy requirements,
+     * may be considered to be insignificantly different from each other.
      * This property may be null if this <abbr>CRS</abbr> is related to an object
      * identified only by a single {@linkplain #getDatum() datum}.
      *
@@ -94,7 +95,7 @@ public interface EngineeringCRS extends SingleCRS {
      * @since 3.1
      */
     @Override
-    @UML(identifier="datum", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="datumEnsemble", obligation=CONDITIONAL, specification=ISO_19111)
     default DatumEnsemble<EngineeringDatum> getDatumEnsemble() {
         return null;
     }

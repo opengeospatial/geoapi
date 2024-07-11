@@ -62,7 +62,7 @@ public interface ParametricCRS extends SingleCRS {
     ParametricCS getCoordinateSystem();
 
     /**
-     * Returns the datum, which shall be parametric.
+     * Returns the reference surface used as the origin of this <abbr>CRS</abbr>.
      * This property may be null if this <abbr>CRS</abbr> is related to an object
      * identified only by a {@linkplain #getDatumEnsemble() datum ensemble}.
      *
@@ -76,7 +76,8 @@ public interface ParametricCRS extends SingleCRS {
     ParametricDatum getDatum();
 
     /**
-     * Returns the datum ensemble, which shall have parametric datum members.
+     * Returns a collection of datums which, for low accuracy requirements,
+     * may be considered to be insignificantly different from each other.
      * This property may be null if this <abbr>CRS</abbr> is related to an object
      * identified only by a single {@linkplain #getDatum() datum}.
      *
@@ -88,7 +89,7 @@ public interface ParametricCRS extends SingleCRS {
      * @condition Mandatory if the {@linkplain #getDatum() datum} is not documented.
      */
     @Override
-    @UML(identifier="datum", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="datumEnsemble", obligation=CONDITIONAL, specification=ISO_19111)
     default DatumEnsemble<ParametricDatum> getDatumEnsemble() {
         return null;
     }
