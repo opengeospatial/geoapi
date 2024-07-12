@@ -114,6 +114,7 @@ public interface ProjectedCRS extends DerivedCRS {
      * @since 3.1
      */
     @Override
+    @UML(identifier="datumEnsemble", obligation=MANDATORY, specification=ISO_19111)
     default DatumEnsemble<GeodeticDatum> getDatumEnsemble() {
         return getBaseCRS().getDatumEnsemble();
     }

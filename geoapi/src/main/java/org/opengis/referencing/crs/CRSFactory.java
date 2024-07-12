@@ -68,16 +68,17 @@ public interface CRSFactory extends ObjectFactory {
      * more generic method} without datum ensemble.
      *
      * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  geodetic reference frame to use in created CRS.
-     * @param  cs  the ellipsoidal coordinate system for the created CRS.
+     *                     Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum       geodetic reference frame to use in created CRS.
+     * @param  cs          the ellipsoidal coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createGeographicCoordinateSystem", specification=OGC_01009)
     default GeographicCRS createGeographicCRS(Map<String,?> properties,
                                               GeodeticDatum datum,
-                                              EllipsoidalCS cs) throws FactoryException
+                                              EllipsoidalCS cs)
+            throws FactoryException
     {
         return createGeographicCRS(properties, datum, null, cs);
     }
@@ -87,30 +88,32 @@ public interface CRSFactory extends ObjectFactory {
      * It could be (<var>latitude</var>, <var>longitude</var>) or (<var>longitude</var>, <var>latitude</var>).
      * The <abbr>CRS</abbr> can optionally be three-dimensional with an ellipsoidal height.
      *
-     * <p>At least one of the {@code datum} and {@code datumEnsemble} arguments shall be non-null.
+     * <p>At least one of the {@code datum} and {@code ensemble} arguments shall be non-null.
      * If both are non-null, then {@code datum} <em>shall</em> be a member of the datum ensemble.</p>
      *
      * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  geodetic reference frame, or {@code null} if the CRS is associated only to a datum ensemble.
-     * @param  datumEnsemble  collection of reference frames which for low accuracy requirements may be considered
-     *         to be insignificantly different from each other, or {@code null} if there is no such ensemble.
-     * @param  cs  the ellipsoidal coordinate system for the created CRS.
+     *                     Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum       geodetic reference frame, or {@code null} if the CRS is associated only to a datum ensemble.
+     * @param  ensemble    collection of reference frames which for low accuracy requirements may be considered to be
+     *                     insignificantly different from each other, or {@code null} if there is no such ensemble.
+     * @param  cs          the ellipsoidal coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
      * @since 3.1
      */
     default GeographicCRS createGeographicCRS(Map<String,?> properties,
-            GeodeticDatum datum, DatumEnsemble<GeodeticDatum> datumEnsemble,
-            EllipsoidalCS cs) throws FactoryException
+                                              GeodeticDatum datum,
+                                              DatumEnsemble<GeodeticDatum> ensemble,
+                                              EllipsoidalCS cs)
+            throws FactoryException
     {
         throw new UnimplementedServiceException(this, GeographicCRS.class);
     }
 
     /**
      * Creates a geocentric <abbr>CRS</abbr> from a spherical coordinate system.
-     * At least one of the {@code datum} and {@code datumEnsemble} arguments shall be non-null.
+     * At least one of the {@code datum} and {@code ensemble} arguments shall be non-null.
      * If both are non-null, then {@code datum} <em>shall</em> be a member of the datum ensemble.
      *
      * @param  properties  name and other properties to give to the new object.
@@ -137,26 +140,28 @@ public interface CRSFactory extends ObjectFactory {
      * If both are non-null, then {@code datum} <em>shall</em> be a member of the datum ensemble.
      *
      * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  geodetic reference frame, or {@code null} if the CRS is associated only to a datum ensemble.
-     * @param  datumEnsemble  collection of reference frames which for low accuracy requirements may be considered
-     *         to be insignificantly different from each other, or {@code null} if there is no such ensemble.
-     * @param  cs  the spherical coordinate system for the created CRS.
+     *                     Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum       geodetic reference frame, or {@code null} if the CRS is associated only to a datum ensemble.
+     * @param  ensemble    collection of reference frames which for low accuracy requirements may be considered to be
+     *                     insignificantly different from each other, or {@code null} if there is no such ensemble.
+     * @param  cs          the spherical coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
      * @since 3.1
      */
     default GeodeticCRS createGeodeticCRS(Map<String,?> properties,
-            GeodeticDatum datum, DatumEnsemble<GeodeticDatum> datumEnsemble,
-            SphericalCS cs) throws FactoryException
+                                          GeodeticDatum datum,
+                                          DatumEnsemble<GeodeticDatum> ensemble,
+                                          SphericalCS cs)
+            throws FactoryException
     {
         throw new UnimplementedServiceException(this, GeodeticCRS.class, "spherical");
     }
 
     /**
      * Creates a geocentric <abbr>CRS</abbr> from a Cartesian coordinate system.
-     * At least one of the {@code datum} and {@code datumEnsemble} arguments shall be non-null.
+     * At least one of the {@code datum} and {@code ensemble} arguments shall be non-null.
      * If both are non-null, then {@code datum} <em>shall</em> be a member of the datum ensemble.
      *
      * @param  properties  name and other properties to give to the new object.
@@ -183,19 +188,21 @@ public interface CRSFactory extends ObjectFactory {
      * If both are non-null, then {@code datum} <em>shall</em> be a member of the datum ensemble.
      *
      * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  geodetic reference frame, or {@code null} if the CRS is associated only to a datum ensemble.
-     * @param  datumEnsemble  collection of reference frames which for low accuracy requirements may be considered
-     *         to be insignificantly different from each other, or {@code null} if there is no such ensemble.
-     * @param  cs  the Cartesian coordinate system for the created CRS.
+     *                     Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum       geodetic reference frame, or {@code null} if the CRS is associated only to a datum ensemble.
+     * @param  ensemble    collection of reference frames which for low accuracy requirements may be considered to be
+     *                     insignificantly different from each other, or {@code null} if there is no such ensemble.
+     * @param  cs          the Cartesian coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
      * @since 3.1
      */
     default GeodeticCRS createGeodeticCRS(Map<String,?> properties,
-            GeodeticDatum datum, DatumEnsemble<GeodeticDatum> datumEnsemble,
-            CartesianCS cs) throws FactoryException
+                                          GeodeticDatum datum,
+                                          DatumEnsemble<GeodeticDatum> ensemble,
+                                          CartesianCS cs)
+            throws FactoryException
     {
         throw new UnimplementedServiceException(this, GeodeticCRS.class, "Cartesian");
     }
@@ -206,39 +213,42 @@ public interface CRSFactory extends ObjectFactory {
      * more generic method} without datum ensemble.
      *
      * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  vertical datum to use in created CRS.
-     * @param  cs  the vertical coordinate system for the created CRS.
+     *                     Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum       vertical datum to use in created CRS.
+     * @param  cs          the vertical coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createVerticalCoordinateSystem", specification=OGC_01009)
     default VerticalCRS createVerticalCRS(Map<String,?> properties,
                                           VerticalDatum datum,
-                                          VerticalCS    cs) throws FactoryException
+                                          VerticalCS    cs)
+            throws FactoryException
     {
         return createVerticalCRS(properties, datum, null, cs);
     }
 
     /**
      * Creates a vertical <abbr>CRS</abbr> from a reference frame or datum ensemble.
-     * At least one of the {@code datum} and {@code datumEnsemble} arguments shall be non-null.
+     * At least one of the {@code datum} and {@code ensemble} arguments shall be non-null.
      * If both are non-null, then {@code datum} <em>shall</em> be a member of the datum ensemble.
      *
      * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  vertical reference frame, or {@code null} if the CRS is associated only to a datum ensemble.
-     * @param  datumEnsemble  collection of reference frames which for low accuracy requirements may be considered
-     *         to be insignificantly different from each other, or {@code null} if there is no such ensemble.
-     * @param  cs  the vertical coordinate system for the created CRS.
+     *                     Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum       vertical reference frame, or {@code null} if the CRS is associated only to a datum ensemble.
+     * @param  ensemble    collection of reference frames which for low accuracy requirements may be considered to be
+     *                     insignificantly different from each other, or {@code null} if there is no such ensemble.
+     * @param  cs          the vertical coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
      * @since 3.1
      */
     default VerticalCRS createVerticalCRS(Map<String,?> properties,
-            VerticalDatum datum, DatumEnsemble<VerticalDatum> datumEnsemble,
-            VerticalCS cs) throws FactoryException
+                                          VerticalDatum datum,
+                                          DatumEnsemble<VerticalDatum> ensemble,
+                                          VerticalCS cs)
+            throws FactoryException
     {
         throw new UnimplementedServiceException(this, VerticalCRS.class);
     }
@@ -257,53 +267,58 @@ public interface CRSFactory extends ObjectFactory {
      */
     default TemporalCRS createTemporalCRS(Map<String,?> properties,
                                           TemporalDatum datum,
-                                          TimeCS        cs) throws FactoryException
+                                          TimeCS        cs)
+            throws FactoryException
     {
         return createTemporalCRS(properties, datum, null, cs);
     }
 
     /**
      * Creates a temporal <abbr>CRS</abbr> from a datum or datum ensemble.
-     * At least one of the {@code datum} and {@code datumEnsemble} arguments shall be non-null.
+     * At least one of the {@code datum} and {@code ensemble} arguments shall be non-null.
      * If both are non-null, then {@code datum} <em>shall</em> be a member of the datum ensemble.
      *
      * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  temporal datum, or {@code null} if the CRS is associated only to a datum ensemble.
-     * @param  datumEnsemble  collection of datum which for low accuracy requirements may be considered
-     *         to be insignificantly different from each other, or {@code null} if there is no such ensemble.
-     * @param  cs  the temporal coordinate system for the created CRS.
+     *                     Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum       temporal datum, or {@code null} if the CRS is associated only to a datum ensemble.
+     * @param  ensemble    collection of datum which for low accuracy requirements may be considered to be
+     *                     insignificantly different from each other, or {@code null} if there is no such ensemble.
+     * @param  cs          the temporal coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
      * @since 3.1
      */
     default TemporalCRS createTemporalCRS(Map<String,?> properties,
-            TemporalDatum datum, DatumEnsemble<TemporalDatum> datumEnsemble,
-            TimeCS cs) throws FactoryException
+                                          TemporalDatum datum,
+                                          DatumEnsemble<TemporalDatum> ensemble,
+                                          TimeCS cs)
+            throws FactoryException
     {
         throw new UnimplementedServiceException(this, TemporalCRS.class);
     }
 
     /**
      * Creates a parametric <abbr>CRS</abbr> from a datum or datum ensemble.
-     * At least one of the {@code datum} and {@code datumEnsemble} arguments shall be non-null.
+     * At least one of the {@code datum} and {@code ensemble} arguments shall be non-null.
      * If both are non-null, then {@code datum} <em>shall</em> be a member of the datum ensemble.
      *
      * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  parametric datum, or {@code null} if the CRS is associated only to a datum ensemble.
-     * @param  datumEnsemble  collection of datum which for low accuracy requirements may be considered
-     *         to be insignificantly different from each other, or {@code null} if there is no such ensemble.
-     * @param  cs  the parametric coordinate system for the created CRS.
+     *                     Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum       parametric datum, or {@code null} if the CRS is associated only to a datum ensemble.
+     * @param  ensemble    collection of datum which for low accuracy requirements may be considered to be
+     *                     insignificantly different from each other, or {@code null} if there is no such ensemble.
+     * @param  cs          the parametric coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
      * @since 3.1
      */
     default ParametricCRS createParametricCRS(Map<String,?> properties,
-            ParametricDatum datum, DatumEnsemble<ParametricDatum> datumEnsemble,
-            ParametricCS cs) throws FactoryException
+                                              ParametricDatum datum,
+                                              DatumEnsemble<ParametricDatum> ensemble,
+                                              ParametricCS cs)
+            throws FactoryException
     {
         throw new UnimplementedServiceException(this, ParametricCRS.class);
     }
@@ -314,31 +329,32 @@ public interface CRSFactory extends ObjectFactory {
      * more generic method} without datum ensemble.
      *
      * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  engineering datum to use in created CRS.
-     * @param  cs     the coordinate system for the created CRS.
+     *                     Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum       engineering datum to use in created CRS.
+     * @param  cs          the coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createLocalCoordinateSystem", specification=OGC_01009)
     default EngineeringCRS createEngineeringCRS(Map<String,?>    properties,
                                                 EngineeringDatum datum,
-                                                CoordinateSystem cs) throws FactoryException
+                                                CoordinateSystem cs)
+            throws FactoryException
     {
         return createEngineeringCRS(properties, datum, null, cs);
     }
 
     /**
      * Creates a engineering <abbr>CRS</abbr> from a datum or datum ensemble.
-     * At least one of the {@code datum} and {@code datumEnsemble} arguments shall be non-null.
+     * At least one of the {@code datum} and {@code ensemble} arguments shall be non-null.
      * If both are non-null, then {@code datum} <em>shall</em> be a member of the datum ensemble.
      *
      * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  datum  engineering datum, or {@code null} if the CRS is associated only to a datum ensemble.
-     * @param  datumEnsemble  collection of datum which for low accuracy requirements may be considered
-     *         to be insignificantly different from each other, or {@code null} if there is no such ensemble.
-     * @param  cs     the coordinate system for the created CRS.
+     *                     Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum       engineering datum, or {@code null} if the CRS is associated only to a datum ensemble.
+     * @param  ensemble    collection of datum which for low accuracy requirements may be considered to be
+     *                     insignificantly different from each other, or {@code null} if there is no such ensemble.
+     * @param  cs          the coordinate system for the created CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
@@ -346,8 +362,10 @@ public interface CRSFactory extends ObjectFactory {
      */
     @UML(identifier="createLocalCoordinateSystem", specification=OGC_01009)
     default EngineeringCRS createEngineeringCRS(Map<String,?> properties,
-            EngineeringDatum datum, DatumEnsemble<EngineeringDatum> datumEnsemble,
-            CoordinateSystem cs) throws FactoryException
+                                                EngineeringDatum datum,
+                                                DatumEnsemble<EngineeringDatum> ensemble,
+                                                CoordinateSystem cs)
+            throws FactoryException
     {
         throw new UnimplementedServiceException(this, EngineeringCRS.class);
     }
@@ -376,14 +394,14 @@ public interface CRSFactory extends ObjectFactory {
      * Creates a compound <abbr>CRS</abbr> from an ordered sequence of components.
      *
      * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
+     *                     Available properties are {@linkplain ObjectFactory listed there}.
      * @param  components  the sequence of coordinate reference systems making the compound CRS.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createCompoundCoordinateSystem", specification=OGC_01009)
-    default CompoundCRS createCompoundCRS(Map<String,?> properties,
-                                          CoordinateReferenceSystem... components) throws FactoryException
+    default CompoundCRS createCompoundCRS(Map<String,?> properties, CoordinateReferenceSystem... components)
+            throws FactoryException
     {
         throw new UnimplementedServiceException(this, CompoundCRS.class);
     }
@@ -412,12 +430,12 @@ public interface CRSFactory extends ObjectFactory {
      * </div>
      *
      * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  baseCRS  coordinate reference system to base the projection on.
-     *         The number of axes must matches the number of source dimensions of the conversion from base.
-     * @param  conversionFromBase  the {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversion}.
-     * @param  derivedCS  the coordinate system for the derived CRS.
-     *         The number of axes must matches the number of target dimensions} of the conversion from base.
+     *                     Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  baseCRS     coordinate reference system to base the projection on.
+     *                     The number of axes must matches the number of source dimensions of the conversion from base.
+     * @param  fromBase    the {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversion}.
+     * @param  derivedCS   the coordinate system for the derived CRS.
+     *                     The number of axes must matches the number of target dimensions} of the conversion from base.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
@@ -425,10 +443,11 @@ public interface CRSFactory extends ObjectFactory {
      * @see MathTransformFactory#createBaseToDerived(CoordinateReferenceSystem, ParameterValueGroup, CoordinateSystem)
      */
     @UML(identifier="createFittedCoordinateSystem", specification=OGC_01009)
-    default DerivedCRS createDerivedCRS(Map<String,?> properties,
+    default DerivedCRS createDerivedCRS(Map<String,?>             properties,
                                         CoordinateReferenceSystem baseCRS,
-                                        Conversion conversionFromBase,
-                                        CoordinateSystem derivedCS) throws FactoryException
+                                        Conversion                fromBase,
+                                        CoordinateSystem          derivedCS)
+            throws FactoryException
     {
         throw new UnimplementedServiceException(this, DerivedCRS.class);
     }
@@ -446,12 +465,12 @@ public interface CRSFactory extends ObjectFactory {
      * Those operations shall be inferred by this constructor.</p>
      *
      * @param  properties  name and other properties to give to the new object.
-     *         Available properties are {@linkplain ObjectFactory listed there}.
-     * @param  baseCRS  geographic coordinate reference system to base the projection on.
-     *         The number of axes must matches the number of source dimensions of the conversion from base.
-     * @param  conversionFromBase  the {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversion}.
-     * @param  derivedCS  the coordinate system for the projected CRS.
-     *         The number of axes must matches the number of target dimensions of the conversion from base.
+     *                     Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  baseCRS     geodetic (usually geographic) coordinate reference system to base the projection on.
+     *                     The number of axes must matches the number of source dimensions of the conversion from base.
+     * @param  fromBase    the {@linkplain CoordinateOperationFactory#createDefiningConversion defining conversion}.
+     * @param  derivedCS   the coordinate system for the projected CRS.
+     *                     The number of axes must matches the number of target dimensions of the conversion from base.
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
@@ -461,8 +480,9 @@ public interface CRSFactory extends ObjectFactory {
     @UML(identifier="createProjectedCoordinateSystem", specification=OGC_01009)
     default ProjectedCRS createProjectedCRS(Map<String,?> properties,
                                             GeographicCRS baseCRS,
-                                            Conversion    conversionFromBase,
-                                            CartesianCS   derivedCS) throws FactoryException
+                                            Conversion    fromBase,
+                                            CartesianCS   derivedCS)
+            throws FactoryException
     {
         throw new UnimplementedServiceException(this, ProjectedCRS.class);
     }

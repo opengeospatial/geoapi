@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
 @UML(identifier="GeodeticCRS", specification=ISO_19111)
 public interface GeodeticCRS extends SingleCRS {
     /**
-     * Returns the reference frame, which shall be geodetic.
+     * Returns the geodetic reference frame associated to this <abbr>CRS</abbr>.
      * This property may be null if this <abbr>CRS</abbr> is related to an object
      * identified only by a {@linkplain #getDatumEnsemble() datum ensemble}.
      *
@@ -59,7 +59,8 @@ public interface GeodeticCRS extends SingleCRS {
     GeodeticDatum getDatum();
 
     /**
-     * Returns the datum ensemble, whose members shall be geodetic reference frames.
+     * Returns a collection of datums which, for low accuracy requirements,
+     * may be considered to be insignificantly different from each other.
      * This property may be null if this <abbr>CRS</abbr> is related to an object
      * identified only by a single {@linkplain #getDatum() datum}.
      *

@@ -231,6 +231,7 @@ public final class MethodSignatureTest extends SourceGenerator {
                             {
                                 switch (m.getName()) {
                                     case "getDatum":
+                                    case "getDatumEnsemble":
                                     case "getSingleComponents":
                                         assertFalse(isOptional, message(c, m, "special case not needed anymore."));
                                         isOptional = true;

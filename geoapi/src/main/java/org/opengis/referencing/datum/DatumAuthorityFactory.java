@@ -55,7 +55,7 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
  * @see org.opengis.referencing.RegisterOperations#getFactory(Class)
  */
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
-@Produces({Datum.class, Ellipsoid.class, PrimeMeridian.class})
+@Produces({DatumEnsemble.class, Datum.class, Ellipsoid.class, PrimeMeridian.class})
 public interface DatumAuthorityFactory extends AuthorityFactory {
     /**
      * Returns an ellipsoid from a code.
@@ -229,6 +229,20 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
         } catch (ClassCastException e) {
             throw unexpectedType(this, code, datum, e);
         }
+    }
+
+    /**
+     * Returns a datum ensemble from a code.
+     *
+     * @param  code  value allocated by authority.
+     * @return the datum ensemble for the given code.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the object creation failed for some other reason.
+     *
+     * @since 3.1
+     */
+    default DatumEnsemble<?> createDatumEnsemble(String code) throws FactoryException {
+        throw new UnimplementedServiceException(this, DatumEnsemble.class);
     }
 
     /**

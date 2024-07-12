@@ -55,7 +55,7 @@ public interface TemporalCRS extends SingleCRS {
     TimeCS getCoordinateSystem();
 
     /**
-     * Returns the datum, which shall be temporal.
+     * Returns the definition of the relationship of a temporal <abbr>CRS</abbr> to a time.
      * This property may be null if this <abbr>CRS</abbr> is related to an object
      * identified only by a {@linkplain #getDatumEnsemble() datum ensemble}.
      *
@@ -69,7 +69,8 @@ public interface TemporalCRS extends SingleCRS {
     TemporalDatum getDatum();
 
     /**
-     * Returns the datum ensemble, which shall have temporal datum members.
+     * Returns a collection of datums which, for low accuracy requirements,
+     * may be considered to be insignificantly different from each other.
      * This property may be null if this <abbr>CRS</abbr> is related to an object
      * identified only by a single {@linkplain #getDatum() datum}.
      *
@@ -82,7 +83,7 @@ public interface TemporalCRS extends SingleCRS {
      * @since 3.1
      */
     @Override
-    @UML(identifier="datum", obligation=CONDITIONAL, specification=ISO_19111)
+    @UML(identifier="datumEnsemble", obligation=CONDITIONAL, specification=ISO_19111)
     default DatumEnsemble<TemporalDatum> getDatumEnsemble() {
         return null;
     }

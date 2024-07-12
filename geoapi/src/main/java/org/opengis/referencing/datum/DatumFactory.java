@@ -260,7 +260,7 @@ public interface DatumFactory extends ObjectFactory {
     }
 
     /**
-     * Creates a datum ensemble from a collection of members.
+     * Creates a datum ensemble from a collection of members and an ensemble accuracy.
      * The {@code properties} map shall contain at least an entry for the {@value DatumEnsemble#NAME_KEY} key.
      *
      * @param  <D>         the type of datum contained in the ensemble.
@@ -274,7 +274,7 @@ public interface DatumFactory extends ObjectFactory {
      * @since 3.1
      */
     default <D extends Datum> DatumEnsemble<D> createDatumEnsemble(Map<String,?> properties,
-            Collection<D> members, PositionalAccuracy accuracy) throws FactoryException
+            Collection<? extends D> members, PositionalAccuracy accuracy) throws FactoryException
     {
         throw new UnimplementedServiceException(this, DatumEnsemble.class);
     }

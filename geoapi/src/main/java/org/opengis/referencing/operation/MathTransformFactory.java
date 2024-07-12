@@ -102,7 +102,6 @@ public interface MathTransformFactory extends Factory {
      *   specification for providing a way to declare the capabilities of a math transform factory.
      *
      * @see #builder(String)
-     * @see #getDefaultParameters(String)
      */
     Set<OperationMethod> getAvailableMethods(Class<? extends SingleOperation> type);
 
