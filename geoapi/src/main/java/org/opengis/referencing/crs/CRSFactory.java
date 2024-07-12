@@ -253,6 +253,28 @@ public interface CRSFactory extends ObjectFactory {
     }
 
     /**
+     * Creates a parametric <abbr>CRS</abbr> from a datum.
+     * This is a shortcut for the {@linkplain #createParametricCRS(Map, ParametricDatum, DatumEnsemble, ParametricCS)
+     * more generic method} without datum ensemble.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum  temporal datum to use in created CRS.
+     * @param  cs  the temporal coordinate system for the created CRS.
+     * @return the coordinate reference system for the given properties.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
+     */
+    default ParametricCRS createParametricCRS(Map<String,?> properties,
+                                              ParametricDatum datum,
+                                              ParametricCS cs)
+            throws FactoryException
+    {
+        return createParametricCRS(properties, datum, null, cs);
+    }
+
+    /**
      * Creates a parametric <abbr>CRS</abbr> from a datum or datum ensemble.
      * At least one of the {@code datum} and {@code ensemble} arguments shall be non-null.
      * If both are non-null, then {@code datum} <em>shall</em> be a member of the datum ensemble.
