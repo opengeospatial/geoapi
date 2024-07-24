@@ -23,13 +23,13 @@ import java.time.temporal.Temporal;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
-import org.opengis.referencing.IdentifiedObject;
-import org.opengis.referencing.ObjectDomain;
-import org.opengis.referencing.ObjectFactory;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
 import org.opengis.util.FactoryException;
 import org.opengis.util.UnimplementedServiceException;
+import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.ObjectDomain;
+import org.opengis.referencing.ObjectFactory;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.annotation.UML;
@@ -195,14 +195,14 @@ public interface DatumFactory extends ObjectFactory {
     }
 
     /**
-     * Creates geodetic reference frame from ellipsoid and prime meridian.
+     * Creates a static geodetic reference frame from ellipsoid and prime meridian.
      * The {@code properties} map shall contain at least an entry for the {@value Datum#NAME_KEY} key.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  ellipsoid  ellipsoid to use in new geodetic reference frame.
      * @param  primeMeridian  prime meridian to use in new geodetic reference frame.
-     * @return the datum for the given properties.
+     * @return the static datum for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createHorizontalDatum", specification=OGC_01009)
@@ -214,13 +214,36 @@ public interface DatumFactory extends ObjectFactory {
     }
 
     /**
-     * Creates a vertical datum from an enumerated type value.
+     * Creates a dynamic geodetic reference frame from ellipsoid, prime meridian and frame reference epoch.
+     * The {@code properties} map shall contain at least an entry for the {@value Datum#NAME_KEY} key.
+     * The returned object shall implement the {@link DynamicReferenceFrame} interface.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  ellipsoid  ellipsoid to use in new geodetic reference frame.
+     * @param  primeMeridian  prime meridian to use in new geodetic reference frame.
+     * @param  epoch  the epoch to which the definition of the dynamic reference frame is referenced.
+     * @return the dynamic datum for the given properties.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
+     */
+    default GeodeticDatum createGeodeticDatum(Map<String,?> properties,
+                                              Ellipsoid     ellipsoid,
+                                              PrimeMeridian primeMeridian,
+                                              Temporal      epoch) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, GeodeticDatum.class);
+    }
+
+    /**
+     * Creates a static vertical datum from an enumerated type value.
      * The {@code properties} map shall contain at least an entry for the {@value Datum#NAME_KEY} key.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  method  the realization method of this vertical datum, or {@code null} if unspecified.
-     * @return the datum for the given properties.
+     * @return the static datum for the given properties.
      * @throws FactoryException if the object creation failed.
      *
      * @since 3.1
@@ -228,6 +251,27 @@ public interface DatumFactory extends ObjectFactory {
     @UML(identifier="createVerticalDatum", specification=OGC_01009)
     default VerticalDatum createVerticalDatum(Map<String,?> properties,
                                               RealizationMethod method) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, VerticalDatum.class);
+    }
+
+    /**
+     * Creates a dynamic vertical datum from an enumerated type value and frame reference epoch.
+     * The {@code properties} map shall contain at least an entry for the {@value Datum#NAME_KEY} key.
+     * The returned object shall implement the {@link DynamicReferenceFrame} interface.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  method  the realization method of this vertical datum, or {@code null} if unspecified.
+     * @param  epoch  the epoch to which the definition of the dynamic reference frame is referenced.
+     * @return the dynamic datum for the given properties.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
+     */
+    default VerticalDatum createVerticalDatum(Map<String,?> properties,
+                                              RealizationMethod method,
+                                              Temporal epoch) throws FactoryException
     {
         throw new UnimplementedServiceException(this, VerticalDatum.class);
     }
