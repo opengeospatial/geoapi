@@ -37,13 +37,16 @@ import org.opengis.util.GenericName;
  * that cannot be created by an {@linkplain AuthorityFactory authority factory}.
  * This factory is very flexible, whereas the authority factory is easier to use.
  *
- * <h2>Object properties</h2>
- * Most factory methods expect a {@code Map<String,?>} argument.
- * The table below lists the keys that {@code ObjectFactory} implementations shall accept,
- * together with the type of values associated to those keys. The <q>Alternative types</q> column
- * gives examples of types that factory implementations may accept as well for convenience.
- * A value for the {@code "name"} key is mandatory, while all other properties are optional.
- * Factory methods shall ignore unknown properties.
+ * <h2>Metadata</h2>
+ * All factory methods expect metadata as <i>key</i>-<i>value</i> pairs in a {@code Map<String,?>} argument,
+ * sometime followed by one or more arguments of specific types. As a general rule, the {@code Map<String,?>}
+ * argument contains metadata having no incidence on the numerical results of coordinate operations,
+ * while changes in the other arguments can cause changes in the numerical results.
+ * The standard keys for the {@code Map<String,?>} argument are listed below,
+ * together with the type of values that {@code ObjectFactory} implementations should accept.
+ * The <i>Alternative types</i> column gives examples of types that factory implementations may also accept for user's convenience.
+ * Most metadata are optional, except {@value org.opengis.referencing.IdentifiedObject#NAME_KEY} which is mandatory.
+ * Factory methods shall ignore unknown or unsupported properties.
  *
  * <table class="ogc">
  *   <caption>Keys for standard properties</caption>

@@ -90,7 +90,7 @@ public interface Event {
      *
      * @return time the event occurred.
      *
-     * @departure historical
+     * @departure historic
      *   Renamed for avoiding a conflict with the {@code getTime()} method defined in GeoAPI 3.0.
      *
      * @since 3.1

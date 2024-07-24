@@ -20,16 +20,21 @@ package org.opengis.referencing.operation;
 import java.util.Map;
 
 import org.opengis.annotation.UML;
+import org.opengis.util.GenericName;
+import org.opengis.util.InternationalString;
 import org.opengis.util.FactoryException;
 import org.opengis.util.UnimplementedServiceException;
+import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.ObjectDomain;
 import org.opengis.referencing.ObjectFactory;
-import org.opengis.referencing.RegisterOperations;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.CoordinateSystem;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.crs.CRSFactory;
 import org.opengis.parameter.ParameterValueGroup;
 import org.opengis.parameter.ParameterDescriptorGroup;
+import org.opengis.metadata.Identifier;
+import org.opengis.metadata.quality.PositionalAccuracy;
 
 import static org.opengis.annotation.Specification.*;
 
@@ -39,6 +44,54 @@ import static org.opengis.annotation.Specification.*;
  * allows applications to make {@linkplain CoordinateOperation coordinate operations}
  * that cannot be created by a {@link CoordinateOperationAuthorityFactory}.
  * This factory is very flexible, whereas the authority factory is easier to use.
+ *
+ * <h2>Metadata</h2>
+ * All factory methods expect metadata as <i>key</i>-<i>value</i> pairs in a {@code Map<String,?>} argument,
+ * followed by one or more arguments of specific types. As a general rule, the {@code Map<String,?>} argument
+ * contains metadata having no incidence on the numerical results of coordinate operations,
+ * while changes in the other arguments can cause changes in the numerical results.
+ * The standard keys for the {@code Map<String,?>} argument are listed in the {@link ObjectFactory} interface.
+ * The following table lists the additional properties for coordinate operation definitions,
+ * together with a reminder of some properties defined in {@code ObjectFactory}:
+ *
+ * <table class="ogc">
+ *   <caption>Keys for standard properties</caption>
+ *   <tr>
+ *     <th>Key</th>
+ *     <th>Value type</th>
+ *     <th>Value returned by</th>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.operation.CoordinateOperation#OPERATION_VERSION_KEY}</td>
+ *     <td>{@link String}</td>
+ *     <td>{@link CoordinateOperation#getOperationVersion()}</td>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.operation.CoordinateOperation#COORDINATE_OPERATION_ACCURACY_KEY}</td>
+ *     <td>{@link PositionalAccuracy}</td>
+ *     <td>{@link CoordinateOperation#getCoordinateOperationAccuracy()}</td>
+ *   </tr><tr>
+ *     <th colspan="3" class="hsep">Defined in parent interface (reminder)</th>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
+ *     <td>{@link Identifier}</td>
+ *     <td>{@link IdentifiedObject#getName()}</td>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.IdentifiedObject#ALIAS_KEY}</td>
+ *     <td><code>{@linkplain GenericName}[]</code></td>
+ *     <td>{@link IdentifiedObject#getAlias()}</td>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.IdentifiedObject#IDENTIFIERS_KEY}</td>
+ *     <td><code>{@linkplain Identifier}[]</code></td>
+ *     <td>{@link IdentifiedObject#getIdentifiers()}</td>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.IdentifiedObject#DOMAINS_KEY}</td>
+ *     <td><code>{@linkplain ObjectDomain}[]</code></td>
+ *     <td>{@link IdentifiedObject#getDomains()}</td>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.IdentifiedObject#REMARKS_KEY}</td>
+ *     <td>{@link InternationalString}</td>
+ *     <td>{@link IdentifiedObject#getRemarks()}</td>
+ *   </tr>
+ * </table>
  *
  * <h2>Default methods</h2>
  * All {@code create(…)} methods in this interface are optional.
@@ -83,7 +136,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * <p>Some available properties are {@linkplain ObjectFactory listed there}.</p>
      *
      * @param  properties  set of properties. Shall contain at least {@code "name"}.
-     * @param  method      the operation method. A value can be obtained by {@link RegisterOperations#findOperationMethod(String)}.
+     * @param  method      the operation method.
      * @param  parameters  the parameter values. A default set of parameters can be obtained by
      *         {@code method.getParameters().createValue()} and modified before to be given to this constructor.
      * @return the defining conversion.

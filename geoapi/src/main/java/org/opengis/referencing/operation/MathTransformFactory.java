@@ -73,7 +73,7 @@ public interface MathTransformFactory extends Factory {
     /**
      * Returns a set of available methods for coordinate operations of the given type.
      * For each element in this set, the {@linkplain OperationMethod#getName() operation method name}
-     * should be a valid argument for {@link #builder(String)} or {@link #getDefaultParameters(String)}.
+     * should be a valid argument for {@link #builder(String)}.
      *
      * <p>The {@code type} argument can be used for filtering the kind of operations described by the returned
      * {@code OperationMethod}s. The argument is usually (but not restricted to) one of the following types:</p>

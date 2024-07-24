@@ -45,6 +45,13 @@ import static org.opengis.geoapi.internal.Errors.cannotParse;
  * EPSG does not have codes for NAD83 state plane coordinate systems that use feet units.
  * This factory lets an application create such a hybrid coordinate system.</p>
  *
+ * <h2>Metadata</h2>
+ * Most factory methods expect metadata as <i>key</i>-<i>value</i> pairs in a {@code Map<String,?>} argument,
+ * followed by one or more arguments of specific types. As a general rule, the {@code Map<String,?>} argument
+ * contains metadata having no incidence on the numerical results of coordinate operations,
+ * while changes in the other arguments can cause changes in the numerical results.
+ * The standard keys for the {@code Map<String,?>} argument are listed in the {@link ObjectFactory} interface.
+ *
  * <h2>Default methods</h2>
  * All {@code create(…)} methods in this interface are optional.
  * Unless otherwise specified in the documentation, methods that are not overridden
@@ -396,7 +403,6 @@ public interface CRSFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      *
      * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
-     * @see MathTransformFactory#createBaseToDerived(CoordinateReferenceSystem, ParameterValueGroup, CoordinateSystem)
      */
     @UML(identifier="createFittedCoordinateSystem", specification=OGC_01009)
     default DerivedCRS createDerivedCRS(Map<String,?>             properties,
@@ -431,7 +437,6 @@ public interface CRSFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      *
      * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
-     * @see MathTransformFactory#createBaseToDerived(CoordinateReferenceSystem, ParameterValueGroup, CoordinateSystem)
      */
     @UML(identifier="createProjectedCoordinateSystem", specification=OGC_01009)
     default ProjectedCRS createProjectedCRS(Map<String,?> properties,
