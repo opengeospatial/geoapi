@@ -48,9 +48,9 @@ M2R=~/.m2/repository
 DEPS=$M2R/javax/measure/unit-api/2.1.3/unit-api-2.1.3.jar
 DEPS=$DEPS:$M2R/tech/uom/seshat/1.3/seshat-1.3.jar
 DEPS=$DEPS:$M2R/javax/vecmath/vecmath/1.5.2/vecmath-1.5.2.jar
-DEPS=$DEPS:$M2R/org/junit/jupiter/junit-jupiter-api/5.10.2/junit-jupiter-api-5.10.2.jar
+DEPS=$DEPS:$M2R/org/junit/jupiter/junit-jupiter-api/5.10.3/junit-jupiter-api-5.10.3.jar
 DEPS=$DEPS:$M2R/org/opentest4j/opentest4j/1.3.0/opentest4j-1.3.0.jar
-DEPS=$DEPS:$M2R/org/junit/platform/junit-platform-commons/1.10.2/junit-platform-commons-1.10.2.jar
+DEPS=$DEPS:$M2R/org/junit/platform/junit-platform-commons/1.10.3/junit-platform-commons-1.10.3.jar
 DEPS=$DEPS:$M2R/org/apiguardian/apiguardian-api/1.1.2/apiguardian-api-1.1.2.jar
 DOCLET=tools/target/tools-*.jar
 
