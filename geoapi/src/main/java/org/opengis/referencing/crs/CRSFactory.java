@@ -45,6 +45,13 @@ import static org.opengis.geoapi.internal.Errors.cannotParse;
  * EPSG does not have codes for NAD83 state plane coordinate systems that use feet units.
  * This factory lets an application create such a hybrid coordinate system.</p>
  *
+ * <h2>Metadata</h2>
+ * Most factory methods expect metadata as <i>key</i>-<i>value</i> pairs in a {@code Map<String,?>} argument,
+ * followed by one or more arguments of specific types. As a general rule, the {@code Map<String,?>} argument
+ * contains metadata having no incidence on the numerical results of coordinate operations,
+ * while changes in the other arguments can cause changes in the numerical results.
+ * The standard keys for the {@code Map<String,?>} argument are listed in the {@link ObjectFactory} interface.
+ *
  * <h2>Default methods</h2>
  * All {@code create(…)} methods in this interface are optional.
  * Unless otherwise specified in the documentation, methods that are not overridden
@@ -299,6 +306,28 @@ public interface CRSFactory extends ObjectFactory {
     }
 
     /**
+     * Creates a parametric <abbr>CRS</abbr> from a datum.
+     * This is a shortcut for the {@linkplain #createParametricCRS(Map, ParametricDatum, DatumEnsemble, ParametricCS)
+     * more generic method} without datum ensemble.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  datum  temporal datum to use in created CRS.
+     * @param  cs  the temporal coordinate system for the created CRS.
+     * @return the coordinate reference system for the given properties.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
+     */
+    default ParametricCRS createParametricCRS(Map<String,?> properties,
+                                              ParametricDatum datum,
+                                              ParametricCS cs)
+            throws FactoryException
+    {
+        return createParametricCRS(properties, datum, null, cs);
+    }
+
+    /**
      * Creates a parametric <abbr>CRS</abbr> from a datum or datum ensemble.
      * At least one of the {@code datum} and {@code ensemble} arguments shall be non-null.
      * If both are non-null, then {@code datum} <em>shall</em> be a member of the datum ensemble.
@@ -440,7 +469,6 @@ public interface CRSFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      *
      * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
-     * @see MathTransformFactory#createBaseToDerived(CoordinateReferenceSystem, ParameterValueGroup, CoordinateSystem)
      */
     @UML(identifier="createFittedCoordinateSystem", specification=OGC_01009)
     default DerivedCRS createDerivedCRS(Map<String,?>             properties,
@@ -475,7 +503,6 @@ public interface CRSFactory extends ObjectFactory {
      * @throws FactoryException if the object creation failed.
      *
      * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
-     * @see MathTransformFactory#createBaseToDerived(CoordinateReferenceSystem, ParameterValueGroup, CoordinateSystem)
      */
     @UML(identifier="createProjectedCoordinateSystem", specification=OGC_01009)
     default ProjectedCRS createProjectedCRS(Map<String,?> properties,

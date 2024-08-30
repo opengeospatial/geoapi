@@ -32,6 +32,13 @@ import org.opengis.util.UnimplementedServiceException;
  * So {@link CSAuthorityFactory} can be used to make "standard" coordinate systems,
  * and {@code CSFactory} can be used to make "special" coordinate systems.
  *
+ * <h2>Metadata</h2>
+ * All factory methods expect metadata as <i>key</i>-<i>value</i> pairs in a {@code Map<String,?>} argument,
+ * followed by one or more arguments of specific types. As a general rule, the {@code Map<String,?>} argument
+ * contains metadata having no incidence on the numerical results of coordinate operations,
+ * while changes in the other arguments can cause changes in the numerical results.
+ * The standard keys for the {@code Map<String,?>} argument are listed in the {@link ObjectFactory} interface.
+ *
  * <h2>Default methods</h2>
  * All {@code create(…)} methods in this interface are optional.
  * If a method is not overridden by the implementer,

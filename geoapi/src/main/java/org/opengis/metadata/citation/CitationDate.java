@@ -61,7 +61,7 @@ public interface CitationDate {
      *
      * @return reference date for the cited resource.
      *
-     * @departure historical
+     * @departure historic
      *   Renamed for avoiding a conflict with the {@code getDate()} method defined in GeoAPI 3.0.
      *
      * @since 3.1

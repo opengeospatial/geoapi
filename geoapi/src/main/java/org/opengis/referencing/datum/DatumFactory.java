@@ -24,9 +24,14 @@ import java.time.temporal.Temporal;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
 import javax.measure.quantity.Length;
-import org.opengis.referencing.ObjectFactory;
+import org.opengis.util.GenericName;
+import org.opengis.util.InternationalString;
 import org.opengis.util.FactoryException;
 import org.opengis.util.UnimplementedServiceException;
+import org.opengis.referencing.IdentifiedObject;
+import org.opengis.referencing.ObjectDomain;
+import org.opengis.referencing.ObjectFactory;
+import org.opengis.metadata.Identifier;
 import org.opengis.metadata.quality.PositionalAccuracy;
 import org.opengis.annotation.UML;
 
@@ -40,6 +45,76 @@ import static org.opengis.annotation.Specification.*;
  * This factory is very flexible, whereas the authority factory is easier to use.
  * So {@link DatumAuthorityFactory} can be used to make "standard" datums,
  * and {@code DatumFactory} can be used to make "special" datums.
+ *
+ * <h2>Metadata</h2>
+ * All factory methods expect metadata as <i>key</i>-<i>value</i> pairs in a {@code Map<String,?>} argument,
+ * sometime followed by one or more arguments of specific types. As a general rule, the {@code Map<String,?>}
+ * argument contains metadata having no incidence on the numerical results of coordinate operations,
+ * while changes in the other arguments can cause changes in the numerical results.
+ * The datum {@value org.opengis.referencing.IdentifiedObject#NAME_KEY}
+ * and/or datum {@value org.opengis.referencing.IdentifiedObject#IDENTIFIERS_KEY}
+ * are exceptions to this rule as they are often the only way to distinguish datum definitions or reference frames.
+ *
+ * <p>The standard keys for the {@code Map<String,?>} argument are listed in the {@link ObjectFactory} interface.
+ * The following table lists the additional properties for datum definitions,
+ * together with a reminder of some properties defined in {@code ObjectFactory}:</p>
+ *
+ * <table class="ogc">
+ *   <caption>Keys for standard properties</caption>
+ *   <tr>
+ *     <th>Key</th>
+ *     <th>Value type</th>
+ *     <th>Alternative types</th>
+ *     <th>Value returned by</th>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.datum.Datum#ANCHOR_DEFINITION_KEY}</td>
+ *     <td>{@link InternationalString}</td>
+ *     <td>{@link String}</td>
+ *     <td>{@link Datum#getAnchorDefinition()}</td>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.datum.Datum#ANCHOR_EPOCH_KEY}</td>
+ *     <td>{@link Temporal}</td>
+ *     <td></td>
+ *     <td>{@link Datum#getAnchorEpoch()}</td>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.datum.Datum#PUBLICATION_DATE_KEY}</td>
+ *     <td>{@link Temporal}</td>
+ *     <td></td>
+ *     <td>{@link Datum#getPublicationDate()}</td>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.datum.Datum#CONVENTIONAL_RS_KEY}</td>
+ *     <td>{@link IdentifiedObject}</td>
+ *     <td></td>
+ *     <td>{@link Datum#getConventionalRS()}</td>
+ *   </tr><tr>
+ *     <th colspan="4" class="hsep">Defined in parent interface (reminder)</th>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.IdentifiedObject#NAME_KEY}</td>
+ *     <td>{@link Identifier}</td>
+ *     <td>{@link String}</td>
+ *     <td>{@link IdentifiedObject#getName()}</td>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.IdentifiedObject#ALIAS_KEY}</td>
+ *     <td><code>{@linkplain GenericName}[]</code></td>
+ *     <td>{@link GenericName}, {@link String} or <code>{@linkplain String}[]</code></td>
+ *     <td>{@link IdentifiedObject#getAlias()}</td>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.IdentifiedObject#IDENTIFIERS_KEY}</td>
+ *     <td><code>{@linkplain Identifier}[]</code></td>
+ *     <td>{@link Identifier}</td>
+ *     <td>{@link IdentifiedObject#getIdentifiers()}</td>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.IdentifiedObject#DOMAINS_KEY}</td>
+ *     <td><code>{@linkplain ObjectDomain}[]</code></td>
+ *     <td>{@link ObjectDomain}</td>
+ *     <td>{@link IdentifiedObject#getDomains()}</td>
+ *   </tr><tr>
+ *     <td>{@value org.opengis.referencing.IdentifiedObject#REMARKS_KEY}</td>
+ *     <td>{@link InternationalString}</td>
+ *     <td>{@link String}</td>
+ *     <td>{@link IdentifiedObject#getRemarks()}</td>
+ *   </tr>
+ * </table>
  *
  * <h2>Default methods</h2>
  * All {@code create(…)} methods in this interface are optional.
@@ -121,14 +196,14 @@ public interface DatumFactory extends ObjectFactory {
     }
 
     /**
-     * Creates geodetic reference frame from ellipsoid and prime meridian.
+     * Creates a static geodetic reference frame from ellipsoid and prime meridian.
      * The {@code properties} map shall contain at least an entry for the {@value Datum#NAME_KEY} key.
      *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  ellipsoid  ellipsoid to use in new geodetic reference frame.
      * @param  primeMeridian  prime meridian to use in new geodetic reference frame.
-     * @return the datum for the given properties.
+     * @return the static datum for the given properties.
      * @throws FactoryException if the object creation failed.
      */
     @UML(identifier="createHorizontalDatum", specification=OGC_01009)
@@ -140,7 +215,30 @@ public interface DatumFactory extends ObjectFactory {
     }
 
     /**
-     * Creates a vertical datum from an enumerated type value.
+     * Creates a dynamic geodetic reference frame from ellipsoid, prime meridian and frame reference epoch.
+     * The {@code properties} map shall contain at least an entry for the {@value Datum#NAME_KEY} key.
+     * The returned object shall implement the {@link DynamicReferenceFrame} interface.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  ellipsoid  ellipsoid to use in new geodetic reference frame.
+     * @param  primeMeridian  prime meridian to use in new geodetic reference frame.
+     * @param  epoch  the epoch to which the definition of the dynamic reference frame is referenced.
+     * @return the dynamic datum for the given properties.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
+     */
+    default GeodeticDatum createGeodeticDatum(Map<String,?> properties,
+                                              Ellipsoid     ellipsoid,
+                                              PrimeMeridian primeMeridian,
+                                              Temporal      epoch) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, GeodeticDatum.class);
+    }
+
+    /**
+     * Creates a static vertical datum from an enumerated type value.
      * The {@code properties} map shall contain at least an entry for the {@value Datum#NAME_KEY} key.
      *
      * @param  properties  name and other properties to give to the new object.
@@ -166,13 +264,34 @@ public interface DatumFactory extends ObjectFactory {
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  method  the realization method of this vertical datum, or {@code null} if unspecified.
-     * @return the datum for the given properties.
+     * @return the static datum for the given properties.
      * @throws FactoryException if the object creation failed.
      *
      * @since 3.1
      */
     default VerticalDatum createVerticalDatum(Map<String,?> properties,
                                               RealizationMethod method) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, VerticalDatum.class);
+    }
+
+    /**
+     * Creates a dynamic vertical datum from an enumerated type value and frame reference epoch.
+     * The {@code properties} map shall contain at least an entry for the {@value Datum#NAME_KEY} key.
+     * The returned object shall implement the {@link DynamicReferenceFrame} interface.
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *         Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  method  the realization method of this vertical datum, or {@code null} if unspecified.
+     * @param  epoch  the epoch to which the definition of the dynamic reference frame is referenced.
+     * @return the dynamic datum for the given properties.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
+     */
+    default VerticalDatum createVerticalDatum(Map<String,?> properties,
+                                              RealizationMethod method,
+                                              Temporal epoch) throws FactoryException
     {
         throw new UnimplementedServiceException(this, VerticalDatum.class);
     }
