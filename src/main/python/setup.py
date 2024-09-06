@@ -21,7 +21,7 @@
 # Generate pip package
 # Author: Johann Sorel (Geomatys)
 #
-# Note: this file is called twice: by build.py and by pip install.
+# NOTE: this file is called twice: by build.py and by pip install.
 ##################################################################
 
 import setuptools

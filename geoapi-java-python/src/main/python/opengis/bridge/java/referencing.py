@@ -25,6 +25,7 @@ class IdentifiedObject(opengis.referencing.datum.IdentifiedObject):
         self._proxy = proxy
 
     @property
+    @abstractmethod
     def name(self):
         return Identifier(self._proxy.getName())
 
@@ -41,12 +42,12 @@ class GeodeticDatum(IdentifiedObject, opengis.referencing.datum.GeodeticDatum):
         super().__init__(proxy)
 
     @property
+    @abstractmethod
     def ellipsoid(self):
-        return None
 
     @property
+    @abstractmethod
     def prime_meridian(self):
-        return None
 
 
 
@@ -55,16 +56,17 @@ class CoordinateSystemAxis(IdentifiedObject, opengis.referencing.datum.Identifie
         super().__init__(proxy)
 
     @property
+    @abstractmethod
     def abbreviation(self):
         return self._proxy.getAbbreviation()
 
     @property
+    @abstractmethod
     def direction(self):
-        return None
 
     @property
+    @abstractmethod
     def unit(self):
-        return None
 
 
 
@@ -97,6 +99,7 @@ class CoordinateReferenceSystem(IdentifiedObject, opengis.referencing.crs.Refere
         super().__init__(proxy)
 
     @property
+    @abstractmethod
     def coordinate_system(self):
         return self._proxy.getCoordinateSystem()
 
@@ -116,5 +119,6 @@ class ProjectedCRS(IdentifiedObject, opengis.referencing.crs.DerivedCRS):
         super().__init__(proxy)
 
     @property
+    @abstractmethod
     def base_crs(self):
         return self._proxy.getBaseCRS()

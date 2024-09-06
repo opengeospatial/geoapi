@@ -1,15 +1,56 @@
+# ===-----------------------------------------------------------------------===
+#    GeoAPI - Python interfaces (abstractions) for OGC/ISO standards
+#    Copyright © 2013-2024 Open Geospatial Consortium, Inc.
+#    http: //www.geoapi.org
 #
-#    GeoAPI - Programming interfaces for OGC/ISO standards
-#    Copyright © 2018-2023 Open Geospatial Consortium, Inc.
-#    http://www.geoapi.org
+#    Licensed under the Apache License, Version 2.0 (the "License");
+#    you may not use this file except in compliance with the License.
+#    You may obtain a copy of the License at
 #
+#        http: //www.apache.org/licenses/LICENSE-2.0
+#
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS,
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#    See the License for the specific language governing permissions and
+#    limitations under the License.
+# ===-----------------------------------------------------------------------===
+"""This is the base module.
+
+This subpackage contains geographic metadata structures regarding data
+acquisition that are derived from theISO 19115-1:2014 and ISO 19115-2:2019
+international standards.
+"""
+
+__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
+    "Martin Desruisseaux(Geomatys), David Meaux (Geomatys)"
 
 from abc import ABC, abstractmethod
-from typing import Sequence
+from collections.abc import Sequence
+from typing import Optional
 
+from opengis.metadata.acquisition import AcquisitionInformation
+from opengis.metadata.citation import (
+    Citation,
+    Date,
+    Identifier,
+    OnlineResource,
+    Responsibility,
+)
+from opengis.metadata.constraints import Constraints
+from opengis.metadata.content import ContentInformation
+from opengis.metadata.distribution import Distribution
+from opengis.metadata.extension import (
+    ApplicationSchemaInformation,
+    MetadataExtensionInformation,
+)
+from opengis.metadata.identification import Identification
+from opengis.metadata.lineage import Lineage
+from opengis.metadata.maintenance import MaintenanceInformation, ScopeCode
+from opengis.metadata.quality import DataQuality
+from opengis.metadata.representation import SpatialRepresentation
+from opengis.referencing.crs import ReferenceSystem
 
-
-from opengis.metadata.citation import Citation, Identifier, Responsibility, Date, OnlineResource
 
 class PortrayalCatalogueReference(ABC):
     """Information identifying the portrayal catalogue used."""
@@ -18,163 +59,212 @@ class PortrayalCatalogueReference(ABC):
     @abstractmethod
     def portrayal_catalogue_citation(self) -> Sequence[Citation]:
         """Bibliographic reference to the portrayal catalogue cited."""
-        pass
 
-
-
-from opengis.metadata.maintenance import ScopeCode, MaintenanceInformation
 
 class MetadataScope(ABC):
+    """Information about the scope of the resource."""
 
     @property
     @abstractmethod
     def resource_scope(self) -> ScopeCode:
-        pass
+        """Code for the scope. Default = 'dataset'."""
 
     @property
-    def name(self) -> str:
-        return None
+    @abstractmethod
+    def name(self) -> Optional[str]:
+        """Description of the scope."""
 
-
-
-from opengis.metadata.representation import SpatialRepresentation
-from opengis.metadata.extension import MetadataExtensionInformation, ApplicationSchemaInformation
-from opengis.metadata.identification import Identification
-from opengis.metadata.content import ContentInformation
-from opengis.metadata.distribution import Distribution
-from opengis.metadata.quality import DataQuality
-from opengis.metadata.lineage import Lineage
-from opengis.metadata.constraints import Constraints
-from opengis.metadata.acquisition import AcquisitionInformation
-from opengis.referencing.crs import ReferenceSystem
 
 class Metadata(ABC):
     """Root entity which defines metadata about a resource or resources."""
 
     @property
-    def metadata_identifier(self) -> Identifier:
+    @abstractmethod
+    def metadata_identifier(self) -> Optional[Identifier]:
         """Unique identifier for this metadata record."""
-        return None
 
     @property
-    def default_locale(self):
-        """Provides information about an alternatively used localized character string for a linguistic extension."""
-        return None
+    @abstractmethod
+    def default_locale(self) -> Optional[str]:
+        """
+        Language and character set used for documenting metadata.
+        A string conforming to IETF BCP 47.
+
+        MANDATORY: if UTF-8 not used and not defined in encoding.
+        """
 
     @property
-    def parent_metadata(self) -> Citation:
-        """Identifier and onlineResource for a parent metadata record."""
-        return None
+    @abstractmethod
+    def parent_metadata(self) -> Optional[Citation]:
+        """
+        Identification of the parent metadata record.
 
-    @property
-    def metadata_scope(self) -> Sequence[MetadataScope]:
-        """The scope or type of resource for which metadata is provided."""
-        return None
+        MANDATORY: if there is an upper level object.
+        """
 
     @property
     @abstractmethod
     def contact(self) -> Sequence[Responsibility]:
         """Party responsible for the metadata information."""
-        pass
 
     @property
     @abstractmethod
     def date_info(self) -> Sequence[Date]:
-        """Date(s) other than creation date. Example: expiry date."""
-        pass
+        """
+        Date(s) associated with the metadata.
+
+        NOTE: 'Creation' date must be provided, others can also be provided.
+        """
 
     @property
-    def metadata_standard(self) -> Sequence[Citation]:
-        """Citation for the standards to which the metadata conforms."""
-        return None
+    @abstractmethod
+    def metadata_standard(self) -> Optional[Sequence[Citation]]:
+        """
+        Citation for the standards to which the metadata conforms.
+
+        NOTE: Metadata standard citations should include an identifier.
+        """
 
     @property
-    def metadata_profile(self) -> Sequence[Citation]:
-        """Citation(s) for the profile(s) of the metadata standard to which the metadata conform."""
-        return None
+    @abstractmethod
+    def metadata_profile(self) -> Optional[Sequence[Citation]]:
+        """
+        Citation(s) for the profile(s) of the metadata standard to which the
+        metadata conform.
+
+        NOTE: Metadata citations should include an identifier.
+        """
 
     @property
-    def alternative_metadata_reference(self) -> Sequence[Citation]:
-        """Unique Identifier and onlineResource for alternative metadata."""
-        return None
+    @abstractmethod
+    def alternative_metadata_reference(self) -> Optional[Sequence[Citation]]:
+        """
+        Reference to alternative metadata,e.g., Dublin Core, FGDC, or metadata
+        in a non-ISO standard for the same resource.
+        """
 
     @property
-    def metadata_linkage(self) -> Sequence[OnlineResource]:
+    @abstractmethod
+    def other_locale(self) -> Optional[Sequence[str]]:
+        """
+        Provides information about an alternatively used localized character
+        strings. A string conforming to IETF BCP 47.
+        """
+
+    @property
+    @abstractmethod
+    def metadata_linkage(self) -> Optional[Sequence[OnlineResource]]:
         """Online location where the metadata is available."""
-        return None
 
     @property
-    def spatial_representation_info(self) -> Sequence[SpatialRepresentation]:
+    @abstractmethod
+    def spatial_representation_info(self) -> Optional[Sequence[
+        SpatialRepresentation
+    ]]:
         """Digital representation of spatial information in the dataset."""
-        return None
 
     @property
-    def reference_system_info(self) -> Sequence[ReferenceSystem]:
+    @abstractmethod
+    def reference_system_info(self) -> Optional[Sequence[ReferenceSystem]]:
         """
-        Description of the spatial and temporal reference systems used in the dataset.
+        Description of the spatial and temporal reference systems used in
+        the dataset.
+
         The reference system may be:
-
-        * An ISO 19111 object such as ``CoordinateReferenceSystem``.
-        * A ``ReferenceSystem`` with the ``identifier`` property (from ISO 19111) sets to a list of ``Identifier`` values such as ``["EPSG::4326"]``.
-        * An object with the ``referenceSystemIdentifier`` property (from ISO 19115) sets to a single ``Identifier`` value such as ``"EPSG::4326"``,
-          optionally with a ``referenceSystemType`` property sets to a value such as ``geodeticGeographic2D`` or ``compoundProjectedTemporal``.
-
-        :rtype: Sequence[ReferenceSystem]
+        - An ISO 19111 object such as `CoordinateReferenceSystem`.
+        - A `ReferenceSystem` with the `identifier` property (from
+            ISO 19111) sets to a list of `Identifier` values such as
+            `["EPSG::4326"]`.
+        - An object with the `referenceSystemIdentifier` property (from
+            ISO 19115) sets to a single `Identifier` value such as
+                `"EPSG::4326"`,
+        The ReferenceSystem object may optionally have a
+            `reference_system_type_code` property set to a value such as
+            `geodeticGeographic2D` or `compoundProjectedTemporal`.
         """
-        return None
 
     @property
-    def metadata_extension_info(self) -> Sequence[MetadataExtensionInformation]:
+    @abstractmethod
+    def metadata_extension_info(self) -> Optional[Sequence[
+        MetadataExtensionInformation
+    ]]:
         """Information describing metadata extensions."""
-        return None
 
     @property
     @abstractmethod
     def identification_info(self) -> Sequence[Identification]:
-        """Basic information about the resource(s) to which the metadata applies."""
-        pass
+        """
+        Basic information about the resource(s) to which the metadata applies.
+        """
 
     @property
-    def content_info(self) -> Sequence[ContentInformation]:
+    @abstractmethod
+    def content_info(self) -> Optional[Sequence[ContentInformation]]:
         """Information about the feature and coverage characteristics."""
-        return None
 
     @property
-    def distribution_info(self) -> Sequence[Distribution]:
-        """Information about the distributor of and options for obtaining the resource(s)."""
-        return None
+    @abstractmethod
+    def distribution_info(self) -> Optional[Sequence[Distribution]]:
+        """
+        Information about the distributor of and options for obtaining the
+        resource(s).
+        """
 
     @property
-    def data_quality_info(self) -> Sequence[DataQuality]:
+    @abstractmethod
+    def data_quality_info(self) -> Optional[Sequence[DataQuality]]:
         """Overall assessment of quality of a resource(s)."""
-        return None
 
     @property
-    def resource_lineage(self) -> Sequence[Lineage]:
-        """Information about the provenance, sources and/or the production processes applied to the resource."""
-        return None
+    @abstractmethod
+    def portrayal_catalogue_info(self) -> Optional[Sequence[
+        PortrayalCatalogueReference
+    ]]:
+        """
+        Information about the catalogue of rules defined for the portrayal of
+        a resource(s).
+        """
 
     @property
-    def portrayal_catalogue_info(self) -> Sequence[PortrayalCatalogueReference]:
-        """Information about the catalogue of rules defined for the portrayal of a resource(s)."""
-        return None
-
-    @property
-    def metadata_constraints(self) -> Sequence[Constraints]:
+    @abstractmethod
+    def metadata_constraints(self) -> Optional[Sequence[Constraints]]:
         """Restrictions on the access and use of metadata."""
-        return None
 
     @property
-    def application_schema_info(self) -> Sequence[ApplicationSchemaInformation]:
+    @abstractmethod
+    def application_schema_info(self) -> Optional[Sequence[
+        ApplicationSchemaInformation
+    ]]:
         """Information about the conceptual schema of a dataset."""
-        return None
 
     @property
-    def metadata_maintenance(self) -> MaintenanceInformation:
-        """Information about the frequency of metadata updates, and the scope of those updates."""
-        return None
+    @abstractmethod
+    def metadata_maintenance(self) -> Optional[MaintenanceInformation]:
+        """
+        Information about the frequency of metadata updates, and the scope of
+        those updates.
+        """
 
     @property
-    def acquisition_information(self) -> Sequence[AcquisitionInformation]:
+    @abstractmethod
+    def resource_lineage(self) -> Optional[Sequence[Lineage]]:
+        """
+        Information about the provenance, sources and/or the production
+        processes applied to the resource.
+        """
+
+    @property
+    @abstractmethod
+    def metadata_scope(self) -> Optional[Sequence[MetadataScope]]:
+        """
+        The scope or type of resource for which metadata is provided.
+
+        MANDATORY: if `Metadata` is about a resource other than a dataset.
+        """
+
+    @property
+    @abstractmethod
+    def acquisition_information(self) -> Optional[
+        Sequence[AcquisitionInformation]
+    ]:
         """Information about the acquisition of the data."""
-        return None

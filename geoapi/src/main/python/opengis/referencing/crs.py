@@ -1,54 +1,370 @@
+# ===-----------------------------------------------------------------------===
+#    GeoAPI - Python interfaces (abstractions) for OGC/ISO standards
+#    Copyright © 2013-2024 Open Geospatial Consortium, Inc.
+#    http: //www.geoapi.org
 #
-#    GeoAPI - Programming interfaces for OGC/ISO standards
-#    Copyright © 2019-2023 Open Geospatial Consortium, Inc.
-#    http://www.geoapi.org
+#    Licensed under the Apache License, Version 2.0 (the "License");
+#    you may not use this file except in compliance with the License.
+#    You may obtain a copy of the License at
 #
+#        http: //www.apache.org/licenses/LICENSE-2.0
+#
+#    Unless required by applicable law or agreed to in writing, software
+#    distributed under the License is distributed on an "AS IS" BASIS,
+#    WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+#    See the License for the specific language governing permissions and
+#    limitations under the License.
+# ===-----------------------------------------------------------------------===
+"""This is the crs module.
+
+This module contains geographic metadata structures regarding coordinate
+referencing systems derived from the ISO 19111 international standard and
+ISO 19115-1:2014, including adendums A1(2018) and A2(2020).
+"""
+
+__author__ = "OGC Topic 2 (for abstract model and documentation), " +\
+    "Martin Desruisseaux(Geomatys), David Meaux (Geomatys)"
 
 from abc import abstractmethod
-from typing import Sequence
+from collections.abc import Sequence
+from enum import Enum
+from typing import Optional
 
-from opengis.referencing.cs \
-    import CoordinateSystem, VerticalCS, TimeCS, AffineCS, CartesianCS, EllipsoidalCS
-from opengis.referencing.datum \
-    import IdentifiedObject, Datum, VerticalDatum, TemporalDatum, EngineeringDatum, GeodeticDatum
-from opengis.metadata.extent import Extent
+from opengis.referencing.common import IdentifiedObject
+from opengis.referencing.coordinate import DataEpoch
+from opengis.referencing.cs import (
+    CartesianCS,
+    CoordinateSystem,
+    EllipsoidalCS,
+    TimeCS,
+    VerticalCS,
+)
+from opengis.referencing.datum import (
+    Datum,
+    EngineeringDatum,
+    GeodeticDatum,
+    TemporalDatum,
+    VerticalDatum,
+)
+from opengis.metadata.identification import Identifier
+
+
+class ReferenceSystemTypeCode(Enum):
+    """
+    Defines type of reference system used.
+
+    This class is derived from ISO 19115-1:2014, including adendums A1(2018)
+    and A2(2020).
+    """
+
+    COMPOUND_ENGINEERING_PARAMETRIC = "compoundEngineeringParametric"
+    """
+    Compound spatio-parametric coordinate reference system containing an
+    engineering coordinate reference system and a parametric reference system.
+
+    EXAMPLE: [local] x, y, pressure
+    """
+
+    COMPOUND_ENGINEERING_PARAMETRIC_TEMPORAL = \
+        "compoundEngineeringParametricTemporal"
+    """
+    Compound spatio-parametric-temporal coordinate reference system containing,
+    an engineering coordinate reference system, a parametric reference system,
+    and a temporal coordinate reference system.
+
+    EXAMPLE: [local] x, y, pressure, time
+    """
+
+    COMPOUND_ENGINEERING_TEMPORAL = "compoundEngineeringTemporal"
+    """
+    Compound spatio-temporal coordinate reference system containing,
+    an engineering coordinate reference system and a temporal coordinate
+    reference system.
+
+    EXAMPLE: [local] x, y, time
+    """
+
+    COMPOUND_ENGINEERING_VERTICAL = "compoundEngineeringVertical"
+    """
+    Compound spatial coordinate reference system containing a horizontal
+    engineering coordinate reference system and a vertical coordinate
+    reference system.
+
+    EXAMPLE: [local] x, y, height
+    """
+
+    COMPOUND_ENGINEERING_VERTICAL_TEMPORAL = \
+        "compoundEngineeringVerticalTemporal"
+    """
+    Compound spatio-temporal coordinate reference system containing an
+    engineering, a vertical, and a temporal coordinate reference system.
+
+    EXAMPLE: [local] x, y, height, time
+    """
+
+    COMPOUND_GEOGRAPHIC2D_PARAMETRIC = "compoundGeographic2DParametric"
+    """
+    Compound spatio-parametric coordinate reference system containing a 2
+    dimensional geographic horizontal coordinate reference system and a
+    parametric reference system.
+
+    EXAMPLE: latitude, longitude, pressure
+    """
+
+    COMPOUND_GEOGRAPHIC2D_PARAMETRIC_TEMPORAL = \
+        "compoundGeographic2DParametricTemporal"
+    """
+    Compound spatio-parametric-temporal coordinate reference system containing
+    a 2 dimensional geographic horizontal, a parametric, and a temporal
+    reference system.
+
+    EXAMPLE: latitude, longitude, pressure, time
+    """
+
+    COMPOUND_GEOGRAPHIC2D_TEMPORAL = "compoundGeographic2DTemporal"
+    """
+    Compound spatio-temporal coordinate reference system containing
+    a 2 dimensional geographic horizontal coordinate reference system and a
+    temporal reference system.
+
+    EXAMPLE: latitude, longitude, time
+    """
+
+    COMPOUND_GEOGRAPHIC2D_VERTICAL = "compoundGeographic2DVertical"
+    """
+    Compound coordinate reference system in which one constituent coordinate
+    reference system ais a horizontal geodetic coordinate reference system and
+    one is a vertical reference system.
+
+    EXAMPLE: latitude, longitude, [gravity-related] height or depth
+    """
+
+    COMPOUND_GEOGRAPHIC2D_VERTICAL_TEMPORAL = \
+        "compoundGeographic2DVerticalTemporal"
+    """
+    Compound spatio-temporal coordinate reference system containing a
+    2 dimensional geographic horizontal, a vertical, and a temporal coordinate
+    reference system.
+
+    EXAMPLE: latitude, longitude, height, time
+    """
+
+    COMPOUND_GEOGRAPHIC3D_TEMPORAL = "compoundGeographic3DTemporal"
+    """
+    Compound spatio-temporal coordinate reference system containing a
+    3 dimensional geographic and a temporal coordinate reference system.
+
+    EXAMPLE: latitude, longitude, ellipsoidal height, time
+    """
+
+    COMPOUND_PROJECTED2D_PARAMETRIC = "compoundProjected2DParametric"
+    """
+    Compound spatio-parametric coordinate reference system containing a
+    projected horizontal coordinate reference system and a parametric
+    reference system.
+
+    EXAMPLE: easting, northing, density
+    """
+
+    COMPOUND_PROJECTED2D_PARAMETRIC_TEMPORAL = \
+        "compoundProjected2DParametricTemporal"
+    """
+    Compound spatio-parametric-temporal coordinate reference system containing
+    a projected horizontal, a parametric, and a temporal coordinate reference
+    system.
+
+    EXAMPLE: easting, northing, density, time
+    """
+
+    COMPOUND_PROJECTED_TEMPORAL = "compoundProjectedTemporal"
+    """
+    Compound spatial reference system containing a horizontal projected
+    coordinate reference system and a vertical coordinate reference system.
+
+    EXAMPLE: easting, northing, [gravity-related] height or depth
+    """
+
+    COMPOUND_PROJECTED_VERTICAL = "compoundProjectedVertical"
+    """
+    Compound spatial reference system containing a horizontal projected
+    coordinate reference system and a vertical coordinate reference system.
+
+    EXAMPLE: easting, northing, [gravity-related] height or depth
+    """
+
+    COMPOUND_PROJECTED_VERTICAL_TEMPORAL = "compoundProjectedVerticalTemporal"
+    """
+    Compound spatio-temporal coordinate reference system containing a
+    projected horizontal, a vertical, and a temporal coordinate reference
+    system.
+
+    EXAMPLE: easting, northing, height, time
+    """
+
+    ENGINEERING = "engineering"
+    """
+    Coordinate reference system based on an engineering datum (datum
+    describing the relationship of a coordinate system to a local reference).
+
+    EXAMPLE: [local] x, y
+    """
+
+    ENGINEERING_DESIGN = "engineeringDesign"
+    """
+    Engineering coordinate reference system in which the base representation
+    of a moving object is specified.
+
+    EXAMPLE: [local] x, y
+    """
+
+    ENGINEERING_IMAGE = "engineeringImage"
+    """
+    Coordinate reference system based on an image datum (engineering datum
+    which defines the relationship of a coordinate system to an image).
+
+    EXAMPLE: row, column
+    """
+
+    GEODETIC_GEOCENTRIC = "geodeticGeocentric"
+    """
+    Geodetic coordinate reference system having a Cartesian 3D coordinate
+    system.
+
+    EXAMPLE: [geocentric] X, Y, Z
+    """
+
+    GEODETIC_GEOGRAPHIC_2D = "geodeticGeographic2D"
+    """
+    Geodetic coordinate reference system having an ellipsoidal 2D coordinate
+    system.
+
+    EXAMPLE: latitude, longitude
+    """
+
+    GEODETIC_GEOGRAPHIC_3D = "geodeticGeographic3D"
+    """
+    Geodetic coordinate reference system having an ellipsoidal 3D coordinate
+    system.
+
+    EXAMPLE: latitude, longitude, ellipsoidal height
+    """
+
+    GEOGRAPHIC_IDENTIFIER = "geographicIdentifier"
+    """
+    Spatial reference in the form of a label or code that identifies a
+    location.
+
+    EXAMPLE: post coade
+    """
+
+    LINEAR = "linear"
+    """
+    Reference system that identifies a location by reference to a segment of a
+    linear geographic feature and distance along that segment from a given
+    point.
+
+    EXAMPLE: x km along road
+    """
+
+    PARAMETRIC = "parametric"
+    """
+    Coordinate reference system based on a parametric datum (datum describing
+    the relationship of a parametric coordinate system to an object).
+
+    EXAMPLE: pressure
+    """
+
+    PROJECTED = "projected"
+    """
+    Coordinate reference system derived from a two-dimensional geodetic
+    coordinate reference system by applying a map projection.
+
+    EXAMPLE: easting, northing
+    """
+
+    TEMPORAL = "temporal"
+    """
+    Reference system against which time is measured.
+
+    EXAMPLE: time
+    """
+
+    VERTICAL = "vertical"
+    """
+    One-dimensional coordinate reference system based on a vertical datum
+    (datum describing the relation of gravity-related heights or depths
+    to the Earth).
+
+    EXAMPLE: [gravity-related] height or depth
+    """
 
 
 class ReferenceSystem(IdentifiedObject):
     """
     Description of a spatial and temporal reference system used by a dataset.
+
+    This class is derived from MD_ReferenceSystem described in the
+    ISO 19115-1:2014, including addendums A1(2018) and A2(2020),
+    and ISO 19115-2:2019, including addendum A1(2022), international standards.
     """
+    @property
+    @abstractmethod
+    def reference_system_identifier(self) -> Optional[Identifier]:
+        """
+        Identifier and codespace for reference system.
+
+        NOTE: Refer to to SC_CRS in ISO 19111 and ISO 19111-2 when coordinate
+        reference system information is not given through reference system
+        identifier.
+
+        Example: EPSG::4326
+
+        MANDATORY: if `crs` is `None`.
+        """
 
     @property
-    def domain_of_validity(self) -> Extent:
+    @abstractmethod
+    def coordinate_reference_system(self) -> \
+            Optional['CoordinateReferenceSystem']:
         """
-        Area or region or timeframe in which this (coordinate) reference system is valid.
+        Full description of the coordinate reference system from which a set
+        of coordinates is referenced.
 
-        :return: The reference system valid domain, or null if not available.
-        :rtype: Extent
+        MANDATORY: if `reference_system_identifier` is `None`.
         """
-        return None
 
     @property
-    def scope(self) -> str:
+    @abstractmethod
+    def coordinate_epoch(self) -> Optional[DataEpoch]:
         """
-        Description of domain of usage, or limitations of usage, for which this Reference System object is valid.
+        The epoch from which coordinates in a dynamic coordinate reference
+        system are referenced.
 
-        :return: The domain of usage, or null if none.
-        :rtype: str
+        MANDATORY: if the coordinate reference system is dynamic.
         """
-        return None
+
+    @property
+    @abstractmethod
+    def reference_system_type(self) -> ReferenceSystemTypeCode:
+        """
+        Type of reference system used.
+
+        Example: `COMPOUND_GEOGRAPHIC2D_PARAMETRIC`
+        (compoundGeographic2DParametric)
+        """
 
 
 class CoordinateReferenceSystem(ReferenceSystem):
     """
-    Abstract coordinate reference system, usually defined by a coordinate system and a datum.
+    Abstract coordinate reference system, usually defined by a coordinate
+    system and a datum.
     """
 
 
 class SingleCRS(CoordinateReferenceSystem):
     """
-    Abstract coordinate reference system, consisting of a single Coordinate System and a single Datum.
+    Abstract coordinate reference system, consisting of a single Coordinate
+    System and a single Datum.
     """
 
     @property
@@ -60,7 +376,6 @@ class SingleCRS(CoordinateReferenceSystem):
         :return: The coordinate system.
         :rtype: CoordinateSystem
         """
-        pass
 
     @property
     @abstractmethod
@@ -71,13 +386,12 @@ class SingleCRS(CoordinateReferenceSystem):
         :return: The datum
         :rtype: Datum
         """
-        return None
 
 
 class CompoundCRS(CoordinateReferenceSystem):
     """
-    A coordinate reference system describing the position of points through two or more independent coordinate
-    reference systems.
+    A coordinate reference system describing the position of points through
+    two or more independent coordinate reference systems.
     """
 
     @property
@@ -89,7 +403,6 @@ class CompoundCRS(CoordinateReferenceSystem):
         :return: The ordered list of coordinate reference systems.
         :rtype: Sequence[SingleCRS]
         """
-        pass
 
 
 class VerticalCRS(SingleCRS):
@@ -106,7 +419,6 @@ class VerticalCRS(SingleCRS):
         :return: The coordinate system.
         :rtype: VerticalCS
         """
-        pass
 
     @property
     @abstractmethod
@@ -117,7 +429,6 @@ class VerticalCRS(SingleCRS):
         :return: The datum
         :rtype: VerticalDatum
         """
-        pass
 
 
 class TemporalCRS(SingleCRS):
@@ -134,7 +445,6 @@ class TemporalCRS(SingleCRS):
         :return: The coordinate system.
         :rtype: TimeCS
         """
-        pass
 
     @property
     @abstractmethod
@@ -145,7 +455,6 @@ class TemporalCRS(SingleCRS):
         :return: The datum
         :rtype: TemporalDatum
         """
-        pass
 
 
 class EngineeringCRS(SingleCRS):
@@ -162,13 +471,12 @@ class EngineeringCRS(SingleCRS):
         :return: The datum
         :rtype: EngineeringDatum
         """
-        pass
 
 
 class DerivedCRS(SingleCRS):
     """
-    A coordinate reference system that is defined by its coordinate conversion from another coordinate reference system
-    (not by a datum).
+    A coordinate reference system that is defined by its coordinate conversion
+    from another coordinate reference system (not by a datum).
     """
 
     @property
@@ -180,7 +488,6 @@ class DerivedCRS(SingleCRS):
         :return: The base coordinate reference system.
         :rtype: CoordinateReferenceSystem
         """
-        pass
 
     @property
     @abstractmethod
@@ -191,7 +498,6 @@ class DerivedCRS(SingleCRS):
         :return: The conversion from the base CRS.
         :rtype: Conversion
         """
-        pass
 
 
 class GeodeticCRS(SingleCRS):
@@ -208,13 +514,13 @@ class GeodeticCRS(SingleCRS):
         :return: The datum.
         :rtype: GeodeticDatum
         """
-        pass
 
 
 class GeographicCRS(GeodeticCRS):
     """
-    A coordinate reference system based on an ellipsoidal approximation of the geoid; this provides an accurate
-    representation of the geometry of geographic features for a large portion of the earth's surface.
+    A coordinate reference system based on an ellipsoidal approximation of the
+    geoid; this provides an accurate representation of the geometry of
+    geographic features for a large portion of the earth's surface.
     """
 
     @property
@@ -226,12 +532,12 @@ class GeographicCRS(GeodeticCRS):
         :return: The coordinate system.
         :rtype: EllipsoidalCS
         """
-        pass
 
 
 class ProjectedCRS(DerivedCRS):
     """
-    A 2D coordinate reference system used to approximate the shape of the earth on a planar surface.
+    A 2D coordinate reference system used to approximate the shape of the
+    Earth on a planar surface.
     """
 
     @property
@@ -243,7 +549,6 @@ class ProjectedCRS(DerivedCRS):
         :return: The conversion from the base CRS.
         :rtype: Conversion
         """
-        pass
 
     @property
     @abstractmethod
@@ -254,7 +559,6 @@ class ProjectedCRS(DerivedCRS):
         :return: The base coordinate reference system.
         :rtype: GeographicCRS
         """
-        pass
 
     @property
     @abstractmethod
@@ -265,7 +569,6 @@ class ProjectedCRS(DerivedCRS):
         :return: The coordinate system.
         :rtype: CartesianCS
         """
-        pass
 
     @property
     @abstractmethod
@@ -276,4 +579,3 @@ class ProjectedCRS(DerivedCRS):
         :return: The datum.
         :rtype: GeodeticDatum
         """
-        pass

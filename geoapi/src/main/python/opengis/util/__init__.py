@@ -15,11 +15,11 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 # ===-----------------------------------------------------------------------===
-"""This is the referencing subpackage.
+"""This is the util subpackage.
 
-This subpackage contains spatial referencing data structures derived from
-the ISO 19111 international standard.
+This subpackage contains types defined in the ISO 19103:2015 specification
+for which no equivalence is already present in the Python standard library.
 """
 
-__author__ = "OGC Topic 2 (for abstract model and documentation), " +\
-    "Martin Desruisseaux(Geomatys), David Meaux (Geomatys)"
+__author__ = "OGC Topic 20 (for abstract model and documentation), " +\
+    "David Meaux (Geomatys)"

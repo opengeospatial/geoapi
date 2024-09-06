@@ -23,6 +23,7 @@ class MetadataScope(opengis.metadata.base.MetadataScope):
         self._proxy = proxy
 
     @property
+    @abstractmethod
     def resource_scope(self):
         return self._proxy.getResourceScope()
 
@@ -33,6 +34,7 @@ class Citation(opengis.metadata.citation.Citation):
         self._proxy = proxy
 
     @property
+    @abstractmethod
     def title(self):
         return self._proxy.getTitle()
 
@@ -46,18 +48,22 @@ class Identifier(opengis.metadata.citation.Identifier):
         self._proxy = proxy
 
     @property
+    @abstractmethod
     def code(self):
         return self._proxy.getCode()
 
     @property
+    @abstractmethod
     def code_space(self):
         return self._proxy.getCodeSpace()
 
     @property
+    @abstractmethod
     def version(self):
         return self._proxy.getVersion()
 
     @property
+    @abstractmethod
     def description(self):
         return self._proxy.getDescription()
 
@@ -71,14 +77,15 @@ class Identification(opengis.metadata.identification.Identification):
         self._proxy = proxy
 
     @property
+    @abstractmethod
     def citation(self):
         value = self._proxy.getCitation()
         if value:
             return Citation(value)
         else:
-            return None
-
+    
     @property
+    @abstractmethod
     def abstract(self):
         return self._proxy.getAbstract()
 
@@ -92,10 +99,12 @@ class Dimension(opengis.metadata.representation.Dimension):
         self._proxy = proxy
 
     @property
+    @abstractmethod
     def dimension_name(self):
         return self._proxy.getDimensionName()
 
     @property
+    @abstractmethod
     def dimension_size(self) -> int:
         return self._proxy.getDimensionSize()
 
@@ -106,10 +115,12 @@ class GridSpatialRepresentation(opengis.metadata.representation.SpatialRepresent
         self._proxy = proxy
 
     @property
+    @abstractmethod
     def number_of_dimensions(self):
         return self._proxy.getNumberOfDimensions()
 
     @property
+    @abstractmethod
     def axis_dimension_properties(self):
         value = self._proxy.getAxisDimensionProperties()
         if value:
@@ -122,10 +133,12 @@ class GridSpatialRepresentation(opengis.metadata.representation.SpatialRepresent
             return []
 
     @property
+    @abstractmethod
     def cell_geometry(self):
         return self._proxy.getCellGeometry()
 
     @property
+    @abstractmethod
     def transformation_parameter_availability(self):
         return self._proxy.getTransformationParameterAvailability()
 
@@ -136,6 +149,7 @@ class Metadata(opengis.metadata.base.Metadata):
         self._proxy = proxy
 
     @property
+    @abstractmethod
     def metadata_scope(self):
         value = self._proxy.getMetadataScopes()
         if value:
@@ -148,14 +162,15 @@ class Metadata(opengis.metadata.base.Metadata):
             return []
 
     @property
+    @abstractmethod
     def contact(self):
-        return None
 
     @property
+    @abstractmethod
     def date_info(self):
-        return None
 
     @property
+    @abstractmethod
     def identification_info(self):
         value = self._proxy.getIdentificationInfo()
         if value:
@@ -168,6 +183,7 @@ class Metadata(opengis.metadata.base.Metadata):
             return []
 
     @property
+    @abstractmethod
     def spatial_representation_info(self):
         value = self._proxy.getSpatialRepresentationInfo()
         if value:

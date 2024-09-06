@@ -1,0 +1,150 @@
+# Python "To Do" List
+## Specifications
+### ISO Standards
+- [ ] 19103
+- [ ] 19107
+- [ ] 19108 (?)
+- [ ] 19109 (?)
+- [ ] 19110 (?)
+- [ ] 19111
+- [ ] 19112 (?)
+- [x] 19115-1:2014
+    - [x] 19115-1 A1 (2018)
+    - [x] 19115-1 A2 (2020)
+    - metadata.lineage
+        - ProcessStep
+- [x] 19115-2:2018
+    - [x] 19115-2 A1 (2022)
+    - modules
+        - metadata.aquisition
+        - metadata.lineage
+        - metadata.representation
+        - metadata.content
+        - CodeLists
+- [ ] 19115-3
+- [ ] 19157:2013 / 19157:2023 (?)
+### OGC Standards
+- [ ] 01009 (?)
+- [ ] Filter (?)
+- [ ] Moving Feature (?)
+
+## Library of Enums and Abstract Classes
+- [x] ISO 19103:2015 mapping to python types
+    - [x] Bit --> unimplemented
+    - [x] Digit --> unimplemented
+    - [x] Sign --> unimplemented
+- [x] Conform to PEP8; reflect ISO inheritance patterns
+- [x] Abstract method return types
+    - [x] pass
+    - [x] return None
+- [x] __str__ overrides
+    - [x] metadata.naming.LocalName
+    - [x] metadata.naming.ScopedName
+    - [x] metadata.naming.TypeName
+    - [x] metadata.naming.MemberName
+- [x] `PT_Locale`
+    - [x] Webscrape ISO 639-2 codes and store as JSON file (part of Joekulsarlon project)
+        - [x] Fix Static type checking errors.
+        - [x] Change process to save to parquet and JSON.
+        - [x] Double-check parquet file for custom metadata, which is stored in the schema's metadata
+        - [x] Convert JSON to Python Enum
+    - [x] Webscrape ISO 3166-1 country codes and store in JSON and parquet files (part of Joekulsarlon project)
+        - [x] convert JSON to Python Enum
+    - [-] Webscrape IANA Character Sets and store in parquet file (part of Joekulsarlon project)
+        - [-] Convert JSON to Python Enum
+    - [x] Replace PT_Locale with `str` conforming to **IETF BCP 47**
+    - [x] `metadata.acquisition.InstrumentEventList.locale`
+    - [x] `metadata.base.Metadata`
+        - [x] default_locale
+        - [x] other_locale
+    - [x] `metadata.identification.DataIdentification`
+        - [x] default_locale
+        - [x] other_locale
+- [x] Check for occurences in 19115-1, 19115-2
+    - [x] Set
+        - [x] ScopeDescription
+    - [x] Bag
+    - [x] Dictionary
+- [-] `PT_LocaleContainer` -> InternationalString (already noted as a `str` in docs 7.2.8)
+    - [-] to_string(Locale)
+- [x] `URI` --> `str`
+    - [x] `metadata.identification.KeywordClass.concept_identifier`
+- [x] `Direct Position`: ISO 19103:2015 p. 14 --> already implemented in geometry.primitive from ISO 19107:2019 p. 45
+        - [x] `metadata.representation.GCP.geographic_coordinates`
+        - [x] add `coordinatte` attribute
+- [x] Add code documentation to indicate which attributes/properties/fields are mandatory for ISO 19115-1:2014
+- [x] Fix data types for unannotated objects and attributes
+- [X] Finish incomplete code documentation
+    - [x] Add missing class and attribute descriptions
+    - [x] Add definition for each CodeList value in its corresponding Enum class.
+        - [x] metadata.citation
+        - [x] metadata.content
+        - [x] metadata.identification
+        - [x] metadata.quality
+        - [x] metadata.representation
+        - [x] referencing.crs
+    - [X] Change references in docstrings from MD_SomeObject (e.g., GM_Object, SV_OperationMetadata) to the python object
+- [x] Fix data types for abstraction in ISO 19103, ISO 19107
+    - [x] metadata.content
+    - [x] metadata.extent
+    - [x] metadata.identification
+    - [x] metadata.lineage
+    - [x] metadata.quality
+    - [x] metadata.representation
+    - [x] referencing.coordinate
+    - [x] referencing.crs
+    - [x] ISO 19103:2005
+        - [x] `UnitOfMeasure`: ISO 19103:2015 p. 44
+            - [x] `metadata.quality.QuantitativeResult.value_unit`
+        - [x] `Distance`: ISO 19103:2015 p. 44
+            - [x] `metadata.identification.Resolution`
+                - [x] .distance
+                - [x] .vertical
+            - [x] `metadata.lineage.NominalResolution`
+                - [x] .scanning_resolution
+                - [x] .ground_resolution
+        - [x] `Angle`: ISO 19103:2015 p. 44
+            - [x] `metadata.identification.Resolution`
+                - [x] .angular_distance
+        - [x] `Measure`: ISO 19103.2015 p. 44
+            - [x] `referencing.core.DataEpoch.coordinate_epoch`
+    - [x] ISO 19107
+        - [x] `GM_Object`
+            - [x] `metadata.extent.BoundingPolygon`
+                - [x] polygon
+        - [x] `GM_Point`
+            - [x] `metadata.representation.Georectified`
+                - [x] corner_points
+                - [x] cetre_point
+    - [x] Add ISO 19111:2019 updates
+            - [x] ObjectDomain
+            - [x] IdentifiedObject
+            - [x] `IdentifiedObject.to_wkt`
+    - [-] ISO 19110
+        - [-] FC_FeatureCatalogue
+            - [-] metadata.content
+
+- [x] Add Python mappings to [documentation](https://www.metanorma.org/author/ogc/)
+    - src > main > metanorma
+    - [x] 7.1.3.1 Departures from ISO model
+    - [x] 7.2.1 Primitive types
+        - [x] LanguageCode
+        - [x] CharacterSetCode
+    - [x] 7.2.2 Date and Time mappings (ISO 19103:2015 §7.2.2 to 7.2.4)
+        - [x] Date: datetime.date
+        - [x] Time: datetime.time
+        - [x] DateTime: datetime.datetime
+        - [x] TM_Duration: datetime.timedelta
+        - [x] TM_PeriodDuration: datetime.timedelta
+            - [x] `metadata.extent.TemporalExtent.extent`: make sure datetime.timedelta the right data type to return -> nope, returns a tuple[datetime, datetime] with the first component being the beginning and the second being the end.
+        - [x] TM_Primitive: datetime.datetime
+        - [x] Update documentation
+    - [x] 7.2.3 Collections (ISO 19103:2015 §7.3)
+        - [x] Bag --> `Sequence`
+        - [x] Set --> `Set`
+        - [x] Dictionary --> `dict`
+    - [x] 7.3.2 ReferenceSystem
+        - MD_ReferenceSystem -> `referencing.crs.ReferenceSystem`
+            - [x] added
+                - `reference_system_identifier`
+                - `reference_system_type`
