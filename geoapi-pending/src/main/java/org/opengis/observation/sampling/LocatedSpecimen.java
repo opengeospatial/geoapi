@@ -24,7 +24,7 @@ import static org.opengis.annotation.Specification.*;
 import static org.opengis.annotation.Obligation.*;
 
 /**
- * A locatedSpecimen is a specialization of specimen that carries it's location 
+ * A locatedSpecimen is a specialization of specimen that carries it's location
  * informations.
  *
  * @version <A HREF="http://www.opengeospatial.org/standards/om">Implementation specification 1.0</A>
@@ -38,7 +38,7 @@ public interface LocatedSpecimen extends Specimen {
     /**
      * Sampling location may be provided directly if not available through its association
      * with either the sampledFeature or a relatedSamplingFeature.
-     * 
+     *
      * @return Geometry : the specimen location geometry.
      */
     @UML(identifier="samplingLocation", obligation=MANDATORY, specification=OGC_07022)

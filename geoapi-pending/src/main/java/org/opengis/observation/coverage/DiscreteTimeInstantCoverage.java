@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="CV_DiscreteTimeInstantCoverage", specification=OGC_07022)
  public interface DiscreteTimeInstantCoverage extends DiscreteCoverage {
-     
+
      public TimeInstantValuePair element = null;
-     
+
 }

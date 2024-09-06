@@ -24,7 +24,7 @@ from the ISO 19157:2013, including addendum A1 (2018) international standard.
 """
 
 __author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux(Geomatys), David Meaux (Geomatys)"
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence

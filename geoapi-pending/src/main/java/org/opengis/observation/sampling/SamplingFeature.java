@@ -40,7 +40,7 @@ public interface SamplingFeature extends AnyFeature{
 
     /**
      * Sampling features are frequently related to each other, as parts of complexes, networks, through sub-sampling, etc.
-     *	This is supported by the relatedSamplingFeature association with a SamplingFeatureRelation association class, which carries a source, target and role.
+     * This is supported by the relatedSamplingFeature association with a SamplingFeatureRelation association class, which carries a source, target and role.
      */
     @UML(identifier="relatedSamplingFeature", obligation=MANDATORY, specification=OGC_07022)
     List<SamplingFeatureRelation> getRelatedSamplingFeature();
@@ -70,5 +70,5 @@ public interface SamplingFeature extends AnyFeature{
      */
     @UML(identifier="srelatedObservation", obligation=MANDATORY, specification=OGC_07022)
     List<Observation> getRelatedObservation();
-    
+
 }

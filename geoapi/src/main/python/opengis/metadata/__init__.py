@@ -23,4 +23,4 @@ and ISO 19115-2:2019, including addendum A1(2022) international standards.
 """
 
 __author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux(Geomatys), David Meaux (Geomatys)"
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"

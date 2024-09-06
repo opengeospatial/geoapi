@@ -48,5 +48,5 @@ public interface SamplingCurve extends SpatiallyExtensiveSamplingFeature {
      */
     @UML(identifier="shape", obligation=MANDATORY, specification=OGC_07022)
     Curve getShape();
-    
+
 }

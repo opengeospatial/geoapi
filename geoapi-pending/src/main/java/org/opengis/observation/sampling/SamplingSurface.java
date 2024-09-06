@@ -49,5 +49,5 @@ public interface SamplingSurface extends SpatiallyExtensiveSamplingFeature {
      */
     @UML(identifier="shape", obligation=MANDATORY, specification=OGC_07022)
     Surface getShape();
-    
+
 }

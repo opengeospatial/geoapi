@@ -20,11 +20,11 @@ For the open case, GeoAPI defines the `Code­List` abstract class in Java.
 [options="header"]
 |===========================================================
 |ISO 19103 type |Java type                   |Python type
-|CodeList       |`org.opengis.util.CodeList` |`Enum`  ^(1)^ 
+|CodeList       |`org.opengis.util.CodeList` |`Enum`  ^(1)^
 |Enumeration    |`java.lang.Enum`            |`Enum`
-|`Bit`          |unimplemented               |unimplemented 
-|`Digit`        |unimplemented               |unimplemented 
-|`Sign`         |unimplemented               |unimplemented 
+|`Bit`          |unimplemented               |unimplemented
+|`Digit`        |unimplemented               |unimplemented
+|`Sign`         |unimplemented               |unimplemented
 |===========================================================
 
 Notes:

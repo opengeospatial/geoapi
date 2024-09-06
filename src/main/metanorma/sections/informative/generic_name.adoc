@@ -68,8 +68,8 @@ The general rule is to use the name used in UML diagrams of OGC/ISO standards.
 |`OGC:Decimal`         |`java.math.BigDecimal`                     |`float`
 |`OGC:CharacterString` |`java.lang.String`                         |`str`
 |`OGC:FreeText`        |`org.opengis.util.InternationalString`     |`str`
-|`OGC:PT_Locale`       |`java.util.Locale`                         |`str`               ^(1)^ 
-|`OGC:DateTime`        |`java.time.ZonedDateTime`                  |`datetime.datetime` ^(2)^ 
+|`OGC:PT_Locale`       |`java.util.Locale`                         |`str`               ^(1)^
+|`OGC:DateTime`        |`java.time.ZonedDateTime`                  |`datetime.datetime` ^(2)^
 |`OGC:URI`             |`java.net.URI`                             |`str`
 |`OGC:Matrix`          |`org.opengis.referencing.operation.Matrix` |`np.ndarray`
 |`OGC:Coverage`        |`org.opengis.coverage.Coverage`            |`Coverage`
@@ -81,7 +81,7 @@ Notes:
 * (1) A string conforming to the Internet Engineering Task Force Best Current
 Practices 47 (https://datatracker.ietf.org/doc/bcp47/[IETF BCP 47]) standard.
 * (2) The `datetime` object should be aware, that is the the time zone should be specified.
-For more information, see 
+For more information, see
 https://docs.python.org/3/library/datetime.html#determining-if-an-object-is-aware-or-naive[Python's `datetime` module documentation].
 
 [[generic_name_departures]]

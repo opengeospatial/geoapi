@@ -36,14 +36,14 @@ These replacements are suggestions; GeoAPI generally does not mandate this mappi
 |Omitted ISO 19108 interface |Suggested Java class                |Python type
 |`TM_CalDate`                |`java.time.LocalDate`               |
 |`TM_CalendarEra`            |`java.time.chrono.IsoEra`           |
-|`TM_ClockTime`              |`java.time.LocalTime`               |`datetime.time`      
-|`TM_DateAndTime`            |`java.time.LocalDateTime`           |`datetime.datetime`  
+|`TM_ClockTime`              |`java.time.LocalTime`               |`datetime.time`
+|`TM_DateAndTime`            |`java.time.LocalDateTime`           |`datetime.datetime`
 |`TM_Duration`               |`java.time.temporal.TemporalAmount` |
-|`TM_IntervalLength`         |`java.time.Duration`                |`datetime.timedelta` 
+|`TM_IntervalLength`         |`java.time.Duration`                |`datetime.timedelta`
 |`TM_OrdinalEra`             |`java.time.chrono.Era`              |
-|`TM_PeriodDuration`         |`java.time.Period`                  |`datetime.timedelta` 
-|`TM_Primitive`              |                                    |`datetime.datetime`  
-|`TM_TemporalPosition`       |`java.time.temporal.Temporal`       |`datetime.datetime`  
+|`TM_PeriodDuration`         |`java.time.Period`                  |`datetime.timedelta`
+|`TM_Primitive`              |                                    |`datetime.datetime`
+|`TM_TemporalPosition`       |`java.time.temporal.Temporal`       |`datetime.datetime`
 |=======================================================================================
 
 Note that despite their similar names,

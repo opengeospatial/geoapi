@@ -22,7 +22,7 @@ system operations derived from the ISO 19111 international standard.
 """
 
 __author__ = "OGC Topic 2 (for abstract model and documentation), " +\
-    "Martin Desruisseaux(Geomatys), David Meaux (Geomatys)"
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence

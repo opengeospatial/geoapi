@@ -22,4 +22,4 @@ ISO 19107 international standard.
 """
 
 __author__ = "OGC Topic 1 (for abstract model and documentation), " +\
-    "Martin Desruisseaux(Geomatys), David Meaux (Geomatys)"
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"

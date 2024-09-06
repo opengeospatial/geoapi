@@ -48,5 +48,5 @@ public interface CompositePhenomenon extends CompoundPhenomenon {
      */
     @UML(identifier="base", obligation=OPTIONAL, specification=OGC_07022)
     Phenomenon getBase();
-    
+
 }

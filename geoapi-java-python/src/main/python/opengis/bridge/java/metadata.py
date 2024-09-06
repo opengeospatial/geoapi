@@ -83,7 +83,7 @@ class Identification(opengis.metadata.identification.Identification):
         if value:
             return Citation(value)
         else:
-    
+
     @property
     @abstractmethod
     def abstract(self):

@@ -40,7 +40,7 @@ import static org.opengis.annotation.Obligation.*;
  * Example:
  * an application may choose to include observations of "WaterTemperature"
  * when the subject of interest is observations of "Temperature".
- * 
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/om">Implementation specification 1.0</A>
  * @author Open Geospatial Consortium
  * @author Guilhem Legal (Geomatys)
@@ -67,5 +67,5 @@ public interface PhenomenonSeries extends CompoundPhenomenon {
      */
     @UML(identifier="base", obligation=MANDATORY, specification=OGC_07022)
     Phenomenon getBase();
-    
+
 }
