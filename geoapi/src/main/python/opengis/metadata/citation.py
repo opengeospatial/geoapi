@@ -586,7 +586,7 @@ class Responsibility(ABC):
 
     @property
     @abstractmethod
-    def extent(self) -> Optional[Sequence[Extent]]:
+    def extent(self) -> Optional[Sequence['Extent']]:
         """Spatial or temporal extent of the role."""
 
     @property

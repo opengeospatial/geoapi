@@ -53,7 +53,8 @@ html_theme = "bizstyle"
 
 # -- Options for HTML output -------------------------------------------------
 
-# "¶" for each heading and description that become visible when the mouse hovers over them.
+# "¶" for each heading and description that become visible when the mouse
+# hovers over them.
 html_add_permalinks = ""
 
 # If true, the reST sources are included in the HTML build as _sources/name.

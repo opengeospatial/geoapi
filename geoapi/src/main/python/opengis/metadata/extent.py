@@ -49,7 +49,7 @@ class VerticalExtent(ABC):
 
     @property
     @abstractmethod
-    def vertical_crs(self) -> Optional[VerticalCRS]:
+    def vertical_crs(self) -> Optional['VerticalCRS']:
         """
         Provides information about the vertical coordinate reference system
         to which the maximum and minimum elevation values are measured.
@@ -64,7 +64,7 @@ class VerticalExtent(ABC):
 
     @property
     @abstractmethod
-    def vertical_crs_id(self) -> Optional[ReferenceSystem]:
+    def vertical_crs_id(self) -> Optional['ReferenceSystem']:
         """
         Identifies the vertical coordinate reference system used for the
         minimum and maximum values.
@@ -216,7 +216,7 @@ class GeographicDescription(GeographicExtent):
 
     @property
     @abstractmethod
-    def geographic_identifier(self) -> Identifier:
+    def geographic_identifier(self) -> 'Identifier':
         """
         Identifier used to represent a geographic area.
 

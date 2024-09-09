@@ -99,7 +99,8 @@ class MathTransform(ABC):
         """
 
     @abstractmethod
-    def transform(self, pt_src: DirectPosition, pt_dst: DirectPosition) -> DirectPosition:
+    def transform(self, pt_src: DirectPosition, pt_dst: DirectPosition) \
+            -> DirectPosition:
         """
         Transforms the specified ptSrc and stores the result in ptDst.
 

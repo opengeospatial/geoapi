@@ -91,7 +91,10 @@ class LocalName(GenericName):
     @property
     @abstractmethod
     def depth(self) -> int:
-        """The number of levels specified by this name, which is always 1 for a local name."""
+        """
+        The number of levels specified by this name, which is always 1 for
+        a local name.
+        """
         return 1
 
     @property

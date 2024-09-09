@@ -50,7 +50,7 @@ class DirectPosition(ABC):
 
     @property
     @abstractmethod
-    def coordinate_reference_system(self) -> CoordinateReferenceSystem:
+    def coordinate_reference_system(self) -> 'CoordinateReferenceSystem':
         """
         The coordinate reference system in which the coordinate tuple is given.
         """
@@ -229,7 +229,7 @@ class Bearing(ABC):
 
     @property
     @abstractmethod
-    def angle(self) -> Sequence[Angle]:
+    def angle(self) -> Sequence['Angle']:
         """
         In this variant of Bearing, generally used for 2D coordinate systems,
         the first angle (azimuth) is measured from a coordinate axis (usually
@@ -297,7 +297,7 @@ class Vector(ABC):
                  position: DirectPosition,
                  coordinates: float | None = None,
                  direction: Bearing | None = None,
-                 length: Length | None = None,
+                 length: 'Length | None' = None,
                  ) -> None:
         """
         The constructor vector creates a vector with the given offsets or
@@ -345,7 +345,7 @@ class Vector(ABC):
 
     @property
     @abstractmethod
-    def coordinate_system(self) -> CoordinateSystem:
+    def coordinate_system(self) -> 'CoordinateSystem':
         """
         The `coordinate_system` attribute is the origin system and, therefore,
         determines the coordinates of the local tangent space in which the
@@ -446,7 +446,7 @@ class Geometry(TransfiniteSetOfDirectPositions):
 
     @property
     @abstractmethod
-    def coordinate_reference_system(self) -> CoordinateReferenceSystem:
+    def coordinate_reference_system(self) -> 'CoordinateReferenceSystem':
         """
         The coordinate reference system in which the coordinate geometry
         is given.
