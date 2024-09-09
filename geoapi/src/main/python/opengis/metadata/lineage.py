@@ -15,7 +15,7 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 # ===-----------------------------------------------------------------------===
-"""This is the lineage module.
+"""This is the `lineage` module.
 
 This module contains geographic metadata structures derived from the
 ISO 19115-1:2014 and ISO 19115-2:2019 international standards regarding

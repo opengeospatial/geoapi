@@ -15,7 +15,7 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 # ===-----------------------------------------------------------------------===
-"""This is the util subpackage.
+"""This is the `util` subpackage.
 
 This subpackage contains types defined in the ISO 19103:2015 specification
 for which no equivalence is already present in the Python standard library.

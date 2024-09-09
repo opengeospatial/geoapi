@@ -1,0 +1,43 @@
+site_name: GeoAPI for Python
+site_url: https://www.geoapi.org/python/
+
+theme:
+  name: material
+
+plugins:
+  - search
+  - mkdocstrings
+
+nav:
+  - GeoAPI Docs: index.md
+  - Geometry (ISO 19107):
+    - Overview: geometry/__init__.md
+    - primitive: geometry/primitive.md
+  - Naming (ISO 19103) and Metadata (ISO 19115):
+    - Overview: metadata/__init__.md
+    - acquisition: metadata/acquisition.md
+    - base: metadata/base.md
+    - citation: metadata/citation.md
+    - constraints: metadata/constraints.md
+    - content: metadata/content.md
+    - distribution: metadata/distribution.md
+    - extension: metadata/extension.md
+    - extent: metadata/extent.md
+    - identification: metadata/identification.md
+    - lineage: metadata/lineage.md
+    - maintenance: metadata/maintenance.md
+    - naming: metadata/naming.md
+    - quality: metadata/quality.md
+    - representation: metadata/representation.md
+    - service: metadata/service.md
+  - Referencing (ISO 19111): 
+    - Overview: referencing/__init__.md
+    - common: referencing/common.md
+    - coordinate: referencing/coordinate.md
+    - crs: referencing/crs.md
+    - cs: referencing/cs.md
+    - datum: referencing/datum.md
+    - operation: referencing/operation.md
+  - Util:
+    - Overview: util/__init__.md
+    - measure (ISO 19103): util/measure.md

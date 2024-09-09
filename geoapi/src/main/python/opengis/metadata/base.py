@@ -15,7 +15,7 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 # ===-----------------------------------------------------------------------===
-"""This is the base module.
+"""This is the `base` module.
 
 This subpackage contains geographic metadata structures regarding data
 acquisition that are derived from theISO 19115-1:2014 and ISO 19115-2:2019

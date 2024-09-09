@@ -15,7 +15,7 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 # ===-----------------------------------------------------------------------===
-"""This is the common module.
+"""This is the `common` module.
 
 This module contains geographic metadata structures derived from the
 Common Classes package in the ISO 19111:2019 international standard.

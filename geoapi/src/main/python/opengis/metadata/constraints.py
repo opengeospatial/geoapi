@@ -15,7 +15,7 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 # ===-----------------------------------------------------------------------===
-"""This is the constraints module.
+"""This is the `constraints` module.
 
 This module contains geographic metadata structures regarding data constraints
 derived from the ISO 19115-1:2014 international standard.

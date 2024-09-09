@@ -15,7 +15,7 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 # ===-----------------------------------------------------------------------===
-"""This is the coordinates module.
+"""This is the `coordinates` module.
 
 This module contains geographic metadata structures derived from the
 Coordinates package in the ISO 19111:2019 international standard.

@@ -15,7 +15,7 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 # ===-----------------------------------------------------------------------===
-"""This is the identification module.
+"""This is the `identification` module.
 
 This module contains geographic metadata structures regarding identification
 information codelists and common base classes derived from the

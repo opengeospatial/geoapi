@@ -15,7 +15,7 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 # ===-----------------------------------------------------------------------===
-"""This is the operation module.
+"""This is the `operation` module.
 
 This module contains geographic metadata structures regarding referencing
 system operations derived from the ISO 19111 international standard.
@@ -26,6 +26,7 @@ __author__ = "OGC Topic 2 (for abstract model and documentation), " +\
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
+from typing import Any, Optional
 
 import numpy as np
 
@@ -50,31 +51,22 @@ class MathTransform(ABC):
     @abstractmethod
     def source_dimensions(self) -> int:
         """
-        Gets the dimension of input points.
-
-        :return: The dimension of input points.
-        :rtype: int
+        Returns the dimension of input points.
         """
 
     @property
     @abstractmethod
     def target_dimensions(self) -> int:
         """
-        Gets the dimension of output points.
-
-        :return: The dimension of output points.
-        :rtype: int
+        Returns the dimension of output points.
         """
 
     @property
     @abstractmethod
     def is_identity(self) -> bool:
         """
-        Tests whether this transform does not move any points.
-
-        :return: True if this MathTransform is an identity transform; false
-            otherwise.
-        :rtype: bool
+        Tests whether this transform does not move any points. True if this
+        MathTransform is an identity transform; false otherwise.
         """
 
     @abstractmethod
@@ -83,35 +75,32 @@ class MathTransform(ABC):
         Returns a Well Known Text (WKT) for this object. Well know text are
         defined in extended Backus Naur form. This operation may fails if an
         object is too complex for the WKT format capability.
-
-        :return: The Well Known Text (WKT) for this object.
-        :rtype: str
         """
 
     @abstractmethod
-    def inverse(self):
+    def inverse(self) -> Any:
         """
         Creates the inverse transform of this object. This method may fail if
-        the transform is not one to one.
-
-        :return: The inverse transform.
-        :rtype: MathTransform
+        the transform is not one to one. Should return a
+        `MathTransform` object.
         """
 
     @abstractmethod
-    def transform(self, pt_src: DirectPosition, pt_dst: DirectPosition) \
-            -> DirectPosition:
+    def transform(self, pt_src: DirectPosition,
+                  pt_dst: Optional[DirectPosition]) ->\
+            DirectPosition | np.ndarray:
         """
-        Transforms the specified ptSrc and stores the result in ptDst.
+        Transforms the specified pt_src and stores the result in pt_dst.
 
-        :param pt_src: the specified coordinate point to be transformed.
-        :type pt_src: DirectPosition
-        :param pt_dst: the specified coordinate point that stores the result
-            of transforming ptSrc, or null.
-        :type pt_dst: DirectPosition
-        :return: the coordinate point after transforming ptSrc and storing the
-            result in ptDst, or a newly created point if ptDst was null.
-        :rtype: DirectPosition
+        Arguments:
+            pt_src (DirectPosition): the specified coordinate point to
+                be transformed.
+            pt_dst (Optional[DirectPosition]): the specified coordinate point that
+                stores the result of transforming ptSrc, or null.
+        Returns:
+            The coordinate point or an array of coordinate points
+                after transforming pt_src and storing the result in pt_dst,
+                or a newly created point if pt_dst was null.
         """
 
     @abstractmethod
@@ -148,18 +137,16 @@ class MathTransform(ABC):
     @abstractmethod
     def derivative(self, point: DirectPosition) -> np.ndarray:
         """
-        Gets the derivative of this transform at a point. The derivative is
-        the matrix of the non-translating portion of the approximate affine
-        map at the point. The matrix will have dimensions corresponding to the
-        source and target coordinate systems.
+        Gets the derivative of this transform at a point (never null).
+        The derivative is the matrix of the non-translating portion of
+        the approximate affine map at the point. The matrix will have
+        dimensions corresponding to the source and target coordinate systems.
 
-        :param point: The coordinate point where to evaluate the derivative.
-            Null value is accepted only if the derivative is the same
-            everywhere (e.g., with affine transforms). But most map projection
-            will requires a non-null value.
-        :type point: DirectPosition
-        :return: The derivative at the specified point (never null).
-        :rtype: numpy.ndarray
+        Parameters:
+            point (DirectPosition): The coordinate point where to evaluate the
+                derivative. Null value is accepted only if the derivative is
+                the same everywhere (e.g., with affine transforms). But most
+                map projection will requires a non-null value.
         """
 
 
@@ -172,9 +159,6 @@ class MathTransform1D(MathTransform):
     def inverse(self) -> 'MathTransform1D':
         """
         Creates the inverse transform of this object.
-
-        :return: The inverse transform.
-        :rtype: MathTransform1D
         """
 
     @abstractmethod
@@ -182,25 +166,23 @@ class MathTransform1D(MathTransform):
         """
         Transforms the specified value.
 
-        :param value: The value to transform.
-        :type value: float
-        :return: the transformed value.
-        :rtype: float
+        Parameters:
+            value (float): The value to transform.
         """
 
-    @abstractmethod
-    def derivative(self, value: float) -> np.ndarray:
-        """
-        Gets the derivative of this function at a value. The derivative is the
-        1x1 matrix of the non-translating portion of the approximate affine
-        map at the value.
+    # @abstractmethod
+    # def derivative(self, value: float) -> np.ndarray:
+    #     """
+    #     Gets the derivative of this function at a value. The derivative is
+    #     the 1x1 matrix of the non-translating portion of the approximate
+    #     affine map at the value.
 
-        :param value: The value where to evaluate the derivative.
-        :type value: float
-        :return: The derivative at the specified point, as an np.ndarray with
-            only one element.
-        :rtype: np.ndarray
-        """
+    #     :param value: The value where to evaluate the derivative.
+    #     :type value: float
+    #     :return: The derivative at the specified point, as an np.ndarray with
+    #         only one element.
+    #     :rtype: np.ndarray
+    #     """
 
 
 class Formula:
@@ -220,14 +202,10 @@ class Formula:
 
     @property
     @abstractmethod
-    def citation(self) -> Citation:
+    def citation(self) -> Optional[Citation]:
         """
         Reference to a publication giving the formula(s) or procedure used by
-        the coordinate operation method.
-
-        :return: Reference to a publication giving the formula, or null if
-            none.
-        :rtype: Citation
+        the coordinate operation method, or null if `None`.
         """
 
 
@@ -241,24 +219,17 @@ class OperationMethod(IdentifiedObject):
     def formula(self) -> Formula:
         """
         Formula(s) or procedure used by this operation method. This may be a
-            reference to a publication.
-        Note that the operation method may not be analytic, in which case this
-            attribute references or
-        contains the procedure, not an analytic formula.
-
-        :return: The formula used by this method.
-        :rtype: Formula
+        reference to a publication. Note that the operation method may not be
+        analytic, in which case this attribute references or contains the
+        procedure, not an analytic formula.
         """
 
-    @property
-    @abstractmethod
-    def parameters(self):
-        """
-        The set of parameters.
-
-        :return: The parameters, or an empty group if none.
-        :rtype: ParameterDescriptorGroup
-        """
+    # @property
+    # @abstractmethod
+    # def parameters(self) -> Optional['ParameterDescriptorGroup']:
+    #     """
+    #     The set of parameters, or an empty group if `None`.
+    #     """
 
 
 class CoordinateOperation(IdentifiedObject):
@@ -269,64 +240,50 @@ class CoordinateOperation(IdentifiedObject):
 
     @property
     @abstractmethod
-    def source_crs(self) -> CoordinateReferenceSystem:
+    def source_crs(self) -> Optional[CoordinateReferenceSystem]:
         """
         Returns the source CRS. The source CRS is mandatory for
         transformations only. Conversions may have a source CRS that is not
         specified here, but through `DerivedCRS.getBaseCRS()` instead.
-
-        :return: The source CRS, or null if not available.
-        :rtype: CoordinateReferenceSystem
+        `None` if not available.
         """
 
     @property
     @abstractmethod
-    def target_crs(self) -> CoordinateReferenceSystem:
+    def target_crs(self) -> Optional[CoordinateReferenceSystem]:
         """
         Returns the target CRS. The target CRS is mandatory for
         transformations only. Conversions may have a target CRS that is not
-        specified here, but through `DerivedCRS` instead.
-
-        :return: The target CRS, or null if not available.
-        :rtype: CoordinateReferenceSystem
+        specified here, but through `DerivedCRS` instead. `None` if
+        not available.
         """
 
     @property
     @abstractmethod
-    def operation_version(self) -> str | None:
+    def operation_version(self) -> Optional[str]:
         """
         Version of the coordinate transformation (i.e., instantiation due to
         the stochastic nature of the parameters). Mandatory when describing a
         transformation, and should not be supplied for a conversion.
-
-        :return: The coordinate operation version, or null in none.
-        :rtype: str
         """
 
     @property
     @abstractmethod
-    def coordinate_operation_accuracy(self) -> Sequence[PositionalAccuracy]:
+    def coordinate_operation_accuracy(self) ->\
+            Sequence[Optional[PositionalAccuracy]]:
         """
         Estimate(s) of the impact of this operation on point accuracy. Gives
-        position error estimates for target
-        coordinates of this coordinate operation, assuming no errors in source
-        coordinates.
-
-        :return: The position error estimates, or an empty collection if not
-        available.
-        :rtype: Sequence[PositionalAccuracy]
+        position error estimates for target coordinates of this coordinate
+        operation, assuming no errors in source coordinates, or an empty
+        collection if not available.
         """
 
     @property
     @abstractmethod
-    def domain_of_validity(self) -> Extent:
+    def domain_of_validity(self) -> Optional[Extent]:
         """
         Area or region or timeframe in which this coordinate operation is
-        valid.
-
-        :return: The coordinate operation valid domain, or null if not
-            available.
-        :rtype: Extent
+        valid or `None` if not available.
         """
 
     @property
@@ -335,9 +292,6 @@ class CoordinateOperation(IdentifiedObject):
         """
         Description of domain of usage, or limitations of usage, for which
         this operation is valid.
-
-        :return: A description of domain of usage.
-        :rtype: str
         """
 
     @property
@@ -346,12 +300,8 @@ class CoordinateOperation(IdentifiedObject):
         """
         Gets the math transform. The math transform will transform positions
         in the source coordinate reference system into positions in the target
-        coordinate reference system. It may be null in the case of defining
-        conversions.
-
-        :return: The transform from source to target CRS, or null if not
-            applicable.
-        :rtype: MathTransform
+        coordinate reference system. It may be `None` in the case of defining
+        conversions or if it's not applicable.
         """
 
 
@@ -366,20 +316,14 @@ class SingleOperation(CoordinateOperation):
     def method(self) -> OperationMethod:
         """
         Returns the operation method.
-
-        :return: The operation method.
-        :rtype: OperationMethod
         """
 
-    @property
-    @abstractmethod
-    def parameter_values(self):
-        """
-        Returns the parameter values.
-
-        :return: The parameters values.
-        :rtype: ParameterValueGroup
-        """
+    # @property
+    # @abstractmethod
+    # def parameter_values(self) -> 'ParameterValueGroup':
+    #     """
+    #     Returns the parameter values.
+    #     """
 
 
 class PassThroughOperation(SingleOperation):
@@ -393,9 +337,6 @@ class PassThroughOperation(SingleOperation):
     def operation(self) -> SingleOperation:
         """
         Returns the operation to apply on the subset of a coordinate tuple.
-
-        :return: The operation to apply on the subset of a coordinate tuple.
-        :rtype: SingleOperation
         """
 
     @property
@@ -404,10 +345,7 @@ class PassThroughOperation(SingleOperation):
         """
         Ordered sequence of positive integers defining the positions in a
         coordinate tuple of the coordinates affected by this pass-through
-        operation.
-
-        :return: The modified coordinates.
-        :rtype: Sequence[int]
+        operation. Returns the modified coordinates.
         """
 
 
@@ -420,20 +358,14 @@ class Transformation(SingleOperation):
     @abstractmethod
     def source_crs(self) -> CoordinateReferenceSystem:
         """
-        Returns the source CRS
-
-        :return: The source CRS (never null).
-        :rtype: CoordinateReferenceSystem
+        Returns the source CRS (never null).
         """
 
     @property
     @abstractmethod
     def target_crs(self) -> CoordinateReferenceSystem:
         """
-        Returns the target CRS.
-
-        :return: The target CRS (never null)
-        :rtype: CoordinateReferenceSystem
+        Returns the target CRS (never null).
         """
 
     @property
@@ -443,9 +375,6 @@ class Transformation(SingleOperation):
         Version of the coordinate transformation (i.e., instantiation due to
         the stochastic nature of the parameters). This attribute is mandatory
         in a Transformation.
-
-        :return: The coordinate operation version.
-        :rtype: str
         """
 
 
@@ -455,25 +384,21 @@ class Conversion(SingleOperation):
     """
 
     @property
-    @abstractmethod()
-    def source_crs(self) -> CoordinateReferenceSystem:
+    @abstractmethod
+    def source_crs(self) -> Optional[CoordinateReferenceSystem]:
         """
         Returns the source CRS. Conversions may have a source CRS that is not
-        specified here, but through `DerivedCRS.getBaseCRS()` instead.
-
-        :return: The source CRS, or null if not available.
-        :rtype: CoordinateReferenceSystem
+        specified here, but through `DerivedCRS.getBaseCRS()` instead. `None`
+        if not available.
         """
 
     @property
-    @abstractmethod()
-    def target_crs(self) -> CoordinateReferenceSystem:
+    @abstractmethod
+    def target_crs(self) -> Optional[CoordinateReferenceSystem]:
         """
         Returns the target CRS. Conversions may have a target CRS that is not
-        specified here, but through `DerivedCRS` instead.
-
-        :return: The target CRS, or null if not available.
-        :rtype: CoordinateReferenceSystem
+        specified here, but through `DerivedCRS` instead. `None`
+        if not available.
         """
 
     @property

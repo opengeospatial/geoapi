@@ -15,7 +15,7 @@
 #    See the License for the specific language governing permissions and
 #    limitations under the License.
 # ===-----------------------------------------------------------------------===
-"""This is the primitive module.
+"""This is the `primitive` module.
 
 This module contains primitive geometry data structures derived from
 the ISO 19107 international standard.
