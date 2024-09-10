@@ -11,10 +11,10 @@ plugins:
 nav:
   - GeoAPI Docs: index.md
   - Geometry (ISO 19107):
-    - Overview: geometry/__init__.md
+    - Overview: geometry/overview.md
     - primitive: geometry/primitive.md
   - Naming (ISO 19103) and Metadata (ISO 19115):
-    - Overview: metadata/__init__.md
+    - Overview: metadata/overview.md
     - acquisition: metadata/acquisition.md
     - base: metadata/base.md
     - citation: metadata/citation.md
@@ -31,7 +31,7 @@ nav:
     - representation: metadata/representation.md
     - service: metadata/service.md
   - Referencing (ISO 19111): 
-    - Overview: referencing/__init__.md
+    - Overview: referencing/overview.md
     - common: referencing/common.md
     - coordinate: referencing/coordinate.md
     - crs: referencing/crs.md
@@ -39,5 +39,5 @@ nav:
     - datum: referencing/datum.md
     - operation: referencing/operation.md
   - Util:
-    - Overview: util/__init__.md
+    - Overview: util/overview.md
     - measure (ISO 19103): util/measure.md

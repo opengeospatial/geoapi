@@ -35,7 +35,7 @@ mkdocs serve
 
 Building
 ```bash
-mkdocs build --clean --strict --verbose --site-dir docs-build
+mkdocs build --clean --strict --verbose --site-dir ../../../../target/docs-python
 ```
 
 ### Publishing the documentation site
