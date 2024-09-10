@@ -1,0 +1,4826 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.geoapi.org/python/referencing/cs/">
+      
+      
+        <link rel="prev" href="../crs/">
+      
+      
+        <link rel="next" href="../datum/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>cs - GeoAPI for Python</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#cs-module" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="GeoAPI for Python" class="md-header__button md-logo" aria-label="GeoAPI for Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GeoAPI for Python
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              cs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="GeoAPI for Python" class="md-nav__button md-logo" aria-label="GeoAPI for Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GeoAPI for Python
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GeoAPI Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Geometry (ISO 19107)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Geometry (ISO 19107)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../geometry/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../geometry/primitive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    primitive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Naming (ISO 19103) and Metadata (ISO 19115)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Naming (ISO 19103) and Metadata (ISO 19115)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/acquisition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acquisition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/base/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/citation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    citation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/constraints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    constraints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/content/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    content
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/distribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    distribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/extension/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    extension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/extent/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    extent
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/identification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    identification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/lineage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lineage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/maintenance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    maintenance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/naming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    naming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/quality/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/representation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    representation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/service/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    service
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Referencing (ISO 19111)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Referencing (ISO 19111)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    common
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coordinate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    coordinate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../crs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    crs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    cs
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    cs
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs" class="md-nav__link">
+    <span class="md-ellipsis">
+      cs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AffineCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      AffineCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      AxisDirection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AxisDirection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.AFT" class="md-nav__link">
+    <span class="md-ellipsis">
+      AFT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.AWAY_FROM" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWAY_FROM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.CLOCKWISE" class="md-nav__link">
+    <span class="md-ellipsis">
+      CLOCKWISE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.COLUMN_NEGATIVE" class="md-nav__link">
+    <span class="md-ellipsis">
+      COLUMN_NEGATIVE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.COLUMN_POSITIVE" class="md-nav__link">
+    <span class="md-ellipsis">
+      COLUMN_POSITIVE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.COUNTER_CLOCKWISE" class="md-nav__link">
+    <span class="md-ellipsis">
+      COUNTER_CLOCKWISE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.DISPLAY_DOWN" class="md-nav__link">
+    <span class="md-ellipsis">
+      DISPLAY_DOWN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.DISPLAY_LEFT" class="md-nav__link">
+    <span class="md-ellipsis">
+      DISPLAY_LEFT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.DISPLAY_RIGHT" class="md-nav__link">
+    <span class="md-ellipsis">
+      DISPLAY_RIGHT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.DISPLAY_UP" class="md-nav__link">
+    <span class="md-ellipsis">
+      DISPLAY_UP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.DOWN" class="md-nav__link">
+    <span class="md-ellipsis">
+      DOWN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.EAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      EAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.EAST_NORTH_EAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      EAST_NORTH_EAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.EAST_SOUTH_EAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      EAST_SOUTH_EAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.FORWARD" class="md-nav__link">
+    <span class="md-ellipsis">
+      FORWARD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.FUTURE" class="md-nav__link">
+    <span class="md-ellipsis">
+      FUTURE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.GEOCENTRIC_X" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEOCENTRIC_X
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.GEOCENTRIC_Y" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEOCENTRIC_Y
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.GEOCENTRIC_Z" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEOCENTRIC_Z
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.NORTH" class="md-nav__link">
+    <span class="md-ellipsis">
+      NORTH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.NORTH_EAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      NORTH_EAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.NORTH_NORTH_EAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      NORTH_NORTH_EAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.NORTH_NORTH_WEST" class="md-nav__link">
+    <span class="md-ellipsis">
+      NORTH_NORTH_WEST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.NORTH_WEST" class="md-nav__link">
+    <span class="md-ellipsis">
+      NORTH_WEST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.PAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      PAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.PORT" class="md-nav__link">
+    <span class="md-ellipsis">
+      PORT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.ROW_NEGATIVE" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROW_NEGATIVE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.ROW_POSITIVE" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROW_POSITIVE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.SOUTH" class="md-nav__link">
+    <span class="md-ellipsis">
+      SOUTH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.SOUTH_EAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      SOUTH_EAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.SOUTH_SOUTH_EAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      SOUTH_SOUTH_EAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.SOUTH_SOUTH_WEST" class="md-nav__link">
+    <span class="md-ellipsis">
+      SOUTH_SOUTH_WEST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.SOUTH_WEST" class="md-nav__link">
+    <span class="md-ellipsis">
+      SOUTH_WEST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.STARBOARD" class="md-nav__link">
+    <span class="md-ellipsis">
+      STARBOARD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.TOWARDS" class="md-nav__link">
+    <span class="md-ellipsis">
+      TOWARDS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.UNSPECIFIED" class="md-nav__link">
+    <span class="md-ellipsis">
+      UNSPECIFIED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.UP" class="md-nav__link">
+    <span class="md-ellipsis">
+      UP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.WEST" class="md-nav__link">
+    <span class="md-ellipsis">
+      WEST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.WEST_NORTH_WEST" class="md-nav__link">
+    <span class="md-ellipsis">
+      WEST_NORTH_WEST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.WEST_SOUTH_WEST" class="md-nav__link">
+    <span class="md-ellipsis">
+      WEST_SOUTH_WEST
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CartesianCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      CartesianCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      CoordinateSystem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CoordinateSystem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystem.dimension" class="md-nav__link">
+    <span class="md-ellipsis">
+      dimension
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystem.axis" class="md-nav__link">
+    <span class="md-ellipsis">
+      axis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystemAxis" class="md-nav__link">
+    <span class="md-ellipsis">
+      CoordinateSystemAxis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CoordinateSystemAxis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystemAxis.abbreviation" class="md-nav__link">
+    <span class="md-ellipsis">
+      abbreviation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystemAxis.direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      direction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystemAxis.maximum_value" class="md-nav__link">
+    <span class="md-ellipsis">
+      maximum_value
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystemAxis.minimum_value" class="md-nav__link">
+    <span class="md-ellipsis">
+      minimum_value
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystemAxis.range_meaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      range_meaning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystemAxis.unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      unit
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CylindricalCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      CylindricalCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.EllipsoidalCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      EllipsoidalCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.LinearCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      LinearCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.ParametricCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParametricCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.PolarCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      PolarCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.RangeMeaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      RangeMeaning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RangeMeaning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.RangeMeaning.EXACT" class="md-nav__link">
+    <span class="md-ellipsis">
+      EXACT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.RangeMeaning.WRAPAROUND" class="md-nav__link">
+    <span class="md-ellipsis">
+      WRAPAROUND
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.SphericalCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      SphericalCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.TimeCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      TimeCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.VerticalCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      VerticalCS
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    datum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    operation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Util
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Util
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../util/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../util/measure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    measure (ISO 19103)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs" class="md-nav__link">
+    <span class="md-ellipsis">
+      cs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AffineCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      AffineCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      AxisDirection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="AxisDirection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.AFT" class="md-nav__link">
+    <span class="md-ellipsis">
+      AFT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.AWAY_FROM" class="md-nav__link">
+    <span class="md-ellipsis">
+      AWAY_FROM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.CLOCKWISE" class="md-nav__link">
+    <span class="md-ellipsis">
+      CLOCKWISE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.COLUMN_NEGATIVE" class="md-nav__link">
+    <span class="md-ellipsis">
+      COLUMN_NEGATIVE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.COLUMN_POSITIVE" class="md-nav__link">
+    <span class="md-ellipsis">
+      COLUMN_POSITIVE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.COUNTER_CLOCKWISE" class="md-nav__link">
+    <span class="md-ellipsis">
+      COUNTER_CLOCKWISE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.DISPLAY_DOWN" class="md-nav__link">
+    <span class="md-ellipsis">
+      DISPLAY_DOWN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.DISPLAY_LEFT" class="md-nav__link">
+    <span class="md-ellipsis">
+      DISPLAY_LEFT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.DISPLAY_RIGHT" class="md-nav__link">
+    <span class="md-ellipsis">
+      DISPLAY_RIGHT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.DISPLAY_UP" class="md-nav__link">
+    <span class="md-ellipsis">
+      DISPLAY_UP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.DOWN" class="md-nav__link">
+    <span class="md-ellipsis">
+      DOWN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.EAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      EAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.EAST_NORTH_EAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      EAST_NORTH_EAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.EAST_SOUTH_EAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      EAST_SOUTH_EAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.FORWARD" class="md-nav__link">
+    <span class="md-ellipsis">
+      FORWARD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.FUTURE" class="md-nav__link">
+    <span class="md-ellipsis">
+      FUTURE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.GEOCENTRIC_X" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEOCENTRIC_X
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.GEOCENTRIC_Y" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEOCENTRIC_Y
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.GEOCENTRIC_Z" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEOCENTRIC_Z
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.NORTH" class="md-nav__link">
+    <span class="md-ellipsis">
+      NORTH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.NORTH_EAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      NORTH_EAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.NORTH_NORTH_EAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      NORTH_NORTH_EAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.NORTH_NORTH_WEST" class="md-nav__link">
+    <span class="md-ellipsis">
+      NORTH_NORTH_WEST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.NORTH_WEST" class="md-nav__link">
+    <span class="md-ellipsis">
+      NORTH_WEST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.PAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      PAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.PORT" class="md-nav__link">
+    <span class="md-ellipsis">
+      PORT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.ROW_NEGATIVE" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROW_NEGATIVE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.ROW_POSITIVE" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROW_POSITIVE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.SOUTH" class="md-nav__link">
+    <span class="md-ellipsis">
+      SOUTH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.SOUTH_EAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      SOUTH_EAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.SOUTH_SOUTH_EAST" class="md-nav__link">
+    <span class="md-ellipsis">
+      SOUTH_SOUTH_EAST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.SOUTH_SOUTH_WEST" class="md-nav__link">
+    <span class="md-ellipsis">
+      SOUTH_SOUTH_WEST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.SOUTH_WEST" class="md-nav__link">
+    <span class="md-ellipsis">
+      SOUTH_WEST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.STARBOARD" class="md-nav__link">
+    <span class="md-ellipsis">
+      STARBOARD
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.TOWARDS" class="md-nav__link">
+    <span class="md-ellipsis">
+      TOWARDS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.UNSPECIFIED" class="md-nav__link">
+    <span class="md-ellipsis">
+      UNSPECIFIED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.UP" class="md-nav__link">
+    <span class="md-ellipsis">
+      UP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.WEST" class="md-nav__link">
+    <span class="md-ellipsis">
+      WEST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.WEST_NORTH_WEST" class="md-nav__link">
+    <span class="md-ellipsis">
+      WEST_NORTH_WEST
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.AxisDirection.WEST_SOUTH_WEST" class="md-nav__link">
+    <span class="md-ellipsis">
+      WEST_SOUTH_WEST
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CartesianCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      CartesianCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      CoordinateSystem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CoordinateSystem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystem.dimension" class="md-nav__link">
+    <span class="md-ellipsis">
+      dimension
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystem.axis" class="md-nav__link">
+    <span class="md-ellipsis">
+      axis
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystemAxis" class="md-nav__link">
+    <span class="md-ellipsis">
+      CoordinateSystemAxis
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CoordinateSystemAxis">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystemAxis.abbreviation" class="md-nav__link">
+    <span class="md-ellipsis">
+      abbreviation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystemAxis.direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      direction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystemAxis.maximum_value" class="md-nav__link">
+    <span class="md-ellipsis">
+      maximum_value
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystemAxis.minimum_value" class="md-nav__link">
+    <span class="md-ellipsis">
+      minimum_value
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystemAxis.range_meaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      range_meaning
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CoordinateSystemAxis.unit" class="md-nav__link">
+    <span class="md-ellipsis">
+      unit
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.CylindricalCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      CylindricalCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.EllipsoidalCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      EllipsoidalCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.LinearCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      LinearCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.ParametricCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      ParametricCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.PolarCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      PolarCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.RangeMeaning" class="md-nav__link">
+    <span class="md-ellipsis">
+      RangeMeaning
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RangeMeaning">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.RangeMeaning.EXACT" class="md-nav__link">
+    <span class="md-ellipsis">
+      EXACT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.RangeMeaning.WRAPAROUND" class="md-nav__link">
+    <span class="md-ellipsis">
+      WRAPAROUND
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.SphericalCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      SphericalCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.TimeCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      TimeCS
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.cs.VerticalCS" class="md-nav__link">
+    <span class="md-ellipsis">
+      VerticalCS
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="cs-module"><code>cs</code> module</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="opengis.referencing.cs"></a>
+    <div class="doc doc-contents first">
+
+        <p>This is the <code>cs</code> module.</p>
+<p>This module contains geographic metadata structures regarding coordinate
+systems derived from the ISO 19111 international standard.</p>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.cs.AffineCS" class="doc doc-heading">
+            <code>AffineCS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.cs.CoordinateSystem" href="#opengis.referencing.cs.CoordinateSystem">CoordinateSystem</a></code></p>
+
+
+        <p>A 2- or 3-dimensional coordinate system with straight axes that are not
+necessarily orthogonal.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/cs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">AffineCS</span><span class="p">(</span><span class="n">CoordinateSystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A 2- or 3-dimensional coordinate system with straight axes that are not</span>
+<span class="sd">    necessarily orthogonal.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.cs.AxisDirection" class="doc doc-heading">
+            <code>AxisDirection</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p>The direction of positive increase in the coordinate value for a
+coordinate system axis. This direction is exact in some cases, and is
+approximate in other cases.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/cs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 33</span>
+<span class="normal"> 34</span>
+<span class="normal"> 35</span>
+<span class="normal"> 36</span>
+<span class="normal"> 37</span>
+<span class="normal"> 38</span>
+<span class="normal"> 39</span>
+<span class="normal"> 40</span>
+<span class="normal"> 41</span>
+<span class="normal"> 42</span>
+<span class="normal"> 43</span>
+<span class="normal"> 44</span>
+<span class="normal"> 45</span>
+<span class="normal"> 46</span>
+<span class="normal"> 47</span>
+<span class="normal"> 48</span>
+<span class="normal"> 49</span>
+<span class="normal"> 50</span>
+<span class="normal"> 51</span>
+<span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">AxisDirection</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The direction of positive increase in the coordinate value for a</span>
+<span class="sd">    coordinate system axis. This direction is exact in some cases, and is</span>
+<span class="sd">    approximate in other cases.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">NORTH</span> <span class="o">=</span> <span class="s2">&quot;north&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Axis positive direction is north. In a geodetic or projected CRS, north is</span>
+<span class="sd">    defined through the geodetic reference frame. In an engineering CRS, north</span>
+<span class="sd">    may be defined with respect to an engineering object rather than a</span>
+<span class="sd">    geographical direction.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">NORTH_NORTH_EAST</span> <span class="o">=</span> <span class="s2">&quot;northNorthEast&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is approximately north-north-east.&quot;&quot;&quot;</span>
+
+    <span class="n">NORTH_EAST</span> <span class="o">=</span> <span class="s2">&quot;northEast&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is approximately north-east.&quot;&quot;&quot;</span>
+
+    <span class="n">EAST_NORTH_EAST</span> <span class="o">=</span> <span class="s2">&quot;eastNorthEast&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is approximately east-north-east.&quot;&quot;&quot;</span>
+
+    <span class="n">EAST</span> <span class="o">=</span> <span class="s2">&quot;east&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is ϖ/2 radians clockwise from north.&quot;&quot;&quot;</span>
+
+    <span class="n">EAST_SOUTH_EAST</span> <span class="o">=</span> <span class="s2">&quot;eastSouthEast&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is approximately east-south-east.&quot;&quot;&quot;</span>
+
+    <span class="n">SOUTH_EAST</span> <span class="o">=</span> <span class="s2">&quot;southEast&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is approximately south-east.&quot;&quot;&quot;</span>
+
+    <span class="n">SOUTH_SOUTH_EAST</span> <span class="o">=</span> <span class="s2">&quot;southSouthWest&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is approximately south-south-east.&quot;&quot;&quot;</span>
+
+    <span class="n">SOUTH</span> <span class="o">=</span> <span class="s2">&quot;south&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is ϖ radians clockwise from north.&quot;&quot;&quot;</span>
+
+    <span class="n">SOUTH_SOUTH_WEST</span> <span class="o">=</span> <span class="s2">&quot;southSouthWest&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is approximately south-south-west.&quot;&quot;&quot;</span>
+
+    <span class="n">SOUTH_WEST</span> <span class="o">=</span> <span class="s2">&quot;southWest&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is approximately south-west.&quot;&quot;&quot;</span>
+
+    <span class="n">WEST_SOUTH_WEST</span> <span class="o">=</span> <span class="s2">&quot;westSouthWest&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is approximately west-south-west.&quot;&quot;&quot;</span>
+
+    <span class="n">WEST</span> <span class="o">=</span> <span class="s2">&quot;west&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is 3ϖ/2 radians clockwise from north.&quot;&quot;&quot;</span>
+
+    <span class="n">WEST_NORTH_WEST</span> <span class="o">=</span> <span class="s2">&quot;westNorthWest&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is approximately west-north-west.&quot;&quot;&quot;</span>
+
+    <span class="n">NORTH_WEST</span> <span class="o">=</span> <span class="s2">&quot;northWest&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is approximately north-west.&quot;&quot;&quot;</span>
+
+    <span class="n">NORTH_NORTH_WEST</span> <span class="o">=</span> <span class="s2">&quot;northNorthWest&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is approximately north-north-west.&quot;&quot;&quot;</span>
+
+    <span class="n">UP</span> <span class="o">=</span> <span class="s2">&quot;up&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is up relative to gravity.&quot;&quot;&quot;</span>
+
+    <span class="n">DOWN</span> <span class="o">=</span> <span class="s2">&quot;down&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is down relative to gravity.&quot;&quot;&quot;</span>
+
+    <span class="n">GEOCENTRIC_X</span> <span class="o">=</span> <span class="s2">&quot;geocentricX&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Axis positive direction is in the equatorial plane from the centre of the</span>
+<span class="sd">    modelled Earth towards the intersection of the equator with the prime</span>
+<span class="sd">    meridian.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">GEOCENTRIC_Y</span> <span class="o">=</span> <span class="s2">&quot;geocentricY&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Axis positive direction is in the equatorial plane from the centre of the</span>
+<span class="sd">    modelled Earth towards the intersection of the equator and the meridian</span>
+<span class="sd">    ϖ/2 radians eastwards from the prime meridian.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">GEOCENTRIC_Z</span> <span class="o">=</span> <span class="s2">&quot;geocentricZ&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Axis positive direction is from the centre of the modelled Earth parallel</span>
+<span class="sd">    to its rotation axis and towards its north pole.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COLUMN_POSITIVE</span> <span class="o">=</span> <span class="s2">&quot;columnPositive&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is towards higher pixel column.&quot;&quot;&quot;</span>
+
+    <span class="n">COLUMN_NEGATIVE</span> <span class="o">=</span> <span class="s2">&quot;columnNegative&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is towards lower pixel column.&quot;&quot;&quot;</span>
+
+    <span class="n">ROW_POSITIVE</span> <span class="o">=</span> <span class="s2">&quot;rowPositive&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is towards higher pixel row.&quot;&quot;&quot;</span>
+
+    <span class="n">ROW_NEGATIVE</span> <span class="o">=</span> <span class="s2">&quot;rowNegative&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is towards lower pixel row.&quot;&quot;&quot;</span>
+
+    <span class="n">DISPLAY_RIGHT</span> <span class="o">=</span> <span class="s2">&quot;displayRight&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is right in display.&quot;&quot;&quot;</span>
+
+    <span class="n">DISPLAY_LEFT</span> <span class="o">=</span> <span class="s2">&quot;displayLeft&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is left in display.&quot;&quot;&quot;</span>
+
+    <span class="n">DISPLAY_UP</span> <span class="o">=</span> <span class="s2">&quot;displayUp&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Axis positive direction is towards top of approximately vertical display</span>
+<span class="sd">    surface.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">DISPLAY_DOWN</span> <span class="o">=</span> <span class="s2">&quot;displayDown&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Axis positive direction is towards bottom of approximately vertical</span>
+<span class="sd">    display surface.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">FORWARD</span> <span class="o">=</span> <span class="s2">&quot;forward&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Axis positive direction is forward; for an observer at the centre of the</span>
+<span class="sd">    object this is will be towards its front, bow or nose.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">AFT</span> <span class="o">=</span> <span class="s2">&quot;aft&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Axis positive direction is aft; for an observer at the centre of the</span>
+<span class="sd">    object this will be towards its back, stern or tail.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">PORT</span> <span class="o">=</span> <span class="s2">&quot;port&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Axis positive direction is port; for an observer at the centre of the</span>
+<span class="sd">    object this will be towards its left.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">STARBOARD</span> <span class="o">=</span> <span class="s2">&quot;starboard&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Axis positive direction is starboard; for an observer at the centre of the</span>
+<span class="sd">    object this will be towards its right.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CLOCKWISE</span> <span class="o">=</span> <span class="s2">&quot;clockwise&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is clockwise from a specified direction.&quot;&quot;&quot;</span>
+
+    <span class="n">COUNTER_CLOCKWISE</span> <span class="o">=</span> <span class="s2">&quot;counterclockwise&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Axis positive direction is counter clockwise from a specified direction.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">TOWARDS</span> <span class="o">=</span> <span class="s2">&quot;towards&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is towards the object.&quot;&quot;&quot;</span>
+
+    <span class="n">AWAY_FROM</span> <span class="o">=</span> <span class="s2">&quot;awayfrom&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is away from the object.&quot;&quot;&quot;</span>
+
+    <span class="n">FUTURE</span> <span class="o">=</span> <span class="s2">&quot;future&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Temporal axis positive direction is towards the future.&quot;&quot;&quot;</span>
+
+    <span class="n">PAST</span> <span class="o">=</span> <span class="s2">&quot;past&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Temporal axis positive direction is towards the past.&quot;&quot;&quot;</span>
+
+    <span class="n">UNSPECIFIED</span> <span class="o">=</span> <span class="s2">&quot;unspecified&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis positive direction is unspecified.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.AFT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">AFT</span> <span class="o">=</span> <span class="s1">&#39;aft&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is aft; for an observer at the centre of the
+object this will be towards its back, stern or tail.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.AWAY_FROM" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">AWAY_FROM</span> <span class="o">=</span> <span class="s1">&#39;awayfrom&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is away from the object.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.CLOCKWISE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">CLOCKWISE</span> <span class="o">=</span> <span class="s1">&#39;clockwise&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is clockwise from a specified direction.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.COLUMN_NEGATIVE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COLUMN_NEGATIVE</span> <span class="o">=</span> <span class="s1">&#39;columnNegative&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is towards lower pixel column.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.COLUMN_POSITIVE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COLUMN_POSITIVE</span> <span class="o">=</span> <span class="s1">&#39;columnPositive&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is towards higher pixel column.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.COUNTER_CLOCKWISE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COUNTER_CLOCKWISE</span> <span class="o">=</span> <span class="s1">&#39;counterclockwise&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is counter clockwise from a specified direction.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.DISPLAY_DOWN" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">DISPLAY_DOWN</span> <span class="o">=</span> <span class="s1">&#39;displayDown&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is towards bottom of approximately vertical
+display surface.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.DISPLAY_LEFT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">DISPLAY_LEFT</span> <span class="o">=</span> <span class="s1">&#39;displayLeft&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is left in display.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.DISPLAY_RIGHT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">DISPLAY_RIGHT</span> <span class="o">=</span> <span class="s1">&#39;displayRight&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is right in display.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.DISPLAY_UP" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">DISPLAY_UP</span> <span class="o">=</span> <span class="s1">&#39;displayUp&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is towards top of approximately vertical display
+surface.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.DOWN" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">DOWN</span> <span class="o">=</span> <span class="s1">&#39;down&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is down relative to gravity.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.EAST" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">EAST</span> <span class="o">=</span> <span class="s1">&#39;east&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is ϖ/2 radians clockwise from north.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.EAST_NORTH_EAST" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">EAST_NORTH_EAST</span> <span class="o">=</span> <span class="s1">&#39;eastNorthEast&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is approximately east-north-east.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.EAST_SOUTH_EAST" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">EAST_SOUTH_EAST</span> <span class="o">=</span> <span class="s1">&#39;eastSouthEast&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is approximately east-south-east.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.FORWARD" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">FORWARD</span> <span class="o">=</span> <span class="s1">&#39;forward&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is forward; for an observer at the centre of the
+object this is will be towards its front, bow or nose.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.FUTURE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">FUTURE</span> <span class="o">=</span> <span class="s1">&#39;future&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Temporal axis positive direction is towards the future.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.GEOCENTRIC_X" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">GEOCENTRIC_X</span> <span class="o">=</span> <span class="s1">&#39;geocentricX&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is in the equatorial plane from the centre of the
+modelled Earth towards the intersection of the equator with the prime
+meridian.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.GEOCENTRIC_Y" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">GEOCENTRIC_Y</span> <span class="o">=</span> <span class="s1">&#39;geocentricY&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is in the equatorial plane from the centre of the
+modelled Earth towards the intersection of the equator and the meridian
+ϖ/2 radians eastwards from the prime meridian.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.GEOCENTRIC_Z" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">GEOCENTRIC_Z</span> <span class="o">=</span> <span class="s1">&#39;geocentricZ&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is from the centre of the modelled Earth parallel
+to its rotation axis and towards its north pole.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.NORTH" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">NORTH</span> <span class="o">=</span> <span class="s1">&#39;north&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is north. In a geodetic or projected CRS, north is
+defined through the geodetic reference frame. In an engineering CRS, north
+may be defined with respect to an engineering object rather than a
+geographical direction.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.NORTH_EAST" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">NORTH_EAST</span> <span class="o">=</span> <span class="s1">&#39;northEast&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is approximately north-east.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.NORTH_NORTH_EAST" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">NORTH_NORTH_EAST</span> <span class="o">=</span> <span class="s1">&#39;northNorthEast&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is approximately north-north-east.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.NORTH_NORTH_WEST" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">NORTH_NORTH_WEST</span> <span class="o">=</span> <span class="s1">&#39;northNorthWest&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is approximately north-north-west.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.NORTH_WEST" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">NORTH_WEST</span> <span class="o">=</span> <span class="s1">&#39;northWest&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is approximately north-west.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.PAST" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PAST</span> <span class="o">=</span> <span class="s1">&#39;past&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Temporal axis positive direction is towards the past.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.PORT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PORT</span> <span class="o">=</span> <span class="s1">&#39;port&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is port; for an observer at the centre of the
+object this will be towards its left.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.ROW_NEGATIVE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ROW_NEGATIVE</span> <span class="o">=</span> <span class="s1">&#39;rowNegative&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is towards lower pixel row.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.ROW_POSITIVE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ROW_POSITIVE</span> <span class="o">=</span> <span class="s1">&#39;rowPositive&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is towards higher pixel row.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.SOUTH" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SOUTH</span> <span class="o">=</span> <span class="s1">&#39;south&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is ϖ radians clockwise from north.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.SOUTH_EAST" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SOUTH_EAST</span> <span class="o">=</span> <span class="s1">&#39;southEast&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is approximately south-east.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.SOUTH_SOUTH_EAST" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SOUTH_SOUTH_EAST</span> <span class="o">=</span> <span class="s1">&#39;southSouthWest&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is approximately south-south-east.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.SOUTH_SOUTH_WEST" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SOUTH_SOUTH_WEST</span> <span class="o">=</span> <span class="s1">&#39;southSouthWest&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is approximately south-south-west.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.SOUTH_WEST" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SOUTH_WEST</span> <span class="o">=</span> <span class="s1">&#39;southWest&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is approximately south-west.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.STARBOARD" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">STARBOARD</span> <span class="o">=</span> <span class="s1">&#39;starboard&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is starboard; for an observer at the centre of the
+object this will be towards its right.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.TOWARDS" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">TOWARDS</span> <span class="o">=</span> <span class="s1">&#39;towards&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is towards the object.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.UNSPECIFIED" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">UNSPECIFIED</span> <span class="o">=</span> <span class="s1">&#39;unspecified&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is unspecified.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.UP" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">UP</span> <span class="o">=</span> <span class="s1">&#39;up&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is up relative to gravity.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.WEST" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">WEST</span> <span class="o">=</span> <span class="s1">&#39;west&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is 3ϖ/2 radians clockwise from north.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.WEST_NORTH_WEST" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">WEST_NORTH_WEST</span> <span class="o">=</span> <span class="s1">&#39;westNorthWest&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is approximately west-north-west.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.AxisDirection.WEST_SOUTH_WEST" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">WEST_SOUTH_WEST</span> <span class="o">=</span> <span class="s1">&#39;westSouthWest&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Axis positive direction is approximately west-south-west.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.cs.CartesianCS" class="doc doc-heading">
+            <code>CartesianCS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.cs.CoordinateSystem" href="#opengis.referencing.cs.CoordinateSystem">CoordinateSystem</a></code></p>
+
+
+        <p>A 2- or 3-dimensional coordinate system with orthogonal straight axes. All
+axes shall have the same length unit of
+measure.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/cs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CartesianCS</span><span class="p">(</span><span class="n">CoordinateSystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A 2- or 3-dimensional coordinate system with orthogonal straight axes. All</span>
+<span class="sd">    axes shall have the same length unit of</span>
+<span class="sd">    measure.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.cs.CoordinateSystem" class="doc doc-heading">
+            <code>CoordinateSystem</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.datum.IdentifiedObject" href="../common/#opengis.referencing.common.IdentifiedObject">IdentifiedObject</a></code></p>
+
+
+        <p>The set of coordinate system axes that spans a given coordinate space.
+A coordinate system (CS) is derived from a set of (mathematical) rules for
+specifying how coordinates in a given space are to be assigned to points.
+The coordinate values in a coordinate tuple shall be recorded in the order
+in which the coordinate system axes associations are recorded, whenever
+those coordinates use a coordinate reference system that uses this
+coordinate system.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/cs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CoordinateSystem</span><span class="p">(</span><span class="n">IdentifiedObject</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The set of coordinate system axes that spans a given coordinate space.</span>
+<span class="sd">    A coordinate system (CS) is derived from a set of (mathematical) rules for</span>
+<span class="sd">    specifying how coordinates in a given space are to be assigned to points.</span>
+<span class="sd">    The coordinate values in a coordinate tuple shall be recorded in the order</span>
+<span class="sd">    in which the coordinate system axes associations are recorded, whenever</span>
+<span class="sd">    those coordinates use a coordinate reference system that uses this</span>
+<span class="sd">    coordinate system.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">dimension</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the dimension of the coordinate system.</span>
+
+<span class="sd">        :return: The dimension of the coordinate system.</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dimension</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CoordinateSystemAxis</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the axis for this coordinate system at the specified dimension.</span>
+
+<span class="sd">        :param dimension: The zero based index of axis.</span>
+<span class="sd">        :type dimension: int</span>
+<span class="sd">        :return: The axis at the specified dimension.</span>
+<span class="sd">        :rtype: CoordinateSystemAxis</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.CoordinateSystem.dimension" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dimension</span><span class="p">:</span> <span class="nb">int</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the dimension of the coordinate system.</p>
+<p>:return: The dimension of the coordinate system.
+:rtype: int</p>
+    </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="opengis.referencing.cs.CoordinateSystem.axis" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">axis</span><span class="p">(</span><span class="n">dimension</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the axis for this coordinate system at the specified dimension.</p>
+<p>:param dimension: The zero based index of axis.
+:type dimension: int
+:return: The axis at the specified dimension.
+:rtype: CoordinateSystemAxis</p>
+
+            <details class="quote">
+              <summary>Source code in <code>opengis/referencing/cs.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">def</span> <span class="nf">axis</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">dimension</span><span class="p">:</span> <span class="nb">int</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CoordinateSystemAxis</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns the axis for this coordinate system at the specified dimension.</span>
+
+<span class="sd">    :param dimension: The zero based index of axis.</span>
+<span class="sd">    :type dimension: int</span>
+<span class="sd">    :return: The axis at the specified dimension.</span>
+<span class="sd">    :rtype: CoordinateSystemAxis</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.cs.CoordinateSystemAxis" class="doc doc-heading">
+            <code>CoordinateSystemAxis</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.datum.IdentifiedObject" href="../common/#opengis.referencing.common.IdentifiedObject">IdentifiedObject</a></code></p>
+
+
+        <p>Definition of a coordinate system axis.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/cs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CoordinateSystemAxis</span><span class="p">(</span><span class="n">IdentifiedObject</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Definition of a coordinate system axis.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">abbreviation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The abbreviation used for this coordinate system axes.</span>
+<span class="sd">        This abbreviation is also used to identify the coordinate in a</span>
+<span class="sd">        coordinate tuple.</span>
+
+<span class="sd">        :return: The coordinate system axis abbreviation.</span>
+<span class="sd">        :rtype: int</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">direction</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">AxisDirection</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Direction of this coordinate system axis.</span>
+
+<span class="sd">        :return: The coordinate system axis direction.</span>
+<span class="sd">        :rtype: AxisDirection</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">unit</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the unit of measure used for this coordinate system axis.</span>
+<span class="sd">        The value of a coordinate in a coordinate tuple shall be recorded</span>
+<span class="sd">        using this unit of measure, whenever those coordinates use a</span>
+<span class="sd">        coordinate reference system that uses a coordinate system that uses</span>
+<span class="sd">        this axis.</span>
+
+<span class="sd">        :return: The coordinate system axis unit.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">minimum_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the minimum value normally allowed for this axis, in the unit</span>
+<span class="sd">        of measure for the axis. If there is no minimum value, then this</span>
+<span class="sd">        method returns negative infinity.</span>
+
+<span class="sd">        :return: The minimum value, or the negative infinity if none.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;-inf&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">maximum_value</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the maximum value normally allowed for this axis, in the unit</span>
+<span class="sd">        of measure for the axis. If there is no maximum value, then this</span>
+<span class="sd">        method returns positive infinity.</span>
+
+<span class="sd">        :return: The maximum value, or the positive infinity if none.</span>
+<span class="sd">        :rtype: float</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">return</span> <span class="nb">float</span><span class="p">(</span><span class="s2">&quot;inf&quot;</span><span class="p">)</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">range_meaning</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">RangeMeaning</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the meaning of axis value range specified by the minimum and</span>
+<span class="sd">        maximum values. This element shall be omitted when both minimum and</span>
+<span class="sd">        maximum values are omitted. It may be included when minimum and/or</span>
+<span class="sd">        maximum values are included. If this element is omitted when minimum</span>
+<span class="sd">        or maximum values are included, the meaning is unspecified.</span>
+
+<span class="sd">        :return: The range meaning, or null in none.</span>
+<span class="sd">        :rtype: RangeMeaning</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.CoordinateSystemAxis.abbreviation" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">abbreviation</span><span class="p">:</span> <span class="nb">str</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The abbreviation used for this coordinate system axes.
+This abbreviation is also used to identify the coordinate in a
+coordinate tuple.</p>
+<p>:return: The coordinate system axis abbreviation.
+:rtype: int</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.CoordinateSystemAxis.direction" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">direction</span><span class="p">:</span> <span class="n">AxisDirection</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Direction of this coordinate system axis.</p>
+<p>:return: The coordinate system axis direction.
+:rtype: AxisDirection</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.CoordinateSystemAxis.maximum_value" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">maximum_value</span><span class="p">:</span> <span class="nb">float</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the maximum value normally allowed for this axis, in the unit
+of measure for the axis. If there is no maximum value, then this
+method returns positive infinity.</p>
+<p>:return: The maximum value, or the positive infinity if none.
+:rtype: float</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.CoordinateSystemAxis.minimum_value" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">minimum_value</span><span class="p">:</span> <span class="nb">float</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the minimum value normally allowed for this axis, in the unit
+of measure for the axis. If there is no minimum value, then this
+method returns negative infinity.</p>
+<p>:return: The minimum value, or the negative infinity if none.
+:rtype: float</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.CoordinateSystemAxis.range_meaning" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">range_meaning</span><span class="p">:</span> <span class="n">RangeMeaning</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the meaning of axis value range specified by the minimum and
+maximum values. This element shall be omitted when both minimum and
+maximum values are omitted. It may be included when minimum and/or
+maximum values are included. If this element is omitted when minimum
+or maximum values are included, the meaning is unspecified.</p>
+<p>:return: The range meaning, or null in none.
+:rtype: RangeMeaning</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.CoordinateSystemAxis.unit" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">unit</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the unit of measure used for this coordinate system axis.
+The value of a coordinate in a coordinate tuple shall be recorded
+using this unit of measure, whenever those coordinates use a
+coordinate reference system that uses a coordinate system that uses
+this axis.</p>
+<p>:return: The coordinate system axis unit.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.cs.CylindricalCS" class="doc doc-heading">
+            <code>CylindricalCS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.cs.CoordinateSystem" href="#opengis.referencing.cs.CoordinateSystem">CoordinateSystem</a></code></p>
+
+
+        <p>A 3-dimensional coordinate system consisting of a PolarCS extended by a
+straight axis perpendicular to the plane
+spanned by the polar CS.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/cs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CylindricalCS</span><span class="p">(</span><span class="n">CoordinateSystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A 3-dimensional coordinate system consisting of a PolarCS extended by a</span>
+<span class="sd">    straight axis perpendicular to the plane</span>
+<span class="sd">    spanned by the polar CS.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.cs.EllipsoidalCS" class="doc doc-heading">
+            <code>EllipsoidalCS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.cs.CoordinateSystem" href="#opengis.referencing.cs.CoordinateSystem">CoordinateSystem</a></code></p>
+
+
+        <p>A 2- or 3-dimensional coordinate system in which position is specified by
+geodetic latitude, geodetic longitude,
+and (in the 3D case) ellipsoidal height.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/cs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">EllipsoidalCS</span><span class="p">(</span><span class="n">CoordinateSystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A 2- or 3-dimensional coordinate system in which position is specified by</span>
+<span class="sd">    geodetic latitude, geodetic longitude,</span>
+<span class="sd">    and (in the 3D case) ellipsoidal height.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.cs.LinearCS" class="doc doc-heading">
+            <code>LinearCS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.cs.CoordinateSystem" href="#opengis.referencing.cs.CoordinateSystem">CoordinateSystem</a></code></p>
+
+
+        <p>A 1-dimensional coordinate system that consists of the points that lie on
+the single axis described. The associated coordinate is the distance -
+with or without offset - from the origin point, specified through the
+datum definition, to the point along the axis.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/cs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">LinearCS</span><span class="p">(</span><span class="n">CoordinateSystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A 1-dimensional coordinate system that consists of the points that lie on</span>
+<span class="sd">    the single axis described. The associated coordinate is the distance -</span>
+<span class="sd">    with or without offset - from the origin point, specified through the</span>
+<span class="sd">    datum definition, to the point along the axis.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.cs.ParametricCS" class="doc doc-heading">
+            <code>ParametricCS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.cs.CoordinateSystem" href="#opengis.referencing.cs.CoordinateSystem">CoordinateSystem</a></code></p>
+
+
+        <p>A 1-dimensional coordinate system containing a single axis. This
+coordinate system uses parameter values or functions to describe the
+position of a point.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/cs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ParametricCS</span><span class="p">(</span><span class="n">CoordinateSystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A 1-dimensional coordinate system containing a single axis. This</span>
+<span class="sd">    coordinate system uses parameter values or functions to describe the</span>
+<span class="sd">    position of a point.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.cs.PolarCS" class="doc doc-heading">
+            <code>PolarCS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.cs.CoordinateSystem" href="#opengis.referencing.cs.CoordinateSystem">CoordinateSystem</a></code></p>
+
+
+        <p>A 2-dimensional coordinate system in which position is specified by the
+distance from the origin and the angle between the line from the origin to
+a point and a reference direction.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/cs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">PolarCS</span><span class="p">(</span><span class="n">CoordinateSystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A 2-dimensional coordinate system in which position is specified by the</span>
+<span class="sd">    distance from the origin and the angle between the line from the origin to</span>
+<span class="sd">    a point and a reference direction.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.cs.RangeMeaning" class="doc doc-heading">
+            <code>RangeMeaning</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p>Meaning of the axis value range specified through minimum value and
+maximum value.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/cs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">RangeMeaning</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Meaning of the axis value range specified through minimum value and</span>
+<span class="sd">    maximum value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">EXACT</span> <span class="o">=</span> <span class="s2">&quot;exact&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Any value between and including minimumValue and maximumValue is valid.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">WRAPAROUND</span> <span class="o">=</span> <span class="s2">&quot;wraparound&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The axis is continuous with values wrapping around at the minimum_value</span>
+<span class="sd">    and maximum_value. Values with the same meaning repeat modulo the</span>
+<span class="sd">    difference between maximum_value and minimum_value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.RangeMeaning.EXACT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">EXACT</span> <span class="o">=</span> <span class="s1">&#39;exact&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Any value between and including minimumValue and maximumValue is valid.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.cs.RangeMeaning.WRAPAROUND" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">WRAPAROUND</span> <span class="o">=</span> <span class="s1">&#39;wraparound&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The axis is continuous with values wrapping around at the minimum_value
+and maximum_value. Values with the same meaning repeat modulo the
+difference between maximum_value and minimum_value.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.cs.SphericalCS" class="doc doc-heading">
+            <code>SphericalCS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.cs.CoordinateSystem" href="#opengis.referencing.cs.CoordinateSystem">CoordinateSystem</a></code></p>
+
+
+        <p>A 3-dimensional coordinate system with one distance measured from the
+origin and two angular coordinates. Not to be confused with an
+EllipsoidalCS based on an ellipsoid "degenerated" into a sphere.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/cs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SphericalCS</span><span class="p">(</span><span class="n">CoordinateSystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A 3-dimensional coordinate system with one distance measured from the</span>
+<span class="sd">    origin and two angular coordinates. Not to be confused with an</span>
+<span class="sd">    EllipsoidalCS based on an ellipsoid &quot;degenerated&quot; into a sphere.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.cs.TimeCS" class="doc doc-heading">
+            <code>TimeCS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.cs.CoordinateSystem" href="#opengis.referencing.cs.CoordinateSystem">CoordinateSystem</a></code></p>
+
+
+        <p>A 1-dimensional coordinate system containing a single time axis. This
+coordinate system is used to describe the temporal position of a point in
+the specified time units from a specified time origin.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/cs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TimeCS</span><span class="p">(</span><span class="n">CoordinateSystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A 1-dimensional coordinate system containing a single time axis. This</span>
+<span class="sd">    coordinate system is used to describe the temporal position of a point in</span>
+<span class="sd">    the specified time units from a specified time origin.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.cs.VerticalCS" class="doc doc-heading">
+            <code>VerticalCS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.cs.CoordinateSystem" href="#opengis.referencing.cs.CoordinateSystem">CoordinateSystem</a></code></p>
+
+
+        <p>A 1-dimensional coordinate system used to record the heights or depths of
+points. Such a coordinate system is usually dependent on the Earth's
+gravity field, perhaps loosely as when atmospheric pressure is the basis
+for the vertical coordinate system axis. An exact definition is
+deliberately not provided as the complexities of the subject fall outside
+the scope of the ISO 19111 specification.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/cs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span>
+<span class="normal">405</span>
+<span class="normal">406</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">VerticalCS</span><span class="p">(</span><span class="n">CoordinateSystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A 1-dimensional coordinate system used to record the heights or depths of</span>
+<span class="sd">    points. Such a coordinate system is usually dependent on the Earth&#39;s</span>
+<span class="sd">    gravity field, perhaps loosely as when atmospheric pressure is the basis</span>
+<span class="sd">    for the vertical coordinate system axis. An exact definition is</span>
+<span class="sd">    deliberately not provided as the complexities of the subject fall outside</span>
+<span class="sd">    the scope of the ISO 19111 specification.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,4329 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.geoapi.org/python/geometry/primitive/">
+      
+      
+        <link rel="prev" href="../overview/">
+      
+      
+        <link rel="next" href="../../metadata/overview/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>primitive - GeoAPI for Python</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#primitive-module" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="GeoAPI for Python" class="md-header__button md-logo" aria-label="GeoAPI for Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GeoAPI for Python
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              primitive
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="GeoAPI for Python" class="md-nav__button md-logo" aria-label="GeoAPI for Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GeoAPI for Python
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GeoAPI Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Geometry (ISO 19107)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Geometry (ISO 19107)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    primitive
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    primitive
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive" class="md-nav__link">
+    <span class="md-ellipsis">
+      primitive
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Bearing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bearing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bearing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Bearing.angle" class="md-nav__link">
+    <span class="md-ellipsis">
+      angle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Bearing.direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      direction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Bearing.reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      reference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Bearing.rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      rotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Bearing.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.CurveRelativeDirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      CurveRelativeDirection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.DirectPosition" class="md-nav__link">
+    <span class="md-ellipsis">
+      DirectPosition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DirectPosition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.DirectPosition.coordinate" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.DirectPosition.coordinate_reference_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_reference_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.DirectPosition.dimension" class="md-nav__link">
+    <span class="md-ellipsis">
+      dimension
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Envelope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Envelope
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Envelope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Envelope.lower_corner" class="md-nav__link">
+    <span class="md-ellipsis">
+      lower_corner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Envelope.upper_corner" class="md-nav__link">
+    <span class="md-ellipsis">
+      upper_corner
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.FixedDirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      FixedDirection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Geometry
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Geometry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Geometry.coordinate_reference_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_reference_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Geometry.is_empty" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_empty
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Point
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Point">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Point.boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      boundary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Point.position" class="md-nav__link">
+    <span class="md-ellipsis">
+      position
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Point.bearing" class="md-nav__link">
+    <span class="md-ellipsis">
+      bearing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Point.point_at_distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      point_at_distance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Point.vector_to_point" class="md-nav__link">
+    <span class="md-ellipsis">
+      vector_to_point
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Primitive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primitive
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Primitive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Primitive.segment" class="md-nav__link">
+    <span class="md-ellipsis">
+      segment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.ReferenceDirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReferenceDirection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.RelativeDirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      RelativeDirection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rotation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.TransfiniteSetOfDirectPositions" class="md-nav__link">
+    <span class="md-ellipsis">
+      TransfiniteSetOfDirectPositions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TransfiniteSetOfDirectPositions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.TransfiniteSetOfDirectPositions.contains" class="md-nav__link">
+    <span class="md-ellipsis">
+      contains
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector.coordinate_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector.dimension" class="md-nav__link">
+    <span class="md-ellipsis">
+      dimension
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector.offsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      offsets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector.origin" class="md-nav__link">
+    <span class="md-ellipsis">
+      origin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector.cross_product" class="md-nav__link">
+    <span class="md-ellipsis">
+      cross_product
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector.dot_product" class="md-nav__link">
+    <span class="md-ellipsis">
+      dot_product
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Naming (ISO 19103) and Metadata (ISO 19115)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Naming (ISO 19103) and Metadata (ISO 19115)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/acquisition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acquisition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/base/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/citation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    citation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/constraints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    constraints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/content/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    content
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/distribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    distribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/extension/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    extension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/extent/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    extent
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/identification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    identification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/lineage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lineage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/maintenance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    maintenance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/naming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    naming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/quality/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/representation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    representation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/service/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    service
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Referencing (ISO 19111)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Referencing (ISO 19111)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/common/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    common
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/coordinate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    coordinate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/crs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    crs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/cs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/datum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    datum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/operation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    operation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Util
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Util
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../util/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../util/measure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    measure (ISO 19103)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive" class="md-nav__link">
+    <span class="md-ellipsis">
+      primitive
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Bearing" class="md-nav__link">
+    <span class="md-ellipsis">
+      Bearing
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Bearing">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Bearing.angle" class="md-nav__link">
+    <span class="md-ellipsis">
+      angle
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Bearing.direction" class="md-nav__link">
+    <span class="md-ellipsis">
+      direction
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Bearing.reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      reference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Bearing.rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      rotation
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Bearing.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.CurveRelativeDirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      CurveRelativeDirection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.DirectPosition" class="md-nav__link">
+    <span class="md-ellipsis">
+      DirectPosition
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DirectPosition">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.DirectPosition.coordinate" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.DirectPosition.coordinate_reference_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_reference_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.DirectPosition.dimension" class="md-nav__link">
+    <span class="md-ellipsis">
+      dimension
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Envelope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Envelope
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Envelope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Envelope.lower_corner" class="md-nav__link">
+    <span class="md-ellipsis">
+      lower_corner
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Envelope.upper_corner" class="md-nav__link">
+    <span class="md-ellipsis">
+      upper_corner
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.FixedDirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      FixedDirection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      Geometry
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Geometry">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Geometry.coordinate_reference_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_reference_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Geometry.is_empty" class="md-nav__link">
+    <span class="md-ellipsis">
+      is_empty
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Point" class="md-nav__link">
+    <span class="md-ellipsis">
+      Point
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Point">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Point.boundary" class="md-nav__link">
+    <span class="md-ellipsis">
+      boundary
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Point.position" class="md-nav__link">
+    <span class="md-ellipsis">
+      position
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Point.bearing" class="md-nav__link">
+    <span class="md-ellipsis">
+      bearing
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Point.point_at_distance" class="md-nav__link">
+    <span class="md-ellipsis">
+      point_at_distance
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Point.vector_to_point" class="md-nav__link">
+    <span class="md-ellipsis">
+      vector_to_point
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Primitive" class="md-nav__link">
+    <span class="md-ellipsis">
+      Primitive
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Primitive">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Primitive.segment" class="md-nav__link">
+    <span class="md-ellipsis">
+      segment
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.ReferenceDirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReferenceDirection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.RelativeDirection" class="md-nav__link">
+    <span class="md-ellipsis">
+      RelativeDirection
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Rotation" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rotation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.TransfiniteSetOfDirectPositions" class="md-nav__link">
+    <span class="md-ellipsis">
+      TransfiniteSetOfDirectPositions
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TransfiniteSetOfDirectPositions">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.TransfiniteSetOfDirectPositions.contains" class="md-nav__link">
+    <span class="md-ellipsis">
+      contains
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector" class="md-nav__link">
+    <span class="md-ellipsis">
+      Vector
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Vector">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector.coordinate_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector.dimension" class="md-nav__link">
+    <span class="md-ellipsis">
+      dimension
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector.offsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      offsets
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector.origin" class="md-nav__link">
+    <span class="md-ellipsis">
+      origin
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector.__init__" class="md-nav__link">
+    <span class="md-ellipsis">
+      __init__
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector.cross_product" class="md-nav__link">
+    <span class="md-ellipsis">
+      cross_product
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.geometry.primitive.Vector.dot_product" class="md-nav__link">
+    <span class="md-ellipsis">
+      dot_product
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="primitive-module"><code>primitive</code> module</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="opengis.geometry.primitive"></a>
+    <div class="doc doc-contents first">
+
+        <p>This is the <code>primitive</code> module.</p>
+<p>This module contains primitive geometry data structures derived from
+the ISO 19107 international standard.</p>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.geometry.primitive.Bearing" class="doc doc-heading">
+            <code>Bearing</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>The Bearing data type indicates a direction. The azimuth can take one
+of two forms forms:</p>
+<ul>
+<li>
+<p>a set of angles, one of which is a plane azimuth and the second a
+  measure of altitude (positive above the horizontal, negative below
+  the horizon). above the horizontal, negative below the horizon),
+  essentially by creating a spherical spherical coordinate system;</p>
+</li>
+<li>
+<p>a directional vector derived from the coordinate system at the
+  initial point, a unit vector with the direction associated with
+  the set of angles.</p>
+</li>
+</ul>
+<p>Since the two types of measurement are identical, the azimuth values
+are the same, but the interpretations will depend on the usage (usually
+a reference direction, the offset “0”). will depend on usage (usually a
+reference direction, offset “0”, and a direction of rotation, clockwise).</p>
+<p>The value of the Bearing data type can only be valid at the point from
+which the measurement is taken. The common “parallel” transformation of
+vectors from one point to another is only valid if the
+<code>GeometricReferenceSurface</code> used is planar (i.e. Cartesian and, therefore,
+Euclidean). The fundamental problem is that the sphere has no universally
+valid 2D world coordinate system for its tangent spaces. Using a fixed
+direction reference such as “true north” does allow some translation,
+however, if the reference exists and is unique at a given position.
+For example, north does not exist at the North Pole and is not unique at
+the South Pole.</p>
+<p>Azimuths can be measured in both directions, as absolute values (such as
+true north, see azimuth) or relative (such as “before” or “after”).</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Bearing</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The Bearing data type indicates a direction. The azimuth can take one</span>
+<span class="sd">    of two forms forms:</span>
+
+<span class="sd">    - a set of angles, one of which is a plane azimuth and the second a</span>
+<span class="sd">      measure of altitude (positive above the horizontal, negative below</span>
+<span class="sd">      the horizon). above the horizontal, negative below the horizon),</span>
+<span class="sd">      essentially by creating a spherical spherical coordinate system;</span>
+
+<span class="sd">    - a directional vector derived from the coordinate system at the</span>
+<span class="sd">      initial point, a unit vector with the direction associated with</span>
+<span class="sd">      the set of angles.</span>
+
+<span class="sd">    Since the two types of measurement are identical, the azimuth values</span>
+<span class="sd">    are the same, but the interpretations will depend on the usage (usually</span>
+<span class="sd">    a reference direction, the offset “0”). will depend on usage (usually a</span>
+<span class="sd">    reference direction, offset “0”, and a direction of rotation, clockwise).</span>
+
+<span class="sd">    The value of the Bearing data type can only be valid at the point from</span>
+<span class="sd">    which the measurement is taken. The common “parallel” transformation of</span>
+<span class="sd">    vectors from one point to another is only valid if the</span>
+<span class="sd">    `GeometricReferenceSurface` used is planar (i.e. Cartesian and, therefore,</span>
+<span class="sd">    Euclidean). The fundamental problem is that the sphere has no universally</span>
+<span class="sd">    valid 2D world coordinate system for its tangent spaces. Using a fixed</span>
+<span class="sd">    direction reference such as “true north” does allow some translation,</span>
+<span class="sd">    however, if the reference exists and is unique at a given position.</span>
+<span class="sd">    For example, north does not exist at the North Pole and is not unique at</span>
+<span class="sd">    the South Pole.</span>
+
+<span class="sd">    Azimuths can be measured in both directions, as absolute values (such as</span>
+<span class="sd">    true north, see azimuth) or relative (such as “before” or “after”).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">v</span><span class="p">:</span> <span class="s1">&#39;Vector&#39;</span><span class="p">,</span>
+                 <span class="n">reference</span><span class="p">:</span> <span class="n">ReferenceDirection</span> <span class="o">|</span>
+                    <span class="n">CurveRelativeDirection</span> <span class="o">|</span>
+                    <span class="n">RelativeDirection</span> <span class="o">|</span>
+                    <span class="n">FixedDirection</span><span class="p">,</span>
+                 <span class="n">rotation</span><span class="p">:</span> <span class="n">Rotation</span><span class="p">,</span>
+                 <span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The default azimuth constructor considers a non-zero vector at a</span>
+<span class="sd">        point and creates an azimuth at that point, with the classic default</span>
+<span class="sd">        values for the most common fixed azimuth.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">angle</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="s1">&#39;Angle&#39;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        In this variant of Bearing, generally used for 2D coordinate systems,</span>
+<span class="sd">        the first angle (azimuth) is measured from a coordinate axis (usually</span>
+<span class="sd">        north) in a clockwise direction, parallel to the tangent plane of the</span>
+<span class="sd">        reference surface. Given two angles, the second angle (altitude)</span>
+<span class="sd">        generally represents the angle above (for positive angles) or below</span>
+<span class="sd">        (for negative angles) a local plane parallel to the tangent plane</span>
+<span class="sd">        of the reference surface.</span>
+
+<span class="sd">        NOTE: 1 or more angles should be returned.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">direction</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;Vector&#39;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        In this variant of Bearing, generally used for 3D coordinate systems,</span>
+<span class="sd">        the direction is expressed as an arbitrary vector in the</span>
+<span class="sd">        coordinate system.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">reference</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ReferenceDirection</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The reference attribute is the direction from which the azimuth is</span>
+<span class="sd">        measured, i.e. the direction of a positive measurement. Most systems</span>
+<span class="sd">        can use a negative number to express a measurement opposite to the</span>
+<span class="sd">        default rotation.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">rotation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Rotation</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The rotation attribute specifies the direction from which the azimuth</span>
+<span class="sd">        is measured.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.Bearing.angle" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">angle</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Angle</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>In this variant of Bearing, generally used for 2D coordinate systems,
+the first angle (azimuth) is measured from a coordinate axis (usually
+north) in a clockwise direction, parallel to the tangent plane of the
+reference surface. Given two angles, the second angle (altitude)
+generally represents the angle above (for positive angles) or below
+(for negative angles) a local plane parallel to the tangent plane
+of the reference surface.</p>
+<p>NOTE: 1 or more angles should be returned.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.Bearing.direction" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">direction</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Vector</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>In this variant of Bearing, generally used for 3D coordinate systems,
+the direction is expressed as an arbitrary vector in the
+coordinate system.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.Bearing.reference" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">reference</span><span class="p">:</span> <span class="n">ReferenceDirection</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The reference attribute is the direction from which the azimuth is
+measured, i.e. the direction of a positive measurement. Most systems
+can use a negative number to express a measurement opposite to the
+default rotation.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.Bearing.rotation" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">rotation</span><span class="p">:</span> <span class="n">Rotation</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The rotation attribute specifies the direction from which the azimuth
+is measured.</p>
+    </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="opengis.geometry.primitive.Bearing.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">v</span><span class="p">,</span> <span class="n">reference</span><span class="p">,</span> <span class="n">rotation</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The default azimuth constructor considers a non-zero vector at a
+point and creates an azimuth at that point, with the classic default
+values for the most common fixed azimuth.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+             <span class="n">v</span><span class="p">:</span> <span class="s1">&#39;Vector&#39;</span><span class="p">,</span>
+             <span class="n">reference</span><span class="p">:</span> <span class="n">ReferenceDirection</span> <span class="o">|</span>
+                <span class="n">CurveRelativeDirection</span> <span class="o">|</span>
+                <span class="n">RelativeDirection</span> <span class="o">|</span>
+                <span class="n">FixedDirection</span><span class="p">,</span>
+             <span class="n">rotation</span><span class="p">:</span> <span class="n">Rotation</span><span class="p">,</span>
+             <span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The default azimuth constructor considers a non-zero vector at a</span>
+<span class="sd">    point and creates an azimuth at that point, with the classic default</span>
+<span class="sd">    values for the most common fixed azimuth.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.geometry.primitive.CurveRelativeDirection" class="doc doc-heading">
+            <code>CurveRelativeDirection</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p><code>CurveRelativeDirection</code> refers to the vectors associated with
+a curve. Some common vector directions are:</p>
+<pre><code>- tangent, the direction in which the curve points;
+- the inverse tangent, i.e. the opposite of the tangent;
+- the binormal, the direction towards the center of curvature, i.e.
+    the inside of the curve;
+- the inverse binormal (reverseBiNormal), the opposite of the
+    binormal, on the outside of the curve;
+- leftNormal, to the left of the tangent;
+- rightNormal, to the right of the tangent;
+- upNormal, relative to the reference surface;
+- downNormal, the opposite of upNormal.
+</code></pre>
+<p>These values can be used to extend or replace the 2D directions
+of <code>RelativeDirection</code>.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CurveRelativeDirection</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    `CurveRelativeDirection` refers to the vectors associated with</span>
+<span class="sd">    a curve. Some common vector directions are:</span>
+
+<span class="sd">        - tangent, the direction in which the curve points;</span>
+<span class="sd">        - the inverse tangent, i.e. the opposite of the tangent;</span>
+<span class="sd">        - the binormal, the direction towards the center of curvature, i.e.</span>
+<span class="sd">            the inside of the curve;</span>
+<span class="sd">        - the inverse binormal (reverseBiNormal), the opposite of the</span>
+<span class="sd">            binormal, on the outside of the curve;</span>
+<span class="sd">        - leftNormal, to the left of the tangent;</span>
+<span class="sd">        - rightNormal, to the right of the tangent;</span>
+<span class="sd">        - upNormal, relative to the reference surface;</span>
+<span class="sd">        - downNormal, the opposite of upNormal.</span>
+
+<span class="sd">    These values can be used to extend or replace the 2D directions</span>
+<span class="sd">    of `RelativeDirection`.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">TANGENT</span> <span class="o">=</span> <span class="s2">&quot;tangent&quot;</span>
+    <span class="n">REVERSE_TANGENT</span> <span class="o">=</span> <span class="s2">&quot;reverseTangent&quot;</span>
+    <span class="n">NORMAL</span> <span class="o">=</span> <span class="s2">&quot;normal&quot;</span>
+    <span class="n">REVERSE_NORMAL</span> <span class="o">=</span> <span class="s2">&quot;reverseNormal&quot;</span>
+    <span class="n">BINORMAL</span> <span class="o">=</span> <span class="s2">&quot;biNormal&quot;</span>
+    <span class="n">REVERSE_BINORMAL</span> <span class="o">=</span> <span class="s2">&quot;reverseBiNormal&quot;</span>
+    <span class="n">LEFT_NORMAL</span> <span class="o">=</span> <span class="s2">&quot;leftNormal&quot;</span>
+    <span class="n">RIGHT_NORMAL</span> <span class="o">=</span> <span class="s2">&quot;rightNormal&quot;</span>
+    <span class="n">UP_NORMAL</span> <span class="o">=</span> <span class="s2">&quot;upNormal&quot;</span>
+    <span class="n">DOWN_NORMAL</span> <span class="o">=</span> <span class="s2">&quot;downNormal&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.geometry.primitive.DirectPosition" class="doc doc-heading">
+            <code>DirectPosition</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>Holds the coordinates for a position within some coordinate
+reference system.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DirectPosition</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Holds the coordinates for a position within some coordinate</span>
+<span class="sd">    reference system.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">coordinate</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        A sequence of real numbers that hold the coordinate values for this</span>
+<span class="sd">        position in the specified reference system.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">coordinate_reference_system</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;CoordinateReferenceSystem&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The coordinate reference system in which the coordinate tuple is given.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">dimension</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;The length of coordinate sequence (the number of entries).&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.DirectPosition.coordinate" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">coordinate</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">int</span> <span class="o">|</span> <span class="nb">float</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>A sequence of real numbers that hold the coordinate values for this
+position in the specified reference system.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.DirectPosition.coordinate_reference_system" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">coordinate_reference_system</span><span class="p">:</span> <span class="n">CoordinateReferenceSystem</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The coordinate reference system in which the coordinate tuple is given.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.DirectPosition.dimension" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dimension</span><span class="p">:</span> <span class="nb">int</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The length of coordinate sequence (the number of entries).</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.geometry.primitive.Envelope" class="doc doc-heading">
+            <code>Envelope</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>An <code>Envelope</code> is often referred to as a box or rectangle defining a minimum
+enclosing area. Whatever its size, an <code>Envelope</code> can be represented
+unambiguously as two <code>DirectPositions</code> (coordinate points). To code an
+<code>Envelope</code>, you simply need to code these two points. This is consistent
+with all the coordinate systems in ISO 19107:2019. It should be remembered
+that, even if the CoordinateSystem is purely spatial without being
+globally bijective, the coordinate may not be valid in the associated
+coordinate system.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span>
+<span class="normal">87</span>
+<span class="normal">88</span>
+<span class="normal">89</span>
+<span class="normal">90</span>
+<span class="normal">91</span>
+<span class="normal">92</span>
+<span class="normal">93</span>
+<span class="normal">94</span>
+<span class="normal">95</span>
+<span class="normal">96</span>
+<span class="normal">97</span>
+<span class="normal">98</span>
+<span class="normal">99</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Envelope</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    An `Envelope` is often referred to as a box or rectangle defining a minimum</span>
+<span class="sd">    enclosing area. Whatever its size, an `Envelope` can be represented</span>
+<span class="sd">    unambiguously as two `DirectPositions` (coordinate points). To code an</span>
+<span class="sd">    `Envelope`, you simply need to code these two points. This is consistent</span>
+<span class="sd">    with all the coordinate systems in ISO 19107:2019. It should be remembered</span>
+<span class="sd">    that, even if the CoordinateSystem is purely spatial without being</span>
+<span class="sd">    globally bijective, the coordinate may not be valid in the associated</span>
+<span class="sd">    coordinate system.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">lower_corner</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DirectPosition</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The “lowerCorner” of an Envelope is a coordinate position consisting</span>
+<span class="sd">        of all the minimum coordinates for each dimension, for all points</span>
+<span class="sd">        within the Envelope.</span>
+
+<span class="sd">        Math: For each coordinate offset, the corresponding lower corner</span>
+<span class="sd">        offset is the minimum of that offset in all direct positions of the</span>
+<span class="sd">        original geometry, and the corresponding upper corner offset is the</span>
+<span class="sd">        maximum of those same direct positions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">upper_corner</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DirectPosition</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The “upperCorner” of an Envelope is a coordinate position consisting</span>
+<span class="sd">        of all the maximum coordinates for each dimension, for all points</span>
+<span class="sd">        within the Envelope.</span>
+
+<span class="sd">        Offset in all direct positions of the original geometry.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.Envelope.lower_corner" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">lower_corner</span><span class="p">:</span> <span class="n">DirectPosition</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The “lowerCorner” of an Envelope is a coordinate position consisting
+of all the minimum coordinates for each dimension, for all points
+within the Envelope.</p>
+<p>Math: For each coordinate offset, the corresponding lower corner
+offset is the minimum of that offset in all direct positions of the
+original geometry, and the corresponding upper corner offset is the
+maximum of those same direct positions.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.Envelope.upper_corner" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">upper_corner</span><span class="p">:</span> <span class="n">DirectPosition</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The “upperCorner” of an Envelope is a coordinate position consisting
+of all the maximum coordinates for each dimension, for all points
+within the Envelope.</p>
+<p>Offset in all direct positions of the original geometry.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.geometry.primitive.FixedDirection" class="doc doc-heading">
+            <code>FixedDirection</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p><code>FixedDirection</code> enumerates common potential fixed reference directions
+for azimuth, generally used in reference to the globe, a map,
+a coordinate system or a grid. Common values include true north or south,
+magnetic north or south, grid north or south (reference to a grid
+or projection).</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">FixedDirection</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    `FixedDirection` enumerates common potential fixed reference directions</span>
+<span class="sd">    for azimuth, generally used in reference to the globe, a map,</span>
+<span class="sd">    a coordinate system or a grid. Common values include true north or south,</span>
+<span class="sd">    magnetic north or south, grid north or south (reference to a grid</span>
+<span class="sd">    or projection).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">TRUE_NORTH</span> <span class="o">=</span> <span class="s2">&quot;trueNorth&quot;</span>
+    <span class="n">MAGNETIC_NORTH</span> <span class="o">=</span> <span class="s2">&quot;magneticNorth&quot;</span>
+    <span class="n">GRID_NORTH</span> <span class="o">=</span> <span class="s2">&quot;gridNorth&quot;</span>
+    <span class="n">TRUE_SOUTH</span> <span class="o">=</span> <span class="s2">&quot;trueSouth&quot;</span>
+    <span class="n">MAGNETIC_SOUTH</span> <span class="o">=</span> <span class="s2">&quot;magneticsouth&quot;</span>
+    <span class="n">GRID_SOUTH</span> <span class="o">=</span> <span class="s2">&quot;gridsouth&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.geometry.primitive.Geometry" class="doc doc-heading">
+            <code>Geometry</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.geometry.primitive.TransfiniteSetOfDirectPositions" href="#opengis.geometry.primitive.TransfiniteSetOfDirectPositions">TransfiniteSetOfDirectPositions</a></code></p>
+
+
+        <p>Geometry is the base class of the geometric object taxonomy, supporting
+interfaces common to all geographically referenced geometric objects.
+Instances of <code>Geometry</code> are sets of <code>DirectPosition</code> attributes in a
+particular reference coordinate system. <code>Geometry</code> can be thought of as an
+infinite set of points that satisfies the set operation interfaces for a
+set of direct positions constituting a <code>TransfiniteSetOfDirectPositions</code>
+(essentially a set defined by a <code>bool</code> “isIn” operator). As an infinite
+collection class cannot be implemented directly, a <code>bool</code> inclusion test
+must be provided by the <code>Geometry</code> interface. This document focuses on
+vector geometry classes, but future developments may use <code>Geometry</code> as a
+base class without modification.</p>
+<p>NOTE 1: As a type, <code>Geometry</code> has neither a well-defined default state
+nor a value representation as a data type. As far as these are concerned,
+instantiated subclasses of <code>Geometry</code> do.</p>
+<p>NOTE 2: In its current state this abstract class is a partial
+implementation of the <code>Geometry</code> interface described in ISO 19107:2019.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span>
+<span class="normal">420</span>
+<span class="normal">421</span>
+<span class="normal">422</span>
+<span class="normal">423</span>
+<span class="normal">424</span>
+<span class="normal">425</span>
+<span class="normal">426</span>
+<span class="normal">427</span>
+<span class="normal">428</span>
+<span class="normal">429</span>
+<span class="normal">430</span>
+<span class="normal">431</span>
+<span class="normal">432</span>
+<span class="normal">433</span>
+<span class="normal">434</span>
+<span class="normal">435</span>
+<span class="normal">436</span>
+<span class="normal">437</span>
+<span class="normal">438</span>
+<span class="normal">439</span>
+<span class="normal">440</span>
+<span class="normal">441</span>
+<span class="normal">442</span>
+<span class="normal">443</span>
+<span class="normal">444</span>
+<span class="normal">445</span>
+<span class="normal">446</span>
+<span class="normal">447</span>
+<span class="normal">448</span>
+<span class="normal">449</span>
+<span class="normal">450</span>
+<span class="normal">451</span>
+<span class="normal">452</span>
+<span class="normal">453</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Geometry</span><span class="p">(</span><span class="n">TransfiniteSetOfDirectPositions</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Geometry is the base class of the geometric object taxonomy, supporting</span>
+<span class="sd">    interfaces common to all geographically referenced geometric objects.</span>
+<span class="sd">    Instances of `Geometry` are sets of `DirectPosition` attributes in a</span>
+<span class="sd">    particular reference coordinate system. `Geometry` can be thought of as an</span>
+<span class="sd">    infinite set of points that satisfies the set operation interfaces for a</span>
+<span class="sd">    set of direct positions constituting a `TransfiniteSetOfDirectPositions`</span>
+<span class="sd">    (essentially a set defined by a `bool` “isIn” operator). As an infinite</span>
+<span class="sd">    collection class cannot be implemented directly, a `bool` inclusion test</span>
+<span class="sd">    must be provided by the `Geometry` interface. This document focuses on</span>
+<span class="sd">    vector geometry classes, but future developments may use `Geometry` as a</span>
+<span class="sd">    base class without modification.</span>
+
+<span class="sd">    NOTE 1: As a type, `Geometry` has neither a well-defined default state</span>
+<span class="sd">    nor a value representation as a data type. As far as these are concerned,</span>
+<span class="sd">    instantiated subclasses of `Geometry` do.</span>
+
+<span class="sd">    NOTE 2: In its current state this abstract class is a partial</span>
+<span class="sd">    implementation of the `Geometry` interface described in ISO 19107:2019.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">is_empty</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The boolean `is_empty` attribute indicates that the geometric object</span>
+<span class="sd">        instance is the empty set. Since the empty set is unique, all empty</span>
+<span class="sd">        objects are “spatially equivalent” to any other empty object.</span>
+<span class="sd">        As soon as an instance is known to be empty (`self.is_empty = True`),</span>
+<span class="sd">        the rest of the information in the object becomes redundant until the</span>
+<span class="sd">        boolean value `self.is_empty` is reset to `False`.</span>
+
+<span class="sd">        If the `is_empty` attribute is set to `True`, the object is locked</span>
+<span class="sd">        until the `is_empty` attribute is set to `False`. Essentially, setting</span>
+<span class="sd">        the `is_empty` attribute to `True` changes the behavior (as defined by</span>
+<span class="sd">        its class) of the object to match the `Empty` class, defined in</span>
+<span class="sd">        ISO 19107:2019 section 6.4.10.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">coordinate_reference_system</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;CoordinateReferenceSystem&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The coordinate reference system in which the coordinate geometry</span>
+<span class="sd">        is given.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.Geometry.coordinate_reference_system" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">coordinate_reference_system</span><span class="p">:</span> <span class="n">CoordinateReferenceSystem</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The coordinate reference system in which the coordinate geometry
+is given.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.Geometry.is_empty" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">is_empty</span><span class="p">:</span> <span class="nb">bool</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The boolean <code>is_empty</code> attribute indicates that the geometric object
+instance is the empty set. Since the empty set is unique, all empty
+objects are “spatially equivalent” to any other empty object.
+As soon as an instance is known to be empty (<code>self.is_empty = True</code>),
+the rest of the information in the object becomes redundant until the
+boolean value <code>self.is_empty</code> is reset to <code>False</code>.</p>
+<p>If the <code>is_empty</code> attribute is set to <code>True</code>, the object is locked
+until the <code>is_empty</code> attribute is set to <code>False</code>. Essentially, setting
+the <code>is_empty</code> attribute to <code>True</code> changes the behavior (as defined by
+its class) of the object to match the <code>Empty</code> class, defined in
+ISO 19107:2019 section 6.4.10.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.geometry.primitive.Point" class="doc doc-heading">
+            <code>Point</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.geometry.primitive.Primitive" href="#opengis.geometry.primitive.Primitive">Primitive</a></code></p>
+
+
+        <p>A Geometry Point instance is a unique location given by a direct position.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">475</span>
+<span class="normal">476</span>
+<span class="normal">477</span>
+<span class="normal">478</span>
+<span class="normal">479</span>
+<span class="normal">480</span>
+<span class="normal">481</span>
+<span class="normal">482</span>
+<span class="normal">483</span>
+<span class="normal">484</span>
+<span class="normal">485</span>
+<span class="normal">486</span>
+<span class="normal">487</span>
+<span class="normal">488</span>
+<span class="normal">489</span>
+<span class="normal">490</span>
+<span class="normal">491</span>
+<span class="normal">492</span>
+<span class="normal">493</span>
+<span class="normal">494</span>
+<span class="normal">495</span>
+<span class="normal">496</span>
+<span class="normal">497</span>
+<span class="normal">498</span>
+<span class="normal">499</span>
+<span class="normal">500</span>
+<span class="normal">501</span>
+<span class="normal">502</span>
+<span class="normal">503</span>
+<span class="normal">504</span>
+<span class="normal">505</span>
+<span class="normal">506</span>
+<span class="normal">507</span>
+<span class="normal">508</span>
+<span class="normal">509</span>
+<span class="normal">510</span>
+<span class="normal">511</span>
+<span class="normal">512</span>
+<span class="normal">513</span>
+<span class="normal">514</span>
+<span class="normal">515</span>
+<span class="normal">516</span>
+<span class="normal">517</span>
+<span class="normal">518</span>
+<span class="normal">519</span>
+<span class="normal">520</span>
+<span class="normal">521</span>
+<span class="normal">522</span>
+<span class="normal">523</span>
+<span class="normal">524</span>
+<span class="normal">525</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Point</span><span class="p">(</span><span class="n">Primitive</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A Geometry Point instance is a unique location given by a direct position.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">position</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DirectPosition</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The `position` attribute gives the location of the `Point` in its</span>
+<span class="sd">        reference system. The distinction between `Point` and `DirectPosition`</span>
+<span class="sd">        lies in the fact that `Point` as an object instance has an identity</span>
+<span class="sd">        provided by the system, whereas a `DirectPosition` instance is a data</span>
+<span class="sd">        type whose only identity is its own value.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">boundary</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Geometry</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The “boundary” attribute gives the Point&#39;s boundary in the form of a</span>
+<span class="sd">        `Geometry` reference system. Since a point&#39;s boundary is always empty,</span>
+<span class="sd">        the boundary object will always have the value is_empty = TRUE.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">bearing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to_point</span><span class="p">:</span> <span class="n">DirectPosition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bearing</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The `bearing` operation is similar to `vector_to_point` without the</span>
+<span class="sd">        distance information in the vector. It is essentially a constructor</span>
+<span class="sd">        for `Bearing` based on this point and a target point.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">point_at_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bearing</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DirectPosition</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The `point_at_distance` operation will return a `DirectPosition`</span>
+<span class="sd">        attribute given a vector in space tangent to the point whose direction</span>
+<span class="sd">        determines a geodesic curve that intersects this `DirectPosition` at</span>
+<span class="sd">        a distance equal to the length of the vector. This operation solves</span>
+<span class="sd">        the first geodesic problem.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">vector_to_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to_point</span><span class="p">:</span> <span class="n">DirectPosition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The `vector_to_point` operation will return a vector in space tangent</span>
+<span class="sd">        to the point whose direction determines a geodesic curve that</span>
+<span class="sd">        intersects `to_point` at a distance equal to the length of the vector.</span>
+<span class="sd">        This operation solves the second geodesic problem.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.Point.boundary" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">boundary</span><span class="p">:</span> <span class="n">Geometry</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The “boundary” attribute gives the Point's boundary in the form of a
+<code>Geometry</code> reference system. Since a point's boundary is always empty,
+the boundary object will always have the value is_empty = TRUE.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.Point.position" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">position</span><span class="p">:</span> <span class="n">DirectPosition</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The <code>position</code> attribute gives the location of the <code>Point</code> in its
+reference system. The distinction between <code>Point</code> and <code>DirectPosition</code>
+lies in the fact that <code>Point</code> as an object instance has an identity
+provided by the system, whereas a <code>DirectPosition</code> instance is a data
+type whose only identity is its own value.</p>
+    </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="opengis.geometry.primitive.Point.bearing" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">bearing</span><span class="p">(</span><span class="n">to_point</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The <code>bearing</code> operation is similar to <code>vector_to_point</code> without the
+distance information in the vector. It is essentially a constructor
+for <code>Bearing</code> based on this point and a target point.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">500</span>
+<span class="normal">501</span>
+<span class="normal">502</span>
+<span class="normal">503</span>
+<span class="normal">504</span>
+<span class="normal">505</span>
+<span class="normal">506</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">def</span> <span class="nf">bearing</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to_point</span><span class="p">:</span> <span class="n">DirectPosition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Bearing</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The `bearing` operation is similar to `vector_to_point` without the</span>
+<span class="sd">    distance information in the vector. It is essentially a constructor</span>
+<span class="sd">    for `Bearing` based on this point and a target point.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="opengis.geometry.primitive.Point.point_at_distance" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">point_at_distance</span><span class="p">(</span><span class="n">bearing</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The <code>point_at_distance</code> operation will return a <code>DirectPosition</code>
+attribute given a vector in space tangent to the point whose direction
+determines a geodesic curve that intersects this <code>DirectPosition</code> at
+a distance equal to the length of the vector. This operation solves
+the first geodesic problem.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">508</span>
+<span class="normal">509</span>
+<span class="normal">510</span>
+<span class="normal">511</span>
+<span class="normal">512</span>
+<span class="normal">513</span>
+<span class="normal">514</span>
+<span class="normal">515</span>
+<span class="normal">516</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">def</span> <span class="nf">point_at_distance</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bearing</span><span class="p">:</span> <span class="n">Vector</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DirectPosition</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The `point_at_distance` operation will return a `DirectPosition`</span>
+<span class="sd">    attribute given a vector in space tangent to the point whose direction</span>
+<span class="sd">    determines a geodesic curve that intersects this `DirectPosition` at</span>
+<span class="sd">    a distance equal to the length of the vector. This operation solves</span>
+<span class="sd">    the first geodesic problem.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="opengis.geometry.primitive.Point.vector_to_point" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">vector_to_point</span><span class="p">(</span><span class="n">to_point</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The <code>vector_to_point</code> operation will return a vector in space tangent
+to the point whose direction determines a geodesic curve that
+intersects <code>to_point</code> at a distance equal to the length of the vector.
+This operation solves the second geodesic problem.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">518</span>
+<span class="normal">519</span>
+<span class="normal">520</span>
+<span class="normal">521</span>
+<span class="normal">522</span>
+<span class="normal">523</span>
+<span class="normal">524</span>
+<span class="normal">525</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">def</span> <span class="nf">vector_to_point</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">to_point</span><span class="p">:</span> <span class="n">DirectPosition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Vector</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The `vector_to_point` operation will return a vector in space tangent</span>
+<span class="sd">    to the point whose direction determines a geodesic curve that</span>
+<span class="sd">    intersects `to_point` at a distance equal to the length of the vector.</span>
+<span class="sd">    This operation solves the second geodesic problem.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.geometry.primitive.Primitive" class="doc doc-heading">
+            <code>Primitive</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.geometry.primitive.Geometry" href="#opengis.geometry.primitive.Geometry">Geometry</a></code></p>
+
+
+        <p>A geometry primitive is a related geometric object with a uniform
+dimension at each interior point. Depending on the spatial dimension
+of the coordinate space, primitives are made up of the subclasses Point,
+Curve, Surface and Solid.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">456</span>
+<span class="normal">457</span>
+<span class="normal">458</span>
+<span class="normal">459</span>
+<span class="normal">460</span>
+<span class="normal">461</span>
+<span class="normal">462</span>
+<span class="normal">463</span>
+<span class="normal">464</span>
+<span class="normal">465</span>
+<span class="normal">466</span>
+<span class="normal">467</span>
+<span class="normal">468</span>
+<span class="normal">469</span>
+<span class="normal">470</span>
+<span class="normal">471</span>
+<span class="normal">472</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Primitive</span><span class="p">(</span><span class="n">Geometry</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A geometry primitive is a related geometric object with a uniform</span>
+<span class="sd">    dimension at each interior point. Depending on the spatial dimension</span>
+<span class="sd">    of the coordinate space, primitives are made up of the subclasses Point,</span>
+<span class="sd">    Curve, Surface and Solid.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">segment</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="s1">&#39;Primitive&#39;</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The `segment` role lists the components (smallest primitives of the</span>
+<span class="sd">        same dimension contained) of Primitive, each of which defines aGeometry</span>
+<span class="sd">        portion of the Primitive. The order of the segments is the order in</span>
+<span class="sd">        which they are used to define the Primitive.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.Primitive.segment" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">segment</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Primitive</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The <code>segment</code> role lists the components (smallest primitives of the
+same dimension contained) of Primitive, each of which defines aGeometry
+portion of the Primitive. The order of the segments is the order in
+which they are used to define the Primitive.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.geometry.primitive.ReferenceDirection" class="doc doc-heading">
+            <code>ReferenceDirection</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>The ReferenceDirection interface is empty, but must be “implemented” by
+any data type that can represent a direction (or tangent unit vector) at
+a point. This leads to a circular, but valid, possibly recursive
+definition for the Bearing data type.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ReferenceDirection</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The ReferenceDirection interface is empty, but must be “implemented” by</span>
+<span class="sd">    any data type that can represent a direction (or tangent unit vector) at</span>
+<span class="sd">    a point. This leads to a circular, but valid, possibly recursive</span>
+<span class="sd">    definition for the Bearing data type.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.geometry.primitive.RelativeDirection" class="doc doc-heading">
+            <code>RelativeDirection</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p><code>RelativeDirection</code> enumerates common potential relative reference
+directions for azimuth, generally used in reference to a moving
+vehicle. Common values include front, rear, port (90° left) or
+starboard (90° right).</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">RelativeDirection</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    `RelativeDirection` enumerates common potential relative reference</span>
+<span class="sd">    directions for azimuth, generally used in reference to a moving</span>
+<span class="sd">    vehicle. Common values include front, rear, port (90° left) or</span>
+<span class="sd">    starboard (90° right).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">FORE_FOREWARD</span> <span class="o">=</span> <span class="s2">&quot;fore/forward&quot;</span>
+    <span class="n">AFT_BACKWARD</span> <span class="o">=</span> <span class="s2">&quot;aft/backward&quot;</span>
+    <span class="n">PORT_LEFT</span> <span class="o">=</span> <span class="s2">&quot;port/left&quot;</span>
+    <span class="n">STARBOARD_RIGHT</span> <span class="o">=</span> <span class="s2">&quot;starboard/right&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.geometry.primitive.Rotation" class="doc doc-heading">
+            <code>Rotation</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p><code>Rotation</code> enumerates the two potential directions of rotation for an
+angular measurement, clockwise and anti-clockwise. These directions
+of rotation are considered as seen from above the reference surface.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Rotation</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    `Rotation` enumerates the two potential directions of rotation for an</span>
+<span class="sd">    angular measurement, clockwise and anti-clockwise. These directions</span>
+<span class="sd">    of rotation are considered as seen from above the reference surface.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">CLOCKWISE_RIGHT</span> <span class="o">=</span> <span class="s2">&quot;clockwise/right&quot;</span>
+    <span class="n">COUNTER_CLOCKWISE_LEFT</span> <span class="o">=</span> <span class="s2">&quot;counter-clockwise/left&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.geometry.primitive.TransfiniteSetOfDirectPositions" class="doc doc-heading">
+            <code>TransfiniteSetOfDirectPositions</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>Many geometry operations are based on simple set theory, which does not
+vary according to the cardinality of the sets concerned. Unfortunately,
+the term “set” in most programming languages refers to a finite collection
+of objects or object identities. The abstract class
+<code>TransfiniteSetOfDirectPositions</code> represents set-theoretic operations that
+cannot always be tested by simple enumeration techniques for sets with a
+small number of elements.</p>
+<p>A <code>TransfiniteSetOfDirectPositions</code> can be very large in terms of its
+number of elements (limited only to a finite number by the use of
+finite-precision numerical computation). The collection</p>
+<p>{x ∈ R |0 ≤ x ≤ 1}</p>
+<p>is logically infinite. On a digital computer, it may consist of only
+2^64 objects. That's a lot, but it's not infinite. The term “transfinite”
+indicates that nothing on a digital computer is truly infinite, but that
+doesn't prevent it from being too big to process in a reasonable
+time interval.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TransfiniteSetOfDirectPositions</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Many geometry operations are based on simple set theory, which does not</span>
+<span class="sd">    vary according to the cardinality of the sets concerned. Unfortunately,</span>
+<span class="sd">    the term “set” in most programming languages refers to a finite collection</span>
+<span class="sd">    of objects or object identities. The abstract class</span>
+<span class="sd">    `TransfiniteSetOfDirectPositions` represents set-theoretic operations that</span>
+<span class="sd">    cannot always be tested by simple enumeration techniques for sets with a</span>
+<span class="sd">    small number of elements.</span>
+
+<span class="sd">    A `TransfiniteSetOfDirectPositions` can be very large in terms of its</span>
+<span class="sd">    number of elements (limited only to a finite number by the use of</span>
+<span class="sd">    finite-precision numerical computation). The collection</span>
+
+<span class="sd">    {x ∈ R |0 ≤ x ≤ 1}</span>
+
+<span class="sd">    is logically infinite. On a digital computer, it may consist of only</span>
+<span class="sd">    2^64 objects. That&#39;s a lot, but it&#39;s not infinite. The term “transfinite”</span>
+<span class="sd">    indicates that nothing on a digital computer is truly infinite, but that</span>
+<span class="sd">    doesn&#39;t prevent it from being too big to process in a reasonable</span>
+<span class="sd">    time interval.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pt</span><span class="p">:</span> <span class="n">DirectPosition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Determine whether a particular `DirectPosition` is part of the set.</span>
+<span class="sd">        Each type of `Geometry` interface will have to implement this with</span>
+<span class="sd">        the limitations of a computing platform with limited precision.</span>
+
+<span class="sd">        Let À be a transfinite set of direct positions. Then we have:</span>
+<span class="sd">            [x ∈ A] ⇒ [A.contains(x) = TRUE]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="opengis.geometry.primitive.TransfiniteSetOfDirectPositions.contains" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">contains</span><span class="p">(</span><span class="n">pt</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Determine whether a particular <code>DirectPosition</code> is part of the set.
+Each type of <code>Geometry</code> interface will have to implement this with
+the limitations of a computing platform with limited precision.</p>
+<p>Let À be a transfinite set of direct positions. Then we have:
+    [x ∈ A] ⇒ [A.contains(x) = TRUE]</p>
+
+            <details class="quote">
+              <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">def</span> <span class="nf">contains</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">pt</span><span class="p">:</span> <span class="n">DirectPosition</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Determine whether a particular `DirectPosition` is part of the set.</span>
+<span class="sd">    Each type of `Geometry` interface will have to implement this with</span>
+<span class="sd">    the limitations of a computing platform with limited precision.</span>
+
+<span class="sd">    Let À be a transfinite set of direct positions. Then we have:</span>
+<span class="sd">        [x ∈ A] ⇒ [A.contains(x) = TRUE]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.geometry.primitive.Vector" class="doc doc-heading">
+            <code>Vector</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>The common “vector” in Euclidean spaces can be translated to any point
+in space because the flat nature of Euclidean space has a universal
+coordinate system that works at any “starting” point of a vector.</p>
+<p>The Vector data type in this document must be associated with a point
+on the GeometricReferenceSurface, which must be well defined.
+The directional parts of the vector must also specify the
+“starting position” of the vector. Where the coordinate system performs
+well, the generating family of vectors in tangent space is represented
+in 3D geocentric space by the tangents to the coordinate functions.
+For example, in a latitude-longitude system, the unit vectors tangent
+to the constant longitude curves, as well as to the latitude curves,
+represent a local tangent space basis, except for the poles where the
+longitude function has a zero tangent. longitude function has a zero
+tangent at the pole. If (lat, long = (dφ, dλ), then the symbols (dφ, dλ)
+are the differentials of the two-coordinate functions represented by the
+tangents in the direction of increasing φ, respectively λ, and represent
+a basis for local tangent spaces.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span>
+<span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Vector</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The common “vector” in Euclidean spaces can be translated to any point</span>
+<span class="sd">    in space because the flat nature of Euclidean space has a universal</span>
+<span class="sd">    coordinate system that works at any “starting” point of a vector.</span>
+
+<span class="sd">    The Vector data type in this document must be associated with a point</span>
+<span class="sd">    on the GeometricReferenceSurface, which must be well defined.</span>
+<span class="sd">    The directional parts of the vector must also specify the</span>
+<span class="sd">    “starting position” of the vector. Where the coordinate system performs</span>
+<span class="sd">    well, the generating family of vectors in tangent space is represented</span>
+<span class="sd">    in 3D geocentric space by the tangents to the coordinate functions.</span>
+<span class="sd">    For example, in a latitude-longitude system, the unit vectors tangent</span>
+<span class="sd">    to the constant longitude curves, as well as to the latitude curves,</span>
+<span class="sd">    represent a local tangent space basis, except for the poles where the</span>
+<span class="sd">    longitude function has a zero tangent. longitude function has a zero</span>
+<span class="sd">    tangent at the pole. If (lat, long = (dφ, dλ), then the symbols (dφ, dλ)</span>
+<span class="sd">    are the differentials of the two-coordinate functions represented by the</span>
+<span class="sd">    tangents in the direction of increasing φ, respectively λ, and represent</span>
+<span class="sd">    a basis for local tangent spaces.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+                 <span class="n">position</span><span class="p">:</span> <span class="n">DirectPosition</span><span class="p">,</span>
+                 <span class="n">coordinates</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">direction</span><span class="p">:</span> <span class="n">Bearing</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="n">length</span><span class="p">:</span> <span class="s1">&#39;Length | None&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+                 <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The constructor vector creates a vector with the given offsets or</span>
+<span class="sd">        direction and length at the specified direct position, in the</span>
+<span class="sd">        coordinate space of the direct position.</span>
+
+<span class="sd">        NOTE: if `coordinates` is not specified then `direction` and `length`</span>
+<span class="sd">        must be specified. Likewise if `direction` or `length` is not specified</span>
+<span class="sd">        then `coordinates` must be specified.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">origin</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DirectPosition</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The origin attribute is the location of the point on the</span>
+<span class="sd">        `GeometricReferenceSurface` for which the vector is a tangent.</span>
+<span class="sd">        The direct position is associated with the coordinate system.</span>
+<span class="sd">        This determines the coordinate system for the vector. The spatial</span>
+<span class="sd">        dimension of the direct position determines the dimension of</span>
+<span class="sd">        the vector.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">offsets</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The offset attribute uses the direct position coordinate system and</span>
+<span class="sd">        represents the local tangent vector vector in the local</span>
+<span class="sd">        coordinate differentials.</span>
+
+<span class="sd">        EXAMPLE: If the Euclidean (E²) plane is used, then the `DirectPosition`</span>
+<span class="sd">        is a pair of coordinates (x, y) and the the vector consists of the</span>
+<span class="sd">        differentials in both directions. Consequently, the offset is of</span>
+<span class="sd">        length 2 and has a coordinate base of (dx, dy).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">dimension</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The dimension attribute is the dimension of the origin and,</span>
+<span class="sd">        consequently, the dimension of the tangent space of the vector.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">coordinate_system</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;CoordinateSystem&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The `coordinate_system` attribute is the origin system and, therefore,</span>
+<span class="sd">        determines the coordinates of the local tangent space in which the</span>
+<span class="sd">        vector exists.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">cross_product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="s1">&#39;Vector&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vector&#39;</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The cross product is a third vector perpendicular to the other two.</span>
+<span class="sd">        If the vector space is only two-dimensional, the cross product gives</span>
+<span class="sd">        an oriented intensity and not a vector.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">dot_product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="s1">&#39;Vector&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The dot product operation yields a real value which is the sum of the</span>
+<span class="sd">        products of the corresponding coefficients coefficients of the</span>
+<span class="sd">        two vectors.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.Vector.coordinate_system" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">coordinate_system</span><span class="p">:</span> <span class="n">CoordinateSystem</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The <code>coordinate_system</code> attribute is the origin system and, therefore,
+determines the coordinates of the local tangent space in which the
+vector exists.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.Vector.dimension" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dimension</span><span class="p">:</span> <span class="nb">int</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The dimension attribute is the dimension of the origin and,
+consequently, the dimension of the tangent space of the vector.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.Vector.offsets" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">offsets</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="nb">float</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The offset attribute uses the direct position coordinate system and
+represents the local tangent vector vector in the local
+coordinate differentials.</p>
+<p>EXAMPLE: If the Euclidean (E²) plane is used, then the <code>DirectPosition</code>
+is a pair of coordinates (x, y) and the the vector consists of the
+differentials in both directions. Consequently, the offset is of
+length 2 and has a coordinate base of (dx, dy).</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.geometry.primitive.Vector.origin" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">origin</span><span class="p">:</span> <span class="n">DirectPosition</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The origin attribute is the location of the point on the
+<code>GeometricReferenceSurface</code> for which the vector is a tangent.
+The direct position is associated with the coordinate system.
+This determines the coordinate system for the vector. The spatial
+dimension of the direct position determines the dimension of
+the vector.</p>
+    </div>
+
+</div>
+
+
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="opengis.geometry.primitive.Vector.__init__" class="doc doc-heading">
+            <code class="highlight language-python"><span class="fm">__init__</span><span class="p">(</span><span class="n">position</span><span class="p">,</span> <span class="n">coordinates</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">direction</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">length</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The constructor vector creates a vector with the given offsets or
+direction and length at the specified direct position, in the
+coordinate space of the direct position.</p>
+<p>NOTE: if <code>coordinates</code> is not specified then <code>direction</code> and <code>length</code>
+must be specified. Likewise if <code>direction</code> or <code>length</code> is not specified
+then <code>coordinates</code> must be specified.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span>
+             <span class="n">position</span><span class="p">:</span> <span class="n">DirectPosition</span><span class="p">,</span>
+             <span class="n">coordinates</span><span class="p">:</span> <span class="nb">float</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+             <span class="n">direction</span><span class="p">:</span> <span class="n">Bearing</span> <span class="o">|</span> <span class="kc">None</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+             <span class="n">length</span><span class="p">:</span> <span class="s1">&#39;Length | None&#39;</span> <span class="o">=</span> <span class="kc">None</span><span class="p">,</span>
+             <span class="p">)</span> <span class="o">-&gt;</span> <span class="kc">None</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The constructor vector creates a vector with the given offsets or</span>
+<span class="sd">    direction and length at the specified direct position, in the</span>
+<span class="sd">    coordinate space of the direct position.</span>
+
+<span class="sd">    NOTE: if `coordinates` is not specified then `direction` and `length`</span>
+<span class="sd">    must be specified. Likewise if `direction` or `length` is not specified</span>
+<span class="sd">    then `coordinates` must be specified.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="opengis.geometry.primitive.Vector.cross_product" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">cross_product</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The cross product is a third vector perpendicular to the other two.
+If the vector space is only two-dimensional, the cross product gives
+an oriented intensity and not a vector.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">355</span>
+<span class="normal">356</span>
+<span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">def</span> <span class="nf">cross_product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="s1">&#39;Vector&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="s1">&#39;Vector&#39;</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The cross product is a third vector perpendicular to the other two.</span>
+<span class="sd">    If the vector space is only two-dimensional, the cross product gives</span>
+<span class="sd">    an oriented intensity and not a vector.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-function">
+
+
+<h3 id="opengis.geometry.primitive.Vector.dot_product" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dot_product</span><span class="p">(</span><span class="n">v2</span><span class="p">)</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The dot product operation yields a real value which is the sum of the
+products of the corresponding coefficients coefficients of the
+two vectors.</p>
+
+            <details class="quote">
+              <summary>Source code in <code>opengis/geometry/primitive.py</code></summary>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@abstractmethod</span>
+<span class="k">def</span> <span class="nf">dot_product</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">v2</span><span class="p">:</span> <span class="s1">&#39;Vector&#39;</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The dot product operation yields a real value which is the sum of the</span>
+<span class="sd">    products of the corresponding coefficients coefficients of the</span>
+<span class="sd">    two vectors.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+            </details>
+    </div>
+
+</div>
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

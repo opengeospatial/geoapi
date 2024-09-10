@@ -1,0 +1,6169 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.geoapi.org/python/metadata/representation/">
+      
+      
+        <link rel="prev" href="../quality/">
+      
+      
+        <link rel="next" href="../service/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>representation - GeoAPI for Python</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#representation-module" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="GeoAPI for Python" class="md-header__button md-logo" aria-label="GeoAPI for Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GeoAPI for Python
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              representation
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="GeoAPI for Python" class="md-nav__button md-logo" aria-label="GeoAPI for Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GeoAPI for Python
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GeoAPI Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Geometry (ISO 19107)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Geometry (ISO 19107)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../geometry/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../geometry/primitive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    primitive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Naming (ISO 19103) and Metadata (ISO 19115)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Naming (ISO 19103) and Metadata (ISO 19115)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acquisition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acquisition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../base/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../citation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    citation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../constraints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    constraints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../content/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    content
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    distribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extension/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    extension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extent/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    extent
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../identification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    identification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lineage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lineage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maintenance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    maintenance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    naming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quality/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    representation
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    representation
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      representation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.CellGeometryCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      CellGeometryCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CellGeometryCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.CellGeometryCode.AREA" class="md-nav__link">
+    <span class="md-ellipsis">
+      AREA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.CellGeometryCode.POINT" class="md-nav__link">
+    <span class="md-ellipsis">
+      POINT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.CellGeometryCode.STRATUM" class="md-nav__link">
+    <span class="md-ellipsis">
+      STRATUM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.CellGeometryCode.VOXEL" class="md-nav__link">
+    <span class="md-ellipsis">
+      VOXEL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Dimension" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dimension
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dimension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Dimension.dimension_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      dimension_description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Dimension.dimension_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      dimension_name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Dimension.dimension_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      dimension_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Dimension.dimension_title" class="md-nav__link">
+    <span class="md-ellipsis">
+      dimension_title
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Dimension.resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      resolution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      DimensionNameTypeCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DimensionNameTypeCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.COLUMN" class="md-nav__link">
+    <span class="md-ellipsis">
+      COLUMN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.CROSS_TRACK" class="md-nav__link">
+    <span class="md-ellipsis">
+      CROSS_TRACK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.LINE" class="md-nav__link">
+    <span class="md-ellipsis">
+      LINE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.ROW" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROW
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.SAMPLE" class="md-nav__link">
+    <span class="md-ellipsis">
+      SAMPLE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.TIME" class="md-nav__link">
+    <span class="md-ellipsis">
+      TIME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.TRACK" class="md-nav__link">
+    <span class="md-ellipsis">
+      TRACK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.VERTICAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      VERTICAL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCP" class="md-nav__link">
+    <span class="md-ellipsis">
+      GCP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GCP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCP.accuracy_report" class="md-nav__link">
+    <span class="md-ellipsis">
+      accuracy_report
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCP.geographic_coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      geographic_coordinates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCPCollection" class="md-nav__link">
+    <span class="md-ellipsis">
+      GCPCollection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GCPCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCPCollection.collection_identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      collection_identification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCPCollection.collection_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      collection_name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCPCollection.coordinate_reference_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_reference_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCPCollection.gcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      gcp
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeolocationInformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      GeolocationInformation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GeolocationInformation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeolocationInformation.quality_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      quality_info
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjectTypeCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      GeometricObjectTypeCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GeometricObjectTypeCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjectTypeCode.COMPLEX" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPLEX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjectTypeCode.COMPOSITE" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOSITE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjectTypeCode.CURVE" class="md-nav__link">
+    <span class="md-ellipsis">
+      CURVE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjectTypeCode.POINT" class="md-nav__link">
+    <span class="md-ellipsis">
+      POINT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjectTypeCode.SOLID" class="md-nav__link">
+    <span class="md-ellipsis">
+      SOLID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjectTypeCode.SURFACE" class="md-nav__link">
+    <span class="md-ellipsis">
+      SURFACE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjects" class="md-nav__link">
+    <span class="md-ellipsis">
+      GeometricObjects
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GeometricObjects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjects.geometric_object_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      geometric_object_count
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjects.geometric_object_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      geometric_object_type
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified" class="md-nav__link">
+    <span class="md-ellipsis">
+      Georectified
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Georectified">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.centre_point" class="md-nav__link">
+    <span class="md-ellipsis">
+      centre_point
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.check_point" class="md-nav__link">
+    <span class="md-ellipsis">
+      check_point
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.check_point_availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      check_point_availability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.check_point_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      check_point_description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.corner_points" class="md-nav__link">
+    <span class="md-ellipsis">
+      corner_points
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.point_in_pixel" class="md-nav__link">
+    <span class="md-ellipsis">
+      point_in_pixel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.transformation_dimension_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      transformation_dimension_description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.transformation_dimension_mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      transformation_dimension_mapping
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georeferenceable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Georeferenceable
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Georeferenceable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georeferenceable.control_point_availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      control_point_availability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georeferenceable.geolocation_information" class="md-nav__link">
+    <span class="md-ellipsis">
+      geolocation_information
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georeferenceable.georeferenced_parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      georeferenced_parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georeferenceable.orientation_parameter_availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      orientation_parameter_availability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georeferenceable.orientation_parameter_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      orientation_parameter_description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georeferenceable.parameter_citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      parameter_citation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GridSpatialRepresentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      GridSpatialRepresentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GridSpatialRepresentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GridSpatialRepresentation.axis_dimension_properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      axis_dimension_properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GridSpatialRepresentation.cell_geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      cell_geometry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GridSpatialRepresentation.number_of_dimensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      number_of_dimensions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GridSpatialRepresentation.transformation_parameter_availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      transformation_parameter_availability
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.PixelOrientationCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      PixelOrientationCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PixelOrientationCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.PixelOrientationCode.CENTRE" class="md-nav__link">
+    <span class="md-ellipsis">
+      CENTRE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.PixelOrientationCode.LOWER_LEFT" class="md-nav__link">
+    <span class="md-ellipsis">
+      LOWER_LEFT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.PixelOrientationCode.LOWER_RIGHT" class="md-nav__link">
+    <span class="md-ellipsis">
+      LOWER_RIGHT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.PixelOrientationCode.UPPER_LEFT" class="md-nav__link">
+    <span class="md-ellipsis">
+      UPPER_LEFT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.PixelOrientationCode.UPPER_RIGHT" class="md-nav__link">
+    <span class="md-ellipsis">
+      UPPER_RIGHT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      SpatialRepresentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SpatialRepresentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentation.scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      scope
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentationTypeCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      SpatialRepresentationTypeCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SpatialRepresentationTypeCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentationTypeCode.GRID" class="md-nav__link">
+    <span class="md-ellipsis">
+      GRID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentationTypeCode.STEREO_MODEL" class="md-nav__link">
+    <span class="md-ellipsis">
+      STEREO_MODEL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentationTypeCode.TEXT_TABLE" class="md-nav__link">
+    <span class="md-ellipsis">
+      TEXT_TABLE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentationTypeCode.TIN" class="md-nav__link">
+    <span class="md-ellipsis">
+      TIN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentationTypeCode.VECTOR" class="md-nav__link">
+    <span class="md-ellipsis">
+      VECTOR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentationTypeCode.VIDEO" class="md-nav__link">
+    <span class="md-ellipsis">
+      VIDEO
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      TopologyLevelCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TopologyLevelCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.ABSTRACT" class="md-nav__link">
+    <span class="md-ellipsis">
+      ABSTRACT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.FULL_PLANAR_GRAPH" class="md-nav__link">
+    <span class="md-ellipsis">
+      FULL_PLANAR_GRAPH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.FULL_SURFACE_GRAPH" class="md-nav__link">
+    <span class="md-ellipsis">
+      FULL_SURFACE_GRAPH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.FULL_TOPOLOGY_3D" class="md-nav__link">
+    <span class="md-ellipsis">
+      FULL_TOPOLOGY_3D
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.GEOMETRY_ONLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEOMETRY_ONLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.PLANAR_GRAPH" class="md-nav__link">
+    <span class="md-ellipsis">
+      PLANAR_GRAPH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.SURFACE_GRAPH" class="md-nav__link">
+    <span class="md-ellipsis">
+      SURFACE_GRAPH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.TOPOLOGY_1D" class="md-nav__link">
+    <span class="md-ellipsis">
+      TOPOLOGY_1D
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.TOPOLOGY_3D" class="md-nav__link">
+    <span class="md-ellipsis">
+      TOPOLOGY_3D
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.VectorSpatialRepresentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      VectorSpatialRepresentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VectorSpatialRepresentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.VectorSpatialRepresentation.geometric_objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      geometric_objects
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.VectorSpatialRepresentation.topology_level" class="md-nav__link">
+    <span class="md-ellipsis">
+      topology_level
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    service
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Referencing (ISO 19111)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Referencing (ISO 19111)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/common/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    common
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/coordinate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    coordinate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/crs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    crs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/cs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/datum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    datum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/operation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    operation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Util
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Util
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../util/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../util/measure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    measure (ISO 19103)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation" class="md-nav__link">
+    <span class="md-ellipsis">
+      representation
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.CellGeometryCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      CellGeometryCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CellGeometryCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.CellGeometryCode.AREA" class="md-nav__link">
+    <span class="md-ellipsis">
+      AREA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.CellGeometryCode.POINT" class="md-nav__link">
+    <span class="md-ellipsis">
+      POINT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.CellGeometryCode.STRATUM" class="md-nav__link">
+    <span class="md-ellipsis">
+      STRATUM
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.CellGeometryCode.VOXEL" class="md-nav__link">
+    <span class="md-ellipsis">
+      VOXEL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Dimension" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dimension
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Dimension">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Dimension.dimension_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      dimension_description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Dimension.dimension_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      dimension_name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Dimension.dimension_size" class="md-nav__link">
+    <span class="md-ellipsis">
+      dimension_size
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Dimension.dimension_title" class="md-nav__link">
+    <span class="md-ellipsis">
+      dimension_title
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Dimension.resolution" class="md-nav__link">
+    <span class="md-ellipsis">
+      resolution
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      DimensionNameTypeCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DimensionNameTypeCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.COLUMN" class="md-nav__link">
+    <span class="md-ellipsis">
+      COLUMN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.CROSS_TRACK" class="md-nav__link">
+    <span class="md-ellipsis">
+      CROSS_TRACK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.LINE" class="md-nav__link">
+    <span class="md-ellipsis">
+      LINE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.ROW" class="md-nav__link">
+    <span class="md-ellipsis">
+      ROW
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.SAMPLE" class="md-nav__link">
+    <span class="md-ellipsis">
+      SAMPLE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.TIME" class="md-nav__link">
+    <span class="md-ellipsis">
+      TIME
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.TRACK" class="md-nav__link">
+    <span class="md-ellipsis">
+      TRACK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.DimensionNameTypeCode.VERTICAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      VERTICAL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCP" class="md-nav__link">
+    <span class="md-ellipsis">
+      GCP
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GCP">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCP.accuracy_report" class="md-nav__link">
+    <span class="md-ellipsis">
+      accuracy_report
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCP.geographic_coordinates" class="md-nav__link">
+    <span class="md-ellipsis">
+      geographic_coordinates
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCPCollection" class="md-nav__link">
+    <span class="md-ellipsis">
+      GCPCollection
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GCPCollection">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCPCollection.collection_identification" class="md-nav__link">
+    <span class="md-ellipsis">
+      collection_identification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCPCollection.collection_name" class="md-nav__link">
+    <span class="md-ellipsis">
+      collection_name
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCPCollection.coordinate_reference_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_reference_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GCPCollection.gcp" class="md-nav__link">
+    <span class="md-ellipsis">
+      gcp
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeolocationInformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      GeolocationInformation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GeolocationInformation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeolocationInformation.quality_info" class="md-nav__link">
+    <span class="md-ellipsis">
+      quality_info
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjectTypeCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      GeometricObjectTypeCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GeometricObjectTypeCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjectTypeCode.COMPLEX" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPLEX
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjectTypeCode.COMPOSITE" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOSITE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjectTypeCode.CURVE" class="md-nav__link">
+    <span class="md-ellipsis">
+      CURVE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjectTypeCode.POINT" class="md-nav__link">
+    <span class="md-ellipsis">
+      POINT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjectTypeCode.SOLID" class="md-nav__link">
+    <span class="md-ellipsis">
+      SOLID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjectTypeCode.SURFACE" class="md-nav__link">
+    <span class="md-ellipsis">
+      SURFACE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjects" class="md-nav__link">
+    <span class="md-ellipsis">
+      GeometricObjects
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GeometricObjects">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjects.geometric_object_count" class="md-nav__link">
+    <span class="md-ellipsis">
+      geometric_object_count
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GeometricObjects.geometric_object_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      geometric_object_type
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified" class="md-nav__link">
+    <span class="md-ellipsis">
+      Georectified
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Georectified">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.centre_point" class="md-nav__link">
+    <span class="md-ellipsis">
+      centre_point
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.check_point" class="md-nav__link">
+    <span class="md-ellipsis">
+      check_point
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.check_point_availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      check_point_availability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.check_point_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      check_point_description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.corner_points" class="md-nav__link">
+    <span class="md-ellipsis">
+      corner_points
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.point_in_pixel" class="md-nav__link">
+    <span class="md-ellipsis">
+      point_in_pixel
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.transformation_dimension_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      transformation_dimension_description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georectified.transformation_dimension_mapping" class="md-nav__link">
+    <span class="md-ellipsis">
+      transformation_dimension_mapping
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georeferenceable" class="md-nav__link">
+    <span class="md-ellipsis">
+      Georeferenceable
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Georeferenceable">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georeferenceable.control_point_availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      control_point_availability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georeferenceable.geolocation_information" class="md-nav__link">
+    <span class="md-ellipsis">
+      geolocation_information
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georeferenceable.georeferenced_parameters" class="md-nav__link">
+    <span class="md-ellipsis">
+      georeferenced_parameters
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georeferenceable.orientation_parameter_availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      orientation_parameter_availability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georeferenceable.orientation_parameter_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      orientation_parameter_description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.Georeferenceable.parameter_citation" class="md-nav__link">
+    <span class="md-ellipsis">
+      parameter_citation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GridSpatialRepresentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      GridSpatialRepresentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GridSpatialRepresentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GridSpatialRepresentation.axis_dimension_properties" class="md-nav__link">
+    <span class="md-ellipsis">
+      axis_dimension_properties
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GridSpatialRepresentation.cell_geometry" class="md-nav__link">
+    <span class="md-ellipsis">
+      cell_geometry
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GridSpatialRepresentation.number_of_dimensions" class="md-nav__link">
+    <span class="md-ellipsis">
+      number_of_dimensions
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.GridSpatialRepresentation.transformation_parameter_availability" class="md-nav__link">
+    <span class="md-ellipsis">
+      transformation_parameter_availability
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.PixelOrientationCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      PixelOrientationCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="PixelOrientationCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.PixelOrientationCode.CENTRE" class="md-nav__link">
+    <span class="md-ellipsis">
+      CENTRE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.PixelOrientationCode.LOWER_LEFT" class="md-nav__link">
+    <span class="md-ellipsis">
+      LOWER_LEFT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.PixelOrientationCode.LOWER_RIGHT" class="md-nav__link">
+    <span class="md-ellipsis">
+      LOWER_RIGHT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.PixelOrientationCode.UPPER_LEFT" class="md-nav__link">
+    <span class="md-ellipsis">
+      UPPER_LEFT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.PixelOrientationCode.UPPER_RIGHT" class="md-nav__link">
+    <span class="md-ellipsis">
+      UPPER_RIGHT
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      SpatialRepresentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SpatialRepresentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentation.scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      scope
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentationTypeCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      SpatialRepresentationTypeCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SpatialRepresentationTypeCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentationTypeCode.GRID" class="md-nav__link">
+    <span class="md-ellipsis">
+      GRID
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentationTypeCode.STEREO_MODEL" class="md-nav__link">
+    <span class="md-ellipsis">
+      STEREO_MODEL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentationTypeCode.TEXT_TABLE" class="md-nav__link">
+    <span class="md-ellipsis">
+      TEXT_TABLE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentationTypeCode.TIN" class="md-nav__link">
+    <span class="md-ellipsis">
+      TIN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentationTypeCode.VECTOR" class="md-nav__link">
+    <span class="md-ellipsis">
+      VECTOR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.SpatialRepresentationTypeCode.VIDEO" class="md-nav__link">
+    <span class="md-ellipsis">
+      VIDEO
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      TopologyLevelCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TopologyLevelCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.ABSTRACT" class="md-nav__link">
+    <span class="md-ellipsis">
+      ABSTRACT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.FULL_PLANAR_GRAPH" class="md-nav__link">
+    <span class="md-ellipsis">
+      FULL_PLANAR_GRAPH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.FULL_SURFACE_GRAPH" class="md-nav__link">
+    <span class="md-ellipsis">
+      FULL_SURFACE_GRAPH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.FULL_TOPOLOGY_3D" class="md-nav__link">
+    <span class="md-ellipsis">
+      FULL_TOPOLOGY_3D
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.GEOMETRY_ONLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEOMETRY_ONLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.PLANAR_GRAPH" class="md-nav__link">
+    <span class="md-ellipsis">
+      PLANAR_GRAPH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.SURFACE_GRAPH" class="md-nav__link">
+    <span class="md-ellipsis">
+      SURFACE_GRAPH
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.TOPOLOGY_1D" class="md-nav__link">
+    <span class="md-ellipsis">
+      TOPOLOGY_1D
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.TopologyLevelCode.TOPOLOGY_3D" class="md-nav__link">
+    <span class="md-ellipsis">
+      TOPOLOGY_3D
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.VectorSpatialRepresentation" class="md-nav__link">
+    <span class="md-ellipsis">
+      VectorSpatialRepresentation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VectorSpatialRepresentation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.VectorSpatialRepresentation.geometric_objects" class="md-nav__link">
+    <span class="md-ellipsis">
+      geometric_objects
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.representation.VectorSpatialRepresentation.topology_level" class="md-nav__link">
+    <span class="md-ellipsis">
+      topology_level
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="representation-module"><code>representation</code> module</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="opengis.metadata.representation"></a>
+    <div class="doc doc-contents first">
+
+        <p>This is the <code>representation</code> module.</p>
+<p>This module contains geographic metadata structures regarding representation
+derived from the ISO 19115-1:2014 and ISO 19115-2:2019 international
+standards.</p>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.CellGeometryCode" class="doc doc-heading">
+            <code>CellGeometryCode</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p>Code indicating the geometry represented by the grid cell value.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CellGeometryCode</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Code indicating the geometry represented by the grid cell value.&quot;&quot;&quot;</span>
+
+    <span class="n">POINT</span> <span class="o">=</span> <span class="s2">&quot;point&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Each cell represents a point.&quot;&quot;&quot;</span>
+
+    <span class="n">AREA</span> <span class="o">=</span> <span class="s2">&quot;area&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Each cell represents an area.&quot;&quot;&quot;</span>
+
+    <span class="n">VOXEL</span> <span class="o">=</span> <span class="s2">&quot;voxel&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Each cell represents a volumetric measurement on a regular grid in</span>
+<span class="sd">    three dimensional space.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">STRATUM</span> <span class="o">=</span> <span class="s2">&quot;stratum&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Height range for a single point vertical profile.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.CellGeometryCode.AREA" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">AREA</span> <span class="o">=</span> <span class="s1">&#39;area&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Each cell represents an area.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.CellGeometryCode.POINT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">POINT</span> <span class="o">=</span> <span class="s1">&#39;point&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Each cell represents a point.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.CellGeometryCode.STRATUM" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">STRATUM</span> <span class="o">=</span> <span class="s1">&#39;stratum&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Height range for a single point vertical profile.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.CellGeometryCode.VOXEL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">VOXEL</span> <span class="o">=</span> <span class="s1">&#39;voxel&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Each cell represents a volumetric measurement on a regular grid in
+three dimensional space.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.Dimension" class="doc doc-heading">
+            <code>Dimension</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>Axis properties.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Dimension</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Axis properties.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">dimension_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DimensionNameTypeCode</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name of the axis.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">dimension_size</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Number of elements along the axis.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">resolution</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">float</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Degree of detail in the grid dataset.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">dimension_title</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Enhancement/modifier of the dimension name, e.g.,</span>
+<span class="sd">        for a different time dimension: dimensiont_title = &#39;runtime&#39;</span>
+<span class="sd">        or more a more general case : dimension_name = &#39;column&#39;</span>
+<span class="sd">        dimension_title = &#39;Longitude&#39;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">dimension_description</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Description of the axis.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Dimension.dimension_description" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dimension_description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Description of the axis.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Dimension.dimension_name" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dimension_name</span><span class="p">:</span> <span class="n">DimensionNameTypeCode</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Name of the axis.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Dimension.dimension_size" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dimension_size</span><span class="p">:</span> <span class="nb">int</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Number of elements along the axis.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Dimension.dimension_title" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dimension_title</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Enhancement/modifier of the dimension name, e.g.,
+for a different time dimension: dimensiont_title = 'runtime'
+or more a more general case : dimension_name = 'column'
+dimension_title = 'Longitude'.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Dimension.resolution" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">resolution</span><span class="p">:</span> <span class="nb">float</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Degree of detail in the grid dataset.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.DimensionNameTypeCode" class="doc doc-heading">
+            <code>DimensionNameTypeCode</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p>Name of the dimension.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DimensionNameTypeCode</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Name of the dimension.&quot;&quot;&quot;</span>
+
+    <span class="n">ROW</span> <span class="o">=</span> <span class="s2">&quot;row&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Ordinate (y) axis.&quot;&quot;&quot;</span>
+
+    <span class="n">COLUMN</span> <span class="o">=</span> <span class="s2">&quot;column&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Abscissa (x) axis.&quot;&quot;&quot;</span>
+
+    <span class="n">VERTICAL</span> <span class="o">=</span> <span class="s2">&quot;vertical&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Vertical (z) axis.&quot;&quot;&quot;</span>
+
+    <span class="n">TRACK</span> <span class="o">=</span> <span class="s2">&quot;track&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Along the direction of motion of the scan point.&quot;&quot;&quot;</span>
+
+    <span class="n">CROSS_TRACK</span> <span class="o">=</span> <span class="s2">&quot;crossTrack&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Perpendicular to the direction of motion of the scan point.&quot;&quot;&quot;</span>
+
+    <span class="n">LINE</span> <span class="o">=</span> <span class="s2">&quot;line&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scan line of a sensor.&quot;&quot;&quot;</span>
+
+    <span class="n">SAMPLE</span> <span class="o">=</span> <span class="s2">&quot;sample&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Element along a scan line.&quot;&quot;&quot;</span>
+
+    <span class="n">TIME</span> <span class="o">=</span> <span class="s2">&quot;time&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Duration.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.DimensionNameTypeCode.COLUMN" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COLUMN</span> <span class="o">=</span> <span class="s1">&#39;column&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Abscissa (x) axis.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.DimensionNameTypeCode.CROSS_TRACK" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">CROSS_TRACK</span> <span class="o">=</span> <span class="s1">&#39;crossTrack&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Perpendicular to the direction of motion of the scan point.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.DimensionNameTypeCode.LINE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">LINE</span> <span class="o">=</span> <span class="s1">&#39;line&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Scan line of a sensor.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.DimensionNameTypeCode.ROW" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ROW</span> <span class="o">=</span> <span class="s1">&#39;row&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Ordinate (y) axis.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.DimensionNameTypeCode.SAMPLE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SAMPLE</span> <span class="o">=</span> <span class="s1">&#39;sample&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Element along a scan line.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.DimensionNameTypeCode.TIME" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">TIME</span> <span class="o">=</span> <span class="s1">&#39;time&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Duration.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.DimensionNameTypeCode.TRACK" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">TRACK</span> <span class="o">=</span> <span class="s1">&#39;track&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Along the direction of motion of the scan point.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.DimensionNameTypeCode.VERTICAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">VERTICAL</span> <span class="o">=</span> <span class="s1">&#39;vertical&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Vertical (z) axis.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.GCP" class="doc doc-heading">
+            <code>GCP</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>Information on a ground control point (GSP).</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GCP</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information on a ground control point (GSP).&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">geographic_coordinates</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">DirectPosition</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Geographic or map position of the control point, in either two</span>
+<span class="sd">        or three dimensions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">accuracy_report</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Element</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Accuracy of a ground control point.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GCP.accuracy_report" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">accuracy_report</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Element</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Accuracy of a ground control point.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GCP.geographic_coordinates" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">geographic_coordinates</span><span class="p">:</span> <span class="n">DirectPosition</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Geographic or map position of the control point, in either two
+or three dimensions.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.GCPCollection" class="doc doc-heading">
+            <code>GCPCollection</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.metadata.representation.GeolocationInformation" href="#opengis.metadata.representation.GeolocationInformation">GeolocationInformation</a></code></p>
+
+
+        <p>A collection of ground control points (GCPs).</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GCPCollection</span><span class="p">(</span><span class="n">GeolocationInformation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;A collection of ground control points (GCPs).&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">collection_identification</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Identifier of the GCP collection.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">collection_name</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name of the GCP collection.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">coordinate_reference_system</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ReferenceSystem</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Coordinate system in which the ground control points are defined.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">gcp</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">GCP</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Ground control point(s) used in the collection.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GCPCollection.collection_identification" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">collection_identification</span><span class="p">:</span> <span class="nb">int</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Identifier of the GCP collection.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GCPCollection.collection_name" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">collection_name</span><span class="p">:</span> <span class="nb">str</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Name of the GCP collection.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GCPCollection.coordinate_reference_system" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">coordinate_reference_system</span><span class="p">:</span> <span class="n">ReferenceSystem</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Coordinate system in which the ground control points are defined.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GCPCollection.gcp" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">gcp</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">GCP</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Ground control point(s) used in the collection.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.GeolocationInformation" class="doc doc-heading">
+            <code>GeolocationInformation</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>Geolocation information with data quality.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GeolocationInformation</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Geolocation information with data quality.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">quality_info</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">DataQuality</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Provides an overall assessment of quality of geolocation information.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GeolocationInformation.quality_info" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">quality_info</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">DataQuality</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Provides an overall assessment of quality of geolocation information.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.GeometricObjectTypeCode" class="doc doc-heading">
+            <code>GeometricObjectTypeCode</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p>Name of point or vector objects used to locate sero-, one-, two-, or
+three-dimensional spatial locations in the dataset.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GeometricObjectTypeCode</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Name of point or vector objects used to locate sero-, one-, two-, or</span>
+<span class="sd">    three-dimensional spatial locations in the dataset.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPLEX</span> <span class="o">=</span> <span class="s2">&quot;complex&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Set of geometric primitives such that their boundaries can be</span>
+<span class="sd">    represented as a union of other primitives.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOSITE</span> <span class="o">=</span> <span class="s2">&quot;composite&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Connected set of curves, solids or surfaces.&quot;&quot;&quot;</span>
+
+    <span class="n">CURVE</span> <span class="o">=</span> <span class="s2">&quot;curve&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Bounded, 1-dimensional geometric primitive, representing the continuous</span>
+<span class="sd">    image of a line.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">POINT</span> <span class="o">=</span> <span class="s2">&quot;point&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Zero-dimensional geometric primitive, representing a position but not</span>
+<span class="sd">    having an extent.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">SOLID</span> <span class="o">=</span> <span class="s2">&quot;solid&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Bounded, connected 3-dimensional geometric primitive, representing the</span>
+<span class="sd">    continuous image of a region of space.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">SURFACE</span> <span class="o">=</span> <span class="s2">&quot;surface&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Bounded, connected 2-dimensional geometric primitive, representing the</span>
+<span class="sd">    continuous image of a region of a plane.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GeometricObjectTypeCode.COMPLEX" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPLEX</span> <span class="o">=</span> <span class="s1">&#39;complex&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Set of geometric primitives such that their boundaries can be
+represented as a union of other primitives.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GeometricObjectTypeCode.COMPOSITE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOSITE</span> <span class="o">=</span> <span class="s1">&#39;composite&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Connected set of curves, solids or surfaces.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GeometricObjectTypeCode.CURVE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">CURVE</span> <span class="o">=</span> <span class="s1">&#39;curve&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bounded, 1-dimensional geometric primitive, representing the continuous
+image of a line.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GeometricObjectTypeCode.POINT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">POINT</span> <span class="o">=</span> <span class="s1">&#39;point&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Zero-dimensional geometric primitive, representing a position but not
+having an extent.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GeometricObjectTypeCode.SOLID" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SOLID</span> <span class="o">=</span> <span class="s1">&#39;solid&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bounded, connected 3-dimensional geometric primitive, representing the
+continuous image of a region of space.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GeometricObjectTypeCode.SURFACE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SURFACE</span> <span class="o">=</span> <span class="s1">&#39;surface&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Bounded, connected 2-dimensional geometric primitive, representing the
+continuous image of a region of a plane.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.GeometricObjects" class="doc doc-heading">
+            <code>GeometricObjects</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>Number of objects, listed by geometric object type, used in the
+resource/dataset.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GeometricObjects</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Number of objects, listed by geometric object type, used in the</span>
+<span class="sd">    resource/dataset.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">geometric_object_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeometricObjectTypeCode</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Name of point or vector objects used to locate zero-, one-, two-,</span>
+<span class="sd">        or three-dimensional spatial locations in the resource/dataset.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">geometric_object_count</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Total number of the point or vector object type occurring in the</span>
+<span class="sd">        resource/dataset.</span>
+
+<span class="sd">        Domain: &gt; 0</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GeometricObjects.geometric_object_count" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">geometric_object_count</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Total number of the point or vector object type occurring in the
+resource/dataset.</p>
+<p>Domain: &gt; 0</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GeometricObjects.geometric_object_type" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">geometric_object_type</span><span class="p">:</span> <span class="n">GeometricObjectTypeCode</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Name of point or vector objects used to locate zero-, one-, two-,
+or three-dimensional spatial locations in the resource/dataset.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.Georectified" class="doc doc-heading">
+            <code>Georectified</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.metadata.representation.GridSpatialRepresentation" href="#opengis.metadata.representation.GridSpatialRepresentation">GridSpatialRepresentation</a></code></p>
+
+
+        <p>Grid whose cells are regularly spaced in a geographic (i.e. lat / long) or
+map coordinate system defined in the Spatial Referencing System (SRS) so
+that any cell in the grid can be geolocated given its grid coordinate and
+the grid origin, cell spacing, and orientation.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span>
+<span class="normal">405</span>
+<span class="normal">406</span>
+<span class="normal">407</span>
+<span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span>
+<span class="normal">420</span>
+<span class="normal">421</span>
+<span class="normal">422</span>
+<span class="normal">423</span>
+<span class="normal">424</span>
+<span class="normal">425</span>
+<span class="normal">426</span>
+<span class="normal">427</span>
+<span class="normal">428</span>
+<span class="normal">429</span>
+<span class="normal">430</span>
+<span class="normal">431</span>
+<span class="normal">432</span>
+<span class="normal">433</span>
+<span class="normal">434</span>
+<span class="normal">435</span>
+<span class="normal">436</span>
+<span class="normal">437</span>
+<span class="normal">438</span>
+<span class="normal">439</span>
+<span class="normal">440</span>
+<span class="normal">441</span>
+<span class="normal">442</span>
+<span class="normal">443</span>
+<span class="normal">444</span>
+<span class="normal">445</span>
+<span class="normal">446</span>
+<span class="normal">447</span>
+<span class="normal">448</span>
+<span class="normal">449</span>
+<span class="normal">450</span>
+<span class="normal">451</span>
+<span class="normal">452</span>
+<span class="normal">453</span>
+<span class="normal">454</span>
+<span class="normal">455</span>
+<span class="normal">456</span>
+<span class="normal">457</span>
+<span class="normal">458</span>
+<span class="normal">459</span>
+<span class="normal">460</span>
+<span class="normal">461</span>
+<span class="normal">462</span>
+<span class="normal">463</span>
+<span class="normal">464</span>
+<span class="normal">465</span>
+<span class="normal">466</span>
+<span class="normal">467</span>
+<span class="normal">468</span>
+<span class="normal">469</span>
+<span class="normal">470</span>
+<span class="normal">471</span>
+<span class="normal">472</span>
+<span class="normal">473</span>
+<span class="normal">474</span>
+<span class="normal">475</span>
+<span class="normal">476</span>
+<span class="normal">477</span>
+<span class="normal">478</span>
+<span class="normal">479</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Georectified</span><span class="p">(</span><span class="n">GridSpatialRepresentation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Grid whose cells are regularly spaced in a geographic (i.e. lat / long) or</span>
+<span class="sd">    map coordinate system defined in the Spatial Referencing System (SRS) so</span>
+<span class="sd">    that any cell in the grid can be geolocated given its grid coordinate and</span>
+<span class="sd">    the grid origin, cell spacing, and orientation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">check_point_availability</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Indication of whether or not geographic position points are available</span>
+<span class="sd">        to test the accuracy of the georeferenced grid data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">check_point_description</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Description of geographic position points used to test the accuracy of</span>
+<span class="sd">        the georeferenced grid data.</span>
+
+<span class="sd">        MANDATORY: if `check_point_availability` == `True`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">corner_points</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Point</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Earth location in the coordinate system defined by the Spatial</span>
+<span class="sd">        Reference System and the grid coordinate of the cells at opposite ends</span>
+<span class="sd">        of grid coverage along two diagonals in the grid spatial dimensions.</span>
+<span class="sd">        There are four corner points in a georectified grid; at least two</span>
+<span class="sd">        corner points along one diagonal are required. The first corner point</span>
+<span class="sd">        corresponds to the origin of the grid.</span>
+
+<span class="sd">        NOTE: The length of the `Sequence` of `Points` should be 2 - 4</span>
+<span class="sd">        (i.e. 2, 3, or 4).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">centre_point</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Point</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Earth location in the coordinate system defined by the Spatial</span>
+<span class="sd">        Reference System and the grid coordinate of the cell halfway between</span>
+<span class="sd">        opposite ends of the grid in the spatial dimensions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">point_in_pixel</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">PixelOrientationCode</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Point in a pixel corresponding to the Earth location of the pixel.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">transformation_dimension_description</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;General description of the transformation.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">transformation_dimension_mapping</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Information about which grid axes are the spatial (map) axes.</span>
+
+<span class="sd">        NOTE: The length of the `Sequence` of `str` should be 2. That is</span>
+<span class="sd">        len(list(str)) should return 2.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">check_point</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">GCP</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Geographic references used to validate georectification of the data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Georectified.centre_point" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">centre_point</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Point</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Earth location in the coordinate system defined by the Spatial
+Reference System and the grid coordinate of the cell halfway between
+opposite ends of the grid in the spatial dimensions.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Georectified.check_point" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">check_point</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">GCP</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Geographic references used to validate georectification of the data.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Georectified.check_point_availability" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">check_point_availability</span><span class="p">:</span> <span class="nb">bool</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Indication of whether or not geographic position points are available
+to test the accuracy of the georeferenced grid data.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Georectified.check_point_description" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">check_point_description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Description of geographic position points used to test the accuracy of
+the georeferenced grid data.</p>
+<p>MANDATORY: if <code>check_point_availability</code> == <code>True</code>.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Georectified.corner_points" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">corner_points</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Point</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Earth location in the coordinate system defined by the Spatial
+Reference System and the grid coordinate of the cells at opposite ends
+of grid coverage along two diagonals in the grid spatial dimensions.
+There are four corner points in a georectified grid; at least two
+corner points along one diagonal are required. The first corner point
+corresponds to the origin of the grid.</p>
+<p>NOTE: The length of the <code>Sequence</code> of <code>Points</code> should be 2 - 4
+(i.e. 2, 3, or 4).</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Georectified.point_in_pixel" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">point_in_pixel</span><span class="p">:</span> <span class="n">PixelOrientationCode</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Point in a pixel corresponding to the Earth location of the pixel.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Georectified.transformation_dimension_description" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">transformation_dimension_description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>General description of the transformation.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Georectified.transformation_dimension_mapping" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">transformation_dimension_mapping</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information about which grid axes are the spatial (map) axes.</p>
+<p>NOTE: The length of the <code>Sequence</code> of <code>str</code> should be 2. That is
+len(list(str)) should return 2.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.Georeferenceable" class="doc doc-heading">
+            <code>Georeferenceable</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.metadata.representation.GridSpatialRepresentation" href="#opengis.metadata.representation.GridSpatialRepresentation">GridSpatialRepresentation</a></code></p>
+
+
+        <p>ISO 19115-1: Grid with cells irregularly spaced in any given
+geographic/map projection coordinate system, whose individual cells can be
+geolocated using geolocation information supplied with the data but cannot
+be geolocated from the grid properties alone.</p>
+<p>ISO 19115-2: Description of information provided in metadata that allows
+the geographic or map location of the raster points to be located.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">482</span>
+<span class="normal">483</span>
+<span class="normal">484</span>
+<span class="normal">485</span>
+<span class="normal">486</span>
+<span class="normal">487</span>
+<span class="normal">488</span>
+<span class="normal">489</span>
+<span class="normal">490</span>
+<span class="normal">491</span>
+<span class="normal">492</span>
+<span class="normal">493</span>
+<span class="normal">494</span>
+<span class="normal">495</span>
+<span class="normal">496</span>
+<span class="normal">497</span>
+<span class="normal">498</span>
+<span class="normal">499</span>
+<span class="normal">500</span>
+<span class="normal">501</span>
+<span class="normal">502</span>
+<span class="normal">503</span>
+<span class="normal">504</span>
+<span class="normal">505</span>
+<span class="normal">506</span>
+<span class="normal">507</span>
+<span class="normal">508</span>
+<span class="normal">509</span>
+<span class="normal">510</span>
+<span class="normal">511</span>
+<span class="normal">512</span>
+<span class="normal">513</span>
+<span class="normal">514</span>
+<span class="normal">515</span>
+<span class="normal">516</span>
+<span class="normal">517</span>
+<span class="normal">518</span>
+<span class="normal">519</span>
+<span class="normal">520</span>
+<span class="normal">521</span>
+<span class="normal">522</span>
+<span class="normal">523</span>
+<span class="normal">524</span>
+<span class="normal">525</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Georeferenceable</span><span class="p">(</span><span class="n">GridSpatialRepresentation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    ISO 19115-1: Grid with cells irregularly spaced in any given</span>
+<span class="sd">    geographic/map projection coordinate system, whose individual cells can be</span>
+<span class="sd">    geolocated using geolocation information supplied with the data but cannot</span>
+<span class="sd">    be geolocated from the grid properties alone.</span>
+
+<span class="sd">    ISO 19115-2: Description of information provided in metadata that allows</span>
+<span class="sd">    the geographic or map location of the raster points to be located.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">control_point_availability</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Indication of whether or not control point(s) exists.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">orientation_parameter_availability</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Indication of whether or not orientation parameters are available.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">orientation_parameter_description</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Description of parameters used to describe sensor orientation.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">georeferenced_parameters</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Record</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Terms which support grid data georeferencing.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">parameter_citation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Citation</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Reference providing description of the parameters.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">geolocation_information</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">GeolocationInformation</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Information that can be used to geo-locate the data.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Georeferenceable.control_point_availability" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">control_point_availability</span><span class="p">:</span> <span class="nb">bool</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Indication of whether or not control point(s) exists.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Georeferenceable.geolocation_information" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">geolocation_information</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">GeolocationInformation</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information that can be used to geo-locate the data.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Georeferenceable.georeferenced_parameters" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">georeferenced_parameters</span><span class="p">:</span> <span class="n">Record</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Terms which support grid data georeferencing.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Georeferenceable.orientation_parameter_availability" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">orientation_parameter_availability</span><span class="p">:</span> <span class="nb">bool</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Indication of whether or not orientation parameters are available.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Georeferenceable.orientation_parameter_description" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">orientation_parameter_description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Description of parameters used to describe sensor orientation.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.Georeferenceable.parameter_citation" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">parameter_citation</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Citation</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Reference providing description of the parameters.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.GridSpatialRepresentation" class="doc doc-heading">
+            <code>GridSpatialRepresentation</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.metadata.representation.SpatialRepresentation" href="#opengis.metadata.representation.SpatialRepresentation">SpatialRepresentation</a></code></p>
+
+
+        <p>Information about grid spatial objects in the resource.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span>
+<span class="normal">362</span>
+<span class="normal">363</span>
+<span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GridSpatialRepresentation</span><span class="p">(</span><span class="n">SpatialRepresentation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information about grid spatial objects in the resource.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">number_of_dimensions</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">int</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Number of independent spatial-temporal axes.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">axis_dimension_properties</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Dimension</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Information about spatial-temporal axis properties.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">cell_geometry</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CellGeometryCode</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Identification of grid data as point or cell.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">transformation_parameter_availability</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Indication of whether or not parameters for transformation between</span>
+<span class="sd">        image coordinates and geographic or map coordinates exist</span>
+<span class="sd">        (are available).</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GridSpatialRepresentation.axis_dimension_properties" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">axis_dimension_properties</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">Dimension</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information about spatial-temporal axis properties.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GridSpatialRepresentation.cell_geometry" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">cell_geometry</span><span class="p">:</span> <span class="n">CellGeometryCode</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Identification of grid data as point or cell.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GridSpatialRepresentation.number_of_dimensions" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">number_of_dimensions</span><span class="p">:</span> <span class="nb">int</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Number of independent spatial-temporal axes.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.GridSpatialRepresentation.transformation_parameter_availability" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">transformation_parameter_availability</span><span class="p">:</span> <span class="nb">bool</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Indication of whether or not parameters for transformation between
+image coordinates and geographic or map coordinates exist
+(are available).</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.PixelOrientationCode" class="doc doc-heading">
+            <code>PixelOrientationCode</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p>Point in a pixel corresponding to the Earth location of the pixel</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">PixelOrientationCode</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Point in a pixel corresponding to the Earth location of the pixel&quot;&quot;&quot;</span>
+
+    <span class="n">CENTRE</span> <span class="o">=</span> <span class="s2">&quot;centre&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Point halfway between the lower left and the upper right of the pixel.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">LOWER_LEFT</span> <span class="o">=</span> <span class="s2">&quot;lowerLeft&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The corner in the pixel closest to the origin of the SRS; if two are at</span>
+<span class="sd">    the same distance from the origin, the one with the smallest x-value.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">LOWER_RIGHT</span> <span class="o">=</span> <span class="s2">&quot;lowerRight&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Next corner counterclockwise from the lower left.&quot;&quot;&quot;</span>
+
+    <span class="n">UPPER_RIGHT</span> <span class="o">=</span> <span class="s2">&quot;upperRight&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Next corner counterclockwise from the lower right.&quot;&quot;&quot;</span>
+
+    <span class="n">UPPER_LEFT</span> <span class="o">=</span> <span class="s2">&quot;upperLeft&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Next corner counterclockwise from the upper right.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.PixelOrientationCode.CENTRE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">CENTRE</span> <span class="o">=</span> <span class="s1">&#39;centre&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Point halfway between the lower left and the upper right of the pixel.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.PixelOrientationCode.LOWER_LEFT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">LOWER_LEFT</span> <span class="o">=</span> <span class="s1">&#39;lowerLeft&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The corner in the pixel closest to the origin of the SRS; if two are at
+the same distance from the origin, the one with the smallest x-value.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.PixelOrientationCode.LOWER_RIGHT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">LOWER_RIGHT</span> <span class="o">=</span> <span class="s1">&#39;lowerRight&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Next corner counterclockwise from the lower left.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.PixelOrientationCode.UPPER_LEFT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">UPPER_LEFT</span> <span class="o">=</span> <span class="s1">&#39;upperLeft&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Next corner counterclockwise from the upper right.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.PixelOrientationCode.UPPER_RIGHT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">UPPER_RIGHT</span> <span class="o">=</span> <span class="s1">&#39;upperRight&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Next corner counterclockwise from the lower right.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.SpatialRepresentation" class="doc doc-heading">
+            <code>SpatialRepresentation</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>Digital mechanism used to represent spatial information.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SpatialRepresentation</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Digital mechanism used to represent spatial information.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">scope</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Scope</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Level and extent of the spatial representation.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.SpatialRepresentation.scope" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">scope</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Scope</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Level and extent of the spatial representation.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.SpatialRepresentationTypeCode" class="doc doc-heading">
+            <code>SpatialRepresentationTypeCode</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p>Method used to represent geographic information in the resource.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SpatialRepresentationTypeCode</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Method used to represent geographic information in the resource.&quot;&quot;&quot;</span>
+
+    <span class="n">VECTOR</span> <span class="o">=</span> <span class="s2">&quot;vector&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Vector data are used to represent geographic data.&quot;&quot;&quot;</span>
+
+    <span class="n">GRID</span> <span class="o">=</span> <span class="s2">&quot;grid&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Grid data are used to represent geographic data.&quot;&quot;&quot;</span>
+
+    <span class="n">TEXT_TABLE</span> <span class="o">=</span> <span class="s2">&quot;textTable&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Textual or tabular data are used to represent geographic data.&quot;&quot;&quot;</span>
+
+    <span class="n">TIN</span> <span class="o">=</span> <span class="s2">&quot;tin&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Triangulated irregular network.&quot;&quot;&quot;</span>
+
+    <span class="n">STEREO_MODEL</span> <span class="o">=</span> <span class="s2">&quot;stereoModel&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Three-dimensional view formed by the intersecting homologous rays of</span>
+<span class="sd">    an overlapping pair of images.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">VIDEO</span> <span class="o">=</span> <span class="s2">&quot;video&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Scene from a video recording.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.SpatialRepresentationTypeCode.GRID" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">GRID</span> <span class="o">=</span> <span class="s1">&#39;grid&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Grid data are used to represent geographic data.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.SpatialRepresentationTypeCode.STEREO_MODEL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">STEREO_MODEL</span> <span class="o">=</span> <span class="s1">&#39;stereoModel&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Three-dimensional view formed by the intersecting homologous rays of
+an overlapping pair of images.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.SpatialRepresentationTypeCode.TEXT_TABLE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">TEXT_TABLE</span> <span class="o">=</span> <span class="s1">&#39;textTable&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Textual or tabular data are used to represent geographic data.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.SpatialRepresentationTypeCode.TIN" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">TIN</span> <span class="o">=</span> <span class="s1">&#39;tin&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Triangulated irregular network.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.SpatialRepresentationTypeCode.VECTOR" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">VECTOR</span> <span class="o">=</span> <span class="s1">&#39;vector&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Vector data are used to represent geographic data.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.SpatialRepresentationTypeCode.VIDEO" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">VIDEO</span> <span class="o">=</span> <span class="s1">&#39;video&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Scene from a video recording.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.TopologyLevelCode" class="doc doc-heading">
+            <code>TopologyLevelCode</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p>Degree of the complexity of the spatial relationships.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TopologyLevelCode</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Degree of the complexity of the spatial relationships.&quot;&quot;&quot;</span>
+
+    <span class="n">GEOMETRY_ONLY</span> <span class="o">=</span> <span class="s2">&quot;geometryOnly&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Geometry objects without any additional structure which describes topology.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">TOPOLOGY_1D</span> <span class="o">=</span> <span class="s2">&quot;topology1D&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    1-Dimensional topological complex - commonly called “chain-node” topology.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">PLANAR_GRAPH</span> <span class="o">=</span> <span class="s2">&quot;planarGraph&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    1-Dimensional topological complex that is planar.</span>
+
+<span class="sd">    NOTE: A planar graph is a graph that can be drawn in a plane in such a way</span>
+<span class="sd">    that no two edges intersect except at a vertex.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">FULL_PLANAR_GRAPH</span> <span class="o">=</span> <span class="s2">&quot;fullPlanarGraph&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    2-Dimensional topological complex that is planar.</span>
+
+<span class="sd">    NOTE: A 2-dimensional topological complex is commonly called</span>
+<span class="sd">    “full topology” in a cartographic 2D environment.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">SURFACE_GRAPH</span> <span class="o">=</span> <span class="s2">&quot;surfaceGraph&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    1-Dimensional topological complex that is isomorphic to a subset of</span>
+<span class="sd">    a surface.</span>
+
+<span class="sd">    NOTE: A geometric complex is isomorphic to a topological complex if their</span>
+<span class="sd">    elements are in a one-to-one, dimensional-and boundary-preserving</span>
+<span class="sd">    correspondence to one another.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">FULL_SURFACE_GRAPH</span> <span class="o">=</span> <span class="s2">&quot;fullSurfaceGraph&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    2-Dimensional topological complex that is isomorphic to a subset of</span>
+<span class="sd">    a surface.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">TOPOLOGY_3D</span> <span class="o">=</span> <span class="s2">&quot;topology3D&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    3-Dimensional topological complex.</span>
+
+<span class="sd">    NOTE: A topological complex is a collection of topological primitives that</span>
+<span class="sd">    are closed under the boundary operations.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">FULL_TOPOLOGY_3D</span> <span class="o">=</span> <span class="s2">&quot;fullTopology3D&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Complete coverage of a 3D Euclidean coordinate space.&quot;&quot;&quot;</span>
+
+    <span class="n">ABSTRACT</span> <span class="o">=</span> <span class="s2">&quot;abstract&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Topological complex without any specified geometric realisation.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.TopologyLevelCode.ABSTRACT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ABSTRACT</span> <span class="o">=</span> <span class="s1">&#39;abstract&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Topological complex without any specified geometric realisation.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.TopologyLevelCode.FULL_PLANAR_GRAPH" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">FULL_PLANAR_GRAPH</span> <span class="o">=</span> <span class="s1">&#39;fullPlanarGraph&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>2-Dimensional topological complex that is planar.</p>
+<p>NOTE: A 2-dimensional topological complex is commonly called
+“full topology” in a cartographic 2D environment.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.TopologyLevelCode.FULL_SURFACE_GRAPH" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">FULL_SURFACE_GRAPH</span> <span class="o">=</span> <span class="s1">&#39;fullSurfaceGraph&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>2-Dimensional topological complex that is isomorphic to a subset of
+a surface.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.TopologyLevelCode.FULL_TOPOLOGY_3D" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">FULL_TOPOLOGY_3D</span> <span class="o">=</span> <span class="s1">&#39;fullTopology3D&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Complete coverage of a 3D Euclidean coordinate space.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.TopologyLevelCode.GEOMETRY_ONLY" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">GEOMETRY_ONLY</span> <span class="o">=</span> <span class="s1">&#39;geometryOnly&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Geometry objects without any additional structure which describes topology.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.TopologyLevelCode.PLANAR_GRAPH" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PLANAR_GRAPH</span> <span class="o">=</span> <span class="s1">&#39;planarGraph&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>1-Dimensional topological complex that is planar.</p>
+<p>NOTE: A planar graph is a graph that can be drawn in a plane in such a way
+that no two edges intersect except at a vertex.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.TopologyLevelCode.SURFACE_GRAPH" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SURFACE_GRAPH</span> <span class="o">=</span> <span class="s1">&#39;surfaceGraph&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>1-Dimensional topological complex that is isomorphic to a subset of
+a surface.</p>
+<p>NOTE: A geometric complex is isomorphic to a topological complex if their
+elements are in a one-to-one, dimensional-and boundary-preserving
+correspondence to one another.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.TopologyLevelCode.TOPOLOGY_1D" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">TOPOLOGY_1D</span> <span class="o">=</span> <span class="s1">&#39;topology1D&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>1-Dimensional topological complex - commonly called “chain-node” topology.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.TopologyLevelCode.TOPOLOGY_3D" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">TOPOLOGY_3D</span> <span class="o">=</span> <span class="s1">&#39;topology3D&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>3-Dimensional topological complex.</p>
+<p>NOTE: A topological complex is a collection of topological primitives that
+are closed under the boundary operations.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.representation.VectorSpatialRepresentation" class="doc doc-heading">
+            <code>VectorSpatialRepresentation</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.metadata.representation.SpatialRepresentation" href="#opengis.metadata.representation.SpatialRepresentation">SpatialRepresentation</a></code></p>
+
+
+        <p>Information about the vector spatial objects in the resource.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/representation.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span>
+<span class="normal">389</span>
+<span class="normal">390</span>
+<span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">VectorSpatialRepresentation</span><span class="p">(</span><span class="n">SpatialRepresentation</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information about the vector spatial objects in the resource.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">topology_level</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TopologyLevelCode</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Code which identifies the degree of complexity of the spatial</span>
+<span class="sd">        relationships.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">geometric_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">GeometricObjects</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Information about the geometric objects used in the resource.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.VectorSpatialRepresentation.geometric_objects" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">geometric_objects</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">GeometricObjects</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information about the geometric objects used in the resource.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.representation.VectorSpatialRepresentation.topology_level" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">topology_level</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">TopologyLevelCode</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Code which identifies the degree of complexity of the spatial
+relationships.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

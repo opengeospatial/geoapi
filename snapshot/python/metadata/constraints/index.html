@@ -1,0 +1,3821 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.geoapi.org/python/metadata/constraints/">
+      
+      
+        <link rel="prev" href="../citation/">
+      
+      
+        <link rel="next" href="../content/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>constraints - GeoAPI for Python</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#constraints-module" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="GeoAPI for Python" class="md-header__button md-logo" aria-label="GeoAPI for Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GeoAPI for Python
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              constraints
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="GeoAPI for Python" class="md-nav__button md-logo" aria-label="GeoAPI for Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GeoAPI for Python
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GeoAPI Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Geometry (ISO 19107)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Geometry (ISO 19107)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../geometry/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../geometry/primitive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    primitive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Naming (ISO 19103) and Metadata (ISO 19115)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Naming (ISO 19103) and Metadata (ISO 19115)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acquisition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acquisition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../base/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../citation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    citation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    constraints
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    constraints
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      constraints
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      ClassificationCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ClassificationCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.CONFIDENTIAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      CONFIDENTIAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.FOR_OFFICIAL_USE_ONLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      FOR_OFFICIAL_USE_ONLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.LIMITED_DISTRIBUTION" class="md-nav__link">
+    <span class="md-ellipsis">
+      LIMITED_DISTRIBUTION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.PROTECTED" class="md-nav__link">
+    <span class="md-ellipsis">
+      PROTECTED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.RESTRICTED" class="md-nav__link">
+    <span class="md-ellipsis">
+      RESTRICTED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.SECRET" class="md-nav__link">
+    <span class="md-ellipsis">
+      SECRET
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.SENSITIVE_BUT_UNCLASSIFIED" class="md-nav__link">
+    <span class="md-ellipsis">
+      SENSITIVE_BUT_UNCLASSIFIED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.TOP_SECRET" class="md-nav__link">
+    <span class="md-ellipsis">
+      TOP_SECRET
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.UNCLASSIFIED" class="md-nav__link">
+    <span class="md-ellipsis">
+      UNCLASSIFIED
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Constraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Constraints.constraint_application_scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      constraint_application_scope
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Constraints.graphic" class="md-nav__link">
+    <span class="md-ellipsis">
+      graphic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Constraints.reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      reference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Constraints.releasability" class="md-nav__link">
+    <span class="md-ellipsis">
+      releasability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Constraints.responsible_party" class="md-nav__link">
+    <span class="md-ellipsis">
+      responsible_party
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Constraints.use_limitation" class="md-nav__link">
+    <span class="md-ellipsis">
+      use_limitation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.LegalConstraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      LegalConstraints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LegalConstraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.LegalConstraints.access_constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      access_constraints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.LegalConstraints.other_constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      other_constraints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.LegalConstraints.use_constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      use_constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Releasability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Releasability
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Releasability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Releasability.addressee" class="md-nav__link">
+    <span class="md-ellipsis">
+      addressee
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Releasability.dissemination_constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      dissemination_constraints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Releasability.statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      statement
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      RestrictionCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RestrictionCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.CONFIDENTIAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      CONFIDENTIAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.COPYRIGHT" class="md-nav__link">
+    <span class="md-ellipsis">
+      COPYRIGHT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.INTELLECTUAL_PROPERTY_RIGHTS" class="md-nav__link">
+    <span class="md-ellipsis">
+      INTELLECTUAL_PROPERTY_RIGHTS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.IN_CONFIDENCE" class="md-nav__link">
+    <span class="md-ellipsis">
+      IN_CONFIDENCE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.LICENCE" class="md-nav__link">
+    <span class="md-ellipsis">
+      LICENCE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.LICENCE_DISTRIBUTOR" class="md-nav__link">
+    <span class="md-ellipsis">
+      LICENCE_DISTRIBUTOR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.LICENCE_END_USER" class="md-nav__link">
+    <span class="md-ellipsis">
+      LICENCE_END_USER
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.LICENCE_UNRESTRICTED" class="md-nav__link">
+    <span class="md-ellipsis">
+      LICENCE_UNRESTRICTED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.OTHER_RESTRICTIONS" class="md-nav__link">
+    <span class="md-ellipsis">
+      OTHER_RESTRICTIONS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.PATENT" class="md-nav__link">
+    <span class="md-ellipsis">
+      PATENT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.PATENT_PENDING" class="md-nav__link">
+    <span class="md-ellipsis">
+      PATENT_PENDING
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.PRIVATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      PRIVATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.RESTRICTED" class="md-nav__link">
+    <span class="md-ellipsis">
+      RESTRICTED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.SENSITIVE_BUT_UNCLASSIFIED" class="md-nav__link">
+    <span class="md-ellipsis">
+      SENSITIVE_BUT_UNCLASSIFIED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.STATUTORY" class="md-nav__link">
+    <span class="md-ellipsis">
+      STATUTORY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.TRADEMARK" class="md-nav__link">
+    <span class="md-ellipsis">
+      TRADEMARK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.UNRESTRICTED" class="md-nav__link">
+    <span class="md-ellipsis">
+      UNRESTRICTED
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.SecurityConstraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      SecurityConstraints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SecurityConstraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.SecurityConstraints.classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      classification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.SecurityConstraints.classification_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      classification_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.SecurityConstraints.handling_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      handling_description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.SecurityConstraints.user_note" class="md-nav__link">
+    <span class="md-ellipsis">
+      user_note
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../content/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    content
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    distribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extension/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    extension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extent/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    extent
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../identification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    identification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lineage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lineage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../maintenance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    maintenance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    naming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quality/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../representation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    representation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    service
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Referencing (ISO 19111)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Referencing (ISO 19111)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/common/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    common
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/coordinate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    coordinate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/crs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    crs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/cs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/datum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    datum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/operation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    operation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Util
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Util
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../util/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../util/measure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    measure (ISO 19103)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      constraints
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      ClassificationCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ClassificationCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.CONFIDENTIAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      CONFIDENTIAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.FOR_OFFICIAL_USE_ONLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      FOR_OFFICIAL_USE_ONLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.LIMITED_DISTRIBUTION" class="md-nav__link">
+    <span class="md-ellipsis">
+      LIMITED_DISTRIBUTION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.PROTECTED" class="md-nav__link">
+    <span class="md-ellipsis">
+      PROTECTED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.RESTRICTED" class="md-nav__link">
+    <span class="md-ellipsis">
+      RESTRICTED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.SECRET" class="md-nav__link">
+    <span class="md-ellipsis">
+      SECRET
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.SENSITIVE_BUT_UNCLASSIFIED" class="md-nav__link">
+    <span class="md-ellipsis">
+      SENSITIVE_BUT_UNCLASSIFIED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.TOP_SECRET" class="md-nav__link">
+    <span class="md-ellipsis">
+      TOP_SECRET
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.ClassificationCode.UNCLASSIFIED" class="md-nav__link">
+    <span class="md-ellipsis">
+      UNCLASSIFIED
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      Constraints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Constraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Constraints.constraint_application_scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      constraint_application_scope
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Constraints.graphic" class="md-nav__link">
+    <span class="md-ellipsis">
+      graphic
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Constraints.reference" class="md-nav__link">
+    <span class="md-ellipsis">
+      reference
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Constraints.releasability" class="md-nav__link">
+    <span class="md-ellipsis">
+      releasability
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Constraints.responsible_party" class="md-nav__link">
+    <span class="md-ellipsis">
+      responsible_party
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Constraints.use_limitation" class="md-nav__link">
+    <span class="md-ellipsis">
+      use_limitation
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.LegalConstraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      LegalConstraints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="LegalConstraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.LegalConstraints.access_constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      access_constraints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.LegalConstraints.other_constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      other_constraints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.LegalConstraints.use_constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      use_constraints
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Releasability" class="md-nav__link">
+    <span class="md-ellipsis">
+      Releasability
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Releasability">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Releasability.addressee" class="md-nav__link">
+    <span class="md-ellipsis">
+      addressee
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Releasability.dissemination_constraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      dissemination_constraints
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.Releasability.statement" class="md-nav__link">
+    <span class="md-ellipsis">
+      statement
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      RestrictionCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="RestrictionCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.CONFIDENTIAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      CONFIDENTIAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.COPYRIGHT" class="md-nav__link">
+    <span class="md-ellipsis">
+      COPYRIGHT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.INTELLECTUAL_PROPERTY_RIGHTS" class="md-nav__link">
+    <span class="md-ellipsis">
+      INTELLECTUAL_PROPERTY_RIGHTS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.IN_CONFIDENCE" class="md-nav__link">
+    <span class="md-ellipsis">
+      IN_CONFIDENCE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.LICENCE" class="md-nav__link">
+    <span class="md-ellipsis">
+      LICENCE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.LICENCE_DISTRIBUTOR" class="md-nav__link">
+    <span class="md-ellipsis">
+      LICENCE_DISTRIBUTOR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.LICENCE_END_USER" class="md-nav__link">
+    <span class="md-ellipsis">
+      LICENCE_END_USER
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.LICENCE_UNRESTRICTED" class="md-nav__link">
+    <span class="md-ellipsis">
+      LICENCE_UNRESTRICTED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.OTHER_RESTRICTIONS" class="md-nav__link">
+    <span class="md-ellipsis">
+      OTHER_RESTRICTIONS
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.PATENT" class="md-nav__link">
+    <span class="md-ellipsis">
+      PATENT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.PATENT_PENDING" class="md-nav__link">
+    <span class="md-ellipsis">
+      PATENT_PENDING
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.PRIVATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      PRIVATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.RESTRICTED" class="md-nav__link">
+    <span class="md-ellipsis">
+      RESTRICTED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.SENSITIVE_BUT_UNCLASSIFIED" class="md-nav__link">
+    <span class="md-ellipsis">
+      SENSITIVE_BUT_UNCLASSIFIED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.STATUTORY" class="md-nav__link">
+    <span class="md-ellipsis">
+      STATUTORY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.TRADEMARK" class="md-nav__link">
+    <span class="md-ellipsis">
+      TRADEMARK
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.RestrictionCode.UNRESTRICTED" class="md-nav__link">
+    <span class="md-ellipsis">
+      UNRESTRICTED
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.SecurityConstraints" class="md-nav__link">
+    <span class="md-ellipsis">
+      SecurityConstraints
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SecurityConstraints">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.SecurityConstraints.classification" class="md-nav__link">
+    <span class="md-ellipsis">
+      classification
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.SecurityConstraints.classification_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      classification_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.SecurityConstraints.handling_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      handling_description
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.constraints.SecurityConstraints.user_note" class="md-nav__link">
+    <span class="md-ellipsis">
+      user_note
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="constraints-module"><code>constraints</code> module</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="opengis.metadata.constraints"></a>
+    <div class="doc doc-contents first">
+
+        <p>This is the <code>constraints</code> module.</p>
+<p>This module contains geographic metadata structures regarding data constraints
+derived from the ISO 19115-1:2014 international standard.</p>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.constraints.ClassificationCode" class="doc doc-heading">
+            <code>ClassificationCode</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p>Name of the handling restrictions on the resource.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/constraints.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ClassificationCode</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Name of the handling restrictions on the resource.&quot;&quot;&quot;</span>
+
+    <span class="n">UNCLASSIFIED</span> <span class="o">=</span> <span class="s2">&quot;unclassified&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Available for general disclosure.&quot;&quot;&quot;</span>
+
+    <span class="n">RESTRICTED</span> <span class="o">=</span> <span class="s2">&quot;restricted&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Not for general disclosure.&quot;&quot;&quot;</span>
+
+    <span class="n">CONFIDENTIAL</span> <span class="o">=</span> <span class="s2">&quot;confidential&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Available for someone who can be entrusted with information.&quot;&quot;&quot;</span>
+
+    <span class="n">SECRET</span> <span class="o">=</span> <span class="s2">&quot;secret&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Kept or meant to be kept private, unknown, or hidden from all but a select</span>
+<span class="sd">    group of people.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">TOP_SECRET</span> <span class="o">=</span> <span class="s2">&quot;topSecret&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Of the highest secrecy.&quot;&quot;&quot;</span>
+
+    <span class="n">SENSITIVE_BUT_UNCLASSIFIED</span> <span class="o">=</span> <span class="s2">&quot;sensitiveButUnclassified&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Although unclassified, requries strict controls over its distribution.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">FOR_OFFICIAL_USE_ONLY</span> <span class="o">=</span> <span class="s2">&quot;forOfficialUseOnly&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Unclassified information that is to be used only for official purposes</span>
+<span class="sd">    determined by the designating body.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">PROTECTED</span> <span class="o">=</span> <span class="s2">&quot;protected&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Compromise of the information could cause damage.&quot;&quot;&quot;</span>
+
+    <span class="n">LIMITED_DISTRIBUTION</span> <span class="o">=</span> <span class="s2">&quot;limitedDistribution&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Destination limited by designating body.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.ClassificationCode.CONFIDENTIAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">CONFIDENTIAL</span> <span class="o">=</span> <span class="s1">&#39;confidential&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Available for someone who can be entrusted with information.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.ClassificationCode.FOR_OFFICIAL_USE_ONLY" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">FOR_OFFICIAL_USE_ONLY</span> <span class="o">=</span> <span class="s1">&#39;forOfficialUseOnly&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Unclassified information that is to be used only for official purposes
+determined by the designating body.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.ClassificationCode.LIMITED_DISTRIBUTION" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">LIMITED_DISTRIBUTION</span> <span class="o">=</span> <span class="s1">&#39;limitedDistribution&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Destination limited by designating body.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.ClassificationCode.PROTECTED" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PROTECTED</span> <span class="o">=</span> <span class="s1">&#39;protected&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compromise of the information could cause damage.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.ClassificationCode.RESTRICTED" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">RESTRICTED</span> <span class="o">=</span> <span class="s1">&#39;restricted&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Not for general disclosure.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.ClassificationCode.SECRET" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SECRET</span> <span class="o">=</span> <span class="s1">&#39;secret&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Kept or meant to be kept private, unknown, or hidden from all but a select
+group of people.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.ClassificationCode.SENSITIVE_BUT_UNCLASSIFIED" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SENSITIVE_BUT_UNCLASSIFIED</span> <span class="o">=</span> <span class="s1">&#39;sensitiveButUnclassified&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Although unclassified, requries strict controls over its distribution.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.ClassificationCode.TOP_SECRET" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">TOP_SECRET</span> <span class="o">=</span> <span class="s1">&#39;topSecret&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Of the highest secrecy.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.ClassificationCode.UNCLASSIFIED" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">UNCLASSIFIED</span> <span class="o">=</span> <span class="s1">&#39;unclassified&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Available for general disclosure.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.constraints.Constraints" class="doc doc-heading">
+            <code>Constraints</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>Restrictions on the access and use of a resource or metadata.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/constraints.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Constraints</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Restrictions on the access and use of a resource or metadata.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">use_limitation</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Limitation affecting the fitness for use of the resource or metadata.</span>
+<span class="sd">        For example, &quot;not to be used for navigation&quot;.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">constraint_application_scope</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Scope</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Spatial and temporal extent of the application of the constraint</span>
+<span class="sd">        restrictions.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">graphic</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">BrowseGraphic</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Graphic /symbol indicating the constraint Eg.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">reference</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Citation</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Citation/URL for the limitation or constraint,</span>
+<span class="sd">        e.g., copyright statement, license agreement, etc.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">releasability</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Releasability</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Information concerning the parties to whom the resource can or cannot</span>
+<span class="sd">        be released and the party responsible for determining the</span>
+<span class="sd">        releasibility.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">responsible_party</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Responsibility</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Party responsible for the resource constraints.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.Constraints.constraint_application_scope" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">constraint_application_scope</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Scope</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Spatial and temporal extent of the application of the constraint
+restrictions.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.Constraints.graphic" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">graphic</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">BrowseGraphic</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Graphic /symbol indicating the constraint Eg.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.Constraints.reference" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">reference</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Citation</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Citation/URL for the limitation or constraint,
+e.g., copyright statement, license agreement, etc.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.Constraints.releasability" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">releasability</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Releasability</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information concerning the parties to whom the resource can or cannot
+be released and the party responsible for determining the
+releasibility.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.Constraints.responsible_party" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">responsible_party</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Responsibility</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Party responsible for the resource constraints.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.Constraints.use_limitation" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">use_limitation</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Limitation affecting the fitness for use of the resource or metadata.
+For example, "not to be used for navigation".</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.constraints.LegalConstraints" class="doc doc-heading">
+            <code>LegalConstraints</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.metadata.constraints.Constraints" href="#opengis.metadata.constraints.Constraints">Constraints</a></code></p>
+
+
+        <p>Restrictions and legal prerequisites for accessing and using the resource
+or metadata.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/constraints.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">LegalConstraints</span><span class="p">(</span><span class="n">Constraints</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Restrictions and legal prerequisites for accessing and using the resource</span>
+<span class="sd">    or metadata.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">access_constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">RestrictionCode</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Access constraints applied to assure the protection of privacy or</span>
+<span class="sd">        intellectual property, and any special restrictions or limitations on</span>
+<span class="sd">        obtaining the resource or metadata.</span>
+
+<span class="sd">        MANDATORY: if `use_constraints`, `other_constrints`, `use_limitations`,</span>
+<span class="sd">            or `releasability` are `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">use_constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">RestrictionCode</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Constraints applied to assure the protection of privacy or</span>
+<span class="sd">        intellectual property, and any special restrictions or limitations or</span>
+<span class="sd">        warnings on using the resource or metadata.</span>
+
+<span class="sd">        MANDATORY: if `access_constraints`, `other_constrints`,</span>
+<span class="sd">            `use_limitations`, or `releasability` are `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">other_constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Other restrictions and legal prerequisites for accessing and using the</span>
+<span class="sd">        resource or metadata.</span>
+
+<span class="sd">        MANDATORY: if `access_constraints`, `use_constrints`,</span>
+<span class="sd">            `use_limitations`, or `releasability` are `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.LegalConstraints.access_constraints" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">access_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">RestrictionCode</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Access constraints applied to assure the protection of privacy or
+intellectual property, and any special restrictions or limitations on
+obtaining the resource or metadata.</p>
+
+
+<details class="mandatory" open>
+  <summary>if <code>use_constraints</code>, <code>other_constrints</code>, <code>use_limitations</code>,</summary>
+  <p>or <code>releasability</code> are <code>None</code>.</p>
+</details>    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.LegalConstraints.other_constraints" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">other_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Other restrictions and legal prerequisites for accessing and using the
+resource or metadata.</p>
+
+
+<details class="mandatory" open>
+  <summary>if <code>access_constraints</code>, <code>use_constrints</code>,</summary>
+  <p><code>use_limitations</code>, or <code>releasability</code> are <code>None</code>.</p>
+</details>    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.LegalConstraints.use_constraints" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">use_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">RestrictionCode</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Constraints applied to assure the protection of privacy or
+intellectual property, and any special restrictions or limitations or
+warnings on using the resource or metadata.</p>
+
+
+<details class="mandatory" open>
+  <summary>if <code>access_constraints</code>, <code>other_constrints</code>,</summary>
+  <p><code>use_limitations</code>, or <code>releasability</code> are <code>None</code>.</p>
+</details>    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.constraints.Releasability" class="doc doc-heading">
+            <code>Releasability</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>State, nation or organisation to which resource can be released,
+e.g., NATO unclassified releasable to PfP.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/constraints.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Releasability</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    State, nation or organisation to which resource can be released,</span>
+<span class="sd">    e.g., NATO unclassified releasable to PfP.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">addressee</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Responsibility</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Party to which the release statement applies.</span>
+
+<span class="sd">        MANDATORY: if `statement` is `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">statement</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Release statement.</span>
+
+<span class="sd">        MANDATORY: if `addressee` is `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">dissemination_constraints</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">RestrictionCode</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Component in determining releasability.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.Releasability.addressee" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">addressee</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Responsibility</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Party to which the release statement applies.</p>
+<p>MANDATORY: if <code>statement</code> is <code>None</code>.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.Releasability.dissemination_constraints" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dissemination_constraints</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">RestrictionCode</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Component in determining releasability.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.Releasability.statement" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">statement</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Release statement.</p>
+<p>MANDATORY: if <code>addressee</code> is <code>None</code>.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.constraints.RestrictionCode" class="doc doc-heading">
+            <code>RestrictionCode</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p>Limitation(s) placed upon the access or use of the data.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/constraints.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">RestrictionCode</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Limitation(s) placed upon the access or use of the data.&quot;&quot;&quot;</span>
+
+    <span class="n">COPYRIGHT</span> <span class="o">=</span> <span class="s2">&quot;copyright&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Exclusive right tot he publication, production, or sale of the rights to a</span>
+<span class="sd">    literary, dramatic, musical, or artistic work, or to the use of a</span>
+<span class="sd">    commercial print or label, granted by law for a specified period of time</span>
+<span class="sd">    to an author, composer, artist, distributor.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">PATENT</span> <span class="o">=</span> <span class="s2">&quot;patent&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Government has granted exclusive right to make, sell, use or license an</span>
+<span class="sd">    invention or discovery.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">PATENT_PENDING</span> <span class="o">=</span> <span class="s2">&quot;patentPending&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Produced or sold information awaiting a patent.&quot;&quot;&quot;</span>
+
+    <span class="n">TRADEMARK</span> <span class="o">=</span> <span class="s2">&quot;trademark&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A name, symbol, or other device identifying a product, officially</span>
+<span class="sd">    registered and legally restricted to the use of the owner or manufacturer.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">LICENCE</span> <span class="o">=</span> <span class="s2">&quot;licence&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Formal permission to do something.&quot;&quot;&quot;</span>
+
+    <span class="n">INTELLECTUAL_PROPERTY_RIGHTS</span> <span class="o">=</span> <span class="s2">&quot;intellectualPropertyRights&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Rights to financial benefit from and control of distribution of</span>
+<span class="sd">    non-tangible property that is a result of creativity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">RESTRICTED</span> <span class="o">=</span> <span class="s2">&quot;restricted&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Withheld from general circulation or disclosure.&quot;&quot;&quot;</span>
+
+    <span class="n">OTHER_RESTRICTIONS</span> <span class="o">=</span> <span class="s2">&quot;otherRestrictions&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Limitation not listed.&quot;&quot;&quot;</span>
+
+    <span class="n">UNRESTRICTED</span> <span class="o">=</span> <span class="s2">&quot;unrestricted&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;No constraints exist.&quot;&quot;&quot;</span>
+
+    <span class="n">LICENCE_UNRESTRICTED</span> <span class="o">=</span> <span class="s2">&quot;licenceUnrestricted&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Formal permission not required to use resource.&quot;&quot;&quot;</span>
+
+    <span class="n">LICENCE_END_USER</span> <span class="o">=</span> <span class="s2">&quot;licenceEndUser&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Fromal permission required for a person pr an entity to use the resource</span>
+<span class="sd">    and that may differ from the person that orders or purchases it.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">LICENCE_DISTRIBUTOR</span> <span class="o">=</span> <span class="s2">&quot;licenceDistributor&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Formal permission required for a person or entity to commercialize or</span>
+<span class="sd">    distribute the resource.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">PRIVATE</span> <span class="o">=</span> <span class="s2">&quot;private&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Protects rights of individual or organisations from observation,</span>
+<span class="sd">    intrusion, or attention of others.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">STATUTORY</span> <span class="o">=</span> <span class="s2">&quot;statutory&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Prescribed by law.&quot;&quot;&quot;</span>
+
+    <span class="n">CONFIDENTIAL</span> <span class="o">=</span> <span class="s2">&quot;confidential&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Not available to the public.</span>
+
+<span class="sd">    NOTE: Contains information that could be prejudicial to a commercial,</span>
+<span class="sd">    industrial, or national interest.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">SENSITIVE_BUT_UNCLASSIFIED</span> <span class="o">=</span> <span class="s2">&quot;sensitiveButUnclassified&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Although unclassified, requires strict controls over its distribution.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">IN_CONFIDENCE</span> <span class="o">=</span> <span class="s2">&quot;in-confidence&quot;</span>
+    <span class="s2">&quot;With trust.&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.CONFIDENTIAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">CONFIDENTIAL</span> <span class="o">=</span> <span class="s1">&#39;confidential&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Not available to the public.</p>
+<p>NOTE: Contains information that could be prejudicial to a commercial,
+industrial, or national interest.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.COPYRIGHT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COPYRIGHT</span> <span class="o">=</span> <span class="s1">&#39;copyright&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Exclusive right tot he publication, production, or sale of the rights to a
+literary, dramatic, musical, or artistic work, or to the use of a
+commercial print or label, granted by law for a specified period of time
+to an author, composer, artist, distributor.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.INTELLECTUAL_PROPERTY_RIGHTS" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">INTELLECTUAL_PROPERTY_RIGHTS</span> <span class="o">=</span> <span class="s1">&#39;intellectualPropertyRights&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Rights to financial benefit from and control of distribution of
+non-tangible property that is a result of creativity.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.IN_CONFIDENCE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">IN_CONFIDENCE</span> <span class="o">=</span> <span class="s1">&#39;in-confidence&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>With trust.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.LICENCE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">LICENCE</span> <span class="o">=</span> <span class="s1">&#39;licence&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Formal permission to do something.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.LICENCE_DISTRIBUTOR" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">LICENCE_DISTRIBUTOR</span> <span class="o">=</span> <span class="s1">&#39;licenceDistributor&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Formal permission required for a person or entity to commercialize or
+distribute the resource.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.LICENCE_END_USER" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">LICENCE_END_USER</span> <span class="o">=</span> <span class="s1">&#39;licenceEndUser&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Fromal permission required for a person pr an entity to use the resource
+and that may differ from the person that orders or purchases it.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.LICENCE_UNRESTRICTED" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">LICENCE_UNRESTRICTED</span> <span class="o">=</span> <span class="s1">&#39;licenceUnrestricted&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Formal permission not required to use resource.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.OTHER_RESTRICTIONS" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">OTHER_RESTRICTIONS</span> <span class="o">=</span> <span class="s1">&#39;otherRestrictions&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Limitation not listed.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.PATENT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PATENT</span> <span class="o">=</span> <span class="s1">&#39;patent&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Government has granted exclusive right to make, sell, use or license an
+invention or discovery.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.PATENT_PENDING" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PATENT_PENDING</span> <span class="o">=</span> <span class="s1">&#39;patentPending&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Produced or sold information awaiting a patent.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.PRIVATE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PRIVATE</span> <span class="o">=</span> <span class="s1">&#39;private&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Protects rights of individual or organisations from observation,
+intrusion, or attention of others.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.RESTRICTED" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">RESTRICTED</span> <span class="o">=</span> <span class="s1">&#39;restricted&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Withheld from general circulation or disclosure.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.SENSITIVE_BUT_UNCLASSIFIED" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SENSITIVE_BUT_UNCLASSIFIED</span> <span class="o">=</span> <span class="s1">&#39;sensitiveButUnclassified&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Although unclassified, requires strict controls over its distribution.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.STATUTORY" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">STATUTORY</span> <span class="o">=</span> <span class="s1">&#39;statutory&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Prescribed by law.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.TRADEMARK" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">TRADEMARK</span> <span class="o">=</span> <span class="s1">&#39;trademark&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>A name, symbol, or other device identifying a product, officially
+registered and legally restricted to the use of the owner or manufacturer.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.RestrictionCode.UNRESTRICTED" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">UNRESTRICTED</span> <span class="o">=</span> <span class="s1">&#39;unrestricted&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>No constraints exist.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.constraints.SecurityConstraints" class="doc doc-heading">
+            <code>SecurityConstraints</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.metadata.constraints.Constraints" href="#opengis.metadata.constraints.Constraints">Constraints</a></code></p>
+
+
+        <p>Handling restrictions imposed on the resource or metadata for national
+security or similar security concerns.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/constraints.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SecurityConstraints</span><span class="p">(</span><span class="n">Constraints</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Handling restrictions imposed on the resource or metadata for national</span>
+<span class="sd">    security or similar security concerns.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">classification</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ClassificationCode</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name of the handling restrictions on the resource or metadata.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">user_note</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Explanation of the application of the legal constraints or other</span>
+<span class="sd">        restrictions and legal prerequisites for obtaining and using the</span>
+<span class="sd">        resource or metadata.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">classification_system</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Name of the classification system.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">handling_description</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Additional information about the restrictions on handling the resource</span>
+<span class="sd">        or metadata.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.SecurityConstraints.classification" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">classification</span><span class="p">:</span> <span class="n">ClassificationCode</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Name of the handling restrictions on the resource or metadata.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.SecurityConstraints.classification_system" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">classification_system</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Name of the classification system.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.SecurityConstraints.handling_description" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">handling_description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Additional information about the restrictions on handling the resource
+or metadata.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.constraints.SecurityConstraints.user_note" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">user_note</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Explanation of the application of the legal constraints or other
+restrictions and legal prerequisites for obtaining and using the
+resource or metadata.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

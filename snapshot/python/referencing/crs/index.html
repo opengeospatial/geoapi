@@ -1,0 +1,5045 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.geoapi.org/python/referencing/crs/">
+      
+      
+        <link rel="prev" href="../coordinate/">
+      
+      
+        <link rel="next" href="../cs/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>crs - GeoAPI for Python</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#crs-module" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="GeoAPI for Python" class="md-header__button md-logo" aria-label="GeoAPI for Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GeoAPI for Python
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              crs
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="GeoAPI for Python" class="md-nav__button md-logo" aria-label="GeoAPI for Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GeoAPI for Python
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GeoAPI Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Geometry (ISO 19107)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Geometry (ISO 19107)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../geometry/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../geometry/primitive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    primitive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Naming (ISO 19103) and Metadata (ISO 19115)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Naming (ISO 19103) and Metadata (ISO 19115)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/acquisition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acquisition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/base/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/citation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    citation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/constraints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    constraints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/content/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    content
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/distribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    distribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/extension/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    extension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/extent/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    extent
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/identification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    identification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/lineage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lineage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/maintenance/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    maintenance
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/naming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    naming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/quality/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/representation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    representation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metadata/service/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    service
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Referencing (ISO 19111)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Referencing (ISO 19111)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../common/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    common
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../coordinate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    coordinate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    crs
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    crs
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs" class="md-nav__link">
+    <span class="md-ellipsis">
+      crs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.CompoundCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      CompoundCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CompoundCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.CompoundCRS.components" class="md-nav__link">
+    <span class="md-ellipsis">
+      components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.CoordinateReferenceSystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      CoordinateReferenceSystem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.DerivedCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      DerivedCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DerivedCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.DerivedCRS.base_crs" class="md-nav__link">
+    <span class="md-ellipsis">
+      base_crs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.DerivedCRS.conversion_from_base" class="md-nav__link">
+    <span class="md-ellipsis">
+      conversion_from_base
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.EngineeringCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      EngineeringCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EngineeringCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.EngineeringCRS.datum" class="md-nav__link">
+    <span class="md-ellipsis">
+      datum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.GeodeticCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      GeodeticCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GeodeticCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.GeodeticCRS.datum" class="md-nav__link">
+    <span class="md-ellipsis">
+      datum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.GeographicCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      GeographicCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GeographicCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.GeographicCRS.coordinate_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_system
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ProjectedCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      ProjectedCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ProjectedCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ProjectedCRS.base_crs" class="md-nav__link">
+    <span class="md-ellipsis">
+      base_crs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ProjectedCRS.conversion_from_base" class="md-nav__link">
+    <span class="md-ellipsis">
+      conversion_from_base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ProjectedCRS.coordinate_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ProjectedCRS.datum" class="md-nav__link">
+    <span class="md-ellipsis">
+      datum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReferenceSystem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ReferenceSystem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystem.coordinate_epoch" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_epoch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystem.coordinate_reference_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_reference_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystem.reference_system_identifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      reference_system_identifier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystem.reference_system_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      reference_system_type
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReferenceSystemTypeCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ReferenceSystemTypeCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_ENGINEERING_PARAMETRIC" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_ENGINEERING_PARAMETRIC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_ENGINEERING_PARAMETRIC_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_ENGINEERING_PARAMETRIC_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_ENGINEERING_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_ENGINEERING_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_ENGINEERING_VERTICAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_ENGINEERING_VERTICAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_ENGINEERING_VERTICAL_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_ENGINEERING_VERTICAL_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC2D_PARAMETRIC" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_GEOGRAPHIC2D_PARAMETRIC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC2D_PARAMETRIC_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_GEOGRAPHIC2D_PARAMETRIC_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC2D_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_GEOGRAPHIC2D_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC2D_VERTICAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_GEOGRAPHIC2D_VERTICAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC2D_VERTICAL_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_GEOGRAPHIC2D_VERTICAL_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC3D_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_GEOGRAPHIC3D_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_PROJECTED2D_PARAMETRIC" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_PROJECTED2D_PARAMETRIC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_PROJECTED2D_PARAMETRIC_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_PROJECTED2D_PARAMETRIC_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_PROJECTED_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_PROJECTED_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_PROJECTED_VERTICAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_PROJECTED_VERTICAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_PROJECTED_VERTICAL_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_PROJECTED_VERTICAL_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.ENGINEERING" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENGINEERING
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.ENGINEERING_DESIGN" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENGINEERING_DESIGN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.ENGINEERING_IMAGE" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENGINEERING_IMAGE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.GEODETIC_GEOCENTRIC" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEODETIC_GEOCENTRIC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.GEODETIC_GEOGRAPHIC_2D" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEODETIC_GEOGRAPHIC_2D
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.GEODETIC_GEOGRAPHIC_3D" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEODETIC_GEOGRAPHIC_3D
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.GEOGRAPHIC_IDENTIFIER" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEOGRAPHIC_IDENTIFIER
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.LINEAR" class="md-nav__link">
+    <span class="md-ellipsis">
+      LINEAR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.PARAMETRIC" class="md-nav__link">
+    <span class="md-ellipsis">
+      PARAMETRIC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.PROJECTED" class="md-nav__link">
+    <span class="md-ellipsis">
+      PROJECTED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.VERTICAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      VERTICAL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.SingleCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      SingleCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SingleCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.SingleCRS.coordinate_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.SingleCRS.datum" class="md-nav__link">
+    <span class="md-ellipsis">
+      datum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.TemporalCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      TemporalCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TemporalCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.TemporalCRS.coordinate_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.TemporalCRS.datum" class="md-nav__link">
+    <span class="md-ellipsis">
+      datum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.VerticalCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      VerticalCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VerticalCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.VerticalCRS.coordinate_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.VerticalCRS.datum" class="md-nav__link">
+    <span class="md-ellipsis">
+      datum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../cs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../datum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    datum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    operation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Util
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Util
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../util/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../util/measure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    measure (ISO 19103)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs" class="md-nav__link">
+    <span class="md-ellipsis">
+      crs
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.CompoundCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      CompoundCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="CompoundCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.CompoundCRS.components" class="md-nav__link">
+    <span class="md-ellipsis">
+      components
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.CoordinateReferenceSystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      CoordinateReferenceSystem
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.DerivedCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      DerivedCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="DerivedCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.DerivedCRS.base_crs" class="md-nav__link">
+    <span class="md-ellipsis">
+      base_crs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.DerivedCRS.conversion_from_base" class="md-nav__link">
+    <span class="md-ellipsis">
+      conversion_from_base
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.EngineeringCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      EngineeringCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="EngineeringCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.EngineeringCRS.datum" class="md-nav__link">
+    <span class="md-ellipsis">
+      datum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.GeodeticCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      GeodeticCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GeodeticCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.GeodeticCRS.datum" class="md-nav__link">
+    <span class="md-ellipsis">
+      datum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.GeographicCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      GeographicCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="GeographicCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.GeographicCRS.coordinate_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_system
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ProjectedCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      ProjectedCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ProjectedCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ProjectedCRS.base_crs" class="md-nav__link">
+    <span class="md-ellipsis">
+      base_crs
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ProjectedCRS.conversion_from_base" class="md-nav__link">
+    <span class="md-ellipsis">
+      conversion_from_base
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ProjectedCRS.coordinate_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ProjectedCRS.datum" class="md-nav__link">
+    <span class="md-ellipsis">
+      datum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystem" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReferenceSystem
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ReferenceSystem">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystem.coordinate_epoch" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_epoch
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystem.coordinate_reference_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_reference_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystem.reference_system_identifier" class="md-nav__link">
+    <span class="md-ellipsis">
+      reference_system_identifier
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystem.reference_system_type" class="md-nav__link">
+    <span class="md-ellipsis">
+      reference_system_type
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      ReferenceSystemTypeCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ReferenceSystemTypeCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_ENGINEERING_PARAMETRIC" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_ENGINEERING_PARAMETRIC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_ENGINEERING_PARAMETRIC_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_ENGINEERING_PARAMETRIC_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_ENGINEERING_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_ENGINEERING_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_ENGINEERING_VERTICAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_ENGINEERING_VERTICAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_ENGINEERING_VERTICAL_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_ENGINEERING_VERTICAL_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC2D_PARAMETRIC" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_GEOGRAPHIC2D_PARAMETRIC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC2D_PARAMETRIC_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_GEOGRAPHIC2D_PARAMETRIC_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC2D_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_GEOGRAPHIC2D_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC2D_VERTICAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_GEOGRAPHIC2D_VERTICAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC2D_VERTICAL_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_GEOGRAPHIC2D_VERTICAL_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC3D_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_GEOGRAPHIC3D_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_PROJECTED2D_PARAMETRIC" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_PROJECTED2D_PARAMETRIC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_PROJECTED2D_PARAMETRIC_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_PROJECTED2D_PARAMETRIC_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_PROJECTED_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_PROJECTED_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_PROJECTED_VERTICAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_PROJECTED_VERTICAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_PROJECTED_VERTICAL_TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      COMPOUND_PROJECTED_VERTICAL_TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.ENGINEERING" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENGINEERING
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.ENGINEERING_DESIGN" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENGINEERING_DESIGN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.ENGINEERING_IMAGE" class="md-nav__link">
+    <span class="md-ellipsis">
+      ENGINEERING_IMAGE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.GEODETIC_GEOCENTRIC" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEODETIC_GEOCENTRIC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.GEODETIC_GEOGRAPHIC_2D" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEODETIC_GEOGRAPHIC_2D
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.GEODETIC_GEOGRAPHIC_3D" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEODETIC_GEOGRAPHIC_3D
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.GEOGRAPHIC_IDENTIFIER" class="md-nav__link">
+    <span class="md-ellipsis">
+      GEOGRAPHIC_IDENTIFIER
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.LINEAR" class="md-nav__link">
+    <span class="md-ellipsis">
+      LINEAR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.PARAMETRIC" class="md-nav__link">
+    <span class="md-ellipsis">
+      PARAMETRIC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.PROJECTED" class="md-nav__link">
+    <span class="md-ellipsis">
+      PROJECTED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.TEMPORAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      TEMPORAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.ReferenceSystemTypeCode.VERTICAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      VERTICAL
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.SingleCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      SingleCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="SingleCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.SingleCRS.coordinate_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.SingleCRS.datum" class="md-nav__link">
+    <span class="md-ellipsis">
+      datum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.TemporalCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      TemporalCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="TemporalCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.TemporalCRS.coordinate_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.TemporalCRS.datum" class="md-nav__link">
+    <span class="md-ellipsis">
+      datum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.VerticalCRS" class="md-nav__link">
+    <span class="md-ellipsis">
+      VerticalCRS
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="VerticalCRS">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.VerticalCRS.coordinate_system" class="md-nav__link">
+    <span class="md-ellipsis">
+      coordinate_system
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.referencing.crs.VerticalCRS.datum" class="md-nav__link">
+    <span class="md-ellipsis">
+      datum
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="crs-module"><code>crs</code> module</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="opengis.referencing.crs"></a>
+    <div class="doc doc-contents first">
+
+        <p>This is the <code>crs</code> module.</p>
+<p>This module contains geographic metadata structures regarding coordinate
+referencing systems derived from the ISO 19111 international standard and
+ISO 19115-1:2014, including adendums A1(2018) and A2(2020).</p>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.crs.CompoundCRS" class="doc doc-heading">
+            <code>CompoundCRS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.crs.CoordinateReferenceSystem" href="#opengis.referencing.crs.CoordinateReferenceSystem">CoordinateReferenceSystem</a></code></p>
+
+
+        <p>A coordinate reference system describing the position of points through
+two or more independent coordinate reference systems.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/crs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">391</span>
+<span class="normal">392</span>
+<span class="normal">393</span>
+<span class="normal">394</span>
+<span class="normal">395</span>
+<span class="normal">396</span>
+<span class="normal">397</span>
+<span class="normal">398</span>
+<span class="normal">399</span>
+<span class="normal">400</span>
+<span class="normal">401</span>
+<span class="normal">402</span>
+<span class="normal">403</span>
+<span class="normal">404</span>
+<span class="normal">405</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CompoundCRS</span><span class="p">(</span><span class="n">CoordinateReferenceSystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A coordinate reference system describing the position of points through</span>
+<span class="sd">    two or more independent coordinate reference systems.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">components</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">SingleCRS</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The ordered list of coordinate reference systems.</span>
+
+<span class="sd">        :return: The ordered list of coordinate reference systems.</span>
+<span class="sd">        :rtype: Sequence[SingleCRS]</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.CompoundCRS.components" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">components</span><span class="p">:</span> <span class="n">Sequence</span><span class="p">[</span><span class="n">SingleCRS</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The ordered list of coordinate reference systems.</p>
+<p>:return: The ordered list of coordinate reference systems.
+:rtype: Sequence[SingleCRS]</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.crs.CoordinateReferenceSystem" class="doc doc-heading">
+            <code>CoordinateReferenceSystem</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.crs.ReferenceSystem" href="#opengis.referencing.crs.ReferenceSystem">ReferenceSystem</a></code></p>
+
+
+        <p>Abstract coordinate reference system, usually defined by a coordinate
+system and a datum.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/crs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">357</span>
+<span class="normal">358</span>
+<span class="normal">359</span>
+<span class="normal">360</span>
+<span class="normal">361</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">CoordinateReferenceSystem</span><span class="p">(</span><span class="n">ReferenceSystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract coordinate reference system, usually defined by a coordinate</span>
+<span class="sd">    system and a datum.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.crs.DerivedCRS" class="doc doc-heading">
+            <code>DerivedCRS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.crs.SingleCRS" href="#opengis.referencing.crs.SingleCRS">SingleCRS</a></code></p>
+
+
+        <p>A coordinate reference system that is defined by its coordinate conversion
+from another coordinate reference system (not by a datum).</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/crs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">476</span>
+<span class="normal">477</span>
+<span class="normal">478</span>
+<span class="normal">479</span>
+<span class="normal">480</span>
+<span class="normal">481</span>
+<span class="normal">482</span>
+<span class="normal">483</span>
+<span class="normal">484</span>
+<span class="normal">485</span>
+<span class="normal">486</span>
+<span class="normal">487</span>
+<span class="normal">488</span>
+<span class="normal">489</span>
+<span class="normal">490</span>
+<span class="normal">491</span>
+<span class="normal">492</span>
+<span class="normal">493</span>
+<span class="normal">494</span>
+<span class="normal">495</span>
+<span class="normal">496</span>
+<span class="normal">497</span>
+<span class="normal">498</span>
+<span class="normal">499</span>
+<span class="normal">500</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">DerivedCRS</span><span class="p">(</span><span class="n">SingleCRS</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A coordinate reference system that is defined by its coordinate conversion</span>
+<span class="sd">    from another coordinate reference system (not by a datum).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">base_crs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CoordinateReferenceSystem</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the base coordinate reference system.</span>
+
+<span class="sd">        :return: The base coordinate reference system.</span>
+<span class="sd">        :rtype: CoordinateReferenceSystem</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">conversion_from_base</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the conversion from the base CRS to this CRS.</span>
+
+<span class="sd">        :return: The conversion from the base CRS.</span>
+<span class="sd">        :rtype: Conversion</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.DerivedCRS.base_crs" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">base_crs</span><span class="p">:</span> <span class="n">CoordinateReferenceSystem</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the base coordinate reference system.</p>
+<p>:return: The base coordinate reference system.
+:rtype: CoordinateReferenceSystem</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.DerivedCRS.conversion_from_base" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">conversion_from_base</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the conversion from the base CRS to this CRS.</p>
+<p>:return: The conversion from the base CRS.
+:rtype: Conversion</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.crs.EngineeringCRS" class="doc doc-heading">
+            <code>EngineeringCRS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.crs.SingleCRS" href="#opengis.referencing.crs.SingleCRS">SingleCRS</a></code></p>
+
+
+        <p>A contextually local coordinate reference system.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/crs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">460</span>
+<span class="normal">461</span>
+<span class="normal">462</span>
+<span class="normal">463</span>
+<span class="normal">464</span>
+<span class="normal">465</span>
+<span class="normal">466</span>
+<span class="normal">467</span>
+<span class="normal">468</span>
+<span class="normal">469</span>
+<span class="normal">470</span>
+<span class="normal">471</span>
+<span class="normal">472</span>
+<span class="normal">473</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">EngineeringCRS</span><span class="p">(</span><span class="n">SingleCRS</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A contextually local coordinate reference system.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">datum</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EngineeringDatum</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the datum, which must be an engineering one.</span>
+
+<span class="sd">        :return: The datum</span>
+<span class="sd">        :rtype: EngineeringDatum</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.EngineeringCRS.datum" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">datum</span><span class="p">:</span> <span class="n">EngineeringDatum</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the datum, which must be an engineering one.</p>
+<p>:return: The datum
+:rtype: EngineeringDatum</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.crs.GeodeticCRS" class="doc doc-heading">
+            <code>GeodeticCRS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.crs.SingleCRS" href="#opengis.referencing.crs.SingleCRS">SingleCRS</a></code></p>
+
+
+        <p>A coordinate reference system associated with a geodetic reference frame.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/crs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">503</span>
+<span class="normal">504</span>
+<span class="normal">505</span>
+<span class="normal">506</span>
+<span class="normal">507</span>
+<span class="normal">508</span>
+<span class="normal">509</span>
+<span class="normal">510</span>
+<span class="normal">511</span>
+<span class="normal">512</span>
+<span class="normal">513</span>
+<span class="normal">514</span>
+<span class="normal">515</span>
+<span class="normal">516</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GeodeticCRS</span><span class="p">(</span><span class="n">SingleCRS</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A coordinate reference system associated with a geodetic reference frame.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">datum</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeodeticDatum</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the datum, which must be geodetic.</span>
+
+<span class="sd">        :return: The datum.</span>
+<span class="sd">        :rtype: GeodeticDatum</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.GeodeticCRS.datum" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">datum</span><span class="p">:</span> <span class="n">GeodeticDatum</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the datum, which must be geodetic.</p>
+<p>:return: The datum.
+:rtype: GeodeticDatum</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.crs.GeographicCRS" class="doc doc-heading">
+            <code>GeographicCRS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.crs.GeodeticCRS" href="#opengis.referencing.crs.GeodeticCRS">GeodeticCRS</a></code></p>
+
+
+        <p>A coordinate reference system based on an ellipsoidal approximation of the
+geoid; this provides an accurate representation of the geometry of
+geographic features for a large portion of the earth's surface.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/crs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">519</span>
+<span class="normal">520</span>
+<span class="normal">521</span>
+<span class="normal">522</span>
+<span class="normal">523</span>
+<span class="normal">524</span>
+<span class="normal">525</span>
+<span class="normal">526</span>
+<span class="normal">527</span>
+<span class="normal">528</span>
+<span class="normal">529</span>
+<span class="normal">530</span>
+<span class="normal">531</span>
+<span class="normal">532</span>
+<span class="normal">533</span>
+<span class="normal">534</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GeographicCRS</span><span class="p">(</span><span class="n">GeodeticCRS</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A coordinate reference system based on an ellipsoidal approximation of the</span>
+<span class="sd">    geoid; this provides an accurate representation of the geometry of</span>
+<span class="sd">    geographic features for a large portion of the earth&#39;s surface.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">coordinate_system</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">EllipsoidalCS</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the coordinate system, which must be ellipsoidal.</span>
+
+<span class="sd">        :return: The coordinate system.</span>
+<span class="sd">        :rtype: EllipsoidalCS</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.GeographicCRS.coordinate_system" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">coordinate_system</span><span class="p">:</span> <span class="n">EllipsoidalCS</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the coordinate system, which must be ellipsoidal.</p>
+<p>:return: The coordinate system.
+:rtype: EllipsoidalCS</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.crs.ProjectedCRS" class="doc doc-heading">
+            <code>ProjectedCRS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.crs.DerivedCRS" href="#opengis.referencing.crs.DerivedCRS">DerivedCRS</a></code></p>
+
+
+        <p>A 2D coordinate reference system used to approximate the shape of the
+Earth on a planar surface.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/crs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">537</span>
+<span class="normal">538</span>
+<span class="normal">539</span>
+<span class="normal">540</span>
+<span class="normal">541</span>
+<span class="normal">542</span>
+<span class="normal">543</span>
+<span class="normal">544</span>
+<span class="normal">545</span>
+<span class="normal">546</span>
+<span class="normal">547</span>
+<span class="normal">548</span>
+<span class="normal">549</span>
+<span class="normal">550</span>
+<span class="normal">551</span>
+<span class="normal">552</span>
+<span class="normal">553</span>
+<span class="normal">554</span>
+<span class="normal">555</span>
+<span class="normal">556</span>
+<span class="normal">557</span>
+<span class="normal">558</span>
+<span class="normal">559</span>
+<span class="normal">560</span>
+<span class="normal">561</span>
+<span class="normal">562</span>
+<span class="normal">563</span>
+<span class="normal">564</span>
+<span class="normal">565</span>
+<span class="normal">566</span>
+<span class="normal">567</span>
+<span class="normal">568</span>
+<span class="normal">569</span>
+<span class="normal">570</span>
+<span class="normal">571</span>
+<span class="normal">572</span>
+<span class="normal">573</span>
+<span class="normal">574</span>
+<span class="normal">575</span>
+<span class="normal">576</span>
+<span class="normal">577</span>
+<span class="normal">578</span>
+<span class="normal">579</span>
+<span class="normal">580</span>
+<span class="normal">581</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ProjectedCRS</span><span class="p">(</span><span class="n">DerivedCRS</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A 2D coordinate reference system used to approximate the shape of the</span>
+<span class="sd">    Earth on a planar surface.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">conversion_from_base</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the map projection from the base CRS to this CRS.</span>
+
+<span class="sd">        :return: The conversion from the base CRS.</span>
+<span class="sd">        :rtype: Conversion</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">base_crs</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeographicCRS</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the base coordinate reference system, which must be geographic.</span>
+
+<span class="sd">        :return: The base coordinate reference system.</span>
+<span class="sd">        :rtype: GeographicCRS</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">coordinate_system</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CartesianCS</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the coordinate system, which must be cartesian.</span>
+
+<span class="sd">        :return: The coordinate system.</span>
+<span class="sd">        :rtype: CartesianCS</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">datum</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">GeodeticDatum</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the datum.</span>
+
+<span class="sd">        :return: The datum.</span>
+<span class="sd">        :rtype: GeodeticDatum</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ProjectedCRS.base_crs" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">base_crs</span><span class="p">:</span> <span class="n">GeographicCRS</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the base coordinate reference system, which must be geographic.</p>
+<p>:return: The base coordinate reference system.
+:rtype: GeographicCRS</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ProjectedCRS.conversion_from_base" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">conversion_from_base</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the map projection from the base CRS to this CRS.</p>
+<p>:return: The conversion from the base CRS.
+:rtype: Conversion</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ProjectedCRS.coordinate_system" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">coordinate_system</span><span class="p">:</span> <span class="n">CartesianCS</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the coordinate system, which must be cartesian.</p>
+<p>:return: The coordinate system.
+:rtype: CartesianCS</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ProjectedCRS.datum" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">datum</span><span class="p">:</span> <span class="n">GeodeticDatum</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the datum.</p>
+<p>:return: The datum.
+:rtype: GeodeticDatum</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.crs.ReferenceSystem" class="doc doc-heading">
+            <code>ReferenceSystem</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.common.IdentifiedObject" href="../common/#opengis.referencing.common.IdentifiedObject">IdentifiedObject</a></code></p>
+
+
+        <p>Description of a spatial and temporal reference system used by a dataset.</p>
+<p>This class is derived from MD_ReferenceSystem described in the
+ISO 19115-1:2014, including addendums A1(2018) and A2(2020),
+and ISO 19115-2:2019, including addendum A1(2022), international standards.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/crs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span>
+<span class="normal">322</span>
+<span class="normal">323</span>
+<span class="normal">324</span>
+<span class="normal">325</span>
+<span class="normal">326</span>
+<span class="normal">327</span>
+<span class="normal">328</span>
+<span class="normal">329</span>
+<span class="normal">330</span>
+<span class="normal">331</span>
+<span class="normal">332</span>
+<span class="normal">333</span>
+<span class="normal">334</span>
+<span class="normal">335</span>
+<span class="normal">336</span>
+<span class="normal">337</span>
+<span class="normal">338</span>
+<span class="normal">339</span>
+<span class="normal">340</span>
+<span class="normal">341</span>
+<span class="normal">342</span>
+<span class="normal">343</span>
+<span class="normal">344</span>
+<span class="normal">345</span>
+<span class="normal">346</span>
+<span class="normal">347</span>
+<span class="normal">348</span>
+<span class="normal">349</span>
+<span class="normal">350</span>
+<span class="normal">351</span>
+<span class="normal">352</span>
+<span class="normal">353</span>
+<span class="normal">354</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ReferenceSystem</span><span class="p">(</span><span class="n">IdentifiedObject</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Description of a spatial and temporal reference system used by a dataset.</span>
+
+<span class="sd">    This class is derived from MD_ReferenceSystem described in the</span>
+<span class="sd">    ISO 19115-1:2014, including addendums A1(2018) and A2(2020),</span>
+<span class="sd">    and ISO 19115-2:2019, including addendum A1(2022), international standards.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">reference_system_identifier</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Identifier</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Identifier and codespace for reference system.</span>
+
+<span class="sd">        NOTE: Refer to to SC_CRS in ISO 19111 and ISO 19111-2 when coordinate</span>
+<span class="sd">        reference system information is not given through reference system</span>
+<span class="sd">        identifier.</span>
+
+<span class="sd">        Example: EPSG::4326</span>
+
+<span class="sd">        MANDATORY: if `crs` is `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">coordinate_reference_system</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> \
+            <span class="n">Optional</span><span class="p">[</span><span class="s1">&#39;CoordinateReferenceSystem&#39;</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Full description of the coordinate reference system from which a set</span>
+<span class="sd">        of coordinates is referenced.</span>
+
+<span class="sd">        MANDATORY: if `reference_system_identifier` is `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">coordinate_epoch</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DataEpoch</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        The epoch from which coordinates in a dynamic coordinate reference</span>
+<span class="sd">        system are referenced.</span>
+
+<span class="sd">        MANDATORY: if the coordinate reference system is dynamic.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">reference_system_type</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ReferenceSystemTypeCode</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Type of reference system used.</span>
+
+<span class="sd">        Example: `COMPOUND_GEOGRAPHIC2D_PARAMETRIC`</span>
+<span class="sd">        (compoundGeographic2DParametric)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystem.coordinate_epoch" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">coordinate_epoch</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">DataEpoch</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>The epoch from which coordinates in a dynamic coordinate reference
+system are referenced.</p>
+<p>MANDATORY: if the coordinate reference system is dynamic.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystem.coordinate_reference_system" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">coordinate_reference_system</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">CoordinateReferenceSystem</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Full description of the coordinate reference system from which a set
+of coordinates is referenced.</p>
+<p>MANDATORY: if <code>reference_system_identifier</code> is <code>None</code>.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystem.reference_system_identifier" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">reference_system_identifier</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Identifier</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Identifier and codespace for reference system.</p>
+<p>NOTE: Refer to to SC_CRS in ISO 19111 and ISO 19111-2 when coordinate
+reference system information is not given through reference system
+identifier.</p>
+<p>Example: EPSG::4326</p>
+<p>MANDATORY: if <code>crs</code> is <code>None</code>.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystem.reference_system_type" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">reference_system_type</span><span class="p">:</span> <span class="n">ReferenceSystemTypeCode</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Type of reference system used.</p>
+<p>Example: <code>COMPOUND_GEOGRAPHIC2D_PARAMETRIC</code>
+(compoundGeographic2DParametric)</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.crs.ReferenceSystemTypeCode" class="doc doc-heading">
+            <code>ReferenceSystemTypeCode</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p>Defines type of reference system used.</p>
+<p>This class is derived from ISO 19115-1:2014, including adendums A1(2018)
+and A2(2020).</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/crs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 52</span>
+<span class="normal"> 53</span>
+<span class="normal"> 54</span>
+<span class="normal"> 55</span>
+<span class="normal"> 56</span>
+<span class="normal"> 57</span>
+<span class="normal"> 58</span>
+<span class="normal"> 59</span>
+<span class="normal"> 60</span>
+<span class="normal"> 61</span>
+<span class="normal"> 62</span>
+<span class="normal"> 63</span>
+<span class="normal"> 64</span>
+<span class="normal"> 65</span>
+<span class="normal"> 66</span>
+<span class="normal"> 67</span>
+<span class="normal"> 68</span>
+<span class="normal"> 69</span>
+<span class="normal"> 70</span>
+<span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span>
+<span class="normal">179</span>
+<span class="normal">180</span>
+<span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span>
+<span class="normal">244</span>
+<span class="normal">245</span>
+<span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span>
+<span class="normal">271</span>
+<span class="normal">272</span>
+<span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ReferenceSystemTypeCode</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Defines type of reference system used.</span>
+
+<span class="sd">    This class is derived from ISO 19115-1:2014, including adendums A1(2018)</span>
+<span class="sd">    and A2(2020).</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_ENGINEERING_PARAMETRIC</span> <span class="o">=</span> <span class="s2">&quot;compoundEngineeringParametric&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound spatio-parametric coordinate reference system containing an</span>
+<span class="sd">    engineering coordinate reference system and a parametric reference system.</span>
+
+<span class="sd">    EXAMPLE: [local] x, y, pressure</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_ENGINEERING_PARAMETRIC_TEMPORAL</span> <span class="o">=</span> \
+        <span class="s2">&quot;compoundEngineeringParametricTemporal&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound spatio-parametric-temporal coordinate reference system containing,</span>
+<span class="sd">    an engineering coordinate reference system, a parametric reference system,</span>
+<span class="sd">    and a temporal coordinate reference system.</span>
+
+<span class="sd">    EXAMPLE: [local] x, y, pressure, time</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_ENGINEERING_TEMPORAL</span> <span class="o">=</span> <span class="s2">&quot;compoundEngineeringTemporal&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound spatio-temporal coordinate reference system containing,</span>
+<span class="sd">    an engineering coordinate reference system and a temporal coordinate</span>
+<span class="sd">    reference system.</span>
+
+<span class="sd">    EXAMPLE: [local] x, y, time</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_ENGINEERING_VERTICAL</span> <span class="o">=</span> <span class="s2">&quot;compoundEngineeringVertical&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound spatial coordinate reference system containing a horizontal</span>
+<span class="sd">    engineering coordinate reference system and a vertical coordinate</span>
+<span class="sd">    reference system.</span>
+
+<span class="sd">    EXAMPLE: [local] x, y, height</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_ENGINEERING_VERTICAL_TEMPORAL</span> <span class="o">=</span> \
+        <span class="s2">&quot;compoundEngineeringVerticalTemporal&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound spatio-temporal coordinate reference system containing an</span>
+<span class="sd">    engineering, a vertical, and a temporal coordinate reference system.</span>
+
+<span class="sd">    EXAMPLE: [local] x, y, height, time</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_GEOGRAPHIC2D_PARAMETRIC</span> <span class="o">=</span> <span class="s2">&quot;compoundGeographic2DParametric&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound spatio-parametric coordinate reference system containing a 2</span>
+<span class="sd">    dimensional geographic horizontal coordinate reference system and a</span>
+<span class="sd">    parametric reference system.</span>
+
+<span class="sd">    EXAMPLE: latitude, longitude, pressure</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_GEOGRAPHIC2D_PARAMETRIC_TEMPORAL</span> <span class="o">=</span> \
+        <span class="s2">&quot;compoundGeographic2DParametricTemporal&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound spatio-parametric-temporal coordinate reference system containing</span>
+<span class="sd">    a 2 dimensional geographic horizontal, a parametric, and a temporal</span>
+<span class="sd">    reference system.</span>
+
+<span class="sd">    EXAMPLE: latitude, longitude, pressure, time</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_GEOGRAPHIC2D_TEMPORAL</span> <span class="o">=</span> <span class="s2">&quot;compoundGeographic2DTemporal&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound spatio-temporal coordinate reference system containing</span>
+<span class="sd">    a 2 dimensional geographic horizontal coordinate reference system and a</span>
+<span class="sd">    temporal reference system.</span>
+
+<span class="sd">    EXAMPLE: latitude, longitude, time</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_GEOGRAPHIC2D_VERTICAL</span> <span class="o">=</span> <span class="s2">&quot;compoundGeographic2DVertical&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound coordinate reference system in which one constituent coordinate</span>
+<span class="sd">    reference system ais a horizontal geodetic coordinate reference system and</span>
+<span class="sd">    one is a vertical reference system.</span>
+
+<span class="sd">    EXAMPLE: latitude, longitude, [gravity-related] height or depth</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_GEOGRAPHIC2D_VERTICAL_TEMPORAL</span> <span class="o">=</span> \
+        <span class="s2">&quot;compoundGeographic2DVerticalTemporal&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound spatio-temporal coordinate reference system containing a</span>
+<span class="sd">    2 dimensional geographic horizontal, a vertical, and a temporal coordinate</span>
+<span class="sd">    reference system.</span>
+
+<span class="sd">    EXAMPLE: latitude, longitude, height, time</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_GEOGRAPHIC3D_TEMPORAL</span> <span class="o">=</span> <span class="s2">&quot;compoundGeographic3DTemporal&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound spatio-temporal coordinate reference system containing a</span>
+<span class="sd">    3 dimensional geographic and a temporal coordinate reference system.</span>
+
+<span class="sd">    EXAMPLE: latitude, longitude, ellipsoidal height, time</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_PROJECTED2D_PARAMETRIC</span> <span class="o">=</span> <span class="s2">&quot;compoundProjected2DParametric&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound spatio-parametric coordinate reference system containing a</span>
+<span class="sd">    projected horizontal coordinate reference system and a parametric</span>
+<span class="sd">    reference system.</span>
+
+<span class="sd">    EXAMPLE: easting, northing, density</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_PROJECTED2D_PARAMETRIC_TEMPORAL</span> <span class="o">=</span> \
+        <span class="s2">&quot;compoundProjected2DParametricTemporal&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound spatio-parametric-temporal coordinate reference system containing</span>
+<span class="sd">    a projected horizontal, a parametric, and a temporal coordinate reference</span>
+<span class="sd">    system.</span>
+
+<span class="sd">    EXAMPLE: easting, northing, density, time</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_PROJECTED_TEMPORAL</span> <span class="o">=</span> <span class="s2">&quot;compoundProjectedTemporal&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound spatial reference system containing a horizontal projected</span>
+<span class="sd">    coordinate reference system and a vertical coordinate reference system.</span>
+
+<span class="sd">    EXAMPLE: easting, northing, [gravity-related] height or depth</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_PROJECTED_VERTICAL</span> <span class="o">=</span> <span class="s2">&quot;compoundProjectedVertical&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound spatial reference system containing a horizontal projected</span>
+<span class="sd">    coordinate reference system and a vertical coordinate reference system.</span>
+
+<span class="sd">    EXAMPLE: easting, northing, [gravity-related] height or depth</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">COMPOUND_PROJECTED_VERTICAL_TEMPORAL</span> <span class="o">=</span> <span class="s2">&quot;compoundProjectedVerticalTemporal&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Compound spatio-temporal coordinate reference system containing a</span>
+<span class="sd">    projected horizontal, a vertical, and a temporal coordinate reference</span>
+<span class="sd">    system.</span>
+
+<span class="sd">    EXAMPLE: easting, northing, height, time</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ENGINEERING</span> <span class="o">=</span> <span class="s2">&quot;engineering&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Coordinate reference system based on an engineering datum (datum</span>
+<span class="sd">    describing the relationship of a coordinate system to a local reference).</span>
+
+<span class="sd">    EXAMPLE: [local] x, y</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ENGINEERING_DESIGN</span> <span class="o">=</span> <span class="s2">&quot;engineeringDesign&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Engineering coordinate reference system in which the base representation</span>
+<span class="sd">    of a moving object is specified.</span>
+
+<span class="sd">    EXAMPLE: [local] x, y</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">ENGINEERING_IMAGE</span> <span class="o">=</span> <span class="s2">&quot;engineeringImage&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Coordinate reference system based on an image datum (engineering datum</span>
+<span class="sd">    which defines the relationship of a coordinate system to an image).</span>
+
+<span class="sd">    EXAMPLE: row, column</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">GEODETIC_GEOCENTRIC</span> <span class="o">=</span> <span class="s2">&quot;geodeticGeocentric&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Geodetic coordinate reference system having a Cartesian 3D coordinate</span>
+<span class="sd">    system.</span>
+
+<span class="sd">    EXAMPLE: [geocentric] X, Y, Z</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">GEODETIC_GEOGRAPHIC_2D</span> <span class="o">=</span> <span class="s2">&quot;geodeticGeographic2D&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Geodetic coordinate reference system having an ellipsoidal 2D coordinate</span>
+<span class="sd">    system.</span>
+
+<span class="sd">    EXAMPLE: latitude, longitude</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">GEODETIC_GEOGRAPHIC_3D</span> <span class="o">=</span> <span class="s2">&quot;geodeticGeographic3D&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Geodetic coordinate reference system having an ellipsoidal 3D coordinate</span>
+<span class="sd">    system.</span>
+
+<span class="sd">    EXAMPLE: latitude, longitude, ellipsoidal height</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">GEOGRAPHIC_IDENTIFIER</span> <span class="o">=</span> <span class="s2">&quot;geographicIdentifier&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Spatial reference in the form of a label or code that identifies a</span>
+<span class="sd">    location.</span>
+
+<span class="sd">    EXAMPLE: post coade</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">LINEAR</span> <span class="o">=</span> <span class="s2">&quot;linear&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reference system that identifies a location by reference to a segment of a</span>
+<span class="sd">    linear geographic feature and distance along that segment from a given</span>
+<span class="sd">    point.</span>
+
+<span class="sd">    EXAMPLE: x km along road</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">PARAMETRIC</span> <span class="o">=</span> <span class="s2">&quot;parametric&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Coordinate reference system based on a parametric datum (datum describing</span>
+<span class="sd">    the relationship of a parametric coordinate system to an object).</span>
+
+<span class="sd">    EXAMPLE: pressure</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">PROJECTED</span> <span class="o">=</span> <span class="s2">&quot;projected&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Coordinate reference system derived from a two-dimensional geodetic</span>
+<span class="sd">    coordinate reference system by applying a map projection.</span>
+
+<span class="sd">    EXAMPLE: easting, northing</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">TEMPORAL</span> <span class="o">=</span> <span class="s2">&quot;temporal&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Reference system against which time is measured.</span>
+
+<span class="sd">    EXAMPLE: time</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">VERTICAL</span> <span class="o">=</span> <span class="s2">&quot;vertical&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    One-dimensional coordinate reference system based on a vertical datum</span>
+<span class="sd">    (datum describing the relation of gravity-related heights or depths</span>
+<span class="sd">    to the Earth).</span>
+
+<span class="sd">    EXAMPLE: [gravity-related] height or depth</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_ENGINEERING_PARAMETRIC" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_ENGINEERING_PARAMETRIC</span> <span class="o">=</span> <span class="s1">&#39;compoundEngineeringParametric&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound spatio-parametric coordinate reference system containing an
+engineering coordinate reference system and a parametric reference system.</p>
+<p>EXAMPLE: [local] x, y, pressure</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_ENGINEERING_PARAMETRIC_TEMPORAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_ENGINEERING_PARAMETRIC_TEMPORAL</span> <span class="o">=</span> <span class="s1">&#39;compoundEngineeringParametricTemporal&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound spatio-parametric-temporal coordinate reference system containing,
+an engineering coordinate reference system, a parametric reference system,
+and a temporal coordinate reference system.</p>
+<p>EXAMPLE: [local] x, y, pressure, time</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_ENGINEERING_TEMPORAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_ENGINEERING_TEMPORAL</span> <span class="o">=</span> <span class="s1">&#39;compoundEngineeringTemporal&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound spatio-temporal coordinate reference system containing,
+an engineering coordinate reference system and a temporal coordinate
+reference system.</p>
+<p>EXAMPLE: [local] x, y, time</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_ENGINEERING_VERTICAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_ENGINEERING_VERTICAL</span> <span class="o">=</span> <span class="s1">&#39;compoundEngineeringVertical&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound spatial coordinate reference system containing a horizontal
+engineering coordinate reference system and a vertical coordinate
+reference system.</p>
+<p>EXAMPLE: [local] x, y, height</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_ENGINEERING_VERTICAL_TEMPORAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_ENGINEERING_VERTICAL_TEMPORAL</span> <span class="o">=</span> <span class="s1">&#39;compoundEngineeringVerticalTemporal&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound spatio-temporal coordinate reference system containing an
+engineering, a vertical, and a temporal coordinate reference system.</p>
+<p>EXAMPLE: [local] x, y, height, time</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC2D_PARAMETRIC" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_GEOGRAPHIC2D_PARAMETRIC</span> <span class="o">=</span> <span class="s1">&#39;compoundGeographic2DParametric&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound spatio-parametric coordinate reference system containing a 2
+dimensional geographic horizontal coordinate reference system and a
+parametric reference system.</p>
+<p>EXAMPLE: latitude, longitude, pressure</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC2D_PARAMETRIC_TEMPORAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_GEOGRAPHIC2D_PARAMETRIC_TEMPORAL</span> <span class="o">=</span> <span class="s1">&#39;compoundGeographic2DParametricTemporal&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound spatio-parametric-temporal coordinate reference system containing
+a 2 dimensional geographic horizontal, a parametric, and a temporal
+reference system.</p>
+<p>EXAMPLE: latitude, longitude, pressure, time</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC2D_TEMPORAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_GEOGRAPHIC2D_TEMPORAL</span> <span class="o">=</span> <span class="s1">&#39;compoundGeographic2DTemporal&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound spatio-temporal coordinate reference system containing
+a 2 dimensional geographic horizontal coordinate reference system and a
+temporal reference system.</p>
+<p>EXAMPLE: latitude, longitude, time</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC2D_VERTICAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_GEOGRAPHIC2D_VERTICAL</span> <span class="o">=</span> <span class="s1">&#39;compoundGeographic2DVertical&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound coordinate reference system in which one constituent coordinate
+reference system ais a horizontal geodetic coordinate reference system and
+one is a vertical reference system.</p>
+<p>EXAMPLE: latitude, longitude, [gravity-related] height or depth</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC2D_VERTICAL_TEMPORAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_GEOGRAPHIC2D_VERTICAL_TEMPORAL</span> <span class="o">=</span> <span class="s1">&#39;compoundGeographic2DVerticalTemporal&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound spatio-temporal coordinate reference system containing a
+2 dimensional geographic horizontal, a vertical, and a temporal coordinate
+reference system.</p>
+<p>EXAMPLE: latitude, longitude, height, time</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_GEOGRAPHIC3D_TEMPORAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_GEOGRAPHIC3D_TEMPORAL</span> <span class="o">=</span> <span class="s1">&#39;compoundGeographic3DTemporal&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound spatio-temporal coordinate reference system containing a
+3 dimensional geographic and a temporal coordinate reference system.</p>
+<p>EXAMPLE: latitude, longitude, ellipsoidal height, time</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_PROJECTED2D_PARAMETRIC" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_PROJECTED2D_PARAMETRIC</span> <span class="o">=</span> <span class="s1">&#39;compoundProjected2DParametric&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound spatio-parametric coordinate reference system containing a
+projected horizontal coordinate reference system and a parametric
+reference system.</p>
+<p>EXAMPLE: easting, northing, density</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_PROJECTED2D_PARAMETRIC_TEMPORAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_PROJECTED2D_PARAMETRIC_TEMPORAL</span> <span class="o">=</span> <span class="s1">&#39;compoundProjected2DParametricTemporal&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound spatio-parametric-temporal coordinate reference system containing
+a projected horizontal, a parametric, and a temporal coordinate reference
+system.</p>
+<p>EXAMPLE: easting, northing, density, time</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_PROJECTED_TEMPORAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_PROJECTED_TEMPORAL</span> <span class="o">=</span> <span class="s1">&#39;compoundProjectedTemporal&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound spatial reference system containing a horizontal projected
+coordinate reference system and a vertical coordinate reference system.</p>
+<p>EXAMPLE: easting, northing, [gravity-related] height or depth</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_PROJECTED_VERTICAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_PROJECTED_VERTICAL</span> <span class="o">=</span> <span class="s1">&#39;compoundProjectedVertical&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound spatial reference system containing a horizontal projected
+coordinate reference system and a vertical coordinate reference system.</p>
+<p>EXAMPLE: easting, northing, [gravity-related] height or depth</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.COMPOUND_PROJECTED_VERTICAL_TEMPORAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COMPOUND_PROJECTED_VERTICAL_TEMPORAL</span> <span class="o">=</span> <span class="s1">&#39;compoundProjectedVerticalTemporal&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Compound spatio-temporal coordinate reference system containing a
+projected horizontal, a vertical, and a temporal coordinate reference
+system.</p>
+<p>EXAMPLE: easting, northing, height, time</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.ENGINEERING" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ENGINEERING</span> <span class="o">=</span> <span class="s1">&#39;engineering&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Coordinate reference system based on an engineering datum (datum
+describing the relationship of a coordinate system to a local reference).</p>
+<p>EXAMPLE: [local] x, y</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.ENGINEERING_DESIGN" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ENGINEERING_DESIGN</span> <span class="o">=</span> <span class="s1">&#39;engineeringDesign&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Engineering coordinate reference system in which the base representation
+of a moving object is specified.</p>
+<p>EXAMPLE: [local] x, y</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.ENGINEERING_IMAGE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ENGINEERING_IMAGE</span> <span class="o">=</span> <span class="s1">&#39;engineeringImage&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Coordinate reference system based on an image datum (engineering datum
+which defines the relationship of a coordinate system to an image).</p>
+<p>EXAMPLE: row, column</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.GEODETIC_GEOCENTRIC" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">GEODETIC_GEOCENTRIC</span> <span class="o">=</span> <span class="s1">&#39;geodeticGeocentric&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Geodetic coordinate reference system having a Cartesian 3D coordinate
+system.</p>
+<p>EXAMPLE: [geocentric] X, Y, Z</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.GEODETIC_GEOGRAPHIC_2D" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">GEODETIC_GEOGRAPHIC_2D</span> <span class="o">=</span> <span class="s1">&#39;geodeticGeographic2D&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Geodetic coordinate reference system having an ellipsoidal 2D coordinate
+system.</p>
+<p>EXAMPLE: latitude, longitude</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.GEODETIC_GEOGRAPHIC_3D" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">GEODETIC_GEOGRAPHIC_3D</span> <span class="o">=</span> <span class="s1">&#39;geodeticGeographic3D&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Geodetic coordinate reference system having an ellipsoidal 3D coordinate
+system.</p>
+<p>EXAMPLE: latitude, longitude, ellipsoidal height</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.GEOGRAPHIC_IDENTIFIER" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">GEOGRAPHIC_IDENTIFIER</span> <span class="o">=</span> <span class="s1">&#39;geographicIdentifier&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Spatial reference in the form of a label or code that identifies a
+location.</p>
+<p>EXAMPLE: post coade</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.LINEAR" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">LINEAR</span> <span class="o">=</span> <span class="s1">&#39;linear&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Reference system that identifies a location by reference to a segment of a
+linear geographic feature and distance along that segment from a given
+point.</p>
+<p>EXAMPLE: x km along road</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.PARAMETRIC" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PARAMETRIC</span> <span class="o">=</span> <span class="s1">&#39;parametric&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Coordinate reference system based on a parametric datum (datum describing
+the relationship of a parametric coordinate system to an object).</p>
+<p>EXAMPLE: pressure</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.PROJECTED" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PROJECTED</span> <span class="o">=</span> <span class="s1">&#39;projected&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Coordinate reference system derived from a two-dimensional geodetic
+coordinate reference system by applying a map projection.</p>
+<p>EXAMPLE: easting, northing</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.TEMPORAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">TEMPORAL</span> <span class="o">=</span> <span class="s1">&#39;temporal&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Reference system against which time is measured.</p>
+<p>EXAMPLE: time</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.ReferenceSystemTypeCode.VERTICAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">VERTICAL</span> <span class="o">=</span> <span class="s1">&#39;vertical&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>One-dimensional coordinate reference system based on a vertical datum
+(datum describing the relation of gravity-related heights or depths
+to the Earth).</p>
+<p>EXAMPLE: [gravity-related] height or depth</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.crs.SingleCRS" class="doc doc-heading">
+            <code>SingleCRS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.crs.CoordinateReferenceSystem" href="#opengis.referencing.crs.CoordinateReferenceSystem">CoordinateReferenceSystem</a></code></p>
+
+
+        <p>Abstract coordinate reference system, consisting of a single Coordinate
+System and a single Datum.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/crs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">364</span>
+<span class="normal">365</span>
+<span class="normal">366</span>
+<span class="normal">367</span>
+<span class="normal">368</span>
+<span class="normal">369</span>
+<span class="normal">370</span>
+<span class="normal">371</span>
+<span class="normal">372</span>
+<span class="normal">373</span>
+<span class="normal">374</span>
+<span class="normal">375</span>
+<span class="normal">376</span>
+<span class="normal">377</span>
+<span class="normal">378</span>
+<span class="normal">379</span>
+<span class="normal">380</span>
+<span class="normal">381</span>
+<span class="normal">382</span>
+<span class="normal">383</span>
+<span class="normal">384</span>
+<span class="normal">385</span>
+<span class="normal">386</span>
+<span class="normal">387</span>
+<span class="normal">388</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">SingleCRS</span><span class="p">(</span><span class="n">CoordinateReferenceSystem</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Abstract coordinate reference system, consisting of a single Coordinate</span>
+<span class="sd">    System and a single Datum.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">coordinate_system</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">CoordinateSystem</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the coordinate system.</span>
+
+<span class="sd">        :return: The coordinate system.</span>
+<span class="sd">        :rtype: CoordinateSystem</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">datum</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Datum</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the datum.</span>
+
+<span class="sd">        :return: The datum</span>
+<span class="sd">        :rtype: Datum</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.SingleCRS.coordinate_system" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">coordinate_system</span><span class="p">:</span> <span class="n">CoordinateSystem</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the coordinate system.</p>
+<p>:return: The coordinate system.
+:rtype: CoordinateSystem</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.SingleCRS.datum" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">datum</span><span class="p">:</span> <span class="n">Datum</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the datum.</p>
+<p>:return: The datum
+:rtype: Datum</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.crs.TemporalCRS" class="doc doc-heading">
+            <code>TemporalCRS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.crs.SingleCRS" href="#opengis.referencing.crs.SingleCRS">SingleCRS</a></code></p>
+
+
+        <p>A 1D coordinate reference system used for the recording of time.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/crs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">434</span>
+<span class="normal">435</span>
+<span class="normal">436</span>
+<span class="normal">437</span>
+<span class="normal">438</span>
+<span class="normal">439</span>
+<span class="normal">440</span>
+<span class="normal">441</span>
+<span class="normal">442</span>
+<span class="normal">443</span>
+<span class="normal">444</span>
+<span class="normal">445</span>
+<span class="normal">446</span>
+<span class="normal">447</span>
+<span class="normal">448</span>
+<span class="normal">449</span>
+<span class="normal">450</span>
+<span class="normal">451</span>
+<span class="normal">452</span>
+<span class="normal">453</span>
+<span class="normal">454</span>
+<span class="normal">455</span>
+<span class="normal">456</span>
+<span class="normal">457</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">TemporalCRS</span><span class="p">(</span><span class="n">SingleCRS</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A 1D coordinate reference system used for the recording of time.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">coordinate_system</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TimeCS</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the coordinate system, which must be temporal.</span>
+
+<span class="sd">        :return: The coordinate system.</span>
+<span class="sd">        :rtype: TimeCS</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">datum</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">TemporalDatum</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the datum, which must be temporal.</span>
+
+<span class="sd">        :return: The datum</span>
+<span class="sd">        :rtype: TemporalDatum</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.TemporalCRS.coordinate_system" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">coordinate_system</span><span class="p">:</span> <span class="n">TimeCS</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the coordinate system, which must be temporal.</p>
+<p>:return: The coordinate system.
+:rtype: TimeCS</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.TemporalCRS.datum" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">datum</span><span class="p">:</span> <span class="n">TemporalDatum</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the datum, which must be temporal.</p>
+<p>:return: The datum
+:rtype: TemporalDatum</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.referencing.crs.VerticalCRS" class="doc doc-heading">
+            <code>VerticalCRS</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><a class="autorefs autorefs-internal" title="opengis.referencing.crs.SingleCRS" href="#opengis.referencing.crs.SingleCRS">SingleCRS</a></code></p>
+
+
+        <p>A 1D coordinate reference system used for recording heights or depths.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/referencing/crs.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">408</span>
+<span class="normal">409</span>
+<span class="normal">410</span>
+<span class="normal">411</span>
+<span class="normal">412</span>
+<span class="normal">413</span>
+<span class="normal">414</span>
+<span class="normal">415</span>
+<span class="normal">416</span>
+<span class="normal">417</span>
+<span class="normal">418</span>
+<span class="normal">419</span>
+<span class="normal">420</span>
+<span class="normal">421</span>
+<span class="normal">422</span>
+<span class="normal">423</span>
+<span class="normal">424</span>
+<span class="normal">425</span>
+<span class="normal">426</span>
+<span class="normal">427</span>
+<span class="normal">428</span>
+<span class="normal">429</span>
+<span class="normal">430</span>
+<span class="normal">431</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">VerticalCRS</span><span class="p">(</span><span class="n">SingleCRS</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    A 1D coordinate reference system used for recording heights or depths.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">coordinate_system</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VerticalCS</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the coordinate system, which must be vertical.</span>
+
+<span class="sd">        :return: The coordinate system.</span>
+<span class="sd">        :rtype: VerticalCS</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">datum</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">VerticalDatum</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Returns the datum, which must be vertical.</span>
+
+<span class="sd">        :return: The datum</span>
+<span class="sd">        :rtype: VerticalDatum</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.VerticalCRS.coordinate_system" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">coordinate_system</span><span class="p">:</span> <span class="n">VerticalCS</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the coordinate system, which must be vertical.</p>
+<p>:return: The coordinate system.
+:rtype: VerticalCS</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.referencing.crs.VerticalCRS.datum" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">datum</span><span class="p">:</span> <span class="n">VerticalDatum</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Returns the datum, which must be vertical.</p>
+<p>:return: The datum
+:rtype: VerticalDatum</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>

@@ -1,9 +1,0 @@
-<map id="inheritance0a2fb57ff4" name="inheritance0a2fb57ff4">
-<area shape="rect" id="node1" title="Helper class that provides a standard way to create an ABC using" alt="" coords="17,153,93,179"/>
-<area shape="rect" id="node3" href="#opengis.metadata.extension.ApplicationSchemaInformation" target="_top" title="Information about the application schema used to build the dataset." alt="" coords="154,104,567,129"/>
-<area shape="rect" id="node5" href="#opengis.metadata.extension.ExtendedElementInformation" target="_top" title="New metadata element, not found in ISO 19115, which is required to describe geographic data." alt="" coords="159,153,562,179"/>
-<area shape="rect" id="node6" href="#opengis.metadata.extension.MetadataExtensionInformation" target="_top" title="Information describing metadata extensions." alt="" coords="153,203,568,228"/>
-<area shape="rect" id="node2" title="Generic enumeration." alt="" coords="5,31,105,56"/>
-<area shape="rect" id="node4" href="#opengis.metadata.extension.DatatypeCode" target="_top" title="An enumeration." alt="" coords="208,5,513,31"/>
-<area shape="rect" id="node7" href="#opengis.metadata.extension.ObligationCode" target="_top" title="An enumeration." alt="" coords="205,55,517,80"/>
-</map>

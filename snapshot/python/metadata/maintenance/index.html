@@ -1,0 +1,4330 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+      
+      
+        <link rel="canonical" href="https://www.geoapi.org/python/metadata/maintenance/">
+      
+      
+        <link rel="prev" href="../lineage/">
+      
+      
+        <link rel="next" href="../naming/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.34">
+    
+    
+      
+        <title>maintenance - GeoAPI for Python</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.35f28582.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/_mkdocstrings.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    <body dir="ltr">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#maintenance-module" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+  
+
+<header class="md-header md-header--shadow" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Header">
+    <a href="../.." title="GeoAPI for Python" class="md-header__button md-logo" aria-label="GeoAPI for Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            GeoAPI for Python
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              maintenance
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Search">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Clear" aria-label="Clear" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="GeoAPI for Python" class="md-nav__button md-logo" aria-label="GeoAPI for Python" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    GeoAPI for Python
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    GeoAPI Docs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Geometry (ISO 19107)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Geometry (ISO 19107)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../geometry/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../geometry/primitive/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    primitive
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Naming (ISO 19103) and Metadata (ISO 19115)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Naming (ISO 19103) and Metadata (ISO 19115)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../acquisition/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    acquisition
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../base/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    base
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../citation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    citation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../constraints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    constraints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../content/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    content
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../distribution/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    distribution
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extension/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    extension
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../extent/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    extent
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../identification/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    identification
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../lineage/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    lineage
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    maintenance
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    maintenance
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      maintenance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      MaintenanceFrequencyCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MaintenanceFrequencyCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.ANNUALLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      ANNUALLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.AS_NEEDED" class="md-nav__link">
+    <span class="md-ellipsis">
+      AS_NEEDED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.BIANNUALLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      BIANNUALLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.BIENNIALLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      BIENNIALLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.CONTINUAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      CONTINUAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.DAILY" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAILY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.FORTNIGHTLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      FORTNIGHTLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.IRREGULAR" class="md-nav__link">
+    <span class="md-ellipsis">
+      IRREGULAR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.MONTHLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      MONTHLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.NOT_PLANNED" class="md-nav__link">
+    <span class="md-ellipsis">
+      NOT_PLANNED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.PERIODIC" class="md-nav__link">
+    <span class="md-ellipsis">
+      PERIODIC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.QUARTERLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      QUARTERLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.SEMIMONTHLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      SEMIMONTHLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.UNKNOWN" class="md-nav__link">
+    <span class="md-ellipsis">
+      UNKNOWN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.WEEKLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      WEEKLY
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceInformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      MaintenanceInformation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MaintenanceInformation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceInformation.contact" class="md-nav__link">
+    <span class="md-ellipsis">
+      contact
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceInformation.maintenance_and_update_frequency" class="md-nav__link">
+    <span class="md-ellipsis">
+      maintenance_and_update_frequency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceInformation.maintenance_date" class="md-nav__link">
+    <span class="md-ellipsis">
+      maintenance_date
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceInformation.maintenance_note" class="md-nav__link">
+    <span class="md-ellipsis">
+      maintenance_note
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceInformation.maintenance_scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      maintenance_scope
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceInformation.user_defined_maintenance_frequency" class="md-nav__link">
+    <span class="md-ellipsis">
+      user_defined_maintenance_frequency
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.Scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scope
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.Scope.extent" class="md-nav__link">
+    <span class="md-ellipsis">
+      extent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.Scope.level" class="md-nav__link">
+    <span class="md-ellipsis">
+      level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.Scope.level_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      level_description
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      ScopeCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScopeCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.AGGREGATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      AGGREGATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.APPLICATION" class="md-nav__link">
+    <span class="md-ellipsis">
+      APPLICATION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.ATTRIBUTE" class="md-nav__link">
+    <span class="md-ellipsis">
+      ATTRIBUTE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.ATTRIBUTE_TYPE" class="md-nav__link">
+    <span class="md-ellipsis">
+      ATTRIBUTE_TYPE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.COLLECTION" class="md-nav__link">
+    <span class="md-ellipsis">
+      COLLECTION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.COLLECTION_HARDWARE" class="md-nav__link">
+    <span class="md-ellipsis">
+      COLLECTION_HARDWARE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.COLLECTION_SESSION" class="md-nav__link">
+    <span class="md-ellipsis">
+      COLLECTION_SESSION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.COVERAGE" class="md-nav__link">
+    <span class="md-ellipsis">
+      COVERAGE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.DATASET" class="md-nav__link">
+    <span class="md-ellipsis">
+      DATASET
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.DIMENSION_GROUP" class="md-nav__link">
+    <span class="md-ellipsis">
+      DIMENSION_GROUP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.DOCUMENT" class="md-nav__link">
+    <span class="md-ellipsis">
+      DOCUMENT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.FEATURE" class="md-nav__link">
+    <span class="md-ellipsis">
+      FEATURE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.FEATURE_TYPE" class="md-nav__link">
+    <span class="md-ellipsis">
+      FEATURE_TYPE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.FIELD_SESSION" class="md-nav__link">
+    <span class="md-ellipsis">
+      FIELD_SESSION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.INITIATIVE" class="md-nav__link">
+    <span class="md-ellipsis">
+      INITIATIVE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.METADATA" class="md-nav__link">
+    <span class="md-ellipsis">
+      METADATA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.MODEL" class="md-nav__link">
+    <span class="md-ellipsis">
+      MODEL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.NON_GEOGRAPHIC_DATASET" class="md-nav__link">
+    <span class="md-ellipsis">
+      NON_GEOGRAPHIC_DATASET
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.PRODUCT" class="md-nav__link">
+    <span class="md-ellipsis">
+      PRODUCT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.PROPERTY_TYPE" class="md-nav__link">
+    <span class="md-ellipsis">
+      PROPERTY_TYPE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.REPOSITORY" class="md-nav__link">
+    <span class="md-ellipsis">
+      REPOSITORY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.SAMPLE" class="md-nav__link">
+    <span class="md-ellipsis">
+      SAMPLE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.SERIES" class="md-nav__link">
+    <span class="md-ellipsis">
+      SERIES
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.SERVICE" class="md-nav__link">
+    <span class="md-ellipsis">
+      SERVICE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.SOFTWARE" class="md-nav__link">
+    <span class="md-ellipsis">
+      SOFTWARE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.TILE" class="md-nav__link">
+    <span class="md-ellipsis">
+      TILE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeDescription" class="md-nav__link">
+    <span class="md-ellipsis">
+      ScopeDescription
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScopeDescription">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeDescription.attribute_instances" class="md-nav__link">
+    <span class="md-ellipsis">
+      attribute_instances
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeDescription.attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      attributes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeDescription.dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      dataset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeDescription.feature_instances" class="md-nav__link">
+    <span class="md-ellipsis">
+      feature_instances
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeDescription.features" class="md-nav__link">
+    <span class="md-ellipsis">
+      features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeDescription.other" class="md-nav__link">
+    <span class="md-ellipsis">
+      other
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../naming/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    naming
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../quality/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    quality
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../representation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    representation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../service/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    service
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Referencing (ISO 19111)
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Referencing (ISO 19111)
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/common/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    common
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/coordinate/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    coordinate
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/crs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    crs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/cs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    cs
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/datum/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    datum
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../referencing/operation/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    operation
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Util
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Util
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../util/overview/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Overview
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../util/measure/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    measure (ISO 19103)
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance" class="md-nav__link">
+    <span class="md-ellipsis">
+      maintenance
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      MaintenanceFrequencyCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MaintenanceFrequencyCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.ANNUALLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      ANNUALLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.AS_NEEDED" class="md-nav__link">
+    <span class="md-ellipsis">
+      AS_NEEDED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.BIANNUALLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      BIANNUALLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.BIENNIALLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      BIENNIALLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.CONTINUAL" class="md-nav__link">
+    <span class="md-ellipsis">
+      CONTINUAL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.DAILY" class="md-nav__link">
+    <span class="md-ellipsis">
+      DAILY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.FORTNIGHTLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      FORTNIGHTLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.IRREGULAR" class="md-nav__link">
+    <span class="md-ellipsis">
+      IRREGULAR
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.MONTHLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      MONTHLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.NOT_PLANNED" class="md-nav__link">
+    <span class="md-ellipsis">
+      NOT_PLANNED
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.PERIODIC" class="md-nav__link">
+    <span class="md-ellipsis">
+      PERIODIC
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.QUARTERLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      QUARTERLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.SEMIMONTHLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      SEMIMONTHLY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.UNKNOWN" class="md-nav__link">
+    <span class="md-ellipsis">
+      UNKNOWN
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceFrequencyCode.WEEKLY" class="md-nav__link">
+    <span class="md-ellipsis">
+      WEEKLY
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceInformation" class="md-nav__link">
+    <span class="md-ellipsis">
+      MaintenanceInformation
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="MaintenanceInformation">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceInformation.contact" class="md-nav__link">
+    <span class="md-ellipsis">
+      contact
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceInformation.maintenance_and_update_frequency" class="md-nav__link">
+    <span class="md-ellipsis">
+      maintenance_and_update_frequency
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceInformation.maintenance_date" class="md-nav__link">
+    <span class="md-ellipsis">
+      maintenance_date
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceInformation.maintenance_note" class="md-nav__link">
+    <span class="md-ellipsis">
+      maintenance_note
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceInformation.maintenance_scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      maintenance_scope
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.MaintenanceInformation.user_defined_maintenance_frequency" class="md-nav__link">
+    <span class="md-ellipsis">
+      user_defined_maintenance_frequency
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.Scope" class="md-nav__link">
+    <span class="md-ellipsis">
+      Scope
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Scope">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.Scope.extent" class="md-nav__link">
+    <span class="md-ellipsis">
+      extent
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.Scope.level" class="md-nav__link">
+    <span class="md-ellipsis">
+      level
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.Scope.level_description" class="md-nav__link">
+    <span class="md-ellipsis">
+      level_description
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode" class="md-nav__link">
+    <span class="md-ellipsis">
+      ScopeCode
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScopeCode">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.AGGREGATE" class="md-nav__link">
+    <span class="md-ellipsis">
+      AGGREGATE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.APPLICATION" class="md-nav__link">
+    <span class="md-ellipsis">
+      APPLICATION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.ATTRIBUTE" class="md-nav__link">
+    <span class="md-ellipsis">
+      ATTRIBUTE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.ATTRIBUTE_TYPE" class="md-nav__link">
+    <span class="md-ellipsis">
+      ATTRIBUTE_TYPE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.COLLECTION" class="md-nav__link">
+    <span class="md-ellipsis">
+      COLLECTION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.COLLECTION_HARDWARE" class="md-nav__link">
+    <span class="md-ellipsis">
+      COLLECTION_HARDWARE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.COLLECTION_SESSION" class="md-nav__link">
+    <span class="md-ellipsis">
+      COLLECTION_SESSION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.COVERAGE" class="md-nav__link">
+    <span class="md-ellipsis">
+      COVERAGE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.DATASET" class="md-nav__link">
+    <span class="md-ellipsis">
+      DATASET
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.DIMENSION_GROUP" class="md-nav__link">
+    <span class="md-ellipsis">
+      DIMENSION_GROUP
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.DOCUMENT" class="md-nav__link">
+    <span class="md-ellipsis">
+      DOCUMENT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.FEATURE" class="md-nav__link">
+    <span class="md-ellipsis">
+      FEATURE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.FEATURE_TYPE" class="md-nav__link">
+    <span class="md-ellipsis">
+      FEATURE_TYPE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.FIELD_SESSION" class="md-nav__link">
+    <span class="md-ellipsis">
+      FIELD_SESSION
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.INITIATIVE" class="md-nav__link">
+    <span class="md-ellipsis">
+      INITIATIVE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.METADATA" class="md-nav__link">
+    <span class="md-ellipsis">
+      METADATA
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.MODEL" class="md-nav__link">
+    <span class="md-ellipsis">
+      MODEL
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.NON_GEOGRAPHIC_DATASET" class="md-nav__link">
+    <span class="md-ellipsis">
+      NON_GEOGRAPHIC_DATASET
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.PRODUCT" class="md-nav__link">
+    <span class="md-ellipsis">
+      PRODUCT
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.PROPERTY_TYPE" class="md-nav__link">
+    <span class="md-ellipsis">
+      PROPERTY_TYPE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.REPOSITORY" class="md-nav__link">
+    <span class="md-ellipsis">
+      REPOSITORY
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.SAMPLE" class="md-nav__link">
+    <span class="md-ellipsis">
+      SAMPLE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.SERIES" class="md-nav__link">
+    <span class="md-ellipsis">
+      SERIES
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.SERVICE" class="md-nav__link">
+    <span class="md-ellipsis">
+      SERVICE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.SOFTWARE" class="md-nav__link">
+    <span class="md-ellipsis">
+      SOFTWARE
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeCode.TILE" class="md-nav__link">
+    <span class="md-ellipsis">
+      TILE
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeDescription" class="md-nav__link">
+    <span class="md-ellipsis">
+      ScopeDescription
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="ScopeDescription">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeDescription.attribute_instances" class="md-nav__link">
+    <span class="md-ellipsis">
+      attribute_instances
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeDescription.attributes" class="md-nav__link">
+    <span class="md-ellipsis">
+      attributes
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeDescription.dataset" class="md-nav__link">
+    <span class="md-ellipsis">
+      dataset
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeDescription.feature_instances" class="md-nav__link">
+    <span class="md-ellipsis">
+      feature_instances
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeDescription.features" class="md-nav__link">
+    <span class="md-ellipsis">
+      features
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#opengis.metadata.maintenance.ScopeDescription.other" class="md-nav__link">
+    <span class="md-ellipsis">
+      other
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="maintenance-module"><code>maintenance</code> module</h1>
+
+
+<div class="doc doc-object doc-module">
+
+
+
+<a id="opengis.metadata.maintenance"></a>
+    <div class="doc doc-contents first">
+
+        <p>This is the <code>maintenance</code> module.</p>
+<p>This module contains geographic metadata structures regarding data maintenance
+derived from the ISO 19115-1:2014 international standard.</p>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.maintenance.MaintenanceFrequencyCode" class="doc doc-heading">
+            <code>MaintenanceFrequencyCode</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p>Frequency with which modifications and deletions are made to the data
+after it is first produced</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/maintenance.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">37</span>
+<span class="normal">38</span>
+<span class="normal">39</span>
+<span class="normal">40</span>
+<span class="normal">41</span>
+<span class="normal">42</span>
+<span class="normal">43</span>
+<span class="normal">44</span>
+<span class="normal">45</span>
+<span class="normal">46</span>
+<span class="normal">47</span>
+<span class="normal">48</span>
+<span class="normal">49</span>
+<span class="normal">50</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span>
+<span class="normal">63</span>
+<span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span>
+<span class="normal">70</span>
+<span class="normal">71</span>
+<span class="normal">72</span>
+<span class="normal">73</span>
+<span class="normal">74</span>
+<span class="normal">75</span>
+<span class="normal">76</span>
+<span class="normal">77</span>
+<span class="normal">78</span>
+<span class="normal">79</span>
+<span class="normal">80</span>
+<span class="normal">81</span>
+<span class="normal">82</span>
+<span class="normal">83</span>
+<span class="normal">84</span>
+<span class="normal">85</span>
+<span class="normal">86</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MaintenanceFrequencyCode</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Frequency with which modifications and deletions are made to the data</span>
+<span class="sd">    after it is first produced</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">CONTINUAL</span> <span class="o">=</span> <span class="s2">&quot;continual&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource is repeatedly and frequentlyupdated.&quot;&quot;&quot;</span>
+
+    <span class="n">DAILY</span> <span class="o">=</span> <span class="s2">&quot;daily&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource is updated each day&quot;&quot;&quot;</span>
+
+    <span class="n">WEEKLY</span> <span class="o">=</span> <span class="s2">&quot;weekly&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource is updated on a weekly basis.&quot;&quot;&quot;</span>
+
+    <span class="n">FORTNIGHTLY</span> <span class="o">=</span> <span class="s2">&quot;fortnightly&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource is updated every two weeks.&quot;&quot;&quot;</span>
+
+    <span class="n">MONTHLY</span> <span class="o">=</span> <span class="s2">&quot;monthly&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource is updated each month.&quot;&quot;&quot;</span>
+
+    <span class="n">QUARTERLY</span> <span class="o">=</span> <span class="s2">&quot;quarterly&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource is updatedevery three months.&quot;&quot;&quot;</span>
+
+    <span class="n">BIANNUALLY</span> <span class="o">=</span> <span class="s2">&quot;biannually&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource is updated twice each year.&quot;&quot;&quot;</span>
+
+    <span class="n">ANNUALLY</span> <span class="o">=</span> <span class="s2">&quot;annually&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource is updated every year.&quot;&quot;&quot;</span>
+
+    <span class="n">AS_NEEDED</span> <span class="o">=</span> <span class="s2">&quot;asNeeded&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource is updated as deemed necessary.&quot;&quot;&quot;</span>
+
+    <span class="n">IRREGULAR</span> <span class="o">=</span> <span class="s2">&quot;irregular&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource is updated in intervals that are uneven in duration.&quot;&quot;&quot;</span>
+
+    <span class="n">NOT_PLANNED</span> <span class="o">=</span> <span class="s2">&quot;notPlanned&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;There are no plans to update the data.&quot;&quot;&quot;</span>
+
+    <span class="n">UNKNOWN</span> <span class="o">=</span> <span class="s2">&quot;unknown&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Frequency of maintenance for the data is not known.&quot;&quot;&quot;</span>
+
+    <span class="n">PERIODIC</span> <span class="o">=</span> <span class="s2">&quot;periodic&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource is updated at regular intervals.&quot;&quot;&quot;</span>
+
+    <span class="n">SEMIMONTHLY</span> <span class="o">=</span> <span class="s2">&quot;semimonthly&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource is updated twice monthly.&quot;&quot;&quot;</span>
+
+    <span class="n">BIENNIALLY</span> <span class="o">=</span> <span class="s2">&quot;biennially&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Resource is updated every two years.&quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceFrequencyCode.ANNUALLY" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ANNUALLY</span> <span class="o">=</span> <span class="s1">&#39;annually&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Resource is updated every year.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceFrequencyCode.AS_NEEDED" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">AS_NEEDED</span> <span class="o">=</span> <span class="s1">&#39;asNeeded&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Resource is updated as deemed necessary.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceFrequencyCode.BIANNUALLY" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">BIANNUALLY</span> <span class="o">=</span> <span class="s1">&#39;biannually&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Resource is updated twice each year.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceFrequencyCode.BIENNIALLY" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">BIENNIALLY</span> <span class="o">=</span> <span class="s1">&#39;biennially&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Resource is updated every two years.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceFrequencyCode.CONTINUAL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">CONTINUAL</span> <span class="o">=</span> <span class="s1">&#39;continual&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Resource is repeatedly and frequentlyupdated.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceFrequencyCode.DAILY" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">DAILY</span> <span class="o">=</span> <span class="s1">&#39;daily&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Resource is updated each day</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceFrequencyCode.FORTNIGHTLY" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">FORTNIGHTLY</span> <span class="o">=</span> <span class="s1">&#39;fortnightly&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Resource is updated every two weeks.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceFrequencyCode.IRREGULAR" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">IRREGULAR</span> <span class="o">=</span> <span class="s1">&#39;irregular&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Resource is updated in intervals that are uneven in duration.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceFrequencyCode.MONTHLY" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">MONTHLY</span> <span class="o">=</span> <span class="s1">&#39;monthly&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Resource is updated each month.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceFrequencyCode.NOT_PLANNED" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">NOT_PLANNED</span> <span class="o">=</span> <span class="s1">&#39;notPlanned&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>There are no plans to update the data.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceFrequencyCode.PERIODIC" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PERIODIC</span> <span class="o">=</span> <span class="s1">&#39;periodic&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Resource is updated at regular intervals.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceFrequencyCode.QUARTERLY" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">QUARTERLY</span> <span class="o">=</span> <span class="s1">&#39;quarterly&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Resource is updatedevery three months.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceFrequencyCode.SEMIMONTHLY" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SEMIMONTHLY</span> <span class="o">=</span> <span class="s1">&#39;semimonthly&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Resource is updated twice monthly.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceFrequencyCode.UNKNOWN" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">UNKNOWN</span> <span class="o">=</span> <span class="s1">&#39;unknown&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Frequency of maintenance for the data is not known.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceFrequencyCode.WEEKLY" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">WEEKLY</span> <span class="o">=</span> <span class="s1">&#39;weekly&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Resource is updated on a weekly basis.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.maintenance.MaintenanceInformation" class="doc doc-heading">
+            <code>MaintenanceInformation</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>Information about the scope and frequency of updating.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/maintenance.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">273</span>
+<span class="normal">274</span>
+<span class="normal">275</span>
+<span class="normal">276</span>
+<span class="normal">277</span>
+<span class="normal">278</span>
+<span class="normal">279</span>
+<span class="normal">280</span>
+<span class="normal">281</span>
+<span class="normal">282</span>
+<span class="normal">283</span>
+<span class="normal">284</span>
+<span class="normal">285</span>
+<span class="normal">286</span>
+<span class="normal">287</span>
+<span class="normal">288</span>
+<span class="normal">289</span>
+<span class="normal">290</span>
+<span class="normal">291</span>
+<span class="normal">292</span>
+<span class="normal">293</span>
+<span class="normal">294</span>
+<span class="normal">295</span>
+<span class="normal">296</span>
+<span class="normal">297</span>
+<span class="normal">298</span>
+<span class="normal">299</span>
+<span class="normal">300</span>
+<span class="normal">301</span>
+<span class="normal">302</span>
+<span class="normal">303</span>
+<span class="normal">304</span>
+<span class="normal">305</span>
+<span class="normal">306</span>
+<span class="normal">307</span>
+<span class="normal">308</span>
+<span class="normal">309</span>
+<span class="normal">310</span>
+<span class="normal">311</span>
+<span class="normal">312</span>
+<span class="normal">313</span>
+<span class="normal">314</span>
+<span class="normal">315</span>
+<span class="normal">316</span>
+<span class="normal">317</span>
+<span class="normal">318</span>
+<span class="normal">319</span>
+<span class="normal">320</span>
+<span class="normal">321</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">MaintenanceInformation</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information about the scope and frequency of updating.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">maintenance_and_update_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span>
+        <span class="n">MaintenanceFrequencyCode</span>
+    <span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Frequency with which changes and additions are made to the resource</span>
+<span class="sd">        after the initial resource is completed.</span>
+
+<span class="sd">        MANDATORY: if `user_defined_maintenance_frequency` is `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">maintenance_date</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Date</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Date information associated with maintenance of resource.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">user_defined_maintenance_frequency</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">timedelta</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Maintenance period other than those defined.</span>
+
+<span class="sd">        MANDATORY: if `user_defined_maintenance_frequency` is `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">maintenance_scope</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Scope</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Information about the scope and extent of maintenance.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">maintenance_note</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Information regarding specific requirements for maintaining the</span>
+<span class="sd">        resource.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">contact</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Responsibility</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Identification of, and means of communicating with, person(s) and</span>
+<span class="sd">        organisation(s) with responsibility for maintaining the metadata.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceInformation.contact" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">contact</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Responsibility</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Identification of, and means of communicating with, person(s) and
+organisation(s) with responsibility for maintaining the metadata.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceInformation.maintenance_and_update_frequency" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">maintenance_and_update_frequency</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">MaintenanceFrequencyCode</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Frequency with which changes and additions are made to the resource
+after the initial resource is completed.</p>
+<p>MANDATORY: if <code>user_defined_maintenance_frequency</code> is <code>None</code>.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceInformation.maintenance_date" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">maintenance_date</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Date</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Date information associated with maintenance of resource.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceInformation.maintenance_note" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">maintenance_note</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information regarding specific requirements for maintaining the
+resource.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceInformation.maintenance_scope" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">maintenance_scope</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Scope</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information about the scope and extent of maintenance.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.MaintenanceInformation.user_defined_maintenance_frequency" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">user_defined_maintenance_frequency</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">timedelta</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Maintenance period other than those defined.</p>
+<p>MANDATORY: if <code>user_defined_maintenance_frequency</code> is <code>None</code>.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.maintenance.Scope" class="doc doc-heading">
+            <code>Scope</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>The target resource and physical extent for which information is reported.
+Information about the scope of the resource.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/maintenance.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">246</span>
+<span class="normal">247</span>
+<span class="normal">248</span>
+<span class="normal">249</span>
+<span class="normal">250</span>
+<span class="normal">251</span>
+<span class="normal">252</span>
+<span class="normal">253</span>
+<span class="normal">254</span>
+<span class="normal">255</span>
+<span class="normal">256</span>
+<span class="normal">257</span>
+<span class="normal">258</span>
+<span class="normal">259</span>
+<span class="normal">260</span>
+<span class="normal">261</span>
+<span class="normal">262</span>
+<span class="normal">263</span>
+<span class="normal">264</span>
+<span class="normal">265</span>
+<span class="normal">266</span>
+<span class="normal">267</span>
+<span class="normal">268</span>
+<span class="normal">269</span>
+<span class="normal">270</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Scope</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    The target resource and physical extent for which information is reported.</span>
+<span class="sd">    Information about the scope of the resource.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">level</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">ScopeCode</span><span class="p">:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;Description of the scope.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">extent</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Extent</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Information about the horizontal, vertical, and temporal extent of</span>
+<span class="sd">        the specified resource.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">level_description</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">ScopeDescription</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Detailed information/listing of the items specified by the level.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.Scope.extent" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">extent</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">Extent</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information about the horizontal, vertical, and temporal extent of
+the specified resource.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.Scope.level" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">level</span><span class="p">:</span> <span class="n">ScopeCode</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Description of the scope.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.Scope.level_description" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">level_description</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Sequence</span><span class="p">[</span><span class="n">ScopeDescription</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Detailed information/listing of the items specified by the level.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.maintenance.ScopeCode" class="doc doc-heading">
+            <code>ScopeCode</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="enum.Enum">Enum</span></code></p>
+
+
+        <p>Class of information to which the referencing entity applies.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/maintenance.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span>
+<span class="normal">102</span>
+<span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span>
+<span class="normal">161</span>
+<span class="normal">162</span>
+<span class="normal">163</span>
+<span class="normal">164</span>
+<span class="normal">165</span>
+<span class="normal">166</span>
+<span class="normal">167</span>
+<span class="normal">168</span>
+<span class="normal">169</span>
+<span class="normal">170</span>
+<span class="normal">171</span>
+<span class="normal">172</span>
+<span class="normal">173</span>
+<span class="normal">174</span>
+<span class="normal">175</span>
+<span class="normal">176</span>
+<span class="normal">177</span>
+<span class="normal">178</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ScopeCode</span><span class="p">(</span><span class="n">Enum</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Class of information to which the referencing entity applies.&quot;&quot;&quot;</span>
+
+    <span class="n">ATTRIBUTE</span> <span class="o">=</span> <span class="s2">&quot;attribute&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to the attribute value.&quot;&quot;&quot;</span>
+
+    <span class="n">ATTRIBUTE_TYPE</span> <span class="o">=</span> <span class="s2">&quot;attributeType&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to the characteristic of a feature.&quot;&quot;&quot;</span>
+
+    <span class="n">COLLECTION_HARDWARE</span> <span class="o">=</span> <span class="s2">&quot;collectionHardware&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to the collection hardware class.&quot;&quot;&quot;</span>
+
+    <span class="n">COLLECTION_SESSION</span> <span class="o">=</span> <span class="s2">&quot;collectionSession&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to the collection session.&quot;&quot;&quot;</span>
+
+    <span class="n">DATASET</span> <span class="o">=</span> <span class="s2">&quot;dataset&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to the dataset.&quot;&quot;&quot;</span>
+
+    <span class="n">SERIES</span> <span class="o">=</span> <span class="s2">&quot;series&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to the series.&quot;&quot;&quot;</span>
+
+    <span class="n">NON_GEOGRAPHIC_DATASET</span> <span class="o">=</span> <span class="s2">&quot;nonGeographicDataset&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to the non-geographic dataset.&quot;&quot;&quot;</span>
+
+    <span class="n">DIMENSION_GROUP</span> <span class="o">=</span> <span class="s2">&quot;dimensionGroup&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to a dimension group.&quot;&quot;&quot;</span>
+
+    <span class="n">FEATURE</span> <span class="o">=</span> <span class="s2">&quot;feature&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to a featiure.&quot;&quot;&quot;</span>
+
+    <span class="n">FEATURE_TYPE</span> <span class="o">=</span> <span class="s2">&quot;featureType&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to a feature type.&quot;&quot;&quot;</span>
+
+    <span class="n">PROPERTY_TYPE</span> <span class="o">=</span> <span class="s2">&quot;propertyType&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to a property type.&quot;&quot;&quot;</span>
+
+    <span class="n">FIELD_SESSION</span> <span class="o">=</span> <span class="s2">&quot;fieldSession&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to a field session.&quot;&quot;&quot;</span>
+
+    <span class="n">SOFTWARE</span> <span class="o">=</span> <span class="s2">&quot;software&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to a computer program or routine.&quot;&quot;&quot;</span>
+
+    <span class="n">SERVICE</span> <span class="o">=</span> <span class="s2">&quot;service&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Information applies to a capability which a service provider entity makes</span>
+<span class="sd">    available to s service user entity through a set of interfaces that define</span>
+<span class="sd">    a behaviour, such as a use case.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">MODEL</span> <span class="o">=</span> <span class="s2">&quot;model&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Information applies to a copy or imitation of an existing or hypothetical</span>
+<span class="sd">    object.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">TILE</span> <span class="o">=</span> <span class="s2">&quot;tile&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to a tile, a spatial subset of geographic data.&quot;&quot;&quot;</span>
+
+    <span class="n">METADATA</span> <span class="o">=</span> <span class="s2">&quot;metadata&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to metadata.&quot;&quot;&quot;</span>
+
+    <span class="n">INITIATIVE</span> <span class="o">=</span> <span class="s2">&quot;initiative&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to an intitiative.&quot;&quot;&quot;</span>
+
+    <span class="n">SAMPLE</span> <span class="o">=</span> <span class="s2">&quot;sample&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to a sample.&quot;&quot;&quot;</span>
+
+    <span class="n">DOCUMENT</span> <span class="o">=</span> <span class="s2">&quot;document&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to a document.&quot;&quot;&quot;</span>
+
+    <span class="n">REPOSITORY</span> <span class="o">=</span> <span class="s2">&quot;repository&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to a repository.&quot;&quot;&quot;</span>
+
+    <span class="n">AGGREGATE</span> <span class="o">=</span> <span class="s2">&quot;aggregate&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to an aggregate resource.&quot;&quot;&quot;</span>
+
+    <span class="n">PRODUCT</span> <span class="o">=</span> <span class="s2">&quot;product&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Metadata describing an ISO 19131 data product specification.&quot;&quot;&quot;</span>
+
+    <span class="n">COLLECTION</span> <span class="o">=</span> <span class="s2">&quot;collection&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to an unstructured set.&quot;&quot;&quot;</span>
+
+    <span class="n">COVERAGE</span> <span class="o">=</span> <span class="s2">&quot;coverage&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Information applies to a coverage.&quot;&quot;&quot;</span>
+
+    <span class="n">APPLICATION</span> <span class="o">=</span> <span class="s2">&quot;application&quot;</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Information resource hosted on a specific set of hardware and accessible</span>
+<span class="sd">    over a network.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.AGGREGATE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">AGGREGATE</span> <span class="o">=</span> <span class="s1">&#39;aggregate&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to an aggregate resource.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.APPLICATION" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">APPLICATION</span> <span class="o">=</span> <span class="s1">&#39;application&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information resource hosted on a specific set of hardware and accessible
+over a network.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.ATTRIBUTE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ATTRIBUTE</span> <span class="o">=</span> <span class="s1">&#39;attribute&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to the attribute value.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.ATTRIBUTE_TYPE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">ATTRIBUTE_TYPE</span> <span class="o">=</span> <span class="s1">&#39;attributeType&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to the characteristic of a feature.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.COLLECTION" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COLLECTION</span> <span class="o">=</span> <span class="s1">&#39;collection&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to an unstructured set.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.COLLECTION_HARDWARE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COLLECTION_HARDWARE</span> <span class="o">=</span> <span class="s1">&#39;collectionHardware&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to the collection hardware class.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.COLLECTION_SESSION" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COLLECTION_SESSION</span> <span class="o">=</span> <span class="s1">&#39;collectionSession&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to the collection session.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.COVERAGE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">COVERAGE</span> <span class="o">=</span> <span class="s1">&#39;coverage&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to a coverage.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.DATASET" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">DATASET</span> <span class="o">=</span> <span class="s1">&#39;dataset&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to the dataset.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.DIMENSION_GROUP" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">DIMENSION_GROUP</span> <span class="o">=</span> <span class="s1">&#39;dimensionGroup&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to a dimension group.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.DOCUMENT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">DOCUMENT</span> <span class="o">=</span> <span class="s1">&#39;document&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to a document.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.FEATURE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">FEATURE</span> <span class="o">=</span> <span class="s1">&#39;feature&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to a featiure.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.FEATURE_TYPE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">FEATURE_TYPE</span> <span class="o">=</span> <span class="s1">&#39;featureType&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to a feature type.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.FIELD_SESSION" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">FIELD_SESSION</span> <span class="o">=</span> <span class="s1">&#39;fieldSession&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to a field session.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.INITIATIVE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">INITIATIVE</span> <span class="o">=</span> <span class="s1">&#39;initiative&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to an intitiative.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.METADATA" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">METADATA</span> <span class="o">=</span> <span class="s1">&#39;metadata&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to metadata.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.MODEL" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">MODEL</span> <span class="o">=</span> <span class="s1">&#39;model&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to a copy or imitation of an existing or hypothetical
+object.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.NON_GEOGRAPHIC_DATASET" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">NON_GEOGRAPHIC_DATASET</span> <span class="o">=</span> <span class="s1">&#39;nonGeographicDataset&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to the non-geographic dataset.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.PRODUCT" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PRODUCT</span> <span class="o">=</span> <span class="s1">&#39;product&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Metadata describing an ISO 19131 data product specification.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.PROPERTY_TYPE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">PROPERTY_TYPE</span> <span class="o">=</span> <span class="s1">&#39;propertyType&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to a property type.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.REPOSITORY" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">REPOSITORY</span> <span class="o">=</span> <span class="s1">&#39;repository&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to a repository.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.SAMPLE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SAMPLE</span> <span class="o">=</span> <span class="s1">&#39;sample&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to a sample.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.SERIES" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SERIES</span> <span class="o">=</span> <span class="s1">&#39;series&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to the series.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.SERVICE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SERVICE</span> <span class="o">=</span> <span class="s1">&#39;service&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to a capability which a service provider entity makes
+available to s service user entity through a set of interfaces that define
+a behaviour, such as a use case.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.SOFTWARE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">SOFTWARE</span> <span class="o">=</span> <span class="s1">&#39;software&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to a computer program or routine.</p>
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeCode.TILE" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">TILE</span> <span class="o">=</span> <span class="s1">&#39;tile&#39;</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-class-attribute"><code>class-attribute</code></small>
+      <small class="doc doc-label doc-label-instance-attribute"><code>instance-attribute</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Information applies to a tile, a spatial subset of geographic data.</p>
+    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+<div class="doc doc-object doc-class">
+
+
+
+<h2 id="opengis.metadata.maintenance.ScopeDescription" class="doc doc-heading">
+            <code>ScopeDescription</code>
+
+
+</h2>
+
+
+    <div class="doc doc-contents ">
+            <p class="doc doc-class-bases">
+              Bases: <code><span title="abc.ABC">ABC</span></code></p>
+
+
+        <p>Description of the class of information covered by the information.</p>
+
+              <details class="quote">
+                <summary>Source code in <code>opengis/metadata/maintenance.py</code></summary>
+                <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">181</span>
+<span class="normal">182</span>
+<span class="normal">183</span>
+<span class="normal">184</span>
+<span class="normal">185</span>
+<span class="normal">186</span>
+<span class="normal">187</span>
+<span class="normal">188</span>
+<span class="normal">189</span>
+<span class="normal">190</span>
+<span class="normal">191</span>
+<span class="normal">192</span>
+<span class="normal">193</span>
+<span class="normal">194</span>
+<span class="normal">195</span>
+<span class="normal">196</span>
+<span class="normal">197</span>
+<span class="normal">198</span>
+<span class="normal">199</span>
+<span class="normal">200</span>
+<span class="normal">201</span>
+<span class="normal">202</span>
+<span class="normal">203</span>
+<span class="normal">204</span>
+<span class="normal">205</span>
+<span class="normal">206</span>
+<span class="normal">207</span>
+<span class="normal">208</span>
+<span class="normal">209</span>
+<span class="normal">210</span>
+<span class="normal">211</span>
+<span class="normal">212</span>
+<span class="normal">213</span>
+<span class="normal">214</span>
+<span class="normal">215</span>
+<span class="normal">216</span>
+<span class="normal">217</span>
+<span class="normal">218</span>
+<span class="normal">219</span>
+<span class="normal">220</span>
+<span class="normal">221</span>
+<span class="normal">222</span>
+<span class="normal">223</span>
+<span class="normal">224</span>
+<span class="normal">225</span>
+<span class="normal">226</span>
+<span class="normal">227</span>
+<span class="normal">228</span>
+<span class="normal">229</span>
+<span class="normal">230</span>
+<span class="normal">231</span>
+<span class="normal">232</span>
+<span class="normal">233</span>
+<span class="normal">234</span>
+<span class="normal">235</span>
+<span class="normal">236</span>
+<span class="normal">237</span>
+<span class="normal">238</span>
+<span class="normal">239</span>
+<span class="normal">240</span>
+<span class="normal">241</span>
+<span class="normal">242</span>
+<span class="normal">243</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ScopeDescription</span><span class="p">(</span><span class="n">ABC</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;Description of the class of information covered by the information.&quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">attributes</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Instances of attribute types to which the information applies.</span>
+
+<span class="sd">        MANDATORY: if `features`, `feature_instances`, `attribute_instances`,</span>
+<span class="sd">            `dataset`, and `other` are `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">features</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Instances of feature types to which the information applies.</span>
+
+<span class="sd">        MANDATORY: if `attributes`, `feature_instances`, `attribute_instances`,</span>
+<span class="sd">            `dataset`, and `other` are `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">feature_instances</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Feature instances to which the information applies.</span>
+
+<span class="sd">        MANDATORY: if `attributes`, `features`, `attribute_instances`,</span>
+<span class="sd">            `dataset`, and `other` are `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">attribute_instances</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Attribute instances to which the information applies.</span>
+
+<span class="sd">        MANDATORY: if `attributes`, `features`, `feature_instances`,</span>
+<span class="sd">            `dataset`, and `other` are `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">dataset</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Dataset to which the information applies.</span>
+
+<span class="sd">        MANDATORY: if `attributes`, `features`, `feature_instances`,</span>
+<span class="sd">            `attribute_instances`, and `other` are `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+    <span class="nd">@property</span>
+    <span class="nd">@abstractmethod</span>
+    <span class="k">def</span> <span class="nf">other</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Class of information that does not fall into the other categories to</span>
+<span class="sd">        which the information applies.</span>
+
+<span class="sd">        MANDATORY: if `attributes`, `features`, `feature_instances`,</span>
+<span class="sd">            `attribute_instances`, and `dataset` are `None`.</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+</code></pre></div></td></tr></table></div>
+              </details>
+
+
+
+  <div class="doc doc-children">
+
+
+
+
+
+
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeDescription.attribute_instances" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">attribute_instances</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Attribute instances to which the information applies.</p>
+
+
+<details class="mandatory" open>
+  <summary>if <code>attributes</code>, <code>features</code>, <code>feature_instances</code>,</summary>
+  <p><code>dataset</code>, and <code>other</code> are <code>None</code>.</p>
+</details>    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeDescription.attributes" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">attributes</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Instances of attribute types to which the information applies.</p>
+
+
+<details class="mandatory" open>
+  <summary>if <code>features</code>, <code>feature_instances</code>, <code>attribute_instances</code>,</summary>
+  <p><code>dataset</code>, and <code>other</code> are <code>None</code>.</p>
+</details>    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeDescription.dataset" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">dataset</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Dataset to which the information applies.</p>
+
+
+<details class="mandatory" open>
+  <summary>if <code>attributes</code>, <code>features</code>, <code>feature_instances</code>,</summary>
+  <p><code>attribute_instances</code>, and <code>other</code> are <code>None</code>.</p>
+</details>    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeDescription.feature_instances" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">feature_instances</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Feature instances to which the information applies.</p>
+
+
+<details class="mandatory" open>
+  <summary>if <code>attributes</code>, <code>features</code>, <code>attribute_instances</code>,</summary>
+  <p><code>dataset</code>, and <code>other</code> are <code>None</code>.</p>
+</details>    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeDescription.features" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">features</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="n">Set</span><span class="p">[</span><span class="nb">str</span><span class="p">]]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Instances of feature types to which the information applies.</p>
+
+
+<details class="mandatory" open>
+  <summary>if <code>attributes</code>, <code>feature_instances</code>, <code>attribute_instances</code>,</summary>
+  <p><code>dataset</code>, and <code>other</code> are <code>None</code>.</p>
+</details>    </div>
+
+</div>
+
+<div class="doc doc-object doc-attribute">
+
+
+
+<h3 id="opengis.metadata.maintenance.ScopeDescription.other" class="doc doc-heading">
+            <code class="highlight language-python"><span class="n">other</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span></code>
+
+  <span class="doc doc-labels">
+      <small class="doc doc-label doc-label-abstractmethod"><code>abstractmethod</code></small>
+      <small class="doc doc-label doc-label-property"><code>property</code></small>
+  </span>
+
+</h3>
+
+
+    <div class="doc doc-contents ">
+
+        <p>Class of information that does not fall into the other categories to
+which the information applies.</p>
+
+
+<details class="mandatory" open>
+  <summary>if <code>attributes</code>, <code>features</code>, <code>feature_instances</code>,</summary>
+  <p><code>attribute_instances</code>, and <code>dataset</code> are <code>None</code>.</p>
+</details>    </div>
+
+</div>
+
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+  </div>
+
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": [], "search": "../../assets/javascripts/workers/search.07f07601.min.js", "translations": {"clipboard.copied": "Copied to clipboard", "clipboard.copy": "Copy to clipboard", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.placeholder": "Type to start searching", "search.result.term.missing": "Missing", "select.version": "Select version"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.56dfad97.min.js"></script>
+      
+    
+  </body>
+</html>
