@@ -1,6 +1,10 @@
 #!/bin/sh
 #
-# Generate the Javadoc in the "target/apidocs" directory.
+# Generate the Javadoc in the "target/javadoc" directory.
+# This script should be executed from the root directory
+# of the GeoAPI project as below:
+#
+# ./tools/src/main/bash/generate-javadoc.sh
 #
 
 set -o errexit
@@ -74,9 +78,9 @@ javadoc -doctitle "GeoAPI SNAPSHOT" \
  -quiet \
  --module-path $DEPS \
  --module-source-path target/src \
- -d target/apidocs \
+ -d target/javadoc \
  @target/sources.txt
 
 # Copy some resources.
-cp --interactive src/main/javadoc/content.* src/main/javadoc/departure.* src/main/javadoc/*.png target/apidocs/
-mv --interactive departures.html target/apidocs/
+cp --interactive src/main/javadoc/content.* src/main/javadoc/departure.* src/main/javadoc/*.png target/javadoc/
+mv --interactive departures.html target/javadoc/

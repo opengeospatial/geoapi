@@ -20,6 +20,6 @@ nbactions.xml
 __pycache__/
 *.pyc
 
-#python virtual environments
+# Python virtual environments
 .venv
 venv
