@@ -39,8 +39,8 @@ from opengis.metadata.identification import BrowseGraphic
 from opengis.metadata.maintenance import Scope
 from opengis.metadata.naming import Record, RecordType, TypeName
 from opengis.metadata.representation import (
-    SpatialRepresentationTypeCode,
     SpatialRepresentation,
+    SpatialRepresentationTypeCode,
 )
 from opengis.util.measure import UnitOfMeasure
 
@@ -608,8 +608,11 @@ class ConformanceResult(Result):
 
     @property
     @abstractmethod
-    def is_conform(self):
-        """Indication of the conformance result where 0 = fail and 1 = pass."""
+    def is_conform(self) -> bool:
+        """
+        Indication of the conformance result where `False` == fail
+        and `True` == pass.
+        """
 
 
 class CoverageResult(Result):

@@ -27,9 +27,11 @@ __author__ = "OGC Topic 2 (for abstract model and documentation), " +\
 from abc import abstractmethod
 from datetime import datetime
 from enum import Enum
+from typing import Optional
 
 from opengis.metadata.extent import Extent
 from opengis.referencing.common import IdentifiedObject
+from opengis.util.measure import UomLength, UomAngle
 
 
 class RealizationMethod(Enum):
@@ -61,7 +63,7 @@ class Datum(IdentifiedObject):
 
     @property
     @abstractmethod
-    def anchor_point(self) -> str | None:
+    def anchor_point(self) -> Optional[str]:
         """
         Description, possibly including coordinates, of the point or points
         used to anchor the datum to the Earth.
@@ -79,7 +81,7 @@ class Datum(IdentifiedObject):
 
     @property
     @abstractmethod
-    def realization_epoch(self) -> datetime | None:
+    def realization_epoch(self) -> Optional[datetime]:
         """
         The time after which this datum definition is valid.
         """
@@ -144,7 +146,7 @@ class Ellipsoid(IdentifiedObject):
 
     @property
     @abstractmethod
-    def axis_unit(self):
+    def axis_unit(self) -> UomLength:
         """
         Linear unit of the semi-major and semi-minor axis values.
         """
@@ -209,7 +211,7 @@ class PrimeMeridian(IdentifiedObject):
 
     @property
     @abstractmethod
-    def angular_unit(self):
+    def angular_unit(self) -> UomAngle:
         """
         Returns the angular unit of the Greenwich longitude.
         """

@@ -30,6 +30,7 @@ from collections.abc import Sequence
 from enum import Enum
 from typing import Optional
 
+from opengis.metadata.citation import Identifier
 from opengis.referencing.common import IdentifiedObject
 from opengis.referencing.coordinate import DataEpoch
 from opengis.referencing.cs import (
@@ -46,7 +47,7 @@ from opengis.referencing.datum import (
     TemporalDatum,
     VerticalDatum,
 )
-from opengis.metadata.identification import Identifier
+from opengis.referencing.operation import Conversion
 
 
 class ReferenceSystemTypeCode(Enum):
@@ -491,7 +492,7 @@ class DerivedCRS(SingleCRS):
 
     @property
     @abstractmethod
-    def conversion_from_base(self):
+    def conversion_from_base(self) -> Conversion:
         """
         Returns the conversion from the base CRS to this CRS.
 
@@ -542,7 +543,7 @@ class ProjectedCRS(DerivedCRS):
 
     @property
     @abstractmethod
-    def conversion_from_base(self):
+    def conversion_from_base(self) -> Conversion:
         """
         Returns the map projection from the base CRS to this CRS.
 

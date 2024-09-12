@@ -29,8 +29,8 @@ from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from typing import Optional
 
+from opengis.metadata.citation import Identifier
 from opengis.metadata.extent import Extent
-from opengis.metadata.identification import Identifier
 from opengis.metadata.naming import GenericName
 
 

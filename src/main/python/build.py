@@ -61,10 +61,6 @@ def copyPythonFiles(module, directory):
 # Copy python files located in various modules.
 ##########################################################
 
-copyPythonFiles('geoapi',             'opengis')
-copyPythonFiles('geoapi',             'opengis/metadata')
-copyPythonFiles('geoapi',             'opengis/referencing')
-copyPythonFiles('geoapi',             'opengis/geometry')
 copyPythonFiles('geoapi-java-python', 'opengis/bridge')
 copyPythonFiles('geoapi-java-python', 'opengis/bridge/java')
 

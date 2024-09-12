@@ -34,9 +34,8 @@ from opengis.geometry.primitive import DirectPosition
 from opengis.metadata.citation import Citation
 from opengis.metadata.extent import Extent
 from opengis.metadata.quality import PositionalAccuracy
+from opengis.referencing.common import IdentifiedObject
 from opengis.referencing.crs import CoordinateReferenceSystem
-from opengis.referencing.datum import IdentifiedObject
-
 
 # TODO :
 # from opengis.parameter import ParameterValueGroup, ParameterDescriptorGroup

@@ -401,7 +401,8 @@ class TopicCategoryCode(Enum):
 
     OCEANS = "oceans"
     """
-    Features and characteristics of salt water bodies (excluding inland waters).
+    Features and characteristics of salt water bodies (excluding
+    inland waters).
 
     EXAMPLES: Tides, tsunamis, coastal information, reefs.
     """
