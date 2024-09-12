@@ -173,7 +173,8 @@ class Releasability(ABC):
         """
         Party to which the release statement applies.
 
-        MANDATORY: if `statement` is `None`.
+        MANDATORY:
+            If `statement` is `None`.
         """
 
     @property
@@ -182,7 +183,8 @@ class Releasability(ABC):
         """
         Release statement.
 
-        MANDATORY: if `addressee` is `None`.
+        MANDATORY:
+            If `addressee` is `None`.
         """
 
     @property
@@ -252,7 +254,8 @@ class LegalConstraints(Constraints):
         intellectual property, and any special restrictions or limitations on
         obtaining the resource or metadata.
 
-        MANDATORY: if `use_constraints`, `other_constrints`, `use_limitations`,
+        MANDATORY:
+            If `use_constraints`, `other_constrints`, `use_limitations`,
             or `releasability` are `None`.
         """
 
@@ -264,7 +267,8 @@ class LegalConstraints(Constraints):
         intellectual property, and any special restrictions or limitations or
         warnings on using the resource or metadata.
 
-        MANDATORY: if `access_constraints`, `other_constrints`,
+        MANDATORY:
+            If `access_constraints`, `other_constrints`,
             `use_limitations`, or `releasability` are `None`.
         """
 
@@ -275,7 +279,8 @@ class LegalConstraints(Constraints):
         Other restrictions and legal prerequisites for accessing and using the
         resource or metadata.
 
-        MANDATORY: if `access_constraints`, `use_constrints`,
+        MANDATORY:
+            If `access_constraints`, `use_constrints`,
             `use_limitations`, or `releasability` are `None`.
         """
 

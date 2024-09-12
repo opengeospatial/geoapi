@@ -187,7 +187,8 @@ class ScopeDescription(ABC):
         """
         Instances of attribute types to which the information applies.
 
-        MANDATORY: if `features`, `feature_instances`, `attribute_instances`,
+        MANDATORY:
+            If `features`, `feature_instances`, `attribute_instances`,
             `dataset`, and `other` are `None`.
         """
 
@@ -197,7 +198,8 @@ class ScopeDescription(ABC):
         """
         Instances of feature types to which the information applies.
 
-        MANDATORY: if `attributes`, `feature_instances`, `attribute_instances`,
+        MANDATORY:
+            If `attributes`, `feature_instances`, `attribute_instances`,
             `dataset`, and `other` are `None`.
         """
 
@@ -207,7 +209,8 @@ class ScopeDescription(ABC):
         """
         Feature instances to which the information applies.
 
-        MANDATORY: if `attributes`, `features`, `attribute_instances`,
+        MANDATORY:
+            If `attributes`, `features`, `attribute_instances`,
             `dataset`, and `other` are `None`.
         """
 
@@ -217,7 +220,8 @@ class ScopeDescription(ABC):
         """
         Attribute instances to which the information applies.
 
-        MANDATORY: if `attributes`, `features`, `feature_instances`,
+        MANDATORY:
+            If `attributes`, `features`, `feature_instances`,
             `dataset`, and `other` are `None`.
         """
 
@@ -227,7 +231,8 @@ class ScopeDescription(ABC):
         """
         Dataset to which the information applies.
 
-        MANDATORY: if `attributes`, `features`, `feature_instances`,
+        MANDATORY:
+            If `attributes`, `features`, `feature_instances`,
             `attribute_instances`, and `other` are `None`.
         """
 
@@ -238,7 +243,8 @@ class ScopeDescription(ABC):
         Class of information that does not fall into the other categories to
         which the information applies.
 
-        MANDATORY: if `attributes`, `features`, `feature_instances`,
+        MANDATORY:
+            If `attributes`, `features`, `feature_instances`,
             `attribute_instances`, and `dataset` are `None`.
         """
 
@@ -282,7 +288,8 @@ class MaintenanceInformation(ABC):
         Frequency with which changes and additions are made to the resource
         after the initial resource is completed.
 
-        MANDATORY: if `user_defined_maintenance_frequency` is `None`.
+        MANDATORY:
+            If `user_defined_maintenance_frequency` is `None`.
         """
 
     @property
@@ -296,7 +303,8 @@ class MaintenanceInformation(ABC):
         """
         Maintenance period other than those defined.
 
-        MANDATORY: if `user_defined_maintenance_frequency` is `None`.
+        MANDATORY:
+            If `user_defined_maintenance_frequency` is `None`.
         """
 
     @property

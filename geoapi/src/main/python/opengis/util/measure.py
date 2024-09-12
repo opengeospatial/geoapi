@@ -93,7 +93,7 @@ class UnitOfMeasure(ABC):
         """
         A string used to identify the unit of measure.
 
-        EXAMPLES: foot, metre, radian, degree, inch, minute,
+        Examples: foot, metre, radian, degree, inch, minute,
         kilometres per hour
         """
 

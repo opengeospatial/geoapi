@@ -422,7 +422,8 @@ class Georectified(GridSpatialRepresentation):
         Description of geographic position points used to test the accuracy of
         the georeferenced grid data.
 
-        MANDATORY: if `check_point_availability` == `True`.
+        MANDATORY:
+            If `check_point_availability` == `True`.
         """
 
     @property

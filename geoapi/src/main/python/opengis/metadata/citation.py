@@ -230,7 +230,8 @@ class PresentationFormCode(Enum):
     """
     A physical object.
 
-    EXAMPLE: Rock or mineral sample, microscope slide.
+    Example:
+        Rock or mineral sample, microscope slide.
     """
 
     DIAGRAM_DIGITAL = "diagramDigital"
@@ -477,14 +478,14 @@ class OnlineResource(ABC):
     def protocol_request(self) -> Optional[str]:
         """
         Request used to access the resource depending on the protocol
-        (to be used mainly for POST requests)
+        (to be used mainly for POST requests).
 
         Protocol used by the accessed resource.
 
         Example POST/XML:
 
         ```
-        <Ge tFeatures service = "WFS"
+        <Get Features service = "WFS"
                      version="2.0.0"
                      outputFormat="application/gml+xml; version=3.2"
                      xmlns=http://www.opengis.net/wfs/2.0
@@ -558,7 +559,8 @@ class Party(ABC):
         """
         Name of the party.
 
-        MANDATORY: if `logo` and `position_name`are `None`.
+        MANDATORY:
+            If `logo` and `position_name`are `None`.
         """
 
     @property
@@ -572,7 +574,8 @@ class Party(ABC):
         """
         Identifier of the party.
 
-        MANDATORY: if `name` and `logo` are `None`.
+        MANDATORY:
+            If `name` and `logo` are `None`.
         """
 
 
@@ -604,7 +607,8 @@ class Individual(Party):
         """
         Position of the individual in an organisation.
 
-        MANDATORY: if `name` and `logo` are `None`.
+        MANDATORY:
+            If `name` and `logo` are `None`.
         """
 
 
@@ -617,7 +621,8 @@ class Organisation(Party):
         """
         Graphic identifying organisation.
 
-        MANDATORY: if `name` and `position_name`are `None`.
+        MANDATORY:
+            If `name` and `position_name`are `None`.
         """
 
     @property
@@ -655,8 +660,8 @@ class Citation(ABC):
         Short name or other language name by which the cited information is
         known.
 
-        Example: 'DCW' as an alternative title for Digital Chart of the
-        World.
+        Example:
+            'DCW' as an alternative title for Digital Chart of the World.
         """
 
     @property
@@ -750,7 +755,8 @@ class Identifier(ABC):
 
         NOTE: Avoid characters that are not legal in URLs.
 
-        Example: EPSG::4326.
+        Example:
+            EPSG::4326.
         """
 
     @property
@@ -769,5 +775,6 @@ class Identifier(ABC):
         """
         Natural language description of the meaning of the code value.
 
-        Example: for code_space = EPSG, code = 4326, description = WGS-84.
+        Example:
+            For code_space = EPSG, code = 4326, description = WGS-84.
         """

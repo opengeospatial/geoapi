@@ -27,7 +27,7 @@ __author__ = "OGC Topic 2 (for abstract model and documentation), " +\
 from abc import abstractmethod
 from enum import Enum
 
-from opengis.referencing.datum import IdentifiedObject
+from opengis.referencing.common import IdentifiedObject
 
 
 class AxisDirection(Enum):

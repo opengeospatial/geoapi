@@ -28,7 +28,7 @@ __author__ = "OGC Topic 11 (for abstract model and documentation), " +\
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
-from datetime import datetime, date
+from datetime import date, datetime
 from enum import Enum
 from typing import Optional
 
@@ -36,8 +36,8 @@ from opengis.metadata.citation import Citation, Identifier, Responsibility
 from opengis.metadata.constraints import Constraints
 from opengis.metadata.extent import Extent
 from opengis.metadata.identification import ProgressCode
-from opengis.metadata.naming import Record, RecordType
 from opengis.metadata.maintenance import Scope
+from opengis.metadata.naming import Record, RecordType
 
 
 class ContextCode(Enum):

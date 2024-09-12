@@ -150,7 +150,8 @@ class CoupledResource(ABC):
         NOTE: name of the resources (i.e. dataset) as it is used by
         a service instance
 
-        Example: layer name or `feature_type_name`.
+        Example:
+            Layer name or `feature_type_name`.
         """
 
     @property
@@ -227,7 +228,8 @@ class ServiceIdentification(Identification):
         """
         Type of coupling between service and associated data (if exists).
 
-        MANDATORY: if `coupled_resource` is not `None`.
+        MANDATORY:
+            If `coupled_resource` is not `None`.
         """
 
     @property
@@ -259,7 +261,7 @@ class ServiceIdentification(Identification):
     @abstractmethod
     def contains_operations(self) -> Optional[Sequence['OperationMetadata']]:
         """
-        Provides information about the operationsthat comprise the service.
+        Provides information about the operations that comprise the service.
         """
 
     @property
@@ -275,7 +277,7 @@ class ServiceIdentification(Identification):
     @property
     @abstractmethod
     def contains_chain(self) -> Optional[Sequence[OperationChainMetadata]]:
-        """Provide infromation about the chain applied by the resource."""
+        """Provides infromation about the chain applied by the resource."""
 
 
 class Parameter(ABC):
@@ -353,7 +355,7 @@ class OperationMetadata(ABC):
 
     @property
     @abstractmethod
-    def parameters(self) -> Optional[Parameter]:
+    def parameters(self) -> Optional[Sequence[Parameter]]:
         """The parameters that are required for this interface."""
 
     @property

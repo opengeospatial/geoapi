@@ -29,6 +29,7 @@
 - [ ] Moving Feature (?)
 
 ## Library of Enums and Abstract Classes
+- [ ] Fix `numpy.ndarray` issues in the `referencing.operation` module
 - [x] ISO 19103:2015 mapping to python types
     - [x] Bit --> unimplemented
     - [x] Digit --> unimplemented

@@ -96,8 +96,9 @@ class CoverageContentTypeCode(Enum):
     Data, usually a physical measurement, used to support the calculation
     of the primary PHYSICAL_MEASUREMENT coverages in the dataset.
 
-    EXAMPLE: Grid of aerosol optical thickness used in the calculation of a
-    sea surface temperature product.
+    Example:
+        Grid of aerosol optical thickness used in the calculation of a
+        sea surface temperature product.
     """
 
     QUALITY_INFORMATION = "qualityInformation"
@@ -113,8 +114,9 @@ class CoverageContentTypeCode(Enum):
     Reference information used to support the calculation or use of the
     PHYSICAL_MEASUREMENT coverages in the dataset.
 
-    EXAMPLE: Grids of latitude/longitude used to geolocate
-    the physical measurements.
+    Example:
+        Grids of latitude/longitude used to geolocate
+        the physical measurements.
     """
 
     MODEL_RESULT = "modelResult"
