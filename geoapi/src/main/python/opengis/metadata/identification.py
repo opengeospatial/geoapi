@@ -525,8 +525,7 @@ class KeywordClass(ABC):
     def concept_identifier(self) -> Optional[str]:
         """
         URI (as a string) of concept in ontology specified by the ontology
-        attribute; this concept is labeled by the className:
-        CharacterString.
+        attribute; this concept is labeled by a `str`.
         """
 
     @property
@@ -544,9 +543,8 @@ class Keywords(ABC):
     """
     Keywords, their type and reference source.
 
-        NOTE: When the resource
-    described is a service, one instance of `Keyword` shall refer to the
-    service taxonomy defined in ISO 19119, 8.3).
+    NOTE: When the resource described is a service, one instance of `Keyword`
+    shall refer to the service taxonomy defined in ISO 19119, 8.3).
     """
 
     @property
@@ -664,7 +662,7 @@ class RepresentativeFraction(ABC):
 
 
 class Resolution(ABC):
-    """Level of detail expressed as a scale factor, a distance or an angle."""
+    """Level of detail expressed as a scale factor, a distance, or an angle."""
 
     @property
     @abstractmethod
@@ -881,7 +879,7 @@ class Identification(ABC):
     @property
     @abstractmethod
     def descriptive_keywords(self) -> Optional[Sequence[Keywords]]:
-        """Category keywords, their type, and reference source."""
+        """Category keywords, their type and reference source."""
 
     @property
     @abstractmethod

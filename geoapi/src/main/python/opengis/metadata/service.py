@@ -259,7 +259,7 @@ class ServiceIdentification(Identification):
     @abstractmethod
     def contains_operations(self) -> Optional[Sequence['OperationMetadata']]:
         """
-        Provides information about the operationsthat comprise the service.
+        Provides information about the operations that comprise the service.
         """
 
     @property
@@ -275,7 +275,7 @@ class ServiceIdentification(Identification):
     @property
     @abstractmethod
     def contains_chain(self) -> Optional[Sequence[OperationChainMetadata]]:
-        """Provide infromation about the chain applied by the resource."""
+        """Provides infromation about the chain applied by the resource."""
 
 
 class Parameter(ABC):
@@ -353,7 +353,7 @@ class OperationMetadata(ABC):
 
     @property
     @abstractmethod
-    def parameters(self) -> Optional[Parameter]:
+    def parameters(self) -> Optional[Sequence[Parameter]]:
         """The parameters that are required for this interface."""
 
     @property

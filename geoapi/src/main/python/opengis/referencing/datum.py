@@ -31,7 +31,7 @@ from typing import Optional
 
 from opengis.metadata.extent import Extent
 from opengis.referencing.common import IdentifiedObject
-from opengis.util.measure import UomLength, UomAngle
+from opengis.util.measure import UomAngle, UomLength
 
 
 class RealizationMethod(Enum):
