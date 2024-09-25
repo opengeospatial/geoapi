@@ -1,4 +1,10 @@
 # Python "To Do" List
+## Documentation Fixes
+- [ ] Replace `Optional[...]` with `... | None = None`
+- [ ] Change to Admonition for Google Style docstrings
+    - [ ] `MANDATORY: ` ==> `**MANDATORY:**\n`
+    - [ ] `Example: ` ==> `Example:\n`
+    - [ ] `Note: ` ==> `NOTE:\n`
 ## Specifications
 ### ISO Standards
 - [ ] 19103

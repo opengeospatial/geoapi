@@ -477,14 +477,14 @@ class OnlineResource(ABC):
     def protocol_request(self) -> Optional[str]:
         """
         Request used to access the resource depending on the protocol
-        (to be used mainly for POST requests)
+        (to be used mainly for POST requests).
 
         Protocol used by the accessed resource.
 
         Example POST/XML:
 
         ```
-        <Ge tFeatures service = "WFS"
+        <Get Features service = "WFS"
                      version="2.0.0"
                      outputFormat="application/gml+xml; version=3.2"
                      xmlns=http://www.opengis.net/wfs/2.0
