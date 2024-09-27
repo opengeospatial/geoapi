@@ -1,7 +1,8 @@
 # GeoAPI Python README
 
 ## Static Type Checking
-Static type checking for GeoAPI's Pytnon implementation is accomplished using [mypy](https://mypy.readthedocs.io/en/stable/index.html).
+Static type checking for GeoAPI's Pytnon implementation is accomplished using
+[mypy](https://mypy.readthedocs.io/en/stable/index.html).
 
 
 ## Development Environment
