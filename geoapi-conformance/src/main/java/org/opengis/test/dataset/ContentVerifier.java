@@ -31,6 +31,7 @@ import java.util.Map;
 import java.util.Objects;
 import java.util.Set;
 import java.util.TreeMap;
+import java.util.function.Predicate;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.lang.reflect.ParameterizedType;
@@ -46,11 +47,19 @@ import org.junit.jupiter.api.Assertions;
 
 
 /**
- * Verification operations that compare metadata or CRS properties against the expected values.
- * The metadata or CRS to verify (typically read from a dataset) is specified by a call to one
- * of the {@code addMetadataToVerify(…)} methods. The expected metadata values are specified by
- * calls to {@code addExpectedValues(…)} methods. After the expected and actual values have been
- * specified, they can be compared by a call to {@code assertMetadataEquals()}.
+ * A comparator of metadata or <abbr>CRS</abbr> properties against expected values.
+ * The methods of this class should be invoked in the following order:
+ *
+ * <ol>
+ *   <li>{@link #addPropertyToIgnore(Class, String) addPropertyToIgnore(…)} (optional)</li>
+ *   <li>{@link #addExpectedValue addExpectedValue(…)} or {@code addExpectedValues(…)}</li>
+ *   <li>{@link #addMetadataToVerify(Metadata) addMetadataToVerify(…)}</li>
+ *   <li>{@link #compareMetadata()} or {@link #assertMetadataEquals()}</li>
+ *   <li>{@link #reset()} if this verifier will be reused for other metadata.</li>
+ * </ol>
+ *
+ * Subclasses can also override {@link #comparePropertyValue comparePropertyValue(…)}
+ * for finer grain control the the properties to be compared.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
@@ -62,7 +71,7 @@ public class ContentVerifier {
      * {@link #addPropertyValue(Class, Object)} method. Values of this string builders are used as
      * keys in {@link #metadataValues} map.
      */
-    private final StringBuilder path;
+    private final StringBuilder currentPath;
 
     /**
      * Instances already visited, for avoiding never-ending recursive loops. This is non-empty only
@@ -108,12 +117,13 @@ public class ContentVerifier {
     private final Map<String,Object> metadataValues;
 
     /**
-     * All expected values specified by {@link #addExpectedValue(Map)} method.
+     * All expected values specified by {@link #addExpectedValue(String, Object)} method.
      */
     private final Map<String,Object> expectedValues;
 
     /**
      * Paths of properties that were expected but not found.
+     * The entry values are the values that were expected.
      */
     private final List<Map.Entry<String,Object>> missings;
 
@@ -162,15 +172,24 @@ public class ContentVerifier {
     }
 
     /**
-     * Properties to ignore. They are specified by user with calls to {@link #addPropertyToIgnore(Class, String)}.
+     * Properties to ignore, identified by their <abbr>UML</abbr> identifier and enclosing interface.
+     *
+     * @see #addPropertyToIgnore(Class, String)
      */
     private final Map<Class<?>, Set<String>> ignore;
+
+    /**
+     * Properties to ignore, identified by their paths.
+     *
+     * @see #addPropertyToIgnore(Predicate)
+     */
+    private Predicate<String> pathsToIgnore;
 
     /**
      * Creates a new dataset content verifier.
      */
     public ContentVerifier() {
-        path           = new StringBuilder(80);
+        currentPath    = new StringBuilder(80);
         visited        = new HashSet<>();
         metadataValues = new TreeMap<>();
         expectedValues = new LinkedHashMap<>();
@@ -180,22 +199,36 @@ public class ContentVerifier {
     }
 
     /**
-     * Resets this verifier to the same state as after construction.
-     * This method can be invoked for reusing the same verifier with different metadata objects.
+     * Resets this verifier for comparison of another metadata object with the same expected values.
+     * This method clears the values given to {@link #addMetadataToVerify(Metadata) addMetadataToVerify(…)},
+     * but preserves the values given to {@link #addPropertyToIgnore(Class, String) addPropertyToIgnore(…)}
+     * and {@link #addExpectedValue addExpectedValue(…)} or {@code addExpectedValues(…)}.
      */
-    public void clear() {
-        path.setLength(0);
+    public void reset() {
+        currentPath.setLength(0);
         visited.clear();
         metadataValues.clear();
         mismatches.clear();
         missings.clear();
-        ignore.clear();
     }
 
     /**
-     * Adds a metadata property to ignore. The property is identified by a GeoAPI interface and the
-     * {@link UML} identifier of a property in that interface. Properties to ignore must be declared
-     * before to invoke {@code addMetadataToVerify(…)}.
+     * Adds a metadata property to ignore in all occurrences of a metadata of the given type.
+     * The property is identified by a GeoAPI interface and the {@link UML} identifier of a property in that interface.
+     * For example, the following code instructs this comparator to ignore the {@code onlineResource} property of all
+     * {@link Citation} instances, no matter the path to that citation (<i>i.e.</i>, the parent metadata):
+     *
+     * {@snippet lang="java" :
+     * addPropertyToIgnore(Citation.class, "onlineResource");
+     * }
+     *
+     * Note that properties ignored by this method are not read at all,
+     * <i>i.e.</i> their getter method on metadata objects is not invoked.
+     *
+     * <h4>Method calls ordering</h4>
+     * If an {@code addMetadataToVerify(…)} method was invoked before this call to {@code addPropertyToIgnore(…)},
+     * the previously added metadata properties are unaffected. This method modifies only the behavior of calls to
+     * {@code addMetadataToVerify(…)} done <em>after</em> this method call.
      *
      * @param  type      GeoAPI interface containing the property to ignore.
      * @param  property  UML identifier of a property in the given interface.
@@ -219,11 +252,109 @@ public class ContentVerifier {
     }
 
     /**
-     * Stores all properties of the given metadata, for later comparison against expected values.
-     * If this method is invoked more than once, then the given metadata objects shall not provide values
-     * for the same properties (unless the values are equal, or unless {@link #clear()} has been invoked).
+     * Adds a metadata property to ignore, using the path as a criterion.
+     * For each property of a metadata object to verify, the property path as documented
+     * in {@link #addExpectedValue(String, Object)} is given to the {@code pathFilter} predicate.
+     * If the predicate returns {@code true}, then the property is ignored.
      *
-     * @param  actual  the metadata read from a dataset, or {@code null} if none.
+     * <h4>Method calls ordering</h4>
+     * If an {@code addMetadataToVerify(…)} method was invoked before this call to {@code addPropertyToIgnore(…)},
+     * the previously added metadata properties are unaffected. This method modifies only the behavior of calls to
+     * {@code addMetadataToVerify(…)} done <em>after</em> this method call.
+     *
+     * @param  pathFilter  a filter returning {@code true} for the path of properties to ignore.
+     */
+    public void addPropertyToIgnore(final Predicate<String> pathFilter) {
+        if (pathsToIgnore == null) {
+            pathsToIgnore = Objects.requireNonNull(pathFilter);
+        } else {
+            pathsToIgnore = pathsToIgnore.or(pathFilter);
+        }
+    }
+
+    /**
+     * Returns {@code true} if the given path shall be ignored.
+     *
+     * @param  propertyPath  path to the property to filter.
+     * @return whether to ignore the specified property.
+     */
+    private boolean isIgnored(final String propertyPath) {
+        return pathsToIgnore != null && pathsToIgnore.test(propertyPath);
+    }
+
+    /**
+     * Adds the expected metadata value for the given path.
+     * The path is a string like the following examples
+     * ({@code [0]} is the index of an element in lists or collections):
+     *
+     * <ul>
+     *   <li>{@code "identificationInfo[0].citation.identifier[0].code"}</li>
+     *   <li>{@code "spatialRepresentationInfo[0].axisDimensionProperties[0].dimensionSize"}</li>
+     * </ul>
+     *
+     * The {@code expectedValue} argument is the expected value for the property identified by the path.
+     * Values are typically instances of {@link String}, {@link Number}, {@link java.time.temporal.Temporal},
+     * {@link java.util.CodeList}, <i>etc.</i>
+     *
+     * @param  propertyPath   path to the property to verify.
+     * @param  expectedValue  the expected values of the property identified by the path.
+     * @throws IllegalArgumentException if a different value is already declared for the given path,
+     *         or if the given property would be {@linkplain #addPropertyToIgnore(Predicate) ignored}.
+     */
+    public void addExpectedValue(final String propertyPath, final Object expectedValue) {
+        if (isIgnored(propertyPath)) {
+            throw new IllegalArgumentException("The \"" + propertyPath + "\" property path is ignored.");
+        }
+        final Object previous = expectedValues.putIfAbsent(propertyPath, expectedValue);
+        if (previous != null && !previous.equals(expectedValue)) {
+            throw new IllegalArgumentException(String.format("Metadata element \"%s\" is specified twice:"
+                    + "%nValue 1: %s%nValue 2: %s%n", propertyPath, previous, expectedValue));
+        }
+    }
+
+    /**
+     * Adds the expected metadata values for the given paths.
+     * Values in entries are the expected values for the properties identified by the keys.
+     * This is a convenience method for multiple calls to {@link #addExpectedValue(String, Object)}.
+     *
+     * @param  expected  the expected values of properties identified by the keys.
+     * @throws ClassCastException if an {@code others} element for a path is not a {@link String} instance.
+     * @throws IllegalArgumentException if a path is already associated to a different value.
+     *
+     * @see #addExpectedValue(String, Object)
+     */
+    @SafeVarargs
+    public final void addExpectedValues(final Map.Entry<String,?>... expected) {
+        for (Map.Entry<String,?> entry : expected) {
+            addExpectedValue(entry.getKey(), entry.getValue());
+        }
+    }
+
+    /**
+     * Adds the expected metadata values for the given paths.
+     * Values in the map are the expected values for the properties identified by the keys.
+     * This is a convenience method for multiple calls to {@link #addExpectedValue(String, Object)}.
+     *
+     * @param  expected  the expected values of properties identified by the keys.
+     * @throws IllegalArgumentException if a path is already associated to a different value.
+     *
+     * @see #addExpectedValue(String, Object)
+     */
+    public void addExpectedValues(final Map<String,?> expected) {
+        for (Map.Entry<String,?> entry : expected.entrySet()) {
+            addExpectedValue(entry.getKey(), entry.getValue());
+        }
+    }
+
+    /**
+     * Stores properties of the given metadata, for later comparison against expected values.
+     * If one or many {@link #addPropertyToIgnore(Class, String) addPropertyToIgnore(…)} methods have been invoked
+     * before this method call, the properties that match an {@code addPropertyToIgnore(…)} criterion are excluded.
+     * If this method is invoked more than once since construction or since the last call to {@link #reset()},
+     * then all properties at the same paths shall either be excluded by an {@code addPropertyToIgnore(…)},
+     * or have the same value.
+     *
+     * @param  actual  the metadata to compare against expected values, or {@code null} if none.
      * @throws IllegalStateException if the given metadata contains a property already found in a previous
      *         call to this method, and the values found in those two invocations are not equal.
      */
@@ -232,12 +363,11 @@ public class ContentVerifier {
     }
 
     /**
-     * Stores all properties of the given CRS, for later comparison against expected values.
+     * Stores properties of the given <abbr>CRS</abbr>, for later comparison against expected values.
      * In this class, a Coordinate Reference System is considered as a kind of metadata.
-     * If this method is invoked more than once, then the given CRS objects shall not provide values
-     * for the same properties (unless the values are equal, or unless {@link #clear()} has been invoked).
+     * See {@link #addMetadataToVerify(Metadata)} for more information.
      *
-     * @param  actual  the CRS read from a dataset, or {@code null} if none.
+     * @param  actual  the <abbr>CRS</abbr> to compare against expected values, or {@code null} if none.
      * @throws IllegalStateException if the given CRS contains a property already found in a previous
      *         call to this method, and the values found in those two invocations are not equal.
      */
@@ -269,7 +399,7 @@ public class ContentVerifier {
         } catch (IllegalAccessException e) {
             throw new AssertionError(e);                    // Should never happen since we invoked only public methods.
         } finally {
-            path.setLength(0);
+            currentPath.setLength(0);
             visited.clear();
         }
     }
@@ -297,13 +427,13 @@ public class ContentVerifier {
     /**
      * Adds the given value in the {@link #metadataValues} map. If the given value is another metadata object,
      * then this method iterates recursively over all elements in that metadata. The key is the current value
-     * of {@link #path}.
+     * of {@link #currentPath}.
      *
      * @param  type  the GeoAPI interface implemented by the given object, or the standard Java class if not a metadata type.
      * @param  obj   non-null instance of {@code type} to add in the map.
      * @throws InvocationTargetException if an error occurred while invoking client code.
      * @throws IllegalAccessException if the method to invoke is not public (should never happen with interfaces).
-     * @throws IllegalStateException if a different metadata value is already presents for the current {@link #path} key.
+     * @throws IllegalStateException if a different metadata value is already presents for the current {@link #currentPath} key.
      */
     private void addPropertyValue(Class<?> type, final Object obj) throws InvocationTargetException, IllegalAccessException {
         if (InternationalString.class.isAssignableFrom(type) ||        // Most common case first.
@@ -311,16 +441,19 @@ public class ContentVerifier {
                     GenericName.class.isAssignableFrom(type) ||
                        !type.isAnnotationPresent(UML.class))
         {
-            final String key = path.toString();
-            final Object previous = metadataValues.put(key, obj);
-            if (previous != null && !previous.equals(obj)) {
-                throw new IllegalStateException(String.format("Metadata element \"%s\" is specified twice "
-                        + "with two different values:%nValue 1: %s%nValue 2: %s%n", key, previous, obj));
+            final String key = currentPath.toString();
+            if (!isIgnored(key)) {
+                final Object previous = metadataValues.putIfAbsent(key, obj);
+                if (previous != null && !previous.equals(obj)) {
+                    throw new IllegalStateException(String.format("Metadata element \"%s\" is specified twice "
+                            + "with two different values:%nValue 1: %s%nValue 2: %s%n", key, previous, obj));
+                }
             }
-        } else {
+        } else if (pathsToIgnore == null || !pathsToIgnore.test(currentPath.toString())) {
+            // Note: we didn't used `isIgnored(String)` in order to invoke `toString()` only if necessary.
             final Element recursivityGuard = new Element(type, obj);
             if (visited.add(recursivityGuard)) {
-                final int pathElementPosition = path.length();
+                final int pathElementPosition = currentPath.length();
                 type = specialized(type, obj.getClass());               // Example: Identification may actually be DataIdentification
                 for (final Method getter : type.getMethods()) {
                     if (getter.getParameterCount() != 0) {
@@ -352,22 +485,22 @@ public class ContentVerifier {
                         values = null;
                     }
                     if (pathElementPosition != 0) {
-                        path.append('.');
+                        currentPath.append('.');
                     }
-                    path.append(spec.identifier());
+                    currentPath.append(spec.identifier());
                     if (values == null) {
                         addPropertyValue(valueType, value);
                     } else {
                         valueType = boundOfParameterizedProperty(getter.getGenericReturnType());
-                        final int indexPosition = path.append('[').length();
+                        final int indexPosition = currentPath.append('[').length();
                         int i = 0;
                         do {
-                            path.append(i++).append(']');
+                            currentPath.append(i++).append(']');
                             addPropertyValue(valueType, values.next());
-                            path.setLength(indexPosition);
+                            currentPath.setLength(indexPosition);
                         } while (values.hasNext());
                     }
-                    path.setLength(pathElementPosition);
+                    currentPath.setLength(pathElementPosition);
                 }
                 if (!visited.remove(recursivityGuard)) {
                     // Should never happen unless the map is modified concurrently in another thread.
@@ -429,146 +562,101 @@ public class ContentVerifier {
     }
 
     /**
-     * Implementation of {@code compareMetadata(…)} public methods. This implementation removes properties
-     * from the given map as they are found. After this method completed, the remaining entries in the given
-     * map are properties not found in the metadata given to {@code addMetadataToVerify(…)} methods.
+     * Compares a metadata property value against the expected value.
+     * The {@code expected} argument is a value given to a call to {@code addExpectedValue(…)},
+     * and the {@code actual} argument is a value found in a metadata given to {@code addMetadataToVerify(…)}.
+     * The default implementation compares the actual and expected values with {@link Object#equals(Object)},
+     * with the following special cases:
      *
-     * @param  entries  the metadata properties to compare, in a modifiable map (will be modified).
-     * @return {@code true} if all properties match, with no missing property and no unexpected property.
+     * <ul>
+     *   <li>If the expected value is a {@link Float}, then the two values
+     *       are compared as {@linkplain Float#floatToIntBits(float) bit patterns}.</li>
+     *   <li>If the expected value is a {@link Double}, then the two values
+     *       are compared as {@linkplain Double#doubleToLongBits(double) bit patterns}.</li>
+     *   <li>If the expected value is a {@link CharSequence}, then the two values
+     *       are compared as {@linkplain CharSequence#toString() strings}.</li>
+     * </ul>
      *
-     * @see #compareMetadata()
+     * Subclasses can override if they want fine grain control on how values are compared.
+     *
+     * @param  propertyPath  path to the property value as documented in {@link #addExpectedValue addExpectedValue(…)}.
+     * @param  expected      the value that was expected for the property path, or {@code null} if that property was unexpected.
+     * @param  actual        the actual value found in the metadata to verify, or {@code null} if no value was found at that path.
+     * @return whether the actual value can be considered equal to the expected value.
+     *
+     * @see #addPropertyToIgnore(Class, String)
+     * @see #addPropertyToIgnore(Predicate)
      */
-    private boolean filterProperties(final Set<Map.Entry<String,Object>> entries) {
-        final Iterator<Map.Entry<String,Object>> it = entries.iterator();
-        while (it.hasNext()) {
-            final Map.Entry<String,Object> entry = it.next();
-            final String key = entry.getKey();
-            final Object actual = metadataValues.remove(key);
-            if (actual != null) {
-                it.remove();
-                final Object expected = entry.getValue();
-                if (Objects.equals(expected, actual)) {
-                    continue;
-                } else if (expected instanceof Number && actual instanceof Number) {
-                    if (expected instanceof Float) {
-                        if (Float.floatToIntBits((Float) expected) ==
-                            Float.floatToIntBits(((Number) actual).floatValue()))
-                        {
-                            continue;
-                        }
-                    } else if (expected instanceof Double) {
-                        if (Double.doubleToLongBits((Double) expected) ==
-                            Double.doubleToLongBits(((Number) actual).doubleValue()))
-                        {
-                            continue;
-                        }
-                    }
-                } else if (expected instanceof CharSequence) {
-                    // The main intent is to convert InternationalString.
-                    if (Objects.equals(expected.toString(), actual.toString())) {
-                        continue;
-                    }
+    protected boolean comparePropertyValue(final String propertyPath, final Object expected, final Object actual) {
+        if (Objects.equals(expected, actual)) {
+            return true;
+        } else if (expected instanceof Number && actual instanceof Number) {
+            if (expected instanceof Float) {
+                if (Float.floatToIntBits((Float) expected) ==
+                    Float.floatToIntBits(((Number) actual).floatValue()))
+                {
+                    return true;
                 }
-                mismatches.add(new AbstractMap.SimpleEntry<>(key, new Mismatch(expected, actual)));
+            } else if (expected instanceof Double) {
+                if (Double.doubleToLongBits((Double) expected) ==
+                    Double.doubleToLongBits(((Number) actual).doubleValue()))
+                {
+                    return true;
+                }
+            }
+        } else if (expected instanceof CharSequence && actual != null) {
+            // The main intent is to convert `InternationalString`.
+            if (Objects.equals(expected.toString(), actual.toString())) {
+                return true;
             }
         }
-        missings.addAll(entries);
-        return mismatches.isEmpty() && metadataValues.isEmpty() && entries.isEmpty();
+        return false;
     }
 
     /**
-     * Adds the expected metadata value for the given path.
-     * The path is a string like the following examples
-     * ({@code [0]} is the index of an element in lists or collections):
-     *
-     * <ul>
-     *   <li>{@code "identificationInfo[0].citation.identifier[0].code"}</li>
-     *   <li>{@code "spatialRepresentationInfo[0].axisDimensionProperties[0].dimensionSize"}</li>
-     * </ul>
-     *
-     * The {@code expectedValue} argument is the expected values for the properties identified by the path.
-     *
-     * @param  path           path to the property to verify.
-     * @param  expectedValue  the expected values of property identified by the path.
-     * @throws IllegalArgumentException if a different value is already declared for the given path.
-     */
-    public void addExpectedValue(final String path, final Object expectedValue) {
-        final Object previous = expectedValues.putIfAbsent(path, expectedValue);
-        if (previous != null && !previous.equals(expectedValue)) {
-            throw new IllegalArgumentException(String.format("Metadata element \"%s\" is specified twice:"
-                    + "%nValue 1: %s%nValue 2: %s%n", path, previous, expectedValue));
-        }
-    }
-
-    /**
-     * Adds the expected metadata values for the given paths.
-     * The {@code path} argument identifies a metadata element like the following examples
-     * ({@code [0]} is the index of an element in lists or collections):
-     *
-     * <ul>
-     *   <li>{@code "identificationInfo[0].citation.identifier[0].code"}</li>
-     *   <li>{@code "spatialRepresentationInfo[0].axisDimensionProperties[0].dimensionSize"}</li>
-     * </ul>
-     *
-     * The {@code value} argument is the expected value for the property identified by the path.
-     *
-     * @param  path           path of the property to compare.
-     * @param  expectedValue  expected value for the property at the given path.
-     * @param  others         other ({@code path}, {@code expectedValue}) pairs.
-     * @throws ClassCastException if an {@code others} element for a path is not a {@link String} instance.
-     * @throws IllegalArgumentException if a path is already associated to a different value.
-     */
-    public void addExpectedValues(final String path, final Object expectedValue, final Object... others) {
-        addExpectedValue(path, expectedValue);
-        for (int i=0; i<others.length; i++) {
-            final Object key = others[i];
-            if (!(key instanceof String)) {
-                throw new ClassCastException(String.format("others[%d] shall be a String, but given value class is %s.",
-                            i, (key != null) ? key.getClass() : null));
-            }
-            addExpectedValue((String) key, others[++i]);
-        }
-    }
-
-    /**
-     * Adds the expected metadata values for the given paths.
-     * For each entry in the map, the key is a path to a metadata element like the following examples
-     * ({@code [0]} is the index of an element in lists or collections):
-     *
-     * <ul>
-     *   <li>{@code "identificationInfo[0].citation.identifier[0].code"}</li>
-     *   <li>{@code "spatialRepresentationInfo[0].axisDimensionProperties[0].dimensionSize"}</li>
-     * </ul>
-     *
-     * Values in the map are the expected values for the properties identified by the keys.
-     *
-     * @param  expected  the expected values of properties identified by the keys.
-     * @throws IllegalArgumentException if a path is already associated to a different value.
-     */
-    public void addExpectedValues(final Map<String,?> expected) {
-        for (final Map.Entry<String,?> entry : expected.entrySet()) {
-            addExpectedValue(entry.getKey(), entry.getValue());
-        }
-    }
-
-    /**
-     * Compares actual metadata properties against the expected values given in a map.
-     * The {@code addMetadataToVerify(…)} and {@code addExpectedValues(…)} methods
-     * must be invoked before this method.
+     * Compares actual metadata properties against the expected values.
+     * The expected and actual values are specified by {@code addExpectedValues(…)} and {@code addMetadataToVerify(…)}
+     * methods respectively, which must be invoked in that order before this {@code compareMetadata()} method.
+     * In case of mismatch, this method does not cause test failure. Instead, the result is returned as a Boolean.
      * Comparison result can be viewed after this method call with {@link #toString()}.
      *
      * @return {@code true} if all properties match, with no missing property and no unexpected property.
      */
     public boolean compareMetadata() {
-        return filterProperties(expectedValues.entrySet());
+        Iterator<Map.Entry<String,Object>> it = expectedValues.entrySet().iterator();
+        while (it.hasNext()) {
+            final Map.Entry<String,Object> entry = it.next();
+            final String propertyPath = entry.getKey();
+            final Object expected = entry.getValue();
+            final Object actual = metadataValues.remove(propertyPath);
+            if (!comparePropertyValue(propertyPath, expected, actual)) {
+                if (actual != null) {
+                    mismatches.add(new AbstractMap.SimpleEntry<>(propertyPath, new Mismatch(expected, actual)));
+                } else {
+                    missings.add(entry);
+                }
+            }
+        }
+        /*
+         * If user overrides `comparePropertyValue(…)`, check if values
+         * unexpected by this class were actually expected by the user.
+         */
+        it = metadataValues.entrySet().iterator();
+        while (it.hasNext()) {
+            final Map.Entry<String,Object> entry = it.next();
+            if (comparePropertyValue(entry.getKey(), null, entry.getValue())) {
+                it.remove();
+            }
+        }
+        return mismatches.isEmpty() && metadataValues.isEmpty() && missings.isEmpty();
     }
 
     /**
      * Asserts that actual metadata properties are equal to the expected values.
-     * The {@code addMetadataToVerify(…)} and {@code addExpectedValues(…)} methods
-     * must be invoked before this method.
-     * If there is any <em>mismatched</em>, <em>missing</em> or <em>unexpected</em> value,
-     * then the assertion fails with an error message listing all differences found.
+     * This method invokes {@link #compareMetadata()} and causes a test failure if the latter
+     * method found any <em>mismatched</em>, <em>missing</em> or <em>unexpected</em> value.
+     *
+     * @throws AssertionError if {@link #compareMetadata()} returned {@code false}.
      */
     public void assertMetadataEquals() {
         if (!compareMetadata()) {
@@ -619,7 +707,7 @@ public class ContentVerifier {
             width++;
             for (final Map.Entry<String,Object> entry : values) {
                 final String key = entry.getKey();
-                appendTo.append("    \"").append(key).append("\":");
+                appendTo.append("    entry(\"").append(key).append("\",");
                 for (int i = width - key.length(); --i >= 0;) {
                     appendTo.append(' ');
                 }
@@ -629,7 +717,7 @@ public class ContentVerifier {
                 } else {
                     formatValue(value, false, appendTo);
                 }
-                appendTo.append(',').append(lineSeparator);
+                appendTo.append("),").append(lineSeparator);
             }
             if (width > 0) {                                                                // Paranoiac check.
                 appendTo.deleteCharAt(appendTo.length() - lineSeparator.length() - 1);      // Remove last comma.
