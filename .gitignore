@@ -13,13 +13,31 @@ nbactions.xml
 .idea/
 *.iml
 
+# VS Code settings
+.vscode/
+
 # MacOS files
 .DS_Store
 
+# Python related files
+# ------------------------------------------------
 # Python files
 __pycache__/
 *.pyc
 
-# Python virtual environments
+# python virtual environments
 .venv
 venv
+
+# Ruff linter cache
+.ruff_cache
+
+# static type checking
+.mypy_cache
+
+# unit tests
+.pytest_cache
+
+# build files
+geoapi.egg-info/
+# ------------------------------------------------

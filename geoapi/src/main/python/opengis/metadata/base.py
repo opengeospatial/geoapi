@@ -90,7 +90,8 @@ class Metadata(ABC):
         Language and character set used for documenting metadata.
         A string conforming to IETF BCP 47.
 
-        MANDATORY: if UTF-8 not used and not defined in encoding.
+        MANDATORY:
+            If UTF-8 not used and not defined in encoding.
         """
 
     @property
@@ -99,7 +100,8 @@ class Metadata(ABC):
         """
         Identification of the parent metadata record.
 
-        MANDATORY: if there is an upper level object.
+        MANDATORY:
+            If there is an upper level object.
         """
 
     @property
@@ -259,7 +261,8 @@ class Metadata(ABC):
         """
         The scope or type of resource for which metadata is provided.
 
-        MANDATORY: if `Metadata` is about a resource other than a dataset.
+        MANDATORY:
+            If `Metadata` is about a resource other than a dataset.
         """
 
     @property

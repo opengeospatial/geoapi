@@ -26,6 +26,7 @@ __author__ = "OGC Topic 11 (for abstract model and documentation), " +\
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
+from typing import Any
 
 
 class NameSpace(ABC):
@@ -33,7 +34,7 @@ class NameSpace(ABC):
 
     @property
     @abstractmethod
-    def is_global(self):
+    def is_global(self) -> bool:
         """
         Indicates whether this namespace is a "top level" namespace. Global,
         or top-level namespaces are not contained within another namespace.
@@ -195,5 +196,5 @@ class Record(ABC):
 
     @property
     @abstractmethod
-    def field(self):
+    def field(self) -> dict[str, Any]:
         """The dictionary of all (name, value) pairs in this record."""

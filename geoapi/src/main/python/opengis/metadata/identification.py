@@ -295,7 +295,7 @@ class TopicCategoryCode(Enum):
     """
     Rearing of animals and/or cultivation of plants.
 
-    EXAMPLES: Agriculture, irrigation, aquaculture, plantations, herding,
+    Examples: Agriculture, irrigation, aquaculture, plantations, herding,
     pests and diseases affecting crops and livestock.
     """
 
@@ -303,7 +303,7 @@ class TopicCategoryCode(Enum):
     """
     Flora and/or fauna in natural environment.
 
-    EXAMPLES: Wildlife, vegetation, biological sciences, ecology, wilderness,
+    Examples: Wildlife, vegetation, biological sciences, ecology, wilderness,
     sealife, wetlands, habitat.
     """
 
@@ -311,7 +311,7 @@ class TopicCategoryCode(Enum):
     """
     Legal land descriptions, maritime boundaries.
 
-    EXAMPLES: Political and administrative boundaries, territorial seas, EEZ,
+    Examples: Political and administrative boundaries, territorial seas, EEZ,
     port security zones.
     """
 
@@ -319,7 +319,7 @@ class TopicCategoryCode(Enum):
     """
     Processes and phenomena of the atmosphere.
 
-    EXAMPLES: Cloud cover, weather, climate, atmospheric conditions,
+    Examples: Cloud cover, weather, climate, atmospheric conditions,
     climate change, precipitation.
     """
 
@@ -327,7 +327,7 @@ class TopicCategoryCode(Enum):
     """
     Economic activities, conditions and employment.
 
-    EXAMPLES: Production, labour, revenue, commerce, industry, tourism and
+    Examples: Production, labour, revenue, commerce, industry, tourism and
     ecotourism, forestry, fisheries, commercial or subsistence hunting,
     exploration and exploitation of resources such as minerals, oil and gas.
     """
@@ -336,7 +336,7 @@ class TopicCategoryCode(Enum):
     """
     Height above or below a vertical datum.
 
-    EXAMPLES: Altitude, bathymetry, digital elevation models, slope,
+    Examples: Altitude, bathymetry, digital elevation models, slope,
     derived products.
     """
 
@@ -344,7 +344,7 @@ class TopicCategoryCode(Enum):
     """
     Environmental resources, protection and conservation.
 
-    EXAMPLES: Environmental pollution, waste storage and treatment,
+    Examples: Environmental pollution, waste storage and treatment,
     environmental impact assessment, monitoring environmental risk,
     nature reserves, landscape.
     """
@@ -353,7 +353,7 @@ class TopicCategoryCode(Enum):
     """
     Information pertaining to earth sciences.
 
-    EXAMPLES: Geophysical features and processes, geology, minerals,
+    Examples: Geophysical features and processes, geology, minerals,
     sciences dealing with the composition, structure and origin of the
     Earth's rocks, risks of earthquakes, volcanic activity, landslides,
     gravity information, soils, permafrost, hydrogeology, erosion.
@@ -363,7 +363,7 @@ class TopicCategoryCode(Enum):
     """
     Health, health services, human ecology, and safety.
 
-    EXAMPLES: Disease and illness, factors affecting health, hygiene,
+    Examples: Disease and illness, factors affecting health, hygiene,
     substance abuse, mental and physical health, health services.
     """
 
@@ -371,7 +371,7 @@ class TopicCategoryCode(Enum):
     """
     Base maps.
 
-    EXAMPLES: Land cover, topographic maps, imagery, unclassified images,
+    Examples: Land cover, topographic maps, imagery, unclassified images,
     annotations.
     """
 
@@ -379,7 +379,7 @@ class TopicCategoryCode(Enum):
     """
     Military bases, structures, activities.
 
-    EXAMPLES: Barracks, training grounds, military transportation,
+    Examples: Barracks, training grounds, military transportation,
     information collection.
     """
 
@@ -387,7 +387,7 @@ class TopicCategoryCode(Enum):
     """
     Inland water features, drainage systems and their characteristics.
 
-    EXAMPLES: Rivers and glaciers, salt lakes, water utilization plans, dams,
+    Examples: Rivers and glaciers, salt lakes, water utilization plans, dams,
     currents, floods, water quality, hydrologic information.
     """
 
@@ -395,29 +395,30 @@ class TopicCategoryCode(Enum):
     """
     Positional information and services.
 
-    EXAMPLES: Addresses, geodetic networks, control points, postal zones and
+    Examples: Addresses, geodetic networks, control points, postal zones and
     services, place names.
     """
 
     OCEANS = "oceans"
     """
-    Features and characteristics of salt water bodies (excluding inland waters).
+    Features and characteristics of salt water bodies (excluding
+    inland waters).
 
-    EXAMPLES: Tides, tsunamis, coastal information, reefs.
+    Examples: Tides, tsunamis, coastal information, reefs.
     """
 
     PLANNING_CADASTRE = "planningCadastre"
     """
     Information used for appropriate actions for future use of the land.
 
-    EXAMPLES: Land use maps, zoning maps, cadastral surveys, land ownership.
+    Examples: Land use maps, zoning maps, cadastral surveys, land ownership.
     """
 
     SOCIETY = "society"
     """
     Characteristics of society and cultures.
 
-    EXAMPLES: Settlements, anthropology, archaeology, education,
+    Examples: Settlements, anthropology, archaeology, education,
     traditional beliefs, manners and customs, demographic data,
     recreational areas and activities, social impact assessments,
     crime and justice, census information.
@@ -427,7 +428,7 @@ class TopicCategoryCode(Enum):
     """
     Man-made construction.
 
-    EXAMPLES: Buildings, museums, churches, factories, housing, monuments,
+    Examples: Buildings, museums, churches, factories, housing, monuments,
     shops, towers.
     """
 
@@ -435,7 +436,7 @@ class TopicCategoryCode(Enum):
     """
     Means and aids for conveying persons and/or goods.
 
-    EXAMPLES: Roads, airports/airstrips, shipping routes, tunnels,
+    Examples: Roads, airports/airstrips, shipping routes, tunnels,
     nautical charts, vehicle or vessel location, aeronautical charts,
     railways.
     """
@@ -445,7 +446,7 @@ class TopicCategoryCode(Enum):
     Energy, water and waste systems and communications infrastructure
     and services.
 
-    EXAMPLES: Hydroelectricity, geothermal, solar and nuclear sources
+    Examples: Hydroelectricity, geothermal, solar and nuclear sources
     of energy, water purification and distribution, sewage collection and
     disposal, electricity and gas distribution, data communication,
     telecommunication, radio, communication networks.
@@ -458,7 +459,7 @@ class TopicCategoryCode(Enum):
     """
     Information related to disasters.
 
-    EXAMPLES: Site of the disaster, evacuation zone,
+    Examples: Site of the disaster, evacuation zone,
     disaster-prevention facility, disaster relief activities.
     """
 
@@ -469,8 +470,9 @@ class BrowseGraphic(ABC):
 
     NOTE: should include a legend for the graphic, if applicable.
 
-    Example: A dataset, an organisation logo, security constraint, or citation
-    graphic.
+    Example:
+        A dataset, an organisation logo, security constraint, or citation
+        graphic.
     """
 
     @property
@@ -492,7 +494,8 @@ class BrowseGraphic(ABC):
         """
         Format in which the illustration is encoded.
 
-        Example: EPS, GIF, JPEG, PBM, PS, TIFF, PDF.
+        Example:
+            EPS, GIF, JPEG, PBM, PS, TIFF, PDF.
         """
 
     @property
@@ -524,8 +527,7 @@ class KeywordClass(ABC):
     def concept_identifier(self) -> Optional[str]:
         """
         URI (as a string) of concept in ontology specified by the ontology
-        attribute; this concept is labeled by the className:
-        CharacterString.
+        attribute; this concept is labeled by a `str`.
         """
 
     @property
@@ -543,9 +545,8 @@ class Keywords(ABC):
     """
     Keywords, their type and reference source.
 
-        NOTE: When the resource
-    described is a service, one instance of `Keyword` shall refer to the
-    service taxonomy defined in ISO 19119, 8.3).
+    NOTE: When the resource described is a service, one instance of `Keyword`
+    shall refer to the service taxonomy defined in ISO 19119, 8.3).
     """
 
     @property
@@ -663,7 +664,7 @@ class RepresentativeFraction(ABC):
 
 
 class Resolution(ABC):
-    """Level of detail expressed as a scale factor, a distance or an angle."""
+    """Level of detail expressed as a scale factor, a distance, or an angle."""
 
     @property
     @abstractmethod
@@ -672,7 +673,8 @@ class Resolution(ABC):
         Level of detail expressed as the scale of a comparable hardcopy map or
         chart.
 
-        MANDATORY: if `distance`, `vertical`, `angular_distance`,
+        MANDATORY:
+            If `distance`, `vertical`, `angular_distance`,
             or `level_of_detail` not documented.
         """
 
@@ -682,7 +684,8 @@ class Resolution(ABC):
         """
         Horizontal ground sample distance.
 
-        MANDATORY: if `equivalent_scale`, `vertical`, `angular_distance`,
+        MANDATORY:
+            If `equivalent_scale`, `vertical`, `angular_distance`,
             or `level_of_detail` not documented.
         """
 
@@ -692,7 +695,8 @@ class Resolution(ABC):
         """
         Vertical sampling distance.
 
-        MANDATORY: if `equivalent_scale`, `distance`, `angular_distance`,
+        MANDATORY:
+            If `equivalent_scale`, `distance`, `angular_distance`,
             or `level_of_detail` not documented.
         """
 
@@ -702,7 +706,8 @@ class Resolution(ABC):
         """
         Angular sampling measure.
 
-        MANDATORY: if `equivalent_scale`, `distance`, `vertical`,
+        MANDATORY:
+            If `equivalent_scale`, `distance`, `vertical`,
             or `level_of_detail` not documented.
         """
 
@@ -712,7 +717,8 @@ class Resolution(ABC):
         """
         Brief textual description of the spatial resolution of the resource.
 
-        MANDATORY: if `equivalent_scale`, `distance`, `vertical`,
+        MANDATORY:
+            If `equivalent_scale`, `distance`, `vertical`,
             or `angular_distance` not documented.
         """
 
@@ -731,7 +737,8 @@ class AssociatedResource(ABC):
         """
         Citation information about the associated resource.
 
-        MANDATORY: if `metadata_reference` not documented.
+        MANDATORY:
+            If `metadata_reference` not documented.
         """
 
     @property
@@ -754,7 +761,8 @@ class AssociatedResource(ABC):
         """
         Reference to the metadata of the associated resource.
 
-        MANDATORY: if `name` not documented.
+        MANDATORY:
+            If `name` not documented.
         """
 
 
@@ -823,7 +831,8 @@ class Identification(ABC):
         """
         Main theme(s) of the resource.
 
-        MANDATORY: if `Metadata.metadata_scope.resource_scope` == 'dataset'
+        MANDATORY:
+            If `Metadata.metadata_scope.resource_scope` == 'dataset'
             OR `Metadata.metadata_scope.resource_scope` == 'series'.
         """
 
@@ -833,7 +842,8 @@ class Identification(ABC):
         """
         Spatial and temporal extent of the resource.
 
-        MANDATORY: if `Metadata.metadata_scope.resource_scope` == 'dataset'
+        MANDATORY:
+            If `Metadata.metadata_scope.resource_scope` == 'dataset'
             then `extent.geographic_element.GeographicBoundingBox`
             or  `extent.geographic_element.Geographicdescription` is required.
         """
@@ -880,7 +890,7 @@ class Identification(ABC):
     @property
     @abstractmethod
     def descriptive_keywords(self) -> Optional[Sequence[Keywords]]:
-        """Category keywords, their type, and reference source."""
+        """Category keywords, their type and reference source."""
 
     @property
     @abstractmethod
@@ -911,7 +921,8 @@ class DataIdentification(Identification):
         Language and character set used within the resource. A string
         conforming to IETF BCP 47.
 
-        MANDATORY: if a language is used in the resource.
+        MANDATORY:
+            If a language is used in the resource.
         """
 
     @property

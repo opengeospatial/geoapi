@@ -1,0 +1,112 @@
+[build-system]
+requires = [
+  "setuptools >= 74.1",
+]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "geoapi"
+dynamic = ["version"]
+dependencies = [
+    "numpy",
+]
+requires-python = ">=3.10"
+authors = [
+    {name = "David Meaux", email = "david.meaux@geomatys.com"},
+    {name = "Martin Desruisseaux", email = "martin.desruisseaux@geomatys.com"},
+]
+maintainers = [
+    {name = "David Meaux", email = "david.meaux@geomatys.com"},
+    {name = "Martin Desruisseaux", email = "martin.desruisseaux@geomatys.com"},
+]
+description = "GeoAPI - abstractions for OGC/ISO standards"
+readme = {file = "README.md", content-type = "text/markdown"}
+license = {text = "Apache 2.0 License"}
+keywords = ["geospatial", "metadata", "referencing"]
+classifiers = [
+    "Development Status :: 3 - Alpha",
+    "Programming Language :: Python :: 3",
+    "Intended Audience :: Developers",
+    "Intended Audience :: Information Technology",
+    "License :: OSI Approved :: Apache Software License",
+    "Natural Language :: English",
+    "Operating System :: OS Independent",
+    "Topic :: Scientific/Engineering :: GIS",
+    "Topic :: Software Development :: Libraries"
+]
+
+
+[project.optional-dependencies]
+build = ["build"]
+dev = [
+    "mypy >= 1.11.2",
+    "ruff >= 0.6.4"
+]
+doc = [
+    "mkdocs",
+    "mkdocstrings-python",
+    "mkdocs-material"
+]
+test = ["pytest >= 7.4"]
+
+
+[project.urls]
+Homepage = "https://www.geoapi.org/"
+Documentation = "https://www.geoapi.org/python/index.html"
+API = "https://www.geoapi.org/snapshot/python/index.html"
+Repository = "https://github.com/opengeospatial/geoapi/tree/master/geoapi/src/main/python/opengis"
+
+
+# ruff
+# ----------------------------------------
+[tool.ruff]
+src = ["opengis"]
+# set max line length to the PEP 8 standard recommandation.
+line-length = 79
+
+[tool.ruff.lint]
+extend-select = [
+    # Activate pyupgrade rules
+    "U",
+    # Force import sorting.
+    "I001",
+    # Force line length upper limit (see line-length attribute above)
+    "E501",
+    # Force at least one new line at end of files
+    "W292"
+]
+ignore = [
+    # Ignore PEP 604 rule about using | None instead of Optional[]
+    "UP007"
+]
+# ----------------------------------------
+
+# mypy
+# ----------------------------------------
+[tool.mypy]
+# mypy_path = "$MYPY_CONFIG_FILE_DIR/geoapi/src/main/python/"
+packages = "opengis"
+exclude = [
+    "*.pyi"
+]
+# ----------------------------------------
+
+
+# pytest
+# ----------------------------------------
+[tool.pytest.ini_options]
+# log_format = "%(asctime)s %(levelname)s %(message)s"
+# log_date_format = "%Y-%m-%d %H:%M:%S"
+log_cli = "True"
+log_level = "INFO"
+# ----------------------------------------
+
+
+# setuptools
+# ----------------------------------------
+[tool.setuptools.dynamic]
+version = {attr = "opengis.__version__"}
+
+[tool.setuptools.package-data]
+opengis = ["py.typed"]
+# ----------------------------------------

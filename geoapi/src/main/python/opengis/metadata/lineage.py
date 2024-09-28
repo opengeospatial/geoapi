@@ -75,7 +75,8 @@ class Source(ABC):
         """
         Detailed description of the level of the source resource.
 
-        MANDATORY: if `scope` is `None`.
+        MANDATORY:
+            If `scope` is `None`.
         """
 
     @property
@@ -106,7 +107,8 @@ class Source(ABC):
         """
         Type of resource and/or extent of the source.
 
-        MANDATORY: if `description` is `None`.
+        MANDATORY:
+            If `description` is `None`.
         """
 
     @property
@@ -369,8 +371,11 @@ class Lineage(ABC):
     @abstractmethod
     def additional_documentation(self) -> Optional[Sequence[Citation]]:
         """
-        Resource. Example: A publication that describes the whole process to
-        generate this resource, e.g., a dataset.
+        Resource.
+
+        Example:
+            A publication that describes the whole process to
+            generate this resource, e.g., a dataset.
         """
 
     @property
@@ -380,7 +385,8 @@ class Lineage(ABC):
         Information about events in the life of a resource specified by the
         scope.
 
-        MANDATORY: if `statement` and `source` are `None`.
+        MANDATORY:
+            If `statement` and `source` are `None`.
         """
 
     @property
@@ -390,5 +396,6 @@ class Lineage(ABC):
         Information about the source data used in creating the data specified
         by the scope.
 
-        MANDATORY: if `statement` and `process_step` are `None`.
+        MANDATORY:
+            If `statement` and `process_step` are `None`.
         """

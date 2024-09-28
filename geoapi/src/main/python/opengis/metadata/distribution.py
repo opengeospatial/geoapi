@@ -154,7 +154,7 @@ class DataFile(ABC):
 
     @property
     @abstractmethod
-    def file_name(self):
+    def file_name(self) -> str:
         """Name of the file that contains the data."""
 
     @property

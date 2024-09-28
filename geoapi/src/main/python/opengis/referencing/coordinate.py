@@ -46,7 +46,8 @@ class DataEpoch(ABC):
         reference system, expressed as a decimal year in the Gregorian
         calendar.
 
-        EXAMPLE: 2017-03-25 in the Gregorian calendar is epoch 2017.23.
+        Example:
+            2017-03-25 in the Gregorian calendar is epoch 2017.23.
         """
 
 
@@ -82,5 +83,6 @@ class CoordinateMetadata(ABC):
         """
         Epoch at which coordinate referenced to a dynamic CRS are valid.
 
-        MANDATORY: if the coordinate reference system is dynamic.
+        MANDATORY:
+            If the coordinate reference system is dynamic.
         """

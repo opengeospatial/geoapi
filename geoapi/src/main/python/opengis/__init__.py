@@ -23,7 +23,7 @@ OGC/ISO international standards.
 """
 
 __package_name__ = "opengis"
-__version__ = 4.0
+__version__ = "4.0a1"
 __author__ = "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 __license_type__ = "© 2013-2024 Open Geospatial Consortium, Inc.\
 Licensed under the Apache License, Version 2.0."

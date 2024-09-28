@@ -181,7 +181,9 @@ class ExtendedElementInformation(ABC):
         """
         Name of the extended metadata element.
 
-        MANDATORY: if `data_type` != CODE_LIST and `datatype` != ENUMERATION
+        MANDATORY:
+        
+        if `data_type` != CODE_LIST and `datatype` != ENUMERATION
             and `data_type` != CODE_LIST_ELEMENT.
         """
 
@@ -196,7 +198,8 @@ class ExtendedElementInformation(ABC):
         """
         Obligation of the extended element.
 
-        MANDATORY: if `data_type` != CODE_LIST and `datatype` != ENUMERATION
+        MANDATORY:
+            If `data_type` != CODE_LIST and `datatype` != ENUMERATION
             and `data_type` != CODE_LIST_ELEMENT.
         """
 
@@ -206,7 +209,8 @@ class ExtendedElementInformation(ABC):
         """
         Condition under which the extended element is mandatory.
 
-        MANDATORY: if `obligation` == .
+        MANDATORY:
+            If `obligation` == .
         """
 
     @property
@@ -223,7 +227,8 @@ class ExtendedElementInformation(ABC):
         """
         Maximum occurrence of the extended element.
 
-        MANDATORY: if `data_type` != CODE_LIST and `datatype` != ENUMERATION
+        MANDATORY:
+            If `data_type` != CODE_LIST and `datatype` != ENUMERATION
             and `data_type` != CODE_LIST_ELEMENT.
         """
 
@@ -233,7 +238,8 @@ class ExtendedElementInformation(ABC):
         """
         Valid values that can be assigned to the extended element.
 
-        MANDATORY: if `data_type` != CODE_LIST and `datatype` != ENUMERATION
+        MANDATORY:
+            If `data_type` != CODE_LIST and `datatype` != ENUMERATION
             and `data_type` != CODE_LIST_ELEMENT.
         """
 
@@ -270,7 +276,8 @@ class ExtendedElementInformation(ABC):
         """
         The name of the item.
 
-        MANDATORY: if `data_type` != CODE_LIST and `datatype` != ENUMERATION
+        MANDATORY:
+            If `data_type` != CODE_LIST and `datatype` != ENUMERATION
             and `data_type` != CODE_LIST_ELEMENT.
         """
 
@@ -279,7 +286,8 @@ class ExtendedElementInformation(ABC):
     def code(self) -> Optional[str]:
         """Language neutral identifier.
 
-        MANDATORY: if `data_type` != CODE_LIST and `datatype` != ENUMERATION
+        MANDATORY:
+            If `data_type` != CODE_LIST and `datatype` != ENUMERATION
             and `data_type` != CODE_LIST_ELEMENT.
         """
 

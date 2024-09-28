@@ -59,7 +59,8 @@ class VerticalExtent(ABC):
 
         NOTE: The CRS information includes unit of measure.
 
-        MANDATORY: if vertical_crs_id is `None`.
+        MANDATORY:
+            If vertical_crs_id is `None`.
         """
 
     @property
@@ -69,54 +70,8 @@ class VerticalExtent(ABC):
         Identifies the vertical coordinate reference system used for the
         minimum and maximum values.
 
-        MANDATORY: if vertical_crs is `None`.
-        """
-
-
-class Extent(ABC):
-    """Extent of the resource."""
-
-    @property
-    @abstractmethod
-    def description(self) -> Optional[str]:
-        """
-        Extent of the referring object.
-
-        Sets of points defining the bounding polygon or any other
-        geometry (point, line or polygon).
-
-        MANDATORY: if `geographic_element`, `temproal_element`,
-            and `vertical_element` are `None`.
-        """
-
-    @property
-    @abstractmethod
-    def geographic_element(self) -> Optional[Sequence['GeographicExtent']]:
-        """
-        Provides spatial component of the extent of the referring object.
-
-        MANDATORY: if `description`, `temproal_element`,
-            and `vertical_element` are `None`.
-        """
-
-    @property
-    @abstractmethod
-    def temporal_element(self) -> Optional[Sequence['TemporalExtent']]:
-        """
-        Provides temporal component of the extent of the referring object.
-
-        MANDATORY: if `description`, `geographic_element`,
-            and `vertical_element` are `None`.
-        """
-
-    @property
-    @abstractmethod
-    def vertical_element(self) -> Optional[Sequence[VerticalExtent]]:
-        """
-        Provides vertical component of the extent of the referring object.
-
-        MANDATORY: if `description`, `geographic_element`,
-            and `temporal_element` are `None`.
+        MANDATORY:
+            If vertical_crs is `None`.
         """
 
 
@@ -252,4 +207,55 @@ class SpatialTemporalExtent(TemporalExtent):
     def spatial_extent(self) -> Sequence[GeographicExtent]:
         """
         Spatial extent component of a composite spatial and temporal extent.
+        """
+
+
+class Extent(ABC):
+    """Extent of the resource."""
+
+    @property
+    @abstractmethod
+    def description(self) -> Optional[str]:
+        """
+        Extent of the referring object.
+
+        Sets of points defining the bounding polygon or any other
+        geometry (point, line or polygon).
+
+        MANDATORY:
+            If `geographic_element`, `temproal_element`,
+            and `vertical_element` are `None`.
+        """
+
+    @property
+    @abstractmethod
+    def geographic_element(self) -> Optional[Sequence[GeographicExtent]]:
+        """
+        Provides spatial component of the extent of the referring object.
+
+        MANDATORY:
+            If `description`, `temproal_element`,
+            and `vertical_element` are `None`.
+        """
+
+    @property
+    @abstractmethod
+    def temporal_element(self) -> Optional[Sequence[TemporalExtent]]:
+        """
+        Provides temporal component of the extent of the referring object.
+
+        MANDATORY:
+            If `description`, `geographic_element`,
+            and `vertical_element` are `None`.
+        """
+
+    @property
+    @abstractmethod
+    def vertical_element(self) -> Optional[Sequence[VerticalExtent]]:
+        """
+        Provides vertical component of the extent of the referring object.
+
+        MANDATORY:
+            If `description`, `geographic_element`,
+            and `temporal_element` are `None`.
         """
