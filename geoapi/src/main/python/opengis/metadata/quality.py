@@ -48,24 +48,21 @@ from opengis.util.measure import UnitOfMeasure
 class EvaluationMethodTypeCode(Enum):
     """Type of method for evaluating an identified data quality measure."""
 
-    # DQ_EvaluationMethodTypeCode: directInternal
-    DIRECT_INTERNAL = "001"
+    DIRECT_INTERNAL = "directInternal"
     """
     Method of evaluating the quality of a data set based on inspection
     of items within the data set, where all data required is internal
     to the data set being evaluated.
     """
 
-    # DQ_EvaluationMethodTypeCode: directExternal
-    DIRECT_EXTERNAL = "002"
+    DIRECT_EXTERNAL = "directExternal"
     """
     Method of evaluating the quality of a data set based on inspection
     of items within the data set, where reference data external to the data
     set being evaluated is required.
     """
 
-    # DQ_EvaluationMethodTypeCode: indirect
-    INDIRECT = "003"
+    INDIRECT = "indirect"
     """
     Method of evaluating the quality of a data set based on external knowledge.
     """
@@ -74,39 +71,33 @@ class EvaluationMethodTypeCode(Enum):
 class ValueStructure(Enum):
     """The way in which values are grouped together."""
 
-    # DQM_ValueStructure: bag
-    BAG = "001"
+    BAG = "bag"
     """
     Finite, unordered collection of related items (objects or values).
     """
 
-    # DQM_ValueStructure: set
-    SET = "002"
+    SET = "set"
     """
     Unordered collection of related items (objects or values) with no
     repetition (ISO 19107:2003).
     """
 
-    # DQM_ValueStructure: sequence
-    SEQUENCE = "003"
+    SEQUENCE = "sequence"
     """
     Finite, ordered collection of related items (objects or values) that may
     be repeated (ISO 19107:2003).
     """
 
-    # DQM_ValueStructure: table
-    TABLE = "004"
+    TABLE = "table"
     """
     An arrangement of data in which each item may be identified by means of
     arguments or keys (ISO/IEC 2382-4:1999).
     """
 
-    # DQM_ValueStructure: matrix
-    MATRIX = "005"
+    MATRIX = "matrix"
     """Rectangular array of numbers (ISO/TS 19129:2009)."""
 
-    # DQM_ValueStructure: coverage
-    COVERAGE = "006"
+    COVERAGE = "coverage"
     """
     Feature that acts as a function to return values from its range for any
     direct position within its spatial, temporal or spatiotemporal domain
