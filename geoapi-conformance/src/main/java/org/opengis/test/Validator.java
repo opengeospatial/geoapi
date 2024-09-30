@@ -46,7 +46,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * provided that their configuration is not modified.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @version 4.0
+ * @version 3.1
  * @since   2.2
  */
 public abstract class Validator {

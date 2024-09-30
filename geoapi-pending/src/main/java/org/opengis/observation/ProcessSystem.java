@@ -26,7 +26,7 @@ import static org.opengis.annotation.Obligation.*;
 /**
  * ProcessSystem aggregates sub-processes, which may apply either in parallel (as a
  * process package) or sequentially (in a processing chain) or a mixture.
- * 
+ *
  * @version <A HREF="http://www.opengeospatial.org/standards/om">Implementation specification 1.0</A>
  * @author Open Geospatial Consortium
  * @author Guilhem Legal (Geomatys)

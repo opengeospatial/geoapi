@@ -25,25 +25,25 @@ package org.opengis.observation;
  *
  */
 public interface BaseUnit {
-    
+
     /**
      * The alphanumeric identifier of the unit.
      */
     String getId();
-    
+
     /**
      * The full name of the uom.
      */
     String getName();
-    
+
     /**
      * The quantity type.
      */
     String getQuantityType();
-    
+
     /**
      * The system defining this unit f measure.
      */
     String getUnitsSystem();
-    
+
 }

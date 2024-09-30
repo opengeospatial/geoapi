@@ -56,7 +56,7 @@ final class TimeUnit implements TemporalUnit, Serializable {
      * Tolerance in seconds when comparing durations.
      * The {@link ChronoUnit} API considers all durations equal or greater than one day as estimated rather than exact.
      * Therefor, it is not a violation of {@link java.time} API if the tolerance threshold is relaxed for those units.
-     * This class tolerates a difference of one hour per month. The intend is to accept different definitions of years,
+     * This class tolerates a difference of one hour per month. The intent is to accept different definitions of years,
      * e.g., 365.2425 days according Java versus 365.24219265 days according the IUGS definition of tropical year.
      */
     private static final double[] TOLERANCES;

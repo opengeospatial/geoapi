@@ -19,13 +19,13 @@ for letting developers choose how they want to handle timezones.
 
 .Date and time types suggested mapping
 [options="header"]
-|=========================================================================
+|==================================================================================
 |ISO 19103 interface   |Suggested Java class                  |Python type
-|`Date`                |`java.time.LocalDate`     ^(1)^ ^(2)^ |
-|`Time`                |`java.time.OffsetTime`    ^(1)^       |
-|`DateTime`            |`java.time.ZonedDateTime` ^(1)^ ^(2)^ |`datetime`
+|`Date`                |`java.time.LocalDate`     ^(1)^ ^(2)^ |`datetime.date`
+|`Time`                |`java.time.OffsetTime`    ^(1)^       |`datetime.time`
+|`DateTime`            |`java.time.ZonedDateTime` ^(1)^ ^(2)^ |`datetime.datetime`
 |(none)                |`java.time.Instant`             ^(2)^ |
-|=========================================================================
+|==================================================================================
 
 Notes:
 

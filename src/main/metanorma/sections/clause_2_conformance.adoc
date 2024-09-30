@@ -12,7 +12,7 @@ is available at the URLs listed below:
 |========================================================================================================
 |                |Java                                    |Python
 |Interfaces:     |Java Archive (JAR) binary               |Python source files (.py)
-|Documentation:  |Javadoc as HTML files                   |Sphinx generated pages as HTML files
+|Documentation:  |Javadoc as HTML files                   |MkDocs generated pages as HTML files
 |Online version: |http://www.geoapi.org/snapshot/javadoc/ |http://www.geoapi.org/snapshot/python/
 |========================================================================================================
 

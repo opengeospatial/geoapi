@@ -101,7 +101,7 @@ public interface TimeCS extends CoordinateSystem {
      * If and only if the {@linkplain #getCoordinateType() coordinate type} is {@link CoordinateDataType#DATE_TIME},
      * the search for {@link ChronoUnit} is relaxed with an arbitrary tolerance of one hour per month for units
      * equal or longer than {@link ChronoUnit#MONTHS}.
-     * The intend is to accept different definitions of years, for example, 365.2425 days according Java
+     * The intent is to accept different definitions of years, for example, 365.2425 days according Java
      * versus 365.24219265 days according the <abbr>IUGS</abbr> definition of tropical year.
      *
      * @return unit measurement of coordinate values, preferably as a {@link ChronoUnit} enumeration value.

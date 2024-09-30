@@ -31,5 +31,5 @@ import static org.opengis.annotation.Specification.*;
  */
 @UML(identifier="SpatiallyExtensiveSamplingFeature", specification=OGC_07022)
 public interface SpatiallyExtensiveSamplingFeature extends SamplingFeature {
-    
+
 }

@@ -1,7 +1,7 @@
 [[scope]]
 == Scope
 
-GeoAPI contains a series of interfaces and classes in several packages which interpret 
+GeoAPI contains a series of interfaces and classes in several packages which interpret
 the data model and UML types of the ISO and OGC standards documents into some programming languages
 (currently {supported-languages}) .
 The interfaces includes documentation which complement the injunctions of the OGC/ISO specifications by explaining

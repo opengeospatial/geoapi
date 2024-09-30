@@ -41,5 +41,5 @@ public interface SamplingFeatureRelation {
 
     @UML(identifier="target", obligation=MANDATORY, specification=OGC_07022)
     SamplingFeature getTarget();
-    
+
 }

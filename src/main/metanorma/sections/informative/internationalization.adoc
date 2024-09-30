@@ -31,9 +31,9 @@ An example in <<International­String>> shows the use of `International­String`
 |ISO 19103 interface      |Java class or interface                |Python class
 |`CharacterString`        |`java.lang.String`               ^(1)^ |`str`
 |`LanguageString`         |`org.opengis.util.InternationalString` |`str`
-|`LanguageCode`           |`java.util.Locale`                     |
+|`LanguageCode`           |`java.util.Locale`                     |`str`
 |`Currency`         ^(2)^ |`java.util.Currency`                   |
-|`CharacterSetCode` ^(3)^ |`java.nio.charset.Charset`             |
+|`CharacterSetCode` ^(3)^ |`java.nio.charset.Charset`             |`str`
 |==============================================================================
 
 Notes:

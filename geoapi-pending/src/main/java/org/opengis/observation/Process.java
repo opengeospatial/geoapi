@@ -23,7 +23,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * The description of Observation procedures is beyond the scope of this specification.
- * 
+ *
  * NOTE: It is expected that standard process model descriptions will be published in a standard location
  *  (e.g. ISO 19135 register) enabling them to be used by-reference.
  *

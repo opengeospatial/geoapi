@@ -53,10 +53,10 @@ import org.opengis.geoapi.internal.Errors;
  *
  * {@snippet lang="java" :
  * public final class Foo extends CodeList<Foo> {
- *     public static final Foo BAR = new Foo("BAR");
+ *     public static final Foo BAR = new Foo("BAR");    // Argument shall be exactly the same as the field name.
  *     public static final Foo BIZ = new Foo("BIZ");
  *
- *     private Foo(String name) {
+ *     private Foo(String name) {    // Keeping the constructor private is strongly recommended.
  *         super(name);
  *     }
  *
@@ -75,9 +75,16 @@ import org.opengis.geoapi.internal.Errors;
  * }
  * }
  *
- * Above snippet is sufficient for classes in exported packages. If a code list is defined in a non-exported package,
+ * <p>Keeping the constructor private is strongly recommended. The constructor should be invoked only in static
+ * fields initialization and in the lambda function of the {@code valueOf(String)} method body. All other codes
+ * should invoke {@code valueOf(…)} and never invoke the constructor directly.</p>
+ *
+ * <p>Above snippet is sufficient for classes in exported packages. If a code list is defined in a non-exported package,
  * then its static fields may need to be initialized with {@code valueOf(String)} instead of {@code new Foo(String)}.
- * It will have a small performance cost, but is needed because of Java Module System restrictions on reflection.
+ * It will have a small performance cost, but is needed because of Java Module System restrictions on reflection.</p>
+ *
+ * <p>If a label different than the field name is desired, this is possible either by adding a {@link UML} annotation
+ * of the field, or by overriding explicitly the {@link #identifier()} and/or {@link #names()} methods.</p>
  *
  * @param  <E>  the type of this code list.
  *
@@ -280,7 +287,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * Creates a new code list element. If this constructor is invoked for initializing a static field,
      * then the given name <em>shall</em> be the case-sensitive name of the static field.
      *
-     * @param  name  the code name. Shall be the name of the static field if such field exist.
+     * @param  name  the code name. Shall be the name of the static field if such field exists.
      *
      * @since 3.1
      */
