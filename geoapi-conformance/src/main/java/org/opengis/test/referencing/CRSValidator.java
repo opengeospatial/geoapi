@@ -66,7 +66,7 @@ public class CRSValidator extends ReferencingValidator {
 
     /**
      * {@code true} if validation of the conversion by {@link #validateGeneralDerivedCRS} is under way.
-     * Used in order to avoid never-ending recursivity.
+     * Used in order to avoid never-ending recursion.
      *
      * @todo Replace by a more general mechanism in {@link ValidatorContainer}.
      */

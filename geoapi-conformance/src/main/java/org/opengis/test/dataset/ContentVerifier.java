@@ -451,8 +451,8 @@ public class ContentVerifier {
             }
         } else if (pathsToIgnore == null || !pathsToIgnore.test(currentPath.toString())) {
             // Note: we didn't used `isIgnored(String)` in order to invoke `toString()` only if necessary.
-            final Element recursivityGuard = new Element(type, obj);
-            if (visited.add(recursivityGuard)) {
+            final Element recursionGuard = new Element(type, obj);
+            if (visited.add(recursionGuard)) {
                 final int pathElementPosition = currentPath.length();
                 type = specialized(type, obj.getClass());               // Example: Identification may actually be DataIdentification
                 for (final Method getter : type.getMethods()) {
@@ -502,7 +502,7 @@ public class ContentVerifier {
                     }
                     currentPath.setLength(pathElementPosition);
                 }
-                if (!visited.remove(recursivityGuard)) {
+                if (!visited.remove(recursionGuard)) {
                     // Should never happen unless the map is modified concurrently in another thread.
                     throw new ConcurrentModificationException();
                 }
