@@ -37,8 +37,8 @@ import org.opengis.metadata.citation.Citation;
  *   This interface is not part of the OGC specification. It is added for uniformity,
  *   in order to provide a common base class for all factories.
  *
- * @author  Martin Desruisseaux (IRD)
- * @version 3.0
+ * @author  Martin Desruisseaux (IRD, Geomatys)
+ * @version 4.0
  * @since   1.0
  */
 public interface Factory {
@@ -48,6 +48,7 @@ public interface Factory {
      * Implementations can be managed by a {@linkplain java.util.ServiceLoader service loader}.
      *
      * @return the vendor for this factory implementation.
+     * @throws FactoryException if an error occurred while fetching the vendor information.
      */
-    Citation getVendor();
+    Citation getVendor() throws FactoryException;
 }

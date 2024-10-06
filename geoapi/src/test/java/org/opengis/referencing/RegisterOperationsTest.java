@@ -65,9 +65,11 @@ public final class RegisterOperationsTest {
 
     /**
      * Tests {@link RegisterOperations#getFactory(Class)}.
+     *
+     * @throws FactoryException should never happen.
      */
     @Test
-    public void testGetFactory() {
+    public void testGetFactory() throws FactoryException {
         assertInstanceOf(AuthorityFactoryMock.class, mock.getFactory(CRSAuthorityFactory.class).orElseThrow());
         assertInstanceOf(AuthorityFactoryMock.class, mock.getFactory(CoordinateOperationAuthorityFactory.class).orElseThrow());
         assertTrue(mock.getFactory(CSAuthorityFactory.class).isEmpty());

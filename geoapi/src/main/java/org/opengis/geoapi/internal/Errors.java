@@ -120,11 +120,15 @@ public final class Errors {
      * @return vendor name to use in error messages.
      */
     private static String getVendor(final Factory factory) {
-        String vendor = getTitle(factory.getVendor());
-        if (vendor == null || vendor.isBlank()) {
-            vendor = factory.getClass().getName();
+        try {
+            String vendor = getTitle(factory.getVendor());
+            if (vendor != null && !vendor.isBlank()) {
+                return vendor;
+            }
+        } catch (FactoryException e) {
+            System.getLogger(LOGGER).log(System.Logger.Level.DEBUG, (String) null, e);
         }
-        return vendor;
+        return factory.getClass().getCanonicalName();
     }
 
     /**
