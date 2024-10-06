@@ -252,8 +252,9 @@ public class AuthorityCodesReport extends Report {
      * Sets the default product name and factory name.
      *
      * @param  factory  the factory to set.
+     * @throws FactoryException if the factory authority cannot be obtained.
      */
-    private void setDefault(final AuthorityFactory factory) {
+    private void setDefault(final AuthorityFactory factory) throws FactoryException {
         setVendor("PRODUCT", factory.getVendor());
         setVendor("FACTORY", factory.getAuthority());
     }

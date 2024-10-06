@@ -20,6 +20,7 @@ package org.opengis.referencing;
 import java.util.Set;
 import java.util.Optional;
 import org.opengis.util.Factory;
+import org.opengis.util.FactoryException;
 import org.opengis.util.UnimplementedServiceException;
 import org.opengis.referencing.crs.CRSAuthorityFactory;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
@@ -48,7 +49,7 @@ final class RegisterOperationsMock implements RegisterOperations {
      * {@link CoordinateOperationAuthorityFactory}.
      */
     @Override
-    public <T extends Factory> Optional<T> getFactory(final Class<? extends T> factoryType) {
+    public <T extends Factory> Optional<T> getFactory(final Class<? extends T> factoryType) throws FactoryException {
         final Class<?> expectedType;
         final String code;
         if (factoryType == CRSAuthorityFactory.class) {

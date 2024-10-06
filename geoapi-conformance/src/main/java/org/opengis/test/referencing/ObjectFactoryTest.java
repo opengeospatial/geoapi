@@ -137,7 +137,7 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
      * @param  message  message to report if the desired factory is not present.
      * @return factory of the specified type.
      */
-    private <T extends Factory> T getFactoryOrAbort(final Class<T> type, final String message) {
+    private <T extends Factory> T getFactoryOrAbort(final Class<T> type, final String message) throws FactoryException {
         final Optional<T> factory = factories.getFactory(type);
         assumeTrue(factory.isPresent(), message);
         return factory.get();

@@ -264,7 +264,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * @param  message  message to report if the desired factory is not present.
      * @return factory of the specified type.
      */
-    private <T extends AuthorityFactory> T getFactoryOrAbort(final Class<T> type, final String message) {
+    private <T extends AuthorityFactory> T getFactoryOrAbort(Class<T> type, String message) throws FactoryException {
         final Optional<T> factory = factories.getFactory(type);
         assumeTrue(factory.isPresent(), message);
         return factory.get();

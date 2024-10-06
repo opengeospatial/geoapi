@@ -24,6 +24,7 @@ import org.opengis.referencing.crs.*;
 import org.opengis.referencing.datum.*;
 import org.opengis.referencing.operation.CoordinateOperation;
 import org.opengis.referencing.RegisterOperations;
+import org.opengis.util.FactoryException;
 import org.opengis.util.Factory;
 
 
@@ -65,7 +66,7 @@ public strictfp class ReferencingTest extends ObjectFactoryTest {
     public ReferencingTest(final CRSFactory crsFactory, final CSFactory csFactory, final DatumFactory datumFactory) {
         super(new RegisterOperations() {
             @Override
-            public <T extends Factory> Optional<T> getFactory(Class<? extends T> type) {
+            public <T extends Factory> Optional<T> getFactory(Class<? extends T> type) throws FactoryException {
                 final Factory factory;
                 if (type == CRSFactory.class) factory = crsFactory;
                 else if (type == CSFactory.class) factory = csFactory;

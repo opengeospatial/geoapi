@@ -26,6 +26,7 @@ import org.opengis.metadata.Identifier;
 import org.opengis.referencing.IdentifiedObject;
 import org.opengis.referencing.AuthorityFactory;
 import org.opengis.referencing.NoSuchAuthorityCodeException;
+import org.opengis.util.FactoryException;
 
 
 /**
@@ -89,9 +90,11 @@ public final class Errors {
      * @param  actual   the object which was found for the specified code.
      * @param  cause    the exception thrown when trying to cast the object.
      * @return the exception to throw.
+     * @throws FactoryException if the factory authority cannot be obtained.
      */
     public static NoSuchAuthorityCodeException unexpectedType(final AuthorityFactory factory,
             final String code, final IdentifiedObject actual, final ClassCastException cause)
+            throws FactoryException
     {
         String as = null, ac = null;
         final Citation authority = factory.getAuthority();
@@ -118,10 +121,10 @@ public final class Errors {
      */
     private static String getVendor(final Factory factory) {
         String vendor = getTitle(factory.getVendor());
-        if (vendor == null || vendor.isBlank()) {
-            vendor = factory.getClass().getName();
+        if (vendor != null && !vendor.isBlank()) {
+            return vendor;
         }
-        return vendor;
+        return factory.getClass().getCanonicalName();
     }
 
     /**

@@ -54,18 +54,22 @@ public final class RegisterOperationsTest {
 
     /**
      * Tests {@link RegisterOperations#getVendor()} and {@link RegisterOperations#getAuthority()}.
+     *
+     * @throws FactoryException should never happen.
      */
     @Test
-    public void testGetVendorAndAuthority() {
+    public void testGetVendorAndAuthority() throws FactoryException  {
         assertEquals(AuthorityFactoryMock.VENDOR, mock.getVendor().getTitle().toString());
         assertNull(mock.getAuthority());
     }
 
     /**
      * Tests {@link RegisterOperations#getFactory(Class)}.
+     *
+     * @throws FactoryException should never happen.
      */
     @Test
-    public void testGetFactory() {
+    public void testGetFactory() throws FactoryException {
         assertInstanceOf(AuthorityFactoryMock.class, mock.getFactory(CRSAuthorityFactory.class).orElseThrow());
         assertInstanceOf(AuthorityFactoryMock.class, mock.getFactory(CoordinateOperationAuthorityFactory.class).orElseThrow());
         assertTrue(mock.getFactory(CSAuthorityFactory.class).isEmpty());

@@ -84,7 +84,7 @@ public strictfp class CRSTest extends ReferencingTestCase {
     public void testCRSAuthorityCreation() throws NoSuchAuthorityCodeException, FactoryException {
         new AuthorityFactoryTest(new RegisterOperations() {
             @Override
-            public <T extends Factory> Optional<T> getFactory(Class<? extends T> type) {
+            public <T extends Factory> Optional<T> getFactory(Class<? extends T> type) throws FactoryException {
                 if (type == CRSAuthorityFactory.class) {
                     return Optional.ofNullable(type.cast(factory));
                 } else {

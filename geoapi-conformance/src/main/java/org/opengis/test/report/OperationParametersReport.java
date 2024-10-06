@@ -30,6 +30,7 @@ import java.util.LinkedHashMap;
 import java.util.Properties;
 
 import org.opengis.util.GenericName;
+import org.opengis.util.FactoryException;
 import org.opengis.metadata.Identifier;
 import org.opengis.parameter.GeneralParameterDescriptor;
 import org.opengis.parameter.ParameterDescriptorGroup;
@@ -359,8 +360,9 @@ public class OperationParametersReport extends Report {
      * add}(method, method.{@linkplain OperationMethod#getParameters() getParameters()});</code></blockquote>
      *
      * @param  factory  the factory for which to add available methods.
+     * @throws FactoryException if an error occurred while fetching vendor information from the given factory.
      */
-    public void add(final MathTransformFactory factory) {
+    public void add(final MathTransformFactory factory) throws FactoryException {
         defaultProperties.setProperty("OBJECTS.KIND", "Coordinate Operations");
         defaultProperties.setProperty("FILENAME", "CoordinateOperations.html");
         setVendor("PRODUCT", factory.getVendor());
