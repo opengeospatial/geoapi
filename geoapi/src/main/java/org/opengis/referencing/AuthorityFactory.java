@@ -49,9 +49,10 @@ public interface AuthorityFactory extends Factory {
      * Returns the organization or party responsible for definition and maintenance of the database.
      *
      * @return the organization responsible for definition of the database.
+     * @throws FactoryException if an error occurred while fetching the authority.
      */
     @UML(identifier="getAuthority", specification=OGC_01009)
-    Citation getAuthority();
+    Citation getAuthority() throws FactoryException;
 
     /**
      * Returns the set of authority codes for objects of the given type.

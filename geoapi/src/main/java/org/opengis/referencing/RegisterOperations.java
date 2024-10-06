@@ -19,7 +19,6 @@ package org.opengis.referencing;
 
 import java.util.Set;
 import java.util.Optional;
-import java.util.function.Function;
 import org.opengis.util.Factory;
 import org.opengis.util.FactoryException;
 import org.opengis.util.UnimplementedServiceException;
@@ -87,7 +86,8 @@ public interface RegisterOperations extends AuthorityFactory {
      */
     @Override
     default Citation getVendor() {
-        return citation(AuthorityFactory::getVendor);
+        final AuthorityFactory factory = factory();
+        return (factory != null) ? factory.getVendor() : null;
     }
 
     /**
@@ -101,20 +101,19 @@ public interface RegisterOperations extends AuthorityFactory {
      * @return the organization responsible for definition of the register.
      */
     @Override
-    default Citation getAuthority() {
-        return citation(AuthorityFactory::getAuthority);
+    default Citation getAuthority() throws FactoryException {
+        final AuthorityFactory factory = factory();
+        return (factory != null) ? factory.getAuthority() : null;
     }
 
     /**
-     * Default implementation of {@link #getVendor()} and {@link #getAuthority()}.
+     * The factory to use for the default implementation of {@link #getVendor()} and {@link #getAuthority()}.
      *
-     * @param  mapper the {@code getVendor()} or {@code getAuthority()} method to invoke.
-     * @return the citation, or {@code null} if none.
+     * @return the <abbr>CRS</abbr> factory (preferred), or operation factory (fallback), or {@code null}.
      */
-    private Citation citation(final Function<AuthorityFactory, Citation> mapper) {
-        return this.<AuthorityFactory>getFactory(CRSAuthorityFactory.class)
-                .or(() -> getFactory(CoordinateOperationAuthorityFactory.class))
-                .map(mapper).orElse(null);
+    private AuthorityFactory factory() {
+        final Optional<AuthorityFactory> factory = getFactory(CRSAuthorityFactory.class);
+        return factory.orElseGet(() -> getFactory(CoordinateOperationAuthorityFactory.class).orElse(null));
     }
 
     /**

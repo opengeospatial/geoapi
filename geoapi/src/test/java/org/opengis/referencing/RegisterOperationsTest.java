@@ -54,9 +54,11 @@ public final class RegisterOperationsTest {
 
     /**
      * Tests {@link RegisterOperations#getVendor()} and {@link RegisterOperations#getAuthority()}.
+     *
+     * @throws FactoryException should never happen.
      */
     @Test
-    public void testGetVendorAndAuthority() {
+    public void testGetVendorAndAuthority() throws FactoryException  {
         assertEquals(AuthorityFactoryMock.VENDOR, mock.getVendor().getTitle().toString());
         assertNull(mock.getAuthority());
     }
