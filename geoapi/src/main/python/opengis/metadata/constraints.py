@@ -215,7 +215,12 @@ class Constraints(ABC):
     @property
     @abstractmethod
     def graphic(self) -> Optional[Sequence[BrowseGraphic]]:
-        """Graphic /symbol indicating the constraint Eg."""
+        """Graphic /symbol indicating the constraint.
+
+        Example:
+            A CreativeCommons JPEG image showing that credit must be given
+            to the creator.
+        """
 
     @property
     @abstractmethod

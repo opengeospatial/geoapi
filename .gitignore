@@ -19,6 +19,9 @@ nbactions.xml
 # MacOS files
 .DS_Store
 
+# Magic/Mojo
+.magic
+
 # Python related files
 # ------------------------------------------------
 # Python files

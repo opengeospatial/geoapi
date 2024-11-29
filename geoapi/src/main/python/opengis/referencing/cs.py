@@ -63,7 +63,7 @@ class AxisDirection(Enum):
     SOUTH_EAST = "southEast"
     """Axis positive direction is approximately south-east."""
 
-    SOUTH_SOUTH_EAST = "southSouthWest"
+    SOUTH_SOUTH_EAST = "southSouthEast"
     """Axis positive direction is approximately south-south-east."""
 
     SOUTH = "south"
