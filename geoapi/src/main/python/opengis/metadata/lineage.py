@@ -23,21 +23,24 @@ the lineage of the data, that is how the data has changed and the sources
 from which it is derived.
 """
 
-__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from datetime import datetime
 from typing import Optional
 
-from opengis.metadata.citation import Citation, Identifier, Responsibility
-from opengis.metadata.identification import Resolution
-from opengis.metadata.maintenance import Scope
-from opengis.metadata.naming import MemberName, Record, RecordType
-from opengis.metadata.service import ParameterDirection
-from opengis.referencing.crs import ReferenceSystem
-from opengis.util.measure import Distance
+import opengis.metadata.citation as meta_ctitation
+import opengis.metadata.identification as meta_identification
+import opengis.metadata.maintenance as meta_maintenance
+import opengis.metadata.naming as meta_naming
+import opengis.metadata.service as meta_service
+import opengis.referencing.crs as crs
+import opengis.util.measure as measure
+
+
+__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class NominalResolution(ABC):
@@ -48,7 +51,7 @@ class NominalResolution(ABC):
 
     @property
     @abstractmethod
-    def scanning_resolution(self) -> Distance:
+    def scanning_resolution(self) -> measure.Distance:
         """
         Distance between consistent parts (centre, left side, right side)
         of adjacent pixels in the scan plane.
@@ -56,7 +59,7 @@ class NominalResolution(ABC):
 
     @property
     @abstractmethod
-    def ground_resolution(self) -> Distance:
+    def ground_resolution(self) -> measure.Distance:
         """
         Distance between consistent parts (centre, left side, right side)
         of adjacent pixels in the object space.
@@ -81,29 +84,30 @@ class Source(ABC):
 
     @property
     @abstractmethod
-    def source_spatial_resolution(self) -> Optional[Resolution]:
+    def source_spatial_resolution(self) -> \
+            Optional[meta_identification.Resolution]:
         """
         Level of detail expressed as a scale factor, a distance or an angle.
         """
 
     @property
     @abstractmethod
-    def source_reference_system(self) -> Optional[ReferenceSystem]:
+    def source_reference_system(self) -> Optional[crs.ReferenceSystem]:
         """Spatial reference system used by the source resource."""
 
     @property
     @abstractmethod
-    def source_citation(self) -> Optional[Citation]:
+    def source_citation(self) -> Optional[meta_ctitation.Citation]:
         """Recommended reference to be used for the source resource."""
 
     @property
     @abstractmethod
-    def source_metadata(self) -> Optional[Sequence[Citation]]:
+    def source_metadata(self) -> Optional[Sequence[meta_ctitation.Citation]]:
         """Identifier and link to source metadata."""
 
     @property
     @abstractmethod
-    def scope(self) -> Optional[Scope]:
+    def scope(self) -> Optional[meta_maintenance.Scope]:
         """
         Type of resource and/or extent of the source.
 
@@ -118,7 +122,7 @@ class Source(ABC):
 
     @property
     @abstractmethod
-    def processed_level(self) -> Optional[Identifier]:
+    def processed_level(self) -> Optional[meta_ctitation.Identifier]:
         """Processing level of the source data."""
 
     @property
@@ -138,7 +142,7 @@ class Algorithm(ABC):
 
     @property
     @abstractmethod
-    def citation(self) -> Citation:
+    def citation(self) -> meta_ctitation.Citation:
         """Information identifying the algorithm and version or date."""
 
     @property
@@ -152,12 +156,12 @@ class ProcessParameter(ABC):
 
     @property
     @abstractmethod
-    def name(self) -> MemberName:
+    def name(self) -> meta_naming.MemberName:
         """Name/type of parameter."""
 
     @property
     @abstractmethod
-    def direction(self) -> ParameterDirection:
+    def direction(self) -> meta_service.ParameterDirection:
         """
         Indication the parameter is an input to the process, an output,
         or both.
@@ -182,12 +186,12 @@ class ProcessParameter(ABC):
 
     @property
     @abstractmethod
-    def value_type(self) -> Optional[RecordType]:
+    def value_type(self) -> Optional[meta_naming.RecordType]:
         """Data type of the value"""
 
     @property
     @abstractmethod
-    def value(self) -> Optional[Record]:
+    def value(self) -> Optional[meta_naming.Record]:
         """Constant value."""
 
     @property
@@ -204,14 +208,15 @@ class Processing(ABC):
 
     @property
     @abstractmethod
-    def identifier(self) -> Identifier:
+    def identifier(self) -> meta_ctitation.Identifier:
         """
         Information to identify the processing package that produced the data.
         """
 
     @property
     @abstractmethod
-    def software_reference(self) -> Optional[Sequence[Citation]]:
+    def software_reference(self) -> \
+            Optional[Sequence[meta_ctitation.Citation]]:
         """Reference to document describing processing software."""
 
     @property
@@ -221,7 +226,7 @@ class Processing(ABC):
 
     @property
     @abstractmethod
-    def documentation(self) -> Optional[Sequence[Citation]]:
+    def documentation(self) -> Optional[Sequence[meta_ctitation.Citation]]:
         """Reference to documentation describing the processing."""
 
     @property
@@ -233,12 +238,12 @@ class Processing(ABC):
 
     @property
     @abstractmethod
-    def other_property(self) -> Optional[Record]:
+    def other_property(self) -> Optional[meta_naming.Record]:
         """Instance of other property type not included in `Sensor`."""
 
     @property
     @abstractmethod
-    def other_property_type(self) -> Optional[RecordType]:
+    def other_property_type(self) -> Optional[meta_naming.RecordType]:
         """Type of other property description."""
 
     @property
@@ -299,7 +304,7 @@ class ProcessStep(ABC):
 
     @property
     @abstractmethod
-    def processor(self) -> Optional[Sequence[Responsibility]]:
+    def processor(self) -> Optional[Sequence[meta_ctitation.Responsibility]]:
         """
         Identification of, and means of communication with, person(s) and
         organisation(s) associated with the process step.
@@ -307,12 +312,12 @@ class ProcessStep(ABC):
 
     @property
     @abstractmethod
-    def reference(self) -> Optional[Sequence[Citation]]:
+    def reference(self) -> Optional[Sequence[meta_ctitation.Citation]]:
         """Process step documentation."""
 
     @property
     @abstractmethod
-    def scope(self) -> Optional[Scope]:
+    def scope(self) -> Optional[meta_maintenance.Scope]:
         """Type of resource and/or extent to which the process step applies."""
 
     @property
@@ -361,7 +366,7 @@ class Lineage(ABC):
 
     @property
     @abstractmethod
-    def scope(self) -> Optional[Scope]:
+    def scope(self) -> Optional[meta_maintenance.Scope]:
         """
         Type of resource and/or extent to which the lineage information
         applies.
@@ -369,7 +374,8 @@ class Lineage(ABC):
 
     @property
     @abstractmethod
-    def additional_documentation(self) -> Optional[Sequence[Citation]]:
+    def additional_documentation(self) -> \
+            Optional[Sequence[meta_ctitation.Citation]]:
         """
         Resource.
 

@@ -22,8 +22,7 @@ information codelists and common base classes derived from the
 ISO 19115-1:2014 international standard.
 """
 
-__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
@@ -31,18 +30,17 @@ from datetime import datetime, timedelta
 from enum import Enum
 from typing import Optional
 
-from opengis.metadata.citation import (
-    Citation,
-    Identifier,
-    OnlineResource,
-    Responsibility,
-)
-from opengis.metadata.constraints import Constraints
-from opengis.metadata.distribution import Format
-from opengis.metadata.extent import Extent
-from opengis.metadata.maintenance import MaintenanceInformation
-from opengis.metadata.representation import SpatialRepresentationTypeCode
-from opengis.util.measure import Angle, Distance
+import opengis.metadata.citation as meta_citation
+import opengis.metadata.constraints as meta_constraints
+import opengis.metadata.distribution as meta_distribution
+import opengis.metadata.extent as meta_extent
+import opengis.metadata.maintenance as meta_maintenance
+import opengis.metadata.representation as meta_representation
+import opengis.util.measure as measure
+
+
+__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class AssociationTypeCode(Enum):
@@ -500,12 +498,13 @@ class BrowseGraphic(ABC):
 
     @property
     @abstractmethod
-    def image_constraints(self) -> Optional[Sequence[Constraints]]:
+    def image_constraints(self) -> \
+            Optional[Sequence[meta_constraints.Constraints]]:
         """Restriction on access and/or use of browse graphic."""
 
     @property
     @abstractmethod
-    def linkage(self) -> Optional[Sequence[OnlineResource]]:
+    def linkage(self) -> Optional[Sequence[meta_citation.OnlineResource]]:
         """Link to browse graphic."""
 
 
@@ -532,7 +531,7 @@ class KeywordClass(ABC):
 
     @property
     @abstractmethod
-    def ontology(self) -> Citation:
+    def ontology(self) -> meta_citation.Citation:
         """
         A reference that binds the keyword class to a formal conceptualization
         of a knowledge domain for use in semantic processing NOTE: Keywords in
@@ -564,7 +563,7 @@ class Keywords(ABC):
 
     @property
     @abstractmethod
-    def thesaurus_name(self) -> Optional[Citation]:
+    def thesaurus_name(self) -> Optional[meta_citation.Citation]:
         """
         Name of the formally registered thesaurus or a similar authoritative
         source of keywords.
@@ -618,7 +617,8 @@ class Usage(ABC):
 
     @property
     @abstractmethod
-    def user_contact_info(self) -> Optional[Sequence[Responsibility]]:
+    def user_contact_info(self) -> \
+            Optional[Sequence[meta_citation.Responsibility]]:
         """
         Identification of and means of communicating with person(s) and
         organisation(s) using the resource(s).
@@ -634,12 +634,13 @@ class Usage(ABC):
 
     @property
     @abstractmethod
-    def additional_documentation(self) -> Optional[Sequence[Citation]]:
+    def additional_documentation(self) -> \
+            Optional[Sequence[meta_citation.Citation]]:
         """Publications that describe usage of data."""
 
     @property
     @abstractmethod
-    def identified_issues(self) -> Optional[Sequence[Citation]]:
+    def identified_issues(self) -> Optional[Sequence[meta_citation.Citation]]:
         """
         Citation of a description of known issues associated with the resource
         along with proposed solutions if available.
@@ -680,7 +681,7 @@ class Resolution(ABC):
 
     @property
     @abstractmethod
-    def distance(self) -> Optional[Distance]:
+    def distance(self) -> Optional[measure.Distance]:
         """
         Horizontal ground sample distance.
 
@@ -691,7 +692,7 @@ class Resolution(ABC):
 
     @property
     @abstractmethod
-    def vertical(self) -> Optional[Distance]:
+    def vertical(self) -> Optional[measure.Distance]:
         """
         Vertical sampling distance.
 
@@ -702,7 +703,7 @@ class Resolution(ABC):
 
     @property
     @abstractmethod
-    def angular_distance(self) -> Optional[Angle]:
+    def angular_distance(self) -> Optional[measure.Angle]:
         """
         Angular sampling measure.
 
@@ -733,7 +734,7 @@ class AssociatedResource(ABC):
 
     @property
     @abstractmethod
-    def name(self) -> Optional[Citation]:
+    def name(self) -> Optional[meta_citation.Citation]:
         """
         Citation information about the associated resource.
 
@@ -757,7 +758,7 @@ class AssociatedResource(ABC):
 
     @property
     @abstractmethod
-    def metadata_reference(self) -> Optional[Citation]:
+    def metadata_reference(self) -> Optional[meta_citation.Citation]:
         """
         Reference to the metadata of the associated resource.
 
@@ -773,7 +774,7 @@ class Identification(ABC):
 
     @property
     @abstractmethod
-    def citation(self) -> Citation:
+    def citation(self) -> meta_citation.Citation:
         """Citation for the resource(s)."""
 
     @property
@@ -799,7 +800,8 @@ class Identification(ABC):
 
     @property
     @abstractmethod
-    def point_of_contact(self) -> Optional[Sequence[Responsibility]]:
+    def point_of_contact(self) -> \
+            Optional[Sequence[meta_citation.Responsibility]]:
         """
         Identification of, and means of communication with, person(s) and
         organisation(s) associated with the resource(s).
@@ -808,7 +810,7 @@ class Identification(ABC):
     @property
     @abstractmethod
     def spatial_representation_type(self) -> Optional[Sequence[
-        SpatialRepresentationTypeCode
+        meta_representation.SpatialRepresentationTypeCode
     ]]:
         """Method used to spatially represent geographic information."""
 
@@ -838,7 +840,7 @@ class Identification(ABC):
 
     @property
     @abstractmethod
-    def extent(self) -> Optional[Sequence[Extent]]:
+    def extent(self) -> Optional[Sequence[meta_extent.Extent]]:
         """
         Spatial and temporal extent of the resource.
 
@@ -850,7 +852,8 @@ class Identification(ABC):
 
     @property
     @abstractmethod
-    def additional_documentation(self) -> Optional[Sequence[Citation]]:
+    def additional_documentation(self) -> \
+            Optional[Sequence[meta_citation.Citation]]:
         """
         Other documentation associated with the resource, e.g.,
         Related articles, publications, user guides, data dictionaries.
@@ -858,7 +861,8 @@ class Identification(ABC):
 
     @property
     @abstractmethod
-    def processing_level(self) -> Optional[Identifier]:
+    def processing_level(self) -> \
+            Optional[meta_citation.Identifier]:
         """
         Code that identifies the level of processing in the producers coding
         system of a resource, e.g., NOAA level 1B.
@@ -867,7 +871,7 @@ class Identification(ABC):
     @property
     @abstractmethod
     def resource_maintenance(self) -> Optional[Sequence[
-        MaintenanceInformation
+        meta_maintenance.MaintenanceInformation
     ]]:
         """
         Information about the frequency of resource updates and the scope of
@@ -884,7 +888,8 @@ class Identification(ABC):
 
     @property
     @abstractmethod
-    def resource_format(self) -> Optional[Sequence[Format]]:
+    def resource_format(self) -> \
+            Optional[Sequence[meta_distribution.Format]]:
         """Description of the format of the resource."""
 
     @property
@@ -902,7 +907,8 @@ class Identification(ABC):
 
     @property
     @abstractmethod
-    def resource_constraints(self) -> Optional[Sequence[Constraints]]:
+    def resource_constraints(self) -> \
+            Optional[Sequence[meta_constraints.Constraints]]:
         """Information about constraints which apply to the resource."""
 
     @property

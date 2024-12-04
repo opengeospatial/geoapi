@@ -21,18 +21,21 @@ This module contains geographic metadata structures regarding data services
 derived from the ISO 19115-1:2014 international standard.
 """
 
-__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from enum import Enum
 from typing import Optional
 
-from opengis.metadata.citation import Citation, OnlineResource
-from opengis.metadata.distribution import StandardOrderProcess
-from opengis.metadata.identification import DataIdentification, Identification
-from opengis.metadata.naming import GenericName, MemberName, ScopedName
+import opengis.metadata.citation as meta_citation
+import opengis.metadata.distribution as meta_distribution
+import opengis.metadata.identification as meta_identification
+import opengis.metadata.naming as meta_naming
+
+
+__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class CouplingType(Enum):
@@ -139,7 +142,7 @@ class CoupledResource(ABC):
 
     @property
     @abstractmethod
-    def scoped_name(self) -> Optional[ScopedName]:
+    def scoped_name(self) -> Optional[meta_naming.ScopedName]:
         """
         Scoped identifier of the resource in the context of the given service
         instance.
@@ -156,7 +159,7 @@ class CoupledResource(ABC):
 
     @property
     @abstractmethod
-    def resource_reference(self) -> Optional[Sequence[Citation]]:
+    def resource_reference(self) -> Optional[Sequence[meta_citation.Citation]]:
         """
         Reference to the dataset on which the service operates.
 
@@ -166,7 +169,8 @@ class CoupledResource(ABC):
 
     @property
     @abstractmethod
-    def resource(self) -> Optional[Sequence[DataIdentification]]:
+    def resource(self) -> \
+            Optional[Sequence[meta_identification.DataIdentification]]:
         """
         The tightly coupled resource.
 
@@ -186,7 +190,7 @@ class CoupledResource(ABC):
         """
 
 
-class ServiceIdentification(Identification):
+class ServiceIdentification(meta_identification.Identification):
     """
     Identification of capabilities which a service provider makes available to
     a service user through a set of interfaces that define a behaviour.
@@ -196,7 +200,7 @@ class ServiceIdentification(Identification):
 
     @property
     @abstractmethod
-    def service_type(self) -> GenericName:
+    def service_type(self) -> meta_naming.GenericName:
         """
         A service type name, e.g., 'discovery', 'view', 'download',
         'transformation', or 'invoke'.
@@ -215,7 +219,8 @@ class ServiceIdentification(Identification):
 
     @property
     @abstractmethod
-    def access_properties(self) -> Optional[StandardOrderProcess]:
+    def access_properties(self) -> \
+            Optional[meta_distribution.StandardOrderProcess]:
         """
         Information about the availability of the service, including 'fees',
         'planned', 'available date and time', 'ordering instructions',
@@ -242,19 +247,19 @@ class ServiceIdentification(Identification):
 
     @property
     @abstractmethod
-    def operated_dataset(self) -> Optional[Sequence[Citation]]:
+    def operated_dataset(self) -> Optional[Sequence[meta_citation.Citation]]:
         """
         Provides a reference to the dataset on which the service operates.
         """
 
     @property
     @abstractmethod
-    def profile(self) -> Optional[Sequence[Citation]]:
+    def profile(self) -> Optional[Sequence[meta_citation.Citation]]:
         """Profile to which the service adheres."""
 
     @property
     @abstractmethod
-    def service_standard(self) -> Optional[Sequence[Citation]]:
+    def service_standard(self) -> Optional[Sequence[meta_citation.Citation]]:
         """Standard to which the service adheres."""
 
     @property
@@ -266,7 +271,8 @@ class ServiceIdentification(Identification):
 
     @property
     @abstractmethod
-    def operates_on(self) -> Optional[Sequence[DataIdentification]]:
+    def operates_on(self) -> \
+            Optional[Sequence[meta_identification.DataIdentification]]:
         """
         Provides information about the resources on which the service operates.
 
@@ -285,7 +291,7 @@ class Parameter(ABC):
 
     @property
     @abstractmethod
-    def name(self) -> MemberName:
+    def name(self) -> meta_naming.MemberName:
         """The name, as used by the service, for this parameter."""
 
     @property
@@ -350,7 +356,7 @@ class OperationMetadata(ABC):
 
     @property
     @abstractmethod
-    def connect_point(self) -> Sequence[OnlineResource]:
+    def connect_point(self) -> Sequence[meta_citation.OnlineResource]:
         """Handle for accessing the service interface."""
 
     @property

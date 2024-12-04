@@ -21,17 +21,20 @@ This module contains geographic metadata structures regarding data extent
 derived from the ISO 19115-1:2014 international standard.
 """
 
-__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from datetime import datetime
 from typing import Optional
 
-from opengis.geometry.primitive import Geometry
-from opengis.metadata.citation import Identifier
-from opengis.referencing.crs import ReferenceSystem, VerticalCRS
+import opengis.geometry.primitive as primitive
+import opengis.metadata.citation as meta_citation
+import opengis.referencing.crs as crs
+
+
+__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class VerticalExtent(ABC):
@@ -49,7 +52,7 @@ class VerticalExtent(ABC):
 
     @property
     @abstractmethod
-    def vertical_crs(self) -> Optional['VerticalCRS']:
+    def vertical_crs(self) -> Optional[crs.VerticalCRS]:
         """
         Provides information about the vertical coordinate reference system
         to which the maximum and minimum elevation values are measured.
@@ -65,7 +68,7 @@ class VerticalExtent(ABC):
 
     @property
     @abstractmethod
-    def vertical_crs_id(self) -> Optional['ReferenceSystem']:
+    def vertical_crs_id(self) -> Optional[crs.ReferenceSystem]:
         """
         Identifies the vertical coordinate reference system used for the
         minimum and maximum values.
@@ -107,7 +110,7 @@ class BoundingPolygon(GeographicExtent):
 
     @property
     @abstractmethod
-    def polygon(self) -> Sequence[Geometry]:
+    def polygon(self) -> Sequence[primitive.Geometry]:
         """
         Sets of points defining the bounding polygon or any other `Geometry`
         object (point, line, or polygon).
@@ -171,7 +174,7 @@ class GeographicDescription(GeographicExtent):
 
     @property
     @abstractmethod
-    def geographic_identifier(self) -> 'Identifier':
+    def geographic_identifier(self) -> meta_citation.Identifier:
         """
         Identifier used to represent a geographic area.
 

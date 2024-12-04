@@ -21,17 +21,20 @@ This module contains geographic metadata structures regarding datums derived
 from the ISO 19111 international standard.
 """
 
-__author__ = "OGC Topic 2 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import abstractmethod
 from datetime import datetime
 from enum import Enum
 from typing import Optional
 
-from opengis.metadata.extent import Extent
-from opengis.referencing.common import IdentifiedObject
-from opengis.util.measure import UomAngle, UomLength
+import opengis.metadata.extent as meta_extent
+import opengis.referencing.common as ref_common
+import opengis.util.measure as measure
+
+
+__author__ = "OGC Topic 2 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class RealizationMethod(Enum):
@@ -55,7 +58,7 @@ class RealizationMethod(Enum):
     """The realization is through a tidal model or by tidal predictions."""
 
 
-class Datum(IdentifiedObject):
+class Datum(ref_common.IdentifiedObject):
     """
     Specifies the relationship of a coordinate system to the earth, thus
     creating a coordinate reference system.
@@ -71,7 +74,7 @@ class Datum(IdentifiedObject):
 
     @property
     @abstractmethod
-    def domain_of_validity(self) -> Extent:
+    def domain_of_validity(self) -> meta_extent.Extent:
         """
         Information about spatial, vertical, and temporal extent. This
         interface has four optional attributes (geographic elements, temporal
@@ -138,7 +141,7 @@ class VerticalDatum(Datum):
         """
 
 
-class Ellipsoid(IdentifiedObject):
+class Ellipsoid(ref_common.IdentifiedObject):
     """
     Geometric figure that can be used to describe the approximate shape of the
     Earth.
@@ -146,7 +149,7 @@ class Ellipsoid(IdentifiedObject):
 
     @property
     @abstractmethod
-    def axis_unit(self) -> UomLength:
+    def axis_unit(self) -> measure.UomLength:
         """
         Linear unit of the semi-major and semi-minor axis values.
         """
@@ -195,7 +198,7 @@ class Ellipsoid(IdentifiedObject):
         """
 
 
-class PrimeMeridian(IdentifiedObject):
+class PrimeMeridian(ref_common.IdentifiedObject):
     """
     A prime meridian defines the origin from which longitude values are
     determined.
@@ -211,7 +214,7 @@ class PrimeMeridian(IdentifiedObject):
 
     @property
     @abstractmethod
-    def angular_unit(self) -> UomAngle:
+    def angular_unit(self) -> measure.UomAngle:
         """
         Returns the angular unit of the Greenwich longitude.
         """

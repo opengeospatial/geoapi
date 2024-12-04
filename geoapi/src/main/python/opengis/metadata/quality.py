@@ -23,8 +23,8 @@ ISO 19115-1:2014 international standard and data quality structures derived
 from the ISO 19157:2013, including addendum A1 (2018) international standard.
 """
 
-__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
+
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
@@ -32,17 +32,18 @@ from datetime import datetime
 from enum import Enum
 from typing import Optional
 
-from opengis.metadata.citation import Citation, Identifier
-from opengis.metadata.content import RangeDimension
-from opengis.metadata.distribution import DataFile, Format
-from opengis.metadata.identification import BrowseGraphic
-from opengis.metadata.maintenance import Scope
-from opengis.metadata.naming import Record, RecordType, TypeName
-from opengis.metadata.representation import (
-    SpatialRepresentation,
-    SpatialRepresentationTypeCode,
-)
-from opengis.util.measure import UnitOfMeasure
+import opengis.metadata.citation as meta_citation
+import opengis.metadata.content as meta_content
+import opengis.metadata.distribution as meta_distribution
+import opengis.metadata.identification as meta_identification
+import opengis.metadata.maintenance as meta_maintenance
+import opengis.metadata.naming as meta_naming
+import opengis.metadata.representation as meta_representation
+import opengis.util.measure as util_measure
+
+
+__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class EvaluationMethodTypeCode(Enum):
@@ -110,7 +111,7 @@ class StandaloneQualityReportInformation(ABC):
 
     @property
     @abstractmethod
-    def report_reference(self) -> Citation:
+    def report_reference(self) -> meta_citation.Citation:
         """Reference to the associated standalone quality report."""
 
     @property
@@ -124,7 +125,7 @@ class Result(ABC):
 
     @property
     @abstractmethod
-    def result_scope(self) -> Scope:
+    def result_scope(self) -> meta_maintenance.Scope:
         """Scope of the result."""
 
     @property
@@ -148,12 +149,12 @@ class EvaluationMethod(ABC):
 
     @property
     @abstractmethod
-    def evaluation_procedure(self) -> Citation:
+    def evaluation_procedure(self) -> meta_citation.Citation:
         """Reference to the procedure information."""
 
     @property
     @abstractmethod
-    def reference_doc(self) -> Sequence[Citation]:
+    def reference_doc(self) -> Sequence[meta_citation.Citation]:
         """
         Information on documents which are referenced in developing and
         applying a data quality evaluation method.
@@ -172,7 +173,7 @@ class MeasureReference(ABC):
 
     @property
     @abstractmethod
-    def measure_identification(self) -> Identifier:
+    def measure_identification(self) -> meta_citation.Identifier:
         """
         Identifier of the measure, value uniquely identifying the measure
         within a namespace.
@@ -232,7 +233,7 @@ class DataQuality(ABC):
 
     @property
     @abstractmethod
-    def scope(self) -> Scope:
+    def scope(self) -> meta_maintenance.Scope:
         """The specific data to which the data quality information applies."""
 
     @property
@@ -259,7 +260,7 @@ class Description(ABC):
 
     @property
     @abstractmethod
-    def extended_description(self) -> BrowseGraphic:
+    def extended_description(self) -> meta_identification.BrowseGraphic:
         """Illustration."""
 
 
@@ -268,7 +269,7 @@ class SourceReference(ABC):
 
     @property
     @abstractmethod
-    def citation(self) -> Citation:
+    def citation(self) -> meta_citation.Citation:
         """References to the source."""
 
 
@@ -292,7 +293,7 @@ class BasicMeasure(ABC):
 
     @property
     @abstractmethod
-    def value_type(self) -> TypeName:
+    def value_type(self) -> meta_naming.TypeName:
         """
         Value type for the result of the basic measure (shall be one of the
         data types defined in ISO/TS 19103:2005).
@@ -319,12 +320,12 @@ class Parameter(ABC):
 
     @property
     @abstractmethod
-    def value_type(self) -> TypeName:
+    def value_type(self) -> meta_naming.TypeName:
         """
         Value type of the data quality parameter (shall be one of the data
         types defined in ISO/TS 19103:2005).
         """
-    
+
     @property
     @abstractmethod
     def value_structure(self) -> Optional[ValueStructure]:
@@ -336,7 +337,7 @@ class Measure(ABC):
 
     @property
     @abstractmethod
-    def measure_identifier(self) -> Identifier:
+    def measure_identifier(self) -> meta_citation.Identifier:
         """Value uniquely identifying the measure within a namespace."""
 
     @property
@@ -354,7 +355,7 @@ class Measure(ABC):
 
     @property
     @abstractmethod
-    def element_name(self) -> TypeName:
+    def element_name(self) -> meta_naming.TypeName:
         """Name of the data quality element for which quality is reported."""
 
     @property
@@ -374,7 +375,7 @@ class Measure(ABC):
 
     @property
     @abstractmethod
-    def value_type(self) -> TypeName:
+    def value_type(self) -> meta_naming.TypeName:
         """
         Value type for reporting a data quality result (shall be one of the
         data types defined in ISO/19103:2005).
@@ -618,7 +619,7 @@ class ConformanceResult(Result):
 
     @property
     @abstractmethod
-    def specification(self) -> Citation:
+    def specification(self) -> meta_citation.Citation:
         """
         Citation of data product specification or user requirement against
         which data is being evaluated.
@@ -646,12 +647,14 @@ class CoverageResult(Result):
 
     @property
     @abstractmethod
-    def spatial_representation_type(self) -> SpatialRepresentationTypeCode:
+    def spatial_representation_type(self) -> \
+            meta_representation.SpatialRepresentationTypeCode:
         """Method used to spatially represent the coverage result."""
 
     @property
     @abstractmethod
-    def result_spatial_representation(self) -> SpatialRepresentation:
+    def result_spatial_representation(self) -> \
+            meta_representation.SpatialRepresentation:
         """
         Gives a numerical representation of the data quality measurements
         making up the coverage result.
@@ -659,7 +662,8 @@ class CoverageResult(Result):
 
     @property
     @abstractmethod
-    def result_content(self) -> Optional[Sequence[RangeDimension]]:
+    def result_content(self) -> \
+            Optional[Sequence[meta_content.RangeDimension]]:
         """
         Describes the content of the result coverage, when the quality
         coverage is included in the described resource, i.e. the semantic
@@ -671,7 +675,7 @@ class CoverageResult(Result):
 
     @property
     @abstractmethod
-    def result_format(self) -> Optional[Format]:
+    def result_format(self) -> Optional[meta_distribution.Format]:
         """
         Provides information about the data format of the result coverage data.
 
@@ -682,7 +686,7 @@ class CoverageResult(Result):
     # Below property not defined in ISO 19157:2023
     @property
     @abstractmethod
-    def result_file(self) -> Optional[DataFile]:
+    def result_file(self) -> Optional[meta_distribution.DataFile]:
         """
         Provides information about the data file containing the result
         coverage data.
@@ -700,7 +704,7 @@ class QuantitativeResult(Result):
 
     @property
     @abstractmethod
-    def value(self) -> Sequence[Record]:
+    def value(self) -> Sequence[meta_naming.Record]:
         """
         Quantitative value or values, content determined by the evaluation
         procedure used, accordingly with the value type and valueStructure
@@ -709,12 +713,12 @@ class QuantitativeResult(Result):
 
     @property
     @abstractmethod
-    def value_unit(self) -> UnitOfMeasure:
+    def value_unit(self) -> util_measure.UnitOfMeasure:
         """Value unit for reporting a data quality result."""
 
     @property
     @abstractmethod
-    def value_record_type(self) -> RecordType:
+    def value_record_type(self) -> meta_naming.RecordType:
         """
         Value type for reporting a data quality result, depends of the
         implementation.

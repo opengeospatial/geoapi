@@ -21,13 +21,16 @@ This module contains geographic metadata structures regarding coordinate
 systems derived from the ISO 19111 international standard.
 """
 
-__author__ = "OGC Topic 2 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import abstractmethod
 from enum import Enum
 
-from opengis.referencing.common import IdentifiedObject
+import opengis.referencing.common as ref_common
+
+
+__author__ = "OGC Topic 2 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class AxisDirection(Enum):
@@ -213,7 +216,7 @@ class RangeMeaning(Enum):
     """
 
 
-class CoordinateSystemAxis(IdentifiedObject):
+class CoordinateSystemAxis(ref_common.IdentifiedObject):
     """
     Definition of a coordinate system axis.
     """
@@ -294,7 +297,7 @@ class CoordinateSystemAxis(IdentifiedObject):
         """
 
 
-class CoordinateSystem(IdentifiedObject):
+class CoordinateSystem(ref_common.IdentifiedObject):
     """
     The set of coordinate system axes that spans a given coordinate space.
     A coordinate system (CS) is derived from a set of (mathematical) rules for
