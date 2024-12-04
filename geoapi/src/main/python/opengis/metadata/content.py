@@ -21,17 +21,21 @@ This module contains geographic metadata structures regarding data content
 derived from the ISO 19115-1:2014 and ISO 19115-2:2019 international standards.
 """
 
-__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
+
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from enum import Enum
 from typing import Optional
 
-from opengis.metadata.citation import Citation, Identifier
-from opengis.metadata.naming import GenericName, MemberName, Record, RecordType
-from opengis.util.measure import UnitOfMeasure, UomLength
+import opengis.metadata.citation as meta_citation
+import opengis.metadata.naming as meta_naming
+import opengis.util.measure as measure
+
+
+__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class BandDefinition(Enum):
@@ -247,7 +251,7 @@ class RangeElementDescription(ABC):
 
     @property
     @abstractmethod
-    def range_element(self) -> Sequence[Record]:
+    def range_element(self) -> Sequence[meta_naming.Record]:
         """
         Specific range elements, i.e. range elements associated with a name
         and their definition.
@@ -259,7 +263,7 @@ class RangeDimension(ABC):
 
     @property
     @abstractmethod
-    def sequence_identifier(self) -> Optional[MemberName]:
+    def sequence_identifier(self) -> Optional[meta_naming.MemberName]:
         """
         Number that uniquely identifies instances of bands of wavelengths on
         which a sensor operates.
@@ -272,7 +276,7 @@ class RangeDimension(ABC):
 
     @property
     @abstractmethod
-    def name(self) -> Optional[Sequence[Identifier]]:
+    def name(self) -> Optional[Sequence[meta_citation.Identifier]]:
         """
         Identifiers for each attribute included in the resource.
 
@@ -325,7 +329,7 @@ class SampleDimension(RangeDimension):
 
     @property
     @abstractmethod
-    def units(self) -> Optional[UnitOfMeasure]:
+    def units(self) -> Optional[measure.UnitOfMeasure]:
         """
         Units of data in each dimension included in the resource.
 
@@ -371,14 +375,14 @@ class SampleDimension(RangeDimension):
 
     @property
     @abstractmethod
-    def other_property_type(self) -> Optional[RecordType]:
+    def other_property_type(self) -> Optional[meta_naming.RecordType]:
         """
         Type of other attribute description (i.e. netcdf/variable in ncml.xsd).
         """
 
     @property
     @abstractmethod
-    def other_property(self) -> Optional[Record]:
+    def other_property(self) -> Optional[meta_naming.Record]:
         """
         Instance of otherAttributeType that defines attributes not explicitly
         included in `CoverageType`.
@@ -438,7 +442,7 @@ class Band(SampleDimension):
 
     @property
     @abstractmethod
-    def bound_unit(self) -> Optional[UomLength]:
+    def bound_unit(self) -> Optional[measure.UomLength]:
         """
         Bounding units. The units in which the sensor wavelengths are
         expressed.
@@ -485,12 +489,12 @@ class CoverageDescription(ContentInformation):
 
     @property
     @abstractmethod
-    def attribute_description(self) -> RecordType:
+    def attribute_description(self) -> meta_naming.RecordType:
         """Description of the attribute described by the measurement value."""
 
     @property
     @abstractmethod
-    def processing_level_code(self) -> Optional[Identifier]:
+    def processing_level_code(self) -> Optional[meta_citation.Identifier]:
         """
         Code and codespace that identifies the level of processing that has
         been applied to the resource.
@@ -551,7 +555,7 @@ class ImageDescription(CoverageDescription):
 
     @property
     @abstractmethod
-    def image_quality_code(self) -> Optional[Identifier]:
+    def image_quality_code(self) -> Optional[meta_citation.Identifier]:
         """Code in producer's code space that specifies the image quality."""
 
     @property
@@ -618,7 +622,7 @@ class FeatureTypeInfo(ABC):
 
     @property
     @abstractmethod
-    def feature_type_name(self) -> GenericName:
+    def feature_type_name(self) -> meta_naming.GenericName:
         """Name of the feature type."""
 
     @property
@@ -670,7 +674,8 @@ class FeatureCatalogueDescription(ContentInformation):
 
     @property
     @abstractmethod
-    def feature_catalogue_citation(self) -> Optional[Sequence[Citation]]:
+    def feature_catalogue_citation(self) -> \
+            Optional[Sequence[meta_citation.Citation]]:
         """
         Complete bibliographic reference to one or more external feature
         catalogues.

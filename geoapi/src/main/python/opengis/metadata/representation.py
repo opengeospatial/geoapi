@@ -22,20 +22,23 @@ derived from the ISO 19115-1:2014 and ISO 19115-2:2019 international
 standards.
 """
 
-__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from enum import Enum
 from typing import Optional
 
-from opengis.geometry.primitive import DirectPosition, Point
-from opengis.metadata.citation import Citation
-from opengis.metadata.maintenance import Scope
-from opengis.metadata.naming import Record
-from opengis.metadata.quality import DataQuality, Element
-from opengis.referencing.crs import ReferenceSystem
+import opengis.geometry.primitive as primitive
+import opengis.metadata.citation as meta_citation
+import opengis.metadata.maintenance as meta_maintenance
+import opengis.metadata.naming as meta_naming
+import opengis.metadata.quality as meta_quality
+import opengis.referencing.crs as crs
+
+
+__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class CellGeometryCode(Enum):
@@ -273,7 +276,7 @@ class GeolocationInformation(ABC):
 
     @property
     @abstractmethod
-    def quality_info(self) -> Optional[Sequence[DataQuality]]:
+    def quality_info(self) -> Optional[Sequence[meta_quality.DataQuality]]:
         """
         Provides an overall assessment of quality of geolocation information.
         """
@@ -284,7 +287,7 @@ class GCP(ABC):
 
     @property
     @abstractmethod
-    def geographic_coordinates(self) -> DirectPosition:
+    def geographic_coordinates(self) -> primitive.DirectPosition:
         """
         Geographic or map position of the control point, in either two
         or three dimensions.
@@ -292,7 +295,7 @@ class GCP(ABC):
 
     @property
     @abstractmethod
-    def accuracy_report(self) -> Optional[Sequence[Element]]:
+    def accuracy_report(self) -> Optional[Sequence[meta_quality.Element]]:
         """Accuracy of a ground control point."""
 
 
@@ -311,7 +314,7 @@ class GCPCollection(GeolocationInformation):
 
     @property
     @abstractmethod
-    def coordinate_reference_system(self) -> ReferenceSystem:
+    def coordinate_reference_system(self) -> crs.ReferenceSystem:
         """Coordinate system in which the ground control points are defined."""
 
     @property
@@ -350,7 +353,7 @@ class SpatialRepresentation(ABC):
 
     @property
     @abstractmethod
-    def scope(self) -> Optional[Scope]:
+    def scope(self) -> Optional[meta_maintenance.Scope]:
         """Level and extent of the spatial representation."""
 
 
@@ -428,7 +431,7 @@ class Georectified(GridSpatialRepresentation):
 
     @property
     @abstractmethod
-    def corner_points(self) -> Optional[Sequence[Point]]:
+    def corner_points(self) -> Optional[Sequence[primitive.Point]]:
         """
         Earth location in the coordinate system defined by the Spatial
         Reference System and the grid coordinate of the cells at opposite ends
@@ -443,7 +446,7 @@ class Georectified(GridSpatialRepresentation):
 
     @property
     @abstractmethod
-    def centre_point(self) -> Optional[Point]:
+    def centre_point(self) -> Optional[primitive.Point]:
         """
         Earth location in the coordinate system defined by the Spatial
         Reference System and the grid coordinate of the cell halfway between
@@ -510,12 +513,12 @@ class Georeferenceable(GridSpatialRepresentation):
 
     @property
     @abstractmethod
-    def georeferenced_parameters(self) -> Record:
+    def georeferenced_parameters(self) -> meta_naming.Record:
         """Terms which support grid data georeferencing."""
 
     @property
     @abstractmethod
-    def parameter_citation(self) -> Optional[Sequence[Citation]]:
+    def parameter_citation(self) -> Optional[Sequence[meta_citation.Citation]]:
         """Reference providing description of the parameters."""
 
     @property

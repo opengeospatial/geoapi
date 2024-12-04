@@ -21,8 +21,7 @@ This module contains geographic metadata structures regarding data maintenance
 derived from the ISO 19115-1:2014 international standard.
 """
 
-__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence, Set
@@ -30,8 +29,12 @@ from datetime import timedelta
 from enum import Enum
 from typing import Optional
 
-from opengis.metadata.citation import Date, Responsibility
-from opengis.metadata.extent import Extent
+import opengis.metadata.citation as meta_citations
+import opengis.metadata.extent as meta_extent
+
+
+__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class MaintenanceFrequencyCode(Enum):
@@ -262,7 +265,7 @@ class Scope(ABC):
 
     @property
     @abstractmethod
-    def extent(self) -> Optional[Sequence[Extent]]:
+    def extent(self) -> Optional[Sequence[meta_extent.Extent]]:
         """
         Information about the horizontal, vertical, and temporal extent of
         the specified resource.
@@ -294,7 +297,7 @@ class MaintenanceInformation(ABC):
 
     @property
     @abstractmethod
-    def maintenance_date(self) -> Optional[Sequence[Date]]:
+    def maintenance_date(self) -> Optional[Sequence[meta_citations.Date]]:
         """Date information associated with maintenance of resource."""
 
     @property
@@ -322,7 +325,7 @@ class MaintenanceInformation(ABC):
 
     @property
     @abstractmethod
-    def contact(self) -> Optional[Sequence[Responsibility]]:
+    def contact(self) -> Optional[Sequence[meta_citations.Responsibility]]:
         """
         Identification of, and means of communicating with, person(s) and
         organisation(s) with responsibility for maintaining the metadata.

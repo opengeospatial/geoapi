@@ -21,8 +21,7 @@ This module contains geographic metadata structures regarding data
 distribution derived from the ISO 19115-1:2014 international standard.
 """
 
-__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
@@ -30,13 +29,12 @@ from datetime import datetime, timedelta
 from enum import Enum
 from typing import Optional
 
-from opengis.metadata.citation import (
-    Citation,
-    Identifier,
-    OnlineResource,
-    Responsibility,
-)
-from opengis.metadata.naming import GenericName, Record, RecordType
+import opengis.metadata.citation as meta_citation
+import opengis.metadata.naming as meta_naming
+
+
+__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class MediumFormatCode(Enum):
@@ -69,7 +67,7 @@ class Medium(ABC):
 
     @property
     @abstractmethod
-    def name(self) -> Optional[Citation]:
+    def name(self) -> Optional[meta_citation.Citation]:
         """Name of the medium on which the resource can be received."""
 
     @property
@@ -109,7 +107,7 @@ class Medium(ABC):
 
     @property
     @abstractmethod
-    def identifier(self) -> Optional[Identifier]:
+    def identifier(self) -> Optional[meta_citation.Identifier]:
         """Unique identifier for an instance of the `Medium`."""
 
 
@@ -122,7 +120,7 @@ class Format(ABC):
 
     @property
     @abstractmethod
-    def format_specification_citation(self) -> Citation:
+    def format_specification_citation(self) -> meta_citation.Citation:
         """Citation/URL of the specification for the format."""
 
     @property
@@ -169,7 +167,7 @@ class DataFile(ABC):
 
     @property
     @abstractmethod
-    def feature_types(self) -> Sequence[GenericName]:
+    def feature_types(self) -> Sequence[meta_naming.GenericName]:
         """
         Provides the list of feature types concerned by the transfer data file.
         """
@@ -208,12 +206,12 @@ class StandardOrderProcess(ABC):
 
     @property
     @abstractmethod
-    def order_options_type(self) -> Optional[RecordType]:
+    def order_options_type(self) -> Optional[meta_naming.RecordType]:
         """Description of the order options record."""
 
     @property
     @abstractmethod
-    def order_options(self) -> Optional[Record]:
+    def order_options(self) -> Optional[meta_naming.Record]:
         """Request/purchase choices."""
 
 
@@ -222,7 +220,7 @@ class Distributor(ABC):
 
     @property
     @abstractmethod
-    def distributor_contact(self) -> Responsibility:
+    def distributor_contact(self) -> meta_citation.Responsibility:
         """
         Party from whom the resource may be obtained. This list need not be
         exhaustive.
@@ -316,7 +314,7 @@ class DigitalTransferOptions(ABC):
 
     @property
     @abstractmethod
-    def on_line(self) -> Optional[Sequence[OnlineResource]]:
+    def on_line(self) -> Optional[Sequence[meta_citation.OnlineResource]]:
         """
         Information about online sources from which the resource can be
         obtained.

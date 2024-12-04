@@ -21,8 +21,7 @@ This module contains geographic metadata structures regarding referencing
 system operations derived from the ISO 19111 international standard.
 """
 
-__author__ = "OGC Topic 2 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
@@ -30,15 +29,19 @@ from typing import Any, Optional
 
 import numpy as np
 
-from opengis.geometry.primitive import DirectPosition
-from opengis.metadata.citation import Citation
-from opengis.metadata.extent import Extent
-from opengis.metadata.quality import PositionalAccuracy
-from opengis.referencing.common import IdentifiedObject
-from opengis.referencing.crs import CoordinateReferenceSystem
+import opengis.geometry.primitive as primitive
+import opengis.metadata.citation as meta_citation
+import opengis.metadata.extent as meta_extent
+import opengis.metadata.quality as quality
+import opengis.referencing.common as ref_common
+import opengis.referencing.crs as crs
 
 # TODO :
 # from opengis.parameter import ParameterValueGroup, ParameterDescriptorGroup
+
+
+__author__ = "OGC Topic 2 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class MathTransform(ABC):
@@ -85,17 +88,17 @@ class MathTransform(ABC):
         """
 
     @abstractmethod
-    def transform(self, pt_src: DirectPosition,
-                  pt_dst: Optional[DirectPosition]) ->\
-            DirectPosition | np.ndarray:
+    def transform(self, pt_src: primitive.DirectPosition,
+                  pt_dst: Optional[primitive.DirectPosition]) ->\
+            primitive.DirectPosition | np.ndarray:
         """
         Transforms the specified pt_src and stores the result in pt_dst.
 
         Arguments:
             pt_src (DirectPosition): the specified coordinate point to
                 be transformed.
-            pt_dst (Optional[DirectPosition]): the specified coordinate point that
-                stores the result of transforming ptSrc, or null.
+            pt_dst (Optional[DirectPosition]): the specified coordinate point
+                that stores the result of transforming ptSrc, or null.
         Returns:
             The coordinate point or an array of coordinate points
                 after transforming pt_src and storing the result in pt_dst,
@@ -110,7 +113,7 @@ class MathTransform(ABC):
         dst_pts: np.ndarray,
         dst_off: int,
         num_pts: int,
-        ):
+    ):
         """
         Transforms a list of coordinate point ordinal values. This method is
         provided for efficiently transforming many points. The supplied array
@@ -134,7 +137,7 @@ class MathTransform(ABC):
         """
 
     @abstractmethod
-    def derivative(self, point: DirectPosition) -> np.ndarray:
+    def derivative(self, point: primitive.DirectPosition) -> np.ndarray:
         """
         Gets the derivative of this transform at a point (never null).
         The derivative is the matrix of the non-translating portion of
@@ -201,14 +204,14 @@ class Formula:
 
     @property
     @abstractmethod
-    def citation(self) -> Optional[Citation]:
+    def citation(self) -> Optional[meta_citation.Citation]:
         """
         Reference to a publication giving the formula(s) or procedure used by
         the coordinate operation method, or null if `None`.
         """
 
 
-class OperationMethod(IdentifiedObject):
+class OperationMethod(ref_common.IdentifiedObject):
     """
     Definition of an algorithm used to perform a coordinate operation.
     """
@@ -231,7 +234,7 @@ class OperationMethod(IdentifiedObject):
     #     """
 
 
-class CoordinateOperation(IdentifiedObject):
+class CoordinateOperation(ref_common.IdentifiedObject):
     """
     A mathematical operation on coordinates that transforms or converts
     coordinates to another coordinate reference system.
@@ -239,7 +242,7 @@ class CoordinateOperation(IdentifiedObject):
 
     @property
     @abstractmethod
-    def source_crs(self) -> Optional[CoordinateReferenceSystem]:
+    def source_crs(self) -> Optional[crs.CoordinateReferenceSystem]:
         """
         Returns the source CRS. The source CRS is mandatory for
         transformations only. Conversions may have a source CRS that is not
@@ -249,7 +252,7 @@ class CoordinateOperation(IdentifiedObject):
 
     @property
     @abstractmethod
-    def target_crs(self) -> Optional[CoordinateReferenceSystem]:
+    def target_crs(self) -> Optional[crs.CoordinateReferenceSystem]:
         """
         Returns the target CRS. The target CRS is mandatory for
         transformations only. Conversions may have a target CRS that is not
@@ -272,7 +275,7 @@ class CoordinateOperation(IdentifiedObject):
     @property
     @abstractmethod
     def coordinate_operation_accuracy(self) ->\
-            Sequence[Optional[PositionalAccuracy]]:
+            Sequence[Optional[quality.PositionalAccuracy]]:
         """
         Estimate(s) of the impact of this operation on point accuracy. Gives
         position error estimates for target coordinates of this coordinate
@@ -282,7 +285,7 @@ class CoordinateOperation(IdentifiedObject):
 
     @property
     @abstractmethod
-    def domain_of_validity(self) -> Optional[Extent]:
+    def domain_of_validity(self) -> Optional[meta_extent.Extent]:
         """
         Area or region or timeframe in which this coordinate operation is
         valid or `None` if not available.
@@ -358,14 +361,14 @@ class Transformation(SingleOperation):
 
     @property
     @abstractmethod
-    def source_crs(self) -> CoordinateReferenceSystem:
+    def source_crs(self) -> crs.CoordinateReferenceSystem:
         """
         Returns the source CRS (never null).
         """
 
     @property
     @abstractmethod
-    def target_crs(self) -> CoordinateReferenceSystem:
+    def target_crs(self) -> crs.CoordinateReferenceSystem:
         """
         Returns the target CRS (never null).
         """
@@ -387,7 +390,7 @@ class Conversion(SingleOperation):
 
     @property
     @abstractmethod
-    def source_crs(self) -> Optional[CoordinateReferenceSystem]:
+    def source_crs(self) -> Optional[crs.CoordinateReferenceSystem]:
         """
         Returns the source CRS. Conversions may have a source CRS that is not
         specified here, but through `DerivedCRS.getBaseCRS()` instead. `None`
@@ -396,7 +399,7 @@ class Conversion(SingleOperation):
 
     @property
     @abstractmethod
-    def target_crs(self) -> Optional[CoordinateReferenceSystem]:
+    def target_crs(self) -> Optional[crs.CoordinateReferenceSystem]:
         """
         Returns the target CRS. Conversions may have a target CRS that is not
         specified here, but through `DerivedCRS` instead. `None`

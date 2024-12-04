@@ -21,20 +21,20 @@ This module contains geographic metadata structures regarding data constraints
 derived from the ISO 19115-1:2014 international standard.
 """
 
-__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from enum import Enum
 from typing import Optional
 
-from opengis.metadata.citation import (
-    Citation,
-    Responsibility,
-)
-from opengis.metadata.identification import BrowseGraphic
-from opengis.metadata.maintenance import Scope
+import opengis.metadata.citation as meta_citation
+import opengis.metadata.identification as meta_identification
+import opengis.metadata.maintenance as meta_maintenance
+
+
+__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class ClassificationCode(Enum):
@@ -169,7 +169,7 @@ class Releasability(ABC):
 
     @property
     @abstractmethod
-    def addressee(self) -> Optional[Sequence[Responsibility]]:
+    def addressee(self) -> Optional[Sequence[meta_citation.Responsibility]]:
         """
         Party to which the release statement applies.
 
@@ -206,7 +206,7 @@ class Constraints(ABC):
 
     @property
     @abstractmethod
-    def constraint_application_scope(self) -> Optional[Scope]:
+    def constraint_application_scope(self) -> Optional[meta_maintenance.Scope]:
         """
         Spatial and temporal extent of the application of the constraint
         restrictions.
@@ -214,7 +214,7 @@ class Constraints(ABC):
 
     @property
     @abstractmethod
-    def graphic(self) -> Optional[Sequence[BrowseGraphic]]:
+    def graphic(self) -> Optional[Sequence[meta_identification.BrowseGraphic]]:
         """Graphic /symbol indicating the constraint.
 
         Example:
@@ -224,7 +224,7 @@ class Constraints(ABC):
 
     @property
     @abstractmethod
-    def reference(self) -> Optional[Sequence[Citation]]:
+    def reference(self) -> Optional[Sequence[meta_citation.Citation]]:
         """
         Citation/URL for the limitation or constraint,
         e.g., copyright statement, license agreement, etc.
@@ -241,7 +241,8 @@ class Constraints(ABC):
 
     @property
     @abstractmethod
-    def responsible_party(self) -> Optional[Sequence[Responsibility]]:
+    def responsible_party(self) -> \
+            Optional[Sequence[meta_citation.Responsibility]]:
         """Party responsible for the resource constraints."""
 
 

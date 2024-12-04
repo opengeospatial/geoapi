@@ -22,32 +22,23 @@ referencing systems derived from the ISO 19111 international standard and
 ISO 19115-1:2014, including adendums A1(2018) and A2(2020).
 """
 
-__author__ = "OGC Topic 2 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import abstractmethod
 from collections.abc import Sequence
 from enum import Enum
 from typing import Optional
 
-from opengis.metadata.citation import Identifier
-from opengis.referencing.common import IdentifiedObject
-from opengis.referencing.coordinate import DataEpoch
-from opengis.referencing.cs import (
-    CartesianCS,
-    CoordinateSystem,
-    EllipsoidalCS,
-    TimeCS,
-    VerticalCS,
-)
-from opengis.referencing.datum import (
-    Datum,
-    EngineeringDatum,
-    GeodeticDatum,
-    TemporalDatum,
-    VerticalDatum,
-)
-from opengis.referencing.operation import Conversion
+import opengis.metadata.citation as citation
+import opengis.referencing.common as ref_common
+import opengis.referencing.coordinate as ref_coordinate
+import opengis.referencing.cs as cs
+import opengis.referencing.datum as ref_datum
+import opengis.referencing.operation as ref_operation
+
+
+__author__ = "OGC Topic 2 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class ReferenceSystemTypeCode(Enum):
@@ -328,7 +319,7 @@ class ReferenceSystemTypeCode(Enum):
     """
 
 
-class ReferenceSystem(IdentifiedObject):
+class ReferenceSystem(ref_common.IdentifiedObject):
     """
     Description of a spatial and temporal reference system used by a dataset.
 
@@ -338,7 +329,7 @@ class ReferenceSystem(IdentifiedObject):
     """
     @property
     @abstractmethod
-    def reference_system_identifier(self) -> Optional[Identifier]:
+    def reference_system_identifier(self) -> Optional[citation.Identifier]:
         """
         Identifier and codespace for reference system.
 
@@ -367,7 +358,7 @@ class ReferenceSystem(IdentifiedObject):
 
     @property
     @abstractmethod
-    def coordinate_epoch(self) -> Optional[DataEpoch]:
+    def coordinate_epoch(self) -> Optional[ref_coordinate.DataEpoch]:
         """
         The epoch from which coordinates in a dynamic coordinate reference
         system are referenced.
@@ -403,7 +394,7 @@ class SingleCRS(CoordinateReferenceSystem):
 
     @property
     @abstractmethod
-    def coordinate_system(self) -> CoordinateSystem:
+    def coordinate_system(self) -> cs.CoordinateSystem:
         """
         Returns the coordinate system.
 
@@ -413,7 +404,7 @@ class SingleCRS(CoordinateReferenceSystem):
 
     @property
     @abstractmethod
-    def datum(self) -> Datum:
+    def datum(self) -> ref_datum.Datum:
         """
         Returns the datum.
 
@@ -446,7 +437,7 @@ class VerticalCRS(SingleCRS):
 
     @property
     @abstractmethod
-    def coordinate_system(self) -> VerticalCS:
+    def coordinate_system(self) -> cs.VerticalCS:
         """
         Returns the coordinate system, which must be vertical.
 
@@ -456,7 +447,7 @@ class VerticalCRS(SingleCRS):
 
     @property
     @abstractmethod
-    def datum(self) -> VerticalDatum:
+    def datum(self) -> ref_datum.VerticalDatum:
         """
         Returns the datum, which must be vertical.
 
@@ -472,7 +463,7 @@ class TemporalCRS(SingleCRS):
 
     @property
     @abstractmethod
-    def coordinate_system(self) -> TimeCS:
+    def coordinate_system(self) -> cs.TimeCS:
         """
         Returns the coordinate system, which must be temporal.
 
@@ -482,7 +473,7 @@ class TemporalCRS(SingleCRS):
 
     @property
     @abstractmethod
-    def datum(self) -> TemporalDatum:
+    def datum(self) -> ref_datum.TemporalDatum:
         """
         Returns the datum, which must be temporal.
 
@@ -498,7 +489,7 @@ class EngineeringCRS(SingleCRS):
 
     @property
     @abstractmethod
-    def datum(self) -> EngineeringDatum:
+    def datum(self) -> ref_datum.EngineeringDatum:
         """
         Returns the datum, which must be an engineering one.
 
@@ -525,7 +516,7 @@ class DerivedCRS(SingleCRS):
 
     @property
     @abstractmethod
-    def conversion_from_base(self) -> Conversion:
+    def conversion_from_base(self) -> ref_operation.Conversion:
         """
         Returns the conversion from the base CRS to this CRS.
 
@@ -541,7 +532,7 @@ class GeodeticCRS(SingleCRS):
 
     @property
     @abstractmethod
-    def datum(self) -> GeodeticDatum:
+    def datum(self) -> ref_datum.GeodeticDatum:
         """
         Returns the datum, which must be geodetic.
 
@@ -559,7 +550,7 @@ class GeographicCRS(GeodeticCRS):
 
     @property
     @abstractmethod
-    def coordinate_system(self) -> EllipsoidalCS:
+    def coordinate_system(self) -> cs.EllipsoidalCS:
         """
         Returns the coordinate system, which must be ellipsoidal.
 
@@ -576,7 +567,7 @@ class ProjectedCRS(DerivedCRS):
 
     @property
     @abstractmethod
-    def conversion_from_base(self) -> Conversion:
+    def conversion_from_base(self) -> ref_operation.Conversion:
         """
         Returns the map projection from the base CRS to this CRS.
 
@@ -596,7 +587,7 @@ class ProjectedCRS(DerivedCRS):
 
     @property
     @abstractmethod
-    def coordinate_system(self) -> CartesianCS:
+    def coordinate_system(self) -> cs.CartesianCS:
         """
         Returns the coordinate system, which must be cartesian.
 
@@ -606,7 +597,7 @@ class ProjectedCRS(DerivedCRS):
 
     @property
     @abstractmethod
-    def datum(self) -> GeodeticDatum:
+    def datum(self) -> ref_datum.GeodeticDatum:
         """
         Returns the datum.
 

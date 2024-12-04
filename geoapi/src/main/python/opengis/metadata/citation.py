@@ -21,8 +21,7 @@ This module contains geographic metadata structures regarding metadata
 citations derived from the ISO 19115-1:2014 international standard.
 """
 
-__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
@@ -30,8 +29,12 @@ from datetime import datetime
 from enum import Enum
 from typing import Optional
 
-from opengis.metadata.extent import Extent
-from opengis.metadata.identification import BrowseGraphic
+import opengis.metadata.extent as meta_extent
+import opengis.metadata.identification as meta_identification
+
+
+__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class DateTypeCode(Enum):
@@ -589,7 +592,7 @@ class Responsibility(ABC):
 
     @property
     @abstractmethod
-    def extent(self) -> Optional[Sequence['Extent']]:
+    def extent(self) -> Optional[Sequence[meta_extent.Extent]]:
         """Spatial or temporal extent of the role."""
 
     @property
@@ -617,7 +620,7 @@ class Organisation(Party):
 
     @property
     @abstractmethod
-    def logo(self) -> Sequence[BrowseGraphic]:
+    def logo(self) -> Sequence[meta_identification.BrowseGraphic]:
         """
         Graphic identifying organisation.
 
@@ -730,7 +733,7 @@ class Citation(ABC):
 
     @property
     @abstractmethod
-    def graphic(self) -> Optional[Sequence['BrowseGraphic']]:
+    def graphic(self) -> Optional[Sequence[meta_identification.BrowseGraphic]]:
         """Citation graphic or logo for cited party."""
 
 

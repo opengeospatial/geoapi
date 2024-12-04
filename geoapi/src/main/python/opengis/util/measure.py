@@ -22,14 +22,17 @@ specification for which no equivalence is already present in the Python
 standard library.
 """
 
-__author__ = "OGC Topic 20 (for abstract model and documentation), " +\
-    "David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from enum import Enum
 from typing import Optional
 
-from opengis.geometry.primitive import Vector
+import opengis.geometry.primitive as primitive
+
+
+__author__ = "OGC Topic 20 (for abstract model and documentation), " +\
+    "David Meaux (Geomatys)"
 
 
 class StandardUnits(Enum):
@@ -377,7 +380,7 @@ class DirectedMeasure(ABC):
 
     @property
     @abstractmethod
-    def value(self) -> Vector:
+    def value(self) -> primitive.Vector:
         """
         The magnitude and direction of the directed measure.
         """

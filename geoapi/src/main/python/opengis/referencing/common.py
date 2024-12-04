@@ -21,17 +21,19 @@ This module contains geographic metadata structures derived from the
 Common Classes package in the ISO 19111:2019 international standard.
 """
 
-__author__ = "OGC Topic 2 (for abstract model and documentation), " +\
-    "David Meaux (Geomatys)"
-
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from typing import Optional
 
-from opengis.metadata.citation import Identifier
-from opengis.metadata.extent import Extent
-from opengis.metadata.naming import GenericName
+import opengis.metadata.citation as meta_citation
+import opengis.metadata.extent as meta_extent
+import opengis.metadata.naming as naming
+
+
+__author__ = "OGC Topic 2 (for abstract model and documentation), " +\
+    "David Meaux (Geomatys)"
 
 
 class ObjectDomain(ABC):
@@ -47,7 +49,7 @@ class ObjectDomain(ABC):
 
     @property
     @abstractmethod
-    def domain_of_validity(self) -> Extent:
+    def domain_of_validity(self) -> meta_extent.Extent:
         """The spatial and temporal extent in which this object is valid."""
 
 
@@ -56,12 +58,12 @@ class IdentifiedObject(ABC):
 
     @property
     @abstractmethod
-    def name(self) -> Identifier:
+    def name(self) -> meta_citation.Identifier:
         """The primary name by which this object is identified."""
 
     @property
     @abstractmethod
-    def identifier(self) -> Optional[Sequence[Identifier]]:
+    def identifier(self) -> Optional[Sequence[meta_citation.Identifier]]:
         """
         An identifier which references elsewhere the object's defining
         information; alternatively an identifier by which this object can be
@@ -70,7 +72,7 @@ class IdentifiedObject(ABC):
 
     @property
     @abstractmethod
-    def alias(self) -> Optional[Sequence[GenericName]]:
+    def alias(self) -> Optional[Sequence[naming.GenericName]]:
         """An alternative name by which this object is identified."""
 
     @property

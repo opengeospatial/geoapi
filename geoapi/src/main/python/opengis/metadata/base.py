@@ -22,21 +22,14 @@ acquisition that are derived from theISO 19115-1:2014 and ISO 19115-2:2019
 international standards.
 """
 
-__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from typing import Optional
 
-from opengis.metadata.acquisition import AcquisitionInformation
-from opengis.metadata.citation import (
-    Citation,
-    Date,
-    Identifier,
-    OnlineResource,
-    Responsibility,
-)
+import opengis.metadata.acquisition as meta_acquisition
+import opengis.metadata.citation as meta_citation
 from opengis.metadata.constraints import Constraints
 from opengis.metadata.content import ContentInformation
 from opengis.metadata.distribution import Distribution
@@ -52,12 +45,16 @@ from opengis.metadata.representation import SpatialRepresentation
 from opengis.referencing.crs import ReferenceSystem
 
 
+__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+
+
 class PortrayalCatalogueReference(ABC):
     """Information identifying the portrayal catalogue used."""
 
     @property
     @abstractmethod
-    def portrayal_catalogue_citation(self) -> Sequence[Citation]:
+    def portrayal_catalogue_citation(self) -> Sequence[meta_citation.Citation]:
         """Bibliographic reference to the portrayal catalogue cited."""
 
 
@@ -80,7 +77,7 @@ class Metadata(ABC):
 
     @property
     @abstractmethod
-    def metadata_identifier(self) -> Optional[Identifier]:
+    def metadata_identifier(self) -> Optional[meta_citation.Identifier]:
         """Unique identifier for this metadata record."""
 
     @property
@@ -96,7 +93,7 @@ class Metadata(ABC):
 
     @property
     @abstractmethod
-    def parent_metadata(self) -> Optional[Citation]:
+    def parent_metadata(self) -> Optional[meta_citation.Citation]:
         """
         Identification of the parent metadata record.
 
@@ -106,12 +103,12 @@ class Metadata(ABC):
 
     @property
     @abstractmethod
-    def contact(self) -> Sequence[Responsibility]:
+    def contact(self) -> Sequence[meta_citation.Responsibility]:
         """Party responsible for the metadata information."""
 
     @property
     @abstractmethod
-    def date_info(self) -> Sequence[Date]:
+    def date_info(self) -> Sequence[meta_citation.Date]:
         """
         Date(s) associated with the metadata.
 
@@ -120,7 +117,7 @@ class Metadata(ABC):
 
     @property
     @abstractmethod
-    def metadata_standard(self) -> Optional[Sequence[Citation]]:
+    def metadata_standard(self) -> Optional[Sequence[meta_citation.Citation]]:
         """
         Citation for the standards to which the metadata conforms.
 
@@ -129,7 +126,7 @@ class Metadata(ABC):
 
     @property
     @abstractmethod
-    def metadata_profile(self) -> Optional[Sequence[Citation]]:
+    def metadata_profile(self) -> Optional[Sequence[meta_citation.Citation]]:
         """
         Citation(s) for the profile(s) of the metadata standard to which the
         metadata conform.
@@ -139,7 +136,8 @@ class Metadata(ABC):
 
     @property
     @abstractmethod
-    def alternative_metadata_reference(self) -> Optional[Sequence[Citation]]:
+    def alternative_metadata_reference(self) -> \
+            Optional[Sequence[meta_citation.Citation]]:
         """
         Reference to alternative metadata,e.g., Dublin Core, FGDC, or metadata
         in a non-ISO standard for the same resource.
@@ -155,7 +153,8 @@ class Metadata(ABC):
 
     @property
     @abstractmethod
-    def metadata_linkage(self) -> Optional[Sequence[OnlineResource]]:
+    def metadata_linkage(self) -> \
+            Optional[Sequence[meta_citation.OnlineResource]]:
         """Online location where the metadata is available."""
 
     @property
@@ -268,6 +267,6 @@ class Metadata(ABC):
     @property
     @abstractmethod
     def acquisition_information(self) -> Optional[
-        Sequence[AcquisitionInformation]
+        Sequence[meta_acquisition.AcquisitionInformation]
     ]:
         """Information about the acquisition of the data."""

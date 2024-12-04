@@ -22,9 +22,7 @@ acquisition that are derived from the ISO 19115-2:2019 international
 standard.
 """
 
-__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
-
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
@@ -32,12 +30,16 @@ from datetime import date, datetime
 from enum import Enum
 from typing import Optional
 
-from opengis.metadata.citation import Citation, Identifier, Responsibility
-from opengis.metadata.constraints import Constraints
-from opengis.metadata.extent import Extent
-from opengis.metadata.identification import ProgressCode
-from opengis.metadata.maintenance import Scope
-from opengis.metadata.naming import Record, RecordType
+import opengis.metadata.citation as meta_citation
+import opengis.metadata.constraints as meta_constraints
+import opengis.metadata.extent as meta_extent
+import opengis.metadata.identification as meta_identification
+import opengis.metadata.maintenance as meta_maintenance
+import opengis.metadata.naming as meta_naming
+
+
+__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class ContextCode(Enum):
@@ -204,7 +206,7 @@ class Revision(ABC):
 
     @property
     @abstractmethod
-    def responsible_party(self) -> Sequence[Responsibility]:
+    def responsible_party(self) -> Sequence[meta_citation.Responsibility]:
         """Individual or organisation responsible for the revision."""
 
     @property
@@ -218,7 +220,7 @@ class InstrumentEvent(ABC):
 
     @property
     @abstractmethod
-    def citation(self) -> Optional[Sequence[Citation]]:
+    def citation(self) -> Optional[Sequence[meta_citation.Citation]]:
         """Citation to the `InstrumentEvent`."""
 
     @property
@@ -228,7 +230,7 @@ class InstrumentEvent(ABC):
 
     @property
     @abstractmethod
-    def extent(self) -> Optional[Sequence[Extent]]:
+    def extent(self) -> Optional[Sequence[meta_extent.Extent]]:
         """Extent of the `InstrumentEvent`."""
 
     @property
@@ -247,7 +249,7 @@ class InstrumentEventList(ABC):
 
     @property
     @abstractmethod
-    def citation(self) -> Optional[Sequence[Citation]]:
+    def citation(self) -> Optional[Sequence[meta_citation.Citation]]:
         """Citation to the `InstrumentEventList`."""
 
     @property
@@ -268,7 +270,7 @@ class InstrumentEventList(ABC):
 
     @property
     @abstractmethod
-    def constraints(self) -> Optional[Sequence[Constraints]]:
+    def constraints(self) -> Optional[Sequence[meta_constraints.Constraints]]:
         """Use and access constraints."""
 
     @property
@@ -282,12 +284,12 @@ class Instrument(ABC):
 
     @property
     @abstractmethod
-    def citation(self) -> Optional[Sequence[Citation]]:
+    def citation(self) -> Optional[Sequence[meta_citation.Citation]]:
         """Complete citation of the instrument."""
 
     @property
     @abstractmethod
-    def identifier(self) -> Identifier:
+    def identifier(self) -> meta_citation.Identifier:
         """Unique identification of the instrument."""
 
     @property
@@ -333,12 +335,12 @@ class Platform(ABC):
 
     @property
     @abstractmethod
-    def citation(self) -> Optional[Citation]:
+    def citation(self) -> Optional[meta_citation.Citation]:
         """Complete citation of the platform."""
 
     @property
     @abstractmethod
-    def identifier(self) -> Identifier:
+    def identifier(self) -> meta_citation.Identifier:
         """Unique identification of the platform."""
 
     @property
@@ -348,7 +350,7 @@ class Platform(ABC):
 
     @property
     @abstractmethod
-    def sponsor(self) -> Optional[Sequence[Responsibility]]:
+    def sponsor(self) -> Optional[Sequence[meta_citation.Responsibility]]:
         """
         Organisation responsible for building, launch, or operation of the
         platform.
@@ -356,12 +358,12 @@ class Platform(ABC):
 
     @property
     @abstractmethod
-    def other_property(self) -> Optional[Record]:
+    def other_property(self) -> Optional[meta_naming.Record]:
         """Instance of other property type not included in `Sensor`."""
 
     @property
     @abstractmethod
-    def other_property_type(self) -> Optional[RecordType]:
+    def other_property_type(self) -> Optional[meta_naming.RecordType]:
         """Type of other property description."""
 
     @property
@@ -383,12 +385,12 @@ class PlatformPass(ABC):
 
     @property
     @abstractmethod
-    def identifier(self) -> Identifier:
+    def identifier(self) -> meta_citation.Identifier:
         """Unique name of the pass."""
 
     @property
     @abstractmethod
-    def extent(self) -> Optional[Extent]:
+    def extent(self) -> Optional[meta_extent.Extent]:
         """Temporal and spatial extent of the pass."""
 
     @property
@@ -405,7 +407,7 @@ class Event(ABC):
 
     @property
     @abstractmethod
-    def identifier(self) -> Identifier:
+    def identifier(self) -> meta_citation.Identifier:
         """Event name or number."""
 
     @property
@@ -506,7 +508,7 @@ class Objective(ABC):
 
     @property
     @abstractmethod
-    def identifier(self) -> Sequence[Identifier]:
+    def identifier(self) -> Sequence[meta_citation.Identifier]:
         """Registered code used to identify the objective."""
 
     @property
@@ -526,7 +528,7 @@ class Objective(ABC):
 
     @property
     @abstractmethod
-    def extent(self) -> Optional[Sequence[Extent]]:
+    def extent(self) -> Optional[Sequence[meta_extent.Extent]]:
         """
         Extent information including the bounding box, bounding polygon,
         vertical and temporal extent of the objective.
@@ -561,17 +563,17 @@ class Operation(ABC):
 
     @property
     @abstractmethod
-    def citation(self) -> Optional[Citation]:
+    def citation(self) -> Optional[meta_citation.Citation]:
         """Identification of the mission."""
 
     @property
     @abstractmethod
-    def identifier(self) -> Optional[Identifier]:
+    def identifier(self) -> Optional[meta_citation.Identifier]:
         """Unique identification of the operation."""
 
     @property
     @abstractmethod
-    def status(self) -> ProgressCode:
+    def status(self) -> meta_identification.ProgressCode:
         """Status of the data acquisition."""
 
     @property
@@ -581,12 +583,12 @@ class Operation(ABC):
 
     @property
     @abstractmethod
-    def other_property(self) -> Optional[Record]:
+    def other_property(self) -> Optional[meta_naming.Record]:
         """Instance of other property type not included in `Sensor`."""
 
     @property
     @abstractmethod
-    def other_property_type(self) -> Optional[RecordType]:
+    def other_property_type(self) -> Optional[meta_naming.RecordType]:
         """Type of other property description."""
 
     @property
@@ -639,24 +641,24 @@ class Requirement(ABC):
 
     @property
     @abstractmethod
-    def citation(self) -> Optional[Citation]:
+    def citation(self) -> Optional[meta_citation.Citation]:
         """
         Identification of reference or guidance material for the requirement.
         """
 
     @property
     @abstractmethod
-    def identifier(self) -> Identifier:
+    def identifier(self) -> meta_citation.Identifier:
         """Unique name, or code, for the requirement."""
 
     @property
     @abstractmethod
-    def requestor(self) -> Sequence[Responsibility]:
+    def requestor(self) -> Sequence[meta_citation.Responsibility]:
         """Origin of requirement."""
 
     @property
     @abstractmethod
-    def recipient(self) -> Sequence[Responsibility]:
+    def recipient(self) -> Sequence[meta_citation.Responsibility]:
         """Person(s), or body(ies), to receive results of requirement."""
 
     @property
@@ -695,12 +697,12 @@ class Plan(ABC):
 
     @property
     @abstractmethod
-    def status(self) -> ProgressCode:
+    def status(self) -> meta_identification.ProgressCode:
         """Current status of the plan (pending, completed, etc.)."""
 
     @property
     @abstractmethod
-    def citation(self) -> Citation:
+    def citation(self) -> meta_citation.Citation:
         """Identification of authority requesting target collection."""
 
     @property
@@ -722,7 +724,7 @@ class AcquisitionInformation(ABC):
 
     @property
     @abstractmethod
-    def scope(self) -> Optional[Sequence[Scope]]:
+    def scope(self) -> Optional[Sequence[meta_maintenance.Scope]]:
         """The specific data to which the acquisition information applies."""
 
     @property

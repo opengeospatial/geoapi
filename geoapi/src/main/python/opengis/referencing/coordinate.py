@@ -21,16 +21,19 @@ This module contains geographic metadata structures derived from the
 Coordinates package in the ISO 19111:2019 international standard.
 """
 
-__author__ = "OGC Topic 2 (for abstract model and documentation), " +\
-    "David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from typing import Optional
 
-from opengis.geometry.primitive import DirectPosition
-from opengis.referencing.crs import CoordinateReferenceSystem
-from opengis.util.measure import Measure
+import opengis.geometry.primitive as primitive
+import opengis.referencing.crs as crs
+import opengis.util.measure as measure
+
+
+__author__ = "OGC Topic 2 (for abstract model and documentation), " +\
+    "David Meaux (Geomatys)"
 
 
 class DataEpoch(ABC):
@@ -40,7 +43,7 @@ class DataEpoch(ABC):
 
     @property
     @abstractmethod
-    def coordinate_epoch(self) -> Measure:
+    def coordinate_epoch(self) -> measure.Measure:
         """
         The date at which coordinates are referenced to a dynamic coordinate
         reference system, expressed as a decimal year in the Gregorian
@@ -60,7 +63,7 @@ class CoordinateSet(ABC):
 
     @property
     @abstractmethod
-    def coordinate_tuple(self) -> Sequence[DirectPosition]:
+    def coordinate_tuple(self) -> Sequence[primitive.DirectPosition]:
         """Position described by a coordinate tuple."""
 
 
@@ -71,7 +74,7 @@ class CoordinateMetadata(ABC):
 
     @property
     @abstractmethod
-    def coordinate_referencea_system(self) -> CoordinateReferenceSystem:
+    def coordinate_referencea_system(self) -> crs.CoordinateReferenceSystem:
         """
         Identifier of the coordinate reference system to which a coordinate
         set is referenced.

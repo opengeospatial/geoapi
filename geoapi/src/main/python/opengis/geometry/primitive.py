@@ -21,17 +21,20 @@ This module contains primitive geometry data structures derived from
 the ISO 19107 international standard.
 """
 
-__author__ = "OGC Topic 1 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from enum import Enum
 from typing import Optional
 
-from opengis.referencing.crs import CoordinateReferenceSystem
-from opengis.referencing.cs import CoordinateSystem
-from opengis.util.measure import Angle, Length
+import opengis.referencing.crs as crs
+import opengis.referencing.cs as cs
+import opengis.util.measure as measure
+
+
+__author__ = "OGC Topic 1 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class CurveRelativeDirection(Enum):
@@ -120,7 +123,7 @@ class DirectPosition(ABC):
 
     @property
     @abstractmethod
-    def coordinate_reference_system(self) -> 'CoordinateReferenceSystem':
+    def coordinate_reference_system(self) -> crs.CoordinateReferenceSystem:
         """
         The coordinate reference system in which the coordinate tuple is given.
         """
@@ -229,7 +232,7 @@ class Bearing(ABC):
 
     @property
     @abstractmethod
-    def angle(self) -> Sequence['Angle']:
+    def angle(self) -> Sequence[measure.Angle]:
         """
         In this variant of Bearing, generally used for 2D coordinate systems,
         the first angle (azimuth) is measured from a coordinate axis (usually
@@ -297,7 +300,7 @@ class Vector(ABC):
                  position: DirectPosition,
                  coordinates: float | None = None,
                  direction: Bearing | None = None,
-                 length: 'Length | None' = None,
+                 length: measure.Length | None = None,
                  ) -> None:
         """
         The constructor vector creates a vector with the given offsets or
@@ -346,7 +349,7 @@ class Vector(ABC):
 
     @property
     @abstractmethod
-    def coordinate_system(self) -> 'CoordinateSystem':
+    def coordinate_system(self) -> cs.CoordinateSystem:
         """
         The `coordinate_system` attribute is the origin system and, therefore,
         determines the coordinates of the local tangent space in which the
@@ -447,7 +450,7 @@ class Geometry(TransfiniteSetOfDirectPositions):
 
     @property
     @abstractmethod
-    def coordinate_reference_system(self) -> 'CoordinateReferenceSystem':
+    def coordinate_reference_system(self) -> crs.CoordinateReferenceSystem:
         """
         The coordinate reference system in which the coordinate geometry
         is given.

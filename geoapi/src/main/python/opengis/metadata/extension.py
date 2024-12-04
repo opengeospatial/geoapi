@@ -21,15 +21,18 @@ This module contains geographic metadata structures for metadata elements that
 are not contained in the ISO 19115-1:2014 international standard.
 """
 
-__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
-    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
+from __future__ import annotations
 
 from abc import ABC, abstractmethod
 from collections.abc import Sequence
 from enum import Enum
 from typing import Optional
 
-from opengis.metadata.citation import Citation, OnlineResource, Responsibility
+import opengis.metadata.citation as meta_citation
+
+
+__author__ = "OGC Topic 11 (for abstract model and documentation), " +\
+    "Martin Desruisseaux (Geomatys), David Meaux (Geomatys)"
 
 
 class DatatypeCode(Enum):
@@ -132,7 +135,7 @@ class ApplicationSchemaInformation(ABC):
 
     @property
     @abstractmethod
-    def name(self) -> Citation:
+    def name(self) -> meta_citation.Citation:
         """Name of the application schema used."""
 
     @property
@@ -152,12 +155,13 @@ class ApplicationSchemaInformation(ABC):
 
     @property
     @abstractmethod
-    def graphics_file(self) -> Optional[OnlineResource]:
+    def graphics_file(self) -> Optional[meta_citation.OnlineResource]:
         """Full application schema given as a graphics file."""
 
     @property
     @abstractmethod
-    def software_development_file(self) -> Optional[OnlineResource]:
+    def software_development_file(self) -> \
+            Optional[meta_citation.OnlineResource]:
         """Full application schema given as a software development file."""
 
     @property
@@ -182,7 +186,7 @@ class ExtendedElementInformation(ABC):
         Name of the extended metadata element.
 
         MANDATORY:
-        
+
         if `data_type` != CODE_LIST and `datatype` != ENUMERATION
             and `data_type` != CODE_LIST_ELEMENT.
         """
@@ -267,7 +271,7 @@ class ExtendedElementInformation(ABC):
 
     @property
     @abstractmethod
-    def source(self) -> Sequence[Responsibility]:
+    def source(self) -> Sequence[meta_citation.Responsibility]:
         """Name of the person or organisation creating the extended element."""
 
     @property
@@ -297,7 +301,8 @@ class MetadataExtensionInformation(ABC):
 
     @property
     @abstractmethod
-    def extension_on_line_resource(self) -> Optional[OnlineResource]:
+    def extension_on_line_resource(self) -> \
+            Optional[meta_citation.OnlineResource]:
         """
         Information about on-line sources containing the community profile
         name and the extended metadata elements and information for all new
