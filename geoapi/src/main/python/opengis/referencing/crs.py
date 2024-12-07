@@ -245,7 +245,7 @@ class ReferenceSystemTypeCode(Enum):
         [geocentric] X, Y, Z
     """
 
-    GEODETIC_GEOGRAPHIC_2D = "geodeticGeographic2D"
+    GEODETIC_GEOGRAPHIC2D = "geodeticGeographic2D"
     """
     Geodetic coordinate reference system having an ellipsoidal 2D coordinate
     system.
@@ -254,7 +254,7 @@ class ReferenceSystemTypeCode(Enum):
         latitude, longitude
     """
 
-    GEODETIC_GEOGRAPHIC_3D = "geodeticGeographic3D"
+    GEODETIC_GEOGRAPHIC3D = "geodeticGeographic3D"
     """
     Geodetic coordinate reference system having an ellipsoidal 3D coordinate
     system.
