@@ -36,15 +36,22 @@ The metadata interfaces merged in such a way are:
 ===== Harmonization with ISO 19111
 Coordinate Reference Systems (CRS) are defined in detail by the <<ISO19111>> standard.
 But the ISO 19115 metadata standards do not reference the CRS interfaces directly (except `VerticalCRS`).
-Instead, the metadata standards reference CRS by their identifier (for example, an EPSG code),
-optionally accompanied by a code telling whether the CRS type is geographic, projected, temporal, a compound of the above, a geographic identifier, _etc_.
-The ISO 19115 standard combines these two information items in a `Reference­System` interface.
+Instead, the metadata standards reference the CRS indirectly via a `MD_Reference­System` interface which contains the following properties.
+At least one of the two first properties must be specified:
+
+* `reference­System­Identifier` as, for example, an EPSG code.
+* `crs` as an association to the full ISO 19111 CRS object.
+* `coordinate­Epoch` as a mandatory property if the CRS is dynamic.
+* `reference­System­Type` as an optional code telling whether the CRS type is geographic,
+   projected, temporal, a compound of the above, a geographic identifier, _etc_.
 
 In order to have a more uniform way to handle reference systems,
-GeoAPI replaces (_identifier_, _type code_) tuples by associations to the actual _Reference System_ objects.
+GeoAPI replaces the above (_identifier_, _crs_, _epoch_, _type_) tuple by a direct association to an ISO 19111 object.
 The ISO 19115 `Reference­System` type is redefined as a subtype of ISO 19111 `Identified­Object` (<<reference_system_UML>>).
+This type hierarchy replaces the `crs` property.
 The `reference­System­Identifier` property defined by ISO 19115 is replaced by inheritance of `identifier` property from `Identified­Object`.
-The `reference­System­Type` property value (geographic, projected, compound, geographic identifier, _etc._)
-can be determined using language-specific instructions such as `instanceof` in Java.
+The `reference­System­Type` property (geographic, projected, compound, geographic identifier, _etc._) is available in the GeoAPI interface,
+with a default implementation that determines the value using language-specific instructions such as `instanceof` in Java.
+The `coordinate­Epoch` property is currently not defined, but can easily be fetched from the datum.
 
 In the same spirit as above replacement, `verticalCRSId` is omitted because it is redundant with the existence of `verticalCRS`.
