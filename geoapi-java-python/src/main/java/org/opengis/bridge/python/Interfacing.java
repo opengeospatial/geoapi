@@ -170,7 +170,7 @@ public abstract class Interfacing extends CodeList<Interfacing> {
     }
 
     /**
-     * Returns the interfacing code that matches the given string.
+     * Returns the interfacing code that matches the given name, or returns a new value if there is no match.
      * More specifically, this methods returns the first instance for which
      * <code>{@linkplain #name() name()}.{@linkplain String#equals equals}(code)</code> returns {@code true}.
      * If no existing instance is found, then an exception is thrown.
