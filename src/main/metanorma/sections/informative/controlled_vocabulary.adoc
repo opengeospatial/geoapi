@@ -1,6 +1,6 @@
 [[controlled_vocabulary]]
 ==== Controlled vocabulary
-_From <<ISO19103>> §6.5_
+_From <<ISO19103>> §7.2.4 and §7.8_
 
 A controlled vocabulary is an established list of standardized terminology
 (names, words or phrases) with associated definitions for use to identify,
@@ -19,21 +19,19 @@ For the open case, GeoAPI defines the `Code­List` abstract class in Java.
 .Enumerated types mapping
 [options="header"]
 |===========================================================
-|ISO 19103 type |Java type                   |Python type
-|CodeList       |`org.opengis.util.CodeList` |`Enum`  ^(1)^
-|Enumeration    |`java.lang.Enum`            |`Enum`
-|`Bit`          |unimplemented               |unimplemented
-|`Digit`        |unimplemented               |unimplemented
-|`Sign`         |unimplemented               |unimplemented
+|ISO 19103 type   |Java type                   |Python type
+|`CodeList` ^(1)^ |`org.opengis.util.CodeList` |`Enum` ^(2)^
+|`GI_Enumeration` |`java.lang.Enum`            |`Enum`
 |===========================================================
 
 Notes:
 
-- (1) GeoAPI does not yet provide an extensible implementation of code list in the Python language,
+- (1) `CodeList` has been deprecated in ISO 19103:2024, replaced by `CodeSet`.
+  GeoAPI has no equivalent structure yet.
+- (2) GeoAPI does not yet provide an extensible implementation of code list in the Python language,
   but this limitation may be addressed in a future version.
 
 Code lists can be extended by calls to `valueOf(String)` methods in the Java language.
-Extensions should follow ISO 19103 recommendation:
 Extensions of a code list use the existing code list values and merely add additional unique values.
 These additional values should not replace an existing code by changing the name or definition,
 or have the same definition as an existing value.

@@ -12,7 +12,7 @@
 
 * [[[ISO19101-2,ISO 19101-2:2018]]], _Geographic information — Reference model — Part 2: Imagery_
 
-* [[[ISO19103,ISO 19103:2015]]], _Geographic information — Conceptual schema language_
+* [[[ISO19103,ISO 19103:2024]]], _Geographic information — Conceptual schema language_
 
 * [[[ISO19107,ISO 19107:2003]]], _Geographic information — Spatial schema_
 
