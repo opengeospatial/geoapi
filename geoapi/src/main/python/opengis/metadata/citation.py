@@ -568,7 +568,7 @@ class Party(ABC):
 
     @property
     @abstractmethod
-    def contact_info(self) -> Sequence[Contact]:
+    def contact_info(self) -> Optional[Sequence[Contact]]:
         """Contact information for the party."""
 
     @property
