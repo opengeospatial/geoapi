@@ -406,7 +406,9 @@ class SampleDimension(RangeDimension):
 
     @property
     @abstractmethod
-    def range_element_description(self) -> Sequence[RangeElementDescription]:
+    def range_element_description(self) -> Optional[
+            Sequence[RangeElementDescription]
+            ]:
         """
         Provides the description and values of the specific range elements of
         a sample dimension.
