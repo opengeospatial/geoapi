@@ -468,11 +468,11 @@ public interface FilterFactory<R,G,T> extends Factory {
      */
     LogicalOperator<R> not(Filter<R> operand);
 
-////////////////////////////////////////////////////////////////////////////////
-//
-//  SPATIAL FILTERS
-//
-////////////////////////////////////////////////////////////////////////////////
+    //  ╔═════════════════════════════════════════════════════════════╗
+    //  ║                                                             ║
+    //  ║                       SPATIAL FILTERS                       ║
+    //  ║                                                             ║
+    //  ╚═════════════════════════════════════════════════════════════╝
 
     /**
      * Creates an operator that checks if the bounding box of the feature's geometry interacts
@@ -618,11 +618,11 @@ public interface FilterFactory<R,G,T> extends Factory {
                                Expression<R, ? extends G> geometry2,
                                Quantity<Length> distance);
 
-////////////////////////////////////////////////////////////////////////////////
-//
-//  TEMPORAL FILTERS
-//
-////////////////////////////////////////////////////////////////////////////////
+    //  ╔═════════════════════════════════════════════════════════════╗
+    //  ║                                                             ║
+    //  ║                       TEMPORAL FILTERS                      ║
+    //  ║                                                             ║
+    //  ╚═════════════════════════════════════════════════════════════╝
 
     /**
      * Creates an operator that checks if first temporal operand is after the second.
@@ -793,11 +793,11 @@ public interface FilterFactory<R,G,T> extends Factory {
     TemporalOperator<R> anyInteracts(Expression<R, ? extends T> time1,
                                      Expression<R, ? extends T> time2);
 
-////////////////////////////////////////////////////////////////////////////////
-//
-//  MISCELLANEOUS
-//
-////////////////////////////////////////////////////////////////////////////////
+    //  ╔═════════════════════════════════════════════════════════════╗
+    //  ║                                                             ║
+    //  ║                        MISCELLANEOUS                        ║
+    //  ║                                                             ║
+    //  ╚═════════════════════════════════════════════════════════════╝
 
     /**
      * Creates a function computing the numeric addition of the first and second operand.
