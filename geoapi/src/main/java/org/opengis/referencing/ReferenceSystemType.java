@@ -24,9 +24,13 @@ import java.util.function.Predicate;
 import java.io.Serializable;
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
+import org.opengis.referencing.cs.AffineCS;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.cs.EllipsoidalCS;
+import org.opengis.referencing.cs.LinearCS;
+import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.crs.CompoundCRS;
 import org.opengis.referencing.crs.CoordinateReferenceSystem;
 import org.opengis.referencing.crs.EngineeringCRS;
@@ -367,12 +371,12 @@ public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
 
         ENGINEERING           = new ReferenceSystemType("ENGINEERING", engineering);
         ENGINEERING_DESIGN    = new ReferenceSystemType("ENGINEERING_DESIGN");
-        ENGINEERING_IMAGE     = new ReferenceSystemType("ENGINEERING_IMAGE");
+        ENGINEERING_IMAGE     = new ReferenceSystemType("ENGINEERING_IMAGE", new Image());
         GEODETIC_GEOCENTRIC   = new ReferenceSystemType("GEODETIC_GEOCENTRIC", new SingleWithCS(GeodeticCRS.class, CartesianCS.class, 3));
         GEODETIC_GEOGRAPHIC2D = new ReferenceSystemType("GEODETIC_GEOGRAPHIC2D", geographic2D);
         GEODETIC_GEOGRAPHIC3D = new ReferenceSystemType("GEODETIC_GEOGRAPHIC3D", geographic3D);
         GEOGRAPHIC_IDENTIFIER = new ReferenceSystemType("GEOGRAPHIC_IDENTIFIER");   // TODO: ISO 19112
-        LINEAR                = new ReferenceSystemType("LINEAR");
+        LINEAR                = new ReferenceSystemType("LINEAR", new SingleWithCS(EngineeringCRS.class, LinearCS.class, 0));
         PARAMETRIC            = new ReferenceSystemType("PARAMETRIC", parametric);
         PROJECTED             = new ReferenceSystemType("PROJECTED",  projected);
         TEMPORAL              = new ReferenceSystemType("TEMPORAL",   temporal);
@@ -454,6 +458,34 @@ public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
         /** Defined for consistency with {@code equals(…)} but not used. */
         @Override public int hashCode() {
             return super.hashCode() ^ csType.hashCode() ^ dimension;
+        }
+    }
+
+    /**
+     * A test of whether an object is an engineering <abbr>CRS</abbr> associated to image axes.
+     */
+    private static final class Image extends Single {
+        private static final long serialVersionUID = 2379191974806332895L;
+
+        Image() {
+            super(EngineeringCRS.class);
+        }
+
+        /** Tests whether the given object has the expected characteristics for the {@code ReferenceSystemType}. */
+        @Override public boolean test(final Object candidate) {
+            if (super.test(candidate)) {
+                // Following cast is safe because of the check done in `super.test(…)`.
+                CoordinateSystem cs = ((CoordinateReferenceSystem) candidate).getCoordinateSystem();
+                return (cs.getDimension() == 2) && (cs instanceof AffineCS)
+                        && isForImage(cs.getAxis(0)) && isForImage(cs.getAxis(1));
+            }
+            return false;
+        }
+
+        /** Tests whether the given axis has a column, row or display orientation. */
+        private static boolean isForImage(CoordinateSystemAxis axis) {
+            final int ordinal = axis.getDirection().ordinal();
+            return (ordinal >= AxisDirection.COLUMN_POSITIVE.ordinal()) && (ordinal <= AxisDirection.DISPLAY_DOWN.ordinal());
         }
     }
 

@@ -23,8 +23,10 @@ import java.util.LinkedHashSet;
 import java.lang.reflect.Method;
 import java.lang.reflect.Proxy;
 import java.lang.reflect.InvocationHandler;
+import org.opengis.referencing.cs.AxisDirection;
 import org.opengis.referencing.cs.CartesianCS;
 import org.opengis.referencing.cs.CoordinateSystem;
+import org.opengis.referencing.cs.CoordinateSystemAxis;
 import org.opengis.referencing.cs.EllipsoidalCS;
 import org.opengis.referencing.cs.ParametricCS;
 import org.opengis.referencing.cs.TimeCS;
@@ -84,8 +86,8 @@ public final class ReferenceSystemTypeTest implements InvocationHandler {
         assertEquals("MyCustomCompound", compound.name());
 
         RuntimeException e;
-        e = assertThrows(IllegalStateException.class, () -> base.compound("Dummy", ReferenceSystemType.ENGINEERING_IMAGE));
-        assertEquals("ENGINEERING_IMAGE", e.getMessage());
+        e = assertThrows(IllegalStateException.class, () -> base.compound("Dummy", ReferenceSystemType.ENGINEERING_DESIGN));
+        assertEquals("ENGINEERING_DESIGN", e.getMessage());
 
         e = assertThrows(IllegalArgumentException.class, () -> base.compound("MyCustomCompound", ReferenceSystemType.VERTICAL));
         assertTrue(e.getMessage().contains("MyCustomCompound"));
@@ -165,7 +167,10 @@ public final class ReferenceSystemTypeTest implements InvocationHandler {
      * @return a mock implementing the two given interface.
      */
     private ReferenceSystem createMock(Class<? extends CoordinateReferenceSystem> crs, Class<? extends CoordinateSystem> cs) {
-        return (ReferenceSystem) Proxy.newProxyInstance(ReferenceSystem.class.getClassLoader(), new Class<?>[] {crs, cs}, this);
+        return (ReferenceSystem) Proxy.newProxyInstance(
+                ReferenceSystem.class.getClassLoader(),
+                new Class<?>[] {crs, cs, CoordinateSystemAxis.class},
+                this);
     }
 
     /**
@@ -190,9 +195,11 @@ public final class ReferenceSystemTypeTest implements InvocationHandler {
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) {
         switch (method.getName()) {
+            case "getSingleComponents": return List.of(components);
             case "getCoordinateSystem": return proxy;
             case "getDimension":        return dimension;
-            case "getSingleComponents": return List.of(components);
+            case "getAxis":             return proxy;
+            case "getDirection":        return AxisDirection.UNSPECIFIED;
             default: throw new UnsupportedOperationException("Unexpected method call: " + method);
         }
     }

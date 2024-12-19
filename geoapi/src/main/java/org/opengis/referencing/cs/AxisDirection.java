@@ -230,6 +230,11 @@ public final class AxisDirection extends CodeList<AxisDirection> {
     @UML(identifier="geocentricZ", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection GEOCENTRIC_Z = new AxisDirection("GEOCENTRIC_Z");
 
+    //  ┌───────────────────────────────────────────────────────────────────────────┐
+    //  │ MAINTENANCE NOTE: `ReferenceSystemType.Image` assumes that all code list  │
+    //  │ values from `COLUMN_POSITIVE` to `DISPLAY_DOWN` inclusive are for images. │
+    //  └───────────────────────────────────────────────────────────────────────────┘
+
     /**
      * Axis positive direction is towards higher pixel column.
      *
