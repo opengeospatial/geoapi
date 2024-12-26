@@ -42,6 +42,7 @@ import org.opengis.referencing.crs.TemporalCRS;
 import org.opengis.referencing.crs.VerticalCRS;
 import org.junit.jupiter.api.Test;
 
+import static org.opengis.geoapi.CodeListTest.IGNORABLE_NAME_SUFFIX;
 import static org.junit.jupiter.api.Assertions.*;
 
 
@@ -81,16 +82,17 @@ public final class ReferenceSystemTypeTest implements InvocationHandler {
                 "COMPOUND_ENGINEERING_TEMPORAL", ReferenceSystemType.TEMPORAL);
         assertSame(ReferenceSystemType.COMPOUND_ENGINEERING_TEMPORAL, base);
 
-        final ReferenceSystemType compound = base.compound("MyCustomCompound", ReferenceSystemType.PARAMETRIC);
-        assertSame(compound, base.compound("MyCustomCompound", ReferenceSystemType.PARAMETRIC));
-        assertEquals("MyCustomCompound", compound.name());
+        final String name = "Compound" + IGNORABLE_NAME_SUFFIX;
+        final ReferenceSystemType compound = base.compound(name, ReferenceSystemType.PARAMETRIC);
+        assertSame(compound, base.compound(name, ReferenceSystemType.PARAMETRIC));
+        assertEquals(name, compound.name());
 
         RuntimeException e;
         e = assertThrows(IllegalStateException.class, () -> base.compound("Dummy", ReferenceSystemType.ENGINEERING_DESIGN));
         assertEquals("ENGINEERING_DESIGN", e.getMessage());
 
-        e = assertThrows(IllegalArgumentException.class, () -> base.compound("MyCustomCompound", ReferenceSystemType.VERTICAL));
-        assertTrue(e.getMessage().contains("MyCustomCompound"));
+        e = assertThrows(IllegalArgumentException.class, () -> base.compound(name, ReferenceSystemType.VERTICAL));
+        assertTrue(e.getMessage().contains(name));
     }
 
     /**
