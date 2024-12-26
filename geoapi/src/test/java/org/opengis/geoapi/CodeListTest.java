@@ -42,6 +42,13 @@ import static org.junit.jupiter.api.Assertions.*;
  */
 public final class CodeListTest {
     /**
+     * Suffix of code list values created by other tests.
+     * Those values need to be ignored by {@code CodeListTest}.
+     * We use the {@value} prefix in their name for identifying them.
+     */
+    public static final String IGNORABLE_NAME_SUFFIX = "Test";
+
+    /**
      * Creates a new test case.
      */
     public CodeListTest() {
@@ -72,6 +79,7 @@ public final class CodeListTest {
             assertTrue(Modifier.isStatic(valuesMethod.getModifiers()), () -> className + ".values() is not static.");
             final ControlledVocabulary[] values = (ControlledVocabulary[]) valuesMethod.invoke(null, (Object[]) null);
             assertNotNull(values, () -> className + ".values() returned null.");
+            int ignored = 0;
             /*
              * Tests every CodeList instances returned by values().
              * Every field should be public, static and final.
@@ -81,6 +89,10 @@ public final class CodeListTest {
                 final String valueName = value.name();
                 final String fullName  = className + '.' + valueName;
                 assertTrue(codeClass.isInstance(value), () -> fullName + " is of unexpected type.");
+                if (valueName.endsWith(IGNORABLE_NAME_SUFFIX)) {
+                    ignored++;
+                    continue;       // Skip values created in other tests.
+                }
                 final Field field = codeClass.getDeclaredField(valueName);
                 final int modifiers = field.getModifiers();
                 if (field.isAnnotationPresent(UML.class)) {
@@ -107,7 +119,7 @@ public final class CodeListTest {
             if (CodeList.class.isAssignableFrom(codeClass)) {
                 final Vocabulary desc = codeClass.getAnnotation(Vocabulary.class);
                 assertNotNull(desc, () -> className + " has no @Vocabulary annotation.");
-                assertEquals(values.length, desc.capacity(), () -> className + " is not properly sized.");
+                assertEquals(values.length - ignored, desc.capacity(), () -> className + " is not properly sized.");
                 /*
                  * Tests valueOf(String).
                  */

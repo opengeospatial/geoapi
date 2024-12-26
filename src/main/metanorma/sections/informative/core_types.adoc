@@ -3,8 +3,7 @@
 
 The ISO 19103 specification (_Geographic Information – Conceptual schema language_) defines types
 which are used as building blocks by the other standards in the 19100 series.
-<<ISO19103>> defines Primitive types (§7.2 of that standard), Collection types (§7.3), Enumerated types (§7.4),
-Name types (§7.5), Record types (§7.7) and Unit of Measure types (§C.4).
+<<ISO19103>> defines code data types such as real numbers, dates and times.
 GeoAPI maps these types either to existing types from the {supported-languages} standard libraries or, when needed,
 to types defined in the `opengis​.util` package.
 That utility package is used by GeoAPI for types defined in the ISO 19103 specification
@@ -17,7 +16,7 @@ since they have not yet appeared in any other specification for which GeoAPI def
 Such types are listed as "unimplemented" in the tables below.
 
 
-include::primitives.adoc[]
+include::common_types.adoc[]
 
 include::datetime.adoc[]
 
@@ -28,8 +27,6 @@ include::controlled_vocabulary.adoc[]
 include::generic_name.adoc[]
 
 include::records.adoc[]
-
-include::web_types.adoc[]
 
 include::internationalization.adoc[]
 

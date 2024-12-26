@@ -1,6 +1,6 @@
 [[datetime]]
 ==== Date and time
-_From <<ISO19103>> §7.2.2 to 7.2.4_
+_From <<ISO19103>> §8.2_
 
 The ISO 19103 `Date` interface gives values for year, month and day
 while the `Time` interface gives values for hour, minute and second.
@@ -14,13 +14,18 @@ The timezone information is often desired for geospatial data
 (for example, in the acquisition time of a remote sensing image),
 but may be undesired for some other cases like office opening hours
 (for example, if they apply to all offices spanning the multiple timezones of a country).
-GeoAPI generally uses a more flexible type than the one mandated by ISO specifications
+
+`PositionInTime` is the parent interface of all other ISO 19103 interfaces listed in the table below.
+GeoAPI generally uses that parent interface instead of more specific types mandated in ISO specifications
 for letting developers choose how they want to handle timezones.
 
 .Date and time types suggested mapping
 [options="header"]
 |==================================================================================
-|ISO 19103 interface   |Suggested Java class                  |Python type
+|ISO 19103 interface   |Suggested Java type                   |Python type
+|`PositionInTime`      |`java.time.temporal.Temporal`         |
+|`Year`                |`java.time.Year`          ^(1)^       |
+|`YearMonth`           |`java.time.YearMonth`     ^(1)^       |
 |`Date`                |`java.time.LocalDate`     ^(1)^ ^(2)^ |`datetime.date`
 |`Time`                |`java.time.OffsetTime`    ^(1)^       |`datetime.time`
 |`DateTime`            |`java.time.ZonedDateTime` ^(1)^ ^(2)^ |`datetime.datetime`

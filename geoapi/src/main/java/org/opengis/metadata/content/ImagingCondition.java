@@ -140,7 +140,7 @@ public final class ImagingCondition extends CodeList<ImagingCondition> {
     }
 
     /**
-     * Returns the imaging condition that matches the given string, or returns a new one if none match it.
+     * Returns the imaging condition that matches the given name, or returns a new value if there is no match.
      * This methods returns the first instance (in declaration order) for which the {@linkplain #name() name}
      * is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case}, to the given name.
      * If no existing instance is found, then a new one is created for the given name.

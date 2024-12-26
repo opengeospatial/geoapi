@@ -57,6 +57,7 @@ OGC::  Open Geospatial Consortium
 UML::  Unified Modeling Language
 URI::  Uniform Resource Identifiers
 UTC::  Coordinated Universal Time
+UUID:: Universally Unique Identifier
 WKT::  Well Known Text
 WMS::  Web Map Service
 XML::  Extensible Markup Language

@@ -1,8 +1,8 @@
-[[primitives]]
-==== Primitive types
-_From <<ISO19103>> §7.2.1 and 7.2.5 to 7.2.11_
+[[common_types]]
+==== Common types
+_From <<ISO19103>> §8.2_
 
-Each primitive type of the OGC/ISO specifications maps to zero, one or two object structures in GeoAPI.
+Each core type of the OGC/ISO specifications maps to zero, one or two object structures in GeoAPI.
 Where the mapping can be made directly to a programming language primitive type, such as `int` and `float`,
 the language primitive is preferred. In languages where "primitives" and "wrappers" are distinct,
 wrappers may be used instead of primitives on a case-by-case basis.
@@ -18,11 +18,9 @@ The following table shows the mapping used by GeoAPI to represent the primitive 
 |`Real`                 |`double`                         ^(1)^ |`float`
 |`Decimal` ^(3)^        |`java.math.BigDecimal`                 |`float`
 |`Vector`               |unimplemented                          |unimplemented
-|`Sequence<Character>`  |`java.lang.CharSequence`               |`str`
 |`CharacterString`      |`java.lang.String`               ^(4)^ |`str`
-|`LanguageString` ^(5)^ |`org.opengis.util.InternationalString` |`str`
-|`LanguageCode`   ^(5)^ |`java.util.Locale`                     |
-|`CharacterSetCode`     |`java.nio.charset.Charset`             |
+|`URI`                  |`java.net.URI`                         |
+|`UUID`                 |`java.util.UUID`                       |
 |================================================================================
 
 Notes:
@@ -31,4 +29,3 @@ Notes:
 * (2) Sometimes substituted by `long` or `java​.lang​.Long` where the value may exceed 2³².
 * (3) `Decimal` differs from `Real`, as `Decimal` is exact in base 10 while `Real` may not.
 * (4) Substituted by `org​.opengis​.util​.International­String` where the string representation depends on the locale.
-* (5) Actually an _extension data type_ defined in <<ISO19103>> annex C.2. See _internationalization_ in <<internationalization>>.

@@ -17,7 +17,9 @@
  */
 package org.opengis.referencing;
 
+import java.util.Optional;
 import org.opengis.metadata.extent.Extent;
+import org.opengis.referencing.crs.CompoundCRS;     // For Javadoc.
 import org.opengis.util.InternationalString;
 import org.opengis.geoapi.internal.Legacy;
 import org.opengis.annotation.UML;
@@ -54,14 +56,12 @@ import static org.opengis.annotation.Specification.*;
  * </ul>
  *
  * @departure harmonization
- *    The type defined in ISO 19115 has no relationship with ISO 19111.
- *    GeoAPI redefines this type as a subtype of {@link IdentifiedObject}
+ *    The type defined in ISO 19115:2019 has no relationship with ISO 19111.
+ *    But in the ISO 19115:2003 version, it was the parent of CRS definitions.
+ *    GeoAPI follows that spirit by defining this type as a subtype of {@link IdentifiedObject}
  *    and the common parent for
  *    {@link org.opengis.referencing.crs.CoordinateReferenceSystem} and
  *    {@link org.opengis.referencing.gazetteer.ReferenceSystemUsingIdentifiers}.
- *    This change makes this interface closer to the legacy
- *    ISO 19115:2003 {@code RS_ReferenceSystem} than to
- *    ISO 19115:2015 {@code MD_ReferenceSystem}.
  *
  * @author  ISO 19115 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
@@ -70,7 +70,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
-@UML(identifier="RS_ReferenceSystem", specification=ISO_19115, version=2003)
+@UML(identifier="MD_ReferenceSystem", specification=ISO_19115)
 public interface ReferenceSystem extends IdentifiedObject {
     /**
      * Key for the <code>{@value}</code> property to be given to the
@@ -121,5 +121,26 @@ public interface ReferenceSystem extends IdentifiedObject {
     @UML(identifier="SC_CRS.scope", obligation=OPTIONAL, specification=ISO_19111, version=2007)
     default InternationalString getScope() {
         return Legacy.getScope(getDomains());
+    }
+
+    /**
+     * Returns the type of this reference system.
+     * The return value depends on the subtype of this {@code ReferenceSystem}
+     * and, in the case of a {@link CompoundCRS}, on the type of each component.
+     * It may also depend on the type and number of dimensions of the associated coordinate system.
+     *
+     * @return the type of this reference system.
+     * @since 3.1
+     *
+     * @see ReferenceSystemType#isInstance(ReferenceSystem)
+     */
+    @UML(identifier="referenceSystemType", obligation=OPTIONAL, specification=ISO_19115)
+    default Optional<ReferenceSystemType> getReferenceSystemType() {
+        for (ReferenceSystemType candidate : ReferenceSystemType.values()) {
+            if (candidate.isInstance(this)) {
+                return Optional.of(candidate);
+            }
+        }
+        return Optional.empty();
     }
 }

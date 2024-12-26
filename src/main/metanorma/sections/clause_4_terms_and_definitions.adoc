@@ -9,12 +9,12 @@ and implementation code which provides the API
 
 [[term_cardinality]]
 === cardinality
-number of elements in a set
+number of values
 
 [.source]
 <<ISO19103>>
 
-NOTE: Contrast with _multiplicity_, which is the range of possible cardinalities a set can hold.
+NOTE: Cardinality is a characteristic of a collection.
 
 
 [[term_conceptual_model]]
@@ -28,7 +28,7 @@ model that defines concepts of a universe of discourse
 [[term_constraint]]
 === constraint
 UML condition or restriction expressed in natural language text or in a machine readable language
-for the purpose of declaring some of the semantics of an element
+for the purpose of declaring some of the semantics of an element or set of elements
 
 [.source]
 <<ISO19103>>
@@ -93,15 +93,17 @@ identifiable collection of data
 
 [[term_datatype]]
 === datatype
-specification of a value domain with operations allowed on values in this domain
+set of distinct values, characterized by properties of those values, and by operations on those values
 
 [.source]
 <<ISO19103>>
 
-NOTE: Data types include primitive predefined types and user definable types.
+NOTE: Properties of data type values are ordered or unordered, exact or approximate,
+numeric or non-numeric and, if ordered, bounded or unbounded, as described in ISO/IEC 11404.
 
 [example]
-`Integer`, `Real`, `Boolean`, `String` and `Date`.
+The data type `Boolean` with properties `unordered`, `exact` and `non-numeric`,
+and with operations `equal`, `not`, `and` and `or`.
 
 
 [[term_dynamic_attribute]]
@@ -110,6 +112,14 @@ characteristic of a feature in which its value taken from the domain of the feat
 
 [.source]
 <<OGC19-045>>
+
+
+[[term_enumeration]]
+=== enumeration
+data type whose values are named individually in the model
+
+[.source]
+<<ISO19103>>
 
 
 [[term_feature]]
@@ -166,12 +176,39 @@ spatial object representing a geometric set
 <<ISO19107>>
 
 
+[[term_identifier]]
+=== identifier
+linguistically independent sequence of characters capable of uniquely and permanently
+identifying that with which it is associated
+
+[.source]
+<<ISO19103>>
+
+
+[[term_inheritance]]
+=== inheritance
+mechanism by which more specific entities incorporate structure and behavior defined by more general entities
+
+[.source]
+<<ISO19103>>
+
+
+[[term_instance]]
+=== instance
+individual entity
+
+[.source]
+<<ISO19103>>
+
+
 [[term_interface]]
 === interface
 UML classifier that represents a declaration of a set of coherent public UML features and obligations
+that together constitute a coherent service
 
-NOTE: An interface specifies a contract; any classifier that realizes the interface must fulfil that contract.
-The obligations that can be associated with an interface are in the form of various kinds of constraints
+NOTE: An interface specifies a contract;
+UML requires that any _instance_ (<<term_instance>>) of a classifier that realizes the interface fulfills that contract.
+The obligations associated with an interface are in the form of _constraints_ (<<term_constraint>>)
 (such as pre- and post-conditions) or protocol specifications,
 which can impose ordering restrictions on interactions through the interface.
 
@@ -213,17 +250,44 @@ reference system (ISO 19111), also called a local frame or a local Euclidean coo
 
 [[term_multiplicity]]
 === multiplicity
-UML specification of the range of allowable cardinalities that a set may assume
+UML specification of the valid _cardinalities_ (<<term_cardinality>>)
 
 [.source]
 <<ISO19103>>
 
-NOTE: Contrast with _cardinality_, which is the number of elements in a set.
+NOTE: An _instance_ (<<term_instance>>) of a collection specified as having a multiplicity of "1…3"
+has at least one value and has not more than three values.
+
+
+[[term_namespace]]
+=== namespace
+named element that either owns or imports, or both, a set of named elements that can be identified by name
+
+[.source]
+<<ISO19103>>
+
+
+[[term_object]]
+=== object
+individual with a state and relationship to other individuals
+
+[.source]
+<<ISO19103>>
+
+NOTE: An object is an _instance_ (<<term_instance>>) of a class.
 
 
 [[term_package]]
 === package
-UML general purpose mechanism for organizing elements into groups
+element that is used to group elements, and provides a _namespace_ (<<term_namespace>>) for the grouped elements
+
+[.source]
+<<ISO19103>>
+
+
+[[term_primitive_type]]
+=== primitive type
+predefined _data type_ (<<term_datatype>>) without any substructure
 
 [.source]
 <<ISO19103>>
@@ -244,15 +308,11 @@ an interpreted high-level programming language for general-purpose programming
 
 [[term_realization]]
 === realization
-specialized abstraction relationship between two sets of model elements, one representing
-a specification (the supplier) and the other representing an implementation of the latter (the client)
+abstraction between two named elements or sets of named elements,
+one representing a specification and the other representing an implementation of the latter
 
 [.source]
 <<ISO19103>>
-
-NOTE: Realization indicates inheritance of behaviour without inheritance of structure.
-
-NOTE: GeoAPI and GML are two realizations of OGC/ISO abstract specifications.
 
 
 [[term_trajectory]]

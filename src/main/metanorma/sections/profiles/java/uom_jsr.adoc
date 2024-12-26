@@ -4,41 +4,41 @@
 The Java profile of GeoAPI does not materialize any of the units of measurement types (<<units>>) defined by ISO 19103.
 Instead, unit modeling is entirely delegated to the Java Specification Request <<JSR385>>.
 The ISO 19103 `Measure` type is represented by the JSR 385 `Quantity` interface.
-The Java standard defines various quantity subtypes in the same way as ISO 19103 does,
-often with the same names (`Angle`, `Length`, `Area`, `Volume`, _etc_).
-But contrarily to ISO 19103, JSR 385 does not define a parallel set of subtypes for units of measurement.
+The Java standard defines various quantity subtypes such as `Angle`, `Length`, `Area`, `Volume`, _etc_.
+But JSR 385 does not define a parallel set of subtypes for units of measurement.
 Instead, it defines only one unit type, `javax​.measure​.Unit<Q extends Quantity<Q>>`,
 which is parameterized by the quantity type `Q`.
 For example instead of defining a `UomLength` subtype,
 developers use `Unit<Length>` to qualify the type of Unit or Measure being used.
 More examples are given in <<parameterized_units>>.
 
-The mapping for ISO 19103 measurement types is shown below.
+The mapping for ISO 19103:2015 measurement types is shown below.
 Unless otherwise specified, all Java types listed below are in the
 `javax.measure` or `javax.measure.quantity` package.
 
+[[uom-mapping]]
 .Units of measurement mapping
 [options="header"]
-|======================================================================================
-|Measure in ISO 19103   |Unit in ISO 19103       |Measure in Java |Unit in Java
-|`Measure`              |`UnitOfMeasure`         |`Quantity<?>`   |`Unit<?>`
-|`╴ Angle`              |`UomAngle`              |`Angle`         |`Unit<Angle>`
-|`╴ AngularSpeed`       |`UomAngularSpeed`       |`Quantity<?>`   |`Unit<?>`
-|`╴ Area`               |`UomArea`               |`Area`          |`Unit<Area>`
-|`╴ Currency`           |`UomCurrency`           |                |`java.util.Currency`
-|`╴ Length`             |`UomLength`             |`Length`        |`Unit<Length>`
-|`  └ Distance`         |`UomLength`             |`Length`        |`Unit<Length>`
-|`╴ Scale`              |`UomScale`              |`Dimensionless` |`Unit<Dimensionless>`
-|`╴ Speed`              |`UomSpeed`              |`Speed`         |`Unit<Speed>`
-|`╴ TimeMeasure`        |`UomTime`               |`Time`          |`Unit<Time>`
-|`╴ Volume`             |`UomVolume`             |`Volume`        |`Unit<Volume>`
-|`╴ Weight`             |`UomWeight`             |`Force`         |`Unit<Force>`
-|`DirectedMeasure`      |                        |                |
-|`╴ AngularAcceleration`|`UomAngularAcceleration`|                |`Unit<?>`
-|`╴ AngularVelocity`    |`UomAngularSpeed`       |                |`Unit<?>`
-|`╴ Acceleration`       |`UomAcceleration`       |                |`Unit<Acceleration>`
-|`╴ Velocity`           |`UomVelocity`           |                |`Unit<Speed>`
-|======================================================================================
+|=========================================================================================
+|Measure in ISO 19103:2015 |Unit in ISO 19103:2015  |Measure in Java |Unit in Java
+|`Measure`                 |`UnitOfMeasure`         |`Quantity<?>`   |`Unit<?>`
+|`╴ Angle`                 |`UomAngle`              |`Angle`         |`Unit<Angle>`
+|`╴ AngularSpeed`          |`UomAngularSpeed`       |`Quantity<?>`   |`Unit<?>`
+|`╴ Area`                  |`UomArea`               |`Area`          |`Unit<Area>`
+|`╴ Currency`              |`UomCurrency`           |                |`java.util.Currency`
+|`╴ Length`                |`UomLength`             |`Length`        |`Unit<Length>`
+|`  └ Distance`            |`UomLength`             |`Length`        |`Unit<Length>`
+|`╴ Scale`                 |`UomScale`              |`Dimensionless` |`Unit<Dimensionless>`
+|`╴ Speed`                 |`UomSpeed`              |`Speed`         |`Unit<Speed>`
+|`╴ TimeMeasure`           |`UomTime`               |`Time`          |`Unit<Time>`
+|`╴ Volume`                |`UomVolume`             |`Volume`        |`Unit<Volume>`
+|`╴ Weight`                |`UomWeight`             |`Force`         |`Unit<Force>`
+|`DirectedMeasure`         |                        |                |
+|`╴ AngularAcceleration`   |`UomAngularAcceleration`|                |`Unit<?>`
+|`╴ AngularVelocity`       |`UomAngularSpeed`       |                |`Unit<?>`
+|`╴ Acceleration`          |`UomAcceleration`       |                |`Unit<Acceleration>`
+|`╴ Velocity`              |`UomVelocity`           |                |`Unit<Speed>`
+|=========================================================================================
 
 Notes:
 
@@ -48,4 +48,4 @@ Notes:
 * The JSR 385 types do not distinguish `Distance` from `Length`.
 * JSR 385 does not have a type equivalent to `Directed­Measure`.
   But it still possible to represent their unit of measurement.
-* `SubUnits­PerUnit`, `Units­List` and `Standard­Units` defined in ISO 19103 are not materialized in this profile.
+* `SubUnits­PerUnit`, `Units­List` and `Standard­Units` defined in ISO 19103:2015 are not materialized in this profile.

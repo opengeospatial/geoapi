@@ -451,6 +451,47 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
     }
 
     /**
+     * Returns the given string with only the characters that are valid Unicode identifier parts.
+     * In the common case where all characters are Unicode identifier parts, returns {@code name}.
+     */
+    static String toComparableName(final String name) {
+        final int length = name.length();
+        int i=0, s, c;
+        do {
+            if (i >= length) return name;   // Optimization for the most common case.
+            c = name.codePointAt(s = i);
+            i += Character.charCount(c);
+        } while (Character.isUnicodeIdentifierPart(c));
+
+        // Create the buffer only if we found at least one invalid character.
+        final var b = new StringBuilder(length).append(name, 0, s);
+        while (i < length) {
+            c = name.codePointAt(i);
+            if (Character.isUnicodeIdentifierPart(c)) {
+                b.appendCodePoint(c);
+            }
+            i += Character.charCount(c);
+        }
+        return b.toString();
+    }
+
+    /**
+     * Compares two strings, ignoring case and characters that are not Unicode identifier parts.
+     * As an optimization, this method invokes {@link #toComparableName(String)} only if there
+     * is some chances that it will make the strings equal.
+     *
+     * @param  search     the string to search. Must be the result of {@link #toComparableName(String)}.
+     * @param  candidate  a string to compare against {@code search}. May contain non-Unicode identifier parts.
+     * @return whether the given strings are equal, ignoring case and non-Unicode identifier parts.
+     */
+    private static boolean compare(final String search, String candidate) {
+        if (candidate.length() > search.length()) {
+            candidate = toComparableName(candidate);    // May reduce the string length.
+        }
+        return search.equalsIgnoreCase(candidate);
+    }
+
+    /**
      * Returns the code of the given type and name if it exists, or optionally creates a new code.
      * This method returns the first instance (in declaration order) of the given class for which the
      * {@linkplain #name() name} is {@linkplain String#equalsIgnoreCase(String) equals, ignoring case},
@@ -466,51 +507,58 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * See the "Guidance for subclasses" section in the class Javadoc.
      *
      * <h4>Name matching criterion</h4>
-     * As of GeoAPI 3.1, names are compared using {@link String#equalsIgnoreCase(String)}.
+     * As of GeoAPI 3.1, names are compared using {@link String#equalsIgnoreCase(String)},
+     * taking in account only the characters that are
+     * {@linkplain Character#isUnicodeIdentifierPart(int) unicode identifer part}.
      * This is different than GeoAPI 3.0, which compared names using {@link String#equals(Object)}.
      * Being case-insensitive allows to recognize some UML identifiers as equivalent to the names
      * of constants declared in {@code CodeList} subclasses.
      *
      * @param  <E>          the compile-time type given as the {@code codeType} parameter.
      * @param  codeType     the type of the code list for which to get an element.
-     * @param  name         the name of the code to obtain (case-insensitive), or {@code null}.
+     * @param  name         the name of the code to obtain (case-insensitive).
      * @param  constructor  the constructor to use if a new code needs to be created,
      *                      or {@code null} for not creating any new code.
-     * @return a code matching the given name, or empty if the given name is null or blank,
-     *         or if no existing code matches the given name and {@code constructor} is null or returned a null value.
+     * @return a code matching the given name, or empty if no existing code matches the given name
+     *         and {@code constructor} is null or returned a null value.
+     * @throws NullPointerException if {@code codeType} or {@code name} is null.
+     * @throws IllegalArgumentException if the given name does not contain at least
+     *         one character that is a Unicode identifier part.
      *
      * @since 3.1
      */
     public static <E extends CodeList<E>> Optional<E> valueOf(final Class<E> codeType,
-            String name, final Function<? super String, ? extends E> constructor)
+            final String name, final Function<? super String, ? extends E> constructor)
     {
-        if (name != null && !(name = name.trim()).isBlank()) {
-            final Elements values = valueList(codeType);
-            /*
-             * The search and, eventually, the code creation are done in the same synchronized
-             * block for making sure that the same code is not created twice concurrently.
-             */
-            synchronized (values) {
-                final int size = values.size();
-                for (int i=0; i<size; i++) {
-                    final E element;
-                    final Object code = values.get(i);
-                    if (code instanceof String) {
-                        if (!name.equalsIgnoreCase((String) code)) continue;
-                        element = values.resolve(codeType, i);
-                    } else {
-                        element = codeType.cast(code);
-                    }
-                    if (name.equalsIgnoreCase(element.name())) {
-                        return Optional.of(element);
-                    }
+        final String search = toComparableName(name);
+        if (search.isBlank()) {
+            throw new IllegalArgumentException(name);
+        }
+        final Elements values = valueList(codeType);
+        /*
+         * The search and, eventually, the code creation are done in the same synchronized
+         * block for making sure that the same code is not created twice concurrently.
+         */
+        synchronized (values) {
+            final int size = values.size();
+            for (int i=0; i<size; i++) {
+                final E element;
+                final Object code = values.get(i);
+                if (code instanceof String) {
+                    if (!compare(name, (String) code)) continue;
+                    element = values.resolve(codeType, i);
+                } else {
+                    element = codeType.cast(code);
                 }
-                if (constructor != null) {
-                    final E element = constructor.apply(name);
-                    if (element != null) {
-                        values.set(element.ordinal(), element);
-                        return Optional.of(element);
-                    }
+                if (compare(name, element.name())) {
+                    return Optional.of(element);
+                }
+            }
+            if (constructor != null) {
+                final E element = constructor.apply(name);
+                if (element != null) {
+                    values.set(element.ordinal(), element);
+                    return Optional.of(element);
                 }
             }
         }
@@ -523,6 +571,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      *
      * @param  codeType  the type of code list for which to get the current code list values.
      * @return all current values for the given type (never {@code null}).
+     * @throws NullPointerException if {@code codeType} is null.
      */
     private static Elements valueList(final Class<? extends CodeList<?>> codeType) {
         Elements values;
@@ -552,6 +601,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @param  <E>       the compile-time type given as the {@code codeType} parameter.
      * @param  codeType  the type of code list for which to get the current code list values.
      * @return all current values for the given type (never {@code null}).
+     * @throws NullPointerException if {@code codeType} is null.
      *
      * @since 3.1
      */

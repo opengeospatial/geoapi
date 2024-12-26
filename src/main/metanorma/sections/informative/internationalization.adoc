@@ -1,13 +1,13 @@
 [[internationalization]]
 ==== Internationalization
-_From <<ISO19103>> §C.2_
+_From ISO 19103:2015 §C.2_
 
 The `International­String` interface is defined by GeoAPI to handle textual sequences
 which may potentially need to be translated for users of different locales.
 Conceptually this acts as a `Character­String` but may, depending on the implementation,
 provide access to locale-specific representations of that string.
-GeoAPI `International­String` is closely related, but not identical, to ISO 19103 `Language­String`.
-The main difference is that the latter is a character string in one specific language,
+GeoAPI `International­String` is closely related, but not identical, to ISO 19103:2015 `Language­String`.
+The main difference is that the latter was a character string in one specific language,
 while `International­String` can be a collection of character strings in different locales.
 This is useful, for example, when an implementation is operating on a server that serves multiple languages simultaneously,
 to allow sending string representations in the locale of the client rather than the locale of the server running the GeoAPI implementation.
@@ -28,7 +28,7 @@ An example in <<International­String>> shows the use of `International­String`
 .Linguistic types mapping
 [options="header"]
 |==============================================================================
-|ISO 19103 interface      |Java class or interface                |Python class
+|ISO 19103:2015 interface |Java class or interface                |Python class
 |`CharacterString`        |`java.lang.String`               ^(1)^ |`str`
 |`LanguageString`         |`org.opengis.util.InternationalString` |`str`
 |`LanguageCode`           |`java.util.Locale`                     |`str`
@@ -39,8 +39,8 @@ An example in <<International­String>> shows the use of `International­String`
 Notes:
 
 * (1) Sometimes substituted by `Char­Sequence` or `International­String`.
-* (2) Defined as a unit of measurement in ISO 19103 §C.4.24.
-* (3) From ISO 19103 §7.2.10 (<<primitives,primitive types>>).
+* (2) Defined as a unit of measurement in ISO 19103:2015 §C.4.24.
+* (3) From ISO 19103:2015 §7.2.10.
 
 
 [[internationalization_departures]]
@@ -50,12 +50,6 @@ Internationalization in GeoAPI differs from the OGC/ISO standards
 as described in the following sub-sections.
 
 
-
-[[internationalization_departures_as_renaming]]
-====== Renaming
-All GeoAPI linguistic types have names and properties different than the ISO 19103 types.
-This is either because the ISO types are mapped to types provided by the target language standard library
-or because the GeoAPI type is inspired by a similar effort in the target language ecosystem.
 
 [[internationalization_departures_for_harmonization]]
 ====== Harmonization
