@@ -19,12 +19,8 @@ There is 3 categories of examples, depending on target audience:
 
 ## Libraries with public source code
 
-The following projects provide GeoAPI implementations,
-either directly or as wrappers around independent libraries:
+The list of projects in the [Known implementations](../index.html) section
+contains open source libraries that can be used as sources of inspiration.
+Other small examples not in the implementation list are:
 
-* [NetCDF wrapper](https://github.com/Unidata/geoapi-netcdf-java) in Java for the UCAR netCDF library.
-* [Proj.6 wrapper](https://github.com/osgeo/PROJ-JNI) in Java for version 6 or later of the PROJ library.
 * [GDAL wrapper](https://github.com/Geomatys/geoapi-gdal) using Java and Python bindings to the GDAL library.
-* [Apache SIS](https://sis.apache.org) in Java, in particular the
-  [metadata](https://github.com/apache/sis/tree/main/endorsed/src/org.apache.sis.metadata/main/org/apache/sis/metadata/iso) and
-  [referencing](https://github.com/apache/sis/tree/main/endorsed/src/org.apache.sis.referencing/main/org/apache/sis/referencing) packages.
