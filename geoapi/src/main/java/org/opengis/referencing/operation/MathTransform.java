@@ -449,13 +449,13 @@ public interface MathTransform {
      *└    ┘     └                    ┘ │ x₃ │
      *                                  └    ┘</pre>
      *
-     * @param  point the coordinate point where to evaluate the derivative. Null
-     *         value is accepted only if the derivative is the same everywhere.
-     *         For example, affine transform accept null value since they produces
-     *         identical derivative no matter the coordinate value.
-     *         But most map projection will requires a non-null value.
+     * @param  point the coordinate point where to evaluate the derivative.
+     *         Null value is accepted only if the derivative is the same everywhere.
+     *         For example, an affine transform can accept null values since the transform
+     *         computes the same derivative no matter the coordinate values.
+     *         But most map projections will require a non-null value.
      * @return the derivative at the specified point (never {@code null}).
-     *         This method never returns an internal object: changing the matrix
+     *         This method never return an internal object: changing the matrix
      *         will not change the state of this math transform.
      * @throws NullPointerException if the derivative depends on coordinate and {@code point} is {@code null}.
      * @throws MismatchedDimensionException if {@code point} does not have the expected dimension.

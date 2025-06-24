@@ -151,7 +151,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
 
     /**
      * Axis positive direction is 3π/2 radians clockwise from north.
-     * This is usually used for Grid X coordinates and Longitude.
+     * This is usually used for Grid <var>X</var> coordinates and Longitude.
      *
      * @category Rose
      */
