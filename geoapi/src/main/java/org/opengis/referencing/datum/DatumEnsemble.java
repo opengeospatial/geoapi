@@ -40,7 +40,7 @@ import static org.opengis.annotation.Obligation.MANDATORY;
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
  *
- * @param <D> the type of datum contained in this ensemble.
+ * @param <D> the type of datum members contained in this ensemble.
  *
  * @since 3.1
  */

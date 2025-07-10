@@ -79,16 +79,13 @@ public interface Expression<R,V> extends Function<R,V> {
     /**
      * Returns the class of resources expected by this expression. This is the runtime value of the {@code <R>} type,
      * except that some implementations may accept instances of a more generic type such as {@code Object.class}.
-     * For example {@link Literal} may put no restriction on the resource type because it ignores the given resource.
+     * For example, {@link Literal} may put no restriction on the resource type because it ignores the given resource.
      *
      * <h4>Implementation note</h4>
      * For some expressions like {@link ValueReference}, the resource class may be an implementation-dependent
      * hard-coded value. For other expressions, the return value should be assignable to all resource classes
      * expected by the {@linkplain #getParameters() parameters}.
      * The type parametrization rules guarantee that at least one such specialized class exists: {@code <R>}.
-     * The behavior of this method is undefined if compile-time type safety was bypassed with unchecked casts,
-     * resulting in possible inconsistencies in the tree of expressions.
-     * The undefined behavior may be throwing an exception or returning {@code null}.
      *
      * @return type of resources accepted by this expression.
      *

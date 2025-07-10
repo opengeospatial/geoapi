@@ -73,7 +73,7 @@ public interface Feature {
      *
      * @param  name  the property name.
      * @return the property of the given name (never {@code null}).
-     * @throws PropertyNotFoundException if the given argument is not a property name of this feature.
+     * @throws PropertyNotFoundException if the given argument is not the name of a property of this feature.
      *
      * @see #getPropertyValue(String)
      * @see FeatureType#getProperty(String)
@@ -101,7 +101,7 @@ public interface Feature {
      * method is preferred.
      *
      * @param  property  the property to set.
-     * @throws PropertyNotFoundException if the name of the given property is not a property name of this feature.
+     * @throws PropertyNotFoundException if the given argument is not the name of a property of this feature.
      * @throws InvalidPropertyValueException if the value of the given property is not valid.
      * @throws IllegalArgumentException if the property cannot be set for another reason
      *         (e.g. a library may accept only some specific property instances).
@@ -132,7 +132,7 @@ public interface Feature {
      * @param  name  the property name.
      * @return value of the specified property,
      *         or the {@linkplain AttributeType#getDefaultValue() default value} (which may be {@code null}} if none.
-     * @throws PropertyNotFoundException if the given argument is not an attribute or association name of this feature.
+     * @throws PropertyNotFoundException if the given argument is not the name of an attribute or association of this feature.
      *
      * @see Attribute#getValue()
      * @see FeatureAssociation#getValue()
@@ -150,7 +150,7 @@ public interface Feature {
      *
      * @param  name   the property name.
      * @param  value  the new value for the specified property (may be {@code null}).
-     * @throws PropertyNotFoundException if the given name is not an attribute or association name of this feature.
+     * @throws PropertyNotFoundException if the given argument is not the name of an attribute or association of this feature.
      * @throws ClassCastException if the value is not assignable to the expected value class.
      * @throws InvalidPropertyValueException if the given value is not valid for a reason other than its type.
      *

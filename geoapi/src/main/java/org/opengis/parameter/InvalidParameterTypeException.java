@@ -19,7 +19,7 @@ package org.opengis.parameter;
 
 
 /**
- * Thrown by {@link ParameterValue} getter methods when a value cannot be casted to the
+ * Thrown by {@link ParameterValue} getter methods when a value cannot be cast to the
  * requested type. For example, this exception is thrown when {@link ParameterValue#doubleValue()}
  * is invoked but the value is not convertible to a {@code double}.
  *
