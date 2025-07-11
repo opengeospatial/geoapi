@@ -93,8 +93,7 @@ public interface FeatureType extends IdentifiedType {
 
     /**
      * Returns {@code true} if this feature type contains only attributes constrained to the [1 … 1] multiplicity,
-     * or operations (no feature association).
-     * Such feature types can be handled as a {@link org.opengis.util.RecordType} instances.
+     * or operations (no feature association). Such feature instances are sometime known as "Simple features".
      *
      * @return {@code true} if this feature type contains only simple attributes or operations.
      */

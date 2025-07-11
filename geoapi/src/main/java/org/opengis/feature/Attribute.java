@@ -60,12 +60,14 @@ import org.opengis.util.GenericName;
 public interface Attribute<V> extends Property {
     /**
      * Returns the name of this attribute as defined by its {@linkplain #getType() type}.
-     * This convenience method delegates to {@link AttributeType#getName()}.
+     * Invoking this convenience method is equivalent to invoking {@link AttributeType#getName()}.
      *
      * @return the attribute name specified by its type.
      */
     @Override
-    GenericName getName();
+    default GenericName getName() {
+        return getType().getName();
+    }
 
     /**
      * Returns information about the attribute (base Java class, domain of values, <i>etc.</i>).
@@ -153,9 +155,14 @@ public interface Attribute<V> extends Property {
      * The {@linkplain Map#keySet() map keys} are the {@code String} representations of
      * characteristics {@linkplain AttributeType#getName() name}, for more convenient lookups.</p>
      *
+     * <h4>Default implementation</h4>
+     * The default implementation returns an immutable empty map.
+     *
      * @return other attribute types that describe this attribute type, or an empty map if none.
      *
      * @see AttributeType#characteristics()
      */
-    Map<String,Attribute<?>> characteristics();
+    default Map<String,Attribute<?>> characteristics() {
+        return Map.of();
+    }
 }

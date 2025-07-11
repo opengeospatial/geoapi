@@ -36,12 +36,14 @@ import org.opengis.util.GenericName;
 public interface FeatureAssociation extends Property {
     /**
      * Returns the name of this association as defined by its {@linkplain #getRole() role}.
-     * This convenience method delegates to {@link FeatureAssociationRole#getName()}.
+     * Invoking this convenience method is equivalent to invoking {@link FeatureAssociationRole#getName()}.
      *
      * @return the association name specified by its role.
      */
     @Override
-    GenericName getName();
+    default GenericName getName() {
+        return getRole().getName();
+    }
 
     /**
      * Returns information about the association.
