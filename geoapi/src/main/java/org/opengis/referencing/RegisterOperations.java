@@ -134,7 +134,7 @@ public interface RegisterOperations extends AuthorityFactory {
      * if {@code type} is assignable to {@link org.opengis.referencing.cs.CoordinateSystem}.
      * If no factory is available for the given type, then an empty set is returned.
      *
-     * @param  type  the type of referencing object for which to get authority codes.
+     * @param  type  the type of referencing objects for which to get authority codes.
      * @return the set of authority codes for referencing objects of the given type.
      * @throws FactoryException if access to the underlying database failed.
      */
