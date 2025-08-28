@@ -267,6 +267,25 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
         }
     }
 
+    /**
+     * Returns a description of the object corresponding to a code.
+     *
+     * @param  code  value allocated by authority.
+     * @return a description of the object, or {@code null} if the object
+     *         corresponding to the specified {@code code} has no description.
+     * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
+     * @throws FactoryException if the query failed for some other reason.
+     *
+     * @deprecated This method is ambiguous because the EPSG geodetic registry may allocate
+     *             the same code to different kinds of object.
+     */
+    @Override
+    @SuppressWarnings("removal")
+    @Deprecated(since="3.1", forRemoval=true)
+    public org.opengis.util.InternationalString getDescriptionText(String code) throws FactoryException {
+        return getDescriptionText(CoordinateReferenceSystem.class, code).orElse(null);
+    }
+
 
 
 
