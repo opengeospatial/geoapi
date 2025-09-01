@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.content;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import org.opengis.util.RecordType;
 import org.opengis.metadata.Identifier;
@@ -72,7 +72,7 @@ public interface CoverageDescription extends ContentInformation {
      */
     @UML(identifier="attributeGroup", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends AttributeGroup> getAttributeGroups() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -102,7 +102,7 @@ public interface CoverageDescription extends ContentInformation {
     @Deprecated(since="3.1")
     @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends RangeDimension> getDimensions() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -112,6 +112,6 @@ public interface CoverageDescription extends ContentInformation {
      */
     @UML(identifier="rangeElementDescription", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends RangeElementDescription> getRangeElementDescriptions() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.distribution;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.metadata.citation.Responsibility;
 import org.opengis.annotation.UML;
 
@@ -51,7 +51,7 @@ public interface Distributor {
      */
     @UML(identifier="distributionOrderProcess", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends StandardOrderProcess> getDistributionOrderProcesses() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -71,6 +71,6 @@ public interface Distributor {
      */
     @UML(identifier="distributorTransferOptions", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends DigitalTransferOptions> getDistributorTransferOptions() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

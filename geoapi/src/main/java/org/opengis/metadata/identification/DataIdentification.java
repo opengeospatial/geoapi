@@ -18,7 +18,6 @@
 package org.opengis.metadata.identification;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Map;
 import java.util.Locale;
 import java.nio.charset.Charset;
@@ -67,7 +66,7 @@ public interface DataIdentification extends Identification {
     // Obligation note: `defaultLocale` is conditional and `otherLocale` is optional.
     @UML(identifier="defaultLocale+otherLocale", obligation=CONDITIONAL, specification=ISO_19115)
     default Map<Locale,Charset> getLocalesAndCharsets() {
-        return Collections.emptyMap();
+        return Map.of();
     }
 
     /**

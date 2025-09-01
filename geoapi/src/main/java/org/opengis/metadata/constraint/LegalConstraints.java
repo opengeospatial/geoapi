@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.constraint;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 
@@ -58,7 +58,7 @@ public interface LegalConstraints extends Constraints {
      */
     @UML(identifier="accessConstraints", obligation=CONDITIONAL, specification=ISO_19115)
     default Collection<Restriction> getAccessConstraints() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -75,7 +75,7 @@ public interface LegalConstraints extends Constraints {
      */
     @UML(identifier="useConstraints", obligation=CONDITIONAL, specification=ISO_19115)
     default Collection<Restriction> getUseConstraints() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -88,6 +88,6 @@ public interface LegalConstraints extends Constraints {
      */
     @UML(identifier="otherConstraints", obligation=CONDITIONAL, specification=ISO_19115)
     default Collection<? extends InternationalString> getOtherConstraints() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

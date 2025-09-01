@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.citation;
 
+import java.util.Set;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
@@ -77,10 +77,10 @@ public interface Telephone {
         if (TelephoneType.VOICE.equals(getNumberType())) {
             String number = getNumber();
             if (number != null) {
-                return Collections.singleton(number);
+                return Set.of(number);
             }
         }
-        return Collections.emptySet();          // Use Set instead of List for hash-safe final classes.
+        return Set.of();
     }
 
     /**
@@ -97,9 +97,9 @@ public interface Telephone {
         if (TelephoneType.FACSIMILE.equals(getNumberType())) {
             String number = getNumber();
             if (number != null) {
-                return Collections.singleton(number);
+                return Set.of(number);
             }
         }
-        return Collections.emptySet();          // Use Set instead of List for hash-safe final classes.
+        return Set.of();
     }
 }

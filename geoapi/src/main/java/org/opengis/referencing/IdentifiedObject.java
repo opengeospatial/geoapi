@@ -18,8 +18,8 @@
 package org.opengis.referencing;
 
 import java.util.Set;
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Optional;
 import org.opengis.util.GenericName;
 import org.opengis.util.InternationalString;
@@ -134,7 +134,7 @@ public interface IdentifiedObject {
      */
     @UML(identifier="alias", obligation=OPTIONAL, specification=ISO_19111)
     default Collection<GenericName> getAlias() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -145,7 +145,7 @@ public interface IdentifiedObject {
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19111)
     default Set<Identifier> getIdentifiers() {
-        return Collections.emptySet();
+        return Set.of();
     }
 
     /**
@@ -178,7 +178,7 @@ public interface IdentifiedObject {
      */
     @UML(identifier="ObjectUsage.domain", obligation=OPTIONAL, specification=ISO_19111)
     default Collection<ObjectDomain> getDomains() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

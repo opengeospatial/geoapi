@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.acquisition;
 
+import java.util.Set;
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
-
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.extent.Extent;
@@ -64,7 +64,7 @@ public interface Objective {
      */
     @UML(identifier="type", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<ObjectiveType> getTypes() {
-        return Collections.emptySet();
+        return Set.of();
     }
 
     /**
@@ -74,7 +74,7 @@ public interface Objective {
      */
     @UML(identifier="function", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends InternationalString> getFunctions() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -85,7 +85,7 @@ public interface Objective {
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Extent> getExtents() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -107,7 +107,7 @@ public interface Objective {
      */
     @UML(identifier="pass", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends PlatformPass> getPass() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -117,6 +117,6 @@ public interface Objective {
      */
     @UML(identifier="sensingInstrument", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Instrument> getSensingInstruments() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

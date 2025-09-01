@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.citation;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.extent.Extent;
 
@@ -51,7 +51,7 @@ public interface Responsibility {
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Extent> getExtents() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

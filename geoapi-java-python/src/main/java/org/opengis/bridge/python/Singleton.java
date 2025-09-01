@@ -17,7 +17,7 @@
  */
 package org.opengis.bridge.python;
 
-import java.util.Collections;
+import java.util.List;
 import java.lang.reflect.Type;
 import java.lang.reflect.Proxy;
 import java.lang.reflect.Method;
@@ -158,7 +158,7 @@ final class Singleton implements InvocationHandler {
                 type = boundOfParameterizedProperty(method.getGenericReturnType());
                 return new Sequence<>(environment, type, result);
             } else {
-                return Collections.emptyList();
+                return List.of();
             }
         } else if (object.equals(result)) {
             // Slight optimization: share the same InvocationHandler if the Python object is the same.

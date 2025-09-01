@@ -17,8 +17,9 @@
  */
 package org.opengis.metadata.citation;
 
+import java.util.Set;
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
@@ -49,7 +50,7 @@ public interface Address {
      */
     @UML(identifier="deliveryPoint", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends InternationalString> getDeliveryPoints() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -104,6 +105,6 @@ public interface Address {
      */
     @UML(identifier="electronicMailAddress", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<String> getElectronicMailAddresses() {
-        return Collections.emptySet();                          // Use Set instead of List for hash-safe final classes.
+        return Set.of();
     }
 }

@@ -19,7 +19,6 @@ package org.opengis.metadata.spatial;
 
 import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.geometry.primitive.Point;
 import org.opengis.annotation.UML;
@@ -113,7 +112,7 @@ public interface Georectified extends GridSpatialRepresentation {
      */
     @UML(identifier="transformationDimensionMapping", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends InternationalString> getTransformationDimensionMapping() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -123,6 +122,6 @@ public interface Georectified extends GridSpatialRepresentation {
      */
     @UML(identifier="checkPoint", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends GCP> getCheckPoints() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

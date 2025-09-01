@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.distribution;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
@@ -129,7 +129,7 @@ public interface Format {
      */
     @UML(identifier="medium", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Medium> getMedia() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -139,6 +139,6 @@ public interface Format {
      */
     @UML(identifier="formatDistributor", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Distributor> getFormatDistributors() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

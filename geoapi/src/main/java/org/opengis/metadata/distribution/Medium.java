@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.distribution;
 
+import java.util.Set;
 import java.util.Collection;
-import java.util.Collections;
 import javax.measure.Unit;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
@@ -72,7 +72,7 @@ public interface Medium {
     @Deprecated(since="3.1")
     default Collection<Double> getDensities() {
         Double density = getDensity();
-        return (density != null) ? Collections.singleton(density) : Collections.emptySet();
+        return (density != null) ? Set.of(density) : Set.of();
     }
 
     /**
@@ -105,7 +105,7 @@ public interface Medium {
      */
     @UML(identifier="mediumFormat", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<MediumFormat> getMediumFormats() {
-        return Collections.emptySet();          // Use Set instead of List for hash-safe final classes.
+        return Set.of();
     }
 
     /**

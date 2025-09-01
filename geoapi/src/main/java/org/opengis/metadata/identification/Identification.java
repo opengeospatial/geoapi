@@ -17,9 +17,10 @@
  */
 package org.opengis.metadata.identification;
 
+import java.util.Set;
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.time.temporal.TemporalAmount;
 import org.opengis.util.InternationalString;
@@ -85,7 +86,7 @@ public interface Identification {
      */
     @UML(identifier="credit", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends InternationalString> getCredits() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -95,7 +96,7 @@ public interface Identification {
      */
     @UML(identifier="status", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<Progress> getStatus() {
-        return Collections.emptySet();          // Use Set instead of List for hash-safe final classes.
+        return Set.of();
     }
 
     /**
@@ -108,7 +109,7 @@ public interface Identification {
      */
     @UML(identifier="pointOfContact", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Responsibility> getPointOfContacts() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -120,7 +121,7 @@ public interface Identification {
      */
     @UML(identifier="spatialRepresentationType", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<SpatialRepresentationType> getSpatialRepresentationTypes() {
-        return Collections.emptySet();          // Use Set instead of List for hash-safe final classes.
+        return Set.of();          // Use Set instead of List for hash-safe final classes.
     }
 
     /**
@@ -137,7 +138,7 @@ public interface Identification {
      */
     @UML(identifier="spatialResolution", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Resolution> getSpatialResolutions() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -154,7 +155,7 @@ public interface Identification {
      */
     @UML(identifier="temporalResolution", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends TemporalAmount> getTemporalResolutions() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -198,7 +199,7 @@ public interface Identification {
      */
     @UML(identifier="additionalDocumentation", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getAdditionalDocumentations() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -226,7 +227,7 @@ public interface Identification {
      */
     @UML(identifier="resourceMaintenance", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends MaintenanceInformation> getResourceMaintenances() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -236,7 +237,7 @@ public interface Identification {
      */
     @UML(identifier="graphicOverview", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends BrowseGraphic> getGraphicOverviews() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -248,7 +249,7 @@ public interface Identification {
      */
     @UML(identifier="resourceFormat", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Format> getResourceFormats() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -258,7 +259,7 @@ public interface Identification {
      */
     @UML(identifier="descriptiveKeywords", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Keywords> getDescriptiveKeywords() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -270,7 +271,7 @@ public interface Identification {
      */
     @UML(identifier="resourceSpecificUsage", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Usage> getResourceSpecificUsages() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -280,7 +281,7 @@ public interface Identification {
      */
     @UML(identifier="resourceConstraints", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Constraints> getResourceConstraints() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -292,7 +293,7 @@ public interface Identification {
      */
     @UML(identifier="associatedResource", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends AssociatedResource> getAssociatedResources() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.lineage;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.extent.Extent;
 import org.opengis.metadata.maintenance.Scope;
@@ -115,7 +115,7 @@ public interface Source {
      */
     @UML(identifier="sourceMetadata", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getSourceMetadata() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -143,7 +143,7 @@ public interface Source {
     @Deprecated(since="3.1")
     @UML(identifier="sourceExtent", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends Extent> getSourceExtents() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -153,7 +153,7 @@ public interface Source {
      */
     @UML(identifier="sourceStep", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends ProcessStep> getSourceSteps() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

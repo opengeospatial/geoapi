@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.identification;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.util.ScopedName;
 import org.opengis.metadata.citation.Citation;
@@ -70,7 +70,7 @@ public interface CoupledResource {
      */
     @UML(identifier="resourceReference", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getResourceReferences() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -83,7 +83,7 @@ public interface CoupledResource {
      */
     @UML(identifier="resource", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends DataIdentification> getResources() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

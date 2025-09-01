@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.content;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import javax.measure.Unit;
 import org.opengis.util.Record;
 import org.opengis.util.RecordType;
@@ -174,7 +174,7 @@ public interface SampleDimension extends RangeDimension {
      */
     @UML(identifier="rangeElementDescription", obligation=OPTIONAL, specification=ISO_19115, version=2018)
     default Collection<? extends RangeElementDescription> getRangeElementDescriptions() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.constraint;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.citation.Responsibility;
@@ -50,7 +50,7 @@ public interface Constraints {
      */
     @UML(identifier="useLimitation", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends InternationalString> getUseLimitations() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -75,7 +75,7 @@ public interface Constraints {
      */
     @UML(identifier="graphic", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends BrowseGraphic> getGraphics() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -90,7 +90,7 @@ public interface Constraints {
      */
     @UML(identifier="reference", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getReferences() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -115,6 +115,6 @@ public interface Constraints {
      */
     @UML(identifier="responsibleParty", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Responsibility> getResponsibleParties() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

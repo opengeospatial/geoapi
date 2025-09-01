@@ -18,7 +18,6 @@
 package org.opengis.metadata;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 import java.util.Date;
@@ -160,7 +159,7 @@ public interface Metadata {
     // Obligation note: `defaultLocale` is conditional and `otherLocale` is optional.
     @UML(identifier="defaultLocale+otherLocale", obligation=CONDITIONAL, specification=ISO_19115)
     default Map<Locale,Charset> getLocalesAndCharsets() {
-        return Collections.emptyMap();
+        return Map.of();
     }
 
     /**
@@ -403,7 +402,7 @@ public interface Metadata {
      */
     @UML(identifier="metadataStandard", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getMetadataStandards() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -419,7 +418,7 @@ public interface Metadata {
      */
     @UML(identifier="metadataProfile", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getMetadataProfiles() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -431,7 +430,7 @@ public interface Metadata {
      */
     @UML(identifier="alternativeMetadataReference", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getAlternativeMetadataReferences() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -443,7 +442,7 @@ public interface Metadata {
      */
     @UML(identifier="metadataLinkage", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends OnlineResource> getMetadataLinkages() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -479,7 +478,7 @@ public interface Metadata {
      */
     @UML(identifier="spatialRepresentationInfo", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends SpatialRepresentation> getSpatialRepresentationInfo() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -489,7 +488,7 @@ public interface Metadata {
      */
     @UML(identifier="referenceSystemInfo", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends ReferenceSystem> getReferenceSystemInfo() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -501,7 +500,7 @@ public interface Metadata {
      */
     @UML(identifier="metadataExtensionInfo", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends MetadataExtensionInformation> getMetadataExtensionInfo() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -519,7 +518,7 @@ public interface Metadata {
      */
     @UML(identifier="contentInfo", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends ContentInformation> getContentInfo() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -529,7 +528,7 @@ public interface Metadata {
      */
     @UML(identifier="distributionInfo", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Distribution> getDistributionInfo() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -539,7 +538,7 @@ public interface Metadata {
      */
     @UML(identifier="dataQualityInfo", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends DataQuality> getDataQualityInfo() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -549,7 +548,7 @@ public interface Metadata {
      */
     @UML(identifier="portrayalCatalogueInfo", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends PortrayalCatalogueReference> getPortrayalCatalogueInfo() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -561,7 +560,7 @@ public interface Metadata {
      */
     @UML(identifier="metadataConstraints", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Constraints> getMetadataConstraints() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -571,7 +570,7 @@ public interface Metadata {
      */
     @UML(identifier="applicationSchemaInfo", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends ApplicationSchemaInformation> getApplicationSchemaInfo() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -581,7 +580,7 @@ public interface Metadata {
      */
     @UML(identifier="acquisitionInformation", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends AcquisitionInformation> getAcquisitionInformation() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -605,6 +604,6 @@ public interface Metadata {
      */
     @UML(identifier="resourceLineage", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Lineage> getResourceLineages() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

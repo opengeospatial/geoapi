@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.extent;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
@@ -69,7 +69,7 @@ public interface Extent {
      */
     @UML(identifier="geographicElement", obligation=CONDITIONAL, specification=ISO_19115)
     default Collection<? extends GeographicExtent> getGeographicElements() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -83,7 +83,7 @@ public interface Extent {
      */
     @UML(identifier="verticalElement", obligation=CONDITIONAL, specification=ISO_19115)
     default Collection<? extends VerticalExtent> getVerticalElements() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -97,6 +97,6 @@ public interface Extent {
      */
     @UML(identifier="temporalElement", obligation=CONDITIONAL, specification=ISO_19115)
     default Collection<? extends TemporalExtent> getTemporalElements() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

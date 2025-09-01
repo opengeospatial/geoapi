@@ -19,6 +19,7 @@ package org.opengis.metadata.quality;
 
 import java.util.Date;
 import java.util.Iterator;
+import java.util.List;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.AbstractCollection;
@@ -134,7 +135,7 @@ public interface Element {
     @UML(identifier="nameOfMeasure", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends InternationalString> getNamesOfMeasure() {
         final MeasureReference ref = getMeasureReference();
-        return (ref != null) ? ref.getNamesOfMeasure() : Collections.emptyList();
+        return (ref != null) ? ref.getNamesOfMeasure() : List.of();
     }
 
     /**
@@ -275,6 +276,6 @@ public interface Element {
      */
     @UML(identifier="derivedElement", obligation=OPTIONAL, specification=ISO_19157)
     default Collection<? extends Element> getDerivedElements() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

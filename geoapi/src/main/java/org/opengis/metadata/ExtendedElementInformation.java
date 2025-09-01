@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Responsibility;
 import org.opengis.annotation.Obligation;
@@ -198,7 +198,7 @@ public interface ExtendedElementInformation {
     @Deprecated(since="3.1")
     default Collection<? extends InternationalString> getRationales() {
         InternationalString rationale = getRationale();
-        return (rationale != null) ? Collections.singletonList(rationale) : Collections.emptyList();
+        return (rationale != null) ? List.of(rationale) : List.of();
     }
 
     /**

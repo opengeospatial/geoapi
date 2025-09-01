@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.quality;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.distribution.Format;
 import org.opengis.metadata.distribution.DataFile;
@@ -82,7 +82,7 @@ public interface CoverageResult extends Result {
      */
     @UML(identifier="resultContent", obligation=CONDITIONAL, specification=ISO_19157)
     default Collection<? extends RangeDimension> getResultContent() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

@@ -19,7 +19,6 @@ package org.opengis.bridge.python;
 
 import java.util.List;
 import java.util.Objects;
-import java.util.Collections;
 import org.jpy.PyModule;
 import org.jpy.PyObject;
 
@@ -95,7 +94,7 @@ public class Environment {
         if (object != null) {
             return new Sequence<>(this, type, object);
         } else {
-            return Collections.emptyList();
+            return List.of();
         }
     }
 

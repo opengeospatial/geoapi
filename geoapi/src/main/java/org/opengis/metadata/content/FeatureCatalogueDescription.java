@@ -17,10 +17,10 @@
  */
 package org.opengis.metadata.content;
 
+import java.util.List;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Locale;
 import java.nio.charset.Charset;
 import org.opengis.metadata.citation.Citation;
@@ -75,7 +75,7 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      */
     @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115)
     default Map<Locale,Charset> getLocalesAndCharsets() {
-        return Collections.emptyMap();
+        return Map.of();
     }
 
     /**
@@ -119,7 +119,7 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      */
     @UML(identifier="featureTypes", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends FeatureTypeInfo> getFeatureTypeInfo() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

@@ -19,7 +19,6 @@ package org.opengis.metadata.identification;
 
 import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.util.InternationalString;
 import org.opengis.parameter.ParameterDescriptor;
@@ -119,7 +118,7 @@ public interface OperationMetadata {
      */
     @UML(identifier="parameter", obligation=OPTIONAL, specification=ISO_19115)     // Was "parameters" in ISO 19115:2003
     default Collection<? extends ParameterDescriptor<?>> getParameters() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -131,6 +130,6 @@ public interface OperationMetadata {
      */
     @UML(identifier="dependsOn", obligation=OPTIONAL, specification=ISO_19115)
     default List<? extends OperationMetadata> getDependsOn() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

@@ -18,8 +18,8 @@
 package org.opengis.metadata.identification;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.metadata.constraint.Constraints;
@@ -96,7 +96,7 @@ public interface BrowseGraphic {
      */
     @UML(identifier="imageConstraints", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Constraints> getImageConstraints() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -109,6 +109,6 @@ public interface BrowseGraphic {
      */
     @UML(identifier="linkage", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends OnlineResource> getLinkages() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

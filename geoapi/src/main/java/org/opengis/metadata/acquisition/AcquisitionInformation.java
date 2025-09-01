@@ -17,9 +17,8 @@
  */
 package org.opengis.metadata.acquisition;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
-
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -43,7 +42,7 @@ public interface AcquisitionInformation {
      */
     @UML(identifier="acquisitionPlan", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Plan> getAcquisitionPlans() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -53,7 +52,7 @@ public interface AcquisitionInformation {
      */
     @UML(identifier="acquisitionRequirement", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Requirement> getAcquisitionRequirements() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -73,7 +72,7 @@ public interface AcquisitionInformation {
      */
     @UML(identifier="instrument", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Instrument> getInstruments() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -83,7 +82,7 @@ public interface AcquisitionInformation {
      */
     @UML(identifier="objective", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Objective> getObjectives() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -93,7 +92,7 @@ public interface AcquisitionInformation {
      */
     @UML(identifier="operation", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Operation> getOperations() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -103,6 +102,6 @@ public interface AcquisitionInformation {
      */
     @UML(identifier="platform", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Platform> getPlatforms() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

@@ -18,7 +18,6 @@
 package org.opengis.filter.capability;
 
 import java.util.List;
-import java.util.Collections;
 import org.opengis.util.LocalName;
 import org.opengis.util.TypeName;
 import org.opengis.annotation.UML;
@@ -92,6 +91,6 @@ public interface AvailableFunction {
      */
     @UML(identifier="arguments", obligation=OPTIONAL, specification=ISO_19143)
     default List<? extends ParameterDescriptor<?>> getArguments() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

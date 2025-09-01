@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.acquisition;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import java.time.temporal.Temporal;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
@@ -107,6 +107,6 @@ public interface Requirement {
      */
     @UML(identifier="satisfiedPlan", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Plan> getSatisfiedPlans() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

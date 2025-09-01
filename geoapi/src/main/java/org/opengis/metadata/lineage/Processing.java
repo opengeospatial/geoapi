@@ -17,9 +17,8 @@
  */
 package org.opengis.metadata.lineage;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
-
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
@@ -54,7 +53,7 @@ public interface Processing {
      */
     @UML(identifier="softwareReference", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Citation> getSoftwareReferences() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -74,7 +73,7 @@ public interface Processing {
      */
     @UML(identifier="documentation", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Citation> getDocumentations() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -95,6 +94,6 @@ public interface Processing {
      */
     @UML(identifier="algorithm", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Algorithm> getAlgorithms() {
-        return Collections.emptyList();
+        return List.of();
     }
 }
