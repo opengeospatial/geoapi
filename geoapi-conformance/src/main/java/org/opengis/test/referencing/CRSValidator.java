@@ -113,6 +113,7 @@ public class CRSValidator extends ReferencingValidator {
             if (object instanceof EngineeringCRS) {validate((EngineeringCRS) object); n++;}
             if (object instanceof VerticalCRS)    {validate((VerticalCRS)    object); n++;}
             if (object instanceof TemporalCRS)    {validate((TemporalCRS)    object); n++;}
+            if (object instanceof ParametricCRS)  {validate((ParametricCRS)  object); n++;}
             if (object instanceof CompoundCRS)    {validate((CompoundCRS)    object); n++;}
             if (n == 0) {
                 validateIdentifiedObject(object);
@@ -342,6 +343,27 @@ public class CRSValidator extends ReferencingValidator {
 
         final TemporalDatum datum = object.getDatum();
         mandatory(datum, "TemporalCRS: shall have a Datum.");
+        container.validate(datum);
+    }
+
+    /**
+     * Validates the given coordinate reference system.
+     *
+     * @param  object  the object to validate, or {@code null}.
+     *
+     * @since 3.1
+     */
+    public void validate(final ParametricCRS object) {
+        if (object == null) {
+            return;
+        }
+        validateIdentifiedObject(object);
+        final ParametricCS cs = object.getCoordinateSystem();
+        mandatory(cs, "ParametricCRS: shall have a CoordinateSystem.");
+        container.validate(cs);
+
+        final ParametricDatum datum = object.getDatum();
+        mandatory(datum, "ParametricCRS: shall have a Datum.");
         container.validate(datum);
     }
 
