@@ -6,7 +6,6 @@
 package org.opengis.example.referencing;
 
 import java.util.Set;
-import java.util.Collections;
 
 import org.opengis.util.FactoryException;
 import org.opengis.util.NoSuchIdentifierException;
@@ -75,7 +74,7 @@ public class SimpleTransformFactory implements MathTransformFactory {
      */
     @Override
     public Set<OperationMethod> getAvailableMethods(Class<? extends SingleOperation> type) {
-        return Collections.emptySet();
+        return Set.of();
     }
 
     /**

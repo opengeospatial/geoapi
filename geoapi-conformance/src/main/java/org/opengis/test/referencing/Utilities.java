@@ -19,7 +19,6 @@ package org.opengis.test.referencing;
 
 import java.util.Set;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedHashSet;
 
 import org.opengis.util.GenericName;
@@ -71,7 +70,7 @@ final class Utilities {
      */
     public static Set<String> getNames(final Collection<? extends IdentifiedObject> objects) {
         if (objects == null) {
-            return Collections.emptySet();
+            return Set.of();
         }
         final Set<String> names = new LinkedHashSet<>(objects.size() * 4/3 + 1);
         for (final IdentifiedObject object : objects) {
@@ -94,7 +93,7 @@ final class Utilities {
      */
     public static Set<String> getNameAndAliases(final IdentifiedObject object) {
         if (object == null) {
-            return Collections.emptySet();
+            return Set.of();
         }
         final Set<String> names = new LinkedHashSet<>();
         getNameAndAliases(object, names);
@@ -115,7 +114,7 @@ final class Utilities {
      */
     public static Set<String> getNameAndAliases(final Collection<? extends IdentifiedObject> objects) {
         if (objects == null) {
-            return Collections.emptySet();
+            return Set.of();
         }
         final Set<String> names = new LinkedHashSet<>(objects.size() * 2);
         for (final IdentifiedObject object : objects) {

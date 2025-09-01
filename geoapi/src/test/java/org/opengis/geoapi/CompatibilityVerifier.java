@@ -20,7 +20,6 @@ package org.opengis.geoapi;
 import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.net.MalformedURLException;
 import java.io.IOException;
 import java.io.Closeable;
@@ -105,10 +104,10 @@ public class CompatibilityVerifier implements Closeable {
         oldAPI = new Release(mavenRepository, oldVersion, parent);
         newAPI = new Release(mavenRepository, newVersion, parent);
         if (newVersion.startsWith("3.1")) {
-            deletedClasses = Collections.emptySet();
+            deletedClasses = Set.of();
             acceptedIncompatibleChanges = IncompatibleChange.for31();
         } else if (newVersion.startsWith("4.0")) {
-            deletedClasses = Collections.singleton("org.opengis.metadata.Obligation");
+            deletedClasses = Set.of("org.opengis.metadata.Obligation");
             acceptedIncompatibleChanges = IncompatibleChange.for40();
         } else {
             throw new IllegalStateException("Unsupported version: " + newVersion);

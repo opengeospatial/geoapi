@@ -17,10 +17,10 @@
  */
 package org.opengis.tools.apt;
 
+import java.util.Set;
 import java.util.List;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.io.File;
 import java.io.FileFilter;
 import java.net.URL;
@@ -61,7 +61,7 @@ public final class RunCompilation implements FileFilter {
                     "-Aoutput=content.html"), // Option for our annotation processor: the file to write.
                 null,                         // Annotation processor shall process all classes.
                 fm.getJavaFileObjectsFromFiles(collectJavaFiles()));
-        task.setProcessors(Collections.singleton(new IndexGenerator()));
+        task.setProcessors(Set.of(new IndexGenerator()));
         assertTrue(task.call());
     }
 

@@ -17,8 +17,8 @@
  */
 package org.opengis.test;
 
-import java.util.Collections;
 import java.util.List;
+import java.util.Set;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -52,13 +52,13 @@ public final class ValidatorTest {
     @Test
     public void testMandatory() {
         validator.mandatory("dummy", "Should not fail.");
-        validator.mandatory(Collections.singleton("dummy"), "Should not fail.");
+        validator.mandatory(Set.of("dummy"), "Should not fail.");
 
         AssertionError e;
         e = assertThrows(AssertionError.class, () -> validator.mandatory((Object) null, "Should fail."));
         assertTrue(e.getMessage().startsWith("Should fail."));
 
-        e = assertThrows(AssertionError.class, () -> validator.mandatory(Collections.emptySet(), "Should fail."));
+        e = assertThrows(AssertionError.class, () -> validator.mandatory(Set.of(), "Should fail."));
         assertTrue(e.getMessage().startsWith("Should fail."));
     }
 
@@ -68,13 +68,13 @@ public final class ValidatorTest {
     @Test
     public void testForbidden() {
         validator.forbidden((Object) null, "Should not fail.");
-        validator.forbidden(Collections.emptySet(), "Should not fail.");
+        validator.forbidden(Set.of(), "Should not fail.");
 
         AssertionError e;
         e = assertThrows(AssertionError.class, () -> validator.forbidden("dummy", "Should fail."));
         assertTrue(e.getMessage().startsWith("Should fail."));
 
-        e = assertThrows(AssertionError.class, () -> validator.forbidden(Collections.singleton("dummy"), "Should fail."));
+        e = assertThrows(AssertionError.class, () -> validator.forbidden(Set.of("dummy"), "Should fail."));
         assertTrue(e.getMessage().startsWith("Should fail."));
     }
 

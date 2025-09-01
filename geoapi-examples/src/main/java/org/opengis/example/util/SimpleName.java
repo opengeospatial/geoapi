@@ -7,7 +7,6 @@ package org.opengis.example.util;
 
 import java.util.List;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.Enumeration;
 import java.util.Objects;
 import java.util.Optional;
@@ -180,15 +179,14 @@ public class SimpleName implements GenericName {
         }
 
         /**
-         * Since this object is itself a locale name, returns a
-         * {@linkplain Collections#singletonList(Object) singleton}
+         * Since this object is itself a locale name, returns a {@linkplain List#of(Object) singleton}
          * list containing only {@code this}.
          */
         @Override
         public List<LocalName> getParsedNames() {
             switch (super.depth()) {
-                case 0:  return Collections.emptyList();                    // Only for the root namespace.
-                case 1:  return Collections.<LocalName>singletonList(this);
+                case 0:  return List.of();                    // Only for the root namespace.
+                case 1:  return List.<LocalName>of(this);
                 default: return super.getParsedNames();
             }
         }
