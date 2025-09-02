@@ -110,9 +110,11 @@ public class CRSValidator extends ReferencingValidator {
             if (object instanceof GeodeticCRS)    {validate((GeodeticCRS)    object); n++;}
             if (object instanceof ProjectedCRS)   {validate((ProjectedCRS)   object); n++;} else
             if (object instanceof DerivedCRS)     {validate((DerivedCRS)     object); n++;} // Implied by above case.
+            if (object instanceof ImageCRS)       {validate((ImageCRS)       object); n++;}
             if (object instanceof EngineeringCRS) {validate((EngineeringCRS) object); n++;}
             if (object instanceof VerticalCRS)    {validate((VerticalCRS)    object); n++;}
             if (object instanceof TemporalCRS)    {validate((TemporalCRS)    object); n++;}
+            if (object instanceof ParametricCRS)  {validate((ParametricCRS)  object); n++;}
             if (object instanceof CompoundCRS)    {validate((CompoundCRS)    object); n++;}
             if (n == 0) {
                 validateIdentifiedObject(object);
@@ -172,8 +174,8 @@ public class CRSValidator extends ReferencingValidator {
             fail("GeodeticCRS: unknown CoordinateSystem of type " + cs.getClass().getCanonicalName() + '.');
         }
         final GeodeticDatum datum = object.getDatum();
-        mandatory(datum, "GeodeticCRS: shall have a Datum.");
         container.validate(datum);
+        validateEnsemble(object.getDatumEnsemble(), datum);
     }
 
     /**
@@ -204,9 +206,8 @@ public class CRSValidator extends ReferencingValidator {
             assertStandardNames("ProjectedCRS", cs, PROJECTED_AXIS_NAME);
         }
         final GeodeticDatum datum = object.getDatum();
-        mandatory(datum, "ProjectedCRS: shall have a Datum.");
         container.validate(datum);
-
+        validateEnsemble(object.getDatumEnsemble(), datum);
         validateGeneralDerivedCRS(object);
     }
 
@@ -230,9 +231,8 @@ public class CRSValidator extends ReferencingValidator {
         container.validate(cs);
 
         final Datum datum = object.getDatum();
-        mandatory(datum, "DerivedCRS: shall have a Datum.");
         container.validate(datum);
-
+        validateEnsemble(object.getDatumEnsemble(), datum);
         validateGeneralDerivedCRS(object);
     }
 
@@ -284,8 +284,8 @@ public class CRSValidator extends ReferencingValidator {
         container.validate(cs);
 
         final ImageDatum datum = object.getDatum();
-        mandatory(datum, "ImageCRS: shall have a Datum.");
         container.validate(datum);
+        validateEnsemble(object.getDatumEnsemble(), datum);
     }
 
     /**
@@ -318,9 +318,9 @@ public class CRSValidator extends ReferencingValidator {
                     cs instanceof TimeCS,
                 message);
 
-        final Datum datum = object.getDatum();
-        mandatory(datum, "EngineeringCRS: shall have a Datum.");
+        final EngineeringDatum datum = object.getDatum();
         container.validate(datum);
+        validateEnsemble(object.getDatumEnsemble(), datum);
     }
 
     /**
@@ -346,8 +346,8 @@ public class CRSValidator extends ReferencingValidator {
             assertStandardNames("VerticalCRS", cs, VERTICAL_AXIS_NAME);
         }
         final VerticalDatum datum = object.getDatum();
-        mandatory(datum, "VerticalCRS: shall have a Datum.");
         container.validate(datum);
+        validateEnsemble(object.getDatumEnsemble(), datum);
     }
 
     /**
@@ -365,8 +365,54 @@ public class CRSValidator extends ReferencingValidator {
         container.validate(cs);
 
         final TemporalDatum datum = object.getDatum();
-        mandatory(datum, "TemporalCRS: shall have a Datum.");
         container.validate(datum);
+        validateEnsemble(object.getDatumEnsemble(), datum);
+    }
+
+    /**
+     * Validates the given coordinate reference system.
+     *
+     * @param  object  the object to validate, or {@code null}.
+     *
+     * @since 3.1
+     */
+    public void validate(final ParametricCRS object) {
+        if (object == null) {
+            return;
+        }
+        validateIdentifiedObject(object);
+        final ParametricCS cs = object.getCoordinateSystem();
+        mandatory(cs, "ParametricCRS: shall have a CoordinateSystem.");
+        container.validate(cs);
+
+        final ParametricDatum datum = object.getDatum();
+        container.validate(datum);
+        validateEnsemble(object.getDatumEnsemble(), datum);
+    }
+
+    /**
+     * Verifies the consistency between the given datum and datum ensemble.
+     * At least one of the two arguments should be non-null.
+     * If the non-null argument is the ensemble, it is validated by this method.
+     * If the non-null argument is the datum, it should be validated by the caller.
+     * If both arguments is non-null, then this method ensures that the given datum
+     * is a member of the given ensemble. The latter is a relaxation of ISO 19111:2019,
+     * which requires the datum to be {@code null} if the ensemble is non-null.
+     *
+     * @param  <D>       the type of the datum.
+     * @param  ensemble  the datum ensemble, or {@code null} if none.
+     * @param  datum     the datum, or {@code null} if none.
+     */
+    private <D extends Datum> void validateEnsemble(final DatumEnsemble<? extends D> ensemble, final D datum) {
+        if (ensemble != null) {
+            container.validate(ensemble);
+            if (datum != null) {
+                assertTrue(ensemble.getMembers().contains(datum),
+                        "Datum, if provided, shall be a member of the datum ensemble.");
+            }
+        } else {
+            mandatory(datum, "CRS: shall have a Datum or a DatumEnsemble.");
+        }
     }
 
     /**

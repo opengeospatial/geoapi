@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.distribution;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import java.time.temporal.TemporalAmount;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.OnlineResource;
@@ -71,7 +71,7 @@ public interface DigitalTransferOptions {
     @Profile(level=CORE)
     @UML(identifier="onLine", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends OnlineResource> getOnLines() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -83,7 +83,7 @@ public interface DigitalTransferOptions {
      */
     @UML(identifier="offLine", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Medium> getOffLines() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -124,6 +124,6 @@ public interface DigitalTransferOptions {
      */
     @UML(identifier="distributionFormat", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Format> getDistributionFormats() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

@@ -18,8 +18,9 @@
 package org.opengis.metadata.identification;
 
 import java.util.Date;
+import java.util.Set;
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.temporal.TemporalPrimitive;
 import org.opengis.metadata.citation.Citation;
@@ -77,7 +78,7 @@ public interface Usage {
      */
     @UML(identifier="usageDateTime", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends TemporalPrimitive> getUsageDates() {
-        return Collections.emptySet();
+        return Set.of();
     }
 
     /**
@@ -101,9 +102,9 @@ public interface Usage {
      *
      * @return means of communicating with person(s) and organization(s) using the resource(s).
      */
-    @UML(identifier="userContactInfo", obligation=OPTIONAL, specification=ISO_19115)
+    @UML(identifier="userContactInfo", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends ResponsibleParty> getUserContactInfo() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -119,7 +120,7 @@ public interface Usage {
      */
     @UML(identifier="response", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends InternationalString> getResponses() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -131,7 +132,7 @@ public interface Usage {
      */
     @UML(identifier="additionalDocumentation", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getAdditionalDocumentation() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -144,6 +145,6 @@ public interface Usage {
      */
     @UML(identifier="identifiedIssues", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getIdentifiedIssues() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

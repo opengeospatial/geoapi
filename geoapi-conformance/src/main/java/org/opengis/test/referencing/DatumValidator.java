@@ -69,6 +69,7 @@ public class DatumValidator extends ReferencingValidator {
             if (object instanceof GeodeticDatum)    {validate((GeodeticDatum)    object); n++;}
             if (object instanceof VerticalDatum)    {validate((VerticalDatum)    object); n++;}
             if (object instanceof TemporalDatum)    {validate((TemporalDatum)    object); n++;}
+            if (object instanceof ParametricDatum)  {validate((ParametricDatum)  object); n++;}
             if (object instanceof ImageDatum)       {validate((ImageDatum)       object); n++;}
             if (object instanceof EngineeringDatum) {validate((EngineeringDatum) object); n++;}
             if (object instanceof DatumEnsemble)    {validate((DatumEnsemble)    object); n++;}
@@ -199,6 +200,20 @@ public class DatumValidator extends ReferencingValidator {
         validateIdentifiedObject(object);
         final var origin = object.getOrigin();
         mandatory(origin, "TemporalDatum: expected an origin.");
+    }
+
+    /**
+     * Validates the given datum.
+     *
+     * @param  object  the object to validate, or {@code null}.
+     *
+     * @since 3.1
+     */
+    public void validate(final ParametricDatum object) {
+        if (object == null) {
+            return;
+        }
+        validateIdentifiedObject(object);
     }
 
     /**

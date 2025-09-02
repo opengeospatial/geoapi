@@ -17,9 +17,8 @@
  */
 package org.opengis.metadata.spatial;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
-
 import org.opengis.annotation.UML;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.metadata.quality.Element;
@@ -52,6 +51,6 @@ public interface GCP {
      */
     @UML(identifier="accuracyReport", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Element> getAccuracyReports() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

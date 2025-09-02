@@ -17,9 +17,8 @@
  */
 package org.opengis.metadata.spatial;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
-
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
@@ -46,6 +45,6 @@ public interface GeolocationInformation {
      */
     @UML(identifier="qualityInfo", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends DataQuality> getQualityInfo() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

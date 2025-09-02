@@ -17,9 +17,8 @@
  */
 package org.opengis.metadata.acquisition;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
-
 import org.opengis.annotation.UML;
 import org.opengis.metadata.citation.Citation;
 import org.opengis.metadata.identification.Progress;
@@ -70,7 +69,7 @@ public interface Plan {
      */
     @UML(identifier="operation", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Operation> getOperations() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -80,6 +79,6 @@ public interface Plan {
      */
     @UML(identifier="satisfiedRequirement", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Requirement> getSatisfiedRequirements() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

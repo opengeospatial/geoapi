@@ -348,9 +348,9 @@ public strictfp final class ToleranceModifiers {
                     buffer.append('·');
                 } else {
                     buffer.append('×');
-                    final int casted = (int) factor;
-                    if (casted == factor) {
-                        buffer.append(casted);
+                    final int cast = (int) factor;
+                    if (cast == factor) {
+                        buffer.append(cast);
                     } else {
                         buffer.append(factor);
                     }

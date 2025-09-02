@@ -18,9 +18,8 @@
 package org.opengis.metadata.distribution;
 
 import java.net.URI;
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
-
 import org.opengis.annotation.UML;
 import org.opengis.util.LocalName;
 import org.opengis.util.InternationalString;
@@ -91,7 +90,7 @@ public interface DataFile {
      */
     @UML(identifier="featureTypes", obligation=OPTIONAL, specification=ISO_19115_3)
     default Collection<? extends LocalName> getFeatureTypes() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

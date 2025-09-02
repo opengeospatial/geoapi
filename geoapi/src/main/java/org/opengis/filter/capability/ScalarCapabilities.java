@@ -18,7 +18,6 @@
 package org.opengis.filter.capability;
 
 import java.util.Set;
-import java.util.Collections;
 import org.opengis.filter.ComparisonOperatorName;
 import org.opengis.annotation.UML;
 
@@ -61,6 +60,6 @@ public interface ScalarCapabilities {
      */
     @UML(identifier="comparisonOperator", obligation=OPTIONAL, specification=ISO_19143)
     default Set<ComparisonOperatorName> getComparisonOperators() {
-        return Collections.emptySet();
+        return Set.of();
     }
 }

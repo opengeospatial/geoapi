@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.quality;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import java.time.temporal.Temporal;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
@@ -86,7 +86,7 @@ public interface EvaluationMethod {
      */
     @UML(identifier="referenceDoc", obligation=OPTIONAL, specification=ISO_19157)
     default Collection<? extends Citation> getReferenceDocuments() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -98,6 +98,6 @@ public interface EvaluationMethod {
      */
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19157)
     default Collection<? extends Temporal> getDates() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

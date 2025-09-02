@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.distribution;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Profile;
 import org.opengis.util.InternationalString;
@@ -69,7 +69,7 @@ public interface Distribution {
      */
     @UML(identifier="distributor", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Distributor> getDistributors() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -81,6 +81,6 @@ public interface Distribution {
     @Profile(level=CORE)
     @UML(identifier="transferOptions", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends DigitalTransferOptions> getTransferOptions() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

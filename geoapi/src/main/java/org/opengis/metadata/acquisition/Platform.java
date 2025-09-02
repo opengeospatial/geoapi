@@ -17,9 +17,8 @@
  */
 package org.opengis.metadata.acquisition;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
-
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
@@ -77,7 +76,7 @@ public interface Platform {
      */
     @UML(identifier="sponsor", obligation=OPTIONAL, specification=ISO_19115_2, version=2003)
     default Collection<? extends ResponsibleParty> getSponsors() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

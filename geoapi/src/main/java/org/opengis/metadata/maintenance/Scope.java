@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.maintenance;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
@@ -53,7 +53,7 @@ public interface Scope {
      */
     @UML(identifier="extent", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Extent> getExtents() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -63,6 +63,6 @@ public interface Scope {
      */
     @UML(identifier="levelDescription", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends ScopeDescription> getLevelDescription() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

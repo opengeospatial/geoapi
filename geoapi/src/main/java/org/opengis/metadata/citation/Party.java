@@ -17,9 +17,8 @@
  */
 package org.opengis.metadata.citation;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
-
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
@@ -62,7 +61,7 @@ public interface Party {
      */
     @UML(identifier="partyIdentifier", obligation=OPTIONAL, specification=ISO_19115, version=2018)
     default Collection<? extends Identifier> getIdentifiers() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -72,6 +71,6 @@ public interface Party {
      */
     @UML(identifier="contactInfo", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Contact> getContactInfo() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

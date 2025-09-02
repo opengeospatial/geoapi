@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.spatial;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -51,6 +51,6 @@ public interface VectorSpatialRepresentation extends SpatialRepresentation {
      */
     @UML(identifier="geometricObjects", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends GeometricObjects> getGeometricObjects() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

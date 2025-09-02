@@ -296,7 +296,7 @@ public strictfp class ParameterizedTransformTest extends TransformTestCase {
     }
 
     /**
-     * Initializes the tolerance thresholds to their default values if the user did not specified custom thresholds.
+     * Initializes the tolerance thresholds to their default values if the user did not specify custom thresholds.
      * This method sets the {@linkplain TransformTestCase#tolerance tolerance} threshold in units of the target CRS
      * (typically <var>metres</var> for map projections), and the {@linkplain #derivativeDeltas derivative deltas}
      * in units of the source CRS (typically <var>degrees</var> for map projections).

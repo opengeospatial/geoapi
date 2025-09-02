@@ -18,7 +18,6 @@
 package org.opengis.test.referencing;
 
 import java.util.Map;
-import java.util.Collections;
 import java.util.Optional;
 import javax.measure.Unit;
 import javax.measure.quantity.Angle;
@@ -158,7 +157,7 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
      * @return a map containing only the value specified for the name key.
      */
     private static Map<String,String> name(final String value) {
-        return Collections.singletonMap(IdentifiedObject.NAME_KEY, value);
+        return Map.of(IdentifiedObject.NAME_KEY, value);
     }
 
     /**

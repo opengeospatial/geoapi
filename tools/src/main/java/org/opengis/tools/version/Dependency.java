@@ -43,7 +43,7 @@ enum Dependency {
         @Override
         public String[] pathInMavenRepository(final Version geoapiVersion) {
             return new String[] {
-                "org/junit/jupiter/junit-jupiter-api/5.10.3/junit-jupiter-api-5.10.3.jar"
+                "org/junit/jupiter/junit-jupiter-api/5.13.1/junit-jupiter-api-5.13.1.jar"
             };
         }
     };

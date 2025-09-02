@@ -20,7 +20,6 @@ package org.opengis.test.referencing;
 import java.util.Set;
 import java.util.Map;
 import java.util.HashMap;
-import java.util.Collections;
 import java.util.Objects;
 import java.util.Optional;
 import javax.measure.Unit;
@@ -218,7 +217,7 @@ public strictfp class PseudoEpsgFactory extends PseudoFactory implements Registe
      */
     @Override
     public Set<String> getAuthorityCodes(final Class<? extends IdentifiedObject> type) throws FactoryException {
-        return Collections.emptySet();
+        return Set.of();
     }
 
     /**

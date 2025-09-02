@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.quality;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.metadata.Identifier;
 import org.opengis.util.InternationalString;
 
@@ -73,7 +73,7 @@ final class MeasureInstanceReference implements MeasureReference {
     @Override
     public Collection<? extends InternationalString> getNamesOfMeasure() {
         InternationalString name = measure.getName();
-        return (name != null) ? Collections.singletonList(name) : Collections.emptyList();
+        return (name != null) ? List.of(name) : List.of();
     }
 
     /**

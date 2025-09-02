@@ -17,9 +17,8 @@
  */
 package org.opengis.metadata.acquisition;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
-
 import org.opengis.annotation.UML;
 import org.opengis.geometry.Geometry;
 import org.opengis.metadata.Identifier;
@@ -62,6 +61,6 @@ public interface PlatformPass {
      */
     @UML(identifier="relatedEvent", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Event> getRelatedEvents() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

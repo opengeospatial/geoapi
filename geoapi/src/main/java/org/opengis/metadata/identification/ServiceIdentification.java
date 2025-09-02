@@ -17,8 +17,9 @@
  */
 package org.opengis.metadata.identification;
 
+import java.util.Set;
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.util.GenericName;
 import org.opengis.metadata.citation.Citation;
@@ -67,7 +68,7 @@ public interface ServiceIdentification extends Identification {
      */
     @UML(identifier="serviceTypeVersion", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<String> getServiceTypeVersions() {
-        return Collections.emptySet();          // Use Set instead of List for hash-safe final classes.
+        return Set.of();
     }
 
     /**
@@ -127,7 +128,7 @@ public interface ServiceIdentification extends Identification {
      */
     @UML(identifier="operatedDataset", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getOperatedDatasets() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -140,7 +141,7 @@ public interface ServiceIdentification extends Identification {
      */
     @UML(identifier="profile", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getProfiles() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -153,7 +154,7 @@ public interface ServiceIdentification extends Identification {
      */
     @UML(identifier="serviceStandard", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getServiceStandards() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -166,7 +167,7 @@ public interface ServiceIdentification extends Identification {
      */
     @UML(identifier="containsOperations", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends OperationMetadata> getContainsOperations() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -182,7 +183,7 @@ public interface ServiceIdentification extends Identification {
      */
     @UML(identifier="operatesOn", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends DataIdentification> getOperatesOn() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -195,6 +196,6 @@ public interface ServiceIdentification extends Identification {
      */
     @UML(identifier="containsChain", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends OperationChainMetadata> getContainsChain() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

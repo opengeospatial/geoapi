@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.quality;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 
 
 /**
@@ -56,6 +56,6 @@ final class ElementImpl implements Element {
      */
     @Override
     public Collection<? extends Result> getResults() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

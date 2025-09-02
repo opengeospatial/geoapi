@@ -109,7 +109,7 @@ public final class ReferenceSystemTypeTest implements InvocationHandler {
     public void testIsInstance() {
         final ReferenceSystemType[] values = ReferenceSystemType.values();
         final var filteredValues = new LinkedHashSet<ReferenceSystemType>(Arrays.asList(values));
-        filteredValues.removeIf((type) -> type.identifier().isEmpty());
+        filteredValues.removeIf((type) -> type.identifier() == null);
         assertTrue(filteredValues.remove(ReferenceSystemType.ENGINEERING_IMAGE));
         assertTrue(filteredValues.remove(ReferenceSystemType.ENGINEERING_DESIGN));
         assertTrue(filteredValues.remove(ReferenceSystemType.GEOGRAPHIC_IDENTIFIER));

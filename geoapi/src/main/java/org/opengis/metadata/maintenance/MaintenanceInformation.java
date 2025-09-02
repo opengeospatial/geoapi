@@ -18,8 +18,8 @@
 package org.opengis.metadata.maintenance;
 
 import java.util.Date;
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedHashSet;
 import org.opengis.metadata.citation.DateType;
 import org.opengis.metadata.citation.CitationDate;
@@ -66,7 +66,7 @@ public interface MaintenanceInformation {
      */
     @UML(identifier="maintenanceDate", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends CitationDate> getMaintenanceDates() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -110,7 +110,7 @@ public interface MaintenanceInformation {
      */
     @UML(identifier="maintenanceScope", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Scope> getMaintenanceScopes() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -148,7 +148,7 @@ public interface MaintenanceInformation {
             Collection<? extends ScopeDescription> desc = scope.getLevelDescription();
             if (desc != null) return desc;
         }
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -158,7 +158,7 @@ public interface MaintenanceInformation {
      */
     @UML(identifier="maintenanceNote", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends InternationalString> getMaintenanceNotes() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -175,6 +175,6 @@ public interface MaintenanceInformation {
      */
     @UML(identifier="contact", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends ResponsibleParty> getContacts() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

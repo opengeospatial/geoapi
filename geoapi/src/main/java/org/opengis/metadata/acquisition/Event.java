@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.acquisition;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import java.time.temporal.Temporal;
 import org.opengis.metadata.Identifier;
@@ -105,7 +105,7 @@ public interface Event {
      */
     @UML(identifier="expectedObjective", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Objective> getExpectedObjectives() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -125,6 +125,6 @@ public interface Event {
      */
     @UML(identifier="relatedSensor", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Instrument> getRelatedSensors() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

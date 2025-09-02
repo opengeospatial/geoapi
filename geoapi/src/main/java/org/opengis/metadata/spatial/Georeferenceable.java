@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.spatial;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.util.Record;
 import org.opengis.metadata.citation.Citation;
@@ -82,7 +82,7 @@ public interface Georeferenceable extends GridSpatialRepresentation {
      */
     @UML(identifier="parameterCitation", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getParameterCitations() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

@@ -144,6 +144,7 @@ public class CSValidator extends ReferencingValidator {
             if (object instanceof LinearCS)      {validate((LinearCS)      object); n++;}
             if (object instanceof VerticalCS)    {validate((VerticalCS)    object); n++;}
             if (object instanceof TimeCS)        {validate((TimeCS)        object); n++;}
+            if (object instanceof ParametricCS)  {validate((ParametricCS)  object); n++;}
             if (object instanceof UserDefinedCS) {validate((UserDefinedCS) object); n++;}
             if (n == 0) {
                 validateIdentifiedObject(object);
@@ -292,6 +293,23 @@ public class CSValidator extends ReferencingValidator {
         validateAxes(object);
         final int dimension = object.getDimension();
         assertEquals(1, dimension, "TimeCS: wrong number of dimensions.");
+    }
+
+    /**
+     * Validates the given coordinate system.
+     *
+     * @param  object  the object to validate, or {@code null}.
+     *
+     * @since 3.1
+     */
+    public void validate(final ParametricCS object) {
+        if (object == null) {
+            return;
+        }
+        validateIdentifiedObject(object);
+        validateAxes(object);
+        final int dimension = object.getDimension();
+        assertEquals(1, dimension, "ParametricCS: wrong number of dimensions.");
     }
 
     /**

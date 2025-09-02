@@ -18,8 +18,8 @@
 package org.opengis.test.report;
 
 import java.util.Map;
+import java.util.Set;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.LinkedHashMap;
 import org.opengis.util.NameSpace;
 import org.opengis.util.GenericName;
@@ -161,7 +161,7 @@ final class IdentifiedObjects {
      * @return the non-null collection.
      */
     static <E> Collection<E> nullSafe(final Collection<E> c) {
-        return (c != null) ? c : Collections.<E>emptySet();
+        return (c != null) ? c : Set.<E>of();
     }
 
     /**

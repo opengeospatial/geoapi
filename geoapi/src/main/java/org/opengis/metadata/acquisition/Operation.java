@@ -17,9 +17,8 @@
  */
 package org.opengis.metadata.acquisition;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
-
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.citation.Citation;
@@ -95,7 +94,7 @@ public interface Operation {
      */
     @UML(identifier="childOperation", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Operation> getChildOperations() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -105,7 +104,7 @@ public interface Operation {
      */
     @UML(identifier="objective", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Objective> getObjectives() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -135,7 +134,7 @@ public interface Operation {
      */
     @UML(identifier="platform", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Platform> getPlatforms() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -145,6 +144,6 @@ public interface Operation {
      */
     @UML(identifier="significantEvent", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Event> getSignificantEvents() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

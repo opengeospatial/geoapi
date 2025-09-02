@@ -18,7 +18,6 @@
 package org.opengis.metadata.spatial;
 
 import java.util.List;
-import java.util.Collections;
 import org.opengis.annotation.UML;
 
 import static org.opengis.annotation.Obligation.*;
@@ -50,7 +49,7 @@ public interface GridSpatialRepresentation extends SpatialRepresentation {
      */
     @UML(identifier="axisDimensionProperties", obligation=OPTIONAL, specification=ISO_19115)
     default List<? extends Dimension> getAxisDimensionProperties() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

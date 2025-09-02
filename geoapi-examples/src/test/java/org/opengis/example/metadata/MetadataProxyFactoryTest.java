@@ -5,10 +5,10 @@
  */
 package org.opengis.example.metadata;
 
+import java.util.Set;
 import java.util.Map;
 import java.util.HashMap;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import org.opengis.metadata.Metadata;
 import org.opengis.metadata.citation.Party;
@@ -41,12 +41,12 @@ public class MetadataProxyFactoryTest {
         assertEquals("Aristotle", party.getName().toString());
 
         attributes = new HashMap<>();
-        assertNull(attributes.put("party", Collections.singleton(party)));
+        assertNull(attributes.put("party", Set.of(party)));
         final ResponsibleParty responsibility = factory.create(ResponsibleParty.class, attributes);
         assertEquals("Aristotle", getSingleton(responsibility.getParties()).getName().toString());
 
         attributes = new HashMap<>();
-        assertNull(attributes.put("contact", Collections.singleton(responsibility)));
+        assertNull(attributes.put("contact", Set.of(responsibility)));
         final Metadata md = factory.create(Metadata.class, attributes);
         assertEquals("Aristotle", getSingleton(getSingleton(md.getContacts()).getParties()).getName().toString());
 

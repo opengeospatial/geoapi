@@ -18,7 +18,6 @@
 package org.opengis.metadata.maintenance;
 
 import java.util.Set;
-import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Classifier;
 import org.opengis.annotation.Stereotype;
@@ -87,7 +86,7 @@ public interface ScopeDescription {
      */
     @UML(identifier="features", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     default Set<? extends FeatureType> getFeatures() {
-        return Collections.emptySet();
+        return Set.of();
     }
 
     /**
@@ -113,7 +112,7 @@ public interface ScopeDescription {
      */
     @UML(identifier="attributes", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     default Set<? extends AttributeType> getAttributes() {
-        return Collections.emptySet();
+        return Set.of();
     }
 
     /**
@@ -139,7 +138,7 @@ public interface ScopeDescription {
      */
     @UML(identifier="featureInstances", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     default Set<? extends FeatureType> getFeatureInstances() {
-        return Collections.emptySet();
+        return Set.of();
     }
 
     /**
@@ -165,7 +164,7 @@ public interface ScopeDescription {
      */
     @UML(identifier="attributeInstances", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
     default Set<? extends AttributeType> getAttributeInstances() {
-        return Collections.emptySet();
+        return Set.of();
     }
 
     /**

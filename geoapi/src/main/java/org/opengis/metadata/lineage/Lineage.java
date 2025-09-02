@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.lineage;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.maintenance.Scope;
 import org.opengis.metadata.citation.Citation;
@@ -81,7 +81,7 @@ public interface Lineage {
      */
     @UML(identifier="additionalDocumentation", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getAdditionalDocumentation() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

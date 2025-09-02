@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.citation;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
@@ -50,7 +50,7 @@ public interface Contact {
      */
     @UML(identifier="phone", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Telephone> getPhones() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -78,7 +78,7 @@ public interface Contact {
      */
     @UML(identifier="address", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Address> getAddresses() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -106,7 +106,7 @@ public interface Contact {
      */
     @UML(identifier="onlineResource", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends OnlineResource> getOnlineResources() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

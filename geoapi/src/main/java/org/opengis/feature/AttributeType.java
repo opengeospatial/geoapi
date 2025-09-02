@@ -18,7 +18,6 @@
 package org.opengis.feature;
 
 import java.util.Map;
-import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.annotation.Stereotype;
 import org.opengis.annotation.Classifier;
@@ -134,9 +133,14 @@ public interface AttributeType<V> extends PropertyType {
      * Returns the default value for the attribute.
      * This value is used when an attribute is created and no value for it is specified.
      *
+     * <h4>Default implementation</h4>
+     * The default implementation returns {@code null}.
+     *
      * @return the default value for the attribute, or {@code null} if none.
      */
-    V getDefaultValue();
+    default V getDefaultValue() {
+        return null;
+    }
 
     /**
      * Other attribute types that describe this attribute type.
@@ -150,13 +154,16 @@ public interface AttributeType<V> extends PropertyType {
      * The {@linkplain Map#keySet() map keys} are the {@code String} representations of
      * characteristics {@linkplain #getName() name}, for more convenient lookups.
      *
+     * <h4>Default implementation</h4>
+     * The default implementation returns an immutable empty map.
+     *
      * @return other attribute types that describe this attribute type, or an empty map if none.
      *
      * @see Attribute#characteristics()
      */
     @UML(identifier="characterizeBy", obligation=OPTIONAL, specification=ISO_19109)
     default Map<String,AttributeType<?>> characteristics() {
-        return Collections.emptyMap();
+        return Map.of();
     }
     /*
      * Note: ISO 19109 also defines the following member

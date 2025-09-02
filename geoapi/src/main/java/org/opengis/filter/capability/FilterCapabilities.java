@@ -19,7 +19,6 @@ package org.opengis.filter.capability;
 
 import java.util.Map;
 import java.util.Optional;
-import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.util.LocalName;
 import org.opengis.util.ScopedName;
@@ -111,7 +110,7 @@ public interface FilterCapabilities {
      */
     @UML(identifier="functions", obligation=OPTIONAL, specification=ISO_19143)
     default Map<String, ? extends AvailableFunction> getFunctions() {
-        return Collections.emptyMap();
+        return Map.of();
     }
 
     /**

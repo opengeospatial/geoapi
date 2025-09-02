@@ -18,7 +18,6 @@
 package org.opengis.filter;
 
 import java.util.List;
-import java.util.Collections;
 import java.io.Serializable;
 import java.io.ObjectStreamException;
 import org.opengis.util.CodeList;
@@ -88,7 +87,7 @@ final class FilterLiteral implements Filter<Object>, Serializable {
      */
     @Override
     public List<Expression<Object,?>> getExpressions() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

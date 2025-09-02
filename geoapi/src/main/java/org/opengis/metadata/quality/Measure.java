@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.quality;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.util.TypeName;
 import org.opengis.annotation.UML;
@@ -89,7 +89,7 @@ public interface Measure {
      */
     @UML(identifier="alias", obligation=OPTIONAL, specification=ISO_19157)
     default Collection<? extends InternationalString> getAliases() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -160,7 +160,7 @@ public interface Measure {
      */
     @UML(identifier="sourceReference", obligation=CONDITIONAL, specification=ISO_19157)
     default Collection<? extends SourceReference> getSourceReferences() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -255,7 +255,7 @@ public interface Measure {
      */
     @UML(identifier="parameter", obligation=CONDITIONAL, specification=ISO_19157)
     default Collection<? extends ParameterDescriptor<?>> getParameters() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -268,6 +268,6 @@ public interface Measure {
      */
     @UML(identifier="example", obligation=OPTIONAL, specification=ISO_19157)
     default Collection<? extends Description> getExamples() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

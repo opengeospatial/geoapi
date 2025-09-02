@@ -17,6 +17,7 @@
  */
 package org.opengis.geoapi;
 
+import java.util.Arrays;
 import java.util.Map;
 import java.util.Set;
 import java.util.List;
@@ -92,7 +93,7 @@ public final class ContentTest implements FileVisitor<Path> {
         for (int i=0; i<types.length; i++) {
             types[i] = new HashSet<>();
         }
-        ignoreTypes = new HashSet<>(List.of(
+        ignoreTypes = new HashSet<>(Arrays.asList(
                 org.opengis.geoapi.internal.Errors.class,
                 org.opengis.geoapi.internal.Legacy.class,
                 org.opengis.annotation.ComplianceLevel.class,

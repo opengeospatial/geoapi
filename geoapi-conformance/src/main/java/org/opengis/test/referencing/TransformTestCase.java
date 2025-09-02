@@ -470,9 +470,9 @@ public strictfp abstract class TransformTestCase extends TestCase {
         /*
          * Now performs the test.
          */
-        final SimpleDirectPosition source = new SimpleDirectPosition(sourceDimension);
-        final SimpleDirectPosition target = new SimpleDirectPosition(targetDimension);
-        final SimpleDirectPosition back   = new SimpleDirectPosition(sourceDimension);
+        final var source = new SimpleDirectPosition(sourceDimension);
+        final var target = new SimpleDirectPosition(targetDimension);
+        final var back   = new SimpleDirectPosition(sourceDimension);
         for (int i=0; i<numPts; i++) {
             final int sourceOffset = i * sourceDimension;
             final int targetOffset = i * targetDimension;
@@ -871,13 +871,16 @@ public strictfp abstract class TransformTestCase extends TestCase {
      */
     protected void verifyDerivative(final double... coordinates) throws TransformException {
         assertTrue(isDerivativeSupported, "isDerivativeSupported == false.");
+
         @SuppressWarnings("LocalVariableHidesMemberVariable")
-        final MathTransform   transform = this.transform;                               // Protect from changes.
-        @SuppressWarnings("LocalVariableHidesMemberVariable")
-        final double[] derivativeDeltas = this.derivativeDeltas;                        // Protect from changes.
+        final MathTransform transform = this.transform;             // Protect from changes.
         assertNotNull(transform, "TransformTestCase.transform shall be assigned a value.");
+
+        @SuppressWarnings("LocalVariableHidesMemberVariable")
+        final double[] derivativeDeltas = this.derivativeDeltas;    // Protect from changes.
         assertNotNull(derivativeDeltas, "TransformTestCase.derivativeDeltas shall be assigned a value.");
         assertNotEquals(0, derivativeDeltas.length, "TransformTestCase.derivativeDeltas shall not be empty.");
+
         assertEquals(transform.getSourceDimensions(), coordinates.length,
                 "Coordinate dimension shall be equal to the transform source dimension.");
         /*
@@ -886,8 +889,8 @@ public strictfp abstract class TransformTestCase extends TestCase {
          */
         final int sourceDim = transform.getSourceDimensions();
         final int targetDim = transform.getTargetDimensions();
-        final SimpleDirectPosition S0 = new SimpleDirectPosition(sourceDim);
-        final SimpleDirectPosition T0 = new SimpleDirectPosition(targetDim);
+        final var S0 = new SimpleDirectPosition(sourceDim);
+        final var T0 = new SimpleDirectPosition(targetDim);
         S0.setCoordinate(coordinates);
         S0.unmodifiable = true;
         assertSame(T0, transform.transform(S0, T0));
@@ -909,12 +912,12 @@ public strictfp abstract class TransformTestCase extends TestCase {
         /*
          * Compute an approximation of the expected derivative.
          */
-        final Matrix approx = new SimpleMatrix(targetDim, sourceDim, new double[sourceDim * targetDim]);
-        final Matrix tolmat = new SimpleMatrix(targetDim, sourceDim, new double[sourceDim * targetDim]);
-        final SimpleDirectPosition S1 = new SimpleDirectPosition(sourceDim);
-        final SimpleDirectPosition S2 = new SimpleDirectPosition(sourceDim);
-        final SimpleDirectPosition T1 = new SimpleDirectPosition(targetDim);
-        final SimpleDirectPosition T2 = new SimpleDirectPosition(targetDim);
+        final var approx = new SimpleMatrix(targetDim, sourceDim, new double[sourceDim * targetDim]);
+        final var tolmat = new SimpleMatrix(targetDim, sourceDim, new double[sourceDim * targetDim]);
+        final var S1 = new SimpleDirectPosition(sourceDim);
+        final var S2 = new SimpleDirectPosition(sourceDim);
+        final var T1 = new SimpleDirectPosition(targetDim);
+        final var T2 = new SimpleDirectPosition(targetDim);
         for (int i=0; i<sourceDim; i++) {
             S1.setCoordinate(coordinates);
             S2.setCoordinate(coordinates);

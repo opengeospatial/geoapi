@@ -18,8 +18,8 @@
 package org.opengis.referencing.operation;
 
 import java.util.Optional;
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import java.time.temporal.Temporal;
 import org.opengis.coordinate.CoordinateSet;
 import org.opengis.referencing.IdentifiedObject;
@@ -245,7 +245,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      */
     @UML(identifier="coordinateOperationAccuracy", obligation=OPTIONAL, specification=ISO_19111)
     default Collection<PositionalAccuracy> getCoordinateOperationAccuracy() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

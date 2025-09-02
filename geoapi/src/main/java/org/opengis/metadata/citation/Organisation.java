@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.citation;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.identification.BrowseGraphic;
 
@@ -53,7 +53,7 @@ public interface Organisation extends Party {
      */
     @UML(identifier="logo", obligation=CONDITIONAL, specification=ISO_19115)
     default Collection<? extends BrowseGraphic> getLogo() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -64,6 +64,6 @@ public interface Organisation extends Party {
      */
     @UML(identifier="individual", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Individual> getIndividual() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.metadata.citation.OnlineResource;
 import org.opengis.annotation.UML;
 
@@ -54,6 +54,6 @@ public interface MetadataExtensionInformation {
      */
     @UML(identifier="extendedElementInformation", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends ExtendedElementInformation> getExtendedElementInformation() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

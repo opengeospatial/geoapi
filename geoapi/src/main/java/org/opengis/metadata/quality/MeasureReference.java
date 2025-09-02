@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.quality;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import org.opengis.util.InternationalString;
 import org.opengis.annotation.UML;
 import org.opengis.metadata.Identifier;
@@ -76,7 +76,7 @@ public interface MeasureReference {
      */
     @UML(identifier="nameOfMeasure", obligation=CONDITIONAL, specification=ISO_19157)
     default Collection<? extends InternationalString> getNamesOfMeasure() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

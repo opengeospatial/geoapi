@@ -200,9 +200,15 @@ public interface Datum extends IdentifiedObject {
      * refers to the year in which a major recalculation of the geodetic control network, underlying the datum,
      * was executed or initiated.
      *
-     * <p>This epoch should not be confused with the frame reference epoch of dynamic reference frames.
+     * <p>This epoch should not be confused with the
+     * {@linkplain DynamicReferenceFrame#getFrameReferenceEpoch() frame reference epoch} of dynamic reference frames.
      * Nor with the epoch at which a reference frame is defined to be aligned with another reference frame.
      * this information should be included in the datum {@linkplain #getAnchorDefinition() anchor definition}.</p>
+     *
+     * <h4>Temporal object type</h4>
+     * The type of the returned object depends on the epoch accuracy and the calendar in use.
+     * For reference frames relative to the Earth, the temporal type should be {@link java.time.Year} if the epoch is
+     * merely a year, or {@link java.time.YearMonth} or {@link java.time.LocalDate} if a better precision is available.
      *
      * @return epoch at which a static datum matches a dynamic datum from which it has been derived.
      *

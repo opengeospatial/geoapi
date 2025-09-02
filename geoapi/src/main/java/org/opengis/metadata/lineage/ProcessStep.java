@@ -17,8 +17,8 @@
  */
 package org.opengis.metadata.lineage;
 
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import org.opengis.util.InternationalString;
 import org.opengis.metadata.citation.Citation;
@@ -101,7 +101,7 @@ public interface ProcessStep {
      */
     @UML(identifier="processor", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends ResponsibleParty> getProcessors() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -114,7 +114,7 @@ public interface ProcessStep {
      */
     @UML(identifier="reference", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getReferences() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -137,7 +137,7 @@ public interface ProcessStep {
      */
     @UML(identifier="source", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Source> getSources() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -147,7 +147,7 @@ public interface ProcessStep {
      */
     @UML(identifier="output", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends Source> getOutputs() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -170,6 +170,6 @@ public interface ProcessStep {
      */
     @UML(identifier="report", obligation=OPTIONAL, specification=ISO_19115_2)
     default Collection<? extends ProcessStepReport> getReports() {
-        return Collections.emptyList();
+        return List.of();
     }
 }

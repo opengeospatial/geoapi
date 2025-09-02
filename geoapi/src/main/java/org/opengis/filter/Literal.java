@@ -18,7 +18,6 @@
 package org.opengis.filter;
 
 import java.util.List;
-import java.util.Collections;
 import org.opengis.util.ScopedName;
 import org.opengis.annotation.UML;
 
@@ -77,7 +76,7 @@ public interface Literal<R,V> extends Expression<R,V> {
      */
     @Override
     default List<Expression<R,?>> getParameters() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**

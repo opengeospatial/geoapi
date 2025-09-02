@@ -703,6 +703,19 @@ public class ValidatorContainer {
      *
      * @param  object  the object to validate, or {@code null}.
      *
+     * @see CRSValidator#validate(ParametricCRS)
+     *
+     * @since 3.1
+     */
+    public final void validate(final ParametricCRS object) {
+        crs.validate(object);
+    }
+
+    /**
+     * Validates the given coordinate reference system.
+     *
+     * @param  object  the object to validate, or {@code null}.
+     *
      * @see CRSValidator#validate(CompoundCRS)
      */
     public final void validate(final CompoundCRS object) {
@@ -813,6 +826,19 @@ public class ValidatorContainer {
      *
      * @param  object  the object to test, or {@code null}.
      *
+     * @see CSValidator#validate(ParametricCS)
+     *
+     * @since 3.1
+     */
+    public final void validate(final ParametricCS object) {
+        cs.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see CSValidator#validate(UserDefinedCS)
      */
     @Deprecated(since="3.1")
@@ -902,6 +928,19 @@ public class ValidatorContainer {
      *
      * @param  object  the object to test, or {@code null}.
      *
+     * @see DatumValidator#validate(ParametricDatum)
+     *
+     * @since 3.1
+     */
+    public final void validate(final ParametricDatum object) {
+        datum.validate(object);
+    }
+
+    /**
+     * Tests the conformance of the given object.
+     *
+     * @param  object  the object to test, or {@code null}.
+     *
      * @see DatumValidator#validate(ImageDatum)
      *
      * @deprecated {@code ImageCRS} is replaced by {@link EngineeringCRS} as of ISO 19111:2019.
@@ -975,6 +1014,7 @@ public class ValidatorContainer {
      * @param  object  the object to test, or {@code null}.
      *
      * @see OperationValidator#validate(PointMotionOperation)
+     *
      * @since 3.1
      */
     public final void validate(final PointMotionOperation object) {

@@ -57,7 +57,7 @@ import static org.opengis.annotation.Specification.ISO_19109;
  * <div class="note"><b>Analogy with Java language</b>:
  * compared to the Java language, the above rule is similar to overriding a method with a more specific return
  * type (a.k.a. <dfn>covariant return type</dfn>). This is also similar to Java arrays, which are implicitly
- * <i>covariant</i> (i.e. {@code String[]} can be casted to {@code CharSequence[]}, which is safe for read
+ * <i>covariant</i> (i.e. {@code String[]} can be cast to {@code CharSequence[]}, which is safe for read
  * operations but not for write operations — the latter may throw {@link ArrayStoreException}).</div>
  *
  * @author  Jody Garnett (Refractions Research)
@@ -93,8 +93,7 @@ public interface FeatureType extends IdentifiedType {
 
     /**
      * Returns {@code true} if this feature type contains only attributes constrained to the [1 … 1] multiplicity,
-     * or operations (no feature association).
-     * Such feature types can be handled as a {@link org.opengis.util.RecordType} instances.
+     * or operations (no feature association). Such feature instances are sometime known as "Simple features".
      *
      * @return {@code true} if this feature type contains only simple attributes or operations.
      */

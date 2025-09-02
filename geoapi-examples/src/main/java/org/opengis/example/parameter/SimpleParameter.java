@@ -275,11 +275,11 @@ public class SimpleParameter extends SimpleIdentifiedObject
     /**
      * Returns the integer value of an operation parameter, usually used for a count.
      * If {@linkplain #LENIENT lenient}, this method returns the {@linkplain #value}
-     * casted to the {@code int} type only if this cast can be done without lost of
+     * cast to the {@code int} type only if this cast can be done without lost of
      * information. In all other cases an exception is thrown.
      *
      * @return the numeric value represented by this parameter after conversion to type {@code int}.
-     * @throws InvalidParameterTypeException if the value cannot be casted to an integer type.
+     * @throws InvalidParameterTypeException if the value cannot be cast to an integer type.
      */
     @Override
     public int intValue() throws InvalidParameterTypeException {

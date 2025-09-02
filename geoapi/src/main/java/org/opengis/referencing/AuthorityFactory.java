@@ -73,7 +73,7 @@ public interface AuthorityFactory extends Factory {
      * then this method should return only the authority codes accepted by
      * {@link org.opengis.referencing.crs.CRSAuthorityFactory#createProjectedCRS createProjectedCRS(…)}.
      *
-     * @param  type  the type of referencing object for which to get authority codes.
+     * @param  type  the type of referencing objects for which to get authority codes.
      * @return the set of authority codes for referencing objects of the given type.
      * @throws FactoryException if access to the underlying database failed.
      *

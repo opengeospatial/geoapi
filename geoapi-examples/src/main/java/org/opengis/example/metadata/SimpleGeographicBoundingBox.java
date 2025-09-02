@@ -5,8 +5,8 @@
  */
 package org.opengis.example.metadata;
 
+import java.util.Set;
 import java.util.Collection;
-import java.util.Collections;
 import java.awt.geom.RectangularShape;
 
 import org.opengis.metadata.extent.Extent;
@@ -179,7 +179,7 @@ public class SimpleGeographicBoundingBox implements GeographicBoundingBox, Exten
      */
     @Override
     public Collection<? extends GeographicExtent> getGeographicElements() {
-        return Collections.singleton(this);
+        return Set.of(this);
     }
 
     /**

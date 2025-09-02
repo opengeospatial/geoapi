@@ -17,8 +17,9 @@
  */
 package org.opengis.metadata.citation;
 
+import java.util.Set;
+import java.util.List;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Date;
 import org.opengis.metadata.Identifier;
 import org.opengis.metadata.identification.BrowseGraphic;
@@ -66,7 +67,7 @@ public interface Citation {
      */
     @UML(identifier="alternateTitle", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends InternationalString> getAlternateTitles() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -77,7 +78,7 @@ public interface Citation {
     @Profile(level=CORE)
     @UML(identifier="date", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends CitationDate> getDates() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -118,7 +119,7 @@ public interface Citation {
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Identifier> getIdentifiers() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -136,7 +137,7 @@ public interface Citation {
      */
     @UML(identifier="citedResponsibleParty", obligation=OPTIONAL, specification=ISO_19115, version=2003)
     default Collection<? extends ResponsibleParty> getCitedResponsibleParties() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -147,7 +148,7 @@ public interface Citation {
      */
     @UML(identifier="presentationForm", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<PresentationForm> getPresentationForms() {
-        return Collections.emptySet();                          // Use Set instead of List for hash-safe final classes.
+        return Set.of();
     }
 
     /**
@@ -223,7 +224,7 @@ public interface Citation {
      */
     @UML(identifier="onlineResource", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends OnlineResource> getOnlineResources() {
-        return Collections.emptyList();
+        return List.of();
     }
 
     /**
@@ -236,6 +237,6 @@ public interface Citation {
      */
     @UML(identifier="graphic", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends BrowseGraphic> getGraphics() {
-        return Collections.emptyList();
+        return List.of();
     }
 }
