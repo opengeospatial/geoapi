@@ -156,10 +156,10 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
 
     /**
      * Returns the unit of measurement for the minimum, maximum and default values.
-     * This attribute applies only if the value is of numeric type
-     * (usually an instance of {@link Double}).
+     * If units of measurement are not applicable to values of type {@code <T>},
+     * or if the units are unknown, then this method returns {@code null}.
      *
-     * @return the unit for numeric value, or {@code null} if it does not apply to the value type.
+     * @return the unit of minimum, maximum and default values, or {@code null} if not applicable.
      *
      * @departure extension
      *   This method is not part of ISO specification. It is provided as a complement of information.

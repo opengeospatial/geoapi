@@ -116,7 +116,7 @@ public abstract class Report {
      */
     private static final String NOW;
     static {
-        final SimpleDateFormat format = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA);
+        final var format = new SimpleDateFormat("yyyy-MM-dd", Locale.CANADA);
         NOW = format.format(new Date());
     }
 
@@ -227,26 +227,6 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
     }
 
     /**
-     * Returns the value associated to the given key in the {@linkplain #properties} map.
-     * If the value for the given key contains other keys, then this method will resolve
-     * those values recursively.
-     *
-     * @param  key  the property key for which to get the value.
-     * @return the value for the given key.
-     * @throws NoSuchElementException if no value has been found for the given key.
-     */
-    final String getProperty(final String key) throws NoSuchElementException {
-        final StringBuilder buffer = new StringBuilder();
-        try {
-            writeProperty(buffer, key);
-        } catch (IOException e) {
-            // Should never happen, since we are appending to a StringBuilder.
-            throw new AssertionError(e);
-        }
-        return buffer.toString();
-    }
-
-    /**
      * Returns the locale to use for producing messages in the reports. The locale may be
      * used for fetching the character sequences from {@link InternationalString} objects,
      * for converting to lower-cases or for formatting numbers.
@@ -319,7 +299,7 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
      * @throws IOException if an error occurred during the copy.
      */
     private static void copy(final String source, final File directory) throws IOException {
-        final File file = new File(directory, source);
+        final var file = new File(directory, source);
         if (file.isFile() && file.length() != 0) {
             return;
         }
@@ -353,8 +333,8 @@ search:     for (final Responsibility responsibility : vendor.getCitedResponsibl
         if (in == null) {
             throw new FileNotFoundException("Resource not found: " + source);
         }
-        final BufferedWriter   writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(destination), ENCODING));
-        final LineNumberReader reader = new LineNumberReader(new InputStreamReader(in, ENCODING));
+        final var writer = new BufferedWriter(new OutputStreamWriter(new FileOutputStream(destination), ENCODING));
+        final var reader = new LineNumberReader(new InputStreamReader(in, ENCODING));
         reader.setLineNumber(1);
         try {
             String line;
