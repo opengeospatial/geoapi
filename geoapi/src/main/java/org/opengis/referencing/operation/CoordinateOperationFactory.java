@@ -189,6 +189,10 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * The source coordinate reference system of the first step and the target coordinate reference system of the
      * last step are the source and target coordinate reference system associated with the concatenated operation.
      *
+     * @deprecated Replaced by {@linkplain #createConcatenatedOperation(Map, CoordinateReferenceSystem,
+     * CoordinateReferenceSystem, CoordinateOperation...) a method with explicit CRS arguments} because
+     * of potential swapping of source/target <abbr>CRS</abbr>.
+     *
      * @param  properties  name and other properties to give to the new object.
      *         Available properties are {@linkplain ObjectFactory listed there}.
      * @param  operations  the sequence of operations.
@@ -199,10 +203,11 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   This method has been added because OGC 01-009 does not define a factory
      *   method for creating concatenated operations.
      */
+    @Deprecated(since = "3.1")
     default CoordinateOperation createConcatenatedOperation(Map<String, ?> properties,
             CoordinateOperation... operations) throws FactoryException
     {
-        throw new UnimplementedServiceException(this, ConcatenatedOperation.class);
+        return createConcatenatedOperation(properties, null, null, operations);
     }
 
     /**
@@ -272,5 +277,37 @@ public interface CoordinateOperationFactory extends ObjectFactory {
                 ParameterDescriptorGroup parameters) throws FactoryException
     {
         throw new UnimplementedServiceException(this, OperationMethod.class);
+    }
+
+    /**
+     * Creates an ordered sequence of two or more single coordinate operations.
+     * The sequence of operations is constrained by the requirement that the source coordinate reference system
+     * of step (<var>n</var>+1) must be the same as the target coordinate reference system of step (<var>n</var>).
+     * The source coordinate reference system of the first step and the target coordinate reference system of the
+     * last step are the source and target coordinate reference system associated with the concatenated operation.
+     *
+     * <p>As an exception to the above-cited constraint, a step can swap its source and target <abbr>CRS</abbr>.
+     * In such case, the effectively executed operation will be the inverse of that step. The {@code sourceCRS}
+     * and {@code targetCRS} arguments of this method are needed for detecting whether such swapping occurred
+     * in the first step or in the last step. Those optional arguments can be {@code null} if the caller did
+     * not swapped any <abbr>CRS</abbr>.</p>
+     *
+     * @param  properties  name and other properties to give to the new object.
+     *                     Available properties are {@linkplain ObjectFactory listed there}.
+     * @param  sourceCRS   the source <abbr>CRS</abbr>, or {@code null} for the source of the first step.
+     * @param  targetCRS   the target <abbr>CRS</abbr>, or {@code null} for the target of the last effective step.
+     * @param  operations  the sequence of operations. Should contain at least two operations.
+     * @return the concatenated operation created from the given arguments.
+     * @throws FactoryException if the object creation failed.
+     *
+     * @since 3.1
+     */
+    default CoordinateOperation createConcatenatedOperation(
+            Map<String,?> properties,
+            CoordinateReferenceSystem sourceCRS,
+            CoordinateReferenceSystem targetCRS,
+            CoordinateOperation... operations) throws FactoryException
+    {
+        throw new UnimplementedServiceException(this, ConcatenatedOperation.class);
     }
 }

@@ -87,9 +87,9 @@ final class MetadataHandler implements InvocationHandler {
                 } else {
                     // While it is technically possible to return null collection,
                     // the common practice is to return an empty one instead.
-                    if (rt.isAssignableFrom(List.class)) value = List.of(); else
-                    if (rt.isAssignableFrom(Set .class)) value = Set.of();  else
-                    if (rt.isAssignableFrom(Map .class)) value = Map.of();
+                    if (rt.isAssignableFrom(List.class)) return List.of();
+                    if (rt.isAssignableFrom(Set .class)) return  Set.of();
+                    if (rt.isAssignableFrom(Map .class)) return  Map.of();
                 }
             }
             return value;
