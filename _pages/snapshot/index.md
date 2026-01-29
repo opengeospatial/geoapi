@@ -35,7 +35,7 @@ Furthermore each branch contains the following directories:
 
 All documents listed below are snapshots and may change at any time before release.
 
-* [Specification draft](https://docs.ogc.org/DRAFTS/23-016.html)
+* [Specification draft](https://docs.ogc.org/DRAFTS/23-016.html) ([PDF](https://docs.ogc.org/DRAFTS/23-016.pdf))
 * [Issues tracker on GitHub](https://github.com/opengeospatial/geoapi/issues)
 * **Java**
   * [Java ↔︎ OGC/ISO mapping](javadoc/content.html)

@@ -30,7 +30,7 @@ for fetching some metadata.
 ## Known implementations
 
 * [Apache Spatial Information System (SIS)](https://sis.apache.org).
-* [GeoTools wrappers](https://github.com/Geomatys/geoapi-gt-wrappers) for the GeoTools Java library.
+* [GeoTools wrappers](https://github.com/Geomatys/geoapi-gt-wrappers) for the GeoTools library.
 * [PROJ4J](https://github.com/locationtech/proj4j) version 1.4 or later in the `proj4j-geoapi` module.
 * [PROJ wrappers](https://github.com/osgeo/PROJ-JNI) in Java for version 6 or later of the PROJ C/C++ library.
 * [NetCDF wrappers](https://github.com/Unidata/geoapi-netcdf-java) for the Java version of the UCAR netCDF library.
