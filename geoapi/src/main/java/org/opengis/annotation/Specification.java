@@ -46,6 +46,22 @@ package org.opengis.annotation;
  */
 public enum Specification {
     /**
+     * ISO 12113, Runtime 3D asset delivery format — Khronos glTF™ 2.0.
+     * It specifies the classes for describing a 3D rendering scene, including materials, geometries and animations.
+     * It defines optimized sub-types of ISO-19107 geometries.
+     *
+     * <p><b>Version numbers used in GeoAPI:</b></p>
+     * <ul>
+     *   <li><b>2022:</b> ISO 12113:2022   ({@linkplain #defaultVersion() default version})</li>
+     * </ul>
+     *
+     * @see <a href="https://www.iso.org/standard/83990.html">ISO 12113:2022 on standards catalogue</a>
+     * @see <a href="https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html">Khronos GLTF-2.0 on Khronos registry</a>
+     * @since 3.1
+     */
+    ISO_12113((short) 2022),
+
+    /**
      * ISO 19103, Conceptual schema language.
      * This is the specification for some interfaces in package {@link org.opengis.util}.
      * This specification provides basic classes such as names, records and units of measurement.
