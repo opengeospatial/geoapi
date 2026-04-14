@@ -17,11 +17,11 @@
  */
 package org.opengis.coverage;
 
+import java.util.List;
 import java.util.Collection;                    // For javadoc
 import org.opengis.util.CodeList;
 import org.opengis.geometry.DirectPosition;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -45,7 +45,6 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see Coverage#getCommonPointRule
  */
-@Vocabulary(capacity=6)
 @UML(identifier="CV_CommonPointRule", specification=ISO_19123)
 public class CommonPointRule extends CodeList<CommonPointRule> {
     /**
@@ -57,25 +56,25 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
      * The mean of the feature attribute values.
      */
     @UML(identifier="average", obligation=CONDITIONAL, specification=ISO_19123)
-    public static final CommonPointRule AVERAGE = new CommonPointRule("AVERAGE");
+    public static final CommonPointRule AVERAGE;
 
     /**
      * The least of the feature attribute values.
      */
     @UML(identifier="low", obligation=CONDITIONAL, specification=ISO_19123)
-    public static final CommonPointRule LOW = new CommonPointRule("LOW");
+    public static final CommonPointRule LOW;
 
     /**
      * The greatest of the feature attribute values.
      */
     @UML(identifier="high", obligation=CONDITIONAL, specification=ISO_19123)
-    public static final CommonPointRule HIGH = new CommonPointRule("HIGH");
+    public static final CommonPointRule HIGH;
 
     /**
      * All the feature attribute values that can be determined for the input direct position.
      */
     @UML(identifier="all", obligation=CONDITIONAL, specification=ISO_19123)
-    public static final CommonPointRule ALL = new CommonPointRule("ALL");
+    public static final CommonPointRule ALL;
 
     /**
      * The {@linkplain ValueSegment#getStartParameter start value} of the second
@@ -83,7 +82,7 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
      * Applies only to segmented curve coverages.
      */
     @UML(identifier="start", obligation=CONDITIONAL, specification=ISO_19123)
-    public static final CommonPointRule START = new CommonPointRule("START");
+    public static final CommonPointRule START;
 
     /**
      * The {@linkplain ValueSegment#getEndParameter end value} of the first
@@ -91,7 +90,19 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
      * Applies only to segmented curve coverages.
      */
     @UML(identifier="end", obligation=CONDITIONAL, specification=ISO_19123)
-    public static final CommonPointRule END = new CommonPointRule("END");
+    public static final CommonPointRule END;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<CommonPointRule> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        AVERAGE = new CommonPointRule("AVERAGE"),
+        LOW     = new CommonPointRule("LOW"),
+        HIGH    = new CommonPointRule("HIGH"),
+        ALL     = new CommonPointRule("ALL"),
+        START   = new CommonPointRule("START"),
+        END     = new CommonPointRule("END"));
 
     /**
      * Constructs an element of the given name.
@@ -109,7 +120,7 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
      * @return the list of codes declared in the current JVM.
      */
     public static CommonPointRule[] values() {
-        return values(CommonPointRule.class);
+        return VALUES.toArray(CommonPointRule[]::new);
     }
 
     /**
@@ -134,6 +145,6 @@ public class CommonPointRule extends CodeList<CommonPointRule> {
      * @return a code matching the given name.
      */
     public static CommonPointRule valueOf(String code) {
-        return valueOf(CommonPointRule.class, code, CommonPointRule::new).get();
+        return valueOf(VALUES, code, CommonPointRule::new);
     }
 }

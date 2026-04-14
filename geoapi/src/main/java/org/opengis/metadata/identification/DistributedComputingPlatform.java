@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.identification;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19115;
@@ -40,7 +40,6 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @version 3.1
  * @since   3.1
  */
-@Vocabulary(capacity=10)
 @UML(identifier="DCPList", specification=ISO_19115)
 public final class DistributedComputingPlatform extends CodeList<DistributedComputingPlatform> {
     /**
@@ -52,61 +51,77 @@ public final class DistributedComputingPlatform extends CodeList<DistributedComp
      * Extensible Markup Language.
      */
     @UML(identifier="XML", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DistributedComputingPlatform XML = new DistributedComputingPlatform("XML");
+    public static final DistributedComputingPlatform XML;
 
     /**
      * Common Object Request Broker Architecture.
      */
     @UML(identifier="CORBA", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DistributedComputingPlatform CORBA = new DistributedComputingPlatform("CORBA");
+    public static final DistributedComputingPlatform CORBA;
 
     /**
      * Object - oriented programming language.
      */
     @UML(identifier="JAVA", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DistributedComputingPlatform JAVA = new DistributedComputingPlatform("JAVA");
+    public static final DistributedComputingPlatform JAVA;
 
     /**
      * Component Object Model.
      */
     @UML(identifier="COM", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DistributedComputingPlatform COM = new DistributedComputingPlatform("COM");
+    public static final DistributedComputingPlatform COM;
 
     /**
      * Structured Query Language.
      */
     @UML(identifier="SQL", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DistributedComputingPlatform SQL = new DistributedComputingPlatform("SQL");
+    public static final DistributedComputingPlatform SQL;
 
     /**
      * Simple Object Access Protocole.
      */
     @UML(identifier="SOAP", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DistributedComputingPlatform SOAP = new DistributedComputingPlatform("SOAP");
+    public static final DistributedComputingPlatform SOAP;
 
     /**
      * ISO 23950.
      */
     @UML(identifier="Z3950", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DistributedComputingPlatform Z3950 = new DistributedComputingPlatform("Z3950");
+    public static final DistributedComputingPlatform Z3950;
 
     /**
      * Extensible Markup Language.
      */
     @UML(identifier="HTTP", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DistributedComputingPlatform HTTP = new DistributedComputingPlatform("HTTP");
+    public static final DistributedComputingPlatform HTTP;
 
     /**
      * File Transfert Protocol.
      */
     @UML(identifier="FTP", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DistributedComputingPlatform FTP = new DistributedComputingPlatform("FTP");
+    public static final DistributedComputingPlatform FTP;
 
     /**
      * Web Services.
      */
     @UML(identifier="WebServices", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DistributedComputingPlatform WEB_SERVICES = new DistributedComputingPlatform("WEB_SERVICES");
+    public static final DistributedComputingPlatform WEB_SERVICES;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<DistributedComputingPlatform> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        XML          = new DistributedComputingPlatform("XML"),
+        CORBA        = new DistributedComputingPlatform("CORBA"),
+        JAVA         = new DistributedComputingPlatform("JAVA"),
+        COM          = new DistributedComputingPlatform("COM"),
+        SQL          = new DistributedComputingPlatform("SQL"),
+        SOAP         = new DistributedComputingPlatform("SOAP"),
+        Z3950        = new DistributedComputingPlatform("Z3950"),
+        HTTP         = new DistributedComputingPlatform("HTTP"),
+        FTP          = new DistributedComputingPlatform("FTP"),
+        WEB_SERVICES = new DistributedComputingPlatform("WEB_SERVICES"));
 
     /**
      * Constructs an element of the given name.
@@ -123,7 +138,7 @@ public final class DistributedComputingPlatform extends CodeList<DistributedComp
      * @return the list of codes declared in the current JVM.
      */
     public static DistributedComputingPlatform[] values() {
-        return values(DistributedComputingPlatform.class);
+        return VALUES.toArray(DistributedComputingPlatform[]::new);
     }
 
     /**
@@ -148,6 +163,6 @@ public final class DistributedComputingPlatform extends CodeList<DistributedComp
      * @return a code matching the given name.
      */
     public static DistributedComputingPlatform valueOf(String code) {
-        return valueOf(DistributedComputingPlatform.class, code, DistributedComputingPlatform::new).get();
+        return valueOf(VALUES, code, DistributedComputingPlatform::new);
     }
 }

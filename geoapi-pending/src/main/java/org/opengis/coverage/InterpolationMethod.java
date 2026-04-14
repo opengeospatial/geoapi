@@ -17,9 +17,9 @@
  */
 package org.opengis.coverage;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -53,7 +53,6 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @since   GeoAPI 2.1
  */
-@Vocabulary(capacity=9)
 @UML(identifier="CV_InterpolationMethod", specification=ISO_19123)
 public class InterpolationMethod extends CodeList<InterpolationMethod> {
     /**
@@ -75,7 +74,7 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      * </div>
      */
     @UML(identifier="Nearest neighbour", obligation=CONDITIONAL, specification=ISO_19123)
-    public static final InterpolationMethod NEAREST_NEIGHBOUR = new InterpolationMethod("NEAREST_NEIGHBOUR");
+    public static final InterpolationMethod NEAREST_NEIGHBOUR;
 
     /**
      * Interpolation based on the assumption that feature attribute values vary in proportion to
@@ -103,7 +102,7 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      * </blockquote>
      */
     @UML(identifier="Linear interpolation", obligation=CONDITIONAL, specification=ISO_19123)
-    public static final InterpolationMethod LINEAR = new InterpolationMethod("LINEAR");
+    public static final InterpolationMethod LINEAR;
 
     /**
      * Interpolation based on the assumption that feature attribute values vary as a quadratic
@@ -121,7 +120,7 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      * the coefficients of the function.
      */
     @UML(identifier="Quadratic interpolation", obligation=CONDITIONAL, specification=ISO_19123)
-    public static final InterpolationMethod QUADRATIC = new InterpolationMethod("QUADRATIC");
+    public static final InterpolationMethod QUADRATIC;
 
     /**
      * Interpolation based on the assumption that feature attribute values vary as a cubic function
@@ -140,40 +139,55 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      * the coefficients of the function.
      */
     @UML(identifier="Cubic interpolation", obligation=CONDITIONAL, specification=ISO_19123)
-    public static final InterpolationMethod CUBIC = new InterpolationMethod("CUBIC");
+    public static final InterpolationMethod CUBIC;
 
     /**
      * Interpolation based on the assumption that feature attribute values vary as a bilinear function
      * of position within the grid cell.
      */
     @UML(identifier="Bilinear interpolation", obligation=CONDITIONAL, specification=ISO_19123)
-    public static final InterpolationMethod BILINEAR = new InterpolationMethod("BILINEAR");
+    public static final InterpolationMethod BILINEAR;
 
     /**
      * Interpolation based on the assumption that feature attribute values vary as a biquadratic function
      * of position within the grid cell.
      */
     @UML(identifier="Biquadratic interpolation", obligation=CONDITIONAL, specification=ISO_19123)
-    public static final InterpolationMethod BIQUADRATIC = new InterpolationMethod("BIQUADRATIC");
+    public static final InterpolationMethod BIQUADRATIC;
 
     /**
      * Interpolation based on the assumption that feature attribute values vary as a bicubic function
      * of position within the grid cell.
      */
     @UML(identifier="Bicubic interpolation", obligation=CONDITIONAL, specification=ISO_19123)
-    public static final InterpolationMethod BICUBIC = new InterpolationMethod("BICUBIC");
+    public static final InterpolationMethod BICUBIC;
 
     /**
      * Lost area interpolation.
      */
     @UML(identifier="Lost area interpolation", obligation=CONDITIONAL, specification=ISO_19123)
-    public static final InterpolationMethod LOST_AREA = new InterpolationMethod("LOST_AREA");
+    public static final InterpolationMethod LOST_AREA;
 
     /**
      * Barycentric interpolation.
      */
     @UML(identifier="Barycentric interpolation", obligation=CONDITIONAL, specification=ISO_19123)
-    public static final InterpolationMethod BARYCENTRIC = new InterpolationMethod("BARYCENTRIC");
+    public static final InterpolationMethod BARYCENTRIC;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<InterpolationMethod> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        NEAREST_NEIGHBOUR = new InterpolationMethod("NEAREST_NEIGHBOUR"),
+        LINEAR            = new InterpolationMethod("LINEAR"),
+        QUADRATIC         = new InterpolationMethod("QUADRATIC"),
+        CUBIC             = new InterpolationMethod("CUBIC"),
+        BILINEAR          = new InterpolationMethod("BILINEAR"),
+        BIQUADRATIC       = new InterpolationMethod("BIQUADRATIC"),
+        BICUBIC           = new InterpolationMethod("BICUBIC"),
+        LOST_AREA         = new InterpolationMethod("LOST_AREA"),
+        BARYCENTRIC       = new InterpolationMethod("BARYCENTRIC"));
 
     /**
      * Constructs an element of the given name.
@@ -191,7 +205,7 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      * @return the list of codes declared in the current JVM.
      */
     public static InterpolationMethod[] values() {
-        return values(InterpolationMethod.class);
+        return VALUES.toArray(InterpolationMethod[]::new);
     }
 
     /**
@@ -216,6 +230,6 @@ public class InterpolationMethod extends CodeList<InterpolationMethod> {
      * @return a code matching the given name.
      */
     public static InterpolationMethod valueOf(String code) {
-        return valueOf(InterpolationMethod.class, code, InterpolationMethod::new).get();
+        return valueOf(VALUES, code, InterpolationMethod::new);
     }
 }

@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Specification.*;
 
@@ -37,7 +37,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Vocabulary(capacity=3)
 @UML(identifier="MD_ObligationCode", specification=ISO_19115)
 public final class Obligation extends CodeList<Obligation> {
     /**
@@ -49,19 +48,28 @@ public final class Obligation extends CodeList<Obligation> {
      * Element is always required.
      */
     @UML(identifier="mandatory", obligation=org.opengis.annotation.Obligation.CONDITIONAL, specification=ISO_19115)
-    public static final Obligation MANDATORY = new Obligation("MANDATORY");
+    public static final Obligation MANDATORY;
 
     /**
      * Element is not required.
      */
     @UML(identifier="optional", obligation=org.opengis.annotation.Obligation.CONDITIONAL, specification=ISO_19115)
-    public static final Obligation OPTIONAL = new Obligation("OPTIONAL");
+    public static final Obligation OPTIONAL;
 
     /**
      * Element is required when a specific condition is met.
      */
     @UML(identifier="conditional", obligation=org.opengis.annotation.Obligation.CONDITIONAL, specification=ISO_19115)
-    public static final Obligation CONDITIONAL = new Obligation("CONDITIONAL");
+    public static final Obligation CONDITIONAL;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<Obligation> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        MANDATORY   = new Obligation("MANDATORY"),
+        OPTIONAL    = new Obligation("OPTIONAL"),
+        CONDITIONAL = new Obligation("CONDITIONAL"));
 
     /**
      * Constructs an element of the given name.
@@ -79,7 +87,7 @@ public final class Obligation extends CodeList<Obligation> {
      * @return The list of codes declared in the current JVM.
      */
     public static Obligation[] values() {
-        return values(Obligation.class);
+        return VALUES.toArray(Obligation[]::new);
     }
 
     /**
@@ -104,6 +112,6 @@ public final class Obligation extends CodeList<Obligation> {
      * @return A code matching the given name.
      */
     public static Obligation valueOf(String code) {
-        return valueOf(Obligation.class, code, Obligation::new).get();
+        return valueOf(VALUES, code, Obligation::new);
     }
 }

@@ -59,7 +59,7 @@ import org.junit.jupiter.api.Assertions;
  * </ol>
  *
  * Subclasses can also override {@link #comparePropertyValue comparePropertyValue(…)}
- * for finer grain control the the properties to be compared.
+ * for finer grain control the properties to be compared.
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1

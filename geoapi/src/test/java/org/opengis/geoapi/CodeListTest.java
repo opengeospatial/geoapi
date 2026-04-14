@@ -18,6 +18,8 @@
 package org.opengis.geoapi;
 
 import java.util.Set;
+import java.util.HashSet;
+import java.util.Arrays;
 import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
@@ -25,8 +27,8 @@ import java.lang.reflect.Modifier;
 import org.opengis.util.CodeList;
 import org.opengis.util.ControlledVocabulary;
 import org.opengis.metadata.constraint.Restriction;
+import org.opengis.metadata.quality.ValueStructure;
 import org.opengis.metadata.identification.CharacterSet;
-import org.opengis.geoapi.internal.Vocabulary;
 import org.opengis.annotation.UML;
 import org.junit.jupiter.api.Test;
 
@@ -77,7 +79,7 @@ public final class CodeListTest {
             final Method valuesMethod = codeClass.getMethod("values", (Class<?>[]) null);
             assertTrue(Modifier.isPublic(valuesMethod.getModifiers()), () -> className + ".values() is not public.");
             assertTrue(Modifier.isStatic(valuesMethod.getModifiers()), () -> className + ".values() is not static.");
-            final ControlledVocabulary[] values = (ControlledVocabulary[]) valuesMethod.invoke(null, (Object[]) null);
+            final ControlledVocabulary[] values = assertInstanceOf(ControlledVocabulary[].class, valuesMethod.invoke(null, (Object[]) null));
             assertNotNull(values, () -> className + ".values() returned null.");
             int ignored = 0;
             /*
@@ -85,7 +87,8 @@ public final class CodeListTest {
              * Every field should be public, static and final.
              * We allow field to be non-public if not declared by an OGC/ISO standard.
              */
-            for (final ControlledVocabulary value : values) {
+            for (int ordinal = 0; ordinal < values.length; ordinal++) {
+                final ControlledVocabulary value = values[ordinal];
                 final String valueName = value.name();
                 final String fullName  = className + '.' + valueName;
                 assertTrue(codeClass.isInstance(value), () -> fullName + " is of unexpected type.");
@@ -106,24 +109,35 @@ public final class CodeListTest {
                 assertSame  (value,     field.get(null),   () -> fullName  + " is not the expected instance.");
                 assertArrayEquals(values, value.family(),  () -> className + ".family() mismatch.");
                 /*
-                 * Verify names and identifier.
+                 * Verify ordinal, names and identifier.
                  */
+                assertEquals(ordinal, value.ordinal(), () -> fullName + " ordinal mismatch.");
                 final Set<String> names = Set.of(value.names());        // NullPointerException if a name is null.
                 assertTrue(names.contains(valueName), () -> fullName  + ".names() is missing the name.");
             }
             /*
-             * Verifies if the ArrayList initial capacity match the actual list size.
-             * It is not mandatory to have an accurate initial capacity, but it avoid
-             * a little bit of memory reallocation at application startup time.
+             * Verify that all code list values declared as static fields are present in `values()`.
+             * Conversely, verify again that all values are declared as static constants.
+             */
+            final var remaining = new HashSet<>(Arrays.asList(values));
+            for (final Field field : codeClass.getDeclaredFields()) {
+                if (Modifier.isStatic(field.getModifiers())) {
+                    field.setAccessible(true);
+                    final Object value = field.get(null);
+                    if (codeClass.isInstance(value)) {
+                        final var code = (ControlledVocabulary) value;
+                        if (field.getName().equals(code.name())) {  // For excluding alias such as "LICENSE".
+                            assertTrue(remaining.remove(code), () -> code + " not found in values() array.");
+                        }
+                    }
+                }
+            }
+            assertTrue(remaining.isEmpty(), () -> "No constants for " + remaining);
+            /*
+             * Try to create a new code list element with `valueOf(String)`.
              */
             if (CodeList.class.isAssignableFrom(codeClass)) {
-                final Vocabulary desc = codeClass.getAnnotation(Vocabulary.class);
-                assertNotNull(desc, () -> className + " has no @Vocabulary annotation.");
-                assertEquals(values.length - ignored, desc.capacity(), () -> className + " is not properly sized.");
-                /*
-                 * Tests valueOf(String).
-                 */
-                if (desc.parameters() == 0) try {
+                if (codeClass != ValueStructure.class) try {
                     final Method valueOfMethod = codeClass.getMethod("valueOf", String.class);
                     for (final ControlledVocabulary value : values) {
                         assertSame(value, valueOfMethod.invoke(null, value.name()));
@@ -131,11 +145,9 @@ public final class CodeListTest {
                     /*
                      * Tries to create a new code list element.
                      */
-                    final CodeList<?> value = (CodeList<?>) valueOfMethod.invoke(null, "MyNewCode");
-                    assertTrue(codeClass.isInstance(value),
-                               () -> className + ".valueOf(String) did not created an instance of the expected class.");
-                    assertEquals("MyNewCode", value.name(),
-                                 "Newly created CodeList does not have the expected name.");
+                    final CodeList<?> value = assertInstanceOf(CodeList.class, valueOfMethod.invoke(null, "MyNewCode"));
+                    assertInstanceOf(codeClass, value, () -> className + ".valueOf(String) did not created an instance of the expected class.");
+                    assertEquals("MyNewCode", value.name(), "Newly created CodeList does not have the expected name.");
                 } catch (NoSuchMethodException e) {
                     fail("valueOf method not found for " + className, e);
                 }

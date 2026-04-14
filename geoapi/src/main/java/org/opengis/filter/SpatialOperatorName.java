@@ -17,9 +17,9 @@
  */
 package org.opengis.filter;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19143;
@@ -33,7 +33,6 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  */
-@Vocabulary(capacity=9)
 @UML(identifier="SpatialOperatorName", specification=ISO_19143)
 public final class SpatialOperatorName extends CodeList<SpatialOperatorName> {
     /**
@@ -57,59 +56,74 @@ public final class SpatialOperatorName extends CodeList<SpatialOperatorName> {
      * features that are in a different SRS than the SRS contained in the filter.</p>
      */
     @UML(identifier="BBOX", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final SpatialOperatorName BBOX = new SpatialOperatorName("BBOX");
+    public static final SpatialOperatorName BBOX;
 
     /**
      * Operator evaluates to {@code true} if the geometry of the two operands are equal.
      */
     @UML(identifier="Equals", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final SpatialOperatorName EQUALS = new SpatialOperatorName("EQUALS");
+    public static final SpatialOperatorName EQUALS;
 
     /**
      * Operator evaluates to {@code true} if the first operand is disjoint from the second.
      * "Disjoint" shall be interpreted in the sense defined in the OGC Simple Features specification.
      */
     @UML(identifier="Disjoint", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final SpatialOperatorName DISJOINT = new SpatialOperatorName("DISJOINT");
+    public static final SpatialOperatorName DISJOINT;
 
     /**
      * Operator evaluates to {@code true} if the two geometric operands intersect.
      */
     @UML(identifier="Intersects", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final SpatialOperatorName INTERSECTS = new SpatialOperatorName("INTERSECTS");
+    public static final SpatialOperatorName INTERSECTS;
 
     /**
      * Operator evaluates to {@code true} if the two geometric operands touch, but do not overlap.
      */
     @UML(identifier="Touches", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final SpatialOperatorName TOUCHES = new SpatialOperatorName("TOUCHES");
+    public static final SpatialOperatorName TOUCHES;
 
     /**
      * Operator evaluates to {@code true} if the first geometric operand crosses the second.
      * "Cross" shall be interpreted in the sense defined by the OGC Simple Features specification.
      */
     @UML(identifier="Crosses", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final SpatialOperatorName CROSSES = new SpatialOperatorName("CROSSES");
+    public static final SpatialOperatorName CROSSES;
 
     /**
      * Operator evaluates to {@code true} if the first geometric operand is completely
      * contained by the constant geometric operand.
      */
     @UML(identifier="Within", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final SpatialOperatorName WITHIN = new SpatialOperatorName("WITHIN");
+    public static final SpatialOperatorName WITHIN;
 
     /**
      * Operator evaluates to {@code true} if the first geometric operand contains the second.
      */
     @UML(identifier="Contains", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final SpatialOperatorName CONTAINS = new SpatialOperatorName("CONTAINS");
+    public static final SpatialOperatorName CONTAINS;
 
     /**
      * Operator evaluates to {@code true} if the interior of the first geometric operand
      * somewhere overlaps the interior of the second geometric operand.
      */
     @UML(identifier="Overlaps", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final SpatialOperatorName OVERLAPS = new SpatialOperatorName("OVERLAPS");
+    public static final SpatialOperatorName OVERLAPS;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<SpatialOperatorName> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        BBOX       = new SpatialOperatorName("BBOX"),
+        EQUALS     = new SpatialOperatorName("EQUALS"),
+        DISJOINT   = new SpatialOperatorName("DISJOINT"),
+        INTERSECTS = new SpatialOperatorName("INTERSECTS"),
+        TOUCHES    = new SpatialOperatorName("TOUCHES"),
+        CROSSES    = new SpatialOperatorName("CROSSES"),
+        WITHIN     = new SpatialOperatorName("WITHIN"),
+        CONTAINS   = new SpatialOperatorName("CONTAINS"),
+        OVERLAPS   = new SpatialOperatorName("OVERLAPS"));
 
     /**
      * Constructs an element of the given name.
@@ -126,7 +140,7 @@ public final class SpatialOperatorName extends CodeList<SpatialOperatorName> {
      * @return the list of codes declared in the current JVM.
      */
     public static SpatialOperatorName[] values() {
-        return values(SpatialOperatorName.class);
+        return VALUES.toArray(SpatialOperatorName[]::new);
     }
 
     /**
@@ -151,6 +165,6 @@ public final class SpatialOperatorName extends CodeList<SpatialOperatorName> {
      * @return a code matching the given name.
      */
     public static SpatialOperatorName valueOf(String code) {
-        return valueOf(SpatialOperatorName.class, code, SpatialOperatorName::new).get();
+        return valueOf(VALUES, code, SpatialOperatorName::new);
     }
 }

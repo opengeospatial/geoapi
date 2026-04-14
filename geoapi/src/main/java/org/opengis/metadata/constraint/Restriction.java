@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.constraint;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -33,7 +33,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Vocabulary(capacity=17)
 @UML(identifier="MD_RestrictionCode", specification=ISO_19115)
 public final class Restriction extends CodeList<Restriction> {
     /**
@@ -47,27 +46,27 @@ public final class Restriction extends CodeList<Restriction> {
      * granted by law for a specified period of time to an author, composer, artist, distributor.
      */
     @UML(identifier="copyright", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction COPYRIGHT = new Restriction("COPYRIGHT");
+    public static final Restriction COPYRIGHT;
 
     /**
      * Government has granted exclusive right to make, sell, use or license an invention
      * or discovery.
      */
     @UML(identifier="patent", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction PATENT = new Restriction("PATENT");
+    public static final Restriction PATENT;
 
     /**
      * Produced or sold information awaiting a patent.
      */
     @UML(identifier="patentPending", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction PATENT_PENDING = new Restriction("PATENT_PENDING");
+    public static final Restriction PATENT_PENDING;
 
     /**
      * A name, symbol, or other device identifying a product, officially registered and
      * legally restricted to the use of the owner or manufacturer.
      */
     @UML(identifier="trademark", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction TRADEMARK = new Restriction("TRADEMARK");
+    public static final Restriction TRADEMARK;
 
     /**
      * Formal permission to do something.
@@ -76,7 +75,7 @@ public final class Restriction extends CodeList<Restriction> {
      * @since 3.1
      */
     @UML(identifier="licence", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction LICENCE = new Restriction("LICENCE");
+    public static final Restriction LICENCE;
 
     /**
      * Formal permission to do something (ISO 19115:2003 spelling).
@@ -85,26 +84,26 @@ public final class Restriction extends CodeList<Restriction> {
      */
     @Deprecated(since="3.1")
     @UML(identifier="license", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
-    public static final Restriction LICENSE = LICENCE;
+    public static final Restriction LICENSE;
 
     /**
      * Rights to financial benefit from and control of distribution of non-tangible property
      * that is a result of creativity.
      */
     @UML(identifier="intellectualPropertyRights", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction INTELLECTUAL_PROPERTY_RIGHTS = new Restriction("INTELLECTUAL_PROPERTY_RIGHTS");
+    public static final Restriction INTELLECTUAL_PROPERTY_RIGHTS;
 
     /**
      * Withheld from general circulation or disclosure.
      */
     @UML(identifier="restricted", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction RESTRICTED = new Restriction("RESTRICTED");
+    public static final Restriction RESTRICTED;
 
     /**
      * Limitation not listed.
      */
     @UML(identifier="otherRestrictions", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction OTHER_RESTRICTIONS = new Restriction("OTHER_RESTRICTIONS");
+    public static final Restriction OTHER_RESTRICTIONS;
 
     /**
      * No constraints exist.
@@ -112,7 +111,7 @@ public final class Restriction extends CodeList<Restriction> {
      * @since 3.1
      */
     @UML(identifier="unrestricted", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction UNRESTRICTED = new Restriction("UNRESTRICTED");
+    public static final Restriction UNRESTRICTED;
 
     /**
      * Formal permission not required to use the resource.
@@ -120,7 +119,7 @@ public final class Restriction extends CodeList<Restriction> {
      * @since 3.1
      */
     @UML(identifier="licenceUnrestricted", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction LICENCE_UNRESTRICTED = new Restriction("LICENCE_UNRESTRICTED");
+    public static final Restriction LICENCE_UNRESTRICTED;
 
     /**
      * Formal permission required for a person or an entity to use the resource
@@ -129,7 +128,7 @@ public final class Restriction extends CodeList<Restriction> {
      * @since 3.1
      */
     @UML(identifier="licenceEndUser", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction LICENCE_END_USER = new Restriction("LICENCE_END_USER");
+    public static final Restriction LICENCE_END_USER;
 
     /**
      * Formal permission required for a person or an entity to commercialize or
@@ -138,7 +137,7 @@ public final class Restriction extends CodeList<Restriction> {
      * @since 3.1
      */
     @UML(identifier="licenceDistributor", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction LICENCE_DISTRIBUTOR = new Restriction("LICENCE_DISTRIBUTOR");
+    public static final Restriction LICENCE_DISTRIBUTOR;
 
     /**
      * Protects rights of individual or organisations from observation, intrusion,
@@ -147,7 +146,7 @@ public final class Restriction extends CodeList<Restriction> {
      * @since 3.1
      */
     @UML(identifier="private", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction PRIVATE = new Restriction("PRIVATE");
+    public static final Restriction PRIVATE;
 
     /**
      * Prescribed by law.
@@ -155,7 +154,7 @@ public final class Restriction extends CodeList<Restriction> {
      * @since 3.1
      */
     @UML(identifier="statutory", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction STATUTORY = new Restriction("STATUTORY");
+    public static final Restriction STATUTORY;
 
     /**
      * Not available to the public contains information that could be prejudicial
@@ -164,7 +163,7 @@ public final class Restriction extends CodeList<Restriction> {
      * @since 3.1
      */
     @UML(identifier="confidential", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction CONFIDENTIAL = new Restriction("CONFIDENTIAL");
+    public static final Restriction CONFIDENTIAL;
 
     /**
      * Although unclassified, requires strict controls over its distribution.
@@ -172,7 +171,7 @@ public final class Restriction extends CodeList<Restriction> {
      * @since 3.1
      */
     @UML(identifier="sensitiveButUnclassified", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction SENSITIVE_BUT_UNCLASSIFIED = new Restriction("SENSITIVE_BUT_UNCLASSIFIED");
+    public static final Restriction SENSITIVE_BUT_UNCLASSIFIED;
 
     /**
      * With trust.
@@ -180,7 +179,37 @@ public final class Restriction extends CodeList<Restriction> {
      * @since 3.1
      */
     @UML(identifier="in-confidence", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Restriction IN_CONFIDENCE = new Restriction("IN_CONFIDENCE");
+    public static final Restriction IN_CONFIDENCE;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<Restriction> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        COPYRIGHT                    = new Restriction("COPYRIGHT"),
+        PATENT                       = new Restriction("PATENT"),
+        PATENT_PENDING               = new Restriction("PATENT_PENDING"),
+        TRADEMARK                    = new Restriction("TRADEMARK"),
+        LICENCE                      = new Restriction("LICENCE"),
+        INTELLECTUAL_PROPERTY_RIGHTS = new Restriction("INTELLECTUAL_PROPERTY_RIGHTS"),
+        RESTRICTED                   = new Restriction("RESTRICTED"),
+        OTHER_RESTRICTIONS           = new Restriction("OTHER_RESTRICTIONS"),
+        UNRESTRICTED                 = new Restriction("UNRESTRICTED"),
+        LICENCE_UNRESTRICTED         = new Restriction("LICENCE_UNRESTRICTED"),
+        LICENCE_END_USER             = new Restriction("LICENCE_END_USER"),
+        LICENCE_DISTRIBUTOR          = new Restriction("LICENCE_DISTRIBUTOR"),
+        PRIVATE                      = new Restriction("PRIVATE"),
+        STATUTORY                    = new Restriction("STATUTORY"),
+        CONFIDENTIAL                 = new Restriction("CONFIDENTIAL"),
+        SENSITIVE_BUT_UNCLASSIFIED   = new Restriction("SENSITIVE_BUT_UNCLASSIFIED"),
+        IN_CONFIDENCE                = new Restriction("IN_CONFIDENCE"));
+
+    /**
+     * Deprecated aliases.
+     */
+    static {
+        LICENSE = LICENCE;
+    }
 
     /**
      * Constructs an element of the given name.
@@ -212,7 +241,7 @@ public final class Restriction extends CodeList<Restriction> {
      * @return the list of codes declared in the current JVM.
      */
     public static Restriction[] values() {
-        return values(Restriction.class);
+        return VALUES.toArray(Restriction[]::new);
     }
 
     /**
@@ -243,6 +272,6 @@ public final class Restriction extends CodeList<Restriction> {
         if ("LICENSE".equals(code)) {
             code = "LICENCE";           // For compatibility between ISO 19115:2003 and ISO 19115:2014.
         }
-        return valueOf(Restriction.class, code, Restriction::new).get();
+        return valueOf(VALUES, code, Restriction::new);
     }
 }

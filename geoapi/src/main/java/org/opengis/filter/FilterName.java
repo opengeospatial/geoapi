@@ -17,7 +17,7 @@
  */
 package org.opengis.filter;
 
-import org.opengis.geoapi.internal.Vocabulary;
+import java.util.List;
 import org.opengis.util.CodeList;
 
 
@@ -28,7 +28,6 @@ import org.opengis.util.CodeList;
  * @version 3.1
  * @since   3.1
  */
-@Vocabulary(capacity=3)
 final class FilterName extends CodeList<FilterName> {
     /**
      * Serial number for compatibility with different versions.
@@ -38,13 +37,21 @@ final class FilterName extends CodeList<FilterName> {
     /**
      * Default value for {@link ResourceId#getOperatorType()}.
      */
-    static final FilterName RESOURCE_ID = new FilterName("RESOURCE_ID");
+    static final FilterName RESOURCE_ID;
 
     /**
      * Possible value for {@link FilterLiteral#getOperatorType()}.
      */
-    static final FilterName INCLUDE = new FilterName("INCLUDE"),
-                            EXCLUDE = new FilterName("EXCLUDE");
+    static final FilterName INCLUDE, EXCLUDE;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<FilterName> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        RESOURCE_ID = new FilterName("RESOURCE_ID"),
+        INCLUDE     = new FilterName("INCLUDE"),
+        EXCLUDE     = new FilterName("EXCLUDE"));
 
     /**
      * Constructs an element of the given name.
@@ -61,7 +68,7 @@ final class FilterName extends CodeList<FilterName> {
      * @return the list of codes declared in the current JVM.
      */
     public static FilterName[] values() {
-        return values(FilterName.class);
+        return VALUES.toArray(FilterName[]::new);
     }
 
     /**

@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.distribution;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -37,7 +37,6 @@ import static org.opengis.annotation.Specification.*;
  * @since   2.0
  */
 @Deprecated(since="3.1")
-@Vocabulary(capacity=18)
 @UML(identifier="MD_MediumNameCode", specification=ISO_19115, version=2003)
 public final class MediumName extends CodeList<MediumName> {
     /**
@@ -49,109 +48,133 @@ public final class MediumName extends CodeList<MediumName> {
      * Read-only optical disk.
      */
     @UML(identifier="cdRom", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName CD_ROM = new MediumName("CD_ROM");
+    public static final MediumName CD_ROM;
 
     /**
      * Digital versatile disk.
      */
     @UML(identifier="dvd", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName DVD = new MediumName("DVD");
+    public static final MediumName DVD;
 
     /**
      * Digital versatile disk digital versatile disk, read only.
      */
     @UML(identifier="dvdRom", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName DVD_ROM = new MediumName("DVD_ROM");
+    public static final MediumName DVD_ROM;
 
     /**
      * 3&frac12; inch magnetic disk.
      */
     @UML(identifier="3halfInchFloppy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName FLOPPY_3_HALF_INCH = new MediumName("FLOPPY_3_HALF_INCH");
+    public static final MediumName FLOPPY_3_HALF_INCH;
 
     /**
      * 5&frac14; inch magnetic disk.
      */
     @UML(identifier="5quarterInchFloppy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName FLOPPY_5_QUARTER_INCH = new MediumName("FLOPPY_5_QUARTER_INCH");
+    public static final MediumName FLOPPY_5_QUARTER_INCH;
 
     /**
      * 7 track magnetic tape.
      */
     @UML(identifier="7trackTape", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName TAPE_7_TRACK = new MediumName("TAPE_7_TRACK");
+    public static final MediumName TAPE_7_TRACK;
 
     /**
      * 9 track magnetic tape.
      */
     @UML(identifier="9trackTape", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName TAPE_9_TRACK = new MediumName("TAPE_9_TRACK");
+    public static final MediumName TAPE_9_TRACK;
 
     /**
      * 3480 cartridge tape drive.
      */
     @UML(identifier="3480Cartridge", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName CARTRIDGE_3480 = new MediumName("CARTRIDGE_3480");
+    public static final MediumName CARTRIDGE_3480;
 
     /**
      * 3490 cartridge tape drive.
      */
     @UML(identifier="3490Cartridge", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName CARTRIDGE_3490 = new MediumName("CARTRIDGE_3490");
+    public static final MediumName CARTRIDGE_3490;
 
     /**
      * 3580 cartridge tape drive.
      */
     @UML(identifier="3580Cartridge", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName CARTRIDGE_3580 = new MediumName("CARTRIDGE_3580");
+    public static final MediumName CARTRIDGE_3580;
 
     /**
      * 4 millimetre magnetic tape.
      */
     @UML(identifier="4mmCartridgeTape", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName CARTRIDGE_TAPE_4mm = new MediumName("CARTRIDGE_TAPE_4mm");
+    public static final MediumName CARTRIDGE_TAPE_4mm;
 
     /**
      * 8 millimetre magnetic tape.
      */
     @UML(identifier="8mmCartridgeTape", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName CARTRIDGE_TAPE_8mm = new MediumName("CARTRIDGE_TAPE_8mm");
+    public static final MediumName CARTRIDGE_TAPE_8mm;
 
     /**
      * &frac14; inch magnetic tape.
      */
     @UML(identifier="1quarterInchCartridgeTape", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName CARTRIDGE_TAPE_1_QUARTER_INCH = new MediumName("CARTRIDGE_TAPE_1_QUARTER_INCH");
+    public static final MediumName CARTRIDGE_TAPE_1_QUARTER_INCH;
 
     /**
      * Half inch cartridge streaming tape drive.
      */
     @UML(identifier="digitalLinearTape", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName DIGITAL_LINEAR_TAPE = new MediumName("DIGITAL_LINEAR_TAPE");
+    public static final MediumName DIGITAL_LINEAR_TAPE;
 
     /**
      * Direct computer linkage.
      */
     @UML(identifier="onLine", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName ON_LINE = new MediumName("ON_LINE");
+    public static final MediumName ON_LINE;
 
     /**
      * Linkage through a satellite communication system.
      */
     @UML(identifier="satellite", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName SATELLITE = new MediumName("SATELLITE");
+    public static final MediumName SATELLITE;
 
     /**
      * Communication through a telephone network.
      */
     @UML(identifier="telephoneLink", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName TELEPHONE_LINK = new MediumName("TELEPHONE_LINK");
+    public static final MediumName TELEPHONE_LINK;
 
     /**
      * Pamphlet or leaflet giving descriptive information.
      */
     @UML(identifier="hardcopy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumName HARDCOPY = new MediumName("HARDCOPY");
+    public static final MediumName HARDCOPY;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<MediumName> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        CD_ROM                        = new MediumName("CD_ROM"),
+        DVD                           = new MediumName("DVD"),
+        DVD_ROM                       = new MediumName("DVD_ROM"),
+        FLOPPY_3_HALF_INCH            = new MediumName("FLOPPY_3_HALF_INCH"),
+        FLOPPY_5_QUARTER_INCH         = new MediumName("FLOPPY_5_QUARTER_INCH"),
+        TAPE_7_TRACK                  = new MediumName("TAPE_7_TRACK"),
+        TAPE_9_TRACK                  = new MediumName("TAPE_9_TRACK"),
+        CARTRIDGE_3480                = new MediumName("CARTRIDGE_3480"),
+        CARTRIDGE_3490                = new MediumName("CARTRIDGE_3490"),
+        CARTRIDGE_3580                = new MediumName("CARTRIDGE_3580"),
+        CARTRIDGE_TAPE_4mm            = new MediumName("CARTRIDGE_TAPE_4mm"),
+        CARTRIDGE_TAPE_8mm            = new MediumName("CARTRIDGE_TAPE_8mm"),
+        CARTRIDGE_TAPE_1_QUARTER_INCH = new MediumName("CARTRIDGE_TAPE_1_QUARTER_INCH"),
+        DIGITAL_LINEAR_TAPE           = new MediumName("DIGITAL_LINEAR_TAPE"),
+        ON_LINE                       = new MediumName("ON_LINE"),
+        SATELLITE                     = new MediumName("SATELLITE"),
+        TELEPHONE_LINK                = new MediumName("TELEPHONE_LINK"),
+        HARDCOPY                      = new MediumName("HARDCOPY"));
 
     /**
      * Constructs an element of the given name.
@@ -168,7 +191,7 @@ public final class MediumName extends CodeList<MediumName> {
      * @return the list of codes declared in the current JVM.
      */
     public static MediumName[] values() {
-        return values(MediumName.class);
+        return VALUES.toArray(MediumName[]::new);
     }
 
     /**
@@ -193,6 +216,6 @@ public final class MediumName extends CodeList<MediumName> {
      * @return a code matching the given name.
      */
     public static MediumName valueOf(String code) {
-        return valueOf(MediumName.class, code, MediumName::new).get();
+        return valueOf(VALUES, code, MediumName::new);
     }
 }

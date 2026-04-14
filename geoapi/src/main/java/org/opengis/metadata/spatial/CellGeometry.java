@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.spatial;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -33,7 +33,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Vocabulary(capacity=4)
 @UML(identifier="MD_CellGeometryCode", specification=ISO_19115)
 public final class CellGeometry extends CodeList<CellGeometry> {
     /**
@@ -45,13 +44,13 @@ public final class CellGeometry extends CodeList<CellGeometry> {
      * Each cell represents a point.
      */
     @UML(identifier="point", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CellGeometry POINT = new CellGeometry("POINT");
+    public static final CellGeometry POINT;
 
     /**
      * Each cell represents an area.
      */
     @UML(identifier="area", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CellGeometry AREA = new CellGeometry("AREA");
+    public static final CellGeometry AREA;
 
     /**
      * Each cell represents a volumetric measurement on a regular grid in three dimensional space.
@@ -59,7 +58,7 @@ public final class CellGeometry extends CodeList<CellGeometry> {
      * @since 3.1
      */
     @UML(identifier="voxel", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CellGeometry VOXEL = new CellGeometry("VOXEL");
+    public static final CellGeometry VOXEL;
 
     /**
      * Height range for a single point vertical profile.
@@ -67,7 +66,17 @@ public final class CellGeometry extends CodeList<CellGeometry> {
      * @since 3.1
      */
     @UML(identifier="stratum", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CellGeometry STRATUM = new CellGeometry("STRATUM");
+    public static final CellGeometry STRATUM;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<CellGeometry> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        POINT   = new CellGeometry("POINT"),
+        AREA    = new CellGeometry("AREA"),
+        VOXEL   = new CellGeometry("VOXEL"),
+        STRATUM = new CellGeometry("STRATUM"));
 
     /**
      * Constructs an element of the given name.
@@ -84,7 +93,7 @@ public final class CellGeometry extends CodeList<CellGeometry> {
      * @return the list of codes declared in the current JVM.
      */
     public static CellGeometry[] values() {
-        return values(CellGeometry.class);
+        return VALUES.toArray(CellGeometry[]::new);
     }
 
     /**
@@ -109,6 +118,6 @@ public final class CellGeometry extends CodeList<CellGeometry> {
      * @return a code matching the given name.
      */
     public static CellGeometry valueOf(String code) {
-        return valueOf(CellGeometry.class, code, CellGeometry::new).get();
+        return valueOf(VALUES, code, CellGeometry::new);
     }
 }

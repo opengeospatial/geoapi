@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.acquisition;
 
+import java.util.List;
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -35,7 +35,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.3
  */
-@Vocabulary(capacity=3)
 @UML(identifier="MI_OperationTypeCode", specification=ISO_19115_2)
 public final class OperationType extends CodeList<OperationType> {
     /**
@@ -47,19 +46,28 @@ public final class OperationType extends CodeList<OperationType> {
      * Originates from live-fly or other non-simulated operational source.
      */
     @UML(identifier="real", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final OperationType REAL = new OperationType("REAL");
+    public static final OperationType REAL;
 
     /**
      * Originates from target simulator sources.
      */
     @UML(identifier="simulated", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final OperationType SIMULATED = new OperationType("SIMULATED");
+    public static final OperationType SIMULATED;
 
     /**
      * Mix of real and simulated data.
      */
     @UML(identifier="synthesized", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final OperationType SYNTHESIZED = new OperationType("SYNTHESIZED");
+    public static final OperationType SYNTHESIZED;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<OperationType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        REAL        = new OperationType("REAL"),
+        SIMULATED   = new OperationType("SIMULATED"),
+        SYNTHESIZED = new OperationType("SYNTHESIZED"));
 
     /**
      * Constructs an element of the given name.
@@ -76,7 +84,7 @@ public final class OperationType extends CodeList<OperationType> {
      * @return the list of codes declared in the current JVM.
      */
     public static OperationType[] values() {
-        return values(OperationType.class);
+        return VALUES.toArray(OperationType[]::new);
     }
 
     /**
@@ -101,6 +109,6 @@ public final class OperationType extends CodeList<OperationType> {
      * @return a code matching the given name.
      */
     public static OperationType valueOf(String code) {
-        return valueOf(OperationType.class, code, OperationType::new).get();
+        return valueOf(VALUES, code, OperationType::new);
     }
 }

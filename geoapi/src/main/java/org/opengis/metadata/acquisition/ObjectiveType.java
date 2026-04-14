@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.acquisition;
 
+import java.util.List;
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.3
  */
-@Vocabulary(capacity=3)
 @UML(identifier="MI_ObjectiveTypeCode", specification=ISO_19115_2)
 public final class ObjectiveType extends CodeList<ObjectiveType> {
     /**
@@ -44,19 +43,28 @@ public final class ObjectiveType extends CodeList<ObjectiveType> {
      * Single instance of collection.
      */
     @UML(identifier="instantaneousCollection", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final ObjectiveType INSTANTANEOUS_COLLECTION = new ObjectiveType("INSTANTANEOUS_COLLECTION");
+    public static final ObjectiveType INSTANTANEOUS_COLLECTION;
 
     /**
      * Multiple instances of collection.
      */
     @UML(identifier="persistentView", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final ObjectiveType PERSISTENT_VIEW = new ObjectiveType("PERSISTENT_VIEW");
+    public static final ObjectiveType PERSISTENT_VIEW;
 
     /**
      * Collection over specified domain.
      */
     @UML(identifier="survey", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final ObjectiveType SURVEY = new ObjectiveType("SURVEY");
+    public static final ObjectiveType SURVEY;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<ObjectiveType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        INSTANTANEOUS_COLLECTION = new ObjectiveType("INSTANTANEOUS_COLLECTION"),
+        PERSISTENT_VIEW          = new ObjectiveType("PERSISTENT_VIEW"),
+        SURVEY                   = new ObjectiveType("SURVEY"));
 
     /**
      * Constructs an element of the given name.
@@ -73,7 +81,7 @@ public final class ObjectiveType extends CodeList<ObjectiveType> {
      * @return the list of codes declared in the current JVM.
      */
     public static ObjectiveType[] values() {
-        return values(ObjectiveType.class);
+        return VALUES.toArray(ObjectiveType[]::new);
     }
 
     /**
@@ -98,6 +106,6 @@ public final class ObjectiveType extends CodeList<ObjectiveType> {
      * @return a code matching the given name.
      */
     public static ObjectiveType valueOf(String code) {
-        return valueOf(ObjectiveType.class, code, ObjectiveType::new).get();
+        return valueOf(VALUES, code, ObjectiveType::new);
     }
 }

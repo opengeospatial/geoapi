@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2003-2024 Open Geospatial Consortium, Inc.
+ *    Copyright © 2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,10 +17,10 @@
  */
 package org.opengis.referencing.cs;
 
+import java.util.List;
 import java.time.temporal.ChronoUnit;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19111;
@@ -38,7 +38,6 @@ import static org.opengis.annotation.Specification.ISO_19111;
  *
  * @since 3.1
  */
-@Vocabulary(capacity=3)
 @UML(identifier="CoordinateDataType", specification=ISO_19111)
 public final class CoordinateDataType extends CodeList<CoordinateDataType> {
     /**
@@ -51,14 +50,14 @@ public final class CoordinateDataType extends CodeList<CoordinateDataType> {
      * The fractional values between integer values may have no meaning.
      */
     @UML(identifier="integer", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final CoordinateDataType INTEGER = new CoordinateDataType("INTEGER");
+    public static final CoordinateDataType INTEGER;
 
     /**
      * Quantity expressed as a measure used for a temporal coordinate system axis.
      * This is the usual type for coordinate system axes.
      */
     @UML(identifier="measure", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final CoordinateDataType MEASURE = new CoordinateDataType("MEASURE");
+    public static final CoordinateDataType MEASURE;
 
     /**
      * Numbers related to dates or times expressed in the proleptic Gregorian calendar.
@@ -79,7 +78,16 @@ public final class CoordinateDataType extends CodeList<CoordinateDataType> {
      * should return {@link ChronoUnit#MONTHS}.</p>
      */
     @UML(identifier="dateTime", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final CoordinateDataType DATE_TIME = new CoordinateDataType("DATE_TIME");
+    public static final CoordinateDataType DATE_TIME;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<CoordinateDataType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        INTEGER   = new CoordinateDataType("INTEGER"),
+        MEASURE   = new CoordinateDataType("MEASURE"),
+        DATE_TIME = new CoordinateDataType("DATE_TIME"));
 
     /**
      * Constructs an element of the given name.
@@ -96,7 +104,7 @@ public final class CoordinateDataType extends CodeList<CoordinateDataType> {
      * @return the list of codes declared in the current JVM.
      */
     public static CoordinateDataType[] values() {
-        return values(CoordinateDataType.class);
+        return VALUES.toArray(CoordinateDataType[]::new);
     }
 
     /**
@@ -121,6 +129,6 @@ public final class CoordinateDataType extends CodeList<CoordinateDataType> {
      * @return a code matching the given name.
      */
     public static CoordinateDataType valueOf(String code) {
-        return valueOf(CoordinateDataType.class, code, CoordinateDataType::new).get();
+        return valueOf(VALUES, code, CoordinateDataType::new);
     }
 }

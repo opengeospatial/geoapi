@@ -127,7 +127,7 @@ public interface MathTransformFactory extends Factory {
      * Returns a builder for a parameterized math transform using the specified operation method.
      * The {@code method} argument should be the name or authority code of an {@link OperationMethod}
      * instance returned by <code>{@link #getAvailableMethods(Class) getAvailableMethods}(null)</code>.
-     * A typical example is <cite>"Transverse Mercator"</cite>.
+     * A typical example is <q>Transverse Mercator</q>.
      *
      * <p>While the use of authority codes is recommended for the {@code method} argument,
      * implementations should also accept method names when they are unambiguous (i.e., have exactly one match).

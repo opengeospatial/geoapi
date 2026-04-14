@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.content;
 
+import java.util.List;
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.3
  */
-@Vocabulary(capacity=3)
 @UML(identifier="MI_TransferFunctionTypeCode", specification=ISO_19115_2)
 public final class TransferFunctionType extends CodeList<TransferFunctionType> {
     /**
@@ -44,19 +43,28 @@ public final class TransferFunctionType extends CodeList<TransferFunctionType> {
      * Function used for transformation is first order polynomial.
      */
     @UML(identifier="linear", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final TransferFunctionType LINEAR = new TransferFunctionType("LINEAR");
+    public static final TransferFunctionType LINEAR;
 
     /**
      * Function used for transformation is logarithmic
      */
     @UML(identifier="logarithmic", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final TransferFunctionType LOGARITHMIC = new TransferFunctionType("LOGARITHMIC");
+    public static final TransferFunctionType LOGARITHMIC;
 
     /**
      * Function used for transformation is exponential.
      */
     @UML(identifier="exponential", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final TransferFunctionType EXPONENTIAL = new TransferFunctionType("EXPONENTIAL");
+    public static final TransferFunctionType EXPONENTIAL;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<TransferFunctionType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        LINEAR      = new TransferFunctionType("LINEAR"),
+        LOGARITHMIC = new TransferFunctionType("LOGARITHMIC"),
+        EXPONENTIAL = new TransferFunctionType("EXPONENTIAL"));
 
     /**
      * Constructs an element of the given name.
@@ -73,7 +81,7 @@ public final class TransferFunctionType extends CodeList<TransferFunctionType> {
      * @return the list of codes declared in the current JVM.
      */
     public static TransferFunctionType[] values() {
-        return values(TransferFunctionType.class);
+        return VALUES.toArray(TransferFunctionType[]::new);
     }
 
     /**
@@ -98,6 +106,6 @@ public final class TransferFunctionType extends CodeList<TransferFunctionType> {
      * @return a code matching the given name.
      */
     public static TransferFunctionType valueOf(String code) {
-        return valueOf(TransferFunctionType.class, code, TransferFunctionType::new).get();
+        return valueOf(VALUES, code, TransferFunctionType::new);
     }
 }

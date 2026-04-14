@@ -17,9 +17,9 @@
  */
 package org.opengis.temporal;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Specification.ISO_19108;
 import static org.opengis.annotation.Obligation.CONDITIONAL;
@@ -35,7 +35,6 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
  * @since   3.1
  * @version 3.1
  */
-@Vocabulary(capacity=4)
 @UML(identifier="TM_IndeterminateValue", specification=ISO_19108)
 public final class IndeterminateValue extends CodeList<IndeterminateValue> {
     /**
@@ -47,26 +46,36 @@ public final class IndeterminateValue extends CodeList<IndeterminateValue> {
      * Indicates that no specific value for temporal position is provided.
      */
     @UML(identifier="unknown", obligation=CONDITIONAL, specification=ISO_19108)
-    public static final IndeterminateValue UNKNOWN = new IndeterminateValue("UNKNOWN");
+    public static final IndeterminateValue UNKNOWN;
 
     /**
      * Indicates that the specified value shall be replaced with the
      * current temporal position whenever the value is accessed.
      */
     @UML(identifier="now", obligation=CONDITIONAL, specification=ISO_19108)
-    public static final IndeterminateValue NOW = new IndeterminateValue("NOW");
+    public static final IndeterminateValue NOW;
 
     /**
      * Indicate that the actual temporal position is unknown, but it is known to be before the specified value.
      */
     @UML(identifier="before", obligation=CONDITIONAL, specification=ISO_19108)
-    public static final IndeterminateValue BEFORE = new IndeterminateValue("BEFORE");
+    public static final IndeterminateValue BEFORE;
 
     /**
      * Indicates that the actual temporal position is unknown, but it is known to be after the specified value.
      */
     @UML(identifier="after", obligation=CONDITIONAL, specification=ISO_19108)
-    public static final IndeterminateValue AFTER = new IndeterminateValue("AFTER");
+    public static final IndeterminateValue AFTER;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<IndeterminateValue> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        UNKNOWN = new IndeterminateValue("UNKNOWN"),
+        NOW     = new IndeterminateValue("NOW"),
+        BEFORE  = new IndeterminateValue("BEFORE"),
+        AFTER   = new IndeterminateValue("AFTER"));
 
     /**
      * Constructs an element of the given name.
@@ -83,7 +92,7 @@ public final class IndeterminateValue extends CodeList<IndeterminateValue> {
      * @return the list of codes declared in the current JVM.
      */
     public static IndeterminateValue[] values() {
-        return values(IndeterminateValue.class);
+        return VALUES.toArray(IndeterminateValue[]::new);
     }
 
     /**
@@ -108,6 +117,6 @@ public final class IndeterminateValue extends CodeList<IndeterminateValue> {
      * @return a code matching the given name.
      */
     public static IndeterminateValue valueOf(String code) {
-        return valueOf(IndeterminateValue.class, code, IndeterminateValue::new).get();
+        return valueOf(VALUES, code, IndeterminateValue::new);
     }
 }

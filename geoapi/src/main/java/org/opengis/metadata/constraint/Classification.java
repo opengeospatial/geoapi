@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.constraint;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -33,7 +33,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Vocabulary(capacity=9)
 @UML(identifier="MD_ClassificationCode", specification=ISO_19115)
 public final class Classification extends CodeList<Classification> {
     /**
@@ -45,31 +44,31 @@ public final class Classification extends CodeList<Classification> {
      * Available for general disclosure.
      */
     @UML(identifier="unclassified", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Classification UNCLASSIFIED = new Classification("UNCLASSIFIED");
+    public static final Classification UNCLASSIFIED;
 
     /**
      * Not for general disclosure.
      */
     @UML(identifier="restricted", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Classification RESTRICTED = new Classification("RESTRICTED");
+    public static final Classification RESTRICTED;
 
     /**
      * Available for someone who can be entrusted with information.
      */
     @UML(identifier="confidential", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Classification CONFIDENTIAL = new Classification("CONFIDENTIAL");
+    public static final Classification CONFIDENTIAL;
 
     /**
      * Kept or meant to be kept private, unknown, or hidden from all but a select group of people.
      */
     @UML(identifier="secret", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Classification SECRET = new Classification("SECRET");
+    public static final Classification SECRET;
 
     /**
      * Of the highest secrecy.
      */
     @UML(identifier="topSecret", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Classification TOP_SECRET = new Classification("TOP_SECRET");
+    public static final Classification TOP_SECRET;
 
     /**
      * Although unclassified, requires strict controls over its distribution.
@@ -77,7 +76,7 @@ public final class Classification extends CodeList<Classification> {
      * @since 3.1
      */
     @UML(identifier="sensitiveButUnclassified", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Classification SENSITIVE_BUT_UNCLASSIFIED = new Classification("SENSITIVE_BUT_UNCLASSIFIED");
+    public static final Classification SENSITIVE_BUT_UNCLASSIFIED;
 
     /**
      * Unclassified information that is to be used only for official purposes
@@ -86,7 +85,7 @@ public final class Classification extends CodeList<Classification> {
      * @since 3.1
      */
     @UML(identifier="forOfficialUseOnly", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Classification FOR_OFFICIAL_USE_ONLY = new Classification("FOR_OFFICIAL_USE_ONLY");
+    public static final Classification FOR_OFFICIAL_USE_ONLY;
 
     /**
      * Compromise of the information could cause damage.
@@ -94,7 +93,7 @@ public final class Classification extends CodeList<Classification> {
      * @since 3.1
      */
     @UML(identifier="protected", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Classification PROTECTED = new Classification("PROTECTED");
+    public static final Classification PROTECTED;
 
     /**
      * Dissemination limited by designating body.
@@ -102,7 +101,22 @@ public final class Classification extends CodeList<Classification> {
      * @since 3.1
      */
     @UML(identifier="limitedDistribution", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final Classification LIMITED_DISTRIBUTION = new Classification("LIMITED_DISTRIBUTION");
+    public static final Classification LIMITED_DISTRIBUTION;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<Classification> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        UNCLASSIFIED               = new Classification("UNCLASSIFIED"),
+        RESTRICTED                 = new Classification("RESTRICTED"),
+        CONFIDENTIAL               = new Classification("CONFIDENTIAL"),
+        SECRET                     = new Classification("SECRET"),
+        TOP_SECRET                 = new Classification("TOP_SECRET"),
+        SENSITIVE_BUT_UNCLASSIFIED = new Classification("SENSITIVE_BUT_UNCLASSIFIED"),
+        FOR_OFFICIAL_USE_ONLY      = new Classification("FOR_OFFICIAL_USE_ONLY"),
+        PROTECTED                  = new Classification("PROTECTED"),
+        LIMITED_DISTRIBUTION       = new Classification("LIMITED_DISTRIBUTION"));
 
     /**
      * Constructs an element of the given name.
@@ -119,7 +133,7 @@ public final class Classification extends CodeList<Classification> {
      * @return the list of codes declared in the current JVM.
      */
     public static Classification[] values() {
-        return values(Classification.class);
+        return VALUES.toArray(Classification[]::new);
     }
 
     /**
@@ -144,6 +158,6 @@ public final class Classification extends CodeList<Classification> {
      * @return a code matching the given name.
      */
     public static Classification valueOf(String code) {
-        return valueOf(Classification.class, code, Classification::new).get();
+        return valueOf(VALUES, code, Classification::new);
     }
 }

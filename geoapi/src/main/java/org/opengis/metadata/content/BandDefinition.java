@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.content;
 
+import java.util.List;
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.3
  */
-@Vocabulary(capacity=5)
 @UML(identifier="MI_BandDefinition", specification=ISO_19115_2)
 public final class BandDefinition extends CodeList<BandDefinition> {
     /**
@@ -47,7 +46,7 @@ public final class BandDefinition extends CodeList<BandDefinition> {
      * @todo the same as the documentation for {@link #HALF_MAXIMUM}.
      */
     @UML(identifier="3dB", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final BandDefinition THREE_DB = new BandDefinition("THREE_DB");
+    public static final BandDefinition THREE_DB;
 
     /**
      * Width of a distribution equal to the distance between the outer two points on the
@@ -56,27 +55,38 @@ public final class BandDefinition extends CodeList<BandDefinition> {
      * @todo the same as the documentation for {@link #THREE_DB}.
      */
     @UML(identifier="halfMaximum", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final BandDefinition HALF_MAXIMUM = new BandDefinition("HALF_MAXIMUM");
+    public static final BandDefinition HALF_MAXIMUM;
 
     /**
      * Full spectral width of a spectral power density measured at 50% of its peak height.
      */
     @UML(identifier="fiftyPercent", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final BandDefinition FIFTY_PERCENT = new BandDefinition("FIFTY_PERCENT");
+    public static final BandDefinition FIFTY_PERCENT;
 
     /**
      * Width of a distribution equal to the distance between the outer two points on the
      * distribution having power level 1/e that of the peak.
      */
     @UML(identifier="oneOverE", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final BandDefinition ONE_OVER_E = new BandDefinition("ONE_OVER_E");
+    public static final BandDefinition ONE_OVER_E;
 
     /**
      * Width of a band with full sensitivity or absorption at every wavelength that detects
      * or absorbs the same amount of energy as the band described.
      */
     @UML(identifier="equivalentWidth", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final BandDefinition EQUIVALENT_WIDTH = new BandDefinition("EQUIVALENT_WIDTH");
+    public static final BandDefinition EQUIVALENT_WIDTH;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<BandDefinition> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        THREE_DB         = new BandDefinition("THREE_DB"),
+        HALF_MAXIMUM     = new BandDefinition("HALF_MAXIMUM"),
+        FIFTY_PERCENT    = new BandDefinition("FIFTY_PERCENT"),
+        ONE_OVER_E       = new BandDefinition("ONE_OVER_E"),
+        EQUIVALENT_WIDTH = new BandDefinition("EQUIVALENT_WIDTH"));
 
     /**
      * Constructs an element of the given name.
@@ -93,7 +103,7 @@ public final class BandDefinition extends CodeList<BandDefinition> {
      * @return the list of codes declared in the current JVM.
      */
     public static BandDefinition[] values() {
-        return values(BandDefinition.class);
+        return VALUES.toArray(BandDefinition[]::new);
     }
 
     /**
@@ -118,6 +128,6 @@ public final class BandDefinition extends CodeList<BandDefinition> {
      * @return a code matching the given name.
      */
     public static BandDefinition valueOf(String code) {
-        return valueOf(BandDefinition.class, code, BandDefinition::new).get();
+        return valueOf(VALUES, code, BandDefinition::new);
     }
 }

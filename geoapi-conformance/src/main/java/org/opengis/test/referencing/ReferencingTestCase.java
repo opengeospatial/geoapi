@@ -476,7 +476,7 @@ public strictfp abstract class ReferencingTestCase extends TestCase {
      *
      * <ul>
      *   <li>Temporal extents are considered optional. If the given {@code extent} does not contain any
-     *       {@code TemporalExtent} element, or if extent bounds can not be represented as {@link Instant}
+     *       {@code TemporalExtent} element, or if extent bounds cannot be represented as {@link Instant}
      *       objects, then this method does nothing.</li>
      *   <li>If the given {@code extent} contains more than one {@code TemporalExtent} element,
      *       then the union of them is compared against the given bound arguments.</li>

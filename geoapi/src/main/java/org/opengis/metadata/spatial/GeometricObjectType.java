@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.spatial;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -34,7 +34,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Vocabulary(capacity=6)
 @UML(identifier="MD_GeometricObjectTypeCode", specification=ISO_19115)
 public final class GeometricObjectType extends CodeList<GeometricObjectType> {
     /**
@@ -47,39 +46,51 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      * union of other primitives.
      */
     @UML(identifier="complex", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final GeometricObjectType COMPLEX = new GeometricObjectType("COMPLEX");
+    public static final GeometricObjectType COMPLEX;
 
     /**
      * Connected set of curves, solids or surfaces.
      */
     @UML(identifier="composite", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final GeometricObjectType COMPOSITE = new GeometricObjectType("COMPOSITE");
+    public static final GeometricObjectType COMPOSITE;
 
     /**
      * Bounded, 1-dimensional geometric primitive, representing the continuous image of a line.
      */
     @UML(identifier="curve", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final GeometricObjectType CURVE = new GeometricObjectType("CURVE");
+    public static final GeometricObjectType CURVE;
 
     /**
      * Zero-dimensional geometric primitive, representing a position but not having an extent.
      */
     @UML(identifier="point", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final GeometricObjectType POINT = new GeometricObjectType("POINT");
+    public static final GeometricObjectType POINT;
 
     /**
      * Bounded, connected 3-dimensional geometric primitive, representing the
      * continuous image of a region of space.
      */
     @UML(identifier="solid", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final GeometricObjectType SOLID = new GeometricObjectType("SOLID");
+    public static final GeometricObjectType SOLID;
 
     /**
      * Bounded, connected 2-dimensional geometric, representing the continuous image
      * of a region of a plane.
      */
     @UML(identifier="surface", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final GeometricObjectType SURFACE = new GeometricObjectType("SURFACE");
+    public static final GeometricObjectType SURFACE;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<GeometricObjectType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        COMPLEX   = new GeometricObjectType("COMPLEX"),
+        COMPOSITE = new GeometricObjectType("COMPOSITE"),
+        CURVE     = new GeometricObjectType("CURVE"),
+        POINT     = new GeometricObjectType("POINT"),
+        SOLID     = new GeometricObjectType("SOLID"),
+        SURFACE   = new GeometricObjectType("SURFACE"));
 
     /**
      * Constructs an element of the given name.
@@ -96,7 +107,7 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      * @return the list of codes declared in the current JVM.
      */
     public static GeometricObjectType[] values() {
-        return values(GeometricObjectType.class);
+        return VALUES.toArray(GeometricObjectType[]::new);
     }
 
     /**
@@ -121,6 +132,6 @@ public final class GeometricObjectType extends CodeList<GeometricObjectType> {
      * @return a code matching the given name.
      */
     public static GeometricObjectType valueOf(String code) {
-        return valueOf(GeometricObjectType.class, code, GeometricObjectType::new).get();
+        return valueOf(VALUES, code, GeometricObjectType::new);
     }
 }

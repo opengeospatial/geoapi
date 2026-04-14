@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.maintenance;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -33,7 +33,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Vocabulary(capacity=15)
 @UML(identifier="MD_MaintenanceFrequencyCode", specification=ISO_19115)
 public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
     /**
@@ -45,73 +44,73 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
      * Data is repeatedly and frequently updated.
      */
     @UML(identifier="continual", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency CONTINUAL = new MaintenanceFrequency("CONTINUAL");
+    public static final MaintenanceFrequency CONTINUAL;
 
     /**
      * Data is updated each day.
      */
     @UML(identifier="daily", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency DAILY = new MaintenanceFrequency("DAILY");
+    public static final MaintenanceFrequency DAILY;
 
     /**
      * Data is updated on a weekly basis.
      */
     @UML(identifier="weekly", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency WEEKLY = new MaintenanceFrequency("WEEKLY");
+    public static final MaintenanceFrequency WEEKLY;
 
     /**
      * Data is updated every two weeks.
      */
     @UML(identifier="fortnightly", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency FORTNIGHTLY = new MaintenanceFrequency("FORTNIGHTLY");
+    public static final MaintenanceFrequency FORTNIGHTLY;
 
     /**
      * Data is updated each month.
      */
     @UML(identifier="monthly", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency MONTHLY = new MaintenanceFrequency("MONTHLY");
+    public static final MaintenanceFrequency MONTHLY;
 
     /**
      * Data is updated every three months.
      */
     @UML(identifier="quarterly", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency QUARTERLY = new MaintenanceFrequency("QUARTERLY");
+    public static final MaintenanceFrequency QUARTERLY;
 
     /**
      * Data is updated twice each year.
      */
     @UML(identifier="biannually", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency BIANNUALLY = new MaintenanceFrequency("BIANNUALLY");
+    public static final MaintenanceFrequency BIANNUALLY;
 
     /**
      * Data is updated every year.
      */
     @UML(identifier="annually", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency ANNUALLY = new MaintenanceFrequency("ANNUALLY");
+    public static final MaintenanceFrequency ANNUALLY;
 
     /**
      * Data is updated as deemed necessary.
      */
     @UML(identifier="asNeeded", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency AS_NEEDED = new MaintenanceFrequency("AS_NEEDED");
+    public static final MaintenanceFrequency AS_NEEDED;
 
     /**
      * Data is updated in intervals that are uneven in duration.
      */
     @UML(identifier="irregular", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency IRREGULAR = new MaintenanceFrequency("IRREGULAR");
+    public static final MaintenanceFrequency IRREGULAR;
 
     /**
      * There are no plans to update the data.
      */
     @UML(identifier="notPlanned", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency NOT_PLANNED = new MaintenanceFrequency("NOT_PLANNED");
+    public static final MaintenanceFrequency NOT_PLANNED;
 
     /**
      * Frequency of maintenance for the data is not known.
      */
     @UML(identifier="unknown", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency UNKNOWN = new MaintenanceFrequency("UNKNOWN");
+    public static final MaintenanceFrequency UNKNOWN;
 
     /**
      * Resource is updated at regular intervals.
@@ -119,7 +118,7 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
      * @since 3.1
      */
     @UML(identifier="periodic", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency PERIODIC = new MaintenanceFrequency("PERIODIC");
+    public static final MaintenanceFrequency PERIODIC;
 
     /**
      * Resource updated twice a monthly.
@@ -127,7 +126,7 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
      * @since 3.1
      */
     @UML(identifier="semimonthly", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency SEMIMONTHLY = new MaintenanceFrequency("SEMIMONTHLY");
+    public static final MaintenanceFrequency SEMIMONTHLY;
 
     /**
      * Resource is updated every 2 years.
@@ -135,7 +134,28 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
      * @since 3.1
      */
     @UML(identifier="biennially", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MaintenanceFrequency BIENNIALLY = new MaintenanceFrequency("BIENNIALLY");
+    public static final MaintenanceFrequency BIENNIALLY;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<MaintenanceFrequency> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        CONTINUAL   = new MaintenanceFrequency("CONTINUAL"),
+        DAILY       = new MaintenanceFrequency("DAILY"),
+        WEEKLY      = new MaintenanceFrequency("WEEKLY"),
+        FORTNIGHTLY = new MaintenanceFrequency("FORTNIGHTLY"),
+        MONTHLY     = new MaintenanceFrequency("MONTHLY"),
+        QUARTERLY   = new MaintenanceFrequency("QUARTERLY"),
+        BIANNUALLY  = new MaintenanceFrequency("BIANNUALLY"),
+        ANNUALLY    = new MaintenanceFrequency("ANNUALLY"),
+        AS_NEEDED   = new MaintenanceFrequency("AS_NEEDED"),
+        IRREGULAR   = new MaintenanceFrequency("IRREGULAR"),
+        NOT_PLANNED = new MaintenanceFrequency("NOT_PLANNED"),
+        UNKNOWN     = new MaintenanceFrequency("UNKNOWN"),
+        PERIODIC    = new MaintenanceFrequency("PERIODIC"),
+        SEMIMONTHLY = new MaintenanceFrequency("SEMIMONTHLY"),
+        BIENNIALLY  = new MaintenanceFrequency("BIENNIALLY"));
 
     /**
      * Constructs an element of the given name.
@@ -152,7 +172,7 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
      * @return the list of codes declared in the current JVM.
      */
     public static MaintenanceFrequency[] values() {
-        return values(MaintenanceFrequency.class);
+        return VALUES.toArray(MaintenanceFrequency[]::new);
     }
 
     /**
@@ -177,6 +197,6 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
      * @return a code matching the given name.
      */
     public static MaintenanceFrequency valueOf(String code) {
-        return valueOf(MaintenanceFrequency.class, code, MaintenanceFrequency::new).get();
+        return valueOf(VALUES, code, MaintenanceFrequency::new);
     }
 }

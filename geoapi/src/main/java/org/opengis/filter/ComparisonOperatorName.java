@@ -17,9 +17,9 @@
  */
 package org.opengis.filter;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19143;
@@ -33,7 +33,6 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  */
-@Vocabulary(capacity=10)
 @UML(identifier="BinaryComparisonName", specification=ISO_19143)
 public final class ComparisonOperatorName extends CodeList<ComparisonOperatorName> {
     /**
@@ -45,57 +44,73 @@ public final class ComparisonOperatorName extends CodeList<ComparisonOperatorNam
      * Filter operator that compares that its two sub-expressions are equal to each other.
      */
     @UML(identifier="PropertyIsEqualTo", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final ComparisonOperatorName PROPERTY_IS_EQUAL_TO = new ComparisonOperatorName("PROPERTY_IS_EQUAL_TO");
+    public static final ComparisonOperatorName PROPERTY_IS_EQUAL_TO;
 
     /**
      * Filter operator that compares that its two sub-expressions are not equal to each other.
      */
     @UML(identifier="PropertyIsNotEqualTo", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final ComparisonOperatorName PROPERTY_IS_NOT_EQUAL_TO = new ComparisonOperatorName("PROPERTY_IS_NOT_EQUAL_TO");
+    public static final ComparisonOperatorName PROPERTY_IS_NOT_EQUAL_TO;
 
     /**
      * Filter operator that checks that its first sub-expression is less than its second sub-expression.
      */
     @UML(identifier="PropertyIsLessThan", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final ComparisonOperatorName PROPERTY_IS_LESS_THAN = new ComparisonOperatorName("PROPERTY_IS_LESS_THAN");
+    public static final ComparisonOperatorName PROPERTY_IS_LESS_THAN;
 
     /**
      * Filter operator that checks that its first sub-expression is greater than its second sub-expression.
      */
     @UML(identifier="PropertyIsGreaterThan", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final ComparisonOperatorName PROPERTY_IS_GREATER_THAN = new ComparisonOperatorName("PROPERTY_IS_GREATER_THAN");
+    public static final ComparisonOperatorName PROPERTY_IS_GREATER_THAN;
 
     /**
      * Filter operator that checks that its first sub-expression is less than or equal to its second sub-expression.
      */
     @UML(identifier="PropertyIsLessThanOrEqualTo", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final ComparisonOperatorName PROPERTY_IS_LESS_THAN_OR_EQUAL_TO = new ComparisonOperatorName("PROPERTY_IS_LESS_THAN_OR_EQUAL_TO");
+    public static final ComparisonOperatorName PROPERTY_IS_LESS_THAN_OR_EQUAL_TO;
 
     /**
      * Filter operator that checks that its first sub-expression is greater or equal to its second sub-expression.
      */
     @UML(identifier="PropertyIsGreaterThanOrEqualTo", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final ComparisonOperatorName PROPERTY_IS_GREATER_THAN_OR_EQUAL_TO = new ComparisonOperatorName("PROPERTY_IS_GREATER_THAN_OR_EQUAL_TO");
+    public static final ComparisonOperatorName PROPERTY_IS_GREATER_THAN_OR_EQUAL_TO;
 
     /**
      * Default value for {@link BetweenComparisonOperator#getOperatorType()}.
      */
-    static final ComparisonOperatorName PROPERTY_IS_BETWEEN = new ComparisonOperatorName("PROPERTY_IS_BETWEEN");
+    static final ComparisonOperatorName PROPERTY_IS_BETWEEN;
 
     /**
      * Default value for {@link LikeOperator#getOperatorType()}.
      */
-    static final ComparisonOperatorName PROPERTY_IS_LIKE = new ComparisonOperatorName("PROPERTY_IS_LIKE");
+    static final ComparisonOperatorName PROPERTY_IS_LIKE;
 
     /**
      * Default value for {@link NullOperator#getOperatorType()}.
      */
-    static final ComparisonOperatorName PROPERTY_IS_NULL = new ComparisonOperatorName("PROPERTY_IS_NULL");
+    static final ComparisonOperatorName PROPERTY_IS_NULL;
 
     /**
      * Default value for {@link NilOperator#getOperatorType()}.
      */
-    static final ComparisonOperatorName PROPERTY_IS_NIL = new ComparisonOperatorName("PROPERTY_IS_NIL");
+    static final ComparisonOperatorName PROPERTY_IS_NIL;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<ComparisonOperatorName> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        PROPERTY_IS_EQUAL_TO                 = new ComparisonOperatorName("PROPERTY_IS_EQUAL_TO"),
+        PROPERTY_IS_NOT_EQUAL_TO             = new ComparisonOperatorName("PROPERTY_IS_NOT_EQUAL_TO"),
+        PROPERTY_IS_LESS_THAN                = new ComparisonOperatorName("PROPERTY_IS_LESS_THAN"),
+        PROPERTY_IS_GREATER_THAN             = new ComparisonOperatorName("PROPERTY_IS_GREATER_THAN"),
+        PROPERTY_IS_LESS_THAN_OR_EQUAL_TO    = new ComparisonOperatorName("PROPERTY_IS_LESS_THAN_OR_EQUAL_TO"),
+        PROPERTY_IS_GREATER_THAN_OR_EQUAL_TO = new ComparisonOperatorName("PROPERTY_IS_GREATER_THAN_OR_EQUAL_TO"),
+        PROPERTY_IS_BETWEEN                  = new ComparisonOperatorName("PROPERTY_IS_BETWEEN"),
+        PROPERTY_IS_LIKE                     = new ComparisonOperatorName("PROPERTY_IS_LIKE"),
+        PROPERTY_IS_NULL                     = new ComparisonOperatorName("PROPERTY_IS_NULL"),
+        PROPERTY_IS_NIL                      = new ComparisonOperatorName("PROPERTY_IS_NIL"));
 
     /**
      * Constructs an element of the given name.
@@ -112,7 +127,7 @@ public final class ComparisonOperatorName extends CodeList<ComparisonOperatorNam
      * @return the list of codes declared in the current JVM.
      */
     public static ComparisonOperatorName[] values() {
-        return values(ComparisonOperatorName.class);
+        return VALUES.toArray(ComparisonOperatorName[]::new);
     }
 
     /**
@@ -137,6 +152,6 @@ public final class ComparisonOperatorName extends CodeList<ComparisonOperatorNam
      * @return a code matching the given name.
      */
     public static ComparisonOperatorName valueOf(String code) {
-        return valueOf(ComparisonOperatorName.class, code, ComparisonOperatorName::new).get();
+        return valueOf(VALUES, code, ComparisonOperatorName::new);
     }
 }

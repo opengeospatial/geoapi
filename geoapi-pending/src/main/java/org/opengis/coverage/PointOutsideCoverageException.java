@@ -45,8 +45,9 @@ public class PointOutsideCoverageException extends CannotEvaluateException {
 
     /**
      * Represents a direct position which is outside the domain of the coverage.
+     * May be {@code null} if unknown.
      */
-    private DirectPosition offendingLocation;
+    private transient DirectPosition offendingLocation;
 
     /**
      * Creates an exception with no message.

@@ -17,10 +17,10 @@
  */
 package org.opengis.geometry.primitive;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.geometry.DirectPosition;         // For javadoc
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -37,7 +37,6 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
-@Vocabulary(capacity=10)
 @UML(identifier="GM_CurveInterpolation", specification=ISO_19107)
 public final class CurveInterpolation extends CodeList<CurveInterpolation> {
     /**
@@ -50,7 +49,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      * on a straight line between each consecutive pair of control points.
      */
     @UML(identifier="linear", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final CurveInterpolation LINEAR = new CurveInterpolation("LINEAR");
+    public static final CurveInterpolation LINEAR;
 
     /**
      * The interpolation mechanism shall return {@linkplain DirectPosition direct positions} on a
@@ -59,7 +58,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      * the {@linkplain Curve curve} in which the {@linkplain CurveSegment curve segment} is used.
      */
     @UML(identifier="geodesic", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final CurveInterpolation GEODESIC = new CurveInterpolation("GEODESIC");
+    public static final CurveInterpolation GEODESIC;
 
     /**
      * For each set of three consecutive control points, the middle one being an even offset from
@@ -70,8 +69,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      * line.
      */
     @UML(identifier="circularArc3Points", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final CurveInterpolation CIRCULAR_ARC_3_POINTS = new CurveInterpolation(
-                                          "CIRCULAR_ARC_3_POINTS");             // Circular arc by 3 points
+    public static final CurveInterpolation CIRCULAR_ARC_3_POINTS;
 
     /**
      * For each consecutive pair of control points, the interpolation mechanism shall return
@@ -82,8 +80,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      * 2 dimensions because of the restricted nature of the definition technique.
      */
     @UML(identifier="circularArc2PointWithBulge", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final CurveInterpolation CIRCULAR_ARC_2_POINTS_WITH_BULGE = new CurveInterpolation(
-                                          "CIRCULAR_ARC_2_POINTS_WITH_BULGE");  // Circular arc by 2 points and bulge factor
+    public static final CurveInterpolation CIRCULAR_ARC_2_POINTS_WITH_BULGE;
 
     /**
      * For each set of four consecutive control points, the interpolation mechanism shall return
@@ -93,39 +90,34 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      * are on the same circle, the arc becomes a circular one.
      */
     @UML(identifier="elliptical", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final CurveInterpolation ELLIPTICAL = new CurveInterpolation(
-                                          "ELLIPTICAL");                        // Elliptical arc
+    public static final CurveInterpolation ELLIPTICAL;
 
     /**
      * Uses a Cornu's spiral or clothoid interpolation.
      */
     @UML(identifier="clothoid", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final CurveInterpolation CLOTHOID = new CurveInterpolation(
-                                          "CLOTHOID");
+    public static final CurveInterpolation CLOTHOID;
 
     /**
      * Same as {@linkplain #ELLIPTICAL elliptical arc} but using 5 consecutive control points
      * to determine a conic section.
      */
     @UML(identifier="conic", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final CurveInterpolation CONIC = new CurveInterpolation(
-                                          "CONIC");                             // Conic arc
+    public static final CurveInterpolation CONIC;
     /**
      * The control points are ordered as in a line-string, but they are spanned by a polynomial
      * spline function. Normally, the degree of continuity is determined by the degree of the
      * polynomials chosen.
      */
     @UML(identifier="polynomialSpline", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final CurveInterpolation POLYNOMIAL_SPLINE = new CurveInterpolation(
-                                          "POLYNOMIAL_SPLINE");                 // Polynomial Spline
+    public static final CurveInterpolation POLYNOMIAL_SPLINE;
 
     /**
      * The control points are interpolated using initial tangents and cubic polynomials, a
      * form of degree 3 polynomial spline.
      */
     @UML(identifier="cubicSpline", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final CurveInterpolation CUBIC_SPLINE = new CurveInterpolation(
-                                          "CUBIC_SPLINE");                      // Cubic Spline
+    public static final CurveInterpolation CUBIC_SPLINE;
 
     /**
      * The control points are ordered as in a line string, but they are spanned by a
@@ -133,8 +125,23 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      * is determined by the degree of the polynomials chosen.
      */
     @UML(identifier="rationalSpline", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final CurveInterpolation RATIONAL_SPLINE = new CurveInterpolation(
-                                          "RATIONAL_SPLINE");                   // Rational Spline
+    public static final CurveInterpolation RATIONAL_SPLINE;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<CurveInterpolation> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        LINEAR                           = new CurveInterpolation("LINEAR"),
+        GEODESIC                         = new CurveInterpolation("GEODESIC"),
+        CIRCULAR_ARC_3_POINTS            = new CurveInterpolation("CIRCULAR_ARC_3_POINTS"),
+        CIRCULAR_ARC_2_POINTS_WITH_BULGE = new CurveInterpolation("CIRCULAR_ARC_2_POINTS_WITH_BULGE"),
+        ELLIPTICAL                       = new CurveInterpolation("ELLIPTICAL"),
+        CLOTHOID                         = new CurveInterpolation("CLOTHOID"),
+        CONIC                            = new CurveInterpolation("CONIC"),
+        POLYNOMIAL_SPLINE                = new CurveInterpolation("POLYNOMIAL_SPLINE"),
+        CUBIC_SPLINE                     = new CurveInterpolation("CUBIC_SPLINE"),
+        RATIONAL_SPLINE                  = new CurveInterpolation("RATIONAL_SPLINE"));
 
     /**
      * Constructs an element of the given name.
@@ -152,7 +159,7 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      * @return the list of codes declared in the current JVM.
      */
     public static CurveInterpolation[] values() {
-        return values(CurveInterpolation.class);
+        return VALUES.toArray(CurveInterpolation[]::new);
     }
 
     /**
@@ -177,6 +184,6 @@ public final class CurveInterpolation extends CodeList<CurveInterpolation> {
      * @return a code matching the given name.
      */
     public static CurveInterpolation valueOf(String code) {
-        return valueOf(CurveInterpolation.class, code, CurveInterpolation::new).get();
+        return valueOf(VALUES, code, CurveInterpolation::new);
     }
 }

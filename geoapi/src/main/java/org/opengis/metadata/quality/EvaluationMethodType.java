@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.quality;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Vocabulary(capacity=3)
 @UML(identifier="DQ_EvaluationMethodTypeCode", specification=ISO_19157)
 public final class EvaluationMethodType extends CodeList<EvaluationMethodType> {
     /**
@@ -45,20 +44,29 @@ public final class EvaluationMethodType extends CodeList<EvaluationMethodType> {
      * the data set, where all data required is internal to the data set being evaluated.
      */
     @UML(identifier="directInternal", obligation=CONDITIONAL, specification=ISO_19157)
-    public static final EvaluationMethodType DIRECT_INTERNAL = new EvaluationMethodType("DIRECT_INTERNAL");
+    public static final EvaluationMethodType DIRECT_INTERNAL;
 
     /**
      * Method of evaluating the quality of a data set based on inspection of items within
      * the data set, where reference data external to the data set being evaluated is required.
      */
     @UML(identifier="directExternal", obligation=CONDITIONAL, specification=ISO_19157)
-    public static final EvaluationMethodType DIRECT_EXTERNAL = new EvaluationMethodType("DIRECT_EXTERNAL");
+    public static final EvaluationMethodType DIRECT_EXTERNAL;
 
     /**
      * Method of evaluating the quality of a data set based on external knowledge.
      */
     @UML(identifier="indirect", obligation=CONDITIONAL, specification=ISO_19157)
-    public static final EvaluationMethodType INDIRECT = new EvaluationMethodType("INDIRECT");
+    public static final EvaluationMethodType INDIRECT;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<EvaluationMethodType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        DIRECT_INTERNAL = new EvaluationMethodType("DIRECT_INTERNAL"),
+        DIRECT_EXTERNAL = new EvaluationMethodType("DIRECT_EXTERNAL"),
+        INDIRECT        = new EvaluationMethodType("INDIRECT"));
 
     /**
      * Constructs an element of the given name.
@@ -75,7 +83,7 @@ public final class EvaluationMethodType extends CodeList<EvaluationMethodType> {
      * @return the list of codes declared in the current JVM.
      */
     public static EvaluationMethodType[] values() {
-        return values(EvaluationMethodType.class);
+        return VALUES.toArray(EvaluationMethodType[]::new);
     }
 
     /**
@@ -100,6 +108,6 @@ public final class EvaluationMethodType extends CodeList<EvaluationMethodType> {
      * @return a code matching the given name.
      */
     public static EvaluationMethodType valueOf(String code) {
-        return valueOf(EvaluationMethodType.class, code, EvaluationMethodType::new).get();
+        return valueOf(VALUES, code, EvaluationMethodType::new);
     }
 }

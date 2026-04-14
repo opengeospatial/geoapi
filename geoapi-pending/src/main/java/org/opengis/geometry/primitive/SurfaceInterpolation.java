@@ -17,9 +17,9 @@
  */
 package org.opengis.geometry.primitive;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 1.0
  */
-@Vocabulary(capacity=10)
 @UML(identifier="GM_SurfaceInterpolation", specification=ISO_19107)
 public final class SurfaceInterpolation extends CodeList<SurfaceInterpolation> {
     /**
@@ -45,76 +44,82 @@ public final class SurfaceInterpolation extends CodeList<SurfaceInterpolation> {
      * follows the reference surface defined by the coordinate reference system.
      */
     @UML(identifier="none", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final SurfaceInterpolation NONE = new SurfaceInterpolation(
-                                            "NONE");
+    public static final SurfaceInterpolation NONE;
 
     /**
      * The interpolation method shall return points on a single plane. The boundary in this
      * case shall be contained within that plane.
      */
     @UML(identifier="planar", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final SurfaceInterpolation PLANAR = new SurfaceInterpolation(
-                                            "PLANAR");
+    public static final SurfaceInterpolation PLANAR;
 
     /**
      * The surface is a section of a spherical surface.
      */
     @UML(identifier="spherical", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final SurfaceInterpolation SPHERICAL = new SurfaceInterpolation(
-                                            "SPHERICAL");
+    public static final SurfaceInterpolation SPHERICAL;
 
     /**
      * The surface is a section of a elliptical surface.
      */
     @UML(identifier="elliptical", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final SurfaceInterpolation ELLIPTICAL = new SurfaceInterpolation(
-                                            "ELLIPTICAL");
+    public static final SurfaceInterpolation ELLIPTICAL;
 
     /**
      * The surface is a section of a conic surface.
      */
     @UML(identifier="conic", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final SurfaceInterpolation CONIC = new SurfaceInterpolation(
-                                            "CONIC");
+    public static final SurfaceInterpolation CONIC;
 
     /**
      * The control points are organized into adjoining triangles, which form small planar segments.
      */
     @UML(identifier="tin", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final SurfaceInterpolation TIN = new SurfaceInterpolation(
-                                            "TIN");
+    public static final SurfaceInterpolation TIN;
 
     /**
      * The control points are organized into a 2-dimensional grid and each cell
      * within the grid is spanned by a surface which shall be defined by a family of curves.
      */
     @UML(identifier="parametricCurve", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final SurfaceInterpolation PARAMETRIC_CURVE = new SurfaceInterpolation(
-                                            "PARAMETRIC_CURVE");
+    public static final SurfaceInterpolation PARAMETRIC_CURVE;
 
     /**
      * The control points are organized into an irregular 2-dimensional grid and
      * each cell within this grid is spanned by a polynomial spline function.
      */
     @UML(identifier="polynomialSpline", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final SurfaceInterpolation POLYNOMIAL_SPLINE = new SurfaceInterpolation(
-                                            "POLYNOMIAL_SPLINE");
+    public static final SurfaceInterpolation POLYNOMIAL_SPLINE;
 
     /**
      * The control points are organized into an irregular 2-dimensional grid and each cell
      * within this grid is spanned by a rational (quotient of polynomials) spline function.
      */
     @UML(identifier="rationalSpline", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final SurfaceInterpolation RATIONAL_SPLINE = new SurfaceInterpolation(
-                                            "RATIONAL_SPLINE");
+    public static final SurfaceInterpolation RATIONAL_SPLINE;
 
     /**
      * The control points are organized into adjoining triangles, each of
      * which is spanned by a polynomial spline function.
      */
     @UML(identifier="triangulatedSpline", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final SurfaceInterpolation TRIANGULATED_SPLINE = new SurfaceInterpolation(
-                                            "TRIANGULATED_SPLINE");
+    public static final SurfaceInterpolation TRIANGULATED_SPLINE;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<SurfaceInterpolation> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        NONE                = new SurfaceInterpolation("NONE"),
+        PLANAR              = new SurfaceInterpolation("PLANAR"),
+        SPHERICAL           = new SurfaceInterpolation("SPHERICAL"),
+        ELLIPTICAL          = new SurfaceInterpolation("ELLIPTICAL"),
+        CONIC               = new SurfaceInterpolation("CONIC"),
+        TIN                 = new SurfaceInterpolation("TIN"),
+        PARAMETRIC_CURVE    = new SurfaceInterpolation("PARAMETRIC_CURVE"),
+        POLYNOMIAL_SPLINE   = new SurfaceInterpolation("POLYNOMIAL_SPLINE"),
+        RATIONAL_SPLINE     = new SurfaceInterpolation("RATIONAL_SPLINE"),
+        TRIANGULATED_SPLINE = new SurfaceInterpolation("TRIANGULATED_SPLINE"));
 
     /**
      * Constructs an element of the given name.
@@ -132,7 +137,7 @@ public final class SurfaceInterpolation extends CodeList<SurfaceInterpolation> {
      * @return the list of codes declared in the current JVM.
      */
     public static SurfaceInterpolation[] values() {
-        return values(SurfaceInterpolation.class);
+        return VALUES.toArray(SurfaceInterpolation[]::new);
     }
 
     /**
@@ -157,6 +162,6 @@ public final class SurfaceInterpolation extends CodeList<SurfaceInterpolation> {
      * @return a code matching the given name.
      */
     public static SurfaceInterpolation valueOf(String code) {
-        return valueOf(SurfaceInterpolation.class, code, SurfaceInterpolation::new).get();
+        return valueOf(VALUES, code, SurfaceInterpolation::new);
     }
 }

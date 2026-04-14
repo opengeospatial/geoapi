@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2014-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2014-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.identification;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19115;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @version 3.1
  * @since   3.1
  */
-@Vocabulary(capacity=3)
 @UML(identifier="SV_CouplingType", specification=ISO_19115)
 public final class CouplingType  extends CodeList<CouplingType> {
     /**
@@ -45,7 +44,7 @@ public final class CouplingType  extends CodeList<CouplingType> {
      * {@link DataIdentification} class has to be described.
      */
     @UML(identifier="loose", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CouplingType LOOSE = new CouplingType("LOOSE");
+    public static final CouplingType LOOSE;
 
     /**
      * Service instance is mixed coupled with a data instance, which means
@@ -53,14 +52,23 @@ public final class CouplingType  extends CodeList<CouplingType> {
      * additionally the service instance might work with other external data instances.
      */
     @UML(identifier="mixed", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CouplingType MIXED = new CouplingType("MIXED");
+    public static final CouplingType MIXED;
 
     /**
      * Service instance is tightly coupled with a data instance, which means
      * {@link DataIdentification} class MUST be described.
      */
     @UML(identifier="tight", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CouplingType TIGHT = new CouplingType("TIGHT");
+    public static final CouplingType TIGHT;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<CouplingType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        LOOSE = new CouplingType("LOOSE"),
+        MIXED = new CouplingType("MIXED"),
+        TIGHT = new CouplingType("TIGHT"));
 
     /**
      * Constructs an element of the given name.
@@ -87,7 +95,7 @@ public final class CouplingType  extends CodeList<CouplingType> {
      * @return the list of codes declared in the current JVM.
      */
     public static CouplingType[] values() {
-        return values(CouplingType.class);
+        return VALUES.toArray(CouplingType[]::new);
     }
 
     /**
@@ -100,6 +108,6 @@ public final class CouplingType  extends CodeList<CouplingType> {
      * @return a code matching the given name.
      */
     public static CouplingType valueOf(String code) {
-        return valueOf(CouplingType.class, code, CouplingType::new).get();
+        return valueOf(VALUES, code, CouplingType::new);
     }
 }

@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2003-2024 Open Geospatial Consortium, Inc.
+ *    Copyright © 2003-2025 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -19,23 +19,21 @@ package org.opengis.util;
 
 import java.io.Serializable;
 import java.io.ObjectStreamException;
-import java.lang.reflect.Array;
-import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
+import java.lang.reflect.Method;
 import java.lang.reflect.Modifier;
-import java.lang.reflect.InaccessibleObjectException;
-import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Map;
-import java.util.WeakHashMap;
-import java.util.Objects;
-import java.util.Optional;
+import java.util.AbstractList;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
+import java.util.RandomAccess;
+import java.util.Spliterator;
 import java.util.function.Function;
 import java.util.function.Predicate;
 
 import org.opengis.annotation.UML;
 import static org.opengis.annotation.Specification.*;
-import org.opengis.geoapi.internal.Vocabulary;
 import org.opengis.geoapi.internal.Errors;
 
 
@@ -48,24 +46,33 @@ import org.opengis.geoapi.internal.Errors;
  * <h2>Guidance for subclasses</h2>
  * The parameter type {@code <E>} <em>shall</em> be the same type as the code list subclass.
  * In other words, if the subclass is {@code Foo}, then it must extend {@code CodeList<Foo>}.
- * In addition, subclasses <em>should</em> provide {@code values(String)} and {@code values()} methods.
+ * In addition, subclasses <em>should</em> provide the following public static methods:
+ * {@code E valueOf(String)} and {@code E[] values()}.
  * The following code snippet is a suggested pattern for subclasses:
  *
  * {@snippet lang="java" :
+ * import java.util.List;
+ * import org.opengis.util.CodeList;
+ *
  * public final class Foo extends CodeList<Foo> {
- *     public static final Foo BAR = new Foo("BAR");    // Argument shall be exactly the same as the field name.
- *     public static final Foo BIZ = new Foo("BIZ");
+ *     public static final Foo BAR;
+ *     public static final Foo BIZ;
+ *
+ *     private static final List<Foo> VALUES = initialValues(
+ *         // Inline assignments for getting compiler error if a field is missing or duplicated.
+ *         BAR = new Foo("BAR"),
+ *         BIZ = new Foo("BIZ"));
  *
  *     private Foo(String name) {    // Keeping the constructor private is strongly recommended.
  *         super(name);
  *     }
  *
  *     public static Foo valueOf(String name) {
- *         return valueOf(Foo.class, name, Foo::new).get();
+ *         return valueOf(VALUES, name, Foo::new);
  *     }
  *
  *     public static Foo[] values() {
- *         return values(Foo.class);
+ *         return VALUES.toArray(Foo[]::new);
  *     }
  *
  *     @Override
@@ -78,13 +85,6 @@ import org.opengis.geoapi.internal.Errors;
  * <p>Keeping the constructor private is strongly recommended. The constructor should be invoked only in static
  * fields initialization and in the lambda function of the {@code valueOf(String)} method body. All other codes
  * should invoke {@code valueOf(…)} and never invoke the constructor directly.</p>
- *
- * <p>Above snippet is sufficient for classes in exported packages. If a code list is defined in a non-exported package,
- * then its static fields may need to be initialized with {@code valueOf(String)} instead of {@code new Foo(String)}.
- * It will have a small performance cost, but is needed because of Java Module System restrictions on reflection.</p>
- *
- * <p>If a label different than the field name is desired, this is possible either by adding a {@link UML} annotation
- * of the field, or by overriding explicitly the {@link #identifier()} and/or {@link #names()} methods.</p>
  *
  * @param  <E>  the type of this code list.
  *
@@ -100,139 +100,10 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
     private static final long serialVersionUID = 5655809691319522885L;
 
     /**
-     * The values for each code list.
-     * Map keys are the {@code CodeList} classes for which elements are listed, and map values are those elements.
-     * Each code list element shall be stored in the list at the index corresponding to its {@link #ordinal} value.
-     * Elements are stored as {@code CodeList} instances if available, or by their {@code String} names otherwise.
-     * Names are sometime used instead of instances because assigning {@code this} at construction time is unsafe.
-     * Those names will be replaced by the actual instances by the {@code valueOf(String)} method or by reflection.
-     *
-     * <h4>Class unloading</h4>
-     * The use of {@link WeakHashMap} allows class unloading, but can work only as long as the list
-     * associated to a class contains only {@code String} elements. After storing at least one instance,
-     * the indirect references to the class prevent the {@code Class} key from being garbage-collected.
-     *
-     * @see #values(Class)
-     */
-    private static final Map<Class<? extends CodeList<?>>, Elements> VALUES = new WeakHashMap<>();
-
-    /**
-     * Elements stored in the {@link #VALUES} map for a given {@code CodeList} class.
-     * This list contains {@link CodeList} instances when they are fully constructed,
-     * or only their names when storing the instance would be unsafe ("this-escape").
-     * The {@link #get(int)} method may return a {@link String} or a {@link CodeList}.
-     * If a {@code CodeList} is desired, use {@link #resolve(Class, int)} instead.
-     */
-    @SuppressWarnings("serial")     // Not intended to be serialized.
-    private static final class Elements extends ArrayList<Object> {
-        /**
-         * Whether all code list names in this list have been replaced by the actual instances.
-         * This is used for faster {@link #toArray(Class)} execution when there is no longer a
-         * need to check the type of each element.
-         *
-         * @see #toArray(Class)
-         */
-        boolean resolved;
-
-        /**
-         * Creates a new, initially empty, list.
-         *
-         * @param  type  the {@link #VALUES} map key to which this list will be associated.
-         */
-        Elements(final Class<? extends CodeList<?>> type) {
-            super(capacity(type));
-        }
-
-        /** Workaround while waiting for JEP 447: Statements before super(…). */
-        private static int capacity(final Class<? extends CodeList<?>> type) {
-            var desc = type.getAnnotation(Vocabulary.class);
-            return (desc != null) ? desc.capacity() : 8;        // Code lists typically have few elements.
-        }
-
-        /**
-         * Returns the element at the given index as a code list element of the specified class.
-         * Callers must invoke this method in a block synchronized on {@code this} list.
-         *
-         * @param  <E>       the compile-time type given as the {@code codeType} parameter.
-         * @param  codeType  the type of the code list for which to get an element.
-         * @param  index     index of the element to get.
-         * @return element at the specified index.
-         * @throws InaccessibleObjectException if the element needs to be resolved by reflection and this operation failed.
-         *         A failure is generally caused by an error in the declaration of static fields in the code list.
-         * @throws IllegalStateException if the code list is inconsistent (e.g., element having wrong index).
-         */
-        final <E extends CodeList<E>> E resolve(final Class<E> codeType, final int index) {
-            final E element;
-            final Object code = get(index);
-            if (code instanceof String) try {
-                final Field field;
-                if (codeType.isAnnotationPresent(Vocabulary.class)) {   // True if the code list is a GeoAPI class.
-                    field = codeType.getDeclaredField((String) code);
-                    field.setAccessible(true);
-                } else {
-                    field = codeType.getField((String) code);           // Be more conservative for user classes.
-                }
-                element = codeType.cast(field.get(null));
-                if (element.ordinal() == index && element.name().equals(code)) {
-                    set(index, element);
-                } else {
-                    throw new IllegalStateException("Conflict between " + element + " and " + code + '.');
-                }
-            } catch (ReflectiveOperationException | NullPointerException | ClassCastException e) {
-                /*
-                 * The search by reflection may fail with:
-                 * - IllegalAccessException  if the package containing `codeType` is not exported,
-                 * - NoSuchFieldException    if the field does not exist,
-                 * - NullPointerException    if the field is not static, or
-                 * - ClassCastException      if the field value is not an instance of <E>.
-                 */
-                throw (InaccessibleObjectException) new InaccessibleObjectException(cannotRead(codeType, code)).initCause(e);
-            } else {
-                element = codeType.cast(code);
-            }
-            return element;
-        }
-
-        /**
-         * Produces the message for a field that cannot be read by reflection.
-         * Used for exception messages or for log record messages.
-         *
-         * @param  codeType  the type of the code list.
-         * @param  code      the code that cannot be read.
-         * @return the message to use in exception or in log record.
-         */
-        static String cannotRead(final Class<?> codeType, final Object code) {
-            return "Cannot read the " + codeType.getSimpleName() + '.' + code + " field value.";
-        }
-
-        /**
-         * Returns all elements in this list.
-         *
-         * @param  <E>       the compile-time type given as the {@code codeType} parameter.
-         * @param  codeType  the type of the code list for which to get all elements.
-         * @return all elements that are known at the time that this method is invoked.
-         * @throws InaccessibleObjectException if an element needs to be resolved by reflection and this operation failed.
-         *         A failure is generally caused by an error in the declaration of static fields in the code list.
-         */
-        final synchronized <E extends CodeList<E>> E[] toArray(final Class<E> codeType) {
-            @SuppressWarnings("unchecked")
-            final E[] array = (E[]) Array.newInstance(codeType, size());
-            if (resolved) {
-                return toArray(array);
-            }
-            for (int i=0; i<array.length; i++) {
-                array[i] = resolve(codeType, i);
-            }
-            resolved = true;
-            return array;
-        }
-    }
-
-    /**
-     * The code value as a sequential number incremented in the order in which codes are created.
-     * This value is set at construction time and should be considered final. It is potentially
-     * modified only during deserialization, because the Java serialization mechanism bypasses
-     * the constructor.
+     * The code value as a sequential number incremented in the order in which codes are added to their collection.
+     * This ordinal value is set by {@link #initialValues(CodeList...)}, {@link #valueOf(List, String, Function)} or
+     * at deserialization time and should be considered final after initialization.
+     * A value of -1 means that the ordinal has not yet been set.
      *
      * @see #ordinal()
      * @see #readResolve()
@@ -241,7 +112,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
 
     /**
      * The code name. If this {@code CodeList} instance is stored in a static field
-     * of the code list class, then this name shall be identical to the field name.
+     * of the code list class, then this name should be identical to the field name.
      *
      * @see #name()
      * @see #names()
@@ -285,43 +156,138 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
 
     /**
      * Creates a new code list element. If this constructor is invoked for initializing a static field,
-     * then the given name <em>shall</em> be the case-sensitive name of the static field.
+     * then the given name should be the case-sensitive name of the static field.
      *
-     * @param  name  the code name. Shall be the name of the static field if such field exists.
+     * @param  name  the code name. Should be the name of the static field if such field exists.
      *
      * @since 3.1
      */
     protected CodeList(final String name) {
         this.name = name;
-        Class<?> type = getClass();
-        while (type.isAnonymousClass()) {
-            type = type.getSuperclass();
-            if (type.equals(CodeList.class)) {
-                throw new IllegalStateException("Class shall not be anonymous.");
+        ordinal = -1;   // Means that the ordinal value is not yet set.
+    }
+
+    /**
+     * If the ordinal value has not yet been set, sets the ordinal to the specified value.
+     * Otherwise, throws an exception if the given value is different than the ordinal, or
+     * does nothing if the value is the same (i.e., ignore redundant calls to this method).
+     *
+     * @param  value  the desired ordinal value.
+     * @throws IllegalArgumentException if the ordinal was already set to a different value.
+     */
+    private synchronized void setOrdinal(final int value) {
+        if (ordinal != value) {
+            if (ordinal >= 0) {
+                throw new IllegalArgumentException(name);
             }
-        }
-        @SuppressWarnings("unchecked")      // The following cast should never fail.
-        var codeType = (Class<? extends CodeList<?>>) type;
-        final Elements values = getOrCreateList(codeType);
-        synchronized (values) {
-            ordinal = values.size();
-            values.add(name);           // Needed for incrementing the list size.
-            values.resolved = false;
+            ordinal = value;
         }
     }
 
     /**
-     * Returns the list associated to the specified type of code list, creating the list if needed.
-     * This method should be invoked only when the {@code codeType} class is known to be initialized.
-     * If the class may be uninitialized, use {@link #valueList(Class)} instead.
+     * Creates an add-only list of code list values initialized to the given elements.
+     * This method should be invoked by subclasses in a pattern like below:
      *
-     * @param  codeType  the type of code list for which to get the code list values.
-     * @return all values for the given type. Never {@code null} but potentially empty.
+     * {@snippet lang="java" :
+     *     public static final Foo BAR;
+     *     public static final Foo BIZ;
+     *
+     *     private static final List<Foo> VALUES = initialValues(
+     *         // Inline assignments for getting compiler error if a field is missing or duplicated.
+     *         BAR = new Foo("BAR"),
+     *         BIZ = new Foo("BIZ"));
+     * }
+     *
+     * The returned list supports the addition of new code list values,
+     * but not modification or removal of previous values.
+     * The list is thread-safe.
+     *
+     * @param  <E>     the type of this code list.
+     * @param  values  the initial values of the code list.
+     * @return a thread-safe add-only list initialized with the given values.
+     * @throws NullPointerException if {@code values} is null or any of its element is null.
+     * @throws IllegalArgumentException if an element of {@code values} has an inconsistent ordinal value.
+     *
+     * @since 3.1
      */
-    private static Elements getOrCreateList(final Class<? extends CodeList<?>> codeType) {
-        synchronized (VALUES) {
-            return VALUES.computeIfAbsent(codeType, Elements::new);
+    @SafeVarargs
+    @SuppressWarnings("varargs")
+    protected static <E extends CodeList<E>> List<E> initialValues(final E... values) {
+        return new Values<>(values);
+    }
+
+    /**
+     * A thread-safe add-only list of {@code CodeList} values.
+     * This list supports the addition of new code list values,
+     * but not modification or removal of previous values.
+     */
+    private static final class Values<E extends CodeList<E>> extends AbstractList<E> implements RandomAccess {
+        /**
+         * The values in an array considered as immutable.
+         * This array is copied when new values are added.
+         *
+         * <p>Note: the {@code volatile} keyword applies only to the reference to the array,
+         * not to the array elements. But this is okay if the array is considered immutable.</p>
+         */
+        @SuppressWarnings("VolatileArrayField")
+        private volatile E[] values;
+
+        /**
+         * Creates a new list initialized to a copy of the given array.
+         *
+         * @param  values  the initial values of the code list.
+         * @throws NullPointerException if {@code values} is null or any of its element is null.
+         * @throws IllegalArgumentException if an element of {@code values} has an inconsistent ordinal value.
+         */
+        Values(E[] values) {
+            values = values.clone();
+            for (int i=0;  i<values.length; i++) {
+                CodeList<E> value = values[i];
+                value.setOrdinal(i);
+            }
+            this.values = values;
         }
+
+        /** Returns the current number of values. */
+        @Override public int size() {return values.length;}
+
+        /** Returns the value for the given ordinal. */
+        @Override public E get(int ordinal) {return values[ordinal];}
+
+        /**
+         * Adds the given element to the list of codes.
+         *
+         * @param  value  the value to add.
+         * @return always {@code true}.
+         * @throws NullPointerException if {@code value} is null.
+         * @throws IllegalArgumentException if {@code value} has an inconsistent ordinal value.
+         * @throws ArrayStoreException if the caller cheated with Java generic types.
+         */
+        @Override
+        public synchronized boolean add(final E value) {
+            E[] copy = values;
+            final int last = copy.length;
+            copy = Arrays.copyOf(copy, last + 1);
+            copy[last] = value;     // Check for `ArrayStoreException` before to set the ordinal value.
+            ((CodeList<E>) value).setOrdinal(last);
+            values = copy;
+            return true;
+        }
+
+        /**
+         * Returns an snapshot of this list at the time when this method is invoked.
+         * We use {@code Arrays.asList(…)} instead of {@code List.of(…)} for avoiding an array copy.
+         * Because the returned list is modifiable except for element removal, this method should be
+         * invoked only for <abbr>API</abbr> that do not allow the modification of list elements.
+         */
+        private List<E> snapshot() {return Arrays.asList(values);}
+
+        /** Delegates to {@code Arrays.asList(values)} for efficient operation on a snapshot. */
+        @SuppressWarnings("SuspiciousToArrayCall")
+        @Override public <T> T[]        toArray(T[] t) {return snapshot().toArray(t);}
+        @Override public Object[]       toArray()      {return snapshot().toArray();}
+        @Override public Iterator<E>    iterator()     {return snapshot().iterator();}
+        @Override public Spliterator<E> spliterator()  {return snapshot().spliterator();}
     }
 
     /**
@@ -414,40 +380,29 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      */
     @Deprecated(since="3.1", forRemoval=true)
     public static <T extends CodeList<T>> T valueOf(final Class<T> codeType, final Filter filter) {
-        final Elements values = getOrCreateList(codeType);
-        /*
-         * At this point we got the list of all code list values. Now search for a value matching
-         * the filter specified to this method. The search and, eventually, the code creation are
-         * done in the same synchronized block for making sure that the same code is not created
-         * twice concurrently.
-         */
-        synchronized (values) {
-            for (int i=0; i<values.size(); i++) {
-                final CodeList<?> code = values.resolve(codeType, i);
-                if (filter.accept(code)) {
-                    return codeType.cast(code);
+        try {
+            final Method method = codeType.getMethod("values", (Class<?>[]) null);
+            if (Modifier.isStatic(method.getModifiers())) {
+                for (final CodeList<?> code : (CodeList<?>[]) method.invoke(null)) {
+                    if (filter.accept(code)) {
+                        return codeType.cast(code);
+                    }
                 }
             }
-            final String nameIfNew = filter.codename();
-            if (nameIfNew == null || Modifier.isAbstract(codeType.getModifiers())) {
-                return null;
-            }
-            /*
-             * No value value found, but the caller allows us to create a new value.
-             * We need access to the constructor, which may not be public.
-             */
-            try {
-                final Constructor<T> constructor = codeType.getDeclaredConstructor(String.class);
-                if (!Modifier.isPublic(constructor.getModifiers())) {
-                    constructor.setAccessible(true);
-                }
-                T code = constructor.newInstance(nameIfNew);
-                values.set(code.ordinal(), code);
-                return code;
-            } catch (ReflectiveOperationException exception) {
-                throw new IllegalArgumentException("Cannot create code of type " + codeType.getSimpleName(), exception);
-            }
+        } catch (ReflectiveOperationException error) {
+            System.getLogger(Errors.LOGGER).log(
+                    System.Logger.Level.DEBUG,
+                    () -> "Cannot access the " + codeType.getSimpleName() + "values() method.",
+                    error);
         }
+        final String nameIfNew = filter.codename();
+        if (nameIfNew != null) try {
+            final Method method = codeType.getMethod("valueOf", String.class);
+            return codeType.cast(method.invoke(null, nameIfNew));
+        } catch (ReflectiveOperationException exception) {
+            throw new IllegalArgumentException("Cannot create code of type " + codeType.getSimpleName(), exception);
+        }
+        return null;
     }
 
     /**
@@ -498,9 +453,8 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * to the given name. If no such instance is found, then there is a choice:
      *
      * <ul>
-     *   <li>If {@code constructor} is {@code null}, then this method returns an empty value.</li>
-     *   <li>Otherwise a {@linkplain Optional#ofNullable(Object) nullable} new instance is created
-     *       by a call to {@code constructor.apply(name)}.</li>
+     *   <li>If {@code constructor} is {@code null}, then this method returns {@code null}.</li>
+     *   <li>Otherwise a new instance is created by a call to {@code constructor.apply(name)}.</li>
      * </ul>
      *
      * This method can be used for the implementation of {@code valueOf(String)} in subclasses.
@@ -511,103 +465,50 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * taking in account only the characters that are
      * {@linkplain Character#isUnicodeIdentifierPart(int) unicode identifer part}.
      * This is different than GeoAPI 3.0, which compared names using {@link String#equals(Object)}.
-     * Being case-insensitive allows to recognize some UML identifiers as equivalent to the names
-     * of constants declared in {@code CodeList} subclasses.
+     * Being case-insensitive allows to recognize some <abbr>UML</abbr> identifiers as equivalent
+     * to the names of constants declared in {@code CodeList} subclasses.
      *
-     * @param  <E>          the compile-time type given as the {@code codeType} parameter.
-     * @param  codeType     the type of the code list for which to get an element.
+     * @param  <E>          the type of the code list for which to get an element.
+     * @param  values       list of existing values, usually created by {@link #initialValues(CodeList...)}.
      * @param  name         the name of the code to obtain (case-insensitive).
      * @param  constructor  the constructor to use if a new code needs to be created,
      *                      or {@code null} for not creating any new code.
-     * @return a code matching the given name, or empty if no existing code matches the given name
+     * @return a code matching the given name, or {@code null} if no existing code matches the given name
      *         and {@code constructor} is null or returned a null value.
-     * @throws NullPointerException if {@code codeType} or {@code name} is null.
+     * @throws NullPointerException if {@code values} or {@code name} is null.
      * @throws IllegalArgumentException if the given name does not contain at least
      *         one character that is a Unicode identifier part.
      *
      * @since 3.1
      */
-    public static <E extends CodeList<E>> Optional<E> valueOf(final Class<E> codeType,
+    protected static <E extends CodeList<E>> E valueOf(final List<E> values,
             final String name, final Function<? super String, ? extends E> constructor)
     {
         final String search = toComparableName(name);
         if (search.isBlank()) {
             throw new IllegalArgumentException(name);
         }
-        final Elements values = valueList(codeType);
         /*
          * The search and, eventually, the code creation are done in the same synchronized
          * block for making sure that the same code is not created twice concurrently.
          */
         synchronized (values) {
-            final int size = values.size();
-            for (int i=0; i<size; i++) {
-                final E element;
-                final Object code = values.get(i);
-                if (code instanceof String) {
-                    if (!compare(name, (String) code)) continue;
-                    element = values.resolve(codeType, i);
-                } else {
-                    element = codeType.cast(code);
-                }
-                if (compare(name, element.name())) {
-                    return Optional.of(element);
+            for (E element : values) {
+                if (compare(search, element.name())) {
+                    return element;
                 }
             }
             if (constructor != null) {
-                final E element = constructor.apply(name);
+                E element = constructor.apply(name);
                 if (element != null) {
-                    values.set(element.ordinal(), element);
-                    return Optional.of(element);
+                    ((CodeList<E>) element).setOrdinal(values.size());
+                    if (values.add(element)) {
+                        return element;
+                    }
                 }
             }
         }
-        return Optional.empty();
-    }
-
-    /**
-     * Returns the list of code list names or instances for the specified type of code list.
-     * Callers shall use the returned list in a block synchronized on the list instance.
-     *
-     * @param  codeType  the type of code list for which to get the current code list values.
-     * @return all current values for the given type (never {@code null}).
-     * @throws NullPointerException if {@code codeType} is null.
-     */
-    private static Elements valueList(final Class<? extends CodeList<?>> codeType) {
-        Elements values;
-        synchronized (VALUES) {
-            values = VALUES.get(codeType);
-        }
-        if (values == null) {
-            /*
-             * If no list has been found for the given type, maybe the class was not yet initialized.
-             * Try to force initialization of the given class in order to register its list of static
-             * final constants, then check again.
-             */
-            final String classname = Objects.requireNonNull(codeType, "The codeType argument shall not be null.").getName();
-            try {
-                Class.forName(classname, true, codeType.getClassLoader());
-            } catch (ClassNotFoundException e) {
-                throw new TypeNotPresentException(classname, e);             // Should never happen.
-            }
-            values = getOrCreateList(codeType);
-        }
-        return values;
-    }
-
-    /**
-     * Returns the values for the specified type of code list.
-     *
-     * @param  <E>       the compile-time type given as the {@code codeType} parameter.
-     * @param  codeType  the type of code list for which to get the current code list values.
-     * @return all current values for the given type (never {@code null}).
-     * @throws NullPointerException if {@code codeType} is null.
-     *
-     * @since 3.1
-     */
-    @SuppressWarnings("unchecked")
-    public static <E extends CodeList<E>> E[] values(final Class<E> codeType) {
-        return valueList(codeType).toArray(codeType);
+        return null;
     }
 
     /**
@@ -648,15 +549,15 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
     }
 
     /**
-     * Returns the identifier declared in the UML annotation, or {@code null} if none.
-     * The UML identifier shall be the ISO or OGC name for this code constant.
+     * Returns the identifier declared in the <abbr>UML</abbr> annotation, or {@code null} if none.
+     * The <abbr>UML</abbr> identifier shall be the <abbr>ISO</abbr> or <abbr>OGC</abbr> name for this code constant.
      *
      * <div class="warning"><b>Upcoming API change</b><br>
      * The return value may be replaced by {@code Optional<String>} in GeoAPI 4.0
      * for reducing the risk of {@code NullPointerException}.
      * </div>
      *
-     * @return the ISO/OGC identifier for this code, or {@code null} if none.
+     * @return the <abbr>ISO</abbr>/<abbr>OGC</abbr> identifier for this code, or {@code null} if none.
      *
      * @see UML#identifier()
      */
@@ -675,7 +576,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                     boolean valid;
                     try {
                         valid = equals(field.get(null));
-                    } catch (IllegalAccessException e) {
+                    } catch (IllegalAccessException error) {
                         /*
                          * Should never happen with accessible packages because `getField(String)` returns
                          * only public fields. However, it may happen if the code list is defined in a user
@@ -683,7 +584,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                          * In such case, we have to trust the name provided in this code list instance.
                          */
                         valid = true;
-                        System.getLogger(Errors.LOGGER).log(System.Logger.Level.DEBUG, this::cannotReadField, e);
+                        cannotReadField(System.Logger.Level.DEBUG, error);
                     }
                     if (valid) {
                         // Fetching annotations is allowed even with non-exported packages.
@@ -693,12 +594,12 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
                         }
                     }
                 }
-            } catch (NoSuchFieldException e) {
+            } catch (NoSuchFieldException error) {
                 /*
                  * There is no field for a code of this name. It may be normal, because the user
                  * may have created a custom `CodeList` without declaring it as a constant.
                  */
-                System.getLogger(Errors.LOGGER).log(System.Logger.Level.TRACE, this::cannotReadField, e);
+                cannotReadField(System.Logger.Level.TRACE, error);
             }
             identifier = id;
         }
@@ -706,11 +607,16 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
     }
 
     /**
-     * Produces the message for a field that cannot be read by reflection.
-     * This is used for logging purposes.
+     * Logs a message for a field that cannot be read by reflection.
+     *
+     * @param  level  the level at which to log the message.
+     * @param  error  the exception that occurred.
      */
-    private String cannotReadField() {
-        return Elements.cannotRead(getClass(), name);
+    private void cannotReadField(System.Logger.Level level, ReflectiveOperationException error) {
+        System.getLogger(Errors.LOGGER).log(
+                level,
+                () -> "Cannot read the " + getClass().getSimpleName() + '.' + name() + " field value.",
+                error);
     }
 
     /**
@@ -731,7 +637,8 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      */
     @Override
     public final int ordinal() {
-        return ordinal;
+        if (ordinal >= 0) return ordinal;
+        throw new IllegalStateException("Not yet initialized.");
     }
 
     /**
@@ -754,7 +661,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
         if (!ct.equals(co)) {
             throw new ClassCastException("Cannot compare " + ct.getSimpleName() + " to " + co.getSimpleName() + '.');
         }
-        return Integer.compare(ordinal, other.ordinal());
+        return Integer.compare(ordinal(), other.ordinal());
     }
 
     /*
@@ -776,31 +683,26 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * Resolves the code list to an unique instance after deserialization.
      * The instance shall be resolved using its {@linkplain #name() name}, not its {@linkplain #ordinal() ordinal},
      * because the latter value is not guaranteed to be stable between different GeoAPI versions or,
-     * in the case of user-defined code list elements, between different JVM executions.
+     * in the case of user-defined code list elements, between different <abbr>JVM</abbr> executions.
      *
      * <p>The default implementation tries to replace the deserialized instance by the result of
-     * <code>{@link #valueOf(Class, String, Function) valueOf}(getClass(), name(), null)</code>.
-     * If {@code valueOf(…)} returned an empty value, then {@code this} is updated with a new
-     * ordinal value and added to the list of codes associated to its class.</p>
+     * a call to the public static method {@code valueOf(name)} on the class of the code list.</p>
      *
      * @return either {@code this} or an existing code list for the same name (ignoring case).
      * @throws ObjectStreamException if the deserialization failed.
      */
     protected Object readResolve() throws ObjectStreamException {
-        /*
-         * Casted to <E> in order to satisfy the compiler, but this code should be safe
-         * even if the class is not really `Class<E>` because this method returns `Object`.
-         */
-        @SuppressWarnings("unchecked")
-        final Class<E> codeType = (Class<E>) getClass();
-        final E element = valueOf(codeType, name, null).orElse(null);
-        if (element != null) {
-            return element;
-        }
-        final Elements values = getOrCreateList(codeType);
-        synchronized (values) {
-            ordinal = values.size();
-            values.add(this);
+        ordinal = -1;
+        try {
+            final Method method = getClass().getMethod("valueOf", String.class);
+            if (Modifier.isStatic(method.getModifiers())) {
+                return method.invoke(null, name);
+            }
+        } catch (ReflectiveOperationException error) {
+            System.getLogger(Errors.LOGGER).log(
+                    System.Logger.Level.DEBUG,
+                    () -> "Cannot access the " + getClass().getSimpleName() + "valueOf(String) method.",
+                    error);
         }
         return this;
     }

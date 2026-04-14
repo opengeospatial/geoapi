@@ -17,9 +17,9 @@
  */
 package org.opengis.geometry.coordinate;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
-@Vocabulary(capacity=5)
 @UML(identifier="GM_SplineCurveForm", specification=ISO_19107)
 public final class SplineCurveForm extends CodeList<SplineCurveForm> {
     /**
@@ -44,36 +43,42 @@ public final class SplineCurveForm extends CodeList<SplineCurveForm> {
      * A connected sequence of line segments represented by a 1 degree B-spline (a line string).
      */
     @UML(identifier="polylineForm", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final SplineCurveForm POLYLINE_FORM = new SplineCurveForm(
-                                       "POLYLINE_FORM");
+    public static final SplineCurveForm POLYLINE_FORM;
 
     /**
      * An arc of a circle or a complete circle.
      */
     @UML(identifier="circularArc", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final SplineCurveForm CIRCULAR_ARC = new SplineCurveForm(
-                                       "CIRCULAR_ARC");
+    public static final SplineCurveForm CIRCULAR_ARC;
 
     /**
      * An arc of an ellipse or a complete ellipse.
      */
     @UML(identifier="ellipticalArc", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final SplineCurveForm ELLIPTICAL_ARC = new SplineCurveForm(
-                                       "ELLIPTICAL_ARC");
+    public static final SplineCurveForm ELLIPTICAL_ARC;
 
     /**
      * An arc of a finite length of a parabola.
      */
     @UML(identifier="parabolicArc", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final SplineCurveForm PARABOLIC_ARC = new SplineCurveForm(
-                                       "PARABOLIC_ARC");
+    public static final SplineCurveForm PARABOLIC_ARC;
 
     /**
      * An arc of a finite length of one branch of a hyperbola.
      */
     @UML(identifier="hyperbolicArc", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final SplineCurveForm HYPERBOLIC_ARC = new SplineCurveForm(
-                                       "HYPERBOLIC_ARC");
+    public static final SplineCurveForm HYPERBOLIC_ARC;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<SplineCurveForm> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        POLYLINE_FORM  = new SplineCurveForm("POLYLINE_FORM"),
+        CIRCULAR_ARC   = new SplineCurveForm("CIRCULAR_ARC"),
+        ELLIPTICAL_ARC = new SplineCurveForm("ELLIPTICAL_ARC"),
+        PARABOLIC_ARC  = new SplineCurveForm("PARABOLIC_ARC"),
+        HYPERBOLIC_ARC = new SplineCurveForm("HYPERBOLIC_ARC"));
 
     /**
      * Constructs an element of the given name.
@@ -91,7 +96,7 @@ public final class SplineCurveForm extends CodeList<SplineCurveForm> {
      * @return the list of codes declared in the current JVM.
      */
     public static SplineCurveForm[] values() {
-        return values(SplineCurveForm.class);
+        return VALUES.toArray(SplineCurveForm[]::new);
     }
 
     /**
@@ -116,6 +121,6 @@ public final class SplineCurveForm extends CodeList<SplineCurveForm> {
      * @return a code matching the given name.
      */
     public static SplineCurveForm valueOf(String code) {
-        return valueOf(SplineCurveForm.class, code, SplineCurveForm::new).get();
+        return valueOf(VALUES, code, SplineCurveForm::new);
     }
 }

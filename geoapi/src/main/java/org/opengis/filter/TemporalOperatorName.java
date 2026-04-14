@@ -17,10 +17,10 @@
  */
 package org.opengis.filter;
 
+import java.util.List;
 import java.util.Optional;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19143;
@@ -36,7 +36,6 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  */
-@Vocabulary(capacity=14)
 @UML(identifier="TemporalOperatorName", specification=ISO_19143)
 public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
     /**
@@ -54,7 +53,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * </ul>
      */
     @UML(identifier="After", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName AFTER = new TemporalOperatorName("AFTER");
+    public static final TemporalOperatorName AFTER;
 
     /**
      * Operator evaluates to {@code true} if the first expression is before the second.
@@ -66,7 +65,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * </ul>
      */
     @UML(identifier="Before", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName BEFORE = new TemporalOperatorName("BEFORE", AFTER);
+    public static final TemporalOperatorName BEFORE;
 
     /**
      * Operator evaluates to {@code true} if the first expression begins at the second.
@@ -76,7 +75,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * </ul>
      */
     @UML(identifier="Begins", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName BEGINS = new TemporalOperatorName("BEGINS");
+    public static final TemporalOperatorName BEGINS;
 
     /**
      * Operator evaluates to {@code true} if the first expression begun by the second.
@@ -87,7 +86,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * </ul>
      */
     @UML(identifier="BegunBy", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName BEGUN_BY = new TemporalOperatorName("BEGUN_BY", BEGINS);
+    public static final TemporalOperatorName BEGUN_BY;
 
     /**
      * Operator evaluates to {@code true} if the first expression is contained by the second.
@@ -98,7 +97,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * </ul>
      */
     @UML(identifier="TContains", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName CONTAINS = new TemporalOperatorName("CONTAINS");
+    public static final TemporalOperatorName CONTAINS;
 
     /**
      * Operator evaluates to {@code true} if the first expression is during the second.
@@ -108,7 +107,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * </ul>
      */
     @UML(identifier="During", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName DURING = new TemporalOperatorName("DURING", CONTAINS);
+    public static final TemporalOperatorName DURING;
 
     /**
      * Operator evaluates to {@code true} if the first expression is equal to the second.
@@ -119,10 +118,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * </ul>
      */
     @UML(identifier="TEquals", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName EQUALS = new TemporalOperatorName("EQUALS");
-    static {
-        EQUALS.reversed = EQUALS;
-    }
+    public static final TemporalOperatorName EQUALS;
 
     /**
      * Operator evaluates to {@code true} if the first expression overlaps the second.
@@ -134,7 +130,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * </ul>
      */
     @UML(identifier="TOverlaps", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName OVERLAPS = new TemporalOperatorName("OVERLAPS");
+    public static final TemporalOperatorName OVERLAPS;
 
     /**
      * Operator evaluates to {@code true} if the first expression meets the second.
@@ -144,7 +140,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * </ul>
      */
     @UML(identifier="Meets", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName MEETS = new TemporalOperatorName("MEETS");
+    public static final TemporalOperatorName MEETS;
 
     /**
      * Operator evaluates to {@code true} if the first expression is overlapped by the second.
@@ -156,7 +152,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * </ul>
      */
     @UML(identifier="OverlappedBy", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName OVERLAPPED_BY = new TemporalOperatorName("OVERLAPPED_BY", OVERLAPS);
+    public static final TemporalOperatorName OVERLAPPED_BY;
 
     /**
      * Operator evaluates to {@code true} if the first expression is met by the second.
@@ -166,7 +162,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * </ul>
      */
     @UML(identifier="MetBy", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName MET_BY = new TemporalOperatorName("MET_BY", MEETS);
+    public static final TemporalOperatorName MET_BY;
 
     /**
      * Operator evaluates to {@code true} if the first expression ends at the second.
@@ -180,7 +176,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * in the XML schema definition. We presume that it has been forgotten.
      */
     @UML(identifier="Ends", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName ENDS = new TemporalOperatorName("ENDS");
+    public static final TemporalOperatorName ENDS;
 
     /**
      * Operator evaluates to {@code true} if the first expression is ended by the second.
@@ -191,20 +187,42 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * </ul>
      */
     @UML(identifier="EndedBy", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName ENDED_BY = new TemporalOperatorName("ENDED_BY", ENDS);
+    public static final TemporalOperatorName ENDED_BY;
 
     /**
      * Shortcut operator semantically equivalent to NOT (Before OR Meets OR MetBy OR After).
      * This is applicable to periods only.
      */
     @UML(identifier="AnyInteracts", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final TemporalOperatorName ANY_INTERACTS = new TemporalOperatorName("ANY_INTERACTS");
+    public static final TemporalOperatorName ANY_INTERACTS;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<TemporalOperatorName> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        AFTER         = new TemporalOperatorName("AFTER"),
+        BEFORE        = new TemporalOperatorName("BEFORE", AFTER),
+        BEGINS        = new TemporalOperatorName("BEGINS"),
+        BEGUN_BY      = new TemporalOperatorName("BEGUN_BY", BEGINS),
+        CONTAINS      = new TemporalOperatorName("CONTAINS"),
+        DURING        = new TemporalOperatorName("DURING", CONTAINS),
+        EQUALS        = new TemporalOperatorName("EQUALS"),
+        OVERLAPS      = new TemporalOperatorName("OVERLAPS"),
+        MEETS         = new TemporalOperatorName("MEETS"),
+        OVERLAPPED_BY = new TemporalOperatorName("OVERLAPPED_BY", OVERLAPS),
+        MET_BY        = new TemporalOperatorName("MET_BY", MEETS),
+        ENDS          = new TemporalOperatorName("ENDS"),
+        ENDED_BY      = new TemporalOperatorName("ENDED_BY", ENDS),
+        ANY_INTERACTS = new TemporalOperatorName("ANY_INTERACTS"));
+
     static {
+        EQUALS.reversed = EQUALS;
         ANY_INTERACTS.reversed = ANY_INTERACTS;
     }
 
     /**
-     * The temporal operator which produces the same results than this operator when the argument order is reversed.
+     * The temporal operator which produces the same results as this operator when the argument order is reversed.
      * May be {@code null} if unknown.
      */
     private TemporalOperatorName reversed;
@@ -224,6 +242,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * @param name     the name of the new element. This name shall not be in use by another element of this type.
      * @param reverse  the temporal operator which produces the same results when the argument order is reversed.
      */
+    @SuppressWarnings("LeakingThisInConstructor")
     private TemporalOperatorName(final String name, final TemporalOperatorName reverse) {
         super(name);
         this.reversed = reverse;
@@ -231,7 +250,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
     }
 
     /**
-     * Returns the operator which produces the same results than this operator when the argument order is reversed.
+     * Returns the operator which produces the same results as this operator when the argument order is reversed.
      * For example, the reverse of {@link #BEFORE} is {@link #AFTER} and the reverse of {@link #CONTAINS} is {@link #DURING}.
      * The reverse of the reverse (if present) is always {@code this}.
      *
@@ -247,7 +266,7 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * @return the list of codes declared in the current JVM.
      */
     public static TemporalOperatorName[] values() {
-        return values(TemporalOperatorName.class);
+        return VALUES.toArray(TemporalOperatorName[]::new);
     }
 
     /**
@@ -272,6 +291,6 @@ public final class TemporalOperatorName extends CodeList<TemporalOperatorName> {
      * @return a code matching the given name.
      */
     public static TemporalOperatorName valueOf(String code) {
-        return valueOf(TemporalOperatorName.class, code, TemporalOperatorName::new).get();
+        return valueOf(VALUES, code, TemporalOperatorName::new);
     }
 }

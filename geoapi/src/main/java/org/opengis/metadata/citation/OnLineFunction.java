@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.citation;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -33,7 +33,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Vocabulary(capacity=11)
 @UML(identifier="CI_OnLineFunctionCode", specification=ISO_19115)
 public final class OnLineFunction extends CodeList<OnLineFunction> {
     /**
@@ -45,31 +44,31 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      * Online instructions for transferring data from one storage device or system to another.
      */
     @UML(identifier="download", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final OnLineFunction DOWNLOAD = new OnLineFunction("DOWNLOAD");
+    public static final OnLineFunction DOWNLOAD;
 
     /**
      * Online information about the resource.
      */
     @UML(identifier="information", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final OnLineFunction INFORMATION = new OnLineFunction("INFORMATION");
+    public static final OnLineFunction INFORMATION;
 
     /**
      * Online instructions for requesting the resource from the provider.
      */
     @UML(identifier="offlineAccess", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final OnLineFunction OFFLINE_ACCESS = new OnLineFunction("OFFLINE_ACCESS");
+    public static final OnLineFunction OFFLINE_ACCESS;
 
     /**
      * Online order process for obtaining the resource.
      */
     @UML(identifier="order", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final OnLineFunction ORDER = new OnLineFunction("ORDER");
+    public static final OnLineFunction ORDER;
 
     /**
      * Online search interface for seeking out information about the resource.
      */
     @UML(identifier="search", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final OnLineFunction SEARCH = new OnLineFunction("SEARCH");
+    public static final OnLineFunction SEARCH;
 
     /**
      * Complete metadata provided.
@@ -77,7 +76,7 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      * @since 3.1
      */
     @UML(identifier="completeMetadata", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final OnLineFunction COMPLETE_METADATA = new OnLineFunction("COMPLETE_METADATA");
+    public static final OnLineFunction COMPLETE_METADATA;
 
     /**
      * Browse graphic provided.
@@ -85,7 +84,7 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      * @since 3.1
      */
     @UML(identifier="browseGraphic", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final OnLineFunction BROWSE_GRAPHIC = new OnLineFunction("BROWSE_GRAPHIC");
+    public static final OnLineFunction BROWSE_GRAPHIC;
 
     /**
      * Online resource upload capability provided.
@@ -93,7 +92,7 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      * @since 3.1
      */
     @UML(identifier="upload", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final OnLineFunction UPLOAD = new OnLineFunction("UPLOAD");
+    public static final OnLineFunction UPLOAD;
 
     /**
      * Online email service provided.
@@ -101,7 +100,7 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      * @since 3.1
      */
     @UML(identifier="emailService", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final OnLineFunction EMAIL_SERVICE = new OnLineFunction("EMAIL_SERVICE");
+    public static final OnLineFunction EMAIL_SERVICE;
 
     /**
      * Online browsing provided.
@@ -109,7 +108,7 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      * @since 3.1
      */
     @UML(identifier="browsing", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final OnLineFunction BROWSING = new OnLineFunction("BROWSING");
+    public static final OnLineFunction BROWSING;
 
     /**
      * Online file access provided.
@@ -117,7 +116,24 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      * @since 3.1
      */
     @UML(identifier="fileAccess", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final OnLineFunction FILE_ACCESS = new OnLineFunction("FILE_ACCESS");
+    public static final OnLineFunction FILE_ACCESS;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<OnLineFunction> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        DOWNLOAD          = new OnLineFunction("DOWNLOAD"),
+        INFORMATION       = new OnLineFunction("INFORMATION"),
+        OFFLINE_ACCESS    = new OnLineFunction("OFFLINE_ACCESS"),
+        ORDER             = new OnLineFunction("ORDER"),
+        SEARCH            = new OnLineFunction("SEARCH"),
+        COMPLETE_METADATA = new OnLineFunction("COMPLETE_METADATA"),
+        BROWSE_GRAPHIC    = new OnLineFunction("BROWSE_GRAPHIC"),
+        UPLOAD            = new OnLineFunction("UPLOAD"),
+        EMAIL_SERVICE     = new OnLineFunction("EMAIL_SERVICE"),
+        BROWSING          = new OnLineFunction("BROWSING"),
+        FILE_ACCESS       = new OnLineFunction("FILE_ACCESS"));
 
     /**
      * Constructs an element of the given name.
@@ -134,7 +150,7 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      * @return the list of codes declared in the current JVM.
      */
     public static OnLineFunction[] values() {
-        return values(OnLineFunction.class);
+        return VALUES.toArray(OnLineFunction[]::new);
     }
 
     /**
@@ -159,6 +175,6 @@ public final class OnLineFunction extends CodeList<OnLineFunction> {
      * @return a code matching the given name.
      */
     public static OnLineFunction valueOf(String code) {
-        return valueOf(OnLineFunction.class, code, OnLineFunction::new).get();
+        return valueOf(VALUES, code, OnLineFunction::new);
     }
 }

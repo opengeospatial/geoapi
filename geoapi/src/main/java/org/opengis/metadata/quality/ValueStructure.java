@@ -25,7 +25,6 @@ import java.util.Optional;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
 import org.opengis.referencing.operation.Matrix;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -39,7 +38,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   3.1
  */
-@Vocabulary(capacity=6, parameters=1)
 @UML(identifier="DQM_ValueStructure", specification=ISO_19157)
 public final class ValueStructure extends CodeList<ValueStructure> {
     /**
@@ -52,42 +50,54 @@ public final class ValueStructure extends CodeList<ValueStructure> {
      * The corresponding Java type is {@link java.util.Collection}.
      */
     @UML(identifier="bag", obligation=CONDITIONAL, specification=ISO_19157)
-    public static final ValueStructure BAG = new ValueStructure("BAG", Collection.class);
+    public static final ValueStructure BAG;
 
     /**
      * Unordered collection of related items with no repetition.
      * The corresponding Java type is {@link java.util.Set}.
      */
     @UML(identifier="set", obligation=CONDITIONAL, specification=ISO_19157)
-    public static final ValueStructure SET = new ValueStructure("SET", Set.class);
+    public static final ValueStructure SET;
 
     /**
      * Finite, ordered collection of related items that may be repeated.
      * The corresponding Java type is {@link java.util.List}.
      */
     @UML(identifier="sequence", obligation=CONDITIONAL, specification=ISO_19157)
-    public static final ValueStructure SEQUENCE = new ValueStructure("SEQUENCE", List.class);
+    public static final ValueStructure SEQUENCE;
 
     /**
      * An arrangement of data in which each item may be identified by means of arguments or keys.
      * The corresponding Java type is {@link java.util.Map}.
      */
     @UML(identifier="table", obligation=CONDITIONAL, specification=ISO_19157)
-    public static final ValueStructure TABLE = new ValueStructure("TABLE", Map.class);
+    public static final ValueStructure TABLE;
 
     /**
      * Rectangular array of numbers.
      * The corresponding Java type is {@link org.opengis.referencing.operation.Matrix}.
      */
     @UML(identifier="matrix", obligation=CONDITIONAL, specification=ISO_19157)
-    public static final ValueStructure MATRIX = new ValueStructure("MATRIX", Matrix.class);
+    public static final ValueStructure MATRIX;
 
     /**
      * Feature that acts as a function to return values from its range
      * for any direct position within its spatial, temporal or spatiotemporal domain.
      */
     @UML(identifier="coverage", obligation=CONDITIONAL, specification=ISO_19157)
-    public static final ValueStructure COVERAGE = new ValueStructure("COVERAGE");
+    public static final ValueStructure COVERAGE;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<ValueStructure> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        BAG      = new ValueStructure("BAG",      Collection.class),
+        SET      = new ValueStructure("SET",      Set.class),
+        SEQUENCE = new ValueStructure("SEQUENCE", List.class),
+        TABLE    = new ValueStructure("TABLE",    Map.class),
+        MATRIX   = new ValueStructure("MATRIX",   Matrix.class),
+        COVERAGE = new ValueStructure("COVERAGE"));
 
     /**
      * The values in the order they should be tested by {@link #valueOf(Class)}.
@@ -131,7 +141,7 @@ public final class ValueStructure extends CodeList<ValueStructure> {
      * @return the list of codes declared in the current JVM.
      */
     public static ValueStructure[] values() {
-        return values(ValueStructure.class);
+        return VALUES.toArray(ValueStructure[]::new);
     }
 
     /**
@@ -158,7 +168,7 @@ public final class ValueStructure extends CodeList<ValueStructure> {
      * @return a code matching the given name.
      */
     public static ValueStructure valueOf(String code, final Class<?> type) {
-        return valueOf(ValueStructure.class, code, (name) -> new ValueStructure(name, type)).get();
+        return valueOf(VALUES, code, (name) -> new ValueStructure(name, type));
     }
 
     /**

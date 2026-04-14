@@ -17,8 +17,8 @@
  */
 package org.opengis.style;
 
+import java.util.List;
 import org.opengis.util.CodeList;
-import org.opengis.geoapi.internal.Vocabulary;
 import org.opengis.annotation.XmlElement;
 
 
@@ -30,7 +30,6 @@ import org.opengis.annotation.XmlElement;
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  */
-@Vocabulary(capacity=4)
 @XmlElement("ContrastEnchancement")
 public final class ContrastMethod extends CodeList<ContrastMethod> {
     /**
@@ -43,7 +42,7 @@ public final class ContrastMethod extends CodeList<ContrastMethod> {
      * All colors in between are stretched out linearly.
      */
     @XmlElement("Normalize")
-    public static final ContrastMethod NORMALIZE = new ContrastMethod("NORMALIZE");
+    public static final ContrastMethod NORMALIZE;
 
     /**
      * Contrast based on a histogram of how many colors are at each brightness level on input.
@@ -51,20 +50,30 @@ public final class ContrastMethod extends CodeList<ContrastMethod> {
      * This has the effect of revealing many subtle ground features.
      */
     @XmlElement("Histogram")
-    public static final ContrastMethod HISTOGRAM = new ContrastMethod("HISTOGRAM");
+    public static final ContrastMethod HISTOGRAM;
 
     /**
      * Contrast based on a gamma value.
      * A gamma value tells how much to brighten (value greater than 1)
      * or dim (value less than 1) an image, with 1 meaning no change.
      */
-    public static final ContrastMethod GAMMA = new ContrastMethod("GAMMA");
+    public static final ContrastMethod GAMMA;
 
     /**
      * No enhancement.
      * This is the default value.
      */
-    public static final ContrastMethod NONE = new ContrastMethod("NONE");
+    public static final ContrastMethod NONE;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<ContrastMethod> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        NORMALIZE = new ContrastMethod("NORMALIZE"),
+        HISTOGRAM = new ContrastMethod("HISTOGRAM"),
+        GAMMA     = new ContrastMethod("GAMMA"),
+        NONE      = new ContrastMethod("NONE"));
 
     /**
      * Constructs an element of the given name.
@@ -82,7 +91,7 @@ public final class ContrastMethod extends CodeList<ContrastMethod> {
      * @return the list of codes declared in the current JVM.
      */
     public static ContrastMethod[] values() {
-        return values(ContrastMethod.class);
+        return VALUES.toArray(ContrastMethod[]::new);
     }
 
     /**
@@ -107,6 +116,6 @@ public final class ContrastMethod extends CodeList<ContrastMethod> {
      * @return a code matching the given name.
      */
     public static ContrastMethod valueOf(String code) {
-        return valueOf(ContrastMethod.class, code, ContrastMethod::new).get();
+        return valueOf(VALUES, code, ContrastMethod::new);
     }
 }

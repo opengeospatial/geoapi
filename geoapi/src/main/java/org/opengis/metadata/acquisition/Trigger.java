@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.acquisition;
 
+import java.util.List;
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.3
  */
-@Vocabulary(capacity=3)
 @UML(identifier="MI_TriggerCode", specification=ISO_19115_2)
 public final class Trigger extends CodeList<Trigger> {
     /**
@@ -44,19 +43,28 @@ public final class Trigger extends CodeList<Trigger> {
      * Event due to external stimuli.
      */
     @UML(identifier="automatic", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final Trigger AUTOMATIC = new Trigger("AUTOMATIC");
+    public static final Trigger AUTOMATIC;
 
     /**
      * Event manually instigated.
      */
     @UML(identifier="manual", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final Trigger MANUAL = new Trigger("MANUAL");
+    public static final Trigger MANUAL;
 
     /**
      * Event instigated by planned internal stimuli.
      */
     @UML(identifier="preProgrammed", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final Trigger PRE_PROGRAMMED = new Trigger("PRE_PROGRAMMED");
+    public static final Trigger PRE_PROGRAMMED;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<Trigger> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        AUTOMATIC      = new Trigger("AUTOMATIC"),
+        MANUAL         = new Trigger("MANUAL"),
+        PRE_PROGRAMMED = new Trigger("PRE_PROGRAMMED"));
 
     /**
      * Constructs an element of the given name.
@@ -73,7 +81,7 @@ public final class Trigger extends CodeList<Trigger> {
      * @return the list of codes declared in the current JVM.
      */
     public static Trigger[] values() {
-        return values(Trigger.class);
+        return VALUES.toArray(Trigger[]::new);
     }
 
     /**
@@ -98,6 +106,6 @@ public final class Trigger extends CodeList<Trigger> {
      * @return a code matching the given name.
      */
     public static Trigger valueOf(String code) {
-        return valueOf(Trigger.class, code, Trigger::new).get();
+        return valueOf(VALUES, code, Trigger::new);
     }
 }

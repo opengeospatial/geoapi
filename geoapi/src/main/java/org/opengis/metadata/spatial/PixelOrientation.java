@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.spatial;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -39,7 +39,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Vocabulary(capacity=5)
 @UML(identifier="MD_PixelOrientationCode", specification=ISO_19115)
 public final class PixelOrientation extends CodeList<PixelOrientation> {
     /**
@@ -51,32 +50,43 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
      * Point in a pixel corresponding to the Earth location of the pixel.
      */
     @UML(identifier="center", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PixelOrientation CENTER = new PixelOrientation("CENTER");
+    public static final PixelOrientation CENTER;
 
     /**
      * The corner in the pixel closest to the origin of the SRS.
      * If two are at the same distance from the origin, the one with the smallest <var>x</var>-value.
      */
     @UML(identifier="lowerLeft", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PixelOrientation LOWER_LEFT = new PixelOrientation("LOWER_LEFT");
+    public static final PixelOrientation LOWER_LEFT;
 
     /**
      * Next corner counterclockwise from the {@linkplain #LOWER_LEFT lower left}.
      */
     @UML(identifier="lowerRight", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PixelOrientation LOWER_RIGHT = new PixelOrientation("LOWER_RIGHT");
+    public static final PixelOrientation LOWER_RIGHT;
 
     /**
      * Next corner counterclockwise from the {@linkplain #LOWER_RIGHT lower right}.
      */
     @UML(identifier="upperRight", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PixelOrientation UPPER_RIGHT = new PixelOrientation("UPPER_RIGHT");
+    public static final PixelOrientation UPPER_RIGHT;
 
     /**
      * Next corner counterclockwise from the {@linkplain #UPPER_RIGHT upper right}.
      */
     @UML(identifier="upperLeft", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PixelOrientation UPPER_LEFT = new PixelOrientation("UPPER_LEFT");
+    public static final PixelOrientation UPPER_LEFT;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<PixelOrientation> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        CENTER      = new PixelOrientation("CENTER"),
+        LOWER_LEFT  = new PixelOrientation("LOWER_LEFT"),
+        LOWER_RIGHT = new PixelOrientation("LOWER_RIGHT"),
+        UPPER_RIGHT = new PixelOrientation("UPPER_RIGHT"),
+        UPPER_LEFT  = new PixelOrientation("UPPER_LEFT"));
 
     /**
      * Constructs an element of the given name.
@@ -93,7 +103,7 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
      * @return the list of codes declared in the current JVM.
      */
     public static PixelOrientation[] values() {
-        return values(PixelOrientation.class);
+        return VALUES.toArray(PixelOrientation[]::new);
     }
 
     /**
@@ -118,6 +128,6 @@ public final class PixelOrientation extends CodeList<PixelOrientation> {
      * @return a code matching the given name.
      */
     public static PixelOrientation valueOf(String code) {
-        return valueOf(PixelOrientation.class, code, PixelOrientation::new).get();
+        return valueOf(VALUES, code, PixelOrientation::new);
     }
 }

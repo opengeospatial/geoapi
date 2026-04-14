@@ -40,7 +40,6 @@ import org.opengis.referencing.crs.ProjectedCRS;
 import org.opengis.referencing.crs.SingleCRS;
 import org.opengis.referencing.crs.TemporalCRS;
 import org.opengis.referencing.crs.VerticalCRS;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.ISO_19115;
@@ -57,7 +56,6 @@ import static org.opengis.annotation.Specification.ISO_19115;
  *
  * @since 3.1
  */
-@Vocabulary(capacity=28)
 @UML(identifier="MD_ReferenceSystemTypeCode", specification=ISO_19115)
 public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
     /**
@@ -306,6 +304,11 @@ public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
     @UML(identifier="vertical", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ReferenceSystemType VERTICAL;
 
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<ReferenceSystemType> VALUES;
+
     /*
      * Initialize all constants in a static block for sharing predicate instances.
      * Note: the order of `ReferenceSystemType` constructions matter. It should be
@@ -313,74 +316,43 @@ public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * for having ordinal values that match the field positions.
      */
     static {
-        final var engineering = new Single(EngineeringCRS.class);
-        final var parametric  = new Single(ParametricCRS.class);
-        COMPOUND_ENGINEERING_PARAMETRIC =
-                new ReferenceSystemType("COMPOUND_ENGINEERING_PARAMETRIC", new Compound(engineering, parametric));
-
-        final var temporal = new Single(TemporalCRS.class);
-        COMPOUND_ENGINEERING_PARAMETRIC_TEMPORAL =
-                new ReferenceSystemType("COMPOUND_ENGINEERING_PARAMETRIC_TEMPORAL", new Compound(engineering, parametric, temporal));
-
-        COMPOUND_ENGINEERING_TEMPORAL =
-                new ReferenceSystemType("COMPOUND_ENGINEERING_TEMPORAL", new Compound(engineering, temporal));
-
-        final var vertical = new Single(VerticalCRS.class);
-        COMPOUND_ENGINEERING_VERTICAL =
-                new ReferenceSystemType("COMPOUND_ENGINEERING_VERTICAL", new Compound(engineering, vertical));
-
-        COMPOUND_ENGINEERING_VERTICAL_TEMPORAL =
-                new ReferenceSystemType("COMPOUND_ENGINEERING_VERTICAL_TEMPORAL", new Compound(engineering, vertical, temporal));
-
+        final var projected    = new Single(ProjectedCRS.class);
+        final var engineering  = new Single(EngineeringCRS.class);
+        final var parametric   = new Single(ParametricCRS.class);
+        final var vertical     = new Single(VerticalCRS.class);
+        final var temporal     = new Single(TemporalCRS.class);
         final var geographic2D = new SingleWithCS(GeodeticCRS.class, EllipsoidalCS.class, 2);
-        COMPOUND_GEOGRAPHIC2D_PARAMETRIC =
-                new ReferenceSystemType("COMPOUND_GEOGRAPHIC2D_PARAMETRIC", new Compound(geographic2D, parametric));
-
-        COMPOUND_GEOGRAPHIC2D_PARAMETRIC_TEMPORAL =
-                new ReferenceSystemType("COMPOUND_GEOGRAPHIC2D_PARAMETRIC_TEMPORAL", new Compound(geographic2D, parametric, temporal));
-
-        COMPOUND_GEOGRAPHIC2D_TEMPORAL =
-                new ReferenceSystemType("COMPOUND_GEOGRAPHIC2D_TEMPORAL", new Compound(geographic2D, temporal));
-
-        COMPOUND_GEOGRAPHIC2D_VERTICAL =
-                new ReferenceSystemType("COMPOUND_GEOGRAPHIC2D_VERTICAL", new Compound(geographic2D, vertical));
-
-        COMPOUND_GEOGRAPHIC2D_VERTICAL_TEMPORAL =
-                new ReferenceSystemType("COMPOUND_GEOGRAPHIC2D_VERTICAL_TEMPORAL", new Compound(geographic2D, vertical, temporal));
-
         final var geographic3D = new SingleWithCS(GeodeticCRS.class, EllipsoidalCS.class, 3);
-        COMPOUND_GEOGRAPHIC3D_TEMPORAL =
-                new ReferenceSystemType("COMPOUND_GEOGRAPHIC3D_TEMPORAL", new Compound(geographic3D, temporal));
-
-        final var projected2D = new SingleWithCS(ProjectedCRS.class, CartesianCS.class, 2);
-        COMPOUND_PROJECTED2D_PARAMETRIC =
-                new ReferenceSystemType("COMPOUND_PROJECTED2D_PARAMETRIC", new Compound(projected2D, parametric));
-
-        COMPOUND_PROJECTED2D_PARAMETRIC_TEMPORAL =
-                new ReferenceSystemType("COMPOUND_PROJECTED2D_PARAMETRIC_TEMPORAL", new Compound(projected2D, parametric, temporal));
-
-        final var projected = new Single(ProjectedCRS.class);
-        COMPOUND_PROJECTED_TEMPORAL =
-                new ReferenceSystemType("COMPOUND_PROJECTED_TEMPORAL", new Compound(projected, temporal));
-
-        COMPOUND_PROJECTED_VERTICAL =
-                new ReferenceSystemType("COMPOUND_PROJECTED_VERTICAL", new Compound(projected2D, vertical));
-
-        COMPOUND_PROJECTED_VERTICAL_TEMPORAL =
-                new ReferenceSystemType("COMPOUND_PROJECTED_VERTICAL_TEMPORAL", new Compound(projected2D, vertical, temporal));
-
-        ENGINEERING           = new ReferenceSystemType("ENGINEERING", engineering);
-        ENGINEERING_DESIGN    = new ReferenceSystemType("ENGINEERING_DESIGN");
-        ENGINEERING_IMAGE     = new ReferenceSystemType("ENGINEERING_IMAGE", new Image());
-        GEODETIC_GEOCENTRIC   = new ReferenceSystemType("GEODETIC_GEOCENTRIC", new SingleWithCS(GeodeticCRS.class, CartesianCS.class, 3));
-        GEODETIC_GEOGRAPHIC2D = new ReferenceSystemType("GEODETIC_GEOGRAPHIC2D", geographic2D);
-        GEODETIC_GEOGRAPHIC3D = new ReferenceSystemType("GEODETIC_GEOGRAPHIC3D", geographic3D);
-        GEOGRAPHIC_IDENTIFIER = new ReferenceSystemType("GEOGRAPHIC_IDENTIFIER");   // TODO: ISO 19112
-        LINEAR                = new ReferenceSystemType("LINEAR", new SingleWithCS(EngineeringCRS.class, LinearCS.class, 0));
-        PARAMETRIC            = new ReferenceSystemType("PARAMETRIC", parametric);
-        PROJECTED             = new ReferenceSystemType("PROJECTED",  projected);
-        TEMPORAL              = new ReferenceSystemType("TEMPORAL",   temporal);
-        VERTICAL              = new ReferenceSystemType("VERTICAL",   vertical);
+        final var projected2D  = new SingleWithCS(ProjectedCRS.class,  CartesianCS.class, 2);
+        VALUES = initialValues(
+            COMPOUND_ENGINEERING_PARAMETRIC           = new ReferenceSystemType("COMPOUND_ENGINEERING_PARAMETRIC",           new Compound(engineering,  parametric)),
+            COMPOUND_ENGINEERING_PARAMETRIC_TEMPORAL  = new ReferenceSystemType("COMPOUND_ENGINEERING_PARAMETRIC_TEMPORAL",  new Compound(engineering,  parametric, temporal)),
+            COMPOUND_ENGINEERING_TEMPORAL             = new ReferenceSystemType("COMPOUND_ENGINEERING_TEMPORAL",             new Compound(engineering,  temporal)),
+            COMPOUND_ENGINEERING_VERTICAL             = new ReferenceSystemType("COMPOUND_ENGINEERING_VERTICAL",             new Compound(engineering,  vertical)),
+            COMPOUND_ENGINEERING_VERTICAL_TEMPORAL    = new ReferenceSystemType("COMPOUND_ENGINEERING_VERTICAL_TEMPORAL",    new Compound(engineering,  vertical,   temporal)),
+            COMPOUND_GEOGRAPHIC2D_PARAMETRIC          = new ReferenceSystemType("COMPOUND_GEOGRAPHIC2D_PARAMETRIC",          new Compound(geographic2D, parametric)),
+            COMPOUND_GEOGRAPHIC2D_PARAMETRIC_TEMPORAL = new ReferenceSystemType("COMPOUND_GEOGRAPHIC2D_PARAMETRIC_TEMPORAL", new Compound(geographic2D, parametric, temporal)),
+            COMPOUND_GEOGRAPHIC2D_TEMPORAL            = new ReferenceSystemType("COMPOUND_GEOGRAPHIC2D_TEMPORAL",            new Compound(geographic2D, temporal)),
+            COMPOUND_GEOGRAPHIC2D_VERTICAL            = new ReferenceSystemType("COMPOUND_GEOGRAPHIC2D_VERTICAL",            new Compound(geographic2D, vertical)),
+            COMPOUND_GEOGRAPHIC2D_VERTICAL_TEMPORAL   = new ReferenceSystemType("COMPOUND_GEOGRAPHIC2D_VERTICAL_TEMPORAL",   new Compound(geographic2D, vertical, temporal)),
+            COMPOUND_GEOGRAPHIC3D_TEMPORAL            = new ReferenceSystemType("COMPOUND_GEOGRAPHIC3D_TEMPORAL",            new Compound(geographic3D, temporal)),
+            COMPOUND_PROJECTED2D_PARAMETRIC           = new ReferenceSystemType("COMPOUND_PROJECTED2D_PARAMETRIC",           new Compound(projected2D,  parametric)),
+            COMPOUND_PROJECTED2D_PARAMETRIC_TEMPORAL  = new ReferenceSystemType("COMPOUND_PROJECTED2D_PARAMETRIC_TEMPORAL",  new Compound(projected2D,  parametric, temporal)),
+            COMPOUND_PROJECTED_TEMPORAL               = new ReferenceSystemType("COMPOUND_PROJECTED_TEMPORAL",               new Compound(projected,    temporal)),
+            COMPOUND_PROJECTED_VERTICAL               = new ReferenceSystemType("COMPOUND_PROJECTED_VERTICAL",               new Compound(projected2D,  vertical)),
+            COMPOUND_PROJECTED_VERTICAL_TEMPORAL      = new ReferenceSystemType("COMPOUND_PROJECTED_VERTICAL_TEMPORAL",      new Compound(projected2D, vertical, temporal)),
+            ENGINEERING                               = new ReferenceSystemType("ENGINEERING", engineering),
+            ENGINEERING_DESIGN                        = new ReferenceSystemType("ENGINEERING_DESIGN"),
+            ENGINEERING_IMAGE                         = new ReferenceSystemType("ENGINEERING_IMAGE",     new Image()),
+            GEODETIC_GEOCENTRIC                       = new ReferenceSystemType("GEODETIC_GEOCENTRIC",   new SingleWithCS(GeodeticCRS.class, CartesianCS.class, 3)),
+            GEODETIC_GEOGRAPHIC2D                     = new ReferenceSystemType("GEODETIC_GEOGRAPHIC2D", geographic2D),
+            GEODETIC_GEOGRAPHIC3D                     = new ReferenceSystemType("GEODETIC_GEOGRAPHIC3D", geographic3D),
+            GEOGRAPHIC_IDENTIFIER                     = new ReferenceSystemType("GEOGRAPHIC_IDENTIFIER"),   // TODO: ISO 19112
+            LINEAR                                    = new ReferenceSystemType("LINEAR", new SingleWithCS(EngineeringCRS.class, LinearCS.class, 0)),
+            PARAMETRIC                                = new ReferenceSystemType("PARAMETRIC", parametric),
+            PROJECTED                                 = new ReferenceSystemType("PROJECTED",  projected),
+            TEMPORAL                                  = new ReferenceSystemType("TEMPORAL",   temporal),
+            VERTICAL                                  = new ReferenceSystemType("VERTICAL",   vertical));
     }
 
     /**
@@ -570,7 +542,7 @@ public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * @return the list of codes declared in the current JVM.
      */
     public static ReferenceSystemType[] values() {
-        return values(ReferenceSystemType.class);
+        return VALUES.toArray(ReferenceSystemType[]::new);
     }
 
     /**
@@ -595,7 +567,7 @@ public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      * @return a code matching the given name.
      */
     public static ReferenceSystemType valueOf(String code) {
-        return valueOf(ReferenceSystemType.class, code, ReferenceSystemType::new).get();
+        return valueOf(VALUES, code, ReferenceSystemType::new);
     }
 
     /**
@@ -614,8 +586,7 @@ public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {
      */
     public static ReferenceSystemType valueOf(final String code, final Predicate<? super ReferenceSystem> condition) {
         Objects.requireNonNull(condition, "condition");
-        ReferenceSystemType value = valueOf(ReferenceSystemType.class, code,
-                (name) -> new ReferenceSystemType(name, condition)).get();
+        ReferenceSystemType value = valueOf(VALUES, code, (name) -> new ReferenceSystemType(name, condition));
         if (!condition.equals(value.condition)) {
             throw new IllegalArgumentException(value.name() + " already exists with a different condition.");
         }

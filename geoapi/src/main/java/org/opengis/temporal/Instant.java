@@ -66,7 +66,7 @@ public interface Instant extends TemporalPrimitive {
      * In the case of {@link IndeterminateValue#NOW}, this method should return the current time.
      *
      * @departure harmonization
-     *   ISO 19108 defines this property as an union of {@code date8601}, {@code time8601}, {@code dateTime8601} or
+     *   ISO 19108 defines this property as a union of {@code date8601}, {@code time8601}, {@code dateTime8601} or
      *   {@code anyOther} properties. Unions are not explicitly supported by the Java language, but the same result
      *   is achieved with type hierarchy. The mappings of ISO 19103 {@code Date}, {@code Time} and {@code DateTime}
      *   types are described in above Javadoc. The {@code TM_TemporalPosition} type used by the {@code anyOther}

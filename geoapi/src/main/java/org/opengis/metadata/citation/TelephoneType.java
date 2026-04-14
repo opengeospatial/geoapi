@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.citation;
 
+import java.util.List;
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19115;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @version 3.1
  * @since   3.1
  */
-@Vocabulary(capacity=3)
 @UML(identifier="CI_TelephoneTypeCode", specification=ISO_19115)
 public final class TelephoneType extends CodeList<TelephoneType> {
     /**
@@ -44,19 +43,28 @@ public final class TelephoneType extends CodeList<TelephoneType> {
      * Telephone provides voice service.
      */
     @UML(identifier="voice", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TelephoneType VOICE = new TelephoneType("VOICE");
+    public static final TelephoneType VOICE;
 
     /**
      * Telephone provides facsimile service.
      */
     @UML(identifier="facsimile", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TelephoneType FACSIMILE = new TelephoneType("FACSIMILE");
+    public static final TelephoneType FACSIMILE;
 
     /**
      * Telephone provides SMS service.
      */
     @UML(identifier="sms", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final TelephoneType SMS = new TelephoneType("SMS");
+    public static final TelephoneType SMS;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<TelephoneType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        VOICE     = new TelephoneType("VOICE"),
+        FACSIMILE = new TelephoneType("FACSIMILE"),
+        SMS       = new TelephoneType("SMS"));
 
     /**
      * Constructs an element of the given name.
@@ -73,7 +81,7 @@ public final class TelephoneType extends CodeList<TelephoneType> {
      * @return the list of codes declared in the current JVM.
      */
     public static TelephoneType[] values() {
-        return values(TelephoneType.class);
+        return VALUES.toArray(TelephoneType[]::new);
     }
 
     /**
@@ -98,6 +106,6 @@ public final class TelephoneType extends CodeList<TelephoneType> {
      * @return a code matching the given name.
      */
     public static TelephoneType valueOf(String code) {
-        return valueOf(TelephoneType.class, code, TelephoneType::new).get();
+        return valueOf(VALUES, code, TelephoneType::new);
     }
 }

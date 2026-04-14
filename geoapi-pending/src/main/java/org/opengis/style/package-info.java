@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2023-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -31,7 +31,7 @@
  *
  * <h2>Future evolution</h2>
  * This package is <em>not</em> part of GeoAPI release and may change deeply in a future development.
- * At the time that this package was created, no abstract model was available and the only source of
+ * At the time when this package was created, no abstract model was available and the only source of
  * class definitions was the XML encoding. But later on, the ISO 19117:2012 specification has been
  * published with the UML of an abstract model that could be used for deriving the Java interfaces.
  * Furthermore as of 2023, various OGC working groups are actively working on new style and symbology API.

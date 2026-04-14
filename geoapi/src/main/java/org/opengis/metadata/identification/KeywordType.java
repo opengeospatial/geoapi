@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.identification;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -33,7 +33,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Vocabulary(capacity=15)
 @UML(identifier="MD_KeywordTypeCode", specification=ISO_19115)
 public final class KeywordType extends CodeList<KeywordType> {
     /**
@@ -45,31 +44,31 @@ public final class KeywordType extends CodeList<KeywordType> {
      * Keyword identifies a branch of instruction or specialized learning.
      */
     @UML(identifier="discipline", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType DISCIPLINE = new KeywordType("DISCIPLINE");
+    public static final KeywordType DISCIPLINE;
 
     /**
      * Keyword identifies a location.
      */
     @UML(identifier="place", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType PLACE = new KeywordType("PLACE");
+    public static final KeywordType PLACE;
 
     /**
      * Keyword identifies the layer(s) of any deposited substance.
      */
     @UML(identifier="stratum", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType STRATUM = new KeywordType("STRATUM");
+    public static final KeywordType STRATUM;
 
     /**
      * Keyword identifies a time period related to the dataset.
      */
     @UML(identifier="temporal", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType TEMPORAL = new KeywordType("TEMPORAL");
+    public static final KeywordType TEMPORAL;
 
     /**
      * Keyword identifies a particular subject or topic.
      */
     @UML(identifier="theme", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType THEME = new KeywordType("THEME");
+    public static final KeywordType THEME;
 
     /**
      * Keyword identifies a repository or archive that manages and distributes data.
@@ -77,7 +76,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      * @since 3.1
      */
     @UML(identifier="dataCentre", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType DATA_CENTRE = new KeywordType("DATA_CENTRE");
+    public static final KeywordType DATA_CENTRE;
 
     /**
      * Keyword identifies a resource containing or about a collection of
@@ -86,7 +85,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      * @since 3.1
      */
     @UML(identifier="featureType", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType FEATURE_TYPE = new KeywordType("FEATURE_TYPE");
+    public static final KeywordType FEATURE_TYPE;
 
     /**
      * Keyword identifies a device used to measure or compare physical properties.
@@ -94,7 +93,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      * @since 3.1
      */
     @UML(identifier="instrument", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType INSTRUMENT = new KeywordType("INSTRUMENT");
+    public static final KeywordType INSTRUMENT;
 
     /**
      * Keyword identifies a structure upon which an instrument is mounted.
@@ -102,7 +101,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      * @since 3.1
      */
     @UML(identifier="platform", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType PLATFORM = new KeywordType("PLATFORM");
+    public static final KeywordType PLATFORM;
 
     /**
      * Keyword identifies a series of actions or natural occurrences.
@@ -110,7 +109,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      * @since 3.1
      */
     @UML(identifier="process", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType PROCESS = new KeywordType("PROCESS");
+    public static final KeywordType PROCESS;
 
 
     /**
@@ -119,7 +118,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      * @since 3.1
      */
     @UML(identifier="project", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType PROJECT = new KeywordType("PROJECT");
+    public static final KeywordType PROJECT;
 
     /**
      * Keyword identifies an activity carried out by one party for the benefit of another.
@@ -127,7 +126,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      * @since 3.1
      */
     @UML(identifier="service", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType SERVICE = new KeywordType("SERVICE");
+    public static final KeywordType SERVICE;
 
     /**
      * Keyword identifies a type of product.
@@ -135,7 +134,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      * @since 3.1
      */
     @UML(identifier="product", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType PRODUCT = new KeywordType("PRODUCT");
+    public static final KeywordType PRODUCT;
 
     /**
      * Refinement of a topic category for the purpose of geographic data classification.
@@ -143,7 +142,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      * @since 3.1
      */
     @UML(identifier="subTopicCategory", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType SUB_TOPIC_CATEGORY = new KeywordType("SUB_TOPIC_CATEGORY");
+    public static final KeywordType SUB_TOPIC_CATEGORY;
 
     /**
      * Keyword identifies a taxonomy of the resource.
@@ -151,7 +150,28 @@ public final class KeywordType extends CodeList<KeywordType> {
      * @since 3.1
      */
     @UML(identifier="taxon", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final KeywordType TAXON = new KeywordType("TAXON");
+    public static final KeywordType TAXON;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<KeywordType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        DISCIPLINE         = new KeywordType("DISCIPLINE"),
+        PLACE              = new KeywordType("PLACE"),
+        STRATUM            = new KeywordType("STRATUM"),
+        TEMPORAL           = new KeywordType("TEMPORAL"),
+        THEME              = new KeywordType("THEME"),
+        DATA_CENTRE        = new KeywordType("DATA_CENTRE"),
+        FEATURE_TYPE       = new KeywordType("FEATURE_TYPE"),
+        INSTRUMENT         = new KeywordType("INSTRUMENT"),
+        PLATFORM           = new KeywordType("PLATFORM"),
+        PROCESS            = new KeywordType("PROCESS"),
+        PROJECT            = new KeywordType("PROJECT"),
+        SERVICE            = new KeywordType("SERVICE"),
+        PRODUCT            = new KeywordType("PRODUCT"),
+        SUB_TOPIC_CATEGORY = new KeywordType("SUB_TOPIC_CATEGORY"),
+        TAXON              = new KeywordType("TAXON"));
 
     /**
      * Constructs an element of the given name.
@@ -168,7 +188,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      * @return the list of codes declared in the current JVM.
      */
     public static KeywordType[] values() {
-        return values(KeywordType.class);
+        return VALUES.toArray(KeywordType[]::new);
     }
 
     /**
@@ -193,6 +213,6 @@ public final class KeywordType extends CodeList<KeywordType> {
      * @return a code matching the given name.
      */
     public static KeywordType valueOf(String code) {
-        return valueOf(KeywordType.class, code, KeywordType::new).get();
+        return valueOf(VALUES, code, KeywordType::new);
     }
 }

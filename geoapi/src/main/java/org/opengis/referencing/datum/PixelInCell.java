@@ -17,9 +17,9 @@
  */
 package org.opengis.referencing.datum;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -41,7 +41,6 @@ import static org.opengis.annotation.Specification.*;
  * The "pixel in corner" versus "pixel in center" problematic will be handled by ISO 19123 instead.
  */
 @Deprecated(since = "3.1")
-@Vocabulary(capacity=2)
 @UML(identifier="CD_PixelInCell", specification=ISO_19111, version=2007)
 public final class PixelInCell extends CodeList<PixelInCell> {
     /**
@@ -55,7 +54,7 @@ public final class PixelInCell extends CodeList<PixelInCell> {
      * @see org.opengis.metadata.spatial.PixelOrientation#CENTER
      */
     @UML(identifier="cell center", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final PixelInCell CELL_CENTER = new PixelInCell("CELL_CENTER");
+    public static final PixelInCell CELL_CENTER;
 
     /**
      * The origin of the image coordinate system is the corner of a grid cell,
@@ -64,7 +63,15 @@ public final class PixelInCell extends CodeList<PixelInCell> {
      * @see org.opengis.metadata.spatial.PixelOrientation#LOWER_LEFT
      */
     @UML(identifier="cell corner", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final PixelInCell CELL_CORNER = new PixelInCell("CELL_CORNER");
+    public static final PixelInCell CELL_CORNER;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<PixelInCell> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        CELL_CENTER = new PixelInCell("CELL_CENTER"),
+        CELL_CORNER = new PixelInCell("CELL_CORNER"));
 
     /**
      * Constructs an element of the given name.
@@ -96,7 +103,7 @@ public final class PixelInCell extends CodeList<PixelInCell> {
      * @return the list of codes declared in the current JVM.
      */
     public static PixelInCell[] values() {
-        return values(PixelInCell.class);
+        return VALUES.toArray(PixelInCell[]::new);
     }
 
     /**
@@ -121,6 +128,6 @@ public final class PixelInCell extends CodeList<PixelInCell> {
      * @return a code matching the given name.
      */
     public static PixelInCell valueOf(String code) {
-        return valueOf(PixelInCell.class, code, PixelInCell::new).get();
+        return valueOf(VALUES, code, PixelInCell::new);
     }
 }

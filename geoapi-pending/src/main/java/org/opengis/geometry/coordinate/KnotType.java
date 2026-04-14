@@ -17,9 +17,9 @@
  */
 package org.opengis.geometry.coordinate;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -38,7 +38,6 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.0
  */
-@Vocabulary(capacity=3)
 @UML(identifier="GM_KnotType", specification=ISO_19107)
 public class KnotType extends CodeList<KnotType> {
     /**
@@ -50,19 +49,28 @@ public class KnotType extends CodeList<KnotType> {
      * The form of knots is appropriate for a uniform B-spline.
      */
     @UML(identifier="uniform", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final KnotType UNIFORM = new KnotType("UNIFORM");
+    public static final KnotType UNIFORM;
 
     /**
      * The form of knots is appropriate for a quasi-uniform B-spline.
      */
     @UML(identifier="quasiUniform", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final KnotType QUASI_UNIFORM = new KnotType("QUASI_UNIFORM");
+    public static final KnotType QUASI_UNIFORM;
 
     /**
      * The form of knots is appropriate for a piecewise Bezier curve.
      */
     @UML(identifier="piecewiseBezier", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final KnotType PIECEWISE_BEZIER = new KnotType("PIECEWISE_BEZIER");
+    public static final KnotType PIECEWISE_BEZIER;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<KnotType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        UNIFORM          = new KnotType("UNIFORM"),
+        QUASI_UNIFORM    = new KnotType("QUASI_UNIFORM"),
+        PIECEWISE_BEZIER = new KnotType("PIECEWISE_BEZIER"));
 
     /**
      * Constructs an element of the given name.
@@ -80,7 +88,7 @@ public class KnotType extends CodeList<KnotType> {
      * @return the list of codes declared in the current JVM.
      */
     public static KnotType[] values() {
-        return values(KnotType.class);
+        return VALUES.toArray(KnotType[]::new);
     }
 
     /**
@@ -105,6 +113,6 @@ public class KnotType extends CodeList<KnotType> {
      * @return a code matching the given name.
      */
     public static KnotType valueOf(String code) {
-        return valueOf(KnotType.class, code, KnotType::new).get();
+        return valueOf(VALUES, code, KnotType::new);
     }
 }

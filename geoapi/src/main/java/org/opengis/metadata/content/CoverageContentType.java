@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.content;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 import org.opengis.metadata.quality.CoverageResult;
 
 import static org.opengis.annotation.Obligation.*;
@@ -34,7 +34,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Vocabulary(capacity=8)
 @UML(identifier="MD_CoverageContentTypeCode", specification=ISO_19115)
 public final class CoverageContentType extends CodeList<CoverageContentType> {
     /**
@@ -47,19 +46,19 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * value of the physical parameter.
      */
     @UML(identifier="image", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CoverageContentType IMAGE = new CoverageContentType("IMAGE");
+    public static final CoverageContentType IMAGE;
 
     /**
      * Code value with no quantitative meaning, used to represent a physical quantity.
      */
     @UML(identifier="thematicClassification", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CoverageContentType THEMATIC_CLASSIFICATION = new CoverageContentType("THEMATIC_CLASSIFICATION");
+    public static final CoverageContentType THEMATIC_CLASSIFICATION;
 
     /**
      * Value in physical units of the quantity being measured.
      */
     @UML(identifier="physicalMeasurement", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CoverageContentType PHYSICAL_MEASUREMENT = new CoverageContentType("PHYSICAL_MEASUREMENT");
+    public static final CoverageContentType PHYSICAL_MEASUREMENT;
 
     /**
      * Data, usually a physical measurement, used to support the calculation of the primary
@@ -72,7 +71,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * @since 3.1
      */
     @UML(identifier="auxillaryInformation", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CoverageContentType AUXILLARY_INFORMATION = new CoverageContentType("AUXILLARY_INFORMATION");
+    public static final CoverageContentType AUXILLARY_INFORMATION;
 
     /**
      * Data used to characterize the quality of the {@linkplain #PHYSICAL_MEASUREMENT physical measurement}
@@ -81,7 +80,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * @since 3.1
      */
     @UML(identifier="qualityInformation", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CoverageContentType QUALITY_INFORMATION = new CoverageContentType("QUALITY_INFORMATION");
+    public static final CoverageContentType QUALITY_INFORMATION;
 
     /**
      * Reference information use to support the calculation or use of
@@ -94,7 +93,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * @since 3.1
      */
     @UML(identifier="referenceInformation", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CoverageContentType REFERENCE_INFORMATION = new CoverageContentType("REFERENCE_INFORMATION");
+    public static final CoverageContentType REFERENCE_INFORMATION;
 
     /**
      * Results with values that are calculated using a model rather than being observed or calculated from observations.
@@ -102,7 +101,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * @since 3.1
      */
     @UML(identifier="modelResult", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CoverageContentType MODEL_RESULT = new CoverageContentType("MODEL_RESULT");
+    public static final CoverageContentType MODEL_RESULT;
 
     /**
      * Data used to provide coordinate axis values.
@@ -110,7 +109,21 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * @since 3.1
      */
     @UML(identifier="coordinate", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final CoverageContentType COORDINATE = new CoverageContentType("COORDINATE");
+    public static final CoverageContentType COORDINATE;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<CoverageContentType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        IMAGE                   = new CoverageContentType("IMAGE"),
+        THEMATIC_CLASSIFICATION = new CoverageContentType("THEMATIC_CLASSIFICATION"),
+        PHYSICAL_MEASUREMENT    = new CoverageContentType("PHYSICAL_MEASUREMENT"),
+        AUXILLARY_INFORMATION   = new CoverageContentType("AUXILLARY_INFORMATION"),
+        QUALITY_INFORMATION     = new CoverageContentType("QUALITY_INFORMATION"),
+        REFERENCE_INFORMATION   = new CoverageContentType("REFERENCE_INFORMATION"),
+        MODEL_RESULT            = new CoverageContentType("MODEL_RESULT"),
+        COORDINATE              = new CoverageContentType("COORDINATE"));
 
     /**
      * Constructs an element of the given name.
@@ -127,7 +140,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * @return the list of codes declared in the current JVM.
      */
     public static CoverageContentType[] values() {
-        return values(CoverageContentType.class);
+        return VALUES.toArray(CoverageContentType[]::new);
     }
 
     /**
@@ -152,6 +165,6 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * @return a code matching the given name.
      */
     public static CoverageContentType valueOf(String code) {
-        return valueOf(CoverageContentType.class, code, CoverageContentType::new).get();
+        return valueOf(VALUES, code, CoverageContentType::new);
     }
 }

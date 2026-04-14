@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.acquisition;
 
+import java.util.List;
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.3
  */
-@Vocabulary(capacity=4)
 @UML(identifier="MI_PriorityCode", specification=ISO_19115_2)
 public final class Priority extends CodeList<Priority> {
     /**
@@ -44,25 +43,35 @@ public final class Priority extends CodeList<Priority> {
      * Decisive importance.
      */
     @UML(identifier="critical", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final Priority CRITICAL = new Priority("CRITICAL");
+    public static final Priority CRITICAL;
 
     /**
      * Requires resources to be made available.
      */
     @UML(identifier="highImportance", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final Priority HIGH_IMPORTANCE = new Priority("HIGH_IMPORTANCE");
+    public static final Priority HIGH_IMPORTANCE;
 
     /**
      * Normal operation priority.
      */
     @UML(identifier="mediumImportance", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final Priority MEDIUM_IMPORTANCE = new Priority("MEDIUM_IMPORTANCE");
+    public static final Priority MEDIUM_IMPORTANCE;
 
     /**
      * To be completed when resources are available
      */
     @UML(identifier="lowImportance", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final Priority LOW_IMPORTANCE = new Priority("LOW_IMPORTANCE");
+    public static final Priority LOW_IMPORTANCE;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<Priority> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        CRITICAL          = new Priority("CRITICAL"),
+        HIGH_IMPORTANCE   = new Priority("HIGH_IMPORTANCE"),
+        MEDIUM_IMPORTANCE = new Priority("MEDIUM_IMPORTANCE"),
+        LOW_IMPORTANCE    = new Priority("LOW_IMPORTANCE"));
 
     /**
      * Constructs an element of the given name.
@@ -79,7 +88,7 @@ public final class Priority extends CodeList<Priority> {
      * @return the list of codes declared in the current JVM.
      */
     public static Priority[] values() {
-        return values(Priority.class);
+        return VALUES.toArray(Priority[]::new);
     }
 
     /**
@@ -104,6 +113,6 @@ public final class Priority extends CodeList<Priority> {
      * @return a code matching the given name.
      */
     public static Priority valueOf(String code) {
-        return valueOf(Priority.class, code, Priority::new).get();
+        return valueOf(VALUES, code, Priority::new);
     }
 }

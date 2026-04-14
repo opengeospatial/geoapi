@@ -126,8 +126,8 @@ public class ParameterValidator extends ReferencingValidator {
             assertInstanceOf(valueClass, def, "ParameterDescriptor: getDefaultValue() returns unexpected value.");
             assertBetween(min, max, def, "ParameterDescriptor: getDefaultValue() out of range.");
         }
-        assertBetween(0, 1, object.getMinimumOccurs(), "ParameterDescriptor: getMinimumOccurs() shall returns 0 or 1.");
-        assertEquals(1, object.getMaximumOccurs(), "ParameterDescriptor: getMaximumOccurs() shall returns exactly 1.");
+        assertBetween(0, 1, object.getMinimumOccurs(), "ParameterDescriptor: getMinimumOccurs() shall return 0 or 1.");
+        assertEquals(1, object.getMaximumOccurs(), "ParameterDescriptor: getMaximumOccurs() shall return exactly 1.");
     }
 
     /**

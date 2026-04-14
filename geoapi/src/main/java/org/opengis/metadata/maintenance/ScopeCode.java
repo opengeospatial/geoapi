@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.maintenance;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -36,7 +36,6 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see Scope
  */
-@Vocabulary(capacity=26)
 @UML(identifier="MD_ScopeCode", specification=ISO_19115)
 public final class ScopeCode extends CodeList<ScopeCode> {
     /**
@@ -48,13 +47,13 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * Information applies to the collection hardware class.
      */
     @UML(identifier="collectionHardware", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode COLLECTION_HARDWARE = new ScopeCode("COLLECTION_HARDWARE");
+    public static final ScopeCode COLLECTION_HARDWARE;
 
     /**
      * Information applies to the collection session.
      */
     @UML(identifier="collectionSession", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode COLLECTION_SESSION = new ScopeCode("COLLECTION_SESSION");
+    public static final ScopeCode COLLECTION_SESSION;
 
     /**
      * Information applies to a collection of spatial data which share similar characteristics of theme,
@@ -70,7 +69,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * </ul>
      */
     @UML(identifier="series", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode SERIES = new ScopeCode("SERIES");
+    public static final ScopeCode SERIES;
 
     /**
      * Information applies to a consistent spatial data product that can be provided by a
@@ -82,19 +81,19 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @see ScopeDescription#getDataset()
      */
     @UML(identifier="dataset", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode DATASET = new ScopeCode("DATASET");
+    public static final ScopeCode DATASET;
 
     /**
      * Information applies to non-geographic data.
      */
     @UML(identifier="nonGeographicDataset", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode NON_GEOGRAPHIC_DATASET = new ScopeCode("NON_GEOGRAPHIC_DATASET");
+    public static final ScopeCode NON_GEOGRAPHIC_DATASET;
 
     /**
      * Information applies to a dimension group.
      */
     @UML(identifier="dimensionGroup", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode DIMENSION_GROUP = new ScopeCode("DIMENSION_GROUP");
+    public static final ScopeCode DIMENSION_GROUP;
 
     /**
      * Information applies to a group of spatial primitives (geometric objects) that have a
@@ -109,7 +108,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @see ScopeDescription#getFeatures()
      */
     @UML(identifier="featureType", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode FEATURE_TYPE = new ScopeCode("FEATURE_TYPE");
+    public static final ScopeCode FEATURE_TYPE;
 
     /**
      * Information applies to spatial constructs (features) that have a direct correspondence
@@ -125,7 +124,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @see ScopeDescription#getFeatureInstances()
      */
     @UML(identifier="feature", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode FEATURE = new ScopeCode("FEATURE");
+    public static final ScopeCode FEATURE;
 
     /**
      * Information applies to the characteristic of a feature.
@@ -141,7 +140,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @see ScopeDescription#getAttributes()
      */
     @UML(identifier="attributeType", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode ATTRIBUTE_TYPE = new ScopeCode("ATTRIBUTE_TYPE");
+    public static final ScopeCode ATTRIBUTE_TYPE;
 
     /**
      * Information applies to the attribute value.
@@ -157,25 +156,25 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @see ScopeDescription#getAttributeInstances()
      */
     @UML(identifier="attribute", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode ATTRIBUTE = new ScopeCode("ATTRIBUTE");
+    public static final ScopeCode ATTRIBUTE;
 
     /**
      * Information applies to a property type.
      */
     @UML(identifier="propertyType", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode PROPERTY_TYPE = new ScopeCode("PROPERTY_TYPE");
+    public static final ScopeCode PROPERTY_TYPE;
 
     /**
      * Information applies to a field session.
      */
     @UML(identifier="fieldSession", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode FIELD_SESSION = new ScopeCode("FIELD_SESSION");
+    public static final ScopeCode FIELD_SESSION;
 
     /**
      * Information applies to a computer program or routine.
      */
     @UML(identifier="software", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode SOFTWARE = new ScopeCode("SOFTWARE");
+    public static final ScopeCode SOFTWARE;
 
     /**
      * Information applies to a capability which a service provider entity makes available
@@ -183,19 +182,19 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * a use case.
      */
     @UML(identifier="service", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode SERVICE = new ScopeCode("SERVICE");
+    public static final ScopeCode SERVICE;
 
     /**
      * Information applies to a copy or imitation of an existing or hypothetical object.
      */
     @UML(identifier="model", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode MODEL = new ScopeCode("MODEL");
+    public static final ScopeCode MODEL;
 
     /**
      * Information applies to a tile, a spatial subset of geographic data.
      */
     @UML(identifier="tile", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode TILE = new ScopeCode("TILE");
+    public static final ScopeCode TILE;
 
     /**
      * Information applies to metadata.
@@ -203,7 +202,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @since 3.1
      */
     @UML(identifier="metadata", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode METADATA = new ScopeCode("METADATA");
+    public static final ScopeCode METADATA;
 
     /**
      * Information applies to an initiative.
@@ -211,7 +210,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @since 3.1
      */
     @UML(identifier="initiative", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode INITIATIVE = new ScopeCode("INITIATIVE");
+    public static final ScopeCode INITIATIVE;
 
     /**
      * Information applies to a sample.
@@ -219,7 +218,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @since 3.1
      */
     @UML(identifier="sample", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode SAMPLE = new ScopeCode("SAMPLE");
+    public static final ScopeCode SAMPLE;
 
     /**
      * Information applies to a document.
@@ -227,7 +226,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @since 3.1
      */
     @UML(identifier="document", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode DOCUMENT = new ScopeCode("DOCUMENT");
+    public static final ScopeCode DOCUMENT;
 
     /**
      * Information applies to a repository.
@@ -235,7 +234,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @since 3.1
      */
     @UML(identifier="repository", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode REPOSITORY = new ScopeCode("REPOSITORY");
+    public static final ScopeCode REPOSITORY;
 
     /**
      * Information applies to an aggregate resource.
@@ -243,7 +242,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @since 3.1
      */
     @UML(identifier="aggregate", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode AGGREGATE = new ScopeCode("AGGREGATE");
+    public static final ScopeCode AGGREGATE;
 
     /**
      * Metadata describing an ISO 19131 data product specification.
@@ -251,7 +250,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @since 3.1
      */
     @UML(identifier="product", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode PRODUCT = new ScopeCode("PRODUCT");
+    public static final ScopeCode PRODUCT;
 
     /**
      * Information applies to an unstructured set.
@@ -259,7 +258,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @since 3.1
      */
     @UML(identifier="collection", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode COLLECTION = new ScopeCode("COLLECTION");
+    public static final ScopeCode COLLECTION;
 
     /**
      * Information applies to a coverage.
@@ -267,7 +266,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @since 3.1
      */
     @UML(identifier="coverage", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode COVERAGE = new ScopeCode("COVERAGE");
+    public static final ScopeCode COVERAGE;
 
     /**
      * Information resource hosted on a specific set of hardware and accessible over network.
@@ -275,7 +274,39 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @since 3.1
      */
     @UML(identifier="application", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final ScopeCode APPLICATION = new ScopeCode("APPLICATION");
+    public static final ScopeCode APPLICATION;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<ScopeCode> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        COLLECTION_HARDWARE    = new ScopeCode("COLLECTION_HARDWARE"),
+        COLLECTION_SESSION     = new ScopeCode("COLLECTION_SESSION"),
+        SERIES                 = new ScopeCode("SERIES"),
+        DATASET                = new ScopeCode("DATASET"),
+        NON_GEOGRAPHIC_DATASET = new ScopeCode("NON_GEOGRAPHIC_DATASET"),
+        DIMENSION_GROUP        = new ScopeCode("DIMENSION_GROUP"),
+        FEATURE_TYPE           = new ScopeCode("FEATURE_TYPE"),
+        FEATURE                = new ScopeCode("FEATURE"),
+        ATTRIBUTE_TYPE         = new ScopeCode("ATTRIBUTE_TYPE"),
+        ATTRIBUTE              = new ScopeCode("ATTRIBUTE"),
+        PROPERTY_TYPE          = new ScopeCode("PROPERTY_TYPE"),
+        FIELD_SESSION          = new ScopeCode("FIELD_SESSION"),
+        SOFTWARE               = new ScopeCode("SOFTWARE"),
+        SERVICE                = new ScopeCode("SERVICE"),
+        MODEL                  = new ScopeCode("MODEL"),
+        TILE                   = new ScopeCode("TILE"),
+        METADATA               = new ScopeCode("METADATA"),
+        INITIATIVE             = new ScopeCode("INITIATIVE"),
+        SAMPLE                 = new ScopeCode("SAMPLE"),
+        DOCUMENT               = new ScopeCode("DOCUMENT"),
+        REPOSITORY             = new ScopeCode("REPOSITORY"),
+        AGGREGATE              = new ScopeCode("AGGREGATE"),
+        PRODUCT                = new ScopeCode("PRODUCT"),
+        COLLECTION             = new ScopeCode("COLLECTION"),
+        COVERAGE               = new ScopeCode("COVERAGE"),
+        APPLICATION            = new ScopeCode("APPLICATION"));
 
     /**
      * Constructs an element of the given name.
@@ -292,7 +323,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @return the list of codes declared in the current JVM.
      */
     public static ScopeCode[] values() {
-        return values(ScopeCode.class);
+        return VALUES.toArray(ScopeCode[]::new);
     }
 
     /**
@@ -317,6 +348,6 @@ public final class ScopeCode extends CodeList<ScopeCode> {
      * @return a code matching the given name.
      */
     public static ScopeCode valueOf(String code) {
-        return valueOf(ScopeCode.class, code, ScopeCode::new).get();
+        return valueOf(VALUES, code, ScopeCode::new);
     }
 }

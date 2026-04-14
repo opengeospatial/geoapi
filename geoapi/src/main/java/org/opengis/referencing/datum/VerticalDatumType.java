@@ -17,9 +17,9 @@
  */
 package org.opengis.referencing.datum;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -41,7 +41,6 @@ import static org.opengis.annotation.Specification.*;
  *
  * @deprecated Replaced by {@link RealizationMethod} in ISO 19111:2019.
  */
-@Vocabulary(capacity=4)
 @Deprecated(since = "3.1")
 @UML(identifier="CD_VerticalDatumType", specification=ISO_19111, version=2003)
 public final class VerticalDatumType extends CodeList<VerticalDatumType> {
@@ -57,7 +56,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * Other variations to the above three vertical datum types may exist and are all included in this type.
      */
     @UML(identifier="other surface", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final VerticalDatumType OTHER_SURFACE = new VerticalDatumType("OTHER_SURFACE");
+    public static final VerticalDatumType OTHER_SURFACE;
 
     /**
      * The zero value is defined to approximate a constant potential surface, usually the geoid.
@@ -65,7 +64,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * and is then a well-known, named reference frame.
      */
     @UML(identifier="geoidal", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final VerticalDatumType GEOIDAL = new VerticalDatumType("GEOIDAL");
+    public static final VerticalDatumType GEOIDAL;
 
     /**
      * The zero point is defined by a surface that has meaning
@@ -80,7 +79,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * surfaces of the planet's gravity field, using such procedures as echo-sounding.</p>
      */
     @UML(identifier="depth", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final VerticalDatumType DEPTH = new VerticalDatumType("DEPTH");
+    public static final VerticalDatumType DEPTH;
 
     /**
      * The origin of the vertical axis is based on atmospheric pressure.
@@ -91,7 +90,17 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * or theta value (units used to measure geopotential height).
      */
     @UML(identifier="barometric", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final VerticalDatumType BAROMETRIC = new VerticalDatumType("BAROMETRIC");
+    public static final VerticalDatumType BAROMETRIC;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<VerticalDatumType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        OTHER_SURFACE = new VerticalDatumType("OTHER_SURFACE"),
+        GEOIDAL       = new VerticalDatumType("GEOIDAL"),
+        DEPTH         = new VerticalDatumType("DEPTH"),
+        BAROMETRIC    = new VerticalDatumType("BAROMETRIC"));
 
     /**
      * Maps a realization method to a vertical datum type.
@@ -120,7 +129,7 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * @return the list of codes declared in the current JVM.
      */
     public static VerticalDatumType[] values() {
-        return values(VerticalDatumType.class);
+        return VALUES.toArray(VerticalDatumType[]::new);
     }
 
     /**
@@ -145,6 +154,6 @@ public final class VerticalDatumType extends CodeList<VerticalDatumType> {
      * @return a code matching the given name.
      */
     public static VerticalDatumType valueOf(String code) {
-        return valueOf(VerticalDatumType.class, code, VerticalDatumType::new).get();
+        return valueOf(VALUES, code, VerticalDatumType::new);
     }
 }

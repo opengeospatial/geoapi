@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.citation;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -33,7 +33,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Vocabulary(capacity=21)
 @UML(identifier="CI_PresentationFormCode", specification=ISO_19115)
 public final class PresentationForm extends CodeList<PresentationForm> {
     /**
@@ -45,14 +44,14 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * Digital representation of a primarily textual item (can contain illustrations also).
      */
     @UML(identifier="documentDigital", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm DOCUMENT_DIGITAL = new PresentationForm("DOCUMENT_DIGITAL");
+    public static final PresentationForm DOCUMENT_DIGITAL;
 
     /**
      * Representation of a primarily textual item (can contain illustrations also) on paper,
      * photographic material, or other media.
      */
     @UML(identifier="documentHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm DOCUMENT_HARDCOPY = new PresentationForm("DOCUMENT_HARDCOPY");
+    public static final PresentationForm DOCUMENT_HARDCOPY;
 
     /**
      * Likeness of natural or man-made features, objects, and activities acquired through
@@ -60,7 +59,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * such as thermal infrared, and high resolution radar and stored in digital format.
      */
     @UML(identifier="imageDigital", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm IMAGE_DIGITAL = new PresentationForm("IMAGE_DIGITAL");
+    public static final PresentationForm IMAGE_DIGITAL;
 
     /**
      * Likeness of natural or man-made features, objects, and activities acquired through
@@ -69,69 +68,69 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * material, or other media for use directly by the human user.
      */
     @UML(identifier="imageHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm IMAGE_HARDCOPY = new PresentationForm("IMAGE_HARDCOPY");
+    public static final PresentationForm IMAGE_HARDCOPY;
 
     /**
      * Map represented in raster or vector form.
      */
     @UML(identifier="mapDigital", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm MAP_DIGITAL = new PresentationForm("MAP_DIGITAL");
+    public static final PresentationForm MAP_DIGITAL;
 
     /**
      * Map printed on paper, photographic material, or other media for use directly by the
      * human user.
      */
     @UML(identifier="mapHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm MAP_HARDCOPY = new PresentationForm("MAP_HARDCOPY");
+    public static final PresentationForm MAP_HARDCOPY;
 
     /**
      * Multi-dimensional digital representation of a feature, process, etc.
      */
     @UML(identifier="modelDigital", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm MODEL_DIGITAL = new PresentationForm("MODEL_DIGITAL");
+    public static final PresentationForm MODEL_DIGITAL;
 
     /**
      * 3-dimensional, physical model.
      */
     @UML(identifier="modelHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm MODEL_HARDCOPY = new PresentationForm("MODEL_HARDCOPY");
+    public static final PresentationForm MODEL_HARDCOPY;
 
     /**
      * Vertical cross-section in digital form.
      */
     @UML(identifier="profileDigital", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm PROFILE_DIGITAL = new PresentationForm("PROFILE_DIGITAL");
+    public static final PresentationForm PROFILE_DIGITAL;
 
     /**
      * Vertical cross-section printed on paper, etc.
      */
     @UML(identifier="profileHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm PROFILE_HARDCOPY = new PresentationForm("PROFILE_HARDCOPY");
+    public static final PresentationForm PROFILE_HARDCOPY;
 
     /**
      * Digital representation of facts or figures systematically displayed, especially in columns.
      */
     @UML(identifier="tableDigital", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm TABLE_DIGITAL = new PresentationForm("TABLE_DIGITAL");
+    public static final PresentationForm TABLE_DIGITAL;
 
     /**
      * Representation of facts or figures systematically displayed, especially in columns,
      * printed on paper, photographic material, or other media.
      */
     @UML(identifier="tableHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm TABLE_HARDCOPY = new PresentationForm("TABLE_HARDCOPY");
+    public static final PresentationForm TABLE_HARDCOPY;
 
     /**
      * Digital video recording.
      */
     @UML(identifier="videoDigital", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm VIDEO_DIGITAL = new PresentationForm("VIDEO_DIGITAL");
+    public static final PresentationForm VIDEO_DIGITAL;
 
     /**
      * Video recording on film.
      */
     @UML(identifier="videoHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm VIDEO_HARDCOPY = new PresentationForm("VIDEO_HARDCOPY");
+    public static final PresentationForm VIDEO_HARDCOPY;
 
     /**
      * Digital audio recording.
@@ -139,7 +138,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * @since 3.1
      */
     @UML(identifier="audioDigital", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm AUDIO_DIGITAL = new PresentationForm("AUDIO_DIGITAL");
+    public static final PresentationForm AUDIO_DIGITAL;
 
     /**
      * Audio recording delivered by analog media, such as a magnetic tape
@@ -147,7 +146,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * @since 3.1
      */
     @UML(identifier="audioHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm AUDIO_HARDCOPY = new PresentationForm("AUDIO_HARDCOPY");
+    public static final PresentationForm AUDIO_HARDCOPY;
 
     /**
      * Information representation using simultaneously various digital modes for text, sound, image.
@@ -155,7 +154,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * @since 3.1
      */
     @UML(identifier="multimediaDigital", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm MULTIMEDIA_DIGITAL = new PresentationForm("MULTIMEDIA_DIGITAL");
+    public static final PresentationForm MULTIMEDIA_DIGITAL;
 
     /**
      * Information representation using simultaneously various analog modes for text, sound, image.
@@ -163,7 +162,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * @since 3.1
      */
     @UML(identifier="multimediaHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm MULTIMEDIA_HARDCOPY = new PresentationForm("MULTIMEDIA_HARDCOPY");
+    public static final PresentationForm MULTIMEDIA_HARDCOPY;
 
     /**
      * A physical object.
@@ -175,7 +174,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * @since 3.1
      */
     @UML(identifier="physicalObject", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm PHYSICAL_OBJECT = new PresentationForm("PHYSICAL_OBJECT");
+    public static final PresentationForm PHYSICAL_OBJECT;
 
     /**
      * Information represented graphically by charts such as pie chart, bar chart,
@@ -184,7 +183,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * @since 3.1
      */
     @UML(identifier="diagramDigital", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm DIAGRAM_DIGITAL = new PresentationForm("DIAGRAM_DIGITAL");
+    public static final PresentationForm DIAGRAM_DIGITAL;
 
     /**
      * Information represented graphically by charts such as pie chart, bar chart,
@@ -193,7 +192,34 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * @since 3.1
      */
     @UML(identifier="diagramHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final PresentationForm DIAGRAM_HARDCOPY = new PresentationForm("DIAGRAM_HARDCOPY");
+    public static final PresentationForm DIAGRAM_HARDCOPY;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<PresentationForm> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        DOCUMENT_DIGITAL    = new PresentationForm("DOCUMENT_DIGITAL"),
+        DOCUMENT_HARDCOPY   = new PresentationForm("DOCUMENT_HARDCOPY"),
+        IMAGE_DIGITAL       = new PresentationForm("IMAGE_DIGITAL"),
+        IMAGE_HARDCOPY      = new PresentationForm("IMAGE_HARDCOPY"),
+        MAP_DIGITAL         = new PresentationForm("MAP_DIGITAL"),
+        MAP_HARDCOPY        = new PresentationForm("MAP_HARDCOPY"),
+        MODEL_DIGITAL       = new PresentationForm("MODEL_DIGITAL"),
+        MODEL_HARDCOPY      = new PresentationForm("MODEL_HARDCOPY"),
+        PROFILE_DIGITAL     = new PresentationForm("PROFILE_DIGITAL"),
+        PROFILE_HARDCOPY    = new PresentationForm("PROFILE_HARDCOPY"),
+        TABLE_DIGITAL       = new PresentationForm("TABLE_DIGITAL"),
+        TABLE_HARDCOPY      = new PresentationForm("TABLE_HARDCOPY"),
+        VIDEO_DIGITAL       = new PresentationForm("VIDEO_DIGITAL"),
+        VIDEO_HARDCOPY      = new PresentationForm("VIDEO_HARDCOPY"),
+        AUDIO_DIGITAL       = new PresentationForm("AUDIO_DIGITAL"),
+        AUDIO_HARDCOPY      = new PresentationForm("AUDIO_HARDCOPY"),
+        MULTIMEDIA_DIGITAL  = new PresentationForm("MULTIMEDIA_DIGITAL"),
+        MULTIMEDIA_HARDCOPY = new PresentationForm("MULTIMEDIA_HARDCOPY"),
+        PHYSICAL_OBJECT     = new PresentationForm("PHYSICAL_OBJECT"),
+        DIAGRAM_DIGITAL     = new PresentationForm("DIAGRAM_DIGITAL"),
+        DIAGRAM_HARDCOPY    = new PresentationForm("DIAGRAM_HARDCOPY"));
 
     /**
      * Constructs an element of the given name.
@@ -210,7 +236,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * @return the list of codes declared in the current JVM.
      */
     public static PresentationForm[] values() {
-        return values(PresentationForm.class);
+        return VALUES.toArray(PresentationForm[]::new);
     }
 
     /**
@@ -235,6 +261,6 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * @return a code matching the given name.
      */
     public static PresentationForm valueOf(String code) {
-        return valueOf(PresentationForm.class, code, PresentationForm::new).get();
+        return valueOf(VALUES, code, PresentationForm::new);
     }
 }

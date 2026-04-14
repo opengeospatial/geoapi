@@ -227,7 +227,7 @@ public final class CoordinateSetTest implements CoordinateSet, CoordinateMetadat
     }
 
     /**
-     * Executes the the stream in parallel and compares with the expected positions.
+     * Executes the stream in parallel and compares with the expected positions.
      *
      * @param  positions  the expected positions.
      */

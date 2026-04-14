@@ -17,8 +17,8 @@
  */
 package org.opengis.style;
 
+import java.util.List;
 import org.opengis.util.CodeList;
-import org.opengis.geoapi.internal.Vocabulary;
 import org.opengis.annotation.XmlElement;
 
 
@@ -40,7 +40,6 @@ import org.opengis.annotation.XmlElement;
  * @author Open Geospatial Consortium
  * @author Johann Sorel (Geomatys)
  */
-@Vocabulary(capacity=6)
 @XmlElement("SemanticTypeIdentifier")
 public final class SemanticType extends CodeList<SemanticType> {
     /**
@@ -52,37 +51,49 @@ public final class SemanticType extends CodeList<SemanticType> {
      * Semantic identifies a point geometry.
      */
     @XmlElement("generic:point")
-    public static final SemanticType POINT = new SemanticType("POINT");
+    public static final SemanticType POINT;
 
     /**
      * Semantic identifies a line geometry.
      */
     @XmlElement("generic:line")
-    public static final SemanticType LINE = new SemanticType("LINE");
+    public static final SemanticType LINE;
 
     /**
      * Semantic identifies a polygon geometry.
      */
     @XmlElement("generic:polygon")
-    public static final SemanticType POLYGON = new SemanticType("POLYGON");
+    public static final SemanticType POLYGON;
 
     /**
      * Semantic identifies a text geometry.
      */
     @XmlElement("generic:text")
-    public static final SemanticType TEXT = new SemanticType("TEXT");
+    public static final SemanticType TEXT;
 
     /**
      * Semantic identifies a raster geometry.
      */
     @XmlElement("generic:raster")
-    public static final SemanticType RASTER = new SemanticType("RASTER");
+    public static final SemanticType RASTER;
 
     /**
      * Semantic identifies any geometry.
      */
     @XmlElement("generic:any")
-    public static final SemanticType ANY = new SemanticType("ANY");
+    public static final SemanticType ANY;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<SemanticType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        POINT   = new SemanticType("POINT"),
+        LINE    = new SemanticType("LINE"),
+        POLYGON = new SemanticType("POLYGON"),
+        TEXT    = new SemanticType("TEXT"),
+        RASTER  = new SemanticType("RASTER"),
+        ANY     = new SemanticType("ANY"));
 
     /**
      * Constructs an element of the given name.
@@ -100,7 +111,7 @@ public final class SemanticType extends CodeList<SemanticType> {
      * @return the list of codes declared in the current JVM.
      */
     public static SemanticType[] values() {
-        return values(SemanticType.class);
+        return VALUES.toArray(SemanticType[]::new);
     }
 
     /**
@@ -125,6 +136,6 @@ public final class SemanticType extends CodeList<SemanticType> {
      * @return a code matching the given name.
      */
     public static SemanticType valueOf(String code) {
-        return valueOf(SemanticType.class, code, SemanticType::new).get();
+        return valueOf(VALUES, code, SemanticType::new);
     }
 }

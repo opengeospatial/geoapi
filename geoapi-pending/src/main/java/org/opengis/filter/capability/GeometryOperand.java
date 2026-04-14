@@ -17,8 +17,8 @@
  */
 package org.opengis.filter.capability;
 
+import java.util.List;
 import org.opengis.util.CodeList;
-import org.opengis.geoapi.internal.Vocabulary;
 
 
 /**
@@ -57,7 +57,6 @@ import org.opengis.geoapi.internal.Vocabulary;
  * {@link org.opengis.filter.capability.SpatialCapabilities#getGeometryOperands()}.
  */
 @Deprecated
-@Vocabulary(capacity=19)
 public final class GeometryOperand extends CodeList<GeometryOperand> {
     /**
      * For cross-version compatibility.
@@ -65,61 +64,86 @@ public final class GeometryOperand extends CodeList<GeometryOperand> {
     private static final long serialVersionUID = 6517166553565301182L;
 
     /** {@code "http://www.opengis.net/gml/Envelope"} */
-    public static final GeometryOperand Envelope = new GeometryOperand("Envelope");
+    public static final GeometryOperand Envelope;
 
     /** {@code "http://www.opengis.net/gml/Point"} */
-    public static final GeometryOperand Point = new GeometryOperand("Point");
+    public static final GeometryOperand Point;
 
     /** {@code "http://www.opengis.net/gml/LineString"} */
-    public static final GeometryOperand LineString = new GeometryOperand("LineString");
+    public static final GeometryOperand LineString;
 
     /** {@code "http://www.opengis.net/gml/Polygon"} */
-    public static final GeometryOperand Polygon = new GeometryOperand("Polygon");
+    public static final GeometryOperand Polygon;
 
     /** {@code "http://www.opengis.net/gml/ArcByCenterPoint"} */
-    public static final GeometryOperand ArcByCenterPoint = new GeometryOperand("ArcByCenterPoint");
+    public static final GeometryOperand ArcByCenterPoint;
 
     /** {@code "http://www.opengis.net/gml/CircleByCenterPoint"} */
-    public static final GeometryOperand CircleByCenterPoint = new GeometryOperand("CircleByCenterPoint");
+    public static final GeometryOperand CircleByCenterPoint;
 
     /** {@code "http://www.opengis.net/gml/Arc"} */
-    public static final GeometryOperand Arc = new GeometryOperand("Arc");
+    public static final GeometryOperand Arc;
 
     /** {@code "http://www.opengis.net/gml/Circle"} */
-    public static final GeometryOperand Circle = new GeometryOperand("Circle");
+    public static final GeometryOperand Circle;
 
     /** {@code "http://www.opengis.net/gml/ArcByBulge"} */
-    public static final GeometryOperand ArcByBulge = new GeometryOperand("ArcByBulge");
+    public static final GeometryOperand ArcByBulge;
 
     /** {@code "http://www.opengis.net/gml/Bezier"} */
-    public static final GeometryOperand Bezier = new GeometryOperand("Bezier");
+    public static final GeometryOperand Bezier;
 
     /** {@code "http://www.opengis.net/gml/Clothoid"} */
-    public static final GeometryOperand Clothoid = new GeometryOperand("Clothoid");
+    public static final GeometryOperand Clothoid;
 
     /** {@code "http://www.opengis.net/gml/CubicSpline"} */
-    public static final GeometryOperand CubicSpline = new GeometryOperand("CubicSpline");
+    public static final GeometryOperand CubicSpline;
 
     /** {@code "http://www.opengis.net/gml/Geodesic"} */
-    public static final GeometryOperand Geodesic = new GeometryOperand("Geodesic");
+    public static final GeometryOperand Geodesic;
 
     /** {@code "http://www.opengis.net/gml/OffsetCurve"} */
-    public static final GeometryOperand OffsetCurve = new GeometryOperand("OffsetCurve");
+    public static final GeometryOperand OffsetCurve;
 
     /** {@code "http://www.opengis.net/gml/Triangle"} */
-    public static final GeometryOperand Triangle = new GeometryOperand("Triangle");
+    public static final GeometryOperand Triangle;
 
     /** {@code "http://www.opengis.net/gml/PolyhedralSurface"} */
-    public static final GeometryOperand PolyhedralSurface = new GeometryOperand("PolyhedralSurface");
+    public static final GeometryOperand PolyhedralSurface;
 
     /** {@code "http://www.opengis.net/gml/TriangulatedSurface"} */
-    public static final GeometryOperand TriangulatedSurface = new GeometryOperand("TriangulatedSurface");
+    public static final GeometryOperand TriangulatedSurface;
 
     /** {@code "http://www.opengis.net/gml/Tin"} */
-    public static final GeometryOperand Tin = new GeometryOperand("Tin");
+    public static final GeometryOperand Tin;
 
     /** {@code "http://www.opengis.net/gml/Solid"} */
-    public static final GeometryOperand Solid = new GeometryOperand("Solid");
+    public static final GeometryOperand Solid;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<GeometryOperand> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        Envelope            = new GeometryOperand("Envelope"),
+        Point               = new GeometryOperand("Point"),
+        LineString          = new GeometryOperand("LineString"),
+        Polygon             = new GeometryOperand("Polygon"),
+        ArcByCenterPoint    = new GeometryOperand("ArcByCenterPoint"),
+        CircleByCenterPoint = new GeometryOperand("CircleByCenterPoint"),
+        Arc                 = new GeometryOperand("Arc"),
+        Circle              = new GeometryOperand("Circle"),
+        ArcByBulge          = new GeometryOperand("ArcByBulge"),
+        Bezier              = new GeometryOperand("Bezier"),
+        Clothoid            = new GeometryOperand("Clothoid"),
+        CubicSpline         = new GeometryOperand("CubicSpline"),
+        Geodesic            = new GeometryOperand("Geodesic"),
+        OffsetCurve         = new GeometryOperand("OffsetCurve"),
+        Triangle            = new GeometryOperand("Triangle"),
+        PolyhedralSurface   = new GeometryOperand("PolyhedralSurface"),
+        TriangulatedSurface = new GeometryOperand("TriangulatedSurface"),
+        Tin                 = new GeometryOperand("Tin"),
+        Solid               = new GeometryOperand("Solid"));
 
     /**
      * Creates an operand in the {@code "http://www.opengis.net/gml"} namespace.
@@ -136,7 +160,7 @@ public final class GeometryOperand extends CodeList<GeometryOperand> {
      * @return the list of codes declared in the current JVM.
      */
     public static GeometryOperand[] values() {
-        return values(GeometryOperand.class);
+        return VALUES.toArray(GeometryOperand[]::new);
     }
 
     /**
@@ -161,6 +185,6 @@ public final class GeometryOperand extends CodeList<GeometryOperand> {
      * @return a code matching the given name.
      */
     public static GeometryOperand valueOf(final String code) {
-        return valueOf(GeometryOperand.class, code, GeometryOperand::new).get();
+        return valueOf(VALUES, code, GeometryOperand::new);
     }
 }

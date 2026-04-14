@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.spatial;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Vocabulary(capacity=6)
 @UML(identifier="MD_SpatialRepresentationTypeCode", specification=ISO_19115)
 public final class SpatialRepresentationType extends CodeList<SpatialRepresentationType> {
     /**
@@ -44,37 +43,49 @@ public final class SpatialRepresentationType extends CodeList<SpatialRepresentat
      * Vector data is used to represent geographic data.
      */
     @UML(identifier="vector", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final SpatialRepresentationType VECTOR = new SpatialRepresentationType("VECTOR");
+    public static final SpatialRepresentationType VECTOR;
 
     /**
      * Grid data is used to represent geographic data.
      */
     @UML(identifier="grid", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final SpatialRepresentationType GRID = new SpatialRepresentationType("GRID");
+    public static final SpatialRepresentationType GRID;
 
     /**
      * Textual or tabular data is used to represent geographic data.
      */
     @UML(identifier="textTable", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final SpatialRepresentationType TEXT_TABLE = new SpatialRepresentationType("TEXT_TABLE");
+    public static final SpatialRepresentationType TEXT_TABLE;
 
     /**
      * Triangulated irregular network.
      */
     @UML(identifier="tin", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final SpatialRepresentationType TIN = new SpatialRepresentationType("TIN");
+    public static final SpatialRepresentationType TIN;
 
     /**
      * Three-dimensional view formed by the intersecting homologous rays of an overlapping pair of images.
      */
     @UML(identifier="stereoModel", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final SpatialRepresentationType STEREO_MODEL = new SpatialRepresentationType("STEREO_MODEL");
+    public static final SpatialRepresentationType STEREO_MODEL;
 
     /**
      * Scene from a video recording.
      */
     @UML(identifier="video", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final SpatialRepresentationType VIDEO = new SpatialRepresentationType("VIDEO");
+    public static final SpatialRepresentationType VIDEO;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<SpatialRepresentationType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        VECTOR       = new SpatialRepresentationType("VECTOR"),
+        GRID         = new SpatialRepresentationType("GRID"),
+        TEXT_TABLE   = new SpatialRepresentationType("TEXT_TABLE"),
+        TIN          = new SpatialRepresentationType("TIN"),
+        STEREO_MODEL = new SpatialRepresentationType("STEREO_MODEL"),
+        VIDEO        = new SpatialRepresentationType("VIDEO"));
 
     /**
      * Constructs an element of the given name.
@@ -91,7 +102,7 @@ public final class SpatialRepresentationType extends CodeList<SpatialRepresentat
      * @return the list of codes declared in the current JVM.
      */
     public static SpatialRepresentationType[] values() {
-        return values(SpatialRepresentationType.class);
+        return VALUES.toArray(SpatialRepresentationType[]::new);
     }
 
     /**
@@ -116,6 +127,6 @@ public final class SpatialRepresentationType extends CodeList<SpatialRepresentat
      * @return a code matching the given name.
      */
     public static SpatialRepresentationType valueOf(String code) {
-        return valueOf(SpatialRepresentationType.class, code, SpatialRepresentationType::new).get();
+        return valueOf(VALUES, code, SpatialRepresentationType::new);
     }
 }

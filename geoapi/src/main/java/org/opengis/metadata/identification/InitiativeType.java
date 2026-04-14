@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.identification;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19115;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @version 3.1
  * @since   2.1
  */
-@Vocabulary(capacity=15)
 @UML(identifier="DS_InitiativeTypeCode", specification=ISO_19115)
 public final class InitiativeType extends CodeList<InitiativeType>{
     /**
@@ -44,91 +43,112 @@ public final class InitiativeType extends CodeList<InitiativeType>{
      * Series of organized planned actions.
      */
     @UML(identifier="campaign", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final InitiativeType CAMPAIGN = new InitiativeType("CAMPAIGN");
+    public static final InitiativeType CAMPAIGN;
 
     /**
      * Accumulation of datasets assembled for a specific purpose.
      */
     @UML(identifier="collection", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final InitiativeType COLLECTION = new InitiativeType("COLLECTION");
+    public static final InitiativeType COLLECTION;
 
     /**
      * Specific performance of a function or group of functions.
      */
     @UML(identifier="exercise", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final InitiativeType EXERCISE = new InitiativeType("EXERCISE");
+    public static final InitiativeType EXERCISE;
 
     /**
      * Process designed to find if something is effective or valid.
      */
     @UML(identifier="experiment", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final InitiativeType EXPERIMENT = new InitiativeType("EXPERIMENT");
+    public static final InitiativeType EXPERIMENT;
 
     /**
      * Search or systematic inquiry.
      */
     @UML(identifier="investigation", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final InitiativeType INVESTIGATION = new InitiativeType("INVESTIGATION");
+    public static final InitiativeType INVESTIGATION;
 
     /**
      * Specific operation of a data collection system.
      */
     @UML(identifier="mission", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final InitiativeType MISSION = new InitiativeType("MISSION");
+    public static final InitiativeType MISSION;
 
     /**
      * Device or piece of equipment which detects or records.
      */
     @UML(identifier="sensor", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final InitiativeType SENSOR = new InitiativeType("SENSOR");
+    public static final InitiativeType SENSOR;
 
     /**
      * Action that is part of a series of actions.
      */
     @UML(identifier="operation", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final InitiativeType OPERATION = new InitiativeType("OPERATION");
+    public static final InitiativeType OPERATION;
 
     /**
      * Vehicle or other support base that holds a sensor.
      */
     @UML(identifier="platform", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final InitiativeType PLATFORM = new InitiativeType("PLATFORM");
+    public static final InitiativeType PLATFORM;
 
     /**
      * Method of doing something involving a number of steps.
      */
     @UML(identifier="process", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final InitiativeType PROCESS = new InitiativeType("PROCESS");
+    public static final InitiativeType PROCESS;
 
     /**
      * Specific planned activity.
      */
     @UML(identifier="program", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final InitiativeType PROGRAM = new InitiativeType("PROGRAM");
+    public static final InitiativeType PROGRAM;
 
     /**
      * Organized undertaking, research, or development.
      */
     @UML(identifier="project", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final InitiativeType PROJECT = new InitiativeType("PROJECT");
+    public static final InitiativeType PROJECT;
 
     /**
      * Examination or investigation.
      */
     @UML(identifier="study", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final InitiativeType STUDY = new InitiativeType("STUDY");
+    public static final InitiativeType STUDY;
 
     /**
      * Piece of work.
      */
     @UML(identifier="task", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final InitiativeType TASK = new InitiativeType("TASK");
+    public static final InitiativeType TASK;
 
     /**
      * Process of testing to discover or demonstrate something.
      */
     @UML(identifier="trial", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final InitiativeType TRIAL = new InitiativeType("TRIAL");
+    public static final InitiativeType TRIAL;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<InitiativeType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        CAMPAIGN      = new InitiativeType("CAMPAIGN"),
+        COLLECTION    = new InitiativeType("COLLECTION"),
+        EXERCISE      = new InitiativeType("EXERCISE"),
+        EXPERIMENT    = new InitiativeType("EXPERIMENT"),
+        INVESTIGATION = new InitiativeType("INVESTIGATION"),
+        MISSION       = new InitiativeType("MISSION"),
+        SENSOR        = new InitiativeType("SENSOR"),
+        OPERATION     = new InitiativeType("OPERATION"),
+        PLATFORM      = new InitiativeType("PLATFORM"),
+        PROCESS       = new InitiativeType("PROCESS"),
+        PROGRAM       = new InitiativeType("PROGRAM"),
+        PROJECT       = new InitiativeType("PROJECT"),
+        STUDY         = new InitiativeType("STUDY"),
+        TASK          = new InitiativeType("TASK"),
+        TRIAL         = new InitiativeType("TRIAL"));
 
     /**
      * Constructs an element of the given name.
@@ -145,7 +165,7 @@ public final class InitiativeType extends CodeList<InitiativeType>{
      * @return the list of codes declared in the current JVM.
      */
     public static InitiativeType[] values() {
-        return values(InitiativeType.class);
+        return VALUES.toArray(InitiativeType[]::new);
     }
 
     /**
@@ -170,6 +190,6 @@ public final class InitiativeType extends CodeList<InitiativeType>{
      * @return a code matching the given name.
      */
     public static InitiativeType valueOf(String code) {
-        return valueOf(InitiativeType.class, code, InitiativeType::new).get();
+        return valueOf(VALUES, code, InitiativeType::new);
     }
 }

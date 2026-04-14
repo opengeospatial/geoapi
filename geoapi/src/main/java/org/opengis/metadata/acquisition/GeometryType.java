@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.acquisition;
 
+import java.util.List;
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.3
  */
-@Vocabulary(capacity=4)
 @UML(identifier="MI_GeometryTypeCode", specification=ISO_19115_2)
 public final class GeometryType extends CodeList<GeometryType> {
     /**
@@ -44,25 +43,35 @@ public final class GeometryType extends CodeList<GeometryType> {
      * Single geographic point of interest.
      */
     @UML(identifier="point", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final GeometryType POINT = new GeometryType("POINT");
+    public static final GeometryType POINT;
 
     /**
      * Extended collection in a single vector.
      */
     @UML(identifier="linear", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final GeometryType LINEAR = new GeometryType("LINEAR");
+    public static final GeometryType LINEAR;
 
     /**
      * Collection of a geographic area defined by a polygon (coverage).
      */
     @UML(identifier="areal", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final GeometryType AREAL = new GeometryType("AREAL");
+    public static final GeometryType AREAL;
 
     /**
      * Series of linear collections grouped by way points.
      */
     @UML(identifier="strip", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final GeometryType STRIP = new GeometryType("STRIP");
+    public static final GeometryType STRIP;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<GeometryType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        POINT  = new GeometryType("POINT"),
+        LINEAR = new GeometryType("LINEAR"),
+        AREAL  = new GeometryType("AREAL"),
+        STRIP  = new GeometryType("STRIP"));
 
     /**
      * Constructs an element of the given name.
@@ -79,7 +88,7 @@ public final class GeometryType extends CodeList<GeometryType> {
      * @return the list of codes declared in the current JVM.
      */
     public static GeometryType[] values() {
-        return values(GeometryType.class);
+        return VALUES.toArray(GeometryType[]::new);
     }
 
     /**
@@ -104,6 +113,6 @@ public final class GeometryType extends CodeList<GeometryType> {
      * @return a code matching the given name.
      */
     public static GeometryType valueOf(String code) {
-        return valueOf(GeometryType.class, code, GeometryType::new).get();
+        return valueOf(VALUES, code, GeometryType::new);
     }
 }

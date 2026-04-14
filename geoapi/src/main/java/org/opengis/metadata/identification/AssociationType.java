@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.identification;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19115;
@@ -33,7 +33,6 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @version 3.1
  * @since   2.1
  */
-@Vocabulary(capacity=10)
 @UML(identifier="DS_AssociationTypeCode", specification=ISO_19115)
 public final class AssociationType extends CodeList<AssociationType> {
     /**
@@ -45,7 +44,7 @@ public final class AssociationType extends CodeList<AssociationType> {
      * Reference from one dataset to another.
      */
     @UML(identifier="crossReference", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType CROSS_REFERENCE = new AssociationType("CROSS_REFERENCE");
+    public static final AssociationType CROSS_REFERENCE;
 
     /**
      * Reference to a master dataset of which this one is a part.
@@ -53,19 +52,19 @@ public final class AssociationType extends CodeList<AssociationType> {
      * @since 3.1
      */
     @UML(identifier="largerWorkCitation", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType LARGER_WORK_CITATION = new AssociationType("LARGER_WORK_CITATION");
+    public static final AssociationType LARGER_WORK_CITATION;
 
     /**
      * @deprecated Renamed <code>LARGER_WOR<b><u>K</u></b>_CITATION</code>.
      */
     @Deprecated(since="3.1")
-    public static final AssociationType LARGER_WORD_CITATION = LARGER_WORK_CITATION;
+    public static final AssociationType LARGER_WORD_CITATION;
 
     /**
      * Part of same structured set of data held in a computer.
      */
     @UML(identifier="partOfSeamlessDatabase", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType PART_OF_SEAMLESS_DATABASE = new AssociationType("PART_OF_SEAMLESS_DATABASE");
+    public static final AssociationType PART_OF_SEAMLESS_DATABASE;
 
     /**
      * Mapping and charting information from which the dataset content originates.
@@ -74,13 +73,13 @@ public final class AssociationType extends CodeList<AssociationType> {
      */
     @Deprecated(since="3.1")
     @UML(identifier="source", obligation=CONDITIONAL, specification=ISO_19115, version=2003)
-    public static final AssociationType SOURCE = new AssociationType("SOURCE");
+    public static final AssociationType SOURCE;
 
     /**
      * Part of a set of imagery that when used together, provides three-dimensional images.
      */
     @UML(identifier="stereoMate", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType STEREO_MATE = new AssociationType("STEREO_MATE");
+    public static final AssociationType STEREO_MATE;
 
     /**
      * Reference to resources that are parts of this resource.
@@ -88,7 +87,7 @@ public final class AssociationType extends CodeList<AssociationType> {
      * @since 3.1
      */
     @UML(identifier="isComposedOf", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType IS_COMPOSED_OF = new AssociationType("IS_COMPOSED_OF");
+    public static final AssociationType IS_COMPOSED_OF;
 
     /**
      * Common title for a collection of resources.
@@ -100,7 +99,7 @@ public final class AssociationType extends CodeList<AssociationType> {
      * @since 3.1
      */
     @UML(identifier="collectiveTitle", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType COLLECTIVE_TITLE = new AssociationType("COLLECTIVE_TITLE");
+    public static final AssociationType COLLECTIVE_TITLE;
 
     /**
      * Associated through a common heritage such as produced to a common product specification.
@@ -108,7 +107,7 @@ public final class AssociationType extends CodeList<AssociationType> {
      * @since 3.1
      */
     @UML(identifier="series", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType SERIES = new AssociationType("SERIES");
+    public static final AssociationType SERIES;
 
     /**
      * Associated through a dependency.
@@ -116,7 +115,7 @@ public final class AssociationType extends CodeList<AssociationType> {
      * @since 3.1
      */
     @UML(identifier="dependency", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType DEPENDENCY = new AssociationType("DEPENDENCY");
+    public static final AssociationType DEPENDENCY;
 
     /**
      * Resource is a revision of associated resource.
@@ -124,7 +123,30 @@ public final class AssociationType extends CodeList<AssociationType> {
      * @since 3.1
      */
     @UML(identifier="revisionOf", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final AssociationType REVISION_OF = new AssociationType("REVISION_OF");
+    public static final AssociationType REVISION_OF;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<AssociationType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        CROSS_REFERENCE           = new AssociationType("CROSS_REFERENCE"),
+        LARGER_WORK_CITATION      = new AssociationType("LARGER_WORK_CITATION"),
+        PART_OF_SEAMLESS_DATABASE = new AssociationType("PART_OF_SEAMLESS_DATABASE"),
+        SOURCE                    = new AssociationType("SOURCE"),
+        STEREO_MATE               = new AssociationType("STEREO_MATE"),
+        IS_COMPOSED_OF            = new AssociationType("IS_COMPOSED_OF"),
+        COLLECTIVE_TITLE          = new AssociationType("COLLECTIVE_TITLE"),
+        SERIES                    = new AssociationType("SERIES"),
+        DEPENDENCY                = new AssociationType("DEPENDENCY"),
+        REVISION_OF               = new AssociationType("REVISION_OF"));
+
+    /**
+     * Deprecated aliases.
+     */
+    static {
+        LARGER_WORD_CITATION = LARGER_WORK_CITATION;
+    }
 
     /**
      * Constructs an element of the given name.
@@ -141,7 +163,7 @@ public final class AssociationType extends CodeList<AssociationType> {
      * @return the list of codes declared in the current JVM.
      */
     public static AssociationType[] values() {
-        return values(AssociationType.class);
+        return VALUES.toArray(AssociationType[]::new);
     }
 
     /**
@@ -166,6 +188,6 @@ public final class AssociationType extends CodeList<AssociationType> {
      * @return a code matching the given name.
      */
     public static AssociationType valueOf(String code) {
-        return valueOf(AssociationType.class, code, AssociationType::new).get();
+        return valueOf(VALUES, code, AssociationType::new);
     }
 }

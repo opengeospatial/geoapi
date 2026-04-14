@@ -17,9 +17,9 @@
  */
 package org.opengis.filter;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19143;
@@ -33,7 +33,6 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  */
-@Vocabulary(capacity=2)
 @UML(identifier="DistanceOperatorName", specification=ISO_19143)
 public final class DistanceOperatorName extends CodeList<DistanceOperatorName> {
     /**
@@ -49,7 +48,7 @@ public final class DistanceOperatorName extends CodeList<DistanceOperatorName> {
      * <blockquote>{@literal Beyond(A,B,d) = Distance(A,B) > d}</blockquote>
      */
     @UML(identifier="Beyond", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final DistanceOperatorName BEYOND = new DistanceOperatorName("BEYOND");
+    public static final DistanceOperatorName BEYOND;
 
     /**
      * Operator evaluates to {@code true} when any part of the first geometry
@@ -59,7 +58,15 @@ public final class DistanceOperatorName extends CodeList<DistanceOperatorName> {
      * <blockquote>{@literal Within(A,B,d) = Distance(A,B) < d}</blockquote>
      */
     @UML(identifier="DWithin", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final DistanceOperatorName WITHIN = new DistanceOperatorName("WITHIN");
+    public static final DistanceOperatorName WITHIN;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<DistanceOperatorName> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        BEYOND = new DistanceOperatorName("BEYOND"),
+        WITHIN = new DistanceOperatorName("WITHIN"));
 
     /**
      * Constructs an element of the given name.
@@ -76,7 +83,7 @@ public final class DistanceOperatorName extends CodeList<DistanceOperatorName> {
      * @return the list of codes declared in the current JVM.
      */
     public static DistanceOperatorName[] values() {
-        return values(DistanceOperatorName.class);
+        return VALUES.toArray(DistanceOperatorName[]::new);
     }
 
     /**
@@ -101,6 +108,6 @@ public final class DistanceOperatorName extends CodeList<DistanceOperatorName> {
      * @return a code matching the given name.
      */
     public static DistanceOperatorName valueOf(String code) {
-        return valueOf(DistanceOperatorName.class, code, DistanceOperatorName::new).get();
+        return valueOf(VALUES, code, DistanceOperatorName::new);
     }
 }

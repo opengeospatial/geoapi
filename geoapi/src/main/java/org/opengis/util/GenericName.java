@@ -226,7 +226,7 @@ public interface GenericName extends Comparable<GenericName> {
      * the parsed names are the list of elements in yellow part of the <var>scope</var>.<var>this</var> column.</p>
      *
      * <div class="note"><b>Example:</b>
-     * If {@code this} name is {@code "urn:ogc:def:crs:EPSG::4326"}, then this method shall returns a list
+     * If {@code this} name is {@code "urn:ogc:def:crs:EPSG::4326"}, then this method shall return a list
      * containing {@code {"urn", "ogc", "def", "crs", "EPSG", "", "4326}} elements in that iteration order.
      * If this name is {@code "EPSG::4326"} in scope {@code "urn:ogc:def:crs"}, then this method shall
      * returns a list containing only {@code {"EPSG", "", "4326"}} elements.
@@ -253,7 +253,7 @@ public interface GenericName extends Comparable<GenericName> {
      * the heads are the blue elements in the <var>head</var>.<var>tail</var> column.</p>
      *
      * <div class="note"><b>Example:</b>
-     * if {@code this} name is {@code "urn:ogc:def:crs:EPSG::4326"}, then this method shall returns {@code "urn"}.
+     * if {@code this} name is {@code "urn:ogc:def:crs:EPSG::4326"}, then this method shall return {@code "urn"}.
      * </div>
      *
      * <div class="note"><b>Analogy:</b>
@@ -283,7 +283,7 @@ public interface GenericName extends Comparable<GenericName> {
      *
      * <div class="note"><b>Example:</b>
      * if {@code this} name is {@code "urn:ogc:def:crs:EPSG::4326"} (no matter its
-     * {@linkplain #scope scope}), then this method shall returns {@code "4326"}.
+     * {@linkplain #scope scope}), then this method shall return {@code "4326"}.
      * </div>
      *
      * <div class="note"><b>Analogy:</b>
@@ -307,7 +307,7 @@ public interface GenericName extends Comparable<GenericName> {
     /**
      * Returns a view of this name as a fully-qualified name. The {@linkplain #scope() scope}
      * of a fully qualified name must be {@linkplain NameSpace#isGlobal() global}. If the scope
-     * of this name is already global, then this method shall returns {@code this}.
+     * of this name is already global, then this method shall return {@code this}.
      *
      * <div class="note"><b>Example:</b>
      * if {@code this} name is {@code "EPSG::4326"} ({@linkplain #depth() depth} of 3) and its
@@ -350,7 +350,7 @@ public interface GenericName extends Comparable<GenericName> {
      *
      * <div class="note"><b>Example:</b>
      * if {@code this} name is {@code "EPSG::4326"} and the given {@code scope} argument is {@code "urn:ogc:def:crs"},
-     * then {@code this.push(scope)} shall returns {@code "urn:ogc:def:crs:EPSG::4326"}.
+     * then {@code this.push(scope)} shall return {@code "urn:ogc:def:crs:EPSG::4326"}.
      * </div>
      *
      * <div class="note"><b>Analogy:</b>

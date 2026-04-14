@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.acquisition;
 
+import java.util.List;
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.3
  */
-@Vocabulary(capacity=3)
 @UML(identifier="MI_ContextCode", specification=ISO_19115_2)
 public final class Context extends CodeList<Context> {
     /**
@@ -44,19 +43,28 @@ public final class Context extends CodeList<Context> {
      * Event related to a specific collection.
      */
     @UML(identifier="acquisition", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final Context ACQUISITION = new Context("ACQUISITION");
+    public static final Context ACQUISITION;
 
     /**
      * Event related to a sequence of collections.
      */
     @UML(identifier="pass", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final Context PASS = new Context("PASS");
+    public static final Context PASS;
 
     /**
      * Event related to a navigational manoeuvre.
      */
     @UML(identifier="wayPoint", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final Context WAY_POINT = new Context("WAY_POINT");
+    public static final Context WAY_POINT;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<Context> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        ACQUISITION = new Context("ACQUISITION"),
+        PASS        = new Context("PASS"),
+        WAY_POINT   = new Context("WAY_POINT"));
 
     /**
      * Constructs an element of the given name.
@@ -73,7 +81,7 @@ public final class Context extends CodeList<Context> {
      * @return the list of codes declared in the current JVM.
      */
     public static Context[] values() {
-        return values(Context.class);
+        return VALUES.toArray(Context[]::new);
     }
 
     /**
@@ -98,6 +106,6 @@ public final class Context extends CodeList<Context> {
      * @return a code matching the given name.
      */
     public static Context valueOf(String code) {
-        return valueOf(Context.class, code, Context::new).get();
+        return valueOf(VALUES, code, Context::new);
     }
 }

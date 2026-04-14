@@ -78,7 +78,7 @@ public interface ScopedName extends GenericName {
      * the heads are the blue elements in the <var>head</var>.<var>tail</var> column.</p>
      *
      * <div class="note"><b>Example:</b>
-     * if {@code this} name is {@code "org.opengis.util.Record"}, then this method shall returns {@code "org"}.</div>
+     * if {@code this} name is {@code "org.opengis.util.Record"}, then this method shall return {@code "org"}.</div>
      *
      * <div class="note"><b>Analogy:</b>
      * this method is similar in purpose to:

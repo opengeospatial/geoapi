@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.content;
 
+import java.util.List;
 import org.opengis.annotation.UML;
 import org.opengis.util.CodeList;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -37,7 +37,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   3.0
  */
-@Vocabulary(capacity=6)
 @UML(identifier="MI_PolarisationOrientationCode", specification=ISO_19115_2)
 public final class PolarizationOrientation extends CodeList<PolarizationOrientation> {
     /**
@@ -49,37 +48,49 @@ public final class PolarizationOrientation extends CodeList<PolarizationOrientat
      * Polarization of the sensor oriented in the horizontal plane in relation to swath direction.
      */
     @UML(identifier="horizontal", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final PolarizationOrientation HORIZONTAL = new PolarizationOrientation("HORIZONTAL");
+    public static final PolarizationOrientation HORIZONTAL;
 
     /**
      * Polarization of the sensor oriented in the vertical plane in relation to swath direction.
      */
     @UML(identifier="vertical", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final PolarizationOrientation VERTICAL = new PolarizationOrientation("VERTICAL");
+    public static final PolarizationOrientation VERTICAL;
 
     /**
      * Polarization of the sensor oriented in the left circular plane in relation to swath direction.
      */
     @UML(identifier="leftCircular", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final PolarizationOrientation LEFT_CIRCULAR = new PolarizationOrientation("LEFT_CIRCULAR");
+    public static final PolarizationOrientation LEFT_CIRCULAR;
 
     /**
      * Polarization of the sensor oriented in the right circular plane in relation to swath direction.
      */
     @UML(identifier="rightCircular", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final PolarizationOrientation RIGHT_CIRCULAR = new PolarizationOrientation("RIGHT_CIRCULAR");
+    public static final PolarizationOrientation RIGHT_CIRCULAR;
 
     /**
      * Polarization of the sensor oriented in the angle between +90 ° and 0 ° parallel to swath direction.
      */
     @UML(identifier="theta", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final PolarizationOrientation THETA = new PolarizationOrientation("THETA");
+    public static final PolarizationOrientation THETA;
 
     /**
      * Polarization of the sensor oriented in the +90 ° and 0 ° perpendicular to swath direction.
      */
     @UML(identifier="phi", obligation=CONDITIONAL, specification=ISO_19115_2)
-    public static final PolarizationOrientation PHI = new PolarizationOrientation("PHI");
+    public static final PolarizationOrientation PHI;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<PolarizationOrientation> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        HORIZONTAL     = new PolarizationOrientation("HORIZONTAL"),
+        VERTICAL       = new PolarizationOrientation("VERTICAL"),
+        LEFT_CIRCULAR  = new PolarizationOrientation("LEFT_CIRCULAR"),
+        RIGHT_CIRCULAR = new PolarizationOrientation("RIGHT_CIRCULAR"),
+        THETA          = new PolarizationOrientation("THETA"),
+        PHI            = new PolarizationOrientation("PHI"));
 
     /**
      * Constructs an element of the given name.
@@ -96,7 +107,7 @@ public final class PolarizationOrientation extends CodeList<PolarizationOrientat
      * @return the list of codes declared in the current JVM.
      */
     public static PolarizationOrientation[] values() {
-        return values(PolarizationOrientation.class);
+        return VALUES.toArray(PolarizationOrientation[]::new);
     }
 
     /**
@@ -121,6 +132,6 @@ public final class PolarizationOrientation extends CodeList<PolarizationOrientat
      * @return a code matching the given name.
      */
     public static PolarizationOrientation valueOf(String code) {
-        return valueOf(PolarizationOrientation.class, code, PolarizationOrientation::new).get();
+        return valueOf(VALUES, code, PolarizationOrientation::new);
     }
 }

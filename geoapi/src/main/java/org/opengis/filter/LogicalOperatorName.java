@@ -17,9 +17,9 @@
  */
 package org.opengis.filter;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.CONDITIONAL;
 import static org.opengis.annotation.Specification.ISO_19143;
@@ -33,7 +33,6 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @version 3.1
  * @since   3.1
  */
-@Vocabulary(capacity=3)
 @UML(identifier="BinaryLogicType, UnaryLogicType", specification=ISO_19143)
 public final class LogicalOperatorName extends CodeList<LogicalOperatorName> {
     /**
@@ -45,19 +44,28 @@ public final class LogicalOperatorName extends CodeList<LogicalOperatorName> {
      * Operator evaluates to {@code true} if all the combined filters evaluate to {@code true}.
      */
     @UML(identifier="And", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final LogicalOperatorName AND = new LogicalOperatorName("AND");
+    public static final LogicalOperatorName AND;
 
     /**
      * Operator evaluates to {@code true} if any of the combined filters evaluate to {@code true}.
      */
     @UML(identifier="Or", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final LogicalOperatorName OR = new LogicalOperatorName("OR");
+    public static final LogicalOperatorName OR;
 
     /**
      * Operator reverses the logical value of a filter.
      */
     @UML(identifier="Not", obligation=CONDITIONAL, specification=ISO_19143)
-    public static final LogicalOperatorName NOT = new LogicalOperatorName("NOT");
+    public static final LogicalOperatorName NOT;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<LogicalOperatorName> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        AND = new LogicalOperatorName("AND"),
+        OR  = new LogicalOperatorName("OR"),
+        NOT = new LogicalOperatorName("NOT"));
 
     /**
      * Constructs an element of the given name.
@@ -74,7 +82,7 @@ public final class LogicalOperatorName extends CodeList<LogicalOperatorName> {
      * @return the list of codes declared in the current JVM.
      */
     public static LogicalOperatorName[] values() {
-        return values(LogicalOperatorName.class);
+        return VALUES.toArray(LogicalOperatorName[]::new);
     }
 
     /**
@@ -99,6 +107,6 @@ public final class LogicalOperatorName extends CodeList<LogicalOperatorName> {
      * @return a code matching the given name.
      */
     public static LogicalOperatorName valueOf(String code) {
-        return valueOf(LogicalOperatorName.class, code, LogicalOperatorName::new).get();
+        return valueOf(VALUES, code, LogicalOperatorName::new);
     }
 }

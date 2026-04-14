@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.spatial;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Vocabulary(capacity=8)
 @UML(identifier="MD_DimensionNameTypeCode", specification=ISO_19115)
 public final class DimensionNameType extends CodeList<DimensionNameType> {
     /**
@@ -44,49 +43,63 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
      * Coordinate (y) axis.
      */
     @UML(identifier="row", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DimensionNameType ROW = new DimensionNameType("ROW");
+    public static final DimensionNameType ROW;
 
     /**
      * Abscissa (x) axis.
      */
     @UML(identifier="column", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DimensionNameType COLUMN = new DimensionNameType("COLUMN");
+    public static final DimensionNameType COLUMN;
 
     /**
      * Vertical (z) axis.
      */
     @UML(identifier="vertical", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DimensionNameType VERTICAL = new DimensionNameType("VERTICAL");
+    public static final DimensionNameType VERTICAL;
 
     /**
      * Along the direction of motion of the scan point
      */
     @UML(identifier="track", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DimensionNameType TRACK = new DimensionNameType("TRACK");
+    public static final DimensionNameType TRACK;
 
     /**
      * Perpendicular to the direction of motion of the scan point.
      */
     @UML(identifier="crossTrack", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DimensionNameType CROSS_TRACK = new DimensionNameType("CROSS_TRACK");
+    public static final DimensionNameType CROSS_TRACK;
 
     /**
      * Scan line of a sensor.
      */
     @UML(identifier="line", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DimensionNameType LINE = new DimensionNameType("LINE");
+    public static final DimensionNameType LINE;
 
     /**
      * Element along a scan line.
      */
     @UML(identifier="sample", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DimensionNameType SAMPLE = new DimensionNameType("SAMPLE");
+    public static final DimensionNameType SAMPLE;
 
     /**
      * Duration.
      */
     @UML(identifier="time", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final DimensionNameType TIME = new DimensionNameType("TIME");
+    public static final DimensionNameType TIME;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<DimensionNameType> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        ROW         = new DimensionNameType("ROW"),
+        COLUMN      = new DimensionNameType("COLUMN"),
+        VERTICAL    = new DimensionNameType("VERTICAL"),
+        TRACK       = new DimensionNameType("TRACK"),
+        CROSS_TRACK = new DimensionNameType("CROSS_TRACK"),
+        LINE        = new DimensionNameType("LINE"),
+        SAMPLE      = new DimensionNameType("SAMPLE"),
+        TIME        = new DimensionNameType("TIME"));
 
     /**
      * Constructs an element of the given name.
@@ -103,7 +116,7 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
      * @return the list of codes declared in the current JVM.
      */
     public static DimensionNameType[] values() {
-        return values(DimensionNameType.class);
+        return VALUES.toArray(DimensionNameType[]::new);
     }
 
     /**
@@ -128,6 +141,6 @@ public final class DimensionNameType extends CodeList<DimensionNameType> {
      * @return a code matching the given name.
      */
     public static DimensionNameType valueOf(String code) {
-        return valueOf(DimensionNameType.class, code, DimensionNameType::new).get();
+        return valueOf(VALUES, code, DimensionNameType::new);
     }
 }

@@ -46,6 +46,41 @@ package org.opengis.annotation;
  */
 public enum Specification {
     /**
+     * ISO 12113, Runtime 3D asset delivery format — Khronos glTF™ 2.0.
+     * It specifies the classes for describing a 3D rendering scene, including materials, geometries and animations.
+     * It defines optimized sub-types of ISO-19107 geometries.
+     * GLTF is the web oriented sucessor of COLLADA, it is a lighter version using JSON encoding and only using the
+     * Physically based rendering techniques (PBR).
+     *
+     * <p><b>Version numbers used in GeoAPI:</b></p>
+     * <ul>
+     *   <li><b>2022:</b> ISO 12113:2022   ({@linkplain #defaultVersion() default version})</li>
+     * </ul>
+     *
+     * @see <a href="https://www.iso.org/standard/83990.html">ISO 12113:2022 on standards catalogue</a>
+     * @see <a href="https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html">Khronos GLTF-2.0 on Khronos registry</a>
+     * @since 3.1
+     */
+    ISO_12113((short) 2022),
+
+    /**
+     * ISO 17506, COLLADA™ digital asset schema specification for 3D visualization of industrial data.
+     * It specifies the classes for describing advanced 3D rendering scene, including materials, geometries and animations.
+     * COLLADA™ is the predecessor of GLTF, it is more feature complete then GLTF but also less adopted because of it's
+     * XML encoding.
+     *
+     * <p><b>Version numbers used in GeoAPI:</b></p>
+     * <ul>
+     *   <li><b>2022:</b> ISO 17506:2022   ({@linkplain #defaultVersion() default version})</li>
+     * </ul>
+     *
+     * @see <a href="https://www.iso.org/standard/78834.html">ISO 17506:2022 on standards catalogue</a>
+     * @see <a href="https://www.khronos.org/collada/">Khronos COLLADA™ on Khronos registry</a>
+     * @since 3.1
+     */
+    ISO_17506((short) 2022),
+
+    /**
      * ISO 19103, Conceptual schema language.
      * This is the specification for some interfaces in package {@link org.opengis.util}.
      * This specification provides basic classes such as names, records and units of measurement.

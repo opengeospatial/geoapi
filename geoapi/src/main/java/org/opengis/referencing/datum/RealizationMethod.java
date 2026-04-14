@@ -17,9 +17,9 @@
  */
 package org.opengis.referencing.datum;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -35,7 +35,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   3.1
  */
-@Vocabulary(capacity=3)
 @UML(identifier="RealizationMethod", specification=ISO_19111)
 public final class RealizationMethod extends CodeList<RealizationMethod> {
     /**
@@ -47,20 +46,29 @@ public final class RealizationMethod extends CodeList<RealizationMethod> {
      * Realization is by adjustment of a levelling network fixed to one or more tide gauges.
      */
     @UML(identifier="levelling", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final RealizationMethod LEVELLING = new RealizationMethod("LEVELLING");
+    public static final RealizationMethod LEVELLING;
 
     /**
      * Realization is through a geoid height model or a height correction model.
      * This is applied to a specified geodetic <abbr>CRS</abbr>.
      */
     @UML(identifier="geoid", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final RealizationMethod GEOID = new RealizationMethod("GEOID");
+    public static final RealizationMethod GEOID;
 
     /**
      * Realization is through a tidal model or by tidal predictions.
      */
     @UML(identifier="tidal", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final RealizationMethod TIDAL = new RealizationMethod("TIDAL");
+    public static final RealizationMethod TIDAL;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<RealizationMethod> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        LEVELLING = new RealizationMethod("LEVELLING"),
+        GEOID     = new RealizationMethod("GEOID"),
+        TIDAL     = new RealizationMethod("TIDAL"));
 
     /**
      * Constructs an element of the given name.
@@ -77,7 +85,7 @@ public final class RealizationMethod extends CodeList<RealizationMethod> {
      * @return the list of codes declared in the current JVM.
      */
     public static RealizationMethod[] values() {
-        return values(RealizationMethod.class);
+        return VALUES.toArray(RealizationMethod[]::new);
     }
 
     /**
@@ -102,6 +110,6 @@ public final class RealizationMethod extends CodeList<RealizationMethod> {
      * @return a code matching the given name.
      */
     public static RealizationMethod valueOf(String code) {
-        return valueOf(RealizationMethod.class, code, RealizationMethod::new).get();
+        return valueOf(VALUES, code, RealizationMethod::new);
     }
 }

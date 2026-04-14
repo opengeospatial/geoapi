@@ -1,6 +1,6 @@
 /*
  *    GeoAPI - Java interfaces for OGC/ISO standards
- *    Copyright © 2003-2023 Open Geospatial Consortium, Inc.
+ *    Copyright © 2003-2024 Open Geospatial Consortium, Inc.
  *    http://www.geoapi.org
  *
  *    Licensed under the Apache License, Version 2.0 (the "License");
@@ -59,9 +59,9 @@ public interface Operation extends PropertyType {
     ParameterDescriptorGroup getParameters();
 
     /**
-     * Returns the expected result type, or {@code null} if none.
+     * Returns the expected result type.
      *
-     * @return the type of the result, or {@code null} if none.
+     * @return the type of the result.
      */
     @UML(identifier="signature", obligation=MANDATORY, specification=ISO_19109)
     IdentifiedType getResult();

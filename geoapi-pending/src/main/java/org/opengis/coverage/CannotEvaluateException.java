@@ -43,7 +43,7 @@ public class CannotEvaluateException extends RuntimeException {
      * is used on a multilevel, so {@code PointOutsideCoverageException} can provide informative
      * details.
      */
-    private Coverage coverage;
+    private transient Coverage coverage;
 
     /**
      * Creates an exception with no message.

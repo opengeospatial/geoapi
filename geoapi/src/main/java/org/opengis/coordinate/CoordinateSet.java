@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
 
 /**
  * A collection of coordinate tuples referenced to the same coordinate reference system (<abbr>CRS</abbr>).
- * If the <abbr>CRS</abbr> is dynamic, the {@code CoordinateSet} metadata contains also a coordinate epoch.
+ * If the <abbr>CRS</abbr> is dynamic, the {@code CoordinateSet} metadata also contains a coordinate epoch.
  * Operations on the geometry of the tuples within the coordinate set are valid only if all
  * tuples are referenced to the same coordinate epoch.
  *

@@ -17,9 +17,9 @@
  */
 package org.opengis.geometry.coordinate;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -32,7 +32,6 @@ import static org.opengis.annotation.Specification.*;
  * @author Martin Desruisseaux (IRD)
  * @since GeoAPI 2.1
  */
-@Vocabulary(capacity=6)
 @UML(identifier="GM_BSplineSurfaceForm", specification=ISO_19107)
 public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
     /**
@@ -44,37 +43,49 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
      * A bounded portion of a plane represented by a B-spline surface of degree 1 in each parameter.
      */
     @UML(identifier="planar", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final BSplineSurfaceForm PLANAR = new BSplineSurfaceForm("PLANAR");
+    public static final BSplineSurfaceForm PLANAR;
 
     /**
      * A bounded portion of a cylindrical surface represented by a B-spline surface.
      */
     @UML(identifier="cylindrical", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final BSplineSurfaceForm CYLINDRICAL = new BSplineSurfaceForm("CYLINDRICAL");
+    public static final BSplineSurfaceForm CYLINDRICAL;
 
     /**
      * A bounded portion of the surface of a right circular cone represented by a B-spline surface.
      */
     @UML(identifier="conical", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final BSplineSurfaceForm CONICAL = new BSplineSurfaceForm("CONICAL");
+    public static final BSplineSurfaceForm CONICAL;
 
     /**
      * A bounded portion of a sphere, or a complete sphere represented by a B-spline surface.
      */
     @UML(identifier="spherical", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final BSplineSurfaceForm SPHERICAL = new BSplineSurfaceForm("SPHERICAL");
+    public static final BSplineSurfaceForm SPHERICAL;
 
     /**
      * A torus or a portion of a torus represented by a B-spline surface.
      */
     @UML(identifier="toroidal", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final BSplineSurfaceForm TOROIDAL = new BSplineSurfaceForm("TOROIDAL");
+    public static final BSplineSurfaceForm TOROIDAL;
 
     /**
      * No particular surface is specified..
      */
     @UML(identifier="unspecified", obligation=CONDITIONAL, specification=ISO_19107)
-    public static final BSplineSurfaceForm UNSPECIFIED = new BSplineSurfaceForm("UNSPECIFIED");
+    public static final BSplineSurfaceForm UNSPECIFIED;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<BSplineSurfaceForm> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        PLANAR      = new BSplineSurfaceForm("PLANAR"),
+        CYLINDRICAL = new BSplineSurfaceForm("CYLINDRICAL"),
+        CONICAL     = new BSplineSurfaceForm("CONICAL"),
+        SPHERICAL   = new BSplineSurfaceForm("SPHERICAL"),
+        TOROIDAL    = new BSplineSurfaceForm("TOROIDAL"),
+        UNSPECIFIED = new BSplineSurfaceForm("UNSPECIFIED"));
 
     /**
      * Constructs an element of the given name.
@@ -92,7 +103,7 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
      * @return the list of codes declared in the current JVM.
      */
     public static BSplineSurfaceForm[] values() {
-        return values(BSplineSurfaceForm.class);
+        return VALUES.toArray(BSplineSurfaceForm[]::new);
     }
 
     /**
@@ -117,6 +128,6 @@ public class BSplineSurfaceForm extends CodeList<BSplineSurfaceForm> {
      * @return a code matching the given name.
      */
     public static BSplineSurfaceForm valueOf(String code) {
-        return valueOf(BSplineSurfaceForm.class, code, BSplineSurfaceForm::new).get();
+        return valueOf(VALUES, code, BSplineSurfaceForm::new);
     }
 }

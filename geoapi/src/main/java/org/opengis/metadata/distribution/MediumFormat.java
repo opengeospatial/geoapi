@@ -17,9 +17,9 @@
  */
 package org.opengis.metadata.distribution;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -33,7 +33,6 @@ import static org.opengis.annotation.Specification.*;
  * @version 3.1
  * @since   2.0
  */
-@Vocabulary(capacity=7)
 @UML(identifier="MD_MediumFormatCode", specification=ISO_19115)
 public final class MediumFormat extends CodeList<MediumFormat> {
     /**
@@ -45,37 +44,37 @@ public final class MediumFormat extends CodeList<MediumFormat> {
      * CoPy In / Out (UNIX file format and command).
      */
     @UML(identifier="cpio", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumFormat CPIO = new MediumFormat("CPIO");
+    public static final MediumFormat CPIO;
 
     /**
      * Tap ARchive.
      */
     @UML(identifier="tar", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumFormat TAR = new MediumFormat("TAR");
+    public static final MediumFormat TAR;
 
     /**
      * High Sierra file system.
      */
     @UML(identifier="highSierra", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumFormat HIGH_SIERRA = new MediumFormat("HIGH_SIERRA");
+    public static final MediumFormat HIGH_SIERRA;
 
     /**
      * Information processing - volume and file structure of CD-ROM.
      */
     @UML(identifier="iso9660", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumFormat ISO_9660 = new MediumFormat("ISO_9660");
+    public static final MediumFormat ISO_9660;
 
     /**
      * Rock Ridge interchange protocol (UNIX).
      */
     @UML(identifier="iso9660RockRidge", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumFormat ISO_9660_ROCK_RIDGE = new MediumFormat("ISO_9660_ROCK_RIDGE");
+    public static final MediumFormat ISO_9660_ROCK_RIDGE;
 
     /**
      * Hierarchical File System (Macintosh).
      */
     @UML(identifier="iso9660AppleHFS", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumFormat ISO_9660_APPLE_HFS = new MediumFormat("ISO_9660_APPLE_HFS");
+    public static final MediumFormat ISO_9660_APPLE_HFS;
 
     /**
      * Universal Disk Format.
@@ -83,7 +82,20 @@ public final class MediumFormat extends CodeList<MediumFormat> {
      * @since 3.1
      */
     @UML(identifier="udf", obligation=CONDITIONAL, specification=ISO_19115)
-    public static final MediumFormat UDF = new MediumFormat("UDF");
+    public static final MediumFormat UDF;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<MediumFormat> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        CPIO                = new MediumFormat("CPIO"),
+        TAR                 = new MediumFormat("TAR"),
+        HIGH_SIERRA         = new MediumFormat("HIGH_SIERRA"),
+        ISO_9660            = new MediumFormat("ISO_9660"),
+        ISO_9660_ROCK_RIDGE = new MediumFormat("ISO_9660_ROCK_RIDGE"),
+        ISO_9660_APPLE_HFS  = new MediumFormat("ISO_9660_APPLE_HFS"),
+        UDF                 = new MediumFormat("UDF"));
 
     /**
      * Constructs an element of the given name.
@@ -100,7 +112,7 @@ public final class MediumFormat extends CodeList<MediumFormat> {
      * @return the list of codes declared in the current JVM.
      */
     public static MediumFormat[] values() {
-        return values(MediumFormat.class);
+        return VALUES.toArray(MediumFormat[]::new);
     }
 
     /**
@@ -125,6 +137,6 @@ public final class MediumFormat extends CodeList<MediumFormat> {
      * @return a code matching the given name.
      */
     public static MediumFormat valueOf(String code) {
-        return valueOf(MediumFormat.class, code, MediumFormat::new).get();
+        return valueOf(VALUES, code, MediumFormat::new);
     }
 }

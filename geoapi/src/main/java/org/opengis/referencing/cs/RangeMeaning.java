@@ -17,9 +17,9 @@
  */
 package org.opengis.referencing.cs;
 
+import java.util.List;
 import org.opengis.util.CodeList;
 import org.opengis.annotation.UML;
-import org.opengis.geoapi.internal.Vocabulary;
 
 import static org.opengis.annotation.Obligation.*;
 import static org.opengis.annotation.Specification.*;
@@ -37,7 +37,6 @@ import static org.opengis.annotation.Specification.*;
  * @see CoordinateSystemAxis#getMaximumValue()
  * @see CoordinateSystemAxis#getRangeMeaning()
  */
-@Vocabulary(capacity=2)
 @UML(identifier="RangeMeaning", specification=ISO_19111)
 public final class RangeMeaning extends CodeList<RangeMeaning> {
     /**
@@ -49,7 +48,7 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
      * Any value between and including minimum and maximum value is valid.
      */
     @UML(identifier="exact", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final RangeMeaning EXACT = new RangeMeaning("EXACT");
+    public static final RangeMeaning EXACT;
 
     /**
      * The axis is continuous with values wrapping around at the minimum and maximum value.
@@ -65,7 +64,15 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
      * (e.g., going West from a little more than -180° to a little less than +180°).
      */
     @UML(identifier="wraparound", obligation=CONDITIONAL, specification=ISO_19111)
-    public static final RangeMeaning WRAPAROUND = new RangeMeaning("WRAPAROUND");
+    public static final RangeMeaning WRAPAROUND;
+
+    /**
+     * All code list values created in the currently running <abbr>JVM</abbr>.
+     */
+    private static final List<RangeMeaning> VALUES = initialValues(
+        // Inline assignments for getting compiler error if a field is missing or duplicated.
+        EXACT      = new RangeMeaning("EXACT"),
+        WRAPAROUND = new RangeMeaning("WRAPAROUND"));
 
     /**
      * Constructs an element of the given name.
@@ -82,7 +89,7 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
      * @return the list of codes declared in the current JVM.
      */
     public static RangeMeaning[] values() {
-        return values(RangeMeaning.class);
+        return VALUES.toArray(RangeMeaning[]::new);
     }
 
     /**
@@ -107,6 +114,6 @@ public final class RangeMeaning extends CodeList<RangeMeaning> {
      * @return a code matching the given name.
      */
     public static RangeMeaning valueOf(String code) {
-        return valueOf(RangeMeaning.class, code, RangeMeaning::new).get();
+        return valueOf(VALUES, code, RangeMeaning::new);
     }
 }
