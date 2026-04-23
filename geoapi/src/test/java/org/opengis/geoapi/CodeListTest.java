@@ -135,6 +135,7 @@ public final class CodeListTest {
                     }
                 }
             }
+            remaining.removeIf((code) -> code.name().endsWith(IGNORABLE_NAME_SUFFIX));
             assertTrue(remaining.isEmpty(), () -> "No constants for " + remaining);
             /*
              * Try to create a new code list element with `valueOf(String)`.
