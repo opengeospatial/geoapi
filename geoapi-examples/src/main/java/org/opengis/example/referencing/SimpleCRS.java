@@ -320,7 +320,7 @@ public abstract class SimpleCRS extends SimpleIdentifiedObject implements Single
         }
 
         /**
-         * Returns the type (measure, integer or data-time) of coordinate values.
+         * Returns the type (measure, integer or date-time) of coordinate values.
          * This simple implementation supports only {@link CoordinateDataType#MEASURE}.
          */
         @Override

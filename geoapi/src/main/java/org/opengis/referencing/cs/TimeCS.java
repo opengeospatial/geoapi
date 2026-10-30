@@ -72,7 +72,7 @@ public interface TimeCS extends CoordinateSystem {
     }
 
     /**
-     * Returns the type (measure, integer or data-time) of coordinate values.
+     * Returns the type (measure, integer or date-time) of coordinate values.
      * If the time interval between two integer values is constant and interpolations are allowed,
      * then the returned value will typically be {@link CoordinateDataType#MEASURE}.
      * If the time interval is not constant but can be related to some field of the Gregorian calendar
