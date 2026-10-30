@@ -63,7 +63,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Wim Koolhoven
  * @author  Martin Schouwenburg
  * @author  Martin Desruisseaux (IRD)
- * @since   GeoAPI 2.1
+ * @since GeoAPI 2.1
  */
 @UML(identifier="CV_RectifiedGrid", specification=ISO_19123)
 public interface RectifiedGrid extends ReferenceableGrid {

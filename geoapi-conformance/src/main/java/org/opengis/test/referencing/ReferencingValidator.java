@@ -44,7 +44,7 @@ import static org.junit.jupiter.api.Assertions.assertNotNull;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 public abstract class ReferencingValidator extends Validator {
     /**
@@ -94,7 +94,7 @@ public abstract class ReferencingValidator extends Validator {
      *
      * @param  object  the object to validate, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void validate(final ObjectDomain object) {
         if (object == null) {

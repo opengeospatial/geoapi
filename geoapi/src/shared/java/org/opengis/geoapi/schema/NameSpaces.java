@@ -33,7 +33,7 @@ import org.opengis.annotation.UML;
  * namespace if keeping them separated would result in modules or packages with few classes.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @since   3.1
+ * @since GeoAPI 3.1
  * @version 3.1
  */
 public final class NameSpaces {

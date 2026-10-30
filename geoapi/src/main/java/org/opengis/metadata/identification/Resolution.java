@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @see Identification#getSpatialResolutions()
  */
@@ -87,7 +87,7 @@ public interface Resolution {
      *
      * @condition {@code equivalentScale}, {@code distance}, {@code angularDistance} and {@code levelOfDetail} not provided.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="vertical", obligation=CONDITIONAL, specification=ISO_19115)
     default Double getVertical() {
@@ -108,7 +108,7 @@ public interface Resolution {
      *
      * @condition {@code equivalentScale}, {@code distance}, {@code vertical} and {@code levelOfDetail} not provided.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="angularDistance", obligation=CONDITIONAL, specification=ISO_19115)
     default Double getAngularDistance() {
@@ -122,7 +122,7 @@ public interface Resolution {
      *
      * @condition {@code equivalentScale}, {@code distance}, {@code vertical} and {@code angularDistance} not provided.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="levelOfDetail", obligation=CONDITIONAL, specification=ISO_19115)
     default InternationalString getLevelOfDetail() {

@@ -34,7 +34,7 @@ import static org.opengis.test.referencing.PseudoEpsgFactory.LINKS;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 final class SamplePoints {
     /**

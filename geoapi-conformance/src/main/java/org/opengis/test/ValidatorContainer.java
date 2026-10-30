@@ -70,7 +70,7 @@ import org.opengis.test.coverage.image.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 public class ValidatorContainer {
     /**
@@ -86,7 +86,7 @@ public class ValidatorContainer {
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @SuppressWarnings("this-escape")
     public MetadataBaseValidator metadata = new MetadataBaseValidator(this);
@@ -104,7 +104,7 @@ public class ValidatorContainer {
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @SuppressWarnings("this-escape")
     public QualityValidator quality = new QualityValidator(this);
@@ -114,7 +114,7 @@ public class ValidatorContainer {
      * Vendors can change this field to a different validator, or change the setting
      * of the referenced validator. This field shall not be set to {@code null} however.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @SuppressWarnings("this-escape")
     public MaintenanceValidator maintenance = new MaintenanceValidator(this);
@@ -268,7 +268,7 @@ public class ValidatorContainer {
      *
      * @see MetadataBaseValidator#validate(Metadata)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final Metadata object) {
         metadata.validate(object);
@@ -292,7 +292,7 @@ public class ValidatorContainer {
      *
      * @see CitationValidator#validate(CitationDate...)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final CitationDate... object) {
         citation.validate(object);
@@ -305,7 +305,7 @@ public class ValidatorContainer {
      *
      * @see CitationValidator#validate(Responsibility)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final Responsibility object) {
         citation.validate(object);
@@ -318,7 +318,7 @@ public class ValidatorContainer {
      *
      * @see CitationValidator#validate(Party)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final Party object) {
         citation.validate(object);
@@ -331,7 +331,7 @@ public class ValidatorContainer {
      *
      * @see CitationValidator#validate(Contact)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final Contact object) {
         citation.validate(object);
@@ -344,7 +344,7 @@ public class ValidatorContainer {
      *
      * @see CitationValidator#validate(Telephone)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final Telephone object) {
         citation.validate(object);
@@ -357,7 +357,7 @@ public class ValidatorContainer {
      *
      * @see CitationValidator#validate(Address)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final Address object) {
         citation.validate(object);
@@ -370,7 +370,7 @@ public class ValidatorContainer {
      *
      * @see CitationValidator#validate(OnlineResource)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final OnlineResource object) {
         citation.validate(object);
@@ -383,7 +383,7 @@ public class ValidatorContainer {
      *
      * @see QualityValidator#validate(DataQuality)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final DataQuality object) {
         quality.validate(object);
@@ -396,7 +396,7 @@ public class ValidatorContainer {
      *
      * @see QualityValidator#dispatch(Element)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final Element object) {
         quality.dispatch(object);
@@ -409,7 +409,7 @@ public class ValidatorContainer {
      *
      * @see MaintenanceValidator#validate(MaintenanceInformation)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final PositionalAccuracy object) {
         quality.validate(object);
@@ -422,7 +422,7 @@ public class ValidatorContainer {
      *
      * @see QualityValidator#dispatch(Result)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final Result object) {
         quality.dispatch(object);
@@ -435,7 +435,7 @@ public class ValidatorContainer {
      *
      * @see QualityValidator#validate(DescriptiveResult)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final DescriptiveResult object) {
         quality.validate(object);
@@ -448,7 +448,7 @@ public class ValidatorContainer {
      *
      * @see QualityValidator#validate(ConformanceResult)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final ConformanceResult object) {
         quality.validate(object);
@@ -461,7 +461,7 @@ public class ValidatorContainer {
      *
      * @see QualityValidator#validate(QuantitativeResult)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final QuantitativeResult object) {
         quality.validate(object);
@@ -474,7 +474,7 @@ public class ValidatorContainer {
      *
      * @see QualityValidator#validate(CoverageResult)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final CoverageResult object) {
         quality.validate(object);
@@ -487,7 +487,7 @@ public class ValidatorContainer {
      *
      * @see MaintenanceValidator#validate(MaintenanceInformation)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final MaintenanceInformation object) {
         maintenance.validate(object);
@@ -500,7 +500,7 @@ public class ValidatorContainer {
      *
      * @see MaintenanceValidator#validate(Scope)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final Scope object) {
         maintenance.validate(object);
@@ -623,7 +623,7 @@ public class ValidatorContainer {
      *
      * @see CRSValidator#validate(GeodeticCRS)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final GeodeticCRS object) {
         crs.validate(object);
@@ -691,7 +691,7 @@ public class ValidatorContainer {
      *
      * @see CRSValidator#validate(ParametricCRS)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final ParametricCRS object) {
         crs.validate(object);
@@ -814,7 +814,7 @@ public class ValidatorContainer {
      *
      * @see CSValidator#validate(ParametricCS)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final ParametricCS object) {
         cs.validate(object);
@@ -904,7 +904,7 @@ public class ValidatorContainer {
      *
      * @see DatumValidator#validate(ParametricDatum)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final ParametricDatum object) {
         datum.validate(object);
@@ -928,7 +928,7 @@ public class ValidatorContainer {
      *
      * @see DatumValidator#validate(DatumEnsemble)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final DatumEnsemble<?> object) {
         datum.validate(object);
@@ -974,7 +974,7 @@ public class ValidatorContainer {
      *
      * @see OperationValidator#validate(PointMotionOperation)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final PointMotionOperation object) {
         coordinateOperation.validate(object);
@@ -1119,7 +1119,7 @@ public class ValidatorContainer {
      *
      * @see ReferencingValidator#validate(ObjectDomain)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final ObjectDomain object) {
         crs.validate(object);
@@ -1132,7 +1132,7 @@ public class ValidatorContainer {
      *
      * @see MetadataBaseValidator#validate(Identifier)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public final void validate(final Identifier object) {
         metadata.validate(object);

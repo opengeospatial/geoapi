@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 public class NameValidator extends Validator {
     /**

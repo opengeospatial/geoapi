@@ -27,7 +27,7 @@ import java.util.HashMap;
  * More departure can be added by calls to {@code add(…)} methods.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @since   3.1
+ * @since GeoAPI 3.1
  * @version 3.1
  */
 public class Departures {

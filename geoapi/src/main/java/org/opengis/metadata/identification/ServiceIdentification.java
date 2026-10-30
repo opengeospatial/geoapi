@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="SV_ServiceIdentification", specification=ISO_19115)
 public interface ServiceIdentification extends Identification {
@@ -47,7 +47,7 @@ public interface ServiceIdentification extends Identification {
      *
      * @return a service type name.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="serviceType", obligation=MANDATORY, specification=ISO_19115)
     GenericName getServiceType();
@@ -64,7 +64,7 @@ public interface ServiceIdentification extends Identification {
      *
      * @return the version of the service, supports searching based on the version of serviceType.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="serviceTypeVersion", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<String> getServiceTypeVersions() {
@@ -83,7 +83,7 @@ public interface ServiceIdentification extends Identification {
      *
      * @return information about the availability of the service, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="accessProperties", obligation=OPTIONAL, specification=ISO_19115)
     default StandardOrderProcess getAccessProperties() {
@@ -97,7 +97,7 @@ public interface ServiceIdentification extends Identification {
      *
      * @condition mandatory if {@link #getCoupledResources() coupledResources} is not provided.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="couplingType", obligation=CONDITIONAL, specification=ISO_19115)
     CouplingType getCouplingType();
@@ -110,7 +110,7 @@ public interface ServiceIdentification extends Identification {
      *
      * @condition mandatory if {@link #getCouplingType() couplingType} is not provided.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="coupledResource", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends CoupledResource> getCoupledResources();
@@ -124,7 +124,7 @@ public interface ServiceIdentification extends Identification {
      * @condition For one resource either {@code operatedDataset} or {@link #getOperatesOn() operatesOn}
      *            may be used (not both for the same resource).
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="operatedDataset", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getOperatedDatasets() {
@@ -137,7 +137,7 @@ public interface ServiceIdentification extends Identification {
      *
      * @return profile(s) to which the service adheres.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="profile", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getProfiles() {
@@ -150,7 +150,7 @@ public interface ServiceIdentification extends Identification {
      *
      * @return standard(s) to which the service adheres.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="serviceStandard", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getServiceStandards() {
@@ -163,7 +163,7 @@ public interface ServiceIdentification extends Identification {
      *
      * @return information about the operations that comprise the service.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="containsOperations", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends OperationMetadata> getContainsOperations() {
@@ -179,7 +179,7 @@ public interface ServiceIdentification extends Identification {
      * @condition For one resource either {@link #getOperatedDatasets() operatedDataset}
      *            or {@code operatesOn} may be used (not both for the same resource).
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="operatesOn", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends DataIdentification> getOperatesOn() {
@@ -192,7 +192,7 @@ public interface ServiceIdentification extends Identification {
      *
      * @return information about the chain applied by the service.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="containsChain", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends OperationChainMetadata> getContainsChain() {

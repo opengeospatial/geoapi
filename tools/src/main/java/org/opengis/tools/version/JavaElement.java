@@ -36,7 +36,7 @@ import java.lang.reflect.Modifier;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 final class JavaElement implements Comparable<JavaElement> {
     /**

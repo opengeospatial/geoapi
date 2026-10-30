@@ -73,7 +73,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @author  Alexis Gaillard (Geomatys)
  * @version 3.1
- * @since   2.1
+ * @since GeoAPI 2.1
  */
 @UML(identifier="DQ_FormatConsistency", specification=ISO_19157)
 public interface FormatConsistency extends LogicalConsistency {

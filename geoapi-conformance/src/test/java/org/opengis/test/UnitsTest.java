@@ -26,7 +26,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0.1
- * @since   3.0.1
+ * @since GeoAPI 3.0.1
  */
 public final class UnitsTest {
     /**

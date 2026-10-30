@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see InvalidParameterTypeException
  */
@@ -102,7 +102,7 @@ public class InvalidParameterValueException extends IllegalArgumentException {
      * @param parameterName  the parameter name.
      * @param value          the invalid parameter value.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public InvalidParameterValueException(String message, Throwable cause, String parameterName, Object value) {
         super(message, cause);

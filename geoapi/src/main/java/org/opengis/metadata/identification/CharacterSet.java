@@ -78,7 +78,7 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @version 3.1
- * @since   2.1
+ * @since GeoAPI 2.1
  *
  * @deprecated As of ISO 19115:2014, replaced by a reference to the
  * <a href="http://www.iana.org/assignments/character-sets">IANA Character Set register</a>.
@@ -347,7 +347,7 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      * @param  cs  the character set, or {@code null}.
      * @return a code list for the given character set, or {@code null} if the given {@code cs} was null.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static CharacterSet fromCharset(final Charset cs) {
         if (cs == null) {

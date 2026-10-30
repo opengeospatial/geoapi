@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.3
+ * @since GeoAPI 2.3
  *
  * @see MathTransform
  * @see OperationMethod#getFormula()

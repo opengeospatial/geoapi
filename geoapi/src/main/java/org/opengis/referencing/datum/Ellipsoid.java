@@ -62,7 +62,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see DatumAuthorityFactory#createEllipsoid(String)
  * @see DatumFactory#createEllipsoid(Map, double, double, Unit)
@@ -95,7 +95,7 @@ public interface Ellipsoid extends IdentifiedObject {
      *
      * @return length of the semi-median axis of a triaxial ellipsoid.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="semiMedianAxis", obligation=OPTIONAL, specification=ISO_19111)
     default OptionalDouble getSemiMedianAxis() {

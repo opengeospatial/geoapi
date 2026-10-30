@@ -30,7 +30,7 @@ import org.opengis.referencing.operation.NoninvertibleTransformException;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 @SuppressWarnings("serial")
 final class BogusAffineTransform2D extends AffineTransform2D {
@@ -48,7 +48,7 @@ final class BogusAffineTransform2D extends AffineTransform2D {
     /**
      * {@code true} to cause {@link #derivative(Point2D)} to be erroneous.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     boolean wrongDerivative;
 
@@ -84,7 +84,7 @@ final class BogusAffineTransform2D extends AffineTransform2D {
     /**
      * Returns the derivative, as an erroneous matrix if {@link #wrongDerivative} is {@code true}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     public Matrix derivative(final Point2D point) {

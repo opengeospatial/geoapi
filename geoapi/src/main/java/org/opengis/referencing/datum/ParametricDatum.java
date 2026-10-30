@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.ISO_19111;
  * @author  Johann Sorel (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  *
  * @see DatumAuthorityFactory#createParametricDatum(String)
  * @see DatumFactory#createParametricDatum(Map)

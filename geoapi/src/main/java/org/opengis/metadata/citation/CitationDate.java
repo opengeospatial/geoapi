@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_Date", specification=ISO_19115)
@@ -62,7 +62,7 @@ public interface CitationDate {
      * @departure historic
      *   Renamed for avoiding a conflict with the {@code getDate()} method defined in GeoAPI 3.0.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="date", obligation=MANDATORY, specification=ISO_19115)
     Temporal getReferenceDate();

@@ -27,7 +27,7 @@ import java.time.temporal.Temporal;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 final class EvaluationMethodImpl implements EvaluationMethod {
     /**

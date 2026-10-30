@@ -141,7 +141,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Jody Garnett (Refractions Research)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @see GeneralParameterValue
  */
@@ -196,7 +196,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      *
      * @return indication if the parameter is an input to the service, an output or both.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="SV_Parameter.direction", obligation=MANDATORY, specification=ISO_19115)
     default ParameterDirection getDirection() {
@@ -211,7 +211,7 @@ public interface GeneralParameterDescriptor extends IdentifiedObject {
      * @see #getName()
      * @see #getRemarks()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="SV_Parameter.description", obligation=OPTIONAL, specification=ISO_19115)
     default Optional<InternationalString> getDescription() {

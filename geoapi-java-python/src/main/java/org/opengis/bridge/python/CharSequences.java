@@ -31,7 +31,7 @@ import static java.lang.Character.toChars;
  * (e.g. {@code "CamelCase"}) to another (e.g. {@code "snake_case"}).
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @since   4.0
+ * @since GeoAPI 4.0
  * @version 4.0
  */
 final class CharSequences {

@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  *
  * @see FilterCapabilities#getTemporalCapabilities()
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="TemporalCapabilities", specification=ISO_19143)
 public interface TemporalCapabilities {

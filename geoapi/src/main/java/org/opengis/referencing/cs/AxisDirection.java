@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see CoordinateSystemAxis#getDirection()
  */
@@ -303,7 +303,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * For an observer at the center of the object this will be towards its front, bow or nose.
      *
      * @category Engineering
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="forward", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection FORWARD;
@@ -313,7 +313,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * For an observer at the center of the object this will be towards its back, stern or tail.
      *
      * @category Engineering
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="aft", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection AFT;
@@ -323,7 +323,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * For an observer looking forward from the center of the object this will be towards its left.
      *
      * @category Engineering
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="port", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection PORT;
@@ -333,7 +333,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * For an observer looking forward from the center of the object this will be towards its right.
      *
      * @category Engineering
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="starboard", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection STARBOARD;
@@ -342,7 +342,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is clockwise from a specified direction.
      *
      * @category Engineering
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="clockwise", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection CLOCKWISE;
@@ -351,7 +351,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is counter clockwise from a specified direction.
      *
      * @category Engineering
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="counterClockwise", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection COUNTER_CLOCKWISE;
@@ -360,7 +360,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is towards the object.
      *
      * @category Engineering
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="towards", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection TOWARDS;
@@ -369,7 +369,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is away from the object.
      *
      * @category Engineering
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="awayFrom", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection AWAY_FROM;
@@ -396,7 +396,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      * Axis positive direction is unspecified.
      *
      * @category Other
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="unspecified", obligation=CONDITIONAL, specification=ISO_19111)
     public static final AxisDirection UNSPECIFIED;
@@ -485,7 +485,7 @@ public final class AxisDirection extends CodeList<AxisDirection> {
      *
      * @return direction of negative coordinate values.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public Optional<AxisDirection> opposite() {
         return Optional.ofNullable(opposite);

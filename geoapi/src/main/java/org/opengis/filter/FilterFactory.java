@@ -45,7 +45,7 @@ import org.opengis.filter.capability.FilterCapabilities;
  * @param  <G>  base class of geometry objects. The implementation-neutral type is GeoAPI {@link Geometry}.
  * @param  <T>  base class of temporal objects.
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 public interface FilterFactory<R,G,T> extends Factory {
     /**

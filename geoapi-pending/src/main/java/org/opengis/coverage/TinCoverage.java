@@ -46,7 +46,7 @@ import static org.opengis.annotation.Specification.*;
  * @version ISO 19123:2004
  * @author  Alessio Fabiani
  * @author  Martin Desruisseaux (IRD)
- * @since   GeoAPI 2.1
+ * @since GeoAPI 2.1
  *
  * @todo Add a figure derived from figure 22 in ISO 19123.
  */

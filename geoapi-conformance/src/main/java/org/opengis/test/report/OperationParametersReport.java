@@ -79,7 +79,7 @@ import org.opengis.referencing.operation.MathTransformFactory;
  * @author Martin Desruisseaux (Geomatys)
  * @version 3.1
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 public class OperationParametersReport extends Report {
     /**
@@ -97,7 +97,7 @@ public class OperationParametersReport extends Report {
      *
      * @see OperationParametersReport#createRow(IdentifiedObject, ParameterDescriptorGroup, Set)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected static class Row implements Comparable<Row> {
         /**

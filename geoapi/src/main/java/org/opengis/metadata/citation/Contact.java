@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_Contact", specification=ISO_19115)
@@ -46,7 +46,7 @@ public interface Contact {
      *
      * @return telephone numbers at which the organization or individual may be contacted.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="phone", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Telephone> getPhones() {
@@ -74,7 +74,7 @@ public interface Contact {
      *
      * @return physical and email addresses at which the organization or individual may be contacted.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="address", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Address> getAddresses() {
@@ -102,7 +102,7 @@ public interface Contact {
      *
      * @return on-line information that can be used to contact the individual or organization.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="onlineResource", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends OnlineResource> getOnlineResources() {
@@ -153,7 +153,7 @@ public interface Contact {
      *
      * @return type of the contact, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="contactType", obligation=OPTIONAL, specification=ISO_19115)
     default InternationalString getContactType() {

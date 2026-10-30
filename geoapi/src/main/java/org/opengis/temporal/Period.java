@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Alexander Petkov
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Remi Marechal (Geomatys).
- * @since   3.1
+ * @since GeoAPI 3.1
  * @version 3.1
  */
 @UML(identifier="TM_Period", specification=ISO_19108)

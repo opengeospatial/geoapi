@@ -23,7 +23,7 @@ package org.opengis.referencing.operation;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.operation.CoordinateOperationFactory
  */
@@ -53,7 +53,7 @@ public class NoninvertibleTransformException extends TransformException {
      *
      * @param cause  the cause, saved for later retrieval by the {@link #getCause()} method.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public NoninvertibleTransformException(Throwable cause) {
         super(cause);

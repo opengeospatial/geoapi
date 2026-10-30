@@ -120,6 +120,6 @@
  * of three neighbouring point value pairs.</P></BLOCKQUOTE>
  *
  * @version ISO 19123:2004
- * @since   GeoAPI 2.0
+ * @since GeoAPI 2.0
  */
 package org.opengis.coverage;

@@ -29,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="MD_ContentInformation", specification=ISO_19115)

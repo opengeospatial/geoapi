@@ -30,7 +30,7 @@ import java.util.Optional;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
- * @since   3.1
+ * @since GeoAPI 3.1
  *
  * @departure integration
  *   Provided for allowing developers to handles {@code Enum} and {@code CodeList}
@@ -80,7 +80,7 @@ public interface ControlledVocabulary {
      *
      * @return the ISO/OGC identifier for this constant.
      *
-     * @since 4.0
+     * @since GeoAPI 4.0
      */
     default Optional<String> identifier() {
         return Optional.empty();

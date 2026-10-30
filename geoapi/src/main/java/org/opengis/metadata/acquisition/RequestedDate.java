@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Cédric Briançon (Geomatys)
  * @version 4.0
- * @since   2.3
+ * @since GeoAPI 2.3
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="MI_RequestedDate", specification=ISO_19115_2)

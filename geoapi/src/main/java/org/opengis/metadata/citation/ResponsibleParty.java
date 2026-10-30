@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @deprecated As of ISO 19115:2014, the {@code ResponsibleParty} type has been replaced by {@link Responsibility}
  *             to allow more flexible associations of individuals, organisations, and roles.

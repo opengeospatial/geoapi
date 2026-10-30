@@ -33,7 +33,7 @@ package org.opengis.annotation;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  *
  * @see org.opengis.metadata.Datatype
  * @see <a href="http://en.wikipedia.org/wiki/Stereotype_%28UML%29">Stereotype on Wikipedia</a>

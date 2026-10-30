@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Cédric Briançon (Geomatys)
  * @version 4.0
- * @since   3.0
+ * @since GeoAPI 3.0
  */
 @UML(identifier="MI_PolarisationOrientationCode", specification=ISO_19115_2)
 public final class PolarisationOrientation extends CodeList<PolarisationOrientation> {

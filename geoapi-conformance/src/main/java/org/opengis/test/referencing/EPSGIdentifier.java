@@ -26,7 +26,7 @@ import org.opengis.metadata.Identifier;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
 final strictfp class EPSGIdentifier implements Identifier {

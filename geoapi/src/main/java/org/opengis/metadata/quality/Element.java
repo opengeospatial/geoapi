@@ -54,7 +54,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @author  Alexis Gaillard (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @todo Renamed in 19157:2022: {@code QualityElement}.
  */
@@ -67,7 +67,7 @@ public interface Element {
      *
      * @return clause where this data quality element is described, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      *
      * @todo Renamed in 19157:2022: {@code QualityEvaluationReportDetails}.
      */
@@ -91,7 +91,7 @@ public interface Element {
      *
      * @return a measure of data quality, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default Measure getMeasure() {
         return null;
@@ -116,7 +116,7 @@ public interface Element {
      *
      * @return reference to the measure used, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="measure", obligation=OPTIONAL, specification=ISO_19157)
     default MeasureReference getMeasureReference() {
@@ -171,7 +171,7 @@ public interface Element {
      *
      * @return information about the evaluation method, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="evaluationMethod", obligation=OPTIONAL, specification=ISO_19157)
     default EvaluationMethod getEvaluationMethod() {
@@ -272,7 +272,7 @@ public interface Element {
      *
      * @return original element(s) when there is an aggregation or derivation.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="derivedElement", obligation=OPTIONAL, specification=ISO_19157)
     default Collection<? extends Element> getDerivedElements() {

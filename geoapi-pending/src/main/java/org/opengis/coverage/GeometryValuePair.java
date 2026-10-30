@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * @version ISO 19123:2004
  * @author  Stephane Fellah
  * @author  Martin Desruisseaux (IRD)
- * @since   GeoAPI 2.1
+ * @since GeoAPI 2.1
  *
  * @see Coverage#evaluate(DirectPosition,Collection)
  * @see Coverage#select

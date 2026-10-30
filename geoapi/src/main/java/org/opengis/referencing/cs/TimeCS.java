@@ -49,7 +49,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @see CSAuthorityFactory#createTimeCS(String)
  * @see CSFactory#createTimeCS(Map, CoordinateSystemAxis)
@@ -80,7 +80,7 @@ public interface TimeCS extends CoordinateSystem {
      *
      * @return the type of coordinate values.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="coordinateType", obligation=MANDATORY, specification=ISO_19111)
     CoordinateDataType getCoordinateType();
@@ -110,7 +110,7 @@ public interface TimeCS extends CoordinateSystem {
      * @see ChronoUnit#DAYS
      * @see ChronoUnit#YEARS
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default TemporalUnit getTemporalUnit() {
         return TimeUnit.valueOf(getAxis(0).getUnit().asType(Time.class),

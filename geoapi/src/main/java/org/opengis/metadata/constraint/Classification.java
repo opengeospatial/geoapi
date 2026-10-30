@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_ClassificationCode", specification=ISO_19115)
 public final class Classification extends CodeList<Classification> {
@@ -73,7 +73,7 @@ public final class Classification extends CodeList<Classification> {
     /**
      * Although unclassified, requires strict controls over its distribution.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="sensitiveButUnclassified", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Classification SENSITIVE_BUT_UNCLASSIFIED;
@@ -82,7 +82,7 @@ public final class Classification extends CodeList<Classification> {
      * Unclassified information that is to be used only for official purposes
      * determinate by the designating body.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="forOfficialUseOnly", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Classification FOR_OFFICIAL_USE_ONLY;
@@ -90,7 +90,7 @@ public final class Classification extends CodeList<Classification> {
     /**
      * Compromise of the information could cause damage.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="protected", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Classification PROTECTED;
@@ -98,7 +98,7 @@ public final class Classification extends CodeList<Classification> {
     /**
      * Dissemination limited by designating body.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="limitedDistribution", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Classification LIMITED_DISTRIBUTION;

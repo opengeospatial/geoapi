@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CoordinateSystem
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
@@ -60,7 +60,7 @@ public interface Datum extends IdentifiedObject {
      * @see DatumFactory
      * @see #getAnchorDefinition()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     String ANCHOR_DEFINITION_KEY = "anchorDefinition";
 
@@ -72,7 +72,7 @@ public interface Datum extends IdentifiedObject {
      * @see DatumFactory
      * @see #getAnchorEpoch()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     String ANCHOR_EPOCH_KEY = "anchorEpoch";
 
@@ -84,7 +84,7 @@ public interface Datum extends IdentifiedObject {
      * @see DatumFactory
      * @see #getPublicationDate()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     String PUBLICATION_DATE_KEY = "publicationDate";
 
@@ -96,7 +96,7 @@ public interface Datum extends IdentifiedObject {
      * @see DatumFactory
      * @see #getConventionalRS()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     String CONVENTIONAL_RS_KEY = "conventionalRS";
 
@@ -121,7 +121,7 @@ public interface Datum extends IdentifiedObject {
      *
      * @return a description of the anchor point.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="anchorDefinition", obligation=OPTIONAL, specification=ISO_19111)
     default Optional<InternationalString> getAnchorDefinition() {
@@ -150,7 +150,7 @@ public interface Datum extends IdentifiedObject {
      * @see java.time.YearMonth
      * @see java.time.LocalDate
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="anchorEpoch", obligation=OPTIONAL, specification=ISO_19111)
     default Optional<Temporal> getAnchorEpoch() {
@@ -164,7 +164,7 @@ public interface Datum extends IdentifiedObject {
      *
      * @return date on which the datum definition was published.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="publicationDate", obligation=OPTIONAL, specification=ISO_19111)
     default Optional<Temporal> getPublicationDate() {
@@ -179,7 +179,7 @@ public interface Datum extends IdentifiedObject {
      *
      * @return reference system realized by this reference frame.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="conventionalRS", obligation=OPTIONAL, specification=ISO_19111)
     default Optional<IdentifiedObject> getConventionalRS() {

@@ -38,7 +38,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="LI_Lineage", specification=ISO_19115)
 public interface Lineage {
@@ -58,7 +58,7 @@ public interface Lineage {
      *
      * @return type of resource and / or extent, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19115)
     default Scope getScope() {
@@ -74,7 +74,7 @@ public interface Lineage {
      *
      * @return additional documentation.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="additionalDocumentation", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getAdditionalDocumentation() {

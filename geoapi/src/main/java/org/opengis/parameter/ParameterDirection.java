@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  *
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="SV_ParameterDirection", specification=ISO_19115)
 public enum ParameterDirection implements ControlledVocabulary {
@@ -69,7 +69,7 @@ public enum ParameterDirection implements ControlledVocabulary {
     /**
      * Returns the UML identifier for this enumeration constant.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     public Optional<String> identifier() {

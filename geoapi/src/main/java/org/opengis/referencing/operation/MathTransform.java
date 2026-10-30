@@ -67,7 +67,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see AffineTransform
  * @see MathTransformFactory
@@ -267,7 +267,7 @@ public interface MathTransform {
      * @see #transform(double[], int, double[], int, int)
      * @see CoordinateSet#asDoubleBuffers()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default int transform(final DoubleBuffer srcPts, final DoubleBuffer dstPts) throws TransformException {
         // The source code looks identical in the 4 variants of this method, but the compiled code differs.
@@ -311,7 +311,7 @@ public interface MathTransform {
      * @see #transform(float[], int, float[], int, int)
      * @see CoordinateSet#asFloatBuffers()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default int transform(final FloatBuffer srcPts, final FloatBuffer dstPts) throws TransformException {
         // The source code looks identical in the 4 variants of this method, but the compiled code differs.
@@ -355,7 +355,7 @@ public interface MathTransform {
      * @see #transform(float[], int, double[], int, int)
      * @see CoordinateSet#asFloatBuffers()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default int transform(final FloatBuffer srcPts, final DoubleBuffer dstPts) throws TransformException {
         // The source code looks identical in the 4 variants of this method, but the compiled code differs.
@@ -399,7 +399,7 @@ public interface MathTransform {
      * @see #transform(double[], int, float[], int, int)
      * @see CoordinateSet#asDoubleBuffers()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default int transform(final DoubleBuffer srcPts, final FloatBuffer dstPts) throws TransformException {
         // The source code looks identical in the 4 variants of this method, but the compiled code differs.
@@ -558,7 +558,7 @@ public interface MathTransform {
      *
      * @author  Martin Desruisseaux (Geomatys)
      * @version 3.1
-     * @since   3.1
+     * @since GeoAPI 3.1
      *
      * @see MathTransformFactory#builder(String)
      */

@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="LI_ProcessStep", specification=ISO_19115)
 public interface ProcessStep {
@@ -80,7 +80,7 @@ public interface ProcessStep {
      *
      * @return date on or over which the process step occurred, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="stepDateTime", obligation=OPTIONAL, specification=ISO_19115)
     default TemporalPrimitive getStepDateTime() {
@@ -104,7 +104,7 @@ public interface ProcessStep {
      *
      * @return process step documentation.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="reference", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getReferences() {
@@ -116,7 +116,7 @@ public interface ProcessStep {
      *
      * @return type of resource and / or extent to which the process step applies, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19115)
     default Scope getScope() {

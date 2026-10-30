@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  *
  * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to sort.
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="SortBy", specification=ISO_19143)
 public interface SortBy<R> extends Comparator<R> {

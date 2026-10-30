@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_MaintenanceFrequencyCode", specification=ISO_19115)
 public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
@@ -115,7 +115,7 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
     /**
      * Resource is updated at regular intervals.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="periodic", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency PERIODIC;
@@ -123,7 +123,7 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
     /**
      * Resource updated twice a monthly.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="semimonthly", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency SEMIMONTHLY;
@@ -131,7 +131,7 @@ public final class MaintenanceFrequency extends CodeList<MaintenanceFrequency> {
     /**
      * Resource is updated every 2 years.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="biennially", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MaintenanceFrequency BIENNIALLY;

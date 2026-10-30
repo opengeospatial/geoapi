@@ -78,7 +78,7 @@ import static org.opengis.test.referencing.ReferencingValidator.getRemarks;
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  *
  * @see <a href="http://docs.opengeospatial.org/is/12-063r5/12-063r5.html">WKT 2 specification</a>
  */

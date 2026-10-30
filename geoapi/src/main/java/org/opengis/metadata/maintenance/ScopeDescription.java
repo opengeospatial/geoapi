@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @Classifier(Stereotype.UNION)
 @UML(identifier="MD_ScopeDescription", specification=ISO_19115)

@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Jody Garnett (Refractions Research)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see ParameterDescriptorGroup
  * @see ParameterValue

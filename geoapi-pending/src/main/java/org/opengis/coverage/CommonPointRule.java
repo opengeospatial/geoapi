@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
  * @version ISO 19123:2004
  * @author  Martin Desruisseaux (IRD)
  * @author  Stephane Fellah
- * @since   GeoAPI 2.1
+ * @since GeoAPI 2.1
  *
  * @see Coverage#getCommonPointRule
  */

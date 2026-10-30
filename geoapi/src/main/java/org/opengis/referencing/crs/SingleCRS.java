@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @see CoordinateSystem
  * @see Datum
@@ -100,7 +100,7 @@ public interface SingleCRS extends CoordinateReferenceSystem {
      *         to an object identified only by a single {@linkplain #getDatum() datum}.
      *
      * @condition Mandatory if the {@linkplain #getDatum() datum} is not documented.
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="datumEnsemble", obligation=CONDITIONAL, specification=ISO_19111)
     default DatumEnsemble<?> getDatumEnsemble() {

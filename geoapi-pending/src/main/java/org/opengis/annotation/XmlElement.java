@@ -37,7 +37,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  * The reason is that GeoAPI tries to publish interfaces based on UML instead of XSD schemas.</p>
  *
  * @author  Martin Desruisseaux (IRD)
- * @since   GeoAPI 2.0
+ * @since GeoAPI 2.0
  */
 @Documented
 @Target({TYPE,METHOD,FIELD})

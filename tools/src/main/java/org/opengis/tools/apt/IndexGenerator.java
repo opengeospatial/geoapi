@@ -56,7 +56,7 @@ import javax.annotation.processing.SupportedOptions;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @SupportedSourceVersion(SourceVersion.RELEASE_11)
 @SupportedAnnotationTypes(UmlProcessor.UML_CLASSNAME)

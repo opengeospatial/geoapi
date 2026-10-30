@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @see Scope
  */
@@ -199,7 +199,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     /**
      * Information applies to metadata.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="metadata", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode METADATA;
@@ -207,7 +207,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     /**
      * Information applies to an initiative.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="initiative", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode INITIATIVE;
@@ -215,7 +215,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     /**
      * Information applies to a sample.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="sample", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode SAMPLE;
@@ -223,7 +223,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     /**
      * Information applies to a document.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="document", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode DOCUMENT;
@@ -231,7 +231,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     /**
      * Information applies to a repository.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="repository", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode REPOSITORY;
@@ -239,7 +239,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     /**
      * Information applies to an aggregate resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="aggregate", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode AGGREGATE;
@@ -247,7 +247,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     /**
      * Metadata describing an ISO 19131 data product specification.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="product", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode PRODUCT;
@@ -255,7 +255,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     /**
      * Information applies to an unstructured set.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="collection", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode COLLECTION;
@@ -263,7 +263,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     /**
      * Information applies to a coverage.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="coverage", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode COVERAGE;
@@ -271,7 +271,7 @@ public final class ScopeCode extends CodeList<ScopeCode> {
     /**
      * Information resource hosted on a specific set of hardware and accessible over network.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="application", obligation=CONDITIONAL, specification=ISO_19115)
     public static final ScopeCode APPLICATION;

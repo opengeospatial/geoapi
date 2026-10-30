@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  *
  * @departure harmonization
  *   ISO 19111 defines two distinct interfaces, {@code DynamicGeodeticReferenceFrame} and {@code DynamicVerticalReferenceFrame}.

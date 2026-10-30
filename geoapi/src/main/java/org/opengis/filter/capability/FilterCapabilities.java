@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @author  Markus Schneider (lat/lon)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="FilterCapabilities", specification=ISO_19143)
 public interface FilterCapabilities {

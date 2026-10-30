@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see DatumAuthorityFactory#createPrimeMeridian(String)
  * @see DatumFactory#createPrimeMeridian(Map, double, Unit)

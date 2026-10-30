@@ -35,7 +35,7 @@ import java.lang.reflect.Type;
  * @author  Jesse Crossley (SYS Technologies)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 public interface NameFactory extends Factory {
     /**
@@ -109,7 +109,7 @@ public interface NameFactory extends Factory {
      *
      * @see TypeName#toJavaType()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     TypeName createTypeName(NameSpace scope, CharSequence name, Type javaType);
 
@@ -122,7 +122,7 @@ public interface NameFactory extends Factory {
      * @param  attributeType  the type of the data associated with the record member.
      * @return the member name for the given scope, character sequence and type name.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     MemberName createMemberName(NameSpace scope, CharSequence name, TypeName attributeType);
 

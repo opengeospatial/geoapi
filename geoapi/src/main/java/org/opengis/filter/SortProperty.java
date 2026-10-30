@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  *
  * @see SortBy#getSortProperties()
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="SortProperty", specification=ISO_19143)
 public interface SortProperty<R> extends Comparator<R> {

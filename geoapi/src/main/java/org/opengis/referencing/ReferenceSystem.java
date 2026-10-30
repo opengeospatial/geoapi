@@ -63,7 +63,7 @@ import static org.opengis.annotation.Obligation.OPTIONAL;
  * @author  ISO 19115 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  */
@@ -76,7 +76,7 @@ public interface ReferenceSystem extends IdentifiedObject {
      * It may also depend on the type and number of dimensions of the associated coordinate system.
      *
      * @return the type of this reference system.
-     * @since 3.1
+     * @since GeoAPI 3.1
      *
      * @see ReferenceSystemType#isInstance(ReferenceSystem)
      */

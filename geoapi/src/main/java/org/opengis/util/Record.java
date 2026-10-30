@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
- * @since   2.1
+ * @since GeoAPI 2.1
  *
  * @see RecordType
  */
@@ -77,7 +77,7 @@ public interface Record {
      *
      * @see RecordType#getFieldTypes()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="field", obligation=MANDATORY, specification=ISO_19103)
     Map<MemberName, Object> getFields();

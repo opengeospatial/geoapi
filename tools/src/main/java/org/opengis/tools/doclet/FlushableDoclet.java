@@ -38,7 +38,7 @@ import jdk.javadoc.doclet.StandardDoclet;
  * the {@code FlushableDoclet} instance only using objects from the standard Java library.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @since   3.1
+ * @since GeoAPI 3.1
  * @version 3.1
  */
 public final class FlushableDoclet extends StandardDoclet implements Consumer<Flushable> {

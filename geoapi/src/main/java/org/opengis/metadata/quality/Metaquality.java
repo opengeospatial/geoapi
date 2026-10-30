@@ -41,7 +41,7 @@ import static org.opengis.annotation.Obligation.*;
  * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="DQ_Metaquality", specification=ISO_19157)

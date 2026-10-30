@@ -81,7 +81,7 @@ import static org.opengis.test.Assertions.assertAxisDirectionsEqual;
  * @author  Cédric Briançon (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.3
+ * @since GeoAPI 2.3
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
@@ -96,7 +96,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * @see RegisterOperations#getFactory(Class)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected final RegisterOperations factories;
 
@@ -105,7 +105,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * Every test methods in this class will set this field to a non-null value.
      * Implementers can use this value for their own assertions after any test has been run.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected IdentifiedObject object;
 
@@ -116,7 +116,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <p><b>Default value:</b> {@code true}, since the majority of {@link GeographicCRS}
      * defined in the EPSG database uses the (φλ) axis order.</p>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected boolean swapλφ = true;
 
@@ -127,7 +127,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * <p><b>Default value:</b> {@code false}, since the majority of {@link ProjectedCRS} defined
      * in the EPSG database uses the (<var>x</var>,<var>y</var>) axis order.</p>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected boolean swapxy;
 
@@ -138,7 +138,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <p><b>Default value:</b> {@code false}.</p>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     private boolean flipxy;
 
@@ -149,7 +149,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <p><b>Default value:</b> {@code false}.</p>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     private boolean isPolar;
 
@@ -158,7 +158,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <p><b>Default value:</b> {@code 0.0}.</p>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected double primeMeridian;
 
@@ -169,7 +169,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <p><b>Default value:</b> {@code 1.0}.</p>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected double toAngularUnit = 1.0;
 
@@ -180,7 +180,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * <p><b>Default value:</b> {@code 1.0}.</p>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected double toLinearUnit = 1.0;
 
@@ -191,7 +191,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      * (<var>y</var>,<var>x</var>) axis order or <i>South Oriented</i> CRS will rather use the
      * (<var>x</var>,<var>y</var>) axis order and <i>North Oriented</i> CRS in their test.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected boolean isAxisSwappingSupported;
 
@@ -214,7 +214,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * @param  factories   provider of factories for creating the geodetic objects to test.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @SuppressWarnings("this-escape")
     public AuthorityFactoryTest(final RegisterOperations factories) {
@@ -245,7 +245,7 @@ public strictfp class AuthorityFactoryTest extends ReferencingTestCase {
      *
      * @return the configuration of the test being run, or an empty map if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     public Configuration configuration() {

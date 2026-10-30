@@ -32,7 +32,7 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
  * @author  Stephane Fellah (Image Matters)
  * @author  Alexander Petkov
  * @author  Martin Desruisseaux (IRD, Geomatys)
- * @since   3.1
+ * @since GeoAPI 3.1
  * @version 3.1
  */
 @UML(identifier="TM_IndeterminateValue", specification=ISO_19108)

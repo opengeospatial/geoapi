@@ -33,7 +33,7 @@ import java.awt.image.WritableRaster;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
 final strictfp class RasterImage implements RenderedImage {

@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Alexis Gaillard (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="DQ_DataQuality", specification=ISO_19157)
 public interface DataQuality {
@@ -92,7 +92,7 @@ public interface DataQuality {
      *
      * @return reference to an external standalone quality report, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      *
      * @todo Renamed in 19157:2022: {@code QualityEvaluationReport}.
      */

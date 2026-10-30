@@ -33,7 +33,7 @@ import org.opengis.metadata.Identifier;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.operation.MathTransformFactory#builder(String)
  */
@@ -66,7 +66,7 @@ public class NoSuchIdentifierException extends FactoryException {
      * @param identifier  the {@linkplain Identifier#getCode() identifier code} which was not found.
      * @param cause       the cause, saved for later retrieval by the {@link #getCause()} method.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public NoSuchIdentifierException(final String message, final String identifier, final Throwable cause) {
         super(message, cause);

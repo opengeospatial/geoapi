@@ -62,7 +62,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 4.0
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="IdentifiedObject", specification=ISO_19111)
@@ -105,7 +105,7 @@ public interface IdentifiedObject {
      * @see ObjectFactory
      * @see #getDomains()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     String DOMAINS_KEY = "domains";
 
@@ -174,7 +174,7 @@ public interface IdentifiedObject {
      *         Omitting the {@code ObjectUsage} subtype avoids this semantic oddity.</li>
      *   </ul>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="ObjectUsage.domain", obligation=OPTIONAL, specification=ISO_19111)
     default Collection<ObjectDomain> getDomains() {

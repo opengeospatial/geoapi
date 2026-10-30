@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @see Filter#test(Object)
  * @see Expression#apply(Object)
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="InvalidParameterValue", specification=ISO_19143)
 public class InvalidFilterValueException extends IllegalArgumentException {

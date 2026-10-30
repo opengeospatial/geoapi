@@ -66,7 +66,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Metadata", specification=ISO_19115)
 public interface Metadata {
@@ -154,7 +154,7 @@ public interface Metadata {
      * @see org.opengis.metadata.identification.DataIdentification#getLocalesAndCharsets()
      * @see org.opengis.metadata.content.FeatureCatalogueDescription#getLocalesAndCharsets()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     // Obligation note: `defaultLocale` is conditional and `otherLocale` is optional.
     @UML(identifier="defaultLocale+otherLocale", obligation=CONDITIONAL, specification=ISO_19115)
@@ -225,7 +225,7 @@ public interface Metadata {
      *
      * @return identification of the parent metadata record, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="parentMetadata", obligation=CONDITIONAL, specification=ISO_19115)
     default Citation getParentMetadata() {
@@ -267,7 +267,7 @@ public interface Metadata {
      *
      * @return scope or type of resource for which metadata is provided.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="metadataScope", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends MetadataScope> getMetadataScopes();
@@ -336,7 +336,7 @@ public interface Metadata {
      *
      * @see Citation#getDates()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="dateInfo", obligation=MANDATORY, specification=ISO_19115)
     Collection<? extends CitationDate> getDateInfo();
@@ -398,7 +398,7 @@ public interface Metadata {
      *
      * @see #getMetadataProfiles()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="metadataStandard", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getMetadataStandards() {
@@ -414,7 +414,7 @@ public interface Metadata {
      * @see #getMetadataStandards()
      * @see #getMetadataExtensionInfo()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="metadataProfile", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getMetadataProfiles() {
@@ -426,7 +426,7 @@ public interface Metadata {
      *
      * @return reference(s) to alternative metadata (e.g. Dublin core, FGDC).
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="alternativeMetadataReference", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getAlternativeMetadataReferences() {
@@ -438,7 +438,7 @@ public interface Metadata {
      *
      * @return online location(s) where the metadata is available.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="metadataLinkage", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends OnlineResource> getMetadataLinkages() {
@@ -600,7 +600,7 @@ public interface Metadata {
      *
      * @return the provenance, sources and/or the production processes.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="resourceLineage", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Lineage> getResourceLineages() {

@@ -28,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_ObligationCode", specification=ISO_19115)
 public enum Obligation implements ControlledVocabulary {
@@ -89,7 +89,7 @@ public enum Obligation implements ControlledVocabulary {
     /**
      * Returns the UML identifier for this enumeration constant.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     public Optional<String> identifier() {
@@ -104,7 +104,7 @@ public enum Obligation implements ControlledVocabulary {
      *
      * @return all {@linkplain #values() values} for this enumeration.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     public Obligation[] family() {

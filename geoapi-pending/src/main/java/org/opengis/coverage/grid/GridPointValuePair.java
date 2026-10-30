@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * @version ISO 19123:2004
  * @author  Wim Koolhoven
  * @author  Martin Desruisseaux (IRD)
- * @since   GeoAPI 2.1
+ * @since GeoAPI 2.1
  */
 @UML(identifier="CV_GridPointValuePair", specification=ISO_19123)
 public interface GridPointValuePair extends GeometryValuePair {

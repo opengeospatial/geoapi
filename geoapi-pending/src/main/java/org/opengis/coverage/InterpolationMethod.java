@@ -51,7 +51,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version ISO 19123:2004
  * @author  Martin Desruisseaux (IRD)
- * @since   GeoAPI 2.1
+ * @since GeoAPI 2.1
  */
 @UML(identifier="CV_InterpolationMethod", specification=ISO_19123)
 public class InterpolationMethod extends CodeList<InterpolationMethod> {

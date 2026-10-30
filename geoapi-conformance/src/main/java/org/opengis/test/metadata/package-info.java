@@ -23,6 +23,6 @@
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 package org.opengis.test.metadata;

@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see org.opengis.referencing.operation.CoordinateOperation#transform(CoordinateSet)
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="CoordinateSet", specification=ISO_19111)
 public interface CoordinateSet extends Iterable<DirectPosition> {

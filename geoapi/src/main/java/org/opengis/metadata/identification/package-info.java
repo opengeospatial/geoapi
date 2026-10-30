@@ -98,6 +98,6 @@
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @author  Rémi Maréchal (Geomatys)
  * @version 4.0
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 package org.opengis.metadata.identification;

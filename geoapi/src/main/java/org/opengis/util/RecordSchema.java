@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   2.1
+ * @since GeoAPI 2.1
  *
  * @deprecated The {@code RecordSchema} interface has been removed in the 2015 revision of ISO 19103 standard.
  */

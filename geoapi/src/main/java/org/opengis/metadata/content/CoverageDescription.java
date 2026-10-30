@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_CoverageDescription", specification=ISO_19115)
 public interface CoverageDescription extends ContentInformation {
@@ -54,7 +54,7 @@ public interface CoverageDescription extends ContentInformation {
      *
      * @return identifier for the level of processing that has been applied to the resource, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      *
      * @see org.opengis.metadata.identification.Identification#getProcessingLevel()
      */
@@ -68,7 +68,7 @@ public interface CoverageDescription extends ContentInformation {
      *
      * @return information on attribute groups of the resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="attributeGroup", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends AttributeGroup> getAttributeGroups() {

@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.1
+ * @since GeoAPI 2.1
  *
  * @see CoordinateSystemAxis#getMinimumValue()
  * @see CoordinateSystemAxis#getMaximumValue()

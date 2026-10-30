@@ -42,7 +42,7 @@ import static org.opengis.annotation.Obligation.MANDATORY;
  *
  * @param <D> the type of datum members contained in this ensemble.
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="DatumEnsemble", specification=ISO_19111)
 public interface DatumEnsemble<D extends Datum> extends IdentifiedObject {

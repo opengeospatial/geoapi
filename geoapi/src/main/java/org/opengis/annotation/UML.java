@@ -29,7 +29,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @Documented
 @Retention(RUNTIME)
@@ -82,7 +82,7 @@ public @interface UML {
      *
      * @see Specification#defaultVersion()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     short version() default 0;
 }

@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see Contact#getPhones()
  */
@@ -46,7 +46,7 @@ public interface Telephone {
      *
      * @return telephone number by which individuals can contact responsible organisation or individual.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="number", obligation=MANDATORY, specification=ISO_19115)
     String getNumber();
@@ -56,7 +56,7 @@ public interface Telephone {
      *
      * @return type of telephone number, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="numberType", obligation=OPTIONAL, specification=ISO_19115)
     default TelephoneType getNumberType() {

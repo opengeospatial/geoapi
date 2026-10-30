@@ -75,7 +75,7 @@ import org.opengis.referencing.crs.CRSAuthorityFactory;
  * @author Martin Desruisseaux (Geomatys)
  * @version 3.1
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 public class AuthorityCodesReport extends Report {
     /**
@@ -103,7 +103,7 @@ public class AuthorityCodesReport extends Report {
      * @see AuthorityCodesReport#createRow(String, IdentifiedObject)
      * @see AuthorityCodesReport#createRow(String, FactoryException)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected static class Row implements Comparable<Row> {
         /**

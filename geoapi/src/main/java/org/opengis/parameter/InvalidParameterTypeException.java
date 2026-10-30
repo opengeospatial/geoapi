@@ -39,7 +39,7 @@ package org.opengis.parameter;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see InvalidParameterValueException
  */
@@ -72,7 +72,7 @@ public class InvalidParameterTypeException extends IllegalStateException {
      * @param cause          the cause, saved for later retrieval by the {@link #getCause()} method.
      * @param parameterName  the parameter name.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public InvalidParameterTypeException(String message, Throwable cause, String parameterName) {
         super(message, cause);

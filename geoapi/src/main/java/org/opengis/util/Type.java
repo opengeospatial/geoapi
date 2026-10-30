@@ -38,7 +38,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
- * @since   2.3
+ * @since GeoAPI 2.3
  */
 @UML(identifier="Type", specification=ISO_19103, version=2005)
 public interface Type {
@@ -60,7 +60,7 @@ public interface Type {
      *
      * @return the Java type (usually a {@link Class}) for this OGC/ISO type.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default Optional<java.lang.reflect.Type> toJavaType() {
         final TypeName name = getTypeName();

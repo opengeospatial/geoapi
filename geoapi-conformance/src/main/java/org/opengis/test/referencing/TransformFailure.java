@@ -27,7 +27,7 @@ import org.opengis.referencing.operation.MathTransform;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 public class TransformFailure extends ComputationFailure {
     /**

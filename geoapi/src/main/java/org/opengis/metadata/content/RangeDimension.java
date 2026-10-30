@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @see AttributeGroup#getAttributes()
  */
@@ -56,7 +56,7 @@ public interface RangeDimension {
      *
      * @return description of the attribute, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
     default InternationalString getDescription() {
@@ -82,7 +82,7 @@ public interface RangeDimension {
      *
      * @return identifiers for each attribute included in the resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Identifier> getNames() {

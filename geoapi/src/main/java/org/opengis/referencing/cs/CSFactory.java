@@ -48,7 +48,7 @@ import org.opengis.util.UnimplementedServiceException;
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.CRSFactory
  * @see org.opengis.referencing.datum.DatumFactory
@@ -193,7 +193,7 @@ public interface CSFactory extends ObjectFactory {
      * @return the coordinate system for the given properties and axes.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default SphericalCS createSphericalCS(Map<String,?>  properties,
                                           CoordinateSystemAxis axis0,
@@ -297,7 +297,7 @@ public interface CSFactory extends ObjectFactory {
      * @return the coordinate system for the given properties and axes.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default ParametricCS createParametricCS(Map<String,?> properties,
                                             CoordinateSystemAxis axis) throws FactoryException

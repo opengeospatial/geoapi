@@ -51,7 +51,7 @@
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
- * @since   4.0
+ * @since GeoAPI 4.0
  *
  * @see <a href="http://jpy.readthedocs.io/en/latest/_static/java-apidocs/index.html">JPY Javadoc</a>
  */

@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @author  Rémi Maréchal (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="SV_CoupledResource", specification=ISO_19115)
 public interface CoupledResource {

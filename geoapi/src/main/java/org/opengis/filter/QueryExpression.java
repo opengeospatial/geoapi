@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @author  Johann Sorel (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="QueryExpression", specification=ISO_19143)

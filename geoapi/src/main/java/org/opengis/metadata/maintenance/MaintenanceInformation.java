@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_MaintenanceInformation", specification=ISO_19115)
 public interface MaintenanceInformation {
@@ -61,7 +61,7 @@ public interface MaintenanceInformation {
      *
      * @return date information associated with maintenance of resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="maintenanceDate", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends CitationDate> getMaintenanceDates() {
@@ -105,7 +105,7 @@ public interface MaintenanceInformation {
      *
      * @return type of resource and / or extent to which the maintenance information applies, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="maintenanceScope", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Scope> getMaintenanceScopes() {

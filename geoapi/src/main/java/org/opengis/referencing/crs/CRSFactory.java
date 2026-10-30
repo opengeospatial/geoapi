@@ -61,7 +61,7 @@ import static org.opengis.geoapi.internal.Errors.cannotParse;
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CSFactory
  * @see org.opengis.referencing.datum.DatumFactory
@@ -107,7 +107,7 @@ public interface CRSFactory extends ObjectFactory {
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default GeographicCRS createGeographicCRS(Map<String,?> properties,
                                               GeodeticDatum datum,
@@ -132,7 +132,7 @@ public interface CRSFactory extends ObjectFactory {
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default GeodeticCRS createGeodeticCRS(Map<String,?> properties,
                                           GeodeticDatum datum,
@@ -157,7 +157,7 @@ public interface CRSFactory extends ObjectFactory {
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default GeodeticCRS createGeodeticCRS(Map<String,?> properties,
                                           GeodeticDatum datum,
@@ -203,7 +203,7 @@ public interface CRSFactory extends ObjectFactory {
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default VerticalCRS createVerticalCRS(Map<String,?> properties,
                                           VerticalDatum datum,
@@ -248,7 +248,7 @@ public interface CRSFactory extends ObjectFactory {
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default TemporalCRS createTemporalCRS(Map<String,?> properties,
                                           TemporalDatum datum,
@@ -271,7 +271,7 @@ public interface CRSFactory extends ObjectFactory {
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default ParametricCRS createParametricCRS(Map<String,?> properties,
                                               ParametricDatum datum,
@@ -295,7 +295,7 @@ public interface CRSFactory extends ObjectFactory {
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default ParametricCRS createParametricCRS(Map<String,?> properties,
                                               ParametricDatum datum,
@@ -341,7 +341,7 @@ public interface CRSFactory extends ObjectFactory {
      * @return the coordinate reference system for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="createLocalCoordinateSystem", specification=OGC_01009)
     default EngineeringCRS createEngineeringCRS(Map<String,?> properties,

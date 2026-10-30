@@ -29,7 +29,7 @@ import javax.imageio.IIOParam;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
 final strictfp class PixelIteratorForIO extends PixelIterator {

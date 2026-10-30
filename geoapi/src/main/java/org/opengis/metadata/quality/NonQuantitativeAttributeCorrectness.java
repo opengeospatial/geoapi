@@ -73,7 +73,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see QuantitativeAttributeAccuracy
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="DQ_NonQuantitativeAttributeCorrectness", specification=ISO_19157)
 public interface NonQuantitativeAttributeCorrectness extends ThematicAccuracy {

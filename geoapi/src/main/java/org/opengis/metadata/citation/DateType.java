@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="CI_DateTypeCode", specification=ISO_19115)
 public final class DateType extends CodeList<DateType> {
@@ -61,7 +61,7 @@ public final class DateType extends CodeList<DateType> {
     /**
      * Date identifies when resource expires.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="expiry", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType EXPIRY;
@@ -69,7 +69,7 @@ public final class DateType extends CodeList<DateType> {
     /**
      * Date identifies when resource was last updated.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="lastUpdate", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType LAST_UPDATE;
@@ -77,7 +77,7 @@ public final class DateType extends CodeList<DateType> {
     /**
      * Date identifies when the resource was examined or re-examined and improved or amended.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="lastRevision", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType LAST_REVISION;
@@ -85,7 +85,7 @@ public final class DateType extends CodeList<DateType> {
     /**
      * Date identifies when the resource will be next updated.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="nextUpdate", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType NEXT_UPDATE;
@@ -93,7 +93,7 @@ public final class DateType extends CodeList<DateType> {
     /**
      * Date identifies when resource became not available or obtainable.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="unavailable", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType UNAVAILABLE;
@@ -101,7 +101,7 @@ public final class DateType extends CodeList<DateType> {
     /**
      * Date identifies when resource became in force.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="inForce", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType IN_FORCE;
@@ -109,7 +109,7 @@ public final class DateType extends CodeList<DateType> {
     /**
      * Date identifies when the resource was adopted.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="adopted", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType ADOPTED;
@@ -117,7 +117,7 @@ public final class DateType extends CodeList<DateType> {
     /**
      * Date identifies when the resource was deprecated.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="deprecated", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType DEPRECATED;
@@ -125,7 +125,7 @@ public final class DateType extends CodeList<DateType> {
     /**
      * Date identifies when resource was superseded or replaced by another resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="superseded", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType SUPERSEDED;
@@ -136,7 +136,7 @@ public final class DateType extends CodeList<DateType> {
      * <div class="note"><b>Note:</b>
      * there could be quite a delay between creation and validity begins.</div>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="validityBegins", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType VALIDITY_BEGINS;
@@ -144,7 +144,7 @@ public final class DateType extends CodeList<DateType> {
     /**
      * Time at which the data are no longer considered to be valid.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="validityExpires", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType VALIDITY_EXPIRES;
@@ -152,7 +152,7 @@ public final class DateType extends CodeList<DateType> {
     /**
      * The date that the resource shall be released for public access.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="released", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType RELEASED;
@@ -160,7 +160,7 @@ public final class DateType extends CodeList<DateType> {
     /**
      * Date identifies when an instance of the resource was distributed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="distribution", obligation=CONDITIONAL, specification=ISO_19115)
     public static final DateType DISTRIBUTION;

@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Keywords", specification=ISO_19115)
 public interface Keywords {
@@ -83,7 +83,7 @@ public interface Keywords {
      *
      * @return user-defined categorization of groups of keywords, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="keywordClass", obligation=OPTIONAL, specification=ISO_19115)
     default KeywordClass getKeywordClass() {

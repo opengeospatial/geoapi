@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Axel Francois (LSIS/Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 @UML(identifier="GM_GenericCurve", specification=ISO_19107)
 public interface GenericCurve {

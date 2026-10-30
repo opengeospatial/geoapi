@@ -35,7 +35,7 @@ import static org.opengis.test.Assertions.assertBetween;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 public class ExtentValidator extends MetadataValidator {
     /**

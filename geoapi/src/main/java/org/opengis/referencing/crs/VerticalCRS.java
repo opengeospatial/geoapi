@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see CRSAuthorityFactory#createVerticalCRS(String)
  * @see CRSFactory#createVerticalCRS(Map, VerticalDatum, DatumEnsemble, VerticalCS)
@@ -84,7 +84,7 @@ public interface VerticalCRS extends SingleCRS {
      *         to an object identified only by a single {@linkplain #getDatum() datum}.
      *
      * @condition Mandatory if the {@linkplain #getDatum() datum} is not documented.
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     @UML(identifier="datumEnsemble", obligation=CONDITIONAL, specification=ISO_19111)

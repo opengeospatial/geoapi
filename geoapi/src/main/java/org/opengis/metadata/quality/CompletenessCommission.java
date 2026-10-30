@@ -81,7 +81,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see CompletenessOmission
  *
- * @since 2.0
+ * @since GeoAPI 2.0
  *
  * @todo Renamed in 19157:2022: {@code Commission}.
  */

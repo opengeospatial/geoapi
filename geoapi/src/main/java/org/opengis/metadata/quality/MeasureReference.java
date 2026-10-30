@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
  * @see Element#getMeasureReference()
  * @see Measure
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="DQ_MeasureReference", specification=ISO_19157)
 public interface MeasureReference {

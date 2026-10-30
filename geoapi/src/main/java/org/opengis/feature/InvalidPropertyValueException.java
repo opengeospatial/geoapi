@@ -55,7 +55,7 @@ import java.util.Collection;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 public class InvalidPropertyValueException extends IllegalArgumentException {
     /**

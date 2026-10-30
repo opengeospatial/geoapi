@@ -54,7 +54,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  *
  * @see ReferenceSystem#getReferenceSystemType()
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="MD_ReferenceSystemTypeCode", specification=ISO_19115)
 public final class ReferenceSystemType extends CodeList<ReferenceSystemType> {

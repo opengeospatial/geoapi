@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Band", specification=ISO_19115)
 public interface Band extends SampleDimension {
@@ -43,7 +43,7 @@ public interface Band extends SampleDimension {
      * @return shortest wavelength that the sensor is capable of collecting within a designated band,
      *         or {@code null} if unspecified.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="boundMin", obligation=OPTIONAL, specification=ISO_19115)
     default Double getBoundMin() {
@@ -56,7 +56,7 @@ public interface Band extends SampleDimension {
      * @return longest wavelength that the sensor is capable of collecting within a designated band,
      *         or {@code null} if unspecified.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="boundMax", obligation=OPTIONAL, specification=ISO_19115)
     default Double getBoundMax() {
@@ -68,7 +68,7 @@ public interface Band extends SampleDimension {
      *
      * @return units in which sensor wavelengths are expressed, or {@code null} if unspecified.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="boundUnits", obligation=OPTIONAL, specification=ISO_19115)
     default Unit<Length> getBoundUnits() {

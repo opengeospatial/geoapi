@@ -32,7 +32,7 @@ package org.opengis.referencing.operation;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 public interface MathTransform1D extends MathTransform {
     /**

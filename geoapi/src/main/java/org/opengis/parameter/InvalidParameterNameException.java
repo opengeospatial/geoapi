@@ -27,7 +27,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see ParameterNotFoundException
  */
@@ -61,7 +61,7 @@ public class InvalidParameterNameException extends IllegalArgumentException {
      * @param cause          the cause, saved for later retrieval by the {@link #getCause()} method.
      * @param parameterName  the invalid parameter name.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public InvalidParameterNameException(String message, Throwable cause, String parameterName) {
         super(message, cause);

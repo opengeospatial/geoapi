@@ -52,7 +52,7 @@ import static org.junit.jupiter.api.Assertions.*;
  * @author  Rémi Marechal (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class PixelIterator {

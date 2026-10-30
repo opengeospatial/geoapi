@@ -40,7 +40,7 @@ package org.opengis.annotation;
  * @author  Cédric Briançon (Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @see UML#specification()
  */
@@ -59,7 +59,7 @@ public enum Specification {
      *
      * @see <a href="https://www.iso.org/standard/83990.html">ISO 12113:2022 on standards catalogue</a>
      * @see <a href="https://registry.khronos.org/glTF/specs/2.0/glTF-2.0.html">Khronos GLTF-2.0 on Khronos registry</a>
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     ISO_12113((short) 2022),
 
@@ -76,7 +76,7 @@ public enum Specification {
      *
      * @see <a href="https://www.iso.org/standard/78834.html">ISO 17506:2022 on standards catalogue</a>
      * @see <a href="https://www.khronos.org/collada/">Khronos COLLADA™ on Khronos registry</a>
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     ISO_17506((short) 2022),
 
@@ -138,7 +138,7 @@ public enum Specification {
      *
      * @see <a href="https://www.iso.org/standard/59193.html">ISO 19109:2015 on standards catalogue</a>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     ISO_19109((short) 2013),
 
@@ -174,7 +174,7 @@ public enum Specification {
      * @see <a href="https://www.iso.org/standard/26017.html">ISO 19112:2003 on standards catalogue</a>
      * @see <a href="https://portal.opengeospatial.org/files/?artifact_id=46964">OGC 11-122r1 Gazetteer Service — Profile of the Web Feature Service</a>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     ISO_19112((short) 2003),
 
@@ -229,7 +229,7 @@ public enum Specification {
      *
      * @see <a href="https://www.iso.org/standard/32579.html">ISO/TS 19115-3:2016 on standards catalogue</a>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     ISO_19115_3((short) 2016),
 
@@ -312,7 +312,7 @@ public enum Specification {
      * @see <a href="https://www.iso.org/standard/42137.html">ISO 19143:2010 on standards catalogue</a>
      * @see <a href="http://docs.opengeospatial.org/is/09-026r2/09-026r2.html">OGC 09-026 on OGC Public Document Repository</a>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     ISO_19143((short) 2010),
 
@@ -328,7 +328,7 @@ public enum Specification {
      *
      * @see <a href="https://www.iso.org/standard/32575.html">ISO/TS 19157:2013 on standards catalogue</a>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     ISO_19157((short) 2013),
 
@@ -348,7 +348,7 @@ public enum Specification {
      *
      * @see <a href="https://www.iso.org/standard/63094.html">ISO 19162:2015 on standards catalogue</a>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     ISO_19162((short) 2015),
 
@@ -395,7 +395,7 @@ public enum Specification {
      * @see #ISO_19109
      * @see <a href="http://docs.opengeospatial.org/is/18-075/18-075.html">OGC 18-075 on OGC Public Document Repository</a>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     OGC_MOVING_FEATURE((short) 1),
 
@@ -406,7 +406,7 @@ public enum Specification {
      * @deprecated To be replaced by Topic 20: Observations and Measurements
      * @todo Remove before release, since it was not part of GeoAPI 3.0.2.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Deprecated(forRemoval=true)
     OGC_07022((short) 1);
@@ -441,7 +441,7 @@ public enum Specification {
      *
      * @see UML#version()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public short defaultVersion() {
         return defaultVersion;

@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_RestrictionCode", specification=ISO_19115)
 public final class Restriction extends CodeList<Restriction> {
@@ -72,7 +72,7 @@ public final class Restriction extends CodeList<Restriction> {
      * Formal permission to do something.
      * Note: it was spelled "license" in ISO 19115:2003.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="licence", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Restriction LICENCE;
@@ -108,7 +108,7 @@ public final class Restriction extends CodeList<Restriction> {
     /**
      * No constraints exist.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="unrestricted", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Restriction UNRESTRICTED;
@@ -116,7 +116,7 @@ public final class Restriction extends CodeList<Restriction> {
     /**
      * Formal permission not required to use the resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="licenceUnrestricted", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Restriction LICENCE_UNRESTRICTED;
@@ -125,7 +125,7 @@ public final class Restriction extends CodeList<Restriction> {
      * Formal permission required for a person or an entity to use the resource
      * and that may differ from the person that orders or purchases it.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="licenceEndUser", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Restriction LICENCE_END_USER;
@@ -134,7 +134,7 @@ public final class Restriction extends CodeList<Restriction> {
      * Formal permission required for a person or an entity to commercialize or
      * distribute the resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="licenceDistributor", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Restriction LICENCE_DISTRIBUTOR;
@@ -143,7 +143,7 @@ public final class Restriction extends CodeList<Restriction> {
      * Protects rights of individual or organisations from observation, intrusion,
      * or attention of others.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="private", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Restriction PRIVATE;
@@ -151,7 +151,7 @@ public final class Restriction extends CodeList<Restriction> {
     /**
      * Prescribed by law.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="statutory", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Restriction STATUTORY;
@@ -160,7 +160,7 @@ public final class Restriction extends CodeList<Restriction> {
      * Not available to the public contains information that could be prejudicial
      * to a commercial, industrial, or national interest.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="confidential", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Restriction CONFIDENTIAL;
@@ -168,7 +168,7 @@ public final class Restriction extends CodeList<Restriction> {
     /**
      * Although unclassified, requires strict controls over its distribution.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="sensitiveButUnclassified", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Restriction SENSITIVE_BUT_UNCLASSIFIED;
@@ -176,7 +176,7 @@ public final class Restriction extends CodeList<Restriction> {
     /**
      * With trust.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="in-confidence", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Restriction IN_CONFIDENCE;

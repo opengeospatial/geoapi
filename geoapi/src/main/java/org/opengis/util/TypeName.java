@@ -63,7 +63,7 @@ import static org.opengis.annotation.Obligation.MANDATORY;
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
- * @since   2.1
+ * @since GeoAPI 2.1
  *
  * @see org.opengis.util.Type#getTypeName()
  * @see RecordType#getTypeName()
@@ -102,7 +102,7 @@ public interface TypeName extends LocalName {
      *
      * @see org.opengis.util.Type#toJavaType()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default Optional<Type> toJavaType() {
         return Optional.empty();

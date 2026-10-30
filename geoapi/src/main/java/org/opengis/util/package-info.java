@@ -76,6 +76,6 @@
  * @author  Jesse Crossley (SYS Technologies)
  * @author  Bryce Nordgren (USDA)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 package org.opengis.util;

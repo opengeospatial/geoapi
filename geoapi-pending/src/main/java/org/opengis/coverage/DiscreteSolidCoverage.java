@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @version ISO 19123:2004
  * @author  Alessio Fabiani
- * @since   GeoAPI 2.1
+ * @since GeoAPI 2.1
  *
  * @todo evaluate and evaluateInverse
  */

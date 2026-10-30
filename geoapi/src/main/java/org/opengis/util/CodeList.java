@@ -89,7 +89,7 @@ import org.opengis.geoapi.internal.Errors;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 @UML(identifier="CodeList", specification=ISO_19103)
 public abstract class CodeList<E extends CodeList<E>> implements ControlledVocabulary, Comparable<E>, Serializable {
@@ -134,7 +134,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      *
      * @param  name  the code name. Should be the name of the static field if such field exists.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected CodeList(final String name) {
         this.name = name;
@@ -182,7 +182,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @throws NullPointerException if {@code values} is null or any of its element is null.
      * @throws IllegalArgumentException if an element of {@code values} has an inconsistent ordinal value.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @SafeVarargs
     @SuppressWarnings("varargs")
@@ -338,7 +338,7 @@ public abstract class CodeList<E extends CodeList<E>> implements ControlledVocab
      * @throws IllegalArgumentException if the given name does not contain at least
      *         one character that is a Unicode identifier part.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected static <E extends CodeList<E>> E valueOf(final List<E> values,
             final String name, final Function<? super String, ? extends E> constructor)

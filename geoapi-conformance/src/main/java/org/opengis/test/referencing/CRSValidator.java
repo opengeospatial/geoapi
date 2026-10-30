@@ -44,7 +44,7 @@ import static org.opengis.test.referencing.Utilities.getAxisDirections;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 public class CRSValidator extends ReferencingValidator {
     /**
@@ -82,7 +82,7 @@ public class CRSValidator extends ReferencingValidator {
      * @see #validate(ProjectedCRS)
      * @see #validate(VerticalCRS)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public boolean enforceStandardNames = true;
 
@@ -139,7 +139,7 @@ public class CRSValidator extends ReferencingValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void validate(final GeodeticCRS object) {
         if (object == null) {
@@ -349,7 +349,7 @@ public class CRSValidator extends ReferencingValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void validate(final ParametricCRS object) {
         if (object == null) {
@@ -396,7 +396,7 @@ public class CRSValidator extends ReferencingValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void validate(final CompoundCRS object) {
         if (object == null) {

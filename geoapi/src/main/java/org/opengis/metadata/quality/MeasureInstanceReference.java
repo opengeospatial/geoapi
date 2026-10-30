@@ -42,7 +42,7 @@ import org.opengis.util.InternationalString;
  *
  * @see <a href="https://github.com/opengeospatial/geoapi/issues/75">Issue #75 on GitHub</a>
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 final class MeasureInstanceReference implements MeasureReference {
     /**

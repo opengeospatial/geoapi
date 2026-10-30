@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @author  Jody Garnett (Refractions Research)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="SortOrder", specification=ISO_19143)
 public enum SortOrder implements ControlledVocabulary {

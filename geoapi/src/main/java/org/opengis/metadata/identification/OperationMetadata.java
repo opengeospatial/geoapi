@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  *
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="SV_OperationMetadata", specification=ISO_19115)
 public interface OperationMetadata {

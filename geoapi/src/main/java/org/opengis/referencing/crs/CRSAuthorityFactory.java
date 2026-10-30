@@ -49,7 +49,7 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CSAuthorityFactory
  * @see org.opengis.referencing.datum.DatumAuthorityFactory
@@ -112,7 +112,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createGeodeticDatum(String)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default GeodeticCRS createGeodeticCRS(final String code) throws FactoryException {
         final CoordinateReferenceSystem crs = createCoordinateReferenceSystem(code);
@@ -172,7 +172,7 @@ public interface CRSAuthorityFactory extends AuthorityFactory {
      *
      * @see org.opengis.referencing.datum.DatumAuthorityFactory#createParametricDatum(String)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default ParametricCRS createParametricCRS(final String code) throws FactoryException {
         final CoordinateReferenceSystem crs = createCoordinateReferenceSystem(code);

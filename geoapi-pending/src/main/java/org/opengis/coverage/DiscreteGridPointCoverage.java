@@ -54,7 +54,7 @@ import static org.opengis.annotation.Specification.*;
  * @version ISO 19123:2004
  * @author  Wim Koolhoven
  * @author  Martin Desruisseaux (IRD)
- * @since   GeoAPI 2.1
+ * @since GeoAPI 2.1
  *
  * @todo Should we restrict {@link DomainObject} to {@link GridPoint} as well? It sound like
  *       a logical consequence of {@link GridPointValuePair} restriction.

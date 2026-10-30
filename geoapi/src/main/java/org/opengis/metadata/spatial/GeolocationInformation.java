@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Cédric Briançon (Geomatys)
  * @version 3.1
- * @since   2.3
+ * @since GeoAPI 2.3
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="MI_GeolocationInformation", specification=ISO_19115_2)

@@ -52,7 +52,7 @@ import javax.annotation.processing.ProcessingEnvironment;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 abstract class UmlProcessor extends AbstractProcessor {
     /**

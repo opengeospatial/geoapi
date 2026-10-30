@@ -47,7 +47,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 public abstract class Validator {
     /**
@@ -238,7 +238,7 @@ public abstract class Validator {
      *
      * @param collection  the collection of elements to validate, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @SuppressWarnings("ObjectEqualsNull")
     protected void validate(final Collection<?> collection) {
@@ -310,7 +310,7 @@ public abstract class Validator {
      * @param validator  the function to invoke for validating each element.
      * @param mandatory  whether at least one element shall be present.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected <E> void validate(final String property,
                                 final Collection<? extends E> values,

@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see DatumAuthorityFactory#createVerticalDatum(String)
  * @see DatumFactory#createVerticalDatum(Map, RealizationMethod)
@@ -49,7 +49,7 @@ public interface VerticalDatum extends Datum {
      *
      * @return method through which this vertical reference frame is realized.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="realizationMethod", obligation=OPTIONAL, specification=ISO_19111)
     default Optional<RealizationMethod> getRealizationMethod() {

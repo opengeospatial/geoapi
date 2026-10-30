@@ -59,7 +59,7 @@ import javax.tools.Diagnostic;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.3
+ * @since GeoAPI 2.3
  */
 public final class Departure extends BlockTaglet implements Flushable {
     /**

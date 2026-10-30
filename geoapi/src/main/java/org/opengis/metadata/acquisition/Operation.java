@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Cédric Briançon (Geomatys)
  * @version 3.1
- * @since   2.3
+ * @since GeoAPI 2.3
  */
 @UML(identifier="MI_Operation", specification=ISO_19115_2)
 public interface Operation {

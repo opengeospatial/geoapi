@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Constraints", specification=ISO_19115)
 public interface Constraints {
@@ -58,7 +58,7 @@ public interface Constraints {
      *
      * @return extents or levels of the application of the constraints restrictions, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="constraintApplicationScope", obligation=OPTIONAL, specification=ISO_19115)
     default Scope getConstraintApplicationScope() {
@@ -71,7 +71,7 @@ public interface Constraints {
      *
      * @return graphics or symbols indicating the constraint.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="graphic", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends BrowseGraphic> getGraphics() {
@@ -86,7 +86,7 @@ public interface Constraints {
      *
      * @return citations for the limitation of constraint, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="reference", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getReferences() {
@@ -98,7 +98,7 @@ public interface Constraints {
      *
      * @return information concerning the parties to whom the resource can or cannot be released, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="releasability", obligation=OPTIONAL, specification=ISO_19115)
     default Releasability getReleasability() {
@@ -111,7 +111,7 @@ public interface Constraints {
      *
      * @return parties responsible for the resource constraints.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="responsibleParty", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Responsibility> getResponsibleParties() {

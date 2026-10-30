@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_CellGeometryCode", specification=ISO_19115)
 public final class CellGeometry extends CodeList<CellGeometry> {
@@ -55,7 +55,7 @@ public final class CellGeometry extends CodeList<CellGeometry> {
     /**
      * Each cell represents a volumetric measurement on a regular grid in three dimensional space.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="voxel", obligation=CONDITIONAL, specification=ISO_19115)
     public static final CellGeometry VOXEL;
@@ -63,7 +63,7 @@ public final class CellGeometry extends CodeList<CellGeometry> {
     /**
      * Height range for a single point vertical profile.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="stratum", obligation=CONDITIONAL, specification=ISO_19115)
     public static final CellGeometry STRATUM;

@@ -39,7 +39,7 @@ package org.opengis.parameter;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 public class InvalidParameterCardinalityException extends IllegalStateException {
     /**
@@ -70,7 +70,7 @@ public class InvalidParameterCardinalityException extends IllegalStateException 
      * @param cause          the cause, saved for later retrieval by the {@link #getCause()} method.
      * @param parameterName  the name of the parameter with invalid cardinality.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public InvalidParameterCardinalityException(String message, Throwable cause, String parameterName) {
         super(message, cause);

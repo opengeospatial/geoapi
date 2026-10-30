@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="CI_RoleCode", specification=ISO_19115)
 public final class Role extends CodeList<Role> {
@@ -111,7 +111,7 @@ public final class Role extends CodeList<Role> {
     /**
      * Party who speaks for the resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="sponsor", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Role SPONSOR;
@@ -119,7 +119,7 @@ public final class Role extends CodeList<Role> {
     /**
      * Party who jointly authors the resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="coAuthor", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Role CO_AUTHOR;
@@ -127,7 +127,7 @@ public final class Role extends CodeList<Role> {
     /**
      * Party who assists with the generation of the resource other than the principal investigator.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="collaborator", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Role COLLABORATOR;
@@ -135,7 +135,7 @@ public final class Role extends CodeList<Role> {
     /**
      * Party who reviewed or modified the resource to improve the content.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="editor", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Role EDITOR;
@@ -143,7 +143,7 @@ public final class Role extends CodeList<Role> {
     /**
      * A class of entity that immediate access to the resource and for whom the resource is intended or useful.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="mediator", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Role MEDIATOR;
@@ -151,7 +151,7 @@ public final class Role extends CodeList<Role> {
     /**
      * Party owning or managing rights over the resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="rightsHolder", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Role RIGHTS_HOLDER;
@@ -159,7 +159,7 @@ public final class Role extends CodeList<Role> {
     /**
      * Party contributing to the resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="contributor", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Role CONTRIBUTOR;
@@ -167,7 +167,7 @@ public final class Role extends CodeList<Role> {
     /**
      * Party providing monetary support for the resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="funder", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Role FUNDER;
@@ -175,7 +175,7 @@ public final class Role extends CodeList<Role> {
     /**
      * Party who has an interest in the resource or the use of the resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="stakeholder", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Role STAKEHOLDER;

@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Format", specification=ISO_19115)
 public interface Format {
@@ -43,7 +43,7 @@ public interface Format {
      *
      * @return citation / URL of the specification format.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="formatSpecificationCitation", obligation=MANDATORY, specification=ISO_19115)
     Citation getFormatSpecificationCitation();
@@ -125,7 +125,7 @@ public interface Format {
      *
      * @return media used by the format.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="medium", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Medium> getMedia() {

@@ -31,7 +31,7 @@ import org.opengis.referencing.crs.SingleCRS;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 final class IdentifiedObjectMock implements SingleCRS, CoordinateSystem, Datum, Identifier {
     /**

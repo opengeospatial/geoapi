@@ -47,7 +47,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="DirectPosition", specification=ISO_19107)
@@ -92,7 +92,7 @@ public interface DirectPosition {
      * @return a copy of the coordinates. Changes in the returned array will not be reflected back
      *         in this {@code DirectPosition} object.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="coordinate", obligation=MANDATORY, specification=ISO_19107)
     default double[] getCoordinates() {
@@ -111,7 +111,7 @@ public interface DirectPosition {
      * @throws IndexOutOfBoundsException if the given index is negative or is equal or greater
      *         than the {@linkplain #getDimension() number of dimensions}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     double getCoordinate(int dimension);
 
@@ -129,7 +129,7 @@ public interface DirectPosition {
      *         than the {@linkplain #getDimension() position dimension}.
      * @throws UnsupportedOperationException if this direct position is immutable.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default void setCoordinate(int dimension, double value) {
         throw new UnsupportedOperationException();

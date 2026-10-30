@@ -101,7 +101,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 @UML(identifier="CT_CoordinateTransformationFactory", specification=OGC_01009)
 public interface CoordinateOperationFactory extends ObjectFactory {
@@ -166,7 +166,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      *   This method has been added because OGC 01-009 does not define a factory
      *   method for creating operation methods.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default OperationMethod createOperationMethod(Map<String,?> properties,
                 ParameterDescriptorGroup parameters) throws FactoryException
@@ -195,7 +195,7 @@ public interface CoordinateOperationFactory extends ObjectFactory {
      * @return the concatenated operation created from the given arguments.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default CoordinateOperation createConcatenatedOperation(
             Map<String,?> properties,

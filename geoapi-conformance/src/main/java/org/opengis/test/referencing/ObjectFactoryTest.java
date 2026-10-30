@@ -67,7 +67,7 @@ import static org.opengis.referencing.cs.AxisDirection.*;
  * @author  Cédric Briançon (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.3
+ * @since GeoAPI 2.3
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class ObjectFactoryTest extends ReferencingTestCase {
@@ -86,7 +86,7 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
      *
      * @see RegisterOperations#getFactory(Class)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected final RegisterOperations factories;
 
@@ -98,7 +98,7 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
      *
      * @param  factories   provider of factories for creating the geodetic objects to test.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public ObjectFactoryTest(final RegisterOperations factories) {
         this.factories = factories;
@@ -119,7 +119,7 @@ public strictfp class ObjectFactoryTest extends ReferencingTestCase {
      *
      * @return the configuration of the test being run.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     public Configuration configuration() {

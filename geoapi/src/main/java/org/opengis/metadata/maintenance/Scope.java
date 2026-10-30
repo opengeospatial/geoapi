@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="MD_Scope", specification=ISO_19115)

@@ -44,7 +44,7 @@ import org.jpy.PyObject;
  *
  * @see Environment#getInterfacing(Class)
  *
- * @since 4.0
+ * @since GeoAPI 4.0
  */
 public abstract class Interfacing extends CodeList<Interfacing> {
     /**

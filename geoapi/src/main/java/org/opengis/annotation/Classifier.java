@@ -39,7 +39,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  *
  * @see <a href="http://en.wikipedia.org/wiki/Classifier_%28UML%29">Classifier on Wikipedia</a>
  */

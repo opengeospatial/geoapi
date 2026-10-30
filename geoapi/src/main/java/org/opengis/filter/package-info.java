@@ -45,6 +45,6 @@
  * </ul>
  *
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 package org.opengis.filter;

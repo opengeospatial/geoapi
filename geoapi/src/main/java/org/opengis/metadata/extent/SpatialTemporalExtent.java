@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 @UML(identifier="EX_SpatialTemporalExtent", specification=ISO_19115)
 public interface SpatialTemporalExtent extends TemporalExtent {
@@ -53,7 +53,7 @@ public interface SpatialTemporalExtent extends TemporalExtent {
      *
      * @return vertical extent component, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="verticalExtent", obligation=OPTIONAL, specification=ISO_19115)
     default VerticalExtent getVerticalExtent() {

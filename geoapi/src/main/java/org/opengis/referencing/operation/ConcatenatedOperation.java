@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see CoordinateOperationFactory#createConcatenatedOperation(Map, CoordinateOperation[])
  */
@@ -87,7 +87,7 @@ public interface ConcatenatedOperation extends CoordinateOperation {
      * By default, this is the interpolation <abbr>CRS</abbr> of the first
      * operation step in which such <abbr>CRS</abbr> is defined
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     @UML(identifier="interpolationCRS", obligation=OPTIONAL, specification=ISO_19111)
@@ -103,7 +103,7 @@ public interface ConcatenatedOperation extends CoordinateOperation {
      * Returns the date at which source coordinate tuples are valid.
      * By default, this is the source epoch of the first operation step in which such epoch is defined.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     @UML(identifier="sourceCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
@@ -119,7 +119,7 @@ public interface ConcatenatedOperation extends CoordinateOperation {
      * Returns the date at which target coordinate tuples are valid.
      * By default, this is the target epoch of the last operation step in which such epoch is defined.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     @UML(identifier="targetCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)

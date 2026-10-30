@@ -27,7 +27,7 @@ import org.opengis.util.NoSuchIdentifierException;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
  * @see org.opengis.referencing.cs.CSAuthorityFactory
@@ -93,7 +93,7 @@ public class NoSuchAuthorityCodeException extends NoSuchIdentifierException {
      *                    saved for retrieval by the {@link #getIdentifierCode()} method.
      * @param cause       the cause, saved for later retrieval by the {@link #getCause()} method.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public NoSuchAuthorityCodeException(final String message, final String authority, final String code,
                                         final String identifier, final Throwable cause)

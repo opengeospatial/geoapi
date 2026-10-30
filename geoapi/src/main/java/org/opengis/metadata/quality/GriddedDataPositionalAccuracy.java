@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Alexis Gaillard (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="DQ_GriddedDataPositionalAccuracy", specification=ISO_19157)
 public interface GriddedDataPositionalAccuracy extends PositionalAccuracy {

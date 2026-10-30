@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @author  Chris Dillard (SYS Technologies)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="DistanceOperatorName", specification=ISO_19143)
 public final class DistanceOperatorName extends CodeList<DistanceOperatorName> {

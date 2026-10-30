@@ -52,7 +52,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="SI_SpatialReferenceSystemUsingGeographicIdentifiers", specification=ISO_19112)
 public interface ReferenceSystemUsingIdentifiers extends ReferenceSystem {

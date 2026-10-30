@@ -33,7 +33,7 @@ import org.opengis.referencing.IdentifiedObject;
  * @author Martin Desruisseaux (Geomatys)
  * @version 3.1
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 final class IdentifiedObjects {
     /**

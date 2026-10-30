@@ -31,7 +31,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 public final class CompatibilityTest extends CompatibilityVerifier {
     /**

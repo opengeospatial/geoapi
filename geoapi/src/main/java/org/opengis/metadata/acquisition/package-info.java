@@ -72,6 +72,6 @@
  *
  * @author  Cédric Briançon (Geomatys)
  * @version 4.0
- * @since   2.3
+ * @since GeoAPI 2.3
  */
 package org.opengis.metadata.acquisition;

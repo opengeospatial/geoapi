@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Cédric Briançon (Geomatys)
  * @version 3.1
- * @since   2.3
+ * @since GeoAPI 2.3
  */
 @UML(identifier="MI_Event", specification=ISO_19115_2)
 public interface Event {
@@ -93,7 +93,7 @@ public interface Event {
      * @departure historic
      *   Renamed for avoiding a conflict with the {@code getTime()} method defined in GeoAPI 3.0.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="time", obligation=MANDATORY, specification=ISO_19115_2)
     Temporal getDateOfOccurrence();

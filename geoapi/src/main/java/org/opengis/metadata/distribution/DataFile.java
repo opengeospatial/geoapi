@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Cédric Briançon (Geomatys)
  * @version 3.1
- * @since   2.3
+ * @since GeoAPI 2.3
  */
 @UML(identifier="MX_DataFile", specification=ISO_19115_3)
 public interface DataFile {
@@ -48,7 +48,7 @@ public interface DataFile {
      *
      * @see BrowseGraphic#getFileName()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="fileName", obligation=MANDATORY, specification=ISO_19115_3)
     URI getFileName();
@@ -60,7 +60,7 @@ public interface DataFile {
      *
      * @see BrowseGraphic#getFileDescription()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="fileDescription", obligation=MANDATORY, specification=ISO_19115_3)
     InternationalString getFileDescription();
@@ -75,7 +75,7 @@ public interface DataFile {
      *
      * @see BrowseGraphic#getFileType()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="fileType", obligation=MANDATORY, specification=ISO_19115_3)
     String getFileType();

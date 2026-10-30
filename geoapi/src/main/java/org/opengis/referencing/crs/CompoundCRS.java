@@ -54,7 +54,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see CRSAuthorityFactory#createCompoundCRS(String)
  * @see CRSFactory#createCompoundCRS(Map, CoordinateReferenceSystem[])
@@ -89,7 +89,7 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      *
      * @return the ordered list of components of this compound <abbr>CRS</abbr>, none of which itself compound.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="componentReferenceSystem", obligation=MANDATORY, specification=ISO_19111)
     default List<SingleCRS> getSingleComponents() {

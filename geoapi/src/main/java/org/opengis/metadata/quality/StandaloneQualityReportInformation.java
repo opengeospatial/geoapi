@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Alexis Gaillard (IRD)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  *
  * @todo Renamed in 19157:2022: {@code QualityEvaluationReportInformation}.
  */

@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="MD_Identifier", specification=ISO_19115)
@@ -97,7 +97,7 @@ public interface Identifier {
      * @see org.opengis.referencing.ObjectFactory
      * @see #getDescription()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     String DESCRIPTION_KEY = "description";
 
@@ -129,7 +129,7 @@ public interface Identifier {
      *
      * @return the identifier or namespace in which the code is valid, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="codeSpace", obligation=OPTIONAL, specification=ISO_19115)
     default String getCodeSpace() {
@@ -146,7 +146,7 @@ public interface Identifier {
      *
      * @return the version identifier for the namespace, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="version", obligation=OPTIONAL, specification=ISO_19115)
     default String getVersion() {
@@ -161,7 +161,7 @@ public interface Identifier {
      *
      * @return the natural language description, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="description", obligation=OPTIONAL, specification=ISO_19115)
     default InternationalString getDescription() {

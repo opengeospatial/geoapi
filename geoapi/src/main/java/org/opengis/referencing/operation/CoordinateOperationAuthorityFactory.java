@@ -45,7 +45,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 @UML(identifier="CT_CoordinateTransformationAuthorityFactory", specification=OGC_01009)
 @Produces({CoordinateOperation.class, OperationMethod.class})

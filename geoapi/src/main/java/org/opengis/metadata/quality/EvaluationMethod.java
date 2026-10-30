@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see Element#getEvaluationMethod()
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="DQ_EvaluationMethod", specification=ISO_19157)
 public interface EvaluationMethod {

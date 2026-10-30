@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="MD_Identification", specification=ISO_19115)
@@ -117,7 +117,7 @@ public interface Identification {
      *
      * @return methods used to spatially represent geographic information.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="spatialRepresentationType", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<SpatialRepresentationType> getSpatialRepresentationTypes() {
@@ -134,7 +134,7 @@ public interface Identification {
      *
      * @return factor which provides a general understanding of the density of spatial resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="spatialResolution", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Resolution> getSpatialResolutions() {
@@ -151,7 +151,7 @@ public interface Identification {
      *   That ISO type can be mapped to the {@link java.time.Period} or {@link java.time.Duration}
      *   classes from the standard Java library.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="temporalResolution", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends TemporalAmount> getTemporalResolutions() {
@@ -166,7 +166,7 @@ public interface Identification {
      * @condition Mandatory if {@link MetadataScope#getResourceScope()} equals {@link ScopeCode#DATASET}
      *            or {@link ScopeCode#SERIES}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="topicCategory", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<TopicCategory> getTopicCategories();
@@ -181,7 +181,7 @@ public interface Identification {
      * {@linkplain org.opengis.metadata.extent.GeographicDescription geographic description} if
      * {@link MetadataScope#getResourceScope()} equals {@link ScopeCode#DATASET} or {@link ScopeCode#SERIES}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="extent", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends Extent> getExtents();
@@ -195,7 +195,7 @@ public interface Identification {
      *
      * @return other documentation associated with the resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="additionalDocumentation", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getAdditionalDocumentations() {
@@ -211,7 +211,7 @@ public interface Identification {
      *
      * @return code that identifies the level of processing in the producers coding system of a resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      *
      * @see org.opengis.metadata.content.CoverageDescription#getProcessingLevelCode()
      */
@@ -289,7 +289,7 @@ public interface Identification {
      *
      * @return associated resource information.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="associatedResource", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends AssociatedResource> getAssociatedResources() {

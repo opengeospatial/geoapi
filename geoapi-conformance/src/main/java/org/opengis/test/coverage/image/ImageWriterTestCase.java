@@ -75,7 +75,7 @@ import static org.junit.jupiter.api.Assumptions.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
 public abstract strictfp class ImageWriterTestCase extends ImageIOTestCase implements Closeable {

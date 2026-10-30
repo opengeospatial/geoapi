@@ -21,6 +21,6 @@
  * The content of this package will be developed in a future GeoAPI release.
  *
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 package org.opengis.geometry.primitive;

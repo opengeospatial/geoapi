@@ -61,7 +61,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see RegisterOperations#findCoordinateOperation(String)
  * @see RegisterOperations#findCoordinateOperations(CoordinateReferenceSystem, CoordinateReferenceSystem)
@@ -135,7 +135,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      *
      * @return the <abbr>CRS</abbr> to be used for interpolations in a grid.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="interpolationCRS", obligation=OPTIONAL, specification=ISO_19111)
     default Optional<CoordinateReferenceSystem> getInterpolationCRS() {
@@ -172,7 +172,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      * @see #getSourceCRS()
      * @see DynamicReferenceFrame#getFrameReferenceEpoch()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="sourceCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
     default Optional<Temporal> getSourceEpoch() {
@@ -193,7 +193,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      * @see #getTargetCRS()
      * @see DynamicReferenceFrame#getFrameReferenceEpoch()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="targetCoordinateEpoch", obligation=CONDITIONAL, specification=ISO_19111)
     default Optional<Temporal> getTargetEpoch() {
@@ -267,7 +267,7 @@ public interface CoordinateOperation extends IdentifiedObject {
      *         this method call is not a guarantee that the coordinate changes succeeded, because implementations
      *         may have deferred the actual computation.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="transform", specification=ISO_19111)
     CoordinateSet transform(CoordinateSet data) throws TransformException;

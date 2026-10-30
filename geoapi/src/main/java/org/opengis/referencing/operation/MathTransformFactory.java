@@ -57,7 +57,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.RegisterOperations#getFactory(Class)
  */
@@ -143,7 +143,7 @@ public interface MathTransformFactory extends Factory {
      *   specification for facilitating the resolution of ambiguities in some situations such as west-
      *   or south-orientated map projections, and for thread-safety.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     MathTransform.Builder builder(String method) throws NoSuchIdentifierException;
 
@@ -172,7 +172,7 @@ public interface MathTransformFactory extends Factory {
      * @return a new matrix of the given size.
      * @throws FactoryException if the matrix creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     Matrix createMatrix(int numRow, int numCol) throws FactoryException;
 

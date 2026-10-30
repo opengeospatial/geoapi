@@ -29,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @author  Alexis Gaillard (Geomatys)
  * @version 3.1
- * @since   2.1
+ * @since GeoAPI 2.1
  *
  * @deprecated Renamed {@link NonQuantitativeAttributeCorrectness}.
  */

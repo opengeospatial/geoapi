@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="EX_Extent", specification=ISO_19115)

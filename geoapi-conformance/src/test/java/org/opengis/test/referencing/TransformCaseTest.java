@@ -33,7 +33,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 public final class TransformCaseTest extends TransformTestCase {
     /**
@@ -168,7 +168,7 @@ public final class TransformCaseTest extends TransformTestCase {
      *
      * @throws TransformException should never happen.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void testDerivative() throws TransformException {
         tolerance = 1E-10;
@@ -183,7 +183,7 @@ public final class TransformCaseTest extends TransformTestCase {
      *
      * @throws TransformException should never happen.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Test
     public void testDerivativeUsingBogusTransform() throws TransformException {
@@ -200,7 +200,7 @@ public final class TransformCaseTest extends TransformTestCase {
      *
      * @throws TransformException should never happen.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Test
     public void testVerifyInDomain() throws TransformException {

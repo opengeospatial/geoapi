@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Alexis Gaillard (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="DQ_DescriptiveResult", specification=ISO_19157)
 public interface DescriptiveResult extends Result {

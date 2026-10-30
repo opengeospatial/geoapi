@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_KeywordTypeCode", specification=ISO_19115)
 public final class KeywordType extends CodeList<KeywordType> {
@@ -73,7 +73,7 @@ public final class KeywordType extends CodeList<KeywordType> {
     /**
      * Keyword identifies a repository or archive that manages and distributes data.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="dataCentre", obligation=CONDITIONAL, specification=ISO_19115)
     public static final KeywordType DATA_CENTRE;
@@ -82,7 +82,7 @@ public final class KeywordType extends CodeList<KeywordType> {
      * Keyword identifies a resource containing or about a collection of
      * feature instance with common characteristics.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="featureType", obligation=CONDITIONAL, specification=ISO_19115)
     public static final KeywordType FEATURE_TYPE;
@@ -90,7 +90,7 @@ public final class KeywordType extends CodeList<KeywordType> {
     /**
      * Keyword identifies a device used to measure or compare physical properties.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="instrument", obligation=CONDITIONAL, specification=ISO_19115)
     public static final KeywordType INSTRUMENT;
@@ -98,7 +98,7 @@ public final class KeywordType extends CodeList<KeywordType> {
     /**
      * Keyword identifies a structure upon which an instrument is mounted.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="platform", obligation=CONDITIONAL, specification=ISO_19115)
     public static final KeywordType PLATFORM;
@@ -106,7 +106,7 @@ public final class KeywordType extends CodeList<KeywordType> {
     /**
      * Keyword identifies a series of actions or natural occurrences.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="process", obligation=CONDITIONAL, specification=ISO_19115)
     public static final KeywordType PROCESS;
@@ -115,7 +115,7 @@ public final class KeywordType extends CodeList<KeywordType> {
     /**
      * Keyword identify an endeavour undertaken to create or modify a product or service.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="project", obligation=CONDITIONAL, specification=ISO_19115)
     public static final KeywordType PROJECT;
@@ -123,7 +123,7 @@ public final class KeywordType extends CodeList<KeywordType> {
     /**
      * Keyword identifies an activity carried out by one party for the benefit of another.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="service", obligation=CONDITIONAL, specification=ISO_19115)
     public static final KeywordType SERVICE;
@@ -131,7 +131,7 @@ public final class KeywordType extends CodeList<KeywordType> {
     /**
      * Keyword identifies a type of product.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="product", obligation=CONDITIONAL, specification=ISO_19115)
     public static final KeywordType PRODUCT;
@@ -139,7 +139,7 @@ public final class KeywordType extends CodeList<KeywordType> {
     /**
      * Refinement of a topic category for the purpose of geographic data classification.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="subTopicCategory", obligation=CONDITIONAL, specification=ISO_19115)
     public static final KeywordType SUB_TOPIC_CATEGORY;
@@ -147,7 +147,7 @@ public final class KeywordType extends CodeList<KeywordType> {
     /**
      * Keyword identifies a taxonomy of the resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="taxon", obligation=CONDITIONAL, specification=ISO_19115)
     public static final KeywordType TAXON;

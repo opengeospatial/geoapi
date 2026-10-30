@@ -48,7 +48,7 @@ import static org.opengis.geoapi.internal.Errors.unexpectedType;
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CSAuthorityFactory
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
@@ -217,7 +217,7 @@ public interface DatumAuthorityFactory extends AuthorityFactory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the object creation failed for some other reason.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default DatumEnsemble<?> createDatumEnsemble(String code) throws FactoryException {
         throw new UnimplementedServiceException(this, DatumEnsemble.class);

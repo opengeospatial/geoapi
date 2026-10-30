@@ -55,7 +55,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @author  Chris Dillard (SYS Technologies)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  *
  * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to filter.
  *

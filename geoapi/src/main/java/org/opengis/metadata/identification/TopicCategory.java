@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 4.0
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_TopicCategoryCode", specification=ISO_19115)
 public enum TopicCategory implements ControlledVocabulary {
@@ -247,7 +247,7 @@ public enum TopicCategory implements ControlledVocabulary {
     /**
      * Region more than 100 Km above the surface of the Earth.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="extraTerrestrial", obligation=CONDITIONAL, specification=ISO_19115)
     EXTRA_TERRESTRIAL("extraTerrestrial"),
@@ -259,7 +259,7 @@ public enum TopicCategory implements ControlledVocabulary {
      * site of the disaster, evacuation zone, disaster prevention facility,
      * disaster relief activity.</p>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="disaster", obligation=CONDITIONAL, specification=ISO_19115)
     DISASTER("disaster");
@@ -281,7 +281,7 @@ public enum TopicCategory implements ControlledVocabulary {
     /**
      * Returns the UML identifier for this enumeration constant.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     public Optional<String> identifier() {

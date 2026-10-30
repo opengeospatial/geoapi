@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC 01-009 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 @UML(identifier="CS_CoordinateSystemAuthorityFactory", specification=OGC_01009)
 public interface AuthorityFactory extends Factory {
@@ -100,7 +100,7 @@ public interface AuthorityFactory extends Factory {
      * @throws NoSuchAuthorityCodeException if the specified {@code code} was not found.
      * @throws FactoryException if the query failed for some other reason.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="descriptionText", obligation=OPTIONAL, specification=OGC_01009)
     default Optional<InternationalString> getDescriptionText(Class<? extends IdentifiedObject> type, String code)

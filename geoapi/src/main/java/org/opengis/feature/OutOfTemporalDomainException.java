@@ -28,7 +28,7 @@ import java.time.temporal.Temporal;
  *
  * @see DynamicAttribute#valuesAt(Temporal)
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 public class OutOfTemporalDomainException extends IllegalArgumentException {
     /**

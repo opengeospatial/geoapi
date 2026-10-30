@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  *
  * @see FilterCapabilities#getFunctions()
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="AvailableFunctions", specification=ISO_19143)
 public interface AvailableFunction {

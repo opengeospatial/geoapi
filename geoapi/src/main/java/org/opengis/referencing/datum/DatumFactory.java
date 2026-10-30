@@ -125,7 +125,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Johann Sorel (Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.cs.CSFactory
  * @see org.opengis.referencing.crs.CRSFactory
@@ -226,7 +226,7 @@ public interface DatumFactory extends ObjectFactory {
      * @return the dynamic datum for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default GeodeticDatum createGeodeticDatum(Map<String,?> properties,
                                               Ellipsoid     ellipsoid,
@@ -246,7 +246,7 @@ public interface DatumFactory extends ObjectFactory {
      * @return the static datum for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="createVerticalDatum", specification=OGC_01009)
     default VerticalDatum createVerticalDatum(Map<String,?> properties,
@@ -267,7 +267,7 @@ public interface DatumFactory extends ObjectFactory {
      * @return the dynamic datum for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default VerticalDatum createVerticalDatum(Map<String,?> properties,
                                               RealizationMethod method,
@@ -287,7 +287,7 @@ public interface DatumFactory extends ObjectFactory {
      * @return the datum for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default TemporalDatum createTemporalDatum(Map<String,?> properties, Temporal origin) throws FactoryException {
         throw new UnimplementedServiceException(this, TemporalDatum.class);
@@ -302,7 +302,7 @@ public interface DatumFactory extends ObjectFactory {
      * @return the datum for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default ParametricDatum createParametricDatum(Map<String,?> properties) throws FactoryException {
         throw new UnimplementedServiceException(this, ParametricDatum.class);
@@ -334,7 +334,7 @@ public interface DatumFactory extends ObjectFactory {
      * @return the datum ensemble for the given properties.
      * @throws FactoryException if the object creation failed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default <D extends Datum> DatumEnsemble<D> createDatumEnsemble(Map<String,?> properties,
             Collection<? extends D> members, PositionalAccuracy accuracy) throws FactoryException

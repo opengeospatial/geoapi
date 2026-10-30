@@ -34,7 +34,7 @@ import static org.junit.jupiter.api.Assertions.fail;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 public class CitationValidator extends MetadataValidator {
     /**
@@ -82,7 +82,7 @@ public class CitationValidator extends MetadataValidator {
      *
      * @param dates  the citation dates to validate.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void validate(final CitationDate... dates) {
         if (dates == null) {
@@ -138,7 +138,7 @@ public class CitationValidator extends MetadataValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void validate(final Responsibility object) {
         if (object == null) {
@@ -155,7 +155,7 @@ public class CitationValidator extends MetadataValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void validate(final Party object) {
         if (object == null) {
@@ -181,7 +181,7 @@ public class CitationValidator extends MetadataValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void validate(final Contact object) {
         if (object == null) {
@@ -205,7 +205,7 @@ public class CitationValidator extends MetadataValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void validate(final Telephone object) {
         if (object == null) {
@@ -219,7 +219,7 @@ public class CitationValidator extends MetadataValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void validate(final Address object) {
         if (object == null) {
@@ -237,7 +237,7 @@ public class CitationValidator extends MetadataValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void validate(final OnlineResource object) {
         if (object == null) {

@@ -38,7 +38,7 @@ import static org.opengis.annotation.Specification.OGC_MOVING_FEATURE;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  *
  * @see DynamicAttribute
  * @see AttributeType

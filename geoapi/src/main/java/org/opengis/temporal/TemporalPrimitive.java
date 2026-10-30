@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.ISO_19108;
  * @author  Martin Desruisseaux (Geomatys)
  * @author  Remi Marechal (Geomatys).
  * @version 3.1
- * @since   2.3
+ * @since GeoAPI 2.3
  */
 @UML(identifier="TM_Primitive", specification=ISO_19108)
 public interface TemporalPrimitive {
@@ -86,7 +86,7 @@ public interface TemporalPrimitive {
      * @throws IndeterminatePositionException if a temporal position is indeterminate.
      * @throws DateTimeException if the two temporal primitives cannot be compared.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="TM_Order.relativePosition", obligation=OPTIONAL, specification=ISO_19108)
     default TemporalOperatorName findRelativePosition(TemporalPrimitive other) {

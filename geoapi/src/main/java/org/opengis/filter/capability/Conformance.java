@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  *
  * @see FilterCapabilities#getConformance()
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="Conformance", specification=ISO_19143)
 public interface Conformance {

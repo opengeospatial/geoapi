@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @param  <R>  the type of resources used as inputs. This is ignored by literals.
  * @param  <V>  the type of the value given by the literal.
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="Literal", specification=ISO_19143)
 public interface Literal<R,V> extends Expression<R,V> {

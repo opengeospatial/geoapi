@@ -56,7 +56,7 @@ import org.opengis.annotation.Stereotype;
  * implementation easier, by reducing the number of {@link Map}s that we need to manage.</p>
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @since   3.1
+ * @since GeoAPI 3.1
  * @version 3.1
  */
 public class SchemaInformation {

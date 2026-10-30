@@ -32,7 +32,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 final class SimpleDirectPosition implements DirectPosition {
     /**
@@ -64,7 +64,7 @@ final class SimpleDirectPosition implements DirectPosition {
      *
      * @param coordinates  the coordinate values. This array is <strong>not</strong> cloned.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public SimpleDirectPosition(final double[] coordinates) {
         assertNotNull(coordinates, "Array of coordinate values shall not be null.");
@@ -104,7 +104,7 @@ final class SimpleDirectPosition implements DirectPosition {
      *
      * @param  coordinates  the coordinate values for a single point.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void setCoordinate(final double... coordinates) {
         assertFalse(unmodifiable, "This DirectPosition shall not be modified.");

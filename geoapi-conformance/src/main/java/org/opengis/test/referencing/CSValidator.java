@@ -39,7 +39,7 @@ import static org.opengis.test.referencing.Utilities.getAxisDirections;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
- * @since   2.2
+ * @since GeoAPI 2.2
  *
  * @todo Add checks for Unit of Measurement depending on the coordinate system type.
  *       For example, {@link EllipsoidalCS} expects two angular values and one linear value (if 3D).
@@ -298,7 +298,7 @@ public class CSValidator extends ReferencingValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void validate(final ParametricCS object) {
         if (object == null) {

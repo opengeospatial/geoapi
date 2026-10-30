@@ -51,7 +51,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @author  Justin Deoliveira (The Open Planning Project)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  *
  * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) used as inputs.
  * @param  <V>  the type of values computed by the expression.

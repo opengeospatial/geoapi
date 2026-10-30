@@ -38,7 +38,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Usage", specification=ISO_19115)
 public interface Usage {
@@ -73,7 +73,7 @@ public interface Usage {
      *
      * @return date of the first use of the resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="usageDateTime", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends TemporalPrimitive> getUsageDates() {
@@ -110,7 +110,7 @@ public interface Usage {
      *
      * @return responses to the user-determined limitations.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="response", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends InternationalString> getResponses() {
@@ -122,7 +122,7 @@ public interface Usage {
      *
      * @return publications that describe usage of data.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="additionalDocumentation", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getAdditionalDocumentation() {
@@ -135,7 +135,7 @@ public interface Usage {
      *
      * @return citations of a description of known issues associated with the resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="identifiedIssues", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getIdentifiedIssues() {

@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * @version ISO 19123:2004
  * @author  Alessio Fabiani
  * @author  Martin Desruisseaux (IRD)
- * @since   GeoAPI 2.1
+ * @since GeoAPI 2.1
  */
 @UML(identifier="CV_ValueTriangle", specification=ISO_19123)
 public interface ValueTriangle extends ValueObject {

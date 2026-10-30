@@ -50,7 +50,7 @@ import java.util.Optional;
  * @author  Justin Deoliveira (The Open Planning Project)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  *
  * @see FeatureType
  */

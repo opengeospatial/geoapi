@@ -59,7 +59,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Bryce Nordgren (USDA)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="ScopedName", specification=ISO_19103)
 public interface ScopedName extends GenericName {

@@ -29,7 +29,7 @@ import java.time.DateTimeException;
  * {@link IndeterminateValue#NOW}.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @since   3.1
+ * @since GeoAPI 3.1
  * @version 3.1
  */
 public class IndeterminatePositionException extends DateTimeException {

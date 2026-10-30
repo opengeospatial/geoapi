@@ -52,7 +52,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @author  Jody Garnett (Refractions Research)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @see ParameterValue
  * @see ParameterDescriptorGroup
@@ -75,7 +75,7 @@ public interface ParameterDescriptor<T> extends GeneralParameterDescriptor {
      *
      * @return the type name of value component(s) in this parameter.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="DQM_Parameter.valueType", obligation=MANDATORY, specification=ISO_19157)
     TypeName getValueType();

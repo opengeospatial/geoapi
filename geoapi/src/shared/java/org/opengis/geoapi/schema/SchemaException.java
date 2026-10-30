@@ -23,7 +23,7 @@ package org.opengis.geoapi.schema;
  * with expected OGC/ISO conventions, or when a UML annotation failed a compliance check.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @since   3.1
+ * @since GeoAPI 3.1
  * @version 3.1
  */
 public class SchemaException extends Exception {

@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_ProgressCode", specification=ISO_19115)
 public final class Progress extends CodeList<Progress> {
@@ -85,7 +85,7 @@ public final class Progress extends CodeList<Progress> {
     /**
      * Progress concluded and no changes will be accepted.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="final", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress FINAL;
@@ -93,7 +93,7 @@ public final class Progress extends CodeList<Progress> {
     /**
      * Committed to, but not yet addressed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="pending", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress PENDING;
@@ -101,7 +101,7 @@ public final class Progress extends CodeList<Progress> {
     /**
      * Item is no longer recommended for use. It has not been superseded by another item.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="retired", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress RETIRED;
@@ -109,7 +109,7 @@ public final class Progress extends CodeList<Progress> {
     /**
      * Replaced by new.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="superseded", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress SUPERSEDED;
@@ -117,7 +117,7 @@ public final class Progress extends CodeList<Progress> {
     /**
      * Provisional changes likely before resource becomes final of complete.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="tentative", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress TENTATIVE;
@@ -125,7 +125,7 @@ public final class Progress extends CodeList<Progress> {
     /**
      * Acceptable under specific condition.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="valid", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress VALID;
@@ -133,7 +133,7 @@ public final class Progress extends CodeList<Progress> {
     /**
      * Agreed to by sponsor.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="accepted", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress ACCEPTED;
@@ -141,7 +141,7 @@ public final class Progress extends CodeList<Progress> {
     /**
      * Rejected by sponsor.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="notAccepted", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress NOT_ACCEPTED;
@@ -149,7 +149,7 @@ public final class Progress extends CodeList<Progress> {
     /**
      * Removed from consideration.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="withdrawn", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress WITHDRAWN;
@@ -157,7 +157,7 @@ public final class Progress extends CodeList<Progress> {
     /**
      * Suggested that development needs to be undertaken.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="proposed", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress PROPOSED;
@@ -165,7 +165,7 @@ public final class Progress extends CodeList<Progress> {
     /**
      * Resource superseded and will become obsolete, use only for historical purposes.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="deprecated", obligation=CONDITIONAL, specification=ISO_19115)
     public static final Progress DEPRECATED;

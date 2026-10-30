@@ -52,7 +52,7 @@ import static org.opengis.test.Assertions.assertContains;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class NameTest extends TestCase {

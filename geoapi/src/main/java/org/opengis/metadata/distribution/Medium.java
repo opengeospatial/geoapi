@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 4.0
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="MD_Medium", specification=ISO_19115)
@@ -57,7 +57,7 @@ public interface Medium {
      *
      * @return density at which the data is recorded, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="density", obligation=OPTIONAL, specification=ISO_19115)
     default Double getDensity() {
@@ -123,7 +123,7 @@ public interface Medium {
      *
      * @return unique identifier, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="identifier", obligation=OPTIONAL, specification=ISO_19115)
     default Identifier getIdentifier() {

@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @deprecated As of ISO 19115:2014, {@code DQ_Scope} has been replaced by {@code MD_Scope}.
  *             The later is defined in the {@link org.opengis.metadata.maintenance} package.

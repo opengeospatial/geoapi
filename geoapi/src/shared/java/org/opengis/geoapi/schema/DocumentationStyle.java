@@ -24,7 +24,7 @@ package org.opengis.geoapi.schema;
  * with a period. Those documentation can be read verbatim, or transformed into sentences.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @since   3.1
+ * @since GeoAPI 3.1
  * @version 3.1
  */
 public enum DocumentationStyle {

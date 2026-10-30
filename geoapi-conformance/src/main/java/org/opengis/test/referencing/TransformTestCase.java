@@ -75,7 +75,7 @@ import static org.opengis.test.Assertions.assertStrictlyPositive;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp abstract class TransformTestCase extends TestCase {
@@ -172,7 +172,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @see #derivativeDeltas
      * @see #verifyDerivative(double[])
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected boolean isDerivativeSupported;
 
@@ -202,7 +202,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @see #isDerivativeSupported
      * @see #verifyDerivative(double[])
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected double[] derivativeDeltas;
 
@@ -237,7 +237,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * <p>Common values assigned to this field are {@link ToleranceModifier#PROJECTION} and
      * {@link ToleranceModifier#GEOGRAPHIC}.</p>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected ToleranceModifier toleranceModifier;
 
@@ -354,7 +354,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      *
      * @return {@inheritDoc}
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     public Configuration configuration() {
@@ -830,7 +830,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @see MathTransform#derivative(DirectPosition)
      * @see #assertMatrixEquals(Matrix, Matrix, Matrix, String)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected void verifyDerivative(final double... coordinates) throws TransformException {
         assertTrue(isDerivativeSupported, "isDerivativeSupported == false.");
@@ -941,7 +941,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @return the generated random coordinates inside the given domain of validity.
      * @throws TransformException if a transform or a derivative cannot be computed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected float[] verifyInDomain(final double[] minOrdinates, final double[] maxOrdinates,
             final int[] numOrdinates, final Random randomGenerator) throws TransformException
@@ -1030,7 +1030,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param message   the message to report in case of failure, or {@code null} if none.
      * @throws TransformFailure if at least one coordinate value is not equal to the expected value.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected final void assertCoordinateEquals(final float[] expected, final float[] actual,
             final int index, final CalculationType mode, final String message) throws TransformFailure
@@ -1053,7 +1053,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param message   the message to report in case of failure, or {@code null} if none.
      * @throws TransformFailure if at least one coordinate value is not equal to the expected value.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected final void assertCoordinateEquals(final float[] expected, final double[] actual,
             final int index, final CalculationType mode, final String message) throws TransformFailure
@@ -1076,7 +1076,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param message   the message to report in case of failure, or {@code null} if none.
      * @throws TransformFailure if at least one coordinate value is not equal to the expected value.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected final void assertCoordinateEquals(final double[] expected, final float[] actual,
             final int index, final CalculationType mode, final String message) throws TransformFailure
@@ -1099,7 +1099,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param message   the message to report in case of failure, or {@code null} if none.
      * @throws TransformFailure if at least one coordinate value is not equal to the expected value.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected final void assertCoordinateEquals(final double[] expected, final double[] actual,
             final int index, final CalculationType mode, final String message) throws TransformFailure
@@ -1125,7 +1125,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param message         the message to report in case of failure, or {@code null} if none.
      * @throws TransformFailure if at least one coordinate value is not equal to the expected value.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected final void assertCoordinatesEqual(final int dimension,
             final float[] expectedPts, final int expectedOffset,
@@ -1153,7 +1153,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param message         the message to report in case of failure, or {@code null} if none.
      * @throws TransformFailure if at least one coordinate value is not equal to the expected value.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected final void assertCoordinatesEqual(final int dimension,
             final float[]  expectedPts, final int expectedOffset,
@@ -1181,7 +1181,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param message         the message to report in case of failure, or {@code null} if none.
      * @throws TransformFailure if at least one coordinate value is not equal to the expected value.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected final void assertCoordinatesEqual(final int dimension,
             final double[] expectedPts, final int expectedOffset,
@@ -1209,7 +1209,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param message         the message to report in case of failure, or {@code null} if none.
      * @throws TransformFailure if at least one coordinate value is not equal to the expected value.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected final void assertCoordinatesEqual(final int dimension,
             final double[] expectedPts, final int expectedOffset,
@@ -1346,7 +1346,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @see #verifyDerivative(double[])
      * @see org.opengis.test.Assertions#assertMatrixEquals(Matrix, Matrix, double, String)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected void assertMatrixEquals(final Matrix expected, final Matrix actual, final Matrix tolmat, final String message)
             throws DerivativeFailure
@@ -1420,7 +1420,7 @@ public strictfp abstract class TransformTestCase extends TestCase {
      * @param mode      indicates if the coordinates being compared are the result of a direct
      *                  or inverse transform, or if strict equality is requested.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected void normalize(DirectPosition expected, DirectPosition actual, CalculationType mode) {
     }

@@ -67,7 +67,7 @@ import org.opengis.test.coverage.image.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 public class Validators {
     /**
@@ -111,7 +111,7 @@ public class Validators {
      *
      * @see MetadataBaseValidator#validate(Metadata)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final Metadata object) {
         DEFAULT.validate(object);
@@ -135,7 +135,7 @@ public class Validators {
      *
      * @see CitationValidator#validate(CitationDate...)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final CitationDate... object) {
         DEFAULT.validate(object);
@@ -148,7 +148,7 @@ public class Validators {
      *
      * @see CitationValidator#validate(Responsibility)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final Responsibility object) {
         DEFAULT.validate(object);
@@ -161,7 +161,7 @@ public class Validators {
      *
      * @see CitationValidator#validate(Party)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final Party object) {
         DEFAULT.validate(object);
@@ -174,7 +174,7 @@ public class Validators {
      *
      * @see CitationValidator#validate(Contact)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final Contact object) {
         DEFAULT.validate(object);
@@ -187,7 +187,7 @@ public class Validators {
      *
      * @see CitationValidator#validate(Telephone)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final Telephone object) {
         DEFAULT.validate(object);
@@ -200,7 +200,7 @@ public class Validators {
      *
      * @see CitationValidator#validate(Address)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final Address object) {
         DEFAULT.validate(object);
@@ -213,7 +213,7 @@ public class Validators {
      *
      * @see CitationValidator#validate(OnlineResource)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final OnlineResource object) {
         DEFAULT.validate(object);
@@ -226,7 +226,7 @@ public class Validators {
      *
      * @see QualityValidator#validate(DataQuality)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final DataQuality object) {
         DEFAULT.validate(object);
@@ -239,7 +239,7 @@ public class Validators {
      *
      * @see QualityValidator#dispatch(Element)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final Element object) {
         DEFAULT.validate(object);
@@ -252,7 +252,7 @@ public class Validators {
      *
      * @see MaintenanceValidator#validate(MaintenanceInformation)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final PositionalAccuracy object) {
         DEFAULT.validate(object);
@@ -265,7 +265,7 @@ public class Validators {
      *
      * @see QualityValidator#dispatch(Result)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final Result object) {
         DEFAULT.validate(object);
@@ -278,7 +278,7 @@ public class Validators {
      *
      * @see QualityValidator#validate(DescriptiveResult)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final DescriptiveResult object) {
         DEFAULT.validate(object);
@@ -291,7 +291,7 @@ public class Validators {
      *
      * @see QualityValidator#validate(ConformanceResult)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final ConformanceResult object) {
         DEFAULT.validate(object);
@@ -304,7 +304,7 @@ public class Validators {
      *
      * @see QualityValidator#validate(QuantitativeResult)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final QuantitativeResult object) {
         DEFAULT.validate(object);
@@ -317,7 +317,7 @@ public class Validators {
      *
      * @see QualityValidator#validate(CoverageResult)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final CoverageResult object) {
         DEFAULT.validate(object);
@@ -330,7 +330,7 @@ public class Validators {
      *
      * @see MaintenanceValidator#validate(MaintenanceInformation)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final MaintenanceInformation object) {
         DEFAULT.validate(object);
@@ -343,7 +343,7 @@ public class Validators {
      *
      * @see MaintenanceValidator#validate(Scope)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final Scope object) {
         DEFAULT.validate(object);
@@ -466,7 +466,7 @@ public class Validators {
      *
      * @see CRSValidator#validate(GeodeticCRS)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final GeodeticCRS object) {
         DEFAULT.validate(object);
@@ -775,7 +775,7 @@ public class Validators {
      * @param  object  the object to test, or {@code null}.
      *
      * @see OperationValidator#validate(PointMotionOperation)
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final PointMotionOperation object) {
         DEFAULT.validate(object);
@@ -920,7 +920,7 @@ public class Validators {
      *
      * @see MetadataBaseValidator#validate(Identifier)
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public static void validate(final Identifier object) {
         DEFAULT.validate(object);

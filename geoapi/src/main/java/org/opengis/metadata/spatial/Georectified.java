@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cédric Briançon (Geomatys)
  * @version 4.0
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_Georectified", specification=ISO_19115)
 public interface Georectified extends GridSpatialRepresentation {

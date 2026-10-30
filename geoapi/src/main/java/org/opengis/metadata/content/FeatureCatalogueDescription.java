@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_FeatureCatalogueDescription", specification=ISO_19115)
 public interface FeatureCatalogueDescription extends ContentInformation {
@@ -71,7 +71,7 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      * @see org.opengis.metadata.identification.DataIdentification#getLocalesAndCharsets()
      * @see org.opengis.metadata.Metadata#getLocalesAndCharsets()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="locale", obligation=OPTIONAL, specification=ISO_19115)
     default Map<Locale,Charset> getLocalesAndCharsets() {
@@ -115,7 +115,7 @@ public interface FeatureCatalogueDescription extends ContentInformation {
      *         A {@code getFeatureTypes()} method name would suggest that the collection contains the latter.</li>
      *   </ol>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="featureTypes", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends FeatureTypeInfo> getFeatureTypeInfo() {

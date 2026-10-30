@@ -86,7 +86,7 @@ import org.opengis.referencing.operation.MathTransformFactory;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 public class Configuration implements Serializable {
     /**
@@ -233,7 +233,7 @@ public class Configuration implements Serializable {
      *
      * @author  Martin Desruisseaux (Geomatys)
      * @version 3.1
-     * @since   3.1
+     * @since GeoAPI 3.1
      */
     public static final class Key<T> extends CodeList<Key<?>> {
         /**

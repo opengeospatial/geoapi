@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_BrowseGraphic", specification=ISO_19115)
 public interface BrowseGraphic {
@@ -92,7 +92,7 @@ public interface BrowseGraphic {
      *
      * @return restriction on access and / or use of browse graphic.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="imageConstraints", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Constraints> getImageConstraints() {
@@ -105,7 +105,7 @@ public interface BrowseGraphic {
      *
      * @return links to browse graphic.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="linkage", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends OnlineResource> getLinkages() {

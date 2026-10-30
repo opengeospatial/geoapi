@@ -22,7 +22,7 @@
  * Javadoc taglets for processing custom tags in GeoAPI source code comments.
  *
  * @author  Martin Desruisseaux (Geomatys)
- * @since   3.1
+ * @since GeoAPI 3.1
  * @version 3.1
  */
 package org.opengis.tools.doclet;

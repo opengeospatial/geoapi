@@ -35,7 +35,7 @@ import static org.junit.jupiter.api.Assertions.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 public abstract class MetadataValidator extends Validator {
     /**
@@ -100,7 +100,7 @@ public abstract class MetadataValidator extends Validator {
      * @param  text  the text to test, or {@code null}.
      * @return {@code true} if the given text is null, white or empty.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     static boolean isNullOrEmpty(final CharSequence text) {
         return (text == null) || text.toString().trim().isEmpty();
@@ -113,7 +113,7 @@ public abstract class MetadataValidator extends Validator {
      * @param  collection  the text to test, or {@code null}.
      * @return {@code true} if the given collection is null or empty.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     static boolean isNullOrEmpty(final Collection<?> collection) {
         return (collection == null) || collection.isEmpty();

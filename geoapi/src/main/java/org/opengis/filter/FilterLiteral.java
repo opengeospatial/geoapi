@@ -30,7 +30,7 @@ import org.opengis.util.CodeList;
  * @author  Jody Garnett (Refractions Research, Inc.)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 final class FilterLiteral implements Filter<Object>, Serializable {
     /**

@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @version 3.1
- * @since   2.1
+ * @since GeoAPI 2.1
  */
 @UML(identifier="DS_InitiativeTypeCode", specification=ISO_19115)
 public final class InitiativeType extends CodeList<InitiativeType>{

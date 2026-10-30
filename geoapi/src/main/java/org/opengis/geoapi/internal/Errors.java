@@ -38,7 +38,7 @@ import org.opengis.util.FactoryException;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 public final class Errors {
     /**

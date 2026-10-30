@@ -33,7 +33,7 @@ import org.opengis.util.ScopedName;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  *
  * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) to filter.
  */

@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="RealizationMethod", specification=ISO_19111)
 public final class RealizationMethod extends CodeList<RealizationMethod> {

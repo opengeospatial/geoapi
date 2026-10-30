@@ -31,7 +31,7 @@ import static org.opengis.annotation.Obligation.OPTIONAL;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="MD_SpatialRepresentation", specification=ISO_19115)
@@ -41,7 +41,7 @@ public interface SpatialRepresentation {
      *
      * @return level and extent of the spatial representation, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="scope", obligation=OPTIONAL, specification=ISO_19115, version=2018)
     default Scope getScope() {

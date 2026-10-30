@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @see Element#getResults()
  *
- * @since 2.0
+ * @since GeoAPI 2.0
  *
  * @todo Renamed in 19157:2022: {@code QualityResult}.
  */
@@ -60,7 +60,7 @@ public interface Result {
      *
      * @see DataQuality#getScope()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="resultScope", obligation=OPTIONAL, specification=ISO_19157)
     default Scope getResultScope() {
@@ -75,7 +75,7 @@ public interface Result {
      *
      * @return date of the result, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="dateTime", obligation=OPTIONAL, specification=ISO_19157)
     default Temporal getDateTime() {

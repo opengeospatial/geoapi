@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  *
  * @see FilterCapabilities#getScalarCapabilities()
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="ScalarCapabilities", specification=ISO_19143)
 public interface ScalarCapabilities {

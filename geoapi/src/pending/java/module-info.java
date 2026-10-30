@@ -30,7 +30,7 @@
  * See the <a href="https://www.geoapi.org/">GeoAPI home page</a> for more information.
  *
  * @version 4.0
- * @since 1.0
+ * @since GeoAPI 1.0
  */
 module org.opengis.geoapi {
     requires transitive java.measure;

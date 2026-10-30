@@ -56,7 +56,7 @@ import static org.opengis.test.referencing.ObjectFactoryTest.*;
  * @author  Johann Sorel (Geomatys)
  * @author  Michael Arneson (INT)
  * @version 4.0
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
 public strictfp class PseudoEpsgFactory extends PseudoFactory implements RegisterOperations,

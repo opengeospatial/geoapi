@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cédric Briançon (Geomatys)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="LI_Source", specification=ISO_19115)
 public interface Source {
@@ -64,7 +64,7 @@ public interface Source {
      *
      * @return spatial resolution expressed as a scale factor, an angle or a level of detail, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="sourceSpatialResolution", obligation=OPTIONAL, specification=ISO_19115)
     default Resolution getSourceSpatialResolution() {
@@ -111,7 +111,7 @@ public interface Source {
      *
      * @return references to metadata for the source.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="sourceMetadata", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Citation> getSourceMetadata() {
@@ -126,7 +126,7 @@ public interface Source {
      *
      * @condition Mandatory if the {@linkplain #getDescription() description} is not provided.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="scope", obligation=CONDITIONAL, specification=ISO_19115)
     Scope getScope();

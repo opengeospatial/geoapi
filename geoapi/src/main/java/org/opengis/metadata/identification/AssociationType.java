@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.1
+ * @since GeoAPI 2.1
  */
 @UML(identifier="DS_AssociationTypeCode", specification=ISO_19115)
 public final class AssociationType extends CodeList<AssociationType> {
@@ -49,7 +49,7 @@ public final class AssociationType extends CodeList<AssociationType> {
     /**
      * Reference to a master dataset of which this one is a part.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="largerWorkCitation", obligation=CONDITIONAL, specification=ISO_19115)
     public static final AssociationType LARGER_WORK_CITATION;
@@ -84,7 +84,7 @@ public final class AssociationType extends CodeList<AssociationType> {
     /**
      * Reference to resources that are parts of this resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="isComposedOf", obligation=CONDITIONAL, specification=ISO_19115)
     public static final AssociationType IS_COMPOSED_OF;
@@ -96,7 +96,7 @@ public final class AssociationType extends CodeList<AssociationType> {
      * title identifies elements of a series collectively,
      * combined with information about what volumes are available at the source cite.</div>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="collectiveTitle", obligation=CONDITIONAL, specification=ISO_19115)
     public static final AssociationType COLLECTIVE_TITLE;
@@ -104,7 +104,7 @@ public final class AssociationType extends CodeList<AssociationType> {
     /**
      * Associated through a common heritage such as produced to a common product specification.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="series", obligation=CONDITIONAL, specification=ISO_19115)
     public static final AssociationType SERIES;
@@ -112,7 +112,7 @@ public final class AssociationType extends CodeList<AssociationType> {
     /**
      * Associated through a dependency.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="dependency", obligation=CONDITIONAL, specification=ISO_19115)
     public static final AssociationType DEPENDENCY;
@@ -120,7 +120,7 @@ public final class AssociationType extends CodeList<AssociationType> {
     /**
      * Resource is a revision of associated resource.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="revisionOf", obligation=CONDITIONAL, specification=ISO_19115)
     public static final AssociationType REVISION_OF;

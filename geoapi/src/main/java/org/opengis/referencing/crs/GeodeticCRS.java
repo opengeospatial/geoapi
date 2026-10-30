@@ -40,7 +40,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   2.1
+ * @since GeoAPI 2.1
  */
 @UML(identifier="GeodeticCRS", specification=ISO_19111)
 public interface GeodeticCRS extends SingleCRS {
@@ -70,7 +70,7 @@ public interface GeodeticCRS extends SingleCRS {
      *         to an object identified only by a single {@linkplain #getDatum() datum}.
      *
      * @condition Mandatory if the {@linkplain #getDatum() datum} is not documented.
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     @UML(identifier="datumEnsemble", obligation=CONDITIONAL, specification=ISO_19111)

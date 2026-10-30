@@ -39,7 +39,7 @@ import org.opengis.metadata.citation.Citation;
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 public interface Factory {
     /**

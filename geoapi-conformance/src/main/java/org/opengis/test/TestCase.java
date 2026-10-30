@@ -39,7 +39,7 @@ import org.opengis.util.Factory;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 @TestInstance(TestInstance.Lifecycle.PER_METHOD)
 @SuppressWarnings("strictfp")   // Because we still target Java 11.
@@ -53,7 +53,7 @@ public strictfp abstract class TestCase {
      * If no units were {@linkplain org.opengis.test.Configuration.Key#units explicitly specified},
      * then the {@linkplain Units#getDefault() default units} are used.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected final Units units;
 
@@ -62,7 +62,7 @@ public strictfp abstract class TestCase {
      * If no validators were {@linkplain org.opengis.test.Configuration.Key#validators explicitly specified},
      * then the {@linkplain Validators#DEFAULT default validators} are used.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected final ValidatorContainer validators;
 
@@ -82,7 +82,7 @@ public strictfp abstract class TestCase {
      *     configurationTip = null;
      * }}
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     protected transient Configuration.Key<Boolean> configurationTip;
 
@@ -102,7 +102,7 @@ public strictfp abstract class TestCase {
      * @return an array of the same length as {@code properties} in which each element at index
      *         <var>i</var> indicates whether the {@code properties[i]} test should be enabled.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @SafeVarargs
     protected final boolean[] getEnabledFlags(final Configuration.Key<Boolean>... properties) {
@@ -125,7 +125,7 @@ public strictfp abstract class TestCase {
      * @return the configuration of the test being run, or an empty map if none.
      *         This method returns a modifiable map in order to allow subclasses to modify it.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public Configuration configuration() {
         final Configuration configuration = new Configuration();

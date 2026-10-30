@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_DigitalTransferOptions", specification=ISO_19115)
 public interface DigitalTransferOptions {
@@ -76,7 +76,7 @@ public interface DigitalTransferOptions {
      *
      * @return offline media on which the resource can be obtained.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="offLine", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Medium> getOffLines() {
@@ -105,7 +105,7 @@ public interface DigitalTransferOptions {
      *   That ISO type should be mapped to {@link java.time.Period} from the standard Java library,
      *   or to {@link java.time.Duration} if a precision smaller than one day is needed.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="transferFrequency", obligation=OPTIONAL, specification=ISO_19115)
     default TemporalAmount getTransferFrequency() {
@@ -117,7 +117,7 @@ public interface DigitalTransferOptions {
      *
      * @return formats of distribution.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="distributionFormat", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends Format> getDistributionFormats() {

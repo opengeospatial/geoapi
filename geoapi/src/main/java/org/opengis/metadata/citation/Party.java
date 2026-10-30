@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  *
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @Classifier(Stereotype.ABSTRACT)
 @UML(identifier="CI_Party", specification=ISO_19115)

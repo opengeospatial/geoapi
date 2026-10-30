@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_StandardOrderProcess", specification=ISO_19115)
 public interface StandardOrderProcess {
@@ -67,7 +67,7 @@ public interface StandardOrderProcess {
      *
      * @return the fees monetary units, or {@code null} if none or unknown.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     default Currency getCurrency() {
         return null;
@@ -93,7 +93,7 @@ public interface StandardOrderProcess {
      *
      * @return date and time when the dataset will be available, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="plannedAvailableDateTime", obligation=OPTIONAL, specification=ISO_19115)
     default Temporal getPlannedAvailableDate() {
@@ -125,7 +125,7 @@ public interface StandardOrderProcess {
      *
      * @return description of the order options record, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      *
      * @see Record#getRecordType()
      */
@@ -139,7 +139,7 @@ public interface StandardOrderProcess {
      *
      * @return request/purchase choices.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      *
      * @todo We presume that this record is filled by the vendor for describing the options chosen by the client
      *       when he ordered the resource. We presume that this is not a record to be filled by the user for new

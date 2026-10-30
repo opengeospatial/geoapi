@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_CoverageContentTypeCode", specification=ISO_19115)
 public final class CoverageContentType extends CodeList<CoverageContentType> {
@@ -68,7 +68,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * grid of aerosol optical thickness used in the calculation of a sea surface temperature product.
      * </div>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="auxillaryInformation", obligation=CONDITIONAL, specification=ISO_19115)
     public static final CoverageContentType AUXILLARY_INFORMATION;
@@ -77,7 +77,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * Data used to characterize the quality of the {@linkplain #PHYSICAL_MEASUREMENT physical measurement}
      * coverage in the dataset. Typically included in a {@link CoverageResult}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="qualityInformation", obligation=CONDITIONAL, specification=ISO_19115)
     public static final CoverageContentType QUALITY_INFORMATION;
@@ -90,7 +90,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
      * grid of latitude longitude used to geolocate the physical measurement.
      * </div>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="referenceInformation", obligation=CONDITIONAL, specification=ISO_19115)
     public static final CoverageContentType REFERENCE_INFORMATION;
@@ -98,7 +98,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
     /**
      * Results with values that are calculated using a model rather than being observed or calculated from observations.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="modelResult", obligation=CONDITIONAL, specification=ISO_19115)
     public static final CoverageContentType MODEL_RESULT;
@@ -106,7 +106,7 @@ public final class CoverageContentType extends CodeList<CoverageContentType> {
     /**
      * Data used to provide coordinate axis values.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="coordinate", obligation=CONDITIONAL, specification=ISO_19115)
     public static final CoverageContentType COORDINATE;

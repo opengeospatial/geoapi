@@ -27,7 +27,7 @@
  * the experimental interfaces.</p>
  *
  * @version 4.0
- * @since 2.2
+ * @since GeoAPI 2.2
  */
 module org.opengis.geoapi.pending {
     /*

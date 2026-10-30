@@ -38,7 +38,7 @@ import org.opengis.util.FactoryException;
  * @author  Laetitia Viau (Geomatys)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
- * @since   4.0
+ * @since GeoAPI 4.0
  */
 final class PythonHelper {
     /**

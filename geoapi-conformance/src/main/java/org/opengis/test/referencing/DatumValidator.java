@@ -42,7 +42,7 @@ import static org.opengis.test.Assertions.assertBetween;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 public class DatumValidator extends ReferencingValidator {
     /**
@@ -205,7 +205,7 @@ public class DatumValidator extends ReferencingValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void validate(final ParametricDatum object) {
         if (object == null) {
@@ -231,7 +231,7 @@ public class DatumValidator extends ReferencingValidator {
      *
      * @param  object  the object to validate, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     public void validate(final DatumEnsemble<?> object) {
         if (object == null) {

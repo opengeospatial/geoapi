@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @author  Rémi Maréchal (Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_Citation", specification=ISO_19115)
@@ -205,7 +205,7 @@ public interface Citation {
      *
      * @return online references to the cited resource, or an empty collection if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="onlineResource", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends OnlineResource> getOnlineResources() {
@@ -218,7 +218,7 @@ public interface Citation {
      *
      * @return graphics or logo for cited party, or an empty collection if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="graphic", obligation=OPTIONAL, specification=ISO_19115)
     default Collection<? extends BrowseGraphic> getGraphics() {

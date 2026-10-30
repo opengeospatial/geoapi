@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * @see SampleBasedInspection
  * @see IndirectEvaluation
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="DQ_FullInspection", specification=ISO_19157)
 public interface FullInspection extends DataEvaluation {

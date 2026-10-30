@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_MediumFormatCode", specification=ISO_19115)
 public final class MediumFormat extends CodeList<MediumFormat> {
@@ -79,7 +79,7 @@ public final class MediumFormat extends CodeList<MediumFormat> {
     /**
      * Universal Disk Format.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="udf", obligation=CONDITIONAL, specification=ISO_19115)
     public static final MediumFormat UDF;

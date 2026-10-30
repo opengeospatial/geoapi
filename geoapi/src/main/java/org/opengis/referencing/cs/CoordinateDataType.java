@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.ISO_19111;
  *
  * @see TimeCS#getCoordinateType()
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="CoordinateDataType", specification=ISO_19111)
 public final class CoordinateDataType extends CodeList<CoordinateDataType> {

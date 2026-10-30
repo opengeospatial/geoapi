@@ -34,7 +34,7 @@ import org.opengis.referencing.operation.CoordinateOperationAuthorityFactory;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 final class RegisterOperationsMock implements RegisterOperations {
     /**

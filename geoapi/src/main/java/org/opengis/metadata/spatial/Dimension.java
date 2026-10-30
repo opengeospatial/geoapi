@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="MD_Dimension", specification=ISO_19115)
@@ -79,7 +79,7 @@ public interface Dimension {
      *
      * @return enhancement / modifier of the dimension name, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="dimensionTitle", obligation=OPTIONAL, specification=ISO_19115)
     default InternationalString getDimensionTitle() {
@@ -91,7 +91,7 @@ public interface Dimension {
      *
      * @return description of the axis, or {@code null} if none.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="dimensionDescription", obligation=OPTIONAL, specification=ISO_19115)
     default InternationalString getDimensionDescription() {

@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.ISO_19143;
  * @param  <R>  the type of resources (e.g. {@link org.opengis.feature.Feature}) used as inputs.
  * @param  <V>  the type of values fetched by the expression.
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="ValueReference", specification=ISO_19143)
 public interface ValueReference<R,V> extends Expression<R,V> {

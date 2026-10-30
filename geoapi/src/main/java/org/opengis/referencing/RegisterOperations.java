@@ -70,7 +70,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (Geomatys)
  * @version 4.0
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="RegisterOperations", specification=ISO_19111)
 public interface RegisterOperations extends AuthorityFactory {

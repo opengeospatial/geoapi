@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_ExtendedElementInformation", specification=ISO_19115)
 public interface ExtendedElementInformation {
@@ -183,7 +183,7 @@ public interface ExtendedElementInformation {
      *
      * @return reason for creating the extended element.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="rationale", obligation=OPTIONAL, specification=ISO_19115)
     default InternationalString getRationale() {

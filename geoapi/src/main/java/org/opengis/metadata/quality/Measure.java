@@ -50,7 +50,7 @@ import static org.opengis.annotation.Specification.*;
  * @see MeasureReference
  * @see Element#getMeasure()
  *
- * @since 3.1
+ * @since GeoAPI 3.1
  *
  * @todo Renamed in 19157:2022: {@code QualityMeasure}.
  */

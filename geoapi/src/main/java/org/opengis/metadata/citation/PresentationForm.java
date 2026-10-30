@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Rémi Maréchal (Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="CI_PresentationFormCode", specification=ISO_19115)
 public final class PresentationForm extends CodeList<PresentationForm> {
@@ -135,7 +135,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
     /**
      * Digital audio recording.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="audioDigital", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm AUDIO_DIGITAL;
@@ -143,7 +143,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
     /**
      * Audio recording delivered by analog media, such as a magnetic tape
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="audioHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm AUDIO_HARDCOPY;
@@ -151,7 +151,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
     /**
      * Information representation using simultaneously various digital modes for text, sound, image.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="multimediaDigital", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm MULTIMEDIA_DIGITAL;
@@ -159,7 +159,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
     /**
      * Information representation using simultaneously various analog modes for text, sound, image.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="multimediaHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm MULTIMEDIA_HARDCOPY;
@@ -171,7 +171,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * rock or mineral sample, microscope slide.
      * </div>
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="physicalObject", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm PHYSICAL_OBJECT;
@@ -180,7 +180,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * Information represented graphically by charts such as pie chart, bar chart,
      * and other type of diagrams and recorded in digital format.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="diagramDigital", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm DIAGRAM_DIGITAL;
@@ -189,7 +189,7 @@ public final class PresentationForm extends CodeList<PresentationForm> {
      * Information represented graphically by charts such as pie chart, bar chart,
      * and other type of diagrams and printed on paper, photographic material, or other media.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="diagramHardcopy", obligation=CONDITIONAL, specification=ISO_19115)
     public static final PresentationForm DIAGRAM_HARDCOPY;

@@ -58,7 +58,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 4.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see CRSAuthorityFactory#createDerivedCRS(String)
  * @see CRSFactory#createDerivedCRS(Map, CoordinateReferenceSystem, Conversion, CoordinateSystem)
@@ -112,7 +112,7 @@ public interface DerivedCRS extends SingleCRS {
      * @return the datum ensemble of the base <abbr>CRS</abbr>, or {@code null} if the base is
      *         related to an object identified only by a single {@linkplain #getDatum() datum}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     default DatumEnsemble<?> getDatumEnsemble() {

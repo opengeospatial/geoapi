@@ -89,7 +89,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
  * @version 3.1
- * @since   2.1
+ * @since GeoAPI 2.1
  *
  * @see Record
  * @see Record#getRecordType()
@@ -129,7 +129,7 @@ public interface RecordType extends Type {
      *
      * @see Record#getFields()
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="fieldType", obligation=MANDATORY, specification=ISO_19103)
     Map<MemberName, Type> getFieldTypes();

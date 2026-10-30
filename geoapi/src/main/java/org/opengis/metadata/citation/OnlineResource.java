@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 @Classifier(Stereotype.DATATYPE)
 @UML(identifier="CI_OnlineResource", specification=ISO_19115)
@@ -121,7 +121,7 @@ public interface OnlineResource {
      *
      * @return request used to access the resource, or {@code null}.
      *
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @UML(identifier="protocolRequest", obligation=OPTIONAL, specification=ISO_19115)
     default String getProtocolRequest() {

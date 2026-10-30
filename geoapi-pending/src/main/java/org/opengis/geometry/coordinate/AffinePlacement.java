@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Axel Francois (LSIS/Geomatys)
  * @version 3.1
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @todo Refactor as an {@code org.opengis.referencing.operation.AffineTransform} interface?
  */

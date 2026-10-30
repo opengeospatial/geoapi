@@ -48,7 +48,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  OGC Topic 2 (for abstract model and documentation)
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.1
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see Transformation
  * @see CoordinateOperationFactory#createDefiningConversion(Map, OperationMethod, ParameterValueGroup)
@@ -91,7 +91,7 @@ public interface Conversion extends SingleOperation {
      * This attribute is inherited from {@code CoordinateOperation} but is not applicable in a conversion.
      *
      * @return always empty.
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     @UML(identifier="sourceCoordinateEpoch", obligation=FORBIDDEN, specification=ISO_19111)
@@ -103,7 +103,7 @@ public interface Conversion extends SingleOperation {
      * This attribute is inherited from {@code CoordinateOperation} but is not applicable in a conversion.
      *
      * @return always empty.
-     * @since 3.1
+     * @since GeoAPI 3.1
      */
     @Override
     @UML(identifier="targetCoordinateEpoch", obligation=FORBIDDEN, specification=ISO_19111)

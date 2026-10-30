@@ -41,7 +41,7 @@ import static org.opengis.annotation.Specification.ISO_19115_2;
  *
  * @author  Rémi Maréchal (geomatys)
  * @version 3.1
- * @since   3.1
+ * @since GeoAPI 3.1
  */
 @UML(identifier="MD_SampleDimension", specification=ISO_19115)
 public interface SampleDimension extends RangeDimension {
