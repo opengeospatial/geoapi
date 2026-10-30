@@ -33,7 +33,7 @@ import javax.lang.model.element.QualifiedNameable;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0.2
- * @since   2.3
+ * @since GeoAPI 2.3
  */
 final class DepartureElement implements Comparable<DepartureElement> {
     /**

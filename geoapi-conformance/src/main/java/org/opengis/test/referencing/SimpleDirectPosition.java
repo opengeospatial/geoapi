@@ -29,7 +29,7 @@ import org.opengis.referencing.crs.CoordinateReferenceSystem;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 final class SimpleDirectPosition implements DirectPosition {
     /**

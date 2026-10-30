@@ -23,7 +23,7 @@ package org.opengis.test.referencing;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 @SuppressWarnings("serial")
 public class TransformFailure extends AssertionError {

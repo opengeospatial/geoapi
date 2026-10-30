@@ -107,7 +107,7 @@ import org.opengis.util.GenericName;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 public interface ObjectFactory extends Factory {
 }

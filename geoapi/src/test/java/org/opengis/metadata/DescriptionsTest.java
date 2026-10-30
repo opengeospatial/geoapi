@@ -39,7 +39,7 @@ import static org.junit.Assert.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0
- * @since   2.3
+ * @since GeoAPI 2.3
  */
 public final class DescriptionsTest {
     /**

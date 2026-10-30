@@ -29,7 +29,7 @@ import org.opengis.util.NoSuchIdentifierException;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.CRSAuthorityFactory
  * @see org.opengis.referencing.cs.CSAuthorityFactory

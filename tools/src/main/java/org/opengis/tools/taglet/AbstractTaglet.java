@@ -42,7 +42,7 @@ import com.sun.source.doctree.UnknownBlockTagTree;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0.2
- * @since   3.0.1
+ * @since GeoAPI 3.0.1
  */
 abstract class AbstractTaglet implements Taglet {
     /**

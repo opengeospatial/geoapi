@@ -44,7 +44,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @issue http://jira.codehaus.org/browse/GEO-87
  */
@@ -56,7 +56,7 @@ public interface Position {
      *
      * @return The direct position (may be {@code this}).
      *
-     * @since 2.2
+     * @since GeoAPI 2.2
      */
     @UML(identifier="direct", obligation=CONDITIONAL, specification=ISO_19107)
     DirectPosition getDirectPosition();

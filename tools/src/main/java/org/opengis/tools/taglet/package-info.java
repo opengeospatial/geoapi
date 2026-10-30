@@ -22,6 +22,6 @@
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0.2
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 package org.opengis.tools.taglet;

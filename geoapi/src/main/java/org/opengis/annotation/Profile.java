@@ -27,7 +27,7 @@ import static java.lang.annotation.ElementType.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @navassoc - - - ComplianceLevel
  */

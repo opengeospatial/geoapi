@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
- * @since   2.3
+ * @since GeoAPI 2.3
  *
  * @navassoc - - - Record
  */

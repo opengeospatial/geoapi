@@ -35,7 +35,7 @@ import static org.opengis.test.Assert.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0.1
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 public class DatumValidator extends ReferencingValidator {
     /**

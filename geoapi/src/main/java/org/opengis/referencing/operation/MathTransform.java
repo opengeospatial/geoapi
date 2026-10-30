@@ -42,7 +42,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see java.awt.geom.AffineTransform
  * @see javax.media.jai.PerspectiveTransform
@@ -165,7 +165,7 @@ public interface MathTransform {
      *         only at end. Implementations that fall in the latter case should set the {@linkplain
      *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
-     * @since 2.2
+     * @since GeoAPI 2.2
      */
     void transform(float [] srcPts, int srcOff,
                    double[] dstPts, int dstOff, int numPts) throws TransformException;
@@ -192,7 +192,7 @@ public interface MathTransform {
      *         only at end. Implementations that fall in the latter case should set the {@linkplain
      *         TransformException#getLastCompletedTransform last completed transform} to {@code this}.
      *
-     * @since 2.2
+     * @since GeoAPI 2.2
      */
     void transform(double[] srcPts, int srcOff,
                    float [] dstPts, int dstOff, int numPts) throws TransformException;

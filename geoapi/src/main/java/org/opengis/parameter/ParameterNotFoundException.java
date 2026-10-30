@@ -27,7 +27,7 @@ package org.opengis.parameter;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see ParameterValueGroup#parameter(String)
  * @see ParameterDescriptorGroup#descriptor(String)

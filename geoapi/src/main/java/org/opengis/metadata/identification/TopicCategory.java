@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="MD_TopicCategoryCode", specification=ISO_19115)
 public final class TopicCategory extends CodeList<TopicCategory> {
@@ -130,7 +130,7 @@ public final class TopicCategory extends CodeList<TopicCategory> {
      * Examples: disease and illness, factors affecting health, hygiene, substance abuse,
      *           mental and physical health, health services.
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      */
     @UML(identifier="health", obligation=CONDITIONAL, specification=ISO_19115)
     public static final TopicCategory HEALTH = new TopicCategory("HEALTH");

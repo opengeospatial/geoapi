@@ -194,6 +194,6 @@
  *
  * @author  Martin Desruisseaux (IRD, Geomatys)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 package org.opengis.referencing.operation;

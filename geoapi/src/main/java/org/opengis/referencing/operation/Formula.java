@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0
- * @since   2.3
+ * @since GeoAPI 2.3
  */
 @UML(identifier="CC_Formula", specification=ISO_19111)
 public interface Formula {

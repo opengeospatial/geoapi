@@ -32,7 +32,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @navassoc 1 - - Scope
  * @navassoc - - - Element

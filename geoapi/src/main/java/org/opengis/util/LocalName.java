@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Bryce Nordgren (USDA)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @see NameFactory#createLocalName(NameSpace, CharSequence)
  */
@@ -56,7 +56,7 @@ public interface LocalName extends GenericName {
     /**
      * Returns {@code this} since this object is already a local name.
      *
-     * @since 2.2
+     * @since GeoAPI 2.2
      */
     @Override
     LocalName head();
@@ -64,7 +64,7 @@ public interface LocalName extends GenericName {
     /**
      * Returns {@code this} since this object is already a local name.
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      */
     @Override
     LocalName tip();

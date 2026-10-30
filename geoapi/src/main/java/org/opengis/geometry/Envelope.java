@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.coverage.grid.GridEnvelope
  *
@@ -60,7 +60,7 @@ public interface Envelope {
      *   the need to choose an arbitrary corner (very defensive code might feel the need to get
      *   the value from both corners to check they were the same).
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      */
     CoordinateReferenceSystem getCoordinateReferenceSystem();
 
@@ -78,7 +78,7 @@ public interface Envelope {
      *   the need to choose an arbitrary corner (very defensive code might feel the need to get
      *   the value from both corners to check they were the same).
      *
-     * @since 2.0
+     * @since GeoAPI 2.0
      */
     int getDimension();
 
@@ -122,7 +122,7 @@ public interface Envelope {
      * @see Rectangle2D#getMinX()
      * @see Rectangle2D#getMinY()
      *
-     * @since 2.0
+     * @since GeoAPI 2.0
      */
     double getMinimum(int dimension) throws IndexOutOfBoundsException;
 
@@ -148,7 +148,7 @@ public interface Envelope {
      * @see Rectangle2D#getMaxX()
      * @see Rectangle2D#getMaxY()
      *
-     * @since 2.0
+     * @since GeoAPI 2.0
      */
     double getMaximum(int dimension) throws IndexOutOfBoundsException;
 
@@ -174,7 +174,7 @@ public interface Envelope {
      * @see Rectangle2D#getCenterX()
      * @see Rectangle2D#getCenterY()
      *
-     * @since 2.2
+     * @since GeoAPI 2.2
      */
     double getMedian(int dimension) throws IndexOutOfBoundsException;
 
@@ -200,7 +200,7 @@ public interface Envelope {
      * @see Rectangle2D#getWidth()
      * @see Rectangle2D#getHeight()
      *
-     * @since 2.2
+     * @since GeoAPI 2.2
      */
     double getSpan(int dimension) throws IndexOutOfBoundsException;
 }

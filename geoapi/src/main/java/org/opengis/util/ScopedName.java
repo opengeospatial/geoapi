@@ -62,7 +62,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Bryce Nordgren (USDA)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 @UML(identifier="ScopedName", specification=ISO_19103)
 public interface ScopedName extends GenericName {
@@ -85,7 +85,7 @@ public interface ScopedName extends GenericName {
      *
      * @return The first element in the list of {@linkplain #getParsedNames parsed names}.
      *
-     * @since 2.2
+     * @since GeoAPI 2.2
      */
     @Override
     @UML(identifier="head", obligation=MANDATORY, specification=ISO_19103)
@@ -107,7 +107,7 @@ public interface ScopedName extends GenericName {
      * @return All elements except the first one in the in the list of
      *         {@linkplain #getParsedNames parsed names}.
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      */
     @UML(identifier="tail", obligation=MANDATORY, specification=ISO_19103)
     GenericName tail();
@@ -132,7 +132,7 @@ public interface ScopedName extends GenericName {
      *   This method is not part of ISO specification. It has been added in GeoAPI as a
      *   complement of the ISO <code>tail()</code> method.
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      */
     GenericName path();
 
@@ -144,7 +144,7 @@ public interface ScopedName extends GenericName {
      *
      * @return The last element in the list of {@linkplain #getParsedNames parsed names}.
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      */
     @Override
     LocalName tip();

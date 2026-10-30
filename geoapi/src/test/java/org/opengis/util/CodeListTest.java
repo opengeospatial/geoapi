@@ -35,7 +35,7 @@ import static org.junit.Assert.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0.2
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 public final class CodeListTest {
     /**

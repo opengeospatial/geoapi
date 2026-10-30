@@ -30,7 +30,7 @@ import static java.lang.annotation.RetentionPolicy.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @navassoc - - - String
  * @navassoc - - - Obligation

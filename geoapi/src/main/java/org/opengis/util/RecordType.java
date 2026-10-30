@@ -39,7 +39,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Bryce Nordgren (USDA)
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   2.1
+ * @since GeoAPI 2.1
  *
  * @see Record
  * @see RecordSchema

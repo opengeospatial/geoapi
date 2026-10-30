@@ -56,7 +56,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @navassoc 1 - - VerticalDatum
  * @navassoc 1 - - VerticalCS

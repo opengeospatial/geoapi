@@ -27,7 +27,7 @@ import org.opengis.referencing.operation.NoninvertibleTransformException;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 @SuppressWarnings("serial")
 final class BogusAffineTransform2D extends AffineTransform2D {

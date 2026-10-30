@@ -35,7 +35,7 @@ import org.opengis.parameter.ParameterValueGroup;  // For javadoc
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.operation.MathTransformFactory#createParameterizedTransform(ParameterValueGroup)
  */

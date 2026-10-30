@@ -35,7 +35,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 @UML(identifier="CT_CoordinateTransformationAuthorityFactory", specification=OGC_01009)
 public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
@@ -54,7 +54,7 @@ public interface CoordinateOperationAuthorityFactory extends AuthorityFactory {
      *   This method has been added because OGC 01-009 does not define a factory
      *   method for creating such object.
      *
-     * @since 2.3
+     * @since GeoAPI 2.3
      */
     OperationMethod createOperationMethod(String code)
             throws NoSuchAuthorityCodeException, FactoryException;

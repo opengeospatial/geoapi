@@ -27,7 +27,7 @@ package org.opengis.geometry;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 public class MismatchedDimensionException extends IllegalArgumentException {
     /**

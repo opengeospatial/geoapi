@@ -58,7 +58,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @navassoc - - - CoordinateReferenceSystem
  */
@@ -78,7 +78,7 @@ public interface CompoundCRS extends CoordinateReferenceSystem {
      *    specified as a pair of arbitrary CRS ("head" and "tail") where each could be another
      *    compound CRS, allowing the creation of a tree. GeoAPI follows that more general strategy.
      *
-     * @since 2.3
+     * @since GeoAPI 2.3
      */
     @UML(identifier="componentReferenceSystem", obligation=MANDATORY, specification=ISO_19111)
     List<CoordinateReferenceSystem> getComponents();

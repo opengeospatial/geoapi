@@ -35,7 +35,7 @@ import java.util.Collection;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 public class Assert extends org.junit.Assert {
     /**

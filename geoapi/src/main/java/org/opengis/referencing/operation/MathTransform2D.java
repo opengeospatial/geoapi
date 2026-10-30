@@ -37,7 +37,7 @@ import java.awt.geom.Point2D;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 public interface MathTransform2D extends MathTransform {
     /**
@@ -95,7 +95,7 @@ public interface MathTransform2D extends MathTransform {
      * @return The inverse transform.
      * @throws NoninvertibleTransformException if the transform cannot be inverted.
      *
-     * @since 2.2
+     * @since GeoAPI 2.2
      */
     MathTransform2D inverse() throws NoninvertibleTransformException;
 }

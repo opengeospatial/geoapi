@@ -33,7 +33,7 @@ package org.opengis.referencing.operation;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 public interface MathTransform1D extends MathTransform {
     /**
@@ -63,7 +63,7 @@ public interface MathTransform1D extends MathTransform {
      * @return The inverse transform.
      * @throws NoninvertibleTransformException if the transform cannot be inverted.
      *
-     * @since 2.2
+     * @since GeoAPI 2.2
      */
     MathTransform1D inverse() throws NoninvertibleTransformException;
 }

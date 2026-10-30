@@ -33,7 +33,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @navassoc 1 - - ScopeCode
  * @navassoc - - - ScopeDescription
@@ -56,7 +56,7 @@ public interface Scope {
      *
      * @return Detailed description about the level of the data.
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      */
     @UML(identifier="levelDescription", obligation=CONDITIONAL, specification=ISO_19115)
     Collection<? extends ScopeDescription> getLevelDescription();

@@ -28,7 +28,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @version 3.0
- * @since   2.1
+ * @since GeoAPI 2.1
  */
 @UML(identifier="DQ_FormatConsistency", specification=ISO_19115)
 public interface FormatConsistency extends LogicalConsistency {

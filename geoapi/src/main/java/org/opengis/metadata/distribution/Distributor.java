@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @navassoc 1 - - ResponsibleParty
  * @navassoc - - - StandardOrderProcess

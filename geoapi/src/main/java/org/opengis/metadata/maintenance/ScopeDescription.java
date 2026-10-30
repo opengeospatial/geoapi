@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @navassoc - - - AttributeType
  * @navassoc - - - FeatureType
@@ -78,7 +78,7 @@ public interface ScopeDescription {
      *
      * @return Attribute instances to which the information applies.
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      *
      * @condition Attributes, features, featureInstances, dataset and other not
      *            documented.
@@ -91,7 +91,7 @@ public interface ScopeDescription {
      *
      * @return Dataset to which the information applies.
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      *
      * @condition Attributes, features, featureInstances, attributeInstances and other not
      *            documented.
@@ -105,7 +105,7 @@ public interface ScopeDescription {
      *
      * @return Class of information that does not fall into the other categories.
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      *
      * @condition Attributes, features, featureInstances, attributeInstances and dataset not
      *            documented.

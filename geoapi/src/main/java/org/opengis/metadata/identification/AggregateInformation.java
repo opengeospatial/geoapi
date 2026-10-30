@@ -30,7 +30,7 @@ import static org.opengis.annotation.Specification.ISO_19115;
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @version 3.0
- * @since   2.1
+ * @since GeoAPI 2.1
  *
  * @navassoc 1 - - Citation
  * @navassoc 1 - - Identifier

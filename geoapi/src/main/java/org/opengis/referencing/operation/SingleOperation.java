@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @navassoc 1 - - OperationMethod
  * @navassoc 1 - - ParameterValueGroup
@@ -44,7 +44,7 @@ public interface SingleOperation extends CoordinateOperation {
      *
      * @return The operation method.
      *
-     * @since 2.3
+     * @since GeoAPI 2.3
      */
     @UML(identifier="method", obligation=MANDATORY, specification=ISO_19111)
     OperationMethod getMethod();
@@ -54,7 +54,7 @@ public interface SingleOperation extends CoordinateOperation {
      *
      * @return The parameter values.
      *
-     * @since 2.3
+     * @since GeoAPI 2.3
      */
     @UML(identifier="parameterValue", obligation=MANDATORY, specification=ISO_19111)
     ParameterValueGroup getParameterValues();

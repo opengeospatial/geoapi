@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @navassoc & - - RepresentativeFraction
  * @navassoc 1 - - ReferenceSystem
@@ -106,7 +106,7 @@ public interface Source {
      *
      * @return Processing level of the source data.
      *
-     * @since 2.3
+     * @since GeoAPI 2.3
      */
     @UML(identifier="processedLevel", obligation=OPTIONAL, specification=ISO_19115_2)
     Identifier getProcessedLevel();
@@ -117,7 +117,7 @@ public interface Source {
      *
      * @return Distance between consistent parts of two adjacent pixels.
      *
-     * @since 2.3
+     * @since GeoAPI 2.3
      */
     @UML(identifier="resolution", obligation=OPTIONAL, specification=ISO_19115_2)
     NominalResolution getResolution();

@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0.1
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @navassoc 1 - - MediumName
  * @navassoc - - - MediumFormat

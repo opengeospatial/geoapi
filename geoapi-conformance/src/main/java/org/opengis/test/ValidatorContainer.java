@@ -45,7 +45,7 @@ import org.opengis.test.referencing.*;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0
- * @since   2.2
+ * @since GeoAPI 2.2
  */
 public class ValidatorContainer {
     /**

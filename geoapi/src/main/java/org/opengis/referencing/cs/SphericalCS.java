@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 @UML(identifier="CS_SphericalCS", specification=ISO_19111)
 public interface SphericalCS extends CoordinateSystem {

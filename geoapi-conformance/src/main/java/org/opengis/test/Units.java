@@ -34,7 +34,7 @@ import org.opengis.metadata.citation.Citation;
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0.1
- * @since   3.0.1
+ * @since GeoAPI 3.0.1
  */
 public class Units implements Factory {
     /**

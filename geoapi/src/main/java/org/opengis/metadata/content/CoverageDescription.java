@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @navassoc 1 - - RecordType
  * @navassoc 1 - - CoverageContentType
@@ -62,7 +62,7 @@ public interface CoverageDescription extends ContentInformation {
      *
      * @return Dimensions of the cell measurement value.
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      */
     @UML(identifier="dimension", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends RangeDimension> getDimensions();
@@ -72,7 +72,7 @@ public interface CoverageDescription extends ContentInformation {
      *
      * @return Description of the specific range elements.
      *
-     * @since 2.3
+     * @since GeoAPI 2.3
      */
     @UML(identifier="rangeElementDescription", obligation=OPTIONAL, specification=ISO_19115_2)
     Collection<? extends RangeElementDescription> getRangeElementDescriptions();

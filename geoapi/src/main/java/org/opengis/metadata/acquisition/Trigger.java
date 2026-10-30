@@ -31,7 +31,7 @@ import static org.opengis.annotation.Specification.*;
  * Mechanism of activation.
  *
  * @author  Cédric Briançon (Geomatys)
- * @since   2.3
+ * @since GeoAPI 2.3
  * @version 3.0
  */
 @UML(identifier="MI_TriggerCode", specification=ISO_19115_2)

@@ -22,7 +22,7 @@
  *
  * @author  Martin Desruisseaux (Geomatys)
  * @version 3.0.2
- * @since   3.0
+ * @since GeoAPI 3.0
  */
 module org.opengis.geoapi.build {
     requires jdk.javadoc;

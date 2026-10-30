@@ -38,7 +38,7 @@ import static org.opengis.annotation.ComplianceLevel.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @navassoc 1 - - Citation
  * @navassoc - - - Progress
@@ -161,7 +161,7 @@ public interface Identification {
      *
      * @return Aggregate dataset information.
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      */
     @UML(identifier="aggregationInfo", obligation=OPTIONAL, specification=ISO_19115)
     Collection<? extends AggregateInformation> getAggregationInfo();

@@ -38,7 +38,7 @@ import java.util.Locale;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @see javax.xml.registry.infomodel.InternationalString
  * @see NameFactory#createInternationalString(Map)

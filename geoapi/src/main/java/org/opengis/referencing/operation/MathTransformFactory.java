@@ -67,7 +67,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see <A HREF="http://www.remotesensing.org/geotiff/proj_list/">Projection transform list on RemoteSensing.org</A>
  */
@@ -117,7 +117,7 @@ public interface MathTransformFactory extends Factory {
      *   Note that the existence of this method does not break thread-safety if the implementor
      *   stores this information in a <code>ThreadLocal</code> variable.
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      */
     OperationMethod getLastMethodUsed();
 
@@ -170,7 +170,7 @@ public interface MathTransformFactory extends Factory {
      *   This method is part of the GeoAPI mechanism for defining the math transform parameters
      *   or deriving other transforms.
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      */
     MathTransform createBaseToDerived(CoordinateReferenceSystem baseCRS,
                                       ParameterValueGroup       parameters,

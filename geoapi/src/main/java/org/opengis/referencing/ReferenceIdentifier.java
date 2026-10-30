@@ -29,7 +29,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @version 3.0
- * @since   2.1
+ * @since GeoAPI 2.1
  */
 @UML(identifier="RS_Identifier", specification=ISO_19115)
 public interface ReferenceIdentifier extends Identifier {

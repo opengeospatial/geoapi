@@ -32,7 +32,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Cory Horner (Refractions Research)
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0.1
- * @since   2.0
+ * @since GeoAPI 2.0
  *
  * @navassoc 1 - - Unit
  * @navassoc 1 - - BandDefinition
@@ -124,7 +124,7 @@ public interface Band extends RangeDimension {
      *
      * @return Criterion for defining maximum and minimum wavelengths.
      *
-     * @since 2.3
+     * @since GeoAPI 2.3
      */
     @UML(identifier="bandBoundaryDefinition", obligation=OPTIONAL, specification=ISO_19115_2)
     BandDefinition getBandBoundaryDefinition();
@@ -144,7 +144,7 @@ public interface Band extends RangeDimension {
      * @return Smallest distance between which separate points can be distinguished.
      * @unitof Distance
      *
-     * @since 2.3
+     * @since GeoAPI 2.3
      */
     @UML(identifier="nominalSpatialResolution", obligation=OPTIONAL, specification=ISO_19115_2)
     Double getNominalSpatialResolution();
@@ -154,7 +154,7 @@ public interface Band extends RangeDimension {
      *
      * @return Type of transfer function.
      *
-     * @since 2.3
+     * @since GeoAPI 2.3
      */
     @UML(identifier="transferFunctionType", obligation=OPTIONAL, specification=ISO_19115_2)
     TransferFunctionType getTransferFunctionType();
@@ -164,7 +164,7 @@ public interface Band extends RangeDimension {
      *
      * @return Polarization of the radiation transmitted.
      *
-     * @since 2.3
+     * @since GeoAPI 2.3
      */
     @UML(identifier="transmittedPolarization", obligation=OPTIONAL, specification=ISO_19115_2)
     PolarizationOrientation getTransmittedPolarization();
@@ -174,7 +174,7 @@ public interface Band extends RangeDimension {
      *
      * @return Polarization of the radiation detected.
      *
-     * @since 2.3
+     * @since GeoAPI 2.3
      */
     @UML(identifier="detectedPolarization", obligation=OPTIONAL, specification=ISO_19115_2)
     PolarizationOrientation getDetectedPolarization();

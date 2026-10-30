@@ -34,7 +34,7 @@ import static org.opengis.annotation.Specification.*;
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @navassoc 1 - - OnLineFunction
  */
@@ -72,7 +72,7 @@ public interface OnlineResource {
      *
      * @return Name of the online resource, or {@code null}.
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      */
     @UML(identifier="name", obligation=OPTIONAL, specification=ISO_19115)
     String getName();

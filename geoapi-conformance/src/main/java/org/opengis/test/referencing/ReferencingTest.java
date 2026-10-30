@@ -42,7 +42,7 @@ import static org.opengis.test.Validators.*;
  *
  * @author  Cédric Briançon (Geomatys)
  * @version 3.0.1
- * @since   2.3
+ * @since GeoAPI 2.3
  */
 public abstract class ReferencingTest extends TestCase {
     /**

@@ -28,6 +28,6 @@
  * @author  Martin Desruisseaux (IRD)
  * @author  Cory Horner (Refractions Research)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 package org.opengis.metadata.maintenance;

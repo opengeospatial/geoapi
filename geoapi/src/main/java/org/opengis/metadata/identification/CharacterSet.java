@@ -34,7 +34,7 @@ import static org.opengis.annotation.Obligation.CONDITIONAL;
  *
  * @author  Ely Conn (Leica Geosystems Geospatial Imaging, LLC)
  * @version 3.0
- * @since   2.1
+ * @since GeoAPI 2.1
  */
 @UML(identifier="MD_CharacterSetCode", specification=ISO_19115)
 public final class CharacterSet extends CodeList<CharacterSet> {
@@ -290,7 +290,7 @@ public final class CharacterSet extends CodeList<CharacterSet> {
      *
      * @return All names of this code constant. This array is never null and never empty.
      *
-     * @since 2.3
+     * @since GeoAPI 2.3
      */
     @Override
     public String[] names() {

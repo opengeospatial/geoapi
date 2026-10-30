@@ -26,7 +26,7 @@ package org.opengis.annotation;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   2.0
+ * @since GeoAPI 2.0
  */
 public enum ComplianceLevel {
     /**

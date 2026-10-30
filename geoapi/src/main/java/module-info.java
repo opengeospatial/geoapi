@@ -23,7 +23,7 @@
  * The interfaces were created from UML diagrams found in the <abbr>ISO</abbr> and <abbr>OGC</abbr> specifications.
  *
  * @version 3.0.2
- * @since 1.0
+ * @since GeoAPI 1.0
  */
 module org.opengis.geoapi {
     requires transitive java.measure;

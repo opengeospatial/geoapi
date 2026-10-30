@@ -33,7 +33,7 @@
  * See the <a href="http://www.geoapi.org/conformance/index.html">web site</a> for examples.
  *
  * @version 3.0.2
- * @since 2.2
+ * @since GeoAPI 2.2
  */
 module org.opengis.geoapi.conformance {
     requires java.prefs;

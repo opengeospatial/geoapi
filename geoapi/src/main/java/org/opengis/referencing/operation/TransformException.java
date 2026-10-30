@@ -35,7 +35,7 @@ import org.opengis.geometry.DirectPosition;  // For javadoc
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  */
 public class TransformException extends Exception {
     /**
@@ -51,7 +51,7 @@ public class TransformException extends Exception {
      * @see #getLastCompletedTransform()
      * @see #setLastCompletedTransform(MathTransform)
      *
-     * @since 2.2
+     * @since GeoAPI 2.2
      */
     private MathTransform lastCompletedTransform;
 
@@ -90,7 +90,7 @@ public class TransformException extends Exception {
      *
      * @return The last reliable transform.
      *
-     * @since 2.2
+     * @since GeoAPI 2.2
      */
     public MathTransform getLastCompletedTransform() {
         return lastCompletedTransform;
@@ -102,7 +102,7 @@ public class TransformException extends Exception {
      *
      * @param transform The last reliable transform.
      *
-     * @since 2.2
+     * @since GeoAPI 2.2
      */
     public void setLastCompletedTransform(final MathTransform transform) {
         lastCompletedTransform = transform;

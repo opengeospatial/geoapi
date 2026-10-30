@@ -37,7 +37,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   2.1
+ * @since GeoAPI 2.1
  *
  * @navassoc 1 - - GeodeticDatum
  */

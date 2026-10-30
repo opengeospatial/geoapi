@@ -36,7 +36,7 @@ import static org.opengis.annotation.Specification.*;
  *
  * @author  Martin Desruisseaux (IRD)
  * @version 3.0
- * @since   1.0
+ * @since GeoAPI 1.0
  *
  * @see org.opengis.referencing.crs.CoordinateReferenceSystem
  *
@@ -51,7 +51,7 @@ public interface ReferenceSystem extends IdentifiedObject {
      *
      * @see #getDomainOfValidity()
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      */
     String DOMAIN_OF_VALIDITY_KEY = "domainOfValidity";
 
@@ -75,7 +75,7 @@ public interface ReferenceSystem extends IdentifiedObject {
      *   collection. The singleton has been preserved in GeoAPI for historical reasons, 
      *   and also because the <code>Extent</code> attributes already allow collections.
      *
-     * @since 2.1
+     * @since GeoAPI 2.1
      */
     @UML(identifier="domainOfValidity", obligation=OPTIONAL, specification=ISO_19111)
     Extent getDomainOfValidity();
