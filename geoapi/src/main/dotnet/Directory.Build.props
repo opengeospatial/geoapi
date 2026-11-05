@@ -1,0 +1,15 @@
+<Project>
+  <!-- Shared settings for the GeoAPI .NET binding. Imported by geoapi/src/test/dotnet too. -->
+  <PropertyGroup>
+    <TargetFramework>net10.0</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>disable</ImplicitUsings>
+    <TreatWarningsAsErrors>true</TreatWarningsAsErrors>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <AnalysisLevel>latest-recommended</AnalysisLevel>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <Authors>Open Geospatial Consortium, Inc.</Authors>
+    <Copyright>Copyright © 2026 Open Geospatial Consortium, Inc.</Copyright>
+  </PropertyGroup>
+</Project>
