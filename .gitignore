@@ -44,3 +44,7 @@ venv
 # build files
 geoapi.egg-info/
 # ------------------------------------------------
+
+# .NET build output
+bin/
+obj/

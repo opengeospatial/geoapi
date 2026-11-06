@@ -1,0 +1,10 @@
+<Project>
+  <!-- Reuse the shared settings of the main binding. -->
+  <Import Project="$([MSBuild]::NormalizePath('$(MSBuildThisFileDirectory)', '..', '..', 'main', 'dotnet', 'Directory.Build.props'))" />
+
+  <PropertyGroup>
+    <!-- Test classes are not public API; no XML documentation required. -->
+    <GenerateDocumentationFile>false</GenerateDocumentationFile>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+</Project>
