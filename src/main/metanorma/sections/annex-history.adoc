@@ -32,6 +32,7 @@ GeoAPI 3.0.0 has been released in 2011, GeoAPI 3.0.1 in 2017, and GeoAPI 3.0.2 i
 |2016-11-07 |3.0.1          |Martin Desruisseaux |§3, 6.2.9, annex D       |Replaced JSR-275 by JSR-363
 |2022-12-26 |3.0.2          |Martin Desruisseaux |§3, 6.2.9, annex D       |Replaced JSR-363 by JSR-385
 |2023-XX-XX |3.1 / 4.0      |Martin Desruisseaux |All                      |Rewrite
+|2026-XX-XX |4.0            |Venkata Kondepati   |§2–7, annexes            |.NET profile
 |===============================================================================================
 
 [[future_work]]

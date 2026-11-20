@@ -12,6 +12,8 @@ test-purpose:: Verify that all types and properties in OGC namespace are as publ
 --
 #TODO: write a Java program verifying signature of all classes and methods in the `org.opengis` namespace.
 This verification would be done for the "libraries" target type only, not the "applications" target type.#
+
+#TODO: write the equivalent .NET program verifying the `OpenGis` namespace.#
 --
 =====
 ====

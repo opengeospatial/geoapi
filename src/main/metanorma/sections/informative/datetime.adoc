@@ -21,21 +21,22 @@ for letting developers choose how they want to handle timezones.
 
 .Date and time types suggested mapping
 [options="header"]
-|==================================================================================
-|ISO 19103 interface   |Suggested Java type                   |Python type
-|`PositionInTime`      |`java.time.temporal.Temporal`         |
-|`Year`                |`java.time.Year`          ^(1)^       |
-|`YearMonth`           |`java.time.YearMonth`     ^(1)^       |
-|`Date`                |`java.time.LocalDate`     ^(1)^ ^(2)^ |`datetime.date`
-|`Time`                |`java.time.OffsetTime`    ^(1)^       |`datetime.time`
-|`DateTime`            |`java.time.ZonedDateTime` ^(1)^ ^(2)^ |`datetime.datetime`
-|(none)                |`java.time.Instant`             ^(2)^ |
-|==================================================================================
+|===========================================================================================================
+|ISO 19103 interface   |Suggested Java type                   |Suggested .NET type     |Python type
+|`PositionInTime`      |`java.time.temporal.Temporal`         |^(3)^                   |
+|`Year`                |`java.time.Year`          ^(1)^       |                        |
+|`YearMonth`           |`java.time.YearMonth`     ^(1)^       |                        |
+|`Date`                |`java.time.LocalDate`     ^(1)^ ^(2)^ |`System.DateOnly`       |`datetime.date`
+|`Time`                |`java.time.OffsetTime`    ^(1)^       |^(3)^                   |`datetime.time`
+|`DateTime`            |`java.time.ZonedDateTime` ^(1)^ ^(2)^ |`System.DateTimeOffset` |`datetime.datetime`
+|(none)                |`java.time.Instant`             ^(2)^ |^(3)^                   |
+|===========================================================================================================
 
 Notes:
 
 * (1) The actual type mandated by GeoAPI is the more generic `java​.time.temporal.Temporal` interface.
 * (2) Some properties defined in GeoAPI 3._x_ use the legacy `java​.util​.Date` class for historical reasons.
+* (3) #TODO(SWG): the .NET types for `PositionInTime`, `Time` and `Instant` are not yet decided.#
 
 `DateTime` is distinct from `Instant`.
 The former is expressed in the proleptic Gregorian calendar as described in <<ISO8601>>,

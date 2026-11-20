@@ -1,0 +1,36 @@
+[[mapping_dotnet]]
+=== Mapping rules
+
+The .NET interfaces follow the general mapping rules of <<overview>>,
+adapted to the conventions of the .NET platform as described below:
+
+* Interfaces are named with the `I` prefix (<<naming>>). Code lists and enumerations have no prefix.
+* Acronyms of three letters or more are written in Pascal case, for example `IGeographicCrs` and `ToWkt()`.
+* UML properties are read-only .NET properties, for example `CoordinateSystem`.
+  UML operations, and members with arguments or side effects, are .NET methods, for example `Inverse()`.
+* Optional and conditional properties have nullable types (`T?`).
+  As with the `Optional` construct in Java, this is only a hint (<<multiplicity>>).
+* Multi-valued properties have the `IReadOnlyCollection<T>` type,
+  or `IReadOnlyList<T>` or `IReadOnlySet<T>` when elements are ordered or unique.
+  Those collections are never null.
+* Coordinate tuples are read by math transforms from `ReadOnlySpan<double>` and written to `Span<double>`.
+* Code lists are sealed classes derived from `CodeList<T>`, with a static `ValueOf(string)` method.
+* Exceptions such as `FactoryException` and `TransformException` are concrete classes.
+* GeoAPI members without UML equivalent (<<derived_properties>>) may have a default implementation in the interface.
+
+When a sub-interface restricts the type of an inherited property,
+the property is redeclared with the `new` modifier
+and the inherited property is explicitly implemented by delegating to the new one.
+For example, `IGeographicCrs` restricts the coordinate system to an ellipsoidal one:
+
+[source,csharp]
+----
+[Uml("GeographicCRS", Specification.Iso19111)]
+public interface IGeographicCrs : IGeodeticCrs
+{
+    [Uml("coordinateSystem", Obligation.Mandatory, Specification.Iso19111)]
+    new IEllipsoidalCs CoordinateSystem { get; }
+
+    ICoordinateSystem ISingleCrs.CoordinateSystem => CoordinateSystem;
+}
+----

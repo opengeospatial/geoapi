@@ -38,16 +38,16 @@ These types are mapped to {supported-languages} classes as below:
 
 .Name types mapping
 [options="header"]
-|=========================================================================================
-|ISO 19103:2015 type |Java interface                 |Python class
-|(constructors)      |`org.opengis.util.NameFactory` |
-|`NameSpace`         |`org.opengis.util.NameSpace`   |`opengis.metadata.naming.NameSpace`
-|`GenericName`       |`org.opengis.util.GenericName` |`opengis.metadata.naming.GenericName`
-|`ScopedName`        |`org.opengis.util.ScopedName`  |`opengis.metadata.naming.ScopedName`
-|`LocalName`         |`org.opengis.util.LocalName`   |`opengis.metadata.naming.LocalName`
-|`TypeName`          |`org.opengis.util.TypeName`    |`opengis.metadata.naming.TypeName`
-|`MemberName`        |`org.opengis.util.MemberName`  |`opengis.metadata.naming.MemberName`
-|=========================================================================================
+|======================================================================================================================
+|ISO 19103:2015 type |Java interface                 |.NET interface              |Python class
+|(constructors)      |`org.opengis.util.NameFactory` |`OpenGis.Util.INameFactory` |
+|`NameSpace`         |`org.opengis.util.NameSpace`   |`OpenGis.Util.INameSpace`   |`opengis.metadata.naming.NameSpace`
+|`GenericName`       |`org.opengis.util.GenericName` |`OpenGis.Util.IGenericName` |`opengis.metadata.naming.GenericName`
+|`ScopedName`        |`org.opengis.util.ScopedName`  |`OpenGis.Util.IScopedName`  |`opengis.metadata.naming.ScopedName`
+|`LocalName`         |`org.opengis.util.LocalName`   |`OpenGis.Util.ILocalName`   |`opengis.metadata.naming.LocalName`
+|`TypeName`          |`org.opengis.util.TypeName`    |`OpenGis.Util.ITypeName`    |`opengis.metadata.naming.TypeName`
+|`MemberName`        |`org.opengis.util.MemberName`  |`OpenGis.Util.IMemberName`  |`opengis.metadata.naming.MemberName`
+|======================================================================================================================
 
 
 [[type_name_mapping]]
@@ -67,21 +67,21 @@ The general rule is to use the name used in UML diagrams of OGC/ISO standards.
 
 .Standard type names and mapping to programming languages
 [options="header"]
-|============================================================================================
-|Scoped type name      |Java class                                 |Python class
-|`OGC:Boolean`         |`java.lang.Boolean`                        |`int`
-|`OGC:Integer`         |`java.lang.Integer`                        |`int`
-|`OGC:Real`            |`java.lang.Double`                         |`float`
-|`OGC:Decimal`         |`java.math.BigDecimal`                     |`float`
-|`OGC:CharacterString` |`java.lang.String`                         |`str`
-|`OGC:FreeText`        |`org.opengis.util.InternationalString`     |`str`
-|`OGC:PT_Locale`       |`java.util.Locale`                         |`str`               ^(1)^
-|`OGC:DateTime`        |`java.time.ZonedDateTime`                  |`datetime.datetime` ^(2)^
-|`OGC:URI`             |`java.net.URI`                             |`str`
-|`OGC:Matrix`          |`org.opengis.referencing.operation.Matrix` |`np.ndarray`
-|`OGC:Coverage`        |`org.opengis.coverage.Coverage`            |`Coverage`
-|`OGC:MD_Metadata`     |`org.opengis.metadata.Metadata`            |`Metadata`
-|============================================================================================
+|=====================================================================================================================================
+|Scoped type name      |Java class                                 |.NET type                               |Python class
+|`OGC:Boolean`         |`java.lang.Boolean`                        |`bool`                                  |`int`
+|`OGC:Integer`         |`java.lang.Integer`                        |`int`                                   |`int`
+|`OGC:Real`            |`java.lang.Double`                         |`double`                                |`float`
+|`OGC:Decimal`         |`java.math.BigDecimal`                     |`decimal`                               |`float`
+|`OGC:CharacterString` |`java.lang.String`                         |`string`                                |`str`
+|`OGC:FreeText`        |`org.opengis.util.InternationalString`     |`OpenGis.Util.IInternationalString`     |`str`
+|`OGC:PT_Locale`       |`java.util.Locale`                         |`System.Globalization.CultureInfo`      |`str`               ^(1)^
+|`OGC:DateTime`        |`java.time.ZonedDateTime`                  |`System.DateTimeOffset`                 |`datetime.datetime` ^(2)^
+|`OGC:URI`             |`java.net.URI`                             |`System.Uri`                            |`str`
+|`OGC:Matrix`          |`org.opengis.referencing.operation.Matrix` |`OpenGis.Referencing.Operation.IMatrix` |`np.ndarray`
+|`OGC:Coverage`        |`org.opengis.coverage.Coverage`            |                                        |`Coverage`
+|`OGC:MD_Metadata`     |`org.opengis.metadata.Metadata`            |`OpenGis.Metadata.IMetadata`            |`Metadata`
+|=====================================================================================================================================
 
 Notes:
 
@@ -103,7 +103,7 @@ as described in the following sub-sections.
 GeoAPI extends the ISO 19103:2015 model by adding a (_path_, _tip_) pair in complement to the (_head_, _tail_) pair.
 While the _head_ and _tip_ properties carry non-trivial information only inside `Scoped­Name`,
 GeoAPI nevertheless makes them available from the parent `Generic­Name` interface (not shown in <<generic_name_UML>>)
-with the restriction that they shall return `this` (Java) or `self` (Python) when the name is an instance of `Local­Name`.
+with the restriction that they shall return `this` (Java and .NET) or `self` (Python) when the name is an instance of `Local­Name`.
 This generalization makes common operations simpler without the need to check for the exact name interface.
 
 [[generic_name_departures_as_renaming]]
@@ -112,6 +112,7 @@ The ISO 19103:2015 `Generic­Name.aName` property appears as `toString` in <<gen
 but this property should be mapped to the standard mechanism for representing an arbitrary object
 as a character string in the target programming language.
 In Java this is the `toString()` method;
+in .NET this is the `ToString()` method;
 in Python this is `+__str__+` or `+__repr__+`.
 This specification uses the Java method name as it is more readable, but other languages should adapt as required.
 The `aName` and `scoped­Name` properties in sub-interfaces are replaced by inheritance of `toString` in above UML.

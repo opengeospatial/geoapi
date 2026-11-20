@@ -16,7 +16,7 @@ Implementers are free to provide a fully mutable implementation of GeoAPI interf
 but users may need to cast to the implementation classes in order to modify a metadata.
 
 There are almost 500 properties in more than 150 metadata interfaces. This specification does not describe them;
-see ISO 19115 together with GeoAPI Javadoc or Python-doc (<<conformance>>) for a description of each property.
+see ISO 19115 together with GeoAPI Javadoc, .NET API documentation or Python-doc (<<conformance>>) for a description of each property.
 Implementers can support a subset of their choice.
 The following UML example shows several frequently used interfaces with some of their properties.
 An example in <<java_metadata>> shows how to extract the individual name from a `Citation` in the Java language.

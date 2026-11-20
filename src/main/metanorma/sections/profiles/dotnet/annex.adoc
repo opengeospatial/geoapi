@@ -1,0 +1,26 @@
+[appendix,obligation="normative"]
+[[dotnet]]
+== .NET Profile
+
+In addition to this document, this specification includes the GeoAPI .NET assembly `OpenGis​.dll`,
+which defines the .NET interfaces in the `OpenGis` namespace.
+The assembly targets .NET 10 and depends only on the .NET base class library.
+
+#TODO: give the package coordinates and version number once the distribution channel is decided.#
+
+Libraries shall implement at least some interfaces defined in that assembly.
+It is not required to implement all interfaces.
+The contract for each interface and each member is specified in the XML documentation comments
+distributed with the assembly.
+
+The .NET profile is maintained by Venkata Kondepati,
+who is the contact for questions about this profile.
+
+include::mapping.adoc[]
+
+include::units.adoc[]
+
+[[tests_dotnet]]
+=== Tests suite
+
+#TODO: describe the .NET conformance tests when they are available.#

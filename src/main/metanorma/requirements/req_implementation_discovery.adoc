@@ -21,4 +21,9 @@ provides org.opengis.referencing.RegisterOperations
 ----------------------------------------------------------------------------
 
 --
+
+[.component,class=part]
+--
+#TODO(SWG): the .NET mechanism for declaring implementations of `IRegisterOperations` is not yet decided.#
+--
 ====

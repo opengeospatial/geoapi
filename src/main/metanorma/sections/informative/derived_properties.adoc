@@ -20,4 +20,4 @@ in places where introducing them brings some harmonization by reducing the need 
 Examples include: fetching the head of an arbitrary `Generic­Name`,
 fetching the Geodetic Reference Frame indirectly associated to a `ProjectedCRS`,
 fetching axes of an arbitrary Coordinate Reference System (including compound ones), and more.
-The additional methods can be recognized by the absence of `@UML` annotation.
+The additional methods can be recognized by the absence of `@UML` annotation in Java, or of `[Uml]` attribute in .NET.

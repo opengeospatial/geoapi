@@ -18,7 +18,10 @@ The legacy subtypes are listed in <<uom-mapping>>.
 ======
 
 GeoAPI does not define any interface for the ISO 19103 `Measure` and `UnitOf­Measure` types
-because {supported-languages} already have their own library for units of measurement.
+in Java and Python, because those languages already have their own library for units of measurement.
 For example, Java has standardized a set of quantity interfaces in the Java Specification Request <<JSR385>>.
 When such a language-specific standard exists and provides equivalent functionality to ISO 19103, that external standard is used.
 See Java profile (<<uom_jsr>>) or Java example code (<<parameterized_units>>) for more information.
+
+The .NET platform has no standard library for units of measurement.
+Therefore, the .NET profile defines a minimal set of interfaces for units and measures (<<uom_dotnet>>).

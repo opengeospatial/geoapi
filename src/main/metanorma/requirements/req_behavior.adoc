@@ -5,12 +5,12 @@
 label:: /req/req-class-lib/req-behavior
 [.component,class=conditions]
 --
-. Implementations shall follow the dictates of the Java or Python API documentation.
+. Implementations shall follow the dictates of the Java, .NET or Python API documentation.
 --
 
 [.component,class=part]
 --
 Libraries which provide code implementations of the GeoAPI interfaces shall follow
-the dictates of the Java or Python API documentation.
+the dictates of the Java, .NET or Python API documentation.
 --
 ====

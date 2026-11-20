@@ -15,11 +15,11 @@ Nil reasons can be:
 GeoAPI does not provide a mechanism for specifying the reason why a property is nil.
 Instead, the GeoAPI rules of method return values have been relaxed for the metadata packages.
 Elsewhere in GeoAPI, methods which have a mandatory obligation in the specification
-must return an instance of the return type and cannot return the Java `null` or Python `None` reference.
+must return an instance of the return type and cannot return the Java or .NET `null` or Python `None` reference.
 However, in the metadata package this rule is relaxed because data sets are encountered so frequently
 which have nil values for any of above-cited reasons.
 In the GeoAPI metadata packages, methods for mandatory properties should return a valid instance,
-but users should be prepared to receive `null` (Java), `None` (Python) or an empty collection.
+but users should be prepared to receive `null` (Java, .NET), `None` (Python) or an empty collection.
 This modification has been adopted to allow implementations sufficient latitude
 about how to handle metadata records with nil values.
 Nonetheless, sophisticated implementations can determine if a metadata record conforms with

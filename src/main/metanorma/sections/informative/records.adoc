@@ -27,15 +27,15 @@ but they can nevertheless be useful as marker interfaces.
 
 .Record types mapping
 [options="header"]
-|====================================================================================================
-|ISO 19103:2015 type |Java class or interface                   |Python class
-|`Any`               |`java.lang.Object`                        |
-|`Type`              |`org.opengis.util.Type`                   |
-|`Record`            |`org.opengis.util.Record`                 |`opengis.metadata.naming.Record`
-|`RecordType`        |`org.opengis.util.RecordType`             |`opengis.metadata.naming.RecordType`
-|`Field`             |`java.util.Map.Entry<MemberName, Type>`   |
-|`FieldType`         |`java.util.Map.Entry<MemberName, Object>` |
-|====================================================================================================
+|=========================================================================================================================================
+|ISO 19103:2015 type |Java class or interface                   |.NET class or interface             |Python class
+|`Any`               |`java.lang.Object`                        |`object`                            |
+|`Type`              |`org.opengis.util.Type`                   |`OpenGis.Util.IType`                |
+|`Record`            |`org.opengis.util.Record`                 |`OpenGis.Util.IRecord`              |`opengis.metadata.naming.Record`
+|`RecordType`        |`org.opengis.util.RecordType`             |`OpenGis.Util.IRecordType`          |`opengis.metadata.naming.RecordType`
+|`Field`             |`java.util.Map.Entry<MemberName, Type>`   |`KeyValuePair<IMemberName, IType>`  |
+|`FieldType`         |`java.util.Map.Entry<MemberName, Object>` |`KeyValuePair<IMemberName, object>` |
+|=========================================================================================================================================
 
 [[records_departures]]
 ===== Departures from ISO model
@@ -56,6 +56,7 @@ The `isInstance(…)` method is a GeoAPI extension.
 The ISO 19103:2015 `Field` and `Field­Type` interfaces are omitted because the same functionality is achieved
 with `Dictionary<Member­Name, Type>` and `Dictionary<Member­Name, Any>` respectively.
 Dictionaries are realized by language-specific types such as `java​.util​.Map`
+or `IReadOnlyDictionary<TKey,TValue>` in .NET
 (see collection types in <<collections>>) which offer more flexibility.
 In particular, dictionaries provide functionality equivalent to the ISO 19103:2005 `locate(name : Member­Name)` method.
 That method was defined in an older ISO standard but was removed in the ISO 19103:2015 revision.

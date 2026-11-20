@@ -14,8 +14,9 @@
 :published-date:           TBD
 :workgroup:                GeoAPI SWG
 :fullname:                 Martin Desruisseaux
+:fullname_2:               Venkata Kondepati
 :submitting-organizations: Geomatys
-:keywords:                 ogcdoc, OGC document, GeoAPI, programming, Java, Python, interface, geospatial, metadata, referencing, feature
+:keywords:                 ogcdoc, OGC document, GeoAPI, programming, Java, C#, .NET, Python, interface, geospatial, metadata, referencing, feature
 :mn-document-class:        ogc
 :mn-output-extensions:     xml,html,doc,pdf
 :pdf-uri:                  ./document.pdf
@@ -24,7 +25,7 @@
 :imagesdir:                figures
 :data-uri-image:
 :local-cache-only:         ../../../target/
-:supported-languages:      Java and Python
+:supported-languages:      Java, .NET and Python
 :htmlstylesheet-override: geoapi.css
 // Note: above line needs to be have exactly one space and to be before this comment.
 
@@ -49,6 +50,8 @@ include::sections/clause_7_normative_text.adoc[]
 include::sections/annex-tests.adoc[]
 
 include::sections/profiles/java/annex.adoc[]
+
+include::sections/profiles/dotnet/annex.adoc[]
 
 include::sections/profiles/python/annex.adoc[]
 

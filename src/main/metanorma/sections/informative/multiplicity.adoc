@@ -14,6 +14,7 @@ with a restriction documented in the text attached to the property.
 
 Some programming languages have an `Optional` construct for differentiating the [0 … 1] and [1 … 1] cases.
 This construct is used where appropriate, but shall be considered only as a hint.
+In .NET, nullable reference types (`T?`) play the same role and are also only a hint.
 It may appear in a mandatory property if that property was optional in the parent interface.
 Conversely, absence of `Optional` construct is not a guarantee that the value will never be null.
 Some properties fall in a gray area, where they are _usually_ not null but may be null in some rare situations.
