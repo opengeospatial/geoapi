@@ -54,7 +54,7 @@ This standard is a _realization_ of OGC/ISO abstract specifications: it defines 
 By comparison, the Geographic Markup Language (GML) is another realization of the same abstract specifications
 (ignoring version numbers) but targeting a different language (XML).
 GeoAPI documents the mapping of types and methods from the abstract model into {supported-languages} programming languages,
-providing standard interfaces in the `"org.opengis"` (Java) or `"opengis"` (Python) namespaces
+providing standard interfaces in the `"org.opengis"` (Java), `"OpenGis"` (.NET) or `"opengis"` (Python) namespaces
 and explaining the use of GeoAPI interfaces.
 
 
@@ -73,4 +73,5 @@ All questions regarding this submission should be directed to the editor or the 
 |===================================
 |Name                   |Affiliation
 |Martin Desruisseaux    |Geomatys
+|Venkata Kondepati      |Ascentt
 |===================================

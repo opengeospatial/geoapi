@@ -16,8 +16,8 @@ to allow sending string representations in the locale of the client rather than 
 .Cultural and linguistic adaptability
 image::localization.svg[UML of InternationalString]
 
-The `toString()` method (`+__str__+` in Python) returns the text in a language of the implementer's choosing.
-The `toString(Locale)` method tries to return the text in the specified language if available,
+The `toString()` method (`ToString()` in .NET, `+__str__+` in Python) returns the text in a language of the implementer's choosing.
+The `toString(Locale)` method (`ToString(CultureInfo)` in .NET) tries to return the text in the specified language if available,
 and otherwise falls back on a language of the implementer's choosing.
 This specification makes no recommendation about the default or fallback languages,
 because some programming languages provide their own mechanism
@@ -27,14 +27,14 @@ An example in <<International­String>> shows the use of `International­String`
 
 .Linguistic types mapping
 [options="header"]
-|==============================================================================
-|ISO 19103:2015 interface |Java class or interface                |Python class
-|`CharacterString`        |`java.lang.String`               ^(1)^ |`str`
-|`LanguageString`         |`org.opengis.util.InternationalString` |`str`
-|`LanguageCode`           |`java.util.Locale`                     |`str`
-|`Currency`         ^(2)^ |`java.util.Currency`                   |
-|`CharacterSetCode` ^(3)^ |`java.nio.charset.Charset`             |`str`
-|==============================================================================
+|===================================================================================================================
+|ISO 19103:2015 interface |Java class or interface                |.NET class or interface             |Python class
+|`CharacterString`        |`java.lang.String`               ^(1)^ |`string`                            |`str`
+|`LanguageString`         |`org.opengis.util.InternationalString` |`OpenGis.Util.IInternationalString` |`str`
+|`LanguageCode`           |`java.util.Locale`                     |`System.Globalization.CultureInfo`  |`str`
+|`Currency`         ^(2)^ |`java.util.Currency`                   |                                    |
+|`CharacterSetCode` ^(3)^ |`java.nio.charset.Charset`             |`System.Text.Encoding`              |`str`
+|===================================================================================================================
 
 Notes:
 

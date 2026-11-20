@@ -12,11 +12,11 @@ Other types are expected to be added in future GeoAPI versions.
 
 .Mapping of types from the geometry package
 [options="header"]
-|============================================================================
-|ISO 19107 interface |Java type                                  |Python type
-|`DirectPosition`    |`org.opengis.geometry.DirectPosition`      |
-|`GM_Envelope`       |`org.opengis.geometry.Envelope`            |
-|============================================================================
+|================================================================================================================
+|ISO 19107 interface |Java type                                  |.NET type                          |Python type
+|`DirectPosition`    |`org.opengis.geometry.DirectPosition`      |`OpenGis.Geometry.IDirectPosition` |
+|`GM_Envelope`       |`org.opengis.geometry.Envelope`            |`OpenGis.Geometry.IEnvelope`       |
+|================================================================================================================
 
 The `Direct­Position` type represents a single location in the coordinate space defined by a `Coordinate­Reference­System`.
 The `Envelope` type represents the lower and upper extreme values along each axis.

@@ -26,3 +26,11 @@ include::../code/java/metadata.adoc[]
 include::../code/java/create_crs.adoc[]
 
 include::../code/java/coordinate_operation.adoc[]
+
+[[dotnet_examples]]
+=== .NET examples
+
+This section provides code snippets in the C# language for the .NET platform,
+for aspects discussed in the Geospatial API overview (<<overview>>).
+
+include::../code/dotnet/annotation.adoc[]

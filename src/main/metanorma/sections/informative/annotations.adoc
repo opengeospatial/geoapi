@@ -8,9 +8,10 @@ of the various types, properties and operations published by GeoAPI.
 The source document may be completed by a version number when the GeoAPI construct
 is based on a different edition of a normative document than the dated references
 listed in <<references>>.
-GeoAPI defines two annotations in the Java language (not in Python):
+GeoAPI defines two annotations in the Java language and two equivalent attributes in .NET (not in Python):
 `@UML` which is applied on types and properties (fields or methods), and
 `@Classifier` which can be applied only on types.
+The .NET attributes are `[Uml]` and `[Classifier]` in the `OpenGis.Annotation` namespace.
 Those annotations are shown in the figure below:
 
 [[annotations-UML]]
@@ -19,6 +20,7 @@ image::annotations.svg[UML of GeoAPI annotations]
 
 An example in <<UML_introspection>> shows how these annotations are applied in the Java language
 and how they are available at runtime by introspection.
+The equivalent example for .NET is given in <<UML_introspection_dotnet>>.
 
 
 

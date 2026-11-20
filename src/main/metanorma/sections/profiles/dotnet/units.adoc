@@ -1,0 +1,16 @@
+[[uom_dotnet]]
+=== Units of measurement
+
+Unlike Java, the .NET platform has no standard library for units of measurement (<<units>>).
+The .NET profile therefore defines a minimal set of types in the `OpenGis.Util.Measure` namespace:
+
+* `IUnitOfMeasure` for the ISO 19103 `UnitOfMeasure` type,
+  with the `Symbol`, `Name`, `Kind` and `SystemUnit` properties
+  and the `ToSystemUnit(double)` method for converting a value to the system unit of the same kind.
+* `IMeasure` for the ISO 19103 `Measure` type, with the `Value` and `Unit` properties.
+* `UnitKind` for the kind of quantity measured by a unit.
+
+The ISO 19103:2015 subtypes such as `Length` and `UomLength` (<<uom-mapping>>) are not materialized as separate types.
+The kind of quantity is given by the `Kind` property instead.
+Those types provide no arithmetic, no parsing and no dimensional analysis.
+Implementations or other libraries may provide such services.

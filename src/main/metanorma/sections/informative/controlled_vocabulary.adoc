@@ -14,15 +14,15 @@ In contrast, code lists are _open_ vocabularies:
 they provide a basic set of members defined at compile-time,
 but users are free to add new members at runtime.
 Many programming languages provide an `enum` construct for the closed case.
-For the open case, GeoAPI defines the `Code­List` abstract class in Java.
+For the open case, GeoAPI defines the `Code­List` abstract class in Java and the `CodeList<T>` abstract class in .NET.
 
 .Enumerated types mapping
 [options="header"]
-|===========================================================
-|ISO 19103 type   |Java type                   |Python type
-|`CodeList` ^(1)^ |`org.opengis.util.CodeList` |`Enum` ^(2)^
-|`GI_Enumeration` |`java.lang.Enum`            |`Enum`
-|===========================================================
+|=======================================================================================
+|ISO 19103 type   |Java type                   |.NET type                  |Python type
+|`CodeList` ^(1)^ |`org.opengis.util.CodeList` |`OpenGis.Util.CodeList<T>` |`Enum` ^(2)^
+|`GI_Enumeration` |`java.lang.Enum`            |`enum` ^(3)^               |`Enum`
+|=======================================================================================
 
 Notes:
 
@@ -30,8 +30,11 @@ Notes:
   GeoAPI has no equivalent structure yet.
 - (2) GeoAPI does not yet provide an extensible implementation of code list in the Python language,
   but this limitation may be addressed in a future version.
+- (3) .NET `enum` types cannot implement interfaces, so they do not implement `Controlled­Vocabulary`.
+  #TODO(SWG): keep .NET `enum` types or use sealed classes as for code lists.#
 
-Code lists can be extended by calls to `valueOf(String)` methods in the Java language.
+Code lists can be extended by calls to `valueOf(String)` methods in the Java language,
+or by calls to `ValueOf(string)` methods in .NET.
 Extensions of a code list use the existing code list values and merely add additional unique values.
 These additional values should not replace an existing code by changing the name or definition,
 or have the same definition as an existing value.
@@ -68,6 +71,6 @@ but this is not necessarily a problem because not all algorithms need stable val
 In some specifications (for example ISO 19115), code list and enumeration names end with the `"Code"` suffix.
 Some other specifications (for example ISO 19111) do not use any particular suffix.
 The mapping to programmatic API may uniformize those type names to a single convention, depending on the target language.
-For the Java API, `"Code"` suffixes are omitted in class names.
+For the Java and .NET APIs, `"Code"` suffixes are omitted in class names.
 But for the Python API, class names are left unchanged.
-See naming conventions in <<naming>> for examples in both languages.
+See naming conventions in <<naming>> for examples in all languages.

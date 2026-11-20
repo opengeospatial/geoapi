@@ -102,7 +102,7 @@ This semantic oddity is avoided by omitting the `ObjectUsage` type.
 ISO 19111 defines `GeodeticCS`, `EngineeringCS` and `Derived­ProjectedCS` unions for type safety.
 For example, the `GeodeticCS` union ensures that a `GeodeticCRS` can only be associated to a
 `CartesianCS`, an `EllipsoidalCS` or a `SphericalCS`.
-Those unions have been omitted from GeoAPI because unions are not supported in Java language,
+Those unions have been omitted from GeoAPI because unions are not supported by the Java and .NET type systems,
 and the Python language does not enforce type safety.
 
 

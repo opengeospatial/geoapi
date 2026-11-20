@@ -8,13 +8,13 @@ An online version of the API documentation, which may contain fixes for errata d
 is available at the URLs listed below:
 
 .Distribution formats
-[options="header", cols="1,3,3"]
-|========================================================================================================
-|                |Java                                    |Python
-|Interfaces:     |Java Archive (JAR) binary               |Python source files (.py)
-|Documentation:  |Javadoc as HTML files                   |MkDocs generated pages as HTML files
-|Online version: |http://www.geoapi.org/snapshot/javadoc/ |http://www.geoapi.org/snapshot/python/
-|========================================================================================================
+[options="header", cols="1,3,3,3"]
+|==================================================================================================================================================
+|                |Java                                    |.NET                                     |Python
+|Interfaces:     |Java Archive (JAR) binary               |.NET assembly (DLL) binary               |Python source files (.py)
+|Documentation:  |Javadoc as HTML files                   |XML documentation comments as HTML files |MkDocs generated pages as HTML files
+|Online version: |http://www.geoapi.org/snapshot/javadoc/ |#TODO: URL#                              |http://www.geoapi.org/snapshot/python/
+|==================================================================================================================================================
 
 #TODO: The `snapshot` elements in above URLs will be replaced by `3.1` and `4.0` after release.#
 

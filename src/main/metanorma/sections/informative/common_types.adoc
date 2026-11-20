@@ -10,22 +10,25 @@ The following table shows the mapping used by GeoAPI to represent the primitive 
 
 .Primitive types mapping
 [options="header"]
-|================================================================================
-|ISO 19103 interface    |Java type                              |Python type
-|`Boolean`              |`boolean`                        ^(1)^ |`int`
-|`Number`               |`java.lang.Number`                     |`int` or `float`
-|`Integer`              |`int`                         ^(1)(2)^ |`int`
-|`Real`                 |`double`                         ^(1)^ |`float`
-|`Decimal` ^(3)^        |`java.math.BigDecimal`                 |`float`
-|`Vector`               |unimplemented                          |unimplemented
-|`CharacterString`      |`java.lang.String`               ^(4)^ |`str`
-|`URI`                  |`java.net.URI`                         |
-|`UUID`                 |`java.util.UUID`                       |
-|================================================================================
+|================================================================================================
+|ISO 19103 interface    |Java type                              |.NET type      |Python type
+|`Boolean`              |`boolean`                        ^(1)^ |`bool` ^(1)^   |`int`
+|`Number`               |`java.lang.Number`                     |^(5)^          |`int` or `float`
+|`Integer`              |`int`                         ^(1)(2)^ |`int` ^(1)(2)^ |`int`
+|`Real`                 |`double`                         ^(1)^ |`double` ^(1)^ |`float`
+|`Decimal` ^(3)^        |`java.math.BigDecimal`                 |`decimal`      |`float`
+|`Vector`               |unimplemented                          |unimplemented  |unimplemented
+|`CharacterString`      |`java.lang.String`               ^(4)^ |`string` ^(4)^ |`str`
+|`URI`                  |`java.net.URI`                         |`System.Uri`   |
+|`UUID`                 |`java.util.UUID`                       |`System.Guid`  |
+|================================================================================================
 
 Notes:
 
 * (1) Wrapper types such as `java​.lang​.Integer` or `java​.util​.Optional­Int` may be used where appropriate.
+  In .NET, nullable value types such as `int?` play the same role.
 * (2) Sometimes substituted by `long` or `java​.lang​.Long` where the value may exceed 2³².
 * (3) `Decimal` differs from `Real`, as `Decimal` is exact in base 10 while `Real` may not.
 * (4) Substituted by `org​.opengis​.util​.International­String` where the string representation depends on the locale.
+  In .NET, the substitute is `OpenGis​.Util​.IInternationalString`.
+* (5) .NET has no common parent type for all numbers. #TODO(SWG): choose the .NET mapping of `Number`.#

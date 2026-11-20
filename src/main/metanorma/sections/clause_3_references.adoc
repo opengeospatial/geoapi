@@ -56,4 +56,6 @@
 
 * [[[JavaSpec,The Java Language Specification]]], James Gosling, Bill Joy, Guy Steele, Gilad Bracha: _The Java Language Specification_
 
+* [[[CSharpSpec,ECMA-334]]], Ecma International: _ECMA-334: C# Language Specification_
+
 * [[[PythonSpec,The Python Language Reference]]], Python Software Foundation: _The Python Language Reference_

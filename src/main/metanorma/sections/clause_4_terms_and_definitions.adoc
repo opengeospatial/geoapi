@@ -1,10 +1,22 @@
 [[terms_and_definitions]]
 == Terms and definitions
 
+[[term_dotnet]]
+=== .NET
+software platform providing a common type system, a runtime and a base class library
+for programs written in C# and other programming languages
+
+
 [[term_API]]
 === application programming interface (API)
 a formally defined set of types and methods which establish a contract between client code which uses the API
 and implementation code which provides the API
+
+
+[[term_csharp]]
+=== C#
+object oriented, single inheritance programming language of the .NET platform
+whose syntax derives from the C programming language and which is defined by the C# Language Specification
 
 
 [[term_cardinality]]

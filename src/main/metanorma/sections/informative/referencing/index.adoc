@@ -21,17 +21,17 @@ The mapping from ISO 19111 packages to GeoAPI packages is shown below:
 
 .Referencing package mapping
 [options="header"]
-|===================================================================================================
-|ISO package                 |Java package                          |Python module
-|Coordinate metadata         |`org.opengis.coordinate`              |`opengis.coordinate`
-|Identified Object           |`org.opengis.referencing`             |`opengis.referencing.datum`
-|Reference System            |`org.opengis.referencing`             |`opengis.referencing.crs`
-|Coordinate Reference System |`org.opengis.referencing.crs`         |`opengis.referencing.crs`
-|Coordinate System           |`org.opengis.referencing.cs`          |`opengis.referencing.cs`
-|Datum                       |`org.opengis.referencing.datum`       |`opengis.referencing.datum`
-|Coordinate Operation        |`org.opengis.referencing.operation`   |`opengis.referencing.operation`
-|Coordinate Operation        |`org.opengis.referencing.parameter`   |`opengis.parameter`
-|===================================================================================================
+|====================================================================================================================================
+|ISO package                 |Java package                          |.NET namespace                  |Python module
+|Coordinate metadata         |`org.opengis.coordinate`              |`OpenGis.Coordinate`            |`opengis.coordinate`
+|Identified Object           |`org.opengis.referencing`             |`OpenGis.Referencing`           |`opengis.referencing.datum`
+|Reference System            |`org.opengis.referencing`             |`OpenGis.Referencing`           |`opengis.referencing.crs`
+|Coordinate Reference System |`org.opengis.referencing.crs`         |`OpenGis.Referencing.Crs`       |`opengis.referencing.crs`
+|Coordinate System           |`org.opengis.referencing.cs`          |`OpenGis.Referencing.Cs`        |`opengis.referencing.cs`
+|Datum                       |`org.opengis.referencing.datum`       |`OpenGis.Referencing.Datum`     |`opengis.referencing.datum`
+|Coordinate Operation        |`org.opengis.referencing.operation`   |`OpenGis.Referencing.Operation` |`opengis.referencing.operation`
+|Coordinate Operation        |`org.opengis.referencing.parameter`   |`OpenGis.Parameter`             |`opengis.parameter`
+|====================================================================================================================================
 
 include::coordinate_system.adoc[]
 

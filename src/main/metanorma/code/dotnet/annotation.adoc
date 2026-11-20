@@ -1,0 +1,40 @@
+[[UML_introspection_dotnet]]
+==== UML at runtime
+
+The attributes in API (<<annotations>>) are available at runtime by reflection.
+The following example is the .NET equivalent of the Java example in <<UML_introspection>>.
+The attributes indicate that the `IProjectedCrs` interface
+was derived from a type named `ProjectedCRS` in the ISO 19111 standard,
+and that the `CoordinateSystem` property was derived from a property named `coordinate­System`
+for which a non-null value must be provided by every `IProjectedCrs` instance:
+
+[source,csharp]
+------------------------------------------------------------
+[Classifier(Stereotype.Type)]
+[Uml("ProjectedCRS", Specification.Iso19111)]
+public interface IProjectedCrs : IDerivedCrs
+{
+    /// <summary>
+    /// Returns the coordinate system.
+    /// </summary>
+    [Uml("coordinateSystem", Obligation.Mandatory, Specification.Iso19111)]
+    new ICartesianCs CoordinateSystem { get; }
+
+    ICoordinateSystem ISingleCrs.CoordinateSystem => CoordinateSystem;
+}
+------------------------------------------------------------
+
+At runtime, the attribute of a GeoAPI property can be obtained as follows:
+
+[source,csharp]
+---------------------------------------------------------------------------------------
+Type          type          = typeof(IProjectedCrs);
+PropertyInfo  property      = type.GetProperty(nameof(IProjectedCrs.CoordinateSystem))!;
+UmlAttribute  attribute     = property.GetCustomAttribute<UmlAttribute>()!;
+string        identifier    = attribute.Identifier;     // = "coordinateSystem"
+Specification specification = attribute.Specification;  // = ISO 19111
+Obligation    obligation    = attribute.Obligation;     // = mandatory
+---------------------------------------------------------------------------------------
+
+The `typeof` operator gives the `Type` instance of the interface,
+and the `GetCustomAttribute<T>()` extension method of the `System​.Reflection` namespace gives the attribute.

@@ -33,7 +33,7 @@ The length may be more than 2 if the AND or OR operation is repeated for all ope
 GeoAPI generally avoids interfaces with definition of the kind _“is not…”_.
 Users should extend directly the most appropriate interface instead.
 `SpatialDescription` and `TemporalOperand` unions are omitted for language constraint reasons.
-Unions are not supported in Java and not really needed in Python.
+Unions are not supported by the Java and .NET type systems, and not really needed in Python.
 They are replaced by recommendations in the API documentation.
 
 [[filter_capability_omissions]]
